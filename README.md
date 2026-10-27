@@ -8,7 +8,7 @@ Die Watch misst in einem Weckfenster vor der Zielzeit Bewegung und Puls, erkennt
 
 ## Warum
 
-Samsung Health trackt den Schlaf ausführlich, bietet aber keinen Smart-Wake-Alarm. Kostenlose Alternativen gibt es für die Galaxy Watch nicht. PhaseWake schliesst diese Lücke – offen, ohne Konto, ohne Server, ohne Abo.
+Samsung Health trackt den Schlaf ausführlich, bietet aber keinen Smart-Wake-Alarm. Kostenlose Alternativen gibt es für die Galaxy Watch nicht. phaseWake schliesst diese Lücke – offen, ohne Konto, ohne Server, ohne Abo.
 
 ## Aufbau
 
