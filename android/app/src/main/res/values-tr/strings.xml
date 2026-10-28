@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">Yedek alarm</string>
     <string name="channel_alarm_description">Telefonda saatinle birlikte çalar.</string>
     <string name="ring_greeting">Günaydın</string>
@@ -210,8 +210,8 @@
     <string name="editor_more">Daha fazla</string>
     <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">AM</string>
-    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">Bu gece için notlar</string>
     <string name="note_caffeine">Öğleden sonra kahve</string>

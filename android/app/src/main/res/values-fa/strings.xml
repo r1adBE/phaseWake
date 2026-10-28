@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">زنگ پشتیبان</string>
     <string name="channel_alarm_description">هم‌زمان با ساعتت روی گوشی هم زنگ می‌خورد.</string>
     <string name="ring_greeting">صبح بخیر</string>
@@ -210,8 +210,8 @@
     <string name="editor_more">بیشتر</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">ق.ظ.</string>
-    <string name="m3c_time_picker_pm">ب.ظ.</string>
+    <string name="m3c_time_picker_am" tools:override="true">ق.ظ.</string>
+    <string name="m3c_time_picker_pm" tools:override="true">ب.ظ.</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">یادداشت‌های امشب</string>
     <string name="note_caffeine">قهوه بعدازظهر</string>

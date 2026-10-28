@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">מעורר גיבוי</string>
     <string name="channel_alarm_description">מצלצל בטלפון יחד עם השעון.</string>
     <string name="ring_greeting">בוקר טוב</string>
@@ -215,8 +215,8 @@
     <string name="editor_more">עוד</string>
     <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">AM</string>
-    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">הערות ללילה הזה</string>
     <string name="note_caffeine">קפה אחר הצהריים</string>

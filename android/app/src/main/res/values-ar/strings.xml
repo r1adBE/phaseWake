@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">المنبّه الاحتياطي</string>
     <string name="channel_alarm_description">يرنّ على هاتفك مع ساعتك.</string>
     <string name="ring_greeting">صباح الخير</string>
@@ -230,8 +230,8 @@
     <string name="editor_more">المزيد</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">ص</string>
-    <string name="m3c_time_picker_pm">م</string>
+    <string name="m3c_time_picker_am" tools:override="true">ص</string>
+    <string name="m3c_time_picker_pm" tools:override="true">م</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">ملاحظات لهذه الليلة</string>
     <string name="note_caffeine">قهوة بعد الظهر</string>

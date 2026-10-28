@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">Alarma de respaldo</string>
     <string name="channel_alarm_description">Suena en tu móvil junto con tu reloj.</string>
     <string name="ring_greeting">Buenos días</string>
@@ -215,8 +215,8 @@
     <string name="editor_more">Más</string>
     <string name="home_max_alarms">Máximo %1$d alarmas: elimina una para añadir otra.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">AM</string>
-    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">Notas para esta noche</string>
     <string name="note_caffeine">Café por la tarde</string>

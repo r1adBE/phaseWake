@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_alarm">Budzik zapasowy</string>
     <string name="channel_alarm_description">Dzwoni na telefonie razem z zegarkiem.</string>
     <string name="ring_greeting">Dzień dobry</string>
@@ -220,8 +220,8 @@
     <string name="editor_more">Więcej</string>
     <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">AM</string>
-    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
     <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
     <string name="notes_title">Notatki na dzisiejszą noc</string>
     <string name="note_caffeine">Kawa po południu</string>

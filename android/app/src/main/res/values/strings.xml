@@ -261,6 +261,6 @@
     <string name="sounds_remaining">%1$s left</string>
     <string name="sounds_hint">Plays at media volume and stops at the latest when your wake window begins.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am">AM</string>
-    <string name="m3c_time_picker_pm">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
 </resources>
