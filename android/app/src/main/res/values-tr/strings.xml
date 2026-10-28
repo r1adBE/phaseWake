@@ -77,7 +77,7 @@
     <string name="settings_about">Hakkında</string>
     <string name="settings_open_source">GitHub\'da açık kaynak</string>
     <string name="settings_licenses">Lisanslar</string>
-    <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)</string>
     <string name="settings_version">Sürüm %1$s</string>
 
     <string name="duration_minutes">%1$d dk</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Titreşim + ses</string>
     <string name="alert_off">Kapalı</string>
     <string name="alert_vibrate">Titreşim</string>
-    <string name="alert_sound">Ses</string>
+    <string name="alert_sound">Titreşim + ses</string>
     <string name="editor_sound">Alarm sesi</string>
     <string name="editor_sound_default">Varsayılan</string>
+    <string name="wake_tone_birds">Sabah kuşları</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Yumuşak gong</string>
+    <string name="wake_tone_harp">Arp</string>
+    <string name="wake_tone_system">Sistem sesi…</string>
     <string name="dnd_text">Rahatsız Etme\'de alarmlara izin ver, yoksa telefonun sessiz kalır.</string>
     <string name="dnd_action">Ayarları aç</string>
     <string name="greeting_morning">Günaydın</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Gün doğumu</string>
     <string name="sunrise_text">Sen uyanana kadar ekran yavaşça parlaklaşır.</string>
     <string name="sunrise_off">Işığı kapat</string>
-    <string name="editor_sunrise">Telefonda gün doğumu</string>
-    <string name="editor_sunrise_hint">Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür. Telefonu ekranı yukarı bakacak şekilde bırak.</string>
+    <string name="editor_sunrise_hint">Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür.</string>
+    <string name="editor_sunrise_phone_hint">Telefonu ekranı yukarı bakacak şekilde bırak.</string>
     <string name="sunrise_ring">Uyanırken</string>
     <string name="sunrise_window">Aralıktan</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Kahverengi gürültü</string>
     <string name="sound_rain">Yağmur</string>
     <string name="sound_ocean">Deniz</string>
+    <string name="sound_fan">Vantilatör</string>
+    <string name="sound_binaural">Uyku dalgaları</string>
+    <string name="sound_forest">Gece ormanı</string>
+    <string name="sound_fire">Şömine</string>
+    <string name="sound_brook">Dere</string>
+    <string name="sound_binaural_hint">Kulaklıkla dinle.</string>
     <string name="sounds_timer">Zamanlayıcı</string>
     <string name="sounds_timer_off">Yok</string>
     <string name="sounds_play">Oynat</string>

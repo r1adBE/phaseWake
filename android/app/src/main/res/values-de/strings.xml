@@ -77,7 +77,7 @@
     <string name="settings_about">Über</string>
     <string name="settings_open_source">Open Source auf GitHub</string>
     <string name="settings_licenses">Lizenzen</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC.\nKlänge: freie Aufnahmen (CC0) von opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
     <string name="duration_minutes">%1$d Min</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Vibration + Ton</string>
     <string name="alert_off">Aus</string>
     <string name="alert_vibrate">Vibration</string>
-    <string name="alert_sound">Ton</string>
+    <string name="alert_sound">Vibration + Ton</string>
     <string name="editor_sound">Weckton</string>
     <string name="editor_sound_default">Standard</string>
+    <string name="wake_tone_birds">Morgenvögel</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Sanfter Gong</string>
+    <string name="wake_tone_harp">Harfe</string>
+    <string name="wake_tone_system">Klingelton des Systems …</string>
     <string name="dnd_text">Erlaube Wecker bei «Nicht stören», sonst bleibt dein Handy still.</string>
     <string name="dnd_action">Einstellungen öffnen</string>
     <string name="greeting_morning">Guten Morgen</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Sonnenaufgang</string>
     <string name="sunrise_text">Der Bildschirm wird langsam heller, bis du geweckt wirst.</string>
     <string name="sunrise_off">Licht ausschalten</string>
-    <string name="editor_sunrise">Sonnenaufgang auf dem Handy</string>
-    <string name="editor_sunrise_hint">Der Bildschirm leuchtet erst schwach orange und wird dann zu hellem, warmem Licht bei voller Helligkeit. Leg das Handy mit dem Bildschirm nach oben hin.</string>
+    <string name="editor_sunrise_hint">Der Bildschirm leuchtet erst schwach orange und wird dann zu hellem, warmem Licht bei voller Helligkeit.</string>
+    <string name="editor_sunrise_phone_hint">Leg das Handy mit dem Bildschirm nach oben hin.</string>
     <string name="sunrise_ring">Beim Wecken</string>
     <string name="sunrise_window">Ab Fenster</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Braunes Rauschen</string>
     <string name="sound_rain">Regen</string>
     <string name="sound_ocean">Meer</string>
+    <string name="sound_fan">Ventilator</string>
+    <string name="sound_binaural">Einschlaf-Wellen</string>
+    <string name="sound_forest">Wald bei Nacht</string>
+    <string name="sound_fire">Kaminfeuer</string>
+    <string name="sound_brook">Bach</string>
+    <string name="sound_binaural_hint">Mit Kopfhörern hören.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">Ohne</string>
     <string name="sounds_play">Abspielen</string>

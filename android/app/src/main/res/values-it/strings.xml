@@ -78,7 +78,7 @@
     <string name="settings_about">Info</string>
     <string name="settings_open_source">Open source su GitHub</string>
     <string name="settings_licenses">Licenze</string>
-    <string name="settings_licenses_text">Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC.\nSuoni: registrazioni libere (CC0) da opengameart.org</string>
     <string name="settings_version">Versione %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -104,9 +104,14 @@
     <string name="alert_vibrate_sound">Vibrazione + suono</string>
     <string name="alert_off">No</string>
     <string name="alert_vibrate">Vibrazione</string>
-    <string name="alert_sound">Suono</string>
+    <string name="alert_sound">Vibrazione + suono</string>
     <string name="editor_sound">Suoneria</string>
     <string name="editor_sound_default">Predefinita</string>
+    <string name="wake_tone_birds">Uccelli del mattino</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gong delicato</string>
+    <string name="wake_tone_harp">Arpa</string>
+    <string name="wake_tone_system">Suono di sistema…</string>
     <string name="dnd_text">Consenti le sveglie in Non disturbare, altrimenti il telefono resta muto.</string>
     <string name="dnd_action">Apri impostazioni</string>
     <string name="greeting_morning">Buongiorno</string>
@@ -129,8 +134,8 @@
     <string name="sunrise_title">Alba</string>
     <string name="sunrise_text">Lo schermo diventa lentamente più luminoso finché non ti svegli.</string>
     <string name="sunrise_off">Spegni la luce</string>
-    <string name="editor_sunrise">Alba sul telefono</string>
-    <string name="editor_sunrise_hint">Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità. Appoggia il telefono con lo schermo verso l’alto.</string>
+    <string name="editor_sunrise_hint">Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità.</string>
+    <string name="editor_sunrise_phone_hint">Appoggia il telefono con lo schermo verso l’alto.</string>
     <string name="sunrise_ring">Alla sveglia</string>
     <string name="sunrise_window">Da finestra</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -267,6 +272,12 @@
     <string name="sound_brown">Rumore marrone</string>
     <string name="sound_rain">Pioggia</string>
     <string name="sound_ocean">Mare</string>
+    <string name="sound_fan">Ventilatore</string>
+    <string name="sound_binaural">Onde per dormire</string>
+    <string name="sound_forest">Bosco di notte</string>
+    <string name="sound_fire">Camino</string>
+    <string name="sound_brook">Ruscello</string>
+    <string name="sound_binaural_hint">Ascolta con le cuffie.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">Nessuno</string>
     <string name="sounds_play">Riproduci</string>

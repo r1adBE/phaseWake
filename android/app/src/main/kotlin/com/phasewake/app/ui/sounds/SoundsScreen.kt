@@ -47,7 +47,7 @@ import java.time.Instant
 import kotlinx.coroutines.delay
 
 /**
- * Einschlafklänge: fünf Klänge, Timer, Abspielen/Stoppen und Restzeit.
+ * Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Abspielen/Stoppen und Restzeit.
  *
  * @param canPlay `false`, solange ein Weckfenster läuft (Klänge überdecken nie das Wecken).
  */
@@ -73,7 +73,7 @@ fun SoundsScreen(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            // Zwei Kacheln je Zeile; die fünfte steht allein.
+            // Zwei Kacheln je Zeile; bei ungerader Zahl steht die letzte allein.
             SleepSound.entries.chunked(2).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
                     row.forEach { sound ->
@@ -81,6 +81,14 @@ fun SoundsScreen(
                     }
                     if (row.size == 1) Spacer(Modifier.weight(1f))
                 }
+            }
+            // Einschlaf-Wellen: links und rechts ein anderer Ton, darum mit Kopfhörern hören.
+            if ((playing?.sound ?: selected) == SleepSound.BINAURAL) {
+                Text(
+                    stringResource(R.string.sound_binaural_hint),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             Text(stringResource(R.string.sounds_timer), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))

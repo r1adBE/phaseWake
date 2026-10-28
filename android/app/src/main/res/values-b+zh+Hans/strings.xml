@@ -76,7 +76,7 @@
     <string name="settings_about">关于</string>
     <string name="settings_open_source">GitHub 上的开源项目</string>
     <string name="settings_licenses">许可证</string>
-    <string name="settings_licenses_text">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。</string>
+    <string name="settings_licenses_text">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。\n声音：来自 opengameart.org 的自由录音（CC0）</string>
     <string name="settings_version">版本 %1$s</string>
 
     <string name="duration_minutes">%1$d 分钟</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">振动 + 铃声</string>
     <string name="alert_off">关闭</string>
     <string name="alert_vibrate">振动</string>
-    <string name="alert_sound">铃声</string>
+    <string name="alert_sound">振动 + 铃声</string>
     <string name="editor_sound">闹钟铃声</string>
     <string name="editor_sound_default">默认</string>
+    <string name="wake_tone_birds">晨鸟</string>
+    <string name="wake_tone_glockenspiel">钟琴</string>
+    <string name="wake_tone_gong">柔和锣声</string>
+    <string name="wake_tone_harp">竖琴</string>
+    <string name="wake_tone_system">系统铃声…</string>
     <string name="dnd_text">请在勿扰模式下允许闹钟，否则手机不会响铃。</string>
     <string name="dnd_action">打开设置</string>
     <string name="greeting_morning">早上好</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">日出</string>
     <string name="sunrise_text">屏幕会慢慢变亮，直到你醒来。</string>
     <string name="sunrise_off">关闭灯光</string>
-    <string name="editor_sunrise">手机日出模拟</string>
-    <string name="editor_sunrise_hint">屏幕先泛起微弱的橙色光，再逐渐变为全亮度的明亮暖光。请将手机屏幕朝上放置。</string>
+    <string name="editor_sunrise_hint">屏幕先泛起微弱的橙色光，再逐渐变为全亮度的明亮暖光。</string>
+    <string name="editor_sunrise_phone_hint">请将手机屏幕朝上放置。</string>
     <string name="sunrise_ring">唤醒时</string>
     <string name="sunrise_window">从时间窗起</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">棕色噪音</string>
     <string name="sound_rain">雨声</string>
     <string name="sound_ocean">海浪</string>
+    <string name="sound_fan">风扇</string>
+    <string name="sound_binaural">入睡声波</string>
+    <string name="sound_forest">夜晚森林</string>
+    <string name="sound_fire">壁炉火</string>
+    <string name="sound_brook">小溪</string>
+    <string name="sound_binaural_hint">请使用耳机。</string>
     <string name="sounds_timer">定时</string>
     <string name="sounds_timer_off">不定时</string>
     <string name="sounds_play">播放</string>

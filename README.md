@@ -27,13 +27,14 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
-- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton
-- **Sonnenaufgang** auf dem Handy (Option): Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf dem iPhone im Nachttisch-Modus
+- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Vibration + Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton
+- **Wecktöne**, die leise beginnen: Morgenvögel, Glockenspiel, Sanfter Gong, Harfe oder ein Klingelton des Systems
+- **Sonnenaufgang** (Option) auf dem Handy und/oder der Galaxy Watch: Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf Apple nur auf dem iPhone, im Nachttisch-Modus
 - **Schlummern** 5 Minuten, höchstens 3×
 - **Nacht-Check** vor dem Schlafen: Uhr verbunden, Wecker erlaubt, «Nicht stören», Akku – mit Knopf zum Beheben
 - **Morgenbericht**: wann und warum geweckt wurde, worauf die Entscheidung beruhte, dein Befinden (1–5) und ein Tipp
 - **Trends**: Schlafdauer und Regelmässigkeit (aus Health Connect bzw. Apple Health) und dein Befinden im Wochenvergleich
-- **Schlafnotizen, Schlafziel, Bettzeit-Erinnerung und Einschlafklänge** auf dem Handy
+- **Schlafnotizen, Schlafziel, Bettzeit-Erinnerung und Einschlafklänge** auf dem Handy – Rauschen (weiss, rosa, braun), Ventilator, Einschlaf-Wellen (mit Kopfhörern) und Aufnahmen von Regen, Meer, Wald bei Nacht, Kaminfeuer und Bach
 - **Geräusche in der Nacht** (Option pro Nacht, standardmässig aus): erkennt Schnarchen und Sprechen über das Mikrofon des Handys, behält nur kurze Ausschnitte zum Anhören, nach 7 Tagen gelöscht – alles bleibt auf dem Handy
 - **Gewohnheiten**: «Regelmässig ins Bett: N von 7 Abenden», Serien mit erreichtem Schlafziel, Wochenrückblick am Sonntag (Option) und eine eigene Abendroutine zum Abhaken
 - **Weckaufgabe** (Option pro Wecker, Android): Zum Beenden 3 Rechenaufgaben am Handy lösen statt halten; Schlummern geht ohne Aufgabe
@@ -96,3 +97,14 @@ Phase Wake ist gratis, ohne Werbung und ohne Abo. Wer die Entwicklung unterstüt
 ## Lizenz
 
 [MIT](LICENSE) © r1adBE · Schrift [Manrope](licenses/Manrope-OFL.txt) unter SIL Open Font License 1.1 · Android: [MediaPipe Tasks Audio](https://github.com/google-ai-edge/mediapipe) und das Modell [YAMNet](https://www.kaggle.com/models/google/yamnet) unter [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), © Google LLC
+
+Klänge: freie Aufnahmen unter [CC0](https://creativecommons.org/publicdomain/zero/1.0/) von opengameart.org, für die App zu nahtlosen Schleifen geschnitten bzw. als Weckton aufbereitet:
+
+- Regen: [«Rain (loopable)»](https://opengameart.org/content/rain-loopable) von Ylmir
+- Meer: [«Sea and river wave sounds» (Vistula)](https://opengameart.org/content/sea-and-river-wave-sounds) von RandomMind
+- Wald bei Nacht: [«Crickets ambient noise»](https://opengameart.org/content/crickets-ambient-noise-loopable) von Wolfgang_
+- Kaminfeuer: [«Fireplace sound loop»](https://opengameart.org/content/fireplace-sound-loop) von PagDev
+- Bach: [«30 CC0 SFX loops»](https://opengameart.org/content/30-cc0-sfx-loops) (water_flowing) von rubberduck
+- Weckton Morgenvögel: [«Ambient bird sounds»](https://opengameart.org/content/ambient-bird-sounds) von isaiah658
+
+Glockenspiel, Sanfter Gong und Harfe sowie Rauschen, Ventilator und Einschlaf-Wellen sind synthetisch erzeugt.

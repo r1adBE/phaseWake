@@ -15,6 +15,9 @@ struct EditorView: View {
     @State private var phone = PhoneAlert.sound
     @State private var watchSound = false
     @State private var label = ""
+    /// Weckton: «raw:wake_…» (eigener Ton) oder leer bzw. anderer Wert = Standardton des Systems.
+    @State private var sound = ""
+    @State private var preview = WakeTonePreview()
     @State private var sunrise = Sunrise.off
     @State private var original: AlarmSpec?
     @State private var confirmDiscard = false
@@ -97,9 +100,10 @@ struct EditorView: View {
                 // der Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(L("editor_sunrise")).font(.headline)
-                        Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
-                        Picker(L("editor_sunrise"), selection: $sunrise) {
+                        Text(L("sunrise_title")).font(.headline)
+                        // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
+                        Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Picker(L("sunrise_title"), selection: $sunrise) {
                             Text(L("alert_off")).tag(Sunrise.off)
                             Text(L("sunrise_ring")).tag(Sunrise.ring)
                             Text(L("sunrise_window")).tag(Sunrise.window)
@@ -114,9 +118,23 @@ struct EditorView: View {
                     }
                 }
 
-                // Selten gebraucht: Name zugeklappt unter «Mehr».
+                // Selten gebraucht: Weckton und Name zugeklappt unter «Mehr».
                 Section {
                     DisclosureGroup(isExpanded: $showMore) {
+                        if phone != .off {
+                            // Eigene Töne oder der Standardton des Systems; eine Auswahl spielt kurz an.
+                            let choice = Binding(get: { sound }, set: { value in
+                                sound = value
+                                if let tone = WakeTone(rawValue: value) { preview.play(tone) } else { preview.stop() }
+                            })
+                            Picker(L("editor_sound"), selection: choice) {
+                                ForEach(WakeTone.allCases, id: \.self) { tone in
+                                    Text(L(tone.textKey)).tag(tone.rawValue)
+                                }
+                                // Standardton: leer, oder ein vorhandener fremder Wert bleibt unverändert.
+                                Text(L("editor_sound_default")).tag(WakeTone(rawValue: sound) == nil ? sound : "")
+                            }
+                        }
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L("editor_label")).font(.headline)
                             TextField(L("editor_label_hint"), text: $label)
@@ -152,6 +170,7 @@ struct EditorView: View {
                 ToolbarItem(placement: .confirmationAction) { Button(L("editor_save")) { save() }.bold() }
             }
             .onAppear(perform: load)
+            .onDisappear { preview.stop() }
             .interactiveDismissDisabled(dirty)
         }
     }
@@ -181,9 +200,10 @@ struct EditorView: View {
         phone = existing.phone == .off ? .off : .sound
         watchSound = existing.watchSound
         label = existing.label
+        sound = existing.sound
         sunrise = existing.sunrise
         // Schon gesetzte Optionen nicht verstecken.
-        showMore = !existing.label.isEmpty
+        showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil
     }
 
     private func current() -> AlarmSpec? {
@@ -198,7 +218,7 @@ struct EditorView: View {
             phone: phone,
             watchSound: watchSound,
             sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
-            sound: existing?.sound ?? "",
+            sound: sound,
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
             sunrise: sunrise,
             // Weckaufgabe gibt es auf Apple nicht (AlarmKit-Stopp lässt sich nicht ersetzen): nicht

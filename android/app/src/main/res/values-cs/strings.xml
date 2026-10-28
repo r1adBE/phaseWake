@@ -79,7 +79,7 @@
     <string name="settings_about">O aplikaci</string>
     <string name="settings_open_source">Open source na GitHub</string>
     <string name="settings_licenses">Licence</string>
-    <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC.\nZvuky: volné nahrávky (CC0) z opengameart.org</string>
     <string name="settings_version">Verze %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -105,9 +105,14 @@
     <string name="alert_vibrate_sound">Vibrace + zvuk</string>
     <string name="alert_off">Vypnuto</string>
     <string name="alert_vibrate">Vibrace</string>
-    <string name="alert_sound">Zvuk</string>
+    <string name="alert_sound">Vibrace + zvuk</string>
     <string name="editor_sound">Zvuk budíku</string>
     <string name="editor_sound_default">Výchozí</string>
+    <string name="wake_tone_birds">Ranní ptáci</string>
+    <string name="wake_tone_glockenspiel">Zvonkohra</string>
+    <string name="wake_tone_gong">Jemný gong</string>
+    <string name="wake_tone_harp">Harfa</string>
+    <string name="wake_tone_system">Tón systému…</string>
     <string name="dnd_text">Povol budíky v režimu Nerušit, jinak bude telefon zticha.</string>
     <string name="dnd_action">Otevřít nastavení</string>
     <string name="greeting_morning">Dobré ráno</string>
@@ -131,8 +136,8 @@
     <string name="sunrise_title">Východ slunce</string>
     <string name="sunrise_text">Displej se pomalu rozjasňuje, dokud se neprobudíš.</string>
     <string name="sunrise_off">Vypnout světlo</string>
-    <string name="editor_sunrise">Východ slunce na telefonu</string>
-    <string name="editor_sunrise_hint">Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas. Polož telefon displejem nahoru.</string>
+    <string name="editor_sunrise_hint">Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas.</string>
+    <string name="editor_sunrise_phone_hint">Polož telefon displejem nahoru.</string>
     <string name="sunrise_ring">Při buzení</string>
     <string name="sunrise_window">Od okna</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -274,6 +279,12 @@
     <string name="sound_brown">Hnědý šum</string>
     <string name="sound_rain">Déšť</string>
     <string name="sound_ocean">Moře</string>
+    <string name="sound_fan">Ventilátor</string>
+    <string name="sound_binaural">Vlny ke spánku</string>
+    <string name="sound_forest">Noční les</string>
+    <string name="sound_fire">Krb</string>
+    <string name="sound_brook">Potok</string>
+    <string name="sound_binaural_hint">Poslouchej se sluchátky.</string>
     <string name="sounds_timer">Časovač</string>
     <string name="sounds_timer_off">Bez</string>
     <string name="sounds_play">Přehrát</string>

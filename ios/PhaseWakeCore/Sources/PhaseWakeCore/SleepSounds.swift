@@ -1,12 +1,27 @@
 import Foundation
 
-/// Einschlafklänge, im Code erzeugt (keine Audiodateien). Identisch zu Kotlin.
+/// Einschlafklänge in der Reihenfolge der Anzeige, identisch zu Kotlin. Rohwert = Speicher (ältere Werte
+/// bleiben gültig).
 public enum SleepSound: String, CaseIterable, Sendable {
     case white = "WHITE"
     case pink = "PINK"
     case brown = "BROWN"
+    case fan = "FAN"
+    case binaural = "BINAURAL"
     case rain = "RAIN"
     case ocean = "OCEAN"
+    case forest = "FOREST"
+    case fire = "FIRE"
+    case brook = "BROOK"
+
+    /// `true` = Aufnahme (CC0), nahtlos in Schleife gespielt; Datei «sound_<rohwert klein>.m4a» im App-Bundle.
+    /// `false` = im Code erzeugt (`NoiseGenerator`).
+    public var recorded: Bool {
+        switch self {
+        case .white, .pink, .brown, .fan, .binaural: false
+        case .rain, .ocean, .forest, .fire, .brook: true
+        }
+    }
 }
 
 /// Zeitplan der Einschlafklänge: Timer, Ein- und Ausblenden, spätestens Ende beim Weckfenster.
@@ -42,8 +57,9 @@ public enum SleepSounds {
     }
 }
 
-/// Rauschgenerator für die Einschlafklänge: deterministisch je Startwert, nahtlos (endloser Strom,
-/// keine Schleife), ohne Gleichanteil und mit Spitzen unter −12 dBFS.
+/// Rauschgenerator für die erzeugten Einschlafklänge (`recorded == false`): deterministisch je Startwert,
+/// nahtlos (endloser Strom, keine Schleife), ohne Gleichanteil und mit Spitzen unter −12 dBFS. Ausgabe mit
+/// `channels` Kanälen, verschachtelt (links, rechts, links …).
 public struct NoiseGenerator: Sendable {
     /// −12 dBFS.
     public static let peak = 0.251
@@ -59,12 +75,19 @@ public struct NoiseGenerator: Sendable {
     // Gleichanteil-Filter
     private var dcIn = 0.0, dcOut = 0.0
     private let dcPole: Double
-    // Regentropfen
-    private var dropAmp = 0.0, dropTarget = 0.0, dropAttack = 0, dropAttackLeft = 0
-    private var lastWhite = 0.0
-    private let dropDecay: Double
-    // Meer: langsame Welle
-    private var swellPhase = 0.0, swellStep = 0.0
+    // Ventilator: braunes Rauschen durch einen Tiefpass (~300 Hz), dazu leises Brummen (50 und 100 Hz).
+    private var fanLow = 0.0
+    private let fanPole: Double
+    private var humPhase = 0.0
+    // Einschlaf-Wellen: je Ohr ein Sinus (links 200 Hz, rechts 202 Hz), dazu sehr leises rosa Rauschen.
+    private var leftPhase = 0.0, rightPhase = 0.0
+    private var rightPending = false
+    private var right: Float = 0
+    /// Spitze des Sinus: RMS = 0,0447 / √2 ≈ 0,032 (−30 dBFS).
+    private static let binauralAmp = 0.0447
+
+    /// Kanäle: 2 für die Einschlaf-Wellen (je Ohr ein anderer Ton), sonst 1.
+    public var channels: Int { sound == .binaural ? 2 : 1 }
 
     public init(sound: SleepSound, sampleRate: Double = 48_000, seed: UInt64 = 1) {
         self.sound = sound
@@ -72,14 +95,12 @@ public struct NoiseGenerator: Sendable {
         rng = seed &+ 0x9E37_79B9_7F4A_7C15
         // Hochpass um 5 Hz gegen jeden Gleichanteil.
         dcPole = exp(-2 * Double.pi * 5 / sampleRate)
-        // Tropfen klingen in etwa 10 ms ab.
-        dropDecay = exp(-1 / (0.010 * sampleRate))
-        dropAttack = max(1, Int(0.002 * sampleRate))
-        swellStep = 1 / (nextSwellPeriod() * sampleRate)
+        fanPole = exp(-2 * Double.pi * 300 / sampleRate)
     }
 
     /// Nächster Abtastwert in −peak…peak.
     public mutating func next() -> Float {
+        if sound == .binaural { return nextBinaural() }
         let w = white()
         var x: Double
         switch sound {
@@ -89,16 +110,38 @@ public struct NoiseGenerator: Sendable {
             x = pink(w) * 0.045
         case .brown:
             x = brown(w) * 1.1
-        case .rain:
-            x = pink(w) * 0.032 + droplet(w)
-        case .ocean:
-            x = brown(w) * 1.3 * swell()
+        case .fan:
+            x = fan(w)
+        case .binaural, .rain, .ocean, .forest, .fire, .brook:
+            // Einschlaf-Wellen: oben (zwei Kanäle). Aufnahmen werden nicht erzeugt (spielt `SoundPlayer`
+            // aus der Datei).
+            x = 0
         }
         // Gleichanteil entfernen, dann weich begrenzen (bleibt sicher unter der Spitze).
         let y = x - dcIn + dcPole * dcOut
         dcIn = x
         dcOut = y
-        return Float(Self.peak * tanh(y / Self.peak))
+        return Self.limit(y)
+    }
+
+    /// Weich begrenzen: bleibt sicher unter der Spitze, ohne harte Kanten.
+    private static func limit(_ y: Double) -> Float { Float(peak * tanh(y / peak)) }
+
+    /// Abwechselnd links und rechts. Sinus je ≈ −30 dBFS RMS, Rauschen ≈ −40 dBFS; ohne Gleichanteil
+    /// (darum kein Filter, der sonst beide Kanäle vermischen würde).
+    private mutating func nextBinaural() -> Float {
+        if rightPending {
+            rightPending = false
+            return right
+        }
+        let bed = pink(white()) * 0.0058
+        leftPhase += 200 / sampleRate
+        if leftPhase >= 1 { leftPhase -= 1 }
+        rightPhase += 202 / sampleRate
+        if rightPhase >= 1 { rightPhase -= 1 }
+        right = Self.limit(Self.binauralAmp * sin(2 * Double.pi * rightPhase) + bed)
+        rightPending = true
+        return Self.limit(Self.binauralAmp * sin(2 * Double.pi * leftPhase) + bed)
     }
 
     /// Füllt `count` Werte ab `buffer`.
@@ -118,8 +161,6 @@ public struct NoiseGenerator: Sendable {
         return Double(z >> 11) / Double(1 << 53) * 2 - 1
     }
 
-    private mutating func uniform() -> Double { (white() + 1) / 2 }
-
     private mutating func pink(_ w: Double) -> Double {
         p0 = 0.99765 * p0 + w * 0.0990460
         p1 = 0.96300 * p1 + w * 0.2965164
@@ -132,33 +173,12 @@ public struct NoiseGenerator: Sendable {
         return brownState
     }
 
-    /// Vereinzelte, weiche Tropfen: kurzer Anstieg (2 ms), dann Abklingen; im Mittel 4 je Sekunde.
-    private mutating func droplet(_ w: Double) -> Double {
-        if dropAttackLeft == 0 && dropAmp < 0.002 && uniform() < 4 / sampleRate {
-            dropTarget = 0.04 + 0.08 * uniform()
-            dropAttackLeft = dropAttack
-        }
-        if dropAttackLeft > 0 {
-            dropAmp += dropTarget / Double(dropAttack)
-            dropAttackLeft -= 1
-        } else {
-            dropAmp *= dropDecay
-        }
-        // Hell klingend: Differenz aufeinanderfolgender Zufallswerte.
-        let bright = (w - lastWhite) * 0.5
-        lastWhite = w
-        return dropAmp * bright
+    /// Gleichmässig und sanft: gedämpftes tiefes Rauschen, das Brummen knapp hörbar (Phase durchgehend).
+    private mutating func fan(_ w: Double) -> Double {
+        fanLow = fanPole * fanLow + (1 - fanPole) * brown(w)
+        humPhase += 50 / sampleRate
+        if humPhase >= 1 { humPhase -= 1 }
+        let hum = 0.006 * sin(2 * Double.pi * humPhase) + 0.003 * sin(4 * Double.pi * humPhase)
+        return fanLow * 1.4 + hum
     }
-
-    /// Welle zwischen 0,35 und 1; jede Periode dauert zufällig 8–12 s und beginnt im Tal (ohne Sprung).
-    private mutating func swell() -> Double {
-        swellPhase += swellStep
-        if swellPhase >= 1 {
-            swellPhase -= 1
-            swellStep = 1 / (nextSwellPeriod() * sampleRate)
-        }
-        return 0.35 + 0.65 * (0.5 - 0.5 * cos(2 * Double.pi * swellPhase))
-    }
-
-    private mutating func nextSwellPeriod() -> Double { 8 + 4 * uniform() }
 }

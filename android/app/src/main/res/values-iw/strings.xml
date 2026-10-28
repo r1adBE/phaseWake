@@ -78,7 +78,7 @@
     <string name="settings_about">אודות</string>
     <string name="settings_open_source">קוד פתוח ב-GitHub</string>
     <string name="settings_licenses">רישיונות</string>
-    <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org</string>
     <string name="settings_version">גרסה %1$s</string>
 
     <string name="duration_minutes">%1$d דק׳</string>
@@ -104,9 +104,14 @@
     <string name="alert_vibrate_sound">רטט + צליל</string>
     <string name="alert_off">כבוי</string>
     <string name="alert_vibrate">רטט</string>
-    <string name="alert_sound">צליל</string>
+    <string name="alert_sound">רטט + צליל</string>
     <string name="editor_sound">צליל מעורר</string>
     <string name="editor_sound_default">ברירת מחדל</string>
+    <string name="wake_tone_birds">ציפורי בוקר</string>
+    <string name="wake_tone_glockenspiel">גלוקנשפיל</string>
+    <string name="wake_tone_gong">גונג עדין</string>
+    <string name="wake_tone_harp">נבל</string>
+    <string name="wake_tone_system">צליל מערכת…</string>
     <string name="dnd_text">אפשרו מעוררים במצב ‘נא לא להפריע’, אחרת הטלפון יישאר שקט.</string>
     <string name="dnd_action">פתיחת הגדרות</string>
     <string name="greeting_morning">בוקר טוב</string>
@@ -129,8 +134,8 @@
     <string name="sunrise_title">זריחה</string>
     <string name="sunrise_text">המסך מתבהר לאט עד שתתעוררו.</string>
     <string name="sunrise_off">כיבוי האור</string>
-    <string name="editor_sunrise">זריחה בטלפון</string>
-    <string name="editor_sunrise_hint">המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה. הניחו את הטלפון כשהמסך כלפי מעלה.</string>
+    <string name="editor_sunrise_hint">המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה.</string>
+    <string name="editor_sunrise_phone_hint">הניחו את הטלפון כשהמסך כלפי מעלה.</string>
     <string name="sunrise_ring">בהשכמה</string>
     <string name="sunrise_window">מהחלון</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -267,6 +272,12 @@
     <string name="sound_brown">רעש חום</string>
     <string name="sound_rain">גשם</string>
     <string name="sound_ocean">ים</string>
+    <string name="sound_fan">מאוורר</string>
+    <string name="sound_binaural">גלי שינה</string>
+    <string name="sound_forest">יער בלילה</string>
+    <string name="sound_fire">אח בוערת</string>
+    <string name="sound_brook">פלג</string>
+    <string name="sound_binaural_hint">הקשיבו עם אוזניות.</string>
     <string name="sounds_timer">טיימר</string>
     <string name="sounds_timer_off">ללא</string>
     <string name="sounds_play">הפעלה</string>

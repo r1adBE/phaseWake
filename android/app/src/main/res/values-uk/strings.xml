@@ -79,7 +79,7 @@
     <string name="settings_about">Про застосунок</string>
     <string name="settings_open_source">Відкритий код на GitHub</string>
     <string name="settings_licenses">Ліцензії</string>
-    <string name="settings_licenses_text">Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: MediaPipe Tasks Audio і модель YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: MediaPipe Tasks Audio і модель YAMNet, Apache License 2.0, © Google LLC.\nЗвуки: вільні записи (CC0) з opengameart.org</string>
     <string name="settings_version">Версія %1$s</string>
 
     <string name="duration_minutes">%1$d хв</string>
@@ -105,9 +105,14 @@
     <string name="alert_vibrate_sound">Вібрація + звук</string>
     <string name="alert_off">Вимк.</string>
     <string name="alert_vibrate">Вібрація</string>
-    <string name="alert_sound">Звук</string>
+    <string name="alert_sound">Вібрація + звук</string>
     <string name="editor_sound">Мелодія будильника</string>
     <string name="editor_sound_default">Типова</string>
+    <string name="wake_tone_birds">Ранкові птахи</string>
+    <string name="wake_tone_glockenspiel">Глокеншпіль</string>
+    <string name="wake_tone_gong">М’який гонг</string>
+    <string name="wake_tone_harp">Арфа</string>
+    <string name="wake_tone_system">Звук системи…</string>
     <string name="dnd_text">Дозволь будильники в режимі «Не турбувати», інакше телефон мовчатиме.</string>
     <string name="dnd_action">Відкрити налаштування</string>
     <string name="greeting_morning">Доброго ранку</string>
@@ -131,8 +136,8 @@
     <string name="sunrise_title">Світанок</string>
     <string name="sunrise_text">Екран повільно яскравішає, поки ти не прокинешся.</string>
     <string name="sunrise_off">Вимкнути світло</string>
-    <string name="editor_sunrise">Світанок на телефоні</string>
-    <string name="editor_sunrise_hint">Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості. Поклади телефон екраном догори.</string>
+    <string name="editor_sunrise_hint">Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості.</string>
+    <string name="editor_sunrise_phone_hint">Поклади телефон екраном догори.</string>
     <string name="sunrise_ring">Під дзвінок</string>
     <string name="sunrise_window">Від вікна</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -274,6 +279,12 @@
     <string name="sound_brown">Коричневий шум</string>
     <string name="sound_rain">Дощ</string>
     <string name="sound_ocean">Море</string>
+    <string name="sound_fan">Вентилятор</string>
+    <string name="sound_binaural">Хвилі для сну</string>
+    <string name="sound_forest">Нічний ліс</string>
+    <string name="sound_fire">Камін</string>
+    <string name="sound_brook">Струмок</string>
+    <string name="sound_binaural_hint">Слухай у навушниках.</string>
     <string name="sounds_timer">Таймер</string>
     <string name="sounds_timer_off">Без</string>
     <string name="sounds_play">Увімкнути</string>

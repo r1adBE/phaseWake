@@ -2,6 +2,7 @@ import Foundation
 import PhaseWakeCore
 import UserNotifications
 #if canImport(AlarmKit)
+import ActivityKit
 import AlarmKit
 import AppIntents
 #endif
@@ -71,7 +72,8 @@ final class BackupAlarm {
             }
             let id = UUID()
             ids.append(id.uuidString)
-            await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace))
+            let tone = alarms.first { $0.id == plan.alarmId }.flatMap { WakeTone(rawValue: $0.sound) }
+            await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace), tone: tone)
         }
         UserDefaults.standard.set(ids, forKey: Self.backupIdsKey)
     }
@@ -101,7 +103,8 @@ final class BackupAlarm {
         if alarm?.phone != .off {
             let id = UUID()
             ringingId = id
-            await schedule(id: id, at: Date().addingTimeInterval(2), fromWatch: true, snoozesLeft: snoozesLeft)
+            await schedule(id: id, at: Date().addingTimeInterval(2), fromWatch: true, snoozesLeft: snoozesLeft,
+                           tone: alarm.flatMap { WakeTone(rawValue: $0.sound) })
         }
         await watchHandled(alarmId: alarm?.id, target: target)
     }
@@ -183,14 +186,15 @@ final class BackupAlarm {
 
     // MARK: Plattform
 
-    private func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0) async {
+    /// `tone` = eigener Weckton des Weckers; `nil` = Standardton des Systems (auch bei der Schlummer-Sicherung).
+    private func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0, tone: WakeTone? = nil) async {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft)
+            await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone)
             return
         }
         #endif
-        await scheduleNotification(id: id, at: date)
+        await scheduleNotification(id: id, at: date, tone: tone)
     }
 
     private func cancelBackups() async {
@@ -209,7 +213,7 @@ final class BackupAlarm {
 
     #if canImport(AlarmKit)
     @available(iOS 26.0, *)
-    private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int) async {
+    private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?) async {
         do {
             if AlarmManager.shared.authorizationState != .authorized {
                 _ = try await AlarmManager.shared.requestAuthorization()
@@ -227,26 +231,29 @@ final class BackupAlarm {
             // Nur beim Mitklingeln geht Stopp bzw. Schlummern an die Uhr; eine Sicherung klingelt ohne Uhr.
             let stopIntent: (any LiveActivityIntent)? = fromWatch ? StopRingIntent(alarmId: id.uuidString) : nil
             let snoozeIntent: (any LiveActivityIntent)? = snooze == nil ? nil : SnoozeRingIntent(alarmId: id.uuidString)
+            // Eigener Ton aus dem App-Bundle: Name mit Endung, sonst spielt AlarmKit den Standardton.
+            let sound: AlertConfiguration.AlertSound = tone.map { .named($0.fileName) } ?? .default
             let configuration = AlarmManager.AlarmConfiguration<PhaseWakeAlarm>.alarm(
                 schedule: .fixed(date),
                 attributes: attributes,
                 stopIntent: stopIntent,
-                secondaryIntent: snoozeIntent
+                secondaryIntent: snoozeIntent,
+                sound: sound
             )
             _ = try await AlarmManager.shared.schedule(id: id, configuration: configuration)
         } catch {
-            await scheduleNotification(id: id, at: date)
+            await scheduleNotification(id: id, at: date, tone: tone)
         }
     }
     #endif
 
-    private func scheduleNotification(id: UUID, at date: Date) async {
+    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil) async {
         let center = UNUserNotificationCenter.current()
         _ = try? await center.requestAuthorization(options: [.alert, .sound]) // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_notification_text")
-        content.sound = .default
+        content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
         content.interruptionLevel = .timeSensitive
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, date.timeIntervalSinceNow), repeats: false)
         try? await center.add(UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger))

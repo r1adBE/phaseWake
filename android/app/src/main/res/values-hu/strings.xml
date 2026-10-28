@@ -77,7 +77,7 @@
     <string name="settings_about">Névjegy</string>
     <string name="settings_open_source">Nyílt forráskód a GitHubon</string>
     <string name="settings_licenses">Licencek</string>
-    <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról</string>
     <string name="settings_version">Verzió: %1$s</string>
 
     <string name="duration_minutes">%1$d p</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Rezgés + hang</string>
     <string name="alert_off">Ki</string>
     <string name="alert_vibrate">Rezgés</string>
-    <string name="alert_sound">Hang</string>
+    <string name="alert_sound">Rezgés + hang</string>
     <string name="editor_sound">Ébresztőhang</string>
     <string name="editor_sound_default">Alapértelmezett</string>
+    <string name="wake_tone_birds">Reggeli madarak</string>
+    <string name="wake_tone_glockenspiel">Harangjáték</string>
+    <string name="wake_tone_gong">Lágy gong</string>
+    <string name="wake_tone_harp">Hárfa</string>
+    <string name="wake_tone_system">Rendszerhang…</string>
     <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban, különben a telefonod néma marad.</string>
     <string name="dnd_action">Beállítások megnyitása</string>
     <string name="greeting_morning">Jó reggelt</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Napfelkelte</string>
     <string name="sunrise_text">A képernyő lassan egyre világosabb lesz, amíg fel nem ébredsz.</string>
     <string name="sunrise_off">Fény kikapcsolása</string>
-    <string name="editor_sunrise">Napfelkelte a telefonon</string>
-    <string name="editor_sunrise_hint">A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik. Fektesd a telefont képernyővel felfelé.</string>
+    <string name="editor_sunrise_hint">A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik.</string>
+    <string name="editor_sunrise_phone_hint">Fektesd a telefont képernyővel felfelé.</string>
     <string name="sunrise_ring">Ébresztéskor</string>
     <string name="sunrise_window">Időablaktól</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Barna zaj</string>
     <string name="sound_rain">Eső</string>
     <string name="sound_ocean">Tenger</string>
+    <string name="sound_fan">Ventilátor</string>
+    <string name="sound_binaural">Elalvási hullámok</string>
+    <string name="sound_forest">Éjszakai erdő</string>
+    <string name="sound_fire">Kandallótűz</string>
+    <string name="sound_brook">Patak</string>
+    <string name="sound_binaural_hint">Fejhallgatóval hallgasd.</string>
     <string name="sounds_timer">Időzítő</string>
     <string name="sounds_timer_off">Nincs</string>
     <string name="sounds_play">Lejátszás</string>

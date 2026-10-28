@@ -76,7 +76,7 @@
     <string name="settings_about">アプリについて</string>
     <string name="settings_open_source">GitHubでオープンソース公開中</string>
     <string name="settings_licenses">ライセンス</string>
-    <string name="settings_licenses_text">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。</string>
+    <string name="settings_licenses_text">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。\nサウンド：opengameart.org のフリー録音（CC0）</string>
     <string name="settings_version">バージョン %1$s</string>
 
     <string name="duration_minutes">%1$d分</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">振動 + 音</string>
     <string name="alert_off">オフ</string>
     <string name="alert_vibrate">振動</string>
-    <string name="alert_sound">音</string>
+    <string name="alert_sound">振動 + 音</string>
     <string name="editor_sound">アラーム音</string>
     <string name="editor_sound_default">デフォルト</string>
+    <string name="wake_tone_birds">朝の鳥</string>
+    <string name="wake_tone_glockenspiel">グロッケンシュピール</string>
+    <string name="wake_tone_gong">やさしい銅鑼</string>
+    <string name="wake_tone_harp">ハープ</string>
+    <string name="wake_tone_system">システムのサウンド…</string>
     <string name="dnd_text">サイレントモード中もアラームを許可してください。許可しないとスマートフォンは鳴りません。</string>
     <string name="dnd_action">設定を開く</string>
     <string name="greeting_morning">おはようございます</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">日の出</string>
     <string name="sunrise_text">起きるまで、画面がゆっくり明るくなります。</string>
     <string name="sunrise_off">ライトを消す</string>
-    <string name="editor_sunrise">スマホで日の出</string>
-    <string name="editor_sunrise_hint">画面はかすかなオレンジ色の光から始まり、最大輝度の明るく暖かい光に変わります。スマホは画面を上にして置いてください。</string>
+    <string name="editor_sunrise_hint">画面はかすかなオレンジ色の光から始まり、最大輝度の明るく暖かい光に変わります。</string>
+    <string name="editor_sunrise_phone_hint">スマホは画面を上にして置いてください。</string>
     <string name="sunrise_ring">起床時</string>
     <string name="sunrise_window">時間幅から</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">ブラウンノイズ</string>
     <string name="sound_rain">雨</string>
     <string name="sound_ocean">海</string>
+    <string name="sound_fan">扇風機</string>
+    <string name="sound_binaural">入眠ウェーブ</string>
+    <string name="sound_forest">夜の森</string>
+    <string name="sound_fire">暖炉</string>
+    <string name="sound_brook">小川</string>
+    <string name="sound_binaural_hint">ヘッドホンで聴いてください。</string>
     <string name="sounds_timer">タイマー</string>
     <string name="sounds_timer_off">なし</string>
     <string name="sounds_play">再生</string>

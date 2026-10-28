@@ -1182,193 +1182,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "صوت"
+            "value": "اهتزاز + صوت"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zvuk"
+            "value": "Vibrace + zvuk"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lyd"
+            "value": "Vibration + lyd"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton"
+            "value": "Vibration + Ton"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ήχος"
+            "value": "Δόνηση + ήχος"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sound"
+            "value": "Vibration + sound"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sonido"
+            "value": "Vibración + sonido"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "صدا"
+            "value": "لرزش + صدا"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ääni"
+            "value": "Värinä + ääni"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son"
+            "value": "Vibration + son"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "צליל"
+            "value": "רטט + צליל"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आवाज़"
+            "value": "वाइब्रेशन + आवाज़"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hang"
+            "value": "Rezgés + hang"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suara"
+            "value": "Getar + suara"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suono"
+            "value": "Vibrazione + suono"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "音"
+            "value": "振動 + 音"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "소리"
+            "value": "진동 + 소리"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bunyi"
+            "value": "Getaran + bunyi"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lyd"
+            "value": "Vibrasjon + lyd"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geluid"
+            "value": "Trillen + geluid"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dźwięk"
+            "value": "Wibracja + dźwięk"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Som"
+            "value": "Vibração + som"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Som"
+            "value": "Vibração + som"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sunet"
+            "value": "Vibrație + sunet"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Звук"
+            "value": "Вибрация + звук"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ljud"
+            "value": "Vibration + ljud"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เสียง"
+            "value": "สั่น + เสียง"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ses"
+            "value": "Titreşim + ses"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Звук"
+            "value": "Вібрація + звук"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Âm thanh"
+            "value": "Rung + âm thanh"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "铃声"
+            "value": "振动 + 铃声"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鈴聲"
+            "value": "震動 + 鈴聲"
           }
         }
       }
@@ -17135,394 +17135,198 @@
         }
       }
     },
-    "editor_sunrise": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "شروق الشمس على الهاتف"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Východ slunce na telefonu"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Solopgang på telefonen"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonnenaufgang auf dem Handy"
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ανατολή ηλίου στο κινητό"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sunrise on your phone"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanecer en tu móvil"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "طلوع خورشید روی گوشی"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auringonnousu puhelimessa"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lever de soleil sur ton téléphone"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "זריחה בטלפון"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फ़ोन पर सूर्योदय"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Napfelkelte a telefonon"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matahari terbit di ponsel"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alba sul telefono"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スマホで日の出"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "휴대폰 일출"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Matahari terbit pada telefon"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Soloppgang på telefonen"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zonsopgang op je telefoon"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wschód słońca na telefonie"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nascer do sol no celular"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nascer do sol no telemóvel"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Răsărit pe telefon"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Рассвет на телефоне"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Soluppgång på mobilen"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "พระอาทิตย์ขึ้นบนโทรศัพท์"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefonda gün doğumu"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Світанок на телефоні"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bình minh trên điện thoại"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手机日出模拟"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手機日出模擬"
-          }
-        }
-      }
-    },
     "editor_sunrise_hint": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تبدأ الشاشة بتوهج برتقالي خافت ثم تتحول إلى ضوء دافئ ساطع بأقصى سطوع. ضع الهاتف والشاشة للأعلى."
+            "value": "تبدأ الشاشة بتوهج برتقالي خافت ثم تتحول إلى ضوء دافئ ساطع بأقصى سطوع."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas. Polož telefon displejem nahoru."
+            "value": "Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke. Læg telefonen med skærmen opad."
+            "value": "Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Bildschirm leuchtet erst schwach orange und wird dann zu hellem, warmem Licht bei voller Helligkeit. Leg das Handy mit dem Bildschirm nach oben hin."
+            "value": "Der Bildschirm leuchtet erst schwach orange und wird dann zu hellem, warmem Licht bei voller Helligkeit."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα. Τοποθέτησε το κινητό με την οθόνη προς τα πάνω."
+            "value": "Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The screen starts with a faint orange glow and turns into bright, warm light at full brightness. Place your phone screen up."
+            "value": "The screen starts with a faint orange glow and turns into bright, warm light at full brightness."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La pantalla empieza con un tenue brillo naranja y se convierte en una luz cálida e intensa a pleno brillo. Coloca el móvil con la pantalla hacia arriba."
+            "value": "La pantalla empieza con un tenue brillo naranja y se convierte en una luz cálida e intensa a pleno brillo."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود. گوشی را رو به بالا بگذار."
+            "value": "صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella. Aseta puhelin näyttö ylöspäin."
+            "value": "Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’écran démarre avec une faible lueur orange, puis se transforme en lumière chaude et vive à pleine luminosité. Place ton téléphone écran vers le haut."
+            "value": "L’écran démarre avec une faible lueur orange, puis se transforme en lumière chaude et vive à pleine luminosité."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה. הניחו את הטלפון כשהמסך כלפי מעלה."
+            "value": "המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्क्रीन हल्की नारंगी चमक से शुरू होती है और पूरी ब्राइटनेस पर तेज़, गर्म रोशनी बन जाती है। फ़ोन को स्क्रीन ऊपर करके रखें।"
+            "value": "स्क्रीन हल्की नारंगी चमक से शुरू होती है और पूरी ब्राइटनेस पर तेज़, गर्म रोशनी बन जाती है।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik. Fektesd a telefont képernyővel felfelé."
+            "value": "A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Layar mulai dengan cahaya oranye redup, lalu berubah menjadi cahaya hangat yang terang dengan kecerahan penuh. Letakkan ponsel dengan layar menghadap ke atas."
+            "value": "Layar mulai dengan cahaya oranye redup, lalu berubah menjadi cahaya hangat yang terang dengan kecerahan penuh."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità. Appoggia il telefono con lo schermo verso l’alto."
+            "value": "Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "画面はかすかなオレンジ色の光から始まり、最大輝度の明るく暖かい光に変わります。スマホは画面を上にして置いてください。"
+            "value": "画面はかすかなオレンジ色の光から始まり、最大輝度の明るく暖かい光に変わります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요. 휴대폰을 화면이 위로 가게 두세요."
+            "value": "화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh. Letakkan telefon dengan skrin menghadap ke atas."
+            "value": "Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skjermen starter med et svakt oransje skjær og blir til sterkt, varmt lys ved full lysstyrke. Legg telefonen med skjermen opp."
+            "value": "Skjermen starter med et svakt oransje skjær og blir til sterkt, varmt lys ved full lysstyrke."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid. Leg je telefoon met het scherm omhoog."
+            "value": "Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności. Połóż telefon ekranem do góry."
+            "value": "Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "A tela começa com um brilho laranja fraco e se torna uma luz quente e intensa com o brilho no máximo. Deixe o celular com a tela para cima."
+            "value": "A tela começa com um brilho laranja fraco e se torna uma luz quente e intensa com o brilho no máximo."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo. Deixa o telemóvel com o ecrã para cima."
+            "value": "O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă. Așază telefonul cu ecranul în sus."
+            "value": "Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости. Положи телефон экраном вверх."
+            "value": "Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skärmen börjar med ett svagt orange sken och blir ett starkt, varmt ljus med full ljusstyrka. Lägg mobilen med skärmen uppåt."
+            "value": "Skärmen börjar med ett svagt orange sken och blir ett starkt, varmt ljus med full ljusstyrka."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่ วางโทรศัพท์โดยหงายหน้าจอขึ้น"
+            "value": "หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür. Telefonu ekranı yukarı bakacak şekilde bırak."
+            "value": "Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості. Поклади телефон екраном догори."
+            "value": "Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa. Hãy đặt điện thoại ngửa màn hình lên trên."
+            "value": "Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "屏幕先泛起微弱的橙色光，再逐渐变为全亮度的明亮暖光。请将手机屏幕朝上放置。"
+            "value": "屏幕先泛起微弱的橙色光，再逐渐变为全亮度的明亮暖光。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "螢幕先泛起微弱的橙色光，再逐漸變為全亮度的明亮暖光。請將手機螢幕朝上放置。"
+            "value": "螢幕先泛起微弱的橙色光，再逐漸變為全亮度的明亮暖光。"
           }
         }
       }
@@ -17719,6 +17523,202 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的 iPhone 只有在 Phase Wake 開啟時才能顯示光線 – 請在睡覺前開始床頭模式。"
+          }
+        }
+      }
+    },
+    "editor_sunrise_phone_hint": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ضع الهاتف والشاشة للأعلى."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polož telefon displejem nahoru."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læg telefonen med skærmen opad."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leg das Handy mit dem Bildschirm nach oben hin."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τοποθέτησε το κινητό με την οθόνη προς τα πάνω."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place your phone screen up."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coloca el móvil con la pantalla hacia arriba."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گوشی را رو به بالا بگذار."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aseta puhelin näyttö ylöspäin."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place ton téléphone écran vers le haut."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הניחו את הטלפון כשהמסך כלפי מעלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोन को स्क्रीन ऊपर करके रखें।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fektesd a telefont képernyővel felfelé."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letakkan ponsel dengan layar menghadap ke atas."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appoggia il telefono con lo schermo verso l’alto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマホは画面を上にして置いてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰을 화면이 위로 가게 두세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letakkan telefon dengan skrin menghadap ke atas."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legg telefonen med skjermen opp."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leg je telefoon met het scherm omhoog."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Połóż telefon ekranem do góry."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deixe o celular com a tela para cima."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deixa o telemóvel com o ecrã para cima."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Așază telefonul cu ecranul în sus."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Положи телефон экраном вверх."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg mobilen med skärmen uppåt."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "วางโทรศัพท์โดยหงายหน้าจอขึ้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonu ekranı yukarı bakacak şekilde bırak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поклади телефон екраном догори."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy đặt điện thoại ngửa màn hình lên trên."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请将手机屏幕朝上放置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請將手機螢幕朝上放置。"
           }
         }
       }
@@ -47000,193 +47000,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: MediaPipe Tasks Audio ونموذج YAMNet، Apache License 2.0، © Google LLC."
+            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: MediaPipe Tasks Audio ونموذج YAMNet، Apache License 2.0، © Google LLC.\nالأصوات: تسجيلات حرة (CC0) من opengameart.org"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC.\nZvuky: volné nahrávky (CC0) z opengameart.org"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC.\nLyde: frie optagelser (CC0) fra opengameart.org"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC.\nKlänge: freie Aufnahmen (CC0) von opengameart.org"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC.\nΉχοι: ελεύθερες ηχογραφήσεις (CC0) από το opengameart.org"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.\nSounds: free recordings (CC0) from opengameart.org"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC.\nSonidos: grabaciones libres (CC0) de opengameart.org"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC."
+            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC.\nÄänet: vapaat äänitteet (CC0) sivustolta opengameart.org"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : MediaPipe Tasks Audio et le modèle YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : MediaPipe Tasks Audio et le modèle YAMNet, Apache License 2.0, © Google LLC.\nSons : enregistrements libres (CC0) issus d’opengameart.org"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: MediaPipe Tasks Audio और YAMNet मॉडल, Apache License 2.0, © Google LLC।"
+            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: MediaPipe Tasks Audio और YAMNet मॉडल, Apache License 2.0, © Google LLC।\nध्वनियाँ: opengameart.org से मुक्त रिकॉर्डिंग (CC0)"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.\nSuara: rekaman bebas (CC0) dari opengameart.org"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC.\nSuoni: registrazioni libere (CC0) da opengameart.org"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。"
+            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。\nサウンド：opengameart.org のフリー録音（CC0）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC.\n사운드: opengameart.org의 자유 녹음(CC0)"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.\nBunyi: rakaman bebas (CC0) daripada opengameart.org"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC.\nLyder: frie opptak (CC0) fra opengameart.org"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC.\nGeluiden: vrije opnamen (CC0) van opengameart.org"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC.\nDźwięki: wolne nagrania (CC0) z opengameart.org"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC.\nSons: gravações livres (CC0) do opengameart.org"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC.\nSons: gravações livres (CC0) do opengameart.org"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC.\nSunete: înregistrări libere (CC0) de pe opengameart.org"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC.\nЗвуки: свободные записи (CC0) с opengameart.org"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: MediaPipe Tasks Audio och YAMNet-modellen, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: MediaPipe Tasks Audio och YAMNet-modellen, Apache License 2.0, © Google LLC.\nLjud: fria inspelningar (CC0) från opengameart.org"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC"
+            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: MediaPipe Tasks Audio і модель YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: MediaPipe Tasks Audio і модель YAMNet, Apache License 2.0, © Google LLC.\nЗвуки: вільні записи (CC0) з opengameart.org"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC."
+            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。"
+            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。\n声音：来自 opengameart.org 的自由录音（CC0）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：MediaPipe Tasks Audio 與 YAMNet 模型，Apache License 2.0，© Google LLC。"
+            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：MediaPipe Tasks Audio 與 YAMNet 模型，Apache License 2.0，© Google LLC。\n聲音：來自 opengameart.org 的自由錄音（CC0）"
           }
         }
       }
@@ -47196,193 +47196,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: SoundAnalysis من Apple، مدمج في iOS."
+            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: SoundAnalysis من Apple، مدمج في iOS.\nالأصوات: تسجيلات حرة (CC0) من opengameart.org"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS."
+            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS.\nZvuky: volné nahrávky (CC0) z opengameart.org"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: SoundAnalysis fra Apple, indbygget i iOS."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: SoundAnalysis fra Apple, indbygget i iOS.\nLyde: frie optagelser (CC0) fra opengameart.org"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: SoundAnalysis von Apple, in iOS eingebaut."
+            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: SoundAnalysis von Apple, in iOS eingebaut.\nKlänge: freie Aufnahmen (CC0) von opengameart.org"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: SoundAnalysis της Apple, ενσωματωμένο στο iOS."
+            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: SoundAnalysis της Apple, ενσωματωμένο στο iOS.\nΉχοι: ελεύθερες ηχογραφήσεις (CC0) από το opengameart.org"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: SoundAnalysis by Apple, built into iOS."
+            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: SoundAnalysis by Apple, built into iOS.\nSounds: free recordings (CC0) from opengameart.org"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: SoundAnalysis de Apple, integrado en iOS."
+            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: SoundAnalysis de Apple, integrado en iOS.\nSonidos: grabaciones libres (CC0) de opengameart.org"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS."
+            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: Applen SoundAnalysis, osa iOS:ää."
+            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: Applen SoundAnalysis, osa iOS:ää.\nÄänet: vapaat äänitteet (CC0) sivustolta opengameart.org"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : SoundAnalysis d’Apple, intégré à iOS."
+            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : SoundAnalysis d’Apple, intégré à iOS.\nSons : enregistrements libres (CC0) issus d’opengameart.org"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: SoundAnalysis של Apple, מובנה ב-iOS."
+            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: SoundAnalysis של Apple, מובנה ב-iOS.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: Apple का SoundAnalysis, iOS में अंतर्निहित।"
+            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: Apple का SoundAnalysis, iOS में अंतर्निहित।\nध्वनियाँ: opengameart.org से मुक्त रिकॉर्डिंग (CC0)"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része."
+            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: SoundAnalysis dari Apple, bawaan iOS."
+            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: SoundAnalysis dari Apple, bawaan iOS.\nSuara: rekaman bebas (CC0) dari opengameart.org"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: SoundAnalysis di Apple, integrato in iOS."
+            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: SoundAnalysis di Apple, integrato in iOS.\nSuoni: registrazioni libere (CC0) da opengameart.org"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。"
+            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。\nサウンド：opengameart.org のフリー録音（CC0）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: iOS에 내장된 Apple의 SoundAnalysis."
+            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: iOS에 내장된 Apple의 SoundAnalysis.\n사운드: opengameart.org의 자유 녹음(CC0)"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: SoundAnalysis daripada Apple, terbina dalam iOS."
+            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: SoundAnalysis daripada Apple, terbina dalam iOS.\nBunyi: rakaman bebas (CC0) daripada opengameart.org"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: SoundAnalysis fra Apple, innebygd i iOS."
+            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: SoundAnalysis fra Apple, innebygd i iOS.\nLyder: frie opptak (CC0) fra opengameart.org"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS."
+            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS.\nGeluiden: vrije opnamen (CC0) van opengameart.org"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: SoundAnalysis firmy Apple, wbudowany w iOS."
+            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: SoundAnalysis firmy Apple, wbudowany w iOS.\nDźwięki: wolne nagrania (CC0) z opengameart.org"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: SoundAnalysis da Apple, integrado ao iOS."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: SoundAnalysis da Apple, integrado ao iOS.\nSons: gravações livres (CC0) do opengameart.org"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: SoundAnalysis da Apple, integrado no iOS."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: SoundAnalysis da Apple, integrado no iOS.\nSons: gravações livres (CC0) do opengameart.org"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: SoundAnalysis de la Apple, integrat în iOS."
+            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: SoundAnalysis de la Apple, integrat în iOS.\nSunete: înregistrări libere (CC0) de pe opengameart.org"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: SoundAnalysis от Apple, встроен в iOS."
+            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: SoundAnalysis от Apple, встроен в iOS.\nЗвуки: свободные записи (CC0) с opengameart.org"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: SoundAnalysis från Apple, inbyggt i iOS."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: SoundAnalysis från Apple, inbyggt i iOS.\nLjud: fria inspelningar (CC0) från opengameart.org"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: SoundAnalysis ของ Apple ซึ่งมีอยู่ใน iOS"
+            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: SoundAnalysis ของ Apple ซึ่งมีอยู่ใน iOS\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik."
+            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: SoundAnalysis від Apple, вбудовано в iOS."
+            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: SoundAnalysis від Apple, вбудовано в iOS.\nЗвуки: вільні записи (CC0) з opengameart.org"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: SoundAnalysis của Apple, tích hợp sẵn trong iOS."
+            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: SoundAnalysis của Apple, tích hợp sẵn trong iOS.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。"
+            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。\n声音：来自 opengameart.org 的自由录音（CC0）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：Apple 的 SoundAnalysis，內建於 iOS。"
+            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：Apple 的 SoundAnalysis，內建於 iOS。\n聲音：來自 opengameart.org 的自由錄音（CC0）"
           }
         }
       }
@@ -49543,6 +49543,594 @@
         }
       }
     },
+    "sound_binaural": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موجات النوم"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vlny ke spánku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnbølger"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einschlaf-Wellen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κύματα ύπνου"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep waves"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ondas para dormir"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امواج خواب"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uniaallot"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ondes pour dormir"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גלי שינה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद की तरंगें"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elalvási hullámok"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelombang tidur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onde per dormire"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入眠ウェーブ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수면 파동"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelombang tidur"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnbølger"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slaapgolven"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fale do zasypiania"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ondas para dormir"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ondas para dormir"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unde pentru somn"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Волны для сна"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömnvågor"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "คลื่นก่อนนอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyku dalgaları"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хвилі для сну"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sóng ru ngủ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡声波"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡聲波"
+          }
+        }
+      }
+    },
+    "sound_binaural_hint": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استخدم سماعات الرأس."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poslouchej se sluchátky."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lyt med høretelefoner."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Kopfhörern hören."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άκουσε με ακουστικά."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use headphones."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa auriculares."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "با هدفون گوش کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuuntele kuulokkeilla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écoute avec un casque."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקשיבו עם אוזניות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हेडफ़ोन से सुनें।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fejhallgatóval hallgasd."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gunakan headphone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ascolta con le cuffie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヘッドホンで聴いてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "헤드폰으로 들으세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gunakan fon kepala."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lytt med hodetelefoner."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luister met een koptelefoon."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Słuchaj w słuchawkach."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use fones de ouvido."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa auscultadores."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ascultă cu căști."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слушай в наушниках."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lyssna med hörlurar."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ฟังด้วยหูฟัง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulaklıkla dinle."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слухай у навушниках."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy nghe bằng tai nghe."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请使用耳机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請使用耳機。"
+          }
+        }
+      }
+    },
+    "sound_brook": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جدول ماء"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Potok"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bæk"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bach"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ρυάκι"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brook"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arroyo"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جویبار"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruisseau"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פלג"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जलधारा"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patak"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sungai kecil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruscello"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小川"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시냇물"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anak sungai"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekk"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beekje"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strumyk"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riacho"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riacho"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pârâu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ручей"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bäck"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ลำธาร"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dere"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Струмок"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suối"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小溪"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小溪"
+          }
+        }
+      }
+    },
     "sound_brown": {
       "localizations": {
         "ar": {
@@ -50323,6 +50911,594 @@
           "stringUnit": {
             "state": "translated",
             "value": "聲音"
+          }
+        }
+      }
+    },
+    "sound_fan": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مروحة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilátor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilator"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilator"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ανεμιστήρας"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fan"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilador"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پنکه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuuletin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilateur"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מאוורר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पंखा"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilátor"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kipas angin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilatore"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扇風機"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "선풍기"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kipas"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vifte"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilator"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wentylator"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilador"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventoinha"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ventilator"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вентилятор"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fläkt"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "พัดลม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vantilatör"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вентилятор"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quạt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "风扇"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "風扇"
+          }
+        }
+      }
+    },
+    "sound_fire": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نار المدفأة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krb"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pejs"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaminfeuer"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τζάκι"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fireplace"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chimenea"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آتش شومینه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Takkatuli"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feu de cheminée"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אח בוערת"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलाव"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kandallótűz"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perapian"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camino"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暖炉"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "벽난로"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unggun api"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peis"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haardvuur"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kominek"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lareira"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lareira"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foc în șemineu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Камин"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brasa"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เตาผิง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şömine"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Камін"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lò sưởi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "壁炉火"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "壁爐火"
+          }
+        }
+      }
+    },
+    "sound_forest": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غابة ليلًا"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noční les"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skov om natten"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wald bei Nacht"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δάσος τη νύχτα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forest at night"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bosque de noche"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جنگل در شب"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yömetsä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forêt la nuit"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יער בלילה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रात का जंगल"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Éjszakai erdő"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hutan malam"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bosco di notte"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜の森"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "밤의 숲"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hutan waktu malam"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skog om natten"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bos bij nacht"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las nocą"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Floresta à noite"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Floresta à noite"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pădure noaptea"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ночной лес"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skog om natten"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ป่ายามค่ำคืน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gece ormanı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нічний ліс"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rừng đêm"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜晚森林"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜晚森林"
           }
         }
       }
@@ -63031,6 +64207,986 @@
           "stringUnit": {
             "state": "translated",
             "value": "差一點 – 換一道新題。"
+          }
+        }
+      }
+    },
+    "wake_tone_birds": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "طيور الصباح"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ranní ptáci"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenfugle"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenvögel"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πρωινά πουλιά"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morning birds"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pájaros al amanecer"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پرندگان صبح"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aamulinnut"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oiseaux du matin"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ציפורי בוקר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुबह के पंछी"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reggeli madarak"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burung pagi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uccelli del mattino"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朝の鳥"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아침 새소리"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burung pagi"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenfugler"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ochtendvogels"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poranne ptaki"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pássaros da manhã"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pássaros da manhã"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Păsări de dimineață"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Утренние птицы"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgonfåglar"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นกยามเช้า"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabah kuşları"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ранкові птахи"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chim buổi sáng"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晨鸟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晨鳥"
+          }
+        }
+      }
+    },
+    "wake_tone_glockenspiel": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غلوكنشبيل"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvonkohra"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokkespil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Γκλόκενσπιλ"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گلوکن‌اشپیل"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellopeli"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גלוקנשפיל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ग्लॉकेन्सपील"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harangjáték"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "グロッケンシュピール"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "글로켄슈필"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokkespill"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokkenspel"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzwonki"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глокеншпиль"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockspel"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กล็อกเคนสปีล"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glockenspiel"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глокеншпіль"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuông glockenspiel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "钟琴"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鐘琴"
+          }
+        }
+      }
+    },
+    "wake_tone_gong": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غونغ هادئ"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jemný gong"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blid gongong"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sanfter Gong"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Απαλό γκονγκ"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gentle gong"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong suave"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گونگ ملایم"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pehmeä gongi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong doux"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גונג עדין"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मधुर गोंग"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lágy gong"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong lembut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong delicato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "やさしい銅鑼"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "부드러운 징"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong lembut"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mild gongong"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zachte gong"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Łagodny gong"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gongo suave"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gongo suave"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong blând"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мягкий гонг"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mjuk gonggong"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ฆ้องนุ่มนวล"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yumuşak gong"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "М’який гонг"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cồng êm dịu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "柔和锣声"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "柔和鑼聲"
+          }
+        }
+      }
+    },
+    "wake_tone_harp": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قيثارة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harfa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpe"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harfe"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άρπα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harp"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arpa"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چنگ"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harppu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpe"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נבל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वीणा"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hárfa"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpa"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arpa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ハープ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "하프"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpa"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpe"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harp"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harfa"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpa"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpa"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpă"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Арфа"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harpa"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "พิณฮาร์ป"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arp"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Арфа"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đàn hạc"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "竖琴"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "豎琴"
+          }
+        }
+      }
+    },
+    "wake_tone_system": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نغمة النظام…"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tón systému…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systemets lyd …"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klingelton des Systems …"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ήχος συστήματος…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System sound…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonido del sistema…"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صدای سیستم…"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Järjestelmän ääni…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son du système…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צליל מערכת…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिस्टम ध्वनि…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rendszerhang…"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suara sistem…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suono di sistema…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "システムのサウンド…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시스템 사운드…"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bunyi sistem…"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systemets lyd …"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systeemgeluid…"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dźwięk systemowy…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Som do sistema…"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Som do sistema…"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunet de sistem…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Звук системы…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systemets ljud …"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เสียงของระบบ…"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem sesi…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Звук системи…"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Âm thanh hệ thống…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统铃声…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系統鈴聲…"
           }
         }
       }

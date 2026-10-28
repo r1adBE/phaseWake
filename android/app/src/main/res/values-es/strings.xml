@@ -78,7 +78,7 @@
     <string name="settings_about">Acerca de</string>
     <string name="settings_open_source">Código abierto en GitHub</string>
     <string name="settings_licenses">Licencias</string>
-    <string name="settings_licenses_text">Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC.\nSonidos: grabaciones libres (CC0) de opengameart.org</string>
     <string name="settings_version">Versión %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -104,9 +104,14 @@
     <string name="alert_vibrate_sound">Vibración + sonido</string>
     <string name="alert_off">No</string>
     <string name="alert_vibrate">Vibración</string>
-    <string name="alert_sound">Sonido</string>
+    <string name="alert_sound">Vibración + sonido</string>
     <string name="editor_sound">Sonido de alarma</string>
     <string name="editor_sound_default">Predeterminado</string>
+    <string name="wake_tone_birds">Pájaros al amanecer</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gong suave</string>
+    <string name="wake_tone_harp">Arpa</string>
+    <string name="wake_tone_system">Sonido del sistema…</string>
     <string name="dnd_text">Permite las alarmas en No molestar; si no, tu móvil seguirá en silencio.</string>
     <string name="dnd_action">Abrir ajustes</string>
     <string name="greeting_morning">Buenos días</string>
@@ -129,8 +134,8 @@
     <string name="sunrise_title">Amanecer</string>
     <string name="sunrise_text">La pantalla se va iluminando poco a poco hasta que te despiertes.</string>
     <string name="sunrise_off">Apagar luz</string>
-    <string name="editor_sunrise">Amanecer en tu móvil</string>
-    <string name="editor_sunrise_hint">La pantalla empieza con un tenue brillo naranja y se convierte en una luz cálida e intensa a pleno brillo. Coloca el móvil con la pantalla hacia arriba.</string>
+    <string name="editor_sunrise_hint">La pantalla empieza con un tenue brillo naranja y se convierte en una luz cálida e intensa a pleno brillo.</string>
+    <string name="editor_sunrise_phone_hint">Coloca el móvil con la pantalla hacia arriba.</string>
     <string name="sunrise_ring">Al despertar</string>
     <string name="sunrise_window">Desde ventana</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -267,6 +272,12 @@
     <string name="sound_brown">Ruido marrón</string>
     <string name="sound_rain">Lluvia</string>
     <string name="sound_ocean">Mar</string>
+    <string name="sound_fan">Ventilador</string>
+    <string name="sound_binaural">Ondas para dormir</string>
+    <string name="sound_forest">Bosque de noche</string>
+    <string name="sound_fire">Chimenea</string>
+    <string name="sound_brook">Arroyo</string>
+    <string name="sound_binaural_hint">Usa auriculares.</string>
     <string name="sounds_timer">Temporizador</string>
     <string name="sounds_timer_off">Sin</string>
     <string name="sounds_play">Reproducir</string>

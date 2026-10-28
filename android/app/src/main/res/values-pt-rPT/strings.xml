@@ -78,7 +78,7 @@
     <string name="settings_about">Acerca de</string>
     <string name="settings_open_source">Código aberto no GitHub</string>
     <string name="settings_licenses">Licenças</string>
-    <string name="settings_licenses_text">Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC.\nSons: gravações livres (CC0) do opengameart.org</string>
     <string name="settings_version">Versão %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -104,9 +104,14 @@
     <string name="alert_vibrate_sound">Vibração + som</string>
     <string name="alert_off">Não</string>
     <string name="alert_vibrate">Vibração</string>
-    <string name="alert_sound">Som</string>
+    <string name="alert_sound">Vibração + som</string>
     <string name="editor_sound">Som do alarme</string>
     <string name="editor_sound_default">Predefinido</string>
+    <string name="wake_tone_birds">Pássaros da manhã</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gongo suave</string>
+    <string name="wake_tone_harp">Harpa</string>
+    <string name="wake_tone_system">Som do sistema…</string>
     <string name="dnd_text">Permite alarmes em Não incomodar; caso contrário, o telemóvel fica em silêncio.</string>
     <string name="dnd_action">Abrir definições</string>
     <string name="greeting_morning">Bom dia</string>
@@ -129,8 +134,8 @@
     <string name="sunrise_title">Nascer do sol</string>
     <string name="sunrise_text">O ecrã fica mais claro aos poucos até acordares.</string>
     <string name="sunrise_off">Desligar luz</string>
-    <string name="editor_sunrise">Nascer do sol no telemóvel</string>
-    <string name="editor_sunrise_hint">O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo. Deixa o telemóvel com o ecrã para cima.</string>
+    <string name="editor_sunrise_hint">O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo.</string>
+    <string name="editor_sunrise_phone_hint">Deixa o telemóvel com o ecrã para cima.</string>
     <string name="sunrise_ring">Ao acordar</string>
     <string name="sunrise_window">Desde a janela</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -267,6 +272,12 @@
     <string name="sound_brown">Ruído castanho</string>
     <string name="sound_rain">Chuva</string>
     <string name="sound_ocean">Mar</string>
+    <string name="sound_fan">Ventoinha</string>
+    <string name="sound_binaural">Ondas para dormir</string>
+    <string name="sound_forest">Floresta à noite</string>
+    <string name="sound_fire">Lareira</string>
+    <string name="sound_brook">Riacho</string>
+    <string name="sound_binaural_hint">Usa auscultadores.</string>
     <string name="sounds_timer">Temporizador</string>
     <string name="sounds_timer_off">Sem</string>
     <string name="sounds_play">Reproduzir</string>

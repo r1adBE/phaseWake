@@ -15,7 +15,7 @@ final class SleepSoundsTests: XCTestCase {
     }
 
     func testOutputStaysBelowPeakWithoutDcOffset() {
-        for sound in SleepSound.allCases {
+        for sound in SleepSound.allCases where !sound.recorded {
             let out = samples(sound, seconds: 10)
             let peak = out.map { abs(Double($0)) }.max() ?? 0
             let mean = out.reduce(0) { $0 + Double($1) } / Double(out.count)
@@ -29,17 +29,37 @@ final class SleepSoundsTests: XCTestCase {
     }
 
     func testDeterministicPerSeed() {
-        for sound in SleepSound.allCases {
+        for sound in SleepSound.allCases where !sound.recorded {
             XCTAssertEqual(samples(sound, seconds: 0.05, seed: 3), samples(sound, seconds: 0.05, seed: 3))
             XCTAssertNotEqual(samples(sound, seconds: 0.05, seed: 3), samples(sound, seconds: 0.05, seed: 4))
         }
     }
 
-    /// Meer: Die Welle (8–12 s) hebt und senkt die Lautstärke deutlich.
-    func testOceanSwells() {
-        let out = samples(.ocean, seconds: 24)
-        let blocks = stride(from: 0, to: out.count, by: Int(rate)).map { rms(out[$0..<min(out.count, $0 + Int(rate))]) }
-        XCTAssertGreaterThan(blocks.max()! / blocks.min()!, 1.5)
+    /// Ältere gespeicherte Werte bleiben gültig; die Aufnahmen sind genau diese fünf.
+    func testSoundsAndStoredNames() {
+        for name in ["WHITE", "PINK", "BROWN", "RAIN", "OCEAN"] { XCTAssertNotNil(SleepSound(rawValue: name), name) }
+        XCTAssertEqual(SleepSound.allCases.filter(\.recorded), [.rain, .ocean, .forest, .fire, .brook])
+    }
+
+    /// Einschlaf-Wellen: zwei Kanäle, je Ohr etwa −30 dBFS, links und rechts verschieden (200 gegen 202 Hz).
+    func testBinauralIsStereoAndSoft() {
+        XCTAssertEqual(NoiseGenerator(sound: .binaural).channels, 2)
+        XCTAssertEqual(NoiseGenerator(sound: .pink).channels, 1)
+        let out = samples(.binaural, seconds: 8)
+        let left = stride(from: 0, to: out.count, by: 2).map { out[$0] }
+        let right = stride(from: 1, to: out.count, by: 2).map { out[$0] }
+        for channel in [left, right] {
+            let level = rms(channel[...])
+            XCTAssertGreaterThan(level, 0.025)
+            XCTAssertLessThan(level, 0.045)
+        }
+        XCTAssertTrue(zip(left, right).contains { abs($0 - $1) > 0.01 })
+    }
+
+    /// Ventilator: tieffrequent, Sprünge von Wert zu Wert deutlich kleiner als beim weissen Rauschen.
+    func testFanIsDark() {
+        func maxStep(_ v: [Float]) -> Float { zip(v.dropFirst(), v).map { abs($0 - $1) }.max() ?? 0 }
+        XCTAssertLessThan(maxStep(samples(.fan, seconds: 5)), maxStep(samples(.white, seconds: 5)) / 4)
     }
 
     func testFadeAndStop() {

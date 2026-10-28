@@ -76,7 +76,7 @@
     <string name="settings_about">Perihal</string>
     <string name="settings_open_source">Sumber terbuka di GitHub</string>
     <string name="settings_licenses">Lesen</string>
-    <string name="settings_licenses_text">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.\nBunyi: rakaman bebas (CC0) daripada opengameart.org</string>
     <string name="settings_version">Versi %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">Getaran + bunyi</string>
     <string name="alert_off">Mati</string>
     <string name="alert_vibrate">Getaran</string>
-    <string name="alert_sound">Bunyi</string>
+    <string name="alert_sound">Getaran + bunyi</string>
     <string name="editor_sound">Bunyi penggera</string>
     <string name="editor_sound_default">Lalai</string>
+    <string name="wake_tone_birds">Burung pagi</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gong lembut</string>
+    <string name="wake_tone_harp">Harpa</string>
+    <string name="wake_tone_system">Bunyi sistem…</string>
     <string name="dnd_text">Benarkan penggera dalam Jangan Ganggu, jika tidak telefon awak kekal senyap.</string>
     <string name="dnd_action">Buka tetapan</string>
     <string name="greeting_morning">Selamat pagi</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">Matahari terbit</string>
     <string name="sunrise_text">Skrin perlahan-lahan menjadi lebih cerah sehingga awak bangun.</string>
     <string name="sunrise_off">Matikan cahaya</string>
-    <string name="editor_sunrise">Matahari terbit pada telefon</string>
-    <string name="editor_sunrise_hint">Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh. Letakkan telefon dengan skrin menghadap ke atas.</string>
+    <string name="editor_sunrise_hint">Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh.</string>
+    <string name="editor_sunrise_phone_hint">Letakkan telefon dengan skrin menghadap ke atas.</string>
     <string name="sunrise_ring">Semasa bangun</string>
     <string name="sunrise_window">Dari tetingkap</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">Hingar perang</string>
     <string name="sound_rain">Hujan</string>
     <string name="sound_ocean">Laut</string>
+    <string name="sound_fan">Kipas</string>
+    <string name="sound_binaural">Gelombang tidur</string>
+    <string name="sound_forest">Hutan waktu malam</string>
+    <string name="sound_fire">Unggun api</string>
+    <string name="sound_brook">Anak sungai</string>
+    <string name="sound_binaural_hint">Gunakan fon kepala.</string>
     <string name="sounds_timer">Pemasa</string>
     <string name="sounds_timer_off">Tiada</string>
     <string name="sounds_play">Main</string>

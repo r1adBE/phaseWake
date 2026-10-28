@@ -76,7 +76,7 @@
     <string name="settings_about">เกี่ยวกับ</string>
     <string name="settings_open_source">โอเพนซอร์สบน GitHub</string>
     <string name="settings_licenses">สัญญาอนุญาต</string>
-    <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC</string>
+    <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org</string>
     <string name="settings_version">เวอร์ชัน %1$s</string>
 
     <string name="duration_minutes">%1$d นาที</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">สั่น + เสียง</string>
     <string name="alert_off">ปิด</string>
     <string name="alert_vibrate">สั่น</string>
-    <string name="alert_sound">เสียง</string>
+    <string name="alert_sound">สั่น + เสียง</string>
     <string name="editor_sound">เสียงปลุก</string>
     <string name="editor_sound_default">ค่าเริ่มต้น</string>
+    <string name="wake_tone_birds">นกยามเช้า</string>
+    <string name="wake_tone_glockenspiel">กล็อกเคนสปีล</string>
+    <string name="wake_tone_gong">ฆ้องนุ่มนวล</string>
+    <string name="wake_tone_harp">พิณฮาร์ป</string>
+    <string name="wake_tone_system">เสียงของระบบ…</string>
     <string name="dnd_text">อนุญาตให้นาฬิกาปลุกดังในโหมดห้ามรบกวน มิฉะนั้นโทรศัพท์จะเงียบ</string>
     <string name="dnd_action">เปิดการตั้งค่า</string>
     <string name="greeting_morning">อรุณสวัสดิ์</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">พระอาทิตย์ขึ้น</string>
     <string name="sunrise_text">หน้าจอจะค่อย ๆ สว่างขึ้นจนกว่าคุณจะตื่น</string>
     <string name="sunrise_off">ปิดไฟ</string>
-    <string name="editor_sunrise">พระอาทิตย์ขึ้นบนโทรศัพท์</string>
-    <string name="editor_sunrise_hint">หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่ วางโทรศัพท์โดยหงายหน้าจอขึ้น</string>
+    <string name="editor_sunrise_hint">หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่</string>
+    <string name="editor_sunrise_phone_hint">วางโทรศัพท์โดยหงายหน้าจอขึ้น</string>
     <string name="sunrise_ring">ตอนปลุก</string>
     <string name="sunrise_window">ตั้งแต่ช่วงเวลา</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">เสียงรบกวนสีน้ำตาล</string>
     <string name="sound_rain">ฝน</string>
     <string name="sound_ocean">ทะเล</string>
+    <string name="sound_fan">พัดลม</string>
+    <string name="sound_binaural">คลื่นก่อนนอน</string>
+    <string name="sound_forest">ป่ายามค่ำคืน</string>
+    <string name="sound_fire">เตาผิง</string>
+    <string name="sound_brook">ลำธาร</string>
+    <string name="sound_binaural_hint">ฟังด้วยหูฟัง</string>
     <string name="sounds_timer">ตั้งเวลา</string>
     <string name="sounds_timer_off">ไม่ตั้ง</string>
     <string name="sounds_play">เล่น</string>

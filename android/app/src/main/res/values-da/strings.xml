@@ -77,7 +77,7 @@
     <string name="settings_about">Om</string>
     <string name="settings_open_source">Open source på GitHub</string>
     <string name="settings_licenses">Licenser</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC.\nLyde: frie optagelser (CC0) fra opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Vibration + lyd</string>
     <string name="alert_off">Fra</string>
     <string name="alert_vibrate">Vibration</string>
-    <string name="alert_sound">Lyd</string>
+    <string name="alert_sound">Vibration + lyd</string>
     <string name="editor_sound">Alarmlyd</string>
     <string name="editor_sound_default">Standard</string>
+    <string name="wake_tone_birds">Morgenfugle</string>
+    <string name="wake_tone_glockenspiel">Klokkespil</string>
+    <string name="wake_tone_gong">Blid gongong</string>
+    <string name="wake_tone_harp">Harpe</string>
+    <string name="wake_tone_system">Systemets lyd …</string>
     <string name="dnd_text">Tillad alarmer i Forstyr ikke, ellers forbliver din telefon stille.</string>
     <string name="dnd_action">Åbn indstillinger</string>
     <string name="greeting_morning">Godmorgen</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Solopgang</string>
     <string name="sunrise_text">Skærmen bliver langsomt lysere, indtil du vågner.</string>
     <string name="sunrise_off">Sluk lyset</string>
-    <string name="editor_sunrise">Solopgang på telefonen</string>
-    <string name="editor_sunrise_hint">Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke. Læg telefonen med skærmen opad.</string>
+    <string name="editor_sunrise_hint">Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke.</string>
+    <string name="editor_sunrise_phone_hint">Læg telefonen med skærmen opad.</string>
     <string name="sunrise_ring">Ved vækning</string>
     <string name="sunrise_window">Fra vinduet</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Brun støj</string>
     <string name="sound_rain">Regn</string>
     <string name="sound_ocean">Hav</string>
+    <string name="sound_fan">Ventilator</string>
+    <string name="sound_binaural">Søvnbølger</string>
+    <string name="sound_forest">Skov om natten</string>
+    <string name="sound_fire">Pejs</string>
+    <string name="sound_brook">Bæk</string>
+    <string name="sound_binaural_hint">Lyt med høretelefoner.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">Ingen</string>
     <string name="sounds_play">Afspil</string>

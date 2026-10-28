@@ -80,7 +80,7 @@
     <string name="settings_about">About</string>
     <string name="settings_open_source">Open source on GitHub</string>
     <string name="settings_licenses">Licenses</string>
-    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.\nSounds: free recordings (CC0) from opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -106,9 +106,14 @@
     <string name="alert_vibrate_sound">Vibration + sound</string>
     <string name="alert_off">Off</string>
     <string name="alert_vibrate">Vibration</string>
-    <string name="alert_sound">Sound</string>
+    <string name="alert_sound">Vibration + sound</string>
     <string name="editor_sound">Alarm sound</string>
     <string name="editor_sound_default">Default</string>
+    <string name="wake_tone_birds">Morning birds</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gentle gong</string>
+    <string name="wake_tone_harp">Harp</string>
+    <string name="wake_tone_system">System sound…</string>
     <string name="dnd_text">Allow alarms in Do Not Disturb, otherwise your phone stays silent.</string>
     <string name="dnd_action">Open settings</string>
     <string name="greeting_morning">Good morning</string>
@@ -130,8 +135,8 @@
     <string name="sunrise_title">Sunrise</string>
     <string name="sunrise_text">Your screen slowly gets brighter until you wake up.</string>
     <string name="sunrise_off">Turn off light</string>
-    <string name="editor_sunrise">Sunrise on your phone</string>
-    <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness. Place your phone screen up.</string>
+    <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness.</string>
+    <string name="editor_sunrise_phone_hint">Place your phone screen up.</string>
     <string name="sunrise_ring">On waking</string>
     <string name="sunrise_window">From window</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -261,6 +266,12 @@
     <string name="sound_brown">Brown noise</string>
     <string name="sound_rain">Rain</string>
     <string name="sound_ocean">Ocean</string>
+    <string name="sound_fan">Fan</string>
+    <string name="sound_binaural">Sleep waves</string>
+    <string name="sound_forest">Forest at night</string>
+    <string name="sound_fire">Fireplace</string>
+    <string name="sound_brook">Brook</string>
+    <string name="sound_binaural_hint">Use headphones.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">None</string>
     <string name="sounds_play">Play</string>

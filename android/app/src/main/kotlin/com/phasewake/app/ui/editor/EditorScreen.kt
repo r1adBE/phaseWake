@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -52,6 +53,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
@@ -62,6 +64,7 @@ import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -78,8 +81,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.ring.WakeTonePreview
+import com.phasewake.app.ring.WakeTones
 import com.phasewake.app.ui.Format
 import java.time.DayOfWeek
 import java.time.Duration
@@ -105,7 +112,8 @@ fun EditorScreen(
     val res = LocalResources.current
     // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
     val newId = rememberSaveable { UUID.randomUUID().toString() }
-    val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS)
+    // Neue Wecker wecken mit «Morgenvögel»; bestehende behalten ihren Ton (leer = Standard des Systems).
+    val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS, sound = WakeTones.DEFAULT)
     val time = rememberTimePickerState(base.hour, base.minute, is24Hour = DateFormat.is24HourFormat(context))
     var window by rememberSaveable { mutableFloatStateOf(base.windowMinutes.toFloat()) }
     var days by rememberSaveable(stateSaver = DaysSaver) { mutableStateOf(base.days) }
@@ -121,6 +129,10 @@ fun EditorScreen(
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
         if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
     }
+    // Probehören der eigenen Wecktöne; endet beim Verlassen des Editors und wenn die App in den Hintergrund geht.
+    val preview = remember { WakeTonePreview(context) }
+    DisposableEffect(preview) { onDispose { preview.stop() } }
+    LifecycleEventEffect(Lifecycle.Event.ON_STOP) { preview.stop() }
     var label by rememberSaveable { mutableStateOf(base.label) }
     // «Mehr» aufgeklappt: übersteht Drehen und Neuaufbau.
     var more by rememberSaveable { mutableStateOf(false) }
@@ -331,7 +343,7 @@ fun EditorScreen(
 
             // Sonnenaufgang im Haupteditor, mit Gerätewahl (Handy, Uhr oder beide).
             Section {
-                Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleMedium)
                 Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
                 Choice(
                     options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
@@ -357,6 +369,15 @@ fun EditorScreen(
                             selected = sunriseDevice,
                             onSelect = { sunriseDevice = it },
                         )
+                        // Nur wenn das Handy leuchtet: wie es hingelegt wird.
+                        AnimatedVisibility(sunriseDevice != SunriseDevice.WATCH) {
+                            Text(
+                                stringResource(R.string.editor_sunrise_phone_hint),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = 6.dp),
+                            )
+                        }
                     }
                 }
             }
@@ -382,24 +403,31 @@ fun EditorScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                     AnimatedVisibility(phone == PhoneAlert.SOUND) {
                         Section {
-                            Row(
-                                Modifier
-                                    .fillMaxWidth()
-                                    .clip(MaterialTheme.shapes.small)
-                                    .clickable {
-                                        soundPicker.launch(
-                                            Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
-                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
-                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.ifEmpty { null }?.let(Uri::parse)),
-                                        )
-                                    }
-                                    .padding(vertical = 10.dp),
-                                verticalAlignment = Alignment.CenterVertically,
+                            // Zugeklappt oder ausgeblendet: Probehören endet.
+                            DisposableEffect(Unit) { onDispose { preview.stop() } }
+                            Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(bottom = 4.dp))
+                            // Eigene Töne: Antippen wählt und spielt kurz an.
+                            WakeTones.ALL.forEach { tone ->
+                                ToneRow(stringResource(tone.label), selected = sound == tone.key) {
+                                    sound = tone.key
+                                    preview.play(tone)
+                                }
+                            }
+                            // Systemton: leer (Standard) oder eine URI aus der Auswahl des Systems.
+                            val system = WakeTones.find(sound) == null
+                            ToneRow(
+                                stringResource(R.string.wake_tone_system),
+                                selected = system,
+                                detail = if (system) soundTitle(context, sound) else null,
                             ) {
-                                Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                                Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
+                                preview.stop()
+                                soundPicker.launch(
+                                    Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.takeIf { system }?.ifEmpty { null }?.let(Uri::parse)),
+                                )
                             }
                         }
                     }
@@ -448,7 +476,26 @@ private fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) -
     }
 }
 
-/** Anzeigename des gewählten Wecktons; leer = Standard-Weckton. */
+/** Eine Zeile der Weckton-Auswahl (Optionsfeld, Name, rechts optional der gewählte Systemton). */
+@Composable
+private fun ToneRow(label: String, selected: Boolean, detail: String? = null, onClick: () -> Unit) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(MaterialTheme.shapes.small)
+            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+            .padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RadioButton(selected = selected, onClick = null)
+        Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = 12.dp).weight(1f))
+        if (detail != null) {
+            Text(detail, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, maxLines = 1, modifier = Modifier.padding(start = 8.dp))
+        }
+    }
+}
+
+/** Anzeigename des gewählten Systemtons; leer = Standard-Weckton. */
 private fun soundTitle(context: Context, sound: String): String {
     if (sound.isEmpty()) return context.getString(R.string.editor_sound_default)
     return runCatching { RingtoneManager.getRingtone(context, sound.toUri())?.getTitle(context) }.getOrNull()

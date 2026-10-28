@@ -10,8 +10,13 @@ extension SleepSound {
         case .white: "waveform"
         case .pink: "waveform.path"
         case .brown: "waveform.path.ecg"
+        case .fan: "fan"
+        case .binaural: "headphones"
         case .rain: "cloud.rain"
         case .ocean: "water.waves"
+        case .forest: "leaf"
+        case .fire: "flame"
+        case .brook: "drop"
         }
     }
 }
@@ -36,7 +41,7 @@ struct SoundsButton: View {
     }
 }
 
-/// Einschlafklänge: fünf Klänge, Timer, Start/Stopp, Restzeit.
+/// Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Start/Stopp, Restzeit.
 struct SoundsSheet: View {
     @Environment(PhoneModel.self) private var model
     @AppStorage("soundChoice") private var choice = SleepSound.pink.rawValue
@@ -52,6 +57,10 @@ struct SoundsSheet: View {
                         ForEach(SleepSound.allCases, id: \.self) { sound in
                             tile(sound, selected: sound.rawValue == choice, playing: player.playing == sound)
                         }
+                    }
+                    // Einschlaf-Wellen: links und rechts ein anderer Ton, darum mit Kopfhörern hören.
+                    if (player.playing ?? SleepSound(rawValue: choice)) == .binaural {
+                        Text(L("sound_binaural_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(.secondary)
                     }
                     VStack(alignment: .leading, spacing: 8) {
                         Text(L("sounds_timer")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))

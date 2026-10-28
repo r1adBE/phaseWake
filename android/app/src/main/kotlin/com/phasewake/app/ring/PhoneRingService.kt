@@ -7,7 +7,6 @@ import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
@@ -242,8 +241,9 @@ class PhoneRingService : Service() {
         if (state.value !is State.Ringing) return
         val default = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        // Eigener Weckton zuerst; ist er nicht abspielbar (gelöscht, kein Zugriff), der Standard-Weckton.
-        val candidates = listOfNotNull(chosen.ifEmpty { null }?.let(Uri::parse), default).distinct()
+        // Gewählter Weckton zuerst (eigener aus res/raw oder Systemton); ist er nicht abspielbar (gelöscht,
+        // kein Zugriff), der Standard-Weckton.
+        val candidates = listOfNotNull(WakeTones.resolve(this, chosen), default).distinct()
         for (uri in candidates) {
             try {
                 player = MediaPlayer().apply {

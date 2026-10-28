@@ -76,7 +76,7 @@
     <string name="settings_about">Giới thiệu</string>
     <string name="settings_open_source">Mã nguồn mở trên GitHub</string>
     <string name="settings_licenses">Giấy phép</string>
-    <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org</string>
     <string name="settings_version">Phiên bản %1$s</string>
 
     <string name="duration_minutes">%1$d phút</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">Rung + âm thanh</string>
     <string name="alert_off">Tắt</string>
     <string name="alert_vibrate">Rung</string>
-    <string name="alert_sound">Âm thanh</string>
+    <string name="alert_sound">Rung + âm thanh</string>
     <string name="editor_sound">Nhạc báo thức</string>
     <string name="editor_sound_default">Mặc định</string>
+    <string name="wake_tone_birds">Chim buổi sáng</string>
+    <string name="wake_tone_glockenspiel">Chuông glockenspiel</string>
+    <string name="wake_tone_gong">Cồng êm dịu</string>
+    <string name="wake_tone_harp">Đàn hạc</string>
+    <string name="wake_tone_system">Âm thanh hệ thống…</string>
     <string name="dnd_text">Hãy cho phép báo thức trong chế độ Không làm phiền, nếu không điện thoại sẽ im lặng.</string>
     <string name="dnd_action">Mở cài đặt</string>
     <string name="greeting_morning">Chào buổi sáng</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">Bình minh</string>
     <string name="sunrise_text">Màn hình sáng dần cho đến khi bạn thức dậy.</string>
     <string name="sunrise_off">Tắt đèn</string>
-    <string name="editor_sunrise">Bình minh trên điện thoại</string>
-    <string name="editor_sunrise_hint">Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa. Hãy đặt điện thoại ngửa màn hình lên trên.</string>
+    <string name="editor_sunrise_hint">Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa.</string>
+    <string name="editor_sunrise_phone_hint">Hãy đặt điện thoại ngửa màn hình lên trên.</string>
     <string name="sunrise_ring">Khi đánh thức</string>
     <string name="sunrise_window">Từ đầu khoảng</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">Tiếng ồn nâu</string>
     <string name="sound_rain">Mưa</string>
     <string name="sound_ocean">Biển</string>
+    <string name="sound_fan">Quạt</string>
+    <string name="sound_binaural">Sóng ru ngủ</string>
+    <string name="sound_forest">Rừng đêm</string>
+    <string name="sound_fire">Lò sưởi</string>
+    <string name="sound_brook">Suối</string>
+    <string name="sound_binaural_hint">Hãy nghe bằng tai nghe.</string>
     <string name="sounds_timer">Hẹn giờ</string>
     <string name="sounds_timer_off">Không</string>
     <string name="sounds_play">Phát</string>

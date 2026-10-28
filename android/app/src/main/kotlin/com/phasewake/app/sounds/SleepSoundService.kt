@@ -35,9 +35,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * Einschlafklänge: erzeugt das Rauschen fortlaufend ([NoiseGenerator]) und spielt es über einen
- * AudioTrack auf dem Medien-Kanal (Medienlautstärke, nie der Wecker-Kanal). Vordergrund-Dienst
- * «mediaPlayback» mit Mitteilung zum Stoppen. Endet nach dem Timer oder spätestens zu Beginn des
+ * Einschlafklänge: erzeugt das Rauschen fortlaufend ([NoiseGenerator]) oder spielt eine Aufnahme nahtlos
+ * in Schleife ([LoopedRecording]), beides über einen AudioTrack auf dem Medien-Kanal (Medienlautstärke,
+ * nie der Wecker-Kanal). Vordergrund-Dienst «mediaPlayback» mit Mitteilung zum Stoppen. Endet nach dem Timer oder spätestens zu Beginn des
  * nächsten Weckfensters, mit 30 s Ausblenden; verliert er den Audio-Fokus, pausiert oder stoppt er.
  * Das Ende wird jede Minute mit dem aktuellen Plan verglichen (geänderte Wecker); klingelt die Uhr, endet
  * er sofort (siehe [BackupAlarm.watchRang][com.phasewake.app.ring.BackupAlarm.watchRang]).
@@ -128,17 +128,22 @@ class SleepSoundService : Service() {
         thread = Thread({ loop(sound) }, "SleepSound").apply { start() }
     }
 
-    /** Audio-Thread: erzeugt Blöcke von 50 ms, Lautstärke je Block weich übergeblendet. */
+    /** Audio-Thread: spielt Blöcke von 50 ms, Lautstärke je Block weich übergeblendet. */
     private fun loop(initial: SleepSound) {
-        val track = try {
-            buildTrack()
-        } catch (e: Exception) {
-            Log.w(TAG, "AudioTrack nicht verfügbar", e)
+        var source = openSource(initial) ?: run {
+            running = false
             handler.post { finish() }
             return
         }
-        val block = FloatArray(SAMPLE_RATE / 20)
-        var generator = NoiseGenerator(initial, SAMPLE_RATE, System.nanoTime())
+        var track = try {
+            buildTrack(source)
+        } catch (e: Exception) {
+            Log.w(TAG, "AudioTrack nicht verfügbar", e)
+            running = false
+            handler.post { finish() }
+            return
+        }
+        var block = FloatArray(source.sampleRate / 20 * source.channels)
         var startedAt = System.currentTimeMillis()
         var lastGain = 0f
         // Kurzes Ausblenden beim Stoppen oder Wechseln (1 = voll, 0 = aus).
@@ -158,18 +163,32 @@ class SleepSoundService : Service() {
                 if (stopRequested || switching) quick = (quick - BLOCK_MS / QUICK_FADE_MS).coerceAtLeast(0f)
                 val untilEnd = endsAtMs.takeIf { it != NO_END }?.let { it - now }
                 val target = SleepSounds.gain(now - startedAt, untilEnd) * quick
-                generator.fill(block)
-                for (i in block.indices) {
-                    block[i] *= lastGain + (target - lastGain) * (i + 1) / block.size
+                source.fill(block)
+                // Je Abtastzeitpunkt (alle Kanäle gleich) weich von der alten zur neuen Lautstärke.
+                val channels = source.channels
+                val frames = block.size / channels
+                for (f in 0 until frames) {
+                    val gain = lastGain + (target - lastGain) * (f + 1) / frames
+                    for (c in 0 until channels) block[f * channels + c] *= gain
                 }
                 lastGain = target
                 track.write(block, 0, block.size, AudioTrack.WRITE_BLOCKING)
                 when {
                     quick <= 0f && switching && !stopRequested -> {
-                        val next = pendingSound ?: generator.sound
-                        generator = NoiseGenerator(next, SAMPLE_RATE, System.nanoTime())
+                        val next = pendingSound ?: source.sound
                         pendingSound = null
+                        val opened = openSource(next) ?: break
+                        // Andere Abtastrate oder Kanalzahl (Aufnahme oder Einschlaf-Wellen statt Rauschen): neuer AudioTrack.
+                        if (opened.sampleRate != source.sampleRate || opened.channels != source.channels) {
+                            runCatching { track.stop() }
+                            track.release()
+                            track = buildTrack(opened)
+                            track.play()
+                        }
+                        source = opened
+                        block = FloatArray(source.sampleRate / 20 * source.channels)
                         startedAt = System.currentTimeMillis()
+                        lastGain = 0f
                         quick = 1f
                     }
                     quick <= 0f || (untilEnd != null && untilEnd <= 0) -> break
@@ -177,6 +196,8 @@ class SleepSoundService : Service() {
             }
         } catch (_: InterruptedException) {
             // Dienst beendet.
+        } catch (e: Exception) {
+            Log.w(TAG, "Einschlafklänge abgebrochen", e)
         } finally {
             runCatching { track.stop() }
             track.release()
@@ -185,20 +206,71 @@ class SleepSoundService : Service() {
         }
     }
 
-    private fun buildTrack(): AudioTrack {
+    /**
+     * Quelle für [sound]: erzeugt (Rauschen, Ventilator, Einschlaf-Wellen) oder als Aufnahme einmal dekodiert und nahtlos
+     * in Schleife. `null`, wenn die Aufnahme nicht lesbar ist oder der Dienst inzwischen endet.
+     */
+    private fun openSource(sound: SleepSound): Source? {
+        val raw = rawRecording(sound) ?: return Generated(NoiseGenerator(sound, SAMPLE_RATE, System.nanoTime()))
+        return try {
+            Looped(sound, LoopedRecording.decode(this, raw) { !running })
+        } catch (_: InterruptedException) {
+            null
+        } catch (e: Exception) {
+            Log.w(TAG, "Aufnahme $sound nicht lesbar", e)
+            null
+        }
+    }
+
+    private fun buildTrack(source: Source): AudioTrack {
+        val mask = if (source.channels == 2) AudioFormat.CHANNEL_OUT_STEREO else AudioFormat.CHANNEL_OUT_MONO
         val format = AudioFormat.Builder()
             .setEncoding(AudioFormat.ENCODING_PCM_FLOAT)
-            .setSampleRate(SAMPLE_RATE)
-            .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
+            .setSampleRate(source.sampleRate)
+            .setChannelMask(mask)
             .build()
-        val minBuffer = AudioTrack.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_FLOAT)
+        val minBuffer = AudioTrack.getMinBufferSize(source.sampleRate, mask, AudioFormat.ENCODING_PCM_FLOAT)
         return AudioTrack.Builder()
             .setAudioAttributes(ATTRIBUTES)
             .setAudioFormat(format)
             // Etwa 200 ms Puffer: genug gegen Aussetzer, kurz genug für ein promptes Stoppen.
-            .setBufferSizeInBytes(maxOf(minBuffer, SAMPLE_RATE / 5 * Float.SIZE_BYTES))
+            .setBufferSizeInBytes(maxOf(minBuffer, source.sampleRate / 5 * source.channels * Float.SIZE_BYTES))
             .setTransferMode(AudioTrack.MODE_STREAM)
             .build()
+    }
+
+    /** Was der Audio-Thread spielt: [fill] liefert verschachtelte Werte ([channels] je Abtastzeitpunkt). */
+    private interface Source {
+        val sound: SleepSound
+        val sampleRate: Int
+        val channels: Int
+        fun fill(out: FloatArray)
+    }
+
+    private class Generated(private val generator: NoiseGenerator) : Source {
+        override val sound: SleepSound get() = generator.sound
+        override val sampleRate: Int = SAMPLE_RATE
+        override val channels: Int = generator.channels
+        override fun fill(out: FloatArray) = generator.fill(out)
+    }
+
+    /** Aufnahme ohne Lücke: nach dem Ende weiter ab [LoopedRecording.loopStart]. */
+    private class Looped(override val sound: SleepSound, private val recording: LoopedRecording) : Source {
+        override val sampleRate: Int get() = recording.sampleRate
+        override val channels: Int get() = recording.channels
+        private var position = recording.start
+
+        override fun fill(out: FloatArray) {
+            val pcm = recording.pcm
+            var i = 0
+            while (i < out.size) {
+                if (position >= recording.end) position = recording.loopStart
+                val n = minOf(out.size - i, recording.end - position)
+                for (k in 0 until n) out[i + k] = pcm[position + k] * PCM_SCALE
+                i += n
+                position += n
+            }
+        }
     }
 
     private fun requestFocus(): Boolean {
@@ -281,12 +353,29 @@ class SleepSoundService : Service() {
         private val state = MutableStateFlow<Playing?>(null)
         val playing: StateFlow<Playing?> = state.asStateFlow()
 
+        private const val PCM_SCALE = 1f / 32_768f
+
         fun soundName(sound: SleepSound): Int = when (sound) {
             SleepSound.WHITE -> R.string.sound_white
             SleepSound.PINK -> R.string.sound_pink
             SleepSound.BROWN -> R.string.sound_brown
+            SleepSound.FAN -> R.string.sound_fan
+            SleepSound.BINAURAL -> R.string.sound_binaural
             SleepSound.RAIN -> R.string.sound_rain
             SleepSound.OCEAN -> R.string.sound_ocean
+            SleepSound.FOREST -> R.string.sound_forest
+            SleepSound.FIRE -> R.string.sound_fire
+            SleepSound.BROOK -> R.string.sound_brook
+        }
+
+        /** Datei der Aufnahme in `res/raw`; `null` = im Code erzeugt. */
+        private fun rawRecording(sound: SleepSound): Int? = when (sound) {
+            SleepSound.WHITE, SleepSound.PINK, SleepSound.BROWN, SleepSound.FAN, SleepSound.BINAURAL -> null
+            SleepSound.RAIN -> R.raw.sound_rain
+            SleepSound.OCEAN -> R.raw.sound_ocean
+            SleepSound.FOREST -> R.raw.sound_forest
+            SleepSound.FIRE -> R.raw.sound_fire
+            SleepSound.BROOK -> R.raw.sound_brook
         }
 
         /** Startet oder wechselt den Klang; [endsAt] `null` = ohne Ende. Nur aus der sichtbaren App. */

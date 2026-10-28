@@ -79,7 +79,7 @@
     <string name="settings_about">О приложении</string>
     <string name="settings_open_source">Открытый код на GitHub</string>
     <string name="settings_licenses">Лицензии</string>
-    <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC.\nЗвуки: свободные записи (CC0) с opengameart.org</string>
     <string name="settings_version">Версия %1$s</string>
 
     <string name="duration_minutes">%1$d мин</string>
@@ -105,9 +105,14 @@
     <string name="alert_vibrate_sound">Вибрация + звук</string>
     <string name="alert_off">Выкл.</string>
     <string name="alert_vibrate">Вибрация</string>
-    <string name="alert_sound">Звук</string>
+    <string name="alert_sound">Вибрация + звук</string>
     <string name="editor_sound">Мелодия будильника</string>
     <string name="editor_sound_default">По умолчанию</string>
+    <string name="wake_tone_birds">Утренние птицы</string>
+    <string name="wake_tone_glockenspiel">Глокеншпиль</string>
+    <string name="wake_tone_gong">Мягкий гонг</string>
+    <string name="wake_tone_harp">Арфа</string>
+    <string name="wake_tone_system">Звук системы…</string>
     <string name="dnd_text">Разреши будильники в режиме «Не беспокоить», иначе телефон будет молчать.</string>
     <string name="dnd_action">Открыть настройки</string>
     <string name="greeting_morning">Доброе утро</string>
@@ -131,8 +136,8 @@
     <string name="sunrise_title">Рассвет</string>
     <string name="sunrise_text">Экран медленно становится ярче, пока ты не проснёшься.</string>
     <string name="sunrise_off">Выключить свет</string>
-    <string name="editor_sunrise">Рассвет на телефоне</string>
-    <string name="editor_sunrise_hint">Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости. Положи телефон экраном вверх.</string>
+    <string name="editor_sunrise_hint">Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости.</string>
+    <string name="editor_sunrise_phone_hint">Положи телефон экраном вверх.</string>
     <string name="sunrise_ring">При подъёме</string>
     <string name="sunrise_window">С начала окна</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -274,6 +279,12 @@
     <string name="sound_brown">Коричневый шум</string>
     <string name="sound_rain">Дождь</string>
     <string name="sound_ocean">Море</string>
+    <string name="sound_fan">Вентилятор</string>
+    <string name="sound_binaural">Волны для сна</string>
+    <string name="sound_forest">Ночной лес</string>
+    <string name="sound_fire">Камин</string>
+    <string name="sound_brook">Ручей</string>
+    <string name="sound_binaural_hint">Слушай в наушниках.</string>
     <string name="sounds_timer">Таймер</string>
     <string name="sounds_timer_off">Без</string>
     <string name="sounds_play">Включить</string>

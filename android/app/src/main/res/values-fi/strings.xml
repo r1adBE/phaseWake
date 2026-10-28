@@ -77,7 +77,7 @@
     <string name="settings_about">Tietoja</string>
     <string name="settings_open_source">Avoin lähdekoodi GitHubissa</string>
     <string name="settings_licenses">Lisenssit</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC.\nÄänet: vapaat äänitteet (CC0) sivustolta opengameart.org</string>
     <string name="settings_version">Versio %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Värinä + ääni</string>
     <string name="alert_off">Pois</string>
     <string name="alert_vibrate">Värinä</string>
-    <string name="alert_sound">Ääni</string>
+    <string name="alert_sound">Värinä + ääni</string>
     <string name="editor_sound">Herätysääni</string>
     <string name="editor_sound_default">Oletus</string>
+    <string name="wake_tone_birds">Aamulinnut</string>
+    <string name="wake_tone_glockenspiel">Kellopeli</string>
+    <string name="wake_tone_gong">Pehmeä gongi</string>
+    <string name="wake_tone_harp">Harppu</string>
+    <string name="wake_tone_system">Järjestelmän ääni…</string>
     <string name="dnd_text">Salli herätykset Älä häiritse -tilassa, muuten puhelimesi pysyy hiljaa.</string>
     <string name="dnd_action">Avaa asetukset</string>
     <string name="greeting_morning">Huomenta</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Auringonnousu</string>
     <string name="sunrise_text">Näyttö kirkastuu hitaasti, kunnes heräät.</string>
     <string name="sunrise_off">Sammuta valo</string>
-    <string name="editor_sunrise">Auringonnousu puhelimessa</string>
-    <string name="editor_sunrise_hint">Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella. Aseta puhelin näyttö ylöspäin.</string>
+    <string name="editor_sunrise_hint">Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella.</string>
+    <string name="editor_sunrise_phone_hint">Aseta puhelin näyttö ylöspäin.</string>
     <string name="sunrise_ring">Herätessä</string>
     <string name="sunrise_window">Aikaikkunasta</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Ruskea kohina</string>
     <string name="sound_rain">Sade</string>
     <string name="sound_ocean">Meri</string>
+    <string name="sound_fan">Tuuletin</string>
+    <string name="sound_binaural">Uniaallot</string>
+    <string name="sound_forest">Yömetsä</string>
+    <string name="sound_fire">Takkatuli</string>
+    <string name="sound_brook">Puro</string>
+    <string name="sound_binaural_hint">Kuuntele kuulokkeilla.</string>
     <string name="sounds_timer">Ajastin</string>
     <string name="sounds_timer_off">Ei</string>
     <string name="sounds_play">Toista</string>

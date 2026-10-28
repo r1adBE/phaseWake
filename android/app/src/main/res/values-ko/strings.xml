@@ -76,7 +76,7 @@
     <string name="settings_about">정보</string>
     <string name="settings_open_source">GitHub의 오픈 소스</string>
     <string name="settings_licenses">라이선스</string>
-    <string name="settings_licenses_text">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC.\n사운드: opengameart.org의 자유 녹음(CC0)</string>
     <string name="settings_version">버전 %1$s</string>
 
     <string name="duration_minutes">%1$d분</string>
@@ -102,9 +102,14 @@
     <string name="alert_vibrate_sound">진동 + 소리</string>
     <string name="alert_off">끔</string>
     <string name="alert_vibrate">진동</string>
-    <string name="alert_sound">소리</string>
+    <string name="alert_sound">진동 + 소리</string>
     <string name="editor_sound">알람 소리</string>
     <string name="editor_sound_default">기본</string>
+    <string name="wake_tone_birds">아침 새소리</string>
+    <string name="wake_tone_glockenspiel">글로켄슈필</string>
+    <string name="wake_tone_gong">부드러운 징</string>
+    <string name="wake_tone_harp">하프</string>
+    <string name="wake_tone_system">시스템 사운드…</string>
     <string name="dnd_text">방해 금지 모드에서 알람을 허용해 주세요. 그렇지 않으면 휴대폰이 울리지 않아요.</string>
     <string name="dnd_action">설정 열기</string>
     <string name="greeting_morning">좋은 아침이에요</string>
@@ -125,8 +130,8 @@
     <string name="sunrise_title">일출</string>
     <string name="sunrise_text">깨어날 때까지 화면이 서서히 밝아져요.</string>
     <string name="sunrise_off">조명 끄기</string>
-    <string name="editor_sunrise">휴대폰 일출</string>
-    <string name="editor_sunrise_hint">화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요. 휴대폰을 화면이 위로 가게 두세요.</string>
+    <string name="editor_sunrise_hint">화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요.</string>
+    <string name="editor_sunrise_phone_hint">휴대폰을 화면이 위로 가게 두세요.</string>
     <string name="sunrise_ring">깨울 때</string>
     <string name="sunrise_window">범위부터</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -253,6 +258,12 @@
     <string name="sound_brown">브라운 노이즈</string>
     <string name="sound_rain">비</string>
     <string name="sound_ocean">바다</string>
+    <string name="sound_fan">선풍기</string>
+    <string name="sound_binaural">수면 파동</string>
+    <string name="sound_forest">밤의 숲</string>
+    <string name="sound_fire">벽난로</string>
+    <string name="sound_brook">시냇물</string>
+    <string name="sound_binaural_hint">헤드폰으로 들으세요.</string>
     <string name="sounds_timer">타이머</string>
     <string name="sounds_timer_off">없음</string>
     <string name="sounds_play">재생</string>

@@ -77,7 +77,7 @@
     <string name="settings_about">Over</string>
     <string name="settings_open_source">Open source op GitHub</string>
     <string name="settings_licenses">Licenties</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC.\nGeluiden: vrije opnamen (CC0) van opengameart.org</string>
     <string name="settings_version">Versie %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Trillen + geluid</string>
     <string name="alert_off">Uit</string>
     <string name="alert_vibrate">Trillen</string>
-    <string name="alert_sound">Geluid</string>
+    <string name="alert_sound">Trillen + geluid</string>
     <string name="editor_sound">Wekgeluid</string>
     <string name="editor_sound_default">Standaard</string>
+    <string name="wake_tone_birds">Ochtendvogels</string>
+    <string name="wake_tone_glockenspiel">Klokkenspel</string>
+    <string name="wake_tone_gong">Zachte gong</string>
+    <string name="wake_tone_harp">Harp</string>
+    <string name="wake_tone_system">Systeemgeluid…</string>
     <string name="dnd_text">Sta wekkers toe bij Niet storen, anders blijft je telefoon stil.</string>
     <string name="dnd_action">Instellingen openen</string>
     <string name="greeting_morning">Goedemorgen</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Zonsopgang</string>
     <string name="sunrise_text">Je scherm wordt langzaam helderder tot je wakker wordt.</string>
     <string name="sunrise_off">Licht uitzetten</string>
-    <string name="editor_sunrise">Zonsopgang op je telefoon</string>
-    <string name="editor_sunrise_hint">Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid. Leg je telefoon met het scherm omhoog.</string>
+    <string name="editor_sunrise_hint">Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid.</string>
+    <string name="editor_sunrise_phone_hint">Leg je telefoon met het scherm omhoog.</string>
     <string name="sunrise_ring">Bij wekken</string>
     <string name="sunrise_window">Vanaf venster</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Bruine ruis</string>
     <string name="sound_rain">Regen</string>
     <string name="sound_ocean">Zee</string>
+    <string name="sound_fan">Ventilator</string>
+    <string name="sound_binaural">Slaapgolven</string>
+    <string name="sound_forest">Bos bij nacht</string>
+    <string name="sound_fire">Haardvuur</string>
+    <string name="sound_brook">Beekje</string>
+    <string name="sound_binaural_hint">Luister met een koptelefoon.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">Geen</string>
     <string name="sounds_play">Afspelen</string>

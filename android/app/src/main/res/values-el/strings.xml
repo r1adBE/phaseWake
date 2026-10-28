@@ -77,7 +77,7 @@
     <string name="settings_about">Σχετικά</string>
     <string name="settings_open_source">Ανοιχτός κώδικας στο GitHub</string>
     <string name="settings_licenses">Άδειες χρήσης</string>
-    <string name="settings_licenses_text">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC.\nΉχοι: ελεύθερες ηχογραφήσεις (CC0) από το opengameart.org</string>
     <string name="settings_version">Έκδοση %1$s</string>
 
     <string name="duration_minutes">%1$d λ.</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">Δόνηση + ήχος</string>
     <string name="alert_off">Off</string>
     <string name="alert_vibrate">Δόνηση</string>
-    <string name="alert_sound">Ήχος</string>
+    <string name="alert_sound">Δόνηση + ήχος</string>
     <string name="editor_sound">Ήχος ξυπνητηριού</string>
     <string name="editor_sound_default">Προεπιλογή</string>
+    <string name="wake_tone_birds">Πρωινά πουλιά</string>
+    <string name="wake_tone_glockenspiel">Γκλόκενσπιλ</string>
+    <string name="wake_tone_gong">Απαλό γκονγκ</string>
+    <string name="wake_tone_harp">Άρπα</string>
+    <string name="wake_tone_system">Ήχος συστήματος…</string>
     <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε», αλλιώς το κινητό σου θα μένει σιωπηλό.</string>
     <string name="dnd_action">Άνοιγμα ρυθμίσεων</string>
     <string name="greeting_morning">Καλημέρα</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">Ανατολή ηλίου</string>
     <string name="sunrise_text">Η οθόνη φωτίζεται σιγά σιγά μέχρι να ξυπνήσεις.</string>
     <string name="sunrise_off">Απενεργοποίηση φωτός</string>
-    <string name="editor_sunrise">Ανατολή ηλίου στο κινητό</string>
-    <string name="editor_sunrise_hint">Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα. Τοποθέτησε το κινητό με την οθόνη προς τα πάνω.</string>
+    <string name="editor_sunrise_hint">Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα.</string>
+    <string name="editor_sunrise_phone_hint">Τοποθέτησε το κινητό με την οθόνη προς τα πάνω.</string>
     <string name="sunrise_ring">Στο ξύπνημα</string>
     <string name="sunrise_window">Από παράθυρο</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">Καφέ θόρυβος</string>
     <string name="sound_rain">Βροχή</string>
     <string name="sound_ocean">Θάλασσα</string>
+    <string name="sound_fan">Ανεμιστήρας</string>
+    <string name="sound_binaural">Κύματα ύπνου</string>
+    <string name="sound_forest">Δάσος τη νύχτα</string>
+    <string name="sound_fire">Τζάκι</string>
+    <string name="sound_brook">Ρυάκι</string>
+    <string name="sound_binaural_hint">Άκουσε με ακουστικά.</string>
     <string name="sounds_timer">Χρονόμετρο</string>
     <string name="sounds_timer_off">Χωρίς</string>
     <string name="sounds_play">Αναπαραγωγή</string>

@@ -77,7 +77,7 @@
     <string name="settings_about">دربارهٔ برنامه</string>
     <string name="settings_open_source">متن‌باز در GitHub</string>
     <string name="settings_licenses">مجوزها</string>
-    <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org</string>
     <string name="settings_version">نسخهٔ %1$s</string>
 
     <string name="duration_minutes">%1$d دق</string>
@@ -103,9 +103,14 @@
     <string name="alert_vibrate_sound">لرزش + صدا</string>
     <string name="alert_off">خاموش</string>
     <string name="alert_vibrate">لرزش</string>
-    <string name="alert_sound">صدا</string>
+    <string name="alert_sound">لرزش + صدا</string>
     <string name="editor_sound">صدای زنگ</string>
     <string name="editor_sound_default">پیش‌فرض</string>
+    <string name="wake_tone_birds">پرندگان صبح</string>
+    <string name="wake_tone_glockenspiel">گلوکن‌اشپیل</string>
+    <string name="wake_tone_gong">گونگ ملایم</string>
+    <string name="wake_tone_harp">چنگ</string>
+    <string name="wake_tone_system">صدای سیستم…</string>
     <string name="dnd_text">در حالت «مزاحم نشو» اجازهٔ زنگ بده، وگرنه گوشی‌ات ساکت می‌ماند.</string>
     <string name="dnd_action">باز کردن تنظیمات</string>
     <string name="greeting_morning">صبح بخیر</string>
@@ -127,8 +132,8 @@
     <string name="sunrise_title">طلوع خورشید</string>
     <string name="sunrise_text">صفحه کم‌کم روشن‌تر می‌شود تا بیدار شوی.</string>
     <string name="sunrise_off">خاموش کردن نور</string>
-    <string name="editor_sunrise">طلوع خورشید روی گوشی</string>
-    <string name="editor_sunrise_hint">صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود. گوشی را رو به بالا بگذار.</string>
+    <string name="editor_sunrise_hint">صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود.</string>
+    <string name="editor_sunrise_phone_hint">گوشی را رو به بالا بگذار.</string>
     <string name="sunrise_ring">هنگام بیداری</string>
     <string name="sunrise_window">از شروع بازه</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -260,6 +265,12 @@
     <string name="sound_brown">نویز قهوه‌ای</string>
     <string name="sound_rain">باران</string>
     <string name="sound_ocean">دریا</string>
+    <string name="sound_fan">پنکه</string>
+    <string name="sound_binaural">امواج خواب</string>
+    <string name="sound_forest">جنگل در شب</string>
+    <string name="sound_fire">آتش شومینه</string>
+    <string name="sound_brook">جویبار</string>
+    <string name="sound_binaural_hint">با هدفون گوش کن.</string>
     <string name="sounds_timer">زمان‌سنج</string>
     <string name="sounds_timer_off">بدون</string>
     <string name="sounds_play">پخش</string>

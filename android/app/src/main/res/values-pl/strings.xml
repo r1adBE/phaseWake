@@ -79,7 +79,7 @@
     <string name="settings_about">O aplikacji</string>
     <string name="settings_open_source">Open source na GitHub</string>
     <string name="settings_licenses">Licencje</string>
-    <string name="settings_licenses_text">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC.\nDźwięki: wolne nagrania (CC0) z opengameart.org</string>
     <string name="settings_version">Wersja %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -105,9 +105,14 @@
     <string name="alert_vibrate_sound">Wibracja + dźwięk</string>
     <string name="alert_off">Wył.</string>
     <string name="alert_vibrate">Wibracja</string>
-    <string name="alert_sound">Dźwięk</string>
+    <string name="alert_sound">Wibracja + dźwięk</string>
     <string name="editor_sound">Dźwięk budzika</string>
     <string name="editor_sound_default">Domyślny</string>
+    <string name="wake_tone_birds">Poranne ptaki</string>
+    <string name="wake_tone_glockenspiel">Dzwonki</string>
+    <string name="wake_tone_gong">Łagodny gong</string>
+    <string name="wake_tone_harp">Harfa</string>
+    <string name="wake_tone_system">Dźwięk systemowy…</string>
     <string name="dnd_text">Zezwól na budziki w trybie Nie przeszkadzać, inaczej telefon będzie milczał.</string>
     <string name="dnd_action">Otwórz ustawienia</string>
     <string name="greeting_morning">Dzień dobry</string>
@@ -131,8 +136,8 @@
     <string name="sunrise_title">Wschód słońca</string>
     <string name="sunrise_text">Ekran powoli się rozjaśnia, aż się obudzisz.</string>
     <string name="sunrise_off">Wyłącz światło</string>
-    <string name="editor_sunrise">Wschód słońca na telefonie</string>
-    <string name="editor_sunrise_hint">Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności. Połóż telefon ekranem do góry.</string>
+    <string name="editor_sunrise_hint">Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności.</string>
+    <string name="editor_sunrise_phone_hint">Połóż telefon ekranem do góry.</string>
     <string name="sunrise_ring">Przy budzeniu</string>
     <string name="sunrise_window">Od okna</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -274,6 +279,12 @@
     <string name="sound_brown">Brązowy szum</string>
     <string name="sound_rain">Deszcz</string>
     <string name="sound_ocean">Morze</string>
+    <string name="sound_fan">Wentylator</string>
+    <string name="sound_binaural">Fale do zasypiania</string>
+    <string name="sound_forest">Las nocą</string>
+    <string name="sound_fire">Kominek</string>
+    <string name="sound_brook">Strumyk</string>
+    <string name="sound_binaural_hint">Słuchaj w słuchawkach.</string>
     <string name="sounds_timer">Minutnik</string>
     <string name="sounds_timer_off">Bez</string>
     <string name="sounds_play">Odtwórz</string>

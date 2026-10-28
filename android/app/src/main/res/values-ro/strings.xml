@@ -78,7 +78,7 @@
     <string name="settings_about">Despre</string>
     <string name="settings_open_source">Open source pe GitHub</string>
     <string name="settings_licenses">Licențe</string>
-    <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC.</string>
+    <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC.\nSunete: înregistrări libere (CC0) de pe opengameart.org</string>
     <string name="settings_version">Versiunea %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -104,9 +104,14 @@
     <string name="alert_vibrate_sound">Vibrație + sunet</string>
     <string name="alert_off">Oprit</string>
     <string name="alert_vibrate">Vibrație</string>
-    <string name="alert_sound">Sunet</string>
+    <string name="alert_sound">Vibrație + sunet</string>
     <string name="editor_sound">Sunet alarmă</string>
     <string name="editor_sound_default">Implicit</string>
+    <string name="wake_tone_birds">Păsări de dimineață</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gong blând</string>
+    <string name="wake_tone_harp">Harpă</string>
+    <string name="wake_tone_system">Sunet de sistem…</string>
     <string name="dnd_text">Permite alarmele în modul Nu deranja, altfel telefonul tău rămâne mut.</string>
     <string name="dnd_action">Deschide setările</string>
     <string name="greeting_morning">Bună dimineața</string>
@@ -129,8 +134,8 @@
     <string name="sunrise_title">Răsărit</string>
     <string name="sunrise_text">Ecranul devine treptat mai luminos până te trezești.</string>
     <string name="sunrise_off">Oprește lumina</string>
-    <string name="editor_sunrise">Răsărit pe telefon</string>
-    <string name="editor_sunrise_hint">Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă. Așază telefonul cu ecranul în sus.</string>
+    <string name="editor_sunrise_hint">Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă.</string>
+    <string name="editor_sunrise_phone_hint">Așază telefonul cu ecranul în sus.</string>
     <string name="sunrise_ring">La trezire</string>
     <string name="sunrise_window">De la interval</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -267,6 +272,12 @@
     <string name="sound_brown">Zgomot maro</string>
     <string name="sound_rain">Ploaie</string>
     <string name="sound_ocean">Mare</string>
+    <string name="sound_fan">Ventilator</string>
+    <string name="sound_binaural">Unde pentru somn</string>
+    <string name="sound_forest">Pădure noaptea</string>
+    <string name="sound_fire">Foc în șemineu</string>
+    <string name="sound_brook">Pârâu</string>
+    <string name="sound_binaural_hint">Ascultă cu căști.</string>
     <string name="sounds_timer">Temporizator</string>
     <string name="sounds_timer_off">Fără</string>
     <string name="sounds_play">Redă</string>
