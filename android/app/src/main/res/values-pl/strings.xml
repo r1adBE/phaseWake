@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Budzik zapasowy</string>
+    <string name="channel_alarm_description">Dzwoni na telefonie razem z zegarkiem.</string>
+    <string name="ring_greeting">Dzień dobry</string>
+    <string name="ring_notification_text">Twój budzik Phase Wake dzwoni</string>
+    <string name="ring_stop">Zatrzymaj</string>
+    <string name="ring_snooze">Drzemka %1$d min · zostało: %2$d</string>
+    <string name="ring_snoozed">Drzemka: %1$d min</string>
+
+    <string name="nav_alarms">Budziki</string>
+    <string name="nav_history">Historia</string>
+    <string name="nav_settings">Ustawienia</string>
+
+    <string name="home_next_today">Dziś</string>
+    <string name="home_next_tomorrow">Jutro</string>
+    <string name="home_next_in">Budzi w lekkim śnie · za %1$s</string>
+    <string name="home_no_alarm_title">Wstań we właściwym momencie</string>
+    <string name="home_no_alarm_text">Ustaw godzinę i okno. Zegarek obudzi cię, gdy będziesz spać lekko.</string>
+    <string name="home_add_alarm">Nowy budzik</string>
+    <string name="home_last_night">Ostatnia noc</string>
+    <string name="home_alarms">Twoje budziki</string>
+    <string name="home_permission_title">Zezwól na budziki</string>
+    <string name="home_permission_text">Phase Wake potrzebuje powiadomień i alertów na pełnym ekranie, żeby cię obudzić.</string>
+    <string name="home_permission_action">Zezwól</string>
+
+    <string name="reason_light">Lekki sen</string>
+    <string name="reason_awake">Już nie śpisz</string>
+    <string name="reason_deadline">Czas docelowy</string>
+    <string name="woke_early">%1$d min przed czasem docelowym · %2$s</string>
+    <string name="woke_on_time">W czasie docelowym · %1$s</string>
+    <string name="no_snooze">bez drzemki</string>
+    <string name="snoozed_times">drzemka: %1$d×</string>
+
+    <string name="alarm_once">Jednorazowo</string>
+    <string name="alarm_every_day">Codziennie</string>
+    <string name="alarm_after_sleep">po %1$s</string>
+    <string name="alarm_latest">najpóźniej %1$s</string>
+
+    <string name="editor_new">Nowy budzik</string>
+    <string name="editor_edit">Edytuj budzik</string>
+    <string name="editor_save">Zapisz</string>
+    <string name="editor_delete">Usuń budzik</string>
+    <string name="editor_mode_clock">Godzina</string>
+    <string name="editor_mode_sleep">Czas snu</string>
+    <string name="editor_target">Obudź mnie do</string>
+    <string name="editor_latest">Najpóźniej</string>
+    <string name="editor_sleep_duration">Sen: %1$s</string>
+    <string name="editor_sleep_hint">Odliczanie startuje, gdy zaśniesz. Dotknij „Dobranoc” na zegarku.</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_window_hint">Obudzi cię między %1$s a %2$s</string>
+    <string name="editor_days">Powtarzaj</string>
+    <string name="editor_weekdays">Dni robocze</string>
+    <string name="editor_weekend">Weekend</string>
+    <string name="editor_phone_backup_hint">Dzwoni razem z zegarkiem, a sam – gdy zegarek nie odpowie.</string>
+    <string name="editor_label">Nazwa</string>
+    <string name="editor_label_hint">Praca</string>
+
+    <string name="history_title">Historia</string>
+    <string name="history_empty_title">Jeszcze brak nocy</string>
+    <string name="history_empty_text">Po pierwszej nocy z zegarkiem zobaczysz tu, kiedy i dlaczego cię obudził.</string>
+    <string name="history_average">Ø %1$d min wcześniej</string>
+    <string name="history_light_share">%1$d %% w lekkim śnie</string>
+    <string name="history_export">Eksportuj anonimowo</string>
+    <string name="history_export_subject">Noce Phase Wake (anonimowo)</string>
+
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_theme">Wygląd</string>
+    <string name="settings_theme_system">Systemowy</string>
+    <string name="settings_theme_light">Jasny</string>
+    <string name="settings_theme_dark">Ciemny</string>
+    <string name="settings_data">Twoje dane</string>
+    <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia.</string>
+    <string name="settings_export">Eksportuj noce anonimowo</string>
+    <string name="settings_export_hint">Pomóż ulepszyć wykrywanie: CSV bez imion, dat i identyfikatorów urządzeń.</string>
+    <string name="settings_about">O aplikacji</string>
+    <string name="settings_open_source">Open source na GitHub</string>
+    <string name="settings_licenses">Licencje</string>
+    <string name="settings_licenses_text">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Wersja %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d godz.</string>
+    <string name="duration_hours_half">%1$d½ godz.</string>
+    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
+    <string name="health_title">Fazy snu z Health Connect</string>
+    <string name="health_rationale">Phase Wake może odczytywać fazy snu, które aplikacja zdrowotna (na przykład Samsung Health) zapisuje po twoim przebudzeniu. Służą wyłącznie do sprawdzenia, czy obudzono cię w lekkim śnie, i do ulepszenia wykrywania dla ciebie. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
+    <string name="health_connect">Porównaj z danymi zdrowotnymi</string>
+    <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
+    <string name="health_connected">Połączono</string>
+    <string name="health_unavailable">Health Connect nie jest dostępne na tym telefonie.</string>
+    <string name="verdict_good">Dane zdrowotne: %1$s ✓</string>
+    <string name="verdict_deep">Dane zdrowotne: głęboki sen</string>
+    <string name="stage_light">lekki sen</string>
+    <string name="stage_rem">sen REM</string>
+    <string name="stage_awake">czuwanie</string>
+    <string name="editor_alert">Jak cię obudzić</string>
+    <string name="editor_alert_hint">Dźwięk zawsze idzie z wibracją. Budziki dzwonią też w trybie Nie przeszkadzać, w trybie snu i na wyciszonym telefonie.</string>
+    <string name="editor_alert_watch">Zegarek</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Tylko wibracja</string>
+    <string name="alert_vibrate_sound">Wibracja + dźwięk</string>
+    <string name="alert_off">Wył.</string>
+    <string name="alert_vibrate">Wibracja</string>
+    <string name="alert_sound">Dźwięk</string>
+    <string name="editor_sound">Dźwięk budzika</string>
+    <string name="editor_sound_default">Domyślny</string>
+    <string name="dnd_title">Nie przeszkadzać blokuje budziki</string>
+    <string name="dnd_text">Zezwól na budziki w trybie Nie przeszkadzać, inaczej telefon będzie milczał.</string>
+    <string name="dnd_action">Otwórz ustawienia</string>
+    <string name="greeting_morning">Dzień dobry</string>
+    <string name="greeting_day">Cześć</string>
+    <string name="greeting_evening">Dobry wieczór</string>
+    <string name="greeting_night">Dobranoc</string>
+</resources>

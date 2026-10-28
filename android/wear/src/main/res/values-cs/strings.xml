@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Okno buzení</string>
+    <string name="channel_window_description">Zobrazeno, zatímco Phase Wake hlídá lehký spánek.</string>
+    <string name="channel_alarm">Budík</string>
+    <string name="channel_alarm_description">Budí tě.</string>
+    <string name="notification_window_title">Hlídám lehký spánek</string>
+    <string name="notification_window_text">Vzbudí tě nejpozději v %1$s</string>
+    <string name="notification_ring_title">Dobré ráno</string>
+
+    <string name="ring_greeting">Dobré ráno</string>
+    <string name="ring_reason_light">Zjištěn lehký spánek</string>
+    <string name="ring_reason_awake">Už jsi vzhůru</string>
+    <string name="ring_reason_deadline">Dosaženo cílového času</string>
+    <string name="ring_hold_to_stop">Podrž pro zastavení</string>
+    <string name="ring_snooze">%1$d min · zbývá: %2$d</string>
+    <string name="ring_snoozed_until">Odloženo do %1$s</string>
+    <string name="ring_stop_now">Zastavit budík</string>
+
+    <string name="home_no_alarm">Žádný budík</string>
+    <string name="home_no_alarm_hint">Nastav budíky v Phase Wake v telefonu.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Dnes</string>
+    <string name="home_tomorrow">Zítra</string>
+    <string name="home_window_length">Okno %1$d min</string>
+    <string name="home_alarms">Budíky</string>
+    <string name="home_permissions">Povolit senzory</string>
+    <string name="home_permissions_hint">Potřebné k rozpoznání lehkého spánku.</string>
+    <string name="alarm_once">Jednou</string>
+    <string name="alarm_every_day">Každý den</string>
+    <string name="tile_label">Další budík</string>
+    <string name="tile_next">Další budík</string>
+    <string name="tile_light_sleep">Budí tě v lehkém spánku</string>
+    <string name="notification_good_night_title">Spi dobře</string>
+    <string name="notification_good_night_text">Čekám, až usneš</string>
+    <string name="home_good_night">Dobrou noc</string>
+    <string name="home_good_night_hint">Od teď spi %1$s</string>
+    <string name="home_good_night_active">Čekám na spánek · klepnutím zrušíš</string>
+    <string name="dnd_title">Budíky blokovány</string>
+    <string name="dnd_text">Povol budíky v režimu Nerušit.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+</resources>

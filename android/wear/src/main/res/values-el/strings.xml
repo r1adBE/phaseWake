@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Παράθυρο αφύπνισης</string>
+    <string name="channel_window_description">Εμφανίζεται όσο το Phase Wake περιμένει ελαφρύ ύπνο.</string>
+    <string name="channel_alarm">Ξυπνητήρι</string>
+    <string name="channel_alarm_description">Σε ξυπνά.</string>
+    <string name="notification_window_title">Αναμονή ελαφρού ύπνου</string>
+    <string name="notification_window_text">Σε ξυπνά το αργότερο στις %1$s</string>
+    <string name="notification_ring_title">Καλημέρα</string>
+
+    <string name="ring_greeting">Καλημέρα</string>
+    <string name="ring_reason_light">Εντοπίστηκε ελαφρύς ύπνος</string>
+    <string name="ring_reason_awake">Είσαι ήδη σε εγρήγορση</string>
+    <string name="ring_reason_deadline">Έφτασε η ώρα στόχου</string>
+    <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
+    <string name="ring_snooze">%1$d λ. · απομένουν: %2$d</string>
+    <string name="ring_snoozed_until">Αναβολή έως %1$s</string>
+    <string name="ring_stop_now">Διακοπή ξυπνητηριού</string>
+
+    <string name="home_no_alarm">Κανένα ξυπνητήρι</string>
+    <string name="home_no_alarm_hint">Όρισε ξυπνητήρια στο Phase Wake στο κινητό σου.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Σήμερα</string>
+    <string name="home_tomorrow">Αύριο</string>
+    <string name="home_window_length">Παράθυρο %1$d λ.</string>
+    <string name="home_alarms">Ξυπνητήρια</string>
+    <string name="home_permissions">Επίτρεψε αισθητήρες</string>
+    <string name="home_permissions_hint">Απαραίτητοι για τον εντοπισμό ελαφρού ύπνου.</string>
+    <string name="alarm_once">Μία φορά</string>
+    <string name="alarm_every_day">Κάθε μέρα</string>
+    <string name="tile_label">Επόμενο ξυπνητήρι</string>
+    <string name="tile_next">Επόμενο ξυπνητήρι</string>
+    <string name="tile_light_sleep">Σε ξυπνά στον ελαφρύ ύπνο</string>
+    <string name="notification_good_night_title">Καλό ύπνο</string>
+    <string name="notification_good_night_text">Περιμένω να κοιμηθείς</string>
+    <string name="home_good_night">Καληνύχτα</string>
+    <string name="home_good_night_hint">Από τώρα κοιμήσου %1$s</string>
+    <string name="home_good_night_active">Αναμονή ύπνου · πάτα για ακύρωση</string>
+    <string name="dnd_title">Ξυπνητήρια μπλοκαρισμένα</string>
+    <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε».</string>
+    <string name="duration_hours">%1$d ώ.</string>
+    <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
+</resources>

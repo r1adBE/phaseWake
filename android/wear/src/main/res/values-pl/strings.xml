@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Okno budzenia</string>
+    <string name="channel_window_description">Widoczne, gdy Phase Wake czeka na lekki sen.</string>
+    <string name="channel_alarm">Budzik</string>
+    <string name="channel_alarm_description">Budzi cię.</string>
+    <string name="notification_window_title">Czekam na lekki sen</string>
+    <string name="notification_window_text">Obudzi cię najpóźniej o %1$s</string>
+    <string name="notification_ring_title">Dzień dobry</string>
+
+    <string name="ring_greeting">Dzień dobry</string>
+    <string name="ring_reason_light">Wykryto lekki sen</string>
+    <string name="ring_reason_awake">Już nie śpisz</string>
+    <string name="ring_reason_deadline">Osiągnięto czas docelowy</string>
+    <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
+    <string name="ring_snooze">%1$d min · zostało: %2$d</string>
+    <string name="ring_snoozed_until">Drzemka do %1$s</string>
+    <string name="ring_stop_now">Zatrzymaj budzik</string>
+
+    <string name="home_no_alarm">Brak budzika</string>
+    <string name="home_no_alarm_hint">Ustaw budziki w Phase Wake na telefonie.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Dziś</string>
+    <string name="home_tomorrow">Jutro</string>
+    <string name="home_window_length">Okno %1$d min</string>
+    <string name="home_alarms">Budziki</string>
+    <string name="home_permissions">Zezwól na czujniki</string>
+    <string name="home_permissions_hint">Potrzebne do wykrywania lekkiego snu.</string>
+    <string name="alarm_once">Jednorazowo</string>
+    <string name="alarm_every_day">Codziennie</string>
+    <string name="tile_label">Następny budzik</string>
+    <string name="tile_next">Następny budzik</string>
+    <string name="tile_light_sleep">Budzi w lekkim śnie</string>
+    <string name="notification_good_night_title">Śpij dobrze</string>
+    <string name="notification_good_night_text">Czekam, aż zaśniesz</string>
+    <string name="home_good_night">Dobranoc</string>
+    <string name="home_good_night_hint">Od teraz śpij %1$s</string>
+    <string name="home_good_night_active">Czekam na sen · dotknij, by anulować</string>
+    <string name="dnd_title">Budziki zablokowane</string>
+    <string name="dnd_text">Zezwól na budziki w trybie Nie przeszkadzać.</string>
+    <string name="duration_hours">%1$d godz.</string>
+    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
+</resources>

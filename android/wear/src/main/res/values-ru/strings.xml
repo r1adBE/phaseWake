@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Окно пробуждения</string>
+    <string name="channel_window_description">Показывается, пока Phase Wake следит за лёгким сном.</string>
+    <string name="channel_alarm">Будильник</string>
+    <string name="channel_alarm_description">Будит тебя.</string>
+    <string name="notification_window_title">Слежу за лёгким сном</string>
+    <string name="notification_window_text">Разбудит не позже %1$s</string>
+    <string name="notification_ring_title">Доброе утро</string>
+
+    <string name="ring_greeting">Доброе утро</string>
+    <string name="ring_reason_light">Обнаружен лёгкий сон</string>
+    <string name="ring_reason_awake">Ты уже не спишь</string>
+    <string name="ring_reason_deadline">Целевое время наступило</string>
+    <string name="ring_hold_to_stop">Удерживай, чтобы остановить</string>
+    <string name="ring_snooze">%1$d мин · осталось: %2$d</string>
+    <string name="ring_snoozed_until">Отложено до %1$s</string>
+    <string name="ring_stop_now">Выключить будильник</string>
+
+    <string name="home_no_alarm">Будильник не задан</string>
+    <string name="home_no_alarm_hint">Задай будильники в Phase Wake на телефоне.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Сегодня</string>
+    <string name="home_tomorrow">Завтра</string>
+    <string name="home_window_length">Окно %1$d мин</string>
+    <string name="home_alarms">Будильники</string>
+    <string name="home_permissions">Разрешить датчики</string>
+    <string name="home_permissions_hint">Нужны, чтобы распознавать лёгкий сон.</string>
+    <string name="alarm_once">Один раз</string>
+    <string name="alarm_every_day">Каждый день</string>
+    <string name="tile_label">Следующий будильник</string>
+    <string name="tile_next">Следующий будильник</string>
+    <string name="tile_light_sleep">Будит в лёгком сне</string>
+    <string name="notification_good_night_title">Приятных снов</string>
+    <string name="notification_good_night_text">Ждём, пока ты заснёшь</string>
+    <string name="home_good_night">Спокойной ночи</string>
+    <string name="home_good_night_hint">Сон %1$s с этого момента</string>
+    <string name="home_good_night_active">Ждём сна · нажми для отмены</string>
+    <string name="dnd_title">Будильники заблокированы</string>
+    <string name="dnd_text">Разреши будильники в режиме «Не беспокоить».</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+</resources>

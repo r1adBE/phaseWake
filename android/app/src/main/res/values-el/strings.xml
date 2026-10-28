@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Εφεδρικό ξυπνητήρι</string>
+    <string name="channel_alarm_description">Χτυπά στο κινητό μαζί με το ρολόι σου.</string>
+    <string name="ring_greeting">Καλημέρα</string>
+    <string name="ring_notification_text">Το ξυπνητήρι σου στο Phase Wake χτυπά</string>
+    <string name="ring_stop">Διακοπή</string>
+    <string name="ring_snooze">Αναβολή %1$d λ. · απομένουν: %2$d</string>
+    <string name="ring_snoozed">Αναβολή για %1$d λ.</string>
+
+    <string name="nav_alarms">Ξυπνητήρια</string>
+    <string name="nav_history">Ιστορικό</string>
+    <string name="nav_settings">Ρυθμίσεις</string>
+
+    <string name="home_next_today">Σήμερα</string>
+    <string name="home_next_tomorrow">Αύριο</string>
+    <string name="home_next_in">Σε ξυπνά στον ελαφρύ ύπνο · σε %1$s</string>
+    <string name="home_no_alarm_title">Ξύπνα τη σωστή στιγμή</string>
+    <string name="home_no_alarm_text">Όρισε ώρα και παράθυρο. Το ρολόι σε ξυπνά όταν κοιμάσαι ελαφρά.</string>
+    <string name="home_add_alarm">Νέο ξυπνητήρι</string>
+    <string name="home_last_night">Χθεσινή νύχτα</string>
+    <string name="home_alarms">Τα ξυπνητήριά σου</string>
+    <string name="home_permission_title">Επίτρεψε ξυπνητήρια</string>
+    <string name="home_permission_text">Το Phase Wake χρειάζεται ειδοποιήσεις και ειδοποιήσεις πλήρους οθόνης για να σε ξυπνήσει.</string>
+    <string name="home_permission_action">Επίτρεψε</string>
+
+    <string name="reason_light">Ελαφρύς ύπνος</string>
+    <string name="reason_awake">Ήδη σε εγρήγορση</string>
+    <string name="reason_deadline">Ώρα στόχου</string>
+    <string name="woke_early">%1$d λ. πριν τον στόχο · %2$s</string>
+    <string name="woke_on_time">Στην ώρα στόχου · %1$s</string>
+    <string name="no_snooze">χωρίς αναβολή</string>
+    <string name="snoozed_times">αναβολές: %1$d×</string>
+
+    <string name="alarm_once">Μία φορά</string>
+    <string name="alarm_every_day">Κάθε μέρα</string>
+    <string name="alarm_after_sleep">μετά από %1$s</string>
+    <string name="alarm_latest">το αργότερο %1$s</string>
+
+    <string name="editor_new">Νέο ξυπνητήρι</string>
+    <string name="editor_edit">Επεξεργασία ξυπνητηριού</string>
+    <string name="editor_save">Αποθήκευση</string>
+    <string name="editor_delete">Διαγραφή ξυπνητηριού</string>
+    <string name="editor_mode_clock">Ώρα ρολογιού</string>
+    <string name="editor_mode_sleep">Διάρκεια ύπνου</string>
+    <string name="editor_target">Ξύπνα με μέχρι</string>
+    <string name="editor_latest">Το αργότερο</string>
+    <string name="editor_sleep_duration">Ύπνος: %1$s</string>
+    <string name="editor_sleep_hint">Η μέτρηση ξεκινά όταν κοιμηθείς. Πάτα «Καληνύχτα» στο ρολόι σου.</string>
+    <string name="editor_window">Παράθυρο: %1$d λ.</string>
+    <string name="editor_window_hint">Σε ξυπνά ανάμεσα σε %1$s και %2$s</string>
+    <string name="editor_days">Επανάληψη</string>
+    <string name="editor_weekdays">Καθημερινές</string>
+    <string name="editor_weekend">Σαββατοκύριακο</string>
+    <string name="editor_phone_backup_hint">Χτυπά μαζί με το ρολόι και μόνο του, αν το ρολόι δεν απαντήσει.</string>
+    <string name="editor_label">Όνομα</string>
+    <string name="editor_label_hint">Δουλειά</string>
+
+    <string name="history_title">Ιστορικό</string>
+    <string name="history_empty_title">Δεν υπάρχουν νύχτες ακόμη</string>
+    <string name="history_empty_text">Μετά την πρώτη νύχτα με το ρολόι θα βλέπεις εδώ πότε και γιατί σε ξύπνησε.</string>
+    <string name="history_average">Ø %1$d λ. νωρίτερα</string>
+    <string name="history_light_share">%1$d %% σε ελαφρύ ύπνο</string>
+    <string name="history_export">Ανώνυμη εξαγωγή</string>
+    <string name="history_export_subject">Νύχτες Phase Wake (ανώνυμα)</string>
+
+    <string name="settings_title">Ρυθμίσεις</string>
+    <string name="settings_theme">Εμφάνιση</string>
+    <string name="settings_theme_system">Σύστημα</string>
+    <string name="settings_theme_light">Φωτεινή</string>
+    <string name="settings_theme_dark">Σκούρα</string>
+    <string name="settings_data">Τα δεδομένα σου</string>
+    <string name="settings_data_text">Όλα μένουν στο κινητό και στο ρολόι. Χωρίς λογαριασμό, χωρίς διακομιστή, χωρίς παρακολούθηση.</string>
+    <string name="settings_export">Ανώνυμη εξαγωγή νυχτών</string>
+    <string name="settings_export_hint">Βοήθησε να βελτιωθεί η ανίχνευση: CSV χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευής.</string>
+    <string name="settings_about">Σχετικά</string>
+    <string name="settings_open_source">Ανοιχτός κώδικας στο GitHub</string>
+    <string name="settings_licenses">Άδειες χρήσης</string>
+    <string name="settings_licenses_text">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Έκδοση %1$s</string>
+
+    <string name="duration_minutes">%1$d λ.</string>
+    <string name="duration_hours">%1$d ώ.</string>
+    <string name="duration_hours_half">%1$d½ ώ.</string>
+    <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
+    <string name="health_title">Φάσεις ύπνου από το Health Connect</string>
+    <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τις φάσεις ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health) αφού ξυπνήσεις. Χρησιμοποιούνται μόνο για να ελέγχεται αν σε ξύπνησε στον ελαφρύ ύπνο και για να βελτιωθεί η ανίχνευση για σένα. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
+    <string name="health_connect">Σύγκριση με δεδομένα υγείας</string>
+    <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
+    <string name="health_connected">Συνδέθηκε</string>
+    <string name="health_unavailable">Το Health Connect δεν είναι διαθέσιμο σε αυτό το κινητό.</string>
+    <string name="verdict_good">Δεδομένα υγείας: %1$s ✓</string>
+    <string name="verdict_deep">Δεδομένα υγείας: βαθύς ύπνος</string>
+    <string name="stage_light">ελαφρύς ύπνος</string>
+    <string name="stage_rem">ύπνος REM</string>
+    <string name="stage_awake">εγρήγορση</string>
+    <string name="editor_alert">Πώς να σε ξυπνά</string>
+    <string name="editor_alert_hint">Ο ήχος συνοδεύεται πάντα από δόνηση. Τα ξυπνητήρια χτυπούν και με «Μην ενοχλείτε», σε λειτουργία ώρας ύπνου και με σίγαση.</string>
+    <string name="editor_alert_watch">Ρολόι</string>
+    <string name="editor_alert_phone">Κινητό</string>
+    <string name="alert_vibrate_only">Μόνο δόνηση</string>
+    <string name="alert_vibrate_sound">Δόνηση + ήχος</string>
+    <string name="alert_off">Off</string>
+    <string name="alert_vibrate">Δόνηση</string>
+    <string name="alert_sound">Ήχος</string>
+    <string name="editor_sound">Ήχος ξυπνητηριού</string>
+    <string name="editor_sound_default">Προεπιλογή</string>
+    <string name="dnd_title">Το «Μην ενοχλείτε» μπλοκάρει ξυπνητήρια</string>
+    <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε», αλλιώς το κινητό σου θα μένει σιωπηλό.</string>
+    <string name="dnd_action">Άνοιγμα ρυθμίσεων</string>
+    <string name="greeting_morning">Καλημέρα</string>
+    <string name="greeting_day">Γεια σου</string>
+    <string name="greeting_evening">Καλησπέρα</string>
+    <string name="greeting_night">Καληνύχτα</string>
+</resources>

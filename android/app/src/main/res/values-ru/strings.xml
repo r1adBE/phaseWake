@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Резервный будильник</string>
+    <string name="channel_alarm_description">Звонит на телефоне вместе с часами.</string>
+    <string name="ring_greeting">Доброе утро</string>
+    <string name="ring_notification_text">Звонит твой будильник Phase Wake</string>
+    <string name="ring_stop">Стоп</string>
+    <string name="ring_snooze">Отложить на %1$d мин · осталось: %2$d</string>
+    <string name="ring_snoozed">Отложено на %1$d мин</string>
+
+    <string name="nav_alarms">Будильники</string>
+    <string name="nav_history">История</string>
+    <string name="nav_settings">Настройки</string>
+
+    <string name="home_next_today">Сегодня</string>
+    <string name="home_next_tomorrow">Завтра</string>
+    <string name="home_next_in">Разбудит в лёгком сне · через %1$s</string>
+    <string name="home_no_alarm_title">Просыпайся в нужный момент</string>
+    <string name="home_no_alarm_text">Задай время и окно. Часы разбудят тебя, когда сон будет лёгким.</string>
+    <string name="home_add_alarm">Новый будильник</string>
+    <string name="home_last_night">Прошлая ночь</string>
+    <string name="home_alarms">Твои будильники</string>
+    <string name="home_permission_title">Разрешить будильники</string>
+    <string name="home_permission_text">Phase Wake нужны уведомления и полноэкранные оповещения, чтобы разбудить тебя.</string>
+    <string name="home_permission_action">Разрешить</string>
+
+    <string name="reason_light">Лёгкий сон</string>
+    <string name="reason_awake">Уже не спишь</string>
+    <string name="reason_deadline">Целевое время</string>
+    <string name="woke_early">за %1$d мин до цели · %2$s</string>
+    <string name="woke_on_time">В целевое время · %1$s</string>
+    <string name="no_snooze">без откладывания</string>
+    <string name="snoozed_times">отложено: %1$d×</string>
+
+    <string name="alarm_once">Один раз</string>
+    <string name="alarm_every_day">Каждый день</string>
+    <string name="alarm_after_sleep">через %1$s</string>
+    <string name="alarm_latest">не позже %1$s</string>
+
+    <string name="editor_new">Новый будильник</string>
+    <string name="editor_edit">Изменить будильник</string>
+    <string name="editor_save">Сохранить</string>
+    <string name="editor_delete">Удалить будильник</string>
+    <string name="editor_mode_clock">По времени</string>
+    <string name="editor_mode_sleep">По длине сна</string>
+    <string name="editor_target">Разбуди меня к</string>
+    <string name="editor_latest">Не позже</string>
+    <string name="editor_sleep_duration">Сон: %1$s</string>
+    <string name="editor_sleep_hint">Отсчёт начинается, когда ты заснёшь. Нажми «Спокойной ночи» на часах.</string>
+    <string name="editor_window">Окно: %1$d мин</string>
+    <string name="editor_window_hint">Разбудит между %1$s и %2$s</string>
+    <string name="editor_days">Повтор</string>
+    <string name="editor_weekdays">Будни</string>
+    <string name="editor_weekend">Выходные</string>
+    <string name="editor_phone_backup_hint">Звонит вместе с часами, а если часы не ответят — сам.</string>
+    <string name="editor_label">Название</string>
+    <string name="editor_label_hint">Работа</string>
+
+    <string name="history_title">История</string>
+    <string name="history_empty_title">Пока нет ночей</string>
+    <string name="history_empty_text">После первой ночи с часами здесь появится, когда и почему они тебя разбудили.</string>
+    <string name="history_average">Ø на %1$d мин раньше</string>
+    <string name="history_light_share">%1$d %% в лёгком сне</string>
+    <string name="history_export">Экспорт без личных данных</string>
+    <string name="history_export_subject">Ночи Phase Wake (анонимно)</string>
+
+    <string name="settings_title">Настройки</string>
+    <string name="settings_theme">Оформление</string>
+    <string name="settings_theme_system">Системная</string>
+    <string name="settings_theme_light">Светлая</string>
+    <string name="settings_theme_dark">Тёмная</string>
+    <string name="settings_data">Твои данные</string>
+    <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки.</string>
+    <string name="settings_export">Анонимный экспорт ночей</string>
+    <string name="settings_export_hint">Помоги улучшить распознавание: CSV без имён, дат и ID устройств.</string>
+    <string name="settings_about">О приложении</string>
+    <string name="settings_open_source">Открытый код на GitHub</string>
+    <string name="settings_licenses">Лицензии</string>
+    <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Версия %1$s</string>
+
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_half">%1$d½ ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="health_title">Фазы сна из Health Connect</string>
+    <string name="health_rationale">Phase Wake может читать фазы сна, которые твоё приложение для здоровья (например, Samsung Health) сохраняет после пробуждения. Они нужны только чтобы проверить, разбудили ли тебя в лёгком сне, и улучшить распознавание для тебя. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон.</string>
+    <string name="health_connect">Сверять с данными о здоровье</string>
+    <string name="health_connect_hint">После пробуждения читает фазы сна из Health Connect, чтобы проверять и улучшать распознавание.</string>
+    <string name="health_connected">Подключено</string>
+    <string name="health_unavailable">Health Connect недоступен на этом телефоне.</string>
+    <string name="verdict_good">Данные о здоровье: %1$s ✓</string>
+    <string name="verdict_deep">Данные о здоровье: глубокий сон</string>
+    <string name="stage_light">лёгкий сон</string>
+    <string name="stage_rem">REM-сон</string>
+    <string name="stage_awake">бодрствование</string>
+    <string name="editor_alert">Как будить</string>
+    <string name="editor_alert_hint">Звук всегда идёт с вибрацией. Будильники звонят и в режиме «Не беспокоить», в режиме сна и на беззвучном телефоне.</string>
+    <string name="editor_alert_watch">Часы</string>
+    <string name="editor_alert_phone">Телефон</string>
+    <string name="alert_vibrate_only">Только вибрация</string>
+    <string name="alert_vibrate_sound">Вибрация + звук</string>
+    <string name="alert_off">Выкл.</string>
+    <string name="alert_vibrate">Вибрация</string>
+    <string name="alert_sound">Звук</string>
+    <string name="editor_sound">Мелодия будильника</string>
+    <string name="editor_sound_default">По умолчанию</string>
+    <string name="dnd_title">«Не беспокоить» блокирует будильники</string>
+    <string name="dnd_text">Разреши будильники в режиме «Не беспокоить», иначе телефон будет молчать.</string>
+    <string name="dnd_action">Открыть настройки</string>
+    <string name="greeting_morning">Доброе утро</string>
+    <string name="greeting_day">Добрый день</string>
+    <string name="greeting_evening">Добрый вечер</string>
+    <string name="greeting_night">Спокойной ночи</string>
+</resources>

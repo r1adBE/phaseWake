@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Záložní budík</string>
+    <string name="channel_alarm_description">Zvoní v telefonu spolu s hodinkami.</string>
+    <string name="ring_greeting">Dobré ráno</string>
+    <string name="ring_notification_text">Zvoní tvůj budík Phase Wake</string>
+    <string name="ring_stop">Zastavit</string>
+    <string name="ring_snooze">Odložit %1$d min · zbývá: %2$d</string>
+    <string name="ring_snoozed">Odloženo o %1$d min</string>
+
+    <string name="nav_alarms">Budíky</string>
+    <string name="nav_history">Historie</string>
+    <string name="nav_settings">Nastavení</string>
+
+    <string name="home_next_today">Dnes</string>
+    <string name="home_next_tomorrow">Zítra</string>
+    <string name="home_next_in">Budí tě v lehkém spánku · za %1$s</string>
+    <string name="home_no_alarm_title">Probuď se v tu pravou chvíli</string>
+    <string name="home_no_alarm_text">Nastav čas a okno. Hodinky tě probudí, když budeš spát lehce.</string>
+    <string name="home_add_alarm">Nový budík</string>
+    <string name="home_last_night">Minulá noc</string>
+    <string name="home_alarms">Tvoje budíky</string>
+    <string name="home_permission_title">Povolit budíky</string>
+    <string name="home_permission_text">Phase Wake potřebuje oznámení a upozornění na celou obrazovku, aby tě vzbudil.</string>
+    <string name="home_permission_action">Povolit</string>
+
+    <string name="reason_light">Lehký spánek</string>
+    <string name="reason_awake">Už vzhůru</string>
+    <string name="reason_deadline">Cílový čas</string>
+    <string name="woke_early">%1$d min před cílovým časem · %2$s</string>
+    <string name="woke_on_time">V cílový čas · %1$s</string>
+    <string name="no_snooze">bez odložení</string>
+    <string name="snoozed_times">odloženo: %1$d×</string>
+
+    <string name="alarm_once">Jednou</string>
+    <string name="alarm_every_day">Každý den</string>
+    <string name="alarm_after_sleep">po %1$s</string>
+    <string name="alarm_latest">nejpozději %1$s</string>
+
+    <string name="editor_new">Nový budík</string>
+    <string name="editor_edit">Upravit budík</string>
+    <string name="editor_save">Uložit</string>
+    <string name="editor_delete">Smazat budík</string>
+    <string name="editor_mode_clock">Čas</string>
+    <string name="editor_mode_sleep">Délka spánku</string>
+    <string name="editor_target">Vzbuď mě do</string>
+    <string name="editor_latest">Nejpozději</string>
+    <string name="editor_sleep_duration">Spánek: %1$s</string>
+    <string name="editor_sleep_hint">Počítá se od usnutí. Klepni na hodinkách na „Dobrou noc“.</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_window_hint">Probudí tě mezi %1$s a %2$s</string>
+    <string name="editor_days">Opakovat</string>
+    <string name="editor_weekdays">Pracovní dny</string>
+    <string name="editor_weekend">Víkend</string>
+    <string name="editor_phone_backup_hint">Zvoní s hodinkami – a sám, pokud hodinky nereagují.</string>
+    <string name="editor_label">Název</string>
+    <string name="editor_label_hint">Práce</string>
+
+    <string name="history_title">Historie</string>
+    <string name="history_empty_title">Zatím žádné noci</string>
+    <string name="history_empty_text">Po první noci s hodinkami tu uvidíš, kdy a proč tě vzbudily.</string>
+    <string name="history_average">Ø %1$d min dřív</string>
+    <string name="history_light_share">%1$d %% v lehkém spánku</string>
+    <string name="history_export">Exportovat anonymně</string>
+    <string name="history_export_subject">Noci Phase Wake (anonymně)</string>
+
+    <string name="settings_title">Nastavení</string>
+    <string name="settings_theme">Vzhled</string>
+    <string name="settings_theme_system">Systém</string>
+    <string name="settings_theme_light">Světlý</string>
+    <string name="settings_theme_dark">Tmavý</string>
+    <string name="settings_data">Tvoje data</string>
+    <string name="settings_data_text">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování.</string>
+    <string name="settings_export">Exportovat noci anonymně</string>
+    <string name="settings_export_hint">Pomoz vylepšit rozpoznávání: CSV bez jmen, dat a ID zařízení.</string>
+    <string name="settings_about">O aplikaci</string>
+    <string name="settings_open_source">Open source na GitHub</string>
+    <string name="settings_licenses">Licence</string>
+    <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Verze %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Fáze spánku z Health Connect</string>
+    <string name="health_rationale">Phase Wake umí číst fáze spánku, které tvoje zdravotní aplikace (třeba Samsung Health) uloží po probuzení. Slouží jen ke kontrole, zda tě budík vzbudil v lehkém spánku, a k vylepšení rozpoznávání pro tebe. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
+    <string name="health_connect">Porovnat se zdravotními daty</string>
+    <string name="health_connect_hint">Po probuzení načte fáze spánku z Health Connect, aby rozpoznávání ověřil a vylepšil.</string>
+    <string name="health_connected">Připojeno</string>
+    <string name="health_unavailable">Health Connect není v tomto telefonu dostupný.</string>
+    <string name="verdict_good">Zdravotní data: %1$s ✓</string>
+    <string name="verdict_deep">Zdravotní data: hluboký spánek</string>
+    <string name="stage_light">lehký spánek</string>
+    <string name="stage_rem">REM spánek</string>
+    <string name="stage_awake">vzhůru</string>
+    <string name="editor_alert">Jak tě vzbudit</string>
+    <string name="editor_alert_hint">Zvuk vždy doprovází vibrace. Budíky zvoní i v režimu Nerušit, ve spánkovém režimu a při ztlumeném telefonu.</string>
+    <string name="editor_alert_watch">Hodinky</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Jen vibrace</string>
+    <string name="alert_vibrate_sound">Vibrace + zvuk</string>
+    <string name="alert_off">Vypnuto</string>
+    <string name="alert_vibrate">Vibrace</string>
+    <string name="alert_sound">Zvuk</string>
+    <string name="editor_sound">Zvuk budíku</string>
+    <string name="editor_sound_default">Výchozí</string>
+    <string name="dnd_title">Nerušit blokuje budíky</string>
+    <string name="dnd_text">Povol budíky v režimu Nerušit, jinak bude telefon zticha.</string>
+    <string name="dnd_action">Otevřít nastavení</string>
+    <string name="greeting_morning">Dobré ráno</string>
+    <string name="greeting_day">Dobrý den</string>
+    <string name="greeting_evening">Dobrý večer</string>
+    <string name="greeting_night">Dobrou noc</string>
+</resources>

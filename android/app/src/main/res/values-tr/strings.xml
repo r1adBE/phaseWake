@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Yedek alarm</string>
+    <string name="channel_alarm_description">Telefonda saatinle birlikte çalar.</string>
+    <string name="ring_greeting">Günaydın</string>
+    <string name="ring_notification_text">Phase Wake alarmın çalıyor</string>
+    <string name="ring_stop">Durdur</string>
+    <string name="ring_snooze">Ertele %1$d dk · kalan: %2$d</string>
+    <string name="ring_snoozed">%1$d dk ertelendi</string>
+
+    <string name="nav_alarms">Alarmlar</string>
+    <string name="nav_history">Geçmiş</string>
+    <string name="nav_settings">Ayarlar</string>
+
+    <string name="home_next_today">Bugün</string>
+    <string name="home_next_tomorrow">Yarın</string>
+    <string name="home_next_in">Hafif uykuda uyandırır · %1$s sonra</string>
+    <string name="home_no_alarm_title">Tam zamanında uyan</string>
+    <string name="home_no_alarm_text">Bir saat ve bir aralık belirle. Saatin, hafif uyuduğunda seni uyandırır.</string>
+    <string name="home_add_alarm">Yeni alarm</string>
+    <string name="home_last_night">Dün gece</string>
+    <string name="home_alarms">Alarmların</string>
+    <string name="home_permission_title">Alarmlara izin ver</string>
+    <string name="home_permission_text">Phase Wake\'in seni uyandırabilmesi için bildirimlere ve tam ekran uyarılara ihtiyacı var.</string>
+    <string name="home_permission_action">İzin ver</string>
+
+    <string name="reason_light">Hafif uyku</string>
+    <string name="reason_awake">Zaten uyanık</string>
+    <string name="reason_deadline">Hedef saat</string>
+    <string name="woke_early">Hedeften %1$d dk önce · %2$s</string>
+    <string name="woke_on_time">Hedef saatte · %1$s</string>
+    <string name="no_snooze">erteleme yok</string>
+    <string name="snoozed_times">ertelendi: %1$d×</string>
+
+    <string name="alarm_once">Bir kez</string>
+    <string name="alarm_every_day">Her gün</string>
+    <string name="alarm_after_sleep">%1$s sonra</string>
+    <string name="alarm_latest">en geç %1$s</string>
+
+    <string name="editor_new">Yeni alarm</string>
+    <string name="editor_edit">Alarmı düzenle</string>
+    <string name="editor_save">Kaydet</string>
+    <string name="editor_delete">Alarmı sil</string>
+    <string name="editor_mode_clock">Saat</string>
+    <string name="editor_mode_sleep">Uyku süresi</string>
+    <string name="editor_target">Şu saate kadar uyandır</string>
+    <string name="editor_latest">En geç</string>
+    <string name="editor_sleep_duration">Uyku: %1$s</string>
+    <string name="editor_sleep_hint">Uykuya daldığında saymaya başlar. Saatinde “İyi geceler”e dokun.</string>
+    <string name="editor_window">Aralık: %1$d dk</string>
+    <string name="editor_window_hint">%1$s ile %2$s arasında uyandırır</string>
+    <string name="editor_days">Tekrar</string>
+    <string name="editor_weekdays">Hafta içi</string>
+    <string name="editor_weekend">Hafta sonu</string>
+    <string name="editor_phone_backup_hint">Saatle birlikte çalar, saat yanıt vermezse tek başına da çalar.</string>
+    <string name="editor_label">Ad</string>
+    <string name="editor_label_hint">İş</string>
+
+    <string name="history_title">Geçmiş</string>
+    <string name="history_empty_title">Henüz gece yok</string>
+    <string name="history_empty_text">Saatle ilk gecenden sonra seni ne zaman ve neden uyandırdığını burada görürsün.</string>
+    <string name="history_average">Ø %1$d dk erken</string>
+    <string name="history_light_share">%%%1$d hafif uykuda</string>
+    <string name="history_export">Anonim dışa aktar</string>
+    <string name="history_export_subject">Phase Wake geceleri (anonim)</string>
+
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_theme">Görünüm</string>
+    <string name="settings_theme_system">Sistem</string>
+    <string name="settings_theme_light">Açık</string>
+    <string name="settings_theme_dark">Koyu</string>
+    <string name="settings_data">Verilerin</string>
+    <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok.</string>
+    <string name="settings_export">Geceleri anonim dışa aktar</string>
+    <string name="settings_export_hint">Algılamayı geliştirmeye yardım et: isim, tarih veya cihaz kimliği içermeyen CSV.</string>
+    <string name="settings_about">Hakkında</string>
+    <string name="settings_open_source">GitHub\'da açık kaynak</string>
+    <string name="settings_licenses">Lisanslar</string>
+    <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Sürüm %1$s</string>
+
+    <string name="duration_minutes">%1$d dk</string>
+    <string name="duration_hours">%1$d sa</string>
+    <string name="duration_hours_half">%1$d½ sa</string>
+    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="health_title">Health Connect\'ten uyku evreleri</string>
+    <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) uyandıktan sonra kaydettiği uyku evrelerini okuyabilir. Bunlar yalnızca hafif uykuda uyandırılıp uyandırılmadığını kontrol etmek ve algılamayı senin için geliştirmek amacıyla kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
+    <string name="health_connect">Sağlık verileriyle karşılaştır</string>
+    <string name="health_connect_hint">Uyandıktan sonra uyku evrelerini Health Connect\'ten okuyarak algılamayı kontrol eder ve geliştirir.</string>
+    <string name="health_connected">Bağlı</string>
+    <string name="health_unavailable">Health Connect bu telefonda kullanılamıyor.</string>
+    <string name="verdict_good">Sağlık verisi: %1$s ✓</string>
+    <string name="verdict_deep">Sağlık verisi: derin uyku</string>
+    <string name="stage_light">hafif uyku</string>
+    <string name="stage_rem">REM uykusu</string>
+    <string name="stage_awake">uyanık</string>
+    <string name="editor_alert">Nasıl uyandırılsın</string>
+    <string name="editor_alert_hint">Ses her zaman titreşimle birlikte gelir. Alarmlar Rahatsız Etme, uyku vakti modu ve sessiz telefonda da çalar.</string>
+    <string name="editor_alert_watch">Saat</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Yalnızca titreşim</string>
+    <string name="alert_vibrate_sound">Titreşim + ses</string>
+    <string name="alert_off">Kapalı</string>
+    <string name="alert_vibrate">Titreşim</string>
+    <string name="alert_sound">Ses</string>
+    <string name="editor_sound">Alarm sesi</string>
+    <string name="editor_sound_default">Varsayılan</string>
+    <string name="dnd_title">Rahatsız Etme alarmları engelliyor</string>
+    <string name="dnd_text">Rahatsız Etme\'de alarmlara izin ver, yoksa telefonun sessiz kalır.</string>
+    <string name="dnd_action">Ayarları aç</string>
+    <string name="greeting_morning">Günaydın</string>
+    <string name="greeting_day">Merhaba</string>
+    <string name="greeting_evening">İyi akşamlar</string>
+    <string name="greeting_night">İyi geceler</string>
+</resources>

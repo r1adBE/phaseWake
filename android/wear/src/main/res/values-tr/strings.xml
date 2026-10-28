@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Uyandırma aralığı</string>
+    <string name="channel_window_description">Phase Wake hafif uykuyu beklerken gösterilir.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Seni uyandırır.</string>
+    <string name="notification_window_title">Hafif uyku bekleniyor</string>
+    <string name="notification_window_text">En geç şu saatte uyandırır: %1$s</string>
+    <string name="notification_ring_title">Günaydın</string>
+
+    <string name="ring_greeting">Günaydın</string>
+    <string name="ring_reason_light">Hafif uyku algılandı</string>
+    <string name="ring_reason_awake">Zaten uyanıktın</string>
+    <string name="ring_reason_deadline">Hedef saate ulaşıldı</string>
+    <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
+    <string name="ring_snooze">%1$d dk · kalan: %2$d</string>
+    <string name="ring_snoozed_until">Erteleme sonu: %1$s</string>
+    <string name="ring_stop_now">Alarmı durdur</string>
+
+    <string name="home_no_alarm">Alarm yok</string>
+    <string name="home_no_alarm_hint">Alarmları telefonundaki Phase Wake uygulamasından kur.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Bugün</string>
+    <string name="home_tomorrow">Yarın</string>
+    <string name="home_window_length">%1$d dk aralık</string>
+    <string name="home_alarms">Alarmlar</string>
+    <string name="home_permissions">Sensörlere izin ver</string>
+    <string name="home_permissions_hint">Hafif uykuyu algılamak için gerekli.</string>
+    <string name="alarm_once">Bir kez</string>
+    <string name="alarm_every_day">Her gün</string>
+    <string name="tile_label">Sonraki alarm</string>
+    <string name="tile_next">Sonraki alarm</string>
+    <string name="tile_light_sleep">Hafif uykuda uyandırır</string>
+    <string name="notification_good_night_title">İyi uykular</string>
+    <string name="notification_good_night_text">Uykuya dalman bekleniyor</string>
+    <string name="home_good_night">İyi geceler</string>
+    <string name="home_good_night_hint">Şu andan itibaren uyku: %1$s</string>
+    <string name="home_good_night_active">Uyku bekleniyor · iptal için dokun</string>
+    <string name="dnd_title">Alarmlar engellendi</string>
+    <string name="dnd_text">Rahatsız Etme\'de alarmlara izin ver.</string>
+    <string name="duration_hours">%1$d sa</string>
+    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
+</resources>
