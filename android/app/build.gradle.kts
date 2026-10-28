@@ -38,10 +38,8 @@ android {
     }
 
     buildFeatures { compose = true }
-    // Lint: alle Befunde ins Build-Log, damit die CI sie vollständig zeigt.
+    // Lint: die CI gibt den Textbericht (build/reports/lint-results-debug.txt) vollständig aus.
     lint {
-        textReport = true
-        textOutput = file("stdout")
         abortOnError = true
     }
     // Sprachliste für die Sprachwahl pro App (Android 13+) automatisch aus den Ressourcen.

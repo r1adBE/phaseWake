@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -58,11 +59,12 @@ fun nightDetails(context: Context, night: NightRecord): String =
 @Composable
 fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
+    val res = LocalResources.current
     Column(modifier) {
         Text(stringResource(R.string.feeling_question), style = MaterialTheme.typography.titleSmall)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
             for (value in NightRecord.FEELING_MIN..NightRecord.FEELING_MAX) {
-                val label = context.getString(R.string.feeling_rate, value, feelingName(context, value))
+                val label = res.getString(R.string.feeling_rate, value, feelingName(context, value))
                 OutlinedButton(
                     onClick = { onPick(value) },
                     shape = CircleShape,
@@ -82,26 +84,27 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
 @Composable
 fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> Unit) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val lines = buildList {
         trends.asleepThisWeek?.let { minutes ->
-            add(context.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes))))
+            add(res.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes))))
             trends.asleepChange?.let { change ->
                 add(
                     when {
-                        abs(change) < 5 -> context.getString(R.string.trends_asleep_change_same)
-                        change > 0 -> context.getString(R.string.trends_asleep_change_more, Format.duration(context, Duration.ofMinutes(change)))
-                        else -> context.getString(R.string.trends_asleep_change_less, Format.duration(context, Duration.ofMinutes(-change)))
+                        abs(change) < 5 -> res.getString(R.string.trends_asleep_change_same)
+                        change > 0 -> res.getString(R.string.trends_asleep_change_more, Format.duration(context, Duration.ofMinutes(change)))
+                        else -> res.getString(R.string.trends_asleep_change_less, Format.duration(context, Duration.ofMinutes(-change)))
                     },
                 )
             }
         }
         trends.bedtimeSpreadMinutes?.let { spread ->
-            add(context.getString(R.string.trends_bedtime, Format.duration(context, Duration.ofMinutes(spread))))
-            if (spread > IRREGULAR_MINUTES) add(context.getString(R.string.trends_bedtime_hint))
+            add(res.getString(R.string.trends_bedtime, Format.duration(context, Duration.ofMinutes(spread))))
+            if (spread > IRREGULAR_MINUTES) add(res.getString(R.string.trends_bedtime_hint))
         }
         trends.feelingThisWeek?.let { feeling ->
-            val last = trends.feelingLastWeek?.let { " · " + context.getString(R.string.trends_feeling_change, decimal(it)) }.orEmpty()
-            add(context.getString(R.string.trends_feeling, decimal(feeling)) + last)
+            val last = trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }.orEmpty()
+            add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
         }
     }
     Card(

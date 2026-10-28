@@ -8,6 +8,7 @@
     <plurals name="ring_snooze">
         <item quantity="one">Odložit %1$d min · zbývá: %2$d</item>
         <item quantity="few">Odložit %1$d min · zbývá: %2$d</item>
+        <item quantity="many">Odložit %1$d min · zbývá: %2$d</item>
         <item quantity="other">Odložit %1$d min · zbývá: %2$d</item>
     </plurals>
     <string name="ring_snoozed">Odloženo o %1$d min</string>
@@ -120,6 +121,7 @@
     <plurals name="editor_advice_text">
         <item quantity="one">V %1$d z poslední %2$d noci se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
         <item quantity="few">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="many">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
         <item quantity="other">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
     </plurals>
     <string name="editor_advice_apply">Použít %1$d min</string>
@@ -135,6 +137,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="one">Začne, když tě probudí, a po %1$d minutě naplno září.</item>
         <item quantity="few">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
+        <item quantity="many">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
         <item quantity="other">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Začne s oknem buzení a v cílový čas naplno září.</string>
@@ -181,6 +184,7 @@
     <plurals name="hint_title">
         <item quantity="one">%1$d noc bez lehkého spánku</item>
         <item quantity="few">%1$d noci bez lehkého spánku</item>
+        <item quantity="many">%1$d nocí bez lehkého spánku</item>
         <item quantity="other">%1$d nocí bez lehkého spánku</item>
     </plurals>
     <string name="hint_gaps">Měření mělo mezery. Nabíjely se hodinky přes noc, nebo byly sundané?</string>

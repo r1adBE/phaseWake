@@ -67,6 +67,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -94,6 +95,7 @@ fun EditorScreen(
     onDelete: (AlarmSpec) -> Unit,
 ) {
     val context = LocalContext.current
+    val res = LocalResources.current
     // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
     val newId = rememberSaveable { UUID.randomUUID().toString() }
     val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS)
@@ -218,7 +220,7 @@ fun EditorScreen(
                     Column(Modifier.padding(16.dp)) {
                         Text(stringResource(R.string.editor_advice_title), style = MaterialTheme.typography.titleSmall)
                         Text(
-                            context.resources.getQuantityString(R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes),
+                            res.getQuantityString(R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes),
                             style = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.padding(top = 4.dp),
                         )
@@ -326,7 +328,7 @@ fun EditorScreen(
                 AnimatedVisibility(sunrise != Sunrise.OFF) {
                     Text(
                         if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                        else context.resources.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
+                        else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(top = 6.dp),

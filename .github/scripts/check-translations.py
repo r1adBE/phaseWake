@@ -11,10 +11,10 @@ from pathlib import Path
 PLACEHOLDER = re.compile(r"%(?:\d+\$)?[sd]|%%")
 
 
-# Pluralformen je Sprache (CLDR, ganze Zahlen); «other» ist immer Pflicht.
+# Pluralformen je Sprache (wie Android-Lint sie verlangt); «other» ist immer Pflicht.
 PLURAL_CATEGORIES = {
     "ar": {"zero", "one", "two", "few", "many", "other"},
-    "cs": {"one", "few", "other"}, "pl": {"one", "few", "many", "other"},
+    "cs": {"one", "few", "many", "other"}, "pl": {"one", "few", "many", "other"},
     "ru": {"one", "few", "many", "other"}, "uk": {"one", "few", "many", "other"},
     "ro": {"one", "few", "other"}, "iw": {"one", "two", "other"},
     "fr": {"one", "many", "other"}, "es": {"one", "many", "other"}, "it": {"one", "many", "other"},
@@ -48,9 +48,6 @@ def check_plurals(lang: str, base: dict[str, dict[str, str]], other: dict[str, d
             errors.append(f"{lang}: Plural {name} ohne «other»")
             continue
         wanted = PLURAL_CATEGORIES.get(lang_of(lang), {"one", "other"})
-        # «many» gilt in fr/es/it/pt nur für Millionen: freiwillig.
-        if lang_of(lang) in ("fr", "es", "it", "pt"):
-            wanted = wanted - {"many"}
         for missing in sorted(wanted - items.keys()):
             errors.append(f"{lang}: Plural {name} ohne «{missing}»")
         allowed = set(PLACEHOLDER.findall(base[name]["other"]))

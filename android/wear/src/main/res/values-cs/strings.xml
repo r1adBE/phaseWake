@@ -16,6 +16,7 @@
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · zbývá: %2$d</item>
         <item quantity="few">%1$d min · zbývá: %2$d</item>
+        <item quantity="many">%1$d min · zbývá: %2$d</item>
         <item quantity="other">%1$d min · zbývá: %2$d</item>
     </plurals>
     <string name="ring_snoozed_until">Odloženo do %1$s</string>

@@ -7,6 +7,7 @@
     <string name="ring_stop">Arrêter</string>
     <plurals name="ring_snooze">
         <item quantity="one">Rappel %1$d min · %2$d restant</item>
+        <item quantity="many">Rappel %1$d min · %2$d restants</item>
         <item quantity="other">Rappel %1$d min · %2$d restants</item>
     </plurals>
     <string name="ring_snoozed">Rappel dans %1$d min</string>
@@ -118,6 +119,7 @@
     <string name="editor_advice_title">Astuce : une fenêtre plus large</string>
     <plurals name="editor_advice_text">
         <item quantity="one">Dans %1$d de la dernière nuit (%2$d), il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
+        <item quantity="many">Dans %1$d des %2$d dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
         <item quantity="other">Dans %1$d des %2$d dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
     </plurals>
     <string name="editor_advice_apply">Utiliser %1$d min</string>
@@ -132,6 +134,7 @@
     <string name="sunrise_window">Dès la plage</string>
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="one">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minute.</item>
+        <item quantity="many">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minutes.</item>
         <item quantity="other">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minutes.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Démarre avec la plage et atteint sa pleine luminosité à l’heure cible.</string>
@@ -177,6 +180,7 @@
     <string name="settings_support_text">Phase Wake est gratuite, open source et sans publicité. Si elle te plaît, tu peux soutenir son développement.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nuit sans sommeil léger</item>
+        <item quantity="many">%1$d nuits sans sommeil léger</item>
         <item quantity="other">%1$d nuits sans sommeil léger</item>
     </plurals>
     <string name="hint_gaps">La mesure comportait des trous. La montre était-elle en charge ou retirée la nuit ?</string>

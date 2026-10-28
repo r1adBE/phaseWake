@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.animation.core.tween
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -290,7 +291,7 @@ private fun LastNightCard(night: NightRecord, now: Instant, missHint: MissHint?,
                         .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f))
                         .padding(12.dp),
                 ) {
-                    Text(LocalContext.current.resources.getQuantityString(R.plurals.hint_title, MissHint.NIGHTS, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
+                    Text(LocalResources.current.getQuantityString(R.plurals.hint_title, MissHint.NIGHTS, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
                     Text(
                         stringResource(
                             when (hint) {
@@ -324,6 +325,7 @@ private val MORNING: Duration = Duration.ofHours(12)
 @Composable
 private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, onToggle: (Boolean) -> Unit) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
     Card(
         shape = MaterialTheme.shapes.medium,
@@ -346,7 +348,7 @@ private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, 
                 val details = buildList {
                     add(Format.days(context, alarm))
                     if (alarm.sleepDurationMinutes != null) {
-                        add(context.getString(R.string.alarm_latest, Format.time(java.time.LocalTime.of(alarm.hour, alarm.minute))))
+                        add(res.getString(R.string.alarm_latest, Format.time(java.time.LocalTime.of(alarm.hour, alarm.minute))))
                     }
                     if (alarm.label.isNotBlank()) add(alarm.label)
                 }

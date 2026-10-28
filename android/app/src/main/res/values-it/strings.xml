@@ -7,6 +7,7 @@
     <string name="ring_stop">Stop</string>
     <plurals name="ring_snooze">
         <item quantity="one">Posticipa %1$d min · %2$d rimasta</item>
+        <item quantity="many">Posticipa %1$d min · %2$d rimaste</item>
         <item quantity="other">Posticipa %1$d min · %2$d rimaste</item>
     </plurals>
     <string name="ring_snoozed">Posticipata di %1$d min</string>
@@ -118,6 +119,7 @@
     <string name="editor_advice_title">Consiglio: una finestra più ampia</string>
     <plurals name="editor_advice_text">
         <item quantity="one">In %1$d dell’ultima notte (%2$d) non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+        <item quantity="many">In %1$d delle ultime %2$d notti non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
         <item quantity="other">In %1$d delle ultime %2$d notti non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
     </plurals>
     <string name="editor_advice_apply">Usa %1$d min</string>
@@ -132,6 +134,7 @@
     <string name="sunrise_window">Da finestra</string>
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="one">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuto.</item>
+        <item quantity="many">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
         <item quantity="other">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Parte con la finestra e raggiunge la piena luminosità all’ora impostata.</string>
@@ -177,6 +180,7 @@
     <string name="settings_support_text">Phase Wake è gratuita, open source e senza pubblicità. Se ti piace, puoi sostenerne lo sviluppo.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d notte senza sonno leggero</item>
+        <item quantity="many">%1$d notti senza sonno leggero</item>
         <item quantity="other">%1$d notti senza sonno leggero</item>
     </plurals>
     <string name="hint_gaps">La misurazione aveva delle lacune. L\'orologio era in carica o tolto di notte?</string>

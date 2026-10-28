@@ -40,6 +40,14 @@ jobs:
         if: failure()
         shell: bash
         run: ../.github/scripts/annotate-errors.sh build.log
+      - name: Lint-Befunde
+        if: failure()
+        shell: bash
+        run: |
+          for f in */build/reports/lint-results-debug.txt; do
+            [ -f "$f" ] || continue
+            grep -E ": (Error|Fatal):" "$f" | sed 's/^/::error::/' || true
+          done
       - name: Testberichte
         if: failure()
         uses: actions/upload-artifact@v5

@@ -58,15 +58,8 @@ class PhoneRingActivity : ComponentActivity() {
         setContent {
             PhaseWakeTheme(ThemeMode.DARK) {
                 val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
-                LaunchedEffect(state) {
-                    if (state is PhoneRingService.State.Idle) finish()
-                    // Beim Schlummern darf der Bildschirm ausgehen (Akku); klingelt es wieder, geht er an.
-                    if (state is PhoneRingService.State.Snoozed) {
-                        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                    } else {
-                        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                    }
-                }
+                // Bildschirm bleibt auch beim Schlummern bewusst an: Das Aufstehen soll nicht verzögert werden.
+                LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
                 val sunrise = when (val s = state) {
                     is PhoneRingService.State.Ringing -> s.sunrise
                     is PhoneRingService.State.Snoozed -> s.sunrise
