@@ -30,6 +30,8 @@ jobs:
           # Bach: «30 CC0 SFX loops» von rubberduck, CC0 – https://opengameart.org/content/30-cc0-sfx-loops
           curl -fsSL -A "Mozilla/5.0" -o loops.zip "https://opengameart.org/sites/default/files/sfx_loops.zip"
           unzip -o -q loops.zip -d loops
+          # Weckton «Morgenvögel»: «Ambient bird sounds» von isaiah658, CC0 – https://opengameart.org/content/ambient-bird-sounds
+          curl -fsSL -A "Mozilla/5.0" -o birds.ogg "https://opengameart.org/sites/default/files/birds-isaiah658_0.ogg"
           echo "::notice title=Loops::$(find loops -type f | tr '\n' ' ')"
           ls -laR
       - name: Schleifen bauen
@@ -60,6 +62,19 @@ jobs:
           for s in rain ocean forest fire brook; do
             ffmpeg -loglevel error -y -i raw/$s-loop.wav -c:a aac -b:a 96k out/sound_$s.m4a
           done
+          # Wecktöne: drei synthetisch, einer aus der Vogel-Aufnahme; je 28 s, leise beginnend.
+          python3 .github/scripts/make-wake-tones.py raw/tones
+          ffmpeg -loglevel error -y -i raw/birds.ogg -ac 2 -ar 44100 raw/birds.wav
+          bdur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/birds.wav)
+          python3 -c "print('Vögel', '$bdur', 's')"
+          ffmpeg -loglevel error -y -stream_loop 3 -i raw/birds.wav -t 28 -af "afade=t=in:d=8,afade=t=out:st=27.5:d=0.5,loudnorm=I=-20:TP=-3" -ar 44100 raw/tones/wake_birds.wav
+          mkdir -p out/tones
+          for f in raw/tones/wake_*.wav; do
+            n=$(basename "$f" .wav)
+            ffmpeg -loglevel error -y -i "$f" -c:a aac -b:a 96k out/$n.m4a
+            # iPhone (AlarmKit/Mitteilungen): CAF mit IMA4, mono
+            ffmpeg -loglevel error -y -i "$f" -ac 1 -c:a adpcm_ima_qt out/tones/$n.caf
+          done
           ls -la out
       - name: In den Zweig «klaenge» legen
         run: |
@@ -69,9 +84,10 @@ jobs:
           git checkout -B klaenge origin/main
           mkdir -p android/app/src/main/res/raw ios/PhaseWake/Sounds
           cp out/*.m4a android/app/src/main/res/raw/
-          cp out/*.m4a ios/PhaseWake/Sounds/
+          cp out/sound_*.m4a ios/PhaseWake/Sounds/
+          cp out/tones/*.caf ios/PhaseWake/Sounds/
           git add android/app/src/main/res/raw ios/PhaseWake/Sounds
-          git commit -m "Einschlafklänge: Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach als Aufnahmen (CC0)"
+          git commit -m "Einschlafklänge (Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach; CC0) und Wecktöne (Glockenspiel, Gong, Harfe, Morgenvögel)"
           git push -f origin klaenge
       - name: Fehler anzeigen
         if: failure()
