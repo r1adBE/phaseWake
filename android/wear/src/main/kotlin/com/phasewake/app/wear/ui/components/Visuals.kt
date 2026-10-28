@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.wear.ui.theme.Brand
 import kotlin.math.PI
@@ -31,7 +32,7 @@ fun WindowRing(startFraction: Float, endFraction: Float, modifier: Modifier = Mo
         initialValue = 0.35f, targetValue = 0.9f,
         animationSpec = infiniteRepeatable(tween(2400), RepeatMode.Reverse), label = "glow",
     )
-    Canvas(modifier) {
+    Canvas(modifier.clearAndSetSemantics { }) {
         val stroke = 6.dp.toPx()
         val inset = stroke / 2 + 2.dp.toPx()
         val arcSize = Size(size.width - 2 * inset, size.height - 2 * inset)
@@ -55,7 +56,7 @@ fun FlowingWave(modifier: Modifier = Modifier, color: Color = Brand.Wave) {
         initialValue = 0f, targetValue = (2 * PI).toFloat(),
         animationSpec = infiniteRepeatable(tween(6000, easing = LinearEasing)), label = "phase",
     )
-    Canvas(modifier) {
+    Canvas(modifier.clearAndSetSemantics { }) {
         val path = Path()
         val amplitude = size.height * 0.32f
         val steps = 48
@@ -77,7 +78,7 @@ fun PulsingDot(modifier: Modifier = Modifier) {
         initialValue = 0f, targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(1800, easing = LinearEasing)), label = "t",
     )
-    Canvas(modifier) {
+    Canvas(modifier.clearAndSetSemantics { }) {
         val base = size.minDimension / 2
         for (k in 0 until 3) {
             val p = (t + k / 3f) % 1f

@@ -21,6 +21,8 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -45,7 +47,8 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
         0f, (2 * PI).toFloat(), infiniteRepeatable(tween(7000, easing = LinearEasing)), label = "phase",
     )
     val pulse by transition.animateFloat(0f, 1f, infiniteRepeatable(tween(2200, easing = LinearEasing)), label = "pulse")
-    Canvas(modifier) {
+    // Reine Zierde: für Bildschirmleser unsichtbar.
+    Canvas(modifier.clearAndSetSemantics { }) {
         val windowLeft = size.width * (1f - windowFraction)
         drawRoundRect(
             brand.heroWindow, Offset(windowLeft, 0f), Size(size.width - windowLeft, size.height),
@@ -83,11 +86,17 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
  * Wecken kräftig, darüber der Weckpunkt. Wächst beim Erscheinen von unten herauf.
  */
 @Composable
-fun NightBars(epochs: List<Epoch>, modifier: Modifier = Modifier, totalEpochs: Int = epochs.size) {
+fun NightBars(
+    epochs: List<Epoch>,
+    modifier: Modifier = Modifier,
+    totalEpochs: Int = epochs.size,
+    description: String? = null,
+) {
     val brand = PhaseWakeTheme.brand
     val grow = remember(epochs) { Animatable(0f) }
     LaunchedEffect(epochs) { grow.animateTo(1f, tween(900, easing = FastOutSlowInEasing)) }
-    Canvas(modifier) {
+    // Die Kurve selbst ist für Bildschirmleser nicht lesbar; der Text daneben sagt dasselbe.
+    Canvas(modifier.clearAndSetSemantics { description?.let { contentDescription = it } }) {
         val slots = totalEpochs.coerceAtLeast(epochs.size).coerceAtLeast(1)
         val gap = 2.dp.toPx()
         val barWidth = ((size.width - gap * (slots - 1)) / slots).coerceAtLeast(1f)
@@ -124,7 +133,7 @@ fun PulsingDot(modifier: Modifier = Modifier, color: Color, dot: Color) {
     val t by rememberInfiniteTransition(label = "pulse").animateFloat(
         0f, 1f, infiniteRepeatable(tween(2000, easing = LinearEasing)), label = "t",
     )
-    Canvas(modifier) {
+    Canvas(modifier.clearAndSetSemantics { }) {
         val base = size.minDimension / 2
         for (k in 0 until 3) {
             val p = (t + k / 3f) % 1f

@@ -145,7 +145,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         val window = (view.context as? android.app.Activity)?.window ?: return@SideEffect
         WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars && route != Routes.ALARMS
     }
-    var intro by rememberSaveable { mutableStateOf(true) }
+    // Wer «Animationen entfernen» eingeschaltet hat, bekommt keine Start-Animation.
+    var intro by rememberSaveable { mutableStateOf(animationsEnabled(context)) }
 
     Box(Modifier.fillMaxSize()) {
     Scaffold(
@@ -262,6 +263,9 @@ private fun NavHostController.switchTab(route: String) = navigate(route) {
 private fun hasNotificationPermission(context: android.content.Context) =
     Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
         ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+
+private fun animationsEnabled(context: android.content.Context): Boolean =
+    Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f
 
 /** Fehlt etwas, damit der Zweitwecker auffällig wecken kann? */
 private fun missingAlarmAccess(context: android.content.Context): Boolean {

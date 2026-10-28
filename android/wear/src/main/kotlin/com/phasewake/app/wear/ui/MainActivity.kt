@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
@@ -177,7 +178,11 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
         if (plan != null) {
             WindowRing(dialFraction(plan.windowStart, zone), dialFraction(plan.target, zone), Modifier.size(176.dp))
         }
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.semantics(mergeDescendants = true) { },
+        ) {
             if (plan == null) {
                 Text(stringResource(R.string.home_no_alarm), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
                 Text(

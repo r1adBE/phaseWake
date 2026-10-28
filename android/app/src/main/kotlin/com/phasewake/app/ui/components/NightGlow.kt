@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -91,7 +92,7 @@ fun AnimatedNight(modifier: Modifier = Modifier, content: @Composable () -> Unit
 /** Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. */
 @Composable
 fun LogoMark(size: Dp, modifier: Modifier = Modifier) {
-    Canvas(modifier.size(size)) {
+    Canvas(modifier.size(size).clearAndSetSemantics { }) {
         val s = this.size.minDimension / 200f
         scale(s, pivot = Offset.Zero) {
             run {
