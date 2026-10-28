@@ -112,4 +112,11 @@
     <string name="greeting_day">Hei</string>
     <string name="greeting_evening">Hyvää iltaa</string>
     <string name="greeting_night">Hyvää yötä</string>
+    <string name="settings_clear_history">Tyhjennä historia</string>
+    <string name="settings_clear_history_text">Poistaa kaikki tallennetut yöt puhelimesta ja kellosta. Herätyksesi säilyvät.</string>
+    <string name="settings_clear_history_confirm">Poista</string>
+    <string name="action_cancel">Peruuta</string>
+    <string name="editor_advice_title">Vinkki: isompi ikkuna</string>
+    <string name="editor_advice_text">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</string>
+    <string name="editor_advice_apply">Käytä %1$d min</string>
 </resources>

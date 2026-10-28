@@ -13,6 +13,7 @@ import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.WakeReason
+import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ring.RingScreen
 import com.phasewake.app.ui.editor.EditorScreen
@@ -85,10 +86,10 @@ fun HomeEmptyLight() = Home(ThemeMode.LIGHT, emptyList())
 fun HomeEmptyDark() = Home(ThemeMode.DARK, emptyList())
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Editor hell", device = PHONE_TALL) @Composable
-fun EditorLight() = Themed(ThemeMode.LIGHT) { EditorScreen(alarms.first(), onBack = {}, onSave = {}, onDelete = {}) }
+fun EditorLight() = Themed(ThemeMode.LIGHT) { EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {}) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Editor dunkel", device = PHONE_TALL) @Composable
-fun EditorDark() = Themed(ThemeMode.DARK) { EditorScreen(alarms.first(), onBack = {}, onSave = {}, onDelete = {}) }
+fun EditorDark() = Themed(ThemeMode.DARK) { EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {}) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE) @Composable
 fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}) }
@@ -98,12 +99,12 @@ fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, load
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {
-    SettingsScreen(ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, health = HealthState.CONNECTED, onConnectHealth = {})
+    SettingsScreen(ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {}, health = HealthState.CONNECTED, onConnectHealth = {})
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen dunkel", device = PHONE) @Composable
 fun SettingsDark() = Themed(ThemeMode.DARK) {
-    SettingsScreen(ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, health = HealthState.AVAILABLE, onConnectHealth = {})
+    SettingsScreen(ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {}, health = HealthState.AVAILABLE, onConnectHealth = {})
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable

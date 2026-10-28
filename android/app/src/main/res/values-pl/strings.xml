@@ -112,4 +112,11 @@
     <string name="greeting_day">Cześć</string>
     <string name="greeting_evening">Dobry wieczór</string>
     <string name="greeting_night">Dobranoc</string>
+    <string name="settings_clear_history">Usuń historię</string>
+    <string name="settings_clear_history_text">Usuwa wszystkie zapisane noce na telefonie i zegarku. Twoje budziki zostają.</string>
+    <string name="settings_clear_history_confirm">Usuń</string>
+    <string name="action_cancel">Anuluj</string>
+    <string name="editor_advice_title">Wskazówka: większe okno</string>
+    <string name="editor_advice_text">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</string>
+    <string name="editor_advice_apply">Użyj %1$d min</string>
 </resources>

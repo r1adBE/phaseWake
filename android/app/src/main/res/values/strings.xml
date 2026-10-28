@@ -114,4 +114,11 @@
     <string name="greeting_day">Hello</string>
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_night">Good night</string>
+    <string name="settings_clear_history">Delete history</string>
+    <string name="settings_clear_history_text">Deletes all recorded nights on your phone and watch. Your alarms stay.</string>
+    <string name="settings_clear_history_confirm">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="editor_advice_title">Tip: a larger window</string>
+    <string name="editor_advice_text">In %1$d of the last %2$d nights there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</string>
+    <string name="editor_advice_apply">Use %1$d min</string>
 </resources>

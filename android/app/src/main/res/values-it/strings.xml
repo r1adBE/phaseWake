@@ -112,4 +112,11 @@
     <string name="greeting_day">Ciao</string>
     <string name="greeting_evening">Buonasera</string>
     <string name="greeting_night">Buonanotte</string>
+    <string name="settings_clear_history">Elimina cronologia</string>
+    <string name="settings_clear_history_text">Elimina tutte le notti registrate su telefono e orologio. Le tue sveglie restano.</string>
+    <string name="settings_clear_history_confirm">Elimina</string>
+    <string name="action_cancel">Annulla</string>
+    <string name="editor_advice_title">Consiglio: una finestra più ampia</string>
+    <string name="editor_advice_text">In %1$d delle ultime %2$d notti non c\'era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</string>
+    <string name="editor_advice_apply">Usa %1$d min</string>
 </resources>

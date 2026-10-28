@@ -112,4 +112,11 @@
     <string name="greeting_day">שלום</string>
     <string name="greeting_evening">ערב טוב</string>
     <string name="greeting_night">לילה טוב</string>
+    <string name="settings_clear_history">מחיקת היסטוריה</string>
+    <string name="settings_clear_history_text">מחיקת כל הלילות שהוקלטו בטלפון ובשעון. המעוררים שלך נשארים.</string>
+    <string name="settings_clear_history_confirm">מחיקה</string>
+    <string name="action_cancel">ביטול</string>
+    <string name="editor_advice_title">טיפ: חלון גדול יותר</string>
+    <string name="editor_advice_text">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</string>
+    <string name="editor_advice_apply">שימוש ב-%1$d דק׳</string>
 </resources>

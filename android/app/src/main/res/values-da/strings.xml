@@ -112,4 +112,11 @@
     <string name="greeting_day">Goddag</string>
     <string name="greeting_evening">Godaften</string>
     <string name="greeting_night">Godnat</string>
+    <string name="settings_clear_history">Slet historik</string>
+    <string name="settings_clear_history_text">Sletter alle optagede nætter på din telefon og dit ur. Dine alarmer bliver.</string>
+    <string name="settings_clear_history_confirm">Slet</string>
+    <string name="action_cancel">Annuller</string>
+    <string name="editor_advice_title">Tip: et større vindue</string>
+    <string name="editor_advice_text">I %1$d af de seneste %2$d nætter var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</string>
+    <string name="editor_advice_apply">Brug %1$d min</string>
 </resources>

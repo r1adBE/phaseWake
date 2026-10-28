@@ -112,4 +112,11 @@
     <string name="greeting_day">Guten Tag</string>
     <string name="greeting_evening">Guten Abend</string>
     <string name="greeting_night">Gute Nacht</string>
+    <string name="settings_clear_history">Verlauf löschen</string>
+    <string name="settings_clear_history_text">Löscht alle aufgezeichneten Nächte auf Handy und Uhr. Deine Wecker bleiben.</string>
+    <string name="settings_clear_history_confirm">Löschen</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="editor_advice_title">Tipp: grösseres Fenster</string>
+    <string name="editor_advice_text">In %1$d der letzten %2$d Nächte kam kein leichter Schlaf ins Fenster. Mit %3$d Min erwischst du öfter einen guten Moment.</string>
+    <string name="editor_advice_apply">%1$d Min übernehmen</string>
 </resources>

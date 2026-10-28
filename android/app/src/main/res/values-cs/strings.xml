@@ -112,4 +112,11 @@
     <string name="greeting_day">Dobrý den</string>
     <string name="greeting_evening">Dobrý večer</string>
     <string name="greeting_night">Dobrou noc</string>
+    <string name="settings_clear_history">Smazat historii</string>
+    <string name="settings_clear_history_text">Smaže všechny zaznamenané noci v telefonu a hodinkách. Tvoje budíky zůstanou.</string>
+    <string name="settings_clear_history_confirm">Smazat</string>
+    <string name="action_cancel">Zrušit</string>
+    <string name="editor_advice_title">Tip: větší okno</string>
+    <string name="editor_advice_text">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</string>
+    <string name="editor_advice_apply">Použít %1$d min</string>
 </resources>

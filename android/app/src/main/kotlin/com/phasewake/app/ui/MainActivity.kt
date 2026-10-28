@@ -62,7 +62,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.phasewake.app.R
+import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.phoneApp
+import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
@@ -229,14 +231,22 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     contentPadding = content,
                     onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
                     onExport = { Export.share(context, nights.orEmpty()) },
+                    onClearHistory = {
+                        app.appScope.launch {
+                            app.nights.clear()
+                            app.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_CLEAR_HISTORY)
+                        }
+                    },
                     health = health,
                     onConnectHealth = { healthPermission.launch(app.health.permissions) },
                 )
             }
             composable(Routes.EDITOR) { entry ->
                 val id = entry.arguments?.getString("id")
+                val existing = alarms.firstOrNull { it.id == id }
                 EditorScreen(
-                    existing = alarms.firstOrNull { it.id == id },
+                    existing = existing,
+                    advice = existing?.let { WindowAdvice.suggest(it, nights.orEmpty()) },
                     onBack = { nav.popBackStack() },
                     onSave = { spec ->
                         app.afterAlarmsChanged { app.alarms.upsert(spec) }

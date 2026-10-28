@@ -112,4 +112,11 @@
     <string name="greeting_day">Halo</string>
     <string name="greeting_evening">Selamat malam</string>
     <string name="greeting_night">Selamat tidur</string>
+    <string name="settings_clear_history">Hapus riwayat</string>
+    <string name="settings_clear_history_text">Menghapus semua malam yang tercatat di ponsel dan jam tanganmu. Alarmmu tetap ada.</string>
+    <string name="settings_clear_history_confirm">Hapus</string>
+    <string name="action_cancel">Batal</string>
+    <string name="editor_advice_title">Tips: jendela lebih lebar</string>
+    <string name="editor_advice_text">Pada %1$d dari %2$d malam terakhir, tidak ada tidur ringan di dalam jendela. Dengan %3$d mnt, kamu lebih sering bangun di saat yang tepat.</string>
+    <string name="editor_advice_apply">Pakai %1$d mnt</string>
 </resources>

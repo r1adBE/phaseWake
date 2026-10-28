@@ -112,4 +112,11 @@
     <string name="greeting_day">Xin chào</string>
     <string name="greeting_evening">Chào buổi tối</string>
     <string name="greeting_night">Chúc ngủ ngon</string>
+    <string name="settings_clear_history">Xóa lịch sử</string>
+    <string name="settings_clear_history_text">Xóa mọi đêm đã ghi trên điện thoại và đồng hồ của bạn. Báo thức của bạn vẫn được giữ.</string>
+    <string name="settings_clear_history_confirm">Xóa</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="editor_advice_title">Mẹo: khung giờ rộng hơn</string>
+    <string name="editor_advice_text">Trong %1$d trong %2$d đêm gần nhất, khung giờ không có giấc ngủ nhẹ. Với %3$d phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn.</string>
+    <string name="editor_advice_apply">Dùng %1$d phút</string>
 </resources>

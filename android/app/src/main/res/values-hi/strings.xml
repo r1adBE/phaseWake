@@ -112,4 +112,11 @@
     <string name="greeting_day">नमस्ते</string>
     <string name="greeting_evening">शुभ संध्या</string>
     <string name="greeting_night">शुभ रात्रि</string>
+    <string name="settings_clear_history">इतिहास हटाएँ</string>
+    <string name="settings_clear_history_text">फ़ोन और वॉच पर रिकॉर्ड की गई सभी रातें हट जाएँगी। तुम्हारे अलार्म बने रहेंगे।</string>
+    <string name="settings_clear_history_confirm">हटाएँ</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="editor_advice_title">सुझाव: बड़ी विंडो</string>
+    <string name="editor_advice_text">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</string>
+    <string name="editor_advice_apply">%1$d मिनट इस्तेमाल करें</string>
 </resources>

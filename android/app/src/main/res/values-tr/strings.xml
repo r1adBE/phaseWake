@@ -112,4 +112,11 @@
     <string name="greeting_day">Merhaba</string>
     <string name="greeting_evening">İyi akşamlar</string>
     <string name="greeting_night">İyi geceler</string>
+    <string name="settings_clear_history">Geçmişi sil</string>
+    <string name="settings_clear_history_text">Telefonundaki ve saatindeki tüm kayıtlı geceleri siler. Alarmların kalır.</string>
+    <string name="settings_clear_history_confirm">Sil</string>
+    <string name="action_cancel">İptal</string>
+    <string name="editor_advice_title">İpucu: daha geniş bir aralık</string>
+    <string name="editor_advice_text">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</string>
+    <string name="editor_advice_apply">%1$d dk kullan</string>
 </resources>

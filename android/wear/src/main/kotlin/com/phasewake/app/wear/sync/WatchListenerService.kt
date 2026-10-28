@@ -31,6 +31,7 @@ class WatchListenerService : WearableListenerService() {
         when (event.path) {
             DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS)
             DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_SNOOZE)
+            DataLayer.PATH_CLEAR_HISTORY -> runBlocking { wearApp.nights.clear() }
         }
     }
 }

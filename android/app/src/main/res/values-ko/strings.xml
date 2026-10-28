@@ -112,4 +112,11 @@
     <string name="greeting_day">안녕하세요</string>
     <string name="greeting_evening">좋은 저녁이에요</string>
     <string name="greeting_night">잘 자요</string>
+    <string name="settings_clear_history">기록 삭제</string>
+    <string name="settings_clear_history_text">휴대폰과 워치에 기록된 모든 밤 데이터를 삭제해요. 알람은 그대로 유지돼요.</string>
+    <string name="settings_clear_history_confirm">삭제</string>
+    <string name="action_cancel">취소</string>
+    <string name="editor_advice_title">팁: 더 넓은 구간</string>
+    <string name="editor_advice_text">최근 %2$d일 중 %1$d일은 구간 안에 얕은 잠이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</string>
+    <string name="editor_advice_apply">%1$d분 사용</string>
 </resources>

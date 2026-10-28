@@ -112,4 +112,11 @@
     <string name="greeting_day">Hallo</string>
     <string name="greeting_evening">Goedenavond</string>
     <string name="greeting_night">Welterusten</string>
+    <string name="settings_clear_history">Geschiedenis wissen</string>
+    <string name="settings_clear_history_text">Wist alle opgenomen nachten op je telefoon en horloge. Je wekkers blijven.</string>
+    <string name="settings_clear_history_confirm">Wissen</string>
+    <string name="action_cancel">Annuleren</string>
+    <string name="editor_advice_title">Tip: een groter venster</string>
+    <string name="editor_advice_text">In %1$d van de laatste %2$d nachten zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</string>
+    <string name="editor_advice_apply">%1$d min gebruiken</string>
 </resources>

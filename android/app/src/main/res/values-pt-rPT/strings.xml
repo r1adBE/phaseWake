@@ -112,4 +112,11 @@
     <string name="greeting_day">Olá</string>
     <string name="greeting_evening">Boa noite</string>
     <string name="greeting_night">Boa noite</string>
+    <string name="settings_clear_history">Apagar histórico</string>
+    <string name="settings_clear_history_text">Apaga todas as noites registadas no teu telemóvel e no relógio. Os teus alarmes mantêm-se.</string>
+    <string name="settings_clear_history_confirm">Apagar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="editor_advice_title">Dica: uma janela maior</string>
+    <string name="editor_advice_text">Em %1$d das últimas %2$d noites não houve sono leve na janela. Com %3$d min, vais acordar mais vezes num bom momento.</string>
+    <string name="editor_advice_apply">Usar %1$d min</string>
 </resources>

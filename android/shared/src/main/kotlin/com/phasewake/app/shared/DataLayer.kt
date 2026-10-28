@@ -17,6 +17,9 @@ object DataLayer {
     /** Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. */
     const val PATH_SNOOZE = "/phasewake/snooze"
 
+    /** Nachricht Handy → Uhr: Verlauf auf Wunsch des Nutzers löschen. */
+    const val PATH_CLEAR_HISTORY = "/phasewake/clear-history"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
 

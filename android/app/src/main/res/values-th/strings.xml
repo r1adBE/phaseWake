@@ -112,4 +112,11 @@
     <string name="greeting_day">สวัสดี</string>
     <string name="greeting_evening">สวัสดีตอนเย็น</string>
     <string name="greeting_night">ราตรีสวัสดิ์</string>
+    <string name="settings_clear_history">ลบประวัติ</string>
+    <string name="settings_clear_history_text">ลบข้อมูลทุกคืนที่บันทึกไว้บนโทรศัพท์และนาฬิกา การปลุกของคุณจะยังอยู่</string>
+    <string name="settings_clear_history_confirm">ลบ</string>
+    <string name="action_cancel">ยกเลิก</string>
+    <string name="editor_advice_title">เคล็ดลับ: ช่วงเวลาที่กว้างขึ้น</string>
+    <string name="editor_advice_text">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</string>
+    <string name="editor_advice_apply">ใช้ %1$d นาที</string>
 </resources>

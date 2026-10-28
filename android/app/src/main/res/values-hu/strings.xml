@@ -112,4 +112,11 @@
     <string name="greeting_day">Jó napot</string>
     <string name="greeting_evening">Jó estét</string>
     <string name="greeting_night">Jó éjszakát</string>
+    <string name="settings_clear_history">Előzmények törlése</string>
+    <string name="settings_clear_history_text">Törli az összes rögzített éjszakát a telefonodon és az órádon. Az ébresztőid megmaradnak.</string>
+    <string name="settings_clear_history_confirm">Törlés</string>
+    <string name="action_cancel">Mégse</string>
+    <string name="editor_advice_title">Tipp: nagyobb ablak</string>
+    <string name="editor_advice_text">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</string>
+    <string name="editor_advice_apply">%1$d perc használata</string>
 </resources>

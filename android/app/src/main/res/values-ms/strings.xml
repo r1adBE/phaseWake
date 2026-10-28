@@ -112,4 +112,11 @@
     <string name="greeting_day">Helo</string>
     <string name="greeting_evening">Selamat petang</string>
     <string name="greeting_night">Selamat malam</string>
+    <string name="settings_clear_history">Padam sejarah</string>
+    <string name="settings_clear_history_text">Memadam semua malam yang direkodkan pada telefon dan jam tanganmu. Penggera kekal.</string>
+    <string name="settings_clear_history_confirm">Padam</string>
+    <string name="action_cancel">Batal</string>
+    <string name="editor_advice_title">Tip: tetingkap lebih besar</string>
+    <string name="editor_advice_text">Dalam %1$d daripada %2$d malam terakhir, tiada tidur ringan dalam tetingkap. Dengan %3$d min, kamu lebih kerap bangun pada saat yang sesuai.</string>
+    <string name="editor_advice_apply">Guna %1$d min</string>
 </resources>

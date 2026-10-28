@@ -112,4 +112,11 @@
     <string name="greeting_day">سلام</string>
     <string name="greeting_evening">عصر بخیر</string>
     <string name="greeting_night">شب بخیر</string>
+    <string name="settings_clear_history">پاک کردن تاریخچه</string>
+    <string name="settings_clear_history_text">همه شب‌های ثبت‌شده در گوشی و ساعتت پاک می‌شود. زنگ‌های هشدارت می‌مانند.</string>
+    <string name="settings_clear_history_confirm">پاک کردن</string>
+    <string name="action_cancel">لغو</string>
+    <string name="editor_advice_title">نکته: بازه‌ی بزرگ‌تر</string>
+    <string name="editor_advice_text">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</string>
+    <string name="editor_advice_apply">استفاده از %1$d دقیقه</string>
 </resources>

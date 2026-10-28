@@ -112,4 +112,11 @@
     <string name="greeting_day">Добрий день</string>
     <string name="greeting_evening">Добрий вечір</string>
     <string name="greeting_night">На добраніч</string>
+    <string name="settings_clear_history">Видалити історію</string>
+    <string name="settings_clear_history_text">Видаляє всі записані ночі на телефоні та годиннику. Твої будильники залишаться.</string>
+    <string name="settings_clear_history_confirm">Видалити</string>
+    <string name="action_cancel">Скасувати</string>
+    <string name="editor_advice_title">Порада: ширше вікно</string>
+    <string name="editor_advice_text">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</string>
+    <string name="editor_advice_apply">Обрати %1$d хв</string>
 </resources>

@@ -112,4 +112,11 @@
     <string name="greeting_day">こんにちは</string>
     <string name="greeting_evening">こんばんは</string>
     <string name="greeting_night">おやすみなさい</string>
+    <string name="settings_clear_history">履歴を削除</string>
+    <string name="settings_clear_history_text">スマホとウォッチに記録されたすべての夜のデータを削除します。アラームはそのまま残ります。</string>
+    <string name="settings_clear_history_confirm">削除</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="editor_advice_title">ヒント：ウィンドウを広げよう</string>
+    <string name="editor_advice_text">直近 %2$d 日のうち %1$d 日は、ウィンドウ内に浅い眠りがありませんでした。%3$d 分にすると、よりよいタイミングで起きやすくなります。</string>
+    <string name="editor_advice_apply">%1$d 分を使う</string>
 </resources>

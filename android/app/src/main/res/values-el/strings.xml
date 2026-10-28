@@ -112,4 +112,11 @@
     <string name="greeting_day">Γεια σου</string>
     <string name="greeting_evening">Καλησπέρα</string>
     <string name="greeting_night">Καληνύχτα</string>
+    <string name="settings_clear_history">Διαγραφή ιστορικού</string>
+    <string name="settings_clear_history_text">Διαγράφει όλες τις καταγεγραμμένες νύχτες στο κινητό και στο ρολόι σου. Τα ξυπνητήρια σου παραμένουν.</string>
+    <string name="settings_clear_history_confirm">Διαγραφή</string>
+    <string name="action_cancel">Ακύρωση</string>
+    <string name="editor_advice_title">Συμβουλή: μεγαλύτερο παράθυρο</string>
+    <string name="editor_advice_text">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</string>
+    <string name="editor_advice_apply">Χρήση %1$d λεπτών</string>
 </resources>

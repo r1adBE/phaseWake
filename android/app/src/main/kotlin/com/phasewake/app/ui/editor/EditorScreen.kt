@@ -12,6 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
 import androidx.core.content.IntentCompat
 import com.phasewake.app.core.PhoneAlert
+import com.phasewake.app.core.WindowAdvice
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -76,6 +77,7 @@ private val WEEKEND = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY)
 @Composable
 fun EditorScreen(
     existing: AlarmSpec?,
+    advice: WindowAdvice.Suggestion?,
     onBack: () -> Unit,
     onSave: (AlarmSpec) -> Unit,
     onDelete: (AlarmSpec) -> Unit,
@@ -160,6 +162,26 @@ fun EditorScreen(
                         steps = (600 - 240) / 15 - 1,
                     )
                     Text(stringResource(R.string.editor_sleep_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+
+            if (advice != null && window.roundToInt() < advice.windowMinutes) {
+                Card(
+                    shape = MaterialTheme.shapes.medium,
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Column(Modifier.padding(16.dp)) {
+                        Text(stringResource(R.string.editor_advice_title), style = MaterialTheme.typography.titleSmall)
+                        Text(
+                            stringResource(R.string.editor_advice_text, advice.deadlineNights, advice.nights, advice.windowMinutes),
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(top = 4.dp),
+                        )
+                        TextButton(onClick = { window = advice.windowMinutes.toFloat() }) {
+                            Text(stringResource(R.string.editor_advice_apply, advice.windowMinutes))
+                        }
+                    }
                 }
             }
 

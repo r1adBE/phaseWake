@@ -112,4 +112,11 @@
     <string name="greeting_day">Bună ziua</string>
     <string name="greeting_evening">Bună seara</string>
     <string name="greeting_night">Noapte bună</string>
+    <string name="settings_clear_history">Șterge istoricul</string>
+    <string name="settings_clear_history_text">Șterge toate nopțile înregistrate pe telefon și pe ceas. Alarmele tale rămân.</string>
+    <string name="settings_clear_history_confirm">Șterge</string>
+    <string name="action_cancel">Anulează</string>
+    <string name="editor_advice_title">Sfat: o fereastră mai mare</string>
+    <string name="editor_advice_text">În %1$d din ultimele %2$d nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</string>
+    <string name="editor_advice_apply">Folosește %1$d min</string>
 </resources>

@@ -112,4 +112,11 @@
     <string name="greeting_day">你好</string>
     <string name="greeting_evening">晚安</string>
     <string name="greeting_night">晚安</string>
+    <string name="settings_clear_history">清除歷史記錄</string>
+    <string name="settings_clear_history_text">將刪除手機和手錶上記錄的所有夜晚資料。你的鬧鐘會保留。</string>
+    <string name="settings_clear_history_confirm">刪除</string>
+    <string name="action_cancel">取消</string>
+    <string name="editor_advice_title">提示：使用更大的視窗</string>
+    <string name="editor_advice_text">在最近 %2$d 個夜晚中，有 %1$d 個夜晚視窗內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</string>
+    <string name="editor_advice_apply">使用 %1$d 分鐘</string>
 </resources>
