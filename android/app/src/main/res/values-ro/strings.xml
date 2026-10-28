@@ -78,7 +78,7 @@
     <string name="settings_about">Despre</string>
     <string name="settings_open_source">Open source pe GitHub</string>
     <string name="settings_licenses">Licențe</string>
-    <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Versiunea %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>

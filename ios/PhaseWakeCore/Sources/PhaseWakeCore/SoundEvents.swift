@@ -63,6 +63,10 @@ public enum SoundEvents {
     public static let afterTarget: TimeInterval = 30 * 60
     /// Ohne Wecker in dieser Zeit endet die Aufnahme spätestens nach so langer Zeit.
     public static let maxRun: TimeInterval = 12 * 3600
+    /// Ohne Wecker in den nächsten 24 Std. startet die Vorgabe «für neue Nächte» ab dieser Stunde (Ortszeit).
+    public static let autoStartHour = 21
+    /// So weit voraus zählt ein Wecker für den automatischen Start.
+    public static let autoStartLookahead: TimeInterval = 24 * 3600
     /// Abtastrate der gespeicherten Ausschnitte.
     public static let sampleRate = 16_000
     public static let silenceDb = -140.0
@@ -73,6 +77,18 @@ public enum SoundEvents {
         let latest = start.addingTimeInterval(maxRun)
         if let nextTarget, nextTarget > start, nextTarget <= latest { return nextTarget.addingTimeInterval(afterTarget) }
         return latest
+    }
+
+    /// Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten darf:
+    /// ab der Bettzeit der kommenden Nacht (`Bedtime.bedtime` = Zielzeit des nächsten Weckers − Schlafziel)
+    /// bis zur Zielzeit. Liegt kein Wecker innerhalb von 24 Std. (oder keiner), ab 21 Uhr bis Mitternacht.
+    /// Davor startet sie nur, wenn der Nutzer sie selbst einschaltet. Identisch zu Kotlin `mayAutoStart`.
+    /// `nextTarget` = Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
+    public static func mayAutoStart(now: Date, nextTarget: Date?, goalMinutes: Int, calendar: Calendar) -> Bool {
+        if let nextTarget, nextTarget > now, nextTarget <= now.addingTimeInterval(autoStartLookahead) {
+            return now >= Bedtime.bedtime(nextAlarmTarget: nextTarget, goalMinutes: goalMinutes)
+        }
+        return calendar.component(.hour, from: now) >= autoStartHour
     }
 
     /// Art zu einer Bezeichnung eines Klassifikators, unabhängig von Gross-/Kleinschreibung: SoundAnalysis
@@ -133,6 +149,18 @@ public enum SoundEvents {
         clips.filter { $0.night == night }.sorted { $0.at < $1.at }
     }
 
+    /// Nachtdaten mit Ausschnitten, zu denen es keine aufgezeichnete Nacht gibt (z. B. Uhr nicht getragen):
+    /// Morgenbericht und Verlauf zeigen ihre Geräusche in einer eigenen Karte. Neueste zuerst, je Datum mit
+    /// dem Beginn des jüngsten Ausschnitts (zum Einordnen zwischen die Nächte). Identisch zu Kotlin.
+    public static func nightsWithoutRecord(_ clips: [SoundClip], recorded: Set<String>) -> [(night: String, last: Date)] {
+        var last: [String: Date] = [:]
+        for clip in clips where !recorded.contains(clip.night) {
+            last[clip.night] = Swift.max(last[clip.night] ?? clip.at, clip.at)
+        }
+        return last.map { (night: $0.key, last: $0.value) }
+            .sorted { $0.last != $1.last ? $0.last > $1.last : $0.night > $1.night }
+    }
+
     /// Nachtdatum eines Geräuschs (wie bei den Notizen).
     public static func nightDate(_ at: Date, calendar: Calendar) -> String { SleepNotes.nightDate(at, calendar: calendar) }
 
@@ -182,6 +210,8 @@ public enum SoundEvents {
 ///   einer Sekunde); erst ab 10 s Vorlauf wird erkannt.
 /// - Ein Geräusch beginnt, wenn der Pegel mindestens 500 ms am Stück über Grundrauschen + 12 dB liegt.
 ///   Beginn = erster dieser Blöcke.
+/// - Laut ist ein Block nur, wenn er zudem mindestens −50 dBFS erreicht: In einem sehr stillen Zimmer zählen
+///   leise Geräusche (Rascheln, Lüfter) nicht, auch wenn sie 12 dB über dem Grundrauschen liegen.
 /// - Ausschnitt: 2 s vor dem Beginn bis höchstens 10 s insgesamt; früher zu Ende, wenn es 2 s lang leise ist.
 /// - Das Geräusch dauert, bis es 30 s lang leise ist (Dauer = Beginn bis Ende des letzten lauten Blocks),
 ///   höchstens 10 Min. So gibt es höchstens einen Ausschnitt je 30 s, und langes Schnarchen zählt als ein
@@ -202,6 +232,8 @@ public struct SoundEventDetector: Sendable {
     public static let floorSeconds = 60
     public static let minFloorSeconds = 10
     public static let thresholdDb = 12.0
+    /// Absolute Untergrenze für einen lauten Block in dBFS (leiser zählt nie als Geräusch).
+    public static let minEventDb = -50.0
     public static let minLoudMs: Int64 = 500
     public static let preRollMs: Int64 = 2_000
     public static let maxClipMs: Int64 = 10_000
@@ -231,7 +263,7 @@ public struct SoundEventDetector: Sendable {
 
     public mutating func onFrame(atMs: Int64, levelDb: Double) -> [Action] {
         var actions: [Action] = []
-        let loud = threshold.map { levelDb > $0 } ?? false
+        let loud = (threshold.map { levelDb > $0 } ?? false) && levelDb >= Self.minEventDb
         let frameEnd = atMs + Self.frameMs
 
         if let onset = onsetMs {

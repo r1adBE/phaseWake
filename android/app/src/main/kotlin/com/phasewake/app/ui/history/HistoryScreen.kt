@@ -54,6 +54,7 @@ import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
+import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -109,6 +110,18 @@ fun HistoryScreen(
     val latestByDate = remember(nights) {
         nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
     }
+    // Geräusche ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): eigene Karte, nach Zeit zwischen die Nächte.
+    val soundsOnly = remember(soundClips, latestByDate) { SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys) }
+    val entries = remember(nights, soundsOnly) {
+        buildList<HistoryEntry> {
+            val pending = ArrayDeque(soundsOnly.map { HistoryEntry.Sounds(it.first, it.second) })
+            for (night in nights.asReversed()) {
+                while (pending.isNotEmpty() && pending.first().last.isAfter(night.wokeAt)) add(pending.removeFirst())
+                add(HistoryEntry.Night(night))
+            }
+            addAll(pending)
+        }
+    }
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -135,14 +148,23 @@ fun HistoryScreen(
                     }
                 }
             }
+            soundsOnly.forEach { (night, last) ->
+                item(key = "sounds@$night") { SoundsOnlyCard(HistoryEntry.Sounds(night, last), soundClips, soundFile, onDeleteClip, onDeleteNightClips) }
+            }
             return@LazyColumn
         }
         item(key = "stats") { Stats(nights) }
         weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes) } }
         trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
-        // Schlüssel wie im Verlauf: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
-        items(nights.asReversed(), key = { "${it.alarmId}@${it.windowStart.toEpochMilli()}" }) { night ->
+        items(entries, key = { it.key }) { entry ->
+            val night = when (entry) {
+                is HistoryEntry.Night -> entry.night
+                is HistoryEntry.Sounds -> {
+                    SoundsOnlyCard(entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem())
+                    return@items
+                }
+            }
             val date = SleepNotes.nightDate(night, ZoneId.systemDefault())
             NightCard(
                 night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
@@ -244,6 +266,50 @@ private fun NightCard(
             }
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
             SoundClipsSection(clips, soundFile, onDeleteClip, onDeleteClips)
+        }
+    }
+}
+
+/** Eintrag im Verlauf: eine aufgezeichnete Nacht oder nur Geräusche eines Nachtdatums. */
+private sealed interface HistoryEntry {
+    val key: String
+
+    // Schlüssel wie bisher: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
+    data class Night(val night: NightRecord) : HistoryEntry {
+        override val key: String get() = "${night.alarmId}@${night.windowStart.toEpochMilli()}"
+    }
+
+    /** [last] = Beginn des jüngsten Ausschnitts. */
+    data class Sounds(val night: LocalDate, val last: Instant) : HistoryEntry {
+        override val key: String get() = "sounds@$night"
+    }
+}
+
+/**
+ * Geräusche einer Nacht ohne aufgezeichnete Nacht: Datum (des jüngsten Ausschnitts, wie bei den
+ * Nächten das Weckdatum) und die Ausschnitte.
+ */
+@Composable
+private fun SoundsOnlyCard(
+    entry: HistoryEntry.Sounds,
+    soundClips: List<SoundClip>,
+    soundFile: (SoundClip) -> File?,
+    onDeleteClip: (SoundClip) -> Unit,
+    onDeleteNightClips: (LocalDate) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val night = entry.night
+    Card(
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text(
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(entry.last.atZone(ZoneId.systemDefault())),
+                style = MaterialTheme.typography.titleSmall,
+            )
+            SoundClipsSection(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) })
         }
     }
 }

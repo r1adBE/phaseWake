@@ -16,4 +16,5 @@
     <string name="check_watch_arm">手表上的闹钟已启用</string>
     <string name="check_watch_arm_problem">睡觉前请在你的 Apple Watch 上打开 Phase Wake。watchOS 只有在应用打开时才会启用闹钟。</string>
     <string name="night_unmeasured_apple">前 %1$d 分钟未测量——Apple Watch 只测量目标时间前的最后 %2$d 分钟。</string>
+    <string name="settings_licenses_text_apple">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。</string>
 </resources>

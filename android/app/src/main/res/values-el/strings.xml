@@ -77,7 +77,7 @@
     <string name="settings_about">Σχετικά</string>
     <string name="settings_open_source">Ανοιχτός κώδικας στο GitHub</string>
     <string name="settings_licenses">Άδειες χρήσης</string>
-    <string name="settings_licenses_text">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Έκδοση %1$s</string>
 
     <string name="duration_minutes">%1$d λ.</string>

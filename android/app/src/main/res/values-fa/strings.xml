@@ -77,7 +77,7 @@
     <string name="settings_about">دربارهٔ برنامه</string>
     <string name="settings_open_source">متن‌باز در GitHub</string>
     <string name="settings_licenses">مجوزها</string>
-    <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC.</string>
     <string name="settings_version">نسخهٔ %1$s</string>
 
     <string name="duration_minutes">%1$d دق</string>

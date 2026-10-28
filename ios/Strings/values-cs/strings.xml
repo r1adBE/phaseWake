@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Budík je v hodinkách aktivní</string>
     <string name="check_watch_arm_problem">Před spaním otevři Phase Wake na Apple Watch. watchOS aktivuje budík, jen když je aplikace otevřená.</string>
     <string name="night_unmeasured_apple">Prvních %1$d min neměřeno – Apple Watch měří jen posledních %2$d min před cílovým časem.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS.</string>
 </resources>

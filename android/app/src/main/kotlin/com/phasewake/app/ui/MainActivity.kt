@@ -72,6 +72,7 @@ import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
+import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.sounds.SoundRecorderService
 import com.phasewake.app.core.Regularity
@@ -225,9 +226,17 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         else WeeklySummary.of(nights.orEmpty(), sleeps, notes, zone, sleepGoal, WeeklySummary.weekEnd(today)).takeIf { it.hasData }
     }
 
-    // Geräusche aufnehmen: für diese Nacht gewählt, sonst die Vorgabe aus den Einstellungen.
+    // Geräusche aufnehmen: für diese Nacht gewählt, sonst die Vorgabe aus den Einstellungen – diese aber
+    // erst ab der Bettzeit der kommenden Nacht (ohne Wecker ab 21 Uhr); davor nur von Hand. Bei jedem
+    // Fortsetzen (checkRun) neu beurteilt.
     fun tonight() = SleepNotes.nightDate(Instant.now(), ZoneId.systemDefault())
-    val soundRecWanted = soundRecChoice?.takeIf { it.first == tonight() }?.second ?: soundRecDefault
+    val soundRecChosen = soundRecChoice?.takeIf { it.first == tonight() }?.second
+    val soundRecAuto = remember(soundRecDefault, alarms, sleepGoal, checkRun) {
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        soundRecDefault && SoundEvents.mayAutoStart(now, AlarmSchedule.earliestPlan(alarms, now, zone)?.target, sleepGoal, zone)
+    }
+    val soundRecWanted = soundRecChosen ?: soundRecAuto
     var micDenied by rememberSaveable { mutableStateOf(false) }
     fun hasMic() = context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == android.content.pm.PackageManager.PERMISSION_GRANTED
     fun startRecording() = SoundRecorderService.start(context)
@@ -265,7 +274,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         healthCheck++
         onPauseOrDispose { }
     }
-    // Aufnahme für diese Nacht gewünscht, aber (noch) nicht gestartet: beim Öffnen am Abend starten.
+    // Aufnahme für diese Nacht gewünscht, aber (noch) nicht gestartet: beim Öffnen starten – selbst
+    // eingeschaltet am Abend (bis zum Weckfenster), nur die Vorgabe ab der Bettzeit ([soundRecAuto]).
     // Nur sichtbar (Mikrofon-Dienst ab Android 14 nur aus der sichtbaren App) und mit Mikrofon-Recht.
     val lifecycleOwner = LocalLifecycleOwner.current
     LaunchedEffect(soundRecWanted, recording, alarms, checkRun) {
@@ -273,7 +283,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         if (!lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return@LaunchedEffect
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        if (SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(alarms, now, zone)?.windowStart)) startRecording()
+        if (soundRecChosen != true || SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(alarms, now, zone)?.windowStart)) startRecording()
     }
     // Aus dem Wochenrückblick: einmal zum Verlauf.
     var openedHistory by rememberSaveable { mutableStateOf(false) }

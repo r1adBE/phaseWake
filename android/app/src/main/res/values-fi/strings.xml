@@ -77,7 +77,7 @@
     <string name="settings_about">Tietoja</string>
     <string name="settings_open_source">Avoin lähdekoodi GitHubissa</string>
     <string name="settings_licenses">Lisenssit</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Versio %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>

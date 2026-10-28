@@ -81,7 +81,7 @@
     <string name="settings_about">حول</string>
     <string name="settings_open_source">مفتوح المصدر على GitHub</string>
     <string name="settings_licenses">التراخيص</string>
-    <string name="settings_licenses_text">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: MediaPipe Tasks Audio ونموذج YAMNet، Apache License 2.0، © Google LLC.</string>
     <string name="settings_version">الإصدار %1$s</string>
 
     <string name="duration_minutes">%1$d د</string>

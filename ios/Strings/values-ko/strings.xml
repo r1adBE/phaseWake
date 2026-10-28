@@ -16,4 +16,5 @@
     <string name="check_watch_arm">워치에서 알람 활성화됨</string>
     <string name="check_watch_arm_problem">잠들기 전에 Apple Watch에서 Phase Wake를 열어 주세요. watchOS는 앱이 열려 있는 동안에만 알람을 활성화해요.</string>
     <string name="night_unmeasured_apple">처음 %1$d분은 측정되지 않음 – Apple Watch는 목표 전 마지막 %2$d분만 측정합니다.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: iOS에 내장된 Apple의 SoundAnalysis.</string>
 </resources>

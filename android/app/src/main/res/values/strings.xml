@@ -80,7 +80,7 @@
     <string name="settings_about">About</string>
     <string name="settings_open_source">Open source on GitHub</string>
     <string name="settings_licenses">Licenses</string>
-    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Version %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -315,6 +315,6 @@
     <string name="wake_task_delete">Delete digit</string>
     <string name="wake_task_check">OK</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am" tools:override="true">AM</string>
-    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true" tools:ignore="UnusedResources">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true" tools:ignore="UnusedResources">PM</string>
 </resources>

@@ -79,7 +79,7 @@
     <string name="settings_about">O aplikaci</string>
     <string name="settings_open_source">Open source na GitHub</string>
     <string name="settings_licenses">Licence</string>
-    <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Verze %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>

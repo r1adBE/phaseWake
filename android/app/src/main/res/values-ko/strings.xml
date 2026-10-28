@@ -76,7 +76,7 @@
     <string name="settings_about">정보</string>
     <string name="settings_open_source">GitHub의 오픈 소스</string>
     <string name="settings_licenses">라이선스</string>
-    <string name="settings_licenses_text">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">버전 %1$s</string>
 
     <string name="duration_minutes">%1$d분</string>

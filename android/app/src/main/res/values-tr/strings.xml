@@ -77,7 +77,7 @@
     <string name="settings_about">Hakkında</string>
     <string name="settings_open_source">GitHub\'da açık kaynak</string>
     <string name="settings_licenses">Lisanslar</string>
-    <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Sürüm %1$s</string>
 
     <string name="duration_minutes">%1$d dk</string>

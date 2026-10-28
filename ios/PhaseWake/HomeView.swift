@@ -55,6 +55,18 @@ struct HomeView: View {
                                         hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights.map(measuredPart))
                                     ) { model.setFeeling($0, for: night) }
                                 }
+                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
+                                // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
+                                let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .current)] } ?? [])
+                                if let sounds = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded).first,
+                                   context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,
+                                   !(evening && tonight == sounds.night) {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text(L("home_morning")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                                        NightSoundsButton(night: sounds.night, title: sounds.last.formatted(date: .abbreviated, time: .omitted))
+                                    }
+                                    .card()
+                                }
                             }
                         }
                         if !model.alarms.isEmpty {
@@ -101,7 +113,7 @@ struct HomeView: View {
                 // Bei jedem Öffnen und danach jede halbe Minute prüfen.
                 while scenePhase == .active, !Task.isCancelled {
                     failedChecks = await NightCheck.collect()
-                    // Vorgabe «Geräusche aufnehmen» an: abends von selbst starten.
+                    // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst starten.
                     await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))
                 }

@@ -178,6 +178,28 @@ fun HomeScreen(
                 )
             }
         }
+        // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche. Nicht
+        // während der Aufnahme und nicht für die Nacht, die gerade läuft.
+        val soundsMorning = SoundEvents.nightsWithoutRecord(soundClips, listOfNotNull(lastNight?.let { SleepNotes.nightDate(it, zone) }))
+            .firstOrNull()
+            ?.takeIf { (night, last) ->
+                Duration.between(last, now) < MORNING && soundRec?.recording != true &&
+                    !(SleepNotes.entryVisible(now, zone, plan?.windowStart) && SleepNotes.nightDate(now, zone) == night)
+            }
+        soundsMorning?.let { (night, _) ->
+            item(key = "soundsMorning") {
+                Card(
+                    shape = MaterialTheme.shapes.medium,
+                    colors = CardDefaults.cardColors(containerColor = cardColor()),
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                ) {
+                    Column(Modifier.padding(16.dp)) {
+                        Text(stringResource(R.string.home_morning), style = MaterialTheme.typography.titleSmall)
+                        SoundClipsSection(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) })
+                    }
+                }
+            }
+        }
         if (alarms.isNotEmpty()) {
             item(key = "header") {
                 Text(

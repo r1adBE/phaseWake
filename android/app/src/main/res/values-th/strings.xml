@@ -76,7 +76,7 @@
     <string name="settings_about">เกี่ยวกับ</string>
     <string name="settings_open_source">โอเพนซอร์สบน GitHub</string>
     <string name="settings_licenses">สัญญาอนุญาต</string>
-    <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors</string>
+    <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC</string>
     <string name="settings_version">เวอร์ชัน %1$s</string>
 
     <string name="duration_minutes">%1$d นาที</string>

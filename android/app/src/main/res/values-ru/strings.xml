@@ -79,7 +79,7 @@
     <string name="settings_about">О приложении</string>
     <string name="settings_open_source">Открытый код на GitHub</string>
     <string name="settings_licenses">Лицензии</string>
-    <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Версия %1$s</string>
 
     <string name="duration_minutes">%1$d мин</string>

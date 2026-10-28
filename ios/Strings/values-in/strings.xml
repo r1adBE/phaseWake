@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Alarm aktif di jam tangan</string>
     <string name="check_watch_arm_problem">Buka Phase Wake di Apple Watch-mu sebelum tidur. watchOS hanya mengaktifkan alarm selama aplikasi terbuka.</string>
     <string name="night_unmeasured_apple">%1$d mnt pertama tidak diukur – Apple Watch hanya mengukur %2$d mnt terakhir sebelum target.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: SoundAnalysis dari Apple, bawaan iOS.</string>
 </resources>

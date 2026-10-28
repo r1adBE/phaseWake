@@ -16,4 +16,5 @@
     <string name="check_watch_arm">ウォッチでアラーム有効</string>
     <string name="check_watch_arm_problem">眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。</string>
     <string name="night_unmeasured_apple">最初の%1$d分は未計測 – Apple Watchが計測するのは目標時刻前の最後の%2$d分だけです。</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。</string>
 </resources>

@@ -46804,193 +46804,389 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors."
+            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: MediaPipe Tasks Audio ونموذج YAMNet، Apache License 2.0، © Google LLC."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: MediaPipe Tasks Audio και το μοντέλο YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors."
+            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : MediaPipe Tasks Audio et le modèle YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।"
+            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: MediaPipe Tasks Audio और YAMNet मॉडल, Apache License 2.0, © Google LLC।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。"
+            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: MediaPipe Tasks Audio 및 YAMNet 모델, Apache License 2.0, © Google LLC."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: MediaPipe Tasks Audio e o modelo YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: MediaPipe Tasks Audio och YAMNet-modellen, Apache License 2.0, © Google LLC."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors"
+            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: MediaPipe Tasks Audio і модель YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors."
+            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。"
+            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。"
+            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：MediaPipe Tasks Audio 與 YAMNet 模型，Apache License 2.0，© Google LLC。"
+          }
+        }
+      }
+    },
+    "settings_licenses_text_apple": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: SoundAnalysis من Apple، مدمج في iOS."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: SoundAnalysis fra Apple, indbygget i iOS."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: SoundAnalysis von Apple, in iOS eingebaut."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: SoundAnalysis της Apple, ενσωματωμένο στο iOS."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: SoundAnalysis by Apple, built into iOS."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: SoundAnalysis de Apple, integrado en iOS."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: Applen SoundAnalysis, osa iOS:ää."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : SoundAnalysis d’Apple, intégré à iOS."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: SoundAnalysis של Apple, מובנה ב-iOS."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: Apple का SoundAnalysis, iOS में अंतर्निहित।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: SoundAnalysis dari Apple, bawaan iOS."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: SoundAnalysis di Apple, integrato in iOS."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: iOS에 내장된 Apple의 SoundAnalysis."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: SoundAnalysis daripada Apple, terbina dalam iOS."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgjenkjenning: SoundAnalysis fra Apple, innebygd i iOS."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: SoundAnalysis firmy Apple, wbudowany w iOS."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: SoundAnalysis da Apple, integrado ao iOS."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: SoundAnalysis da Apple, integrado no iOS."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: SoundAnalysis de la Apple, integrat în iOS."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: SoundAnalysis от Apple, встроен в iOS."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: SoundAnalysis från Apple, inbyggt i iOS."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: SoundAnalysis ของ Apple ซึ่งมีอยู่ใน iOS"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: SoundAnalysis від Apple, вбудовано в iOS."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: SoundAnalysis của Apple, tích hợp sẵn trong iOS."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：Apple 的 SoundAnalysis，內建於 iOS。"
           }
         }
       }

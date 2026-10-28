@@ -76,7 +76,7 @@
     <string name="settings_about">Giới thiệu</string>
     <string name="settings_open_source">Mã nguồn mở trên GitHub</string>
     <string name="settings_licenses">Giấy phép</string>
-    <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Phiên bản %1$s</string>
 
     <string name="duration_minutes">%1$d phút</string>

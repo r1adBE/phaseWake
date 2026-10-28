@@ -78,7 +78,7 @@
     <string name="settings_about">אודות</string>
     <string name="settings_open_source">קוד פתוח ב-GitHub</string>
     <string name="settings_licenses">רישיונות</string>
-    <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">גרסה %1$s</string>
 
     <string name="duration_minutes">%1$d דק׳</string>

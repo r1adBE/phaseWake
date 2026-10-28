@@ -77,7 +77,7 @@
     <string name="settings_about">Névjegy</string>
     <string name="settings_open_source">Nyílt forráskód a GitHubon</string>
     <string name="settings_licenses">Licencek</string>
-    <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Verzió: %1$s</string>
 
     <string name="duration_minutes">%1$d p</string>

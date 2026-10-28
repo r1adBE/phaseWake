@@ -76,7 +76,7 @@
     <string name="settings_about">アプリについて</string>
     <string name="settings_open_source">GitHubでオープンソース公開中</string>
     <string name="settings_licenses">ライセンス</string>
-    <string name="settings_licenses_text">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。</string>
+    <string name="settings_licenses_text">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: MediaPipe Tasks Audio と YAMNet モデル、Apache License 2.0、© Google LLC。</string>
     <string name="settings_version">バージョン %1$s</string>
 
     <string name="duration_minutes">%1$d分</string>

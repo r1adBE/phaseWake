@@ -58,7 +58,7 @@ struct SettingsView: View {
                         Link(L("settings_support"), destination: URL(string: "https://github.com/sponsors/r1adBE")!)
                         Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)
                     }
-                    Text(L("settings_licenses_text")).font(.footnote).foregroundStyle(.secondary)
+                    Text(L("settings_licenses_text_apple")).font(.footnote).foregroundStyle(.secondary)
                     Text(L("settings_version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""))
                         .font(.footnote).foregroundStyle(.secondary)
                 }

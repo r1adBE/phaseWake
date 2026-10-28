@@ -76,7 +76,7 @@
     <string name="settings_about">关于</string>
     <string name="settings_open_source">GitHub 上的开源项目</string>
     <string name="settings_licenses">许可证</string>
-    <string name="settings_licenses_text">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。</string>
+    <string name="settings_licenses_text">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：MediaPipe Tasks Audio 和 YAMNet 模型，Apache License 2.0，© Google LLC。</string>
     <string name="settings_version">版本 %1$s</string>
 
     <string name="duration_minutes">%1$d 分钟</string>

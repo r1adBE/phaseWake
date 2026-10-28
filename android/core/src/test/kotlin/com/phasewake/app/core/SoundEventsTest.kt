@@ -87,6 +87,55 @@ class SoundEventsTest {
     }
 
     @Test
+    fun quietSoundsBelowMinus50DbAreIgnored() {
+        // Sehr stilles Zimmer (−70 dB): −55 dB liegt 15 dB darüber, ist aber leiser als −50 dBFS.
+        assertEquals(emptyList(), run(120_000, listOf(40_000L until 43_000L), quiet = -70.0, loudDb = -55.0))
+        // −50 dB zählt (Grenze eingeschlossen).
+        val actions = run(120_000, listOf(40_000L until 43_000L), quiet = -70.0, loudDb = -50.0).map { it.second }
+        assertEquals(SoundEventDetector.Action.EventEnd(40_000, 3_000, -50.0), actions.last())
+    }
+
+    @Test
+    fun autoStartFromBedtimeOfTheComingNight() {
+        val target = at("2026-10-28T06:30")
+        // Schlafziel 7,5 Std.: Bettzeit 23:00.
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T22:59"), target, 450, zone))
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T23:00"), target, 450, zone))
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-28T02:00"), target, 450, zone))
+        // Ab 21 Uhr gilt mit Wecker die Bettzeit, nicht 21 Uhr.
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T21:30"), target, 450, zone))
+        // Nach der Zielzeit zählt der nächste Wecker (hier am Abend darauf noch vor der Bettzeit).
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-28T07:00"), at("2026-10-29T06:30"), 450, zone))
+    }
+
+    @Test
+    fun autoStartWithoutAlarmFrom21() {
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T20:59"), null, 450, zone))
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T21:00"), null, 450, zone))
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T23:59"), null, 450, zone))
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-28T00:30"), null, 450, zone))
+        // Wecker erst in mehr als 24 Std.: wie ohne Wecker.
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T21:30"), at("2026-10-29T06:30"), 450, zone))
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T20:00"), at("2026-10-29T06:30"), 450, zone))
+    }
+
+    @Test
+    fun nightsWithoutRecordNewestFirst() {
+        fun clip(night: LocalDate, time: String, file: String) = SoundClip(night, at(time), SoundType.SNORE, 1_000, -30, file)
+        val clips = listOf(
+            clip(night, "2026-10-27T23:00", "a.m4a"),
+            clip(night, "2026-10-28T03:00", "b.m4a"),
+            clip(night.minusDays(1), "2026-10-27T01:00", "c.m4a"),
+            clip(night.minusDays(2), "2026-10-26T02:00", "d.m4a"),
+        )
+        assertEquals(
+            listOf(night to at("2026-10-28T03:00"), night.minusDays(2) to at("2026-10-26T02:00")),
+            SoundEvents.nightsWithoutRecord(clips, listOf(night.minusDays(1))),
+        )
+        assertEquals(emptyList(), SoundEvents.nightsWithoutRecord(clips, listOf(night, night.minusDays(1), night.minusDays(2))))
+    }
+
+    @Test
     fun labelsMapToTypes() {
         assertEquals(SoundType.SNORE, SoundEvents.typeOf("Snoring"))
         assertEquals(SoundType.SNORE, SoundEvents.typeOf("snoring"))

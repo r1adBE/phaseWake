@@ -76,7 +76,7 @@
     <string name="settings_about">Perihal</string>
     <string name="settings_open_source">Sumber terbuka di GitHub</string>
     <string name="settings_licenses">Lesen</string>
-    <string name="settings_licenses_text">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Versi %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>

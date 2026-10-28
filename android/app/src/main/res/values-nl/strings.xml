@@ -77,7 +77,7 @@
     <string name="settings_about">Over</string>
     <string name="settings_open_source">Open source op GitHub</string>
     <string name="settings_licenses">Licenties</string>
-    <string name="settings_licenses_text">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: MediaPipe Tasks Audio en het YAMNet-model, Apache License 2.0, © Google LLC.</string>
     <string name="settings_version">Versie %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>

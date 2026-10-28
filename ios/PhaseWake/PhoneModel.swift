@@ -253,14 +253,20 @@ extension PhoneModel {
         }
     }
 
-    /// Vorgabe «an»: Am Abend startet die Aufnahme beim Öffnen der App von selbst (nur mit erteiltem
-    /// Mikrofon; ein Stopp gilt für die ganze Nacht).
+    /// Startet die Aufnahme beim Öffnen der App von selbst (nur mit erteiltem Mikrofon; ein Stopp gilt für
+    /// die ganze Nacht). Selbst für diese Nacht eingeschaltet: wieder starten, solange der Abend läuft
+    /// (bis zum Weckfenster). Nur die Vorgabe «an»: erst ab der Bettzeit der kommenden Nacht bzw. ohne
+    /// Wecker ab 21 Uhr (`SoundEvents.mayAutoStart`); davor nur, wenn der Nutzer selbst einschaltet.
     func autoStartSoundRec(now: Date = Date()) async {
         guard !recorder.running, recorder.permissionGranted else { return }
         let plan = AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current)
-        guard SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
         let night = SleepNotes.nightDate(now, calendar: .current)
-        guard soundRecEnabled(night: night) else { return }
+        if let choice = soundRecChoice, choice.night == night {
+            guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
+        } else {
+            guard soundRecDefault,
+                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .current) else { return }
+        }
         await recorder.start(nextAlarmTarget: plan?.target)
     }
 

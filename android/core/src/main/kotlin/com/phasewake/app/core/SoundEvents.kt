@@ -58,6 +58,12 @@ object SoundEvents {
     /** Ohne Wecker in dieser Zeit endet die Aufnahme spätestens nach so langer Zeit. */
     val MAX_RUN: Duration = Duration.ofHours(12)
 
+    /** Ohne Wecker in den nächsten [AUTO_START_LOOKAHEAD] startet die Vorgabe «für neue Nächte» ab dieser Stunde (Ortszeit). */
+    const val AUTO_START_HOUR: Int = 21
+
+    /** So weit voraus zählt ein Wecker für den automatischen Start. */
+    val AUTO_START_LOOKAHEAD: Duration = Duration.ofHours(24)
+
     /** Abtastrate der Aufnahme (auch die von YAMNet). */
     const val SAMPLE_RATE: Int = 16_000
 
@@ -70,6 +76,22 @@ object SoundEvents {
     fun recordingEnd(start: Instant, nextTarget: Instant?): Instant {
         val latest = start.plus(MAX_RUN)
         return if (nextTarget != null && nextTarget.isAfter(start) && !nextTarget.isAfter(latest)) nextTarget.plus(AFTER_TARGET) else latest
+    }
+
+    /**
+     * Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten
+     * darf: ab der Bettzeit der kommenden Nacht ([Bedtime.bedtime] = Zielzeit des nächsten Weckers −
+     * Schlafziel) bis zur Zielzeit. Liegt kein Wecker innerhalb von [AUTO_START_LOOKAHEAD] (oder
+     * keiner), ab [AUTO_START_HOUR] Uhr bis Mitternacht. Davor startet sie nur, wenn der Nutzer sie
+     * selbst einschaltet.
+     *
+     * @param nextTarget Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
+     */
+    fun mayAutoStart(now: Instant, nextTarget: Instant?, goalMinutes: Int, zone: ZoneId): Boolean {
+        if (nextTarget != null && nextTarget.isAfter(now) && !nextTarget.isAfter(now.plus(AUTO_START_LOOKAHEAD))) {
+            return !now.isBefore(Bedtime.bedtime(nextTarget, goalMinutes))
+        }
+        return now.atZone(zone).hour >= AUTO_START_HOUR
     }
 
     /**
@@ -134,6 +156,18 @@ object SoundEvents {
     /** Die Ausschnitte einer Nacht, älteste zuerst. */
     fun forNight(clips: List<SoundClip>, night: LocalDate): List<SoundClip> = clips.filter { it.night == night }.sortedBy { it.at }
 
+    /**
+     * Nachtdaten mit Ausschnitten, zu denen es keine aufgezeichnete Nacht gibt (z. B. Uhr nicht getragen):
+     * Morgenbericht und Verlauf zeigen ihre Geräusche in einer eigenen Karte. Neueste zuerst, je Datum
+     * mit dem Beginn des jüngsten Ausschnitts (zum Einordnen zwischen die Nächte).
+     */
+    fun nightsWithoutRecord(clips: List<SoundClip>, recorded: Collection<LocalDate>): List<Pair<LocalDate, Instant>> {
+        val known = recorded.toSet()
+        return clips.filter { it.night !in known }.groupBy { it.night }
+            .map { (night, list) -> night to list.maxOf { it.at } }
+            .sortedWith(compareByDescending<Pair<LocalDate, Instant>> { it.second }.thenByDescending { it.first })
+    }
+
     /** Nachtdatum eines Geräuschs (wie bei den Notizen). */
     fun nightDate(at: Instant, zone: ZoneId): LocalDate = SleepNotes.nightDate(at, zone)
 
@@ -175,6 +209,9 @@ object SoundEvents {
  *   Blockpegel einer Sekunde); erst ab [MIN_FLOOR_SECONDS] s Vorlauf wird erkannt.
  * - Ein Geräusch beginnt, wenn der Pegel mindestens [MIN_LOUD_MS] ms am Stück über Grundrauschen +
  *   [THRESHOLD_DB] liegt. Beginn = erster dieser Blöcke.
+ * - Laut ist ein Block nur, wenn er zudem mindestens [MIN_EVENT_DB] dBFS erreicht: In einem sehr
+ *   stillen Zimmer zählen leise Geräusche (Rascheln, Lüfter) nicht, auch wenn sie 12 dB über dem
+ *   Grundrauschen liegen.
  * - Ausschnitt: [PRE_ROLL_MS] ms vor dem Beginn bis höchstens [MAX_CLIP_MS] ms insgesamt; früher zu
  *   Ende, wenn es [CLIP_TAIL_MS] ms lang leise ist.
  * - Das Geräusch dauert, bis es [EVENT_GAP_MS] ms lang leise ist (Dauer = Beginn bis Ende des letzten
@@ -217,7 +254,7 @@ class SoundEventDetector {
     fun onFrame(atMs: Long, levelDb: Double): List<Action> {
         val actions = mutableListOf<Action>()
         val limit = threshold
-        val loud = limit != null && levelDb > limit
+        val loud = limit != null && levelDb > limit && levelDb >= MIN_EVENT_DB
         val frameEnd = atMs + FRAME_MS
 
         val onset = onsetMs
@@ -298,6 +335,9 @@ class SoundEventDetector {
         const val FLOOR_SECONDS: Int = 60
         const val MIN_FLOOR_SECONDS: Int = 10
         const val THRESHOLD_DB: Double = 12.0
+
+        /** Absolute Untergrenze für einen lauten Block in dBFS (leiser zählt nie als Geräusch). */
+        const val MIN_EVENT_DB: Double = -50.0
         const val MIN_LOUD_MS: Long = 500
         const val PRE_ROLL_MS: Long = 2_000
         const val MAX_CLIP_MS: Long = 10_000
