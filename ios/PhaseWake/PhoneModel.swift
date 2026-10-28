@@ -15,6 +15,9 @@ final class PhoneModel {
     private(set) var nights: [NightRecord] = []
     /// Zeitpunkt, zu dem die Uhr zuletzt geweckt hat – der Nachttisch-Modus holt dann das Licht nach.
     private(set) var lastRing: Date?
+    /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
+    private(set) var watchArmedTarget: Date?
+    private(set) var watchReported = false
 
     private init() {
         alarms = storage.snapshot().alarms
@@ -52,6 +55,11 @@ final class PhoneModel {
     }
 
     func watchRang() { lastRing = Date() }
+
+    func watchArmed(_ target: Date?) {
+        watchArmedTarget = target
+        watchReported = true
+    }
 
     func clearHistory() {
         storage.clearNights()

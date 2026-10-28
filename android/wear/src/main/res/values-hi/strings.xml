@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">रोकने के लिए दबाए रखो</string>
     <string name="ring_snooze">%1$d मि. · बाकी: %2$d</string>
     <string name="ring_snoozed_until">%1$s तक स्नूज़</string>
-    <string name="ring_stop_now">अलार्म बंद करो</string>
 
     <string name="home_no_alarm">कोई अलार्म नहीं</string>
     <string name="home_no_alarm_hint">फ़ोन पर Phase Wake में अलार्म लगाओ।</string>

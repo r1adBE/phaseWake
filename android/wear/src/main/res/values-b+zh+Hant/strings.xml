@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">長按停止</string>
     <string name="ring_snooze">%1$d 分鐘 · 剩 %2$d 次</string>
     <string name="ring_snoozed_until">貪睡至 %1$s</string>
-    <string name="ring_stop_now">關閉鬧鐘</string>
 
     <string name="home_no_alarm">未設定鬧鐘</string>
     <string name="home_no_alarm_hint">請在手機上的 Phase Wake 設定鬧鐘。</string>

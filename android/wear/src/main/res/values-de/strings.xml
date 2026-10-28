@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Halten zum Stoppen</string>
     <string name="ring_snooze">%1$d Min · %2$d übrig</string>
     <string name="ring_snoozed_until">Schlummern bis %1$s</string>
-    <string name="ring_stop_now">Wecker beenden</string>
 
     <string name="home_no_alarm">Kein Wecker gestellt</string>
     <string name="home_no_alarm_hint">Stelle Wecker in Phase Wake auf dem Handy.</string>

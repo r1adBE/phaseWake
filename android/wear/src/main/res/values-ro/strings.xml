@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
     <string name="ring_snooze">%1$d min · %2$d rămase</string>
     <string name="ring_snoozed_until">Amânat până la %1$s</string>
-    <string name="ring_stop_now">Oprește alarma</string>
 
     <string name="home_no_alarm">Nicio alarmă setată</string>
     <string name="home_no_alarm_hint">Setează alarmele în Phase Wake pe telefon.</string>

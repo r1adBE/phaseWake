@@ -20,9 +20,15 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         ])
     }
 
+    /// Sofort, wenn die Uhr erreichbar ist; sonst zugestellt, sobald sie es wieder ist.
     func send(command: String) {
-        guard WCSession.default.activationState == .activated, WCSession.default.isReachable else { return }
-        WCSession.default.sendMessage([SyncKeys.command: command], replyHandler: nil)
+        guard WCSession.default.activationState == .activated else { return }
+        let payload: [String: Any] = [SyncKeys.command: command]
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
+        } else {
+            WCSession.default.transferUserInfo(payload)
+        }
     }
 
     // MARK: WCSessionDelegate
@@ -45,8 +51,17 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+        if userInfo[SyncKeys.command] != nil {
+            // Befehl, der die Uhr nicht sofort erreichen konnte und nachgeliefert wird.
+            self.session(session, didReceiveMessage: userInfo)
+            return
+        }
         guard let text = userInfo[SyncKeys.night] as? String, let night = try? Codec.decodeNight(text) else { return }
-        Task { @MainActor in PhoneModel.shared.add(night: night) }
+        Task { @MainActor in
+            PhoneModel.shared.add(night: night)
+            // Die Uhr hat geweckt: Sicherung dieser Nacht aussetzen (falls «ring» verloren ging).
+            await PhoneModel.shared.backup.watchHandled(alarmId: night.alarmId, target: night.target)
+        }
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
@@ -58,13 +73,19 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             case SyncKeys.ring:
                 model.watchRang()
                 await model.backup.ringNow(alarm: model.alarms.first { $0.id == alarmId })
-            case SyncKeys.stop: await model.backup.stopRinging()
+            case SyncKeys.stop:
+                await model.backup.stopRinging()
+                await model.backup.watchHandled(alarmId: nil, target: nil)
             default: break
             }
         }
     }
 
     private func receive(context: [String: Any]) {
+        if let armed = context[SyncKeys.armedTarget] as? Int64 {
+            let date = armed > 0 ? Date(timeIntervalSince1970: Double(armed) / 1000) : nil
+            Task { @MainActor in PhoneModel.shared.watchArmed(date) }
+        }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,
               let alarms = try? Codec.decodeAlarms(text) else { return }

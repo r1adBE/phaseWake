@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
     <string name="ring_snooze">%1$d dk · kalan: %2$d</string>
     <string name="ring_snoozed_until">Erteleme sonu: %1$s</string>
-    <string name="ring_stop_now">Alarmı durdur</string>
 
     <string name="home_no_alarm">Alarm yok</string>
     <string name="home_no_alarm_hint">Alarmları telefonundaki Phase Wake uygulamasından kur.</string>

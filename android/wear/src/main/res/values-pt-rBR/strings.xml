@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Segure para parar</string>
     <string name="ring_snooze">%1$d min · restam %2$d</string>
     <string name="ring_snoozed_until">Soneca até %1$s</string>
-    <string name="ring_stop_now">Parar alarme</string>
 
     <string name="home_no_alarm">Nenhum alarme</string>
     <string name="home_no_alarm_hint">Defina alarmes no Phase Wake do celular.</string>

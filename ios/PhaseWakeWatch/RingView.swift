@@ -39,6 +39,7 @@ struct RingView: View {
         case .ringing(let reason, let snoozesLeft):
             Text(L("ring_greeting")).font(Fonts.manrope(18, .bold, relativeTo: .title3))
             Text(L(reasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
+            Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
             if snoozesLeft > 0 {
                 Button(L("ring_snooze", Snooze.minutes, snoozesLeft)) { alarm.snooze() }
                     .tint(Brand.deep)
@@ -47,7 +48,8 @@ struct RingView: View {
             Text(L("ring_snoozed_until", Format.time(until)))
                 .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 .multilineTextAlignment(.center)
-            Button(L("ring_stop_now")) { alarm.dismiss() }.tint(Brand.deep)
+            // Beenden auch hier nur durch Halten (Punkt oben): ein Tipp im Halbschlaf beendet nicht die Nacht.
+            Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
         default:
             EmptyView()
         }

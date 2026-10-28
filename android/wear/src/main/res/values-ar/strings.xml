@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">ضغط مطوّل للإيقاف</string>
     <string name="ring_snooze">%1$d د · المتبقي %2$d</string>
     <string name="ring_snoozed_until">غفوة حتى %1$s</string>
-    <string name="ring_stop_now">إيقاف المنبّه</string>
 
     <string name="home_no_alarm">لا منبّه مضبوط</string>
     <string name="home_no_alarm_hint">اضبطوا المنبّهات في Phase Wake على هاتفكم.</string>

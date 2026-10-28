@@ -17,7 +17,6 @@
     <string name="ring_hold_to_stop">Hold to stop</string>
     <string name="ring_snooze">%1$d min · %2$d left</string>
     <string name="ring_snoozed_until">Snoozing until %1$s</string>
-    <string name="ring_stop_now">Stop alarm</string>
 
     <string name="home_no_alarm">No alarm set</string>
     <string name="home_no_alarm_hint">Set alarms in Phase Wake on your phone.</string>

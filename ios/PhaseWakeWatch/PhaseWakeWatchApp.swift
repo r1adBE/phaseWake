@@ -23,8 +23,9 @@ final class AppDelegate: NSObject, WKApplicationDelegate {
         WatchConnectivityBridge.shared.activate()
     }
 
+    /// Der Delegate muss gesetzt sein, bevor diese Methode zurückkehrt; sonst beendet das System die Sitzung.
     func handle(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
-        Task { @MainActor in SmartAlarm.shared.adopt(extendedRuntimeSession) }
+        MainActor.assumeIsolated { SmartAlarm.shared.adopt(extendedRuntimeSession) }
     }
 }
 

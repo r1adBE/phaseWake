@@ -61,7 +61,7 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(night.epochs, [Epoch(motion: 0.000213, heartRate: 52), Epoch(motion: nil, heartRate: nil)])
     }
 
-    func testBrokenInput() {
+    func testBrokenInput() throws {
         XCTAssertThrowsError(try Codec.decodeAlarms(""))
         // Kaputte Zeilen fallen einzeln weg (wie Kotlin).
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"), [])

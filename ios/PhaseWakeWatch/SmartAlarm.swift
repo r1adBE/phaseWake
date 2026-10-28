@@ -2,6 +2,7 @@ import CoreMotion
 import HealthKit
 import Observation
 import PhaseWakeCore
+import UserNotifications
 import WatchKit
 
 /// Führt eine Weck-Nacht auf der Apple Watch durch – Gegenstück zum `WakeService` auf Wear OS.
@@ -9,6 +10,12 @@ import WatchKit
 /// Nutzt die Sitzungsart «Smart Alarm» (`WKExtendedRuntimeSession`): Sie wird zum Fensterbeginn
 /// vom System gestartet, darf im Hintergrund Bewegung und Puls lesen und dauert höchstens 30 Minuten.
 /// Gemessen wird wie auf Android (Regel in docs/PHASENERKENNUNG.md).
+///
+/// Grenzen von watchOS, die hier abgefangen werden:
+/// - Planen geht nur bei aktiver App und höchstens 36 Stunden im Voraus. Sonst wartet der Plan
+///   (`waiting`), bis die App das nächste Mal offen ist; das iPhone zeigt das im Nacht-Check.
+/// - Lehnt das System die Sitzung ab oder bricht sie ab, weckt eine lokale Mitteilung kurz nach
+///   der Zielzeit (Rückfall). Sie wird beim Wecken entfernt.
 @MainActor
 @Observable
 final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
@@ -16,6 +23,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     enum Phase: Equatable {
         case idle
+        /// Plan steht, Sitzung aber (noch) nicht: App öffnen bzw. näher als 36 h.
+        case waiting(WakePlan)
         case scheduled(WakePlan)
         case measuring(WakePlan)
         case ringing(WakeReason, snoozesLeft: Int)
@@ -23,7 +32,15 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
         var isRinging: Bool { if case .ringing = self { true } else { false } }
         var isSnoozed: Bool { if case .snoozed = self { true } else { false } }
+        var isMeasuring: Bool { if case .measuring = self { true } else { false } }
     }
+
+    /// Höchstens so weit im Voraus nimmt watchOS eine Smart-Alarm-Sitzung an.
+    static let maxLeadTime: TimeInterval = 36 * 3600
+    /// Der Rückfall weckt kurz nach der Zielzeit, damit er dem regulären Wecken nicht zuvorkommt.
+    static let fallbackDelay: TimeInterval = 60
+    private static let fallbackId = "phasewake.fallback"
+    private static let stateKey = "smartAlarmNight"
 
     private(set) var phase: Phase = .idle
 
@@ -53,20 +70,51 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         super.init()
         motionQueue.maxConcurrentOperationCount = 1
         motionQueue.underlyingQueue = assemblerQueue
+        restore()
+    }
+
+    // MARK: Berechtigungen
+
+    /// Puls lesen (zweite Stimme der Erkennung) und Mitteilungen (Rückfall) – beim ersten Start fragen.
+    func requestAccess() async {
+        if HKHealthStore.isHealthDataAvailable(), let heartRate = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+            try? await health.requestAuthorization(toShare: [], read: [heartRate])
+        }
+        _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
     }
 
     // MARK: Planen
 
-    /// Plant die Sitzung für [plan]; ersetzt eine geplante. Muss bei aktiver App aufgerufen werden.
+    /// Plant die Sitzung für `plan`. Gelingt das nicht (App nicht aktiv, zu weit voraus), wartet der
+    /// Plan, und der Rückfall steht trotzdem.
     func schedule(_ plan: WakePlan?) {
-        if case .measuring = phase { return }
         if phase.isRinging || phase.isSnoozed { return }
-        session?.invalidate()
-        session = nil
+        if case .measuring(let running) = phase {
+            // Wecker während der Messung geändert, aus- oder abgeschaltet: Messung ohne Aufzeichnung beenden.
+            guard running != plan else { return }
+            cancelMeasuring()
+        }
         guard let plan else {
+            invalidateSession()
+            removeFallback()
             phase = .idle
+            publishArmed()
             return
         }
+        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay))
+        if case .scheduled(let current) = phase, current == plan, session != nil { return }
+
+        let active = WKApplication.shared().applicationState == .active
+        let tooEarly = plan.windowStart.timeIntervalSinceNow > Self.maxLeadTime
+        guard active, !tooEarly else {
+            // Eine schon geplante Sitzung für einen anderen Plan ist überholt.
+            if case .scheduled(let current) = phase, current != plan { invalidateSession() }
+            if case .scheduled = phase, session != nil, !tooEarly { return }
+            phase = .waiting(plan)
+            publishArmed()
+            return
+        }
+        invalidateSession()
         let newSession = WKExtendedRuntimeSession()
         newSession.delegate = self
         if plan.windowStart <= Date() {
@@ -77,22 +125,68 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         session = newSession
         self.plan = plan
         phase = .scheduled(plan)
+        publishArmed()
     }
 
-    /// Vom System gestartete Sitzung übernehmen (App wurde dafür im Hintergrund geöffnet).
+    /// Vom System gestartete Sitzung übernehmen. Muss synchron in `handle(_:)` geschehen,
+    /// sonst beendet das System die Sitzung.
     func adopt(_ extendedSession: WKExtendedRuntimeSession) {
         extendedSession.delegate = self
+        if let session, session !== extendedSession { session.invalidate() }
         session = extendedSession
+    }
+
+    private func invalidateSession() {
+        session?.delegate = nil
+        session?.invalidate()
+        session = nil
+    }
+
+    /// Meldet dem iPhone, für welche Zielzeit die Uhr scharf ist (Nacht-Check).
+    private func publishArmed() {
+        var armed: Date?
+        switch phase {
+        case .scheduled(let plan), .measuring(let plan): armed = plan.target
+        case .ringing, .snoozed: armed = nightPlan?.target
+        case .idle, .waiting: armed = nil
+        }
+        WatchConnectivityBridge.shared.publish(armedTarget: armed)
+    }
+
+    // MARK: Rückfall
+
+    private func scheduleFallback(at date: Date) {
+        let content = UNMutableNotificationContent()
+        content.title = L("ring_greeting")
+        content.body = L("ring_reason_deadline")
+        content.sound = .default
+        content.interruptionLevel = .timeSensitive
+        let interval = max(1, date.timeIntervalSinceNow)
+        let request = UNNotificationRequest(
+            identifier: Self.fallbackId,
+            content: content,
+            trigger: UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+        )
+        UNUserNotificationCenter.current().add(request)
+    }
+
+    private func removeFallback() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [Self.fallbackId])
     }
 
     // MARK: WKExtendedRuntimeSessionDelegate
 
     nonisolated func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         Task { @MainActor in
-            // Nach dem Schlummern startet die neue Sitzung direkt mit dem Wecken.
-            if self.phase.isSnoozed {
+            guard extendedRuntimeSession === self.session || self.session == nil else { return }
+            self.session = extendedRuntimeSession
+            switch self.phase {
+            case .snoozed:
+                // Nach dem Schlummern startet die neue Sitzung direkt mit dem Wecken.
                 self.ring(self.reason)
-            } else {
+            case .measuring, .ringing:
+                break // läuft schon
+            case .idle, .waiting, .scheduled:
                 self.beginMeasuring()
             }
         }
@@ -100,7 +194,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     nonisolated func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         // Kurz vor Ablauf (spätestens nach 30 Min): jetzt wecken, sonst verwirft das System den Alarm.
-        Task { @MainActor in if case .measuring = self.phase { self.ring(self.detector.finish()) } }
+        Task { @MainActor in if self.phase.isMeasuring { self.ring(self.detector.finish()) } }
     }
 
     nonisolated func extendedRuntimeSession(
@@ -108,12 +202,29 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason,
         error: Error?
     ) {
-        Task { @MainActor in self.stopSensors() }
+        Task { @MainActor in
+            guard extendedRuntimeSession === self.session else { return }
+            self.session = nil
+            self.stopSensors()
+            switch self.phase {
+            case .scheduled(let plan):
+                // Vom System abgelehnt oder zurückgezogen: Der Rückfall weckt; beim nächsten Öffnen neu planen.
+                self.phase = .waiting(plan)
+            case .measuring:
+                // Abgebrochen mitten in der Messung: sofort per Mitteilung wecken.
+                self.scheduleFallback(at: Date())
+                self.phase = .idle
+            default:
+                break
+            }
+            self.publishArmed()
+        }
     }
 
     // MARK: Messen
 
     private func beginMeasuring() {
+        stopSensors()
         let model = WatchModel.shared
         model.refresh()
         guard let plan = plan ?? model.plan else { return }
@@ -125,6 +236,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         firstRing = nil
         snoozes = 0
         phase = .measuring(plan)
+        publishArmed()
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
         let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
@@ -148,16 +260,25 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             Task { @MainActor in
                 guard let self, let assembler = self.assembler else { return }
                 let now = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
+                // CoreMotion liefert ohne Bündelung: Nachfrist 2 s plus ein Takt des Zeitgebers.
                 let closed = self.assemblerQueue.sync { assembler.advance(nowNanos: now, graceNanos: 12_000_000_000) }
                 self.feed(closed)
             }
         }
         deadline = Timer.scheduledTimer(withTimeInterval: max(0, plan.target.timeIntervalSinceNow), repeats: false) { [weak self] _ in
             Task { @MainActor in
-                guard let self, case .measuring = self.phase else { return }
+                guard let self, self.phase.isMeasuring else { return }
                 self.ring(self.detector.finish())
             }
         }
+    }
+
+    private func cancelMeasuring() {
+        stopSensors()
+        invalidateSession()
+        phase = .idle
+        plan = nil
+        nightPlan = nil
     }
 
     private func startHeartRate(assembler: EpochAssembler) {
@@ -183,7 +304,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     }
 
     private func feed(_ closed: [Epoch]) {
-        guard case .measuring = phase else { return }
+        guard phase.isMeasuring else { return }
         for epoch in closed {
             epochs.append(epoch)
             if case .wake(let reason) = detector.onEpoch(epoch) {
@@ -209,9 +330,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     private func ring(_ reason: WakeReason) {
         stopSensors()
+        removeFallback()
         self.reason = reason
         if firstRing == nil { firstRing = Date() }
         phase = .ringing(reason, snoozesLeft: Snooze.maxCount - snoozes)
+        save()
         hapticStart = Date()
         // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute.
         session?.notifyUser(hapticType: .notification) { [weak self] haptic in
@@ -228,8 +351,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
                 return 1.5
             }
         }
-        if spec?.phoneBackup != false, let plan {
-            WatchConnectivityBridge.shared.send(command: SyncKeys.ring, alarmId: plan.alarmId)
+        // Immer melden: Das iPhone entscheidet (Zweitwecker, Sonnenaufgang, Sicherung aussetzen).
+        if let alarmId = nightPlan?.alarmId ?? plan?.alarmId {
+            WatchConnectivityBridge.shared.send(command: SyncKeys.ring, alarmId: alarmId)
         }
     }
 
@@ -237,7 +361,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     func snooze() {
         guard phase.isRinging, Snooze.canSnooze(snoozes), let plan else { return }
         snoozes += 1
-        session?.invalidate()
+        invalidateSession()
         let until = Snooze.nextRing(Date())
         phase = .snoozed(until: until, snoozesLeft: Snooze.maxCount - snoozes)
         let next = WKExtendedRuntimeSession()
@@ -245,15 +369,18 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         next.start(at: until)
         session = next
         self.plan = WakePlan(alarmId: plan.alarmId, windowStart: until, target: until)
+        // Rückfall auch fürs Schlummern: falls die neue Sitzung nicht startet.
+        scheduleFallback(at: until.addingTimeInterval(Self.fallbackDelay))
+        save()
         WatchConnectivityBridge.shared.send(command: SyncKeys.stop)
     }
 
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
     func dismiss(notifyPhone: Bool = true) {
         guard phase.isRinging || phase.isSnoozed else { return }
-        session?.invalidate()
-        session = nil
+        invalidateSession()
         stopSensors()
+        removeFallback()
         let model = WatchModel.shared
         if let nightPlan, let firstRing {
             let night = NightRecord(
@@ -266,13 +393,60 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
                 epochs: epochs
             )
             model.storage.add(night)
+            // Diese Nacht ist erledigt: nicht noch einmal planen, auch wenn die Zielzeit noch vorn liegt.
+            model.storage.doneUntil = nightPlan.target
             WatchConnectivityBridge.shared.send(night: night)
         }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop) }
-        if let spec, spec.isOneShot { model.setEnabled(spec, false) }
+        // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`.
+        if let alarm = model.alarms.first(where: { $0.id == nightPlan?.alarmId }), alarm.isOneShot, alarm.enabled {
+            model.setEnabled(alarm, false)
+        }
         phase = .idle
         plan = nil
         nightPlan = nil
+        spec = nil
+        clearSaved()
         model.reschedule()
+    }
+
+    // MARK: Zustand sichern
+
+    /// Klingel- und Schlummer-Zustand überstehen das Beenden der App durch das System.
+    private func save() {
+        guard let nightPlan, let firstRing else { return }
+        let night = NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart, target: nightPlan.target,
+                                wokeAt: firstRing, reason: reason, snoozes: snoozes, epochs: epochs)
+        var state: [String: Any] = ["night": Codec.encodeNight(night)]
+        if case .snoozed(let until, _) = phase { state["snoozedUntil"] = until.timeIntervalSince1970 }
+        UserDefaults.standard.set(state, forKey: Self.stateKey)
+    }
+
+    private func clearSaved() {
+        UserDefaults.standard.removeObject(forKey: Self.stateKey)
+    }
+
+    private func restore() {
+        guard let state = UserDefaults.standard.dictionary(forKey: Self.stateKey),
+              let text = state["night"] as? String,
+              let night = try? Codec.decodeNight(text) else { return }
+        // Älter als zwei Stunden nach der Zielzeit: nicht mehr wecken, nur verwerfen.
+        guard night.target.timeIntervalSinceNow > -2 * 3600 else {
+            clearSaved()
+            return
+        }
+        nightPlan = WakePlan(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target)
+        firstRing = night.wokeAt
+        reason = night.reason
+        snoozes = night.snoozes
+        epochs = night.epochs
+        if let until = state["snoozedUntil"] as? Double {
+            let date = Date(timeIntervalSince1970: until)
+            plan = WakePlan(alarmId: night.alarmId, windowStart: date, target: date)
+            phase = .snoozed(until: date, snoozesLeft: Snooze.maxCount - snoozes)
+        } else {
+            plan = nightPlan
+            phase = .ringing(reason, snoozesLeft: Snooze.maxCount - snoozes)
+        }
     }
 }

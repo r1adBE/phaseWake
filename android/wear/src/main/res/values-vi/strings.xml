@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Giữ để dừng</string>
     <string name="ring_snooze">%1$d phút · còn %2$d lần</string>
     <string name="ring_snoozed_until">Báo lại lúc %1$s</string>
-    <string name="ring_stop_now">Tắt báo thức</string>
 
     <string name="home_no_alarm">Chưa đặt báo thức</string>
     <string name="home_no_alarm_hint">Đặt báo thức trong Phase Wake trên điện thoại.</string>

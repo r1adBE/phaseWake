@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Podrž pro zastavení</string>
     <string name="ring_snooze">%1$d min · zbývá: %2$d</string>
     <string name="ring_snoozed_until">Odloženo do %1$s</string>
-    <string name="ring_stop_now">Zastavit budík</string>
 
     <string name="home_no_alarm">Žádný budík</string>
     <string name="home_no_alarm_hint">Nastav budíky v Phase Wake v telefonu.</string>

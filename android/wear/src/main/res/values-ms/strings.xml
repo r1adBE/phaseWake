@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Tahan untuk henti</string>
     <string name="ring_snooze">%1$d min · baki %2$d</string>
     <string name="ring_snoozed_until">Ditangguh hingga %1$s</string>
-    <string name="ring_stop_now">Hentikan penggera</string>
 
     <string name="home_no_alarm">Tiada penggera ditetapkan</string>
     <string name="home_no_alarm_hint">Tetapkan penggera dalam Phase Wake pada telefon.</string>

@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Hold for å stoppe</string>
     <string name="ring_snooze">%1$d min · %2$d igjen</string>
     <string name="ring_snoozed_until">Slumrer til %1$s</string>
-    <string name="ring_stop_now">Stopp alarmen</string>
 
     <string name="home_no_alarm">Ingen alarm stilt</string>
     <string name="home_no_alarm_hint">Still alarmer i Phase Wake på telefonen.</string>

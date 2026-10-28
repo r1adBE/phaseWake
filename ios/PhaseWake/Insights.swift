@@ -101,3 +101,10 @@ struct TrendsCard: View {
 
     private func decimal(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(1))) }
 }
+
+/// Verlauf als echte .csv-Datei zum Teilen (nicht als Text).
+func exportFile(_ nights: [NightRecord]) -> URL {
+    let url = FileManager.default.temporaryDirectory.appendingPathComponent("phasewake-nights.csv")
+    try? NightHistory.exportCsv(nights).write(to: url, atomically: true, encoding: .utf8)
+    return url
+}

@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
     <string name="ring_snooze">%1$d นาที · เหลือ %2$d ครั้ง</string>
     <string name="ring_snoozed_until">ปลุกซ้ำเวลา %1$s</string>
-    <string name="ring_stop_now">ปิดนาฬิกาปลุก</string>
 
     <string name="home_no_alarm">ยังไม่ได้ตั้งปลุก</string>
     <string name="home_no_alarm_hint">ตั้งนาฬิกาปลุกใน Phase Wake บนโทรศัพท์</string>

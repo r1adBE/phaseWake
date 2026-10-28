@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
     <string name="ring_snooze">%1$d min · %2$d jäljellä</string>
     <string name="ring_snoozed_until">Torkku %1$s asti</string>
-    <string name="ring_stop_now">Pysäytä herätys</string>
 
     <string name="home_no_alarm">Ei herätystä</string>
     <string name="home_no_alarm_hint">Aseta herätykset puhelimen Phase Wake -sovelluksessa.</string>

@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">길게 눌러 중지</string>
     <string name="ring_snooze">%1$d분 · %2$d회 남음</string>
     <string name="ring_snoozed_until">%1$s까지 다시 알림</string>
-    <string name="ring_stop_now">알람 끄기</string>
 
     <string name="home_no_alarm">설정된 알람 없음</string>
     <string name="home_no_alarm_hint">휴대폰의 Phase Wake에서 알람을 설정하세요.</string>

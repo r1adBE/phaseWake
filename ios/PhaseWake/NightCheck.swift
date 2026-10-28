@@ -9,12 +9,13 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
-    case watch, watchApp, alarms, notifications, battery
+    case watch, watchApp, watchArm, alarms, notifications, battery
 
     var title: String {
         switch self {
         case .watch: L("check_watch")
         case .watchApp: L("check_watch_app")
+        case .watchArm: L("check_watch_arm")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -25,6 +26,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         switch self {
         case .watch: L("check_watch_problem_apple")
         case .watchApp: L("check_watch_app_problem")
+        case .watchArm: L("check_watch_arm_problem")
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -41,10 +43,15 @@ enum NightCheck {
     static func collect() async -> [PhoneCheck] {
         var failed: [PhoneCheck] = []
         let session = WCSession.isSupported() ? WCSession.default : nil
+        let model = PhoneModel.shared
+        let plan = AlarmSchedule.earliestPlan(model.alarms, now: Date(), calendar: .current)
         if session?.activationState != .activated || session?.isPaired != true {
             failed.append(.watch)
         } else if session?.isWatchAppInstalled != true {
             failed.append(.watchApp)
+        } else if let plan, model.watchReported, model.watchArmedTarget != plan.target {
+            // watchOS plant den Smart Alarm nur bei offener Uhr-App und höchstens 36 h im Voraus.
+            failed.append(.watchArm)
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
@@ -92,7 +99,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .battery:
+        case .watch, .watchApp, .watchArm, .battery:
             break
         }
     }

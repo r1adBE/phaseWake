@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Утримуй, щоб зупинити</string>
     <string name="ring_snooze">%1$d хв · залишилось: %2$d</string>
     <string name="ring_snoozed_until">Відкладено до %1$s</string>
-    <string name="ring_stop_now">Вимкнути будильник</string>
 
     <string name="home_no_alarm">Будильник не задано</string>
     <string name="home_no_alarm_hint">Задай будильники в Phase Wake на телефоні.</string>

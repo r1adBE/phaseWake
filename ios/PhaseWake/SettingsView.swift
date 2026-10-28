@@ -25,13 +25,15 @@ struct SettingsView: View {
                 }
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
-                    ShareLink(item: NightHistory.exportCsv(model.nights), preview: SharePreview(L("history_export_subject"))) {
+                    ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
                         Text(L("settings_export"))
                     }
+                    .disabled(model.nights.isEmpty)
                     Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
                 }
                 Section(L("settings_about")) {
                     Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
+                    Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
                     VStack(alignment: .leading, spacing: 4) {
                         Link(L("settings_support"), destination: URL(string: "https://github.com/sponsors/r1adBE")!)
                         Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)

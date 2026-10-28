@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Tahan untuk berhenti</string>
     <string name="ring_snooze">%1$d mnt · sisa %2$d</string>
     <string name="ring_snoozed_until">Ditunda sampai %1$s</string>
-    <string name="ring_stop_now">Hentikan alarm</string>
 
     <string name="home_no_alarm">Belum ada alarm</string>
     <string name="home_no_alarm_hint">Atur alarm di Phase Wake pada ponselmu.</string>

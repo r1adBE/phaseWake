@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
     <string name="ring_snooze">%1$d דק׳ · נותרו %2$d</string>
     <string name="ring_snoozed_until">נודניק עד %1$s</string>
-    <string name="ring_stop_now">עצירת המעורר</string>
 
     <string name="home_no_alarm">אין מעורר מוגדר</string>
     <string name="home_no_alarm_hint">הגדירו מעוררים ב-Phase Wake בטלפון.</string>

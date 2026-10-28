@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
     <string name="ring_snooze">%1$d min · nog %2$d</string>
     <string name="ring_snoozed_until">Snoozen tot %1$s</string>
-    <string name="ring_stop_now">Wekker stoppen</string>
 
     <string name="home_no_alarm">Geen wekker ingesteld</string>
     <string name="home_no_alarm_hint">Stel wekkers in via Phase Wake op je telefoon.</string>

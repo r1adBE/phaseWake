@@ -78,13 +78,10 @@ struct EditorView: View {
 
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
-                    Picker(L("editor_alert_watch"), selection: $watchSound) {
-                        Text(L("alert_vibrate_only")).tag(false)
-                        Text(L("alert_vibrate_sound")).tag(true)
-                    }
+                    // Auf Apple nur, was wirkt: Die Apple Watch weckt per Haptik (ohne Ton), das iPhone
+                    // klingelt über AlarmKit immer mit Ton.
                     Picker(L("editor_alert_phone"), selection: $phone) {
                         Text(L("alert_off")).tag(PhoneAlert.off)
-                        Text(L("alert_vibrate")).tag(PhoneAlert.vibrate)
                         Text(L("alert_sound")).tag(PhoneAlert.sound)
                     }
                 } header: {
@@ -147,7 +144,7 @@ struct EditorView: View {
         days = existing.days
         sleepMode = existing.sleepDurationMinutes != nil
         sleepMinutes = Double(existing.sleepDurationMinutes ?? 450)
-        phone = existing.phone
+        phone = existing.phone == .off ? .off : .sound
         watchSound = existing.watchSound
         label = existing.label
         sunrise = existing.sunrise

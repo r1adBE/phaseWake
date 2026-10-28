@@ -11,6 +11,13 @@ struct HomeView: View {
             List {
                 NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId })
                     .listRowBackground(Color.clear)
+                if case .waiting = SmartAlarm.shared.phase {
+                    // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus.
+                    Text(L("watch_not_armed"))
+                        .font(Fonts.manrope(12, relativeTo: .footnote))
+                        .foregroundStyle(Brand.muted)
+                        .listRowBackground(Color.clear)
+                }
                 if !model.alarms.isEmpty {
                     Section(L("home_alarms")) {
                         ForEach(model.alarms) { alarm in
@@ -35,6 +42,7 @@ struct HomeView: View {
             if phase == .active { model.reschedule() }
         }
         .onAppear { model.reschedule() }
+        .task { await SmartAlarm.shared.requestAccess() }
     }
 }
 

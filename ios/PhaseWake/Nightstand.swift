@@ -75,6 +75,7 @@ struct NightstandView: View {
     @State private var plan: WakePlan?
     @State private var sunrise: Sunrise = .off
     @State private var savedBrightness: CGFloat = 0.5
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
@@ -102,17 +103,38 @@ struct NightstandView: View {
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
         .onAppear {
-            let next = model.alarms.filter { $0.sunrise != .off }
-            plan = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .current)
-            sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
+            updatePlan()
             savedBrightness = screen?.brightness ?? 0.5
             UIApplication.shared.isIdleTimerDisabled = true
             setBrightness(0)
         }
-        .onDisappear {
-            UIApplication.shared.isIdleTimerDisabled = false
-            screen?.brightness = savedBrightness
+        .onDisappear(perform: restoreScreen)
+        .onChange(of: scenePhase) { _, phase in
+            // App verlassen oder gesperrt: Helligkeit und Ruhezustand sofort zurück, nicht erst beim Schliessen.
+            if phase == .active {
+                UIApplication.shared.isIdleTimerDisabled = true
+            } else {
+                restoreScreen()
+            }
         }
+        .task {
+            // Nach Zielzeit und Schlummern den nächsten Plan nehmen.
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(60))
+                if let plan, Date() > plan.target.addingTimeInterval(30 * 60) { updatePlan() }
+            }
+        }
+    }
+
+    private func updatePlan() {
+        let next = model.alarms.filter { $0.sunrise != .off }
+        plan = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .current)
+        sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
+    }
+
+    private func restoreScreen() {
+        UIApplication.shared.isIdleTimerDisabled = false
+        screen?.brightness = savedBrightness
     }
 
     private var screen: UIScreen? {

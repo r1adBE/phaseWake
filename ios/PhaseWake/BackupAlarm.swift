@@ -14,30 +14,64 @@ import AlarmKit
 final class BackupAlarm {
     private static let grace: TimeInterval = 120
     private static let suppressedKey = "backupSuppressedUntil"
-    private static let backupIdKey = "backupAlarmId"
+    private static let backupIdsKey = "backupAlarmIds"
+    /// So viele Nächte im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird.
+    private static let nightsAhead = 3
     private var ringingId: UUID?
+    /// Neuplanungen laufen nacheinander, nie verschränkt (sonst blieben Alarme ohne gemerkte Kennung).
+    private var queue: Task<Void, Never>?
 
-    /// Plant die Sicherung für den nächsten Wecker mit Zweitwecker.
+    /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker.
     func reschedule(_ alarms: [AlarmSpec]) async {
-        await cancelBackup()
-        let suppressed = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: Self.suppressedKey))
-        let from = max(Date(), suppressed)
-        guard let plan = AlarmSchedule.earliestPlan(alarms.filter(\.phoneBackup), now: from, calendar: .current) else { return }
-        let id = UUID()
-        UserDefaults.standard.set(id.uuidString, forKey: Self.backupIdKey)
-        await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace))
+        let previous = queue
+        let task = Task { @MainActor in
+            await previous?.value
+            await self.rescheduleNow(alarms)
+        }
+        queue = task
+        await task.value
     }
 
-    /// Die Uhr weckt gerade: sofort mitklingeln (falls gewünscht) und die Sicherung dieser Nacht aussetzen.
+    private func rescheduleNow(_ alarms: [AlarmSpec]) async {
+        await cancelBackups()
+        let suppressed = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: Self.suppressedKey))
+        var from = max(Date(), suppressed)
+        var ids: [String] = []
+        for _ in 0..<Self.nightsAhead {
+            guard let plan = AlarmSchedule.earliestPlan(alarms.filter(\.phoneBackup), now: from, calendar: .current) else { break }
+            let id = UUID()
+            ids.append(id.uuidString)
+            await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace))
+            from = plan.target
+        }
+        UserDefaults.standard.set(ids, forKey: Self.backupIdsKey)
+    }
+
+    /// Die Uhr klingelt gerade: sofort mitklingeln (falls gewünscht) und die Sicherung dieser Nacht aussetzen.
     func ringNow(alarm: AlarmSpec?) async {
-        let until = Date().addingTimeInterval(Double(AlarmSpec.maxWindowMinutes * 60) + Self.grace)
-        UserDefaults.standard.set(until.timeIntervalSince1970, forKey: Self.suppressedKey)
         if alarm?.phone != .off {
             let id = UUID()
             ringingId = id
-            await schedule(id: id, at: Date().addingTimeInterval(1))
+            await schedule(id: id, at: Date().addingTimeInterval(2))
         }
-        await reschedule(PhoneModel.shared.alarms)
+        await watchHandled(alarmId: alarm?.id, target: nil)
+    }
+
+    /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
+    /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg.
+    func watchHandled(alarmId: String?, target: Date?) async {
+        let now = Date()
+        let alarms = PhoneModel.shared.alarms
+        let spec = alarms.first { $0.id == alarmId }
+        let window = TimeInterval(AlarmSpec.maxWindowMinutes * 60)
+        let nightTarget = target
+            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .current) }
+            ?? now.addingTimeInterval(window)
+        let until = nightTarget.addingTimeInterval(Self.grace)
+        if until.timeIntervalSince1970 > UserDefaults.standard.double(forKey: Self.suppressedKey) {
+            UserDefaults.standard.set(until.timeIntervalSince1970, forKey: Self.suppressedKey)
+        }
+        await reschedule(alarms)
     }
 
     func stopRinging() async {
@@ -64,16 +98,18 @@ final class BackupAlarm {
         await scheduleNotification(id: id, at: date)
     }
 
-    private func cancelBackup() async {
-        guard let text = UserDefaults.standard.string(forKey: Self.backupIdKey), let id = UUID(uuidString: text) else { return }
-        UserDefaults.standard.removeObject(forKey: Self.backupIdKey)
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) {
-            try? AlarmManager.shared.cancel(id: id)
-            return
+    private func cancelBackups() async {
+        let ids = (UserDefaults.standard.stringArray(forKey: Self.backupIdsKey) ?? []).compactMap(UUID.init(uuidString:))
+        UserDefaults.standard.removeObject(forKey: Self.backupIdsKey)
+        for id in ids {
+            #if canImport(AlarmKit)
+            if #available(iOS 26.0, *) {
+                try? AlarmManager.shared.cancel(id: id)
+                continue
+            }
+            #endif
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
         }
-        #endif
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
 
     #if canImport(AlarmKit)

@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
     <string name="ring_snooze">%1$d λ. · απομένουν: %2$d</string>
     <string name="ring_snoozed_until">Αναβολή έως %1$s</string>
-    <string name="ring_stop_now">Διακοπή ξυπνητηριού</string>
 
     <string name="home_no_alarm">Κανένα ξυπνητήρι</string>
     <string name="home_no_alarm_hint">Όρισε ξυπνητήρια στο Phase Wake στο κινητό σου.</string>

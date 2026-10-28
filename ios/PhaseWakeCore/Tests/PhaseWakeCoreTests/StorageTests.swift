@@ -18,6 +18,30 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.snapshot(), b)
     }
 
+    /// Heutige Zeitstempel in Millisekunden liegen über Int32.max (32-Bit-Uhren).
+    func testTimestampBeyondInt32() {
+        let s = storage()
+        let snap = s.mutate({ _ in [] }, now: Date(timeIntervalSince1970: 1_793_173_963.589))
+        XCTAssertGreaterThan(snap.updatedAt, Int64(Int32.max))
+        XCTAssertEqual(s.snapshot().updatedAt, snap.updatedAt)
+    }
+
+    /// Gleichzeitige Änderungen gehen nicht verloren.
+    func testConcurrentMutationsAreSerialized() {
+        let s = storage()
+        DispatchQueue.concurrentPerform(iterations: 200) { i in
+            s.mutate { $0 + [try! AlarmSpec(id: "a\(i)", hour: i % 24, minute: 0)] }
+        }
+        XCTAssertEqual(s.snapshot().alarms.count, 200)
+    }
+
+    func testDoneUntilPersists() {
+        let s = storage()
+        let date = Date(timeIntervalSince1970: 1_793_173_963)
+        s.doneUntil = date
+        XCTAssertEqual(s.doneUntil, date)
+    }
+
     func testApplyRemoteOnlyWhenNewer() throws {
         let s = storage()
         let local = s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: Date(timeIntervalSince1970: 1000))

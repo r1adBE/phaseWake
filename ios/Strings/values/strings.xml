@@ -14,4 +14,7 @@
     <string name="nightstand_no_alarm">No alarm with sunrise</string>
     <string name="editor_sunrise_ios_hint">Your iPhone can only show the light while Phase Wake is open – start nightstand mode before you go to sleep.</string>
     <string name="trends_health_hint_apple">Sleep duration and regularity come from Apple Health.</string>
+    <string name="watch_not_armed">Open Phase Wake before you go to sleep so your watch can arm the alarm.</string>
+    <string name="check_watch_arm">Alarm armed on the watch</string>
+    <string name="check_watch_arm_problem">Open Phase Wake on your Apple Watch before you go to sleep. watchOS only arms the alarm while the app is open.</string>
 </resources>

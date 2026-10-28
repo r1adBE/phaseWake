@@ -25,7 +25,7 @@ struct HistoryView: View {
                             onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep() } }
                         )
                         ForEach(model.nights.reversed(), id: \.windowStart) { NightCard(night: $0) }
-                        ShareLink(item: NightHistory.exportCsv(model.nights), preview: SharePreview(L("history_export_subject"))) {
+                        ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
                         }
                         .padding()

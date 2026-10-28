@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Kein Wecker mit Sonnenaufgang</string>
     <string name="editor_sunrise_ios_hint">Das iPhone kann das Licht nur zeigen, solange Phase Wake offen ist – starte vor dem Schlafen den Nachttisch-Modus.</string>
     <string name="trends_health_hint_apple">Schlafdauer und Regelmässigkeit kommen aus Apple Health.</string>
+    <string name="watch_not_armed">Öffne Phase Wake vor dem Schlafen, damit die Uhr den Wecker scharf schaltet.</string>
+    <string name="check_watch_arm">Wecker auf der Uhr scharf</string>
+    <string name="check_watch_arm_problem">Öffne Phase Wake vor dem Schlafen auf der Apple Watch. watchOS schaltet den Wecker nur bei offener App scharf.</string>
 </resources>

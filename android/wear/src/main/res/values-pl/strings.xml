@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
     <string name="ring_snooze">%1$d min · zostało: %2$d</string>
     <string name="ring_snoozed_until">Drzemka do %1$s</string>
-    <string name="ring_stop_now">Zatrzymaj budzik</string>
 
     <string name="home_no_alarm">Brak budzika</string>
     <string name="home_no_alarm_hint">Ustaw budziki w Phase Wake na telefonie.</string>

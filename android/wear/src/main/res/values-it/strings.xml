@@ -15,7 +15,6 @@
     <string name="ring_hold_to_stop">Tieni premuto per fermare</string>
     <string name="ring_snooze">%1$d min · %2$d rimaste</string>
     <string name="ring_snoozed_until">Posticipata alle %1$s</string>
-    <string name="ring_stop_now">Ferma la sveglia</string>
 
     <string name="home_no_alarm">Nessuna sveglia</string>
     <string name="home_no_alarm_hint">Imposta le sveglie in Phase Wake sul telefono.</string>
