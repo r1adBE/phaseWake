@@ -34,21 +34,34 @@ class WearSync(context: Context) {
         dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
     }
 
+    /**
+     * Pfad mit Fensterbeginn und Kennung: Zwei Wecker mit gleichem Fensterbeginn überschreiben sich
+     * nicht. Das Handy liest nach Präfix, auch ältere Pfade nur mit Fensterbeginn.
+     */
     suspend fun publishNight(night: NightRecord) = guarded("Nacht senden") {
-        val request = PutDataMapRequest.create(DataLayer.PATH_NIGHT_PREFIX + night.windowStart.toEpochMilli()).apply {
+        val path = DataLayer.PATH_NIGHT_PREFIX + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
+        val request = PutDataMapRequest.create(path).apply {
             dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
         }
         dataClient.putDataItem(request.asPutDataRequest()).await()
     }
 
-    /** Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt). */
-    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null) = guarded("Status senden") {
-        val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
-            dataMap.putBoolean(DataLayer.KEY_READY, ready)
-            if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
+    /**
+     * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt).
+     * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
+     */
+    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null): Boolean {
+        var stored = false
+        guarded("Status senden") {
+            val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
+                dataMap.putBoolean(DataLayer.KEY_READY, ready)
+                if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+                dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
+            }
+            dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+            stored = true
         }
-        dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+        return stored
     }
 
     /** Handy: zuletzt gemeldeter Status der Uhr; `null`, wenn sie noch nie etwas gemeldet hat. */

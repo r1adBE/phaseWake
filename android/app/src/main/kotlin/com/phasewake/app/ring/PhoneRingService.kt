@@ -51,7 +51,7 @@ class PhoneRingService : Service() {
         }
     }
 
-    private val timeout = Runnable { stop(notifyWatch = false) }
+    private val timeout = Runnable { onTimeout() }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -99,13 +99,15 @@ class PhoneRingService : Service() {
             }
             return
         }
-        if (state.value is State.Snoozed) state.value = State.Idle
+        val afterSnooze = state.value is State.Snoozed
+        if (afterSnooze) state.value = State.Idle
         val left = if (fromWatch) watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes()) else Snooze.MAX_COUNT - snoozesDone
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
         startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         handler.postDelayed(timeout, TIMEOUT_MS)
+        // Nach dem Schlummern am Handy kommt keine Zielzeit mit: die der ersten Runde behalten.
+        lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
         lastAlarmId = alarmId
-        lastTarget = target
         phoneApp.appScope.launch(Dispatchers.Main) {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
             val spec = if (BackupAlarm.isUnlocked(this@PhoneRingService)) phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId } else null
@@ -153,8 +155,25 @@ class PhoneRingService : Service() {
         }
     }
 
+    /**
+     * Niemand hat reagiert. Führt die Uhr die Nacht und hat sie noch Runden, schlummert sie von selbst
+     * (ohne «stop» ans Handy): dann wie beim Schlummern auf der Uhr eine eigene Sicherung kurz nach dem
+     * Schlummer-Ende, falls die Uhr danach nicht wieder klingelt. Ein neues «klingeln» hebt sie auf.
+     */
+    private fun onTimeout() {
+        val ringing = state.value as? State.Ringing
+        if (ringing != null && ringing.fromWatch && ringing.snoozesLeft > 0) {
+            val alarmId = lastAlarmId
+            val done = Snooze.MAX_COUNT - ringing.snoozesLeft + 1
+            val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+            phoneApp.appScope.launch { phoneApp.backup.snoozeSafety(alarmId, safetyAt, done) }
+        }
+        stop(notifyWatch = false)
+    }
+
     private fun stop(notifyWatch: Boolean) {
-        val wasFromWatch = (state.value as? State.Ringing)?.fromWatch == true
+        val before = state.value
+        val wasFromWatch = (before as? State.Ringing)?.fromWatch == true
         legacySnoozes = 0
         release()
         phoneApp.backup.cancelSnooze()
@@ -163,7 +182,9 @@ class PhoneRingService : Service() {
         if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId)
         SunriseLight.stop(this)
         state.value = State.Idle
-        if (notifyWatch && wasFromWatch) {
+        // Auch beim Zweitwecker des Handys (oder dessen Schlummern): Die Uhr merkt die Nacht als erledigt
+        // und holt sie nicht nach, falls sie gerade eine andere Nacht führt (zwei Wecker am selben Morgen).
+        if (notifyWatch && before != State.Idle && (wasFromWatch || lastAlarmId != null)) {
             val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis())
             phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode()) }
         }

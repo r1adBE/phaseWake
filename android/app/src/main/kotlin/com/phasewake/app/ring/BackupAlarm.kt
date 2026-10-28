@@ -142,6 +142,11 @@ class BackupAlarm(
     suspend fun watchRang(message: RingMessage) {
         if (message.isStale(now().toEpochMilli())) {
             Log.i(TAG, "Veraltete Weckmeldung der Uhr verworfen")
+        } else if (backupAlreadyRang(message)) {
+            // Der Zweitwecker hat diese Nacht schon geweckt (z. B. während die Uhr einen anderen Wecker
+            // schlummerte); holt die Uhr sie nach, klingelt das Handy nicht ein zweites Mal.
+            Log.i(TAG, "Nacht von ${message.alarmId} hat der Zweitwecker schon geweckt")
+            cancelSnoozeSafety(message.alarmId)
         } else {
             // Die Uhr klingelt wieder: Die Sicherung nach dem Schlummern ist nicht mehr nötig.
             cancelSnoozeSafety(message.alarmId)
@@ -150,6 +155,18 @@ class BackupAlarm(
             if (spec == null || spec.phone != PhoneAlert.OFF || spec.sunrise != Sunrise.OFF) forwardRing(message)
         }
         watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+    }
+
+    /**
+     * Ob der Zweitwecker die Nacht dieser Weckmeldung schon geweckt hat ([backupRang]): gleiche Kennung,
+     * Zielzeit der Uhr höchstens die längste Schlafdauer vor der des Zweitweckers (Einschlaf-Modus weckt
+     * früher). Ohne Kennung oder Zielzeit (ältere Uhr) nie.
+     */
+    private suspend fun backupAlreadyRang(message: RingMessage): Boolean {
+        val id = message.alarmId ?: return false
+        val target = message.target?.let(Instant::ofEpochMilli) ?: return false
+        val rang = decodeSuppressed(store.data.first()[BACKUP_RANG])[id] ?: return false
+        return !target.isAfter(rang) && !target.isBefore(rang.minus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())))
     }
 
     /**
@@ -264,7 +281,16 @@ class BackupAlarm(
      */
     internal suspend fun backupRang(alarmId: String?, target: Instant?) {
         if (alarmId == null) return
-        if (target != null) suppress(mapOf(alarmId to target.plus(GRACE)))
+        if (target != null) {
+            suppress(mapOf(alarmId to target.plus(GRACE)))
+            // Für [watchRang]: Holt die Uhr diese Nacht später nach, nicht noch einmal klingeln.
+            val keepAfter = now().minus(Duration.ofDays(1))
+            store.edit { prefs ->
+                val rang = decodeSuppressed(prefs[BACKUP_RANG]).toMutableMap()
+                rang[alarmId] = maxOf(rang[alarmId] ?: Instant.EPOCH, target)
+                prefs[BACKUP_RANG] = encodeSuppressed(rang.filterValues { it.isAfter(keepAfter) })
+            }
+        }
         disableOneShot(alarmId)
     }
 
@@ -318,7 +344,8 @@ class BackupAlarm(
             val alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID)
             val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
             when (intent.action) {
-                ACTION -> PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+                // Mit Zielzeit (nur der Zweitwecker selbst): Beim Beenden am Handy erfährt die Uhr, welche Nacht.
+                ACTION -> PhoneRingService.ring(context, alarmId, target = target, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
                 // Die Uhr hat sich nach dem Schlummern nicht mehr gemeldet: das Handy klingelt selbst.
                 ACTION_SNOOZE_SAFETY -> {
                     SnoozeSafety.clear(context)
@@ -492,6 +519,9 @@ class BackupAlarm(
             AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED,
         )
         private val SUPPRESSED = stringPreferencesKey("backup_suppressed")
+
+        /** Pro Wecker: Zielzeit der Nacht, die der Zweitwecker zuletzt geweckt hat (Format wie [SUPPRESSED]). */
+        private val BACKUP_RANG = stringPreferencesKey("backup_rang")
         private val LEGACY_SUPPRESSED_UNTIL = longPreferencesKey("backup_suppressed_until")
         private val PLANNED_ID = stringPreferencesKey("backup_planned_id")
         private val PLANNED_TARGET = longPreferencesKey("backup_planned_target")

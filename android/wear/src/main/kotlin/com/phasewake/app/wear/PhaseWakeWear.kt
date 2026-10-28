@@ -1,11 +1,17 @@
 package com.phasewake.app.wear
 
 import android.app.Application
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import androidx.core.content.ContextCompat
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
+import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.schedule.OnsetOverride
 import com.phasewake.app.wear.wake.GoodNightState
 import com.phasewake.app.wear.wake.NightProgress
@@ -17,6 +23,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Einstieg der Uhr-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek).
@@ -49,6 +56,22 @@ class PhaseWakeWear : Application() {
     override fun onCreate() {
         super.onCreate()
         Notifications.createChannels(this)
+        // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat. Nur
+        // solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an); sonst beim Neuplanen.
+        ContextCompat.registerReceiver(
+            this,
+            object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent) {
+                    // Vor dem ersten Entsperren ist der Speicher nicht lesbar.
+                    if (DirectBoot.isUnlocked(context)) appScope.launch { scheduler.publishStatus() }
+                }
+            },
+            IntentFilter().apply {
+                addAction(Intent.ACTION_POWER_CONNECTED)
+                addAction(Intent.ACTION_POWER_DISCONNECTED)
+            },
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
     }
 }
 

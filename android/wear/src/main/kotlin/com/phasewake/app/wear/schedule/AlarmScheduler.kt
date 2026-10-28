@@ -14,9 +14,12 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
@@ -31,6 +34,7 @@ import com.phasewake.app.wear.wake.WakeService
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
+import kotlin.math.abs
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -45,7 +49,8 @@ import kotlinx.coroutines.sync.withLock
  * Mehrere Wecker am selben Morgen (z. B. 6:50 und 7:00): Die Uhr führt immer nur eine Nacht. Klingelt
  * oder schlummert eine Nacht, bleiben ihre Alarme stehen und kein anderer Wecker wird geplant; seine
  * Zielzeit geht dabei aber nicht verloren. Endet die Nacht, gilt jede Zielzeit, die in der Zwischenzeit
- * fällig wurde und noch nicht erledigt ist, als verpasst ([CATCH_UP_FROM]): Dieser Wecker klingelt
+ * fällig wurde und noch nicht erledigt ist, als verpasst ([CATCH_UP_FROM], nur Wecker, die dabei schon
+ * eingeschaltet waren: [CATCH_UP_IDS]): Dieser Wecker klingelt
  * gleich danach (ohne Messung, sein Fenster ist vorbei). Liegt seine Zielzeit noch vorn, misst er den
  * Rest seines Fensters wie gewohnt. Bewusst kein Zusammenlegen mit dem laufenden Wecken: Jeder
  * eingeschaltete Wecker klingelt sichtbar für sich (eigener Name, Ton, Schlummern, Nacht im Verlauf).
@@ -62,6 +67,9 @@ class AlarmScheduler(
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
     private val rescheduleLock = Mutex()
 
+    /** Hält das Senden des Uhr-Status ([publishStatus]) auseinander. */
+    private val statusLock = Mutex()
+
     /** Pro Wecker erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
     @Volatile
     private var doneInMemory: Map<String, Instant> = emptyMap()
@@ -76,55 +84,89 @@ class AlarmScheduler(
         val prefs = store.data.first()
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
         // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
-        val saved = decodeDone(prefs[DONE_UNTIL_BY_ALARM])
-        val memory = doneInMemory
+        val done = doneUntil(prefs)
         val busy = busyRange(prefs, now)
         val plan = alarms.current().alarms
             .mapNotNull { spec ->
-                val done = maxOf(saved[spec.id] ?: Instant.EPOCH, memory[spec.id] ?: Instant.EPOCH)
-                missedPlan(spec, busy, done, now, zone) ?: AlarmSchedule.nextPlan(spec, maxOf(now, done), zone)
+                val doneAt = done[spec.id] ?: Instant.EPOCH
+                missedPlan(spec, busy, doneAt, now, zone) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone)
             }
             .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
         return onsetOverride.apply(plan, now)
     }
 
+    /** Pro Wecker erledigt bis: gespeichert und aus [markDone], der spätere Wert gilt. */
+    private fun doneUntil(prefs: Preferences): Map<String, Instant> {
+        val merged = decodeDone(prefs[DONE_UNTIL_BY_ALARM]).toMutableMap()
+        doneInMemory.forEach { (id, at) -> merged[id] = maxOf(merged[id] ?: Instant.EPOCH, at) }
+        return merged
+    }
+
+    /** Zeitraum der zuletzt beendeten Nacht(en) und die Wecker, die darin fällig wurden. */
+    private class CatchUp(val from: Instant, val until: Instant, val alarmIds: Set<String>)
+
     /**
      * Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief ([busy]), und der noch
      * nicht erledigt ist: Plan mit dieser (vergangenen) Zielzeit, damit er gleich klingelt statt erst
-     * am nächsten Tag. Sonst `null`.
+     * am nächsten Tag. Nur Wecker, die schon beim Ende der Nacht eingeschaltet waren
+     * ([CatchUp.alarmIds]); ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich.
+     * Sonst `null`.
      */
-    private fun missedPlan(spec: AlarmSpec, busy: Pair<Instant, Instant>?, done: Instant, now: Instant, zone: java.time.ZoneId): WakePlan? {
-        val (from, until) = busy ?: return null
-        val target = AlarmSchedule.nextTarget(spec, maxOf(from, done), zone) ?: return null
-        if (target.isAfter(until) || target.isAfter(now)) return null
+    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId): WakePlan? {
+        if (busy == null || spec.id !in busy.alarmIds) return null
+        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone) ?: return null
+        if (target.isAfter(busy.until) || target.isAfter(now)) return null
         return WakePlan(spec.id, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
     }
 
     /** Zeitraum der zuletzt beendeten Nacht(en), solange er für das Nachholen gilt. */
-    private fun busyRange(prefs: Preferences, now: Instant): Pair<Instant, Instant>? {
+    private fun busyRange(prefs: Preferences, now: Instant): CatchUp? {
         val from = prefs[CATCH_UP_FROM]?.let(Instant::ofEpochMilli) ?: return null
         val until = prefs[CATCH_UP_UNTIL]?.let(Instant::ofEpochMilli) ?: return null
-        return if (now.isAfter(until.plus(CATCH_UP_VALID))) null else from to until
+        return if (now.isAfter(until.plus(CATCH_UP_VALID))) null else CatchUp(from, until, prefs[CATCH_UP_IDS].orEmpty())
     }
 
     /**
-     * Eine Nacht, die geweckt hat, ist zu Ende: Zeitraum von ihrem Fensterbeginn bis [until] merken.
+     * Eine Nacht, die geweckt hat, ist zu Ende: Zeitraum von ihrem Fensterbeginn bis [until] merken,
+     * dazu die eingeschalteten Wecker, deren Zielzeit in diesen Zeitraum fiel (nur diese werden nachgeholt).
      * Schliesst eine nachgeholte Nacht direkt an, wird der Zeitraum verlängert (drei Wecker hintereinander).
      */
     suspend fun noteNightEnded(windowStart: Instant, until: Instant) {
+        val zone = clock().zone
+        val specs = alarms.current().alarms
         store.edit { prefs ->
             val oldFrom = prefs[CATCH_UP_FROM]
             val oldUntil = prefs[CATCH_UP_UNTIL]
             val start = windowStart.toEpochMilli()
             val end = until.toEpochMilli()
-            if (oldFrom != null && oldUntil != null && start <= oldUntil) {
-                prefs[CATCH_UP_FROM] = minOf(oldFrom, start)
-                prefs[CATCH_UP_UNTIL] = maxOf(oldUntil, end)
-            } else {
-                prefs[CATCH_UP_FROM] = start
-                prefs[CATCH_UP_UNTIL] = end
-            }
+            val extend = oldFrom != null && oldUntil != null && start <= oldUntil
+            val from = if (extend) minOf(oldFrom!!, start) else start
+            val to = if (extend) maxOf(oldUntil!!, end) else end
+            prefs[CATCH_UP_FROM] = from
+            prefs[CATCH_UP_UNTIL] = to
+            val due = specs.filter { spec ->
+                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
+            }.map { it.id }.toSet()
+            prefs[CATCH_UP_IDS] = if (extend) prefs[CATCH_UP_IDS].orEmpty() + due else due
         }
+    }
+
+    /**
+     * Am Handy beendet (Zweitwecker oder dessen Schlummern), aber nicht die Nacht, die die Uhr gerade
+     * führt: Diese Nacht des Weckers [alarmId] gilt als erledigt; sie wird weder nachgeholt noch erneut
+     * begonnen. Eine laufende Nacht bleibt unberührt. Ohne [target] (ältere Handy-Version oder
+     * Schlummern am Handy) gilt die letzte Zielzeit des Weckers.
+     */
+    suspend fun markDoneFromPhone(alarmId: String, target: Instant?) {
+        val now = clock().instant()
+        val at = target ?: alarms.current().alarms.firstOrNull { it.id == alarmId }
+            ?.let { AlarmSchedule.nextTarget(it.copy(enabled = true), now.minus(PHONE_STOP_LOOKBACK), clock().zone) }
+        // Nur eine schon fällige Nacht; eine kommende bleibt stehen.
+        if (at == null || at.isAfter(now)) return
+        Log.i(TAG, "Wecker $alarmId am Handy beendet, Nacht bis $at erledigt")
+        markDone(alarmId, at)
+        saveDone()
+        reschedule()
     }
 
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
@@ -138,8 +180,7 @@ class AlarmScheduler(
         }
 
         refreshSurfaces()
-        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist.
-        sync.publishWatchReady(isReady(), batteryPercent())
+        publishStatus()
 
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme (Schlummer-Ende) nicht anfassen und
         // keinen anderen Wecker starten, der sie ablösen würde. Ihr Ende plant neu und holt nach.
@@ -148,14 +189,31 @@ class AlarmScheduler(
             return@withLock null
         }
 
+        // Vor einem Neustart geschlummert oder die Zielzeit während des Neustarts verpasst: Dieses
+        // Wecken bleibt stehen (Schlummer-Alarm), statt dass das Neuplanen es auf morgen verschiebt.
+        val pendingRing = pendingRing(now)?.takeIf { it.plan != plan }
+        if (pendingRing != null) {
+            Log.i(TAG, "Wecken ${pendingRing.plan.alarmId} von vor dem Neustart bleibt: ${pendingRing.at}")
+            setSnoozeEnd(context, pendingRing.plan, maxOf(pendingRing.at, now.plus(IMMEDIATE)))
+        }
+
         cancel(context, REQUEST_WINDOW, AlarmReceiver.ACTION_WINDOW_START)
         cancel(context, REQUEST_DEADLINE, AlarmReceiver.ACTION_DEADLINE)
         if (plan == null) {
-            DirectBoot.clear(context)
+            if (pendingRing == null) DirectBoot.clear(context) else DirectBoot.saveNext(context, null, null)
             Log.i(TAG, "Kein aktiver Wecker")
             return@withLock null
         }
-        DirectBoot.save(context, plan, alarms.current().alarms.firstOrNull { it.id == plan.alarmId })
+        val specs = alarms.current().alarms
+        val spec = specs.firstOrNull { it.id == plan.alarmId }
+        if (pendingRing == null) {
+            // Dazu der Plan danach: Endet eine Nacht vor dem ersten Entsperren, gilt dieser (DirectBoot.promoteNext).
+            val after = followingPlan(plan, specs, now)
+            DirectBoot.save(context, plan, spec, after, specs.firstOrNull { it.id == after?.alarmId })
+        } else {
+            // Der abgelegte Eintrag ist das ausstehende Wecken; der neue Plan folgt danach.
+            DirectBoot.saveNext(context, plan, spec)
+        }
         setDeadline(context, plan)
         // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
         // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
@@ -163,6 +221,57 @@ class AlarmScheduler(
         setAlarmClock(context, start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
         Log.i(TAG, "Geplant: Fenster ${plan.windowStart} bis ${plan.target}")
         plan
+    }
+
+    /**
+     * Abgelegtes Wecken aus [DirectBoot], das noch aussteht: geschlummert (Schlummer-Ende nach der
+     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und nicht älter
+     * als [DirectBoot.MISSED_DURING_BOOT]. Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
+     */
+    private suspend fun pendingRing(now: Instant): DirectBoot.Saved? {
+        val saved = DirectBoot.load(context) ?: return null
+        val late = saved.at.isAfter(saved.plan.target) || !saved.plan.target.isAfter(now)
+        if (!late || saved.at.isBefore(now.minus(DirectBoot.MISSED_DURING_BOOT))) return null
+        val done = doneUntil(store.data.first())[saved.plan.alarmId]
+        if (done != null && !done.isBefore(saved.plan.target)) return null
+        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled }) return null
+        return saved
+    }
+
+    /** Der Plan nach [plan]: dessen Wecker erst nach seiner Zielzeit, die übrigen wie gewohnt. */
+    private suspend fun followingPlan(plan: WakePlan, specs: List<AlarmSpec>, now: Instant): WakePlan? {
+        val zone = clock().zone
+        val done = doneUntil(store.data.first())
+        return specs.mapNotNull { spec ->
+            val from = if (spec.id == plan.alarmId) maxOf(now, plan.target) else now
+            AlarmSchedule.nextPlan(spec, maxOf(from, done[spec.id] ?: Instant.EPOCH), zone)
+        }.filter { it != plan }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+    }
+
+    /**
+     * Uhr-Status ans Handy (bereit, Akkustand), aber nur bei Bedarf: Bereitschaft geändert, Akkustand
+     * um mindestens [STATUS_BATTERY_STEP] Punkte geändert oder letzte Meldung älter als [STATUS_MAX_AGE].
+     * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
+     */
+    suspend fun publishStatus(): Unit = statusLock.withLock {
+        val ready = isReady()
+        val battery = batteryPercent()
+        val now = clock().instant().toEpochMilli()
+        val prefs = store.data.first()
+        val lastAt = prefs[STATUS_AT]
+        val lastBattery = prefs[STATUS_BATTERY]
+        val due = prefs[STATUS_READY] != ready ||
+            (battery != null && (lastBattery == null || abs(battery - lastBattery) >= STATUS_BATTERY_STEP)) ||
+            lastAt == null || now - lastAt >= STATUS_MAX_AGE.toMillis() || now < lastAt
+        if (!due) return@withLock
+        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist.
+        if (!sync.publishWatchReady(ready, battery)) return@withLock
+        store.edit {
+            it[STATUS_READY] = ready
+            it[STATUS_AT] = now
+            if (battery != null) it[STATUS_BATTERY] = battery else it.remove(STATUS_BATTERY)
+        }
+        Unit
     }
 
     /**
@@ -237,6 +346,17 @@ class AlarmScheduler(
         /** Zeitraum der zuletzt beendeten Nacht(en), siehe Klassenbeschreibung. */
         private val CATCH_UP_FROM = longPreferencesKey("catch_up_from")
         private val CATCH_UP_UNTIL = longPreferencesKey("catch_up_until")
+        private val CATCH_UP_IDS = stringSetPreferencesKey("catch_up_ids")
+
+        /** Zuletzt gesendeter Uhr-Status, siehe [publishStatus]. */
+        private val STATUS_READY = booleanPreferencesKey("status_sent_ready")
+        private val STATUS_BATTERY = intPreferencesKey("status_sent_battery")
+        private val STATUS_AT = longPreferencesKey("status_sent_at")
+        private const val STATUS_BATTERY_STEP = 5
+        private val STATUS_MAX_AGE: Duration = Duration.ofHours(1)
+
+        /** Am Handy beendet ohne Zielzeit: so weit zurück wird die Nacht gesucht (Fenster, Klingeln, Schlummern). */
+        private val PHONE_STOP_LOOKBACK: Duration = Duration.ofHours(2)
 
         /**
          * So lange nach dem Ende der Nacht wird noch nachgeholt. Danach nicht mehr: Sonst klänge ein

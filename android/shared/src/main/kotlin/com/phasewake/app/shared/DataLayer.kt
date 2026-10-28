@@ -5,7 +5,10 @@ object DataLayer {
     /** Datenpaket mit allen Weckern; Schlüssel [KEY_TEXT], [KEY_UPDATED_AT]. Schreiben beide Seiten. */
     const val PATH_ALARMS = "/phasewake/alarms"
 
-    /** Präfix der Nacht-Pakete der Uhr, gefolgt vom Fensterbeginn in Millisekunden. */
+    /**
+     * Präfix der Nacht-Pakete der Uhr, gefolgt von «fensterbeginnMs-kennung» (Kennung URL-kodiert).
+     * Ältere Uhren schicken nur den Fensterbeginn; gelesen wird deshalb nach Präfix.
+     */
     const val PATH_NIGHT_PREFIX = "/phasewake/night/"
 
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */

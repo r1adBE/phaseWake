@@ -534,7 +534,8 @@ class WakeService : LifecycleService() {
         // Vor dem ersten Entsperren nichts speichern (nicht lesbar). Nach dem Entsperren holt
         // SystemEventReceiver nach: Nacht erledigt, Einmal-Wecker aus, neu planen.
         if (!DirectBoot.isUnlocked(this)) {
-            DirectBoot.clear(this)
+            // Der abgelegte Plan danach wird zum Eintrag: Bleibt die Uhr gesperrt, weckt sie auch am nächsten Morgen.
+            DirectBoot.promoteNext(this)?.let { DirectBoot.setDeadlineAt(this, it) }
             if (record != null) DirectBoot.markRang(this, n.plan.alarmId, n.plan.target)
             if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
             handler.post { stopIfIdle() }
