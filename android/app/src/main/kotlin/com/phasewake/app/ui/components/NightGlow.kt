@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
@@ -95,9 +96,10 @@ fun LogoMark(size: Dp, modifier: Modifier = Modifier) {
         scale(s, pivot = Offset.Zero) {
             run {
                 val moon = Path().apply {
-                    moveTo(108.06f, 51.06f)
-                    arcTo(androidx.compose.ui.geometry.Rect(34f, 32f, 114f, 112f), -31.6f, -221.9f, false)
-                    arcTo(androidx.compose.ui.geometry.Rect(53f, 21f, 129f, 97f), 118.8f, 216.2f, false)
+                    // Mondsichel = Kreis (74|72, r 40) ohne Kreis (91|59, r 38), wie im Logo.
+                    moveTo(108.1f, 92.9f)
+                    arcTo(Rect(34f, 32f, 114f, 112f), 31.5f, 222.1f, false)
+                    arcTo(Rect(53f, 21f, 129f, 97f), 221.9f, -158.7f, false)
                     close()
                 }
                 drawPath(moon, Night.Moon)
@@ -110,7 +112,7 @@ fun LogoMark(size: Dp, modifier: Modifier = Modifier) {
                     cubicTo(140f, 152f, 146f, 134f, 158f, 122f)
                 }
                 drawPath(wave, Night.Wave, style = Stroke(9f, cap = StrokeCap.Round))
-                drawCircle(Night.Moon, radius = 9f, center = Offset(166f, 114f))
+                drawCircle(Night.Moon, radius = 8f, center = Offset(164f, 116f))
             }
         }
     }
