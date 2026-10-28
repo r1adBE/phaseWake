@@ -42,7 +42,9 @@ jobs:
           out=$(mktemp -d)
           for m in app wear; do
             mkdir -p "$out/$m"
-            find "android/$m/src/screenshotTestDebug/reference" -name '*.png' -exec cp {} "$out/$m/" \;
+            # Feste Dateinamen (ohne Prüfsummen-Anhang), damit Links im README stabil bleiben.
+            find "android/$m/src/screenshotTestDebug/reference" -name '*.png' -print0 |
+              while IFS= read -r -d '' f; do b=$(basename "$f"); cp "$f" "$out/$m/${b%%_*}.png"; done
           done
           {
             echo "# Phase Wake – Bildschirmfotos"

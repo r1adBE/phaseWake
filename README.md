@@ -4,7 +4,8 @@
 
 <p align="center">
 Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b> – weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf.<br>
-Open Source · ohne Konto · ohne Server · ohne Abo
+Open Source · ohne Konto · ohne Server · ohne Abo<br>
+<sub>Stand: Android und Galaxy Watch in Entwicklung, Apple-Version folgt.</sub>
 </p>
 
 <p align="center">
@@ -13,9 +14,9 @@ Open Source · ohne Konto · ohne Server · ohne Abo
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeDark_Startseite%20dunkel_de77915b_0.png" width="230" alt="Startseite dunkel">
-<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeLight_Startseite%20hell_37ff950b_0.png" width="230" alt="Startseite hell">
-<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/RingPhone_Wecken%20Handy_f9f7e710_0.png" width="230" alt="Wecken">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeDark.png" width="230" alt="Startseite dunkel">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeLight.png" width="230" alt="Startseite hell">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/RingPhone.png" width="230" alt="Wecken">
 </p>
 
 <p align="center"><a href="https://github.com/r1adBE/phaseWake/tree/screenshots">Alle Bildschirme ansehen →</a></p>
