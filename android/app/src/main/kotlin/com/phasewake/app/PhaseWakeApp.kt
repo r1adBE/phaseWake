@@ -52,7 +52,16 @@ class PhaseWakeApp : Application() {
         if (!BackupAlarm.isUnlocked(this)) return
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
-        appScope.launch { backup.reschedule() }
+        appScope.launch {
+            // Was die Uhr schon hat, abholen: Wecker und Nächte (z. B. Uhr-App vor der Handy-App
+            // installiert). Die Nacht-Pakete werden danach gelöscht, wie beim normalen Empfang.
+            sync.fetchAlarms()?.let { alarms.applyRemote(it) }
+            for ((night, uri) in sync.fetchNights()) {
+                nights.add(night)
+                sync.delete(uri)
+            }
+            backup.reschedule()
+        }
         // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
         appScope.launch { sounds.cleanup() }
         com.phasewake.app.sounds.SoundStore.scheduleCleanup(this)

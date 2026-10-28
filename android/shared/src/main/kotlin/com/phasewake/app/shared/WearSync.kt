@@ -129,6 +129,26 @@ class WearSync(context: Context) {
     /** Entfernt ein empfangenes Paket, sobald es lokal gespeichert ist. */
     suspend fun delete(uri: Uri) = guarded("Paket entfernen") { dataClient.deleteDataItems(uri).await() }
 
+    /**
+     * Handy: Nächte, die die Uhr schon abgelegt hat, mit ihrer Adresse zum Löschen nach dem Speichern.
+     * Nötig, wenn die Handy-App erst nach der Uhr-App installiert wurde: Bestehende Pakete werden
+     * sonst nicht gemeldet. Leer, wenn nichts da ist oder die Wear-Dienste fehlen.
+     */
+    suspend fun fetchNights(): List<Pair<NightRecord, Uri>> = try {
+        val items = dataClient.getDataItems(
+            Uri.Builder().scheme("wear").path(DataLayer.PATH_NIGHT_PREFIX).build(),
+            DataClient.FILTER_PREFIX,
+        ).await()
+        try {
+            items.mapNotNull { item -> readNight(DataMapItem.fromDataItem(item).dataMap)?.let { it to item.uri } }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        emptyList()
+    }
+
     /** Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. */
     suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) = guarded("Nachricht $path") {
         val nodes = capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes
