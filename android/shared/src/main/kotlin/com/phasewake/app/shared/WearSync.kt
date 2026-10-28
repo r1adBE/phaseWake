@@ -35,6 +35,23 @@ class WearSync(context: Context) {
     }
 
     /**
+     * Holt den neuesten Weckerstand, der im Data Layer liegt (beide Geräte). Nötig, weil Änderungen nur
+     * bei einer Änderung gemeldet werden: Eine frisch installierte Uhr bekäme bestehende Wecker sonst nie.
+     * `null`, wenn nichts da ist oder die Wear-Dienste fehlen.
+     */
+    suspend fun fetchAlarms(): AlarmSnapshot? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_ALARMS).build()).await()
+        try {
+            items.mapNotNull { readAlarms(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.updatedAt }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /**
      * Pfad mit Fensterbeginn und Kennung: Zwei Wecker mit gleichem Fensterbeginn überschreiben sich
      * nicht. Das Handy liest nach Präfix, auch ältere Pfade nur mit Fensterbeginn.
      */

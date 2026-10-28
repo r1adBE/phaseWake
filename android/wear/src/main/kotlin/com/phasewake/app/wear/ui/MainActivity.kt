@@ -145,8 +145,12 @@ private fun HomeScreen() {
         dndBlocks = DoNotDisturb.blocksAlarms(context)
         missingPermissions = missing()
         backgroundMissing = missingBackground()
-        // Neu planen meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
-        app.appScope.launch { app.scheduler.reschedule() }
+        // Wecker vom Handy abholen (falls eine Änderung verpasst wurde), dann neu planen; das meldet
+        // auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
+        app.appScope.launch {
+            app.sync.fetchAlarms()?.let { app.alarms.applyRemote(it) }
+            app.scheduler.reschedule()
+        }
         onPauseOrDispose { }
     }
     val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
