@@ -72,10 +72,21 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Fügt eine Nacht hinzu (gleicher Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
+    /// Ein schon angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
     public func add(_ night: NightRecord) {
-        let updated = NightHistory.trim(nights().filter { $0.windowStart != night.windowStart } + [night])
+        let current = nights()
+        let feeling = night.feeling ?? current.first { $0.windowStart == night.windowStart }?.feeling
+        write(NightHistory.trim(current.filter { $0.windowStart != night.windowStart } + [night.with(feeling: feeling)]))
+    }
+
+    /// Speichert das Befinden (1–5) zur Nacht mit diesem Fensterbeginn.
+    public func setFeeling(_ feeling: Int, windowStart: Date) {
+        write(nights().map { $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
+    }
+
+    private func write(_ nights: [NightRecord]) {
         lock.lock(); defer { lock.unlock() }
-        let text = updated.map(Codec.encodeNight).joined(separator: Self.separator)
+        let text = nights.map(Codec.encodeNight).joined(separator: Self.separator)
         try? text.write(to: nightsURL, atomically: true, encoding: .utf8)
     }
 

@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nytt larm</string>
     <string name="home_last_night">Senaste natten</string>
     <string name="home_alarms">Dina larm</string>
-    <string name="home_permission_title">Tillåt larm</string>
-    <string name="home_permission_text">Phase Wake behöver aviseringar och helskärmsvarningar för att väcka dig.</string>
-    <string name="home_permission_action">Tillåt</string>
 
     <string name="reason_light">Lätt sömn</string>
     <string name="reason_awake">Redan vaken</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Ljud</string>
     <string name="editor_sound">Larmljud</string>
     <string name="editor_sound_default">Standard</string>
-    <string name="dnd_title">Stör ej blockerar larm</string>
     <string name="dnd_text">Tillåt larm i Stör ej, annars förblir mobilen tyst.</string>
     <string name="dnd_action">Öppna inställningar</string>
     <string name="greeting_morning">God morgon</string>

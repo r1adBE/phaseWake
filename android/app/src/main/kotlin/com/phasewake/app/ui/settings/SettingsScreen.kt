@@ -120,6 +120,13 @@ fun SettingsScreen(
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.fillMaxWidth().clickable { uri.openUri(REPO_URL) }.padding(vertical = 8.dp),
             )
+            Text(
+                stringResource(R.string.settings_support),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.fillMaxWidth().clickable { uri.openUri(SPONSOR_URL) }.padding(top = 8.dp),
+            )
+            Text(stringResource(R.string.settings_support_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 8.dp))
             Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 4.dp))
             Text(stringResource(R.string.settings_licenses_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(
@@ -135,6 +142,7 @@ fun SettingsScreen(
 /** Zustand der Verbindung zu Health Connect. */
 enum class HealthState { UNAVAILABLE, AVAILABLE, CONNECTED }
 
+private const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
 private const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 
 @Composable

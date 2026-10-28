@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Yeni alarm</string>
     <string name="home_last_night">Dün gece</string>
     <string name="home_alarms">Alarmların</string>
-    <string name="home_permission_title">Alarmlara izin ver</string>
-    <string name="home_permission_text">Phase Wake\'in seni uyandırabilmesi için bildirimlere ve tam ekran uyarılara ihtiyacı var.</string>
-    <string name="home_permission_action">İzin ver</string>
 
     <string name="reason_light">Hafif uyku</string>
     <string name="reason_awake">Zaten uyanık</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Ses</string>
     <string name="editor_sound">Alarm sesi</string>
     <string name="editor_sound_default">Varsayılan</string>
-    <string name="dnd_title">Rahatsız Etme alarmları engelliyor</string>
     <string name="dnd_text">Rahatsız Etme\'de alarmlara izin ver, yoksa telefonun sessiz kalır.</string>
     <string name="dnd_action">Ayarları aç</string>
     <string name="greeting_morning">Günaydın</string>

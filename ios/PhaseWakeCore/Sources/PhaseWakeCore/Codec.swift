@@ -57,6 +57,7 @@ public enum Codec {
         out += [
             escape(night.alarmId), String(millis(night.windowStart)), String(millis(night.target)),
             String(millis(night.wokeAt)), night.reason.rawValue, String(night.snoozes),
+            night.feeling.map(String.init) ?? "",
         ].joined(separator: "|") + "\n"
         out += night.epochs.map { e in
             (e.motion.map(number) ?? "") + ";" + (e.heartRate.map(number) ?? "")
@@ -68,7 +69,10 @@ public enum Codec {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
         let f = (lines.count > 1 ? lines[1] : "").components(separatedBy: "|")
-        guard f.count == 6 else { throw CodecError(description: "Nacht: 6 Felder erwartet") }
+        // 7 Felder; ältere Stände ohne Befinden haben 6.
+        guard f.count == 7 || f.count == 6 else { throw CodecError(description: "Nacht: 7 Felder erwartet") }
+        let feeling: Int? = try f.count == 7 && !f[6].isEmpty ? int(f[6]) : nil
+        if let feeling, !NightRecord.feelingRange.contains(feeling) { throw CodecError(description: "Nacht: Befinden '\(feeling)'") }
         guard let reason = WakeReason(rawValue: f[4]) else { throw CodecError(description: "Nacht: Grund '\(f[4])'") }
         let epochLine = lines.count > 2 ? lines[2] : ""
         let epochs: [Epoch] = try epochLine.isEmpty ? [] : epochLine.components(separatedBy: ",").map { pair in
@@ -78,7 +82,7 @@ public enum Codec {
         }
         return NightRecord(
             alarmId: unescape(f[0]), windowStart: try date(f[1]), target: try date(f[2]), wokeAt: try date(f[3]),
-            reason: reason, snoozes: try int(f[5]), epochs: epochs
+            reason: reason, snoozes: try int(f[5]), epochs: epochs, feeling: feeling
         )
     }
 

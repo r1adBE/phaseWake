@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Uusi herätys</string>
     <string name="home_last_night">Viime yö</string>
     <string name="home_alarms">Herätyksesi</string>
-    <string name="home_permission_title">Salli herätykset</string>
-    <string name="home_permission_text">Phase Wake tarvitsee ilmoitukset ja koko näytön hälytykset herättääkseen sinut.</string>
-    <string name="home_permission_action">Salli</string>
 
     <string name="reason_light">Kevyt uni</string>
     <string name="reason_awake">Jo hereillä</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Ääni</string>
     <string name="editor_sound">Herätysääni</string>
     <string name="editor_sound_default">Oletus</string>
-    <string name="dnd_title">Älä häiritse estää herätykset</string>
     <string name="dnd_text">Salli herätykset Älä häiritse -tilassa, muuten puhelimesi pysyy hiljaa.</string>
     <string name="dnd_action">Avaa asetukset</string>
     <string name="greeting_morning">Huomenta</string>

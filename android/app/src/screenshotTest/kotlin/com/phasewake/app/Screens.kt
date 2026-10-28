@@ -20,7 +20,10 @@ import com.phasewake.app.ring.SunriseScreen
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.NightCheckState
+import com.phasewake.app.core.Trends
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.SettingsScreen
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -39,7 +42,8 @@ private val alarms = listOf(
 )
 
 private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRecord {
-    val start = Instant.parse("2026-10-27T05:30:00Z").minus(Duration.ofDays(daysAgo))
+    // Relativ zu jetzt, damit die jüngste Nacht als «Dein Morgen» erscheint.
+    val start = Instant.now().minus(Duration.ofDays(daysAgo)).minus(Duration.ofHours(2))
     val epochs = List((wokeMinute * 2).toInt()) { i ->
         val m = when {
             i % 9 == 4 -> 0.0015
@@ -48,7 +52,8 @@ private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRec
         }
         Epoch(m, 52.0 + (i % 5))
     }
-    return NightRecord("work", start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(wokeMinute)), reason, if (daysAgo == 2L) 1 else 0, epochs)
+    val feeling = when (daysAgo) { 1L -> 3; 2L -> 4; else -> null }
+    return NightRecord("work", start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(wokeMinute)), reason, if (daysAgo == 2L) 1 else 0, epochs, feeling)
 }
 
 private val nights = listOf(night(2, 30, WakeReason.DEADLINE), night(1, 22, WakeReason.AWAKE), night(0, 11, WakeReason.LIGHT_SLEEP))
@@ -71,8 +76,8 @@ private fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun Home(mode: ThemeMode, list: List<AlarmSpec>) = Themed(mode) {
-    HomeScreen(list, nights.last(), needsPermission = false, dndBlocks = false, onOpenDnd = {}, contentPadding = padding, onRequestPermission = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> })
+private fun Home(mode: ThemeMode, list: List<AlarmSpec>, check: NightCheckState = NightCheckState(emptyList())) = Themed(mode) {
+    HomeScreen(list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {}, onToggle = { _, _ -> })
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite hell", device = PHONE) @Composable
@@ -93,11 +98,16 @@ fun EditorLight() = Themed(ThemeMode.LIGHT) { EditorScreen(alarms.first(), advic
 @PreviewTest @Preview(locale = "de-rCH", name = "Editor dunkel", device = PHONE_TALL) @Composable
 fun EditorDark() = Themed(ThemeMode.DARK) { EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {}) }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE) @Composable
-fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}) }
+@PreviewTest @Preview(locale = "de-rCH", name = "Nacht-Check offen", device = PHONE) @Composable
+fun HomeCheck() = Home(ThemeMode.LIGHT, alarms, NightCheckState(listOf(Check.WATCH, Check.DND)))
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE) @Composable
-fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}) }
+private val trends = Trends(asleepThisWeek = 432, asleepLastWeek = 401, bedtimeSpreadMinutes = 18, feelingThisWeek = 3.8, feelingLastWeek = 3.2)
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE_TALL) @Composable
+fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = true) }
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE_TALL) @Composable
+fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = false) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {

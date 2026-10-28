@@ -4,6 +4,8 @@ import SwiftUI
 /// Verlauf: Kennzahlen und jede Nacht mit Bewegungskurve und – falls erlaubt – Schlafphasen.
 struct HistoryView: View {
     @Environment(PhoneModel.self) private var model
+    @AppStorage("healthRequested") private var healthRequested = false
+    @State private var sleeps: [SleepSummary] = []
 
     var body: some View {
         NavigationStack {
@@ -17,6 +19,11 @@ struct HistoryView: View {
                         .card()
                     } else {
                         stats
+                        TrendsCard(
+                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current),
+                            healthConnected: healthRequested,
+                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep() } }
+                        )
                         ForEach(model.nights.reversed(), id: \.windowStart) { NightCard(night: $0) }
                         ShareLink(item: NightHistory.exportCsv(model.nights), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
@@ -27,6 +34,7 @@ struct HistoryView: View {
                 .padding(.vertical)
             }
             .navigationTitle(L("history_title"))
+            .task(id: healthRequested) { if healthRequested { sleeps = await model.health.recentSleep() } }
         }
     }
 
@@ -56,6 +64,7 @@ private struct NightCard: View {
             }
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 44)
             Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if let verdict {
                 Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
             }

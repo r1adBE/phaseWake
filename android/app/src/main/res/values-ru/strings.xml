@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Новый будильник</string>
     <string name="home_last_night">Прошлая ночь</string>
     <string name="home_alarms">Твои будильники</string>
-    <string name="home_permission_title">Разрешить будильники</string>
-    <string name="home_permission_text">Phase Wake нужны уведомления и полноэкранные оповещения, чтобы разбудить тебя.</string>
-    <string name="home_permission_action">Разрешить</string>
 
     <string name="reason_light">Лёгкий сон</string>
     <string name="reason_awake">Уже не спишь</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Звук</string>
     <string name="editor_sound">Мелодия будильника</string>
     <string name="editor_sound_default">По умолчанию</string>
-    <string name="dnd_title">«Не беспокоить» блокирует будильники</string>
     <string name="dnd_text">Разреши будильники в режиме «Не беспокоить», иначе телефон будет молчать.</string>
     <string name="dnd_action">Открыть настройки</string>
     <string name="greeting_morning">Доброе утро</string>

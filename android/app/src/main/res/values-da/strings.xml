@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Ny alarm</string>
     <string name="home_last_night">Sidste nat</string>
     <string name="home_alarms">Dine alarmer</string>
-    <string name="home_permission_title">Tillad alarmer</string>
-    <string name="home_permission_text">Phase Wake skal bruge notifikationer og fuldskærmsadvarsler for at vække dig.</string>
-    <string name="home_permission_action">Tillad</string>
 
     <string name="reason_light">Let søvn</string>
     <string name="reason_awake">Allerede vågen</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Lyd</string>
     <string name="editor_sound">Alarmlyd</string>
     <string name="editor_sound_default">Standard</string>
-    <string name="dnd_title">Forstyr ikke blokerer alarmer</string>
     <string name="dnd_text">Tillad alarmer i Forstyr ikke, ellers forbliver din telefon stille.</string>
     <string name="dnd_action">Åbn indstillinger</string>
     <string name="greeting_morning">Godmorgen</string>

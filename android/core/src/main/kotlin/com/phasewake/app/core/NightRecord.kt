@@ -8,6 +8,7 @@ import java.util.Locale
  * Eine aufgezeichnete Weck-Nacht. Bleibt auf dem Gerät; Grundlage für Verlauf und Kalibrierung.
  *
  * @property epochs Alle Epochen des Fensters ab Fensterbeginn, inklusive Aufwärmphase.
+ * @property feeling Wie erholt sich der Nutzer am Morgen fühlte, 1 (müde) bis 5 (erholt); `null` = nicht angegeben.
  */
 data class NightRecord(
     val alarmId: String,
@@ -17,9 +18,19 @@ data class NightRecord(
     val reason: WakeReason,
     val snoozes: Int,
     val epochs: List<Epoch>,
+    val feeling: Int? = null,
 ) {
+    init {
+        require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) { "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen" }
+    }
+
     /** Wie viele Minuten vor der Zielzeit geweckt wurde (0 bei Zielzeit). */
     val minutesBeforeTarget: Long get() = Duration.between(wokeAt, target).toMinutes().coerceAtLeast(0)
+
+    companion object {
+        const val FEELING_MIN: Int = 1
+        const val FEELING_MAX: Int = 5
+    }
 }
 
 /** Aufbewahrung und anonymer Export des Verlaufs. */
@@ -39,7 +50,7 @@ object NightHistory {
      * Nächte werden durchnummeriert (1 = älteste). Dezimalpunkt, Komma als Trenner.
      */
     fun exportCsv(nights: List<NightRecord>): String = buildString {
-        append("night,window_minutes,reason,woke_minutes_before_target,snoozes,epoch,motion,hr\n")
+        append("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr\n")
         trim(nights).forEachIndexed { nightIndex, night ->
             val windowMinutes = Duration.between(night.windowStart, night.target).toMinutes()
             night.epochs.forEachIndexed { epochIndex, epoch ->
@@ -48,6 +59,7 @@ object NightHistory {
                 append(night.reason.name).append(',')
                 append(night.minutesBeforeTarget).append(',')
                 append(night.snoozes).append(',')
+                append(night.feeling?.toString() ?: "").append(',')
                 append(epochIndex).append(',')
                 append(epoch.motion?.let { String.format(Locale.ROOT, "%.6f", it) } ?: "").append(',')
                 append(epoch.heartRate?.let { String.format(Locale.ROOT, "%.1f", it) } ?: "").append('\n')

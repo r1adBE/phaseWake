@@ -34,9 +34,21 @@ class NightRepository(
 
     suspend fun load(): List<NightRecord> = mutex.withLock { loadLocked() }
 
-    /** Fügt eine Nacht hinzu; eine Nacht mit gleichem Fensterbeginn wird ersetzt. */
+    /**
+     * Fügt eine Nacht hinzu; eine Nacht mit gleichem Fensterbeginn wird ersetzt. Ein schon
+     * angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
+     */
     suspend fun add(night: NightRecord) = mutex.withLock {
-        val updated = NightHistory.trim(loadLocked().filterNot { it.windowStart == night.windowStart } + night)
+        val current = loadLocked()
+        val feeling = night.feeling ?: current.firstOrNull { it.windowStart == night.windowStart }?.feeling
+        val updated = NightHistory.trim(current.filterNot { it.windowStart == night.windowStart } + night.copy(feeling = feeling))
+        write(updated)
+        state.value = updated
+    }
+
+    /** Speichert das Befinden (1–5) zur Nacht mit diesem Fensterbeginn. */
+    suspend fun setFeeling(windowStart: java.time.Instant, feeling: Int) = mutex.withLock {
+        val updated = loadLocked().map { if (it.windowStart == windowStart) it.copy(feeling = feeling) else it }
         write(updated)
         state.value = updated
     }

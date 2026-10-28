@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">No Apple Watch is paired with this iPhone.</string>
+    <string name="check_watch_app">Phase Wake on the watch</string>
+    <string name="check_watch_app_problem">Install Phase Wake on your Apple Watch in the Watch app.</string>
+    <string name="check_alarmkit">Alarms allowed</string>
+    <string name="check_alarmkit_problem">Allow Phase Wake to set alarms so your iPhone can ring as a backup alarm.</string>
+    <string name="nightstand_start">Start nightstand mode</string>
+    <string name="nightstand_hint">For the sunrise, leave Phase Wake open on the charger overnight. The screen stays dark until the light begins.</string>
+    <string name="nightstand_end">End</string>
+    <string name="nightstand_waiting">Sunrise at %1$s</string>
+    <string name="nightstand_no_alarm">No alarm with sunrise</string>
+    <string name="editor_sunrise_ios_hint">Your iPhone can only show the light while Phase Wake is open – start nightstand mode before you go to sleep.</string>
+    <string name="trends_health_hint_apple">Sleep duration and regularity come from Apple Health.</string>
+</resources>

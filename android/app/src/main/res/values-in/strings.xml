@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Alarm baru</string>
     <string name="home_last_night">Semalam</string>
     <string name="home_alarms">Alarm kamu</string>
-    <string name="home_permission_title">Izinkan alarm</string>
-    <string name="home_permission_text">Phase Wake butuh notifikasi dan peringatan layar penuh untuk membangunkanmu.</string>
-    <string name="home_permission_action">Izinkan</string>
 
     <string name="reason_light">Tidur ringan</string>
     <string name="reason_awake">Sudah bangun</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Suara</string>
     <string name="editor_sound">Nada alarm</string>
     <string name="editor_sound_default">Default</string>
-    <string name="dnd_title">Jangan Ganggu memblokir alarm</string>
     <string name="dnd_text">Izinkan alarm saat Jangan Ganggu, kalau tidak ponselmu tetap senyap.</string>
     <string name="dnd_action">Buka pengaturan</string>
     <string name="greeting_morning">Selamat pagi</string>

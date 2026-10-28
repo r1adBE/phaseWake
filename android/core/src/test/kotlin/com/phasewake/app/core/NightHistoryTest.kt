@@ -37,12 +37,12 @@ class NightHistoryTest {
 
     @Test
     fun csvIsAnonymous() {
-        val csv = NightHistory.exportCsv(listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))), night(0)))
+        val csv = NightHistory.exportCsv(listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))).copy(feeling = 4), night(0)))
         val lines = csv.trimEnd().lines()
-        assertEquals("night,window_minutes,reason,woke_minutes_before_target,snoozes,epoch,motion,hr", lines[0])
-        assertEquals("1,30,LIGHT_SLEEP,12,1,0,0.000000,52.0", lines[1])
-        assertEquals("2,30,LIGHT_SLEEP,12,1,0,0.002100,52.3", lines[2])
-        assertEquals("2,30,LIGHT_SLEEP,12,1,1,,", lines[3])
+        assertEquals("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr", lines[0])
+        assertEquals("1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0", lines[1])
+        assertEquals("2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3", lines[2])
+        assertEquals("2,30,LIGHT_SLEEP,12,1,4,1,,", lines[3])
         assertFalse("geheim" in csv)
         assertFalse("2026" in csv)
     }

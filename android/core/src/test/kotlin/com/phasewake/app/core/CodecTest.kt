@@ -43,6 +43,17 @@ class CodecTest {
     }
 
     @Test
+    fun nightWithFeelingAndOlderFormat() {
+        val text = "phasewake-night 1\na|0|1800000|1080000|DEADLINE|0\n0.0;52.0\n"
+        val old = Codec.decodeNight(text)
+        assertEquals(null, old.feeling)
+        val rated = old.copy(feeling = 5)
+        assertEquals(rated, Codec.decodeNight(Codec.encodeNight(rated)))
+        assertEquals("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|5\n0.0;52.0\n", Codec.encodeNight(rated))
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|9\n\n") }
+    }
+
+    @Test
     fun nightRoundTrip() {
         val night = NightRecord(
             alarmId = "3f2a-77",

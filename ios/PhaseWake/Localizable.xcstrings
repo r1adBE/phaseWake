@@ -3137,6 +3137,294 @@
         }
       }
     },
+    "check_alarmkit": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wecker erlaubt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarms allowed"
+          }
+        }
+      }
+    },
+    "check_alarmkit_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube Phase Wake Wecker, damit dein iPhone als Zweitwecker klingeln kann."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Phase Wake to set alarms so your iPhone can ring as a backup alarm."
+          }
+        }
+      }
+    },
+    "check_allow": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlauben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow"
+          }
+        }
+      }
+    },
+    "check_battery": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akku des Handys"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone battery"
+          }
+        }
+      }
+    },
+    "check_battery_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unter %1$lld %% – lade das Handy, damit der Zweitwecker sicher klingelt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Below %1$lld %% – charge your phone so the backup alarm can ring."
+          }
+        }
+      }
+    },
+    "check_dnd": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Nicht stören» lässt Wecker durch"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do Not Disturb lets alarms through"
+          }
+        }
+      }
+    },
+    "check_full_screen": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wecker im Vollbild erlaubt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-screen alarm allowed"
+          }
+        }
+      }
+    },
+    "check_full_screen_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube das, damit der Wecker auch bei gesperrtem Handy erscheint."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow this so the alarm appears even when your phone is locked."
+          }
+        }
+      }
+    },
+    "check_not_ready": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor dem Schlafen prüfen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check before you sleep"
+          }
+        }
+      }
+    },
+    "check_notifications": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitteilungen erlaubt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications allowed"
+          }
+        }
+      }
+    },
+    "check_notifications_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Mitteilungen kann das Handy nicht als Zweitwecker klingeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without notifications, your phone can’t ring as a backup alarm."
+          }
+        }
+      }
+    },
+    "check_ready": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereit für die Nacht"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready for tonight"
+          }
+        }
+      }
+    },
+    "check_ready_text": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uhr verbunden, Wecker erlaubt. Tippen für Details."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch connected, alarms allowed. Tap for details."
+          }
+        }
+      }
+    },
+    "check_watch": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uhr verbunden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch connected"
+          }
+        }
+      }
+    },
+    "check_watch_app": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake auf der Uhr"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake on the watch"
+          }
+        }
+      }
+    },
+    "check_watch_app_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installiere Phase Wake in der Watch-App auf deiner Apple Watch."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Phase Wake on your Apple Watch in the Watch app."
+          }
+        }
+      }
+    },
+    "check_watch_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Uhr ist nicht erreichbar. Trag sie, lass Bluetooth an und öffne Phase Wake einmal auf der Uhr."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your watch isn’t reachable. Wear it, keep Bluetooth on and open Phase Wake on the watch once."
+          }
+        }
+      }
+    },
+    "check_watch_problem_apple": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit diesem iPhone ist keine Apple Watch gekoppelt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Apple Watch is paired with this iPhone."
+          }
+        }
+      }
+    },
     "dnd_action": {
       "localizations": {
         "ar": {
@@ -3534,193 +3822,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "عدم الإزعاج يحجب المنبّهات"
+            "value": "المنبّهات محجوبة"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nerušit blokuje budíky"
+            "value": "Budíky blokovány"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Forstyr ikke blokerer alarmer"
+            "value": "Alarmer blokeret"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "«Nicht stören» blockiert Wecker"
+            "value": "Wecker blockiert"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το «Μην ενοχλείτε» μπλοκάρει ξυπνητήρια"
+            "value": "Ξυπνητήρια μπλοκαρισμένα"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Do Not Disturb blocks alarms"
+            "value": "Alarms blocked"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No molestar bloquea las alarmas"
+            "value": "Alarmas bloqueadas"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "«مزاحم نشو» زنگ‌ها را مسدود می‌کند"
+            "value": "زنگ‌ها مسدودند"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Älä häiritse estää herätykset"
+            "value": "Herätykset estetty"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ne pas déranger bloque les alarmes"
+            "value": "Alarmes bloquées"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "‘נא לא להפריע’ חוסם מעוררים"
+            "value": "המעוררים חסומים"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "डू नॉट डिस्टर्ब अलार्म रोक रहा है"
+            "value": "अलार्म रुके हैं"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Ne zavarjanak letiltja az ébresztőket"
+            "value": "Ébresztők letiltva"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jangan Ganggu memblokir alarm"
+            "value": "Alarm diblokir"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Non disturbare blocca le sveglie"
+            "value": "Sveglie bloccate"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "サイレントモードがアラームを妨げています"
+            "value": "アラームがブロック中"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "방해 금지 모드가 알람을 막고 있어요"
+            "value": "알람이 차단됨"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jangan Ganggu menyekat penggera"
+            "value": "Penggera disekat"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ikke forstyrr blokkerer alarmer"
+            "value": "Alarmer blokkert"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Niet storen blokkeert wekkers"
+            "value": "Wekkers geblokkeerd"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nie przeszkadzać blokuje budziki"
+            "value": "Budziki zablokowane"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não perturbe bloqueia alarmes"
+            "value": "Alarmes bloqueados"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não incomodar bloqueia alarmes"
+            "value": "Alarmes bloqueados"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nu deranja blochează alarmele"
+            "value": "Alarme blocate"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "«Не беспокоить» блокирует будильники"
+            "value": "Будильники заблокированы"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stör ej blockerar larm"
+            "value": "Larm blockerade"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "โหมดห้ามรบกวนบล็อกนาฬิกาปลุก"
+            "value": "นาฬิกาปลุกถูกบล็อก"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rahatsız Etme alarmları engelliyor"
+            "value": "Alarmlar engellendi"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "«Не турбувати» блокує будильники"
+            "value": "Будильники заблоковано"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Không làm phiền đang chặn báo thức"
+            "value": "Báo thức bị chặn"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "勿扰模式拦截了闹钟"
+            "value": "闹钟被拦截"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "勿擾模式封鎖了鬧鐘"
+            "value": "鬧鐘被封鎖"
           }
         }
       }
@@ -9213,6 +9501,22 @@
         }
       }
     },
+    "editor_sunrise_ios_hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das iPhone kann das Licht nur zeigen, solange Phase Wake offen ist – starte vor dem Schlafen den Nachttisch-Modus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your iPhone can only show the light while Phase Wake is open – start nightstand mode before you go to sleep."
+          }
+        }
+      }
+    },
     "editor_sunrise_ring_hint": {
       "localizations": {
         "ar": {
@@ -10581,6 +10885,150 @@
           "stringUnit": {
             "state": "translated",
             "value": "在 %1$@ 到 %2$@ 之間叫醒你"
+          }
+        }
+      }
+    },
+    "feeling_1": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erschöpft"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exhausted"
+          }
+        }
+      }
+    },
+    "feeling_2": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Müde"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tired"
+          }
+        }
+      }
+    },
+    "feeling_3": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        }
+      }
+    },
+    "feeling_4": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gut"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good"
+          }
+        }
+      }
+    },
+    "feeling_5": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erholt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refreshed"
+          }
+        }
+      }
+    },
+    "feeling_hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So siehst du mit der Zeit, ob dir das Wecken im leichten Schlaf guttut."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over time you’ll see whether waking in light sleep does you good."
+          }
+        }
+      }
+    },
+    "feeling_question": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wie fühlst du dich?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How do you feel?"
+          }
+        }
+      }
+    },
+    "feeling_rate": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Befinden %1$lld von 5: %2$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feeling %1$lld of 5: %2$@"
+          }
+        }
+      }
+    },
+    "feeling_value": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Befinden: %1$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feeling: %1$@"
           }
         }
       }
@@ -15093,6 +15541,22 @@
         }
       }
     },
+    "home_morning": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Morgen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your morning"
+          }
+        }
+      }
+    },
     "home_next_in": {
       "localizations": {
         "ar": {
@@ -16461,594 +16925,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "在剛剛好的時刻醒來"
-          }
-        }
-      }
-    },
-    "home_permission_action": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "سماح"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Povolit"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillad"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Επίτρεψε"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اجازه"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Salli"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autoriser"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "אישור"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अनुमति दो"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Engedélyezés"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Izinkan"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consenti"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "許可"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "허용"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Benarkan"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillat"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toestaan"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zezwól"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permite"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разрешить"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillåt"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "อนุญาต"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İzin ver"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Дозволити"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cho phép"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "允许"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "允許"
-          }
-        }
-      }
-    },
-    "home_permission_text": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "يحتاج Phase Wake إلى الإشعارات والتنبيهات بملء الشاشة لإيقاظك."
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake potřebuje oznámení a upozornění na celou obrazovku, aby tě vzbudil."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake skal bruge notifikationer og fuldskærmsadvarsler for at vække dig."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake braucht Mitteilungen und Vollbild-Hinweise, um dich zu wecken."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Το Phase Wake χρειάζεται ειδοποιήσεις και ειδοποιήσεις πλήρους οθόνης για να σε ξυπνήσει."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake needs notifications and full-screen alerts to wake you."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake necesita notificaciones y avisos a pantalla completa para despertarte."
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake برای بیدار کردنت به اعلان و هشدار تمام‌صفحه نیاز دارد."
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake tarvitsee ilmoitukset ja koko näytön hälytykset herättääkseen sinut."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake a besoin des notifications et des alertes plein écran pour te réveiller."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "כדי להעיר אתכם, Phase Wake צריכה התראות והתראות במסך מלא."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "तुम्हें जगाने के लिए Phase Wake को नोटिफ़िकेशन और फ़ुल-स्क्रीन अलर्ट चाहिए।"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A Phase Wake-nek értesítésekre és teljes képernyős riasztásokra van szüksége az ébresztéshez."
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake butuh notifikasi dan peringatan layar penuh untuk membangunkanmu."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake ha bisogno delle notifiche e degli avvisi a schermo intero per svegliarti."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wakeが起こすには、通知と全画面表示の許可が必要です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake가 깨워 드리려면 알림과 전체 화면 알림 권한이 필요해요."
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake perlukan pemberitahuan dan makluman skrin penuh untuk bangunkan awak."
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake trenger varsler og fullskjermsvarsler for å vekke deg."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake heeft meldingen en schermvullende waarschuwingen nodig om je te wekken."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake potrzebuje powiadomień i alertów na pełnym ekranie, żeby cię obudzić."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Phase Wake precisa de notificações e alertas em tela cheia para acordar você."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Phase Wake precisa de notificações e de alertas em ecrã inteiro para te acordar."
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake are nevoie de notificări și alerte pe tot ecranul ca să te trezească."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake нужны уведомления и полноэкранные оповещения, чтобы разбудить тебя."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake behöver aviseringar och helskärmsvarningar för att väcka dig."
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake ต้องใช้การแจ้งเตือนและการแจ้งเตือนแบบเต็มหน้าจอเพื่อปลุกคุณ"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake'in seni uyandırabilmesi için bildirimlere ve tam ekran uyarılara ihtiyacı var."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake потрібні сповіщення та повноекранні сповіщення, щоб тебе розбудити."
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake cần quyền thông báo và thông báo toàn màn hình để đánh thức bạn."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake 需要通知和全屏提醒权限才能叫醒你。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase Wake 需要通知和全螢幕提醒權限才能叫醒你。"
-          }
-        }
-      }
-    },
-    "home_permission_title": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "السماح بالمنبّهات"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Povolit budíky"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillad alarmer"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wecker erlauben"
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Επίτρεψε ξυπνητήρια"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow alarms"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir alarmas"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اجازهٔ زنگ"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Salli herätykset"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autoriser les alarmes"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "אישור למעוררים"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अलार्म की अनुमति दो"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ébresztők engedélyezése"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Izinkan alarm"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consenti le sveglie"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アラームを許可"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알람 허용"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Benarkan penggera"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillat alarmer"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wekkers toestaan"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zezwól na budziki"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir alarmes"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir alarmes"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permite alarmele"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разрешить будильники"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tillåt larm"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "อนุญาตนาฬิกาปลุก"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alarmlara izin ver"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Дозволити будильники"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cho phép báo thức"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "允许闹钟"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "允許鬧鐘"
           }
         }
       }
@@ -18817,6 +18693,86 @@
         }
       }
     },
+    "nightstand_end": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beenden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "nightstand_hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für den Sonnenaufgang Phase Wake über Nacht am Ladekabel offen lassen. Der Bildschirm bleibt dunkel, bis das Licht beginnt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the sunrise, leave Phase Wake open on the charger overnight. The screen stays dark until the light begins."
+          }
+        }
+      }
+    },
+    "nightstand_no_alarm": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Wecker mit Sonnenaufgang"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No alarm with sunrise"
+          }
+        }
+      }
+    },
+    "nightstand_start": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nachttisch-Modus starten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start nightstand mode"
+          }
+        }
+      }
+    },
+    "nightstand_waiting": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonnenaufgang um %1$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunrise at %1$@"
+          }
+        }
+      }
+    },
     "no_snooze": {
       "localizations": {
         "ar": {
@@ -19989,6 +19945,70 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在監測淺眠"
+          }
+        }
+      }
+    },
+    "quality_full": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemessen: Bewegung und Puls"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measured: movement and heart rate"
+          }
+        }
+      }
+    },
+    "quality_motion_only": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur Bewegung gemessen – der Puls fehlte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movement only – heart rate was missing"
+          }
+        }
+      }
+    },
+    "quality_none": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Messwerte im Weckfenster"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No measurements in the wake window"
+          }
+        }
+      }
+    },
+    "quality_partial": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lücken in der Messung – Uhr abgelegt?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gaps in the measurement – was the watch off?"
           }
         }
       }
@@ -24893,6 +24913,38 @@
         }
       }
     },
+    "settings_support": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake unterstützen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support Phase Wake"
+          }
+        }
+      }
+    },
+    "settings_support_text": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ist gratis, Open Source und ohne Werbung. Wenn es dir gefällt, kannst du die Entwicklung unterstützen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake is free, open source and has no ads. If you like it, you can support its development."
+          }
+        }
+      }
+    },
     "settings_theme": {
       "localizations": {
         "ar": {
@@ -28417,6 +28469,198 @@
           "stringUnit": {
             "state": "translated",
             "value": "下一個鬧鐘"
+          }
+        }
+      }
+    },
+    "trends_asleep": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø %1$@ Schlaf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø %1$@ of sleep"
+          }
+        }
+      }
+    },
+    "trends_asleep_change_less": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ weniger als in der Vorwoche"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ less than the week before"
+          }
+        }
+      }
+    },
+    "trends_asleep_change_more": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ mehr als in der Vorwoche"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ more than the week before"
+          }
+        }
+      }
+    },
+    "trends_asleep_change_same": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etwa gleich wie in der Vorwoche"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About the same as the week before"
+          }
+        }
+      }
+    },
+    "trends_bedtime": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schläfst auf ± %1$@ zur gewohnten Zeit ein"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You fall asleep within ± %1$@ of your usual time"
+          }
+        }
+      }
+    },
+    "trends_bedtime_hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regelmässige Schlafzeiten erleichtern das Aufwachen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular sleep times make waking up easier."
+          }
+        }
+      }
+    },
+    "trends_feeling": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Befinden %1$@ von 5"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø feeling %1$@ of 5"
+          }
+        }
+      }
+    },
+    "trends_feeling_change": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vorwoche %1$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week before %1$@"
+          }
+        }
+      }
+    },
+    "trends_health_hint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlafdauer und Regelmässigkeit kommen aus Health Connect."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep duration and regularity come from Health Connect."
+          }
+        }
+      }
+    },
+    "trends_health_hint_apple": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlafdauer und Regelmässigkeit kommen aus Apple Health."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep duration and regularity come from Apple Health."
+          }
+        }
+      }
+    },
+    "trends_not_enough": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trends erscheinen nach ein paar Nächten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trends appear after a few nights."
+          }
+        }
+      }
+    },
+    "trends_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte 7 Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days"
           }
         }
       }

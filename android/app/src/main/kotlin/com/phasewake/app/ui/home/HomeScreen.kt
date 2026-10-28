@@ -59,6 +59,8 @@ import com.phasewake.app.ui.components.LogoMark
 import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.NightBars
 import com.phasewake.app.ui.theme.PhaseWakeTheme
+import com.phasewake.app.ui.history.FeelingPicker
+import com.phasewake.app.ui.history.nightDetails
 import com.phasewake.app.ui.history.nightSummary
 import java.time.Duration
 import java.time.Instant
@@ -71,14 +73,13 @@ import kotlinx.coroutines.delay
 fun HomeScreen(
     alarms: List<AlarmSpec>,
     lastNight: NightRecord?,
-    needsPermission: Boolean,
-    dndBlocks: Boolean,
-    onOpenDnd: () -> Unit,
+    check: NightCheckState?,
+    onFix: (Check) -> Unit,
     contentPadding: PaddingValues,
-    onRequestPermission: () -> Unit,
     onAdd: () -> Unit,
     onEdit: (String) -> Unit,
     onToggle: (AlarmSpec, Boolean) -> Unit,
+    onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
 ) {
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
@@ -101,16 +102,12 @@ fun HomeScreen(
         item(key = "hero") {
             Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark, onAdd = onAdd, onEdit = onEdit)
         }
-        if (needsPermission) {
-            item(key = "permission") {
-                WarningCard(R.string.home_permission_title, R.string.home_permission_text, R.string.home_permission_action, onRequestPermission)
-            }
-        }
-        if (dndBlocks) {
-            item(key = "dnd") { WarningCard(R.string.dnd_title, R.string.dnd_text, R.string.dnd_action, onOpenDnd) }
+        // Nacht-Check nur, wenn ein Wecker ansteht – sonst gibt es nichts abzusichern.
+        if (check != null && plan != null) {
+            item(key = "check") { NightCheckCard(check, cardColor(), onFix) }
         }
         if (lastNight != null) {
-            item(key = "night") { LastNightCard(lastNight) }
+            item(key = "night") { LastNightCard(lastNight, now, onFeeling = { onFeeling(lastNight, it) }) }
         }
         if (alarms.isNotEmpty()) {
             item(key = "header") {
@@ -226,26 +223,10 @@ private fun greeting(now: Instant, zone: ZoneId): Int = when (now.atZone(zone).h
 }
 
 @Composable
-private fun WarningCard(title: Int, text: Int, action: Int, onClick: () -> Unit) {
-    Card(
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-    ) {
-        Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Text(stringResource(title), style = MaterialTheme.typography.titleSmall)
-                Text(stringResource(text), style = MaterialTheme.typography.bodySmall)
-            }
-            Button(onClick = onClick, modifier = Modifier.padding(start = 12.dp)) {
-                Text(stringResource(action))
-            }
-        }
-    }
-}
-
-@Composable
-private fun LastNightCard(night: NightRecord) {
+private fun LastNightCard(night: NightRecord, now: Instant, onFeeling: (Int) -> Unit) {
+    // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
+    val morning = Duration.between(night.wokeAt, now) < MORNING
+    val askFeeling = morning && night.feeling == null
     val context = LocalContext.current
     Card(
         shape = MaterialTheme.shapes.medium,
@@ -254,7 +235,7 @@ private fun LastNightCard(night: NightRecord) {
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.home_last_night), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(stringResource(if (morning) R.string.home_morning else R.string.home_last_night), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                 Text(Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
             }
             NightBars(
@@ -268,9 +249,28 @@ private fun LastNightCard(night: NightRecord) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
             )
+            Text(
+                nightDetails(context, night),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            AnimatedVisibility(askFeeling) {
+                Column(Modifier.padding(top = 14.dp)) {
+                    FeelingPicker(onPick = onFeeling)
+                    Text(
+                        stringResource(R.string.feeling_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
+                }
+            }
         }
     }
 }
+
+/** So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen». */
+private val MORNING: Duration = Duration.ofHours(12)
 
 @Composable
 private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, onToggle: (Boolean) -> Unit) {

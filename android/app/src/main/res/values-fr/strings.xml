@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nouveau réveil</string>
     <string name="home_last_night">Cette nuit</string>
     <string name="home_alarms">Tes réveils</string>
-    <string name="home_permission_title">Autoriser les alarmes</string>
-    <string name="home_permission_text">Phase Wake a besoin des notifications et des alertes plein écran pour te réveiller.</string>
-    <string name="home_permission_action">Autoriser</string>
 
     <string name="reason_light">Sommeil léger</string>
     <string name="reason_awake">Déjà éveillé</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Son</string>
     <string name="editor_sound">Sonnerie</string>
     <string name="editor_sound_default">Par défaut</string>
-    <string name="dnd_title">Ne pas déranger bloque les alarmes</string>
     <string name="dnd_text">Autorise les alarmes dans Ne pas déranger, sinon ton téléphone reste silencieux.</string>
     <string name="dnd_action">Ouvrir les réglages</string>
     <string name="greeting_morning">Bonjour</string>

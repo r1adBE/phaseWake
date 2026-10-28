@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nieuwe wekker</string>
     <string name="home_last_night">Afgelopen nacht</string>
     <string name="home_alarms">Je wekkers</string>
-    <string name="home_permission_title">Wekkers toestaan</string>
-    <string name="home_permission_text">Phase Wake heeft meldingen en schermvullende waarschuwingen nodig om je te wekken.</string>
-    <string name="home_permission_action">Toestaan</string>
 
     <string name="reason_light">Lichte slaap</string>
     <string name="reason_awake">Al wakker</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Geluid</string>
     <string name="editor_sound">Wekgeluid</string>
     <string name="editor_sound_default">Standaard</string>
-    <string name="dnd_title">Niet storen blokkeert wekkers</string>
     <string name="dnd_text">Sta wekkers toe bij Niet storen, anders blijft je telefoon stil.</string>
     <string name="dnd_action">Instellingen openen</string>
     <string name="greeting_morning">Goedemorgen</string>

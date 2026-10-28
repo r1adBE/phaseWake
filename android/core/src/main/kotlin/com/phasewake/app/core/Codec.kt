@@ -88,6 +88,7 @@ object Codec {
             night.wokeAt.toEpochMilli().toString(),
             night.reason.name,
             night.snoozes.toString(),
+            night.feeling?.toString().orEmpty(),
         ).joinToString(SEP)).append('\n')
         append(night.epochs.joinToString(",") { e ->
             // toString() liefert die kürzeste exakt rücklesbare Darstellung.
@@ -100,7 +101,8 @@ object Codec {
         if (lines.firstOrNull() != NIGHT_HEADER) throw CodecException("Unbekanntes Nachtformat")
         return parse("Nacht") {
             val f = lines.getOrElse(1) { "" }.split(SEP)
-            require(f.size == 6) { "6 Felder erwartet, ${f.size} gefunden" }
+            // 7 Felder; ältere Stände ohne Befinden haben 6.
+            require(f.size == 7 || f.size == 6) { "7 Felder erwartet, ${f.size} gefunden" }
             val epochLine = lines.getOrElse(2) { "" }
             NightRecord(
                 alarmId = unescape(f[0]),
@@ -109,6 +111,7 @@ object Codec {
                 wokeAt = Instant.ofEpochMilli(f[3].toLong()),
                 reason = WakeReason.valueOf(f[4]),
                 snoozes = f[5].toInt(),
+                feeling = f.getOrNull(6)?.ifEmpty { null }?.toInt(),
                 epochs = if (epochLine.isEmpty()) emptyList() else epochLine.split(",").map { pair ->
                     val p = pair.split(";")
                     require(p.size == 2) { "Epoche '$pair'" }

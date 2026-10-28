@@ -33,6 +33,16 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(Sunrise.brightness(1), 1, accuracy: 1e-9)
     }
 
+    func testNightWithFeelingAndOlderFormat() throws {
+        let old = try Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0\n0.0;52.0\n")
+        XCTAssertNil(old.feeling)
+        let rated = old.with(feeling: 5)
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(rated)), rated)
+        // Byte-gleich mit Android (CodecTest.nightWithFeelingAndOlderFormat).
+        XCTAssertEqual(Codec.encodeNight(rated), "phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|5\n0.0;52.0\n")
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|9\n\n"))
+    }
+
     func testNightRoundTrip() throws {
         let night = NightRecord(
             alarmId: "3f2a-77",
@@ -78,11 +88,12 @@ final class CodecTests: XCTestCase {
             let ws = start.addingTimeInterval(day * 86_400)
             return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1080), reason: .lightSleep, snoozes: 1, epochs: epochs)
         }
-        let csv = NightHistory.exportCsv([night(1, [Epoch(motion: 0.0021, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)]), night(0)])
+        let csv = NightHistory.exportCsv([night(1, [Epoch(motion: 0.0021, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)]).with(feeling: 4), night(0)])
         let lines = csv.split(separator: "\n").map(String.init)
-        XCTAssertEqual(lines[1], "1,30,LIGHT_SLEEP,12,1,0,0.000000,52.0")
-        XCTAssertEqual(lines[2], "2,30,LIGHT_SLEEP,12,1,0,0.002100,52.3")
-        XCTAssertEqual(lines[3], "2,30,LIGHT_SLEEP,12,1,1,,")
+        XCTAssertEqual(lines[0], "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr")
+        XCTAssertEqual(lines[1], "1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0")
+        XCTAssertEqual(lines[2], "2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3")
+        XCTAssertEqual(lines[3], "2,30,LIGHT_SLEEP,12,1,4,1,,")
         XCTAssertFalse(csv.contains("geheim"))
         XCTAssertEqual(NightHistory.trim((0..<100).map { night(Double($0)) }).count, 90)
     }

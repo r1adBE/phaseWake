@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nowy budzik</string>
     <string name="home_last_night">Ostatnia noc</string>
     <string name="home_alarms">Twoje budziki</string>
-    <string name="home_permission_title">Zezwól na budziki</string>
-    <string name="home_permission_text">Phase Wake potrzebuje powiadomień i alertów na pełnym ekranie, żeby cię obudzić.</string>
-    <string name="home_permission_action">Zezwól</string>
 
     <string name="reason_light">Lekki sen</string>
     <string name="reason_awake">Już nie śpisz</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Dźwięk</string>
     <string name="editor_sound">Dźwięk budzika</string>
     <string name="editor_sound_default">Domyślny</string>
-    <string name="dnd_title">Nie przeszkadzać blokuje budziki</string>
     <string name="dnd_text">Zezwól na budziki w trybie Nie przeszkadzać, inaczej telefon będzie milczał.</string>
     <string name="dnd_action">Otwórz ustawienia</string>
     <string name="greeting_morning">Dzień dobry</string>

@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Alarmă nouă</string>
     <string name="home_last_night">Noaptea trecută</string>
     <string name="home_alarms">Alarmele tale</string>
-    <string name="home_permission_title">Permite alarmele</string>
-    <string name="home_permission_text">Phase Wake are nevoie de notificări și alerte pe tot ecranul ca să te trezească.</string>
-    <string name="home_permission_action">Permite</string>
 
     <string name="reason_light">Somn ușor</string>
     <string name="reason_awake">Deja treaz</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Sunet</string>
     <string name="editor_sound">Sunet alarmă</string>
     <string name="editor_sound_default">Implicit</string>
-    <string name="dnd_title">Nu deranja blochează alarmele</string>
     <string name="dnd_text">Permite alarmele în modul Nu deranja, altfel telefonul tău rămâne mut.</string>
     <string name="dnd_action">Deschide setările</string>
     <string name="greeting_morning">Bună dimineața</string>

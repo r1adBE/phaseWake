@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Novo alarme</string>
     <string name="home_last_night">Ontem à noite</string>
     <string name="home_alarms">Seus alarmes</string>
-    <string name="home_permission_title">Permitir alarmes</string>
-    <string name="home_permission_text">O Phase Wake precisa de notificações e alertas em tela cheia para acordar você.</string>
-    <string name="home_permission_action">Permitir</string>
 
     <string name="reason_light">Sono leve</string>
     <string name="reason_awake">Já acordado</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Som</string>
     <string name="editor_sound">Som do alarme</string>
     <string name="editor_sound_default">Padrão</string>
-    <string name="dnd_title">Não perturbe bloqueia alarmes</string>
     <string name="dnd_text">Permita alarmes no Não perturbe; senão seu celular fica em silêncio.</string>
     <string name="dnd_action">Abrir ajustes</string>
     <string name="greeting_morning">Bom dia</string>

@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nueva alarma</string>
     <string name="home_last_night">Anoche</string>
     <string name="home_alarms">Tus alarmas</string>
-    <string name="home_permission_title">Permitir alarmas</string>
-    <string name="home_permission_text">Phase Wake necesita notificaciones y avisos a pantalla completa para despertarte.</string>
-    <string name="home_permission_action">Permitir</string>
 
     <string name="reason_light">Sueño ligero</string>
     <string name="reason_awake">Ya despierto</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Sonido</string>
     <string name="editor_sound">Sonido de alarma</string>
     <string name="editor_sound_default">Predeterminado</string>
-    <string name="dnd_title">No molestar bloquea las alarmas</string>
     <string name="dnd_text">Permite las alarmas en No molestar; si no, tu móvil seguirá en silencio.</string>
     <string name="dnd_action">Abrir ajustes</string>
     <string name="greeting_morning">Buenos días</string>

@@ -9,8 +9,10 @@ import androidx.health.connect.client.request.ReadRecordsRequest
 import androidx.health.connect.client.time.TimeRangeFilter
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.SleepStage
+import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.StageSpan
 import java.time.Duration
+import java.time.Instant
 
 /**
  * Liest Schlafphasen, die eine Gesundheits-App (z. B. Samsung Health) nach dem Aufwachen in
@@ -45,6 +47,30 @@ class HealthSleep(private val context: Context) {
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Schlafphasen nicht lesbar", e)
+            emptyList()
+        }
+    }
+
+    /**
+     * Ganze Nächte der letzten [days] Tage für die Trends. Sitzungen ohne Phasen zählen als
+     * Schlaf über die ganze Dauer.
+     */
+    suspend fun recentSleep(days: Long = 15): List<SleepSummary> {
+        if (!isGranted()) return emptyList()
+        return try {
+            val now = Instant.now()
+            val response = client.readRecords(
+                ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(now.minus(Duration.ofDays(days)), now)),
+            )
+            SleepSummary.group(
+                response.records.flatMap { session ->
+                    session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }
+                        .ifEmpty { listOf(StageSpan(session.startTime, session.endTime, SleepStage.UNKNOWN)) }
+                },
+            )
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Schlafdauer nicht lesbar", e)
             emptyList()
         }
     }

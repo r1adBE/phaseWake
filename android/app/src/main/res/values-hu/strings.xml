@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Új ébresztő</string>
     <string name="home_last_night">Múlt éjszaka</string>
     <string name="home_alarms">Ébresztőid</string>
-    <string name="home_permission_title">Ébresztők engedélyezése</string>
-    <string name="home_permission_text">A Phase Wake-nek értesítésekre és teljes képernyős riasztásokra van szüksége az ébresztéshez.</string>
-    <string name="home_permission_action">Engedélyezés</string>
 
     <string name="reason_light">Könnyű alvás</string>
     <string name="reason_awake">Már ébren</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Hang</string>
     <string name="editor_sound">Ébresztőhang</string>
     <string name="editor_sound_default">Alapértelmezett</string>
-    <string name="dnd_title">A Ne zavarjanak letiltja az ébresztőket</string>
     <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban, különben a telefonod néma marad.</string>
     <string name="dnd_action">Beállítások megnyitása</string>
     <string name="greeting_morning">Jó reggelt</string>

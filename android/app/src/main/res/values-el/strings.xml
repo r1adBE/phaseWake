@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Νέο ξυπνητήρι</string>
     <string name="home_last_night">Χθεσινή νύχτα</string>
     <string name="home_alarms">Τα ξυπνητήριά σου</string>
-    <string name="home_permission_title">Επίτρεψε ξυπνητήρια</string>
-    <string name="home_permission_text">Το Phase Wake χρειάζεται ειδοποιήσεις και ειδοποιήσεις πλήρους οθόνης για να σε ξυπνήσει.</string>
-    <string name="home_permission_action">Επίτρεψε</string>
 
     <string name="reason_light">Ελαφρύς ύπνος</string>
     <string name="reason_awake">Ήδη σε εγρήγορση</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Ήχος</string>
     <string name="editor_sound">Ήχος ξυπνητηριού</string>
     <string name="editor_sound_default">Προεπιλογή</string>
-    <string name="dnd_title">Το «Μην ενοχλείτε» μπλοκάρει ξυπνητήρια</string>
     <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε», αλλιώς το κινητό σου θα μένει σιωπηλό.</string>
     <string name="dnd_action">Άνοιγμα ρυθμίσεων</string>
     <string name="greeting_morning">Καλημέρα</string>

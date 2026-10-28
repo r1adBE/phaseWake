@@ -20,9 +20,6 @@
     <string name="home_add_alarm">منبّه جديد</string>
     <string name="home_last_night">الليلة الماضية</string>
     <string name="home_alarms">منبّهاتك</string>
-    <string name="home_permission_title">السماح بالمنبّهات</string>
-    <string name="home_permission_text">يحتاج Phase Wake إلى الإشعارات والتنبيهات بملء الشاشة لإيقاظك.</string>
-    <string name="home_permission_action">سماح</string>
 
     <string name="reason_light">نوم خفيف</string>
     <string name="reason_awake">مستيقظ بالفعل</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">صوت</string>
     <string name="editor_sound">نغمة المنبّه</string>
     <string name="editor_sound_default">الافتراضي</string>
-    <string name="dnd_title">عدم الإزعاج يحجب المنبّهات</string>
     <string name="dnd_text">اسمحوا بالمنبّهات في وضع عدم الإزعاج، وإلا سيبقى هاتفك صامتًا.</string>
     <string name="dnd_action">فتح الإعدادات</string>
     <string name="greeting_morning">صباح الخير</string>

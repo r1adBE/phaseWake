@@ -1,9 +1,7 @@
 package com.phasewake.app.ui
 
 import android.Manifest
-import android.app.NotificationManager
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -34,6 +32,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -52,7 +51,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.health.connect.client.PermissionController
@@ -62,18 +60,25 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.phasewake.app.R
+import com.phasewake.app.core.SleepSummary
+import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WindowAdvice
+import java.time.Instant
+import java.time.ZoneId
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.SettingsScreen
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /** Einzige Activity der Handy-App; Navigation zwischen Wecker, Verlauf, Einstellungen und Editor. */
@@ -116,11 +121,9 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     val nights by app.nights.nights.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.nights.load() }
 
-    var needsPermission by remember { mutableStateOf(false) }
-    var dndBlocks by remember { mutableStateOf(false) }
-    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
-        needsPermission = missingAlarmAccess(context)
-    }
+    var check by remember { mutableStateOf<NightCheckState?>(null) }
+    var checkRun by remember { mutableStateOf(0) }
+    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
     var health by remember { mutableStateOf(HealthState.UNAVAILABLE) }
     var healthCheck by remember { mutableStateOf(0) }
     LaunchedEffect(healthCheck) {
@@ -130,14 +133,25 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
             else -> HealthState.AVAILABLE
         }
     }
+    // Trends: Schlafdauer aus Health Connect (falls verbunden) und Befinden aus dem Verlauf.
+    val sleeps by produceState(emptyList<SleepSummary>(), health) {
+        value = if (health == HealthState.CONNECTED) app.health.recentSleep() else emptyList()
+    }
+    val trends = remember(nights, sleeps) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), ZoneId.systemDefault()) }
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthCheck++
     }
     LifecycleResumeEffect(Unit) {
-        needsPermission = missingAlarmAccess(context)
-        dndBlocks = DoNotDisturb.blocksAlarms(context)
+        checkRun++
         healthCheck++
         onPauseOrDispose { }
+    }
+    // Nacht-Check: bei jedem Öffnen und danach jede halbe Minute (die Uhr kann kommen und gehen).
+    LaunchedEffect(checkRun) {
+        while (true) {
+            check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH))
+            delay(30_000)
+        }
     }
 
     // Kopfbereich der Startseite ist immer Nachtblau: dort helle Statusleisten-Symbole.
@@ -197,22 +211,26 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 HomeScreen(
                     alarms = alarms,
                     lastNight = nights?.lastOrNull(),
-                    needsPermission = needsPermission,
-                    dndBlocks = dndBlocks,
-                    onOpenDnd = { DoNotDisturb.openSettings(context) },
-                    contentPadding = content,
-                    onRequestPermission = {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasNotificationPermission(context)) {
-                            notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                            context.startActivity(
-                                Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}")),
-                            )
+                    check = check,
+                    onFix = { item ->
+                        when (item) {
+                            Check.NOTIFICATIONS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            }
+                            Check.FULL_SCREEN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                                context.startActivity(
+                                    Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}")),
+                                )
+                            }
+                            Check.DND -> DoNotDisturb.openSettings(context)
+                            Check.WATCH, Check.BATTERY -> Unit
                         }
                     },
+                    contentPadding = content,
                     onAdd = { nav.navigate(Routes.editor(null)) },
                     onEdit = { nav.navigate(Routes.editor(it)) },
                     onToggle = { alarm, enabled -> app.afterAlarmsChanged { app.alarms.setEnabled(alarm.id, enabled) } },
+                    onFeeling = { night, feeling -> app.appScope.launch { app.nights.setFeeling(night.windowStart, feeling) } },
                 )
             }
             composable(Routes.HISTORY) {
@@ -221,6 +239,9 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     content,
                     loadStages = if (health == HealthState.CONNECTED) app.health::stagesFor else null,
                     onExport = { Export.share(context, nights.orEmpty()) },
+                    trends = trends,
+                    healthConnected = health == HealthState.CONNECTED,
+                    onConnectHealth = { healthPermission.launch(app.health.permissions) },
                 )
             }
             composable(Routes.SETTINGS) {
@@ -270,18 +291,5 @@ private fun NavHostController.switchTab(route: String) = navigate(route) {
     restoreState = true
 }
 
-private fun hasNotificationPermission(context: android.content.Context) =
-    Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
-        ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
-
 private fun animationsEnabled(context: android.content.Context): Boolean =
     Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f
-
-/** Fehlt etwas, damit der Zweitwecker auffällig wecken kann? */
-private fun missingAlarmAccess(context: android.content.Context): Boolean {
-    if (!hasNotificationPermission(context)) return true
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-        return !context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
-    }
-    return false
-}

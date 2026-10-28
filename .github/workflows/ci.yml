@@ -29,7 +29,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v5
       - name: Übersetzungen prüfen
         run: |
-          python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res
+          python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res ../ios/Strings
           python3 ../.github/scripts/gen-xcstrings.py --check
       - name: Tests und Builds
         shell: bash

@@ -44,6 +44,14 @@ class WearSync(context: Context) {
         for (node in nodes) messageClient.sendMessage(node.id, path, payload).await()
     }
 
+    /** Ob gerade ein Gerät mit [capability] erreichbar ist; `false` auch ohne Wear-Dienste. */
+    suspend fun isReachable(capability: String): Boolean = try {
+        capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.isNotEmpty()
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        false
+    }
+
     private suspend fun guarded(what: String, block: suspend () -> Unit) {
         try {
             block()

@@ -28,8 +28,11 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
 - **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton)
-- **Sonnenaufgang** auf dem Handy (Option): Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken
+- **Sonnenaufgang** auf dem Handy (Option): Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf dem iPhone im Nachttisch-Modus
 - **Schlummern** 5 Minuten, höchstens 3×
+- **Nacht-Check** vor dem Schlafen: Uhr verbunden, Wecker erlaubt, «Nicht stören», Akku – mit Knopf zum Beheben
+- **Morgenbericht**: wann und warum geweckt wurde, worauf die Entscheidung beruhte, und ein Tipp, wie du dich fühlst
+- **Trends**: Schlafdauer und Regelmässigkeit (aus Health Connect bzw. Apple Health) und dein Befinden im Wochenvergleich
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
 - **Lernt mit**: Die Schwellen passen sich ab der dritten Nacht an dich an
 - **Kachel und Komplikation** auf der Uhr
@@ -73,6 +76,10 @@ open ../PhaseWake.xcodeproj
 ```
 
 Die Texte der Apple-Apps entstehen aus den Android-Texten: `python3 .github/scripts/gen-xcstrings.py`.
+
+## Unterstützen
+
+Phase Wake ist gratis, ohne Werbung und ohne Abo. Wer die Entwicklung unterstützen möchte: [GitHub Sponsors](https://github.com/sponsors/r1adBE).
 
 ## Lizenz
 

@@ -20,9 +20,6 @@
     <string name="home_add_alarm">新建闹钟</string>
     <string name="home_last_night">昨晚</string>
     <string name="home_alarms">我的闹钟</string>
-    <string name="home_permission_title">允许闹钟</string>
-    <string name="home_permission_text">Phase Wake 需要通知和全屏提醒权限才能叫醒你。</string>
-    <string name="home_permission_action">允许</string>
 
     <string name="reason_light">浅睡</string>
     <string name="reason_awake">已经醒了</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">铃声</string>
     <string name="editor_sound">闹钟铃声</string>
     <string name="editor_sound_default">默认</string>
-    <string name="dnd_title">勿扰模式拦截了闹钟</string>
     <string name="dnd_text">请在勿扰模式下允许闹钟，否则手机不会响铃。</string>
     <string name="dnd_action">打开设置</string>
     <string name="greeting_morning">早上好</string>

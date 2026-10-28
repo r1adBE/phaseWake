@@ -9,8 +9,13 @@ public struct NightRecord: Equatable, Sendable {
     public let reason: WakeReason
     public let snoozes: Int
     public let epochs: [Epoch]
+    /// Befinden am Morgen, 1 (müde) bis 5 (erholt); `nil` = nicht angegeben.
+    public let feeling: Int?
 
-    public init(alarmId: String, windowStart: Date, target: Date, wokeAt: Date, reason: WakeReason, snoozes: Int, epochs: [Epoch]) {
+    public static let feelingRange = 1...5
+
+    /// Ein Befinden ausserhalb 1–5 wird verworfen (Kotlin lehnt es ab; der Codec prüft vorher).
+    public init(alarmId: String, windowStart: Date, target: Date, wokeAt: Date, reason: WakeReason, snoozes: Int, epochs: [Epoch], feeling: Int? = nil) {
         self.alarmId = alarmId
         self.windowStart = windowStart
         self.target = target
@@ -18,6 +23,12 @@ public struct NightRecord: Equatable, Sendable {
         self.reason = reason
         self.snoozes = snoozes
         self.epochs = epochs
+        self.feeling = feeling.flatMap { Self.feelingRange.contains($0) ? $0 : nil }
+    }
+
+    /// Kopie mit Befinden.
+    public func with(feeling: Int?) -> NightRecord {
+        NightRecord(alarmId: alarmId, windowStart: windowStart, target: target, wokeAt: wokeAt, reason: reason, snoozes: snoozes, epochs: epochs, feeling: feeling)
     }
 
     /// Ganze Minuten vor der Zielzeit (abgerundet, nie negativ), wie `Duration.toMinutes()`.
@@ -38,13 +49,13 @@ public enum NightHistory {
 
     /// Anonymer CSV-Export: gleiche Spalten und Zahlenformate wie Android.
     public static func exportCsv(_ nights: [NightRecord]) -> String {
-        var out = "night,window_minutes,reason,woke_minutes_before_target,snoozes,epoch,motion,hr\n"
+        var out = "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr\n"
         for (nightIndex, night) in trim(nights).enumerated() {
             let windowMinutes = Int(night.target.timeIntervalSince(night.windowStart) / 60)
             for (epochIndex, epoch) in night.epochs.enumerated() {
                 let motion = epoch.motion.map { String(format: "%.6f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
                 let hr = epoch.heartRate.map { String(format: "%.1f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
-                out += "\(nightIndex + 1),\(windowMinutes),\(night.reason.rawValue),\(night.minutesBeforeTarget),\(night.snoozes),\(epochIndex),\(motion),\(hr)\n"
+                out += "\(nightIndex + 1),\(windowMinutes),\(night.reason.rawValue),\(night.minutesBeforeTarget),\(night.snoozes),\(night.feeling.map(String.init) ?? ""),\(epochIndex),\(motion),\(hr)\n"
             }
         }
         return out

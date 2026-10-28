@@ -13,6 +13,8 @@ final class PhoneModel {
     let health = HealthSleep()
     private(set) var alarms: [AlarmSpec] = []
     private(set) var nights: [NightRecord] = []
+    /// Zeitpunkt, zu dem die Uhr zuletzt geweckt hat – der Nachttisch-Modus holt dann das Licht nach.
+    private(set) var lastRing: Date?
 
     private init() {
         alarms = storage.snapshot().alarms
@@ -43,6 +45,13 @@ final class PhoneModel {
         storage.add(night)
         nights = storage.nights()
     }
+
+    func setFeeling(_ feeling: Int, for night: NightRecord) {
+        storage.setFeeling(feeling, windowStart: night.windowStart)
+        nights = storage.nights()
+    }
+
+    func watchRang() { lastRing = Date() }
 
     func clearHistory() {
         storage.clearNights()

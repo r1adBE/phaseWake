@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nový budík</string>
     <string name="home_last_night">Minulá noc</string>
     <string name="home_alarms">Tvoje budíky</string>
-    <string name="home_permission_title">Povolit budíky</string>
-    <string name="home_permission_text">Phase Wake potřebuje oznámení a upozornění na celou obrazovku, aby tě vzbudil.</string>
-    <string name="home_permission_action">Povolit</string>
 
     <string name="reason_light">Lehký spánek</string>
     <string name="reason_awake">Už vzhůru</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Zvuk</string>
     <string name="editor_sound">Zvuk budíku</string>
     <string name="editor_sound_default">Výchozí</string>
-    <string name="dnd_title">Nerušit blokuje budíky</string>
     <string name="dnd_text">Povol budíky v režimu Nerušit, jinak bude telefon zticha.</string>
     <string name="dnd_action">Otevřít nastavení</string>
     <string name="greeting_morning">Dobré ráno</string>

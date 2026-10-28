@@ -20,9 +20,6 @@
     <string name="home_add_alarm">नया अलार्म</string>
     <string name="home_last_night">बीती रात</string>
     <string name="home_alarms">तुम्हारे अलार्म</string>
-    <string name="home_permission_title">अलार्म की अनुमति दो</string>
-    <string name="home_permission_text">तुम्हें जगाने के लिए Phase Wake को नोटिफ़िकेशन और फ़ुल-स्क्रीन अलर्ट चाहिए।</string>
-    <string name="home_permission_action">अनुमति दो</string>
 
     <string name="reason_light">हल्की नींद</string>
     <string name="reason_awake">पहले से जागे</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">आवाज़</string>
     <string name="editor_sound">अलार्म की आवाज़</string>
     <string name="editor_sound_default">डिफ़ॉल्ट</string>
-    <string name="dnd_title">डू नॉट डिस्टर्ब अलार्म रोक रहा है</string>
     <string name="dnd_text">डू नॉट डिस्टर्ब में अलार्म की अनुमति दो, वरना फ़ोन चुप रहेगा।</string>
     <string name="dnd_action">सेटिंग खोलो</string>
     <string name="greeting_morning">सुप्रभात</string>

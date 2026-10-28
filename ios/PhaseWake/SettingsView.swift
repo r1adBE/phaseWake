@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(PhoneModel.self) private var model
     @AppStorage("themeMode") private var themeMode = ThemeMode.system
     @State private var confirmClear = false
+    @AppStorage("healthRequested") private var healthRequested = false
 
     var body: some View {
         NavigationStack {
@@ -20,7 +21,7 @@ struct SettingsView: View {
                 }
                 Section(L("health_connect")) {
                     Text(L("health_rationale")).font(.footnote)
-                    Button(L("health_connect")) { Task { _ = await model.health.requestAccess() } }
+                    Button(L("health_connect")) { Task { healthRequested = await model.health.requestAccess() } }
                 }
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
@@ -31,6 +32,10 @@ struct SettingsView: View {
                 }
                 Section(L("settings_about")) {
                     Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Link(L("settings_support"), destination: URL(string: "https://github.com/sponsors/r1adBE")!)
+                        Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)
+                    }
                     Text(L("settings_licenses_text")).font(.footnote).foregroundStyle(.secondary)
                     Text(L("settings_version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""))
                         .font(.footnote).foregroundStyle(.secondary)

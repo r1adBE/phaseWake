@@ -100,11 +100,16 @@ Alles in v1, nichts auf später verschoben:
 - Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung
 - Weckfenster-Vorschlag aus dem Verlauf
 - Tile und Komplikation auf der Uhr
-- Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone kann eine App bei gesperrtem Bildschirm keinen eigenen Vollbildschirm zeigen
+- Nacht-Check auf der Startseite, sobald ein Wecker ansteht: Uhr erreichbar, Mitteilungen und Vollbild-Wecker erlaubt (iPhone: AlarmKit), «Nicht stören» lässt Wecker durch, Handy-Akku über 20 % oder am Laden
+- Morgenbericht: Weckgrund, Datenqualität (Bewegung und Puls / nur Bewegung / Lücken) und Befinden 1–5 mit einem Tipp; Befinden im Verlauf, im Export und in den Trends
+- Trends im Verlauf: Ø Schlaf der letzten 7 Tage gegenüber der Vorwoche und Schwankung der Einschlafzeit (aus Health Connect bzw. Apple Health, je mind. 3 bzw. 5 Nächte), Ø Befinden; ohne genug Daten keine Aussage
+- Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone im Nachttisch-Modus (App bleibt nachts offen, Bildschirm schwarz bis zum Licht), weil iOS bei gesperrtem Bildschirm keinen eigenen Vollbildschirm erlaubt
 - anonymer Export des Verlaufs (CSV)
 - Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit – nur Galaxy Watch; die Smart-Alarm-Sitzung der Apple Watch dauert höchstens 30 Min und kann nicht die ganze Nacht messen
 
 ## Entscheide (28.10.2026)
+
+- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends und ein freiwilliger Spenden-Link (GitHub Sponsors). Kein Abo, keine Werbung, kein Mikrofon, kein «KI-Coach».
 
 - Sonnenaufgang (28.10.2026): Option pro Wecker, standardmässig aus; wählbar «beim Wecken» oder «ab Weckfenster».
 

@@ -38,6 +38,22 @@ final class HealthSleep: @unchecked Sendable {
         }.sorted { $0.start < $1.start }
     }
 
+    /// Ganze Nächte der letzten `days` Tage für die Trends.
+    func recentSleep(days: Double = 15) async -> [SleepSummary] {
+        guard isAvailable else { return [] }
+        let now = Date()
+        let predicate = HKQuery.predicateForSamples(withStart: now.addingTimeInterval(-days * 86_400), end: now)
+        let samples: [HKCategorySample] = await withCheckedContinuation { continuation in
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
+                continuation.resume(returning: (results as? [HKCategorySample]) ?? [])
+            }
+            store.execute(query)
+        }
+        return SleepSummary.group(samples.compactMap { sample in
+            Self.stage(sample.value).map { StageSpan(start: sample.startDate, end: sample.endDate, stage: $0) }
+        })
+    }
+
     private static func stage(_ value: Int) -> SleepStage? {
         switch HKCategoryValueSleepAnalysis(rawValue: value) {
         case .asleepCore: .light

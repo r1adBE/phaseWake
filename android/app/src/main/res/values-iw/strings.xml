@@ -20,9 +20,6 @@
     <string name="home_add_alarm">מעורר חדש</string>
     <string name="home_last_night">הלילה האחרון</string>
     <string name="home_alarms">המעוררים שלכם</string>
-    <string name="home_permission_title">אישור למעוררים</string>
-    <string name="home_permission_text">כדי להעיר אתכם, Phase Wake צריכה התראות והתראות במסך מלא.</string>
-    <string name="home_permission_action">אישור</string>
 
     <string name="reason_light">שינה קלה</string>
     <string name="reason_awake">כבר ערים</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">צליל</string>
     <string name="editor_sound">צליל מעורר</string>
     <string name="editor_sound_default">ברירת מחדל</string>
-    <string name="dnd_title">‘נא לא להפריע’ חוסם מעוררים</string>
     <string name="dnd_text">אפשרו מעוררים במצב ‘נא לא להפריע’, אחרת הטלפון יישאר שקט.</string>
     <string name="dnd_action">פתיחת הגדרות</string>
     <string name="greeting_morning">בוקר טוב</string>

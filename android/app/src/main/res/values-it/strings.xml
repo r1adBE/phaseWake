@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Nuova sveglia</string>
     <string name="home_last_night">Ultima notte</string>
     <string name="home_alarms">Le tue sveglie</string>
-    <string name="home_permission_title">Consenti le sveglie</string>
-    <string name="home_permission_text">Phase Wake ha bisogno delle notifiche e degli avvisi a schermo intero per svegliarti.</string>
-    <string name="home_permission_action">Consenti</string>
 
     <string name="reason_light">Sonno leggero</string>
     <string name="reason_awake">Già sveglio</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Suono</string>
     <string name="editor_sound">Suoneria</string>
     <string name="editor_sound_default">Predefinita</string>
-    <string name="dnd_title">Non disturbare blocca le sveglie</string>
     <string name="dnd_text">Consenti le sveglie in Non disturbare, altrimenti il telefono resta muto.</string>
     <string name="dnd_action">Apri impostazioni</string>
     <string name="greeting_morning">Buongiorno</string>

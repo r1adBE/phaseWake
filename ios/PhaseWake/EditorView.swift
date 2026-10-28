@@ -15,6 +15,7 @@ struct EditorView: View {
     @State private var phone = PhoneAlert.sound
     @State private var watchSound = false
     @State private var label = ""
+    @State private var sunrise = Sunrise.off
 
     var body: some View {
         NavigationStack {
@@ -91,6 +92,24 @@ struct EditorView: View {
                 }
 
                 Section {
+                    Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
+                    Picker(L("editor_sunrise"), selection: $sunrise) {
+                        Text(L("alert_off")).tag(Sunrise.off)
+                        Text(L("sunrise_ring")).tag(Sunrise.ring)
+                        Text(L("sunrise_window")).tag(Sunrise.window)
+                    }
+                    .pickerStyle(.segmented)
+                    if sunrise != .off {
+                        Text(sunrise == .window ? L("editor_sunrise_window_hint") : L("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60))
+                            .font(.footnote).foregroundStyle(.secondary)
+                        // Auf dem iPhone nur mit offener App möglich.
+                        Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                    }
+                } header: {
+                    Text(L("editor_sunrise"))
+                }
+
+                Section {
                     TextField(L("editor_label_hint"), text: $label)
                 } header: {
                     Text(L("editor_label"))
@@ -131,6 +150,7 @@ struct EditorView: View {
         phone = existing.phone
         watchSound = existing.watchSound
         label = existing.label
+        sunrise = existing.sunrise
     }
 
     private func save() {
@@ -147,7 +167,7 @@ struct EditorView: View {
             sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
             sound: existing?.sound ?? "",
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
-            sunrise: existing?.sunrise ?? .off
+            sunrise: sunrise
         ) {
             model.upsert(spec)
         }

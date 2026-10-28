@@ -20,9 +20,6 @@
     <string name="home_add_alarm">زنگ جدید</string>
     <string name="home_last_night">شب گذشته</string>
     <string name="home_alarms">زنگ‌های تو</string>
-    <string name="home_permission_title">اجازهٔ زنگ</string>
-    <string name="home_permission_text">Phase Wake برای بیدار کردنت به اعلان و هشدار تمام‌صفحه نیاز دارد.</string>
-    <string name="home_permission_action">اجازه</string>
 
     <string name="reason_light">خواب سبک</string>
     <string name="reason_awake">از قبل بیدار</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">صدا</string>
     <string name="editor_sound">صدای زنگ</string>
     <string name="editor_sound_default">پیش‌فرض</string>
-    <string name="dnd_title">«مزاحم نشو» زنگ‌ها را مسدود می‌کند</string>
     <string name="dnd_text">در حالت «مزاحم نشو» اجازهٔ زنگ بده، وگرنه گوشی‌ات ساکت می‌ماند.</string>
     <string name="dnd_action">باز کردن تنظیمات</string>
     <string name="greeting_morning">صبح بخیر</string>

@@ -8,6 +8,9 @@ struct HomeView: View {
     @Environment(\.colorScheme) private var scheme
     @State private var editing: AlarmSpec?
     @State private var creating = false
+    @State private var failedChecks: [PhoneCheck] = []
+    @State private var nightstand = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         NavigationStack {
@@ -18,7 +21,23 @@ struct HomeView: View {
                         TimelineView(.everyMinute) { context in
                             header(now: context.date)
                         }
-                        if let night = model.nights.last { LastNightCard(night: night) }
+                        TimelineView(.everyMinute) { context in
+                            let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current)
+                            VStack(spacing: 12) {
+                                // Nacht-Check nur, wenn ein Wecker ansteht.
+                                if plan != nil {
+                                    NightCheckCard(failed: failedChecks) { check in
+                                        Task { await NightCheck.fix(check); failedChecks = await NightCheck.collect() }
+                                    }
+                                }
+                                if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
+                                    NightstandButton { nightstand = true }
+                                }
+                                if let night = model.nights.last {
+                                    LastNightCard(night: night, now: context.date) { model.setFeeling($0, for: night) }
+                                }
+                            }
+                        }
                         if !model.alarms.isEmpty {
                             Text(L("home_alarms"))
                                 .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
@@ -50,6 +69,14 @@ struct HomeView: View {
                     .padding(16)
                 }
             }
+            .task(id: scenePhase) {
+                // Bei jedem Öffnen und danach jede halbe Minute prüfen.
+                while scenePhase == .active, !Task.isCancelled {
+                    failedChecks = await NightCheck.collect()
+                    try? await Task.sleep(for: .seconds(30))
+                }
+            }
+            .fullScreenCover(isPresented: $nightstand) { NightstandView() }
             .sheet(item: $editing) { EditorView(existing: $0) }
             .sheet(isPresented: $creating) { EditorView(existing: nil) }
         }
@@ -128,18 +155,43 @@ extension View {
     func card() -> some View { modifier(CardBackground()) }
 }
 
-private struct LastNightCard: View {
-    let night: NightRecord
+private struct NightstandButton: View {
+    let action: () -> Void
 
     var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 4) {
+                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Text(L("nightstand_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+            }
+        }
+        .buttonStyle(.plain)
+        .card()
+    }
+}
+
+private struct LastNightCard: View {
+    let night: NightRecord
+    let now: Date
+    let onFeeling: (Int) -> Void
+
+    /// So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen».
+    private static let morning: TimeInterval = 12 * 3600
+
+    var body: some View {
+        let isMorning = now.timeIntervalSince(night.wokeAt) < Self.morning
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(L("home_last_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 46)
             Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if isMorning && night.feeling == nil {
+                FeelingPicker(onPick: onFeeling).padding(.top, 8)
+            }
         }
         .card()
     }

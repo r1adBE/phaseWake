@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Penggera baharu</string>
     <string name="home_last_night">Semalam</string>
     <string name="home_alarms">Penggera awak</string>
-    <string name="home_permission_title">Benarkan penggera</string>
-    <string name="home_permission_text">Phase Wake perlukan pemberitahuan dan makluman skrin penuh untuk bangunkan awak.</string>
-    <string name="home_permission_action">Benarkan</string>
 
     <string name="reason_light">Tidur ringan</string>
     <string name="reason_awake">Sudah bangun</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Bunyi</string>
     <string name="editor_sound">Bunyi penggera</string>
     <string name="editor_sound_default">Lalai</string>
-    <string name="dnd_title">Jangan Ganggu menyekat penggera</string>
     <string name="dnd_text">Benarkan penggera dalam Jangan Ganggu, jika tidak telefon awak kekal senyap.</string>
     <string name="dnd_action">Buka tetapan</string>
     <string name="greeting_morning">Selamat pagi</string>

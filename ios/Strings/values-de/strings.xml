@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Mit diesem iPhone ist keine Apple Watch gekoppelt.</string>
+    <string name="check_watch_app">Phase Wake auf der Uhr</string>
+    <string name="check_watch_app_problem">Installiere Phase Wake in der Watch-App auf deiner Apple Watch.</string>
+    <string name="check_alarmkit">Wecker erlaubt</string>
+    <string name="check_alarmkit_problem">Erlaube Phase Wake Wecker, damit dein iPhone als Zweitwecker klingeln kann.</string>
+    <string name="nightstand_start">Nachttisch-Modus starten</string>
+    <string name="nightstand_hint">Für den Sonnenaufgang Phase Wake über Nacht am Ladekabel offen lassen. Der Bildschirm bleibt dunkel, bis das Licht beginnt.</string>
+    <string name="nightstand_end">Beenden</string>
+    <string name="nightstand_waiting">Sonnenaufgang um %1$s</string>
+    <string name="nightstand_no_alarm">Kein Wecker mit Sonnenaufgang</string>
+    <string name="editor_sunrise_ios_hint">Das iPhone kann das Licht nur zeigen, solange Phase Wake offen ist – starte vor dem Schlafen den Nachttisch-Modus.</string>
+    <string name="trends_health_hint_apple">Schlafdauer und Regelmässigkeit kommen aus Apple Health.</string>
+</resources>

@@ -20,9 +20,6 @@
     <string name="home_add_alarm">Báo thức mới</string>
     <string name="home_last_night">Đêm qua</string>
     <string name="home_alarms">Báo thức của bạn</string>
-    <string name="home_permission_title">Cho phép báo thức</string>
-    <string name="home_permission_text">Phase Wake cần quyền thông báo và thông báo toàn màn hình để đánh thức bạn.</string>
-    <string name="home_permission_action">Cho phép</string>
 
     <string name="reason_light">Ngủ nông</string>
     <string name="reason_awake">Đã thức sẵn</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">Âm thanh</string>
     <string name="editor_sound">Nhạc báo thức</string>
     <string name="editor_sound_default">Mặc định</string>
-    <string name="dnd_title">Không làm phiền đang chặn báo thức</string>
     <string name="dnd_text">Hãy cho phép báo thức trong chế độ Không làm phiền, nếu không điện thoại sẽ im lặng.</string>
     <string name="dnd_action">Mở cài đặt</string>
     <string name="greeting_morning">Chào buổi sáng</string>

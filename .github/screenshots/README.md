@@ -6,12 +6,18 @@ Android-Handy und Galaxy Watch, gerendert aus dem Stand `@SHA@`. Beispieldaten, 
 
 ### Startseite
 
-Nächster Wecker mit Weckfenster, letzte Nacht als Bewegungskurve und alle Wecker auf einen Blick. Im dunklen Modus ist die ganze Seite Nachthimmel, im hellen nur der Kopf.
+Nächster Wecker mit Weckfenster, Nacht-Check, «Dein Morgen» mit Bewegungskurve und der Frage nach dem Befinden, alle Wecker auf einen Blick. Im dunklen Modus ist die ganze Seite Nachthimmel, im hellen nur der Kopf.
 
 <p>
 <img src="app/HomeDark.png" width="280" alt="Startseite dunkel">
 <img src="app/HomeLight.png" width="280" alt="Startseite hell">
 </p>
+
+### Nacht-Check
+
+Stimmt etwas nicht, zeigt die Karte, was fehlt – mit Knopf direkt zur richtigen Einstellung.
+
+<img src="app/HomeCheck.png" width="280" alt="Nacht-Check mit offenen Punkten">
 
 ### Ohne Wecker
 
@@ -33,7 +39,7 @@ Weckzeit oder Schlafdauer, Weckfenster von 10 bis 30 Minuten, Wochentage, Weckar
 
 ### Verlauf
 
-Jede Nacht mit Bewegungskurve im Weckfenster, Weckgrund und – mit Health Connect – der Schlafphase beim Wecken.
+Trends der letzten 7 Tage (Schlafdauer, Regelmässigkeit, Befinden) und jede Nacht mit Bewegungskurve, Weckgrund, Datenqualität und – mit Health Connect – der Schlafphase beim Wecken.
 
 <p>
 <img src="app/HistoryDark.png" width="280" alt="Verlauf, dunkel">
@@ -42,7 +48,7 @@ Jede Nacht mit Bewegungskurve im Weckfenster, Weckgrund und – mit Health Conne
 
 ### Einstellungen
 
-Hell, Dunkel oder System, Export, Verlauf löschen, Health Connect.
+Hell, Dunkel oder System, Export, Verlauf löschen, Health Connect, Unterstützen.
 
 <p>
 <img src="app/SettingsDark.png" width="280" alt="Einstellungen, dunkel">

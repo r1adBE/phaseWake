@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """Erzeugt die String-Kataloge der Apple-Apps aus den Android-Texten.
 
-Android ist die Quelle (android/app und android/wear, values-*/strings.xml).
-iPhone: App-Texte vor Uhr-Texten. Apple Watch: Uhr-Texte vor App-Texten.
+Android ist die Quelle (android/app und android/wear, values-*/strings.xml), dazu ios/Strings
+für Texte, die es nur auf Apple gibt. iPhone: App- vor Uhr-Texten. Apple Watch: Uhr- vor App-Texten.
 Aufruf: python3 .github/scripts/gen-xcstrings.py [--check]
 """
 import html, json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-RES = {"app": ROOT / "android/app/src/main/res", "wear": ROOT / "android/wear/src/main/res"}
-TARGETS = {"PhaseWake": ("app", "wear"), "PhaseWakeWatch": ("wear", "app")}
+RES = {
+    "app": ROOT / "android/app/src/main/res",
+    "wear": ROOT / "android/wear/src/main/res",
+    "apple": ROOT / "ios/Strings",  # Texte nur für die Apple-Apps
+}
+TARGETS = {"PhaseWake": ("app", "wear", "apple"), "PhaseWakeWatch": ("wear", "app", "apple")}
 
 
 def apple_locale(folder: str) -> str | None:
@@ -43,14 +47,17 @@ def load(module: str) -> dict[str, dict[str, str]]:
     return out
 
 
-def catalog(first: str, second: str) -> str:
-    a, b = load(first), load(second)
-    keys = sorted(set(a["en"]) | set(b["en"]))
+def catalog(*modules: str) -> str:
+    sources = [load(m) for m in modules]
+    keys = sorted(set().union(*(s["en"] for s in sources)))
+    langs = sorted(set().union(*sources))
     strings = {}
     for key in keys:
+        # Die erste Quelle, die den Text auf Englisch hat, liefert ihn in allen Sprachen.
+        source = next(s for s in sources if key in s["en"])
         loc = {}
-        for lang in sorted(set(a) | set(b)):
-            value = a.get(lang, {}).get(key) if key in a["en"] else b.get(lang, {}).get(key)
+        for lang in langs:
+            value = source.get(lang, {}).get(key)
             if value is not None:
                 loc[lang] = {"stringUnit": {"state": "translated", "value": value}}
         strings[key] = {"localizations": loc}
@@ -59,9 +66,9 @@ def catalog(first: str, second: str) -> str:
 
 def main() -> int:
     stale = []
-    for target, (first, second) in TARGETS.items():
+    for target, modules in TARGETS.items():
         path = ROOT / "ios" / target / "Localizable.xcstrings"
-        text = catalog(first, second)
+        text = catalog(*modules)
         if "--check" in sys.argv:
             if not path.exists() or path.read_text() != text:
                 stale.append(str(path.relative_to(ROOT)))

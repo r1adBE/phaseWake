@@ -20,9 +20,6 @@
     <string name="home_add_alarm">新規アラーム</string>
     <string name="home_last_night">昨夜</string>
     <string name="home_alarms">アラーム一覧</string>
-    <string name="home_permission_title">アラームを許可</string>
-    <string name="home_permission_text">Phase Wakeが起こすには、通知と全画面表示の許可が必要です。</string>
-    <string name="home_permission_action">許可</string>
 
     <string name="reason_light">浅い眠り</string>
     <string name="reason_awake">すでに起床</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">音</string>
     <string name="editor_sound">アラーム音</string>
     <string name="editor_sound_default">デフォルト</string>
-    <string name="dnd_title">サイレントモードがアラームを妨げています</string>
     <string name="dnd_text">サイレントモード中もアラームを許可してください。許可しないとスマートフォンは鳴りません。</string>
     <string name="dnd_action">設定を開く</string>
     <string name="greeting_morning">おはようございます</string>

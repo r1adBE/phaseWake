@@ -20,9 +20,6 @@
     <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
     <string name="home_last_night">เมื่อคืน</string>
     <string name="home_alarms">นาฬิกาปลุกของคุณ</string>
-    <string name="home_permission_title">อนุญาตนาฬิกาปลุก</string>
-    <string name="home_permission_text">Phase Wake ต้องใช้การแจ้งเตือนและการแจ้งเตือนแบบเต็มหน้าจอเพื่อปลุกคุณ</string>
-    <string name="home_permission_action">อนุญาต</string>
 
     <string name="reason_light">หลับตื้น</string>
     <string name="reason_awake">ตื่นอยู่แล้ว</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">เสียง</string>
     <string name="editor_sound">เสียงปลุก</string>
     <string name="editor_sound_default">ค่าเริ่มต้น</string>
-    <string name="dnd_title">โหมดห้ามรบกวนบล็อกนาฬิกาปลุก</string>
     <string name="dnd_text">อนุญาตให้นาฬิกาปลุกดังในโหมดห้ามรบกวน มิฉะนั้นโทรศัพท์จะเงียบ</string>
     <string name="dnd_action">เปิดการตั้งค่า</string>
     <string name="greeting_morning">อรุณสวัสดิ์</string>

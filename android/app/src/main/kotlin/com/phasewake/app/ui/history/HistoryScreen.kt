@@ -36,6 +36,7 @@ import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageCheck
 import com.phasewake.app.core.StageSpan
+import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
@@ -71,6 +72,9 @@ fun HistoryScreen(
     contentPadding: PaddingValues,
     loadStages: (suspend (NightRecord) -> List<StageSpan>)?,
     onExport: () -> Unit,
+    trends: Trends? = null,
+    healthConnected: Boolean = false,
+    onConnectHealth: () -> Unit = {},
 ) {
     LazyColumn(
         contentPadding = contentPadding,
@@ -101,6 +105,7 @@ fun HistoryScreen(
             return@LazyColumn
         }
         item(key = "stats") { Stats(nights) }
+        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth) } }
         items(nights.asReversed(), key = { it.windowStart.toEpochMilli() }) { night ->
             NightCard(night, loadStages, Modifier.animateItem())
         }
@@ -160,6 +165,11 @@ private fun NightCard(night: NightRecord, loadStages: (suspend (NightRecord) -> 
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
+            )
+            Text(
+                nightDetails(context, night),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             if (stages.isNotEmpty()) {
                 StageStrip(

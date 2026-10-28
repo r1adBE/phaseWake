@@ -55,7 +55,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         Task { @MainActor in
             let model = PhoneModel.shared
             switch command {
-            case SyncKeys.ring: await model.backup.ringNow(alarm: model.alarms.first { $0.id == alarmId })
+            case SyncKeys.ring:
+                model.watchRang()
+                await model.backup.ringNow(alarm: model.alarms.first { $0.id == alarmId })
             case SyncKeys.stop: await model.backup.stopRinging()
             default: break
             }

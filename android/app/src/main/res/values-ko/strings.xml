@@ -20,9 +20,6 @@
     <string name="home_add_alarm">새 알람</string>
     <string name="home_last_night">어젯밤</string>
     <string name="home_alarms">내 알람</string>
-    <string name="home_permission_title">알람 허용</string>
-    <string name="home_permission_text">Phase Wake가 깨워 드리려면 알림과 전체 화면 알림 권한이 필요해요.</string>
-    <string name="home_permission_action">허용</string>
 
     <string name="reason_light">얕은 잠</string>
     <string name="reason_awake">이미 깨어 있음</string>
@@ -105,7 +102,6 @@
     <string name="alert_sound">소리</string>
     <string name="editor_sound">알람 소리</string>
     <string name="editor_sound_default">기본</string>
-    <string name="dnd_title">방해 금지 모드가 알람을 막고 있어요</string>
     <string name="dnd_text">방해 금지 모드에서 알람을 허용해 주세요. 그렇지 않으면 휴대폰이 울리지 않아요.</string>
     <string name="dnd_action">설정 열기</string>
     <string name="greeting_morning">좋은 아침이에요</string>
