@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Nenhum Apple Watch está pareado com este iPhone.</string>
+    <string name="check_watch_app">Phase Wake no relógio</string>
+    <string name="check_watch_app_problem">Instale o Phase Wake no seu Apple Watch pelo app Watch.</string>
+    <string name="check_alarmkit">Alarmes permitidos</string>
+    <string name="check_alarmkit_problem">Permita que o Phase Wake defina alarmes para que seu iPhone possa tocar como alarme reserva.</string>
+    <string name="nightstand_start">Iniciar modo de mesa de cabeceira</string>
+    <string name="nightstand_hint">Para o nascer do sol, deixe o Phase Wake aberto no carregador durante a noite. A tela fica escura até a luz começar.</string>
+    <string name="nightstand_end">Encerrar</string>
+    <string name="nightstand_waiting">Nascer do sol às %1$s</string>
+    <string name="nightstand_no_alarm">Nenhum alarme com nascer do sol</string>
+    <string name="editor_sunrise_ios_hint">O iPhone só pode mostrar a luz enquanto o Phase Wake estiver aberto – inicie o modo de mesa de cabeceira antes de dormir.</string>
+    <string name="trends_health_hint_apple">A duração e a regularidade do sono vêm do Apple Health.</string>
+</resources>

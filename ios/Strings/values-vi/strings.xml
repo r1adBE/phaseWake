@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Không có Apple Watch nào được ghép nối với iPhone này.</string>
+    <string name="check_watch_app">Phase Wake trên đồng hồ</string>
+    <string name="check_watch_app_problem">Hãy cài Phase Wake trên Apple Watch của bạn trong ứng dụng Watch.</string>
+    <string name="check_alarmkit">Đã cho phép báo thức</string>
+    <string name="check_alarmkit_problem">Hãy cho phép Phase Wake đặt báo thức để iPhone của bạn có thể reo làm báo thức dự phòng.</string>
+    <string name="nightstand_start">Bắt đầu chế độ đầu giường</string>
+    <string name="nightstand_hint">Để dùng bình minh, hãy để Phase Wake mở trên đế sạc suốt đêm. Màn hình vẫn tối cho đến khi ánh sáng bắt đầu.</string>
+    <string name="nightstand_end">Kết thúc</string>
+    <string name="nightstand_waiting">Bình minh lúc %1$s</string>
+    <string name="nightstand_no_alarm">Không có báo thức kèm bình minh</string>
+    <string name="editor_sunrise_ios_hint">iPhone chỉ hiển thị được ánh sáng khi Phase Wake đang mở – hãy bắt đầu chế độ đầu giường trước khi đi ngủ.</string>
+    <string name="trends_health_hint_apple">Thời lượng và độ đều đặn của giấc ngủ lấy từ Apple Health.</string>
+</resources>

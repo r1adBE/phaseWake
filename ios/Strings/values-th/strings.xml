@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">ไม่มี Apple Watch ที่จับคู่กับ iPhone เครื่องนี้</string>
+    <string name="check_watch_app">Phase Wake บนนาฬิกา</string>
+    <string name="check_watch_app_problem">ติดตั้ง Phase Wake บน Apple Watch ของคุณในแอป Watch</string>
+    <string name="check_alarmkit">อนุญาตการปลุกแล้ว</string>
+    <string name="check_alarmkit_problem">อนุญาตให้ Phase Wake ตั้งการปลุก เพื่อให้ iPhone ของคุณส่งเสียงเป็นนาฬิกาปลุกสำรองได้</string>
+    <string name="nightstand_start">เริ่มโหมดข้างเตียง</string>
+    <string name="nightstand_hint">สำหรับแสงอาทิตย์ขึ้น ให้เปิด Phase Wake ทิ้งไว้บนที่ชาร์จตลอดคืน หน้าจอจะมืดจนกว่าแสงจะเริ่ม</string>
+    <string name="nightstand_end">สิ้นสุด</string>
+    <string name="nightstand_waiting">แสงอาทิตย์ขึ้นเวลา %1$s</string>
+    <string name="nightstand_no_alarm">ไม่มีการปลุกพร้อมแสงอาทิตย์ขึ้น</string>
+    <string name="editor_sunrise_ios_hint">iPhone แสดงแสงได้ก็ต่อเมื่อเปิด Phase Wake อยู่ – เริ่มโหมดข้างเตียงก่อนเข้านอน</string>
+    <string name="trends_health_hint_apple">ระยะเวลาและความสม่ำเสมอของการนอนมาจาก Apple Health</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Z tym iPhonem nie sparowano żadnego Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake na zegarku</string>
+    <string name="check_watch_app_problem">Zainstaluj Phase Wake na Apple Watch w aplikacji Watch.</string>
+    <string name="check_alarmkit">Budziki dozwolone</string>
+    <string name="check_alarmkit_problem">Zezwól Phase Wake na ustawianie budzików, aby iPhone mógł zadzwonić jako zapasowy budzik.</string>
+    <string name="nightstand_start">Włącz tryb nocnego stolika</string>
+    <string name="nightstand_hint">Aby korzystać ze wschodu słońca, zostaw Phase Wake otwarty na ładowarce na całą noc. Ekran pozostaje ciemny, aż zacznie się światło.</string>
+    <string name="nightstand_end">Zakończ</string>
+    <string name="nightstand_waiting">Wschód słońca o %1$s</string>
+    <string name="nightstand_no_alarm">Brak budzika ze wschodem słońca</string>
+    <string name="editor_sunrise_ios_hint">iPhone może pokazywać światło tylko przy otwartym Phase Wake – włącz tryb nocnego stolika przed snem.</string>
+    <string name="trends_health_hint_apple">Czas i regularność snu pochodzą z Apple Health.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Bu iPhone ile eşleşmiş Apple Watch yok.</string>
+    <string name="check_watch_app">Saatte Phase Wake</string>
+    <string name="check_watch_app_problem">Watch uygulamasından Apple Watch’ına Phase Wake’i yükle.</string>
+    <string name="check_alarmkit">Alarmlara izin verildi</string>
+    <string name="check_alarmkit_problem">iPhone’un yedek alarm olarak çalabilmesi için Phase Wake’in alarm kurmasına izin ver.</string>
+    <string name="nightstand_start">Komodin modunu başlat</string>
+    <string name="nightstand_hint">Gün doğumu için Phase Wake’i gece boyunca şarjda açık bırak. Işık başlayana kadar ekran karanlık kalır.</string>
+    <string name="nightstand_end">Bitir</string>
+    <string name="nightstand_waiting">Gün doğumu: %1$s</string>
+    <string name="nightstand_no_alarm">Gün doğumlu alarm yok</string>
+    <string name="editor_sunrise_ios_hint">iPhone ışığı yalnızca Phase Wake açıkken gösterebilir – uyumadan önce komodin modunu başlat.</string>
+    <string name="trends_health_hint_apple">Uyku süresi ve düzeni Apple Health’ten gelir.</string>
+</resources>

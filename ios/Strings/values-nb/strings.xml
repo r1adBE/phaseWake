@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Ingen Apple Watch er paret med denne iPhone-en.</string>
+    <string name="check_watch_app">Phase Wake på klokken</string>
+    <string name="check_watch_app_problem">Installer Phase Wake på Apple Watch i Watch-appen.</string>
+    <string name="check_alarmkit">Alarmer er tillatt</string>
+    <string name="check_alarmkit_problem">Tillat Phase Wake å stille alarmer slik at iPhone kan ringe som reservealarm.</string>
+    <string name="nightstand_start">Start nattbordmodus</string>
+    <string name="nightstand_hint">For soloppgangen lar du Phase Wake stå åpen på laderen over natten. Skjermen forblir mørk til lyset begynner.</string>
+    <string name="nightstand_end">Avslutt</string>
+    <string name="nightstand_waiting">Soloppgang kl. %1$s</string>
+    <string name="nightstand_no_alarm">Ingen alarm med soloppgang</string>
+    <string name="editor_sunrise_ios_hint">iPhone kan bare vise lyset mens Phase Wake er åpen – start nattbordmodus før du legger deg.</string>
+    <string name="trends_health_hint_apple">Søvnlengde og regelmessighet hentes fra Apple Health.</string>
+</resources>

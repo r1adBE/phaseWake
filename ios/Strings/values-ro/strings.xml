@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Niciun Apple Watch nu este asociat cu acest iPhone.</string>
+    <string name="check_watch_app">Phase Wake pe ceas</string>
+    <string name="check_watch_app_problem">Instalează Phase Wake pe Apple Watch din aplicația Watch.</string>
+    <string name="check_alarmkit">Alarme permise</string>
+    <string name="check_alarmkit_problem">Permite Phase Wake să seteze alarme pentru ca iPhone-ul tău să poată suna ca alarmă de rezervă.</string>
+    <string name="nightstand_start">Pornește modul noptieră</string>
+    <string name="nightstand_hint">Pentru răsărit, lasă Phase Wake deschis pe încărcător peste noapte. Ecranul rămâne întunecat până începe lumina.</string>
+    <string name="nightstand_end">Încheie</string>
+    <string name="nightstand_waiting">Răsărit la %1$s</string>
+    <string name="nightstand_no_alarm">Nicio alarmă cu răsărit</string>
+    <string name="editor_sunrise_ios_hint">iPhone-ul poate arăta lumina doar cât timp Phase Wake este deschis – pornește modul noptieră înainte de culcare.</string>
+    <string name="trends_health_hint_apple">Durata și regularitatea somnului provin din Apple Health.</string>
+</resources>

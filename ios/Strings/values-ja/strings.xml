@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">このiPhoneにペアリングされているApple Watchがありません。</string>
+    <string name="check_watch_app">ウォッチのPhase Wake</string>
+    <string name="check_watch_app_problem">WatchアプリでApple WatchにPhase Wakeをインストールしてください。</string>
+    <string name="check_alarmkit">アラームが許可されています</string>
+    <string name="check_alarmkit_problem">iPhoneがバックアップのアラームを鳴らせるよう、Phase Wakeにアラームの設定を許可してください。</string>
+    <string name="nightstand_start">ナイトスタンドモードを開始</string>
+    <string name="nightstand_hint">サンライズを使うには、Phase Wakeを開いたまま一晩充電器につないでおいてください。ライトが始まるまで画面は暗いままです。</string>
+    <string name="nightstand_end">終了</string>
+    <string name="nightstand_waiting">%1$sにサンライズ</string>
+    <string name="nightstand_no_alarm">サンライズ付きのアラームなし</string>
+    <string name="editor_sunrise_ios_hint">iPhoneはPhase Wakeを開いている間しかライトを表示できません – 眠る前にナイトスタンドモードを開始してください。</string>
+    <string name="trends_health_hint_apple">睡眠時間と規則性は Apple Health から取得されます。</string>
+</resources>

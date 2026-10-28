@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Tiada Apple Watch dipasangkan dengan iPhone ini.</string>
+    <string name="check_watch_app">Phase Wake pada jam tangan</string>
+    <string name="check_watch_app_problem">Pasang Phase Wake pada Apple Watch awak dalam apl Watch.</string>
+    <string name="check_alarmkit">Penggera dibenarkan</string>
+    <string name="check_alarmkit_problem">Benarkan Phase Wake menetapkan penggera supaya iPhone awak boleh berdering sebagai penggera sandaran.</string>
+    <string name="nightstand_start">Mulakan mod meja sisi katil</string>
+    <string name="nightstand_hint">Untuk matahari terbit, biarkan Phase Wake terbuka pada pengecas sepanjang malam. Skrin kekal gelap sehingga cahaya bermula.</string>
+    <string name="nightstand_end">Tamat</string>
+    <string name="nightstand_waiting">Matahari terbit pada %1$s</string>
+    <string name="nightstand_no_alarm">Tiada penggera dengan matahari terbit</string>
+    <string name="editor_sunrise_ios_hint">iPhone hanya boleh menunjukkan cahaya semasa Phase Wake terbuka – mulakan mod meja sisi katil sebelum awak tidur.</string>
+    <string name="trends_health_hint_apple">Tempoh dan keteraturan tidur datang daripada Apple Health.</string>
+</resources>

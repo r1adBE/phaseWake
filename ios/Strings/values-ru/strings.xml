@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">К этому iPhone не подключены Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake на часах</string>
+    <string name="check_watch_app_problem">Установи Phase Wake на Apple Watch в приложении Watch.</string>
+    <string name="check_alarmkit">Будильники разрешены</string>
+    <string name="check_alarmkit_problem">Разреши Phase Wake ставить будильники, чтобы iPhone мог зазвонить как резервный будильник.</string>
+    <string name="nightstand_start">Включить режим прикроватных часов</string>
+    <string name="nightstand_hint">Для рассвета оставь Phase Wake открытым на зарядке на всю ночь. Экран остаётся тёмным, пока не начнётся свет.</string>
+    <string name="nightstand_end">Завершить</string>
+    <string name="nightstand_waiting">Рассвет в %1$s</string>
+    <string name="nightstand_no_alarm">Нет будильника с рассветом</string>
+    <string name="editor_sunrise_ios_hint">iPhone может показывать свет, только пока Phase Wake открыт – включи режим прикроватных часов перед сном.</string>
+    <string name="trends_health_hint_apple">Длительность и регулярность сна берутся из Apple Health.</string>
+</resources>

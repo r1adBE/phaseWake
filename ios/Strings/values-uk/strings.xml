@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">До цього iPhone не підключено жодного Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake на годиннику</string>
+    <string name="check_watch_app_problem">Встанови Phase Wake на Apple Watch у застосунку Watch.</string>
+    <string name="check_alarmkit">Будильники дозволено</string>
+    <string name="check_alarmkit_problem">Дозволь Phase Wake ставити будильники, щоб iPhone міг задзвонити як резервний будильник.</string>
+    <string name="nightstand_start">Увімкнути режим нічного столика</string>
+    <string name="nightstand_hint">Для світанку залиш Phase Wake відкритим на зарядці на всю ніч. Екран залишається темним, доки не почнеться світло.</string>
+    <string name="nightstand_end">Завершити</string>
+    <string name="nightstand_waiting">Світанок о %1$s</string>
+    <string name="nightstand_no_alarm">Немає будильника зі світанком</string>
+    <string name="editor_sunrise_ios_hint">iPhone може показувати світло, лише поки Phase Wake відкритий – увімкни режим нічного столика перед сном.</string>
+    <string name="trends_health_hint_apple">Тривалість і регулярність сну беруться з Apple Health.</string>
+</resources>

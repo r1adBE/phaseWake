@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">이 iPhone에 페어링된 Apple Watch가 없어요.</string>
+    <string name="check_watch_app">워치의 Phase Wake</string>
+    <string name="check_watch_app_problem">Watch 앱에서 Apple Watch에 Phase Wake를 설치해 주세요.</string>
+    <string name="check_alarmkit">알람 허용됨</string>
+    <string name="check_alarmkit_problem">iPhone이 예비 알람으로 울릴 수 있도록 Phase Wake에 알람 설정을 허용해 주세요.</string>
+    <string name="nightstand_start">탁상 모드 시작</string>
+    <string name="nightstand_hint">일출 효과를 쓰려면 밤새 충전기에 연결한 채 Phase Wake를 열어 두세요. 빛이 시작될 때까지 화면은 어두운 상태로 유지돼요.</string>
+    <string name="nightstand_end">종료</string>
+    <string name="nightstand_waiting">%1$s에 일출</string>
+    <string name="nightstand_no_alarm">일출 알람 없음</string>
+    <string name="editor_sunrise_ios_hint">iPhone은 Phase Wake가 열려 있는 동안에만 빛을 보여줄 수 있어요 – 자기 전에 탁상 모드를 시작하세요.</string>
+    <string name="trends_health_hint_apple">수면 시간과 규칙성은 Apple Health에서 가져와요.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Ingen Apple Watch är kopplad till den här iPhone.</string>
+    <string name="check_watch_app">Phase Wake på klockan</string>
+    <string name="check_watch_app_problem">Installera Phase Wake på din Apple Watch i Watch-appen.</string>
+    <string name="check_alarmkit">Alarm tillåtna</string>
+    <string name="check_alarmkit_problem">Tillåt Phase Wake att ställa alarm så att din iPhone kan ringa som reservalarm.</string>
+    <string name="nightstand_start">Starta nattduksbordsläge</string>
+    <string name="nightstand_hint">För soluppgången, låt Phase Wake vara öppen på laddaren över natten. Skärmen förblir mörk tills ljuset börjar.</string>
+    <string name="nightstand_end">Avsluta</string>
+    <string name="nightstand_waiting">Soluppgång kl. %1$s</string>
+    <string name="nightstand_no_alarm">Inget alarm med soluppgång</string>
+    <string name="editor_sunrise_ios_hint">iPhone kan bara visa ljuset medan Phase Wake är öppen – starta nattduksbordsläge innan du somnar.</string>
+    <string name="trends_health_hint_apple">Sömnlängd och regelbundenhet kommer från Apple Health.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Er is geen Apple Watch gekoppeld aan deze iPhone.</string>
+    <string name="check_watch_app">Phase Wake op het horloge</string>
+    <string name="check_watch_app_problem">Installeer Phase Wake op je Apple Watch via de Watch-app.</string>
+    <string name="check_alarmkit">Wekkers toegestaan</string>
+    <string name="check_alarmkit_problem">Sta Phase Wake toe wekkers in te stellen zodat je iPhone als back-upwekker kan overgaan.</string>
+    <string name="nightstand_start">Nachtkastmodus starten</string>
+    <string name="nightstand_hint">Laat Phase Wake voor de zonsopgang ’s nachts open staan op de oplader. Het scherm blijft donker tot het licht begint.</string>
+    <string name="nightstand_end">Stoppen</string>
+    <string name="nightstand_waiting">Zonsopgang om %1$s</string>
+    <string name="nightstand_no_alarm">Geen wekker met zonsopgang</string>
+    <string name="editor_sunrise_ios_hint">Je iPhone kan het licht alleen tonen zolang Phase Wake open is – start de nachtkastmodus voordat je gaat slapen.</string>
+    <string name="trends_health_hint_apple">Slaapduur en regelmaat komen uit Apple Health.</string>
+</resources>
