@@ -9,6 +9,7 @@ captures/
 *.aab
 *.jks
 *.keystore
+!android/testing/debug.keystore
 .DS_Store
 .build/
 .swiftpm/
