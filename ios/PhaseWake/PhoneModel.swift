@@ -66,6 +66,7 @@ final class PhoneModel {
     /// Am iPhone gestoppt oder geschlummert, während es mit der Uhr klingelt: Die Uhr macht mit (wie Android).
     func phoneRingEnded(snooze: Bool) async {
         await backup.stopRinging()
+        if snooze { await backup.snoozeSafety() }
         PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
     }
 

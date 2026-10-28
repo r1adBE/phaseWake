@@ -20,6 +20,12 @@ final class BackupAlarm {
     private static let backupIdsKey = "backupAlarmIds"
     private static let ringingKey = "backupRingingId"
     private static let oneShotKey = "backupOneShotTargets"
+    private static let snoozeSafetyKey = "backupSnoozeSafetyId"
+    private static let snoozedAtKey = "backupSnoozedAt"
+    /// Das «stop» der Uhr direkt nach dem Schlummern ist nur das Echo davon, kein Beenden.
+    private static let snoozeEcho: TimeInterval = 30
+    /// Klingelt die Uhr nach dem Schlummern nicht wieder (Sitzung nicht gestartet): dann das iPhone.
+    private static let snoozeSafetyDelay: TimeInterval = 90
     /// So viele Nächte im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird.
     private static let nightsAhead = 3
     /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
@@ -87,6 +93,8 @@ final class BackupAlarm {
     /// Die Uhr klingelt gerade: sofort mitklingeln (falls gewünscht) und die Sicherung dieser Nacht aussetzen.
     /// `target` ist die Zielzeit der Nacht laut Uhr (ältere Versionen schicken sie nicht).
     func ringNow(alarm: AlarmSpec?, target: Date?, snoozesLeft: Int) async {
+        // Die Uhr klingelt wieder: Die Sicherung fürs Schlummern ist nicht mehr nötig.
+        await cancelSnoozeSafety()
         if alarm?.phone != .off {
             let id = UUID()
             ringingId = id
@@ -116,6 +124,9 @@ final class BackupAlarm {
     func stopRinging() async {
         let id = ringingId
         ringingId = nil
+        // Beendet (nicht nur das Echo des eigenen Schlummerns): auch die Schlummer-Sicherung weg.
+        let snoozedAt = UserDefaults.standard.double(forKey: Self.snoozedAtKey)
+        if Date().timeIntervalSince1970 - snoozedAt > Self.snoozeEcho { await cancelSnoozeSafety() }
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
             if let id {
@@ -131,6 +142,31 @@ final class BackupAlarm {
         guard let id else { return }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id.uuidString])
+    }
+
+    /// Ob die Kennung zum gerade mitklingelnden Wecker gehört (nicht zu einem schon per Code gestoppten).
+    func isCurrentRing(_ alarmId: String) -> Bool { ringingId?.uuidString == alarmId }
+
+    /// Am iPhone geschlummert: Eigene Sicherung kurz nach dem Schlummer-Ende, falls die Uhr dann nicht
+    /// klingelt (ihre neue Sitzung startet im Hintergrund unter Umständen nicht).
+    func snoozeSafety() async {
+        await cancelSnoozeSafety()
+        let id = UUID()
+        UserDefaults.standard.set(id.uuidString, forKey: Self.snoozeSafetyKey)
+        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: Self.snoozedAtKey)
+        await schedule(id: id, at: Snooze.nextRing(Date()).addingTimeInterval(Self.snoozeSafetyDelay))
+    }
+
+    private func cancelSnoozeSafety() async {
+        guard let id = UserDefaults.standard.string(forKey: Self.snoozeSafetyKey).flatMap(UUID.init(uuidString:)) else { return }
+        UserDefaults.standard.removeObject(forKey: Self.snoozeSafetyKey)
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            try? AlarmManager.shared.cancel(id: id)
+            return
+        }
+        #endif
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
 
     // MARK: Plattform
@@ -224,6 +260,8 @@ struct StopRingIntent: LiveActivityIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
+        // Nur ein Stopp durch dich: Stoppt die App den Alarm selbst (Befehl der Uhr), nichts zurückschicken.
+        guard PhoneModel.shared.backup.isCurrentRing(alarmId) else { return .result() }
         await PhoneModel.shared.phoneRingEnded(snooze: false)
         return .result()
     }
@@ -244,6 +282,7 @@ struct SnoozeRingIntent: LiveActivityIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
+        guard PhoneModel.shared.backup.isCurrentRing(alarmId) else { return .result() }
         await PhoneModel.shared.phoneRingEnded(snooze: true)
         return .result()
     }

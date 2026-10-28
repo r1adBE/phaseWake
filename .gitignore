@@ -15,3 +15,4 @@ captures/
 .swiftpm/
 xcuserdata/
 DerivedData/
+__pycache__/

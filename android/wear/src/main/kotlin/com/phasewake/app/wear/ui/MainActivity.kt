@@ -34,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -133,8 +134,13 @@ private fun HomeScreen() {
     fun missingBackground() = backgroundPermission()?.takeIf { granted(heartRatePermission()) && !granted(it) }
     var missingPermissions by remember { mutableStateOf(missing()) }
     var backgroundMissing by remember { mutableStateOf(missingBackground()) }
+    fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
+    var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
+    // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen.
+    var askedOnce by remember { mutableStateOf(false) }
     var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
     LifecycleResumeEffect(Unit) {
+        fullScreenBlocked = fullScreenMissing()
         dndBlocks = DoNotDisturb.blocksAlarms(context)
         missingPermissions = missing()
         backgroundMissing = missingBackground()
@@ -144,8 +150,10 @@ private fun HomeScreen() {
     }
     val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
         backgroundMissing = missingBackground()
+        askedOnce = true
     }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+        askedOnce = true
         missingPermissions = missing()
         backgroundMissing = missingBackground()
         // Gleich danach das Hintergrundrecht: Es lässt sich nur getrennt anfragen.
@@ -166,7 +174,7 @@ private fun HomeScreen() {
         zone = zone,
         goodNightActive = goodNightSince != null,
         goodNightTooFar = goodNightTooFar(now),
-        permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null,
+        permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null || fullScreenBlocked,
         dndBlocks = dndBlocks,
         onGoodNight = {
             val alarm = sleepAlarm ?: return@HomeContent
@@ -178,8 +186,12 @@ private fun HomeScreen() {
         },
         onRequestPermissions = {
             val background = backgroundMissing
-            if (missingPermissions.isEmpty() && background != null) backgroundLauncher.launch(background)
-            else launcher.launch(missingPermissions.toTypedArray())
+            when {
+                (missingPermissions.isNotEmpty() || background != null) && askedOnce -> openAppSettings(context)
+                missingPermissions.isNotEmpty() -> launcher.launch(missingPermissions.toTypedArray())
+                background != null -> backgroundLauncher.launch(background)
+                fullScreenBlocked -> openFullScreenSettings(context)
+            }
         },
         onOpenDnd = { DoNotDisturb.openSettings(context) },
         onToggle = { alarm, enabled ->
@@ -390,3 +402,27 @@ private val shortTime: DateTimeFormatter get() = DateTimeFormatter.ofLocalizedTi
 private fun formatTime(instant: Instant, zone: ZoneId): String = shortTime.format(instant.atZone(zone))
 
 private fun formatTime(time: LocalTime): String = shortTime.format(time)
+
+/** App-Einstellungen (Berechtigungen), wenn das System nicht mehr nachfragt. */
+private fun openAppSettings(context: android.content.Context) {
+    val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, android.net.Uri.fromParts("package", context.packageName, null))
+    try {
+        context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    } catch (_: android.content.ActivityNotFoundException) {
+        // Ohne Einstellungsseite bleibt nur der Hinweis.
+    }
+}
+
+/** Erlaubnis für den Weckbildschirm (Vollbild-Mitteilung); sonst die App-Einstellungen. */
+private fun openFullScreenSettings(context: android.content.Context) {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        val intent = Intent(android.provider.Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, android.net.Uri.fromParts("package", context.packageName, null))
+        try {
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            return
+        } catch (_: android.content.ActivityNotFoundException) {
+            // weiter unten
+        }
+    }
+    openAppSettings(context)
+}

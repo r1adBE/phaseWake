@@ -239,6 +239,8 @@ class WakeService : LifecycleService() {
                 Phase.RINGING -> {
                     publishRinging(current)
                     if (saved != null) goForeground(ringingNotification(current), measuring = false)
+                    // Nach einem Neustart ging «klingeln» mit 0 Runden ans Handy: korrigierte Restzahl nachschicken.
+                    if (saved != null && saved.snoozes > 0) sendRing(current)
                     if (spec?.watchSound == true) escalation.start(withSound = true)
                 }
                 Phase.SNOOZED -> Unit
@@ -412,7 +414,7 @@ class WakeService : LifecycleService() {
         }
         // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
         // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
-        if (record != null) app.scheduler.markDone(doneUntil(n.plan, n.spec))
+        if (record != null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
         if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
 
         // Prozessweiter Bereich. Der Dienst bleibt (Vordergrund), bis gespeichert und neu geplant ist:
@@ -425,7 +427,7 @@ class WakeService : LifecycleService() {
                 // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
                 val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
                 if (record != null) {
-                    if (n.spec == null) app.scheduler.markDone(doneUntil(n.plan, spec))
+                    if (n.spec == null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, spec))
                     runStep("Erledigt speichern") { app.scheduler.saveDone() }
                 }
                 runStep("Einschlaf-Ausnahme löschen") { app.onsetOverride.clear() }

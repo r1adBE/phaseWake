@@ -11,7 +11,6 @@ import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import java.time.Instant
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Status, Weck- und Stopp-Meldungen. */
@@ -46,16 +45,14 @@ class PhoneListenerService : WearableListenerService() {
             // Nicht direkt den Weckdienst starten: aus dem Hintergrund ab Android 12 nicht erlaubt.
             DataLayer.PATH_RING -> {
                 val message = RingMessage.decode(event.data)
-                app.appScope.launch { app.backup.watchRang(message) }
+                // Blockierend, damit der Weiterleitungs-Alarm steht, bevor der Dienst endet.
+                runBlocking { app.backup.watchRang(message) }
             }
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
                 PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
-                app.appScope.launch {
-                    app.backup.watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
-                    // Hat die Uhr einen Einmal-Wecker beendet, ist er auch am Handy aus (falls ihr Abgleich fehlt).
-                    app.backup.disableOneShot(message.alarmId)
-                }
+                // Die Uhr schickt «stop» auch beim Schlummern; einen Einmal-Wecker schaltet sie selbst aus.
+                runBlocking { app.backup.watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli)) }
             }
         }
     }

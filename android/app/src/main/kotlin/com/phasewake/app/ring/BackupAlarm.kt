@@ -278,12 +278,15 @@ class BackupAlarm(
             // Vor dem ersten Entsperren (Neustart in der Nacht) sind Wecker und Einstellungen nicht lesbar.
             if (!isUnlocked(context)) {
                 DirectBoot.clear(context)
+                // Nach dem Entsperren nachholen: Nacht aussetzen, Einmal-Wecker ausschalten.
+                if (intent.action == ACTION && alarmId != null && target != null) DirectBoot.markRang(context, alarmId, target)
                 return
             }
             val pending = goAsync()
             val app = context.phoneApp
             app.appScope.launch {
                 try {
+                    DirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
                     if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
                     // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns.
                     if (intent.action == ACTION && target != null) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
@@ -309,6 +312,7 @@ class BackupAlarm(
             val app = context.phoneApp
             app.appScope.launch {
                 try {
+                    DirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
                     app.backup.reschedule()
                 } finally {
                     pending.finish()
@@ -326,6 +330,8 @@ class BackupAlarm(
         private const val KEY_AT = "at"
         private const val KEY_ID = "alarmId"
         private const val KEY_TARGET = "target"
+        private const val KEY_RANG_ID = "rangId"
+        private const val KEY_RANG_TARGET = "rangTarget"
 
         private fun prefs(context: Context) =
             context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
@@ -335,7 +341,21 @@ class BackupAlarm(
         }
 
         fun clear(context: Context) {
-            prefs(context).edit().clear().apply()
+            prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_TARGET).apply()
+        }
+
+        /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken. */
+        fun markRang(context: Context, alarmId: String, target: Long) {
+            prefs(context).edit().putString(KEY_RANG_ID, alarmId).putLong(KEY_RANG_TARGET, target).apply()
+        }
+
+        /** Gemerkten Weckvorgang einmal abholen. */
+        fun takeRang(context: Context): Pair<String, Instant>? {
+            val prefs = prefs(context)
+            val id = prefs.getString(KEY_RANG_ID, null) ?: return null
+            val target = Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L))
+            prefs.edit().remove(KEY_RANG_ID).remove(KEY_RANG_TARGET).apply()
+            return id to target
         }
 
         fun restore(context: Context) {

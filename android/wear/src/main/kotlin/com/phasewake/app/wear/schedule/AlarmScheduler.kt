@@ -15,6 +15,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
@@ -52,9 +53,9 @@ class AlarmScheduler(
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
     private val rescheduleLock = Mutex()
 
-    /** Erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
+    /** Pro Wecker erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
     @Volatile
-    private var doneInMemory: Instant = Instant.EPOCH
+    private var doneInMemory: Map<String, Instant> = emptyMap()
 
     /**
      * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht.
@@ -63,8 +64,16 @@ class AlarmScheduler(
     suspend fun nextPlan(): WakePlan? {
         val now = clock.instant()
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
-        val done = maxOf(Instant.ofEpochMilli(store.data.first()[DONE_UNTIL] ?: 0L), doneInMemory)
-        return onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, maxOf(now, done), clock.zone), now)
+        // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
+        val saved = decodeDone(store.data.first()[DONE_UNTIL_BY_ALARM])
+        val memory = doneInMemory
+        val plan = alarms.current().alarms
+            .mapNotNull { spec ->
+                val done = maxOf(saved[spec.id] ?: Instant.EPOCH, memory[spec.id] ?: Instant.EPOCH)
+                AlarmSchedule.nextPlan(spec, maxOf(now, done), clock.zone)
+            }
+            .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+        return onsetOverride.apply(plan, now)
     }
 
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
@@ -99,15 +108,29 @@ class AlarmScheduler(
      * einmal. Gilt ab dem Aufruf (auch für ein gleichzeitiges Neuplanen), [saveDone] macht es dauerhaft.
      */
     @Synchronized
-    fun markDone(target: Instant) {
-        if (target.isAfter(doneInMemory)) doneInMemory = target
+    fun markDone(alarmId: String, target: Instant) {
+        val current = doneInMemory[alarmId]
+        if (current == null || target.isAfter(current)) doneInMemory = doneInMemory + (alarmId to target)
     }
 
-    /** Schreibt den Stand aus [markDone] in den Speicher; ein späterer Wert bleibt stehen. */
+    /** Schreibt den Stand aus [markDone] in den Speicher; spätere Werte bleiben, alte fallen weg. */
     suspend fun saveDone() {
-        val done = doneInMemory.toEpochMilli()
-        store.edit { if ((it[DONE_UNTIL] ?: 0L) < done) it[DONE_UNTIL] = done }
+        val memory = doneInMemory
+        val keepAfter = clock.instant().minus(Duration.ofDays(2))
+        store.edit { prefs ->
+            val merged = decodeDone(prefs[DONE_UNTIL_BY_ALARM]).toMutableMap()
+            memory.forEach { (id, at) -> merged[id] = maxOf(merged[id] ?: Instant.EPOCH, at) }
+            prefs[DONE_UNTIL_BY_ALARM] = merged.filterValues { it.isAfter(keepAfter) }
+                .entries.joinToString("\n") { "${it.key}=${it.value.toEpochMilli()}" }
+            prefs.remove(LEGACY_DONE_UNTIL)
+        }
     }
+
+    private fun decodeDone(text: String?): Map<String, Instant> = text.orEmpty().lines().mapNotNull { line ->
+        val i = line.lastIndexOf('=')
+        if (i <= 0) return@mapNotNull null
+        line.substring(i + 1).toLongOrNull()?.let { line.substring(0, i) to Instant.ofEpochMilli(it) }
+    }.toMap()
 
     /** Sicherungs-Alarm zur Zielzeit. */
     fun setDeadline(plan: WakePlan) =
@@ -162,7 +185,8 @@ class AlarmScheduler(
         private const val REQUEST_SNOOZE = 3
         private const val REQUEST_SHOW = 4
         private val IMMEDIATE: Duration = Duration.ofSeconds(1)
-        private val DONE_UNTIL = longPreferencesKey("night_done_until")
+        private val LEGACY_DONE_UNTIL = longPreferencesKey("night_done_until")
+        private val DONE_UNTIL_BY_ALARM = stringPreferencesKey("night_done_until_by_alarm")
 
         /** Eine davon genügt für den Messdienst (Typ «health»). */
         val SENSOR_PERMISSIONS: List<String> = buildList {
