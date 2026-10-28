@@ -140,7 +140,7 @@ final class PhoneModel {
 
     /// Notizen einer Nacht; unbekannte (gelöschte) eigene Notizen fallen weg.
     func selectedNotes(_ nightDate: String) -> [String] {
-        (notes[nightDate] ?? []).filter { !SleepNotes.isCustom($0) || customNotes.contains { c in c.id == $0 } }
+        (notes[nightDate] ?? []).filter { id in !SleepNotes.isCustom(id) || customNotes.contains { $0.id == id } }
     }
 
     func toggleNote(_ id: String, nightDate: String) {
