@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  versions:
+    name: Bibliotheksversionen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: .github/scripts/latest-versions.sh
+
+  android:
+    name: Android (Kern, Handy, Uhr)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Tests und Builds
+        run: ./gradlew --stacktrace :core:test :app:assembleDebug :wear:assembleDebug
+      - name: Testberichte
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-reports
+          path: android/**/build/reports/
+
+  apple-core:
+    name: Apple-Kern (Swift)
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/PhaseWakeCore
+    steps:
+      - uses: actions/checkout@v5
+      - run: swift --version
+      - name: Tests
+        run: swift test

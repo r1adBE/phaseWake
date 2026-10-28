@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vordergrund des App-Icons, aus docs/logo.svg (200er Raster, auf die 72-dp-Zone skaliert). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <group android:translateX="18" android:translateY="18" android:scaleX="0.36" android:scaleY="0.36">
+        <path android:fillColor="#FF122466" android:pathData="M14,100a86,86 0,1 0,172,0a86,86 0,1 0,-172,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.6" android:pathData="M25.8,33a1.2,1.2 0,1 0,2.4,0a1.2,1.2 0,1 0,-2.4,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="1" android:pathData="M46.8,19a2.2,2.2 0,1 0,4.4,0a2.2,2.2 0,1 0,-4.4,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.7" android:pathData="M120.6,14a1.4,1.4 0,1 0,2.8,0a1.4,1.4 0,1 0,-2.8,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.5" android:pathData="M142,31a1,1 0,1 0,2,0a1,1 0,1 0,-2,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="1" android:pathData="M173.4,23a2.6,2.6 0,1 0,5.2,0a2.6,2.6 0,1 0,-5.2,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.6" android:pathData="M182.8,52a1.2,1.2 0,1 0,2.4,0a1.2,1.2 0,1 0,-2.4,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.8" android:pathData="M155.4,64a1.6,1.6 0,1 0,3.2,0a1.6,1.6 0,1 0,-3.2,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.8" android:pathData="M14.2,72a1.8,1.8 0,1 0,3.6,0a1.8,1.8 0,1 0,-3.6,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.5" android:pathData="M30,106a1,1 0,1 0,2,0a1,1 0,1 0,-2,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.5" android:pathData="M185,94a1,1 0,1 0,2,0a1,1 0,1 0,-2,0Z"/>
+        <path android:fillColor="#FFBFDBFE" android:fillAlpha="0.4" android:pathData="M137,50a1,1 0,1 0,2,0a1,1 0,1 0,-2,0Z"/>
+        <path android:fillColor="#FFFFFFFF" android:pathData="M34,72a40,40 0,1 0,80,0a40,40 0,1 0,-80,0Z"/>
+        <path android:fillColor="#FF122466" android:pathData="M53,59a38,38 0,1 0,76,0a38,38 0,1 0,-76,0Z"/>
+        <path android:strokeColor="#FF2F4FB8" android:strokeWidth="6" android:strokeLineCap="round" android:pathData="M22,166 C36,166 36,130 50,130 C64,130 64,166 78,166 C92,166 92,126 106,126 C120,126 120,160 134,160 C146,160 152,142 164,130"/>
+        <path android:strokeColor="#FF7DB3FF" android:strokeWidth="7" android:strokeLineCap="round" android:pathData="M16,158 C30,158 30,122 44,122 C58,122 58,158 72,158 C86,158 86,118 100,118 C114,118 114,152 128,152 C140,152 146,134 158,122"/>
+        <path android:strokeColor="#FF7DB3FF" android:strokeAlpha="0.45" android:strokeWidth="1.5" android:pathData="M145,116a19,19 0,1 0,38,0a19,19 0,1 0,-38,0Z"/>
+        <path android:strokeColor="#FF7DB3FF" android:strokeAlpha="0.8" android:strokeWidth="1.5" android:pathData="M151,116a13,13 0,1 0,26,0a13,13 0,1 0,-26,0Z"/>
+        <path android:fillColor="#FFFFFFFF" android:pathData="M157,116a7,7 0,1 0,14,0a7,7 0,1 0,-14,0Z"/>
+    </group>
+</vector>
