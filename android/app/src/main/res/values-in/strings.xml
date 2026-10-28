@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tips: jendela lebih lebar</string>
     <string name="editor_advice_text">Pada %1$d dari %2$d malam terakhir, tidak ada tidur ringan di dalam jendela. Dengan %3$d mnt, kamu lebih sering bangun di saat yang tepat.</string>
     <string name="editor_advice_apply">Pakai %1$d mnt</string>
+    <string name="channel_sunrise">Matahari terbit</string>
+    <string name="channel_sunrise_description">Menyalakan layar seperti matahari terbit sebelum kamu bangun.</string>
+    <string name="sunrise_title">Matahari terbit</string>
+    <string name="sunrise_text">Layar perlahan menjadi lebih terang sampai kamu bangun.</string>
+    <string name="sunrise_off">Matikan cahaya</string>
+    <string name="editor_sunrise">Matahari terbit di ponsel</string>
+    <string name="editor_sunrise_hint">Layar mulai dengan cahaya oranye redup, lalu berubah menjadi cahaya hangat yang terang dengan kecerahan penuh. Letakkan ponsel dengan layar menghadap ke atas.</string>
+    <string name="sunrise_ring">Saat bangun</string>
+    <string name="sunrise_window">Dari rentang</string>
+    <string name="editor_sunrise_ring_hint">Mulai saat kamu dibangunkan dan terang penuh setelah %1$d menit.</string>
+    <string name="editor_sunrise_window_hint">Mulai bersama rentang dan terang penuh pada waktu target.</string>
 </resources>

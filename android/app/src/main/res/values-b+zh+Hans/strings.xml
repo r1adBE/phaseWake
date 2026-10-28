@@ -119,4 +119,15 @@
     <string name="editor_advice_title">提示：使用更大的窗口</string>
     <string name="editor_advice_text">在最近 %2$d 个夜晚中，有 %1$d 个夜晚窗口内没有浅睡。设为 %3$d 分钟，你会更容易在合适的时刻醒来。</string>
     <string name="editor_advice_apply">使用 %1$d 分钟</string>
+    <string name="channel_sunrise">日出</string>
+    <string name="channel_sunrise_description">在你醒来前，让屏幕像日出一样亮起。</string>
+    <string name="sunrise_title">日出</string>
+    <string name="sunrise_text">屏幕会慢慢变亮，直到你醒来。</string>
+    <string name="sunrise_off">关闭灯光</string>
+    <string name="editor_sunrise">手机日出模拟</string>
+    <string name="editor_sunrise_hint">屏幕先泛起微弱的橙色光，再逐渐变为全亮度的明亮暖光。请将手机屏幕朝上放置。</string>
+    <string name="sunrise_ring">唤醒时</string>
+    <string name="sunrise_window">从时间窗起</string>
+    <string name="editor_sunrise_ring_hint">在叫醒你时开始，%1$d 分钟后达到最亮。</string>
+    <string name="editor_sunrise_window_hint">随时间窗开始，到目标时间达到最亮。</string>
 </resources>

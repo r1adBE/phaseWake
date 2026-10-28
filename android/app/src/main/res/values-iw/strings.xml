@@ -119,4 +119,15 @@
     <string name="editor_advice_title">טיפ: חלון גדול יותר</string>
     <string name="editor_advice_text">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</string>
     <string name="editor_advice_apply">שימוש ב-%1$d דק׳</string>
+    <string name="channel_sunrise">זריחה</string>
+    <string name="channel_sunrise_description">מאיר את המסך כמו זריחה לפני שתתעוררו.</string>
+    <string name="sunrise_title">זריחה</string>
+    <string name="sunrise_text">המסך מתבהר לאט עד שתתעוררו.</string>
+    <string name="sunrise_off">כיבוי האור</string>
+    <string name="editor_sunrise">זריחה בטלפון</string>
+    <string name="editor_sunrise_hint">המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה. הניחו את הטלפון כשהמסך כלפי מעלה.</string>
+    <string name="sunrise_ring">בהשכמה</string>
+    <string name="sunrise_window">מהחלון</string>
+    <string name="editor_sunrise_ring_hint">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</string>
+    <string name="editor_sunrise_window_hint">מתחיל עם החלון ובהיר לגמרי בזמן היעד.</string>
 </resources>

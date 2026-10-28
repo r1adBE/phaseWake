@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Wskazówka: większe okno</string>
     <string name="editor_advice_text">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</string>
     <string name="editor_advice_apply">Użyj %1$d min</string>
+    <string name="channel_sunrise">Wschód słońca</string>
+    <string name="channel_sunrise_description">Rozjaśnia ekran jak wschód słońca, zanim się obudzisz.</string>
+    <string name="sunrise_title">Wschód słońca</string>
+    <string name="sunrise_text">Ekran powoli się rozjaśnia, aż się obudzisz.</string>
+    <string name="sunrise_off">Wyłącz światło</string>
+    <string name="editor_sunrise">Wschód słońca na telefonie</string>
+    <string name="editor_sunrise_hint">Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności. Połóż telefon ekranem do góry.</string>
+    <string name="sunrise_ring">Przy budzeniu</string>
+    <string name="sunrise_window">Od okna</string>
+    <string name="editor_sunrise_ring_hint">Zaczyna się, gdy cię obudzimy, a po %1$d minutach świeci pełną jasnością.</string>
+    <string name="editor_sunrise_window_hint">Zaczyna się wraz z oknem, a o czasie docelowym świeci pełną jasnością.</string>
 </resources>

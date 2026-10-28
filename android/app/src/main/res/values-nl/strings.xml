@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tip: een groter venster</string>
     <string name="editor_advice_text">In %1$d van de laatste %2$d nachten zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</string>
     <string name="editor_advice_apply">%1$d min gebruiken</string>
+    <string name="channel_sunrise">Zonsopgang</string>
+    <string name="channel_sunrise_description">Laat je scherm oplichten als een zonsopgang voordat je wakker wordt.</string>
+    <string name="sunrise_title">Zonsopgang</string>
+    <string name="sunrise_text">Je scherm wordt langzaam helderder tot je wakker wordt.</string>
+    <string name="sunrise_off">Licht uitzetten</string>
+    <string name="editor_sunrise">Zonsopgang op je telefoon</string>
+    <string name="editor_sunrise_hint">Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid. Leg je telefoon met het scherm omhoog.</string>
+    <string name="sunrise_ring">Bij wekken</string>
+    <string name="sunrise_window">Vanaf venster</string>
+    <string name="editor_sunrise_ring_hint">Begint wanneer je gewekt wordt en is na %1$d minuten volledig helder.</string>
+    <string name="editor_sunrise_window_hint">Begint met het venster en is op de doeltijd volledig helder.</string>
 </resources>

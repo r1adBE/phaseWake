@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Порада: ширше вікно</string>
     <string name="editor_advice_text">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</string>
     <string name="editor_advice_apply">Обрати %1$d хв</string>
+    <string name="channel_sunrise">Світанок</string>
+    <string name="channel_sunrise_description">Підсвічує екран, як світанок, перш ніж ти прокинешся.</string>
+    <string name="sunrise_title">Світанок</string>
+    <string name="sunrise_text">Екран повільно яскравішає, поки ти не прокинешся.</string>
+    <string name="sunrise_off">Вимкнути світло</string>
+    <string name="editor_sunrise">Світанок на телефоні</string>
+    <string name="editor_sunrise_hint">Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості. Поклади телефон екраном догори.</string>
+    <string name="sunrise_ring">Під дзвінок</string>
+    <string name="sunrise_window">Від вікна</string>
+    <string name="editor_sunrise_ring_hint">Починається, коли тебе будять, і через %1$d хв світить на повну яскравість.</string>
+    <string name="editor_sunrise_window_hint">Починається разом із вікном і до цільового часу світить на повну яскравість.</string>
 </resources>

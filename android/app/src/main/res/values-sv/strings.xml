@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tips: ett större fönster</string>
     <string name="editor_advice_text">Under %1$d av de senaste %2$d nätterna fanns ingen lätt sömn i fönstret. Med %3$d min vaknar du oftare vid ett bra tillfälle.</string>
     <string name="editor_advice_apply">Använd %1$d min</string>
+    <string name="channel_sunrise">Soluppgång</string>
+    <string name="channel_sunrise_description">Tänder skärmen som en soluppgång innan du vaknar.</string>
+    <string name="sunrise_title">Soluppgång</string>
+    <string name="sunrise_text">Skärmen blir långsamt ljusare tills du vaknar.</string>
+    <string name="sunrise_off">Stäng av ljuset</string>
+    <string name="editor_sunrise">Soluppgång på mobilen</string>
+    <string name="editor_sunrise_hint">Skärmen börjar med ett svagt orange sken och blir ett starkt, varmt ljus med full ljusstyrka. Lägg mobilen med skärmen uppåt.</string>
+    <string name="sunrise_ring">Vid väckning</string>
+    <string name="sunrise_window">Från fönstret</string>
+    <string name="editor_sunrise_ring_hint">Börjar när du väcks och är helt ljus efter %1$d minuter.</string>
+    <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid måltiden.</string>
 </resources>

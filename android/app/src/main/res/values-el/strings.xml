@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Συμβουλή: μεγαλύτερο παράθυρο</string>
     <string name="editor_advice_text">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</string>
     <string name="editor_advice_apply">Χρήση %1$d λεπτών</string>
+    <string name="channel_sunrise">Ανατολή ηλίου</string>
+    <string name="channel_sunrise_description">Φωτίζει την οθόνη σου σαν ανατολή ηλίου πριν ξυπνήσεις.</string>
+    <string name="sunrise_title">Ανατολή ηλίου</string>
+    <string name="sunrise_text">Η οθόνη φωτίζεται σιγά σιγά μέχρι να ξυπνήσεις.</string>
+    <string name="sunrise_off">Απενεργοποίηση φωτός</string>
+    <string name="editor_sunrise">Ανατολή ηλίου στο κινητό</string>
+    <string name="editor_sunrise_hint">Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα. Τοποθέτησε το κινητό με την οθόνη προς τα πάνω.</string>
+    <string name="sunrise_ring">Στο ξύπνημα</string>
+    <string name="sunrise_window">Από παράθυρο</string>
+    <string name="editor_sunrise_ring_hint">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτά.</string>
+    <string name="editor_sunrise_window_hint">Ξεκινά με το παράθυρο και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο.</string>
 </resources>

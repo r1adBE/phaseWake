@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Dica: uma janela maior</string>
     <string name="editor_advice_text">Em %1$d das últimas %2$d noites não houve sono leve na janela. Com %3$d min, vais acordar mais vezes num bom momento.</string>
     <string name="editor_advice_apply">Usar %1$d min</string>
+    <string name="channel_sunrise">Nascer do sol</string>
+    <string name="channel_sunrise_description">Ilumina o ecrã como um nascer do sol antes de acordares.</string>
+    <string name="sunrise_title">Nascer do sol</string>
+    <string name="sunrise_text">O ecrã fica mais claro aos poucos até acordares.</string>
+    <string name="sunrise_off">Desligar luz</string>
+    <string name="editor_sunrise">Nascer do sol no telemóvel</string>
+    <string name="editor_sunrise_hint">O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo. Deixa o telemóvel com o ecrã para cima.</string>
+    <string name="sunrise_ring">Ao acordar</string>
+    <string name="sunrise_window">Desde a janela</string>
+    <string name="editor_sunrise_ring_hint">Começa quando és acordado e fica totalmente claro após %1$d minutos.</string>
+    <string name="editor_sunrise_window_hint">Começa com a janela e fica totalmente claro à hora-alvo.</string>
 </resources>

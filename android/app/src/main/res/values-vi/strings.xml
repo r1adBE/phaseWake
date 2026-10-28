@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Mẹo: khung giờ rộng hơn</string>
     <string name="editor_advice_text">Trong %1$d trong %2$d đêm gần nhất, khung giờ không có giấc ngủ nhẹ. Với %3$d phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn.</string>
     <string name="editor_advice_apply">Dùng %1$d phút</string>
+    <string name="channel_sunrise">Bình minh</string>
+    <string name="channel_sunrise_description">Làm sáng màn hình như bình minh trước khi bạn thức dậy.</string>
+    <string name="sunrise_title">Bình minh</string>
+    <string name="sunrise_text">Màn hình sáng dần cho đến khi bạn thức dậy.</string>
+    <string name="sunrise_off">Tắt đèn</string>
+    <string name="editor_sunrise">Bình minh trên điện thoại</string>
+    <string name="editor_sunrise_hint">Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa. Hãy đặt điện thoại ngửa màn hình lên trên.</string>
+    <string name="sunrise_ring">Khi đánh thức</string>
+    <string name="sunrise_window">Từ đầu khoảng</string>
+    <string name="editor_sunrise_ring_hint">Bắt đầu khi bạn được đánh thức và sáng hoàn toàn sau %1$d phút.</string>
+    <string name="editor_sunrise_window_hint">Bắt đầu cùng khoảng thời gian và sáng hoàn toàn vào giờ mục tiêu.</string>
 </resources>

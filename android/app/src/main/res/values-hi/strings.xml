@@ -119,4 +119,15 @@
     <string name="editor_advice_title">सुझाव: बड़ी विंडो</string>
     <string name="editor_advice_text">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</string>
     <string name="editor_advice_apply">%1$d मिनट इस्तेमाल करें</string>
+    <string name="channel_sunrise">सूर्योदय</string>
+    <string name="channel_sunrise_description">जगाने से पहले आपकी स्क्रीन को सूर्योदय की तरह रोशन करता है।</string>
+    <string name="sunrise_title">सूर्योदय</string>
+    <string name="sunrise_text">आपके जागने तक स्क्रीन धीरे-धीरे तेज़ होती जाती है।</string>
+    <string name="sunrise_off">रोशनी बंद करें</string>
+    <string name="editor_sunrise">फ़ोन पर सूर्योदय</string>
+    <string name="editor_sunrise_hint">स्क्रीन हल्की नारंगी चमक से शुरू होती है और पूरी ब्राइटनेस पर तेज़, गर्म रोशनी बन जाती है। फ़ोन को स्क्रीन ऊपर करके रखें।</string>
+    <string name="sunrise_ring">जगाते समय</string>
+    <string name="sunrise_window">विंडो से</string>
+    <string name="editor_sunrise_ring_hint">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</string>
+    <string name="editor_sunrise_window_hint">विंडो के साथ शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।</string>
 </resources>

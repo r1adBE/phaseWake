@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Astuce : une fenêtre plus large</string>
     <string name="editor_advice_text">Dans %1$d des %2$d dernières nuits, il n\'y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</string>
     <string name="editor_advice_apply">Utiliser %1$d min</string>
+    <string name="channel_sunrise">Lever de soleil</string>
+    <string name="channel_sunrise_description">Illumine ton écran comme un lever de soleil avant ton réveil.</string>
+    <string name="sunrise_title">Lever de soleil</string>
+    <string name="sunrise_text">L’écran devient peu à peu plus lumineux jusqu’à ton réveil.</string>
+    <string name="sunrise_off">Éteindre la lumière</string>
+    <string name="editor_sunrise">Lever de soleil sur ton téléphone</string>
+    <string name="editor_sunrise_hint">L’écran démarre avec une faible lueur orange, puis se transforme en lumière chaude et vive à pleine luminosité. Place ton téléphone écran vers le haut.</string>
+    <string name="sunrise_ring">Au réveil</string>
+    <string name="sunrise_window">Dès la plage</string>
+    <string name="editor_sunrise_ring_hint">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minutes.</string>
+    <string name="editor_sunrise_window_hint">Démarre avec la plage et atteint sa pleine luminosité à l’heure cible.</string>
 </resources>

@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Sfat: o fereastră mai mare</string>
     <string name="editor_advice_text">În %1$d din ultimele %2$d nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</string>
     <string name="editor_advice_apply">Folosește %1$d min</string>
+    <string name="channel_sunrise">Răsărit</string>
+    <string name="channel_sunrise_description">Luminează ecranul ca un răsărit înainte să te trezești.</string>
+    <string name="sunrise_title">Răsărit</string>
+    <string name="sunrise_text">Ecranul devine treptat mai luminos până te trezești.</string>
+    <string name="sunrise_off">Oprește lumina</string>
+    <string name="editor_sunrise">Răsărit pe telefon</string>
+    <string name="editor_sunrise_hint">Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă. Așază telefonul cu ecranul în sus.</string>
+    <string name="sunrise_ring">La trezire</string>
+    <string name="sunrise_window">De la interval</string>
+    <string name="editor_sunrise_ring_hint">Pornește când ești trezit și este complet luminos după %1$d minute.</string>
+    <string name="editor_sunrise_window_hint">Pornește odată cu intervalul și este complet luminos la ora țintă.</string>
 </resources>

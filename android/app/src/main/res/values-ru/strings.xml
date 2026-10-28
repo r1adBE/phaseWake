@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Совет: окно побольше</string>
     <string name="editor_advice_text">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</string>
     <string name="editor_advice_apply">Выбрать %1$d мин</string>
+    <string name="channel_sunrise">Рассвет</string>
+    <string name="channel_sunrise_description">Подсвечивает экран, как рассвет, перед твоим пробуждением.</string>
+    <string name="sunrise_title">Рассвет</string>
+    <string name="sunrise_text">Экран медленно становится ярче, пока ты не проснёшься.</string>
+    <string name="sunrise_off">Выключить свет</string>
+    <string name="editor_sunrise">Рассвет на телефоне</string>
+    <string name="editor_sunrise_hint">Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости. Положи телефон экраном вверх.</string>
+    <string name="sunrise_ring">При подъёме</string>
+    <string name="sunrise_window">С начала окна</string>
+    <string name="editor_sunrise_ring_hint">Начинается, когда тебя будят, и через %1$d мин. светит на полную яркость.</string>
+    <string name="editor_sunrise_window_hint">Начинается вместе с окном и к целевому времени светит на полную яркость.</string>
 </resources>

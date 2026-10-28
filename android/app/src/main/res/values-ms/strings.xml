@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tip: tetingkap lebih besar</string>
     <string name="editor_advice_text">Dalam %1$d daripada %2$d malam terakhir, tiada tidur ringan dalam tetingkap. Dengan %3$d min, kamu lebih kerap bangun pada saat yang sesuai.</string>
     <string name="editor_advice_apply">Guna %1$d min</string>
+    <string name="channel_sunrise">Matahari terbit</string>
+    <string name="channel_sunrise_description">Menyalakan skrin seperti matahari terbit sebelum awak bangun.</string>
+    <string name="sunrise_title">Matahari terbit</string>
+    <string name="sunrise_text">Skrin perlahan-lahan menjadi lebih cerah sehingga awak bangun.</string>
+    <string name="sunrise_off">Matikan cahaya</string>
+    <string name="editor_sunrise">Matahari terbit pada telefon</string>
+    <string name="editor_sunrise_hint">Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh. Letakkan telefon dengan skrin menghadap ke atas.</string>
+    <string name="sunrise_ring">Semasa bangun</string>
+    <string name="sunrise_window">Dari tetingkap</string>
+    <string name="editor_sunrise_ring_hint">Bermula apabila awak dikejutkan dan cerah sepenuhnya selepas %1$d minit.</string>
+    <string name="editor_sunrise_window_hint">Bermula bersama tetingkap dan cerah sepenuhnya pada masa sasaran.</string>
 </resources>

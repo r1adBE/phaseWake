@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Dica: uma janela maior</string>
     <string name="editor_advice_text">Em %1$d das últimas %2$d noites não houve sono leve na janela. Com %3$d min, você vai acordar mais vezes em um bom momento.</string>
     <string name="editor_advice_apply">Usar %1$d min</string>
+    <string name="channel_sunrise">Nascer do sol</string>
+    <string name="channel_sunrise_description">Ilumina sua tela como um nascer do sol antes de você acordar.</string>
+    <string name="sunrise_title">Nascer do sol</string>
+    <string name="sunrise_text">A tela fica mais clara aos poucos até você acordar.</string>
+    <string name="sunrise_off">Desligar luz</string>
+    <string name="editor_sunrise">Nascer do sol no celular</string>
+    <string name="editor_sunrise_hint">A tela começa com um brilho laranja fraco e se torna uma luz quente e intensa com o brilho no máximo. Deixe o celular com a tela para cima.</string>
+    <string name="sunrise_ring">Ao acordar</string>
+    <string name="sunrise_window">Desde a janela</string>
+    <string name="editor_sunrise_ring_hint">Começa quando você é acordado e fica totalmente clara após %1$d minutos.</string>
+    <string name="editor_sunrise_window_hint">Começa com a janela e fica totalmente clara no horário-alvo.</string>
 </resources>

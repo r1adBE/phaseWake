@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tipp: nagyobb ablak</string>
     <string name="editor_advice_text">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</string>
     <string name="editor_advice_apply">%1$d perc használata</string>
+    <string name="channel_sunrise">Napfelkelte</string>
+    <string name="channel_sunrise_description">Napfelkeltéhez hasonlóan világítja meg a képernyőt ébredés előtt.</string>
+    <string name="sunrise_title">Napfelkelte</string>
+    <string name="sunrise_text">A képernyő lassan egyre világosabb lesz, amíg fel nem ébredsz.</string>
+    <string name="sunrise_off">Fény kikapcsolása</string>
+    <string name="editor_sunrise">Napfelkelte a telefonon</string>
+    <string name="editor_sunrise_hint">A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik. Fektesd a telefont képernyővel felfelé.</string>
+    <string name="sunrise_ring">Ébresztéskor</string>
+    <string name="sunrise_window">Időablaktól</string>
+    <string name="editor_sunrise_ring_hint">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</string>
+    <string name="editor_sunrise_window_hint">Az időablakkal indul, és a célidőpontra teljes fényerővel világít.</string>
 </resources>

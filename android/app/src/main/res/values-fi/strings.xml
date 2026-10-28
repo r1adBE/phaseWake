@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Vinkki: isompi ikkuna</string>
     <string name="editor_advice_text">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</string>
     <string name="editor_advice_apply">Käytä %1$d min</string>
+    <string name="channel_sunrise">Auringonnousu</string>
+    <string name="channel_sunrise_description">Valaisee näytön kuin auringonnousun ennen heräämistäsi.</string>
+    <string name="sunrise_title">Auringonnousu</string>
+    <string name="sunrise_text">Näyttö kirkastuu hitaasti, kunnes heräät.</string>
+    <string name="sunrise_off">Sammuta valo</string>
+    <string name="editor_sunrise">Auringonnousu puhelimessa</string>
+    <string name="editor_sunrise_hint">Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella. Aseta puhelin näyttö ylöspäin.</string>
+    <string name="sunrise_ring">Herätessä</string>
+    <string name="sunrise_window">Aikaikkunasta</string>
+    <string name="editor_sunrise_ring_hint">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</string>
+    <string name="editor_sunrise_window_hint">Alkaa aikaikkunan mukana ja on täysin kirkas tavoiteajankohtana.</string>
 </resources>

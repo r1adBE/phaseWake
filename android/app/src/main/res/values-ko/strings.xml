@@ -119,4 +119,15 @@
     <string name="editor_advice_title">팁: 더 넓은 구간</string>
     <string name="editor_advice_text">최근 %2$d일 중 %1$d일은 구간 안에 얕은 잠이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</string>
     <string name="editor_advice_apply">%1$d분 사용</string>
+    <string name="channel_sunrise">일출</string>
+    <string name="channel_sunrise_description">깨우기 전에 화면을 일출처럼 밝혀요.</string>
+    <string name="sunrise_title">일출</string>
+    <string name="sunrise_text">깨어날 때까지 화면이 서서히 밝아져요.</string>
+    <string name="sunrise_off">조명 끄기</string>
+    <string name="editor_sunrise">휴대폰 일출</string>
+    <string name="editor_sunrise_hint">화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요. 휴대폰을 화면이 위로 가게 두세요.</string>
+    <string name="sunrise_ring">깨울 때</string>
+    <string name="sunrise_window">범위부터</string>
+    <string name="editor_sunrise_ring_hint">깨울 때 시작해 %1$d분 후 가장 밝아져요.</string>
+    <string name="editor_sunrise_window_hint">범위 시작과 함께 켜지고 목표 시각에 가장 밝아져요.</string>
 </resources>

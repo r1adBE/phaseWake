@@ -119,4 +119,15 @@
     <string name="editor_advice_title">İpucu: daha geniş bir aralık</string>
     <string name="editor_advice_text">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</string>
     <string name="editor_advice_apply">%1$d dk kullan</string>
+    <string name="channel_sunrise">Gün doğumu</string>
+    <string name="channel_sunrise_description">Sen uyanmadan önce ekranı gün doğumu gibi aydınlatır.</string>
+    <string name="sunrise_title">Gün doğumu</string>
+    <string name="sunrise_text">Sen uyanana kadar ekran yavaşça parlaklaşır.</string>
+    <string name="sunrise_off">Işığı kapat</string>
+    <string name="editor_sunrise">Telefonda gün doğumu</string>
+    <string name="editor_sunrise_hint">Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür. Telefonu ekranı yukarı bakacak şekilde bırak.</string>
+    <string name="sunrise_ring">Uyanırken</string>
+    <string name="sunrise_window">Aralıktan</string>
+    <string name="editor_sunrise_ring_hint">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</string>
+    <string name="editor_sunrise_window_hint">Aralıkla birlikte başlar ve hedef saatte tam parlaklığa ulaşır.</string>
 </resources>

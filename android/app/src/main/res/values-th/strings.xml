@@ -119,4 +119,15 @@
     <string name="editor_advice_title">เคล็ดลับ: ช่วงเวลาที่กว้างขึ้น</string>
     <string name="editor_advice_text">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</string>
     <string name="editor_advice_apply">ใช้ %1$d นาที</string>
+    <string name="channel_sunrise">พระอาทิตย์ขึ้น</string>
+    <string name="channel_sunrise_description">ทำให้หน้าจอสว่างเหมือนพระอาทิตย์ขึ้นก่อนที่คุณจะตื่น</string>
+    <string name="sunrise_title">พระอาทิตย์ขึ้น</string>
+    <string name="sunrise_text">หน้าจอจะค่อย ๆ สว่างขึ้นจนกว่าคุณจะตื่น</string>
+    <string name="sunrise_off">ปิดไฟ</string>
+    <string name="editor_sunrise">พระอาทิตย์ขึ้นบนโทรศัพท์</string>
+    <string name="editor_sunrise_hint">หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่ วางโทรศัพท์โดยหงายหน้าจอขึ้น</string>
+    <string name="sunrise_ring">ตอนปลุก</string>
+    <string name="sunrise_window">ตั้งแต่ช่วงเวลา</string>
+    <string name="editor_sunrise_ring_hint">เริ่มเมื่อคุณถูกปลุก และสว่างเต็มที่หลังผ่านไป %1$d นาที</string>
+    <string name="editor_sunrise_window_hint">เริ่มพร้อมช่วงเวลา และสว่างเต็มที่ตามเวลาเป้าหมาย</string>
 </resources>

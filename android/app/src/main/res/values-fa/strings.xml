@@ -119,4 +119,15 @@
     <string name="editor_advice_title">نکته: بازه‌ی بزرگ‌تر</string>
     <string name="editor_advice_text">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</string>
     <string name="editor_advice_apply">استفاده از %1$d دقیقه</string>
+    <string name="channel_sunrise">طلوع خورشید</string>
+    <string name="channel_sunrise_description">پیش از بیدار شدنت، صفحه را مثل طلوع خورشید روشن می‌کند.</string>
+    <string name="sunrise_title">طلوع خورشید</string>
+    <string name="sunrise_text">صفحه کم‌کم روشن‌تر می‌شود تا بیدار شوی.</string>
+    <string name="sunrise_off">خاموش کردن نور</string>
+    <string name="editor_sunrise">طلوع خورشید روی گوشی</string>
+    <string name="editor_sunrise_hint">صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود. گوشی را رو به بالا بگذار.</string>
+    <string name="sunrise_ring">هنگام بیداری</string>
+    <string name="sunrise_window">از شروع بازه</string>
+    <string name="editor_sunrise_ring_hint">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</string>
+    <string name="editor_sunrise_window_hint">با شروع بازه آغاز می‌شود و در زمان هدف کاملاً روشن است.</string>
 </resources>

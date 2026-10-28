@@ -119,4 +119,15 @@
     <string name="editor_advice_title">نصيحة: نافذة أوسع</string>
     <string name="editor_advice_text">في %1$d من آخر %2$d ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</string>
     <string name="editor_advice_apply">استخدام %1$d دقيقة</string>
+    <string name="channel_sunrise">شروق الشمس</string>
+    <string name="channel_sunrise_description">يضيء شاشتك مثل شروق الشمس قبل أن تستيقظ.</string>
+    <string name="sunrise_title">شروق الشمس</string>
+    <string name="sunrise_text">تزداد الشاشة سطوعًا ببطء حتى تستيقظ.</string>
+    <string name="sunrise_off">إطفاء الضوء</string>
+    <string name="editor_sunrise">شروق الشمس على الهاتف</string>
+    <string name="editor_sunrise_hint">تبدأ الشاشة بتوهج برتقالي خافت ثم تتحول إلى ضوء دافئ ساطع بأقصى سطوع. ضع الهاتف والشاشة للأعلى.</string>
+    <string name="sunrise_ring">عند الإيقاظ</string>
+    <string name="sunrise_window">من النافذة</string>
+    <string name="editor_sunrise_ring_hint">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</string>
+    <string name="editor_sunrise_window_hint">يبدأ مع بداية النافذة ويصبح ساطعًا تمامًا في الوقت المستهدف.</string>
 </resources>

@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Consiglio: una finestra più ampia</string>
     <string name="editor_advice_text">In %1$d delle ultime %2$d notti non c\'era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</string>
     <string name="editor_advice_apply">Usa %1$d min</string>
+    <string name="channel_sunrise">Alba</string>
+    <string name="channel_sunrise_description">Illumina lo schermo come un’alba prima che ti svegli.</string>
+    <string name="sunrise_title">Alba</string>
+    <string name="sunrise_text">Lo schermo diventa lentamente più luminoso finché non ti svegli.</string>
+    <string name="sunrise_off">Spegni la luce</string>
+    <string name="editor_sunrise">Alba sul telefono</string>
+    <string name="editor_sunrise_hint">Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità. Appoggia il telefono con lo schermo verso l’alto.</string>
+    <string name="sunrise_ring">Alla sveglia</string>
+    <string name="sunrise_window">Da finestra</string>
+    <string name="editor_sunrise_ring_hint">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</string>
+    <string name="editor_sunrise_window_hint">Parte con la finestra e raggiunge la piena luminosità all’ora impostata.</string>
 </resources>

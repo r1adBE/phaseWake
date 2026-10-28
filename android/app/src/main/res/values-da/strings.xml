@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tip: et større vindue</string>
     <string name="editor_advice_text">I %1$d af de seneste %2$d nætter var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</string>
     <string name="editor_advice_apply">Brug %1$d min</string>
+    <string name="channel_sunrise">Solopgang</string>
+    <string name="channel_sunrise_description">Tænder skærmen som en solopgang, før du vågner.</string>
+    <string name="sunrise_title">Solopgang</string>
+    <string name="sunrise_text">Skærmen bliver langsomt lysere, indtil du vågner.</string>
+    <string name="sunrise_off">Sluk lyset</string>
+    <string name="editor_sunrise">Solopgang på telefonen</string>
+    <string name="editor_sunrise_hint">Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke. Læg telefonen med skærmen opad.</string>
+    <string name="sunrise_ring">Ved vækning</string>
+    <string name="sunrise_window">Fra vinduet</string>
+    <string name="editor_sunrise_ring_hint">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</string>
+    <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på måltidspunktet.</string>
 </resources>

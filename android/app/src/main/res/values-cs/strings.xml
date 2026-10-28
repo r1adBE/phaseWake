@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tip: větší okno</string>
     <string name="editor_advice_text">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</string>
     <string name="editor_advice_apply">Použít %1$d min</string>
+    <string name="channel_sunrise">Východ slunce</string>
+    <string name="channel_sunrise_description">Rozsvítí displej jako východ slunce, než se probudíš.</string>
+    <string name="sunrise_title">Východ slunce</string>
+    <string name="sunrise_text">Displej se pomalu rozjasňuje, dokud se neprobudíš.</string>
+    <string name="sunrise_off">Vypnout světlo</string>
+    <string name="editor_sunrise">Východ slunce na telefonu</string>
+    <string name="editor_sunrise_hint">Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas. Polož telefon displejem nahoru.</string>
+    <string name="sunrise_ring">Při buzení</string>
+    <string name="sunrise_window">Od okna</string>
+    <string name="editor_sunrise_ring_hint">Začne, když tě probudí, a po %1$d minutách naplno září.</string>
+    <string name="editor_sunrise_window_hint">Začne s oknem buzení a v cílový čas naplno září.</string>
 </resources>
