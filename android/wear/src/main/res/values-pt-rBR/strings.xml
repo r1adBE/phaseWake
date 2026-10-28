@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Janela de despertar</string>
+    <string name="channel_window_description">Aparece enquanto o Phase Wake espera o sono leve.</string>
+    <string name="channel_alarm">Alarme</string>
+    <string name="channel_alarm_description">Acorda você.</string>
+    <string name="notification_window_title">Esperando o sono leve</string>
+    <string name="notification_window_text">Acorda você até as %1$s</string>
+    <string name="notification_ring_title">Bom dia</string>
+
+    <string name="ring_greeting">Bom dia</string>
+    <string name="ring_reason_light">Sono leve detectado</string>
+    <string name="ring_reason_awake">Você já estava acordado</string>
+    <string name="ring_reason_deadline">Horário-alvo atingido</string>
+    <string name="ring_hold_to_stop">Segure para parar</string>
+    <string name="ring_snooze">%1$d min · restam %2$d</string>
+    <string name="ring_snoozed_until">Soneca até %1$s</string>
+    <string name="ring_stop_now">Parar alarme</string>
+
+    <string name="home_no_alarm">Nenhum alarme</string>
+    <string name="home_no_alarm_hint">Defina alarmes no Phase Wake do celular.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Hoje</string>
+    <string name="home_tomorrow">Amanhã</string>
+    <string name="home_window_length">Janela de %1$d min</string>
+    <string name="home_alarms">Alarmes</string>
+    <string name="home_permissions">Permitir sensores</string>
+    <string name="home_permissions_hint">Necessários para detectar o sono leve.</string>
+    <string name="alarm_once">Uma vez</string>
+    <string name="alarm_every_day">Todo dia</string>
+    <string name="tile_label">Próximo alarme</string>
+    <string name="tile_next">Próximo alarme</string>
+    <string name="tile_light_sleep">Acorda você no sono leve</string>
+    <string name="notification_good_night_title">Durma bem</string>
+    <string name="notification_good_night_text">Esperando você adormecer</string>
+    <string name="home_good_night">Boa noite</string>
+    <string name="home_good_night_hint">Dormir %1$s a partir de agora</string>
+    <string name="home_good_night_active">Esperando o sono · toque para cancelar</string>
+    <string name="dnd_title">Alarmes bloqueados</string>
+    <string name="dnd_text">Permita alarmes no Não perturbe.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Plage de réveil</string>
+    <string name="channel_window_description">Affiché pendant que Phase Wake guette le sommeil léger.</string>
+    <string name="channel_alarm">Réveil</string>
+    <string name="channel_alarm_description">Te réveille.</string>
+    <string name="notification_window_title">Guette le sommeil léger</string>
+    <string name="notification_window_text">Te réveille au plus tard à %1$s</string>
+    <string name="notification_ring_title">Bonjour</string>
+
+    <string name="ring_greeting">Bonjour</string>
+    <string name="ring_reason_light">Sommeil léger détecté</string>
+    <string name="ring_reason_awake">Tu étais déjà éveillé</string>
+    <string name="ring_reason_deadline">Heure cible atteinte</string>
+    <string name="ring_hold_to_stop">Maintiens pour arrêter</string>
+    <string name="ring_snooze">%1$d min · %2$d restant(s)</string>
+    <string name="ring_snoozed_until">Rappel à %1$s</string>
+    <string name="ring_stop_now">Arrêter le réveil</string>
+
+    <string name="home_no_alarm">Aucun réveil</string>
+    <string name="home_no_alarm_hint">Programme tes réveils dans Phase Wake sur ton téléphone.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Aujourd\'hui</string>
+    <string name="home_tomorrow">Demain</string>
+    <string name="home_window_length">Plage de %1$d min</string>
+    <string name="home_alarms">Réveils</string>
+    <string name="home_permissions">Autoriser les capteurs</string>
+    <string name="home_permissions_hint">Nécessaire pour détecter le sommeil léger.</string>
+    <string name="alarm_once">Une fois</string>
+    <string name="alarm_every_day">Tous les jours</string>
+    <string name="tile_label">Prochain réveil</string>
+    <string name="tile_next">Prochain réveil</string>
+    <string name="tile_light_sleep">Te réveille en sommeil léger</string>
+    <string name="notification_good_night_title">Dors bien</string>
+    <string name="notification_good_night_text">Attend que tu t\'endormes</string>
+    <string name="home_good_night">Bonne nuit</string>
+    <string name="home_good_night_hint">Dormir %1$s dès maintenant</string>
+    <string name="home_good_night_active">En attente du sommeil · appuie pour annuler</string>
+    <string name="dnd_title">Alarmes bloquées</string>
+    <string name="dnd_text">Autorise les alarmes dans Ne pas déranger.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+</resources>

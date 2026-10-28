@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Reservewekker</string>
+    <string name="channel_alarm_description">Gaat op je telefoon af, samen met je horloge.</string>
+    <string name="ring_greeting">Goedemorgen</string>
+    <string name="ring_notification_text">Je Phase Wake-wekker gaat af</string>
+    <string name="ring_stop">Stop</string>
+    <string name="ring_snooze">Snooze %1$d min · nog %2$d</string>
+    <string name="ring_snoozed">Snoozen voor %1$d min</string>
+
+    <string name="nav_alarms">Wekkers</string>
+    <string name="nav_history">Geschiedenis</string>
+    <string name="nav_settings">Instellingen</string>
+
+    <string name="home_next_today">Vandaag</string>
+    <string name="home_next_tomorrow">Morgen</string>
+    <string name="home_next_in">Wekt je in lichte slaap · over %1$s</string>
+    <string name="home_no_alarm_title">Word wakker op het juiste moment</string>
+    <string name="home_no_alarm_text">Stel een tijd en een venster in. Je horloge wekt je als je licht slaapt.</string>
+    <string name="home_add_alarm">Nieuwe wekker</string>
+    <string name="home_last_night">Afgelopen nacht</string>
+    <string name="home_alarms">Je wekkers</string>
+    <string name="home_permission_title">Wekkers toestaan</string>
+    <string name="home_permission_text">Phase Wake heeft meldingen en schermvullende waarschuwingen nodig om je te wekken.</string>
+    <string name="home_permission_action">Toestaan</string>
+
+    <string name="reason_light">Lichte slaap</string>
+    <string name="reason_awake">Al wakker</string>
+    <string name="reason_deadline">Doeltijd</string>
+    <string name="woke_early">%1$d min voor de doeltijd · %2$s</string>
+    <string name="woke_on_time">Op de doeltijd · %1$s</string>
+    <string name="no_snooze">zonder snooze</string>
+    <string name="snoozed_times">%1$d× gesnoozed</string>
+
+    <string name="alarm_once">Eenmalig</string>
+    <string name="alarm_every_day">Elke dag</string>
+    <string name="alarm_after_sleep">na %1$s</string>
+    <string name="alarm_latest">uiterlijk %1$s</string>
+
+    <string name="editor_new">Nieuwe wekker</string>
+    <string name="editor_edit">Wekker bewerken</string>
+    <string name="editor_save">Opslaan</string>
+    <string name="editor_delete">Wekker verwijderen</string>
+    <string name="editor_mode_clock">Tijdstip</string>
+    <string name="editor_mode_sleep">Slaapduur</string>
+    <string name="editor_target">Wek me om</string>
+    <string name="editor_latest">Uiterlijk</string>
+    <string name="editor_sleep_duration">%1$s slapen</string>
+    <string name="editor_sleep_hint">Telt vanaf het moment dat je in slaap valt. Tik op je horloge op “Welterusten”.</string>
+    <string name="editor_window">Venster: %1$d min</string>
+    <string name="editor_window_hint">Wekt je tussen %1$s en %2$s</string>
+    <string name="editor_days">Herhalen</string>
+    <string name="editor_weekdays">Werkdagen</string>
+    <string name="editor_weekend">Weekend</string>
+    <string name="editor_phone_backup_hint">Gaat af met je horloge, en alleen als het horloge niet reageert.</string>
+    <string name="editor_label">Naam</string>
+    <string name="editor_label_hint">Werk</string>
+
+    <string name="history_title">Geschiedenis</string>
+    <string name="history_empty_title">Nog geen nachten</string>
+    <string name="history_empty_text">Na je eerste nacht met het horloge zie je hier wanneer en waarom het je wekte.</string>
+    <string name="history_average">Ø %1$d min eerder</string>
+    <string name="history_light_share">%1$d %% in lichte slaap</string>
+    <string name="history_export">Anoniem exporteren</string>
+    <string name="history_export_subject">Phase Wake-nachten (anoniem)</string>
+
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_theme">Weergave</string>
+    <string name="settings_theme_system">Systeem</string>
+    <string name="settings_theme_light">Licht</string>
+    <string name="settings_theme_dark">Donker</string>
+    <string name="settings_data">Je gegevens</string>
+    <string name="settings_data_text">Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking.</string>
+    <string name="settings_export">Nachten anoniem exporteren</string>
+    <string name="settings_export_hint">Help de herkenning te verbeteren: CSV zonder namen, datums of apparaat-ID\'s.</string>
+    <string name="settings_about">Over</string>
+    <string name="settings_open_source">Open source op GitHub</string>
+    <string name="settings_licenses">Licenties</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versie %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d u</string>
+    <string name="duration_hours_half">%1$d½ u</string>
+    <string name="duration_hours_minutes">%1$d u %2$d min</string>
+    <string name="health_title">Slaapfases uit Health Connect</string>
+    <string name="health_rationale">Phase Wake kan de slaapfases lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat nadat je wakker bent geworden. Ze worden alleen gebruikt om te controleren of je in lichte slaap bent gewekt en om de herkenning voor jou te verbeteren. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
+    <string name="health_connect">Vergelijken met gezondheidsgegevens</string>
+    <string name="health_connect_hint">Leest na het wakker worden de slaapfases uit Health Connect, om de herkenning te controleren en te verbeteren.</string>
+    <string name="health_connected">Verbonden</string>
+    <string name="health_unavailable">Health Connect is niet beschikbaar op deze telefoon.</string>
+    <string name="verdict_good">Gezondheidsgegevens: %1$s ✓</string>
+    <string name="verdict_deep">Gezondheidsgegevens: diepe slaap</string>
+    <string name="stage_light">lichte slaap</string>
+    <string name="stage_rem">REM-slaap</string>
+    <string name="stage_awake">wakker</string>
+    <string name="editor_alert">Hoe we je wekken</string>
+    <string name="editor_alert_hint">Geluid komt altijd met trillen. Wekkers gaan ook af bij Niet storen, de bedtijdmodus en een telefoon op stil.</string>
+    <string name="editor_alert_watch">Horloge</string>
+    <string name="editor_alert_phone">Telefoon</string>
+    <string name="alert_vibrate_only">Alleen trillen</string>
+    <string name="alert_vibrate_sound">Trillen + geluid</string>
+    <string name="alert_off">Uit</string>
+    <string name="alert_vibrate">Trillen</string>
+    <string name="alert_sound">Geluid</string>
+    <string name="editor_sound">Wekgeluid</string>
+    <string name="editor_sound_default">Standaard</string>
+    <string name="dnd_title">Niet storen blokkeert wekkers</string>
+    <string name="dnd_text">Sta wekkers toe bij Niet storen, anders blijft je telefoon stil.</string>
+    <string name="dnd_action">Instellingen openen</string>
+    <string name="greeting_morning">Goedemorgen</string>
+    <string name="greeting_day">Hallo</string>
+    <string name="greeting_evening">Goedenavond</string>
+    <string name="greeting_night">Welterusten</string>
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Sveglia di riserva</string>
+    <string name="channel_alarm_description">Suona sul telefono insieme allo smartwatch.</string>
+    <string name="ring_greeting">Buongiorno</string>
+    <string name="ring_notification_text">La tua sveglia Phase Wake sta suonando</string>
+    <string name="ring_stop">Stop</string>
+    <string name="ring_snooze">Posticipa %1$d min · %2$d rimaste</string>
+    <string name="ring_snoozed">Posticipata di %1$d min</string>
+
+    <string name="nav_alarms">Sveglie</string>
+    <string name="nav_history">Cronologia</string>
+    <string name="nav_settings">Impostazioni</string>
+
+    <string name="home_next_today">Oggi</string>
+    <string name="home_next_tomorrow">Domani</string>
+    <string name="home_next_in">Ti sveglia nel sonno leggero · tra %1$s</string>
+    <string name="home_no_alarm_title">Svegliati al momento giusto</string>
+    <string name="home_no_alarm_text">Scegli un orario e una finestra. Il tuo smartwatch ti sveglia quando dormi leggero.</string>
+    <string name="home_add_alarm">Nuova sveglia</string>
+    <string name="home_last_night">Ultima notte</string>
+    <string name="home_alarms">Le tue sveglie</string>
+    <string name="home_permission_title">Consenti le sveglie</string>
+    <string name="home_permission_text">Phase Wake ha bisogno delle notifiche e degli avvisi a schermo intero per svegliarti.</string>
+    <string name="home_permission_action">Consenti</string>
+
+    <string name="reason_light">Sonno leggero</string>
+    <string name="reason_awake">Già sveglio</string>
+    <string name="reason_deadline">Orario obiettivo</string>
+    <string name="woke_early">%1$d min prima dell\'orario obiettivo · %2$s</string>
+    <string name="woke_on_time">All\'orario obiettivo · %1$s</string>
+    <string name="no_snooze">senza posticipo</string>
+    <string name="snoozed_times">posticipata %1$d×</string>
+
+    <string name="alarm_once">Una volta</string>
+    <string name="alarm_every_day">Ogni giorno</string>
+    <string name="alarm_after_sleep">dopo %1$s</string>
+    <string name="alarm_latest">al più tardi %1$s</string>
+
+    <string name="editor_new">Nuova sveglia</string>
+    <string name="editor_edit">Modifica sveglia</string>
+    <string name="editor_save">Salva</string>
+    <string name="editor_delete">Elimina sveglia</string>
+    <string name="editor_mode_clock">Orario</string>
+    <string name="editor_mode_sleep">Durata del sonno</string>
+    <string name="editor_target">Svegliami entro</string>
+    <string name="editor_latest">Al più tardi</string>
+    <string name="editor_sleep_duration">Dormi %1$s</string>
+    <string name="editor_sleep_hint">Il conto parte da quando ti addormenti. Tocca «Buonanotte» sullo smartwatch.</string>
+    <string name="editor_window">Finestra: %1$d min</string>
+    <string name="editor_window_hint">Ti sveglia tra le %1$s e le %2$s</string>
+    <string name="editor_days">Ripeti</string>
+    <string name="editor_weekdays">Giorni feriali</string>
+    <string name="editor_weekend">Weekend</string>
+    <string name="editor_phone_backup_hint">Suona con lo smartwatch, e da sola se lo smartwatch non risponde.</string>
+    <string name="editor_label">Nome</string>
+    <string name="editor_label_hint">Lavoro</string>
+
+    <string name="history_title">Cronologia</string>
+    <string name="history_empty_title">Ancora nessuna notte</string>
+    <string name="history_empty_text">Dopo la tua prima notte con lo smartwatch vedrai qui quando e perché ti ha svegliato.</string>
+    <string name="history_average">Ø %1$d min prima</string>
+    <string name="history_light_share">%1$d %% nel sonno leggero</string>
+    <string name="history_export">Esporta in forma anonima</string>
+    <string name="history_export_subject">Notti Phase Wake (anonime)</string>
+
+    <string name="settings_title">Impostazioni</string>
+    <string name="settings_theme">Aspetto</string>
+    <string name="settings_theme_system">Sistema</string>
+    <string name="settings_theme_light">Chiaro</string>
+    <string name="settings_theme_dark">Scuro</string>
+    <string name="settings_data">I tuoi dati</string>
+    <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento.</string>
+    <string name="settings_export">Esporta le notti in forma anonima</string>
+    <string name="settings_export_hint">Aiuta a migliorare il rilevamento: CSV senza nomi, date o ID del dispositivo.</string>
+    <string name="settings_about">Info</string>
+    <string name="settings_open_source">Open source su GitHub</string>
+    <string name="settings_licenses">Licenze</string>
+    <string name="settings_licenses_text">Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versione %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Fasi del sonno da Health Connect</string>
+    <string name="health_rationale">Phase Wake può leggere le fasi del sonno che la tua app di salute (ad esempio Samsung Health) salva dopo il risveglio. Servono solo a verificare se sei stato svegliato nel sonno leggero e a migliorare il rilevamento per te. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
+    <string name="health_connect">Confronta con i dati di salute</string>
+    <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
+    <string name="health_connected">Connesso</string>
+    <string name="health_unavailable">Health Connect non è disponibile su questo telefono.</string>
+    <string name="verdict_good">Dati di salute: %1$s ✓</string>
+    <string name="verdict_deep">Dati di salute: sonno profondo</string>
+    <string name="stage_light">sonno leggero</string>
+    <string name="stage_rem">sonno REM</string>
+    <string name="stage_awake">sveglio</string>
+    <string name="editor_alert">Come svegliarti</string>
+    <string name="editor_alert_hint">Il suono è sempre accompagnato dalla vibrazione. Le sveglie suonano anche con Non disturbare, la modalità riposo e il telefono in silenzioso.</string>
+    <string name="editor_alert_watch">Smartwatch</string>
+    <string name="editor_alert_phone">Telefono</string>
+    <string name="alert_vibrate_only">Solo vibrazione</string>
+    <string name="alert_vibrate_sound">Vibrazione + suono</string>
+    <string name="alert_off">No</string>
+    <string name="alert_vibrate">Vibrazione</string>
+    <string name="alert_sound">Suono</string>
+    <string name="editor_sound">Suoneria</string>
+    <string name="editor_sound_default">Predefinita</string>
+    <string name="dnd_title">Non disturbare blocca le sveglie</string>
+    <string name="dnd_text">Consenti le sveglie in Non disturbare, altrimenti il telefono resta muto.</string>
+    <string name="dnd_action">Apri impostazioni</string>
+    <string name="greeting_morning">Buongiorno</string>
+    <string name="greeting_day">Ciao</string>
+    <string name="greeting_evening">Buonasera</string>
+    <string name="greeting_night">Buonanotte</string>
+</resources>

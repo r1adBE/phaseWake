@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Wekvenster</string>
+    <string name="channel_window_description">Zichtbaar terwijl Phase Wake op lichte slaap wacht.</string>
+    <string name="channel_alarm">Wekker</string>
+    <string name="channel_alarm_description">Wekt je.</string>
+    <string name="notification_window_title">Wacht op lichte slaap</string>
+    <string name="notification_window_text">Wekt je uiterlijk om %1$s</string>
+    <string name="notification_ring_title">Goedemorgen</string>
+
+    <string name="ring_greeting">Goedemorgen</string>
+    <string name="ring_reason_light">Lichte slaap herkend</string>
+    <string name="ring_reason_awake">Je was al wakker</string>
+    <string name="ring_reason_deadline">Doeltijd bereikt</string>
+    <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
+    <string name="ring_snooze">%1$d min · nog %2$d</string>
+    <string name="ring_snoozed_until">Snoozen tot %1$s</string>
+    <string name="ring_stop_now">Wekker stoppen</string>
+
+    <string name="home_no_alarm">Geen wekker ingesteld</string>
+    <string name="home_no_alarm_hint">Stel wekkers in via Phase Wake op je telefoon.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Vandaag</string>
+    <string name="home_tomorrow">Morgen</string>
+    <string name="home_window_length">Venster van %1$d min</string>
+    <string name="home_alarms">Wekkers</string>
+    <string name="home_permissions">Sensoren toestaan</string>
+    <string name="home_permissions_hint">Nodig om lichte slaap te herkennen.</string>
+    <string name="alarm_once">Eenmalig</string>
+    <string name="alarm_every_day">Elke dag</string>
+    <string name="tile_label">Volgende wekker</string>
+    <string name="tile_next">Volgende wekker</string>
+    <string name="tile_light_sleep">Wekt je in lichte slaap</string>
+    <string name="notification_good_night_title">Slaap lekker</string>
+    <string name="notification_good_night_text">Wacht tot je in slaap valt</string>
+    <string name="home_good_night">Welterusten</string>
+    <string name="home_good_night_hint">Vanaf nu %1$s slapen</string>
+    <string name="home_good_night_active">Wacht op slaap · tik om te annuleren</string>
+    <string name="dnd_title">Wekkers geblokkeerd</string>
+    <string name="dnd_text">Sta wekkers toe bij Niet storen.</string>
+    <string name="duration_hours">%1$d u</string>
+    <string name="duration_hours_minutes">%1$d u %2$d min</string>
+</resources>

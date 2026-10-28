@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Alarme de reserva</string>
+    <string name="channel_alarm_description">Toca no telemóvel em conjunto com o relógio.</string>
+    <string name="ring_greeting">Bom dia</string>
+    <string name="ring_notification_text">O teu alarme do Phase Wake está a tocar</string>
+    <string name="ring_stop">Parar</string>
+    <string name="ring_snooze">Soneca %1$d min · restam %2$d</string>
+    <string name="ring_snoozed">Soneca de %1$d min</string>
+
+    <string name="nav_alarms">Alarmes</string>
+    <string name="nav_history">Histórico</string>
+    <string name="nav_settings">Definições</string>
+
+    <string name="home_next_today">Hoje</string>
+    <string name="home_next_tomorrow">Amanhã</string>
+    <string name="home_next_in">Acorda-te no sono leve · em %1$s</string>
+    <string name="home_no_alarm_title">Acorda na altura certa</string>
+    <string name="home_no_alarm_text">Define uma hora e uma janela. O teu relógio acorda-te quando dormes de forma leve.</string>
+    <string name="home_add_alarm">Novo alarme</string>
+    <string name="home_last_night">Ontem à noite</string>
+    <string name="home_alarms">Os teus alarmes</string>
+    <string name="home_permission_title">Permitir alarmes</string>
+    <string name="home_permission_text">O Phase Wake precisa de notificações e de alertas em ecrã inteiro para te acordar.</string>
+    <string name="home_permission_action">Permitir</string>
+
+    <string name="reason_light">Sono leve</string>
+    <string name="reason_awake">Já acordado</string>
+    <string name="reason_deadline">Hora-alvo</string>
+    <string name="woke_early">%1$d min antes da hora-alvo · %2$s</string>
+    <string name="woke_on_time">À hora-alvo · %1$s</string>
+    <string name="no_snooze">sem soneca</string>
+    <string name="snoozed_times">soneca %1$d×</string>
+
+    <string name="alarm_once">Uma vez</string>
+    <string name="alarm_every_day">Todos os dias</string>
+    <string name="alarm_after_sleep">após %1$s</string>
+    <string name="alarm_latest">até %1$s</string>
+
+    <string name="editor_new">Novo alarme</string>
+    <string name="editor_edit">Editar alarme</string>
+    <string name="editor_save">Guardar</string>
+    <string name="editor_delete">Eliminar alarme</string>
+    <string name="editor_mode_clock">Hora</string>
+    <string name="editor_mode_sleep">Duração do sono</string>
+    <string name="editor_target">Acorda-me até</string>
+    <string name="editor_latest">No máximo</string>
+    <string name="editor_sleep_duration">Dormir %1$s</string>
+    <string name="editor_sleep_hint">A contagem começa quando adormeces. Toca em “Boa noite” no relógio.</string>
+    <string name="editor_window">Janela: %1$d min</string>
+    <string name="editor_window_hint">Acorda-te entre as %1$s e as %2$s</string>
+    <string name="editor_days">Repetir</string>
+    <string name="editor_weekdays">Dias úteis</string>
+    <string name="editor_weekend">Fim de semana</string>
+    <string name="editor_phone_backup_hint">Toca com o relógio, e sozinho se o relógio não responder.</string>
+    <string name="editor_label">Nome</string>
+    <string name="editor_label_hint">Trabalho</string>
+
+    <string name="history_title">Histórico</string>
+    <string name="history_empty_title">Ainda sem noites</string>
+    <string name="history_empty_text">Depois da tua primeira noite com o relógio, vais ver aqui quando e porquê te acordou.</string>
+    <string name="history_average">Ø %1$d min mais cedo</string>
+    <string name="history_light_share">%1$d %% em sono leve</string>
+    <string name="history_export">Exportar anonimamente</string>
+    <string name="history_export_subject">Noites do Phase Wake (anónimo)</string>
+
+    <string name="settings_title">Definições</string>
+    <string name="settings_theme">Aspeto</string>
+    <string name="settings_theme_system">Sistema</string>
+    <string name="settings_theme_light">Claro</string>
+    <string name="settings_theme_dark">Escuro</string>
+    <string name="settings_data">Os teus dados</string>
+    <string name="settings_data_text">Tudo fica no telemóvel e no relógio. Sem conta, sem servidor, sem rastreio.</string>
+    <string name="settings_export">Exportar noites anonimamente</string>
+    <string name="settings_export_hint">Ajuda a melhorar a deteção: CSV sem nomes, datas nem IDs de dispositivo.</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_open_source">Código aberto no GitHub</string>
+    <string name="settings_licenses">Licenças</string>
+    <string name="settings_licenses_text">Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versão %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Fases do sono do Health Connect</string>
+    <string name="health_rationale">O Phase Wake pode ler as fases do sono que a tua app de saúde (por exemplo, o Samsung Health) guarda depois de acordares. Servem apenas para verificar se foste acordado em sono leve e para melhorar a deteção para ti. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel.</string>
+    <string name="health_connect">Comparar com dados de saúde</string>
+    <string name="health_connect_hint">Lê as fases do sono do Health Connect depois de acordares, para verificar e melhorar a deteção.</string>
+    <string name="health_connected">Ligado</string>
+    <string name="health_unavailable">O Health Connect não está disponível neste telemóvel.</string>
+    <string name="verdict_good">Dados de saúde: %1$s ✓</string>
+    <string name="verdict_deep">Dados de saúde: sono profundo</string>
+    <string name="stage_light">sono leve</string>
+    <string name="stage_rem">sono REM</string>
+    <string name="stage_awake">acordado</string>
+    <string name="editor_alert">Como te acordar</string>
+    <string name="editor_alert_hint">O som vem sempre com vibração. Os alarmes tocam também com Não incomodar, modo de deitar e telemóvel em silêncio.</string>
+    <string name="editor_alert_watch">Relógio</string>
+    <string name="editor_alert_phone">Telemóvel</string>
+    <string name="alert_vibrate_only">Só vibração</string>
+    <string name="alert_vibrate_sound">Vibração + som</string>
+    <string name="alert_off">Não</string>
+    <string name="alert_vibrate">Vibração</string>
+    <string name="alert_sound">Som</string>
+    <string name="editor_sound">Som do alarme</string>
+    <string name="editor_sound_default">Predefinido</string>
+    <string name="dnd_title">Não incomodar bloqueia alarmes</string>
+    <string name="dnd_text">Permite alarmes em Não incomodar; caso contrário, o telemóvel fica em silêncio.</string>
+    <string name="dnd_action">Abrir definições</string>
+    <string name="greeting_morning">Bom dia</string>
+    <string name="greeting_day">Olá</string>
+    <string name="greeting_evening">Boa noite</string>
+    <string name="greeting_night">Boa noite</string>
+</resources>
