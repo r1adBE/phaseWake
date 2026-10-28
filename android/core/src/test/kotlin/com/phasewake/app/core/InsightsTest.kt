@@ -129,3 +129,32 @@ class MissHintTest {
         assertEquals(MissHint.GAPS, MissHint.of(spec, listOf(night(0, motion = null), night(1, motion = null), night(2, hr = null))))
     }
 }
+
+class RobustnessTest {
+    @Test
+    fun invalidSamplesAreIgnored() {
+        val motion = MotionEnergyAccumulator(minDiffs = 1)
+        motion.add(0, 0.0, 0.0, 9.81)
+        motion.add(40_000_000, Double.NaN, 0.0, 9.81)
+        motion.add(80_000_000, 0.0, Double.POSITIVE_INFINITY, 9.81)
+        motion.add(120_000_000, 0.2, 0.0, 9.81)
+        val value = motion.closeEpoch()
+        assertEquals(0.15, value!!, 1e-9) // nur der gültige Schritt 0 → 0.2, minus Rauschen 0.05
+
+        val hr = HeartRateAccumulator()
+        hr.add(Double.NaN)
+        hr.add(Double.POSITIVE_INFINITY)
+        hr.add(60.0)
+        assertEquals(60.0, hr.closeEpoch())
+    }
+
+    @Test
+    fun timeJumpDoesNotProduceEndlessEpochs() {
+        val a = EpochAssembler(startNanos = 0)
+        val tooLate = (EpochAssembler.MAX_EPOCHS + 1) * 30_000_000_000L
+        assertEquals(emptyList(), a.addMotion(tooLate, 0.0, 0.0, 9.81))
+        assertEquals(emptyList(), a.advance(tooLate, 0))
+        assertEquals(0, a.currentIndex)
+        assertEquals(3, a.advance(3 * 30_000_000_000L, 0).size)
+    }
+}

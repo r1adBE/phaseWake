@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.AlarmRepository
@@ -91,11 +92,38 @@ class BackupAlarm(
         }
     }
 
-    /** Die Uhr weckt gerade: Zweitwecker für diese Nacht aussetzen. */
-    suspend fun watchIsRinging() {
-        val until = clock.instant().plus(Duration.ofMinutes(com.phasewake.app.core.AlarmSpec.MAX_WINDOW_MINUTES.toLong())).plus(GRACE)
-        store.edit { it[SUPPRESSED_UNTIL] = until.toEpochMilli() }
+    /**
+     * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker bis
+     * kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker
+     * am selben Morgen weg.
+     */
+    suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
+        val now = clock.instant()
+        val spec = alarms.current().alarms.firstOrNull { it.id == alarmId }
+        // Zielzeit der laufenden Nacht: die nächste Zielzeit ab Beginn des längsten Fensters.
+        val nightTarget = target
+            ?: spec?.let { AlarmSchedule.nextTarget(it, now.minus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())), clock.zone) }
+            ?: now.plus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong()))
+        val until = nightTarget.plus(GRACE)
+        store.edit { if ((it[SUPPRESSED_UNTIL] ?: 0L) < until.toEpochMilli()) it[SUPPRESSED_UNTIL] = until.toEpochMilli() }
         reschedule()
+    }
+
+    /** Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. */
+    fun snoozeUntil(at: Instant, alarmId: String?) {
+        val show = PendingIntent.getActivity(
+            context, 1, Intent(context, MainActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), snoozePending(alarmId))
+    }
+
+    fun cancelSnooze() = alarmManager.cancel(snoozePending(null))
+
+    private fun snoozePending(alarmId: String?): PendingIntent {
+        val intent = Intent(context, Receiver::class.java).setAction(ACTION)
+        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
+        return PendingIntent.getBroadcast(context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun pending(alarmId: String? = null): PendingIntent {
@@ -104,18 +132,34 @@ class BackupAlarm(
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    /** Löst den Zweitwecker aus und plant den nächsten. */
+    /** Löst den Zweitwecker aus und plant den nächsten. Nicht exportiert: nur eigene Alarme. */
     class Receiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 ACTION -> PhoneRingService.ring(context, intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID))
-                else -> Unit // Neustart, Update, Zeitwechsel: nur neu planen.
+                ACTION_SUNRISE -> Unit // unten, nach dem Merken
+                else -> return
             }
             val pending = goAsync()
             val app = context.phoneApp
             app.appScope.launch {
                 try {
                     if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
+                    app.backup.reschedule()
+                } finally {
+                    pending.finish()
+                }
+            }
+        }
+    }
+
+    /** Neustart, App-Update, Zeit- oder Zeitzonenwechsel: Alarme sind weg oder verschoben, neu planen. */
+    class SystemReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val pending = goAsync()
+            val app = context.phoneApp
+            app.appScope.launch {
+                try {
                     app.backup.reschedule()
                 } finally {
                     pending.finish()

@@ -59,6 +59,23 @@ object Notifications {
         return builder.build()
     }
 
+    /** Daueranzeige beim Schlummern: wann es wieder klingelt. */
+    fun snoozed(context: Context, untilText: String): Notification {
+        val open = PendingIntent.getActivity(
+            context, 0, Intent(context, MainActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        return NotificationCompat.Builder(context, CHANNEL_WINDOW)
+            .setSmallIcon(R.drawable.ic_moon)
+            .setContentTitle(context.getString(R.string.notification_ring_title))
+            .setContentText(context.getString(R.string.ring_snoozed_until, untilText))
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setOngoing(true)
+            .setSilent(true)
+            .setContentIntent(open)
+            .build()
+    }
+
     /** Daueranzeige nach «Gute Nacht», solange auf das Einschlafen gewartet wird. */
     fun goodNight(context: Context): Notification {
         val open = PendingIntent.getActivity(

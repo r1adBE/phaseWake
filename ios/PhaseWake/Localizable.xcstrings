@@ -4313,6 +4313,54 @@
         }
       }
     },
+    "check_dnd_blocked": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Nicht stören» blockiert Wecker"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do Not Disturb blocks alarms"
+          }
+        }
+      }
+    },
+    "check_dnd_unknown": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Nicht stören» ist an"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do Not Disturb is on"
+          }
+        }
+      }
+    },
+    "check_dnd_unknown_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android verrät Apps nicht, ob Wecker durchkommen. Prüfe, ob Wecker bei «Nicht stören» erlaubt sind."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android doesn’t tell apps whether alarms get through. Check that alarms are allowed in Do Not Disturb."
+          }
+        }
+      }
+    },
     "check_full_screen": {
       "localizations": {
         "ar": {
@@ -6661,6 +6709,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有 Apple Watch 與這支 iPhone 配對。"
+          }
+        }
+      }
+    },
+    "check_watch_setup": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake auf der Uhr"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake on the watch"
+          }
+        }
+      }
+    },
+    "check_watch_setup_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake on the watch once and allow sensors and notifications."
           }
         }
       }
@@ -28423,196 +28503,16 @@
     },
     "ring_hold_to_stop": {
       "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ضغط مطوّل للإيقاف"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Podrž pro zastavení"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hold for at stoppe"
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Halten zum Stoppen"
           }
         },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Κράτα για διακοπή"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Hold to stop"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mantén para parar"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "برای توقف نگه دار"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pysäytä pitämällä"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maintiens pour arrêter"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "לחיצה ארוכה לעצירה"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "रोकने के लिए दबाए रखो"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tartsd a leállításhoz"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tahan untuk berhenti"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tieni premuto per fermare"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "長押しで停止"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "길게 눌러 중지"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tahan untuk henti"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hold for å stoppe"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Houd vast om te stoppen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przytrzymaj, by zatrzymać"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Segure para parar"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mantém para parar"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ține apăsat pentru oprire"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Удерживай, чтобы остановить"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Håll för att stoppa"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "กดค้างเพื่อหยุด"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durdurmak için basılı tut"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Утримуй, щоб зупинити"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Giữ để dừng"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "长按停止"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "長按停止"
           }
         }
       }
@@ -32533,6 +32433,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "GitHub 上的開放原始碼專案"
+          }
+        }
+      }
+    },
+    "settings_privacy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutzerklärung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy policy"
           }
         }
       }

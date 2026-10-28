@@ -121,6 +121,12 @@ fun SettingsScreen(
                 modifier = Modifier.fillMaxWidth().clickable { uri.openUri(REPO_URL) }.padding(vertical = 8.dp),
             )
             Text(
+                stringResource(R.string.settings_privacy),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.fillMaxWidth().clickable { uri.openUri(PRIVACY_URL) }.padding(vertical = 8.dp),
+            )
+            Text(
                 stringResource(R.string.settings_support),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary,
@@ -143,6 +149,7 @@ fun SettingsScreen(
 enum class HealthState { UNAVAILABLE, AVAILABLE, CONNECTED }
 
 private const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
+private const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
 private const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 
 @Composable

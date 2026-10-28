@@ -150,7 +150,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     // Nacht-Check: bei jedem Öffnen und danach jede halbe Minute (die Uhr kann kommen und gehen).
     LaunchedEffect(checkRun) {
         while (true) {
-            check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH))
+            check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady())
             delay(30_000)
         }
     }
@@ -224,8 +224,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                                     Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}")),
                                 )
                             }
-                            Check.DND -> DoNotDisturb.openSettings(context)
-                            Check.WATCH, Check.BATTERY -> Unit
+                            Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
+                            Check.WATCH, Check.WATCH_SETUP, Check.BATTERY -> Unit
                         }
                     },
                     contentPadding = content,
@@ -257,7 +257,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onClearHistory = {
                         app.appScope.launch {
                             app.nights.clear()
-                            app.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_CLEAR_HISTORY)
+                            app.sync.clearHistoryEverywhere()
                         }
                     },
                     health = health,

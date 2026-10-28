@@ -11,7 +11,7 @@ class HeartRateAccumulator {
 
     /** Nimmt einen Pulswert auf. Unplausible Werte (≤ 0 oder > 250) werden ignoriert. */
     fun add(bpm: Double) {
-        if (bpm <= 0.0 || bpm > MAX_PLAUSIBLE_BPM || bpm.isNaN()) return
+        if (!bpm.isFinite() || bpm <= 0.0 || bpm > MAX_PLAUSIBLE_BPM) return
         sum += bpm
         count++
     }

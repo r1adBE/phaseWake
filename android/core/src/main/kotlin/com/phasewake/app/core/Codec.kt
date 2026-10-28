@@ -52,13 +52,28 @@ object Codec {
         }
     }
 
+    /**
+     * Liest Wecker zeilenweise und tolerant: Eine unlesbare Zeile fällt weg, statt alle Wecker
+     * mitzunehmen; unbekannte Werte (z. B. eine neue Weckart aus einer neueren Version) werden zum
+     * Standard. Nur ein fremdes Format wirft [CodecException].
+     */
     fun decodeAlarms(text: String): List<AlarmSpec> {
         val lines = text.lines().filter { it.isNotEmpty() }
         if (lines.firstOrNull() != ALARMS_HEADER) throw CodecException("Unbekanntes Weckerformat")
-        return lines.drop(1).mapIndexed { index, line ->
+        return lines.drop(1).mapIndexedNotNull { index, line ->
+            try {
+                decodeAlarm(index, line)
+            } catch (_: CodecException) {
+                null
+            }
+        }
+    }
+
+    private fun decodeAlarm(index: Int, line: String): AlarmSpec =
             parse("Wecker ${index + 1}") {
                 val f = line.split(SEP)
-                require(f.size == FIELDS || f.size == FIELDS_V1) { "$FIELDS Felder erwartet, ${f.size} gefunden" }
+                // Neuere Versionen dürfen Felder anhängen; gelesen wird, was diese Version kennt.
+                require(f.size >= FIELDS_V1) { "$FIELDS Felder erwartet, ${f.size} gefunden" }
                 AlarmSpec(
                     id = unescape(f[0]),
                     hour = f[1].toInt(),
@@ -68,16 +83,14 @@ object Codec {
                     }.toSet(),
                     windowMinutes = f[4].toInt(),
                     enabled = f[5] == "1",
-                    phone = PhoneAlert.valueOf(f[6]),
+                    phone = PhoneAlert.entries.firstOrNull { it.name == f[6] } ?: PhoneAlert.SOUND,
                     watchSound = f[7] == "1",
                     sleepDurationMinutes = f[8].ifEmpty { null }?.toInt(),
                     sound = unescape(f[9]),
                     label = unescape(f[10]),
-                    sunrise = if (f.size > FIELDS_V1) Sunrise.valueOf(f[11]) else Sunrise.OFF,
+                    sunrise = if (f.size > FIELDS_V1) Sunrise.entries.firstOrNull { it.name == f[11] } ?: Sunrise.OFF else Sunrise.OFF,
                 )
             }
-        }
-    }
 
     fun encodeNight(night: NightRecord): String = buildString {
         append(NIGHT_HEADER).append('\n')

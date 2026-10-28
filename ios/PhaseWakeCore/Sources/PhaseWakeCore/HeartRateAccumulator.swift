@@ -11,7 +11,7 @@ public final class HeartRateAccumulator {
 
     /// Nimmt einen Pulswert auf. Unplausible Werte (≤ 0 oder > 250) werden ignoriert.
     public func add(bpm: Double) {
-        if bpm.isNaN || bpm <= 0 || bpm > Self.maxPlausibleBpm { return }
+        if !bpm.isFinite || bpm <= 0 || bpm > Self.maxPlausibleBpm { return }
         sum += bpm
         count += 1
     }

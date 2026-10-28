@@ -52,6 +52,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,21 +85,23 @@ fun EditorScreen(
     onDelete: (AlarmSpec) -> Unit,
 ) {
     val context = LocalContext.current
-    val base = existing ?: AlarmSpec(id = UUID.randomUUID().toString(), hour = 7, minute = 0, days = WEEKDAYS)
+    // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
+    val newId = rememberSaveable { UUID.randomUUID().toString() }
+    val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS)
     val time = rememberTimePickerState(base.hour, base.minute, is24Hour = DateFormat.is24HourFormat(context))
-    var window by remember { mutableFloatStateOf(base.windowMinutes.toFloat()) }
-    var days by remember { mutableStateOf(base.days) }
-    var sleepMode by remember { mutableStateOf(base.sleepDurationMinutes != null) }
-    var sleepMinutes by remember { mutableFloatStateOf((base.sleepDurationMinutes ?: 450).toFloat()) }
-    var phone by remember { mutableStateOf(base.phone) }
-    var watchSound by remember { mutableStateOf(base.watchSound) }
-    var sound by remember { mutableStateOf(base.sound) }
-    var sunrise by remember { mutableStateOf(base.sunrise) }
+    var window by rememberSaveable { mutableFloatStateOf(base.windowMinutes.toFloat()) }
+    var days by rememberSaveable(stateSaver = DaysSaver) { mutableStateOf(base.days) }
+    var sleepMode by rememberSaveable { mutableStateOf(base.sleepDurationMinutes != null) }
+    var sleepMinutes by rememberSaveable { mutableFloatStateOf((base.sleepDurationMinutes ?: 450).toFloat()) }
+    var phone by rememberSaveable { mutableStateOf(base.phone) }
+    var watchSound by rememberSaveable { mutableStateOf(base.watchSound) }
+    var sound by rememberSaveable { mutableStateOf(base.sound) }
+    var sunrise by rememberSaveable { mutableStateOf(base.sunrise) }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
         if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
     }
-    var label by remember { mutableStateOf(base.label) }
+    var label by rememberSaveable { mutableStateOf(base.label) }
 
     fun result() = base.copy(
         hour = time.hour,
@@ -116,7 +119,7 @@ fun EditorScreen(
 
     Column(Modifier.fillMaxSize().imePadding()) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = null) }
+            IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
             Text(
                 stringResource(if (existing == null) R.string.editor_new else R.string.editor_edit),
                 style = MaterialTheme.typography.titleLarge,
@@ -347,3 +350,9 @@ private fun Section(content: @Composable androidx.compose.foundation.layout.Colu
         Column(Modifier.padding(16.dp), content = content)
     }
 }
+
+/** Wochentage als Zahlen speichern (1 = Montag), damit sie Drehen und Neuaufbau überstehen. */
+private val DaysSaver = androidx.compose.runtime.saveable.Saver<Set<DayOfWeek>, ArrayList<Int>>(
+    save = { days -> ArrayList(days.map { it.value }) },
+    restore = { values -> values.map(DayOfWeek::of).toSet() },
+)

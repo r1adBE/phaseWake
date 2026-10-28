@@ -63,10 +63,14 @@ final class CodecTests: XCTestCase {
 
     func testBrokenInput() {
         XCTAssertThrowsError(try Codec.decodeAlarms(""))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0|||"))
+        // Kaputte Zeilen fallen einzeln weg (wie Kotlin).
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"), [])
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"), [])
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nx|6"), [])
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map(\.id), ["b"])
+        let newer = try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0||||MOON|extra\n")
+        XCTAssertEqual(newer.first?.phone, .sound)
+        XCTAssertEqual(newer.first?.sunrise, .off)
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
     }

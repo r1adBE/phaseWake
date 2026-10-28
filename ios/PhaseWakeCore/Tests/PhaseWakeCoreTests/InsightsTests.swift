@@ -107,3 +107,30 @@ final class MissHintTests: XCTestCase {
         XCTAssertEqual(MissHint.of(spec, nights: [night(0, motion: nil), night(1, motion: nil), night(2, hr: nil)]), .gaps)
     }
 }
+
+/// Gleiche Fälle wie `RobustnessTest` (Kotlin).
+final class RobustnessTests: XCTestCase {
+    func testInvalidSamplesAreIgnored() {
+        let motion = MotionEnergyAccumulator(minDiffs: 1)
+        motion.add(timestampNanos: 0, x: 0, y: 0, z: 9.81)
+        motion.add(timestampNanos: 40_000_000, x: .nan, y: 0, z: 9.81)
+        motion.add(timestampNanos: 80_000_000, x: 0, y: .infinity, z: 9.81)
+        motion.add(timestampNanos: 120_000_000, x: 0.2, y: 0, z: 9.81)
+        XCTAssertEqual(motion.closeEpoch()!, 0.15, accuracy: 1e-9)
+
+        let hr = HeartRateAccumulator()
+        hr.add(bpm: .nan)
+        hr.add(bpm: .infinity)
+        hr.add(bpm: 60)
+        XCTAssertEqual(hr.closeEpoch(), 60)
+    }
+
+    func testTimeJumpDoesNotProduceEndlessEpochs() {
+        let a = EpochAssembler(startNanos: 0)
+        let tooLate = (EpochAssembler.maxEpochs + 1) * 30_000_000_000
+        XCTAssertEqual(a.addMotion(timestampNanos: tooLate, x: 0, y: 0, z: 9.81), [])
+        XCTAssertEqual(a.advance(nowNanos: tooLate, graceNanos: 0), [])
+        XCTAssertEqual(a.currentIndex, 0)
+        XCTAssertEqual(a.advance(nowNanos: 3 * 30_000_000_000, graceNanos: 0).count, 3)
+    }
+}

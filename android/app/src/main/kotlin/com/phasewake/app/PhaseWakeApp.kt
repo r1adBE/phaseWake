@@ -10,6 +10,8 @@ import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import java.io.File
+import android.util.Log
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -18,7 +20,12 @@ import kotlinx.coroutines.launch
 /** Einstieg der Handy-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). */
 class PhaseWakeApp : Application() {
 
-    val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    val appScope = CoroutineScope(
+        SupervisorJob() + Dispatchers.Default + CoroutineExceptionHandler { _, e ->
+            // Ein Fehler in einer Hintergrundarbeit darf den Prozess (und einen klingelnden Wecker) nicht beenden.
+            Log.e("PhaseWakeApp", "Hintergrundarbeit fehlgeschlagen", e)
+        },
+    )
 
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }

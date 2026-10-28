@@ -10,7 +10,7 @@ Diese Datei ist die verbindliche Regel. Android (`android/core/`, Kotlin) und Ap
 
 ## 1. Bewegung pro Epoche
 
-Eingang: Beschleunigungswerte (x, y, z in m/s², Zeitstempel in Nanosekunden).
+Eingang: Beschleunigungswerte (x, y, z in m/s², Zeitstempel in Nanosekunden). Werte mit einer ungültigen Komponente (NaN, unendlich) werden verworfen und sind auch kein Bezugspunkt.
 
 1. **Takt begrenzen**: Ein Wert wird nur übernommen, wenn seit dem zuletzt übernommenen mindestens 35 ms vergangen sind. So messen beide Plattformen mit höchstens rund 28 Hz, auch wenn der Sensor schneller liefert.
 2. **Differenz**: Für jeden übernommenen Wert (ausser dem allerersten) wird der Abstand zum vorherigen übernommenen Wert berechnet: `d = √((x−x₀)² + (y−y₀)² + (z−z₀)²)`. Liegen zwischen den beiden Werten mehr als 1 s, wird diese Differenz verworfen (Sensorlücke).
@@ -22,7 +22,7 @@ Der letzte übernommene Wert bleibt über das Epochenende hinaus Bezugspunkt fü
 
 ## 2. Puls pro Epoche
 
-Mittelwert aller Pulswerte der Epoche. Werte ≤ 0 oder > 250 werden ignoriert. Kein gültiger Wert → Puls leer.
+Mittelwert aller Pulswerte der Epoche. Werte ≤ 0, > 250 oder ungültig (NaN, unendlich) werden ignoriert. Kein gültiger Wert → Puls leer.
 
 ## 3. Entscheidung je Epoche
 
@@ -91,6 +91,6 @@ Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr
 Sensorwerte werden über ihren eigenen Zeitstempel (monotone Uhr) einer Epoche zugeordnet, nicht über den Zeitpunkt, an dem sie bei der App ankommen. So darf der Sensor Werte gebündelt liefern.
 
 - Epoche *k* umfasst die Zeitstempel von Fensterbeginn + *k*·30 s (einschliesslich) bis Fensterbeginn + (*k*+1)·30 s (ausschliesslich).
-- Werte vor dem Fensterbeginn und Werte für eine bereits abgeschlossene Epoche werden verworfen.
+- Werte vor dem Fensterbeginn, Werte für eine bereits abgeschlossene Epoche und Werte mehr als 24 Stunden (2880 Epochen) nach Fensterbeginn (Zeitsprung der Sensoruhr) werden verworfen.
 - Ein Wert für eine spätere Epoche schliesst die laufende und alle dazwischen liegenden ab; dazwischen liegende Epochen ohne Werte sind leer.
 - Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende länger als die Bündelungs-Verzögerung plus 2 s zurückliegt.

@@ -1,6 +1,8 @@
 package com.phasewake.app.wear.ui
 
 import android.Manifest
+import com.phasewake.app.wear.wake.RingUi
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -108,10 +110,18 @@ private fun HomeScreen() {
     LifecycleResumeEffect(Unit) {
         dndBlocks = DoNotDisturb.blocksAlarms(context)
         missingPermissions = missing()
+        // Neu planen meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
+        app.appScope.launch { app.scheduler.reschedule() }
         onPauseOrDispose { }
     }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         missingPermissions = missing()
+        app.appScope.launch { app.scheduler.reschedule() }
+    }
+    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen aus): beim Öffnen zeigen.
+    val ring by app.ringState.ui.collectAsStateWithLifecycle()
+    LaunchedEffect(ring) {
+        if (ring is RingUi.Ringing) context.startActivity(Intent(context, RingActivity::class.java))
     }
 
     HomeContent(

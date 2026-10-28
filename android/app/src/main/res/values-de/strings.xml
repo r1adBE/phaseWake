@@ -170,4 +170,11 @@
     <string name="hint_gaps">Die Messung hatte Lücken. War die Uhr nachts am Laden oder abgelegt?</string>
     <string name="hint_heart">Der Puls fehlte. Trag die Uhr nachts etwas enger.</string>
     <string name="hint_calm">Die Messung war vollständig – du hast einfach ruhig geschlafen. Phase Wake weckt dich dann zuverlässig zur Zielzeit.</string>
+    <string name="check_dnd_blocked">«Nicht stören» blockiert Wecker</string>
+    <string name="check_dnd_unknown">«Nicht stören» ist an</string>
+    <string name="check_dnd_unknown_problem">Android verrät Apps nicht, ob Wecker durchkommen. Prüfe, ob Wecker bei «Nicht stören» erlaubt sind.</string>
+    <string name="check_watch_setup">Phase Wake auf der Uhr</string>
+    <string name="check_watch_setup_problem">Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen.</string>
+    <string name="ring_hold_to_stop">Halten zum Stoppen</string>
+    <string name="settings_privacy">Datenschutzerklärung</string>
 </resources>

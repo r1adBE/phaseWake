@@ -12,6 +12,20 @@ import android.provider.Settings
  */
 object DoNotDisturb {
 
+    /** Ob Wecker bei «Nicht stören» durchkommen – oder ob sich das ohne Sonderrecht nicht sagen lässt. */
+    enum class Alarms { ALLOWED, BLOCKED, UNKNOWN }
+
+    fun alarms(context: Context): Alarms {
+        val manager = context.getSystemService(NotificationManager::class.java)
+        return when (manager.currentInterruptionFilter) {
+            NotificationManager.INTERRUPTION_FILTER_NONE -> Alarms.BLOCKED
+            NotificationManager.INTERRUPTION_FILTER_PRIORITY -> runCatching {
+                if (manager.notificationPolicy.priorityCategories and NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS == 0) Alarms.BLOCKED else Alarms.ALLOWED
+            }.getOrDefault(Alarms.UNKNOWN)
+            else -> Alarms.ALLOWED
+        }
+    }
+
     fun blocksAlarms(context: Context): Boolean {
         val manager = context.getSystemService(NotificationManager::class.java)
         return when (manager.currentInterruptionFilter) {

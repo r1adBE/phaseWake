@@ -87,8 +87,13 @@
             </intent-filter>
         </service>
 
+        <!-- Eigene Alarme (Zweitwecker, Sonnenaufgang, Schlummern): nicht von aussen auslösbar. -->
         <receiver
             android:name=".ring.BackupAlarm$Receiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".ring.BackupAlarm$SystemReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

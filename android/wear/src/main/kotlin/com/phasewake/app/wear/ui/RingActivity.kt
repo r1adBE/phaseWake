@@ -129,7 +129,7 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
             Spacer(Modifier.height(6.dp))
             when (ui) {
                 is RingUi.Ringing -> Ringing(ui, onSnooze)
-                is RingUi.Snoozed -> Snoozed(ui, onDismiss)
+                is RingUi.Snoozed -> Snoozed(ui)
                 RingUi.Idle -> Unit
             }
         }
@@ -171,17 +171,17 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit) {
 }
 
 @Composable
-private fun Snoozed(ui: RingUi.Snoozed, onDismiss: () -> Unit) {
+private fun Snoozed(ui: RingUi.Snoozed) {
     val until = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(ui.until.atZone(ZoneId.systemDefault()))
     Text(
         stringResource(R.string.ring_snoozed_until, until),
         style = MaterialTheme.typography.titleMedium,
         textAlign = TextAlign.Center,
     )
-    Spacer(Modifier.height(8.dp))
-    Button(
-        onClick = onDismiss,
-        colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon),
-        label = { Text(stringResource(R.string.ring_stop_now)) },
+    // Beenden auch hier nur durch Halten (Punkt oben): ein Tipp im Halbschlaf beendet nicht die Nacht.
+    Text(
+        stringResource(R.string.ring_hold_to_stop),
+        style = MaterialTheme.typography.labelSmall,
+        color = Brand.Muted,
     )
 }

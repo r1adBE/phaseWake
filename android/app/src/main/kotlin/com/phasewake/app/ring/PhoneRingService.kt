@@ -71,13 +71,15 @@ class PhoneRingService : Service() {
     }
 
     private fun start(alarmId: String?, fromWatch: Boolean) {
+        phoneApp.backup.cancelSnooze()
         ServiceCompat.startForeground(
             this, RingNotifications.ID_RING, RingNotifications.ringing(this),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
         )
         if (state.value is State.Ringing) return
+        if (state.value is State.Snoozed) state.value = State.Idle
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = Snooze.MAX_COUNT - snoozes)
-        if (fromWatch) phoneApp.appScope.launch { phoneApp.backup.watchIsRinging() }
+        if (fromWatch) phoneApp.appScope.launch { phoneApp.backup.watchHandled(alarmId) }
         startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         handler.postDelayed(timeout, TIMEOUT_MS)
         lastAlarmId = alarmId
@@ -113,13 +115,15 @@ class PhoneRingService : Service() {
             stopSelf()
         } else {
             state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - snoozes, sunrise = ringing.sunrise)
-            handler.postDelayed({ state.value = State.Idle; start(lastAlarmId, fromWatch = false) }, Snooze.MINUTES * 60_000L)
+            // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
+            phoneApp.backup.snoozeUntil(Snooze.nextRing(java.time.Instant.now()), lastAlarmId)
         }
     }
 
     private fun stop(notifyWatch: Boolean) {
         val wasFromWatch = (state.value as? State.Ringing)?.fromWatch == true
         release()
+        phoneApp.backup.cancelSnooze()
         SunriseLight.stop(this)
         state.value = State.Idle
         if (notifyWatch && wasFromWatch) {

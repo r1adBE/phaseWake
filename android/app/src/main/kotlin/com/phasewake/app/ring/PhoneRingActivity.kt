@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -124,11 +122,13 @@ internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSno
         Spacer(Modifier.height(48.dp))
         when (state) {
             is PhoneRingService.State.Ringing -> {
-                Button(
-                    onClick = onStop,
-                    colors = ButtonDefaults.buttonColors(containerColor = content, contentColor = if (content == Color.White) Night else Color.White),
+                HoldToStopButton(
+                    label = stringResource(R.string.ring_hold_to_stop),
+                    container = content,
+                    content = if (content == Color.White) Night else Color.White,
+                    onStop = onStop,
                     modifier = Modifier.fillMaxWidth().height(60.dp),
-                ) { Text(stringResource(R.string.ring_stop), style = MaterialTheme.typography.titleMedium) }
+                )
                 if (state.snoozesLeft > 0) {
                     Spacer(Modifier.height(12.dp))
                     OutlinedButton(onClick = onSnooze, border = BorderStroke(1.dp, content.copy(alpha = 0.5f)), modifier = Modifier.fillMaxWidth().height(56.dp)) {

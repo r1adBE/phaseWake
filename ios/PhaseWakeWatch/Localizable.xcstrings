@@ -4313,6 +4313,54 @@
         }
       }
     },
+    "check_dnd_blocked": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Nicht stören» blockiert Wecker"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do Not Disturb blocks alarms"
+          }
+        }
+      }
+    },
+    "check_dnd_unknown": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Nicht stören» ist an"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do Not Disturb is on"
+          }
+        }
+      }
+    },
+    "check_dnd_unknown_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android verrät Apps nicht, ob Wecker durchkommen. Prüfe, ob Wecker bei «Nicht stören» erlaubt sind."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android doesn’t tell apps whether alarms get through. Check that alarms are allowed in Do Not Disturb."
+          }
+        }
+      }
+    },
     "check_full_screen": {
       "localizations": {
         "ar": {
@@ -6661,6 +6709,38 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有 Apple Watch 與這支 iPhone 配對。"
+          }
+        }
+      }
+    },
+    "check_watch_setup": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake auf der Uhr"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake on the watch"
+          }
+        }
+      }
+    },
+    "check_watch_setup_problem": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake on the watch once and allow sensors and notifications."
           }
         }
       }
@@ -32533,6 +32613,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "GitHub 上的開放原始碼專案"
+          }
+        }
+      }
+    },
+    "settings_privacy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutzerklärung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy policy"
           }
         }
       }

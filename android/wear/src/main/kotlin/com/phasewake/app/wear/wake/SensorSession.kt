@@ -43,6 +43,13 @@ class SensorSession(
     private var heartRateRegistered = false
     private var running = false
 
+    /**
+     * Nachfrist bis zum Abschliessen einer Epoche = Bündelungs-Verzögerung + 2 s (Regel, Abschnitt 7).
+     * Im Stromsparmodus liefert der Sensor bis zu 5 Minuten gesammelt; früher abschliessen hiesse
+     * diese Werte verwerfen.
+     */
+    private val graceNanos = ((if (lowPower) LOW_POWER_LATENCY_US else MAX_LATENCY_US).toLong() + GRACE_EXTRA_US) * 1_000L
+
     private val motionListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent) {
             val v = event.values
@@ -67,7 +74,7 @@ class SensorSession(
     /** Schliesst Epochen ab, auch wenn der Sensor schweigt (Abschnitt 7 der Regel). */
     private val ticker = object : Runnable {
         override fun run() {
-            deliver(assembler.advance(nowNanos(), GRACE_NANOS))
+            deliver(assembler.advance(nowNanos(), graceNanos))
             handler.postDelayed(this, TICK_MILLIS)
         }
     }
@@ -122,6 +129,6 @@ class SensorSession(
         const val MAX_LATENCY_US = 10_000_000
         const val LOW_POWER_LATENCY_US = 300_000_000
         const val TICK_MILLIS = 10_000L
-        const val GRACE_NANOS = 12_000_000_000L
+        const val GRACE_EXTRA_US = 2_000_000L
     }
 }

@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <!-- Wecken ohne Messung (Sensorrechte fehlen): Vordergrund als Wecker-App. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -54,7 +56,7 @@
         <service
             android:name=".wake.WakeService"
             android:exported="false"
-            android:foregroundServiceType="health" />
+            android:foregroundServiceType="health|systemExempted" />
 
         <service
             android:name=".sync.WatchListenerService"

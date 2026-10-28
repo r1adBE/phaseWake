@@ -50,8 +50,12 @@ class EpochAssembler(
         return closeUntil(index)
     }
 
-    private fun indexOf(timestampNanos: Long): Long? =
-        if (timestampNanos < startNanos) null else (timestampNanos - startNanos) / epochNanos
+    /** Index zum Zeitstempel; `null` vor Fensterbeginn und mehr als [MAX_EPOCHS] danach (Zeitsprung). */
+    private fun indexOf(timestampNanos: Long): Long? {
+        if (timestampNanos < startNanos) return null
+        val index = (timestampNanos - startNanos) / epochNanos
+        return if (index > MAX_EPOCHS) null else index
+    }
 
     private fun closeUntil(index: Long): List<Epoch> {
         if (index <= currentIndex) return emptyList()
@@ -63,7 +67,10 @@ class EpochAssembler(
         return closed
     }
 
-    private companion object {
-        const val MAX_BATCH = 1024L
+    companion object {
+        private const val MAX_BATCH = 1024L
+
+        /** 24 Stunden: Werte danach sind ein Zeitsprung der Sensoruhr, keine Messung (Abschnitt 7). */
+        const val MAX_EPOCHS: Long = 24L * 60 * 60 / DetectorConfig.EPOCH_SECONDS
     }
 }

@@ -15,15 +15,17 @@ import kotlinx.coroutines.runBlocking
 class WatchListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
-        val remote = dataEvents
-            .filter { it.type == DataEvent.TYPE_CHANGED && it.dataItem.uri.path == DataLayer.PATH_ALARMS }
-            .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it.dataItem).dataMap) }
+        val changed = dataEvents.filter { it.type == DataEvent.TYPE_CHANGED }.map { it.dataItem }
+        val remote = changed
+            .filter { it.uri.path == DataLayer.PATH_ALARMS }
+            .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.updatedAt }
-            ?: return
+        val clear = changed.any { it.uri.path == DataLayer.PATH_CLEAR_HISTORY }
         val app = wearApp
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
-            if (app.alarms.applyRemote(remote)) app.scheduler.reschedule()
+            if (clear) app.nights.clear()
+            if (remote != null && app.alarms.applyRemote(remote)) app.scheduler.reschedule()
         }
     }
 
@@ -31,7 +33,6 @@ class WatchListenerService : WearableListenerService() {
         when (event.path) {
             DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS)
             DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_SNOOZE)
-            DataLayer.PATH_CLEAR_HISTORY -> runBlocking { wearApp.nights.clear() }
         }
     }
 }

@@ -1,28 +1,48 @@
 package com.phasewake.app.wear.schedule
 
+import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.util.Log
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.wear.tiles.TileService
+import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.AlarmRepository
+import com.phasewake.app.shared.WearSync
+import com.phasewake.app.wear.complication.NextAlarmComplicationService
+import com.phasewake.app.wear.tile.NextAlarmTileService
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.wake.WakeService
 import java.time.Clock
+import java.time.Duration
 import java.time.Instant
+import kotlinx.coroutines.flow.first
 
 /**
- * Stellt den System-Alarm für den Beginn des nächsten Weckfensters.
+ * Stellt die System-Alarme für den nächsten Wecker.
  *
- * Es gibt immer höchstens einen geplanten Fensterbeginn: den frühesten aller aktiven Wecker.
- * Läuft das Fenster bereits (Wecker kurz vor der Zielzeit gestellt), startet die Messung sofort.
+ * Je Wecker zwei Alarme: Fensterbeginn (Messung startet) und Zielzeit (Sicherung). Die Sicherung
+ * steht schon beim Planen, nicht erst, wenn die Messung läuft – so weckt die Uhr auch dann zur
+ * Zielzeit, wenn der Messdienst nicht starten konnte (z. B. Sensorrechte fehlen).
  */
 class AlarmScheduler(
     private val context: Context,
     private val alarms: AlarmRepository,
     private val onsetOverride: OnsetOverride,
+    private val store: DataStore<Preferences>,
+    private val sync: WearSync,
     private val clock: Clock = Clock.systemDefaultZone(),
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
@@ -30,22 +50,39 @@ class AlarmScheduler(
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
     suspend fun reschedule(): WakePlan? {
         val now = clock.instant()
-        val plan = onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, now, clock.zone), now)
-        cancelWindow()
+        // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
+        val done = Instant.ofEpochMilli(store.data.first()[DONE_UNTIL] ?: 0L)
+        val from = maxOf(now, done)
+        val plan = onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, from, clock.zone), now)
+
+        // Läuft eine Messung für einen Plan, der nicht mehr gilt (Wecker aus, gelöscht, verschoben): beenden.
+        WakeService.measuringPlan?.let { running ->
+            if (running != plan) WakeService.command(context, WakeService.ACTION_CANCEL)
+        }
+
+        cancel(REQUEST_WINDOW, AlarmReceiver.ACTION_WINDOW_START)
+        cancel(REQUEST_DEADLINE, AlarmReceiver.ACTION_DEADLINE)
+        refreshSurfaces()
+        sync.publishWatchReady(isReady())
         if (plan == null) {
             Log.i(TAG, "Kein aktiver Wecker")
             return null
         }
-        if (!plan.windowStart.isAfter(now)) {
-            WakeService.start(context, plan)
-        } else {
-            setAlarmClock(plan.windowStart, windowIntent(plan))
-            Log.i(TAG, "Fenster geplant: ${plan.windowStart} bis ${plan.target}")
-        }
+        setDeadline(plan)
+        // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
+        // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
+        val start = maxOf(plan.windowStart, now.plus(IMMEDIATE))
+        setAlarmClock(start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
+        Log.i(TAG, "Geplant: Fenster ${plan.windowStart} bis ${plan.target}")
         return plan
     }
 
-    /** Sicherungs-Alarm für die Zielzeit, falls der Messdienst unterwegs beendet wird. */
+    /** Merkt, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch einmal. */
+    suspend fun markDone(target: Instant) {
+        store.edit { it[DONE_UNTIL] = target.toEpochMilli() }
+    }
+
+    /** Sicherungs-Alarm zur Zielzeit. */
     fun setDeadline(plan: WakePlan) =
         setAlarmClock(plan.target, AlarmReceiver.pending(context, AlarmReceiver.ACTION_DEADLINE, plan, REQUEST_DEADLINE))
 
@@ -54,20 +91,32 @@ class AlarmScheduler(
         setAlarmClock(at, AlarmReceiver.pending(context, AlarmReceiver.ACTION_SNOOZE_END, plan, REQUEST_SNOOZE))
 
     fun cancelDeadlineAndSnooze() {
-        alarmManager.cancel(AlarmReceiver.pending(context, AlarmReceiver.ACTION_DEADLINE, null, REQUEST_DEADLINE))
-        alarmManager.cancel(AlarmReceiver.pending(context, AlarmReceiver.ACTION_SNOOZE_END, null, REQUEST_SNOOZE))
+        cancel(REQUEST_DEADLINE, AlarmReceiver.ACTION_DEADLINE)
+        cancel(REQUEST_SNOOZE, AlarmReceiver.ACTION_SNOOZE_END)
     }
 
-    private fun cancelWindow() =
-        alarmManager.cancel(AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, null, REQUEST_WINDOW))
+    /** Sind die Rechte erteilt, die Messen und Wecken brauchen? Fürs Handy und die Startseite. */
+    fun isReady(): Boolean {
+        val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
+        return sensors && NotificationManagerCompat.from(context).areNotificationsEnabled()
+    }
 
-    private fun windowIntent(plan: WakePlan) =
-        AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW)
+    /** Kachel und Komplikation sofort aktualisieren, nicht erst beim nächsten Abruf des Systems. */
+    private fun refreshSurfaces() {
+        runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
+        runCatching {
+            ComplicationDataSourceUpdateRequester
+                .create(context, ComponentName(context, NextAlarmComplicationService::class.java))
+                .requestUpdateAll()
+        }
+    }
+
+    private fun cancel(requestCode: Int, action: String) =
+        alarmManager.cancel(AlarmReceiver.pending(context, action, null, requestCode))
 
     /**
      * `setAlarmClock` statt `setExact`: Das System behandelt es als Wecker (zeigt ihn an, weckt aus
-     * dem Ruhezustand und erlaubt den Start des Messdienstes aus dem Hintergrund). Als nächster
-     * Wecker erscheint der Fensterbeginn, also die früheste mögliche Weckzeit.
+     * dem Ruhezustand und erlaubt den Start des Messdienstes aus dem Hintergrund).
      */
     private fun setAlarmClock(at: Instant, operation: PendingIntent) {
         val show = PendingIntent.getActivity(
@@ -77,11 +126,20 @@ class AlarmScheduler(
         alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
     }
 
-    private companion object {
-        const val TAG = "AlarmScheduler"
-        const val REQUEST_WINDOW = 1
-        const val REQUEST_DEADLINE = 2
-        const val REQUEST_SNOOZE = 3
-        const val REQUEST_SHOW = 4
+    companion object {
+        private const val TAG = "AlarmScheduler"
+        private const val REQUEST_WINDOW = 1
+        private const val REQUEST_DEADLINE = 2
+        private const val REQUEST_SNOOZE = 3
+        private const val REQUEST_SHOW = 4
+        private val IMMEDIATE: Duration = Duration.ofSeconds(1)
+        private val DONE_UNTIL = longPreferencesKey("night_done_until")
+
+        /** Eine davon genügt für den Messdienst (Typ «health»). */
+        val SENSOR_PERMISSIONS: List<String> = buildList {
+            if (Build.VERSION.SDK_INT >= 36) add("android.permission.health.READ_HEART_RATE")
+            add(Manifest.permission.BODY_SENSORS)
+            add(Manifest.permission.ACTIVITY_RECOGNITION)
+        }
     }
 }

@@ -17,8 +17,18 @@ object DataLayer {
     /** Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. */
     const val PATH_SNOOZE = "/phasewake/snooze"
 
-    /** Nachricht Handy → Uhr: Verlauf auf Wunsch des Nutzers löschen. */
+    /**
+     * Datenpaket Handy → Uhr: Verlauf auf Wunsch des Nutzers löschen; Schlüssel [KEY_UPDATED_AT].
+     * Ein Paket statt einer Nachricht, damit es auch eine gerade nicht erreichbare Uhr erreicht.
+     */
     const val PATH_CLEAR_HISTORY = "/phasewake/clear-history"
+
+    /**
+     * Datenpaket Uhr → Handy: Ist die Uhr bereit für die Nacht (Sensoren, Mitteilungen erlaubt)?
+     * Schlüssel [KEY_READY], [KEY_UPDATED_AT]. Der Nacht-Check am Handy zeigt es an.
+     */
+    const val PATH_WATCH_STATUS = "/phasewake/watch-status"
+    const val KEY_READY = "ready"
 
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"

@@ -43,11 +43,15 @@ import com.phasewake.app.shared.DoNotDisturb
  * Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Jede Prüfung hat einen Text
  * und – wenn der Nutzer etwas tun kann – einen Knopf, der direkt zur richtigen Einstellung führt.
  */
-enum class Check(val title: Int, val problem: Int, val action: Int?) {
+enum class Check(val title: Int, val problem: Int, val action: Int?, val problemTitle: Int = title, val inReadyList: Boolean = true) {
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
+    WATCH_SETUP(R.string.check_watch_setup, R.string.check_watch_setup_problem, null),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
-    DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action),
+    DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
+
+    /** «Nicht stören» ist an, aber ohne Sonderrecht nicht lesbar, ob Wecker durchkommen: ehrlich sagen. */
+    DND_UNKNOWN(R.string.check_dnd, R.string.check_dnd_unknown_problem, R.string.dnd_action, problemTitle = R.string.check_dnd_unknown, inReadyList = false),
     BATTERY(R.string.check_battery, R.string.check_battery_problem, null),
 }
 
@@ -60,14 +64,18 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         const val LOW_BATTERY_PERCENT = 20
 
         /** Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable]. */
-        fun collect(context: Context, watchReachable: Boolean): NightCheckState = NightCheckState(
+        fun collect(context: Context, watchReachable: Boolean, watchReady: Boolean?): NightCheckState = NightCheckState(
             buildList {
-                if (!watchReachable) add(Check.WATCH)
+                if (!watchReachable) add(Check.WATCH) else if (watchReady == false) add(Check.WATCH_SETUP)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
                     !context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
                 ) add(Check.FULL_SCREEN)
-                if (DoNotDisturb.blocksAlarms(context)) add(Check.DND)
+                when (DoNotDisturb.alarms(context)) {
+                    DoNotDisturb.Alarms.BLOCKED -> add(Check.DND)
+                    DoNotDisturb.Alarms.UNKNOWN -> add(Check.DND_UNKNOWN)
+                    DoNotDisturb.Alarms.ALLOWED -> Unit
+                }
                 if (lowBattery(context)) add(Check.BATTERY)
             },
         )
@@ -125,7 +133,7 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
             }
             AnimatedVisibility(ready && expanded) {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Check.entries.forEach { check ->
+                    Check.entries.filter { it.inReadyList }.forEach { check ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(painterResource(R.drawable.ic_check), contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
                             Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(start = 8.dp))
@@ -136,7 +144,7 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
             state.failed.forEach { check ->
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
-                    Text(stringResource(check.title), style = MaterialTheme.typography.labelLarge)
+                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.labelLarge)
                     val problem = if (check == Check.BATTERY) {
                         stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
                     } else {

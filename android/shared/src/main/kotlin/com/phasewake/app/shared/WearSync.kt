@@ -5,7 +5,10 @@ import android.util.Log
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.NightRecord
 import com.google.android.gms.common.api.ApiException
+import android.net.Uri
 import com.google.android.gms.wearable.CapabilityClient
+import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.DataMap
 import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.Wearable
@@ -37,6 +40,47 @@ class WearSync(context: Context) {
         }
         dataClient.putDataItem(request.asPutDataRequest()).await()
     }
+
+    /** Uhr: meldet, ob sie für die Nacht bereit ist (Berechtigungen erteilt). */
+    suspend fun publishWatchReady(ready: Boolean) = guarded("Status senden") {
+        val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
+            dataMap.putBoolean(DataLayer.KEY_READY, ready)
+        }
+        dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+    }
+
+    /** Handy: zuletzt gemeldeter Status der Uhr; `null`, wenn sie noch nie etwas gemeldet hat. */
+    suspend fun watchReady(): Boolean? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        try {
+            items.firstOrNull()?.let { DataMapItem.fromDataItem(it).dataMap.getBoolean(DataLayer.KEY_READY) }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: Verlauf überall löschen – auch auf einer Uhr, die gerade nicht verbunden ist. */
+    suspend fun clearHistoryEverywhere() = guarded("Verlauf löschen") {
+        val request = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
+        }
+        dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+        deleteNights()
+    }
+
+    /** Entfernt alle Nacht-Pakete aus dem Data Layer (Datensparsamkeit: lokal liegt der Verlauf ohnehin). */
+    suspend fun deleteNights() = guarded("Nacht-Pakete entfernen") {
+        dataClient.deleteDataItems(
+            Uri.Builder().scheme("wear").path(DataLayer.PATH_NIGHT_PREFIX).build(),
+            DataClient.FILTER_PREFIX,
+        ).await()
+    }
+
+    /** Entfernt ein empfangenes Paket, sobald es lokal gespeichert ist. */
+    suspend fun delete(uri: Uri) = guarded("Paket entfernen") { dataClient.deleteDataItems(uri).await() }
 
     /** Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. */
     suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) = guarded("Nachricht $path") {

@@ -39,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.animation.core.tween
@@ -328,7 +329,9 @@ private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, 
                 }
                 Text(details.joinToString(" · "), style = MaterialTheme.typography.bodySmall, color = muted)
             }
-            Switch(checked = alarm.enabled, onCheckedChange = onToggle)
+            // Der Schalter nennt den Wecker, den er schaltet (Bildschirmleser).
+            val switchLabel = Format.window(alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
+            Switch(checked = alarm.enabled, onCheckedChange = onToggle, modifier = Modifier.semantics { contentDescription = switchLabel })
         }
     }
 }

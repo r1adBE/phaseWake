@@ -2,6 +2,8 @@
 /// Identisch zu `EpochAssembler` in `android/core`.
 public final class EpochAssembler {
     private static let maxBatch: Int64 = 1024
+    /// 24 Stunden: Werte danach sind ein Zeitsprung der Sensoruhr, keine Messung (Abschnitt 7).
+    public static let maxEpochs: Int64 = 24 * 60 * 60 / Int64(DetectorConfig.epochSeconds)
 
     private let startNanos: Int64
     private let epochNanos: Int64
@@ -43,8 +45,11 @@ public final class EpochAssembler {
         return closeUntil(index)
     }
 
+    /// Index zum Zeitstempel; `nil` vor Fensterbeginn und mehr als `maxEpochs` danach (Zeitsprung).
     private func indexOf(_ timestampNanos: Int64) -> Int64? {
-        timestampNanos < startNanos ? nil : (timestampNanos - startNanos) / epochNanos
+        guard timestampNanos >= startNanos else { return nil }
+        let index = (timestampNanos - startNanos) / epochNanos
+        return index > Self.maxEpochs ? nil : index
     }
 
     private func closeUntil(_ index: Int64) -> [Epoch] {

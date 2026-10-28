@@ -35,6 +35,8 @@ class MotionEnergyAccumulator(
      * @param z Beschleunigung in m/s².
      */
     fun add(timestampNanos: Long, x: Double, y: Double, z: Double) {
+        // Ungültige Messwerte (NaN, unendlich) zählen nicht und werden nicht Bezugspunkt.
+        if (!x.isFinite() || !y.isFinite() || !z.isFinite()) return
         if (hasLast) {
             val dt = timestampNanos - lastTimestamp
             // Zu dicht (oder rückwärts): verwerfen, damit beide Plattformen im selben Takt messen.

@@ -44,6 +44,8 @@ public final class MotionEnergyAccumulator {
     ///   - y: Beschleunigung in m/s².
     ///   - z: Beschleunigung in m/s².
     public func add(timestampNanos: Int64, x: Double, y: Double, z: Double) {
+        // Ungültige Messwerte (NaN, unendlich) zählen nicht und werden nicht Bezugspunkt.
+        guard x.isFinite, y.isFinite, z.isFinite else { return }
         if hasLast {
             let dt = timestampNanos - lastTimestamp
             // Zu dicht (oder rückwärts): verwerfen, damit beide Plattformen im selben Takt messen.

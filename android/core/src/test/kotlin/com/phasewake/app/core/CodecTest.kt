@@ -43,6 +43,13 @@ class CodecTest {
     }
 
     @Test
+    fun unknownValuesFromNewerVersionsFallBackToDefaults() {
+        val read = Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0||||MOON|extra\n").single()
+        assertEquals(PhoneAlert.SOUND, read.phone)
+        assertEquals(Sunrise.OFF, read.sunrise)
+    }
+
+    @Test
     fun nightWithFeelingAndOlderFormat() {
         val text = "phasewake-night 1\na|0|1800000|1080000|DEADLINE|0\n0.0;52.0\n"
         val old = Codec.decodeNight(text)
@@ -71,10 +78,11 @@ class CodecTest {
     @Test
     fun brokenInputIsReported() {
         assertFailsWith<CodecException> { Codec.decodeAlarms("") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0|||") }
+        // Kaputte Zeilen fallen einzeln weg, statt alle Wecker mitzunehmen.
+        assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"))
+        assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"))
+        assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
+        assertEquals(listOf("b"), Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map { it.id })
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-alarms 1\n") }
     }
