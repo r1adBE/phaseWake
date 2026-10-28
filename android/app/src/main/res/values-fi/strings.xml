@@ -331,4 +331,23 @@
     <string name="wake_task_wrong">Ei aivan – tässä uusi.</string>
     <string name="wake_task_delete">Poista numero</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Kaaviot</string>
+    <string name="chart_bars_title">Uniajat</string>
+    <string name="chart_durations_title">Uni öittäin</string>
+    <string name="chart_wake_title">Herätyshetki ikkunassa</string>
+    <string name="chart_stages_title">Yön univaiheet</string>
+    <string name="chart_feeling_title">Olo</string>
+    <string name="chart_nights_7">7 yötä</string>
+    <string name="chart_nights_14">14 yötä</string>
+    <string name="chart_bedtime">Nukkumaanmeno %1$s</string>
+    <string name="chart_goal">Tavoite %1$s</string>
+    <string name="chart_wake_target">Tavoiteaikana</string>
+    <string name="chart_wake_late">Tavoiteajan jälkeen</string>
+    <string name="chart_stage_awake">Hereillä</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Kevyt</string>
+    <string name="chart_stage_deep">Syvä</string>
+    <string name="chart_window">Herätysikkuna</string>
+    <string name="chart_no_data">ei tietoja</string>
+    <string name="chart_feeling_hint">Napauta pistettä nähdäksesi yön muistiinpanot.</string>
 </resources>

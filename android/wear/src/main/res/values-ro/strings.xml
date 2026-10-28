@@ -48,4 +48,17 @@
     <string name="home_good_night_too_far">Disponibil cu 16 h înainte de alarmă</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Rezolvă calculul pe telefon sau ține apăsat 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarmă nouă</string>
+    <string name="editor_new">Alarmă nouă</string>
+    <string name="editor_edit">Editează alarma</string>
+    <string name="editor_target">Trezește-mă până la</string>
+    <string name="editor_latest">Cel târziu</string>
+    <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_days">Repetă</string>
+    <string name="editor_save">Salvează</string>
+    <string name="editor_delete">Șterge alarma</string>
+    <string name="editor_delete_title">Ștergi această alarmă?</string>
+    <string name="home_max_alarms">Maximum %1$d alarme – șterge una ca să adaugi una nouă.</string>
+    <string name="editor_enabled">Alarmă activată</string>
 </resources>

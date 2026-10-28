@@ -81,6 +81,21 @@ class SleepSoundsTest {
     }
 
     @Test
+    fun recordingsPlayLouderWithoutClipping() {
+        // Aufnahmen +6 dB (Faktor ≈ 2), erzeugte Klänge unverändert.
+        for (sound in SleepSound.entries) {
+            assertEquals(if (sound.recorded) 6.0 else 0.0, sound.gainDb, sound.name)
+            assertEquals(if (sound.recorded) 1.9952623f else 1f, sound.gain, sound.name)
+        }
+        assertEquals(0.4f, SleepSounds.amplify(0.2f, 2f))
+        assertEquals(-0.4f, SleepSounds.amplify(-0.2f, 2f))
+        // Laute Stellen werden begrenzt, nie über −0,5 dBFS.
+        assertEquals(SleepSounds.CEILING, SleepSounds.amplify(0.9f, SleepSound.RAIN.gain))
+        assertEquals(-SleepSounds.CEILING, SleepSounds.amplify(-1f, SleepSound.RAIN.gain))
+        assertEquals(0.3f, SleepSounds.amplify(0.3f, SleepSound.PINK.gain))
+    }
+
+    @Test
     fun fadesAndStop() {
         assertEquals(0f, SleepSounds.gain(0, null))
         assertTrue(abs(SleepSounds.gain(1_500, null) - 0.5f) < 1e-6f)

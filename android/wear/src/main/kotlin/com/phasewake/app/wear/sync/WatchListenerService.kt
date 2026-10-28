@@ -23,11 +23,19 @@ class WatchListenerService : WearableListenerService() {
             .filter { it.uri.path == DataLayer.PATH_ALARMS }
             .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.updatedAt }
-        val clear = changed.any { it.uri.path == DataLayer.PATH_CLEAR_HISTORY }
+        val clearedAt = changed
+            .filter { it.uri.path == DataLayer.PATH_CLEAR_HISTORY }
+            .maxOfOrNull { DataMapItem.fromDataItem(it).dataMap.getLong(DataLayer.KEY_UPDATED_AT) }
         val app = wearApp
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
-            if (clear) app.nights.clear()
+            // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
+            // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
+            when {
+                clearedAt == null -> Unit
+                clearedAt > 0 -> PhoneCatchUp.applyClear(app, clearedAt)
+                else -> app.nights.clear()
+            }
             if (remote != null && app.alarms.applyRemote(remote)) app.scheduler.reschedule()
         }
     }

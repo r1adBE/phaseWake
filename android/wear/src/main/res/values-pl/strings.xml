@@ -49,4 +49,17 @@
     <string name="home_good_night_too_far">Dostępne od 16 godz. przed budzikiem</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Rozwiąż zadanie na telefonie lub przytrzymaj 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nowy budzik</string>
+    <string name="editor_new">Nowy budzik</string>
+    <string name="editor_edit">Edytuj budzik</string>
+    <string name="editor_target">Obudź mnie do</string>
+    <string name="editor_latest">Najpóźniej</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_days">Powtarzaj</string>
+    <string name="editor_save">Zapisz</string>
+    <string name="editor_delete">Usuń budzik</string>
+    <string name="editor_delete_title">Usunąć ten budzik?</string>
+    <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
+    <string name="editor_enabled">Budzik włączony</string>
 </resources>

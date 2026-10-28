@@ -51,4 +51,17 @@
     <string name="home_good_night_too_far">متاح قبل المنبّه بـ 16 ساعة</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">حلّ العملية على الهاتف أو اضغط 5 ث</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">منبّه جديد</string>
+    <string name="editor_new">منبّه جديد</string>
+    <string name="editor_edit">تعديل المنبّه</string>
+    <string name="editor_target">أيقظني قبل</string>
+    <string name="editor_latest">بحدّ أقصى</string>
+    <string name="editor_window">النافذة: %1$d د</string>
+    <string name="editor_days">التكرار</string>
+    <string name="editor_save">حفظ</string>
+    <string name="editor_delete">حذف المنبّه</string>
+    <string name="editor_delete_title">حذف هذا المنبّه؟</string>
+    <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
+    <string name="editor_enabled">المنبّه مفعّل</string>
 </resources>

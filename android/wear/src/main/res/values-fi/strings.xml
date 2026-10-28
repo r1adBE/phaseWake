@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Käytettävissä 16 h ennen herätystä</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Ratkaise tehtävä puhelimessa tai pidä 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Uusi herätys</string>
+    <string name="editor_new">Uusi herätys</string>
+    <string name="editor_edit">Muokkaa herätystä</string>
+    <string name="editor_target">Herätä viimeistään</string>
+    <string name="editor_latest">Viimeistään</string>
+    <string name="editor_window">Aikaikkuna: %1$d min</string>
+    <string name="editor_days">Toista</string>
+    <string name="editor_save">Tallenna</string>
+    <string name="editor_delete">Poista herätys</string>
+    <string name="editor_delete_title">Poistetaanko tämä herätys?</string>
+    <string name="home_max_alarms">Enintään %1$d herätystä – poista yksi lisätäksesi uuden.</string>
+    <string name="editor_enabled">Herätys päällä</string>
 </resources>

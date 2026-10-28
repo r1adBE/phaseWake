@@ -6,6 +6,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.tanh
 
@@ -14,10 +15,20 @@ import kotlin.math.tanh
  *
  * @property recorded `true` = Aufnahme (CC0), nahtlos in Schleife gespielt; Datei «sound_<name>» (klein
  *   geschrieben, Android `res/raw`, Apple im App-Bundle). `false` = im Code erzeugt ([NoiseGenerator]).
+ * @property gainDb Verstärkung beim Abspielen in dB: Die Aufnahmen klingen rund 5–8 dB leiser als die
+ *   erzeugten Klänge, darum +6 dB. Ihre Spitzen liegen bei höchstens −6 dBFS (make-sound-loops.py);
+ *   [SleepSounds.amplify] begrenzt danach trotzdem.
  */
-enum class SleepSound(val recorded: Boolean) {
+enum class SleepSound(val recorded: Boolean, val gainDb: Double = 0.0) {
     WHITE(false), PINK(false), BROWN(false), FAN(false), BINAURAL(false),
-    RAIN(true), OCEAN(true), FOREST(true), FIRE(true), BROOK(true);
+    RAIN(true, SleepSounds.RECORDING_GAIN_DB),
+    OCEAN(true, SleepSounds.RECORDING_GAIN_DB),
+    FOREST(true, SleepSounds.RECORDING_GAIN_DB),
+    FIRE(true, SleepSounds.RECORDING_GAIN_DB),
+    BROOK(true, SleepSounds.RECORDING_GAIN_DB);
+
+    /** [gainDb] als Faktor für die Abtastwerte. */
+    val gain: Float get() = 10.0.pow(gainDb / 20.0).toFloat()
 }
 
 /** Timer, Ausblenden und spätestes Ende der Einschlafklänge. */
@@ -31,6 +42,15 @@ object SleepSounds {
 
     /** Höchster Ausschlag: −12 dBFS. */
     const val PEAK: Float = 0.2511886f
+
+    /** Verstärkung der Aufnahmen beim Abspielen ([SleepSound.gainDb]). */
+    const val RECORDING_GAIN_DB: Double = 6.0
+
+    /** Obergrenze nach der Verstärkung: −0,5 dBFS, damit nichts übersteuert. */
+    const val CEILING: Float = 0.9440609f
+
+    /** Abtastwert mal [gain], auf ±[CEILING] begrenzt (gegen Übersteuern bei lauten Stellen). */
+    fun amplify(sample: Float, gain: Float): Float = (sample * gain).coerceIn(-CEILING, CEILING)
 
     /**
      * Wann die Klänge enden: nach dem Timer, spätestens bei Beginn des nächsten Weckfensters (nie das

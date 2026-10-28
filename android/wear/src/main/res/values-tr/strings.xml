@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Alarmdan 16 saat önce kullanılabilir</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">İşlemi telefonda çöz veya 5 sn basılı tut</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Yeni alarm</string>
+    <string name="editor_new">Yeni alarm</string>
+    <string name="editor_edit">Alarmı düzenle</string>
+    <string name="editor_target">Şu saate kadar uyandır</string>
+    <string name="editor_latest">En geç</string>
+    <string name="editor_window">Aralık: %1$d dk</string>
+    <string name="editor_days">Tekrar</string>
+    <string name="editor_save">Kaydet</string>
+    <string name="editor_delete">Alarmı sil</string>
+    <string name="editor_delete_title">Bu alarm silinsin mi?</string>
+    <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
+    <string name="editor_enabled">Alarm açık</string>
 </resources>

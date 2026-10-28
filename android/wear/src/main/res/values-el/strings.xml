@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Διαθέσιμο από 16 ώρες πριν το ξυπνητήρι</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Λύσε την πράξη στο τηλέφωνο ή κράτα 5 δ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Νέο ξυπνητήρι</string>
+    <string name="editor_new">Νέο ξυπνητήρι</string>
+    <string name="editor_edit">Επεξεργασία ξυπνητηριού</string>
+    <string name="editor_target">Ξύπνα με μέχρι</string>
+    <string name="editor_latest">Το αργότερο</string>
+    <string name="editor_window">Παράθυρο: %1$d λ.</string>
+    <string name="editor_days">Επανάληψη</string>
+    <string name="editor_save">Αποθήκευση</string>
+    <string name="editor_delete">Διαγραφή ξυπνητηριού</string>
+    <string name="editor_delete_title">Διαγραφή αυτού του ξυπνητηριού;</string>
+    <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>
+    <string name="editor_enabled">Ξυπνητήρι ενεργό</string>
 </resources>

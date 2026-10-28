@@ -36,12 +36,16 @@ data class HabitLines(
     val routineItems: Int = 0,
 )
 
-/** Zeilen der Gewohnheiten: Regelmässigkeit, Serie, längste Serie, Abendroutine. */
-fun habitLines(context: Context, habits: HabitLines, healthConnected: Boolean): List<String> {
+/**
+ * Zeilen der Gewohnheiten: Regelmässigkeit, Serie, längste Serie, Abendroutine.
+ *
+ * @param regularShown Regelmässigkeit steht schon im Schlaf-Streifen: hier weglassen.
+ */
+fun habitLines(context: Context, habits: HabitLines, healthConnected: Boolean, regularShown: Boolean = false): List<String> {
     val res = context.resources
     return buildList {
         if (healthConnected) {
-            habits.regular?.takeIf { it.second > 0 }?.let { (regular, total) ->
+            habits.regular?.takeIf { it.second > 0 && !regularShown }?.let { (regular, total) ->
                 add(res.getQuantityString(R.plurals.habit_regular, total, regular, total))
             }
             if (habits.streak > 0) add(res.getQuantityString(R.plurals.habit_streak, habits.streak, habits.streak))

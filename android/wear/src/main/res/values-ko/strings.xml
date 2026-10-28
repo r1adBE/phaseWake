@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">알람 16시간 전부터 사용 가능</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">휴대폰에서 문제를 풀거나 5초 길게 눌러요</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">새 알람</string>
+    <string name="editor_new">새 알람</string>
+    <string name="editor_edit">알람 편집</string>
+    <string name="editor_target">일어날 시간</string>
+    <string name="editor_latest">늦어도</string>
+    <string name="editor_window">범위: %1$d분</string>
+    <string name="editor_days">반복</string>
+    <string name="editor_save">저장</string>
+    <string name="editor_delete">알람 삭제</string>
+    <string name="editor_delete_title">이 알람을 삭제할까요?</string>
+    <string name="home_max_alarms">알람은 최대 %1$d개입니다 – 새로 추가하려면 하나를 삭제하세요.</string>
+    <string name="editor_enabled">알람 켜짐</string>
 </resources>

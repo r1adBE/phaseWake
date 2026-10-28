@@ -13,6 +13,8 @@ struct HistoryView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 12) {
+                    // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus Apple Health).
+                    HistoryChartsSection(data: charts)
                     if model.nights.isEmpty {
                         VStack(alignment: .leading, spacing: 6) {
                             Text(L("history_empty_title")).font(Fonts.manrope(17, .semibold, relativeTo: .headline))
@@ -35,7 +37,8 @@ struct HistoryView: View {
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
                             onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } },
-                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested)
+                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested, regularShown: charts.covered.contains(.regular)),
+                            covered: charts.covered
                         )
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight, calendar: .current))
                         ForEach(entries) { entry in
@@ -69,6 +72,16 @@ struct HistoryView: View {
                 }
             }
         }
+    }
+
+    /// Diagramme: Schlaf aus Apple Health, Weckmomente und Befinden aus dem Verlauf.
+    private var charts: HistoryChartsData {
+        let now = Date()
+        return HistoryChartsData.of(
+            nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
+            nextTarget: AlarmSchedule.earliestPlan(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current)?.target,
+            goalMinutes: model.sleepGoal, now: now, calendar: .current
+        )
     }
 
     /// Geräusche ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): eigene Karte. Neueste zuerst.

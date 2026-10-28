@@ -49,4 +49,17 @@
     <string name="home_good_night_too_far">Dostupné od 16 h před budíkem</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Vyřeš příklad na telefonu, nebo podrž 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nový budík</string>
+    <string name="editor_new">Nový budík</string>
+    <string name="editor_edit">Upravit budík</string>
+    <string name="editor_target">Vzbuď mě do</string>
+    <string name="editor_latest">Nejpozději</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_days">Opakovat</string>
+    <string name="editor_save">Uložit</string>
+    <string name="editor_delete">Smazat budík</string>
+    <string name="editor_delete_title">Smazat tento budík?</string>
+    <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>
+    <string name="editor_enabled">Budík zapnutý</string>
 </resources>

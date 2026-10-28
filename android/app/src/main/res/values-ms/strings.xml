@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">Belum tepat – ini soalan baharu.</string>
     <string name="wake_task_delete">Padam digit</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Carta</string>
+    <string name="chart_bars_title">Waktu tidur</string>
+    <string name="chart_durations_title">Tidur setiap malam</string>
+    <string name="chart_wake_title">Saat dikejutkan dalam tetingkap</string>
+    <string name="chart_stages_title">Fasa tidur malam itu</string>
+    <string name="chart_feeling_title">Perasaan</string>
+    <string name="chart_nights_7">7 malam</string>
+    <string name="chart_nights_14">14 malam</string>
+    <string name="chart_bedtime">Waktu tidur %1$s</string>
+    <string name="chart_goal">Sasaran %1$s</string>
+    <string name="chart_wake_target">Pada masa sasaran</string>
+    <string name="chart_wake_late">Selepas masa sasaran</string>
+    <string name="chart_stage_awake">Berjaga</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Ringan</string>
+    <string name="chart_stage_deep">Lena</string>
+    <string name="chart_window">Tetingkap bangun</string>
+    <string name="chart_no_data">tiada data</string>
+    <string name="chart_feeling_hint">Ketik satu titik untuk melihat nota malam itu.</string>
 </resources>

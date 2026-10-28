@@ -90,6 +90,8 @@ struct TrendsCard: View {
     let onConnectHealth: () -> Void
     /// Gewohnheiten (Regelmässigkeit, Serien, Abendroutine), fertig formuliert.
     var habits: [String] = []
+    /// Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen.
+    var covered: Set<TrendLine> = []
 
     /// Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten.
     private static let irregularMinutes = 45
@@ -97,21 +99,21 @@ struct TrendsCard: View {
     private var lines: [String] {
         var out: [String] = []
         if let asleep = trends.asleepThisWeek {
-            out.append(L("trends_asleep", Format.duration(minutes: asleep)))
+            if !covered.contains(.asleep) { out.append(L("trends_asleep", Format.duration(minutes: asleep))) }
             if let change = trends.asleepChange {
                 if abs(change) < 5 { out.append(L("trends_asleep_change_same")) }
                 else if change > 0 { out.append(L("trends_asleep_change_more", Format.duration(minutes: change))) }
                 else { out.append(L("trends_asleep_change_less", Format.duration(minutes: -change))) }
             }
         }
-        if let goalWeek {
+        if let goalWeek, !covered.contains(.goal) {
             out.append(LP("goal_week", goalWeek.total, goalWeek.reached, goalWeek.total))
         }
         if let spread = trends.bedtimeSpreadMinutes {
             out.append(L("trends_bedtime", Format.duration(minutes: spread)))
             if spread > Self.irregularMinutes { out.append(L("trends_bedtime_hint")) }
         }
-        if let feeling = trends.feelingThisWeek {
+        if let feeling = trends.feelingThisWeek, !covered.contains(.feeling) {
             let last = trends.feelingLastWeek.map { " · " + L("trends_feeling_change", decimal($0)) } ?? ""
             out.append(L("trends_feeling", decimal(feeling)) + last)
         }
@@ -120,6 +122,11 @@ struct TrendsCard: View {
     }
 
     var body: some View {
+        // Alles steht schon in den Diagrammen: keine leere Karte.
+        if !(lines.isEmpty && !covered.isEmpty && healthConnected) { card }
+    }
+
+    private var card: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(L("trends_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             if lines.isEmpty {

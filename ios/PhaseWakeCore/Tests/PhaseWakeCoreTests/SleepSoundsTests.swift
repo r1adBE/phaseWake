@@ -62,6 +62,19 @@ final class SleepSoundsTests: XCTestCase {
         XCTAssertLessThan(maxStep(samples(.fan, seconds: 5)), maxStep(samples(.white, seconds: 5)) / 4)
     }
 
+    /// Wie `recordingsPlayLouderWithoutClipping` (Kotlin).
+    func testRecordingsPlayLouderWithoutClipping() {
+        for sound in SleepSound.allCases {
+            XCTAssertEqual(sound.gainDb, sound.recorded ? 6 : 0, sound.rawValue)
+            XCTAssertEqual(sound.gain, sound.recorded ? 1.9952623 : 1, accuracy: 1e-6, sound.rawValue)
+        }
+        XCTAssertEqual(SleepSounds.amplify(0.2, gain: 2), 0.4, accuracy: 1e-7)
+        XCTAssertEqual(SleepSounds.amplify(-0.2, gain: 2), -0.4, accuracy: 1e-7)
+        XCTAssertEqual(SleepSounds.amplify(0.9, gain: SleepSound.rain.gain), SleepSounds.ceiling)
+        XCTAssertEqual(SleepSounds.amplify(-1, gain: SleepSound.rain.gain), -SleepSounds.ceiling)
+        XCTAssertEqual(SleepSounds.amplify(0.3, gain: SleepSound.pink.gain), 0.3)
+    }
+
     func testFadeAndStop() {
         XCTAssertEqual(SleepSounds.gain(elapsed: 0, total: 600), 0)
         XCTAssertEqual(SleepSounds.gain(elapsed: 1.5, total: 600), 0.5, accuracy: 1e-9)

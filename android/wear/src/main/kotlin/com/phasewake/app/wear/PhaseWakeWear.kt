@@ -13,6 +13,7 @@ import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.schedule.OnsetOverride
+import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wake.GoodNightState
 import com.phasewake.app.wear.wake.NightProgress
 import com.phasewake.app.wear.wake.Notifications
@@ -56,6 +57,11 @@ class PhaseWakeWear : Application() {
     override fun onCreate() {
         super.onCreate()
         Notifications.createChannels(this)
+        // Nachholen, was das Handy schon abgelegt hat (Wecker, «Verlauf löschen»), falls eine Änderung
+        // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar.
+        if (DirectBoot.isUnlocked(this)) {
+            appScope.launch { if (PhoneCatchUp.run(this@PhaseWakeWear)) scheduler.reschedule() }
+        }
         // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat. Nur
         // solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an); sonst beim Neuplanen.
         ContextCompat.registerReceiver(

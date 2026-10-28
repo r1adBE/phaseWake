@@ -28,7 +28,7 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 | | Handy-App | Uhr-App |
 |---|---|---|
-| Wecker anlegen/ändern | ja | nur Ein/Aus |
+| Wecker anlegen/ändern | ja | Uhrzeit, Weckfenster, Wochentage, Ein/Aus, Löschen |
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
 | Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
@@ -36,10 +36,12 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; das Handy zeigt dann nur den Verlauf nach.
 
+Uhr-App eigenständig (29.10.2026): Auf der Uhr lassen sich Wecker anlegen («+ Neuer Wecker», höchstens 8), ändern (Zeile antippen; der Schalter schaltet weiterhin nur ein/aus) und löschen (mit Rückfrage). Der Editor der Uhr zeigt Uhrzeit, Weckfenster (10–30 Min in 5er-Schritten), Wochentage (ohne Tag: einmal) und Ein/Aus; Krone bzw. Drehrahmen blättern und verstellen. Alles Übrige (Sonnenaufgang, Weckton, Handy-Wecker, Weckaufgabe, Schlafdauer, Name) bleibt beim Ändern unverändert; neue Wecker bekommen dieselben Vorgaben wie am Handy (Android: 7:00, Werktage, Morgenvögel; iPhone: jetzige Uhrzeit, Werktage). Gespeichert wird lokal, neu geplant und ans Handy geschickt; es gilt wie überall die zuletzt gespeicherte Liste. Die Wear-OS-App ist im Play Store als eigenständig markiert (`com.google.android.wearable.standalone`): Messen und Wecken gehen ohne Handy, das Handy bleibt optionaler Begleiter. Sonnenaufgang, Weckton, Notizen und Auswertungen gibt es nur am Handy.
+
 ## Ablauf einer Nacht
 
-1. Nutzer stellt am Handy Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–30 Min).
-2. Der Wecker wird per Data Layer an die Uhr übertragen. Die Uhr setzt einen exakten Alarm (`AlarmManager`, `setAlarmClock`) auf *Zielzeit − Fenster*.
+1. Nutzer stellt am Handy oder an der Uhr Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–30 Min).
+2. Der Wecker wird per Data Layer an die Gegenseite übertragen. Die Uhr setzt einen exakten Alarm (`AlarmManager`, `setAlarmClock`) auf *Zielzeit − Fenster*.
 3. Fensterbeginn: Ein Foreground-Service (Typ `health`) startet, hält einen Partial-Wakelock und liest Sensoren.
 4. Alle 30 s wird eine Epoche bewertet. Erkennt die Bewertung Leichtschlaf oder Aufwachen, löst die Uhr den Weckvorgang aus.
 5. Ist die Zielzeit erreicht, ohne dass die Bewertung angeschlagen hat, weckt die Uhr trotzdem (Rückfall).

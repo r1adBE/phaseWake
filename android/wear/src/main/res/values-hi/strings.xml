@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">अलार्म से 16 घंटे पहले से उपलब्ध</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">फ़ोन पर सवाल हल करो या 5 सेकंड दबाए रखो</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">नया अलार्म</string>
+    <string name="editor_new">नया अलार्म</string>
+    <string name="editor_edit">अलार्म बदलो</string>
+    <string name="editor_target">मुझे इतने तक जगाओ</string>
+    <string name="editor_latest">अधिकतम</string>
+    <string name="editor_window">विंडो: %1$d मि.</string>
+    <string name="editor_days">दोहराव</string>
+    <string name="editor_save">सेव करो</string>
+    <string name="editor_delete">अलार्म हटाओ</string>
+    <string name="editor_delete_title">यह अलार्म हटाएँ?</string>
+    <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>
+    <string name="editor_enabled">अलार्म चालू</string>
 </resources>

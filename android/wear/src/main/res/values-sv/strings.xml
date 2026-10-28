@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Tillgängligt från 16 h före larmet</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Lös uppgiften på telefonen eller håll 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nytt larm</string>
+    <string name="editor_new">Nytt larm</string>
+    <string name="editor_edit">Ändra larm</string>
+    <string name="editor_target">Väck mig senast</string>
+    <string name="editor_latest">Senast</string>
+    <string name="editor_window">Fönster: %1$d min</string>
+    <string name="editor_days">Upprepa</string>
+    <string name="editor_save">Spara</string>
+    <string name="editor_delete">Ta bort larm</string>
+    <string name="editor_delete_title">Ta bort det här larmet?</string>
+    <string name="home_max_alarms">Högst %1$d larm – ta bort ett för att lägga till ett nytt.</string>
+    <string name="editor_enabled">Larm på</string>
 </resources>

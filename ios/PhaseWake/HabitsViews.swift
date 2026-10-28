@@ -66,15 +66,16 @@ struct RoutineSection: View {
 }
 
 /// Gewohnheiten für die Trends-Karte, wie `habitLines` (Android): Regelmässigkeit und Serien nur mit
-/// Daten aus Apple Health, die Abendroutine ab 3 Abenden.
+/// Daten aus Apple Health, die Abendroutine ab 3 Abenden. `regularShown`: Regelmässigkeit steht schon im
+/// Schlaf-Streifen, hier weglassen.
 @MainActor
-func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool, now: Date = Date()) -> [String] {
+func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool, regularShown: Bool = false, now: Date = Date()) -> [String] {
     let calendar = Calendar.current
     let today = SleepNotes.nightDate(now, calendar: calendar)
     var lines: [String] = []
     if healthConnected {
         let regular = Regularity.count(Regularity.bedtimes(of: sleeps, calendar: calendar), calendar: calendar)
-        if regular.total > 0 {
+        if regular.total > 0 && !regularShown {
             lines.append(LP("habit_regular", regular.total, regular.regular, regular.total))
         }
         let reached = Streak.reachedByNight(sleeps, calendar: calendar, goalMinutes: model.sleepGoal)

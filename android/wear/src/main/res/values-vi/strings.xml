@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">Dùng được từ 16 giờ trước báo thức</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Giải phép tính trên điện thoại hoặc giữ 5 giây</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Báo thức mới</string>
+    <string name="editor_new">Báo thức mới</string>
+    <string name="editor_edit">Sửa báo thức</string>
+    <string name="editor_target">Đánh thức tôi trước</string>
+    <string name="editor_latest">Muộn nhất</string>
+    <string name="editor_window">Khoảng thời gian: %1$d phút</string>
+    <string name="editor_days">Lặp lại</string>
+    <string name="editor_save">Lưu</string>
+    <string name="editor_delete">Xóa báo thức</string>
+    <string name="editor_delete_title">Xóa báo thức này?</string>
+    <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
+    <string name="editor_enabled">Báo thức bật</string>
 </resources>

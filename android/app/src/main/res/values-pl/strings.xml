@@ -355,4 +355,23 @@
     <string name="wake_task_wrong">Nie całkiem – oto nowe.</string>
     <string name="wake_task_delete">Usuń cyfrę</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Wykresy</string>
+    <string name="chart_bars_title">Godziny snu</string>
+    <string name="chart_durations_title">Sen w nocy</string>
+    <string name="chart_wake_title">Moment budzenia w oknie</string>
+    <string name="chart_stages_title">Fazy snu tej nocy</string>
+    <string name="chart_feeling_title">Samopoczucie</string>
+    <string name="chart_nights_7">7 nocy</string>
+    <string name="chart_nights_14">14 nocy</string>
+    <string name="chart_bedtime">Pora snu %1$s</string>
+    <string name="chart_goal">Cel %1$s</string>
+    <string name="chart_wake_target">W czasie docelowym</string>
+    <string name="chart_wake_late">Po czasie docelowym</string>
+    <string name="chart_stage_awake">Czuwanie</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Płytki</string>
+    <string name="chart_stage_deep">Głęboki</string>
+    <string name="chart_window">Okno budzenia</string>
+    <string name="chart_no_data">brak danych</string>
+    <string name="chart_feeling_hint">Stuknij punkt, aby zobaczyć notatki z tej nocy.</string>
 </resources>

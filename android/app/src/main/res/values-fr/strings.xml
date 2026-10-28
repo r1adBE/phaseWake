@@ -343,4 +343,23 @@
     <string name="wake_task_wrong">Pas tout à fait – en voici un nouveau.</string>
     <string name="wake_task_delete">Effacer le chiffre</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Graphiques</string>
+    <string name="chart_bars_title">Heures de sommeil</string>
+    <string name="chart_durations_title">Sommeil par nuit</string>
+    <string name="chart_wake_title">Moment du réveil dans la plage</string>
+    <string name="chart_stages_title">Phases de sommeil de la nuit</string>
+    <string name="chart_feeling_title">Ressenti</string>
+    <string name="chart_nights_7">7 nuits</string>
+    <string name="chart_nights_14">14 nuits</string>
+    <string name="chart_bedtime">Coucher %1$s</string>
+    <string name="chart_goal">Objectif %1$s</string>
+    <string name="chart_wake_target">À l’heure cible</string>
+    <string name="chart_wake_late">Après l’heure cible</string>
+    <string name="chart_stage_awake">Éveil</string>
+    <string name="chart_stage_rem">Paradoxal</string>
+    <string name="chart_stage_light">Léger</string>
+    <string name="chart_stage_deep">Profond</string>
+    <string name="chart_window">Plage de réveil</string>
+    <string name="chart_no_data">aucune donnée</string>
+    <string name="chart_feeling_hint">Touche un point pour voir les notes de cette nuit.</string>
 </resources>

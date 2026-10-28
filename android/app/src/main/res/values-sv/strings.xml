@@ -331,4 +331,23 @@
     <string name="wake_task_wrong">Inte riktigt – här är en ny.</string>
     <string name="wake_task_delete">Radera siffra</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Diagram</string>
+    <string name="chart_bars_title">Sovtider</string>
+    <string name="chart_durations_title">Sömn per natt</string>
+    <string name="chart_wake_title">Väckningstidpunkt i fönstret</string>
+    <string name="chart_stages_title">Nattens sömnfaser</string>
+    <string name="chart_feeling_title">Känsla</string>
+    <string name="chart_nights_7">7 nätter</string>
+    <string name="chart_nights_14">14 nätter</string>
+    <string name="chart_bedtime">Läggdags %1$s</string>
+    <string name="chart_goal">Mål %1$s</string>
+    <string name="chart_wake_target">Vid måltid</string>
+    <string name="chart_wake_late">Efter måltid</string>
+    <string name="chart_stage_awake">Vaken</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Lätt</string>
+    <string name="chart_stage_deep">Djup</string>
+    <string name="chart_window">Väckningsfönster</string>
+    <string name="chart_no_data">inga data</string>
+    <string name="chart_feeling_hint">Tryck på en punkt för att se nattens anteckningar.</string>
 </resources>

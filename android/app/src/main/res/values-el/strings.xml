@@ -331,4 +331,23 @@
     <string name="wake_task_wrong">Όχι ακριβώς – ορίστε μια νέα.</string>
     <string name="wake_task_delete">Διαγραφή ψηφίου</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Διαγράμματα</string>
+    <string name="chart_bars_title">Ώρες ύπνου</string>
+    <string name="chart_durations_title">Ύπνος ανά νύχτα</string>
+    <string name="chart_wake_title">Στιγμή αφύπνισης στο παράθυρο</string>
+    <string name="chart_stages_title">Φάσεις ύπνου της νύχτας</string>
+    <string name="chart_feeling_title">Αίσθηση</string>
+    <string name="chart_nights_7">7 νύχτες</string>
+    <string name="chart_nights_14">14 νύχτες</string>
+    <string name="chart_bedtime">Ώρα ύπνου %1$s</string>
+    <string name="chart_goal">Στόχος %1$s</string>
+    <string name="chart_wake_target">Στην ώρα στόχου</string>
+    <string name="chart_wake_late">Μετά την ώρα στόχου</string>
+    <string name="chart_stage_awake">Ξύπνιος</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Ελαφρύς</string>
+    <string name="chart_stage_deep">Βαθύς</string>
+    <string name="chart_window">Παράθυρο αφύπνισης</string>
+    <string name="chart_no_data">χωρίς δεδομένα</string>
+    <string name="chart_feeling_hint">Πάτησε ένα σημείο για τις σημειώσεις εκείνης της νύχτας.</string>
 </resources>

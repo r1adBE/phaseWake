@@ -343,4 +343,23 @@
     <string name="wake_task_wrong">Nu chiar – iată unul nou.</string>
     <string name="wake_task_delete">Șterge cifra</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Grafice</string>
+    <string name="chart_bars_title">Orele de somn</string>
+    <string name="chart_durations_title">Somn pe noapte</string>
+    <string name="chart_wake_title">Momentul trezirii în interval</string>
+    <string name="chart_stages_title">Fazele somnului din noapte</string>
+    <string name="chart_feeling_title">Stare</string>
+    <string name="chart_nights_7">7 nopți</string>
+    <string name="chart_nights_14">14 nopți</string>
+    <string name="chart_bedtime">Ora de culcare %1$s</string>
+    <string name="chart_goal">Țintă %1$s</string>
+    <string name="chart_wake_target">La ora țintă</string>
+    <string name="chart_wake_late">După ora țintă</string>
+    <string name="chart_stage_awake">Treaz</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Ușor</string>
+    <string name="chart_stage_deep">Profund</string>
+    <string name="chart_window">Interval de trezire</string>
+    <string name="chart_no_data">fără date</string>
+    <string name="chart_feeling_hint">Atinge un punct pentru notițele din acea noapte.</string>
 </resources>

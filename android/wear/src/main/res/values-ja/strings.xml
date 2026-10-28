@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">アラームの16時間前から使えます</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">スマホで問題を解くか、5秒長押し</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">新規アラーム</string>
+    <string name="editor_new">新規アラーム</string>
+    <string name="editor_edit">アラームを編集</string>
+    <string name="editor_target">起きたい時刻</string>
+    <string name="editor_latest">最も遅い時刻</string>
+    <string name="editor_window">時間幅: %1$d分</string>
+    <string name="editor_days">繰り返し</string>
+    <string name="editor_save">保存</string>
+    <string name="editor_delete">アラームを削除</string>
+    <string name="editor_delete_title">このアラームを削除しますか?</string>
+    <string name="home_max_alarms">アラームは最大%1$d件です – 新しく追加するには1件削除してください。</string>
+    <string name="editor_enabled">アラームをオン</string>
 </resources>

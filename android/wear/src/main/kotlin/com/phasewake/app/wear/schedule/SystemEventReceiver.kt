@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlin.coroutines.cancellation.CancellationException
@@ -37,6 +38,8 @@ class SystemEventReceiver : BroadcastReceiver() {
                         Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
                     }
                 }
+                // Was das Handy in der Zwischenzeit abgelegt hat (Wecker, «Verlauf löschen»), vor dem Neuplanen.
+                PhoneCatchUp.run(app)
                 app.scheduler.reschedule()
                 // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).
                 if (app.goodNight.load() != null) AlarmScheduler.armGoodNightCheck(context, Instant.now().plusSeconds(5))

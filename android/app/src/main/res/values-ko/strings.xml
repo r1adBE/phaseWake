@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">아쉬워요 – 새 문제예요.</string>
     <string name="wake_task_delete">숫자 지우기</string>
     <string name="wake_task_check">확인</string>
+    <string name="charts_title">차트</string>
+    <string name="chart_bars_title">수면 시간대</string>
+    <string name="chart_durations_title">밤별 수면 시간</string>
+    <string name="chart_wake_title">범위 안의 기상 시점</string>
+    <string name="chart_stages_title">그날 밤의 수면 단계</string>
+    <string name="chart_feeling_title">기분</string>
+    <string name="chart_nights_7">7일 밤</string>
+    <string name="chart_nights_14">14일 밤</string>
+    <string name="chart_bedtime">취침 %1$s</string>
+    <string name="chart_goal">목표 %1$s</string>
+    <string name="chart_wake_target">목표 시간에</string>
+    <string name="chart_wake_late">목표 시간 이후</string>
+    <string name="chart_stage_awake">깸</string>
+    <string name="chart_stage_rem">렘</string>
+    <string name="chart_stage_light">얕은 잠</string>
+    <string name="chart_stage_deep">깊은 잠</string>
+    <string name="chart_window">기상 범위</string>
+    <string name="chart_no_data">데이터 없음</string>
+    <string name="chart_feeling_hint">점을 탭하면 그날 밤의 메모가 보여요.</string>
 </resources>

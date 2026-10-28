@@ -49,4 +49,17 @@
     <string name="home_good_night_too_far">Доступно за 16 ч до будильника</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Реши пример на телефоне или удерживай 5 с</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Новый будильник</string>
+    <string name="editor_new">Новый будильник</string>
+    <string name="editor_edit">Изменить будильник</string>
+    <string name="editor_target">Разбуди меня к</string>
+    <string name="editor_latest">Не позже</string>
+    <string name="editor_window">Окно: %1$d мин</string>
+    <string name="editor_days">Повтор</string>
+    <string name="editor_save">Сохранить</string>
+    <string name="editor_delete">Удалить будильник</string>
+    <string name="editor_delete_title">Удалить этот будильник?</string>
+    <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>
+    <string name="editor_enabled">Будильник включён</string>
 </resources>

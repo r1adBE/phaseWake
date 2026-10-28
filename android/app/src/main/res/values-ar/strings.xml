@@ -379,4 +379,23 @@
     <string name="wake_task_wrong">ليس تمامًا – إليك عملية جديدة.</string>
     <string name="wake_task_delete">حذف الرقم</string>
     <string name="wake_task_check">موافق</string>
+    <string name="charts_title">الرسوم البيانية</string>
+    <string name="chart_bars_title">أوقات النوم</string>
+    <string name="chart_durations_title">النوم في كل ليلة</string>
+    <string name="chart_wake_title">لحظة الإيقاظ في النافذة</string>
+    <string name="chart_stages_title">مراحل نوم الليلة</string>
+    <string name="chart_feeling_title">الشعور</string>
+    <string name="chart_nights_7">7 ليالٍ</string>
+    <string name="chart_nights_14">14 ليلة</string>
+    <string name="chart_bedtime">وقت النوم %1$s</string>
+    <string name="chart_goal">الهدف %1$s</string>
+    <string name="chart_wake_target">في الموعد</string>
+    <string name="chart_wake_late">بعد الموعد</string>
+    <string name="chart_stage_awake">يقظة</string>
+    <string name="chart_stage_rem">حركة العين السريعة</string>
+    <string name="chart_stage_light">خفيف</string>
+    <string name="chart_stage_deep">عميق</string>
+    <string name="chart_window">نافذة الإيقاظ</string>
+    <string name="chart_no_data">لا بيانات</string>
+    <string name="chart_feeling_hint">انقر على نقطة لترى ملاحظات تلك الليلة.</string>
 </resources>

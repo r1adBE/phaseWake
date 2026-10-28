@@ -331,4 +331,23 @@
     <string name="wake_task_wrong">Net niet – hier is een nieuwe.</string>
     <string name="wake_task_delete">Cijfer wissen</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Grafieken</string>
+    <string name="chart_bars_title">Slaaptijden</string>
+    <string name="chart_durations_title">Slaap per nacht</string>
+    <string name="chart_wake_title">Wekmoment in het venster</string>
+    <string name="chart_stages_title">Slaapfasen van de nacht</string>
+    <string name="chart_feeling_title">Gevoel</string>
+    <string name="chart_nights_7">7 nachten</string>
+    <string name="chart_nights_14">14 nachten</string>
+    <string name="chart_bedtime">Bedtijd %1$s</string>
+    <string name="chart_goal">Doel %1$s</string>
+    <string name="chart_wake_target">Op de doeltijd</string>
+    <string name="chart_wake_late">Na de doeltijd</string>
+    <string name="chart_stage_awake">Wakker</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Licht</string>
+    <string name="chart_stage_deep">Diep</string>
+    <string name="chart_window">Wekvenster</string>
+    <string name="chart_no_data">geen gegevens</string>
+    <string name="chart_feeling_hint">Tik op een punt voor de notities van die nacht.</string>
 </resources>

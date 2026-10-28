@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">鬧鐘前 16 小時內可用</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">在手機上解題，或長按 5 秒</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">新增鬧鐘</string>
+    <string name="editor_new">新增鬧鐘</string>
+    <string name="editor_edit">編輯鬧鐘</string>
+    <string name="editor_target">最晚叫醒我</string>
+    <string name="editor_latest">最晚</string>
+    <string name="editor_window">時間範圍：%1$d 分鐘</string>
+    <string name="editor_days">重複</string>
+    <string name="editor_save">儲存</string>
+    <string name="editor_delete">刪除鬧鐘</string>
+    <string name="editor_delete_title">刪除這個鬧鐘？</string>
+    <string name="home_max_alarms">最多 %1$d 個鬧鐘 – 刪除一個後才能新增。</string>
+    <string name="editor_enabled">鬧鐘開啟</string>
 </resources>

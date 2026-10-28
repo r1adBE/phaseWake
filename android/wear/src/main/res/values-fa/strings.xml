@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">از ۱۶ ساعت پیش از زنگ در دسترس است</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">مسئله را روی گوشی حل کن یا ۵ ثانیه نگه دار</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">زنگ جدید</string>
+    <string name="editor_new">زنگ جدید</string>
+    <string name="editor_edit">ویرایش زنگ</string>
+    <string name="editor_target">بیدارم کن تا</string>
+    <string name="editor_latest">حداکثر</string>
+    <string name="editor_window">بازه: %1$d دق</string>
+    <string name="editor_days">تکرار</string>
+    <string name="editor_save">ذخیره</string>
+    <string name="editor_delete">حذف زنگ</string>
+    <string name="editor_delete_title">این زنگ حذف شود؟</string>
+    <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
+    <string name="editor_enabled">زنگ روشن</string>
 </resources>

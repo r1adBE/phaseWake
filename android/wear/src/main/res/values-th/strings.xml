@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">ใช้ได้ตั้งแต่ 16 ชม. ก่อนเวลาปลุก</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">แก้โจทย์บนโทรศัพท์ หรือกดค้าง 5 วิ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
+    <string name="editor_new">นาฬิกาปลุกใหม่</string>
+    <string name="editor_edit">แก้ไขนาฬิกาปลุก</string>
+    <string name="editor_target">ปลุกฉันภายใน</string>
+    <string name="editor_latest">ช้าที่สุด</string>
+    <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
+    <string name="editor_days">ทำซ้ำ</string>
+    <string name="editor_save">บันทึก</string>
+    <string name="editor_delete">ลบนาฬิกาปลุก</string>
+    <string name="editor_delete_title">ลบนาฬิกาปลุกนี้ไหม</string>
+    <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
+    <string name="editor_enabled">นาฬิกาปลุกเปิดอยู่</string>
 </resources>

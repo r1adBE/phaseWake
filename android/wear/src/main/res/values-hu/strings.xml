@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Az ébresztő előtt 16 órától elérhető</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Oldd meg a feladatot a telefonon, vagy tartsd 5 mp-ig</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Új ébresztő</string>
+    <string name="editor_new">Új ébresztő</string>
+    <string name="editor_edit">Ébresztő szerkesztése</string>
+    <string name="editor_target">Ébressz eddig</string>
+    <string name="editor_latest">Legkésőbb</string>
+    <string name="editor_window">Időablak: %1$d p</string>
+    <string name="editor_days">Ismétlés</string>
+    <string name="editor_save">Mentés</string>
+    <string name="editor_delete">Ébresztő törlése</string>
+    <string name="editor_delete_title">Törlöd ezt az ébresztőt?</string>
+    <string name="home_max_alarms">Legfeljebb %1$d ébresztő – törölj egyet, hogy újat adhass hozzá.</string>
+    <string name="editor_enabled">Ébresztő be</string>
 </resources>

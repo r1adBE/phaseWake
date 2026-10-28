@@ -343,4 +343,23 @@
     <string name="wake_task_wrong">לא בדיוק – הנה תרגיל חדש.</string>
     <string name="wake_task_delete">מחיקת ספרה</string>
     <string name="wake_task_check">אישור</string>
+    <string name="charts_title">תרשימים</string>
+    <string name="chart_bars_title">שעות שינה</string>
+    <string name="chart_durations_title">שינה בכל לילה</string>
+    <string name="chart_wake_title">רגע ההשכמה בחלון</string>
+    <string name="chart_stages_title">שלבי השינה בלילה</string>
+    <string name="chart_feeling_title">תחושה</string>
+    <string name="chart_nights_7">7 לילות</string>
+    <string name="chart_nights_14">14 לילות</string>
+    <string name="chart_bedtime">שעת שינה %1$s</string>
+    <string name="chart_goal">יעד %1$s</string>
+    <string name="chart_wake_target">בשעת היעד</string>
+    <string name="chart_wake_late">אחרי שעת היעד</string>
+    <string name="chart_stage_awake">ער</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">קלה</string>
+    <string name="chart_stage_deep">עמוקה</string>
+    <string name="chart_window">חלון השכמה</string>
+    <string name="chart_no_data">אין נתונים</string>
+    <string name="chart_feeling_hint">הקש על נקודה כדי לראות את ההערות של אותו לילה.</string>
 </resources>

@@ -335,4 +335,23 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am" tools:override="true" tools:ignore="UnusedResources">AM</string>
     <string name="m3c_time_picker_pm" tools:override="true" tools:ignore="UnusedResources">PM</string>
+    <string name="charts_title">Charts</string>
+    <string name="chart_bars_title">Sleep times</string>
+    <string name="chart_durations_title">Sleep per night</string>
+    <string name="chart_wake_title">Wake moment in the window</string>
+    <string name="chart_stages_title">Sleep stages of the night</string>
+    <string name="chart_feeling_title">Feeling</string>
+    <string name="chart_nights_7">7 nights</string>
+    <string name="chart_nights_14">14 nights</string>
+    <string name="chart_bedtime">Bedtime %1$s</string>
+    <string name="chart_goal">Goal %1$s</string>
+    <string name="chart_wake_target">At target time</string>
+    <string name="chart_wake_late">After target time</string>
+    <string name="chart_stage_awake">Awake</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Light</string>
+    <string name="chart_stage_deep">Deep</string>
+    <string name="chart_window">Wake window</string>
+    <string name="chart_no_data">no data</string>
+    <string name="chart_feeling_hint">Tap a dot to see that night’s notes.</string>
 </resources>

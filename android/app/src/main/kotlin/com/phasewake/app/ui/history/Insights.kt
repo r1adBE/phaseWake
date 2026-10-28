@@ -89,12 +89,14 @@ fun TrendsCard(
     goalWeek: Pair<Int, Int>? = null,
     /** Gewohnheiten: Regelmässigkeit, Serien, Abendroutine. */
     habits: HabitLines? = null,
+    /** Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen. */
+    covered: Set<TrendLine> = emptySet(),
 ) {
     val context = LocalContext.current
     val res = LocalResources.current
     val lines = buildList {
         trends.asleepThisWeek?.let { minutes ->
-            add(res.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes))))
+            if (TrendLine.ASLEEP !in covered) add(res.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes))))
             trends.asleepChange?.let { change ->
                 add(
                     when {
@@ -106,19 +108,21 @@ fun TrendsCard(
             }
         }
         // Schlafziel: nur mit Schlafdauer aus der Gesundheits-App (sonst deckt der Hinweis unten das ab).
-        goalWeek?.takeIf { healthConnected && it.second > 0 }?.let { (reached, total) ->
+        goalWeek?.takeIf { healthConnected && it.second > 0 && TrendLine.GOAL !in covered }?.let { (reached, total) ->
             add(res.getQuantityString(R.plurals.goal_week, total, reached, total))
         }
         trends.bedtimeSpreadMinutes?.let { spread ->
             add(res.getString(R.string.trends_bedtime, Format.duration(context, Duration.ofMinutes(spread))))
             if (spread > IRREGULAR_MINUTES) add(res.getString(R.string.trends_bedtime_hint))
         }
-        trends.feelingThisWeek?.let { feeling ->
+        trends.feelingThisWeek?.takeIf { TrendLine.FEELING !in covered }?.let { feeling ->
             val last = trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }.orEmpty()
             add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
         }
-        habits?.let { addAll(habitLines(context, it, healthConnected)) }
+        habits?.let { addAll(habitLines(context, it, healthConnected, regularShown = TrendLine.REGULAR in covered)) }
     }
+    // Alles steht schon in den Diagrammen: keine leere Karte.
+    if (lines.isEmpty() && covered.isNotEmpty() && healthConnected) return
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),

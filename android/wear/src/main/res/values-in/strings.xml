@@ -46,4 +46,17 @@
     <string name="home_good_night_too_far">Tersedia mulai 16 jam sebelum alarm</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Selesaikan soal di ponsel atau tahan 5 dtk</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarm baru</string>
+    <string name="editor_new">Alarm baru</string>
+    <string name="editor_edit">Ubah alarm</string>
+    <string name="editor_target">Bangunkan aku sebelum</string>
+    <string name="editor_latest">Paling lambat</string>
+    <string name="editor_window">Rentang: %1$d mnt</string>
+    <string name="editor_days">Ulangi</string>
+    <string name="editor_save">Simpan</string>
+    <string name="editor_delete">Hapus alarm</string>
+    <string name="editor_delete_title">Hapus alarm ini?</string>
+    <string name="home_max_alarms">Maksimal %1$d alarm – hapus satu untuk menambahkan yang baru.</string>
+    <string name="editor_enabled">Alarm aktif</string>
 </resources>

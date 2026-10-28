@@ -133,7 +133,8 @@ final class SoundPlayer {
             recording: recording,
             channels: channels,
             sampleRate: rate,
-            totalFrames: end.map { Int64($0.timeIntervalSince(now) * rate) } ?? Int64.max
+            totalFrames: end.map { Int64($0.timeIntervalSince(now) * rate) } ?? Int64.max,
+            boost: sound.gain
         )
         releaseEngine()
         let engine = AVAudioEngine()
@@ -256,8 +257,10 @@ private final class RenderState: @unchecked Sendable {
     private let quickFadeFrames: Double
     /// Lesestelle in der Aufnahme.
     private var position = 0
+    /// Verstärkung der Aufnahme (`SleepSound.gain`); erzeugte Klänge 1.
+    private let boost: Float
 
-    init(generator: NoiseGenerator?, recording: LoopedRecording?, channels: Int, sampleRate: Double, totalFrames: Int64) {
+    init(generator: NoiseGenerator?, recording: LoopedRecording?, channels: Int, sampleRate: Double, totalFrames: Int64, boost: Float = 1) {
         self.generator = generator
         self.recording = recording
         self.channels = channels
@@ -265,6 +268,7 @@ private final class RenderState: @unchecked Sendable {
         self.totalFrames = totalFrames
         quickFadeFrames = 0.3 * sampleRate
         position = recording?.start ?? 0
+        self.boost = boost
     }
 
     /// Füllt `count` Werte je Kanal (getrennte Kanäle wie im Standardformat). Mono-Quelle mit zweitem
@@ -280,8 +284,9 @@ private final class RenderState: @unchecked Sendable {
             var r: Float = 0
             if let recording {
                 if position >= recording.end { position = recording.loopStart }
-                l = recording.data[0][position] * g
-                r = channels > 1 ? recording.data[1][position] * g : l
+                // Aufnahmen sind leiser als die erzeugten Klänge: Verstärkung aus dem Kern, begrenzt.
+                l = SleepSounds.amplify(recording.data[0][position], gain: boost) * g
+                r = channels > 1 ? SleepSounds.amplify(recording.data[1][position], gain: boost) * g : l
                 position += 1
             } else if generator != nil {
                 // Verschachtelt erzeugt: bei zwei Kanälen zuerst links, dann rechts.

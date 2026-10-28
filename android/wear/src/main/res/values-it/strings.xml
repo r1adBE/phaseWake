@@ -48,4 +48,17 @@
     <string name="home_good_night_too_far">Disponibile da 16 h prima della sveglia</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Risolvi il calcolo sul telefono o tieni premuto 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nuova sveglia</string>
+    <string name="editor_new">Nuova sveglia</string>
+    <string name="editor_edit">Modifica sveglia</string>
+    <string name="editor_target">Svegliami entro</string>
+    <string name="editor_latest">Al più tardi</string>
+    <string name="editor_window">Finestra: %1$d min</string>
+    <string name="editor_days">Ripeti</string>
+    <string name="editor_save">Salva</string>
+    <string name="editor_delete">Elimina sveglia</string>
+    <string name="editor_delete_title">Eliminare questa sveglia?</string>
+    <string name="home_max_alarms">Massimo %1$d sveglie: eliminane una per aggiungerne una nuova.</string>
+    <string name="editor_enabled">Sveglia attiva</string>
 </resources>

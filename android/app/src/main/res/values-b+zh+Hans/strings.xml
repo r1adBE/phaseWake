@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">差一点 – 换一道新题。</string>
     <string name="wake_task_delete">删除数字</string>
     <string name="wake_task_check">确定</string>
+    <string name="charts_title">图表</string>
+    <string name="chart_bars_title">睡眠时段</string>
+    <string name="chart_durations_title">每晚睡眠时长</string>
+    <string name="chart_wake_title">时间窗内的唤醒时刻</string>
+    <string name="chart_stages_title">当晚的睡眠阶段</string>
+    <string name="chart_feeling_title">感觉</string>
+    <string name="chart_nights_7">7 晚</string>
+    <string name="chart_nights_14">14 晚</string>
+    <string name="chart_bedtime">就寝 %1$s</string>
+    <string name="chart_goal">目标 %1$s</string>
+    <string name="chart_wake_target">目标时间</string>
+    <string name="chart_wake_late">目标时间之后</string>
+    <string name="chart_stage_awake">清醒</string>
+    <string name="chart_stage_rem">快速眼动</string>
+    <string name="chart_stage_light">浅睡</string>
+    <string name="chart_stage_deep">深睡</string>
+    <string name="chart_window">唤醒时间窗</string>
+    <string name="chart_no_data">无数据</string>
+    <string name="chart_feeling_hint">轻点一个点即可查看那晚的备注。</string>
 </resources>

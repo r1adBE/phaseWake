@@ -94,6 +94,7 @@ import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.ExportDialog
+import com.phasewake.app.ui.history.HistoryCharts
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
@@ -217,6 +218,10 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             routineAverage = Routine.average(routineTicks, routineItems, today),
             routineItems = routineItems.size,
         )
+    }
+    // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
+    val charts = remember(nights, sleeps, stages, notes, alarms, sleepGoal) {
+        HistoryCharts.of(nights.orEmpty(), sleeps, stages, notes, alarms, sleepGoal, Instant.now(), ZoneId.systemDefault())
     }
     // Wochenrückblick als Karte am Sonntag und Montag.
     val weekly = remember(nights, sleeps, notes, sleepGoal) {
@@ -473,6 +478,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                     soundFile = { app.sounds.file(it) },
                     onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
                     onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
+                    charts = charts,
                 )
             }
             composable(Routes.SETTINGS) {

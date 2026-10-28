@@ -260,13 +260,16 @@ class SleepSoundService : Service() {
         override val channels: Int get() = recording.channels
         private var position = recording.start
 
+        /** Aufnahmen sind leiser als die erzeugten Klänge: Verstärkung aus dem Kern, begrenzt. */
+        private val gain = sound.gain
+
         override fun fill(out: FloatArray) {
             val pcm = recording.pcm
             var i = 0
             while (i < out.size) {
                 if (position >= recording.end) position = recording.loopStart
                 val n = minOf(out.size - i, recording.end - position)
-                for (k in 0 until n) out[i + k] = pcm[position + k] * PCM_SCALE
+                for (k in 0 until n) out[i + k] = SleepSounds.amplify(pcm[position + k] * PCM_SCALE, gain)
                 i += n
                 position += n
             }

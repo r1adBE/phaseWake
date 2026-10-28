@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Beschikbaar vanaf 16 u voor de wekker</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Los de som op je telefoon op of houd 5 s vast</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nieuwe wekker</string>
+    <string name="editor_new">Nieuwe wekker</string>
+    <string name="editor_edit">Wekker bewerken</string>
+    <string name="editor_target">Wek me om</string>
+    <string name="editor_latest">Uiterlijk</string>
+    <string name="editor_window">Venster: %1$d min</string>
+    <string name="editor_days">Herhalen</string>
+    <string name="editor_save">Opslaan</string>
+    <string name="editor_delete">Wekker verwijderen</string>
+    <string name="editor_delete_title">Deze wekker verwijderen?</string>
+    <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
+    <string name="editor_enabled">Wekker aan</string>
 </resources>

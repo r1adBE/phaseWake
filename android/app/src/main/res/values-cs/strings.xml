@@ -355,4 +355,23 @@
     <string name="wake_task_wrong">Ne tak docela – tady je nový.</string>
     <string name="wake_task_delete">Smazat číslici</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Grafy</string>
+    <string name="chart_bars_title">Časy spánku</string>
+    <string name="chart_durations_title">Spánek za noc</string>
+    <string name="chart_wake_title">Okamžik buzení v okně</string>
+    <string name="chart_stages_title">Fáze spánku v noci</string>
+    <string name="chart_feeling_title">Pocit</string>
+    <string name="chart_nights_7">7 nocí</string>
+    <string name="chart_nights_14">14 nocí</string>
+    <string name="chart_bedtime">Čas jít spát %1$s</string>
+    <string name="chart_goal">Cíl %1$s</string>
+    <string name="chart_wake_target">V cílový čas</string>
+    <string name="chart_wake_late">Po cílovém čase</string>
+    <string name="chart_stage_awake">Bdění</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Lehký</string>
+    <string name="chart_stage_deep">Hluboký</string>
+    <string name="chart_window">Okno buzení</string>
+    <string name="chart_no_data">žádná data</string>
+    <string name="chart_feeling_hint">Klepni na bod a uvidíš poznámky z té noci.</string>
 </resources>

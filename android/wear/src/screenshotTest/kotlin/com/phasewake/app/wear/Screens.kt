@@ -6,6 +6,8 @@ import com.android.tools.screenshot.PreviewTest
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakeReason
+import androidx.wear.compose.material3.AppScaffold
+import com.phasewake.app.wear.ui.EditorContent
 import com.phasewake.app.wear.ui.HomeContent
 import com.phasewake.app.wear.ui.RingScreen
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
@@ -26,18 +28,21 @@ private val sleepAlarms = listOf(AlarmSpec(id = "sleep", hour = 7, minute = 0, d
 
 @Composable
 private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = Swiss {
-    HomeContent(
-        alarms = list,
-        plan = AlarmSchedule.earliestPlan(list, now, zone),
-        zone = zone,
-        goodNightActive = goodNight,
-        permissionsMissing = false,
-        dndBlocks = false,
-        onGoodNight = {},
-        onRequestPermissions = {},
-        onOpenDnd = {},
-        onToggle = { _, _ -> },
-    )
+    // In der App liegt der AppScaffold um alle Bildschirme (Uhrzeit oben).
+    AppScaffold {
+        HomeContent(
+            alarms = list,
+            plan = AlarmSchedule.earliestPlan(list, now, zone),
+            zone = zone,
+            goodNightActive = goodNight,
+            permissionsMissing = false,
+            dndBlocks = false,
+            onGoodNight = {},
+            onRequestPermissions = {},
+            onOpenDnd = {},
+            onToggle = { _, _ -> },
+        )
+    }
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Start", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
@@ -48,6 +53,13 @@ fun WatchGoodNight() = Home(sleepAlarms)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr ohne Wecker", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchEmpty() = Home(emptyList())
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecker bearbeiten", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+fun WatchEditor() = Swiss {
+    AppScaffold {
+        EditorContent(draft = alarms.first(), isNew = false, onPickTime = {}, onChange = {}, onSave = {}, onDelete = {})
+    }
+}
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchRing() = Swiss {

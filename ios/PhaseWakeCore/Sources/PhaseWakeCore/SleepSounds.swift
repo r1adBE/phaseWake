@@ -22,6 +22,14 @@ public enum SleepSound: String, CaseIterable, Sendable {
         case .rain, .ocean, .forest, .fire, .brook: true
         }
     }
+
+    /// Verstärkung beim Abspielen in dB: Die Aufnahmen klingen rund 5–8 dB leiser als die erzeugten Klänge,
+    /// darum +6 dB. Ihre Spitzen liegen bei höchstens −6 dBFS (make-sound-loops.py); `SleepSounds.amplify`
+    /// begrenzt danach trotzdem.
+    public var gainDb: Double { recorded ? SleepSounds.recordingGainDb : 0 }
+
+    /// `gainDb` als Faktor für die Abtastwerte.
+    public var gain: Float { Float(pow(10, gainDb / 20)) }
 }
 
 /// Zeitplan der Einschlafklänge: Timer, Ein- und Ausblenden, spätestens Ende beim Weckfenster.
@@ -31,6 +39,16 @@ public enum SleepSounds {
     public static let defaultTimerMinutes = 30
     public static let fadeInSeconds = 3.0
     public static let fadeOutSeconds = 30.0
+    /// Verstärkung der Aufnahmen beim Abspielen (`SleepSound.gainDb`).
+    public static let recordingGainDb = 6.0
+    /// Obergrenze nach der Verstärkung: −0,5 dBFS, damit nichts übersteuert.
+    public static let ceiling: Float = 0.9440609
+
+    /// Abtastwert mal `gain`, auf ±`ceiling` begrenzt (gegen Übersteuern bei lauten Stellen).
+    @inline(__always)
+    public static func amplify(_ sample: Float, gain: Float) -> Float {
+        min(ceiling, max(-ceiling, sample * gain))
+    }
 
     /// Wann die Klänge enden: nach dem Timer, spätestens beim Beginn des nächsten Weckfensters
     /// (sie sollen das Wecken nie überdecken). `nil` = ohne Ende.

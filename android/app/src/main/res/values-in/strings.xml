@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">Belum tepat – ini soal baru.</string>
     <string name="wake_task_delete">Hapus angka</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Grafik</string>
+    <string name="chart_bars_title">Waktu tidur</string>
+    <string name="chart_durations_title">Tidur per malam</string>
+    <string name="chart_wake_title">Saat dibangunkan dalam rentang</string>
+    <string name="chart_stages_title">Fase tidur malam itu</string>
+    <string name="chart_feeling_title">Perasaan</string>
+    <string name="chart_nights_7">7 malam</string>
+    <string name="chart_nights_14">14 malam</string>
+    <string name="chart_bedtime">Waktu tidur %1$s</string>
+    <string name="chart_goal">Target %1$s</string>
+    <string name="chart_wake_target">Tepat waktu target</string>
+    <string name="chart_wake_late">Setelah waktu target</string>
+    <string name="chart_stage_awake">Terjaga</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Ringan</string>
+    <string name="chart_stage_deep">Nyenyak</string>
+    <string name="chart_window">Rentang bangun</string>
+    <string name="chart_no_data">tidak ada data</string>
+    <string name="chart_feeling_hint">Ketuk titik untuk melihat catatan malam itu.</string>
 </resources>

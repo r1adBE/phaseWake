@@ -106,6 +106,8 @@ fun HistoryScreen(
     soundFile: (SoundClip) -> File? = { null },
     onDeleteClip: (SoundClip) -> Unit = {},
     onDeleteNightClips: (LocalDate) -> Unit = {},
+    /** Diagramme oben im Verlauf; `null` oder leer: keine. */
+    charts: HistoryCharts? = null,
 ) {
     val latestByDate = remember(nights) {
         nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
@@ -130,6 +132,8 @@ fun HistoryScreen(
         item(key = "title") {
             Text(stringResource(R.string.history_title), style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(start = 4.dp, bottom = 4.dp))
         }
+        // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
+        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes) } }
         if (nights.isEmpty()) {
             item(key = "empty") {
                 Card(
@@ -155,7 +159,7 @@ fun HistoryScreen(
         }
         item(key = "stats") { Stats(nights) }
         weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes) } }
-        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits) } }
+        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty()) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         items(entries, key = { it.key }) { entry ->
             val night = when (entry) {

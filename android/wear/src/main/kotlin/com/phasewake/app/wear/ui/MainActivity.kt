@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +33,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationManagerCompat
@@ -41,13 +43,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.shared.DoNotDisturb
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+import androidx.wear.compose.navigation.SwipeDismissableNavHost
+import androidx.wear.compose.navigation.composable
+import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
-import androidx.wear.compose.material3.SwitchButton
+import androidx.wear.compose.material3.SplitSwitchButton
 import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
@@ -73,11 +78,89 @@ import java.time.format.FormatStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-/** Startbildschirm der Uhr: nächstes Weckfenster, Wecker ein/aus, Berechtigungen. */
+/** Uhr-App: Startbildschirm (nächstes Weckfenster, Wecker, Berechtigungen) und einfacher Wecker-Editor. */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { PhaseWakeTheme { HomeScreen() } }
+        setContent { PhaseWakeTheme { WatchApp() } }
+    }
+}
+
+private const val ROUTE_HOME = "home"
+private const val ROUTE_EDITOR = "editor"
+private const val ROUTE_TIME = "time"
+
+/**
+ * Bildschirme der Uhr; Wischen nach rechts geht zurück (im Editor ohne Speichern). Die Uhr bearbeitet nur
+ * Zeit, Fenster, Tage und Ein/Aus; der Rest bleibt, wie er am Handy eingestellt ist (siehe [mergeEdit]).
+ */
+@Composable
+private fun WatchApp() {
+    val app = LocalContext.current.wearApp
+    val nav = rememberSwipeDismissableNavController()
+    val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
+    var draft by rememberSaveable(stateSaver = draftSaver) { mutableStateOf<AlarmSpec?>(null) }
+    // Nur vom eigenen Bildschirm aus zurück: Ein Doppeltipp darf nicht auch den Start schliessen.
+    fun back(from: String) {
+        if (nav.currentDestination?.route == from) nav.popBackStack()
+    }
+    fun open(spec: AlarmSpec) {
+        if (nav.currentDestination?.route != ROUTE_HOME) return
+        draft = spec
+        nav.navigate(ROUTE_EDITOR)
+    }
+    AppScaffold {
+        SwipeDismissableNavHost(navController = nav, startDestination = ROUTE_HOME) {
+            composable(ROUTE_HOME) {
+                HomeScreen(onAdd = { open(newAlarm()) }, onEdit = { open(it) })
+            }
+            composable(ROUTE_EDITOR) {
+                val current = draft
+                if (current == null) {
+                    // Kein Entwurf (sollte nicht vorkommen): zurück zum Start, nie unter den Start hinaus.
+                    LaunchedEffect(Unit) { nav.popBackStack(ROUTE_HOME, inclusive = false) }
+                } else {
+                    EditorContent(
+                        draft = current,
+                        isNew = alarms.none { it.id == current.id },
+                        onPickTime = { if (nav.currentDestination?.route == ROUTE_EDITOR) nav.navigate(ROUTE_TIME) },
+                        onChange = { draft = it },
+                        onSave = {
+                            // Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
+                            app.appScope.launch {
+                                val list = app.alarms.current().alarms
+                                val stored = list.firstOrNull { it.id == current.id }
+                                // Höchstens MAX_ALARMS Wecker, wie am Handy.
+                                if (stored != null || list.size < MAX_ALARMS) {
+                                    app.sync.publishAlarms(app.alarms.upsert(mergeEdit(stored, current)))
+                                    app.scheduler.reschedule()
+                                }
+                            }
+                            back(ROUTE_EDITOR)
+                        },
+                        onDelete = {
+                            app.appScope.launch {
+                                app.sync.publishAlarms(app.alarms.remove(current.id))
+                                app.scheduler.reschedule()
+                            }
+                            back(ROUTE_EDITOR)
+                        },
+                    )
+                }
+            }
+            composable(ROUTE_TIME) {
+                val current = draft
+                if (current == null) {
+                    // Kein Entwurf (sollte nicht vorkommen): zurück zum Start, nie unter den Start hinaus.
+                    LaunchedEffect(Unit) { nav.popBackStack(ROUTE_HOME, inclusive = false) }
+                } else {
+                    EditorTime(current) { time ->
+                        draft = current.copy(hour = time.hour, minute = time.minute)
+                        back(ROUTE_TIME)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -100,7 +183,7 @@ private fun heartRatePermission(): String =
     if (Build.VERSION.SDK_INT >= 36) "android.permission.health.READ_HEART_RATE" else Manifest.permission.BODY_SENSORS
 
 @Composable
-private fun HomeScreen() {
+private fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit) {
     val context = LocalContext.current
     val app = context.wearApp
     val scope = rememberCoroutineScope()
@@ -205,6 +288,8 @@ private fun HomeScreen() {
                 app.scheduler.reschedule()
             }
         },
+        onAdd = onAdd,
+        onEdit = onEdit,
     )
 }
 
@@ -224,53 +309,74 @@ internal fun HomeContent(
     onRequestPermissions: () -> Unit,
     onOpenDnd: () -> Unit,
     onToggle: (AlarmSpec, Boolean) -> Unit,
+    onAdd: () -> Unit = {},
+    onEdit: (AlarmSpec) -> Unit = {},
 ) {
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
     val listState = rememberScalingLazyListState()
-    AppScaffold {
-        ScreenScaffold(scrollState = listState) {
-            ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
-                item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading) }
-                if (sleepAlarm != null) {
-                    item {
-                        GoodNightButton(
-                            active = goodNightActive,
-                            tooFar = goodNightTooFar && !goodNightActive,
-                            sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
-                            onClick = onGoodNight,
-                        )
-                    }
+    ScreenScaffold(scrollState = listState) {
+        ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
+            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading) }
+            if (sleepAlarm != null) {
+                item {
+                    GoodNightButton(
+                        active = goodNightActive,
+                        tooFar = goodNightTooFar && !goodNightActive,
+                        sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
+                        onClick = onGoodNight,
+                    )
                 }
-                if (permissionsMissing) {
-                    item {
+            }
+            if (permissionsMissing) {
+                item {
+                    Button(
+                        onClick = onRequestPermissions,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.home_permissions)) },
+                        secondaryLabel = { Text(stringResource(R.string.home_permissions_hint)) },
+                    )
+                }
+            }
+            if (dndBlocks) {
+                item {
+                    Button(
+                        onClick = onOpenDnd,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+                        label = { Text(stringResource(R.string.dnd_title)) },
+                        secondaryLabel = { Text(stringResource(R.string.dnd_text)) },
+                    )
+                }
+            }
+            if (lastNight != null) {
+                item { LastNight(lastNight, zone) }
+            }
+            if (alarms.isNotEmpty()) {
+                item { ListHeader { Text(stringResource(R.string.home_alarms)) } }
+            }
+            items(alarms.size) { index ->
+                val alarm = alarms[index]
+                AlarmSwitch(alarm, onEdit = { onEdit(alarm) }) { enabled -> onToggle(alarm, enabled) }
+            }
+            if (!loading) {
+                item {
+                    if (alarms.size < MAX_ALARMS) {
                         Button(
-                            onClick = onRequestPermissions,
+                            onClick = onAdd,
                             modifier = Modifier.fillMaxWidth(),
-                            label = { Text(stringResource(R.string.home_permissions)) },
-                            secondaryLabel = { Text(stringResource(R.string.home_permissions_hint)) },
+                            colors = ButtonDefaults.filledTonalButtonColors(),
+                            icon = { Text("+", style = MaterialTheme.typography.titleLarge, modifier = Modifier.clearAndSetSemantics { }) },
+                            label = { Text(stringResource(R.string.home_add_alarm)) },
+                        )
+                    } else {
+                        Text(
+                            stringResource(R.string.home_max_alarms, MAX_ALARMS),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Brand.Muted,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
-                }
-                if (dndBlocks) {
-                    item {
-                        Button(
-                            onClick = onOpenDnd,
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
-                            label = { Text(stringResource(R.string.dnd_title)) },
-                            secondaryLabel = { Text(stringResource(R.string.dnd_text)) },
-                        )
-                    }
-                }
-                if (lastNight != null) {
-                    item { LastNight(lastNight, zone) }
-                }
-                if (alarms.isNotEmpty()) {
-                    item { ListHeader { Text(stringResource(R.string.home_alarms)) } }
-                }
-                items(alarms.size) { index ->
-                    val alarm = alarms[index]
-                    AlarmSwitch(alarm) { enabled -> onToggle(alarm, enabled) }
                 }
             }
         }
@@ -379,19 +485,24 @@ private fun GoodNightButton(active: Boolean, tooFar: Boolean, sleepMinutes: Int,
     )
 }
 
+/** Zeile antippen öffnet den Editor, der Schalter rechts schaltet ein/aus. */
 @Composable
-private fun AlarmSwitch(alarm: AlarmSpec, onToggle: (Boolean) -> Unit) {
+private fun AlarmSwitch(alarm: AlarmSpec, onEdit: () -> Unit, onToggle: (Boolean) -> Unit) {
     val time = LocalTime.of(alarm.hour, alarm.minute)
     val start = time.minusMinutes(alarm.windowMinutes.toLong())
     val days = DayFormat.format(
         alarm.days, LocalConfiguration.current.locales[0],
         stringResource(R.string.alarm_once), stringResource(R.string.alarm_every_day),
     )
-    SwitchButton(
+    val window = stringResource(R.string.home_window, formatTime(start), formatTime(time))
+    SplitSwitchButton(
         checked = alarm.enabled,
         onCheckedChange = onToggle,
+        toggleContentDescription = window,
+        onContainerClick = onEdit,
+        containerClickLabel = stringResource(R.string.editor_edit),
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(stringResource(R.string.home_window, formatTime(start), formatTime(time))) },
+        label = { Text(window) },
         secondaryLabel = { Text(listOf(days, alarm.label).filter { it.isNotBlank() }.joinToString(" · ")) },
     )
 }

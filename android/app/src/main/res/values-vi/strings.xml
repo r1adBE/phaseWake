@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">Chưa đúng – đây là phép mới.</string>
     <string name="wake_task_delete">Xóa chữ số</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Biểu đồ</string>
+    <string name="chart_bars_title">Giờ ngủ</string>
+    <string name="chart_durations_title">Giấc ngủ mỗi đêm</string>
+    <string name="chart_wake_title">Thời điểm đánh thức trong khoảng</string>
+    <string name="chart_stages_title">Các giai đoạn ngủ trong đêm</string>
+    <string name="chart_feeling_title">Cảm giác</string>
+    <string name="chart_nights_7">7 đêm</string>
+    <string name="chart_nights_14">14 đêm</string>
+    <string name="chart_bedtime">Giờ đi ngủ %1$s</string>
+    <string name="chart_goal">Mục tiêu %1$s</string>
+    <string name="chart_wake_target">Đúng giờ mục tiêu</string>
+    <string name="chart_wake_late">Sau giờ mục tiêu</string>
+    <string name="chart_stage_awake">Thức</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Nông</string>
+    <string name="chart_stage_deep">Sâu</string>
+    <string name="chart_window">Khoảng đánh thức</string>
+    <string name="chart_no_data">không có dữ liệu</string>
+    <string name="chart_feeling_hint">Chạm vào một điểm để xem ghi chú của đêm đó.</string>
 </resources>

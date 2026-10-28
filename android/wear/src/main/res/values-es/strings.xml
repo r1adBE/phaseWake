@@ -48,4 +48,17 @@
     <string name="home_good_night_too_far">Disponible desde 16 h antes de la alarma</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Resuelve el cálculo en el teléfono o mantén 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nueva alarma</string>
+    <string name="editor_new">Nueva alarma</string>
+    <string name="editor_edit">Editar alarma</string>
+    <string name="editor_target">Despiértame antes de</string>
+    <string name="editor_latest">Como tarde</string>
+    <string name="editor_window">Ventana: %1$d min</string>
+    <string name="editor_days">Repetir</string>
+    <string name="editor_save">Guardar</string>
+    <string name="editor_delete">Eliminar alarma</string>
+    <string name="editor_delete_title">¿Eliminar esta alarma?</string>
+    <string name="home_max_alarms">Máximo %1$d alarmas: elimina una para añadir otra.</string>
+    <string name="editor_enabled">Alarma activada</string>
 </resources>

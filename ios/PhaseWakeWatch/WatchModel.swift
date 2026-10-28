@@ -39,6 +39,35 @@ final class WatchModel {
         reschedule()
     }
 
+    /// Höchstens so viele Wecker wie am iPhone.
+    static let maxAlarms = 8
+    var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
+
+    /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (zuletzt gespeichert gewinnt).
+    /// Ein bestehender Wecker behält alles, was die Uhr nicht bearbeitet (siehe `AlarmSpec.editedOnWatch`).
+    func save(_ draft: AlarmSpec) {
+        let snapshot = storage.mutate { list in
+            var list = list
+            if let i = list.firstIndex(where: { $0.id == draft.id }) {
+                list[i] = list[i].editedOnWatch(from: draft)
+            } else if list.count < Self.maxAlarms {
+                list.append(draft)
+            }
+            return list
+        }
+        alarms = snapshot.alarms
+        WatchConnectivityBridge.shared.publish(snapshot)
+        reschedule()
+    }
+
+    /// Wecker auf der Uhr löschen; geht ans iPhone und plant neu.
+    func remove(_ id: String) {
+        let snapshot = storage.mutate { list in list.filter { $0.id != id } }
+        alarms = snapshot.alarms
+        WatchConnectivityBridge.shared.publish(snapshot)
+        reschedule()
+    }
+
     /// Vom iPhone empfangene Wecker übernehmen, falls neuer.
     func applyRemote(_ snapshot: AlarmSnapshot) {
         guard storage.applyRemote(snapshot) else { return }

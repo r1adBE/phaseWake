@@ -355,4 +355,23 @@
     <string name="wake_task_wrong">Не совсем – вот новый.</string>
     <string name="wake_task_delete">Удалить цифру</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">Графики</string>
+    <string name="chart_bars_title">Время сна</string>
+    <string name="chart_durations_title">Сон за ночь</string>
+    <string name="chart_wake_title">Момент пробуждения в окне</string>
+    <string name="chart_stages_title">Фазы сна за ночь</string>
+    <string name="chart_feeling_title">Самочувствие</string>
+    <string name="chart_nights_7">7 ночей</string>
+    <string name="chart_nights_14">14 ночей</string>
+    <string name="chart_bedtime">Отбой %1$s</string>
+    <string name="chart_goal">Цель %1$s</string>
+    <string name="chart_wake_target">В целевое время</string>
+    <string name="chart_wake_late">После целевого времени</string>
+    <string name="chart_stage_awake">Бодрствование</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Лёгкий</string>
+    <string name="chart_stage_deep">Глубокий</string>
+    <string name="chart_window">Окно пробуждения</string>
+    <string name="chart_no_data">нет данных</string>
+    <string name="chart_feeling_hint">Нажми на точку, чтобы увидеть заметки этой ночи.</string>
 </resources>

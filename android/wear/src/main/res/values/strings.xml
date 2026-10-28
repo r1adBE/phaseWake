@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Phase Wake</string>
 
     <string name="channel_window">Wake window</string>
@@ -49,4 +49,17 @@
     <string name="home_good_night_too_far">Available from 16 h before the alarm</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Solve the task on your phone or hold 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">New alarm</string>
+    <string name="editor_new">New alarm</string>
+    <string name="editor_edit">Edit alarm</string>
+    <string name="editor_target">Wake me by</string>
+    <string name="editor_latest">At the latest</string>
+    <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_days">Repeat</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_delete">Delete alarm</string>
+    <string name="editor_delete_title">Delete this alarm?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
+    <string name="editor_enabled">Alarm on</string>
 </resources>

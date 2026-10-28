@@ -319,4 +319,23 @@
     <string name="wake_task_wrong">惜しい – 新しい問題です。</string>
     <string name="wake_task_delete">1桁削除</string>
     <string name="wake_task_check">OK</string>
+    <string name="charts_title">グラフ</string>
+    <string name="chart_bars_title">睡眠時間帯</string>
+    <string name="chart_durations_title">夜ごとの睡眠時間</string>
+    <string name="chart_wake_title">時間幅内の起床タイミング</string>
+    <string name="chart_stages_title">その夜の睡眠段階</string>
+    <string name="chart_feeling_title">気分</string>
+    <string name="chart_nights_7">7泊</string>
+    <string name="chart_nights_14">14泊</string>
+    <string name="chart_bedtime">就寝 %1$s</string>
+    <string name="chart_goal">目標 %1$s</string>
+    <string name="chart_wake_target">目標時刻ちょうど</string>
+    <string name="chart_wake_late">目標時刻の後</string>
+    <string name="chart_stage_awake">覚醒</string>
+    <string name="chart_stage_rem">レム</string>
+    <string name="chart_stage_light">浅い</string>
+    <string name="chart_stage_deep">深い</string>
+    <string name="chart_window">起床時間幅</string>
+    <string name="chart_no_data">データなし</string>
+    <string name="chart_feeling_hint">点をタップするとその夜のメモが表示されます。</string>
 </resources>

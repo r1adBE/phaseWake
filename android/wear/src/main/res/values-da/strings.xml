@@ -47,4 +47,17 @@
     <string name="home_good_night_too_far">Tilgængelig fra 16 t før alarmen</string>
     <!-- Weckaufgabe am Handy -->
     <string name="wake_task_on_phone">Løs opgaven på telefonen eller hold 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Ny alarm</string>
+    <string name="editor_new">Ny alarm</string>
+    <string name="editor_edit">Rediger alarm</string>
+    <string name="editor_target">Væk mig senest</string>
+    <string name="editor_latest">Senest</string>
+    <string name="editor_window">Vindue: %1$d min</string>
+    <string name="editor_days">Gentag</string>
+    <string name="editor_save">Gem</string>
+    <string name="editor_delete">Slet alarm</string>
+    <string name="editor_delete_title">Slet dette alarm?</string>
+    <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
+    <string name="editor_enabled">Alarm til</string>
 </resources>
