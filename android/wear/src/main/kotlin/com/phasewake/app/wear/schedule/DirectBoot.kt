@@ -2,6 +2,7 @@ package com.phasewake.app.wear.schedule
 
 import android.content.Context
 import android.os.UserManager
+import androidx.core.content.edit
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
 import java.time.Duration
@@ -40,31 +41,36 @@ object DirectBoot {
 
     /** Bei jedem Neuplanen: der geplante Plan; geweckt wird zur Zielzeit. */
     fun save(context: Context, plan: WakePlan, spec: AlarmSpec?) {
-        prefs(context).edit()
-            .putString(KEY_ID, plan.alarmId)
-            .putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
-            .putLong(KEY_TARGET, plan.target.toEpochMilli())
-            .putLong(KEY_AT, plan.target.toEpochMilli())
-            .putBoolean(KEY_SOUND, spec?.watchSound == true)
-            .putString(KEY_LABEL, spec?.label.orEmpty())
-            .apply()
+        prefs(context).edit {
+            putString(KEY_ID, plan.alarmId)
+            putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
+            putLong(KEY_TARGET, plan.target.toEpochMilli())
+            putLong(KEY_AT, plan.target.toEpochMilli())
+            putBoolean(KEY_SOUND, spec?.watchSound == true)
+            putString(KEY_LABEL, spec?.label.orEmpty())
+        }
     }
 
     /** Beim Schlummern: Nach einem Neustart weckt die Uhr zum Schlummer-Ende erneut. */
     fun saveRingAt(context: Context, plan: WakePlan, at: Instant) {
         // Uhr-Ton und Name bleiben vom letzten Neuplanen stehen.
-        prefs(context).edit()
-            .putString(KEY_ID, plan.alarmId)
-            .putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
-            .putLong(KEY_TARGET, plan.target.toEpochMilli())
-            .putLong(KEY_AT, at.toEpochMilli())
-            .apply()
+        prefs(context).edit {
+            putString(KEY_ID, plan.alarmId)
+            putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
+            putLong(KEY_TARGET, plan.target.toEpochMilli())
+            putLong(KEY_AT, at.toEpochMilli())
+        }
     }
 
     fun clear(context: Context) {
-        prefs(context).edit()
-            .remove(KEY_ID).remove(KEY_WINDOW_START).remove(KEY_TARGET).remove(KEY_AT).remove(KEY_SOUND).remove(KEY_LABEL)
-            .apply()
+        prefs(context).edit {
+            remove(KEY_ID)
+            remove(KEY_WINDOW_START)
+            remove(KEY_TARGET)
+            remove(KEY_AT)
+            remove(KEY_SOUND)
+            remove(KEY_LABEL)
+        }
     }
 
     fun load(context: Context): Saved? {
@@ -90,7 +96,10 @@ object DirectBoot {
 
     /** Vor dem Entsperren geweckt: Kennung und Zielzeit für [takeRang] merken (Nacht erledigt, Einmal-Wecker aus). */
     fun markRang(context: Context, alarmId: String, target: Instant) {
-        prefs(context).edit().putString(KEY_RANG_ID, alarmId).putLong(KEY_RANG_TARGET, target.toEpochMilli()).apply()
+        prefs(context).edit {
+            putString(KEY_RANG_ID, alarmId)
+            putLong(KEY_RANG_TARGET, target.toEpochMilli())
+        }
     }
 
     /** Gemerkten Weckvorgang einmal abholen. */
@@ -98,7 +107,10 @@ object DirectBoot {
         val prefs = prefs(context)
         val id = prefs.getString(KEY_RANG_ID, null) ?: return null
         val target = Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L))
-        prefs.edit().remove(KEY_RANG_ID).remove(KEY_RANG_TARGET).apply()
+        prefs.edit {
+            remove(KEY_RANG_ID)
+            remove(KEY_RANG_TARGET)
+        }
         return id to target
     }
 }

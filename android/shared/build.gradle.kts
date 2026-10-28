@@ -28,6 +28,7 @@ dependencies {
     api(libs.androidx.datastore.preferences)
     implementation(libs.androidx.core.ktx)
 
-    testImplementation(kotlin("test"))
+    // Android-Bibliothek: Testrahmen ausdrücklich (JUnit), sonst fehlt kotlin.test.Test.
+    testImplementation(kotlin("test-junit"))
     testImplementation(libs.kotlinx.coroutines.test)
 }
