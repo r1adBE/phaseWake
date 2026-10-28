@@ -1,0 +1,38 @@
+name: Feiertage
+
+# Erzeugt die Feiertagsdaten (alle Länder und Regionen, 2026–2036) aus dem Paket «holidays» (MIT) und legt
+# sie in den Zweig «feiertage». Nur von Hand gestartet; danach per Merge ins Repo.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  feiertage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Daten erzeugen
+        run: |
+          pip install --quiet holidays
+          python -c "import holidays; print('holidays', holidays.__version__)"
+          python .github/scripts/make-holidays.py holidays.json 2> skipped.txt
+          gzip -9 -k holidays.json
+          ls -la holidays.json holidays.json.gz
+          echo "::notice title=Feiertage::$(ls -la holidays.json holidays.json.gz | tr '\n' ' ') übersprungen: $(wc -l < skipped.txt)"
+      - name: In den Zweig «feiertage» legen
+        run: |
+          git config user.name "r1AD"
+          git config user.email "r1adBE@users.noreply.github.com"
+          git fetch origin
+          git checkout -B feiertage origin/main
+          mkdir -p android/app/src/main/assets ios/PhaseWake/Resources
+          cp holidays.json.gz android/app/src/main/assets/holidays.json.gz
+          cp holidays.json.gz ios/PhaseWake/Resources/holidays.json.gz
+          git add android/app/src/main/assets/holidays.json.gz ios/PhaseWake/Resources/holidays.json.gz
+          git commit -m "Feiertage aller Länder und Regionen 2026–2036 (Paket holidays, MIT)"
+          git push -f origin feiertage
