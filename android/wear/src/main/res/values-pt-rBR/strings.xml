@@ -42,4 +42,5 @@
     <string name="dnd_text">Permita alarmes no Não perturbe.</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Ontem à noite</string>
 </resources>

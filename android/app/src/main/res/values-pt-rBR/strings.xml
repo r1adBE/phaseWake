@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Abra o Phase Wake no relógio uma vez e permita sensores e notificações.</string>
     <string name="ring_hold_to_stop">Segure para parar</string>
     <string name="settings_privacy">Política de privacidade</string>
+    <string name="editor_discard_title">Descartar alterações?</string>
+    <string name="editor_discard">Descartar</string>
+    <string name="editor_keep_editing">Continuar editando</string>
+    <string name="editor_delete_title">Excluir este alarme?</string>
+    <string name="home_window_running">Janela em andamento – medindo agora</string>
+    <string name="check_volume">Volume do alarme</string>
+    <string name="check_volume_problem">O volume do alarme está em 0 – seu celular tocaria em silêncio.</string>
+    <string name="health_update">Atualizar o Health Connect</string>
 </resources>

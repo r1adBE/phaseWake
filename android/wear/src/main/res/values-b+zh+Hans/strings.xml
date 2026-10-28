@@ -41,4 +41,5 @@
     <string name="dnd_text">请在勿扰模式下允许闹钟。</string>
     <string name="duration_hours">%1$d 小时</string>
     <string name="duration_hours_minutes">%1$d 小时 %2$d 分</string>
+    <string name="home_last_night">昨晚</string>
 </resources>

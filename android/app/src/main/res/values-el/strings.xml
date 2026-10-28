@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες και ειδοποιήσεις.</string>
     <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
     <string name="settings_privacy">Πολιτική απορρήτου</string>
+    <string name="editor_discard_title">Απόρριψη αλλαγών;</string>
+    <string name="editor_discard">Απόρριψη</string>
+    <string name="editor_keep_editing">Συνέχεια επεξεργασίας</string>
+    <string name="editor_delete_title">Διαγραφή αυτού του ξυπνητηριού;</string>
+    <string name="home_window_running">Το παράθυρο τρέχει – γίνεται μέτρηση</string>
+    <string name="check_volume">Ένταση ξυπνητηριού</string>
+    <string name="check_volume_problem">Η ένταση του ξυπνητηριού είναι στο 0 – το κινητό σου θα χτυπούσε χωρίς ήχο.</string>
+    <string name="health_update">Ενημέρωση του Health Connect</string>
 </resources>

@@ -11,6 +11,11 @@ final class CalibrationTests: XCTestCase {
         XCTAssertEqual(Calibration.calibrate(nights: nights), .standard)
     }
 
+    func testEmptyNightsDoNotCount() {
+        let nights = Array(repeating: night(Array(repeating: 0.003, count: 40)), count: 2) + Array(repeating: night([nil, nil]), count: 2)
+        XCTAssertEqual(Calibration.calibrate(nights: nights), .standard)
+    }
+
     func testTooFewValuesKeepsDefaults() {
         let nights = Array(repeating: night([0.003, nil, 0.003]), count: 3)
         XCTAssertEqual(Calibration.calibrate(nights: nights), .standard)

@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">ウォッチでPhase Wakeを一度開き、センサーと通知を許可してください。</string>
     <string name="ring_hold_to_stop">長押しで停止</string>
     <string name="settings_privacy">プライバシーポリシー</string>
+    <string name="editor_discard_title">変更を破棄しますか?</string>
+    <string name="editor_discard">破棄</string>
+    <string name="editor_keep_editing">編集を続ける</string>
+    <string name="editor_delete_title">このアラームを削除しますか?</string>
+    <string name="home_window_running">時間幅の計測中です</string>
+    <string name="check_volume">アラームの音量</string>
+    <string name="check_volume_problem">アラームの音量が0になっています。スマートフォンが無音で鳴ります。</string>
+    <string name="health_update">Health Connectを更新</string>
 </resources>

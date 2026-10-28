@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Saatte Phase Wake’i bir kez aç; sensörlere ve bildirimlere izin ver.</string>
     <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
     <string name="settings_privacy">Gizlilik politikası</string>
+    <string name="editor_discard_title">Değişiklikler silinsin mi?</string>
+    <string name="editor_discard">Sil</string>
+    <string name="editor_keep_editing">Düzenlemeye devam et</string>
+    <string name="editor_delete_title">Bu alarm silinsin mi?</string>
+    <string name="home_window_running">Aralık sürüyor – şu an ölçülüyor</string>
+    <string name="check_volume">Alarm ses düzeyi</string>
+    <string name="check_volume_problem">Alarm ses düzeyi 0 olarak ayarlı – telefonun sessiz çalar.</string>
+    <string name="health_update">Health Connect\'i güncelle</string>
 </resources>

@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket és az értesítéseket.</string>
     <string name="ring_hold_to_stop">Tartsd a leállításhoz</string>
     <string name="settings_privacy">Adatvédelmi irányelvek</string>
+    <string name="editor_discard_title">Elveted a módosításokat?</string>
+    <string name="editor_discard">Elvetés</string>
+    <string name="editor_keep_editing">Szerkesztés folytatása</string>
+    <string name="editor_delete_title">Törlöd ezt az ébresztőt?</string>
+    <string name="home_window_running">Az időablak fut – most mér</string>
+    <string name="check_volume">Ébresztő hangereje</string>
+    <string name="check_volume_problem">Az ébresztő hangereje 0-ra van állítva – a telefonod némán csörögne.</string>
+    <string name="health_update">Health Connect frissítése</string>
 </resources>

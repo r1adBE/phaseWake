@@ -52,9 +52,9 @@ Leere Bewegung zählt nie als Treffer.
 
 ## 4. Kalibrierung
 
-Ab 3 aufgezeichneten Nächten werden die Schwellen pro Nutzer angepasst. Verwendet werden die letzten 14 Nächte.
+Ab 3 aufgezeichneten Nächten mit Messwerten werden die Schwellen pro Nutzer angepasst. Verwendet werden die letzten 14 davon.
 
-1. Alle nicht leeren Bewegungen der entscheidbaren Epochen dieser Nächte sammeln. Weniger als 3 Nächte oder weniger als 30 Werte → Startwerte.
+1. Nur Nächte mit mindestens einer nicht leeren Bewegung in den entscheidbaren Epochen zählen. Davon die letzten 14 nehmen und alle nicht leeren Bewegungen ihrer entscheidbaren Epochen sammeln. Weniger als 3 solche Nächte oder weniger als 30 Werte → Startwerte.
 2. **Leicht-Schwelle** = 80. Perzentil dieser Werte (Rangmethode: aufsteigend sortieren, Wert an Position ⌈0.8 · n⌉, gezählt ab 1). Gedanke: In einer typischen Fensterzeit liegen rund 20 % der Epochen im Bereich leichter Bewegung.
 3. Begrenzen auf das 0.5- bis 2-Fache des Startwerts (0.001 bis 0.004 m/s²).
 4. **Wach-Schwelle** = Leicht-Schwelle × 50 (Verhältnis der Startwerte).

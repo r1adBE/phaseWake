@@ -42,4 +42,5 @@
     <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε».</string>
     <string name="duration_hours">%1$d ώ.</string>
     <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
+    <string name="home_last_night">Χθες το βράδυ</string>
 </resources>

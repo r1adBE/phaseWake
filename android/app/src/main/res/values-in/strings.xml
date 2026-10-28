@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">Buka Phase Wake di jam tangan sekali dan izinkan sensor serta notifikasi.</string>
     <string name="ring_hold_to_stop">Tahan untuk berhenti</string>
     <string name="settings_privacy">Kebijakan privasi</string>
+    <string name="editor_discard_title">Buang perubahan?</string>
+    <string name="editor_discard">Buang</string>
+    <string name="editor_keep_editing">Lanjut mengedit</string>
+    <string name="editor_delete_title">Hapus alarm ini?</string>
+    <string name="home_window_running">Rentang berjalan – sedang mengukur</string>
+    <string name="check_volume">Volume alarm</string>
+    <string name="check_volume_problem">Volume alarm diatur ke 0 – ponselmu akan berdering tanpa suara.</string>
+    <string name="health_update">Perbarui Health Connect</string>
 </resources>

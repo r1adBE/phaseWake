@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Åpne Phase Wake på klokken én gang og tillat sensorer og varsler.</string>
     <string name="ring_hold_to_stop">Hold for å stoppe</string>
     <string name="settings_privacy">Personvernerklæring</string>
+    <string name="editor_discard_title">Forkaste endringer?</string>
+    <string name="editor_discard">Forkast</string>
+    <string name="editor_keep_editing">Fortsett å redigere</string>
+    <string name="editor_delete_title">Slette denne alarmen?</string>
+    <string name="home_window_running">Vinduet pågår – måler nå</string>
+    <string name="check_volume">Alarmvolum</string>
+    <string name="check_volume_problem">Alarmvolumet er satt til 0 – telefonen ville ringt uten lyd.</string>
+    <string name="health_update">Oppdater Health Connect</string>
 </resources>

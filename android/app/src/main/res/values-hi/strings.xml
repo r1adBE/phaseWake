@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">वॉच पर एक बार Phase Wake खोलें और सेंसर व नोटिफ़िकेशन की अनुमति दें।</string>
     <string name="ring_hold_to_stop">रोकने के लिए दबाए रखो</string>
     <string name="settings_privacy">गोपनीयता नीति</string>
+    <string name="editor_discard_title">बदलाव छोड़ दें?</string>
+    <string name="editor_discard">छोड़ दो</string>
+    <string name="editor_keep_editing">बदलाव जारी रखो</string>
+    <string name="editor_delete_title">यह अलार्म हटाएँ?</string>
+    <string name="home_window_running">विंडो चल रही है – अभी मापा जा रहा है</string>
+    <string name="check_volume">अलार्म की आवाज़</string>
+    <string name="check_volume_problem">अलार्म की आवाज़ 0 पर है – तुम्हारा फ़ोन बिना आवाज़ के बजेगा।</string>
+    <string name="health_update">Health Connect अपडेट करो</string>
 </resources>

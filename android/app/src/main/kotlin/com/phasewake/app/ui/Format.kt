@@ -14,7 +14,24 @@ import java.util.Locale
 
 /** Einheitliche Darstellung von Zeiten und Weckern in der Handy-App. */
 object Format {
-    private val time: DateTimeFormatter get() = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+    /**
+     * 12- oder 24-Stunden-Anzeige nach der Systemeinstellung (wie der Zeitwähler), nicht nur nach
+     * der Sprache. `null`, solange unbekannt: dann das Format der Sprache.
+     */
+    @Volatile
+    var use24Hour: Boolean? = null
+
+    /** Liest die 12/24-h-Einstellung des Systems; beim Start und bei jedem Öffnen aufrufen. */
+    fun update(context: Context) {
+        use24Hour = android.text.format.DateFormat.is24HourFormat(context)
+    }
+
+    private val time: DateTimeFormatter
+        get() {
+            val locale = Locale.getDefault()
+            val is24 = use24Hour ?: return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale)
+            return DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale)
+        }
 
     fun time(t: LocalTime): String = time.format(t)
 
@@ -27,7 +44,7 @@ object Format {
     }
 
     fun days(context: Context, alarm: AlarmSpec): String = DayFormat.format(
-        alarm.days, Locale.getDefault(),
+        alarm.days, context.resources.configuration.locales[0],
         context.getString(R.string.alarm_once), context.getString(R.string.alarm_every_day),
     )
 

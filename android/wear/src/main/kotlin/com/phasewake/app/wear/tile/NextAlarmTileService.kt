@@ -12,12 +12,10 @@ import androidx.wear.protolayout.TimelineBuilders
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.TileService
-import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.wearApp
 import com.google.common.util.concurrent.ListenableFuture
-import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -34,7 +32,7 @@ class NextAlarmTileService : TileService() {
 
     override fun onTileRequest(requestParams: RequestBuilders.TileRequest): ListenableFuture<TileBuilders.Tile> = scope.future {
         val zone = ZoneId.systemDefault()
-        val plan = AlarmSchedule.earliestPlan(wearApp.alarms.current().alarms, Instant.now(), zone)
+        val plan = wearApp.scheduler.nextPlan()
         val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
         val (title, line) = if (plan == null) {
             getString(R.string.home_no_alarm) to getString(R.string.home_no_alarm_hint)

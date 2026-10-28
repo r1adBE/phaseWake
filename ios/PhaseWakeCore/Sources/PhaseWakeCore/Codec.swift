@@ -5,7 +5,9 @@ public struct CodecError: Error, Equatable, CustomStringConvertible, Sendable {
     public let description: String
 }
 
-/// Textformat für Wecker und Nächte, byte-gleich zu `Codec` in `android/core`.
+/// Textformat für Wecker und Nächte, gleich wie `Codec` in `android/core`: Wecker byte-gleich;
+/// Zahlen der Epochen dürfen sich in der Schreibweise unterscheiden (Kotlin «2.13E-4», Swift
+/// «0.000213»), beide Seiten lesen beide.
 public enum Codec {
     private static let alarmsHeader = "phasewake-alarms 1"
     private static let nightHeader = "phasewake-night 1"
@@ -84,7 +86,7 @@ public enum Codec {
             guard p.count == 2 else { throw CodecError(description: "Epoche '\(pair)'") }
             return Epoch(motion: try p[0].isEmpty ? nil : double(p[0]), heartRate: try p[1].isEmpty ? nil : double(p[1]))
         }
-        return NightRecord(
+        return try NightRecord(
             alarmId: unescape(f[0]), windowStart: try date(f[1]), target: try date(f[2]), wokeAt: try date(f[3]),
             reason: reason, snoozes: try int(f[5]), epochs: epochs, feeling: feeling
         )
@@ -129,8 +131,12 @@ public enum Codec {
         return out
     }
 
-    private static func unescape(_ value: String) -> String {
-        (value.replacingOccurrences(of: "+", with: " ").removingPercentEncoding) ?? value
+    /// Ungültige Prozent-Kodierung ist ein Fehler, wie in Kotlin (`URLDecoder`).
+    private static func unescape(_ value: String) throws -> String {
+        guard let decoded = value.replacingOccurrences(of: "+", with: " ").removingPercentEncoding else {
+            throw CodecError(description: "Ungültige Kodierung '\(value)'")
+        }
+        return decoded
     }
 }
 
@@ -139,12 +145,19 @@ public enum DayFormat {
     public static func format(_ days: Set<Weekday>, locale: Locale, once: String, daily: String) -> String {
         if days.isEmpty { return once }
         if days.count == 7 { return daily }
-        let sorted = days.sorted()
+        // Wie Kotlin: ab dem Wochenbeginn der Region; Spanne über das Wochenende bleibt zusammen.
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = locale
+        // firstWeekday: 1 = Sonntag … 7 = Samstag; Weekday: 1 = Montag … 7 = Sonntag.
+        let firstRaw = (calendar.firstWeekday + 5) % 7 + 1
+        let week = (0..<7).map { Weekday(rawValue: (firstRaw - 1 + $0) % 7 + 1)! }
+        let start = days.contains(week[0]) && days.contains(week[6]) ? (week.lastIndex { !days.contains($0) } ?? -1) + 1 : 0
+        let sorted = (0..<7).map { week[(start + $0) % 7] }.filter { days.contains($0) }
         var parts: [String] = []
         var i = 0
         while i < sorted.count {
             var j = i
-            while j + 1 < sorted.count, sorted[j + 1].rawValue == sorted[j].rawValue + 1 { j += 1 }
+            while j + 1 < sorted.count, sorted[j + 1].rawValue == sorted[j].rawValue % 7 + 1 { j += 1 }
             if j - i >= 2 {
                 parts.append(name(sorted[i], locale) + "–" + name(sorted[j], locale))
             } else {

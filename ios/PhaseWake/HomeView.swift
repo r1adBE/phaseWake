@@ -100,9 +100,13 @@ struct HomeView: View {
                     .font(Fonts.manrope(44, .heavy, relativeTo: .largeTitle))
                     .minimumScaleFactor(0.6)
                     .lineLimit(1)
-                let day = Calendar.current.isDateInToday(plan.target) ? L("home_next_today") : L("home_next_tomorrow")
+                let day = Format.day(plan.target, todayKey: "home_next_today", tomorrowKey: "home_next_tomorrow")
                 let minutes = Int(plan.windowStart.timeIntervalSince(now) / 60)
-                Text(([day, alarm.label].filter { !$0.isEmpty } + [L("home_next_in", Format.duration(minutes: minutes))]).joined(separator: " · "))
+                // Zwei Zeilen: wann und welcher – dann wie lange noch (oder: Fenster läuft).
+                Text([day, alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
+                    .font(Fonts.manrope(14, relativeTo: .subheadline))
+                    .foregroundStyle(Brand.muted)
+                Text(minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.muted)
                 HeroWave().frame(height: 72).padding(.top, 14)
@@ -131,6 +135,9 @@ struct HomeView: View {
             }
         }
         .onTapGesture { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
+        // Mit VoiceOver: Doppeltipp öffnet den Wecker wie ein Tipp.
+        .accessibilityAddTraits(plan != nil ? .isButton : [])
+        .accessibilityAction { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
     }
 
     private func greetingKey(_ now: Date) -> String {
@@ -232,6 +239,7 @@ private struct AlarmRow: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(perform: onTap)
+        .accessibilityAction(named: L("editor_edit"), onTap)
         .card()
         .accessibilityElement(children: .combine)
     }

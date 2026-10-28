@@ -197,4 +197,12 @@
     <string name="check_watch_setup_problem">Один раз відкрий Phase Wake на годиннику та дозволь датчики й сповіщення.</string>
     <string name="ring_hold_to_stop">Утримуй, щоб зупинити</string>
     <string name="settings_privacy">Політика конфіденційності</string>
+    <string name="editor_discard_title">Відхилити зміни?</string>
+    <string name="editor_discard">Відхилити</string>
+    <string name="editor_keep_editing">Продовжити редагування</string>
+    <string name="editor_delete_title">Видалити цей будильник?</string>
+    <string name="home_window_running">Вікно триває – зараз іде вимірювання</string>
+    <string name="check_volume">Гучність будильника</string>
+    <string name="check_volume_problem">Гучність будильника дорівнює 0 – телефон дзвонитиме без звуку.</string>
+    <string name="health_update">Оновити Health Connect</string>
 </resources>

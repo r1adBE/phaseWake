@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Apri Phase Wake sull’orologio una volta e consenti sensori e notifiche.</string>
     <string name="ring_hold_to_stop">Tieni premuto per fermare</string>
     <string name="settings_privacy">Informativa sulla privacy</string>
+    <string name="editor_discard_title">Scartare le modifiche?</string>
+    <string name="editor_discard">Scarta</string>
+    <string name="editor_keep_editing">Continua a modificare</string>
+    <string name="editor_delete_title">Eliminare questa sveglia?</string>
+    <string name="home_window_running">Finestra in corso – misurazione in corso</string>
+    <string name="check_volume">Volume della sveglia</string>
+    <string name="check_volume_problem">Il volume della sveglia è a 0: il tuo telefono suonerebbe in silenzio.</string>
+    <string name="health_update">Aggiorna Health Connect</string>
 </resources>

@@ -116,15 +116,14 @@ fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> 
             }
             lines.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
             if (!healthConnected) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        stringResource(R.string.trends_health_hint),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.weight(1f),
-                    )
-                    TextButton(onClick = onConnectHealth) { Text(stringResource(R.string.health_connect)) }
-                }
+                // Untereinander: Der Hinweis braucht die ganze Breite, sonst wird er zur schmalen Spalte.
+                Text(
+                    stringResource(R.string.trends_health_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
+                TextButton(onClick = onConnectHealth, contentPadding = PaddingValues(0.dp)) { Text(stringResource(R.string.health_connect)) }
             }
         }
     }

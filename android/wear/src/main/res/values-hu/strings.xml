@@ -42,4 +42,5 @@
     <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban.</string>
     <string name="duration_hours">%1$d ó</string>
     <string name="duration_hours_minutes">%1$d ó %2$d p</string>
+    <string name="home_last_night">Múlt éjszaka</string>
 </resources>

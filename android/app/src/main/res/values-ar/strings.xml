@@ -205,4 +205,12 @@
     <string name="check_watch_setup_problem">افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات.</string>
     <string name="ring_hold_to_stop">ضغط مطوّل للإيقاف</string>
     <string name="settings_privacy">سياسة الخصوصية</string>
+    <string name="editor_discard_title">تجاهل التغييرات؟</string>
+    <string name="editor_discard">تجاهل</string>
+    <string name="editor_keep_editing">متابعة التحرير</string>
+    <string name="editor_delete_title">حذف هذا المنبّه؟</string>
+    <string name="home_window_running">النافذة قيد التشغيل – جارٍ القياس الآن</string>
+    <string name="check_volume">مستوى صوت المنبّه</string>
+    <string name="check_volume_problem">مستوى صوت المنبّه 0 – سيرنّ الهاتف بصمت.</string>
+    <string name="health_update">تحديث Health Connect</string>
 </resources>

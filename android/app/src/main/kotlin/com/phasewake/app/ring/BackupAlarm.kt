@@ -30,6 +30,7 @@ class BackupAlarm(
     private val context: Context,
     private val alarms: AlarmRepository,
     private val store: DataStore<Preferences>,
+    private val sync: com.phasewake.app.shared.WearSync,
     private val clock: Clock = Clock.systemDefaultZone(),
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
@@ -42,7 +43,8 @@ class BackupAlarm(
         val suppressed = Instant.ofEpochMilli(store.data.first()[SUPPRESSED_UNTIL] ?: 0L)
         val from = maxOf(clock.instant(), suppressed)
         val plan = AlarmSchedule.earliestPlan(backups, from, clock.zone) ?: return
-        val at = plan.target.plus(GRACE)
+        // Ohne Uhr (nie eine gemeldet): das Handy ist der Wecker und klingelt pünktlich zur Zielzeit.
+        val at = if (sync.watchReady() == null) plan.target else plan.target.plus(GRACE)
         val show = PendingIntent.getActivity(
             context, 1, Intent(context, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,

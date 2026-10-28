@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Avaa Phase Wake kellossa kerran ja salli anturit ja ilmoitukset.</string>
     <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
     <string name="settings_privacy">Tietosuojakäytäntö</string>
+    <string name="editor_discard_title">Hylätäänkö muutokset?</string>
+    <string name="editor_discard">Hylkää</string>
+    <string name="editor_keep_editing">Jatka muokkausta</string>
+    <string name="editor_delete_title">Poistetaanko tämä herätys?</string>
+    <string name="home_window_running">Aikaikkuna käynnissä – mitataan nyt</string>
+    <string name="check_volume">Herätyksen äänenvoimakkuus</string>
+    <string name="check_volume_problem">Herätyksen äänenvoimakkuus on 0 – puhelimesi soisi äänettömästi.</string>
+    <string name="health_update">Päivitä Health Connect</string>
 </resources>

@@ -52,6 +52,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.health.connect.client.PermissionController
 import androidx.navigation.NavHostController
@@ -59,6 +62,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.phasewake.app.R
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.SleepSummary
@@ -124,34 +129,59 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
 
     var check by remember { mutableStateOf<NightCheckState?>(null) }
     var checkRun by remember { mutableStateOf(0) }
+    var askedNotifications by rememberSaveable { mutableStateOf(false) }
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
     var health by remember { mutableStateOf(HealthState.UNAVAILABLE) }
     var healthCheck by remember { mutableStateOf(0) }
     LaunchedEffect(healthCheck) {
         health = when {
+            app.health.needsUpdate -> HealthState.UPDATE_REQUIRED
             !app.health.isAvailable -> HealthState.UNAVAILABLE
             app.health.isGranted() -> HealthState.CONNECTED
             else -> HealthState.AVAILABLE
         }
     }
     // Trends: Schlafdauer aus Health Connect (falls verbunden) und Befinden aus dem Verlauf.
-    val sleeps by produceState(emptyList<SleepSummary>(), health) {
+    // Bei jedem Öffnen neu lesen (healthCheck zählt beim Fortsetzen hoch): neue Nächte aus Health Connect.
+    val sleeps by produceState(emptyList<SleepSummary>(), health, healthCheck) {
         value = if (health == HealthState.CONNECTED) app.health.recentSleep() else emptyList()
+    }
+    // Schlafphasen für den ganzen Verlauf in einer Abfrage statt einer je Nacht beim Scrollen.
+    val stages by produceState(emptyList<com.phasewake.app.core.StageSpan>(), health, healthCheck, nights?.size) {
+        val list = nights.orEmpty()
+        value = if (health == HealthState.CONNECTED && list.isNotEmpty()) {
+            app.health.stagesBetween(list.first().windowStart.minus(java.time.Duration.ofHours(14)), list.last().wokeAt.plus(java.time.Duration.ofHours(2)))
+        } else {
+            emptyList()
+        }
     }
     val trends = remember(nights, sleeps) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), ZoneId.systemDefault()) }
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthCheck++
     }
     LifecycleResumeEffect(Unit) {
+        Format.update(context)
         checkRun++
         healthCheck++
         onPauseOrDispose { }
     }
     // Nacht-Check: bei jedem Öffnen und danach jede halbe Minute (die Uhr kann kommen und gehen).
+    // Nur solange die App sichtbar ist – im Hintergrund nicht abfragen (Akku).
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
     LaunchedEffect(checkRun) {
-        while (true) {
-            check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady())
-            delay(30_000)
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            while (true) {
+                check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady())
+                delay(30_000)
+            }
+        }
+    }
+
+    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Vollbild nicht erlaubt): beim Öffnen zeigen.
+    val ringing by com.phasewake.app.ring.PhoneRingService.ringState.collectAsStateWithLifecycle()
+    LaunchedEffect(ringing) {
+        if (ringing is com.phasewake.app.ring.PhoneRingService.State.Ringing) {
+            context.startActivity(Intent(context, com.phasewake.app.ring.PhoneRingActivity::class.java))
         }
     }
 
@@ -216,8 +246,20 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     check = check,
                     onFix = { item ->
                         when (item) {
-                            Check.NOTIFICATIONS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            Check.NOTIFICATIONS -> {
+                                val activity = context as? android.app.Activity
+                                val canAsk = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                                    (!askedNotifications || activity?.shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) == true)
+                                if (canAsk) {
+                                    askedNotifications = true
+                                    notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                } else {
+                                    // Dauerhaft abgelehnt: Android fragt nicht mehr, also direkt zu den Mitteilungs-Einstellungen.
+                                    context.startActivity(
+                                        Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                                            .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName),
+                                    )
+                                }
                             }
                             Check.FULL_SCREEN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                                 context.startActivity(
@@ -225,6 +267,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                                 )
                             }
                             Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
+                            Check.VOLUME -> context.startActivity(Intent(Settings.ACTION_SOUND_SETTINGS))
                             Check.WATCH, Check.WATCH_SETUP, Check.BATTERY -> Unit
                         }
                     },
@@ -239,7 +282,11 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 HistoryScreen(
                     nights.orEmpty(),
                     content,
-                    loadStages = if (health == HealthState.CONNECTED) app.health::stagesFor else null,
+                    loadStages = if (health == HealthState.CONNECTED) {
+                        { night -> stages.filter { it.end.isAfter(night.windowStart.minus(java.time.Duration.ofHours(14))) && it.start.isBefore(night.wokeAt.plus(java.time.Duration.ofHours(2))) } }
+                    } else {
+                        null
+                    },
                     onExport = { Export.share(context, nights.orEmpty()) },
                     trends = trends,
                     healthConnected = health == HealthState.CONNECTED,
@@ -254,6 +301,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     contentPadding = content,
                     onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
                     onExport = { Export.share(context, nights.orEmpty()) },
+                    canExport = !nights.isNullOrEmpty(),
                     onClearHistory = {
                         app.appScope.launch {
                             app.nights.clear()
@@ -264,7 +312,10 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onConnectHealth = { healthPermission.launch(app.health.permissions) },
                 )
             }
-            composable(Routes.EDITOR) { entry ->
+            composable(
+                Routes.EDITOR,
+                arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
+            ) { entry ->
                 val id = entry.arguments?.getString("id")
                 val existing = alarms.firstOrNull { it.id == id }
                 EditorScreen(

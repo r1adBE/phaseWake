@@ -41,4 +41,5 @@
     <string name="dnd_text">サイレントモード中のアラームを許可してください。</string>
     <string name="duration_hours">%1$d時間</string>
     <string name="duration_hours_minutes">%1$d時間%2$d分</string>
+    <string name="home_last_night">昨夜</string>
 </resources>

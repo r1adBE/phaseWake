@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Öppna Phase Wake på klockan en gång och tillåt sensorer och aviseringar.</string>
     <string name="ring_hold_to_stop">Håll för att stoppa</string>
     <string name="settings_privacy">Integritetspolicy</string>
+    <string name="editor_discard_title">Förkasta ändringar?</string>
+    <string name="editor_discard">Förkasta</string>
+    <string name="editor_keep_editing">Fortsätt redigera</string>
+    <string name="editor_delete_title">Ta bort det här larmet?</string>
+    <string name="home_window_running">Fönstret pågår – mäter nu</string>
+    <string name="check_volume">Larmvolym</string>
+    <string name="check_volume_problem">Larmvolymen är satt till 0 – mobilen skulle ringa ljudlöst.</string>
+    <string name="health_update">Uppdatera Health Connect</string>
 </resources>

@@ -18,12 +18,13 @@ object Calibration {
      * @return [defaults] mit angepassten Schwellen, oder [defaults] selbst bei zu wenig Daten.
      */
     fun calibrate(nights: List<List<Double?>>, defaults: DetectorConfig = DetectorConfig()): DetectorConfig {
-        if (nights.size < MIN_NIGHTS) return defaults
+        // Nur Nächte mit mindestens einem entscheidbaren Wert zählen (Uhr nicht getragen = keine Nacht).
+        val measured = nights.map { it.drop(defaults.warmupEpochs).filterNotNull() }.filter { it.isNotEmpty() }
+        if (measured.size < MIN_NIGHTS) return defaults
 
-        val values = nights
+        val values = measured
             .takeLast(MAX_NIGHTS)
-            .flatMap { it.drop(defaults.warmupEpochs) }
-            .filterNotNull()
+            .flatten()
             .sorted()
         if (values.size < MIN_VALUES) return defaults
 

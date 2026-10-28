@@ -84,6 +84,10 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(f([.sunday, .saturday]), "Sa, So")
         XCTAssertEqual(f([.monday, .wednesday, .friday]), "Mo, Mi, Fr")
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday], Locale(identifier: "en_US")), "Mon–Fri")
+        // Wie Kotlin: Spanne über das Wochenende bleibt zusammen.
+        XCTAssertEqual(f([.saturday, .sunday, .monday]), "Sa–Mo")
+        XCTAssertEqual(f([.friday, .saturday, .sunday, .monday, .wednesday]), "Fr–Mo, Mi")
+        XCTAssertEqual(f([.sunday, .monday, .tuesday, .wednesday], Locale(identifier: "en_US")), "Sun–Wed")
     }
 
     func testHistoryCsv() {

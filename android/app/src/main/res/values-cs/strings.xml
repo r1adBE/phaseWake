@@ -193,4 +193,12 @@
     <string name="check_watch_setup_problem">Jednou otevři Phase Wake v hodinkách a povol senzory a oznámení.</string>
     <string name="ring_hold_to_stop">Podrž pro zastavení</string>
     <string name="settings_privacy">Zásady ochrany soukromí</string>
+    <string name="editor_discard_title">Zahodit změny?</string>
+    <string name="editor_discard">Zahodit</string>
+    <string name="editor_keep_editing">Pokračovat v úpravách</string>
+    <string name="editor_delete_title">Smazat tento budík?</string>
+    <string name="home_window_running">Okno běží – právě se měří</string>
+    <string name="check_volume">Hlasitost budíku</string>
+    <string name="check_volume_problem">Hlasitost budíku je nastavená na 0 – telefon by zvonil bez zvuku.</string>
+    <string name="health_update">Aktualizovat Health Connect</string>
 </resources>

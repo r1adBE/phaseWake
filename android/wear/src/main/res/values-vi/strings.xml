@@ -41,4 +41,5 @@
     <string name="dnd_text">Cho phép báo thức khi bật Không làm phiền.</string>
     <string name="duration_hours">%1$d giờ</string>
     <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
+    <string name="home_last_night">Đêm qua</string>
 </resources>

@@ -9,10 +9,8 @@ import androidx.wear.watchface.complications.data.PlainComplicationText
 import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.datasource.ComplicationRequest
 import androidx.wear.watchface.complications.datasource.SuspendingComplicationDataSourceService
-import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.wearApp
-import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -26,7 +24,7 @@ class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
     override suspend fun onComplicationRequest(request: ComplicationRequest): ComplicationData? {
         if (request.complicationType != ComplicationType.SHORT_TEXT) return null
         val zone = ZoneId.systemDefault()
-        val plan = AlarmSchedule.earliestPlan(wearApp.alarms.current().alarms, Instant.now(), zone)
+        val plan = wearApp.scheduler.nextPlan()
             ?: return NoDataComplicationData()
         return data(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(plan.windowStart.atZone(zone)))
     }

@@ -26,5 +26,9 @@ class DayFormatTest {
         assertEquals("Mo, Mi, Fr", f(MONDAY, WEDNESDAY, FRIDAY))
         assertEquals("Mo–Mi, Sa", f(MONDAY, TUESDAY, WEDNESDAY, SATURDAY))
         assertEquals("Mon–Fri", f(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, locale = Locale.ENGLISH))
+        // Spanne über das Wochenende bleibt zusammen; Wochenbeginn nach Region (USA: Sonntag).
+        assertEquals("Sa–Mo", f(SATURDAY, SUNDAY, MONDAY))
+        assertEquals("Fr–Mo, Mi", f(FRIDAY, SATURDAY, SUNDAY, MONDAY, WEDNESDAY))
+        assertEquals("Sun–Wed", f(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, locale = Locale.US))
     }
 }

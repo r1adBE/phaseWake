@@ -17,6 +17,14 @@ class CalibrationTest {
     }
 
     @Test
+    fun emptyNightsDoNotCount() {
+        // Zwei Nächte mit Werten, zwei ohne (Uhr nicht getragen): noch keine drei gemessenen Nächte.
+        val defaults = DetectorConfig()
+        val nights = List(2) { night(*Array(40) { 0.003 }) } + List(2) { night(null, null) }
+        assertSame(defaults, Calibration.calibrate(nights, defaults))
+    }
+
+    @Test
     fun tooFewValuesKeepsDefaults() {
         val defaults = DetectorConfig()
         val nights = List(3) { night(0.003, null, 0.003) }

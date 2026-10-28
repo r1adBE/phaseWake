@@ -136,6 +136,14 @@ enum Format {
         DayFormat.format(alarm.days, locale: .current, once: L("alarm_once"), daily: L("alarm_every_day"))
     }
 
+    /// «Heute», «Morgen» oder der Wochentag («Montag») – nie «Morgen» für einen Tag weiter weg.
+    static func day(_ date: Date, todayKey: String, tomorrowKey: String) -> String {
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) { return L(todayKey) }
+        if calendar.isDateInTomorrow(date) { return L(tomorrowKey) }
+        return date.formatted(.dateTime.weekday(.wide)).capitalized(with: .current)
+    }
+
     static func duration(minutes: Int) -> String {
         let m = max(0, minutes)
         if m < 60 { return L("duration_minutes", m) }

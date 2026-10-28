@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
@@ -50,9 +51,15 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
     val pulse by transition.animateFloat(0f, 1f, infiniteRepeatable(tween(2200, easing = LinearEasing)), label = "pulse")
     // Reine Zierde: für Bildschirmleser unsichtbar.
     Canvas(modifier.clearAndSetSemantics { }) {
+        // Das Weckfenster als weicher Lichtstreifen, oben und unten auslaufend – kein harter Kasten.
         val windowLeft = size.width * (1f - windowFraction)
         drawRoundRect(
-            brand.heroWindow, Offset(windowLeft, 0f), Size(size.width - windowLeft, size.height),
+            Brush.verticalGradient(
+                0f to brand.heroWindow.copy(alpha = 0f),
+                0.5f to brand.heroWindow,
+                1f to brand.heroWindow.copy(alpha = 0f),
+            ),
+            Offset(windowLeft, 0f), Size(size.width - windowLeft, size.height),
             CornerRadius(14.dp.toPx()),
         )
         val dotX = size.width - 14.dp.toPx()

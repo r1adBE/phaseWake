@@ -16,6 +16,10 @@ struct EditorView: View {
     @State private var watchSound = false
     @State private var label = ""
     @State private var sunrise = Sunrise.off
+    @State private var original: AlarmSpec?
+    @State private var confirmDiscard = false
+    @State private var confirmDelete = false
+    @State private var newId = UUID().uuidString
 
     var body: some View {
         NavigationStack {
@@ -56,7 +60,7 @@ struct EditorView: View {
 
                 Section(L("editor_days")) {
                     HStack {
-                        ForEach(Weekday.allCases, id: \.self) { day in
+                        ForEach(weekOrder, id: \.self) { day in
                             let on = days.contains(day)
                             Button(dayName(day)) { if on { days.remove(day) } else { days.insert(day) } }
                                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
@@ -114,21 +118,40 @@ struct EditorView: View {
 
                 if let existing {
                     Section {
-                        Button(L("editor_delete"), role: .destructive) {
-                            model.remove(existing.id)
-                            dismiss()
-                        }
+                        Button(L("editor_delete"), role: .destructive) { confirmDelete = true }
+                            .confirmationDialog(L("editor_delete_title"), isPresented: $confirmDelete, titleVisibility: .visible) {
+                                Button(L("editor_delete"), role: .destructive) {
+                                    model.remove(existing.id)
+                                    dismiss()
+                                }
+                            }
                     }
                 }
             }
             .navigationTitle(L(existing == nil ? "editor_new" : "editor_edit"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button(L("action_cancel")) { dismiss() } }
+                ToolbarItem(placement: .cancellationAction) {
+                    // Bei Änderungen zuerst fragen; Wischen zum Schliessen ist dann gesperrt.
+                    Button(L("action_cancel")) { if dirty { confirmDiscard = true } else { dismiss() } }
+                        .confirmationDialog(L("editor_discard_title"), isPresented: $confirmDiscard, titleVisibility: .visible) {
+                            Button(L("editor_discard"), role: .destructive) { dismiss() }
+                            Button(L("editor_keep_editing"), role: .cancel) {}
+                        }
+                }
                 ToolbarItem(placement: .confirmationAction) { Button(L("editor_save")) { save() }.bold() }
             }
             .onAppear(perform: load)
+            .interactiveDismissDisabled(dirty)
         }
+    }
+
+    private var dirty: Bool { original != nil && current() != original }
+
+    /// Wochentage ab dem Wochenbeginn der Region (z. B. Sonntag in den USA).
+    private var weekOrder: [Weekday] {
+        let firstRaw = (Calendar.current.firstWeekday + 5) % 7 + 1
+        return (0..<7).compactMap { Weekday(rawValue: (firstRaw - 1 + $0) % 7 + 1) }
     }
 
     private func dayName(_ day: Weekday) -> String {
@@ -138,6 +161,7 @@ struct EditorView: View {
     }
 
     private func load() {
+        defer { if original == nil { original = current() } }
         guard let existing else { return }
         time = Calendar.current.date(from: DateComponents(hour: existing.hour, minute: existing.minute)) ?? Date()
         window = Double(existing.windowMinutes)
@@ -150,10 +174,10 @@ struct EditorView: View {
         sunrise = existing.sunrise
     }
 
-    private func save() {
+    private func current() -> AlarmSpec? {
         let c = Calendar.current.dateComponents([.hour, .minute], from: time)
-        if let spec = try? AlarmSpec(
-            id: existing?.id ?? UUID().uuidString,
+        return try? AlarmSpec(
+            id: existing?.id ?? newId,
             hour: c.hour ?? 7,
             minute: c.minute ?? 0,
             days: days,
@@ -165,9 +189,11 @@ struct EditorView: View {
             sound: existing?.sound ?? "",
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
             sunrise: sunrise
-        ) {
-            model.upsert(spec)
-        }
+        )
+    }
+
+    private func save() {
+        if let spec = current() { model.upsert(spec) }
         dismiss()
     }
 }

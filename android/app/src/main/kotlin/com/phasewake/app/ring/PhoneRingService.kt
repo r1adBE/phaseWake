@@ -134,22 +134,28 @@ class PhoneRingService : Service() {
 
     private fun playSound(chosen: String) {
         if (state.value !is State.Ringing) return
-        val uri = chosen.ifEmpty { null }?.let(Uri::parse)
-            ?: RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
+        val default = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        try {
-            player = MediaPlayer().apply {
-                setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                setDataSource(this@PhoneRingService, uri)
-                isLooping = true
-                setVolume(0f, 0f)
-                prepare()
-                start()
+        // Eigener Weckton zuerst; ist er nicht abspielbar (gelöscht, kein Zugriff), der Standard-Weckton.
+        val candidates = listOfNotNull(chosen.ifEmpty { null }?.let(Uri::parse), default).distinct()
+        for (uri in candidates) {
+            try {
+                player = MediaPlayer().apply {
+                    setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                    setDataSource(this@PhoneRingService, uri)
+                    isLooping = true
+                    setVolume(0f, 0f)
+                    prepare()
+                    start()
+                }
+                volume = 0f
+                handler.post(fadeIn)
+                return
+            } catch (e: Exception) {
+                player?.release()
+                player = null
+                Log.w(TAG, "Weckton $uri nicht abspielbar", e)
             }
-            volume = 0f
-            handler.post(fadeIn)
-        } catch (e: Exception) {
-            Log.w(TAG, "Weckton nicht abspielbar, nur Vibration", e)
         }
     }
 

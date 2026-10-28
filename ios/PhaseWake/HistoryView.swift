@@ -6,6 +6,8 @@ struct HistoryView: View {
     @Environment(PhoneModel.self) private var model
     @AppStorage("healthRequested") private var healthRequested = false
     @State private var sleeps: [SleepSummary] = []
+    /// Schlafphasen für den ganzen Verlauf in einer Abfrage statt einer je Nacht.
+    @State private var allStages: [StageSpan] = []
 
     var body: some View {
         NavigationStack {
@@ -24,7 +26,9 @@ struct HistoryView: View {
                             healthConnected: healthRequested,
                             onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep() } }
                         )
-                        ForEach(model.nights.reversed(), id: \.windowStart) { NightCard(night: $0) }
+                        ForEach(model.nights.reversed(), id: \.windowStart) { night in
+                            NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
+                        }
                         ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
                         }
@@ -34,7 +38,13 @@ struct HistoryView: View {
                 .padding(.vertical)
             }
             .navigationTitle(L("history_title"))
-            .task(id: healthRequested) { if healthRequested { sleeps = await model.health.recentSleep() } }
+            .task(id: healthRequested) {
+                guard healthRequested else { return }
+                sleeps = await model.health.recentSleep()
+                if let first = model.nights.first, let last = model.nights.last {
+                    allStages = await model.health.stages(from: first.windowStart.addingTimeInterval(-14 * 3600), to: last.wokeAt.addingTimeInterval(2 * 3600))
+                }
+            }
         }
     }
 
@@ -53,7 +63,7 @@ struct HistoryView: View {
 private struct NightCard: View {
     @Environment(PhoneModel.self) private var model
     let night: NightRecord
-    @State private var stages: [StageSpan] = []
+    let stages: [StageSpan]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -71,7 +81,6 @@ private struct NightCard: View {
         }
         .card()
         .accessibilityElement(children: .combine)
-        .task { stages = await model.health.stages(for: night) }
     }
 
     private var verdict: (text: String, good: Bool)? {

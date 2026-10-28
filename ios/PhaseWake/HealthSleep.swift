@@ -21,11 +21,13 @@ final class HealthSleep: @unchecked Sendable {
 
     /// Schlafphasen rund um die Nacht; leer ohne Daten oder Zugriff.
     func stages(for night: NightRecord) async -> [StageSpan] {
+        await stages(from: night.windowStart.addingTimeInterval(-14 * 3600), to: night.wokeAt.addingTimeInterval(2 * 3600))
+    }
+
+    /// Alle Schlafphasen im Zeitraum in einer Abfrage (für den ganzen Verlauf).
+    func stages(from: Date, to: Date) async -> [StageSpan] {
         guard isAvailable else { return [] }
-        let predicate = HKQuery.predicateForSamples(
-            withStart: night.windowStart.addingTimeInterval(-14 * 3600),
-            end: night.wokeAt.addingTimeInterval(2 * 3600)
-        )
+        let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
         let samples: [HKCategorySample] = await withCheckedContinuation { continuation in
             let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
                 continuation.resume(returning: (results as? [HKCategorySample]) ?? [])

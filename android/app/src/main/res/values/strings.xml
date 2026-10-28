@@ -191,4 +191,12 @@
     <string name="check_watch_setup_problem">Open Phase Wake on the watch once and allow sensors and notifications.</string>
     <string name="ring_hold_to_stop">Hold to stop</string>
     <string name="settings_privacy">Privacy policy</string>
+    <string name="editor_discard_title">Discard changes?</string>
+    <string name="editor_discard">Discard</string>
+    <string name="editor_keep_editing">Keep editing</string>
+    <string name="editor_delete_title">Delete this alarm?</string>
+    <string name="home_window_running">Wake window running – measuring now</string>
+    <string name="check_volume">Alarm volume</string>
+    <string name="check_volume_problem">Alarm volume is set to 0 – your phone would ring silently.</string>
+    <string name="health_update">Update Health Connect</string>
 </resources>

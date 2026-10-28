@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์และการแจ้งเตือน</string>
     <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
     <string name="settings_privacy">นโยบายความเป็นส่วนตัว</string>
+    <string name="editor_discard_title">ละทิ้งการเปลี่ยนแปลงไหม</string>
+    <string name="editor_discard">ละทิ้ง</string>
+    <string name="editor_keep_editing">แก้ไขต่อ</string>
+    <string name="editor_delete_title">ลบนาฬิกาปลุกนี้ไหม</string>
+    <string name="home_window_running">ช่วงเวลาปลุกกำลังทำงาน – กำลังวัดอยู่</string>
+    <string name="check_volume">ระดับเสียงนาฬิกาปลุก</string>
+    <string name="check_volume_problem">ระดับเสียงนาฬิกาปลุกตั้งไว้ที่ 0 – โทรศัพท์ของคุณจะดังแบบไม่มีเสียง</string>
+    <string name="health_update">อัปเดต Health Connect</string>
 </resources>

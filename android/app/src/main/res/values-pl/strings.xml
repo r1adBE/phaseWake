@@ -197,4 +197,12 @@
     <string name="check_watch_setup_problem">Raz otwórz Phase Wake na zegarku i zezwól na czujniki oraz powiadomienia.</string>
     <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
     <string name="settings_privacy">Polityka prywatności</string>
+    <string name="editor_discard_title">Odrzucić zmiany?</string>
+    <string name="editor_discard">Odrzuć</string>
+    <string name="editor_keep_editing">Edytuj dalej</string>
+    <string name="editor_delete_title">Usunąć ten budzik?</string>
+    <string name="home_window_running">Okno trwa – trwa pomiar</string>
+    <string name="check_volume">Głośność budzika</string>
+    <string name="check_volume_problem">Głośność budzika jest ustawiona na 0 – telefon zadzwoniłby bez dźwięku.</string>
+    <string name="health_update">Zaktualizuj Health Connect</string>
 </resources>

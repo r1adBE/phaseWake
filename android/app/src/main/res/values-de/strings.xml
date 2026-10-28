@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen.</string>
     <string name="ring_hold_to_stop">Halten zum Stoppen</string>
     <string name="settings_privacy">Datenschutzerklärung</string>
+    <string name="editor_discard_title">Änderungen verwerfen?</string>
+    <string name="editor_discard">Verwerfen</string>
+    <string name="editor_keep_editing">Weiter bearbeiten</string>
+    <string name="editor_delete_title">Diesen Wecker löschen?</string>
+    <string name="home_window_running">Weckfenster läuft – es wird gemessen</string>
+    <string name="check_volume">Wecker-Lautstärke</string>
+    <string name="check_volume_problem">Die Wecker-Lautstärke steht auf 0 – das Handy würde lautlos klingeln.</string>
+    <string name="health_update">Health Connect aktualisieren</string>
 </resources>

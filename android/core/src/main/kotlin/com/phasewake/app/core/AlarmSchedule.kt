@@ -16,8 +16,9 @@ data class WakePlan(
 /**
  * Berechnet, wann ein Wecker das nächste Mal fällig ist.
  *
- * Sommer- und Winterzeit: Fällt die Zielzeit in die übersprungene Stunde, gilt die erste gültige
- * Zeit danach (Verhalten von [ZonedDateTime.of]); in der doppelten Stunde gilt die frühere.
+ * Sommer- und Winterzeit: Fällt die Zielzeit in die übersprungene Stunde, wird sie um die Länge der
+ * Lücke verschoben (02:30 → 03:30, Verhalten von [ZonedDateTime.of]); in der doppelten Stunde gilt
+ * die frühere.
  */
 object AlarmSchedule {
 

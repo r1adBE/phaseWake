@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Ouvre Phase Wake une fois sur la montre et autorise les capteurs et les notifications.</string>
     <string name="ring_hold_to_stop">Maintiens pour arrêter</string>
     <string name="settings_privacy">Politique de confidentialité</string>
+    <string name="editor_discard_title">Abandonner les modifications ?</string>
+    <string name="editor_discard">Abandonner</string>
+    <string name="editor_keep_editing">Continuer à modifier</string>
+    <string name="editor_delete_title">Supprimer ce réveil ?</string>
+    <string name="home_window_running">Plage en cours – mesure en cours</string>
+    <string name="check_volume">Volume du réveil</string>
+    <string name="check_volume_problem">Le volume du réveil est à 0 – ton téléphone sonnerait en silence.</string>
+    <string name="health_update">Mettre à jour Health Connect</string>
 </resources>

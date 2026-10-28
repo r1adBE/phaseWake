@@ -32,11 +32,14 @@ class PhaseWakeApp : Application() {
     val settings by lazy { SettingsRepository(phaseWakeStore) }
     val sync by lazy { WearSync(this) }
     val health by lazy { HealthSleep(this) }
-    val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore) }
+    val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
 
     override fun onCreate() {
         super.onCreate()
         RingNotifications.createChannels(this)
+        com.phasewake.app.ui.Format.update(this)
+        // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
+        java.io.File(cacheDir, "export").deleteRecursively()
         com.phasewake.app.ring.SunriseLight.createChannel(this)
         appScope.launch { backup.reschedule() }
     }

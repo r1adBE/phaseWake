@@ -13,12 +13,13 @@ public enum Calibration {
     ///   - defaults: Startwerte; von ihnen werden alle übrigen Parameter übernommen.
     /// - Returns: `defaults` mit angepassten Schwellen, oder `defaults` selbst bei zu wenig Daten.
     public static func calibrate(nights: [[Double?]], defaults: DetectorConfig = .standard) -> DetectorConfig {
-        guard nights.count >= minNights else { return defaults }
+        // Nur Nächte mit mindestens einem entscheidbaren Wert zählen (Uhr nicht getragen = keine Nacht).
+        let measured = nights.map { $0.dropFirst(defaults.warmupEpochs).compactMap { $0 } }.filter { !$0.isEmpty }
+        guard measured.count >= minNights else { return defaults }
 
-        let values = nights
+        let values = measured
             .suffix(maxNights)
-            .flatMap { $0.dropFirst(defaults.warmupEpochs) }
-            .compactMap { $0 }
+            .flatMap { $0 }
             .sorted()
         guard values.count >= minValues else { return defaults }
 

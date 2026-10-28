@@ -14,12 +14,17 @@ object DayFormat {
     fun format(days: Set<DayOfWeek>, locale: Locale, once: String, daily: String): String {
         if (days.isEmpty()) return once
         if (days.size == 7) return daily
-        val sorted = days.sorted()
+        // Reihenfolge ab dem Wochenbeginn der Sprache/Region. Gehört der letzte und der erste Tag der
+        // Woche dazu (z. B. Sa, So, Mo), beginnt sie nach einer Lücke, damit die Spanne zusammenbleibt.
+        val first = java.time.temporal.WeekFields.of(locale).firstDayOfWeek
+        val week = (0L until 7L).map { first.plus(it) }
+        val start = if (week.first() in days && week.last() in days) week.indexOfLast { it !in days } + 1 else 0
+        val sorted = (0 until 7).map { week[(start + it) % 7] }.filter { it in days }
         val parts = mutableListOf<String>()
         var i = 0
         while (i < sorted.size) {
             var j = i
-            while (j + 1 < sorted.size && sorted[j + 1].value == sorted[j].value + 1) j++
+            while (j + 1 < sorted.size && sorted[j + 1] == sorted[j].plus(1)) j++
             // Ab drei aufeinanderfolgenden Tagen als Spanne, sonst einzeln.
             if (j - i >= 2) {
                 parts += name(sorted[i], locale) + "–" + name(sorted[j], locale)

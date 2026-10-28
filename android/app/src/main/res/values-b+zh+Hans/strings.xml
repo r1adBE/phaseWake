@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">请在手表上打开一次 Phase Wake，并允许使用传感器和通知。</string>
     <string name="ring_hold_to_stop">长按停止</string>
     <string name="settings_privacy">隐私政策</string>
+    <string name="editor_discard_title">放弃更改？</string>
+    <string name="editor_discard">放弃</string>
+    <string name="editor_keep_editing">继续编辑</string>
+    <string name="editor_delete_title">删除这个闹钟？</string>
+    <string name="home_window_running">时间窗运行中——正在监测</string>
+    <string name="check_volume">闹钟音量</string>
+    <string name="check_volume_problem">闹钟音量为 0——手机会无声响铃。</string>
+    <string name="health_update">更新 Health Connect</string>
 </resources>

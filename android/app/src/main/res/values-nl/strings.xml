@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">Open Phase Wake één keer op het horloge en sta sensoren en meldingen toe.</string>
     <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
     <string name="settings_privacy">Privacybeleid</string>
+    <string name="editor_discard_title">Wijzigingen negeren?</string>
+    <string name="editor_discard">Negeren</string>
+    <string name="editor_keep_editing">Verder bewerken</string>
+    <string name="editor_delete_title">Deze wekker verwijderen?</string>
+    <string name="home_window_running">Venster loopt – er wordt nu gemeten</string>
+    <string name="check_volume">Wekkervolume</string>
+    <string name="check_volume_problem">Het wekkervolume staat op 0 – je telefoon zou geluidloos overgaan.</string>
+    <string name="health_update">Health Connect updaten</string>
 </resources>

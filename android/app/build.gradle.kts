@@ -38,6 +38,12 @@ android {
     }
 
     buildFeatures { compose = true }
+    // Lint: alle Befunde ins Build-Log, damit die CI sie vollständig zeigt.
+    lint {
+        textReport = true
+        textOutput = file("stdout")
+        abortOnError = true
+    }
     // Sprachliste für die Sprachwahl pro App (Android 13+) automatisch aus den Ressourcen.
     androidResources { generateLocaleConfig = true }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true

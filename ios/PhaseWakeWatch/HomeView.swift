@@ -18,6 +18,20 @@ struct HomeView: View {
                         .foregroundStyle(Brand.muted)
                         .listRowBackground(Color.clear)
                 }
+                if let night = model.storage.nights().last {
+                    // Letzte Nacht: wann und warum geweckt wurde.
+                    VStack(spacing: 1) {
+                        Text(L("home_last_night")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
+                        Text(Format.time(night.wokeAt)).font(Fonts.manrope(17, .bold, relativeTo: .headline))
+                        Text(L(night.reason == .lightSleep ? "ring_reason_light" : night.reason == .awake ? "ring_reason_awake" : "ring_reason_deadline"))
+                            .font(Fonts.manrope(11, relativeTo: .caption2))
+                            .foregroundStyle(Brand.muted)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .accessibilityElement(children: .combine)
+                    .listRowBackground(Color.clear)
+                }
                 if !model.alarms.isEmpty {
                     Section(L("home_alarms")) {
                         ForEach(model.alarms) { alarm in
@@ -57,7 +71,7 @@ private struct NextWindow: View {
             }
             VStack(spacing: 2) {
                 if let plan {
-                    Text(Calendar.current.isDateInToday(plan.target) ? L("home_today") : L("home_tomorrow"))
+                    Text(Format.day(plan.target, todayKey: "home_today", tomorrowKey: "home_tomorrow"))
                         .font(Fonts.manrope(12, relativeTo: .caption))
                         .foregroundStyle(Brand.muted)
                     Text(Format.time(plan.windowStart) + "–" + Format.time(plan.target))

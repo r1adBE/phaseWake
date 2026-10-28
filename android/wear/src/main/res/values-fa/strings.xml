@@ -42,4 +42,5 @@
     <string name="dnd_text">در «مزاحم نشو» اجازهٔ زنگ بده.</string>
     <string name="duration_hours">%1$d س</string>
     <string name="duration_hours_minutes">%1$d س %2$d دق</string>
+    <string name="home_last_night">شب گذشته</string>
 </resources>

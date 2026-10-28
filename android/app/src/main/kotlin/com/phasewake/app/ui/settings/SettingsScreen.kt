@@ -40,6 +40,8 @@ fun SettingsScreen(
     contentPadding: PaddingValues,
     onThemeMode: (ThemeMode) -> Unit,
     onExport: () -> Unit,
+    /** Ohne Nächte gibt es nichts zu exportieren (nur eine Kopfzeile): dann ausgegraut. */
+    canExport: Boolean = true,
     onClearHistory: () -> Unit,
     health: HealthState,
     onConnectHealth: () -> Unit,
@@ -70,8 +72,12 @@ fun SettingsScreen(
 
         Group(stringResource(R.string.settings_data)) {
             Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
-            Column(Modifier.fillMaxWidth().clickable(onClick = onExport).padding(vertical = 10.dp)) {
-                Text(stringResource(R.string.settings_export), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+            Column(Modifier.fillMaxWidth().clickable(enabled = canExport, onClick = onExport).padding(vertical = 10.dp)) {
+                Text(
+                    stringResource(R.string.settings_export),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = if (canExport) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 Text(stringResource(R.string.settings_export_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             var confirm by remember { mutableStateOf(false) }
@@ -110,6 +116,7 @@ fun SettingsScreen(
                     color = MaterialTheme.colorScheme.primary,
                 )
                 HealthState.AVAILABLE -> Button(onClick = onConnectHealth) { Text(stringResource(R.string.health_connect)) }
+                HealthState.UPDATE_REQUIRED -> Button(onClick = { uri.openUri(HEALTH_CONNECT_STORE) }) { Text(stringResource(R.string.health_update)) }
             }
         }
 
@@ -146,8 +153,10 @@ fun SettingsScreen(
 }
 
 /** Zustand der Verbindung zu Health Connect. */
-enum class HealthState { UNAVAILABLE, AVAILABLE, CONNECTED }
+/** Health Connect: fehlt, muss aktualisiert werden, ist bereit oder schon verbunden. */
+enum class HealthState { UNAVAILABLE, UPDATE_REQUIRED, AVAILABLE, CONNECTED }
 
+private const val HEALTH_CONNECT_STORE = "https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata"
 private const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
 private const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
 private const val REPO_URL = "https://github.com/r1adBE/phaseWake"

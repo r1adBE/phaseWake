@@ -43,6 +43,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.animation.core.tween
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
@@ -67,7 +68,6 @@ import com.phasewake.app.ui.history.nightDetails
 import com.phasewake.app.ui.history.nightSummary
 import java.time.Duration
 import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.delay
 
@@ -181,17 +181,25 @@ private fun Header(
                 Column(Modifier.padding(top = 28.dp).semantics(mergeDescendants = true) { heading() }) {
                     Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = Night.Muted)
                     if (plan != null && alarm != null) {
-                        val day = plan.target.atZone(zone).toLocalDate()
-                        val dayText = stringResource(if (day == LocalDate.now(zone)) R.string.home_next_today else R.string.home_next_tomorrow)
+                        val dayText = dayLabel(plan.target, now, zone)
                         Text(
                             Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone),
                             style = MaterialTheme.typography.displayMedium,
                             color = Color.White,
                             modifier = Modifier.padding(top = 2.dp),
                         )
+                        // Zwei Zeilen statt eines Umbruchs mitten im Satz: wann und welcher – dann wie lange noch.
                         Text(
-                            listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · ") + " · " +
-                                stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart))),
+                            listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Night.Muted,
+                        )
+                        Text(
+                            if (now.isBefore(plan.windowStart)) {
+                                stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
+                            } else {
+                                stringResource(R.string.home_window_running)
+                            },
                             style = MaterialTheme.typography.bodyMedium,
                             color = Night.Muted,
                         )
@@ -217,6 +225,19 @@ private fun Header(
                 }
             }
         }
+    }
+}
+
+/** «Heute», «Morgen» oder der Wochentag («Montag») – nie «Morgen» für einen Tag weiter weg. */
+@Composable
+private fun dayLabel(target: Instant, now: Instant, zone: ZoneId): String {
+    val day = target.atZone(zone).toLocalDate()
+    val today = now.atZone(zone).toLocalDate()
+    val locale = LocalConfiguration.current.locales[0]
+    return when (day) {
+        today -> stringResource(R.string.home_next_today)
+        today.plusDays(1) -> stringResource(R.string.home_next_tomorrow)
+        else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
     }
 }
 

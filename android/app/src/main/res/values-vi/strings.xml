@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến cùng thông báo.</string>
     <string name="ring_hold_to_stop">Giữ để dừng</string>
     <string name="settings_privacy">Chính sách quyền riêng tư</string>
+    <string name="editor_discard_title">Bỏ các thay đổi?</string>
+    <string name="editor_discard">Bỏ</string>
+    <string name="editor_keep_editing">Tiếp tục chỉnh sửa</string>
+    <string name="editor_delete_title">Xóa báo thức này?</string>
+    <string name="home_window_running">Khoảng thời gian đang chạy – đang đo</string>
+    <string name="check_volume">Âm lượng báo thức</string>
+    <string name="check_volume_problem">Âm lượng báo thức đang là 0 – điện thoại của bạn sẽ đổ chuông không có tiếng.</string>
+    <string name="health_update">Cập nhật Health Connect</string>
 </resources>

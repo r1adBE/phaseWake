@@ -193,4 +193,12 @@
     <string name="check_watch_setup_problem">פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים והתראות.</string>
     <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
     <string name="settings_privacy">מדיניות פרטיות</string>
+    <string name="editor_discard_title">לבטל את השינויים?</string>
+    <string name="editor_discard">ביטול שינויים</string>
+    <string name="editor_keep_editing">המשך עריכה</string>
+    <string name="editor_delete_title">למחוק את המעורר הזה?</string>
+    <string name="home_window_running">החלון פועל – מודדים עכשיו</string>
+    <string name="check_volume">עוצמת המעורר</string>
+    <string name="check_volume_problem">עוצמת המעורר מוגדרת ל-0 – הטלפון יצלצל בלי קול.</string>
+    <string name="health_update">עדכון Health Connect</string>
 </resources>

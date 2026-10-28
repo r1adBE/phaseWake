@@ -48,12 +48,20 @@ class AlarmScheduler(
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
-    suspend fun reschedule(): WakePlan? {
+    /**
+     * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht.
+     * Startseite, Kachel und Komplikation zeigen genau diesen.
+     */
+    suspend fun nextPlan(): WakePlan? {
         val now = clock.instant()
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
         val done = Instant.ofEpochMilli(store.data.first()[DONE_UNTIL] ?: 0L)
-        val from = maxOf(now, done)
-        val plan = onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, from, clock.zone), now)
+        return onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, maxOf(now, done), clock.zone), now)
+    }
+
+    suspend fun reschedule(): WakePlan? {
+        val now = clock.instant()
+        val plan = nextPlan()
 
         // Läuft eine Messung für einen Plan, der nicht mehr gilt (Wecker aus, gelöscht, verschoben): beenden.
         WakeService.measuringPlan?.let { running ->

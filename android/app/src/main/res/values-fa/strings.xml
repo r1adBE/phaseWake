@@ -189,4 +189,12 @@
     <string name="check_watch_setup_problem">یک بار Phase Wake را روی ساعت باز کن و حسگرها و اعلان‌ها را مجاز کن.</string>
     <string name="ring_hold_to_stop">برای توقف نگه دار</string>
     <string name="settings_privacy">سیاست حریم خصوصی</string>
+    <string name="editor_discard_title">تغییرات کنار گذاشته شود؟</string>
+    <string name="editor_discard">کنار گذاشتن</string>
+    <string name="editor_keep_editing">ادامهٔ ویرایش</string>
+    <string name="editor_delete_title">این زنگ حذف شود؟</string>
+    <string name="home_window_running">بازه در حال اجراست – اکنون اندازه‌گیری می‌شود</string>
+    <string name="check_volume">صدای زنگ</string>
+    <string name="check_volume_problem">صدای زنگ روی ۰ است – گوشی‌ات بی‌صدا زنگ می‌زند.</string>
+    <string name="health_update">به‌روزرسانی Health Connect</string>
 </resources>

@@ -20,3 +20,7 @@ Hier steht, was während der Arbeit ohne Rückfrage entschieden wurde (jeweils d
 | 28.10.2026 | Uhr ohne Sensorrechte | Die Uhr weckt trotzdem zur Zielzeit (Vordergrund als Wecker-App, ohne Messung); der Nacht-Check am Handy meldet «Phase Wake auf der Uhr». | Ein Wecker muss wecken, auch wenn die Erkennung nicht laufen darf. |
 | 28.10.2026 | Apple Watch: Rückfall | Lokale Mitteilung 1 Min nach der Zielzeit, beim Wecken entfernt; Planung nur bei offener App und ≤ 36 h, sonst Hinweis auf Uhr und iPhone. | Grenzen von watchOS; so weckt die Uhr auch, wenn die Sitzung scheitert. |
 | 28.10.2026 | Pluralformen | Android `<plurals>`, Apple «name|kategorie» mit CLDR-Regeln in `Shared/Plural.swift`. | Eine Quelle, korrekte Grammatik in allen 32 Sprachen. |
+| 28.10.2026 | Direct Boot (Uhr) | Nicht umgesetzt: Nach einem Neustart ohne Entsperren plant die Uhr erst nach dem ersten Entsperren; das Handy weckt als Rückfall. | Wear-Uhren werden meist sofort entsperrt; Speicher im Geräteschutz wäre ein grosser Umbau. |
+| 28.10.2026 | Gleichzeitige Änderungen | Die Weckerliste gilt als Ganzes: Die zuletzt gespeicherte Liste gewinnt (Handy ↔ Uhr). | Einfach und vorhersehbar; gleichzeitiges Bearbeiten auf beiden Geräten ist selten. |
+| 28.10.2026 | «Fenster kürzen» auf der Uhr | Nicht auf der Uhr, nur im Editor am Handy. | Kleiner Bildschirm; der Hinweis erscheint am Handy. |
+| 28.10.2026 | Später geprüft | Swift 6 (strikte Nebenläufigkeit) und Trainings-Sitzung für dichtere Herzfrequenz auf der Apple Watch. | Erst nach Tests auf echten Geräten sinnvoll. |

@@ -28,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -47,8 +48,9 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SwitchButton
 import androidx.wear.compose.material3.Text
-import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.WakeReason
+import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.DayFormat
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.wear.R
@@ -65,7 +67,6 @@ import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.Locale
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -89,7 +90,11 @@ private fun HomeScreen() {
     val context = LocalContext.current
     val app = context.wearApp
     val scope = rememberCoroutineScope()
-    val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
+    // `null`, bis die Wecker geladen sind: so blinkt beim Öffnen nicht kurz «Kein Wecker gestellt».
+    val loaded by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = null)
+    val alarms = loaded.orEmpty()
+    val nights by app.nights.nights.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.nights.load() }
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
         while (true) {
@@ -98,7 +103,9 @@ private fun HomeScreen() {
         }
     }
     val zone = ZoneId.systemDefault()
-    val plan = remember(alarms, now) { AlarmSchedule.earliestPlan(alarms, now, zone) }
+    // Wie Kachel und Komplikation: mit erkanntem Einschlafen, ohne eine schon erledigte Nacht.
+    var plan by remember { mutableStateOf<WakePlan?>(null) }
+    LaunchedEffect(loaded, now) { plan = app.scheduler.nextPlan() }
     val goodNightSince by app.goodNight.collectAsStateWithLifecycle()
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
 
@@ -126,6 +133,8 @@ private fun HomeScreen() {
 
     HomeContent(
         alarms = alarms,
+        loading = loaded == null,
+        lastNight = nights?.lastOrNull(),
         plan = plan,
         zone = zone,
         goodNightActive = goodNightSince != null,
@@ -155,6 +164,8 @@ private fun HomeScreen() {
 internal fun HomeContent(
     alarms: List<AlarmSpec>,
     plan: WakePlan?,
+    loading: Boolean = false,
+    lastNight: NightRecord? = null,
     zone: ZoneId,
     goodNightActive: Boolean,
     permissionsMissing: Boolean,
@@ -169,7 +180,7 @@ internal fun HomeContent(
     AppScaffold {
         ScreenScaffold(scrollState = listState) {
             ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
-                item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone) }
+                item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading) }
                 if (sleepAlarm != null) {
                     item {
                         GoodNightButton(
@@ -200,6 +211,9 @@ internal fun HomeContent(
                         )
                     }
                 }
+                if (lastNight != null) {
+                    item { LastNight(lastNight, zone) }
+                }
                 if (alarms.isNotEmpty()) {
                     item { ListHeader { Text(stringResource(R.string.home_alarms)) } }
                 }
@@ -213,10 +227,12 @@ internal fun HomeContent(
 }
 
 @Composable
-private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
-    Box(Modifier.size(width = 188.dp, height = 188.dp), contentAlignment = Alignment.Center) {
+private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean = false) {
+    // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist.
+    Box(Modifier.size(width = 164.dp, height = 164.dp), contentAlignment = Alignment.Center) {
+        if (loading) return@Box
         if (plan != null) {
-            WindowRing(dialFraction(plan.windowStart, zone), dialFraction(plan.target, zone), Modifier.size(176.dp))
+            WindowRing(dialFraction(plan.windowStart, zone), dialFraction(plan.target, zone), Modifier.size(156.dp))
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -234,8 +250,14 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
                 )
             } else {
                 val day = plan.target.atZone(zone).toLocalDate()
+                val today = LocalDate.now(zone)
+                val locale = LocalConfiguration.current.locales[0]
                 Text(
-                    stringResource(if (day == LocalDate.now(zone)) R.string.home_today else R.string.home_tomorrow),
+                    when (day) {
+                        today -> stringResource(R.string.home_today)
+                        today.plusDays(1) -> stringResource(R.string.home_tomorrow)
+                        else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
+                    },
                     style = MaterialTheme.typography.labelSmall,
                     color = Brand.Mist,
                 )
@@ -251,6 +273,26 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
                 FlowingWave(Modifier.padding(top = 6.dp).width(96.dp).height(18.dp))
             }
         }
+    }
+}
+
+/** Letzte Nacht in einer Zeile: wann und warum geweckt wurde. */
+@Composable
+private fun LastNight(night: NightRecord, zone: ZoneId) {
+    val reason = stringResource(
+        when (night.reason) {
+            WakeReason.LIGHT_SLEEP -> R.string.ring_reason_light
+            WakeReason.AWAKE -> R.string.ring_reason_awake
+            WakeReason.DEADLINE -> R.string.ring_reason_deadline
+        },
+    )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).semantics(mergeDescendants = true) { },
+    ) {
+        Text(stringResource(R.string.home_last_night), style = MaterialTheme.typography.labelSmall, color = Brand.Muted)
+        Text(formatTime(night.wokeAt, zone), style = MaterialTheme.typography.titleMedium)
+        Text(reason, style = MaterialTheme.typography.bodySmall, color = Brand.Mist, textAlign = TextAlign.Center)
     }
 }
 
@@ -286,7 +328,7 @@ private fun AlarmSwitch(alarm: AlarmSpec, onToggle: (Boolean) -> Unit) {
     val time = LocalTime.of(alarm.hour, alarm.minute)
     val start = time.minusMinutes(alarm.windowMinutes.toLong())
     val days = DayFormat.format(
-        alarm.days, Locale.getDefault(),
+        alarm.days, LocalConfiguration.current.locales[0],
         stringResource(R.string.alarm_once), stringResource(R.string.alarm_every_day),
     )
     SwitchButton(

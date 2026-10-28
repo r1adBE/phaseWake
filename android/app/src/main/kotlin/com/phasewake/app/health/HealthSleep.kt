@@ -26,10 +26,28 @@ class HealthSleep(private val context: Context) {
     val isAvailable: Boolean
         get() = HealthConnectClient.getSdkStatus(context) == HealthConnectClient.SDK_AVAILABLE
 
+    /** Health Connect ist installiert, muss aber erst aktualisiert werden. */
+    val needsUpdate: Boolean
+        get() = HealthConnectClient.getSdkStatus(context) == HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED
+
     private val client by lazy { HealthConnectClient.getOrCreate(context) }
 
     suspend fun isGranted(): Boolean =
         isAvailable && runCatching { client.permissionController.getGrantedPermissions().containsAll(permissions) }.getOrDefault(false)
+
+    /** Alle Schlafphasen von [from] bis [to] in einer Abfrage (für den ganzen Verlauf). */
+    suspend fun stagesBetween(from: Instant, to: Instant): List<StageSpan> {
+        if (!isGranted()) return emptyList()
+        return try {
+            client.readRecords(ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(from, to))).records.flatMap { session ->
+                session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }
+            }.sortedBy { it.start }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Schlafphasen nicht lesbar", e)
+            emptyList()
+        }
+    }
 
     /** Schlafphasen rund um die Nacht; leer, wenn nichts vorliegt oder der Zugriff fehlt. */
     suspend fun stagesFor(night: NightRecord): List<StageSpan> {

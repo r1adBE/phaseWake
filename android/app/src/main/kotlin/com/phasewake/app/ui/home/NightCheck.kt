@@ -53,6 +53,9 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
     /** «Nicht stören» ist an, aber ohne Sonderrecht nicht lesbar, ob Wecker durchkommen: ehrlich sagen. */
     DND_UNKNOWN(R.string.check_dnd, R.string.check_dnd_unknown_problem, R.string.dnd_action, problemTitle = R.string.check_dnd_unknown, inReadyList = false),
     BATTERY(R.string.check_battery, R.string.check_battery_problem, null),
+
+    /** Wecker-Lautstärke auf 0: Der Zweitwecker klingelt dann lautlos. */
+    VOLUME(R.string.check_volume, R.string.check_volume_problem, R.string.dnd_action),
 }
 
 /** Ergebnis aller Prüfungen; `failed` leer heisst: bereit für die Nacht. */
@@ -77,6 +80,8 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     DoNotDisturb.Alarms.ALLOWED -> Unit
                 }
                 if (lowBattery(context)) add(Check.BATTERY)
+                val audio = context.getSystemService(android.media.AudioManager::class.java)
+                if (audio.getStreamVolume(android.media.AudioManager.STREAM_ALARM) == 0) add(Check.VOLUME)
             },
         )
 

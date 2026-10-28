@@ -185,4 +185,12 @@
     <string name="check_watch_setup_problem">Buka Phase Wake pada jam tangan sekali dan benarkan penderia serta pemberitahuan.</string>
     <string name="ring_hold_to_stop">Tahan untuk henti</string>
     <string name="settings_privacy">Dasar privasi</string>
+    <string name="editor_discard_title">Buang perubahan?</string>
+    <string name="editor_discard">Buang</string>
+    <string name="editor_keep_editing">Teruskan menyunting</string>
+    <string name="editor_delete_title">Padam penggera ini?</string>
+    <string name="home_window_running">Tetingkap berjalan – sedang mengukur sekarang</string>
+    <string name="check_volume">Kelantangan penggera</string>
+    <string name="check_volume_problem">Kelantangan penggera ditetapkan kepada 0 – telefon awak akan berbunyi tanpa suara.</string>
+    <string name="health_update">Kemas kini Health Connect</string>
 </resources>
