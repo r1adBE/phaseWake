@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Khoảng đánh thức</string>
+    <string name="channel_window_description">Hiển thị khi Phase Wake đang theo dõi giấc ngủ nông.</string>
+    <string name="channel_alarm">Báo thức</string>
+    <string name="channel_alarm_description">Đánh thức bạn.</string>
+    <string name="notification_window_title">Đang theo dõi giấc ngủ nông</string>
+    <string name="notification_window_text">Muộn nhất đánh thức lúc %1$s</string>
+    <string name="notification_ring_title">Chào buổi sáng</string>
+
+    <string name="ring_greeting">Chào buổi sáng</string>
+    <string name="ring_reason_light">Phát hiện ngủ nông</string>
+    <string name="ring_reason_awake">Bạn đã thức sẵn</string>
+    <string name="ring_reason_deadline">Đã đến giờ mục tiêu</string>
+    <string name="ring_hold_to_stop">Giữ để dừng</string>
+    <string name="ring_snooze">%1$d phút · còn %2$d lần</string>
+    <string name="ring_snoozed_until">Báo lại lúc %1$s</string>
+    <string name="ring_stop_now">Tắt báo thức</string>
+
+    <string name="home_no_alarm">Chưa đặt báo thức</string>
+    <string name="home_no_alarm_hint">Đặt báo thức trong Phase Wake trên điện thoại.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Hôm nay</string>
+    <string name="home_tomorrow">Ngày mai</string>
+    <string name="home_window_length">Khoảng %1$d phút</string>
+    <string name="home_alarms">Báo thức</string>
+    <string name="home_permissions">Cho phép cảm biến</string>
+    <string name="home_permissions_hint">Cần để phát hiện ngủ nông.</string>
+    <string name="alarm_once">Một lần</string>
+    <string name="alarm_every_day">Hằng ngày</string>
+    <string name="tile_label">Báo thức tiếp</string>
+    <string name="tile_next">Báo thức tiếp theo</string>
+    <string name="tile_light_sleep">Đánh thức khi ngủ nông</string>
+    <string name="notification_good_night_title">Ngủ ngon nhé</string>
+    <string name="notification_good_night_text">Đang chờ bạn chìm vào giấc ngủ</string>
+    <string name="home_good_night">Ngủ ngon</string>
+    <string name="home_good_night_hint">Ngủ %1$s từ bây giờ</string>
+    <string name="home_good_night_active">Chờ ngủ · chạm để hủy</string>
+    <string name="dnd_title">Báo thức bị chặn</string>
+    <string name="dnd_text">Cho phép báo thức khi bật Không làm phiền.</string>
+    <string name="duration_hours">%1$d giờ</string>
+    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
+</resources>

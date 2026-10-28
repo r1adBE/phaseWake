@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">バックアップアラーム</string>
+    <string name="channel_alarm_description">ウォッチと一緒にスマートフォンでも鳴ります。</string>
+    <string name="ring_greeting">おはようございます</string>
+    <string name="ring_notification_text">Phase Wakeのアラームが鳴っています</string>
+    <string name="ring_stop">停止</string>
+    <string name="ring_snooze">スヌーズ %1$d分 · 残り%2$d回</string>
+    <string name="ring_snoozed">%1$d分間スヌーズします</string>
+
+    <string name="nav_alarms">アラーム</string>
+    <string name="nav_history">履歴</string>
+    <string name="nav_settings">設定</string>
+
+    <string name="home_next_today">今日</string>
+    <string name="home_next_tomorrow">明日</string>
+    <string name="home_next_in">浅い眠りで起こします · %1$s後</string>
+    <string name="home_no_alarm_title">ちょうどいいタイミングで目覚めよう</string>
+    <string name="home_no_alarm_text">時刻と時間幅を設定してください。眠りが浅いときにウォッチが起こします。</string>
+    <string name="home_add_alarm">新規アラーム</string>
+    <string name="home_last_night">昨夜</string>
+    <string name="home_alarms">アラーム一覧</string>
+    <string name="home_permission_title">アラームを許可</string>
+    <string name="home_permission_text">Phase Wakeが起こすには、通知と全画面表示の許可が必要です。</string>
+    <string name="home_permission_action">許可</string>
+
+    <string name="reason_light">浅い眠り</string>
+    <string name="reason_awake">すでに起床</string>
+    <string name="reason_deadline">目標時刻</string>
+    <string name="woke_early">目標の%1$d分前 · %2$s</string>
+    <string name="woke_on_time">目標時刻ちょうど · %1$s</string>
+    <string name="no_snooze">スヌーズなし</string>
+    <string name="snoozed_times">スヌーズ%1$d回</string>
+
+    <string name="alarm_once">1回のみ</string>
+    <string name="alarm_every_day">毎日</string>
+    <string name="alarm_after_sleep">%1$s後</string>
+    <string name="alarm_latest">最遅 %1$s</string>
+
+    <string name="editor_new">新規アラーム</string>
+    <string name="editor_edit">アラームを編集</string>
+    <string name="editor_save">保存</string>
+    <string name="editor_delete">アラームを削除</string>
+    <string name="editor_mode_clock">時刻</string>
+    <string name="editor_mode_sleep">睡眠時間</string>
+    <string name="editor_target">起きたい時刻</string>
+    <string name="editor_latest">最も遅い時刻</string>
+    <string name="editor_sleep_duration">%1$s眠る</string>
+    <string name="editor_sleep_hint">眠りについた時点から計測します。ウォッチで「おやすみ」をタップしてください。</string>
+    <string name="editor_window">時間幅: %1$d分</string>
+    <string name="editor_window_hint">%1$sから%2$sの間に起こします</string>
+    <string name="editor_days">繰り返し</string>
+    <string name="editor_weekdays">平日</string>
+    <string name="editor_weekend">週末</string>
+    <string name="editor_phone_backup_hint">ウォッチと一緒に鳴り、ウォッチが反応しないときはスマートフォンだけで鳴ります。</string>
+    <string name="editor_label">名前</string>
+    <string name="editor_label_hint">仕事</string>
+
+    <string name="history_title">履歴</string>
+    <string name="history_empty_title">まだ記録がありません</string>
+    <string name="history_empty_text">ウォッチで最初の夜を過ごすと、いつ、なぜ起こしたかがここに表示されます。</string>
+    <string name="history_average">平均 %1$d分早く</string>
+    <string name="history_light_share">浅い眠り %1$d %%</string>
+    <string name="history_export">匿名でエクスポート</string>
+    <string name="history_export_subject">Phase Wakeの睡眠記録(匿名)</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_theme">外観</string>
+    <string name="settings_theme_system">システム</string>
+    <string name="settings_theme_light">ライト</string>
+    <string name="settings_theme_dark">ダーク</string>
+    <string name="settings_data">あなたのデータ</string>
+    <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。</string>
+    <string name="settings_export">睡眠記録を匿名でエクスポート</string>
+    <string name="settings_export_hint">検出精度の向上にご協力ください。名前・日付・端末IDを含まないCSVです。</string>
+    <string name="settings_about">アプリについて</string>
+    <string name="settings_open_source">GitHubでオープンソース公開中</string>
+    <string name="settings_licenses">ライセンス</string>
+    <string name="settings_licenses_text">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。</string>
+    <string name="settings_version">バージョン %1$s</string>
+
+    <string name="duration_minutes">%1$d分</string>
+    <string name="duration_hours">%1$d時間</string>
+    <string name="duration_hours_half">%1$d時間半</string>
+    <string name="duration_hours_minutes">%1$d時間%2$d分</string>
+    <string name="health_title">Health Connectの睡眠ステージ</string>
+    <string name="health_rationale">Phase Wakeは、起床後にヘルスケアアプリ(Samsung Healthなど)が保存した睡眠ステージを読み取れます。浅い眠りで起こせたかの確認と、検出精度の向上にのみ使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。</string>
+    <string name="health_connect">ヘルスデータと照合</string>
+    <string name="health_connect_hint">起床後にHealth Connectから睡眠ステージを読み取り、検出の確認と改善に使います。</string>
+    <string name="health_connected">接続済み</string>
+    <string name="health_unavailable">このスマートフォンではHealth Connectを利用できません。</string>
+    <string name="verdict_good">ヘルスデータ: %1$s ✓</string>
+    <string name="verdict_deep">ヘルスデータ: 深い眠り</string>
+    <string name="stage_light">浅い眠り</string>
+    <string name="stage_rem">レム睡眠</string>
+    <string name="stage_awake">覚醒</string>
+    <string name="editor_alert">起こし方</string>
+    <string name="editor_alert_hint">音は必ずバイブレーションと一緒に鳴ります。おやすみモードや就寝モード、マナーモード中でもアラームは鳴ります。</string>
+    <string name="editor_alert_watch">ウォッチ</string>
+    <string name="editor_alert_phone">スマホ</string>
+    <string name="alert_vibrate_only">振動のみ</string>
+    <string name="alert_vibrate_sound">振動 + 音</string>
+    <string name="alert_off">オフ</string>
+    <string name="alert_vibrate">振動</string>
+    <string name="alert_sound">音</string>
+    <string name="editor_sound">アラーム音</string>
+    <string name="editor_sound_default">デフォルト</string>
+    <string name="dnd_title">サイレントモードがアラームを妨げています</string>
+    <string name="dnd_text">サイレントモード中もアラームを許可してください。許可しないとスマートフォンは鳴りません。</string>
+    <string name="dnd_action">設定を開く</string>
+    <string name="greeting_morning">おはようございます</string>
+    <string name="greeting_day">こんにちは</string>
+    <string name="greeting_evening">こんばんは</string>
+    <string name="greeting_night">おやすみなさい</string>
+</resources>

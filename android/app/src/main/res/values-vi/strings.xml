@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Báo thức dự phòng</string>
+    <string name="channel_alarm_description">Đổ chuông trên điện thoại cùng lúc với đồng hồ.</string>
+    <string name="ring_greeting">Chào buổi sáng</string>
+    <string name="ring_notification_text">Báo thức Phase Wake đang đổ chuông</string>
+    <string name="ring_stop">Dừng</string>
+    <string name="ring_snooze">Báo lại %1$d phút · còn %2$d lần</string>
+    <string name="ring_snoozed">Báo lại sau %1$d phút</string>
+
+    <string name="nav_alarms">Báo thức</string>
+    <string name="nav_history">Lịch sử</string>
+    <string name="nav_settings">Cài đặt</string>
+
+    <string name="home_next_today">Hôm nay</string>
+    <string name="home_next_tomorrow">Ngày mai</string>
+    <string name="home_next_in">Đánh thức khi ngủ nông · sau %1$s</string>
+    <string name="home_no_alarm_title">Thức dậy đúng lúc</string>
+    <string name="home_no_alarm_text">Đặt giờ và khoảng thời gian. Đồng hồ sẽ đánh thức bạn khi bạn ngủ nông.</string>
+    <string name="home_add_alarm">Báo thức mới</string>
+    <string name="home_last_night">Đêm qua</string>
+    <string name="home_alarms">Báo thức của bạn</string>
+    <string name="home_permission_title">Cho phép báo thức</string>
+    <string name="home_permission_text">Phase Wake cần quyền thông báo và thông báo toàn màn hình để đánh thức bạn.</string>
+    <string name="home_permission_action">Cho phép</string>
+
+    <string name="reason_light">Ngủ nông</string>
+    <string name="reason_awake">Đã thức sẵn</string>
+    <string name="reason_deadline">Giờ mục tiêu</string>
+    <string name="woke_early">Sớm %1$d phút so với mục tiêu · %2$s</string>
+    <string name="woke_on_time">Đúng giờ mục tiêu · %1$s</string>
+    <string name="no_snooze">không báo lại</string>
+    <string name="snoozed_times">đã báo lại %1$d×</string>
+
+    <string name="alarm_once">Một lần</string>
+    <string name="alarm_every_day">Hằng ngày</string>
+    <string name="alarm_after_sleep">sau %1$s</string>
+    <string name="alarm_latest">muộn nhất %1$s</string>
+
+    <string name="editor_new">Báo thức mới</string>
+    <string name="editor_edit">Sửa báo thức</string>
+    <string name="editor_save">Lưu</string>
+    <string name="editor_delete">Xóa báo thức</string>
+    <string name="editor_mode_clock">Giờ cụ thể</string>
+    <string name="editor_mode_sleep">Thời lượng ngủ</string>
+    <string name="editor_target">Đánh thức tôi trước</string>
+    <string name="editor_latest">Muộn nhất</string>
+    <string name="editor_sleep_duration">Ngủ %1$s</string>
+    <string name="editor_sleep_hint">Bắt đầu tính khi bạn ngủ. Hãy chạm vào “Chúc ngủ ngon” trên đồng hồ.</string>
+    <string name="editor_window">Khoảng thời gian: %1$d phút</string>
+    <string name="editor_window_hint">Đánh thức bạn trong khoảng %1$s đến %2$s</string>
+    <string name="editor_days">Lặp lại</string>
+    <string name="editor_weekdays">Ngày thường</string>
+    <string name="editor_weekend">Cuối tuần</string>
+    <string name="editor_phone_backup_hint">Đổ chuông cùng đồng hồ, và tự đổ chuông nếu đồng hồ không phản hồi.</string>
+    <string name="editor_label">Tên</string>
+    <string name="editor_label_hint">Đi làm</string>
+
+    <string name="history_title">Lịch sử</string>
+    <string name="history_empty_title">Chưa có đêm nào</string>
+    <string name="history_empty_text">Sau đêm đầu tiên dùng đồng hồ, bạn sẽ thấy ở đây thời điểm và lý do bạn được đánh thức.</string>
+    <string name="history_average">TB sớm %1$d phút</string>
+    <string name="history_light_share">%1$d %% trong giấc ngủ nông</string>
+    <string name="history_export">Xuất ẩn danh</string>
+    <string name="history_export_subject">Các đêm ngủ Phase Wake (ẩn danh)</string>
+
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_theme">Giao diện</string>
+    <string name="settings_theme_system">Hệ thống</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_data">Dữ liệu của bạn</string>
+    <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi.</string>
+    <string name="settings_export">Xuất các đêm ngủ ẩn danh</string>
+    <string name="settings_export_hint">Giúp cải thiện khả năng nhận diện: tệp CSV không chứa tên, ngày hay mã thiết bị.</string>
+    <string name="settings_about">Giới thiệu</string>
+    <string name="settings_open_source">Mã nguồn mở trên GitHub</string>
+    <string name="settings_licenses">Giấy phép</string>
+    <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Phiên bản %1$s</string>
+
+    <string name="duration_minutes">%1$d phút</string>
+    <string name="duration_hours">%1$d giờ</string>
+    <string name="duration_hours_half">%1$d½ giờ</string>
+    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
+    <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
+    <string name="health_rationale">Phase Wake có thể đọc các giai đoạn ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu sau khi bạn thức dậy. Dữ liệu chỉ dùng để kiểm tra xem bạn có được đánh thức khi ngủ nông hay không và để cải thiện khả năng nhận diện cho bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="health_connect">So sánh với dữ liệu sức khỏe</string>
+    <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
+    <string name="health_connected">Đã kết nối</string>
+    <string name="health_unavailable">Health Connect không khả dụng trên điện thoại này.</string>
+    <string name="verdict_good">Dữ liệu sức khỏe: %1$s ✓</string>
+    <string name="verdict_deep">Dữ liệu sức khỏe: ngủ sâu</string>
+    <string name="stage_light">ngủ nông</string>
+    <string name="stage_rem">ngủ REM</string>
+    <string name="stage_awake">thức</string>
+    <string name="editor_alert">Cách đánh thức bạn</string>
+    <string name="editor_alert_hint">Âm thanh luôn đi kèm rung. Báo thức vẫn đổ chuông khi bật Không làm phiền, chế độ giờ đi ngủ hoặc điện thoại im lặng.</string>
+    <string name="editor_alert_watch">Đồng hồ</string>
+    <string name="editor_alert_phone">Điện thoại</string>
+    <string name="alert_vibrate_only">Chỉ rung</string>
+    <string name="alert_vibrate_sound">Rung + âm thanh</string>
+    <string name="alert_off">Tắt</string>
+    <string name="alert_vibrate">Rung</string>
+    <string name="alert_sound">Âm thanh</string>
+    <string name="editor_sound">Nhạc báo thức</string>
+    <string name="editor_sound_default">Mặc định</string>
+    <string name="dnd_title">Không làm phiền đang chặn báo thức</string>
+    <string name="dnd_text">Hãy cho phép báo thức trong chế độ Không làm phiền, nếu không điện thoại sẽ im lặng.</string>
+    <string name="dnd_action">Mở cài đặt</string>
+    <string name="greeting_morning">Chào buổi sáng</string>
+    <string name="greeting_day">Xin chào</string>
+    <string name="greeting_evening">Chào buổi tối</string>
+    <string name="greeting_night">Chúc ngủ ngon</string>
+</resources>

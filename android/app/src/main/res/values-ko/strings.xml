@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">백업 알람</string>
+    <string name="channel_alarm_description">워치와 함께 휴대폰에서도 울려요.</string>
+    <string name="ring_greeting">좋은 아침이에요</string>
+    <string name="ring_notification_text">Phase Wake 알람이 울리고 있어요</string>
+    <string name="ring_stop">중지</string>
+    <string name="ring_snooze">다시 알림 %1$d분 · %2$d회 남음</string>
+    <string name="ring_snoozed">%1$d분 후 다시 알려드려요</string>
+
+    <string name="nav_alarms">알람</string>
+    <string name="nav_history">기록</string>
+    <string name="nav_settings">설정</string>
+
+    <string name="home_next_today">오늘</string>
+    <string name="home_next_tomorrow">내일</string>
+    <string name="home_next_in">얕은 잠에서 깨워요 · %1$s 후</string>
+    <string name="home_no_alarm_title">딱 맞는 순간에 일어나세요</string>
+    <string name="home_no_alarm_text">시간과 범위를 정해 보세요. 얕게 잠들었을 때 워치가 깨워 드려요.</string>
+    <string name="home_add_alarm">새 알람</string>
+    <string name="home_last_night">어젯밤</string>
+    <string name="home_alarms">내 알람</string>
+    <string name="home_permission_title">알람 허용</string>
+    <string name="home_permission_text">Phase Wake가 깨워 드리려면 알림과 전체 화면 알림 권한이 필요해요.</string>
+    <string name="home_permission_action">허용</string>
+
+    <string name="reason_light">얕은 잠</string>
+    <string name="reason_awake">이미 깨어 있음</string>
+    <string name="reason_deadline">목표 시간</string>
+    <string name="woke_early">목표 %1$d분 전 · %2$s</string>
+    <string name="woke_on_time">목표 시간에 · %1$s</string>
+    <string name="no_snooze">다시 알림 없음</string>
+    <string name="snoozed_times">다시 알림 %1$d회</string>
+
+    <string name="alarm_once">한 번</string>
+    <string name="alarm_every_day">매일</string>
+    <string name="alarm_after_sleep">%1$s 후</string>
+    <string name="alarm_latest">늦어도 %1$s</string>
+
+    <string name="editor_new">새 알람</string>
+    <string name="editor_edit">알람 편집</string>
+    <string name="editor_save">저장</string>
+    <string name="editor_delete">알람 삭제</string>
+    <string name="editor_mode_clock">시각</string>
+    <string name="editor_mode_sleep">수면 시간</string>
+    <string name="editor_target">일어날 시간</string>
+    <string name="editor_latest">늦어도</string>
+    <string name="editor_sleep_duration">%1$s 자기</string>
+    <string name="editor_sleep_hint">잠든 순간부터 계산해요. 워치에서 “잘 자요”를 탭하세요.</string>
+    <string name="editor_window">범위: %1$d분</string>
+    <string name="editor_window_hint">%1$s~%2$s 사이에 깨워요</string>
+    <string name="editor_days">반복</string>
+    <string name="editor_weekdays">평일</string>
+    <string name="editor_weekend">주말</string>
+    <string name="editor_phone_backup_hint">워치와 함께 울리고, 워치가 반응하지 않으면 휴대폰만 울려요.</string>
+    <string name="editor_label">이름</string>
+    <string name="editor_label_hint">출근</string>
+
+    <string name="history_title">기록</string>
+    <string name="history_empty_title">아직 기록이 없어요</string>
+    <string name="history_empty_text">워치와 함께 첫 밤을 보내면 언제, 왜 깨웠는지 여기에 표시돼요.</string>
+    <string name="history_average">평균 %1$d분 일찍</string>
+    <string name="history_light_share">얕은 잠에서 %1$d %%</string>
+    <string name="history_export">익명으로 내보내기</string>
+    <string name="history_export_subject">Phase Wake 수면 기록 (익명)</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_theme">화면 테마</string>
+    <string name="settings_theme_system">시스템</string>
+    <string name="settings_theme_light">라이트</string>
+    <string name="settings_theme_dark">다크</string>
+    <string name="settings_data">내 데이터</string>
+    <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요.</string>
+    <string name="settings_export">수면 기록 익명으로 내보내기</string>
+    <string name="settings_export_hint">감지 정확도 개선에 도움을 주세요. 이름, 날짜, 기기 ID가 없는 CSV예요.</string>
+    <string name="settings_about">정보</string>
+    <string name="settings_open_source">GitHub의 오픈 소스</string>
+    <string name="settings_licenses">라이선스</string>
+    <string name="settings_licenses_text">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">버전 %1$s</string>
+
+    <string name="duration_minutes">%1$d분</string>
+    <string name="duration_hours">%1$d시간</string>
+    <string name="duration_hours_half">%1$d½시간</string>
+    <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
+    <string name="health_title">Health Connect의 수면 단계</string>
+    <string name="health_rationale">Phase Wake는 일어난 뒤 건강 앱(예: Samsung Health)에 저장된 수면 단계를 읽을 수 있어요. 얕은 잠에서 깨웠는지 확인하고 감지 정확도를 높이는 데만 사용해요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
+    <string name="health_connect">건강 데이터와 비교</string>
+    <string name="health_connect_hint">일어난 뒤 Health Connect에서 수면 단계를 읽어 감지를 확인하고 개선해요.</string>
+    <string name="health_connected">연결됨</string>
+    <string name="health_unavailable">이 휴대폰에서는 Health Connect를 사용할 수 없어요.</string>
+    <string name="verdict_good">건강 데이터: %1$s ✓</string>
+    <string name="verdict_deep">건강 데이터: 깊은 잠</string>
+    <string name="stage_light">얕은 잠</string>
+    <string name="stage_rem">렘수면</string>
+    <string name="stage_awake">깨어 있음</string>
+    <string name="editor_alert">깨우는 방법</string>
+    <string name="editor_alert_hint">소리는 항상 진동과 함께 울려요. 방해 금지 모드, 취침 모드, 무음일 때도 알람은 울려요.</string>
+    <string name="editor_alert_watch">워치</string>
+    <string name="editor_alert_phone">휴대폰</string>
+    <string name="alert_vibrate_only">진동만</string>
+    <string name="alert_vibrate_sound">진동 + 소리</string>
+    <string name="alert_off">끔</string>
+    <string name="alert_vibrate">진동</string>
+    <string name="alert_sound">소리</string>
+    <string name="editor_sound">알람 소리</string>
+    <string name="editor_sound_default">기본</string>
+    <string name="dnd_title">방해 금지 모드가 알람을 막고 있어요</string>
+    <string name="dnd_text">방해 금지 모드에서 알람을 허용해 주세요. 그렇지 않으면 휴대폰이 울리지 않아요.</string>
+    <string name="dnd_action">설정 열기</string>
+    <string name="greeting_morning">좋은 아침이에요</string>
+    <string name="greeting_day">안녕하세요</string>
+    <string name="greeting_evening">좋은 저녁이에요</string>
+    <string name="greeting_night">잘 자요</string>
+</resources>

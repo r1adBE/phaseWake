@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">นาฬิกาปลุกสำรอง</string>
+    <string name="channel_alarm_description">ดังบนโทรศัพท์พร้อมกับนาฬิกาของคุณ</string>
+    <string name="ring_greeting">อรุณสวัสดิ์</string>
+    <string name="ring_notification_text">นาฬิกาปลุก Phase Wake กำลังดัง</string>
+    <string name="ring_stop">หยุด</string>
+    <string name="ring_snooze">ปลุกซ้ำ %1$d นาที · เหลือ %2$d ครั้ง</string>
+    <string name="ring_snoozed">ปลุกซ้ำใน %1$d นาที</string>
+
+    <string name="nav_alarms">นาฬิกาปลุก</string>
+    <string name="nav_history">ประวัติ</string>
+    <string name="nav_settings">ตั้งค่า</string>
+
+    <string name="home_next_today">วันนี้</string>
+    <string name="home_next_tomorrow">พรุ่งนี้</string>
+    <string name="home_next_in">ปลุกตอนหลับตื้น · อีก %1$s</string>
+    <string name="home_no_alarm_title">ตื่นในจังหวะที่ใช่</string>
+    <string name="home_no_alarm_text">ตั้งเวลาและช่วงเวลาปลุก นาฬิกาจะปลุกคุณเมื่อคุณหลับตื้น</string>
+    <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
+    <string name="home_last_night">เมื่อคืน</string>
+    <string name="home_alarms">นาฬิกาปลุกของคุณ</string>
+    <string name="home_permission_title">อนุญาตนาฬิกาปลุก</string>
+    <string name="home_permission_text">Phase Wake ต้องใช้การแจ้งเตือนและการแจ้งเตือนแบบเต็มหน้าจอเพื่อปลุกคุณ</string>
+    <string name="home_permission_action">อนุญาต</string>
+
+    <string name="reason_light">หลับตื้น</string>
+    <string name="reason_awake">ตื่นอยู่แล้ว</string>
+    <string name="reason_deadline">เวลาเป้าหมาย</string>
+    <string name="woke_early">ก่อนเป้าหมาย %1$d นาที · %2$s</string>
+    <string name="woke_on_time">ตรงเวลาเป้าหมาย · %1$s</string>
+    <string name="no_snooze">ไม่ปลุกซ้ำ</string>
+    <string name="snoozed_times">ปลุกซ้ำ %1$d ครั้ง</string>
+
+    <string name="alarm_once">ครั้งเดียว</string>
+    <string name="alarm_every_day">ทุกวัน</string>
+    <string name="alarm_after_sleep">หลัง %1$s</string>
+    <string name="alarm_latest">ช้าสุด %1$s</string>
+
+    <string name="editor_new">นาฬิกาปลุกใหม่</string>
+    <string name="editor_edit">แก้ไขนาฬิกาปลุก</string>
+    <string name="editor_save">บันทึก</string>
+    <string name="editor_delete">ลบนาฬิกาปลุก</string>
+    <string name="editor_mode_clock">เวลา</string>
+    <string name="editor_mode_sleep">ระยะเวลานอน</string>
+    <string name="editor_target">ปลุกฉันภายใน</string>
+    <string name="editor_latest">ช้าที่สุด</string>
+    <string name="editor_sleep_duration">นอน %1$s</string>
+    <string name="editor_sleep_hint">เริ่มนับเมื่อคุณหลับ แตะ “ราตรีสวัสดิ์” บนนาฬิกา</string>
+    <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
+    <string name="editor_window_hint">ปลุกคุณระหว่าง %1$s ถึง %2$s</string>
+    <string name="editor_days">ทำซ้ำ</string>
+    <string name="editor_weekdays">วันธรรมดา</string>
+    <string name="editor_weekend">สุดสัปดาห์</string>
+    <string name="editor_phone_backup_hint">ดังพร้อมกับนาฬิกา และดังเองหากนาฬิกาไม่ตอบสนอง</string>
+    <string name="editor_label">ชื่อ</string>
+    <string name="editor_label_hint">ทำงาน</string>
+
+    <string name="history_title">ประวัติ</string>
+    <string name="history_empty_title">ยังไม่มีบันทึกการนอน</string>
+    <string name="history_empty_text">หลังคืนแรกที่ใช้นาฬิกา คุณจะเห็นที่นี่ว่าถูกปลุกเมื่อไรและเพราะอะไร</string>
+    <string name="history_average">เฉลี่ยเร็วขึ้น %1$d นาที</string>
+    <string name="history_light_share">%1$d %% ในช่วงหลับตื้น</string>
+    <string name="history_export">ส่งออกแบบไม่ระบุตัวตน</string>
+    <string name="history_export_subject">บันทึกการนอน Phase Wake (ไม่ระบุตัวตน)</string>
+
+    <string name="settings_title">ตั้งค่า</string>
+    <string name="settings_theme">รูปลักษณ์</string>
+    <string name="settings_theme_system">ตามระบบ</string>
+    <string name="settings_theme_light">สว่าง</string>
+    <string name="settings_theme_dark">มืด</string>
+    <string name="settings_data">ข้อมูลของคุณ</string>
+    <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม</string>
+    <string name="settings_export">ส่งออกบันทึกการนอนแบบไม่ระบุตัวตน</string>
+    <string name="settings_export_hint">ช่วยพัฒนาการตรวจจับ: ไฟล์ CSV ที่ไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
+    <string name="settings_about">เกี่ยวกับ</string>
+    <string name="settings_open_source">โอเพนซอร์สบน GitHub</string>
+    <string name="settings_licenses">สัญญาอนุญาต</string>
+    <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors</string>
+    <string name="settings_version">เวอร์ชัน %1$s</string>
+
+    <string name="duration_minutes">%1$d นาที</string>
+    <string name="duration_hours">%1$d ชม.</string>
+    <string name="duration_hours_half">%1$d½ ชม.</string>
+    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
+    <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
+    <string name="health_rationale">Phase Wake อ่านระยะการนอนหลับที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้หลังคุณตื่นได้ ใช้เพื่อตรวจสอบว่าคุณถูกปลุกตอนหลับตื้นหรือไม่ และพัฒนาการตรวจจับให้เหมาะกับคุณเท่านั้น Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
+    <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>
+    <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
+    <string name="health_connected">เชื่อมต่อแล้ว</string>
+    <string name="health_unavailable">โทรศัพท์เครื่องนี้ไม่รองรับ Health Connect</string>
+    <string name="verdict_good">ข้อมูลสุขภาพ: %1$s ✓</string>
+    <string name="verdict_deep">ข้อมูลสุขภาพ: หลับลึก</string>
+    <string name="stage_light">หลับตื้น</string>
+    <string name="stage_rem">หลับ REM</string>
+    <string name="stage_awake">ตื่น</string>
+    <string name="editor_alert">วิธีปลุกคุณ</string>
+    <string name="editor_alert_hint">เสียงจะมาพร้อมการสั่นเสมอ นาฬิกาปลุกดังแม้เปิดโหมดห้ามรบกวน โหมดเวลานอน หรือปิดเสียงโทรศัพท์</string>
+    <string name="editor_alert_watch">นาฬิกา</string>
+    <string name="editor_alert_phone">โทรศัพท์</string>
+    <string name="alert_vibrate_only">สั่นอย่างเดียว</string>
+    <string name="alert_vibrate_sound">สั่น + เสียง</string>
+    <string name="alert_off">ปิด</string>
+    <string name="alert_vibrate">สั่น</string>
+    <string name="alert_sound">เสียง</string>
+    <string name="editor_sound">เสียงปลุก</string>
+    <string name="editor_sound_default">ค่าเริ่มต้น</string>
+    <string name="dnd_title">โหมดห้ามรบกวนบล็อกนาฬิกาปลุก</string>
+    <string name="dnd_text">อนุญาตให้นาฬิกาปลุกดังในโหมดห้ามรบกวน มิฉะนั้นโทรศัพท์จะเงียบ</string>
+    <string name="dnd_action">เปิดการตั้งค่า</string>
+    <string name="greeting_morning">อรุณสวัสดิ์</string>
+    <string name="greeting_day">สวัสดี</string>
+    <string name="greeting_evening">สวัสดีตอนเย็น</string>
+    <string name="greeting_night">ราตรีสวัสดิ์</string>
+</resources>

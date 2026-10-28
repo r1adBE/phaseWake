@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">起床ウィンドウ</string>
+    <string name="channel_window_description">Phase Wakeが浅い眠りを見守っている間に表示されます。</string>
+    <string name="channel_alarm">アラーム</string>
+    <string name="channel_alarm_description">あなたを起こします。</string>
+    <string name="notification_window_title">浅い眠りを見守り中</string>
+    <string name="notification_window_text">遅くとも%1$sまでに起こします</string>
+    <string name="notification_ring_title">おはようございます</string>
+
+    <string name="ring_greeting">おはようございます</string>
+    <string name="ring_reason_light">浅い眠りを検出</string>
+    <string name="ring_reason_awake">すでに起きていました</string>
+    <string name="ring_reason_deadline">目標時刻になりました</string>
+    <string name="ring_hold_to_stop">長押しで停止</string>
+    <string name="ring_snooze">%1$d分 · 残り%2$d回</string>
+    <string name="ring_snoozed_until">%1$sまでスヌーズ</string>
+    <string name="ring_stop_now">アラームを止める</string>
+
+    <string name="home_no_alarm">アラーム未設定</string>
+    <string name="home_no_alarm_hint">スマートフォンのPhase Wakeで設定してください。</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">今日</string>
+    <string name="home_tomorrow">明日</string>
+    <string name="home_window_length">時間幅 %1$d分</string>
+    <string name="home_alarms">アラーム</string>
+    <string name="home_permissions">センサーを許可</string>
+    <string name="home_permissions_hint">浅い眠りの検出に必要です。</string>
+    <string name="alarm_once">1回のみ</string>
+    <string name="alarm_every_day">毎日</string>
+    <string name="tile_label">次のアラーム</string>
+    <string name="tile_next">次のアラーム</string>
+    <string name="tile_light_sleep">浅い眠りで起こします</string>
+    <string name="notification_good_night_title">おやすみなさい</string>
+    <string name="notification_good_night_text">眠りにつくのを待っています</string>
+    <string name="home_good_night">おやすみ</string>
+    <string name="home_good_night_hint">今から%1$s眠る</string>
+    <string name="home_good_night_active">入眠待ち · タップで取消</string>
+    <string name="dnd_title">アラームがブロック中</string>
+    <string name="dnd_text">サイレントモード中のアラームを許可してください。</string>
+    <string name="duration_hours">%1$d時間</string>
+    <string name="duration_hours_minutes">%1$d時間%2$d分</string>
+</resources>

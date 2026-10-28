@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">备用闹钟</string>
+    <string name="channel_alarm_description">与手表一起在手机上响铃。</string>
+    <string name="ring_greeting">早上好</string>
+    <string name="ring_notification_text">你的 Phase Wake 闹钟正在响铃</string>
+    <string name="ring_stop">停止</string>
+    <string name="ring_snooze">贪睡 %1$d 分钟 · 剩余 %2$d 次</string>
+    <string name="ring_snoozed">贪睡 %1$d 分钟</string>
+
+    <string name="nav_alarms">闹钟</string>
+    <string name="nav_history">记录</string>
+    <string name="nav_settings">设置</string>
+
+    <string name="home_next_today">今天</string>
+    <string name="home_next_tomorrow">明天</string>
+    <string name="home_next_in">在浅睡时唤醒你 · %1$s后</string>
+    <string name="home_no_alarm_title">在恰到好处的时刻醒来</string>
+    <string name="home_no_alarm_text">设定一个时间和一个时间窗。你睡得浅时，手表会叫醒你。</string>
+    <string name="home_add_alarm">新建闹钟</string>
+    <string name="home_last_night">昨晚</string>
+    <string name="home_alarms">我的闹钟</string>
+    <string name="home_permission_title">允许闹钟</string>
+    <string name="home_permission_text">Phase Wake 需要通知和全屏提醒权限才能叫醒你。</string>
+    <string name="home_permission_action">允许</string>
+
+    <string name="reason_light">浅睡</string>
+    <string name="reason_awake">已经醒了</string>
+    <string name="reason_deadline">目标时间</string>
+    <string name="woke_early">比目标提前 %1$d 分钟 · %2$s</string>
+    <string name="woke_on_time">目标时间 · %1$s</string>
+    <string name="no_snooze">未贪睡</string>
+    <string name="snoozed_times">贪睡 %1$d 次</string>
+
+    <string name="alarm_once">仅一次</string>
+    <string name="alarm_every_day">每天</string>
+    <string name="alarm_after_sleep">%1$s后</string>
+    <string name="alarm_latest">最晚 %1$s</string>
+
+    <string name="editor_new">新建闹钟</string>
+    <string name="editor_edit">编辑闹钟</string>
+    <string name="editor_save">保存</string>
+    <string name="editor_delete">删除闹钟</string>
+    <string name="editor_mode_clock">时刻</string>
+    <string name="editor_mode_sleep">睡眠时长</string>
+    <string name="editor_target">最迟叫醒我</string>
+    <string name="editor_latest">最晚</string>
+    <string name="editor_sleep_duration">睡 %1$s</string>
+    <string name="editor_sleep_hint">从你入睡时开始计时。请在手表上点按“晚安”。</string>
+    <string name="editor_window">时间窗：%1$d 分钟</string>
+    <string name="editor_window_hint">在 %1$s 到 %2$s 之间叫醒你</string>
+    <string name="editor_days">重复</string>
+    <string name="editor_weekdays">工作日</string>
+    <string name="editor_weekend">周末</string>
+    <string name="editor_phone_backup_hint">与手表一起响铃；手表没有响应时，手机会单独响铃。</string>
+    <string name="editor_label">名称</string>
+    <string name="editor_label_hint">上班</string>
+
+    <string name="history_title">记录</string>
+    <string name="history_empty_title">还没有记录</string>
+    <string name="history_empty_text">戴着手表睡完第一晚后，你就能在这里看到何时、为何被叫醒。</string>
+    <string name="history_average">平均提前 %1$d 分钟</string>
+    <string name="history_light_share">%1$d %% 在浅睡中</string>
+    <string name="history_export">匿名导出</string>
+    <string name="history_export_subject">Phase Wake 睡眠记录（匿名）</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_theme">外观</string>
+    <string name="settings_theme_system">跟随系统</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">深色</string>
+    <string name="settings_data">你的数据</string>
+    <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。</string>
+    <string name="settings_export">匿名导出睡眠记录</string>
+    <string name="settings_export_hint">帮助改进检测：CSV 文件不含姓名、日期或设备 ID。</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_open_source">GitHub 上的开源项目</string>
+    <string name="settings_licenses">许可证</string>
+    <string name="settings_licenses_text">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。</string>
+    <string name="settings_version">版本 %1$s</string>
+
+    <string name="duration_minutes">%1$d 分钟</string>
+    <string name="duration_hours">%1$d 小时</string>
+    <string name="duration_hours_half">%1$d½ 小时</string>
+    <string name="duration_hours_minutes">%1$d 小时 %2$d 分钟</string>
+    <string name="health_title">来自 Health Connect 的睡眠阶段</string>
+    <string name="health_rationale">Phase Wake 可以读取你的健康应用（例如 Samsung Health）在你醒来后保存的睡眠阶段。这些数据仅用于检查你是否在浅睡时被叫醒，并为你改进检测效果。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
+    <string name="health_connect">与健康数据对比</string>
+    <string name="health_connect_hint">醒来后从 Health Connect 读取睡眠阶段，用于检查并改进检测。</string>
+    <string name="health_connected">已连接</string>
+    <string name="health_unavailable">此手机不支持 Health Connect。</string>
+    <string name="verdict_good">健康数据：%1$s ✓</string>
+    <string name="verdict_deep">健康数据：深睡</string>
+    <string name="stage_light">浅睡</string>
+    <string name="stage_rem">快速眼动睡眠</string>
+    <string name="stage_awake">清醒</string>
+    <string name="editor_alert">叫醒方式</string>
+    <string name="editor_alert_hint">响铃时总会同时振动。即使开启勿扰、就寝模式或手机静音，闹钟也会响。</string>
+    <string name="editor_alert_watch">手表</string>
+    <string name="editor_alert_phone">手机</string>
+    <string name="alert_vibrate_only">仅振动</string>
+    <string name="alert_vibrate_sound">振动 + 铃声</string>
+    <string name="alert_off">关闭</string>
+    <string name="alert_vibrate">振动</string>
+    <string name="alert_sound">铃声</string>
+    <string name="editor_sound">闹钟铃声</string>
+    <string name="editor_sound_default">默认</string>
+    <string name="dnd_title">勿扰模式拦截了闹钟</string>
+    <string name="dnd_text">请在勿扰模式下允许闹钟，否则手机不会响铃。</string>
+    <string name="dnd_action">打开设置</string>
+    <string name="greeting_morning">早上好</string>
+    <string name="greeting_day">你好</string>
+    <string name="greeting_evening">晚上好</string>
+    <string name="greeting_night">晚安</string>
+</resources>

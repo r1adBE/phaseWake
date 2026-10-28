@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">ช่วงเวลาปลุก</string>
+    <string name="channel_window_description">แสดงขณะที่ Phase Wake เฝ้าดูการหลับตื้น</string>
+    <string name="channel_alarm">นาฬิกาปลุก</string>
+    <string name="channel_alarm_description">ปลุกคุณ</string>
+    <string name="notification_window_title">กำลังเฝ้าดูการหลับตื้น</string>
+    <string name="notification_window_text">ปลุกคุณช้าสุดเวลา %1$s</string>
+    <string name="notification_ring_title">อรุณสวัสดิ์</string>
+
+    <string name="ring_greeting">อรุณสวัสดิ์</string>
+    <string name="ring_reason_light">ตรวจพบการหลับตื้น</string>
+    <string name="ring_reason_awake">คุณตื่นอยู่แล้ว</string>
+    <string name="ring_reason_deadline">ถึงเวลาเป้าหมายแล้ว</string>
+    <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
+    <string name="ring_snooze">%1$d นาที · เหลือ %2$d ครั้ง</string>
+    <string name="ring_snoozed_until">ปลุกซ้ำเวลา %1$s</string>
+    <string name="ring_stop_now">ปิดนาฬิกาปลุก</string>
+
+    <string name="home_no_alarm">ยังไม่ได้ตั้งปลุก</string>
+    <string name="home_no_alarm_hint">ตั้งนาฬิกาปลุกใน Phase Wake บนโทรศัพท์</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">วันนี้</string>
+    <string name="home_tomorrow">พรุ่งนี้</string>
+    <string name="home_window_length">ช่วง %1$d นาที</string>
+    <string name="home_alarms">นาฬิกาปลุก</string>
+    <string name="home_permissions">อนุญาตเซนเซอร์</string>
+    <string name="home_permissions_hint">จำเป็นต่อการตรวจจับการหลับตื้น</string>
+    <string name="alarm_once">ครั้งเดียว</string>
+    <string name="alarm_every_day">ทุกวัน</string>
+    <string name="tile_label">ปลุกครั้งถัดไป</string>
+    <string name="tile_next">ปลุกครั้งถัดไป</string>
+    <string name="tile_light_sleep">ปลุกตอนหลับตื้น</string>
+    <string name="notification_good_night_title">หลับฝันดี</string>
+    <string name="notification_good_night_text">รอให้คุณหลับ</string>
+    <string name="home_good_night">ราตรีสวัสดิ์</string>
+    <string name="home_good_night_hint">นอนหลับ %1$s นับจากตอนนี้</string>
+    <string name="home_good_night_active">รอการหลับ · แตะเพื่อยกเลิก</string>
+    <string name="dnd_title">นาฬิกาปลุกถูกบล็อก</string>
+    <string name="dnd_text">อนุญาตนาฬิกาปลุกในโหมดห้ามรบกวน</string>
+    <string name="duration_hours">%1$d ชม.</string>
+    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
+</resources>

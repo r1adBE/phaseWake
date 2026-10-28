@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">唤醒时间窗</string>
+    <string name="channel_window_description">Phase Wake 监测浅睡期间显示。</string>
+    <string name="channel_alarm">闹钟</string>
+    <string name="channel_alarm_description">叫醒你。</string>
+    <string name="notification_window_title">正在监测浅睡</string>
+    <string name="notification_window_text">最晚 %1$s 叫醒你</string>
+    <string name="notification_ring_title">早上好</string>
+
+    <string name="ring_greeting">早上好</string>
+    <string name="ring_reason_light">检测到浅睡</string>
+    <string name="ring_reason_awake">你已经醒了</string>
+    <string name="ring_reason_deadline">已到目标时间</string>
+    <string name="ring_hold_to_stop">长按停止</string>
+    <string name="ring_snooze">%1$d 分钟 · 剩余 %2$d 次</string>
+    <string name="ring_snoozed_until">贪睡至 %1$s</string>
+    <string name="ring_stop_now">关闭闹钟</string>
+
+    <string name="home_no_alarm">未设置闹钟</string>
+    <string name="home_no_alarm_hint">请在手机上的 Phase Wake 中设置闹钟。</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">今天</string>
+    <string name="home_tomorrow">明天</string>
+    <string name="home_window_length">时间窗 %1$d 分钟</string>
+    <string name="home_alarms">闹钟</string>
+    <string name="home_permissions">允许传感器</string>
+    <string name="home_permissions_hint">检测浅睡所必需。</string>
+    <string name="alarm_once">仅一次</string>
+    <string name="alarm_every_day">每天</string>
+    <string name="tile_label">下一个闹钟</string>
+    <string name="tile_next">下一个闹钟</string>
+    <string name="tile_light_sleep">在浅睡时唤醒你</string>
+    <string name="notification_good_night_title">睡个好觉</string>
+    <string name="notification_good_night_text">等待你入睡</string>
+    <string name="home_good_night">晚安</string>
+    <string name="home_good_night_hint">从现在起睡 %1$s</string>
+    <string name="home_good_night_active">等待入睡 · 点按取消</string>
+    <string name="dnd_title">闹钟被拦截</string>
+    <string name="dnd_text">请在勿扰模式下允许闹钟。</string>
+    <string name="duration_hours">%1$d 小时</string>
+    <string name="duration_hours_minutes">%1$d 小时 %2$d 分</string>
+</resources>
