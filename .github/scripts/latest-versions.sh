@@ -43,4 +43,4 @@ latest $central junit:junit
 echo
 gv=$(curl -fsSL https://services.gradle.org/versions/current | grep -o '"version" *: *"[^"]*"' | cut -d'"' -f4)
 echo "gradle $gv sha256 $(curl -fsSL https://services.gradle.org/distributions/gradle-$gv-bin.zip.sha256)"
-for v in 9.8.1; do echo "gradle $v sha256 $(curl -fsSL https://services.gradle.org/distributions/gradle-$v-bin.zip.sha256 || echo '?')"; done
+

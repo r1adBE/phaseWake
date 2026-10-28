@@ -1,0 +1,17 @@
+name: Bibliotheksversionen
+
+# Zeigt die neuesten stabilen Versionen der verwendeten Bibliotheken; manuell oder monatlich.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 1 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: .github/scripts/latest-versions.sh
