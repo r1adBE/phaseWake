@@ -189,18 +189,23 @@ fun EditorScreen(
             }
 
             Section {
-                Text(
-                    stringResource(if (sleepMode) R.string.editor_latest else R.string.editor_target),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                TimePicker(
-                    state = time,
-                    // Senkrecht: Im 12-h-Format bricht so «vorm./nachm.» in langen Sprachen nicht um.
-                    layoutType = TimePickerLayoutType.Vertical,
-                    colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
-                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp).scaled(TIME_PICKER_SCALE),
-                )
+                // Beschriftung bündig mit dem Stundenfeld: Im 24-h-Format ist die Anzeige (2 × 96 dp + 24 dp)
+                // schmaler als das Zifferblatt (256 dp) und steht 20 dp eingerückt; im 12-h-Format nicht.
+                Column(Modifier.align(Alignment.CenterHorizontally)) {
+                    Text(
+                        stringResource(if (sleepMode) R.string.editor_latest else R.string.editor_target),
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(start = if (time.is24hour) 20.dp * TIME_PICKER_SCALE else 0.dp),
+                    )
+                    TimePicker(
+                        state = time,
+                        // Senkrecht: Im 12-h-Format bricht so «vorm./nachm.» in langen Sprachen nicht um.
+                        layoutType = TimePickerLayoutType.Vertical,
+                        colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
+                        modifier = Modifier.padding(top = 8.dp).scaled(TIME_PICKER_SCALE),
+                    )
+                }
             }
 
             AnimatedVisibility(sleepMode) {
