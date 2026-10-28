@@ -26,6 +26,7 @@ latest $google androidx.wear.tiles:tiles
 latest $google androidx.wear.protolayout:protolayout-material3
 latest $google androidx.wear.watchface:watchface-complications-data-source-ktx
 latest $google androidx.health:health-services-client
+latest $google androidx.health.connect:connect-client
 latest $google androidx.datastore:datastore-preferences
 latest $google androidx.lifecycle:lifecycle-service
 latest $google androidx.lifecycle:lifecycle-runtime-compose
