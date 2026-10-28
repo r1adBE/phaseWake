@@ -2,6 +2,8 @@ package com.phasewake.app.wear.wake
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.MediaPlayer
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -9,12 +11,14 @@ import android.os.VibrationAttributes
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import android.util.Log
 
 /**
  * Weckvibration in drei Stufen: sanft, deutlich, anhaltend – je eine Minute, die letzte bleibt.
- * Läuft als Wecker-Vibration und damit auch im Bettzeit- oder Nicht-stören-Modus.
+ * Optional dazu der Weckton der Uhr, der in 30 Sekunden von leise auf voll ansteigt.
+ * Läuft als Wecker (nicht als Mitteilung) und damit auch im Bettzeit- oder Nicht-stören-Modus.
  */
-class Escalation(context: Context) {
+class Escalation(private val context: Context) {
 
     /** Eine Stufe: Muster aus Ein/Aus-Zeiten (ms) und Stärken (0–255), wiederholt. */
     private class Stage(val timings: LongArray, val amplitudes: IntArray)
@@ -28,6 +32,16 @@ class Escalation(context: Context) {
         }
     private val handler = Handler(Looper.getMainLooper())
     private var stage = 0
+    private var player: MediaPlayer? = null
+    private var volume = 0f
+
+    private val fadeIn = object : Runnable {
+        override fun run() {
+            volume = (volume + FADE_STEP).coerceAtMost(1f)
+            player?.setVolume(volume, volume)
+            if (volume < 1f) handler.postDelayed(this, FADE_INTERVAL_MS)
+        }
+    }
 
     private val stages = listOf(
         Stage(longArrayOf(180, 1820), intArrayOf(90, 0)),
@@ -45,16 +59,48 @@ class Escalation(context: Context) {
         }
     }
 
-    fun start() {
+    fun start(withSound: Boolean) {
         stop()
         stage = 0
         play()
         handler.postDelayed(next, STAGE_MILLIS)
+        if (withSound) playSound()
     }
 
     fun stop() {
         handler.removeCallbacks(next)
+        handler.removeCallbacks(fadeIn)
         vibrator.cancel()
+        player?.run {
+            runCatching { stop() }
+            release()
+        }
+        player = null
+    }
+
+    private fun playSound() {
+        val uri = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM)
+            ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            ?: return
+        try {
+            player = MediaPlayer().apply {
+                setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build(),
+                )
+                setDataSource(context, uri)
+                isLooping = true
+                setVolume(0f, 0f)
+                prepare()
+                start()
+            }
+            volume = 0f
+            handler.post(fadeIn)
+        } catch (e: Exception) {
+            Log.w("Escalation", "Weckton der Uhr nicht abspielbar, nur Vibration", e)
+        }
     }
 
     private fun play() {
@@ -70,5 +116,7 @@ class Escalation(context: Context) {
 
     private companion object {
         const val STAGE_MILLIS = 60_000L
+        const val FADE_STEP = 0.05f
+        const val FADE_INTERVAL_MS = 1500L
     }
 }

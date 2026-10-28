@@ -54,6 +54,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.phasewake.app.R
 import com.phasewake.app.phoneApp
+import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.HistoryScreen
@@ -105,6 +106,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     LaunchedEffect(Unit) { app.nights.load() }
 
     var needsPermission by remember { mutableStateOf(false) }
+    var dndBlocks by remember { mutableStateOf(false) }
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
         needsPermission = missingAlarmAccess(context)
     }
@@ -122,6 +124,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     }
     LifecycleResumeEffect(Unit) {
         needsPermission = missingAlarmAccess(context)
+        dndBlocks = DoNotDisturb.blocksAlarms(context)
         healthCheck++
         onPauseOrDispose { }
     }
@@ -172,6 +175,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     alarms = alarms,
                     lastNight = nights?.lastOrNull(),
                     needsPermission = needsPermission,
+                    dndBlocks = dndBlocks,
+                    onOpenDnd = { DoNotDisturb.openSettings(context) },
                     contentPadding = content,
                     onRequestPermission = {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasNotificationPermission(context)) {

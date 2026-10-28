@@ -40,4 +40,6 @@
     <string name="home_good_night">Good night</string>
     <string name="home_good_night_hint">Sleep %1$s from now on</string>
     <string name="home_good_night_active">Waiting for sleep · tap to cancel</string>
+    <string name="dnd_title">Alarms blocked</string>
+    <string name="dnd_text">Allow alarms in Do Not Disturb.</string>
 </resources>

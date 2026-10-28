@@ -30,7 +30,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.phasewake.app.shared.DoNotDisturb
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AppScaffold
@@ -99,6 +101,12 @@ private fun HomeScreen() {
         ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
     }
     var missingPermissions by remember { mutableStateOf(missing()) }
+    var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
+    LifecycleResumeEffect(Unit) {
+        dndBlocks = DoNotDisturb.blocksAlarms(context)
+        missingPermissions = missing()
+        onPauseOrDispose { }
+    }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         missingPermissions = missing()
     }
@@ -130,6 +138,17 @@ private fun HomeScreen() {
                             modifier = Modifier.fillMaxWidth(),
                             label = { Text(stringResource(R.string.home_permissions)) },
                             secondaryLabel = { Text(stringResource(R.string.home_permissions_hint)) },
+                        )
+                    }
+                }
+                if (dndBlocks) {
+                    item {
+                        Button(
+                            onClick = { DoNotDisturb.openSettings(context) },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+                            label = { Text(stringResource(R.string.dnd_title)) },
+                            secondaryLabel = { Text(stringResource(R.string.dnd_text)) },
                         )
                     }
                 }

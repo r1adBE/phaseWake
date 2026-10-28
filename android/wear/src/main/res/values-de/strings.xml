@@ -38,4 +38,6 @@
     <string name="home_good_night">Gute Nacht</string>
     <string name="home_good_night_hint">Ab jetzt %1$s schlafen</string>
     <string name="home_good_night_active">Wartet aufs Einschlafen · Tippen zum Abbrechen</string>
+    <string name="dnd_title">Wecker blockiert</string>
+    <string name="dnd_text">Erlaube Wecker bei «Nicht stören».</string>
 </resources>

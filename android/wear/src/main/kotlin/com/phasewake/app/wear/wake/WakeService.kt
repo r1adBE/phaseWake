@@ -224,7 +224,7 @@ class WakeService : LifecycleService() {
         app.ringState.publish(RingUi.Ringing(label, reason, now, Snooze.MAX_COUNT - n.snoozes))
         goForeground(Notifications.ringing(this, reasonText(reason)))
         startActivity(Intent(this, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        escalation.start()
+        escalation.start(withSound = n.spec?.watchSound == true)
         handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
 
         if (n.spec?.phoneBackup != false) {

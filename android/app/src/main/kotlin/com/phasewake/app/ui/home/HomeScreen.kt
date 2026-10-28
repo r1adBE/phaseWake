@@ -59,6 +59,8 @@ fun HomeScreen(
     alarms: List<AlarmSpec>,
     lastNight: NightRecord?,
     needsPermission: Boolean,
+    dndBlocks: Boolean,
+    onOpenDnd: () -> Unit,
     contentPadding: PaddingValues,
     onRequestPermission: () -> Unit,
     onAdd: () -> Unit,
@@ -88,7 +90,12 @@ fun HomeScreen(
             }
         }
         if (needsPermission) {
-            item(key = "permission") { PermissionCard(onRequestPermission) }
+            item(key = "permission") {
+                WarningCard(R.string.home_permission_title, R.string.home_permission_text, R.string.home_permission_action, onRequestPermission)
+            }
+        }
+        if (dndBlocks) {
+            item(key = "dnd") { WarningCard(R.string.dnd_title, R.string.dnd_text, R.string.dnd_action, onOpenDnd) }
         }
         if (lastNight != null) {
             item(key = "night") { LastNightCard(lastNight) }
@@ -177,7 +184,7 @@ private fun EmptyHero(onAdd: () -> Unit) {
 }
 
 @Composable
-private fun PermissionCard(onRequest: () -> Unit) {
+private fun WarningCard(title: Int, text: Int, action: Int, onClick: () -> Unit) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
@@ -185,11 +192,11 @@ private fun PermissionCard(onRequest: () -> Unit) {
     ) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text(stringResource(R.string.home_permission_title), style = MaterialTheme.typography.titleSmall)
-                Text(stringResource(R.string.home_permission_text), style = MaterialTheme.typography.bodySmall)
+                Text(stringResource(title), style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(text), style = MaterialTheme.typography.bodySmall)
             }
-            Button(onClick = onRequest, modifier = Modifier.padding(start = 12.dp)) {
-                Text(stringResource(R.string.home_permission_action))
+            Button(onClick = onClick, modifier = Modifier.padding(start = 12.dp)) {
+                Text(stringResource(action))
             }
         }
     }
