@@ -2,7 +2,7 @@
 
 # phaseWake
 
-Schlafphasenwecker für Android mit Companion-App für die Samsung Galaxy Watch (Wear OS).
+Schlafphasenwecker für Android mit Galaxy Watch (Wear OS) und für iPhone mit Apple Watch.
 
 Die Watch misst in einem Weckfenster vor der Zielzeit Bewegung und Puls, erkennt eine Leichtschlafphase und weckt dann per Vibration am Handgelenk – statt mitten aus dem Tiefschlaf zur fixen Uhrzeit.
 
@@ -12,10 +12,12 @@ Samsung Health trackt den Schlaf ausführlich, bietet aber keinen Smart-Wake-Ala
 
 ## Aufbau
 
-| Modul | Zweck |
+| Ordner | Inhalt |
 |---|---|
-| `app/` | Phone-App: Wecker einrichten, Weckfenster, Verlauf |
-| `wear/` | Watch-Companion: Sensorik, Phasenerkennung, Vibrationsweckung |
+| `android/app/` | Android-App: Wecker einrichten, Weckfenster, Verlauf |
+| `android/wear/` | Wear-OS-App: Sensorik, Phasenerkennung, Vibrationsweckung |
+| `ios/` | iPhone-App mit Apple-Watch-App (SwiftUI) |
+| `shared/testdata/` | Aufgezeichnete Nächte, die beide Plattformen gleich bewerten müssen |
 | `docs/` | Logo, Konzept |
 
 Entwickelt und getestet auf der Galaxy Watch 8 Classic.
@@ -23,7 +25,7 @@ Entwickelt und getestet auf der Galaxy Watch 8 Classic.
 ## Grundsätze
 
 - Alle Daten bleiben auf Handy und Uhr. Keine Cloud, kein Konto, keine Telemetrie.
-- Keine Fremdabhängigkeiten über AndroidX / Wear Compose / Health Services hinaus.
+- Keine Fremdabhängigkeiten über die Plattform-Bibliotheken hinaus (AndroidX, Wear Compose, Health Services; SwiftUI, HealthKit, CoreMotion).
 - Die Uhr weckt auch dann, wenn das Handy nicht erreichbar ist.
 
 ## Lizenz

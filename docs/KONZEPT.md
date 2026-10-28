@@ -8,15 +8,31 @@ Ein Wecker, der in einem Fenster vor der Zielzeit wartet, bis die Uhr eine leich
 
 Nicht Ziel: ein vollständiges Schlaf-Staging (Tief/REM/Leicht) wie Samsung Health. phaseWake braucht nur eine Antwort: «Ist jetzt ein guter Moment zum Wecken?»
 
+## Plattformen
+
+| | Android | Apple |
+|---|---|---|
+| Handy | Android-App (`android/app/`), Kotlin, Compose | iPhone-App (`ios/`), Swift, SwiftUI |
+| Uhr | Wear-OS-App (`android/wear/`), Galaxy Watch | watchOS-App (`ios/`), Apple Watch |
+| Messung im Fenster | Foreground-Service (Typ `health`), Beschleunigung + Health Services | `WKExtendedRuntimeSession` Typ «Smart Alarm», CoreMotion + HealthKit |
+| Wecken | Vibrator-API | `notifyUser(hapticType:)` |
+| Sync | Wearable Data Layer | WatchConnectivity |
+
+Apple stellt mit der Sitzungsart «Smart Alarm» genau dafür eine Schnittstelle bereit: Sie läuft im Hintergrund, lässt sich bis 36 Std. im Voraus planen, überwacht Puls und Bewegung und dauert höchstens 30 Min. Daher das Weckfenster-Maximum von 30 Min auf beiden Plattformen.
+
+Die Galaxy Watch lässt sich nicht mit dem iPhone koppeln, die Apple Watch nicht mit Android. Es gibt also genau zwei Paare.
+
+Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotlin und Swift geschrieben. Beide Umsetzungen laufen gegen dieselben Testnächte in `shared/testdata/` und müssen Epoche für Epoche gleich entscheiden.
+
 ## Rollen
 
-| | Phone-App (`app/`) | Watch-App (`wear/`) |
+| | Handy-App | Uhr-App |
 |---|---|---|
 | Wecker anlegen/ändern | ja | nur Ein/Aus, Fenster kürzen |
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
 | Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
-| Daten | lokal (DataStore) | lokal (DataStore) |
+| Daten | lokal (Android: DataStore, iOS: SwiftData) | lokal |
 
 Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; das Handy zeigt dann nur den Verlauf nach.
 
@@ -61,14 +77,16 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 
 - Alles bleibt auf Uhr und Handy. Kein Konto, kein Server, keine Analytik, kein Internet-Recht im Manifest.
 - Gespeichert werden Weckereinstellungen und pro Nacht: Zielzeit, Fenster, tatsächliche Weckzeit, Weckgrund, Bewegungskurve des Fensters (30-s-Werte). Verlauf nach 90 Nächten automatisch gekürzt, jederzeit löschbar.
-- Berechtigungen Uhr: `BODY_SENSORS` (Puls), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE_HEALTH`, `SCHEDULE_EXACT_ALARM`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `SCHEDULE_EXACT_ALARM`, `POST_NOTIFICATIONS`, `VIBRATE`.
+- Apple: HealthKit-Lesezugriff Herzfrequenz, Bewegung über CoreMotion.
+- Android-Berechtigungen Uhr: `BODY_SENSORS` (Puls), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE_HEALTH`, `SCHEDULE_EXACT_ALARM`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `SCHEDULE_EXACT_ALARM`, `POST_NOTIFICATIONS`, `VIBRATE`.
 - Datenschutzerklärung: Verantwortlicher Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf; Kontakt riad.work@outlook.com.
 
 ## Technik
 
-- Kotlin, Jetpack Compose (Handy) und Wear Compose (Uhr), Material 3.
-- Mindest-SDK 30 (Wear OS 3+, Android 11+), Ziel-SDK 36. Entwickelt auf der Galaxy Watch 8 Classic; andere Wear-OS-Uhren mit Herzfrequenzsensor sollten laufen.
-- Sync Handy ↔ Uhr über Wearable Data Layer (`DataClient` für Wecker, `MessageClient` für Ereignisse). Das ist die einzige Google-Play-Services-Abhängigkeit; sie ist auf Galaxy Watches ohnehin vorhanden.
+- Android: Kotlin, Jetpack Compose (Handy) und Wear Compose (Uhr), Material 3. Mindest-SDK 30 (Wear OS 3+, Android 11+), Ziel-SDK 36. Entwickelt auf der Galaxy Watch 8 Classic; andere Wear-OS-Uhren mit Herzfrequenzsensor sollten laufen.
+- Apple: Swift, SwiftUI, iOS 17+ und watchOS 10+.
+- Puls im Smart-Alarm-Fenster auf der Apple Watch: Wie dicht HealthKit dort Werte liefert, wird am Gerät geprüft. Kommen zu wenige, entscheidet wie auf Android bei fehlendem Puls die Bewegung allein.
+- Sync Handy ↔ Uhr: Android über Wearable Data Layer (`DataClient` für Wecker, `MessageClient` für Ereignisse; einzige Google-Play-Services-Abhängigkeit, auf Galaxy Watches ohnehin vorhanden), Apple über WatchConnectivity.
 - Keine weiteren Fremdabhängigkeiten.
 - Tests: Phasenerkennung als reine Kotlin-Logik ohne Android-Abhängigkeit, mit aufgezeichneten Nächten als Testdaten. Abdeckung: Logik ≥ 90 %, Oberfläche ≥ 50 %.
 - Sprachen v1: Deutsch (Schweizer Schreibung) und Englisch, Du-Form.
@@ -92,4 +110,5 @@ Alles in v1, nichts auf später verschoben:
 - Schlummern 5 Min, maximal 3×.
 - Verlauf 90 Nächte, Grundlage für die Kalibrierung.
 - Anzeigename «Phase Wake» (Repo und Code: phaseWake).
+- Android und Apple mit gleichem Funktionsumfang, je nativ (Kotlin bzw. Swift), wie bei cryptoChecker.
 - Daten bleiben lokal. Wer helfen will, exportiert seine Nächte freiwillig als anonyme Datei (ohne Namen, Gerätekennung oder Standort) und schickt sie per GitHub-Issue oder E-Mail. Kein Server, keine Internet-Berechtigung.
