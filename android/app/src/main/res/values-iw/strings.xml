@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">מעורר גיבוי</string>
+    <string name="channel_alarm_description">מצלצל בטלפון יחד עם השעון.</string>
+    <string name="ring_greeting">בוקר טוב</string>
+    <string name="ring_notification_text">המעורר של Phase Wake מצלצל</string>
+    <string name="ring_stop">עצירה</string>
+    <string name="ring_snooze">נודניק %1$d דק׳ · נותרו: %2$d</string>
+    <string name="ring_snoozed">נודניק ל-%1$d דק׳</string>
+
+    <string name="nav_alarms">מעוררים</string>
+    <string name="nav_history">היסטוריה</string>
+    <string name="nav_settings">הגדרות</string>
+
+    <string name="home_next_today">היום</string>
+    <string name="home_next_tomorrow">מחר</string>
+    <string name="home_next_in">מעיר בשינה קלה · בעוד %1$s</string>
+    <string name="home_no_alarm_title">להתעורר ברגע הנכון</string>
+    <string name="home_no_alarm_text">קבעו שעה וחלון זמן. השעון יעיר אתכם כשהשינה קלה.</string>
+    <string name="home_add_alarm">מעורר חדש</string>
+    <string name="home_last_night">הלילה האחרון</string>
+    <string name="home_alarms">המעוררים שלכם</string>
+    <string name="home_permission_title">אישור למעוררים</string>
+    <string name="home_permission_text">כדי להעיר אתכם, Phase Wake צריכה התראות והתראות במסך מלא.</string>
+    <string name="home_permission_action">אישור</string>
+
+    <string name="reason_light">שינה קלה</string>
+    <string name="reason_awake">כבר ערים</string>
+    <string name="reason_deadline">שעת היעד</string>
+    <string name="woke_early">%1$d דק׳ לפני היעד · %2$s</string>
+    <string name="woke_on_time">בשעת היעד · %1$s</string>
+    <string name="no_snooze">בלי נודניק</string>
+    <string name="snoozed_times">נודניק ×%1$d</string>
+
+    <string name="alarm_once">פעם אחת</string>
+    <string name="alarm_every_day">כל יום</string>
+    <string name="alarm_after_sleep">אחרי %1$s</string>
+    <string name="alarm_latest">לכל המאוחר %1$s</string>
+
+    <string name="editor_new">מעורר חדש</string>
+    <string name="editor_edit">עריכת מעורר</string>
+    <string name="editor_save">שמירה</string>
+    <string name="editor_delete">מחיקת מעורר</string>
+    <string name="editor_mode_clock">שעה</string>
+    <string name="editor_mode_sleep">משך שינה</string>
+    <string name="editor_target">להעיר אותי עד</string>
+    <string name="editor_latest">לכל המאוחר</string>
+    <string name="editor_sleep_duration">לישון %1$s</string>
+    <string name="editor_sleep_hint">הספירה מתחילה בהירדמות. הקישו על “לילה טוב” בשעון.</string>
+    <string name="editor_window">חלון: %1$d דק׳</string>
+    <string name="editor_window_hint">יעיר אתכם בין %1$s ל-%2$s</string>
+    <string name="editor_days">חזרה</string>
+    <string name="editor_weekdays">ימי חול</string>
+    <string name="editor_weekend">סוף שבוע</string>
+    <string name="editor_phone_backup_hint">מצלצל יחד עם השעון, ולבד אם השעון לא מגיב.</string>
+    <string name="editor_label">שם</string>
+    <string name="editor_label_hint">עבודה</string>
+
+    <string name="history_title">היסטוריה</string>
+    <string name="history_empty_title">עדיין אין לילות</string>
+    <string name="history_empty_text">אחרי הלילה הראשון עם השעון תראו כאן מתי ולמה הוא העיר אתכם.</string>
+    <string name="history_average">ממוצע: %1$d דק׳ מוקדם יותר</string>
+    <string name="history_light_share">%1$d %% בשינה קלה</string>
+    <string name="history_export">ייצוא אנונימי</string>
+    <string name="history_export_subject">לילות Phase Wake (אנונימי)</string>
+
+    <string name="settings_title">הגדרות</string>
+    <string name="settings_theme">מראה</string>
+    <string name="settings_theme_system">מערכת</string>
+    <string name="settings_theme_light">בהיר</string>
+    <string name="settings_theme_dark">כהה</string>
+    <string name="settings_data">הנתונים שלכם</string>
+    <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב.</string>
+    <string name="settings_export">ייצוא לילות באופן אנונימי</string>
+    <string name="settings_export_hint">עזרו לשפר את הזיהוי: קובץ CSV בלי שמות, תאריכים או מזהי מכשיר.</string>
+    <string name="settings_about">אודות</string>
+    <string name="settings_open_source">קוד פתוח ב-GitHub</string>
+    <string name="settings_licenses">רישיונות</string>
+    <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">גרסה %1$s</string>
+
+    <string name="duration_minutes">%1$d דק׳</string>
+    <string name="duration_hours">%1$d ש׳</string>
+    <string name="duration_hours_half">%1$d½ ש׳</string>
+    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
+    <string name="health_title">שלבי שינה מ-Health Connect</string>
+    <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את שלבי השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת לאחר ההתעוררות. הם משמשים רק כדי לבדוק אם התעוררתם בשינה קלה ולשפר עבורכם את הזיהוי. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
+    <string name="health_connect">השוואה לנתוני בריאות</string>
+    <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
+    <string name="health_connected">מחובר</string>
+    <string name="health_unavailable">Health Connect אינו זמין בטלפון הזה.</string>
+    <string name="verdict_good">נתוני בריאות: %1$s ✓</string>
+    <string name="verdict_deep">נתוני בריאות: שינה עמוקה</string>
+    <string name="stage_light">שינה קלה</string>
+    <string name="stage_rem">שינת REM</string>
+    <string name="stage_awake">ערות</string>
+    <string name="editor_alert">איך להעיר אתכם</string>
+    <string name="editor_alert_hint">צליל תמיד מגיע עם רטט. מעוררים מצלצלים גם במצב ‘נא לא להפריע’, במצב שעת שינה ובטלפון מושתק.</string>
+    <string name="editor_alert_watch">שעון</string>
+    <string name="editor_alert_phone">טלפון</string>
+    <string name="alert_vibrate_only">רטט בלבד</string>
+    <string name="alert_vibrate_sound">רטט + צליל</string>
+    <string name="alert_off">כבוי</string>
+    <string name="alert_vibrate">רטט</string>
+    <string name="alert_sound">צליל</string>
+    <string name="editor_sound">צליל מעורר</string>
+    <string name="editor_sound_default">ברירת מחדל</string>
+    <string name="dnd_title">‘נא לא להפריע’ חוסם מעוררים</string>
+    <string name="dnd_text">אפשרו מעוררים במצב ‘נא לא להפריע’, אחרת הטלפון יישאר שקט.</string>
+    <string name="dnd_action">פתיחת הגדרות</string>
+    <string name="greeting_morning">בוקר טוב</string>
+    <string name="greeting_day">שלום</string>
+    <string name="greeting_evening">ערב טוב</string>
+    <string name="greeting_night">לילה טוב</string>
+</resources>

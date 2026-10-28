@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Rentang bangun</string>
+    <string name="channel_window_description">Tampil saat Phase Wake memantau tidur ringan.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Membangunkanmu.</string>
+    <string name="notification_window_title">Memantau tidur ringan</string>
+    <string name="notification_window_text">Membangunkanmu paling lambat %1$s</string>
+    <string name="notification_ring_title">Selamat pagi</string>
+
+    <string name="ring_greeting">Selamat pagi</string>
+    <string name="ring_reason_light">Tidur ringan terdeteksi</string>
+    <string name="ring_reason_awake">Kamu sudah bangun</string>
+    <string name="ring_reason_deadline">Waktu target tercapai</string>
+    <string name="ring_hold_to_stop">Tahan untuk berhenti</string>
+    <string name="ring_snooze">%1$d mnt · sisa %2$d</string>
+    <string name="ring_snoozed_until">Ditunda sampai %1$s</string>
+    <string name="ring_stop_now">Hentikan alarm</string>
+
+    <string name="home_no_alarm">Belum ada alarm</string>
+    <string name="home_no_alarm_hint">Atur alarm di Phase Wake pada ponselmu.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Hari ini</string>
+    <string name="home_tomorrow">Besok</string>
+    <string name="home_window_length">Rentang %1$d mnt</string>
+    <string name="home_alarms">Alarm</string>
+    <string name="home_permissions">Izinkan sensor</string>
+    <string name="home_permissions_hint">Diperlukan untuk mendeteksi tidur ringan.</string>
+    <string name="alarm_once">Sekali</string>
+    <string name="alarm_every_day">Setiap hari</string>
+    <string name="tile_label">Alarm berikutnya</string>
+    <string name="tile_next">Alarm berikutnya</string>
+    <string name="tile_light_sleep">Membangunkanmu saat tidur ringan</string>
+    <string name="notification_good_night_title">Tidur nyenyak</string>
+    <string name="notification_good_night_text">Menunggu kamu tertidur</string>
+    <string name="home_good_night">Selamat tidur</string>
+    <string name="home_good_night_hint">Tidur %1$s mulai sekarang</string>
+    <string name="home_good_night_active">Menunggu tidur · ketuk untuk batal</string>
+    <string name="dnd_title">Alarm diblokir</string>
+    <string name="dnd_text">Izinkan alarm saat Jangan Ganggu.</string>
+    <string name="duration_hours">%1$d j</string>
+    <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">زنگ پشتیبان</string>
+    <string name="channel_alarm_description">هم‌زمان با ساعتت روی گوشی هم زنگ می‌خورد.</string>
+    <string name="ring_greeting">صبح بخیر</string>
+    <string name="ring_notification_text">زنگ Phase Wake در حال به صدا درآمدن است</string>
+    <string name="ring_stop">توقف</string>
+    <string name="ring_snooze">چرت %1$d دق · مانده: %2$d</string>
+    <string name="ring_snoozed">چرت برای %1$d دق</string>
+
+    <string name="nav_alarms">زنگ‌ها</string>
+    <string name="nav_history">تاریخچه</string>
+    <string name="nav_settings">تنظیمات</string>
+
+    <string name="home_next_today">امروز</string>
+    <string name="home_next_tomorrow">فردا</string>
+    <string name="home_next_in">در خواب سبک بیدارت می‌کند · تا %1$s دیگر</string>
+    <string name="home_no_alarm_title">در لحظهٔ مناسب بیدار شو</string>
+    <string name="home_no_alarm_text">یک زمان و یک بازه تعیین کن. ساعتت وقتی خواب سبکی داری بیدارت می‌کند.</string>
+    <string name="home_add_alarm">زنگ جدید</string>
+    <string name="home_last_night">شب گذشته</string>
+    <string name="home_alarms">زنگ‌های تو</string>
+    <string name="home_permission_title">اجازهٔ زنگ</string>
+    <string name="home_permission_text">Phase Wake برای بیدار کردنت به اعلان و هشدار تمام‌صفحه نیاز دارد.</string>
+    <string name="home_permission_action">اجازه</string>
+
+    <string name="reason_light">خواب سبک</string>
+    <string name="reason_awake">از قبل بیدار</string>
+    <string name="reason_deadline">زمان هدف</string>
+    <string name="woke_early">%1$d دق قبل از زمان هدف · %2$s</string>
+    <string name="woke_on_time">در زمان هدف · %1$s</string>
+    <string name="no_snooze">بدون چرت</string>
+    <string name="snoozed_times">چرت ×%1$d</string>
+
+    <string name="alarm_once">یک‌بار</string>
+    <string name="alarm_every_day">هر روز</string>
+    <string name="alarm_after_sleep">بعد از %1$s</string>
+    <string name="alarm_latest">حداکثر تا %1$s</string>
+
+    <string name="editor_new">زنگ جدید</string>
+    <string name="editor_edit">ویرایش زنگ</string>
+    <string name="editor_save">ذخیره</string>
+    <string name="editor_delete">حذف زنگ</string>
+    <string name="editor_mode_clock">ساعت</string>
+    <string name="editor_mode_sleep">مدت خواب</string>
+    <string name="editor_target">بیدارم کن تا</string>
+    <string name="editor_latest">حداکثر</string>
+    <string name="editor_sleep_duration">%1$s خواب</string>
+    <string name="editor_sleep_hint">از لحظهٔ به خواب رفتنت شمارش شروع می‌شود. روی ساعتت «شب بخیر» را بزن.</string>
+    <string name="editor_window">بازه: %1$d دق</string>
+    <string name="editor_window_hint">بین %1$s و %2$s بیدارت می‌کند</string>
+    <string name="editor_days">تکرار</string>
+    <string name="editor_weekdays">روزهای کاری</string>
+    <string name="editor_weekend">آخر هفته</string>
+    <string name="editor_phone_backup_hint">همراه ساعت زنگ می‌خورد، و اگر ساعت جواب نداد، خودش.</string>
+    <string name="editor_label">نام</string>
+    <string name="editor_label_hint">کار</string>
+
+    <string name="history_title">تاریخچه</string>
+    <string name="history_empty_title">هنوز شبی ثبت نشده</string>
+    <string name="history_empty_text">بعد از اولین شب با ساعت، اینجا می‌بینی کِی و چرا بیدارت کرده.</string>
+    <string name="history_average">میانگین: %1$d دق زودتر</string>
+    <string name="history_light_share">%1$d %% در خواب سبک</string>
+    <string name="history_export">خروجی ناشناس</string>
+    <string name="history_export_subject">شب‌های Phase Wake (ناشناس)</string>
+
+    <string name="settings_title">تنظیمات</string>
+    <string name="settings_theme">ظاهر</string>
+    <string name="settings_theme_system">سیستم</string>
+    <string name="settings_theme_light">روشن</string>
+    <string name="settings_theme_dark">تیره</string>
+    <string name="settings_data">داده‌های تو</string>
+    <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی.</string>
+    <string name="settings_export">خروجی ناشناس از شب‌ها</string>
+    <string name="settings_export_hint">به بهتر شدن تشخیص کمک کن: فایل CSV بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
+    <string name="settings_about">دربارهٔ برنامه</string>
+    <string name="settings_open_source">متن‌باز در GitHub</string>
+    <string name="settings_licenses">مجوزها</string>
+    <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.</string>
+    <string name="settings_version">نسخهٔ %1$s</string>
+
+    <string name="duration_minutes">%1$d دق</string>
+    <string name="duration_hours">%1$d س</string>
+    <string name="duration_hours_half">%1$d½ س</string>
+    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
+    <string name="health_title">مراحل خواب از Health Connect</string>
+    <string name="health_rationale">Phase Wake می‌تواند مراحل خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) بعد از بیدار شدن ذخیره می‌کند بخواند. این داده‌ها فقط برای بررسی اینکه در خواب سبک بیدار شده‌ای یا نه و بهتر کردن تشخیص برای خودت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
+    <string name="health_connect">مقایسه با داده‌های سلامت</string>
+    <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
+    <string name="health_connected">وصل شد</string>
+    <string name="health_unavailable">Health Connect روی این گوشی در دسترس نیست.</string>
+    <string name="verdict_good">داده‌های سلامت: %1$s ✓</string>
+    <string name="verdict_deep">داده‌های سلامت: خواب عمیق</string>
+    <string name="stage_light">خواب سبک</string>
+    <string name="stage_rem">خواب REM</string>
+    <string name="stage_awake">بیدار</string>
+    <string name="editor_alert">نحوهٔ بیدار کردنت</string>
+    <string name="editor_alert_hint">صدا همیشه با لرزش همراه است. زنگ‌ها در حالت «مزاحم نشو»، حالت زمان خواب و گوشی بی‌صدا هم به صدا درمی‌آیند.</string>
+    <string name="editor_alert_watch">ساعت</string>
+    <string name="editor_alert_phone">گوشی</string>
+    <string name="alert_vibrate_only">فقط لرزش</string>
+    <string name="alert_vibrate_sound">لرزش + صدا</string>
+    <string name="alert_off">خاموش</string>
+    <string name="alert_vibrate">لرزش</string>
+    <string name="alert_sound">صدا</string>
+    <string name="editor_sound">صدای زنگ</string>
+    <string name="editor_sound_default">پیش‌فرض</string>
+    <string name="dnd_title">«مزاحم نشو» زنگ‌ها را مسدود می‌کند</string>
+    <string name="dnd_text">در حالت «مزاحم نشو» اجازهٔ زنگ بده، وگرنه گوشی‌ات ساکت می‌ماند.</string>
+    <string name="dnd_action">باز کردن تنظیمات</string>
+    <string name="greeting_morning">صبح بخیر</string>
+    <string name="greeting_day">سلام</string>
+    <string name="greeting_evening">عصر بخیر</string>
+    <string name="greeting_night">شب بخیر</string>
+</resources>

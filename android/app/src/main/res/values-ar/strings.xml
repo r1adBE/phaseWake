@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">المنبّه الاحتياطي</string>
+    <string name="channel_alarm_description">يرنّ على هاتفك مع ساعتك.</string>
+    <string name="ring_greeting">صباح الخير</string>
+    <string name="ring_notification_text">منبّه Phase Wake يرنّ</string>
+    <string name="ring_stop">إيقاف</string>
+    <string name="ring_snooze">غفوة %1$d د · المتبقي: %2$d</string>
+    <string name="ring_snoozed">غفوة لمدة %1$d د</string>
+
+    <string name="nav_alarms">المنبّهات</string>
+    <string name="nav_history">السجل</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <string name="home_next_today">اليوم</string>
+    <string name="home_next_tomorrow">غدًا</string>
+    <string name="home_next_in">يوقظك في النوم الخفيف · بعد %1$s</string>
+    <string name="home_no_alarm_title">الاستيقاظ في اللحظة المناسبة</string>
+    <string name="home_no_alarm_text">اضبطوا وقتًا ونافذة زمنية. تُوقظك ساعتك عندما يكون نومك خفيفًا.</string>
+    <string name="home_add_alarm">منبّه جديد</string>
+    <string name="home_last_night">الليلة الماضية</string>
+    <string name="home_alarms">منبّهاتك</string>
+    <string name="home_permission_title">السماح بالمنبّهات</string>
+    <string name="home_permission_text">يحتاج Phase Wake إلى الإشعارات والتنبيهات بملء الشاشة لإيقاظك.</string>
+    <string name="home_permission_action">سماح</string>
+
+    <string name="reason_light">نوم خفيف</string>
+    <string name="reason_awake">مستيقظ بالفعل</string>
+    <string name="reason_deadline">الوقت المحدد</string>
+    <string name="woke_early">قبل الموعد بـ %1$d د · %2$s</string>
+    <string name="woke_on_time">في الموعد · %1$s</string>
+    <string name="no_snooze">بلا غفوة</string>
+    <string name="snoozed_times">غفوة ×%1$d</string>
+
+    <string name="alarm_once">مرة واحدة</string>
+    <string name="alarm_every_day">يوميًا</string>
+    <string name="alarm_after_sleep">بعد %1$s</string>
+    <string name="alarm_latest">بحدّ أقصى %1$s</string>
+
+    <string name="editor_new">منبّه جديد</string>
+    <string name="editor_edit">تعديل المنبّه</string>
+    <string name="editor_save">حفظ</string>
+    <string name="editor_delete">حذف المنبّه</string>
+    <string name="editor_mode_clock">وقت محدد</string>
+    <string name="editor_mode_sleep">مدة النوم</string>
+    <string name="editor_target">أيقظني قبل</string>
+    <string name="editor_latest">بحدّ أقصى</string>
+    <string name="editor_sleep_duration">النوم لمدة %1$s</string>
+    <string name="editor_sleep_hint">يبدأ العدّ عند النوم. اضغطوا على “ليلة سعيدة” في ساعتكم.</string>
+    <string name="editor_window">النافذة: %1$d د</string>
+    <string name="editor_window_hint">يوقظك بين %1$s و%2$s</string>
+    <string name="editor_days">التكرار</string>
+    <string name="editor_weekdays">أيام العمل</string>
+    <string name="editor_weekend">نهاية الأسبوع</string>
+    <string name="editor_phone_backup_hint">يرنّ مع الساعة، ويرنّ وحده إن لم تستجب الساعة.</string>
+    <string name="editor_label">الاسم</string>
+    <string name="editor_label_hint">العمل</string>
+
+    <string name="history_title">السجل</string>
+    <string name="history_empty_title">لا توجد ليالٍ بعد</string>
+    <string name="history_empty_text">بعد أول ليلة مع الساعة، سيظهر هنا وقت إيقاظك وسببه.</string>
+    <string name="history_average">المتوسط: قبل الموعد بـ %1$d د</string>
+    <string name="history_light_share">%1$d %% في النوم الخفيف</string>
+    <string name="history_export">تصدير مجهول الهوية</string>
+    <string name="history_export_subject">ليالي Phase Wake (مجهولة الهوية)</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_theme_system">النظام</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_theme_dark">داكن</string>
+    <string name="settings_data">بياناتك</string>
+    <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع.</string>
+    <string name="settings_export">تصدير الليالي دون هوية</string>
+    <string name="settings_export_hint">ساهموا في تحسين الرصد: ملف CSV بلا أسماء أو تواريخ أو معرّفات أجهزة.</string>
+    <string name="settings_about">حول</string>
+    <string name="settings_open_source">مفتوح المصدر على GitHub</string>
+    <string name="settings_licenses">التراخيص</string>
+    <string name="settings_licenses_text">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.</string>
+    <string name="settings_version">الإصدار %1$s</string>
+
+    <string name="duration_minutes">%1$d د</string>
+    <string name="duration_hours">%1$d س</string>
+    <string name="duration_hours_half">%1$d½ س</string>
+    <string name="duration_hours_minutes">%1$d س %2$d د</string>
+    <string name="health_title">مراحل النوم من Health Connect</string>
+    <string name="health_rationale">يمكن لـ Phase Wake قراءة مراحل النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health) بعد الاستيقاظ. تُستخدم فقط للتحقق من أنك أُيقظت في نوم خفيف ولتحسين الرصد لك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
+    <string name="health_connect">المقارنة ببيانات الصحة</string>
+    <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
+    <string name="health_connected">متصل</string>
+    <string name="health_unavailable">Health Connect غير متاح على هذا الهاتف.</string>
+    <string name="verdict_good">بيانات الصحة: %1$s ✓</string>
+    <string name="verdict_deep">بيانات الصحة: نوم عميق</string>
+    <string name="stage_light">نوم خفيف</string>
+    <string name="stage_rem">نوم REM</string>
+    <string name="stage_awake">استيقاظ</string>
+    <string name="editor_alert">طريقة الإيقاظ</string>
+    <string name="editor_alert_hint">يأتي الصوت دائمًا مع الاهتزاز. تعمل المنبّهات أيضًا مع وضع عدم الإزعاج ووضع وقت النوم والهاتف الصامت.</string>
+    <string name="editor_alert_watch">الساعة</string>
+    <string name="editor_alert_phone">الهاتف</string>
+    <string name="alert_vibrate_only">اهتزاز فقط</string>
+    <string name="alert_vibrate_sound">اهتزاز + صوت</string>
+    <string name="alert_off">إيقاف</string>
+    <string name="alert_vibrate">اهتزاز</string>
+    <string name="alert_sound">صوت</string>
+    <string name="editor_sound">نغمة المنبّه</string>
+    <string name="editor_sound_default">الافتراضي</string>
+    <string name="dnd_title">عدم الإزعاج يحجب المنبّهات</string>
+    <string name="dnd_text">اسمحوا بالمنبّهات في وضع عدم الإزعاج، وإلا سيبقى هاتفك صامتًا.</string>
+    <string name="dnd_action">فتح الإعدادات</string>
+    <string name="greeting_morning">صباح الخير</string>
+    <string name="greeting_day">مرحبًا</string>
+    <string name="greeting_evening">مساء الخير</string>
+    <string name="greeting_night">ليلة سعيدة</string>
+</resources>

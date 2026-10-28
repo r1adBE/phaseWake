@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">חלון התעוררות</string>
+    <string name="channel_window_description">מוצג בזמן ההמתנה של Phase Wake לשינה קלה.</string>
+    <string name="channel_alarm">מעורר</string>
+    <string name="channel_alarm_description">מעיר אתכם.</string>
+    <string name="notification_window_title">ממתינים לשינה קלה</string>
+    <string name="notification_window_text">יעיר אתכם עד %1$s לכל המאוחר</string>
+    <string name="notification_ring_title">בוקר טוב</string>
+
+    <string name="ring_greeting">בוקר טוב</string>
+    <string name="ring_reason_light">זוהתה שינה קלה</string>
+    <string name="ring_reason_awake">כבר הייתם ערים</string>
+    <string name="ring_reason_deadline">שעת היעד הגיעה</string>
+    <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
+    <string name="ring_snooze">%1$d דק׳ · נותרו %2$d</string>
+    <string name="ring_snoozed_until">נודניק עד %1$s</string>
+    <string name="ring_stop_now">עצירת המעורר</string>
+
+    <string name="home_no_alarm">אין מעורר מוגדר</string>
+    <string name="home_no_alarm_hint">הגדירו מעוררים ב-Phase Wake בטלפון.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">היום</string>
+    <string name="home_tomorrow">מחר</string>
+    <string name="home_window_length">חלון של %1$d דק׳</string>
+    <string name="home_alarms">מעוררים</string>
+    <string name="home_permissions">אישור חיישנים</string>
+    <string name="home_permissions_hint">נדרש לזיהוי שינה קלה.</string>
+    <string name="alarm_once">פעם אחת</string>
+    <string name="alarm_every_day">כל יום</string>
+    <string name="tile_label">המעורר הבא</string>
+    <string name="tile_next">המעורר הבא</string>
+    <string name="tile_light_sleep">מעיר בשינה קלה</string>
+    <string name="notification_good_night_title">שינה נעימה</string>
+    <string name="notification_good_night_text">ממתין להירדמות</string>
+    <string name="home_good_night">לילה טוב</string>
+    <string name="home_good_night_hint">לישון %1$s מעכשיו</string>
+    <string name="home_good_night_active">ממתין להירדמות · הקישו לביטול</string>
+    <string name="dnd_title">המעוררים חסומים</string>
+    <string name="dnd_text">אפשרו מעוררים במצב ‘נא לא להפריע’.</string>
+    <string name="duration_hours">%1$d ש׳</string>
+    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
+</resources>

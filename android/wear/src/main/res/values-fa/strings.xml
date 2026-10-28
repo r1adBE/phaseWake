@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">بازهٔ بیدارباش</string>
+    <string name="channel_window_description">تا وقتی Phase Wake مراقب خواب سبک است نمایش داده می‌شود.</string>
+    <string name="channel_alarm">زنگ</string>
+    <string name="channel_alarm_description">بیدارت می‌کند.</string>
+    <string name="notification_window_title">در انتظار خواب سبک</string>
+    <string name="notification_window_text">حداکثر تا %1$s بیدارت می‌کند</string>
+    <string name="notification_ring_title">صبح بخیر</string>
+
+    <string name="ring_greeting">صبح بخیر</string>
+    <string name="ring_reason_light">خواب سبک تشخیص داده شد</string>
+    <string name="ring_reason_awake">از قبل بیدار بودی</string>
+    <string name="ring_reason_deadline">زمان هدف رسید</string>
+    <string name="ring_hold_to_stop">برای توقف نگه دار</string>
+    <string name="ring_snooze">%1$d دق · مانده: %2$d</string>
+    <string name="ring_snoozed_until">چرت تا %1$s</string>
+    <string name="ring_stop_now">توقف زنگ</string>
+
+    <string name="home_no_alarm">زنگی تنظیم نشده</string>
+    <string name="home_no_alarm_hint">زنگ‌ها را در Phase Wake روی گوشی تنظیم کن.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">امروز</string>
+    <string name="home_tomorrow">فردا</string>
+    <string name="home_window_length">بازهٔ %1$d دق</string>
+    <string name="home_alarms">زنگ‌ها</string>
+    <string name="home_permissions">اجازهٔ حسگرها</string>
+    <string name="home_permissions_hint">برای تشخیص خواب سبک لازم است.</string>
+    <string name="alarm_once">یک‌بار</string>
+    <string name="alarm_every_day">هر روز</string>
+    <string name="tile_label">زنگ بعدی</string>
+    <string name="tile_next">زنگ بعدی</string>
+    <string name="tile_light_sleep">در خواب سبک بیدارت می‌کند</string>
+    <string name="notification_good_night_title">شب خوش</string>
+    <string name="notification_good_night_text">منتظر به خواب رفتنت</string>
+    <string name="home_good_night">شب بخیر</string>
+    <string name="home_good_night_hint">از الان %1$s بخواب</string>
+    <string name="home_good_night_active">منتظر خواب · برای لغو بزن</string>
+    <string name="dnd_title">زنگ‌ها مسدودند</string>
+    <string name="dnd_text">در «مزاحم نشو» اجازهٔ زنگ بده.</string>
+    <string name="duration_hours">%1$d س</string>
+    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
+</resources>

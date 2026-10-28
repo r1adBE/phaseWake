@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Alarm cadangan</string>
+    <string name="channel_alarm_description">Berdering di ponsel bersamaan dengan jam tanganmu.</string>
+    <string name="ring_greeting">Selamat pagi</string>
+    <string name="ring_notification_text">Alarm Phase Wake-mu berbunyi</string>
+    <string name="ring_stop">Berhenti</string>
+    <string name="ring_snooze">Tunda %1$d mnt · sisa %2$d</string>
+    <string name="ring_snoozed">Ditunda %1$d mnt</string>
+
+    <string name="nav_alarms">Alarm</string>
+    <string name="nav_history">Riwayat</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <string name="home_next_today">Hari ini</string>
+    <string name="home_next_tomorrow">Besok</string>
+    <string name="home_next_in">Membangunkan saat tidur ringan · dalam %1$s</string>
+    <string name="home_no_alarm_title">Bangun di saat yang tepat</string>
+    <string name="home_no_alarm_text">Atur waktu dan rentang. Jam tanganmu membangunkanmu saat tidurmu ringan.</string>
+    <string name="home_add_alarm">Alarm baru</string>
+    <string name="home_last_night">Semalam</string>
+    <string name="home_alarms">Alarm kamu</string>
+    <string name="home_permission_title">Izinkan alarm</string>
+    <string name="home_permission_text">Phase Wake butuh notifikasi dan peringatan layar penuh untuk membangunkanmu.</string>
+    <string name="home_permission_action">Izinkan</string>
+
+    <string name="reason_light">Tidur ringan</string>
+    <string name="reason_awake">Sudah bangun</string>
+    <string name="reason_deadline">Waktu target</string>
+    <string name="woke_early">%1$d mnt sebelum target · %2$s</string>
+    <string name="woke_on_time">Tepat waktu target · %1$s</string>
+    <string name="no_snooze">tanpa tunda</string>
+    <string name="snoozed_times">ditunda %1$d×</string>
+
+    <string name="alarm_once">Sekali</string>
+    <string name="alarm_every_day">Setiap hari</string>
+    <string name="alarm_after_sleep">setelah %1$s</string>
+    <string name="alarm_latest">paling lambat %1$s</string>
+
+    <string name="editor_new">Alarm baru</string>
+    <string name="editor_edit">Ubah alarm</string>
+    <string name="editor_save">Simpan</string>
+    <string name="editor_delete">Hapus alarm</string>
+    <string name="editor_mode_clock">Jam</string>
+    <string name="editor_mode_sleep">Lama tidur</string>
+    <string name="editor_target">Bangunkan aku sebelum</string>
+    <string name="editor_latest">Paling lambat</string>
+    <string name="editor_sleep_duration">Tidur %1$s</string>
+    <string name="editor_sleep_hint">Mulai dihitung saat kamu tertidur. Ketuk “Selamat tidur” di jam tanganmu.</string>
+    <string name="editor_window">Rentang: %1$d mnt</string>
+    <string name="editor_window_hint">Membangunkanmu antara %1$s dan %2$s</string>
+    <string name="editor_days">Ulangi</string>
+    <string name="editor_weekdays">Hari kerja</string>
+    <string name="editor_weekend">Akhir pekan</string>
+    <string name="editor_phone_backup_hint">Berdering bersama jam tangan, dan sendiri jika jam tangan tidak merespons.</string>
+    <string name="editor_label">Nama</string>
+    <string name="editor_label_hint">Kerja</string>
+
+    <string name="history_title">Riwayat</string>
+    <string name="history_empty_title">Belum ada malam</string>
+    <string name="history_empty_text">Setelah malam pertama dengan jam tangan, kamu akan melihat kapan dan mengapa jam membangunkanmu.</string>
+    <string name="history_average">Rata-rata %1$d mnt lebih awal</string>
+    <string name="history_light_share">%1$d %% dalam tidur ringan</string>
+    <string name="history_export">Ekspor anonim</string>
+    <string name="history_export_subject">Malam Phase Wake (anonim)</string>
+
+    <string name="settings_title">Pengaturan</string>
+    <string name="settings_theme">Tampilan</string>
+    <string name="settings_theme_system">Sistem</string>
+    <string name="settings_theme_light">Terang</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_data">Datamu</string>
+    <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan.</string>
+    <string name="settings_export">Ekspor malam secara anonim</string>
+    <string name="settings_export_hint">Bantu tingkatkan deteksi: CSV tanpa nama, tanggal, atau ID perangkat.</string>
+    <string name="settings_about">Tentang</string>
+    <string name="settings_open_source">Open source di GitHub</string>
+    <string name="settings_licenses">Lisensi</string>
+    <string name="settings_licenses_text">Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versi %1$s</string>
+
+    <string name="duration_minutes">%1$d mnt</string>
+    <string name="duration_hours">%1$d j</string>
+    <string name="duration_hours_half">%1$d½ j</string>
+    <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
+    <string name="health_title">Fase tidur dari Health Connect</string>
+    <string name="health_rationale">Phase Wake dapat membaca fase tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health) setelah kamu bangun. Data ini hanya dipakai untuk memeriksa apakah kamu dibangunkan saat tidur ringan dan untuk meningkatkan deteksi bagimu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
+    <string name="health_connect">Cocokkan dengan data kesehatan</string>
+    <string name="health_connect_hint">Membaca fase tidur dari Health Connect setelah bangun, untuk memeriksa dan meningkatkan deteksi.</string>
+    <string name="health_connected">Terhubung</string>
+    <string name="health_unavailable">Health Connect tidak tersedia di ponsel ini.</string>
+    <string name="verdict_good">Data kesehatan: %1$s ✓</string>
+    <string name="verdict_deep">Data kesehatan: tidur nyenyak</string>
+    <string name="stage_light">tidur ringan</string>
+    <string name="stage_rem">tidur REM</string>
+    <string name="stage_awake">terjaga</string>
+    <string name="editor_alert">Cara membangunkanmu</string>
+    <string name="editor_alert_hint">Suara selalu disertai getaran. Alarm juga berbunyi saat Jangan Ganggu, mode waktu tidur, dan ponsel senyap.</string>
+    <string name="editor_alert_watch">Jam tangan</string>
+    <string name="editor_alert_phone">Ponsel</string>
+    <string name="alert_vibrate_only">Hanya getar</string>
+    <string name="alert_vibrate_sound">Getar + suara</string>
+    <string name="alert_off">Mati</string>
+    <string name="alert_vibrate">Getar</string>
+    <string name="alert_sound">Suara</string>
+    <string name="editor_sound">Nada alarm</string>
+    <string name="editor_sound_default">Default</string>
+    <string name="dnd_title">Jangan Ganggu memblokir alarm</string>
+    <string name="dnd_text">Izinkan alarm saat Jangan Ganggu, kalau tidak ponselmu tetap senyap.</string>
+    <string name="dnd_action">Buka pengaturan</string>
+    <string name="greeting_morning">Selamat pagi</string>
+    <string name="greeting_day">Halo</string>
+    <string name="greeting_evening">Selamat malam</string>
+    <string name="greeting_night">Selamat tidur</string>
+</resources>
