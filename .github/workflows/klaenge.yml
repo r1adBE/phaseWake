@@ -23,6 +23,14 @@ jobs:
           unzip -o -q rain.zip -d rain
           # Meer: «Sea and river wave sounds» (Vistula) von RandomMind, CC0 – https://opengameart.org/content/sea-and-river-wave-sounds
           curl -fsSL -A "Mozilla/5.0" -o ocean.mp3 "https://opengameart.org/sites/default/files/VistulaShort_0.mp3"
+          # Wald bei Nacht: «Crickets ambient noise (loopable)» von Wolfgang_, CC0 – https://opengameart.org/content/crickets-ambient-noise-loopable
+          curl -fsSL -A "Mozilla/5.0" -o crickets.mp3 "https://opengameart.org/sites/default/files/crickets_1.mp3"
+          # Kaminfeuer: «Fireplace sound loop» von PagDev, CC0 – https://opengameart.org/content/fireplace-sound-loop
+          curl -fsSL -A "Mozilla/5.0" -o fire.wav "https://opengameart.org/sites/default/files/fire.wav"
+          # Bach: «30 CC0 SFX loops» von rubberduck, CC0 – https://opengameart.org/content/30-cc0-sfx-loops
+          curl -fsSL -A "Mozilla/5.0" -o loops.zip "https://opengameart.org/sites/default/files/sfx_loops.zip"
+          unzip -o -q loops.zip -d loops
+          echo "::notice title=Loops::$(find loops -type f | tr '\n' ' ')"
           ls -laR
       - name: Schleifen bauen
         run: |
@@ -35,8 +43,21 @@ jobs:
           rlen=$(python3 -c "print(min(90, float('$rd') - 6))")
           python3 .github/scripts/make-sound-loops.py raw/rain.wav raw/rain-loop.wav 1 "$rlen"
           python3 .github/scripts/make-sound-loops.py raw/ocean.wav raw/ocean-loop.wav 20 120
+          # Kurze, schon nahtlose Aufnahmen erst aneinanderhängen, dann wie die anderen behandeln.
+          ffmpeg -loglevel error -y -stream_loop 7 -i raw/crickets.mp3 -ac 2 -ar 44100 raw/crickets.wav
+          python3 .github/scripts/make-sound-loops.py raw/crickets.wav raw/forest-loop.wav 0 60
+          ffmpeg -loglevel error -y -i raw/fire.wav -ac 2 -ar 44100 raw/fire44.wav
+          fd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/fire44.wav)
+          flen=$(python3 -c "print(min(90, float('$fd') - 6))")
+          python3 .github/scripts/make-sound-loops.py raw/fire44.wav raw/fire-loop.wav 1 "$flen"
+          brook=$(find raw/loops -type f \( -iname '*flow*' -o -iname '*stream*' -o -iname '*river*' \) | head -1)
+          echo "::notice title=Bach::$brook"
+          ffmpeg -loglevel error -y -stream_loop 9 -i "$brook" -ac 2 -ar 44100 raw/brook.wav
+          bd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/brook.wav)
+          blen=$(python3 -c "print(min(60, float('$bd') - 6))")
+          python3 .github/scripts/make-sound-loops.py raw/brook.wav raw/brook-loop.wav 0 "$blen"
           mkdir -p out
-          for s in rain ocean; do
+          for s in rain ocean forest fire brook; do
             ffmpeg -loglevel error -y -i raw/$s-loop.wav -c:a aac -b:a 96k out/sound_$s.m4a
           done
           ls -la out
@@ -47,10 +68,10 @@ jobs:
           git fetch origin
           git checkout -B klaenge origin/main
           mkdir -p android/app/src/main/res/raw ios/PhaseWake/Sounds
-          cp out/sound_rain.m4a out/sound_ocean.m4a android/app/src/main/res/raw/
-          cp out/sound_rain.m4a out/sound_ocean.m4a ios/PhaseWake/Sounds/
+          cp out/*.m4a android/app/src/main/res/raw/
+          cp out/*.m4a ios/PhaseWake/Sounds/
           git add android/app/src/main/res/raw ios/PhaseWake/Sounds
-          git commit -m "Einschlafklänge: Regen und Meer als Aufnahmen (CC0)"
+          git commit -m "Einschlafklänge: Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach als Aufnahmen (CC0)"
           git push -f origin klaenge
       - name: Fehler anzeigen
         if: failure()
