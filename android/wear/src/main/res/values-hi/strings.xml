@@ -26,8 +26,8 @@
     <string name="home_tomorrow">कल</string>
     <string name="home_window_length">%1$d मि. की विंडो</string>
     <string name="home_alarms">अलार्म</string>
-    <string name="home_permissions">सेंसर की अनुमति</string>
-    <string name="home_permissions_hint">हल्की नींद पहचानने के लिए ज़रूरी है।</string>
+    <string name="home_permissions">अनुमतियाँ दें</string>
+    <string name="home_permissions_hint">माप और अलार्म स्क्रीन के लिए ज़रूरी हैं।</string>
     <string name="alarm_once">एक बार</string>
     <string name="alarm_every_day">रोज़</string>
     <string name="tile_label">अगला अलार्म</string>

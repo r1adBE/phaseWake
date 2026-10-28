@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Huomenna</string>
     <string name="home_window_length">Ikkuna %1$d min</string>
     <string name="home_alarms">Herätykset</string>
-    <string name="home_permissions">Salli anturit</string>
-    <string name="home_permissions_hint">Tarvitaan kevyen unen havaitsemiseen.</string>
+    <string name="home_permissions">Salli käyttöoikeudet</string>
+    <string name="home_permissions_hint">Tarvitaan mittaukseen ja herätysnäyttöön.</string>
     <string name="alarm_once">Kerran</string>
     <string name="alarm_every_day">Joka päivä</string>
     <string name="tile_label">Seuraava herätys</string>

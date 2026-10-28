@@ -28,8 +28,8 @@
     <string name="home_tomorrow">Tomorrow</string>
     <string name="home_window_length">%1$d min window</string>
     <string name="home_alarms">Alarms</string>
-    <string name="home_permissions">Allow sensors</string>
-    <string name="home_permissions_hint">Needed to detect light sleep.</string>
+    <string name="home_permissions">Allow permissions</string>
+    <string name="home_permissions_hint">Needed for measuring and the alarm screen.</string>
     <string name="alarm_once">Once</string>
     <string name="alarm_every_day">Every day</string>
     <string name="tile_label">Next alarm</string>

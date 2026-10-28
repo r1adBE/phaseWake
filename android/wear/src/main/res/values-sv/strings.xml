@@ -26,8 +26,8 @@
     <string name="home_tomorrow">I morgon</string>
     <string name="home_window_length">%1$d min fönster</string>
     <string name="home_alarms">Larm</string>
-    <string name="home_permissions">Tillåt sensorer</string>
-    <string name="home_permissions_hint">Behövs för att upptäcka lätt sömn.</string>
+    <string name="home_permissions">Ge behörigheter</string>
+    <string name="home_permissions_hint">Behövs för mätning och larmskärmen.</string>
     <string name="alarm_once">En gång</string>
     <string name="alarm_every_day">Varje dag</string>
     <string name="tile_label">Nästa larm</string>

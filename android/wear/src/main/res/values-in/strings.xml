@@ -25,8 +25,8 @@
     <string name="home_tomorrow">Besok</string>
     <string name="home_window_length">Rentang %1$d mnt</string>
     <string name="home_alarms">Alarm</string>
-    <string name="home_permissions">Izinkan sensor</string>
-    <string name="home_permissions_hint">Diperlukan untuk mendeteksi tidur ringan.</string>
+    <string name="home_permissions">Izinkan akses</string>
+    <string name="home_permissions_hint">Diperlukan untuk pengukuran dan layar alarm.</string>
     <string name="alarm_once">Sekali</string>
     <string name="alarm_every_day">Setiap hari</string>
     <string name="tile_label">Alarm berikutnya</string>

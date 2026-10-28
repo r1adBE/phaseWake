@@ -27,8 +27,8 @@
     <string name="home_tomorrow">Demain</string>
     <string name="home_window_length">Plage de %1$d min</string>
     <string name="home_alarms">Réveils</string>
-    <string name="home_permissions">Autoriser les capteurs</string>
-    <string name="home_permissions_hint">Nécessaire pour détecter le sommeil léger.</string>
+    <string name="home_permissions">Accorder les autorisations</string>
+    <string name="home_permissions_hint">Nécessaires pour la mesure et l\'écran de réveil.</string>
     <string name="alarm_once">Une fois</string>
     <string name="alarm_every_day">Tous les jours</string>
     <string name="tile_label">Prochain réveil</string>

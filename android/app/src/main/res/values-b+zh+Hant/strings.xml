@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">勿擾模式已開啟</string>
     <string name="check_dnd_unknown_problem">Android 不會告訴 App 鬧鐘能否響起。請檢查勿擾模式下是否允許鬧鐘。</string>
     <string name="check_watch_setup">手錶上的 Phase Wake</string>
-    <string name="check_watch_setup_problem">請在手錶上開啟一次 Phase Wake，並允許使用感測器和通知。</string>
+    <string name="check_watch_setup_problem">請在手錶上開啟一次 Phase Wake，並允許使用感測器、通知和鬧鐘畫面。</string>
     <string name="ring_hold_to_stop">長按停止</string>
     <string name="settings_privacy">隱私權政策</string>
     <string name="editor_discard_title">捨棄變更？</string>

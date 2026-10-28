@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">Το «Μην ενοχλείτε» είναι ενεργό</string>
     <string name="check_dnd_unknown_problem">Το Android δεν ενημερώνει τις εφαρμογές αν περνούν τα ξυπνητήρια. Έλεγξε ότι τα ξυπνητήρια επιτρέπονται στο «Μην ενοχλείτε».</string>
     <string name="check_watch_setup">Το Phase Wake στο ρολόι</string>
-    <string name="check_watch_setup_problem">Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες και ειδοποιήσεις.</string>
+    <string name="check_watch_setup_problem">Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες, ειδοποιήσεις και την οθόνη ξυπνητηριού.</string>
     <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
     <string name="settings_privacy">Πολιτική απορρήτου</string>
     <string name="editor_discard_title">Απόρριψη αλλαγών;</string>

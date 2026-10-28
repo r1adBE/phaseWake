@@ -193,7 +193,7 @@
     <string name="check_dnd_unknown">״נא לא להפריע״ פעיל</string>
     <string name="check_dnd_unknown_problem">Android לא מדווח לאפליקציות אם שעונים מעוררים עוברים. ודאו ששעונים מעוררים מותרים ב״נא לא להפריע״.</string>
     <string name="check_watch_setup">Phase Wake בשעון</string>
-    <string name="check_watch_setup_problem">פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים והתראות.</string>
+    <string name="check_watch_setup_problem">פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים, התראות ומסך מעורר.</string>
     <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
     <string name="settings_privacy">מדיניות פרטיות</string>
     <string name="editor_discard_title">לבטל את השינויים?</string>

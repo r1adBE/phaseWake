@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">サイレントモードがオンです</string>
     <string name="check_dnd_unknown_problem">Androidでは、アラームが鳴るかどうかをアプリから確認できません。サイレントモードでアラームが許可されているか確認してください。</string>
     <string name="check_watch_setup">ウォッチのPhase Wake</string>
-    <string name="check_watch_setup_problem">ウォッチでPhase Wakeを一度開き、センサーと通知を許可してください。</string>
+    <string name="check_watch_setup_problem">ウォッチでPhase Wakeを一度開き、センサー、通知、アラーム画面を許可してください。</string>
     <string name="ring_hold_to_stop">長押しで停止</string>
     <string name="settings_privacy">プライバシーポリシー</string>
     <string name="editor_discard_title">変更を破棄しますか?</string>

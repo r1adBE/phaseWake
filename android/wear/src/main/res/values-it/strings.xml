@@ -27,8 +27,8 @@
     <string name="home_tomorrow">Domani</string>
     <string name="home_window_length">Finestra di %1$d min</string>
     <string name="home_alarms">Sveglie</string>
-    <string name="home_permissions">Consenti i sensori</string>
-    <string name="home_permissions_hint">Necessari per rilevare il sonno leggero.</string>
+    <string name="home_permissions">Concedi le autorizzazioni</string>
+    <string name="home_permissions_hint">Necessarie per la misurazione e la schermata della sveglia.</string>
     <string name="alarm_once">Una volta</string>
     <string name="alarm_every_day">Ogni giorno</string>
     <string name="tile_label">Prossima sveglia</string>

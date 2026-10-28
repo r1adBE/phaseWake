@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Morgen</string>
     <string name="home_window_length">%1$d Min Fenster</string>
     <string name="home_alarms">Wecker</string>
-    <string name="home_permissions">Sensoren erlauben</string>
-    <string name="home_permissions_hint">Nötig, um leichten Schlaf zu erkennen.</string>
+    <string name="home_permissions">Rechte erlauben</string>
+    <string name="home_permissions_hint">Nötig für Messung und Weckbildschirm.</string>
     <string name="alarm_once">Einmalig</string>
     <string name="alarm_every_day">Täglich</string>
     <string name="tile_label">Nächster Wecker</string>

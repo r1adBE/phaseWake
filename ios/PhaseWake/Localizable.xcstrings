@@ -8630,193 +8630,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات."
+            "value": "افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات وشاشة المنبه."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jednou otevři Phase Wake v hodinkách a povol senzory a oznámení."
+            "value": "Jednou otevři Phase Wake v hodinkách a povol senzory, oznámení a obrazovku budíku."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åbn Phase Wake på uret én gang, og tillad sensorer og notifikationer."
+            "value": "Åbn Phase Wake på uret én gang, og tillad sensorer, notifikationer og alarmskærmen."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen."
+            "value": "Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren, Mitteilungen und den Weckbildschirm."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες και ειδοποιήσεις."
+            "value": "Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες, ειδοποιήσεις και την οθόνη ξυπνητηριού."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Phase Wake on the watch once and allow sensors and notifications."
+            "value": "Open Phase Wake on the watch once and allow sensors, notifications and the alarm screen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre Phase Wake en el reloj una vez y permite los sensores y las notificaciones."
+            "value": "Abre Phase Wake en el reloj una vez y permite los sensores, las notificaciones y la pantalla de alarma."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "یک بار Phase Wake را روی ساعت باز کن و حسگرها و اعلان‌ها را مجاز کن."
+            "value": "یک بار Phase Wake را روی ساعت باز کن و حسگرها، اعلان‌ها و صفحهٔ زنگ را مجاز کن."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avaa Phase Wake kellossa kerran ja salli anturit ja ilmoitukset."
+            "value": "Avaa Phase Wake kellossa kerran ja salli anturit, ilmoitukset ja herätysnäyttö."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvre Phase Wake une fois sur la montre et autorise les capteurs et les notifications."
+            "value": "Ouvre Phase Wake une fois sur la montre et autorise les capteurs, les notifications et l'écran de réveil."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים והתראות."
+            "value": "פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים, התראות ומסך מעורר."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "वॉच पर एक बार Phase Wake खोलें और सेंसर व नोटिफ़िकेशन की अनुमति दें।"
+            "value": "वॉच पर एक बार Phase Wake खोलें और सेंसर, नोटिफ़िकेशन व अलार्म स्क्रीन की अनुमति दें।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket és az értesítéseket."
+            "value": "Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket, az értesítéseket és az ébresztőképernyőt."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buka Phase Wake di jam tangan sekali dan izinkan sensor serta notifikasi."
+            "value": "Buka Phase Wake di jam tangan sekali dan izinkan sensor, notifikasi, serta layar alarm."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apri Phase Wake sull’orologio una volta e consenti sensori e notifiche."
+            "value": "Apri Phase Wake sull’orologio una volta e consenti sensori, notifiche e la schermata della sveglia."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ウォッチでPhase Wakeを一度開き、センサーと通知を許可してください。"
+            "value": "ウォッチでPhase Wakeを一度開き、センサー、通知、アラーム画面を許可してください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "워치에서 Phase Wake를 한 번 열고 센서와 알림을 허용해 주세요."
+            "value": "워치에서 Phase Wake를 한 번 열고 센서, 알림, 알람 화면을 허용해 주세요."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buka Phase Wake pada jam tangan sekali dan benarkan penderia serta pemberitahuan."
+            "value": "Buka Phase Wake pada jam tangan sekali dan benarkan penderia, pemberitahuan serta skrin penggera."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åpne Phase Wake på klokken én gang og tillat sensorer og varsler."
+            "value": "Åpne Phase Wake på klokken én gang og tillat sensorer, varsler og alarmskjermen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Phase Wake één keer op het horloge en sta sensoren en meldingen toe."
+            "value": "Open Phase Wake één keer op het horloge en sta sensoren, meldingen en het wekkerscherm toe."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Raz otwórz Phase Wake na zegarku i zezwól na czujniki oraz powiadomienia."
+            "value": "Raz otwórz Phase Wake na zegarku i zezwól na czujniki, powiadomienia oraz ekran budzika."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abra o Phase Wake no relógio uma vez e permita sensores e notificações."
+            "value": "Abra o Phase Wake no relógio uma vez e permita sensores, notificações e a tela de alarme."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre o Phase Wake no relógio uma vez e permite sensores e notificações."
+            "value": "Abre o Phase Wake no relógio uma vez e permite sensores, notificações e o ecrã de alarme."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deschide Phase Wake pe ceas o dată și permite senzorii și notificările."
+            "value": "Deschide Phase Wake pe ceas o dată și permite senzorii, notificările și ecranul alarmei."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Один раз открой Phase Wake на часах и разреши датчики и уведомления."
+            "value": "Один раз открой Phase Wake на часах и разреши датчики, уведомления и экран будильника."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öppna Phase Wake på klockan en gång och tillåt sensorer och aviseringar."
+            "value": "Öppna Phase Wake på klockan en gång och tillåt sensorer, aviseringar och larmskärmen."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์และการแจ้งเตือน"
+            "value": "เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์ การแจ้งเตือน และหน้าจอปลุก"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatte Phase Wake’i bir kez aç; sensörlere ve bildirimlere izin ver."
+            "value": "Saatte Phase Wake’i bir kez aç; sensörlere, bildirimlere ve alarm ekranına izin ver."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Один раз відкрий Phase Wake на годиннику та дозволь датчики й сповіщення."
+            "value": "Один раз відкрий Phase Wake на годиннику та дозволь датчики, сповіщення й екран будильника."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến cùng thông báo."
+            "value": "Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến, thông báo cùng màn hình báo thức."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请在手表上打开一次 Phase Wake，并允许使用传感器和通知。"
+            "value": "请在手表上打开一次 Phase Wake，并允许使用传感器、通知和闹钟界面。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "請在手錶上開啟一次 Phase Wake，並允許使用感測器和通知。"
+            "value": "請在手錶上開啟一次 Phase Wake，並允許使用感測器、通知和鬧鐘畫面。"
           }
         }
       }
@@ -27104,193 +27104,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "السماح بالمستشعرات"
+            "value": "السماح بالأذونات"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Povolit senzory"
+            "value": "Povolit oprávnění"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillad sensorer"
+            "value": "Giv tilladelser"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensoren erlauben"
+            "value": "Rechte erlauben"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Επίτρεψε αισθητήρες"
+            "value": "Επίτρεψε δικαιώματα"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Allow sensors"
+            "value": "Allow permissions"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir sensores"
+            "value": "Conceder permisos"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "اجازهٔ حسگرها"
+            "value": "اجازهٔ دسترسی‌ها"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salli anturit"
+            "value": "Salli käyttöoikeudet"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Autoriser les capteurs"
+            "value": "Accorder les autorisations"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "אישור חיישנים"
+            "value": "אישור הרשאות"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सेंसर की अनुमति"
+            "value": "अनुमतियाँ दें"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Szenzorok engedélyezése"
+            "value": "Engedélyek megadása"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izinkan sensor"
+            "value": "Izinkan akses"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consenti i sensori"
+            "value": "Concedi le autorizzazioni"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "センサーを許可"
+            "value": "権限を許可"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "센서 허용"
+            "value": "권한 허용"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Benarkan penderia"
+            "value": "Beri kebenaran"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillat sensorer"
+            "value": "Gi tillatelser"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensoren toestaan"
+            "value": "Toestemmingen geven"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zezwól na czujniki"
+            "value": "Przyznaj uprawnienia"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir sensores"
+            "value": "Conceder permissões"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir sensores"
+            "value": "Conceder permissões"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permite senzorii"
+            "value": "Acordă permisiunile"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Разрешить датчики"
+            "value": "Дать разрешения"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillåt sensorer"
+            "value": "Ge behörigheter"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "อนุญาตเซนเซอร์"
+            "value": "อนุญาตสิทธิ์"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensörlere izin ver"
+            "value": "İzinleri ver"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дозволити датчики"
+            "value": "Надати дозволи"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cho phép cảm biến"
+            "value": "Cấp quyền"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "允许传感器"
+            "value": "允许权限"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "允許感測器"
+            "value": "允許權限"
           }
         }
       }
@@ -27300,193 +27300,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مطلوب لرصد النوم الخفيف."
+            "value": "مطلوبة للقياس وشاشة المنبّه."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potřebné k rozpoznání lehkého spánku."
+            "value": "Potřebné pro měření a obrazovku budíku."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skal bruges til at registrere let søvn."
+            "value": "Skal bruges til måling og alarmskærmen."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nötig, um leichten Schlaf zu erkennen."
+            "value": "Nötig für Messung und Weckbildschirm."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Απαραίτητοι για τον εντοπισμό ελαφρού ύπνου."
+            "value": "Απαραίτητα για τη μέτρηση και την οθόνη ξυπνητηριού."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Needed to detect light sleep."
+            "value": "Needed for measuring and the alarm screen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Necesarios para detectar el sueño ligero."
+            "value": "Necesarios para medir y para la pantalla de alarma."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "برای تشخیص خواب سبک لازم است."
+            "value": "برای اندازه‌گیری و صفحهٔ زنگ لازم است."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tarvitaan kevyen unen havaitsemiseen."
+            "value": "Tarvitaan mittaukseen ja herätysnäyttöön."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nécessaire pour détecter le sommeil léger."
+            "value": "Nécessaires pour la mesure et l'écran de réveil."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "נדרש לזיהוי שינה קלה."
+            "value": "נדרשות למדידה ולמסך המעורר."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्की नींद पहचानने के लिए ज़रूरी है।"
+            "value": "माप और अलार्म स्क्रीन के लिए ज़रूरी हैं।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A könnyű alvás észleléséhez kell."
+            "value": "A méréshez és az ébresztőképernyőhöz kell."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Diperlukan untuk mendeteksi tidur ringan."
+            "value": "Diperlukan untuk pengukuran dan layar alarm."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Necessari per rilevare il sonno leggero."
+            "value": "Necessarie per la misurazione e la schermata della sveglia."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "浅い眠りの検出に必要です。"
+            "value": "計測とアラーム画面に必要です。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "얕은 잠을 감지하는 데 필요해요."
+            "value": "측정과 알람 화면에 필요해요."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Diperlukan untuk mengesan tidur ringan."
+            "value": "Diperlukan untuk pengukuran dan skrin penggera."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trengs for å oppdage lett søvn."
+            "value": "Trengs for måling og alarmskjermen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nodig om lichte slaap te herkennen."
+            "value": "Nodig voor het meten en het wekkerscherm."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potrzebne do wykrywania lekkiego snu."
+            "value": "Potrzebne do pomiaru i ekranu budzika."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Necessários para detectar o sono leve."
+            "value": "Necessárias para a medição e a tela de alarme."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Necessários para detetar o sono leve."
+            "value": "Necessárias para a medição e o ecrã de alarme."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Necesari pentru a detecta somnul ușor."
+            "value": "Necesare pentru măsurare și ecranul alarmei."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нужны, чтобы распознавать лёгкий сон."
+            "value": "Нужны для измерения и экрана будильника."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Behövs för att upptäcka lätt sömn."
+            "value": "Behövs för mätning och larmskärmen."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "จำเป็นต่อการตรวจจับการหลับตื้น"
+            "value": "จำเป็นต่อการวัดและหน้าจอปลุก"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hafif uykuyu algılamak için gerekli."
+            "value": "Ölçüm ve alarm ekranı için gerekli."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Потрібні, щоб розпізнавати легкий сон."
+            "value": "Потрібні для вимірювання й екрана будильника."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cần để phát hiện ngủ nông."
+            "value": "Cần cho việc đo và màn hình báo thức."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "检测浅睡所必需。"
+            "value": "测量和闹钟界面所必需。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "偵測淺眠所需。"
+            "value": "測量和鬧鐘畫面所需。"
           }
         }
       }

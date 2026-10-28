@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">Ikke forstyrr er på</string>
     <string name="check_dnd_unknown_problem">Android forteller ikke apper om alarmer slipper gjennom. Sjekk at alarmer er tillatt i Ikke forstyrr.</string>
     <string name="check_watch_setup">Phase Wake på klokken</string>
-    <string name="check_watch_setup_problem">Åpne Phase Wake på klokken én gang og tillat sensorer og varsler.</string>
+    <string name="check_watch_setup_problem">Åpne Phase Wake på klokken én gang og tillat sensorer, varsler og alarmskjermen.</string>
     <string name="ring_hold_to_stop">Hold for å stoppe</string>
     <string name="settings_privacy">Personvernerklæring</string>
     <string name="editor_discard_title">Forkaste endringer?</string>

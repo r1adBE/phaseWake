@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">डू नॉट डिस्टर्ब चालू है</string>
     <string name="check_dnd_unknown_problem">Android ऐप्स को नहीं बताता कि अलार्म आगे जाते हैं या नहीं। जाँच लें कि डू नॉट डिस्टर्ब में अलार्म की अनुमति है।</string>
     <string name="check_watch_setup">वॉच पर Phase Wake</string>
-    <string name="check_watch_setup_problem">वॉच पर एक बार Phase Wake खोलें और सेंसर व नोटिफ़िकेशन की अनुमति दें।</string>
+    <string name="check_watch_setup_problem">वॉच पर एक बार Phase Wake खोलें और सेंसर, नोटिफ़िकेशन व अलार्म स्क्रीन की अनुमति दें।</string>
     <string name="ring_hold_to_stop">रोकने के लिए दबाए रखो</string>
     <string name="settings_privacy">गोपनीयता नीति</string>
     <string name="editor_discard_title">बदलाव छोड़ दें?</string>

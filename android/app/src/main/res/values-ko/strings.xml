@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">방해 금지 모드가 켜져 있어요</string>
     <string name="check_dnd_unknown_problem">Android는 알람이 울릴 수 있는지 앱에 알려 주지 않아요. 방해 금지 모드에서 알람이 허용되어 있는지 확인해 주세요.</string>
     <string name="check_watch_setup">워치의 Phase Wake</string>
-    <string name="check_watch_setup_problem">워치에서 Phase Wake를 한 번 열고 센서와 알림을 허용해 주세요.</string>
+    <string name="check_watch_setup_problem">워치에서 Phase Wake를 한 번 열고 센서, 알림, 알람 화면을 허용해 주세요.</string>
     <string name="ring_hold_to_stop">길게 눌러 중지</string>
     <string name="settings_privacy">개인정보 처리방침</string>
     <string name="editor_discard_title">변경 사항을 버릴까요?</string>

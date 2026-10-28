@@ -28,8 +28,8 @@
     <string name="home_tomorrow">Zítra</string>
     <string name="home_window_length">Okno %1$d min</string>
     <string name="home_alarms">Budíky</string>
-    <string name="home_permissions">Povolit senzory</string>
-    <string name="home_permissions_hint">Potřebné k rozpoznání lehkého spánku.</string>
+    <string name="home_permissions">Povolit oprávnění</string>
+    <string name="home_permissions_hint">Potřebné pro měření a obrazovku budíku.</string>
     <string name="alarm_once">Jednou</string>
     <string name="alarm_every_day">Každý den</string>
     <string name="tile_label">Další budík</string>

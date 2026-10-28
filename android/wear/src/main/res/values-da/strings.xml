@@ -26,8 +26,8 @@
     <string name="home_tomorrow">I morgen</string>
     <string name="home_window_length">%1$d min vindue</string>
     <string name="home_alarms">Alarmer</string>
-    <string name="home_permissions">Tillad sensorer</string>
-    <string name="home_permissions_hint">Skal bruges til at registrere let søvn.</string>
+    <string name="home_permissions">Giv tilladelser</string>
+    <string name="home_permissions_hint">Skal bruges til måling og alarmskærmen.</string>
     <string name="alarm_once">Én gang</string>
     <string name="alarm_every_day">Hver dag</string>
     <string name="tile_label">Næste alarm</string>

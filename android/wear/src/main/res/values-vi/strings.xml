@@ -25,8 +25,8 @@
     <string name="home_tomorrow">Ngày mai</string>
     <string name="home_window_length">Khoảng %1$d phút</string>
     <string name="home_alarms">Báo thức</string>
-    <string name="home_permissions">Cho phép cảm biến</string>
-    <string name="home_permissions_hint">Cần để phát hiện ngủ nông.</string>
+    <string name="home_permissions">Cấp quyền</string>
+    <string name="home_permissions_hint">Cần cho việc đo và màn hình báo thức.</string>
     <string name="alarm_once">Một lần</string>
     <string name="alarm_every_day">Hằng ngày</string>
     <string name="tile_label">Báo thức tiếp</string>

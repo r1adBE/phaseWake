@@ -28,8 +28,8 @@
     <string name="home_tomorrow">Завтра</string>
     <string name="home_window_length">Окно %1$d мин</string>
     <string name="home_alarms">Будильники</string>
-    <string name="home_permissions">Разрешить датчики</string>
-    <string name="home_permissions_hint">Нужны, чтобы распознавать лёгкий сон.</string>
+    <string name="home_permissions">Дать разрешения</string>
+    <string name="home_permissions_hint">Нужны для измерения и экрана будильника.</string>
     <string name="alarm_once">Один раз</string>
     <string name="alarm_every_day">Каждый день</string>
     <string name="tile_label">Следующий будильник</string>

@@ -25,8 +25,8 @@
     <string name="home_tomorrow">내일</string>
     <string name="home_window_length">범위 %1$d분</string>
     <string name="home_alarms">알람</string>
-    <string name="home_permissions">센서 허용</string>
-    <string name="home_permissions_hint">얕은 잠을 감지하는 데 필요해요.</string>
+    <string name="home_permissions">권한 허용</string>
+    <string name="home_permissions_hint">측정과 알람 화면에 필요해요.</string>
     <string name="alarm_once">한 번</string>
     <string name="alarm_every_day">매일</string>
     <string name="tile_label">다음 알람</string>

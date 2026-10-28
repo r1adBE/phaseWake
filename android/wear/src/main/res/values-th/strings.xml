@@ -25,8 +25,8 @@
     <string name="home_tomorrow">พรุ่งนี้</string>
     <string name="home_window_length">ช่วง %1$d นาที</string>
     <string name="home_alarms">นาฬิกาปลุก</string>
-    <string name="home_permissions">อนุญาตเซนเซอร์</string>
-    <string name="home_permissions_hint">จำเป็นต่อการตรวจจับการหลับตื้น</string>
+    <string name="home_permissions">อนุญาตสิทธิ์</string>
+    <string name="home_permissions_hint">จำเป็นต่อการวัดและหน้าจอปลุก</string>
     <string name="alarm_once">ครั้งเดียว</string>
     <string name="alarm_every_day">ทุกวัน</string>
     <string name="tile_label">ปลุกครั้งถัดไป</string>

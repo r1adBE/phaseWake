@@ -27,8 +27,8 @@
     <string name="home_tomorrow">מחר</string>
     <string name="home_window_length">חלון של %1$d דק׳</string>
     <string name="home_alarms">מעוררים</string>
-    <string name="home_permissions">אישור חיישנים</string>
-    <string name="home_permissions_hint">נדרש לזיהוי שינה קלה.</string>
+    <string name="home_permissions">אישור הרשאות</string>
+    <string name="home_permissions_hint">נדרשות למדידה ולמסך המעורר.</string>
     <string name="alarm_once">פעם אחת</string>
     <string name="alarm_every_day">כל יום</string>
     <string name="tile_label">המעורר הבא</string>

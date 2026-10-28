@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">A Ne zavarjanak be van kapcsolva</string>
     <string name="check_dnd_unknown_problem">Az Android nem jelzi az alkalmazásoknak, hogy az ébresztők átjutnak-e. Ellenőrizd, hogy az ébresztők engedélyezve vannak-e a Ne zavarjanak módban.</string>
     <string name="check_watch_setup">Phase Wake az órán</string>
-    <string name="check_watch_setup_problem">Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket és az értesítéseket.</string>
+    <string name="check_watch_setup_problem">Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket, az értesítéseket és az ébresztőképernyőt.</string>
     <string name="ring_hold_to_stop">Tartsd a leállításhoz</string>
     <string name="settings_privacy">Adatvédelmi irányelvek</string>
     <string name="editor_discard_title">Elveted a módosításokat?</string>

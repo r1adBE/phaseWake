@@ -30,8 +30,8 @@
     <string name="home_tomorrow">غدًا</string>
     <string name="home_window_length">نافذة %1$d د</string>
     <string name="home_alarms">المنبّهات</string>
-    <string name="home_permissions">السماح بالمستشعرات</string>
-    <string name="home_permissions_hint">مطلوب لرصد النوم الخفيف.</string>
+    <string name="home_permissions">السماح بالأذونات</string>
+    <string name="home_permissions_hint">مطلوبة للقياس وشاشة المنبّه.</string>
     <string name="alarm_once">مرة واحدة</string>
     <string name="alarm_every_day">يوميًا</string>
     <string name="tile_label">المنبّه التالي</string>

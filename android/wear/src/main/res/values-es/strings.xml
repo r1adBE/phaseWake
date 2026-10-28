@@ -27,8 +27,8 @@
     <string name="home_tomorrow">Mañana</string>
     <string name="home_window_length">Ventana de %1$d min</string>
     <string name="home_alarms">Alarmas</string>
-    <string name="home_permissions">Permitir sensores</string>
-    <string name="home_permissions_hint">Necesarios para detectar el sueño ligero.</string>
+    <string name="home_permissions">Conceder permisos</string>
+    <string name="home_permissions_hint">Necesarios para medir y para la pantalla de alarma.</string>
     <string name="alarm_once">Una vez</string>
     <string name="alarm_every_day">Cada día</string>
     <string name="tile_label">Próxima alarma</string>

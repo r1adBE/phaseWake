@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">Jangan Ganggu aktif</string>
     <string name="check_dnd_unknown_problem">Android tidak memberi tahu aplikasi apakah alarm diloloskan. Pastikan alarm diizinkan di Jangan Ganggu.</string>
     <string name="check_watch_setup">Phase Wake di jam tangan</string>
-    <string name="check_watch_setup_problem">Buka Phase Wake di jam tangan sekali dan izinkan sensor serta notifikasi.</string>
+    <string name="check_watch_setup_problem">Buka Phase Wake di jam tangan sekali dan izinkan sensor, notifikasi, serta layar alarm.</string>
     <string name="ring_hold_to_stop">Tahan untuk berhenti</string>
     <string name="settings_privacy">Kebijakan privasi</string>
     <string name="editor_discard_title">Buang perubahan?</string>

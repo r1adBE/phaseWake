@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">勿扰模式已开启</string>
     <string name="check_dnd_unknown_problem">Android 不会告诉应用闹钟能否响起。请检查勿扰模式下是否允许闹钟。</string>
     <string name="check_watch_setup">手表上的 Phase Wake</string>
-    <string name="check_watch_setup_problem">请在手表上打开一次 Phase Wake，并允许使用传感器和通知。</string>
+    <string name="check_watch_setup_problem">请在手表上打开一次 Phase Wake，并允许使用传感器、通知和闹钟界面。</string>
     <string name="ring_hold_to_stop">长按停止</string>
     <string name="settings_privacy">隐私政策</string>
     <string name="editor_discard_title">放弃更改？</string>

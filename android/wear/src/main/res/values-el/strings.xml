@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Αύριο</string>
     <string name="home_window_length">Παράθυρο %1$d λ.</string>
     <string name="home_alarms">Ξυπνητήρια</string>
-    <string name="home_permissions">Επίτρεψε αισθητήρες</string>
-    <string name="home_permissions_hint">Απαραίτητοι για τον εντοπισμό ελαφρού ύπνου.</string>
+    <string name="home_permissions">Επίτρεψε δικαιώματα</string>
+    <string name="home_permissions_hint">Απαραίτητα για τη μέτρηση και την οθόνη ξυπνητηριού.</string>
     <string name="alarm_once">Μία φορά</string>
     <string name="alarm_every_day">Κάθε μέρα</string>
     <string name="tile_label">Επόμενο ξυπνητήρι</string>

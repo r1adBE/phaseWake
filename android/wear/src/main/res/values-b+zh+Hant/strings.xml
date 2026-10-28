@@ -25,8 +25,8 @@
     <string name="home_tomorrow">明天</string>
     <string name="home_window_length">範圍 %1$d 分鐘</string>
     <string name="home_alarms">鬧鐘</string>
-    <string name="home_permissions">允許感測器</string>
-    <string name="home_permissions_hint">偵測淺眠所需。</string>
+    <string name="home_permissions">允許權限</string>
+    <string name="home_permissions_hint">測量和鬧鐘畫面所需。</string>
     <string name="alarm_once">僅一次</string>
     <string name="alarm_every_day">每天</string>
     <string name="tile_label">下一個鬧鐘</string>

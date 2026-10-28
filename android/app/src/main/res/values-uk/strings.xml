@@ -197,7 +197,7 @@
     <string name="check_dnd_unknown">Режим «Не турбувати» увімкнено</string>
     <string name="check_dnd_unknown_problem">Android не повідомляє застосункам, чи пропускаються будильники. Перевір, чи дозволено будильники в режимі «Не турбувати».</string>
     <string name="check_watch_setup">Phase Wake на годиннику</string>
-    <string name="check_watch_setup_problem">Один раз відкрий Phase Wake на годиннику та дозволь датчики й сповіщення.</string>
+    <string name="check_watch_setup_problem">Один раз відкрий Phase Wake на годиннику та дозволь датчики, сповіщення й екран будильника.</string>
     <string name="ring_hold_to_stop">Утримуй, щоб зупинити</string>
     <string name="settings_privacy">Політика конфіденційності</string>
     <string name="editor_discard_title">Відхилити зміни?</string>

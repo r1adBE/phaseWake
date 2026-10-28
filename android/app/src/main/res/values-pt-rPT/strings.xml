@@ -193,7 +193,7 @@
     <string name="check_dnd_unknown">Não incomodar está ativado</string>
     <string name="check_dnd_unknown_problem">O Android não informa as apps se os alarmes são permitidos. Verifica se os alarmes estão permitidos em Não incomodar.</string>
     <string name="check_watch_setup">Phase Wake no relógio</string>
-    <string name="check_watch_setup_problem">Abre o Phase Wake no relógio uma vez e permite sensores e notificações.</string>
+    <string name="check_watch_setup_problem">Abre o Phase Wake no relógio uma vez e permite sensores, notificações e o ecrã de alarme.</string>
     <string name="ring_hold_to_stop">Mantém para parar</string>
     <string name="settings_privacy">Política de privacidade</string>
     <string name="editor_discard_title">Descartar alterações?</string>

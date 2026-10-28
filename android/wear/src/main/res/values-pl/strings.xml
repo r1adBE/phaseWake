@@ -28,8 +28,8 @@
     <string name="home_tomorrow">Jutro</string>
     <string name="home_window_length">Okno %1$d min</string>
     <string name="home_alarms">Budziki</string>
-    <string name="home_permissions">Zezwól na czujniki</string>
-    <string name="home_permissions_hint">Potrzebne do wykrywania lekkiego snu.</string>
+    <string name="home_permissions">Przyznaj uprawnienia</string>
+    <string name="home_permissions_hint">Potrzebne do pomiaru i ekranu budzika.</string>
     <string name="alarm_once">Jednorazowo</string>
     <string name="alarm_every_day">Codziennie</string>
     <string name="tile_label">Następny budzik</string>

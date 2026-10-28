@@ -27,8 +27,8 @@
     <string name="home_tomorrow">Amanhã</string>
     <string name="home_window_length">Janela de %1$d min</string>
     <string name="home_alarms">Alarmes</string>
-    <string name="home_permissions">Permitir sensores</string>
-    <string name="home_permissions_hint">Necessários para detetar o sono leve.</string>
+    <string name="home_permissions">Conceder permissões</string>
+    <string name="home_permissions_hint">Necessárias para a medição e o ecrã de alarme.</string>
     <string name="alarm_once">Uma vez</string>
     <string name="alarm_every_day">Todos os dias</string>
     <string name="tile_label">Próximo alarme</string>

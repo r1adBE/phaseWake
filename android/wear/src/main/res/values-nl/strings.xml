@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Morgen</string>
     <string name="home_window_length">Venster van %1$d min</string>
     <string name="home_alarms">Wekkers</string>
-    <string name="home_permissions">Sensoren toestaan</string>
-    <string name="home_permissions_hint">Nodig om lichte slaap te herkennen.</string>
+    <string name="home_permissions">Toestemmingen geven</string>
+    <string name="home_permissions_hint">Nodig voor het meten en het wekkerscherm.</string>
     <string name="alarm_once">Eenmalig</string>
     <string name="alarm_every_day">Elke dag</string>
     <string name="tile_label">Volgende wekker</string>

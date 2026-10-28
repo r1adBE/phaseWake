@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">مزاحم نشو روشن است</string>
     <string name="check_dnd_unknown_problem">Android به برنامه‌ها نمی‌گوید که زنگ‌ها عبور می‌کنند یا نه. بررسی کن که زنگ‌ها در حالت «مزاحم نشو» مجاز باشند.</string>
     <string name="check_watch_setup">Phase Wake روی ساعت</string>
-    <string name="check_watch_setup_problem">یک بار Phase Wake را روی ساعت باز کن و حسگرها و اعلان‌ها را مجاز کن.</string>
+    <string name="check_watch_setup_problem">یک بار Phase Wake را روی ساعت باز کن و حسگرها، اعلان‌ها و صفحهٔ زنگ را مجاز کن.</string>
     <string name="ring_hold_to_stop">برای توقف نگه دار</string>
     <string name="settings_privacy">سیاست حریم خصوصی</string>
     <string name="editor_discard_title">تغییرات کنار گذاشته شود؟</string>

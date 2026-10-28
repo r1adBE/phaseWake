@@ -25,8 +25,8 @@
     <string name="home_tomorrow">Esok</string>
     <string name="home_window_length">Tetingkap %1$d min</string>
     <string name="home_alarms">Penggera</string>
-    <string name="home_permissions">Benarkan penderia</string>
-    <string name="home_permissions_hint">Diperlukan untuk mengesan tidur ringan.</string>
+    <string name="home_permissions">Beri kebenaran</string>
+    <string name="home_permissions_hint">Diperlukan untuk pengukuran dan skrin penggera.</string>
     <string name="alarm_once">Sekali</string>
     <string name="alarm_every_day">Setiap hari</string>
     <string name="tile_label">Penggera seterusnya</string>

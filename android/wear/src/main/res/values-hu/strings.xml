@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Holnap</string>
     <string name="home_window_length">%1$d p ablak</string>
     <string name="home_alarms">Ébresztők</string>
-    <string name="home_permissions">Szenzorok engedélyezése</string>
-    <string name="home_permissions_hint">A könnyű alvás észleléséhez kell.</string>
+    <string name="home_permissions">Engedélyek megadása</string>
+    <string name="home_permissions_hint">A méréshez és az ébresztőképernyőhöz kell.</string>
     <string name="alarm_once">Egyszeri</string>
     <string name="alarm_every_day">Naponta</string>
     <string name="tile_label">Következő ébresztő</string>

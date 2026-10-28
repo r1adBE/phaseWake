@@ -185,7 +185,7 @@
     <string name="check_dnd_unknown">โหมดห้ามรบกวนเปิดอยู่</string>
     <string name="check_dnd_unknown_problem">Android ไม่แจ้งแอปว่านาฬิกาปลุกดังได้หรือไม่ โปรดตรวจสอบว่าอนุญาตนาฬิกาปลุกในโหมดห้ามรบกวนแล้ว</string>
     <string name="check_watch_setup">Phase Wake บนนาฬิกา</string>
-    <string name="check_watch_setup_problem">เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์และการแจ้งเตือน</string>
+    <string name="check_watch_setup_problem">เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์ การแจ้งเตือน และหน้าจอปลุก</string>
     <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
     <string name="settings_privacy">นโยบายความเป็นส่วนตัว</string>
     <string name="editor_discard_title">ละทิ้งการเปลี่ยนแปลงไหม</string>

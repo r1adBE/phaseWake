@@ -197,7 +197,7 @@
     <string name="check_dnd_unknown">Режим «Не беспокоить» включён</string>
     <string name="check_dnd_unknown_problem">Android не сообщает приложениям, пропускаются ли будильники. Проверь, что будильники разрешены в режиме «Не беспокоить».</string>
     <string name="check_watch_setup">Phase Wake на часах</string>
-    <string name="check_watch_setup_problem">Один раз открой Phase Wake на часах и разреши датчики и уведомления.</string>
+    <string name="check_watch_setup_problem">Один раз открой Phase Wake на часах и разреши датчики, уведомления и экран будильника.</string>
     <string name="ring_hold_to_stop">Удерживай, чтобы остановить</string>
     <string name="settings_privacy">Политика конфиденциальности</string>
     <string name="editor_discard_title">Отменить изменения?</string>

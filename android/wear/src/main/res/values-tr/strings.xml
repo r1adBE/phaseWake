@@ -26,8 +26,8 @@
     <string name="home_tomorrow">Yarın</string>
     <string name="home_window_length">%1$d dk aralık</string>
     <string name="home_alarms">Alarmlar</string>
-    <string name="home_permissions">Sensörlere izin ver</string>
-    <string name="home_permissions_hint">Hafif uykuyu algılamak için gerekli.</string>
+    <string name="home_permissions">İzinleri ver</string>
+    <string name="home_permissions_hint">Ölçüm ve alarm ekranı için gerekli.</string>
     <string name="alarm_once">Bir kez</string>
     <string name="alarm_every_day">Her gün</string>
     <string name="tile_label">Sonraki alarm</string>

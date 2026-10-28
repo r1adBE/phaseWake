@@ -25,8 +25,8 @@
     <string name="home_tomorrow">明日</string>
     <string name="home_window_length">時間幅 %1$d分</string>
     <string name="home_alarms">アラーム</string>
-    <string name="home_permissions">センサーを許可</string>
-    <string name="home_permissions_hint">浅い眠りの検出に必要です。</string>
+    <string name="home_permissions">権限を許可</string>
+    <string name="home_permissions_hint">計測とアラーム画面に必要です。</string>
     <string name="alarm_once">1回のみ</string>
     <string name="alarm_every_day">毎日</string>
     <string name="tile_label">次のアラーム</string>

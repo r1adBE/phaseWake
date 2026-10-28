@@ -205,7 +205,7 @@
     <string name="check_dnd_unknown">وضع عدم الإزعاج قيد التشغيل</string>
     <string name="check_dnd_unknown_problem">لا يخبر Android التطبيقات ما إذا كانت المنبهات تمر. تأكد من السماح بالمنبهات في وضع عدم الإزعاج.</string>
     <string name="check_watch_setup">Phase Wake على الساعة</string>
-    <string name="check_watch_setup_problem">افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات.</string>
+    <string name="check_watch_setup_problem">افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات وشاشة المنبه.</string>
     <string name="ring_hold_to_stop">ضغط مطوّل للإيقاف</string>
     <string name="settings_privacy">سياسة الخصوصية</string>
     <string name="editor_discard_title">تجاهل التغييرات؟</string>

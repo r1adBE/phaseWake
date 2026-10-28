@@ -193,7 +193,7 @@
     <string name="check_dnd_unknown">Nu deranja este activat</string>
     <string name="check_dnd_unknown_problem">Android nu spune aplicațiilor dacă alarmele sunt lăsate să treacă. Verifică dacă alarmele sunt permise în modul Nu deranja.</string>
     <string name="check_watch_setup">Phase Wake pe ceas</string>
-    <string name="check_watch_setup_problem">Deschide Phase Wake pe ceas o dată și permite senzorii și notificările.</string>
+    <string name="check_watch_setup_problem">Deschide Phase Wake pe ceas o dată și permite senzorii, notificările și ecranul alarmei.</string>
     <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
     <string name="settings_privacy">Politica de confidențialitate</string>
     <string name="editor_discard_title">Renunți la modificări?</string>

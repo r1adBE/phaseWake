@@ -189,7 +189,7 @@
     <string name="check_dnd_unknown">«Nicht stören» ist an</string>
     <string name="check_dnd_unknown_problem">Android verrät Apps nicht, ob Wecker durchkommen. Prüfe, ob Wecker bei «Nicht stören» erlaubt sind.</string>
     <string name="check_watch_setup">Phase Wake auf der Uhr</string>
-    <string name="check_watch_setup_problem">Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen.</string>
+    <string name="check_watch_setup_problem">Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren, Mitteilungen und den Weckbildschirm.</string>
     <string name="ring_hold_to_stop">Halten zum Stoppen</string>
     <string name="settings_privacy">Datenschutzerklärung</string>
     <string name="editor_discard_title">Änderungen verwerfen?</string>

@@ -197,7 +197,7 @@
     <string name="check_dnd_unknown">Režim Nerušit je zapnutý</string>
     <string name="check_dnd_unknown_problem">Android aplikacím neříká, zda budíky projdou. Zkontroluj, že jsou budíky v režimu Nerušit povolené.</string>
     <string name="check_watch_setup">Phase Wake v hodinkách</string>
-    <string name="check_watch_setup_problem">Jednou otevři Phase Wake v hodinkách a povol senzory a oznámení.</string>
+    <string name="check_watch_setup_problem">Jednou otevři Phase Wake v hodinkách a povol senzory, oznámení a obrazovku budíku.</string>
     <string name="ring_hold_to_stop">Podrž pro zastavení</string>
     <string name="settings_privacy">Zásady ochrany soukromí</string>
     <string name="editor_discard_title">Zahodit změny?</string>

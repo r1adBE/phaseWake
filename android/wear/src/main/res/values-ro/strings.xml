@@ -27,8 +27,8 @@
     <string name="home_tomorrow">Mâine</string>
     <string name="home_window_length">Interval %1$d min</string>
     <string name="home_alarms">Alarme</string>
-    <string name="home_permissions">Permite senzorii</string>
-    <string name="home_permissions_hint">Necesari pentru a detecta somnul ușor.</string>
+    <string name="home_permissions">Acordă permisiunile</string>
+    <string name="home_permissions_hint">Necesare pentru măsurare și ecranul alarmei.</string>
     <string name="alarm_once">O dată</string>
     <string name="alarm_every_day">Zilnic</string>
     <string name="tile_label">Următoarea alarmă</string>

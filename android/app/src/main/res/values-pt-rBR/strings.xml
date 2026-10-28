@@ -193,7 +193,7 @@
     <string name="check_dnd_unknown">Não perturbe está ativado</string>
     <string name="check_dnd_unknown_problem">O Android não informa aos apps se os alarmes são permitidos. Verifique se os alarmes estão permitidos no Não perturbe.</string>
     <string name="check_watch_setup">Phase Wake no relógio</string>
-    <string name="check_watch_setup_problem">Abra o Phase Wake no relógio uma vez e permita sensores e notificações.</string>
+    <string name="check_watch_setup_problem">Abra o Phase Wake no relógio uma vez e permita sensores, notificações e a tela de alarme.</string>
     <string name="ring_hold_to_stop">Segure para parar</string>
     <string name="settings_privacy">Política de privacidade</string>
     <string name="editor_discard_title">Descartar alterações?</string>

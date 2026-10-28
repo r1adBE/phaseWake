@@ -26,8 +26,8 @@
     <string name="home_tomorrow">فردا</string>
     <string name="home_window_length">بازهٔ %1$d دق</string>
     <string name="home_alarms">زنگ‌ها</string>
-    <string name="home_permissions">اجازهٔ حسگرها</string>
-    <string name="home_permissions_hint">برای تشخیص خواب سبک لازم است.</string>
+    <string name="home_permissions">اجازهٔ دسترسی‌ها</string>
+    <string name="home_permissions_hint">برای اندازه‌گیری و صفحهٔ زنگ لازم است.</string>
     <string name="alarm_once">یک‌بار</string>
     <string name="alarm_every_day">هر روز</string>
     <string name="tile_label">زنگ بعدی</string>
