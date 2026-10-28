@@ -1,0 +1,52 @@
+name: Einschlafklänge
+
+# Lädt freie Aufnahmen (CC0) für Regen und Meer, macht daraus nahtlose Schleifen und legt sie in den
+# Zweig «klaenge». Nur von Hand gestartet; die Dateien kommen danach per Merge ins Repo.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  klaenge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Aufnahmen laden
+        run: |
+          mkdir -p raw && cd raw
+          # Regen: «Rain (loopable)» von Ylmir, CC0 – https://opengameart.org/content/rain-loopable
+          curl -fsSL -o rain.zip "https://opengameart.org/sites/default/files/Rain%20OGG.zip"
+          unzip -o -q rain.zip -d rain
+          # Meer: «Sea and river wave sounds» (Vistula) von RandomMind, CC0 – https://opengameart.org/content/sea-and-river-wave-sounds
+          curl -fsSL -o ocean.mp3 "https://opengameart.org/sites/default/files/VistulaShort_0.mp3"
+          ls -laR
+      - name: Schleifen bauen
+        run: |
+          pip install --quiet numpy
+          rain=$(find raw/rain -iname '*.ogg' | head -1)
+          ffmpeg -loglevel error -y -i "$rain" -ac 2 -ar 44100 raw/rain.wav
+          ffmpeg -loglevel error -y -i raw/ocean.mp3 -ac 2 -ar 44100 raw/ocean.wav
+          ffprobe -v error -show_entries format=duration -of csv=p=0 raw/rain.wav raw/ocean.wav
+          rd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/rain.wav)
+          rlen=$(python3 -c "print(min(90, float('$rd') - 6))")
+          python3 .github/scripts/make-sound-loops.py raw/rain.wav raw/rain-loop.wav 1 "$rlen"
+          python3 .github/scripts/make-sound-loops.py raw/ocean.wav raw/ocean-loop.wav 20 120
+          mkdir -p out
+          for s in rain ocean; do
+            ffmpeg -loglevel error -y -i raw/$s-loop.wav -c:a aac -b:a 96k out/sound_$s.m4a
+          done
+          ls -la out
+      - name: In den Zweig «klaenge» legen
+        run: |
+          git config user.name "r1AD"
+          git config user.email "r1adBE@users.noreply.github.com"
+          git fetch origin
+          git checkout -B klaenge origin/main
+          mkdir -p android/app/src/main/res/raw ios/PhaseWake/Sounds
+          cp out/sound_rain.m4a out/sound_ocean.m4a android/app/src/main/res/raw/
+          cp out/sound_rain.m4a out/sound_ocean.m4a ios/PhaseWake/Sounds/
+          git add android/app/src/main/res/raw ios/PhaseWake/Sounds
+          git commit -m "Einschlafklänge: Regen und Meer als Aufnahmen (CC0)"
+          git push -f origin klaenge
