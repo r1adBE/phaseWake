@@ -45,5 +45,5 @@
     <string name="notification_open">Mở</string>
     <string name="home_good_night_too_far">Dùng được từ 16 giờ trước báo thức</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Để tắt, hãy giải phép tính trên điện thoại</string>
+    <string name="wake_task_on_phone">Giải phép tính trên điện thoại hoặc giữ 5 giây</string>
 </resources>

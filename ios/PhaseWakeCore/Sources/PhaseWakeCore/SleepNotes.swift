@@ -180,12 +180,19 @@ public struct NoteEffect: Equatable, Sendable {
     public var isVisible: Bool { abs(delta) >= Self.minVisibleDelta - 1e-9 }
 
     /// Je Notiz mit genug Nächten: nur Nächte mit Befinden (1–5) zählen, je Nacht ihre Notizen
-    /// (nach Nachtdatum). `asleepByNight` = geschlafene Minuten je Nachtdatum, falls bekannt.
+    /// (nach Nachtdatum). Mehrere Nächte mit demselben Nachtdatum zählen einmal (die zuletzt geweckte),
+    /// wie in Kotlin. `asleepByNight` = geschlafene Minuten je Nachtdatum, falls bekannt.
     /// Sortiert nach |delta| absteigend, bei Gleichstand nach Kennung.
     public static func compute(nights: [NightRecord], notes: [String: [String]], asleepByNight: [String: Int] = [:],
                                calendar: Calendar) -> [NoteEffect] {
-        let rated = NightHistory.trim(nights).compactMap { night -> (date: String, feeling: Int)? in
-            night.feeling.map { (date: SleepNotes.nightDate(of: night, calendar: calendar), feeling: $0) }
+        var latest: [String: NightRecord] = [:]
+        for night in NightHistory.trim(nights) where night.feeling != nil {
+            let date = SleepNotes.nightDate(of: night, calendar: calendar)
+            if let known = latest[date], known.wokeAt >= night.wokeAt { continue }
+            latest[date] = night
+        }
+        let rated = latest.keys.sorted().compactMap { date -> (date: String, feeling: Int)? in
+            latest[date]?.feeling.map { (date: date, feeling: $0) }
         }
         let ids = SleepNotes.normalize(rated.flatMap { notes[$0.date] ?? [] })
         func average(_ values: [Int]) -> Double { Double(values.reduce(0, +)) / Double(values.count) }

@@ -81,6 +81,11 @@ final class PhoneModel {
                 }
             }
         }
+        // Einschlafklänge prüfen ihr Ende jede Minute gegen den aktuellen Plan.
+        sounds.currentWindowStart = { [weak self] in
+            guard let self else { return nil }
+            return AlarmSchedule.earliestPlan(self.alarms, now: Date(), doneUntil: self.doneUntil, calendar: .current)?.windowStart
+        }
     }
 
     func upsert(_ spec: AlarmSpec) {
@@ -118,7 +123,11 @@ final class PhoneModel {
         Task { await replanWeekly() }
     }
 
-    func watchRang() { lastRing = Date() }
+    /// Die Uhr weckt: Einschlafklänge enden sofort (wie Android), nie das Wecken überdecken.
+    func watchRang() {
+        lastRing = Date()
+        sounds.stop()
+    }
 
     /// Am iPhone gestoppt oder geschlummert, während es mit der Uhr klingelt: Die Uhr macht mit (wie Android).
     func phoneRingEnded(snooze: Bool) async {

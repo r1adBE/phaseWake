@@ -47,5 +47,5 @@
     <string name="notification_open">Deschide</string>
     <string name="home_good_night_too_far">Disponibil cu 16 h înainte de alarmă</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Pentru oprire, rezolvă calculul pe telefon</string>
+    <string name="wake_task_on_phone">Rezolvă calculul pe telefon sau ține apăsat 5 s</string>
 </resources>

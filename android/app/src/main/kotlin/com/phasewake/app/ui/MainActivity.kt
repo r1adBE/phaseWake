@@ -225,6 +225,12 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         if (!WeeklySummary.cardVisible(today)) null
         else WeeklySummary.of(nights.orEmpty(), sleeps, notes, zone, sleepGoal, WeeklySummary.weekEnd(today)).takeIf { it.hasData }
     }
+    // Text der nächsten Wochenrückblick-Mitteilung hier vorberechnen (App offen, neue Nacht, Befinden,
+    // Notizen): Im Hintergrund liest Health Connect ohne eigene Berechtigung keine Schlafdaten.
+    LaunchedEffect(weeklyReview, nights, sleeps, notes, sleepGoal, customNotes) {
+        val list = nights ?: return@LaunchedEffect
+        if (weeklyReview) app.weekly.prepare(list, sleeps, notes, sleepGoal, customNotes)
+    }
 
     // Geräusche aufnehmen: für diese Nacht gewählt, sonst die Vorgabe aus den Einstellungen – diese aber
     // erst ab der Bettzeit der kommenden Nacht (ohne Wecker ab 21 Uhr); davor nur von Hand. Bei jedem
@@ -247,8 +253,11 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             startRecording()
         }
     }
-    // Vorgabe in den Einstellungen: nur fragen, nichts starten.
-    val micPermissionDefault = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> micDenied = !granted }
+    // Vorgabe in den Einstellungen: nur fragen, nichts starten. Eingeschaltet bleibt sie nur mit Mikrofon (wie iPhone).
+    val micPermissionDefault = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        micDenied = !granted
+        if (granted) app.appScope.launch { app.settings.setSoundRecDefault(true) }
+    }
     fun onSoundRec(enabled: Boolean) {
         if (enabled && !hasMic()) {
             micPermission.launch(Manifest.permission.RECORD_AUDIO)
@@ -514,8 +523,12 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                     },
                     soundRecDefault = soundRecDefault,
                     onSoundRecDefault = { enabled ->
-                        if (enabled && !hasMic()) micPermissionDefault.launch(Manifest.permission.RECORD_AUDIO)
-                        app.appScope.launch { app.settings.setSoundRecDefault(enabled) }
+                        // Ohne Mikrofon erst fragen; gespeichert wird «an» erst nach der Zusage.
+                        if (enabled && !hasMic()) {
+                            micPermissionDefault.launch(Manifest.permission.RECORD_AUDIO)
+                        } else {
+                            app.appScope.launch { app.settings.setSoundRecDefault(enabled) }
+                        }
                     },
                     routineItems = routineItems,
                     onAddRoutineItem = { text -> app.appScope.launch { app.routine.add(text) } },

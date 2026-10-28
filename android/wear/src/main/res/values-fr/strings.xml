@@ -47,5 +47,5 @@
     <string name="notification_open">Ouvrir</string>
     <string name="home_good_night_too_far">Disponible dès 16 h avant le réveil</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Pour arrêter, résous le calcul sur ton téléphone</string>
+    <string name="wake_task_on_phone">Résous le calcul sur ton téléphone ou maintiens 5 s</string>
 </resources>

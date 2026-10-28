@@ -81,11 +81,14 @@ class PhoneRingService : Service() {
                 handler.removeCallbacks(unduck)
                 handler.postDelayed(unduck, TYPING_IDLE_MS)
             }
+            ACTION_TASK_SHOWN -> taskShown()
         }
         return START_NOT_STICKY
     }
 
     override fun onDestroy() {
+        // Vom System beendet, während die Aufgabe zu sehen war: Die Uhr erlaubt wieder Halten.
+        taskGone(state.value)
         release()
         state.value = State.Idle
         super.onDestroy()
@@ -165,6 +168,8 @@ class PhoneRingService : Service() {
                 phoneApp.backup.snoozeSafety(alarmId, safetyAt, done)
                 phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE)
             }
+            // Die Aufgabe ist hier weg; geht die Schlummer-Bitte verloren, erlaubt die Uhr so trotzdem gleich Halten.
+            taskGone(ringing)
             state.value = State.Idle
             stopSelf()
         } else {
@@ -201,6 +206,8 @@ class PhoneRingService : Service() {
         if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId)
         SunriseLight.stop(this)
         state.value = State.Idle
+        // Still beendet (Zeitgrenze, Handy-Weckart «Aus», «stop» der Uhr): Die Aufgabe ist weg, die Uhr erlaubt wieder Halten.
+        if (!notifyWatch) taskGone(before)
         // Auch beim Zweitwecker des Handys (oder dessen Schlummern): Die Uhr merkt die Nacht als erledigt
         // und holt sie nicht nach, falls sie gerade eine andere Nacht führt (zwei Wecker am selben Morgen).
         if (notifyWatch && before != State.Idle && (wasFromWatch || lastAlarmId != null)) {
@@ -208,6 +215,26 @@ class PhoneRingService : Service() {
             phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode()) }
         }
         stopSelf()
+    }
+
+    /** Ob die Uhr diese Nacht führt und hier die Weckaufgabe zu sehen ist (nur dann gilt die Bestätigung). */
+    private fun watchTask(s: State): Boolean = s is State.Ringing && s.fromWatch && s.wakeTask == WakeTask.MATH
+
+    /**
+     * Der Weckbildschirm zeigt die Aufgabe ([PhoneRingActivity], sofort und alle [DataLayer.TASK_SHOWN_REFRESH_MS]):
+     * der Uhr bestätigen. Erst damit schaltet sie das Halten ab; bleibt die Bestätigung aus, gilt dort wieder Halten.
+     */
+    private fun taskShown() {
+        if (!watchTask(state.value)) return
+        val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_SHOWN, message) }
+    }
+
+    /** Das Klingeln mit Aufgabe endet ungelöst: der Uhr melden, damit sie nicht bis zum Ablauf der Bestätigung wartet. */
+    private fun taskGone(before: State) {
+        if (!watchTask(before)) return
+        val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_GONE, message) }
     }
 
     private fun playSound(chosen: String) {
@@ -299,6 +326,9 @@ class PhoneRingService : Service() {
 
         /** Eingabe in der Weckaufgabe: Ton vorübergehend leiser. */
         const val ACTION_TYPING = "com.phasewake.app.ring.TYPING"
+
+        /** Der Weckbildschirm zeigt gerade die Aufgabe: der Uhr bestätigen ([DataLayer.PATH_TASK_SHOWN]). */
+        const val ACTION_TASK_SHOWN = "com.phasewake.app.ring.TASK_SHOWN"
         private const val TYPING_VOLUME = 0.5f
         private const val TYPING_IDLE_MS = 10_000L
         const val EXTRA_ALARM_ID = "alarmId"

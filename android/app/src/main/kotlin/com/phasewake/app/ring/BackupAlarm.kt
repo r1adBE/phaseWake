@@ -160,6 +160,8 @@ class BackupAlarm(
      * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr.
      */
     suspend fun watchRang(message: RingMessage) {
+        // Die Uhr weckt: Einschlafklänge enden immer, auch wenn das Handy selbst still bleibt (Weckart «Aus»).
+        com.phasewake.app.sounds.SleepSoundService.stop(context)
         if (message.isStale(now().toEpochMilli())) {
             Log.i(TAG, "Veraltete Weckmeldung der Uhr verworfen")
         } else if (backupAlreadyRang(message)) {

@@ -144,8 +144,26 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertEqual(SoundEvents.typeOf("shout"), .talk)
         XCTAssertEqual(SoundEvents.typeOf("Dog"), .other)
         XCTAssertEqual(SoundEvents.classify(["Snoring": 0.6, "Speech": 0.3, "Silence": 0.1]), .snore)
-        XCTAssertEqual(SoundEvents.classify(["Snoring": 0.2, "Breathing": 0.5]), .other)
+        // Nur Ziel-Bezeichnungen zählen: Atmen schlägt Schnarchen nicht.
+        XCTAssertEqual(SoundEvents.classify(["Snoring": 0.2, "Breathing": 0.5]), .snore)
+        XCTAssertEqual(SoundEvents.classify(["Snoring": 0.2, "Whispering": 0.1, "Speech": 0.3]), .talk)
+        // Unter dem Mindestwert: anderes.
+        XCTAssertEqual(SoundEvents.classify(["Snoring": 0.1, "Speech": 0.149, "Silence": 0.9]), .other)
+        XCTAssertEqual(SoundEvents.classify(["Snoring": 0.15, "Speech": 0.15]), .snore)
         XCTAssertEqual(SoundEvents.classify([:]), .other)
+    }
+
+    func testScoresAreAveragedOverFrames() {
+        // Fehlt eine Bezeichnung in einem Abschnitt, zählt sie dort als 0 (wie Kotlin).
+        let frames: [[String: Double]] = [["Snoring": 0.6, "Speech": 0.1], ["Speech": 0.3], ["Snoring": 0.0]]
+        let average = SoundEvents.averageScores(frames)
+        XCTAssertEqual(average["Snoring"]!, 0.2, accuracy: 1e-9)
+        XCTAssertEqual(average["Speech"]!, 0.4 / 3, accuracy: 1e-9)
+        XCTAssertEqual(SoundEvents.classify(average), .snore)
+        // Ein kurzer Ausreisser in einem von zehn Abschnitten reicht nicht.
+        let spike: [[String: Double]] = [["Speech": 0.9]] + Array(repeating: ["Silence": 0.9], count: 9)
+        XCTAssertEqual(SoundEvents.classify(SoundEvents.averageScores(spike)), .other)
+        XCTAssertEqual(SoundEvents.averageScores([]), [:])
     }
 
     func testLevelOfSilenceAndFullScale() {
@@ -158,7 +176,12 @@ final class SoundEventsTests: XCTestCase {
         let start = at("2026-10-27T22:00")
         XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T06:30")), at("2026-10-28T07:00"))
         XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: nil), at("2026-10-28T10:00"))
+        // Wecker mehr als 24 Std. entfernt: wie ohne Wecker.
         XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-29T06:30")), at("2026-10-28T10:00"))
+        // Früh eingeschaltet (18:00), Wecker 07:00 (13 Std.): bis Zielzeit + 30 Min, nicht schon um 06:00.
+        XCTAssertEqual(SoundEvents.recordingEnd(start: at("2026-10-27T18:00"), nextTarget: at("2026-10-28T07:00")), at("2026-10-28T07:30"))
+        // Genau 24 Std. zählt noch.
+        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T22:00")), at("2026-10-28T22:30"))
     }
 
     private func clip(_ time: String, _ type: SoundType, _ duration: Int64, _ peak: Int, file: String? = nil) -> SoundClip {

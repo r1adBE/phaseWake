@@ -190,13 +190,12 @@ final class SoundRecorder {
     }
 
     /// Nach Unterbrechung oder Wechsel des Mikrofons neu starten; die Zeit läuft mit einem neuen Bezug weiter.
+    /// Klappt das nicht (im Hintergrund oft nicht erlaubt), endet die Aufnahme sichtbar, statt scheinbar
+    /// weiterzulaufen; beim nächsten Öffnen der App startet sie wieder, wenn sie für diese Nacht gewünscht ist.
     private func restartIfNeeded() {
         guard running, engine?.isRunning != true else { return }
         stopEngine()
-        if !startEngine() {
-            // Neustart im Hintergrund nicht möglich: beim nächsten Wechsel erneut versuchen.
-            try? AudioSessionUse.activate()
-        }
+        if !startEngine() { stop() }
     }
 
     /// Ausserhalb des Main Actors: Der Block läuft auf dem Audio-Thread.
@@ -415,8 +414,9 @@ private enum ClipFile {
         return true
     }
 
-    /// Einordnung mit dem eingebauten Klassifikator (SoundAnalysis, auf dem Gerät): je Bezeichnung der
-    /// Höchstwert über den Ausschnitt. Klappt das nicht: «anderes» (der Ausschnitt bleibt).
+    /// Einordnung mit dem eingebauten Klassifikator (SoundAnalysis, auf dem Gerät): Werte je Bezeichnung
+    /// über alle Abschnitte gemittelt (`SoundEvents.averageScores`), dann `SoundEvents.classify` – wie
+    /// Android. Klappt das nicht: «anderes» (der Ausschnitt bleibt).
     static func classify(_ url: URL) -> SoundType {
         do {
             let request = try SNClassifySoundRequest(classifierIdentifier: .version1)
@@ -424,7 +424,7 @@ private enum ClipFile {
             let observer = ClipObserver()
             try analyzer.add(request, withObserver: observer)
             analyzer.analyze()
-            return SoundEvents.classify(observer.scores)
+            return SoundEvents.classify(SoundEvents.averageScores(observer.frames))
         } catch {
             return .other
         }
@@ -432,12 +432,13 @@ private enum ClipFile {
 }
 
 private final class ClipObserver: NSObject, SNResultsObserving {
-    var scores: [String: Double] = [:]
+    /// Werte je Bezeichnung, ein Eintrag je Abschnitt (Analysefenster).
+    var frames: [[String: Double]] = []
 
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult else { return }
-        for item in result.classifications {
-            scores[item.identifier] = max(scores[item.identifier] ?? 0, item.confidence)
-        }
+        var scores: [String: Double] = [:]
+        for item in result.classifications { scores[item.identifier] = item.confidence }
+        frames.append(scores)
     }
 }

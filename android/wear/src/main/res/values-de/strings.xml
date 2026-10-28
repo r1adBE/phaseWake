@@ -46,5 +46,5 @@
     <string name="notification_open">Öffnen</string>
     <string name="home_good_night_too_far">Ab 16 Std. vor dem Wecker möglich</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Zum Beenden die Aufgabe am Handy lösen</string>
+    <string name="wake_task_on_phone">Aufgabe am Handy lösen oder 5 s halten</string>
 </resources>

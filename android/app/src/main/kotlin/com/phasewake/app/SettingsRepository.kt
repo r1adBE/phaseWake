@@ -107,11 +107,26 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[WEEKLY_SHOWN_AT] = millis }
     }
 
+    /**
+     * Im Vordergrund vorberechneter Text des nächsten Wochenrückblicks: (letztes Nachtdatum der Woche, Text).
+     * Leerer Text: nichts zu berichten. Im Hintergrund liest Health Connect ohne eigene Berechtigung nichts.
+     */
+    suspend fun weeklyPrepared(): Pair<LocalDate, String>? {
+        val raw = store.data.first()[WEEKLY_PREPARED] ?: return null
+        val date = runCatching { LocalDate.parse(raw.substringBefore('|')) }.getOrNull() ?: return null
+        return date to raw.substringAfter('|', "")
+    }
+
+    suspend fun setWeeklyPrepared(weekEnd: LocalDate, text: String) {
+        store.edit { it[WEEKLY_PREPARED] = "$weekEnd|$text" }
+    }
+
     private companion object {
         val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")
         val SOUND_REC_NIGHT = stringPreferencesKey("sound_rec_night")
         val WEEKLY_REVIEW = booleanPreferencesKey("weekly_review")
         val WEEKLY_SHOWN_AT = longPreferencesKey("weekly_shown_at")
+        val WEEKLY_PREPARED = stringPreferencesKey("weekly_prepared")
         val THEME = stringPreferencesKey("theme_mode")
         val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
         val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")

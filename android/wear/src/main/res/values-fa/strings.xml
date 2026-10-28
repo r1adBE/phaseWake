@@ -46,5 +46,5 @@
     <string name="notification_open">باز کردن</string>
     <string name="home_good_night_too_far">از ۱۶ ساعت پیش از زنگ در دسترس است</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">برای قطع، مسئله را روی گوشی حل کن</string>
+    <string name="wake_task_on_phone">مسئله را روی گوشی حل کن یا ۵ ثانیه نگه دار</string>
 </resources>

@@ -145,7 +145,8 @@ fun HomeScreen(
             item(key = "check") { NightCheckCard(check, cardColor(), onFix) }
         }
         // Am Abend bis zum Weckfenster: Notizen für die kommende Nacht.
-        if (SleepNotes.entryVisible(now, zone, plan?.windowStart)) {
+        val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
+        if (evening) {
             val tonight = SleepNotes.nightDate(now, zone)
             item(key = "notes") {
                 TonightNotesCard(notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) })
@@ -155,9 +156,10 @@ fun HomeScreen(
                     RoutineCard(routineItems, routineTicks[tonight].orEmpty(), cardColor(), onToggle = { onToggleRoutine(tonight, it) })
                 }
             }
-            soundRec?.let { rec ->
-                item(key = "soundRec") { SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec) }
-            }
+        }
+        // Geräusche aufnehmen: am Abend, und solange die Aufnahme läuft auch danach (Stoppen, Restzeit), wie auf dem iPhone.
+        soundRec?.takeIf { evening || it.recording }?.let { rec ->
+            item(key = "soundRec") { SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec) }
         }
         if (onSounds != null) {
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }

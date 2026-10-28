@@ -42,8 +42,6 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -77,12 +75,15 @@ class WakeService : LifecycleService() {
         /** Uhr-Ton und Name aus [DirectBoot], solange der Wecker selbst nicht lesbar ist. */
         var lockedSound: Boolean = false,
         var lockedLabel: String = "",
-        /** Beenden nur über die Weckaufgabe am Handy (siehe [checkTaskOnPhone]). */
+        /** Der Wecker will die Weckaufgabe am Handy (siehe [checkTaskOnPhone]); bis zur Bestätigung gilt Halten. */
+        var taskWanted: Boolean = false,
+        /** Das Handy hat bestätigt, dass es die Aufgabe zeigt: Beenden hier nur noch im Notfall (langes Halten). */
         var taskOnPhone: Boolean = false,
+        /** Bis hierhin (elapsedRealtime) schaltet eine erste Bestätigung auf «Aufgabe am Handy». */
+        var taskAcceptUntil: Long = 0L,
     )
 
     private val app by lazy { wearApp }
-    private var taskCheck: kotlinx.coroutines.Job? = null
     private val handler = Handler(Looper.getMainLooper())
     private val escalation by lazy { Escalation(this) }
     private var wakeLock: PowerManager.WakeLock? = null
@@ -101,6 +102,7 @@ class WakeService : LifecycleService() {
     private val snoozeEnd = Runnable { ring() }
     private val ringTimeout = Runnable { onRingTimeout() }
     private val hardLimit = Runnable { onHardLimit() }
+    private val taskExpired = Runnable { taskFallback("Bestätigung des Handys abgelaufen") }
 
     /** Laufende Abschlüsse ([finishNight]); bis sie gespeichert und neu geplant haben, bleibt der Dienst. */
     private var finishing = 0
@@ -124,6 +126,8 @@ class WakeService : LifecycleService() {
             ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let(::startGoodNight)
             ACTION_GOOD_NIGHT_RESUME -> startGoodNight(null)
             ACTION_GOOD_NIGHT_CANCEL -> stopGoodNight()
+            ACTION_TASK_SHOWN -> if (isForThisNight(intent)) onTaskShown(remoteTarget(intent))
+            ACTION_TASK_GONE -> if (isForThisNight(intent) && isSameTarget(remoteTarget(intent))) taskFallback("Aufgabe am Handy beendet")
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: «Gute Nacht» über den Prüf-Alarm
             // wieder aufnehmen; nur dieser darf den Messdienst aus dem Hintergrund in den Vordergrund holen.
             null -> if (intent == null && DirectBoot.isUnlocked(this)) AlarmScheduler.armGoodNightCheck(this, Instant.now().plusSeconds(1))
@@ -149,6 +153,15 @@ class WakeService : LifecycleService() {
         val remote = intent.getStringExtra(EXTRA_REMOTE_ALARM_ID) ?: return true
         val current = night?.plan?.alarmId ?: return true
         return remote == current
+    }
+
+    private fun remoteTarget(intent: Intent): Long? =
+        if (intent.hasExtra(EXTRA_REMOTE_TARGET)) intent.getLongExtra(EXTRA_REMOTE_TARGET, 0L) else null
+
+    /** Nennt das Handy eine Zielzeit, muss sie die der laufenden Nacht sein (ohne Angabe: kein Widerspruch). */
+    private fun isSameTarget(target: Long?): Boolean {
+        val current = night?.plan?.target?.toEpochMilli() ?: return true
+        return target == null || target == current
     }
 
     override fun onDestroy() {
@@ -469,33 +482,44 @@ class WakeService : LifecycleService() {
     }
 
     /**
-     * Weckaufgabe ([WakeTask.MATH]): Die Uhr zeigt «Aufgabe am Handy lösen» statt Halten. Sicherheit:
-     * Nur wenn das Handy für diesen Wecker mitweckt und erreichbar ist; sonst – und sobald es nicht mehr
-     * erreichbar ist (alle [TASK_CHECK_MS] geprüft) – wieder Halten. Nie ein Wecker, der sich nicht beenden lässt.
+     * Weckaufgabe ([WakeTask.MATH]) zu Beginn jeder Klingel-Runde: Zuerst gilt Halten. Erst wenn das Handy
+     * innert [DataLayer.TASK_CONFIRM_MS] bestätigt, dass es die Aufgabe zeigt ([onTaskShown]), zeigt die Uhr
+     * «Aufgabe am Handy lösen». Bleibt die Bestätigung danach länger als [DataLayer.TASK_SHOWN_VALID_MS] aus
+     * oder meldet das Handy das Ende ([DataLayer.PATH_TASK_GONE]), gilt wieder Halten. Nie ein Wecker, der
+     * sich nicht beenden lässt; als Notausgang beendet langes Halten (5 s) immer.
      */
     private fun checkTaskOnPhone(n: Night) {
         val spec = n.spec
-        val wanted = !n.locked && spec != null && spec.wakeTask == WakeTask.MATH && spec.phone != PhoneAlert.OFF
-        n.taskOnPhone = wanted
-        taskCheck?.cancel()
-        if (!wanted) return
-        taskCheck = lifecycleScope.launch {
-            while (night === n && n.taskOnPhone && n.phase != Phase.MEASURING) {
-                val reachable = withTimeoutOrNull(TASK_REACH_TIMEOUT_MS) { app.sync.isReachable(DataLayer.CAPABILITY_PHONE) } ?: false
-                if (night !== n) return@launch
-                if (!reachable) {
-                    Log.i(TAG, "Handy nicht erreichbar: Beenden durch Halten")
-                    n.taskOnPhone = false
-                    when (n.phase) {
-                        Phase.RINGING -> publishRinging(n)
-                        Phase.SNOOZED -> (app.ringState.ui.value as? RingUi.Snoozed)?.let { app.ringState.publish(it.copy(taskOnPhone = false)) }
-                        Phase.MEASURING -> Unit
-                    }
-                    return@launch
-                }
-                delay(TASK_CHECK_MS)
-            }
+        n.taskWanted = !n.locked && spec != null && spec.wakeTask == WakeTask.MATH && spec.phone != PhoneAlert.OFF
+        n.taskOnPhone = false
+        n.taskAcceptUntil = if (n.taskWanted) SystemClock.elapsedRealtime() + DataLayer.TASK_CONFIRM_MS else 0L
+        handler.removeCallbacks(taskExpired)
+    }
+
+    /** Bestätigung des Handys: Aufgabe ist zu sehen. Eine verspätete erste Bestätigung ändert nichts mehr. */
+    private fun onTaskShown(target: Long?) {
+        val n = night ?: return
+        if (n.phase != Phase.RINGING || !n.taskWanted || !isSameTarget(target)) return
+        if (!n.taskOnPhone) {
+            if (SystemClock.elapsedRealtime() > n.taskAcceptUntil) return
+            Log.i(TAG, "Handy zeigt die Weckaufgabe")
+            n.taskOnPhone = true
+            publishRinging(n)
         }
+        handler.removeCallbacks(taskExpired)
+        handler.postDelayed(taskExpired, DataLayer.TASK_SHOWN_VALID_MS)
+    }
+
+    /** Zurück zu Halten, für den Rest dieser Klingel-Runde. */
+    private fun taskFallback(why: String) {
+        val n = night ?: return
+        handler.removeCallbacks(taskExpired)
+        if (!n.taskWanted && !n.taskOnPhone) return
+        Log.i(TAG, "$why: Beenden durch Halten")
+        n.taskWanted = false
+        val wasShown = n.taskOnPhone
+        n.taskOnPhone = false
+        if (wasShown && n.phase == Phase.RINGING) publishRinging(n)
     }
 
     /**
@@ -513,8 +537,12 @@ class WakeService : LifecycleService() {
         stopRinging()
         n.snoozes++
         n.phase = Phase.SNOOZED
+        // Beim Schlummern gilt auf der Uhr immer Halten: Das Handy-Klingeln mit der Aufgabe ist dann vorbei.
+        // Beim nächsten Klingeln beginnt die Bestätigung von vorn ([checkTaskOnPhone]).
+        handler.removeCallbacks(taskExpired)
+        n.taskOnPhone = false
         val until = Snooze.nextRing(Instant.now())
-        app.ringState.publish(RingUi.Snoozed(label(n), until, Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone))
+        app.ringState.publish(RingUi.Snoozed(label(n), until, Snooze.MAX_COUNT - n.snoozes))
         goForeground(Notifications.snoozed(this, formatTime(until)), measuring = false)
         AlarmScheduler.setSnoozeEnd(this, n.plan, until)
         // Startet die Uhr während des Schlummerns neu, weckt sie zum Schlummer-Ende (auch vor dem Entsperren).
@@ -688,9 +716,6 @@ class WakeService : LifecycleService() {
     companion object {
         private const val TAG = "WakeService"
 
-        /** Weckaufgabe: so oft prüfen, ob das Handy noch erreichbar ist, und so lange auf die Antwort warten. */
-        private const val TASK_CHECK_MS = 30_000L
-        private const val TASK_REACH_TIMEOUT_MS = 5_000L
         const val ACTION_START = "com.phasewake.app.wake.START"
         const val ACTION_DEADLINE = "com.phasewake.app.wake.DEADLINE"
         const val ACTION_SNOOZE_END = "com.phasewake.app.wake.SNOOZE_END"
@@ -700,9 +725,14 @@ class WakeService : LifecycleService() {
         const val ACTION_CANCEL = "com.phasewake.app.wake.CANCEL"
         const val ACTION_GOOD_NIGHT = "com.phasewake.app.wake.GOOD_NIGHT"
         const val ACTION_GOOD_NIGHT_CANCEL = "com.phasewake.app.wake.GOOD_NIGHT_CANCEL"
+
+        /** Vom Handy: Weckaufgabe ist zu sehen ([DataLayer.PATH_TASK_SHOWN]) bzw. ungelöst beendet ([DataLayer.PATH_TASK_GONE]). */
+        const val ACTION_TASK_SHOWN = "com.phasewake.app.wake.TASK_SHOWN"
+        const val ACTION_TASK_GONE = "com.phasewake.app.wake.TASK_GONE"
         private const val ACTION_GOOD_NIGHT_RESUME = "com.phasewake.app.wake.GOOD_NIGHT_RESUME"
         private const val EXTRA_ALARM_ID = "goodNightAlarmId"
         private const val EXTRA_REMOTE_ALARM_ID = "remoteAlarmId"
+        private const val EXTRA_REMOTE_TARGET = "remoteTarget"
         private val ONSET_GIVE_UP: Duration = Duration.ofMinutes(15)
 
         /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
@@ -768,10 +798,12 @@ class WakeService : LifecycleService() {
         /**
          * Befehl an den Dienst; [plan] erlaubt einen Neustart, falls er inzwischen beendet wurde.
          * [remoteAlarmId]: Wecker, den das Handy meint (aus [RingMessage]); `null` gilt für jede Nacht.
+         * [remoteTarget]: Zielzeit, die das Handy meint (nur für die Weckaufgabe geprüft).
          */
-        fun command(context: Context, action: String, plan: WakePlan? = null, remoteAlarmId: String? = null) {
+        fun command(context: Context, action: String, plan: WakePlan? = null, remoteAlarmId: String? = null, remoteTarget: Long? = null) {
             val intent = Intent(context, WakeService::class.java).setAction(action)
             if (remoteAlarmId != null) intent.putExtra(EXTRA_REMOTE_ALARM_ID, remoteAlarmId)
+            if (remoteTarget != null) intent.putExtra(EXTRA_REMOTE_TARGET, remoteTarget)
             if (plan != null) {
                 AlarmReceiver.putPlan(intent, plan)
                 ContextCompat.startForegroundService(context, intent)

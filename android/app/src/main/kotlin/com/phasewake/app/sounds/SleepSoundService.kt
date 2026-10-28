@@ -21,11 +21,15 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.NoiseGenerator
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
+import com.phasewake.app.phoneApp
 import com.phasewake.app.ui.MainActivity
 import java.time.Instant
+import java.time.ZoneId
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,6 +39,8 @@ import kotlinx.coroutines.flow.asStateFlow
  * AudioTrack auf dem Medien-Kanal (Medienlautstärke, nie der Wecker-Kanal). Vordergrund-Dienst
  * «mediaPlayback» mit Mitteilung zum Stoppen. Endet nach dem Timer oder spätestens zu Beginn des
  * nächsten Weckfensters, mit 30 s Ausblenden; verliert er den Audio-Fokus, pausiert oder stoppt er.
+ * Das Ende wird jede Minute mit dem aktuellen Plan verglichen (geänderte Wecker); klingelt die Uhr, endet
+ * er sofort (siehe [BackupAlarm.watchRang][com.phasewake.app.ring.BackupAlarm.watchRang]).
  */
 class SleepSoundService : Service() {
 
@@ -48,6 +54,31 @@ class SleepSoundService : Service() {
     @Volatile private var stopRequested = false
     @Volatile private var pendingSound: SleepSound? = null
     @Volatile private var endsAtMs: Long = NO_END
+
+    /**
+     * Jede Minute: Beginnt das nächste Weckfenster laut aktuellem Plan früher als das bisherige Ende
+     * (Wecker später gestellt oder geändert), endet der Klang dort. Nur kürzen, nie verlängern.
+     * Das Fenster eines Schlafdauer-Weckers nach dem Einschlafen kennt nur die Uhr; dort hilft das
+     * Stoppen beim Klingeln der Uhr.
+     */
+    private val recheckEnd = object : Runnable {
+        override fun run() {
+            val app = phoneApp
+            app.appScope.launch {
+                val now = Instant.now()
+                val window = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, ZoneId.systemDefault())?.windowStart ?: return@launch
+                val end = maxOf(window, now).toEpochMilli()
+                handler.post {
+                    val playing = state.value ?: return@post
+                    if (end >= endsAtMs) return@post
+                    endsAtMs = end
+                    state.value = playing.copy(endsAt = Instant.ofEpochMilli(end))
+                    getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification(playing.sound, end))
+                }
+            }
+            handler.postDelayed(this, RECHECK_MS)
+        }
+    }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -65,6 +96,7 @@ class SleepSoundService : Service() {
     }
 
     override fun onDestroy() {
+        handler.removeCallbacksAndMessages(null)
         running = false
         thread?.join(500)
         thread = null
@@ -78,6 +110,8 @@ class SleepSoundService : Service() {
         endsAtMs = endsAt
         stopRequested = false
         state.value = Playing(sound, endsAt.takeIf { it != NO_END }?.let(Instant::ofEpochMilli))
+        handler.removeCallbacks(recheckEnd)
+        handler.postDelayed(recheckEnd, RECHECK_MS)
         if (running) {
             // Läuft schon: kurz aus- und mit dem neuen Klang wieder einblenden.
             pendingSound = sound
@@ -190,6 +224,7 @@ class SleepSoundService : Service() {
     }
 
     private fun finish() {
+        handler.removeCallbacks(recheckEnd)
         state.value = null
         abandonFocus()
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
@@ -234,6 +269,9 @@ class SleepSoundService : Service() {
         private const val SAMPLE_RATE = 48_000
         private const val BLOCK_MS = 50f
         private const val QUICK_FADE_MS = 300f
+
+        /** So oft wird das Ende mit dem aktuellen Plan verglichen. */
+        private const val RECHECK_MS = 60_000L
 
         private val ATTRIBUTES: AudioAttributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_MEDIA)

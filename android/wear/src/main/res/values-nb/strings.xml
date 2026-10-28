@@ -46,5 +46,5 @@
     <string name="notification_open">Åpne</string>
     <string name="home_good_night_too_far">Tilgjengelig fra 16 t før alarmen</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Løs oppgaven på telefonen for å stoppe</string>
+    <string name="wake_task_on_phone">Løs oppgaven på telefonen eller hold 5 s</string>
 </resources>

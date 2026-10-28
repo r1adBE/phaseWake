@@ -137,6 +137,21 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(effects[1].delta, 4 - 2, accuracy: 1e-9)
     }
 
+    func testSameNightDateCountsOnce() {
+        // Zwei Wecker am selben Morgen: eine Nacht, das Befinden der zuletzt geweckten zählt (wie Kotlin).
+        let first = night("2026-09-01T06:00", feeling: 1)
+        let second = NightRecord(alarmId: "b", windowStart: first.windowStart.addingTimeInterval(1800), target: first.target,
+                                 wokeAt: first.wokeAt.addingTimeInterval(1800), reason: .lightSleep, snoozes: 0, epochs: [], feeling: 5)
+        var nights = [first, second]
+        for day in 2...6 { nights.append(night("2026-09-0\(day)T06:00", feeling: 3)) }
+        let notes = ["2026-08-31": ["NAP"], "2026-09-01": ["NAP"], "2026-09-02": ["NAP"]]
+        let effects = NoteEffect.compute(nights: nights, notes: notes, calendar: zurich)
+        XCTAssertEqual(effects.count, 1)
+        XCTAssertEqual(effects[0].nightsWith, 3)
+        XCTAssertEqual(effects[0].nightsWithout, 3)
+        XCTAssertEqual(effects[0].avgFeelingWith, (5.0 + 3 + 3) / 3, accuracy: 1e-9)
+    }
+
     func testSmallDeltaIsNotVisible() {
         let e = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.4, avgFeelingWithout: 3, avgAsleepWith: nil, avgAsleepWithout: nil)
         XCTAssertFalse(e.isVisible)

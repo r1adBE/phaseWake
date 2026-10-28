@@ -47,5 +47,5 @@
     <string name="notification_open">פתיחה</string>
     <string name="home_good_night_too_far">זמין מ-16 שעות לפני המעורר</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">כדי לעצור, לפתור את התרגיל בטלפון</string>
+    <string name="wake_task_on_phone">לפתור את התרגיל בטלפון או ללחוץ 5 שנ׳</string>
 </resources>

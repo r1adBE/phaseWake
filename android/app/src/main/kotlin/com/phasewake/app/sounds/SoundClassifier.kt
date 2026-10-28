@@ -28,7 +28,8 @@ class SoundClassifier(private val context: Context) : AutoCloseable {
             val options = AudioClassifier.AudioClassifierOptions.builder()
                 .setBaseOptions(BaseOptions.builder().setModelAssetPath(MODEL).build())
                 .setRunningMode(RunningMode.AUDIO_CLIPS)
-                .setMaxResults(MAX_RESULTS)
+                // Ohne Begrenzung: alle Bezeichnungen je Abschnitt, damit Schnarchen auch dann zählt,
+                // wenn andere (Atmen, Stille) höher liegen. Entschieden wird in [SoundEvents.classify].
                 .build()
             AudioClassifier.createFromOptions(context, options)
         } catch (e: Throwable) {
@@ -40,7 +41,10 @@ class SoundClassifier(private val context: Context) : AutoCloseable {
         return classifier
     }
 
-    /** Art des Ausschnitts [pcm] (16 kHz, mono) bis [length]: Werte je Bezeichnung über alle Abschnitte gemittelt. */
+    /**
+     * Art des Ausschnitts [pcm] (16 kHz, mono) bis [length]: Werte je Bezeichnung über alle Abschnitte
+     * gemittelt ([SoundEvents.averageScores]), dann [SoundEvents.classify] – wie auf dem iPhone.
+     */
     fun classify(pcm: ShortArray, length: Int): SoundType {
         val model = classifier() ?: return SoundType.OTHER
         return try {
@@ -54,18 +58,17 @@ class SoundClassifier(private val context: Context) : AutoCloseable {
             val data = AudioData.create(format, count)
             data.load(samples)
             val result = model.classify(data)
-            val sums = HashMap<String, Double>()
-            var windows = 0
-            for (window in result.classificationResults()) {
-                windows++
+            val frames = result.classificationResults().map { window ->
+                val scores = HashMap<String, Double>()
                 for (head in window.classifications()) {
                     for (category in head.categories()) {
                         val name = category.categoryName() ?: continue
-                        sums[name] = (sums[name] ?: 0.0) + category.score()
+                        scores[name] = maxOf(scores[name] ?: 0.0, category.score().toDouble())
                     }
                 }
+                scores
             }
-            SoundEvents.classify(sums.mapValues { it.value / maxOf(1, windows) })
+            SoundEvents.classify(SoundEvents.averageScores(frames))
         } catch (e: Exception) {
             Log.w(TAG, "Einordnen fehlgeschlagen", e)
             SoundType.OTHER
@@ -80,6 +83,5 @@ class SoundClassifier(private val context: Context) : AutoCloseable {
     companion object {
         private const val TAG = "SoundClassifier"
         const val MODEL = "yamnet.tflite"
-        private const val MAX_RESULTS = 5
     }
 }

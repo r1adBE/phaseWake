@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
@@ -18,6 +19,12 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
     <!-- Optional: Schlafphasen aus Health Connect nachträglich lesen (nur Lesen). -->
     <uses-permission android:name="android.permission.health.READ_SLEEP" />
+    <!--
+        Kein Internet: Bibliotheken (z. B. MediaPipe für das Geräusch-Modell) können diese Rechte beim
+        Zusammenführen der Manifeste einbringen. Hier ausdrücklich entfernt, wie in DATENSCHUTZ.md zugesagt.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
 
     <queries>
         <package android:name="com.google.android.apps.healthdata" />

@@ -5,7 +5,8 @@ import PhaseWakeCore
 
 /// Einschlafklänge über AVAudioEngine: Der Klang entsteht laufend im Code (keine Datei, keine Schleife),
 /// spielt als Medium (Medienlautstärke, nie als Wecker) und endet mit dem Timer, spätestens beim
-/// Weckfenster. Eine Unterbrechung (Anruf, Wecker) beendet ihn.
+/// Weckfenster. Eine Unterbrechung (Anruf, Wecker) beendet ihn, ebenso das Klingeln der Uhr
+/// (`PhoneModel.watchRang`). Das Ende wird jede Minute mit dem aktuellen Plan verglichen (wie Android).
 @MainActor
 @Observable
 final class SoundPlayer {
@@ -21,6 +22,10 @@ final class SoundPlayer {
     /// Jede Wiedergabe hat eine eigene Nummer, damit ein spätes Aufräumen keine neue beendet.
     @ObservationIgnored private var generation = 0
     @ObservationIgnored private var observers: [NSObjectProtocol] = []
+    /// Beginn des nächsten Weckfensters laut aktuellem Plan (setzt `PhoneModel`); jede Minute abgefragt.
+    @ObservationIgnored var currentWindowStart: () -> Date? = { nil }
+    @ObservationIgnored private var recheckTask: Task<Void, Never>?
+    @ObservationIgnored private var startedAt: Date?
 
     private static let sampleRate = 48_000.0
     /// Kurzes Ausblenden beim Stoppen und Wechseln, damit es nicht knackt.
@@ -110,15 +115,46 @@ final class SoundPlayer {
         self.state = state
         playing = sound
         endsAt = end
-        stopTask?.cancel()
-        if let end {
-            let number = generation
-            stopTask = Task { @MainActor in
-                // Ausgeblendet ist bei `end` schon; danach aufräumen.
-                try? await Task.sleep(for: .seconds(max(0, end.timeIntervalSinceNow) + 0.2))
-                if !Task.isCancelled, self.generation == number { self.teardown() }
+        startedAt = now
+        scheduleTeardown(at: end)
+        let number = generation
+        recheckTask?.cancel()
+        recheckTask = Task { @MainActor in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(60))
+                guard !Task.isCancelled, self.generation == number else { return }
+                self.shortenToWindow()
             }
         }
+    }
+
+    /// Räumt nach dem Ende auf (ausgeblendet ist dann schon).
+    private func scheduleTeardown(at end: Date?) {
+        stopTask?.cancel()
+        stopTask = nil
+        guard let end else { return }
+        let number = generation
+        stopTask = Task { @MainActor in
+            try? await Task.sleep(for: .seconds(max(0, end.timeIntervalSinceNow) + 0.2))
+            if !Task.isCancelled, self.generation == number { self.teardown() }
+        }
+    }
+
+    /// Beginnt das nächste Weckfenster laut aktuellem Plan früher als das bisherige Ende (Wecker später
+    /// gestellt oder geändert), endet der Klang dort. Nur kürzen, nie verlängern. Bleibt dafür weniger als
+    /// die Ausblendzeit, kurz ausblenden und stoppen (sonst spränge die Lautstärke).
+    private func shortenToWindow() {
+        guard playing != nil, let state, let startedAt, let window = currentWindowStart() else { return }
+        let now = Date()
+        let end = max(window, now)
+        if let endsAt, end >= endsAt { return }
+        guard end.timeIntervalSince(now) > SleepSounds.fadeOutSeconds else {
+            stop()
+            return
+        }
+        state.totalFrames = Int64(end.timeIntervalSince(startedAt) * Self.sampleRate)
+        endsAt = end
+        scheduleTeardown(at: end)
     }
 
     private func fadeOutQuickly() {
@@ -130,6 +166,9 @@ final class SoundPlayer {
         generation += 1
         stopTask?.cancel()
         stopTask = nil
+        recheckTask?.cancel()
+        recheckTask = nil
+        startedAt = nil
         releaseEngine()
         playing = nil
         endsAt = nil
@@ -161,14 +200,14 @@ final class SoundPlayer {
     }
 }
 
-/// Zustand des Audio-Threads. Der Main Actor setzt nur `stopFrame` (ein einzelner 64-Bit-Wert);
-/// alles andere gehört dem Audio-Thread.
+/// Zustand des Audio-Threads. Der Main Actor setzt nur `stopFrame` und beim Kürzen `totalFrames`
+/// (je ein einzelner 64-Bit-Wert); alles andere gehört dem Audio-Thread.
 private final class RenderState: @unchecked Sendable {
     var generator: NoiseGenerator
     let sampleRate: Double
     var frame: Int64 = 0
-    /// Spieldauer in Abtastwerten; `Int64.max` = ohne Ende.
-    let totalFrames: Int64
+    /// Spieldauer in Abtastwerten; `Int64.max` = ohne Ende. Wird nur gekürzt (früheres Weckfenster).
+    var totalFrames: Int64
     /// Stopp von Hand: bis hierhin kurz ausblenden; `Int64.max` = nicht gestoppt.
     var stopFrame = Int64.max
     private let quickFadeFrames: Double

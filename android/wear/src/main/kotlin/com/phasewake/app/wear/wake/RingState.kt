@@ -10,10 +10,14 @@ import kotlinx.coroutines.flow.asStateFlow
 sealed interface RingUi {
     data object Idle : RingUi
 
-    /** [taskOnPhone]: Weckaufgabe am Handy statt Halten (nur, solange das Handy erreichbar ist). */
+    /**
+     * [taskOnPhone]: Das Handy hat bestätigt, dass es die Weckaufgabe zeigt. Beenden hier dann nur noch
+     * durch langes Halten (Notausgang); ohne Bestätigung normales Halten.
+     */
     data class Ringing(val label: String, val reason: WakeReason, val since: Instant, val snoozesLeft: Int, val taskOnPhone: Boolean = false) : RingUi
 
-    data class Snoozed(val label: String, val until: Instant, val snoozesLeft: Int, val taskOnPhone: Boolean = false) : RingUi
+    /** Beim Schlummern gilt immer Halten, auch mit Weckaufgabe (das Handy klingelt dann nicht). */
+    data class Snoozed(val label: String, val until: Instant, val snoozesLeft: Int) : RingUi
 }
 
 class RingState {

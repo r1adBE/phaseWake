@@ -55,7 +55,7 @@ object SoundEvents {
     /** Die Aufnahme endet so lange nach der Zielzeit des nächsten Weckers. */
     val AFTER_TARGET: Duration = Duration.ofMinutes(30)
 
-    /** Ohne Wecker in dieser Zeit endet die Aufnahme spätestens nach so langer Zeit. */
+    /** Ohne Wecker innerhalb von [AUTO_START_LOOKAHEAD] endet die Aufnahme nach so langer Zeit. */
     val MAX_RUN: Duration = Duration.ofHours(12)
 
     /** Ohne Wecker in den nächsten [AUTO_START_LOOKAHEAD] startet die Vorgabe «für neue Nächte» ab dieser Stunde (Ortszeit). */
@@ -70,13 +70,16 @@ object SoundEvents {
     private val SAFE_FILE = Regex("[A-Za-z0-9._-]{1,80}")
 
     /**
-     * Ende der Aufnahme: Zielzeit des nächsten Weckers + [AFTER_TARGET]; liegt kein Wecker innerhalb
-     * von [MAX_RUN] (oder keiner), spätestens [start] + [MAX_RUN].
+     * Ende der Aufnahme: Zielzeit des nächsten Weckers + [AFTER_TARGET], wenn er innerhalb von
+     * [AUTO_START_LOOKAHEAD] liegt (auch mehr als [MAX_RUN] entfernt: früh eingeschaltet, später Wecker).
+     * Ohne Wecker in dieser Zeit: [start] + [MAX_RUN].
      */
-    fun recordingEnd(start: Instant, nextTarget: Instant?): Instant {
-        val latest = start.plus(MAX_RUN)
-        return if (nextTarget != null && nextTarget.isAfter(start) && !nextTarget.isAfter(latest)) nextTarget.plus(AFTER_TARGET) else latest
-    }
+    fun recordingEnd(start: Instant, nextTarget: Instant?): Instant =
+        if (nextTarget != null && nextTarget.isAfter(start) && !nextTarget.isAfter(start.plus(AUTO_START_LOOKAHEAD))) {
+            nextTarget.plus(AFTER_TARGET)
+        } else {
+            start.plus(MAX_RUN)
+        }
 
     /**
      * Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten
@@ -107,10 +110,35 @@ object SoundEvents {
         else -> SoundType.OTHER
     }
 
-    /** Art aus den Werten je Bezeichnung (z. B. gemittelt über den Ausschnitt): die Bezeichnung mit dem höchsten Wert. */
-    fun classify(scores: Map<String, Double>): SoundType =
-        scores.entries.filter { it.value > 0.0 }.maxWithOrNull(compareBy<Map.Entry<String, Double>> { it.value }.thenBy { it.key })
-            ?.let { typeOf(it.key) } ?: SoundType.OTHER
+    /** Mindestwert (gemittelt über den Ausschnitt), ab dem Schnarchen oder Sprechen gilt. */
+    const val MIN_SCORE: Double = 0.15
+
+    /**
+     * Werte je Bezeichnung über alle Abschnitte ([frames]) eines Ausschnitts gemittelt; fehlt eine
+     * Bezeichnung in einem Abschnitt, zählt sie dort als 0. Auf beiden Plattformen gleich.
+     */
+    fun averageScores(frames: List<Map<String, Double>>): Map<String, Double> {
+        if (frames.isEmpty()) return emptyMap()
+        val sums = HashMap<String, Double>()
+        for (frame in frames) for ((label, score) in frame) sums[label] = (sums[label] ?: 0.0) + score
+        return sums.mapValues { it.value / frames.size }
+    }
+
+    /**
+     * Art aus den gemittelten Werten je Bezeichnung ([averageScores]). Verglichen werden nur die
+     * Ziel-Bezeichnungen: der höchste Wert für Schnarchen gegen den höchsten für Sprechen. Andere
+     * Bezeichnungen («Breathing», «Snort», «Silence» …) zählen nicht mit; sie schlügen Schnarchen sonst oft.
+     * Liegen beide unter [MIN_SCORE]: [SoundType.OTHER]. Gleichstand: Schnarchen.
+     */
+    fun classify(scores: Map<String, Double>): SoundType {
+        val snore = scores.filterKeys { typeOf(it) == SoundType.SNORE }.values.maxOrNull() ?: 0.0
+        val talk = scores.filterKeys { typeOf(it) == SoundType.TALK }.values.maxOrNull() ?: 0.0
+        return when {
+            snore < MIN_SCORE && talk < MIN_SCORE -> SoundType.OTHER
+            snore >= talk -> SoundType.SNORE
+            else -> SoundType.TALK
+        }
+    }
 
     /** Pegel eines Blocks in dBFS (Effektivwert, 16-Bit-Werte); Stille ergibt [SILENCE_DB]. */
     fun levelDb(samples: ShortArray, from: Int = 0, to: Int = samples.size): Double {

@@ -47,5 +47,5 @@
     <string name="notification_open">Apri</string>
     <string name="home_good_night_too_far">Disponibile da 16 h prima della sveglia</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Per fermare, risolvi il calcolo sul telefono</string>
+    <string name="wake_task_on_phone">Risolvi il calcolo sul telefono o tieni premuto 5 s</string>
 </resources>

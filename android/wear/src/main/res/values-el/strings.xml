@@ -46,5 +46,5 @@
     <string name="notification_open">Άνοιγμα</string>
     <string name="home_good_night_too_far">Διαθέσιμο από 16 ώρες πριν το ξυπνητήρι</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Για διακοπή λύσε την πράξη στο τηλέφωνο</string>
+    <string name="wake_task_on_phone">Λύσε την πράξη στο τηλέφωνο ή κράτα 5 δ</string>
 </resources>

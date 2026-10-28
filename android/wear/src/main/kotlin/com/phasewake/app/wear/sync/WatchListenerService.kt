@@ -14,7 +14,7 @@ import com.google.android.gms.wearable.WearableListenerService
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt Wecker vom Handy und den Stopp-Befehl, wenn am Handy abgestellt wurde. */
+/** Empfängt Wecker vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, und die Meldungen zur Weckaufgabe. */
 class WatchListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -50,6 +50,9 @@ class WatchListenerService : WearableListenerService() {
             }
             // Hat die Uhr keine Schlummer-Runde mehr, antwortet der Dienst mit «klingeln».
             DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_PHONE_SNOOZE, remoteAlarmId = alarmId)
+            // Weckaufgabe: Das Handy zeigt sie (wiederholt) oder hat sie ungelöst beendet. Nur an einen laufenden Dienst.
+            DataLayer.PATH_TASK_SHOWN -> WakeService.command(this, WakeService.ACTION_TASK_SHOWN, remoteAlarmId = alarmId, remoteTarget = message.target)
+            DataLayer.PATH_TASK_GONE -> WakeService.command(this, WakeService.ACTION_TASK_GONE, remoteAlarmId = alarmId, remoteTarget = message.target)
         }
     }
 }

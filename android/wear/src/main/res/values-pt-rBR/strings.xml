@@ -47,5 +47,5 @@
     <string name="notification_open">Abrir</string>
     <string name="home_good_night_too_far">Disponível a partir de 16 h antes do alarme</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Para parar, resolva a conta no celular</string>
+    <string name="wake_task_on_phone">Resolva a conta no celular ou segure 5 s</string>
 </resources>

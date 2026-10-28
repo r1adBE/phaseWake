@@ -46,5 +46,5 @@
     <string name="notification_open">Megnyitás</string>
     <string name="home_good_night_too_far">Az ébresztő előtt 16 órától elérhető</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">A leállításhoz oldd meg a feladatot a telefonon</string>
+    <string name="wake_task_on_phone">Oldd meg a feladatot a telefonon, vagy tartsd 5 mp-ig</string>
 </resources>

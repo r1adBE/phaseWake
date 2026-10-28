@@ -46,5 +46,5 @@
     <string name="notification_open">Openen</string>
     <string name="home_good_night_too_far">Beschikbaar vanaf 16 u voor de wekker</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Los de som op je telefoon op om te stoppen</string>
+    <string name="wake_task_on_phone">Los de som op je telefoon op of houd 5 s vast</string>
 </resources>

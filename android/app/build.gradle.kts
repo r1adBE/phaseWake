@@ -78,7 +78,8 @@ dependencies {
 }
 
 // Geräusch-Modell YAMNet (Apache-2.0) beim ersten Bauen laden; liegt nicht im Repo.
-// Ohne Netz baut die App trotzdem: Geräusche gelten dann als «Anderes Geräusch».
+// Ohne Netz baut die Debug-App trotzdem (nur Warnung): Geräusche gelten dann als «Anderes Geräusch».
+// Ein Release bricht ohne Modell ab (checkYamnet), damit keine App ohne Einordnung ausgeliefert wird.
 val yamnetModel: File = layout.projectDirectory.file("src/main/assets/yamnet.tflite").asFile
 val downloadYamnet = tasks.register("downloadYamnet") {
     description = "Lädt yamnet.tflite, falls es fehlt."
@@ -98,3 +99,15 @@ val downloadYamnet = tasks.register("downloadYamnet") {
     }
 }
 tasks.named("preBuild") { dependsOn(downloadYamnet) }
+val checkYamnet = tasks.register("checkYamnet") {
+    description = "Bricht ab, wenn yamnet.tflite fehlt (nur für Release-Builds)."
+    val target = yamnetModel
+    dependsOn(downloadYamnet)
+    doLast {
+        if (!target.isFile || target.length() == 0L) {
+            throw GradleException("yamnet.tflite fehlt in src/main/assets (Download fehlgeschlagen?). Release ohne Modell abgebrochen, siehe README.")
+        }
+    }
+}
+// Nur für Release-Varianten; die Aufgabe entsteht erst mit den Varianten, darum über configureEach.
+tasks.configureEach { if (name == "preReleaseBuild") dependsOn(checkYamnet) }

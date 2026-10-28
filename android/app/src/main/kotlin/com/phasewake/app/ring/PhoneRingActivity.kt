@@ -34,7 +34,11 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
+import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.R
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
@@ -63,6 +67,19 @@ class PhoneRingActivity : ComponentActivity() {
                 val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
                 // Bildschirm bleibt auch beim Schlummern bewusst an: Das Aufstehen soll nicht verzögert werden.
                 LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
+                // Weckaufgabe einer Nacht der Uhr: Solange dieser Bildschirm sichtbar ist und die Aufgabe zeigt,
+                // der Uhr bestätigen (sofort, dann regelmässig). Ohne Bestätigung gilt auf der Uhr wieder Halten.
+                val lifecycle = LocalLifecycleOwner.current.lifecycle
+                val showsWatchTask = (state as? PhoneRingService.State.Ringing)?.let { it.fromWatch && it.wakeTask == WakeTask.MATH } == true
+                LaunchedEffect(showsWatchTask) {
+                    if (!showsWatchTask) return@LaunchedEffect
+                    lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        while (true) {
+                            PhoneRingService.command(this@PhoneRingActivity, PhoneRingService.ACTION_TASK_SHOWN)
+                            delay(DataLayer.TASK_SHOWN_REFRESH_MS)
+                        }
+                    }
+                }
                 val sunrise = when (val s = state) {
                     is PhoneRingService.State.Ringing -> s.sunrise
                     is PhoneRingService.State.Snoozed -> s.sunrise

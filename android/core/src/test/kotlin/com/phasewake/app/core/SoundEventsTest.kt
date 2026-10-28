@@ -147,8 +147,27 @@ class SoundEventsTest {
         assertEquals(SoundType.TALK, SoundEvents.typeOf("shout"))
         assertEquals(SoundType.OTHER, SoundEvents.typeOf("Dog"))
         assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.6, "Speech" to 0.3, "Silence" to 0.1)))
-        assertEquals(SoundType.OTHER, SoundEvents.classify(mapOf("Snoring" to 0.2, "Breathing" to 0.5)))
+        // Nur Ziel-Bezeichnungen zählen: Atmen schlägt Schnarchen nicht.
+        assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.2, "Breathing" to 0.5)))
+        assertEquals(SoundType.TALK, SoundEvents.classify(mapOf("Snoring" to 0.2, "Whispering" to 0.1, "Speech" to 0.3)))
+        // Unter dem Mindestwert: anderes.
+        assertEquals(SoundType.OTHER, SoundEvents.classify(mapOf("Snoring" to 0.1, "Speech" to 0.149, "Silence" to 0.9)))
+        assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.15, "Speech" to 0.15)))
         assertEquals(SoundType.OTHER, SoundEvents.classify(emptyMap()))
+    }
+
+    @Test
+    fun scoresAreAveragedOverFrames() {
+        // Fehlt eine Bezeichnung in einem Abschnitt, zählt sie dort als 0.
+        val frames = listOf(mapOf("Snoring" to 0.6, "Speech" to 0.1), mapOf("Speech" to 0.3), mapOf("Snoring" to 0.0))
+        val average = SoundEvents.averageScores(frames)
+        assertEquals(0.2, average.getValue("Snoring"), 1e-9)
+        assertEquals(0.4 / 3, average.getValue("Speech"), 1e-9)
+        assertEquals(SoundType.SNORE, SoundEvents.classify(average))
+        // Ein kurzer Ausreisser in einem von zehn Abschnitten reicht nicht.
+        val spike = listOf(mapOf("Speech" to 0.9)) + List(9) { mapOf("Silence" to 0.9) }
+        assertEquals(SoundType.OTHER, SoundEvents.classify(SoundEvents.averageScores(spike)))
+        assertEquals(emptyMap(), SoundEvents.averageScores(emptyList()))
     }
 
     @Test
@@ -163,7 +182,12 @@ class SoundEventsTest {
         val start = at("2026-10-27T22:00")
         assertEquals(at("2026-10-28T07:00"), SoundEvents.recordingEnd(start, at("2026-10-28T06:30")))
         assertEquals(at("2026-10-28T10:00"), SoundEvents.recordingEnd(start, null))
+        // Wecker mehr als 24 Std. entfernt: wie ohne Wecker.
         assertEquals(at("2026-10-28T10:00"), SoundEvents.recordingEnd(start, at("2026-10-29T06:30")))
+        // Früh eingeschaltet (18:00), Wecker 07:00 (13 Std.): bis Zielzeit + 30 Min, nicht schon um 06:00.
+        assertEquals(at("2026-10-28T07:30"), SoundEvents.recordingEnd(at("2026-10-27T18:00"), at("2026-10-28T07:00")))
+        // Genau 24 Std. zählt noch.
+        assertEquals(at("2026-10-28T22:30"), SoundEvents.recordingEnd(start, at("2026-10-28T22:00")))
     }
 
     private fun clip(time: String, type: SoundType, duration: Long, peak: Int, file: String = "$time.m4a".replace(":", "-")) =

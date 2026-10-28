@@ -103,6 +103,9 @@ class RingActivity : ComponentActivity() {
 
 private const val HOLD_MILLIS = 1200
 
+/** Notausgang bei der Weckaufgabe am Handy: so lange halten beendet immer. */
+private const val EMERGENCY_HOLD_MILLIS = 5000
+
 /** Darunter gilt das Display als klein (kleine runde Uhren haben etwa 192 dp). */
 private const val COMPACT_HEIGHT_DP = 210
 
@@ -111,15 +114,13 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
-    val holdLabel = stringResource(R.string.ring_hold_to_stop)
     // Kleine runde Displays (um 192 dp): kleinerer Punkt, knappere Abstände, damit unten nichts abgeschnitten wird.
     val compact = LocalConfiguration.current.screenHeightDp < COMPACT_HEIGHT_DP
-    // Weckaufgabe am Handy: hier kein Halten (fällt die Verbindung weg, schaltet der Dienst auf Halten zurück).
-    val taskOnPhone = when (ui) {
-        is RingUi.Ringing -> ui.taskOnPhone
-        is RingUi.Snoozed -> ui.taskOnPhone
-        RingUi.Idle -> false
-    }
+    // Weckaufgabe am Handy (vom Handy bestätigt): Halten nur noch als Notausgang, dafür lange.
+    // Bleibt die Bestätigung aus, schaltet der Dienst auf normales Halten zurück; beim Schlummern gilt immer Halten.
+    val taskOnPhone = (ui as? RingUi.Ringing)?.taskOnPhone == true
+    val holdMillis = if (taskOnPhone) EMERGENCY_HOLD_MILLIS else HOLD_MILLIS
+    val holdLabel = stringResource(if (taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop)
 
     Box(Modifier.fillMaxSize().nightGlow(), contentAlignment = Alignment.Center) {
         // Fortschritt des Haltens als Ring am Rand.
@@ -140,23 +141,27 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
             PulsingDot(
                 Modifier
                     .size(if (compact) 48.dp else 76.dp)
-                    .then(if (taskOnPhone) Modifier else Modifier.semantics {
+                    // Auch mit Aufgabe beendet die Bedienungshilfe (Notausgang, wie langes Halten).
+                    .semantics {
                         contentDescription = holdLabel
                         onClick(label = holdLabel) { onDismiss(); true }
-                    })
-                    .pointerInput(taskOnPhone) {
-                        if (taskOnPhone) return@pointerInput
+                    }
+                    .pointerInput(holdMillis) {
                         detectTapGestures(onPress = {
                             haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                             val hold = scope.launch {
-                                progress.animateTo(1f, tween(HOLD_MILLIS, easing = LinearEasing))
+                                progress.animateTo(1f, tween(holdMillis, easing = LinearEasing))
                                 haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                                 onDismiss()
                             }
-                            tryAwaitRelease()
-                            if (progress.value < 1f) {
-                                hold.cancel()
-                                scope.launch { progress.animateTo(0f, tween(250)) }
+                            // Auch wenn die Geste abbricht (Wechsel zwischen Halten und Aufgabe): kein Beenden ohne Halten.
+                            try {
+                                tryAwaitRelease()
+                            } finally {
+                                if (progress.value < 1f) {
+                                    hold.cancel()
+                                    scope.launch { progress.animateTo(0f, tween(250)) }
+                                }
                             }
                         })
                     },
@@ -230,9 +235,9 @@ private fun Snoozed(ui: RingUi.Snoozed) {
         style = MaterialTheme.typography.titleMedium,
         textAlign = TextAlign.Center,
     )
-    // Beenden auch hier nur durch Halten (Punkt oben) oder mit der Aufgabe am Handy.
+    // Beenden auch hier durch Halten (Punkt oben), auch mit Weckaufgabe.
     Text(
-        stringResource(if (ui.taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop),
+        stringResource(R.string.ring_hold_to_stop),
         style = MaterialTheme.typography.labelSmall,
         color = Brand.Muted,
         textAlign = TextAlign.Center,

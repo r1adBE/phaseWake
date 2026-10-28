@@ -24,6 +24,28 @@ object DataLayer {
     const val PATH_SNOOZE = "/phasewake/snooze"
 
     /**
+     * Nachricht Handy → Uhr: Die Weckaufgabe ist auf dem Handy wirklich zu sehen; Inhalt = [RingMessage]
+     * (Kennung, Zielzeit). Kommt sofort und dann alle [TASK_SHOWN_REFRESH_MS], solange sie sichtbar ist.
+     * Erst damit schaltet die Uhr das Halten ab; bleibt die Meldung aus, gilt dort wieder Halten.
+     */
+    const val PATH_TASK_SHOWN = "/phasewake/task-shown"
+
+    /**
+     * Nachricht Handy → Uhr: Das Handy-Klingeln mit Weckaufgabe endete, ohne dass sie gelöst wurde
+     * (Zeitgrenze, Dienst beendet). Die Uhr erlaubt sofort wieder Halten. Inhalt = [RingMessage].
+     */
+    const val PATH_TASK_GONE = "/phasewake/task-gone"
+
+    /** So oft wiederholt das Handy [PATH_TASK_SHOWN]. */
+    const val TASK_SHOWN_REFRESH_MS = 30_000L
+
+    /** So lange gilt eine Meldung [PATH_TASK_SHOWN] auf der Uhr; danach wieder Halten. */
+    const val TASK_SHOWN_VALID_MS = 60_000L
+
+    /** Nur so lange nach dem Klingeln schaltet eine erste Meldung [PATH_TASK_SHOWN] auf «Aufgabe am Handy». */
+    const val TASK_CONFIRM_MS = 10_000L
+
+    /**
      * Datenpaket Handy → Uhr: Verlauf auf Wunsch des Nutzers löschen; Schlüssel [KEY_UPDATED_AT].
      * Ein Paket statt einer Nachricht, damit es auch eine gerade nicht erreichbare Uhr erreicht.
      */

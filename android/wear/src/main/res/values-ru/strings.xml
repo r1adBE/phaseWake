@@ -48,5 +48,5 @@
     <string name="notification_open">Открыть</string>
     <string name="home_good_night_too_far">Доступно за 16 ч до будильника</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Чтобы выключить, реши пример на телефоне</string>
+    <string name="wake_task_on_phone">Реши пример на телефоне или удерживай 5 с</string>
 </resources>

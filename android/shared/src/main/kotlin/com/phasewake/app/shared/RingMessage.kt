@@ -1,7 +1,7 @@
 package com.phasewake.app.shared
 
 /**
- * Inhalt der Nachrichten [DataLayer.PATH_RING] und [DataLayer.PATH_STOP]:
+ * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und [DataLayer.PATH_TASK_GONE]:
  * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs».
  * Ältere Versionen schicken nur die Kennung (oder nichts); fehlende Felder sind dann `null`.
  *

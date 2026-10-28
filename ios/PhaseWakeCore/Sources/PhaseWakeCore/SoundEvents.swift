@@ -61,7 +61,7 @@ public enum SoundEvents {
     public static let maxClipsPerNight = 40
     /// Die Aufnahme endet so lange nach der Zielzeit des nächsten Weckers.
     public static let afterTarget: TimeInterval = 30 * 60
-    /// Ohne Wecker in dieser Zeit endet die Aufnahme spätestens nach so langer Zeit.
+    /// Ohne Wecker innerhalb von `autoStartLookahead` endet die Aufnahme nach so langer Zeit.
     public static let maxRun: TimeInterval = 12 * 3600
     /// Ohne Wecker in den nächsten 24 Std. startet die Vorgabe «für neue Nächte» ab dieser Stunde (Ortszeit).
     public static let autoStartHour = 21
@@ -71,12 +71,14 @@ public enum SoundEvents {
     public static let sampleRate = 16_000
     public static let silenceDb = -140.0
 
-    /// Ende der Aufnahme: Zielzeit des nächsten Weckers + 30 Min; liegt kein Wecker innerhalb von 12 Std.
-    /// (oder keiner), spätestens `start` + 12 Std.
+    /// Ende der Aufnahme: Zielzeit des nächsten Weckers + 30 Min, wenn er innerhalb von 24 Std. liegt
+    /// (auch mehr als 12 Std. entfernt: früh eingeschaltet, später Wecker). Ohne Wecker in dieser Zeit:
+    /// `start` + 12 Std. Identisch zu Kotlin `recordingEnd`.
     public static func recordingEnd(start: Date, nextTarget: Date?) -> Date {
-        let latest = start.addingTimeInterval(maxRun)
-        if let nextTarget, nextTarget > start, nextTarget <= latest { return nextTarget.addingTimeInterval(afterTarget) }
-        return latest
+        if let nextTarget, nextTarget > start, nextTarget <= start.addingTimeInterval(autoStartLookahead) {
+            return nextTarget.addingTimeInterval(afterTarget)
+        }
+        return start.addingTimeInterval(maxRun)
     }
 
     /// Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten darf:
@@ -104,11 +106,27 @@ public enum SoundEvents {
         }
     }
 
-    /// Art aus den Werten je Bezeichnung (z. B. Höchstwert über den Ausschnitt): die Bezeichnung mit dem
-    /// höchsten Wert (bei Gleichstand die alphabetisch letzte, wie Kotlin `maxWith … thenBy key`).
+    /// Mindestwert (gemittelt über den Ausschnitt), ab dem Schnarchen oder Sprechen gilt.
+    public static let minScore = 0.15
+
+    /// Werte je Bezeichnung über alle Abschnitte (`frames`) eines Ausschnitts gemittelt; fehlt eine
+    /// Bezeichnung in einem Abschnitt, zählt sie dort als 0. Identisch zu Kotlin `averageScores`.
+    public static func averageScores(_ frames: [[String: Double]]) -> [String: Double] {
+        guard !frames.isEmpty else { return [:] }
+        var sums: [String: Double] = [:]
+        for frame in frames { for (label, score) in frame { sums[label, default: 0] += score } }
+        return sums.mapValues { $0 / Double(frames.count) }
+    }
+
+    /// Art aus den gemittelten Werten je Bezeichnung (`averageScores`). Verglichen werden nur die
+    /// Ziel-Bezeichnungen: der höchste Wert für Schnarchen gegen den höchsten für Sprechen. Andere
+    /// Bezeichnungen («Breathing», «Snort», «Silence» …) zählen nicht mit. Liegen beide unter `minScore`:
+    /// `other`. Gleichstand: Schnarchen. Identisch zu Kotlin `classify`.
     public static func classify(_ scores: [String: Double]) -> SoundType {
-        let best = scores.filter { $0.value > 0 }.max { $0.value != $1.value ? $0.value < $1.value : $0.key < $1.key }
-        return best.map { typeOf($0.key) } ?? .other
+        let snore = scores.filter { typeOf($0.key) == .snore }.values.max() ?? 0
+        let talk = scores.filter { typeOf($0.key) == .talk }.values.max() ?? 0
+        if snore < minScore && talk < minScore { return .other }
+        return snore >= talk ? .snore : .talk
     }
 
     /// Pegel eines Blocks in dBFS (Effektivwert, Werte −1…1); Stille ergibt −140.

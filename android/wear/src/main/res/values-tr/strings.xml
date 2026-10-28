@@ -46,5 +46,5 @@
     <string name="notification_open">Aç</string>
     <string name="home_good_night_too_far">Alarmdan 16 saat önce kullanılabilir</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">Durdurmak için işlemi telefonda çöz</string>
+    <string name="wake_task_on_phone">İşlemi telefonda çöz veya 5 sn basılı tut</string>
 </resources>
