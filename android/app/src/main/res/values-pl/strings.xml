@@ -23,7 +23,7 @@
 
     <string name="reason_light">Lekki sen</string>
     <string name="reason_awake">Już nie śpisz</string>
-    <string name="reason_deadline">Czas docelowy</string>
+    <string name="reason_deadline">Nie wykryto płytkiego snu</string>
     <string name="woke_early">%1$d min przed czasem docelowym · %2$s</string>
     <string name="woke_on_time">W czasie docelowym · %1$s</string>
     <string name="no_snooze">bez drzemki</string>

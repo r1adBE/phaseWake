@@ -23,7 +23,7 @@
 
     <string name="reason_light">خواب سبک</string>
     <string name="reason_awake">از قبل بیدار</string>
-    <string name="reason_deadline">زمان هدف</string>
+    <string name="reason_deadline">خواب سبک تشخیص داده نشد</string>
     <string name="woke_early">%1$d دق قبل از زمان هدف · %2$s</string>
     <string name="woke_on_time">در زمان هدف · %1$s</string>
     <string name="no_snooze">بدون چرت</string>

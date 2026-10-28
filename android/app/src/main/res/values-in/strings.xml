@@ -23,7 +23,7 @@
 
     <string name="reason_light">Tidur ringan</string>
     <string name="reason_awake">Sudah bangun</string>
-    <string name="reason_deadline">Waktu target</string>
+    <string name="reason_deadline">Tidur ringan tidak terdeteksi</string>
     <string name="woke_early">%1$d mnt sebelum target · %2$s</string>
     <string name="woke_on_time">Tepat waktu target · %1$s</string>
     <string name="no_snooze">tanpa tunda</string>

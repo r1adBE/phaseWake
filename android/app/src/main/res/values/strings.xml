@@ -25,7 +25,7 @@
 
     <string name="reason_light">Light sleep</string>
     <string name="reason_awake">Already awake</string>
-    <string name="reason_deadline">Target time</string>
+    <string name="reason_deadline">No light sleep detected</string>
     <string name="woke_early">%1$d min before target · %2$s</string>
     <string name="woke_on_time">At target time · %1$s</string>
     <string name="no_snooze">no snooze</string>

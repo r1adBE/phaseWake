@@ -23,7 +23,7 @@
 
     <string name="reason_light">Lätt sömn</string>
     <string name="reason_awake">Redan vaken</string>
-    <string name="reason_deadline">Måltid</string>
+    <string name="reason_deadline">Ingen lätt sömn upptäckt</string>
     <string name="woke_early">%1$d min före måltid · %2$s</string>
     <string name="woke_on_time">Vid måltid · %1$s</string>
     <string name="no_snooze">ingen snooze</string>

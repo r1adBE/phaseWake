@@ -23,7 +23,7 @@
 
     <string name="reason_light">หลับตื้น</string>
     <string name="reason_awake">ตื่นอยู่แล้ว</string>
-    <string name="reason_deadline">เวลาเป้าหมาย</string>
+    <string name="reason_deadline">ไม่พบช่วงหลับตื้น</string>
     <string name="woke_early">ก่อนเป้าหมาย %1$d นาที · %2$s</string>
     <string name="woke_on_time">ตรงเวลาเป้าหมาย · %1$s</string>
     <string name="no_snooze">ไม่ปลุกซ้ำ</string>

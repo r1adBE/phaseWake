@@ -23,7 +23,7 @@
 
     <string name="reason_light">Könnyű alvás</string>
     <string name="reason_awake">Már ébren</string>
-    <string name="reason_deadline">Célidő</string>
+    <string name="reason_deadline">Nem észlelt könnyű alvást</string>
     <string name="woke_early">%1$d p a célidő előtt · %2$s</string>
     <string name="woke_on_time">Célidőben · %1$s</string>
     <string name="no_snooze">nincs szundi</string>

@@ -23,7 +23,7 @@
 
     <string name="reason_light">Lehký spánek</string>
     <string name="reason_awake">Už vzhůru</string>
-    <string name="reason_deadline">Cílový čas</string>
+    <string name="reason_deadline">Lehký spánek nezjištěn</string>
     <string name="woke_early">%1$d min před cílovým časem · %2$s</string>
     <string name="woke_on_time">V cílový čas · %1$s</string>
     <string name="no_snooze">bez odložení</string>

@@ -23,7 +23,7 @@
 
     <string name="reason_light">浅睡</string>
     <string name="reason_awake">已经醒了</string>
-    <string name="reason_deadline">目标时间</string>
+    <string name="reason_deadline">未检测到浅睡</string>
     <string name="woke_early">比目标提前 %1$d 分钟 · %2$s</string>
     <string name="woke_on_time">目标时间 · %1$s</string>
     <string name="no_snooze">未贪睡</string>

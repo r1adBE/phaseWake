@@ -23,7 +23,7 @@
 
     <string name="reason_light">Kevyt uni</string>
     <string name="reason_awake">Jo hereillä</string>
-    <string name="reason_deadline">Tavoiteaika</string>
+    <string name="reason_deadline">Kevyttä unta ei havaittu</string>
     <string name="woke_early">%1$d min ennen tavoiteaikaa · %2$s</string>
     <string name="woke_on_time">Tavoiteaikana · %1$s</string>
     <string name="no_snooze">ei torkkua</string>

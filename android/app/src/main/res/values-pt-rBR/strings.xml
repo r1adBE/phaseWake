@@ -23,7 +23,7 @@
 
     <string name="reason_light">Sono leve</string>
     <string name="reason_awake">Já acordado</string>
-    <string name="reason_deadline">Horário-alvo</string>
+    <string name="reason_deadline">Nenhum sono leve detectado</string>
     <string name="woke_early">%1$d min antes do horário-alvo · %2$s</string>
     <string name="woke_on_time">No horário-alvo · %1$s</string>
     <string name="no_snooze">sem soneca</string>

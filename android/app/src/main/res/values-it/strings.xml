@@ -23,7 +23,7 @@
 
     <string name="reason_light">Sonno leggero</string>
     <string name="reason_awake">Già sveglio</string>
-    <string name="reason_deadline">Orario obiettivo</string>
+    <string name="reason_deadline">Nessun sonno leggero rilevato</string>
     <string name="woke_early">%1$d min prima dell\'orario obiettivo · %2$s</string>
     <string name="woke_on_time">All\'orario obiettivo · %1$s</string>
     <string name="no_snooze">senza posticipo</string>

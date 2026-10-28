@@ -23,7 +23,7 @@
 
     <string name="reason_light">Ελαφρύς ύπνος</string>
     <string name="reason_awake">Ήδη σε εγρήγορση</string>
-    <string name="reason_deadline">Ώρα στόχου</string>
+    <string name="reason_deadline">Δεν εντοπίστηκε ελαφρύς ύπνος</string>
     <string name="woke_early">%1$d λ. πριν τον στόχο · %2$s</string>
     <string name="woke_on_time">Στην ώρα στόχου · %1$s</string>
     <string name="no_snooze">χωρίς αναβολή</string>

@@ -23,7 +23,7 @@
 
     <string name="reason_light">हल्की नींद</string>
     <string name="reason_awake">पहले से जागे</string>
-    <string name="reason_deadline">लक्ष्य समय</string>
+    <string name="reason_deadline">हल्की नींद नहीं मिली</string>
     <string name="woke_early">लक्ष्य से %1$d मि. पहले · %2$s</string>
     <string name="woke_on_time">लक्ष्य समय पर · %1$s</string>
     <string name="no_snooze">बिना स्नूज़</string>

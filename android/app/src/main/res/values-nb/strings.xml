@@ -23,7 +23,7 @@
 
     <string name="reason_light">Lett søvn</string>
     <string name="reason_awake">Allerede våken</string>
-    <string name="reason_deadline">Ønsket tid</string>
+    <string name="reason_deadline">Ingen lett søvn oppdaget</string>
     <string name="woke_early">%1$d min før ønsket tid · %2$s</string>
     <string name="woke_on_time">På ønsket tid · %1$s</string>
     <string name="no_snooze">ingen slumring</string>

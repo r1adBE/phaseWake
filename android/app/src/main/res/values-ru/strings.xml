@@ -23,7 +23,7 @@
 
     <string name="reason_light">Лёгкий сон</string>
     <string name="reason_awake">Уже не спишь</string>
-    <string name="reason_deadline">Целевое время</string>
+    <string name="reason_deadline">Лёгкий сон не обнаружен</string>
     <string name="woke_early">за %1$d мин до цели · %2$s</string>
     <string name="woke_on_time">В целевое время · %1$s</string>
     <string name="no_snooze">без откладывания</string>

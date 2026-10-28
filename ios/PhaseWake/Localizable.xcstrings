@@ -27054,193 +27054,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الوقت المحدد"
+            "value": "لم يُرصد نوم خفيف"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cílový čas"
+            "value": "Lehký spánek nezjištěn"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ønsket tid"
+            "value": "Ingen let søvn registreret"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zielzeit"
+            "value": "Kein leichter Schlaf erkannt"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ώρα στόχου"
+            "value": "Δεν εντοπίστηκε ελαφρύς ύπνος"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Target time"
+            "value": "No light sleep detected"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora objetivo"
+            "value": "No se detectó sueño ligero"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "زمان هدف"
+            "value": "خواب سبک تشخیص داده نشد"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tavoiteaika"
+            "value": "Kevyttä unta ei havaittu"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heure cible"
+            "value": "Aucun sommeil léger détecté"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "שעת היעד"
+            "value": "לא זוהתה שינה קלה"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "लक्ष्य समय"
+            "value": "हल्की नींद नहीं मिली"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Célidő"
+            "value": "Nem észlelt könnyű alvást"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waktu target"
+            "value": "Tidur ringan tidak terdeteksi"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Orario obiettivo"
+            "value": "Nessun sonno leggero rilevato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標時刻"
+            "value": "浅い眠りは検出されず"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목표 시간"
+            "value": "얕은 수면이 감지되지 않음"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Masa sasaran"
+            "value": "Tiada tidur ringan dikesan"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ønsket tid"
+            "value": "Ingen lett søvn oppdaget"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Doeltijd"
+            "value": "Geen lichte slaap gedetecteerd"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Czas docelowy"
+            "value": "Nie wykryto płytkiego snu"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Horário-alvo"
+            "value": "Nenhum sono leve detectado"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora-alvo"
+            "value": "Nenhum sono leve detetado"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ora țintă"
+            "value": "Nu s-a detectat somn ușor"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Целевое время"
+            "value": "Лёгкий сон не обнаружен"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Måltid"
+            "value": "Ingen lätt sömn upptäckt"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เวลาเป้าหมาย"
+            "value": "ไม่พบช่วงหลับตื้น"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hedef saat"
+            "value": "Hafif uyku algılanmadı"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Цільовий час"
+            "value": "Легкий сон не виявлено"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Giờ mục tiêu"
+            "value": "Không phát hiện giấc ngủ nông"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "目标时间"
+            "value": "未检测到浅睡"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標時間"
+            "value": "未偵測到淺眠"
           }
         }
       }

@@ -23,7 +23,7 @@
 
     <string name="reason_light">Leichter Schlaf</string>
     <string name="reason_awake">Schon wach</string>
-    <string name="reason_deadline">Zielzeit</string>
+    <string name="reason_deadline">Kein leichter Schlaf erkannt</string>
     <string name="woke_early">%1$d Min vor der Zielzeit · %2$s</string>
     <string name="woke_on_time">Zur Zielzeit · %1$s</string>
     <string name="no_snooze">ohne Schlummern</string>

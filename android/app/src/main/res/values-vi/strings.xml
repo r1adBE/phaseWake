@@ -23,7 +23,7 @@
 
     <string name="reason_light">Ngủ nông</string>
     <string name="reason_awake">Đã thức sẵn</string>
-    <string name="reason_deadline">Giờ mục tiêu</string>
+    <string name="reason_deadline">Không phát hiện giấc ngủ nông</string>
     <string name="woke_early">Sớm %1$d phút so với mục tiêu · %2$s</string>
     <string name="woke_on_time">Đúng giờ mục tiêu · %1$s</string>
     <string name="no_snooze">không báo lại</string>

@@ -23,7 +23,7 @@
 
     <string name="reason_light">Lichte slaap</string>
     <string name="reason_awake">Al wakker</string>
-    <string name="reason_deadline">Doeltijd</string>
+    <string name="reason_deadline">Geen lichte slaap gedetecteerd</string>
     <string name="woke_early">%1$d min voor de doeltijd · %2$s</string>
     <string name="woke_on_time">Op de doeltijd · %1$s</string>
     <string name="no_snooze">zonder snooze</string>

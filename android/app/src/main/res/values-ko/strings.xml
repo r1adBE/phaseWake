@@ -23,7 +23,7 @@
 
     <string name="reason_light">얕은 잠</string>
     <string name="reason_awake">이미 깨어 있음</string>
-    <string name="reason_deadline">목표 시간</string>
+    <string name="reason_deadline">얕은 수면이 감지되지 않음</string>
     <string name="woke_early">목표 %1$d분 전 · %2$s</string>
     <string name="woke_on_time">목표 시간에 · %1$s</string>
     <string name="no_snooze">다시 알림 없음</string>

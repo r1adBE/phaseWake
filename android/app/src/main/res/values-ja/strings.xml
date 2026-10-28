@@ -23,7 +23,7 @@
 
     <string name="reason_light">浅い眠り</string>
     <string name="reason_awake">すでに起床</string>
-    <string name="reason_deadline">目標時刻</string>
+    <string name="reason_deadline">浅い眠りは検出されず</string>
     <string name="woke_early">目標の%1$d分前 · %2$s</string>
     <string name="woke_on_time">目標時刻ちょうど · %1$s</string>
     <string name="no_snooze">スヌーズなし</string>

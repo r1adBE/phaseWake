@@ -23,7 +23,7 @@
 
     <string name="reason_light">نوم خفيف</string>
     <string name="reason_awake">مستيقظ بالفعل</string>
-    <string name="reason_deadline">الوقت المحدد</string>
+    <string name="reason_deadline">لم يُرصد نوم خفيف</string>
     <string name="woke_early">قبل الموعد بـ %1$d د · %2$s</string>
     <string name="woke_on_time">في الموعد · %1$s</string>
     <string name="no_snooze">بلا غفوة</string>

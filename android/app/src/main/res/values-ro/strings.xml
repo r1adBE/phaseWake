@@ -23,7 +23,7 @@
 
     <string name="reason_light">Somn ușor</string>
     <string name="reason_awake">Deja treaz</string>
-    <string name="reason_deadline">Ora țintă</string>
+    <string name="reason_deadline">Nu s-a detectat somn ușor</string>
     <string name="woke_early">%1$d min înainte de ora țintă · %2$s</string>
     <string name="woke_on_time">La ora țintă · %1$s</string>
     <string name="no_snooze">fără amânare</string>

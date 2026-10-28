@@ -23,7 +23,7 @@
 
     <string name="reason_light">שינה קלה</string>
     <string name="reason_awake">כבר ערים</string>
-    <string name="reason_deadline">שעת היעד</string>
+    <string name="reason_deadline">לא זוהתה שינה קלה</string>
     <string name="woke_early">%1$d דק׳ לפני היעד · %2$s</string>
     <string name="woke_on_time">בשעת היעד · %1$s</string>
     <string name="no_snooze">בלי נודניק</string>

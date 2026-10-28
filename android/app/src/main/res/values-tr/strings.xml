@@ -23,7 +23,7 @@
 
     <string name="reason_light">Hafif uyku</string>
     <string name="reason_awake">Zaten uyanık</string>
-    <string name="reason_deadline">Hedef saat</string>
+    <string name="reason_deadline">Hafif uyku algılanmadı</string>
     <string name="woke_early">Hedeften %1$d dk önce · %2$s</string>
     <string name="woke_on_time">Hedef saatte · %1$s</string>
     <string name="no_snooze">erteleme yok</string>
