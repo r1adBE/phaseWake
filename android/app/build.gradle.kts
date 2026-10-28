@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -78,7 +80,7 @@ dependencies {
 // Geräusch-Modell YAMNet (Apache-2.0) beim ersten Bauen laden; liegt nicht im Repo.
 // Ohne Netz baut die App trotzdem: Geräusche gelten dann als «Anderes Geräusch».
 val yamnetModel: File = layout.projectDirectory.file("src/main/assets/yamnet.tflite").asFile
-val downloadYamnet by tasks.registering {
+val downloadYamnet = tasks.register("downloadYamnet") {
     description = "Lädt yamnet.tflite, falls es fehlt."
     val target = yamnetModel
     outputs.file(target)
@@ -86,9 +88,9 @@ val downloadYamnet by tasks.registering {
     doLast {
         try {
             target.parentFile.mkdirs()
-            val url = java.net.URI("https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite").toURL()
+            val url = URI("https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite").toURL()
             val temp = File(target.parentFile, "yamnet.tflite.part")
-            url.openStream().use { input -> temp.outputStream().use { input.copyTo(it) } }
+            url.openStream().use { input -> temp.outputStream().use { output -> input.copyTo(output) } }
             if (!temp.renameTo(target)) temp.delete()
         } catch (e: Exception) {
             logger.warn("yamnet.tflite nicht geladen (${e.message}); Geräusche werden nicht eingeordnet.")
