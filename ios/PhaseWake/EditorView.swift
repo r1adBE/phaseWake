@@ -146,7 +146,8 @@ struct EditorView: View {
             watchSound: watchSound,
             sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
             sound: existing?.sound ?? "",
-            label: String(label.trimmingCharacters(in: .whitespaces).prefix(40))
+            label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
+            sunrise: existing?.sunrise ?? .off
         ) {
             model.upsert(spec)
         }

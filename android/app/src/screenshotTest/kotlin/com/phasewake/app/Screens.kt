@@ -16,6 +16,8 @@ import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ring.RingScreen
+import com.phasewake.app.ring.SunriseScreen
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.home.HomeScreen
@@ -32,7 +34,7 @@ import java.time.Instant
 private val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
 private val alarms = listOf(
-    AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit"),
+    AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit", sunrise = Sunrise.WINDOW),
     AlarmSpec(id = "weekend", hour = 9, minute = 30, days = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY), enabled = false, phone = PhoneAlert.VIBRATE, sleepDurationMinutes = 450),
 )
 
@@ -110,6 +112,21 @@ fun SettingsDark() = Themed(ThemeMode.DARK) {
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable
 fun RingPhone() = Themed(ThemeMode.DARK) {
     RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {})
+}
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Sonnenaufgang Anfang", device = PHONE) @Composable
+fun SunriseEarly() = Themed(ThemeMode.DARK) {
+    SunriseScreen(progress = 0.3f, now = java.time.LocalDate.now().atTime(6, 39).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {})
+}
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Sonnenaufgang Mitte", device = PHONE) @Composable
+fun SunriseMiddle() = Themed(ThemeMode.DARK) {
+    SunriseScreen(progress = 0.55f, now = java.time.LocalDate.now().atTime(6, 46).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {})
+}
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Wecken mit Sonnenaufgang", device = PHONE) @Composable
+fun RingSunrise() = Themed(ThemeMode.DARK) {
+    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {}, onSnooze = {}, light = 0.92f)
 }
 
 private const val PHONE = "spec:width=411dp,height=891dp"

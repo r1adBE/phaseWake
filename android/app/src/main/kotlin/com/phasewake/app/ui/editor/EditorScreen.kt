@@ -12,6 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
 import androidx.core.content.IntentCompat
 import com.phasewake.app.core.PhoneAlert
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WindowAdvice
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
@@ -92,6 +93,7 @@ fun EditorScreen(
     var phone by remember { mutableStateOf(base.phone) }
     var watchSound by remember { mutableStateOf(base.watchSound) }
     var sound by remember { mutableStateOf(base.sound) }
+    var sunrise by remember { mutableStateOf(base.sunrise) }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
         if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
@@ -108,6 +110,7 @@ fun EditorScreen(
         watchSound = watchSound,
         sound = sound,
         label = label.trim(),
+        sunrise = sunrise,
         enabled = true,
     )
 
@@ -263,6 +266,25 @@ fun EditorScreen(
                         Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                         Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
                     }
+                }
+            }
+
+            Section {
+                Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
+                Choice(
+                    options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
+                    selected = sunrise,
+                    onSelect = { sunrise = it },
+                )
+                AnimatedVisibility(sunrise != Sunrise.OFF) {
+                    Text(
+                        if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
+                        else stringResource(R.string.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
                 }
             }
 

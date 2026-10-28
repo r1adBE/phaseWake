@@ -16,6 +16,7 @@ import java.time.DayOfWeek
  * @property sound Weckton des Handys als Uri-Text; leer = Standard-Weckton des Systems.
  * @property sleepDurationMinutes Optional: Zielzeit = Einschlafzeit + Dauer, höchstens [hour]:[minute].
  * @property label Freier Name, z. B. «Arbeit».
+ * @property sunrise Sonnenaufgang auf dem Handy-Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters.
  */
 data class AlarmSpec(
     val id: String,
@@ -29,6 +30,7 @@ data class AlarmSpec(
     val sound: String = "",
     val sleepDurationMinutes: Int? = null,
     val label: String = "",
+    val sunrise: Sunrise = Sunrise.OFF,
 ) {
     init {
         require(id.isNotBlank()) { "id darf nicht leer sein" }
@@ -70,4 +72,37 @@ enum class PhoneAlert {
 
     /** Ton (sanft lauter werdend) und Vibration. */
     SOUND,
+}
+
+/**
+ * Sonnenaufgang auf dem Handy: Der Bildschirm leuchtet erst schwach dunkelorange und wird bis
+ * zu vollem, warmem Licht bei voller Helligkeit. Unabhängig von [PhoneAlert].
+ */
+enum class Sunrise {
+    /** Kein Licht. */
+    OFF,
+
+    /** Beginnt im Weckmoment und ist nach [RING_SECONDS] Sekunden voll hell. */
+    RING,
+
+    /** Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell; weckt die Uhr früher, in [CATCH_UP_SECONDS] Sekunden. */
+    WINDOW;
+
+    companion object {
+        const val RING_SECONDS: Int = 120
+        const val CATCH_UP_SECONDS: Int = 60
+
+        /** Fortschritt 0–1 eines Lichts von [start] bis [end] zum Zeitpunkt [now]. */
+        fun progress(start: java.time.Instant, end: java.time.Instant, now: java.time.Instant): Float {
+            val total = java.time.Duration.between(start, end).toMillis()
+            if (total <= 0) return 1f
+            return (java.time.Duration.between(start, now).toMillis().toFloat() / total).coerceIn(0f, 1f)
+        }
+
+        /** Bildschirmhelligkeit 0.01–1 zum Fortschritt: am Anfang sehr dunkel, dann schneller heller. */
+        fun brightness(progress: Float): Float {
+            val p = progress.coerceIn(0f, 1f)
+            return 0.01f + 0.99f * p * p
+        }
+    }
 }

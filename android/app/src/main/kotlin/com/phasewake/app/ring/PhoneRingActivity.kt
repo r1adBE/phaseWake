@@ -18,12 +18,17 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,16 +37,19 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.core.Snooze
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.Night as NightColors
 import com.phasewake.app.ui.components.PulsingDot
+import com.phasewake.app.ui.components.SunriseBackground
+import com.phasewake.app.ui.components.SunriseSky
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
 import kotlinx.coroutines.delay
 
-/** Weckbildschirm des Handys: immer im Nachtblau, unabhängig vom gewählten Design. */
+/** Weckbildschirm des Handys: Nachtblau oder – wenn gewählt – Sonnenaufgang, unabhängig vom gewählten Design. */
 class PhoneRingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +60,31 @@ class PhoneRingActivity : ComponentActivity() {
             PhaseWakeTheme(ThemeMode.DARK) {
                 val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
                 LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
+                val sunrise = when (val s = state) {
+                    is PhoneRingService.State.Ringing -> s.sunrise
+                    is PhoneRingService.State.Snoozed -> s.sunrise
+                    PhoneRingService.State.Idle -> Sunrise.OFF
+                }
+                val light = remember { Animatable(0f) }
+                LaunchedEffect(sunrise, (state as? PhoneRingService.State.Ringing)?.lightFrom) {
+                    val ringing = state as? PhoneRingService.State.Ringing ?: return@LaunchedEffect
+                    if (sunrise == Sunrise.OFF) return@LaunchedEffect
+                    // Nur heller werden, nie zurück (z. B. nach dem Schlummern).
+                    if (ringing.lightFrom > light.value) light.snapTo(ringing.lightFrom)
+                    // Lief schon ein Licht ab Weckfenster: in einer Minute voll. Sonst zwei Minuten von dunkel.
+                    val millis = if (ringing.lightFrom > 0f) Sunrise.CATCH_UP_SECONDS * 1000 else (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
+                    light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
+                }
+                LaunchedEffect(sunrise) {
+                    snapshotFlow { light.value }.collect { value ->
+                        window.attributes = window.attributes.apply {
+                            screenBrightness = if (sunrise == Sunrise.OFF) WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE else Sunrise.brightness(value)
+                        }
+                    }
+                }
                 RingScreen(
                     state = state,
+                    light = if (sunrise == Sunrise.OFF) null else light.value,
                     onStop = { PhoneRingService.command(this, PhoneRingService.ACTION_STOP) },
                     onSnooze = { PhoneRingService.command(this, PhoneRingService.ACTION_SNOOZE) },
                 )
@@ -65,7 +96,7 @@ class PhoneRingActivity : ComponentActivity() {
 private val Night = NightColors.Bottom
 
 @Composable
-internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit) {
+internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
         while (true) {
@@ -73,33 +104,40 @@ internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSno
             now = Instant.now()
         }
     }
-    AnimatedNight(Modifier.fillMaxSize()) {
+    // Mit Sonnenaufgang: Licht statt Nachthimmel, Farben passen sich der Helligkeit an.
+    val sky = light?.let { SunriseSky.colors(it) }
+    val content = sky?.content ?: Color.White
+    val muted = sky?.contentMuted ?: NightColors.Muted
+    val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
+        if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize()) { inner() }
+    }
+    background {
     Column(
         Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        PulsingDot(Modifier.size(180.dp), color = NightColors.Wave, dot = Color.White)
+        PulsingDot(Modifier.size(180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
         Spacer(Modifier.height(24.dp))
-        Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = Color.White)
-        Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = NightColors.Muted)
+        Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = content)
+        Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = muted)
         Spacer(Modifier.height(48.dp))
         when (state) {
             is PhoneRingService.State.Ringing -> {
                 Button(
                     onClick = onStop,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Night),
+                    colors = ButtonDefaults.buttonColors(containerColor = content, contentColor = if (content == Color.White) Night else Color.White),
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                 ) { Text(stringResource(R.string.ring_stop), style = MaterialTheme.typography.titleMedium) }
                 if (state.snoozesLeft > 0) {
                     Spacer(Modifier.height(12.dp))
-                    OutlinedButton(onClick = onSnooze, modifier = Modifier.fillMaxWidth().height(56.dp)) {
-                        Text(stringResource(R.string.ring_snooze, Snooze.MINUTES, state.snoozesLeft), color = Color.White)
+                    OutlinedButton(onClick = onSnooze, border = BorderStroke(1.dp, content.copy(alpha = 0.5f)), modifier = Modifier.fillMaxWidth().height(56.dp)) {
+                        Text(stringResource(R.string.ring_snooze, Snooze.MINUTES, state.snoozesLeft), color = content)
                     }
                 }
             }
             is PhoneRingService.State.Snoozed ->
-                Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = Color.White)
+                Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = content)
             PhoneRingService.State.Idle -> Unit
         }
     }

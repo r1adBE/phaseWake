@@ -24,7 +24,7 @@ Noch kein Wecker gestellt: ein Knopf für den ersten, darunter die letzte Nacht.
 
 ### Wecker einstellen
 
-Weckzeit oder Schlafdauer, Weckfenster von 10 bis 30 Minuten, Wochentage und Weckart für Uhr und Handy.
+Weckzeit oder Schlafdauer, Weckfenster von 10 bis 30 Minuten, Wochentage, Weckart für Uhr und Handy und Sonnenaufgang.
 
 <p>
 <img src="app/EditorDark.png" width="280" alt="Wecker einstellen, dunkel">
@@ -54,6 +54,16 @@ Hell, Dunkel oder System, Export, Verlauf löschen, Health Connect.
 Der Zweitwecker klingelt zusammen mit der Uhr. Stoppen oder 5 Minuten schlummern, höchstens 3×.
 
 <img src="app/RingPhone.png" width="280" alt="Wecken auf dem Handy">
+
+### Sonnenaufgang (Option)
+
+Der Bildschirm leuchtet erst schwach dunkelorange und wird bis zu hellem, warmem Licht bei voller Helligkeit – ab Weckfenster oder beim Wecken. Die Schrift wechselt mit dem Licht von hell auf dunkel.
+
+<p>
+<img src="app/SunriseEarly.png" width="200" alt="Sonnenaufgang am Anfang">
+<img src="app/SunriseMiddle.png" width="200" alt="Sonnenaufgang in der Mitte">
+<img src="app/RingSunrise.png" width="200" alt="Wecken mit Sonnenaufgang">
+</p>
 
 ## Uhr
 

@@ -121,4 +121,15 @@
     <string name="editor_advice_title">Tip: a larger window</string>
     <string name="editor_advice_text">In %1$d of the last %2$d nights there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</string>
     <string name="editor_advice_apply">Use %1$d min</string>
+    <string name="channel_sunrise">Sunrise</string>
+    <string name="channel_sunrise_description">Lights up your screen like a sunrise before you wake.</string>
+    <string name="sunrise_title">Sunrise</string>
+    <string name="sunrise_text">Your screen slowly gets brighter until you wake up.</string>
+    <string name="sunrise_off">Turn off light</string>
+    <string name="editor_sunrise">Sunrise on your phone</string>
+    <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness. Place your phone screen up.</string>
+    <string name="sunrise_ring">On waking</string>
+    <string name="sunrise_window">From window</string>
+    <string name="editor_sunrise_ring_hint">Starts when you’re woken and is fully bright after %1$d minutes.</string>
+    <string name="editor_sunrise_window_hint">Starts with the wake window and is fully bright at the target time.</string>
 </resources>

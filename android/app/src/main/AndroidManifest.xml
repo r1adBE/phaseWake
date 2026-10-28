@@ -62,6 +62,13 @@
             android:launchMode="singleInstance"
             android:taskAffinity="com.phasewake.app.ring" />
 
+        <activity
+            android:name=".ring.SunriseActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity="com.phasewake.app.sunrise" />
+
         <service
             android:name=".ring.PhoneRingService"
             android:exported="false"

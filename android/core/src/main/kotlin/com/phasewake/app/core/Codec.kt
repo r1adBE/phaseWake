@@ -20,8 +20,11 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
-    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name */
-    private const val FIELDS = 11
+    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang */
+    private const val FIELDS = 12
+
+    /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
+    private const val FIELDS_V1 = 11
 
     private val dayCodes = mapOf(
         DayOfWeek.MONDAY to "MO", DayOfWeek.TUESDAY to "TU", DayOfWeek.WEDNESDAY to "WE",
@@ -44,6 +47,7 @@ object Codec {
                 a.sleepDurationMinutes?.toString().orEmpty(),
                 escape(a.sound),
                 escape(a.label),
+                a.sunrise.name,
             ).joinToString(SEP)).append('\n')
         }
     }
@@ -54,7 +58,7 @@ object Codec {
         return lines.drop(1).mapIndexed { index, line ->
             parse("Wecker ${index + 1}") {
                 val f = line.split(SEP)
-                require(f.size == FIELDS) { "$FIELDS Felder erwartet, ${f.size} gefunden" }
+                require(f.size == FIELDS || f.size == FIELDS_V1) { "$FIELDS Felder erwartet, ${f.size} gefunden" }
                 AlarmSpec(
                     id = unescape(f[0]),
                     hour = f[1].toInt(),
@@ -69,6 +73,7 @@ object Codec {
                     sleepDurationMinutes = f[8].ifEmpty { null }?.toInt(),
                     sound = unescape(f[9]),
                     label = unescape(f[10]),
+                    sunrise = if (f.size > FIELDS_V1) Sunrise.valueOf(f[11]) else Sunrise.OFF,
                 )
             }
         }

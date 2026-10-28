@@ -21,7 +21,7 @@ public enum Codec {
                 escape(a.id), String(a.hour), String(a.minute),
                 a.days.sorted().map { dayCodes[$0]! }.joined(separator: ","),
                 String(a.windowMinutes), a.enabled ? "1" : "0", a.phone.rawValue, a.watchSound ? "1" : "0",
-                a.sleepDurationMinutes.map(String.init) ?? "", escape(a.sound), escape(a.label),
+                a.sleepDurationMinutes.map(String.init) ?? "", escape(a.sound), escape(a.label), a.sunrise.rawValue,
             ].joined(separator: "|") + "\n"
         }
         return out
@@ -32,7 +32,9 @@ public enum Codec {
         guard lines.first == alarmsHeader else { throw CodecError(description: "Unbekanntes Weckerformat") }
         return try lines.dropFirst().enumerated().map { index, line in
             let f = line.components(separatedBy: "|")
-            guard f.count == 11 else { throw CodecError(description: "Wecker \(index + 1): 11 Felder erwartet") }
+            // 12 Felder; ältere Stände ohne Sonnenaufgang haben 11.
+            guard f.count == 12 || f.count == 11 else { throw CodecError(description: "Wecker \(index + 1): 12 Felder erwartet") }
+            guard let sunrise = f.count == 12 ? Sunrise(rawValue: f[11]) : Sunrise.off else { throw CodecError(description: "Wecker \(index + 1): Sonnenaufgang '\(f[11])'") }
             guard let phone = PhoneAlert(rawValue: f[6]) else { throw CodecError(description: "Wecker \(index + 1): Weckart '\(f[6])'") }
             let days: Set<Weekday> = try f[3].isEmpty ? [] : Set(f[3].components(separatedBy: ",").map {
                 guard let day = daysByCode[$0] else { throw CodecError(description: "Wochentag '\($0)'") }
@@ -42,7 +44,7 @@ public enum Codec {
                 return try AlarmSpec(
                     id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
                     enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
-                    sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10])
+                    sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]), sunrise: sunrise
                 )
             } catch let error as DetectorConfigError {
                 throw CodecError(description: "Wecker \(index + 1): \(error.message)")

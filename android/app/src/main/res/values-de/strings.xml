@@ -119,4 +119,15 @@
     <string name="editor_advice_title">Tipp: grösseres Fenster</string>
     <string name="editor_advice_text">In %1$d der letzten %2$d Nächte kam kein leichter Schlaf ins Fenster. Mit %3$d Min erwischst du öfter einen guten Moment.</string>
     <string name="editor_advice_apply">%1$d Min übernehmen</string>
+    <string name="channel_sunrise">Sonnenaufgang</string>
+    <string name="channel_sunrise_description">Lässt den Bildschirm vor dem Wecken wie einen Sonnenaufgang leuchten.</string>
+    <string name="sunrise_title">Sonnenaufgang</string>
+    <string name="sunrise_text">Der Bildschirm wird langsam heller, bis du geweckt wirst.</string>
+    <string name="sunrise_off">Licht ausschalten</string>
+    <string name="editor_sunrise">Sonnenaufgang auf dem Handy</string>
+    <string name="editor_sunrise_hint">Der Bildschirm leuchtet erst schwach orange und wird dann zu hellem, warmem Licht bei voller Helligkeit. Leg das Handy mit dem Bildschirm nach oben hin.</string>
+    <string name="sunrise_ring">Beim Wecken</string>
+    <string name="sunrise_window">Ab Fenster</string>
+    <string name="editor_sunrise_ring_hint">Beginnt beim Wecken und ist nach %1$d Minuten voll hell.</string>
+    <string name="editor_sunrise_window_hint">Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell.</string>
 </resources>

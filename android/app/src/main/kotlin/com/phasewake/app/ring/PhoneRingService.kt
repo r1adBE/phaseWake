@@ -21,6 +21,7 @@ import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
 import kotlinx.coroutines.Dispatchers
@@ -82,8 +83,15 @@ class PhoneRingService : Service() {
         lastAlarmId = alarmId
         phoneApp.appScope.launch(Dispatchers.Main) {
             val spec = phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId }
+            val sunrise = spec?.sunrise ?: Sunrise.OFF
+            if (sunrise != Sunrise.OFF) {
+                // Läuft schon ein Licht ab Weckfenster, macht der Weckbildschirm dort weiter.
+                val from = SunriseLight.progressFor(alarmId)
+                (state.value as? State.Ringing)?.let { state.value = it.copy(sunrise = sunrise, lightFrom = from) }
+            }
             when (spec?.phone ?: PhoneAlert.SOUND) {
-                PhoneAlert.OFF -> stop(notifyWatch = false)
+                // Ohne Ton und Vibration bleibt nur das Licht – oder gar nichts.
+                PhoneAlert.OFF -> if (sunrise == Sunrise.OFF) stop(notifyWatch = false)
                 PhoneAlert.VIBRATE -> vibrate()
                 PhoneAlert.SOUND -> {
                     playSound(spec?.sound.orEmpty())
@@ -104,7 +112,7 @@ class PhoneRingService : Service() {
             state.value = State.Idle
             stopSelf()
         } else {
-            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - snoozes)
+            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - snoozes, sunrise = ringing.sunrise)
             handler.postDelayed({ state.value = State.Idle; start(lastAlarmId, fromWatch = false) }, Snooze.MINUTES * 60_000L)
         }
     }
@@ -112,6 +120,7 @@ class PhoneRingService : Service() {
     private fun stop(notifyWatch: Boolean) {
         val wasFromWatch = (state.value as? State.Ringing)?.fromWatch == true
         release()
+        SunriseLight.stop(this)
         state.value = State.Idle
         if (notifyWatch && wasFromWatch) {
             phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP) }
@@ -176,8 +185,14 @@ class PhoneRingService : Service() {
     /** Zustand für den Weckbildschirm. */
     sealed interface State {
         data object Idle : State
-        data class Ringing(val fromWatch: Boolean, val snoozesLeft: Int) : State
-        data class Snoozed(val snoozesLeft: Int) : State
+        /** [sunrise]: Licht auf dem Bildschirm; [lightFrom]: Fortschritt, bei dem es weitergeht (0–1). */
+        data class Ringing(
+            val fromWatch: Boolean,
+            val snoozesLeft: Int,
+            val sunrise: Sunrise = Sunrise.OFF,
+            val lightFrom: Float = 0f,
+        ) : State
+        data class Snoozed(val snoozesLeft: Int, val sunrise: Sunrise = Sunrise.OFF) : State
     }
 
     companion object {

@@ -21,7 +21,7 @@ class CodecTest {
             sound = "content://media/internal/audio/media/42",
             label = "Arbeit | früh, 100 %",
         ),
-        AlarmSpec(id = "b", hour = 9, minute = 30, enabled = false, phone = PhoneAlert.OFF, sleepDurationMinutes = 450),
+        AlarmSpec(id = "b", hour = 9, minute = 30, enabled = false, phone = PhoneAlert.OFF, sleepDurationMinutes = 450, sunrise = Sunrise.WINDOW),
     )
 
     @Test
@@ -33,7 +33,13 @@ class CodecTest {
     @Test
     fun alarmsFormatIsStable() {
         val text = Codec.encodeAlarms(alarms.take(1))
-        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25\n", text)
+        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF\n", text)
+    }
+
+    @Test
+    fun olderFormatWithoutSunriseIsRead() {
+        val old = Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n")
+        assertEquals(listOf(alarms[1].copy(sunrise = Sunrise.OFF)), old)
     }
 
     @Test

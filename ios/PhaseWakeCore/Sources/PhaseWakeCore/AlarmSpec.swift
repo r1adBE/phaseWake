@@ -19,6 +19,27 @@ public enum PhoneAlert: String, CaseIterable, Sendable {
     case off = "OFF", vibrate = "VIBRATE", sound = "SOUND"
 }
 
+/// Sonnenaufgang auf dem Handy: erst schwach dunkelorange, dann volles warmes Licht. Identisch zu Kotlin.
+public enum Sunrise: String, CaseIterable, Sendable {
+    case off = "OFF", ring = "RING", window = "WINDOW"
+
+    public static let ringSeconds = 120
+    public static let catchUpSeconds = 60
+
+    /// Fortschritt 0–1 eines Lichts von `start` bis `end`.
+    public static func progress(start: Date, end: Date, now: Date) -> Double {
+        let total = end.timeIntervalSince(start)
+        guard total > 0 else { return 1 }
+        return min(1, max(0, now.timeIntervalSince(start) / total))
+    }
+
+    /// Bildschirmhelligkeit 0.01–1: am Anfang sehr dunkel, dann schneller heller.
+    public static func brightness(_ progress: Double) -> Double {
+        let p = min(1, max(0, progress))
+        return 0.01 + 0.99 * p * p
+    }
+}
+
 /// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public static let defaultWindowMinutes = 30
@@ -40,6 +61,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let sound: String
     public let sleepDurationMinutes: Int?
     public let label: String
+    /// Sonnenaufgang auf dem Handy-Bildschirm.
+    public let sunrise: Sunrise
 
     /// - Throws: ``DetectorConfigError`` bei ungültigen Werten (gleiche Regeln wie Kotlin).
     public init(
@@ -53,7 +76,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         watchSound: Bool = false,
         sleepDurationMinutes: Int? = nil,
         sound: String = "",
-        label: String = ""
+        label: String = "",
+        sunrise: Sunrise = .off
     ) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
@@ -75,6 +99,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.sound = sound
         self.sleepDurationMinutes = sleepDurationMinutes
         self.label = label
+        self.sunrise = sunrise
     }
 
     /// Ob das iPhone als Zweitwecker mitweckt.
@@ -89,7 +114,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
             enabled: enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
-            sound: sound, label: label
+            sound: sound, label: label, sunrise: sunrise
         )
     }
 }

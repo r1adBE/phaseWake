@@ -100,10 +100,13 @@ Alles in v1, nichts auf später verschoben:
 - Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung
 - Weckfenster-Vorschlag aus dem Verlauf
 - Tile und Komplikation auf der Uhr
+- Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone kann eine App bei gesperrtem Bildschirm keinen eigenen Vollbildschirm zeigen
 - anonymer Export des Verlaufs (CSV)
 - Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit – nur Galaxy Watch; die Smart-Alarm-Sitzung der Apple Watch dauert höchstens 30 Min und kann nicht die ganze Nacht messen
 
 ## Entscheide (28.10.2026)
+
+- Sonnenaufgang (28.10.2026): Option pro Wecker, standardmässig aus; wählbar «beim Wecken» oder «ab Weckfenster».
 
 - Weckfenster Standard 30 Min, einstellbar 10–30 Min. Morgens überwiegt Leicht- und REM-Schlaf, Tiefschlaf ist selten; 30 Min reichen fast immer für einen guten Moment. Ein längeres Fenster würde nur unnötig früh wecken.
 - Handy-Zweitwecker standardmässig an.

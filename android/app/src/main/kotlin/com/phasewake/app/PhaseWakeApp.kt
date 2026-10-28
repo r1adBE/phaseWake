@@ -30,6 +30,7 @@ class PhaseWakeApp : Application() {
     override fun onCreate() {
         super.onCreate()
         RingNotifications.createChannels(this)
+        com.phasewake.app.ring.SunriseLight.createChannel(this)
         appScope.launch { backup.reschedule() }
     }
 

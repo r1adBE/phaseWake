@@ -6,14 +6,31 @@ final class CodecTests: XCTestCase {
     func testAlarmsRoundTripAndFormat() throws {
         let alarms = [
             try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25, phone: .vibrate, watchSound: true, sound: "content://media/internal/audio/media/42", label: "Arbeit | früh, 100 %"),
-            try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450),
+            try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF\n"
         )
+    }
+
+    func testOlderFormatWithoutSunrise() throws {
+        let old = try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n")
+        XCTAssertEqual(old.first?.sunrise, .off)
+        XCTAssertEqual(old.first?.sleepDurationMinutes, 450)
+    }
+
+    func testSunriseCurve() {
+        let start = Date(timeIntervalSince1970: 1_000_000), end = start.addingTimeInterval(1800)
+        XCTAssertEqual(Sunrise.progress(start: start, end: end, now: start.addingTimeInterval(-60)), 0)
+        XCTAssertEqual(Sunrise.progress(start: start, end: end, now: start.addingTimeInterval(900)), 0.5)
+        XCTAssertEqual(Sunrise.progress(start: start, end: end, now: end.addingTimeInterval(60)), 1)
+        XCTAssertEqual(Sunrise.progress(start: end, end: start, now: start), 1)
+        XCTAssertEqual(Sunrise.brightness(0), 0.01, accuracy: 1e-9)
+        XCTAssertEqual(Sunrise.brightness(0.5), 0.2575, accuracy: 1e-9)
+        XCTAssertEqual(Sunrise.brightness(1), 1, accuracy: 1e-9)
     }
 
     func testNightRoundTrip() throws {
