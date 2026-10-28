@@ -1,33 +1,72 @@
-<p align="center"><img src="docs/logo.svg" width="128" alt="phaseWake"></p>
+<p align="center"><img src="docs/logo.svg" width="112" alt="Phase Wake Logo"></p>
 
-# phaseWake
+<h1 align="center">Phase Wake</h1>
 
-Schlafphasenwecker für Android mit Galaxy Watch (Wear OS) und für iPhone mit Apple Watch.
+<p align="center">
+Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b> – weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf.<br>
+Open Source · ohne Konto · ohne Server · ohne Abo
+</p>
 
-Die Watch misst in einem Weckfenster vor der Zielzeit Bewegung und Puls, erkennt eine Leichtschlafphase und weckt dann per Vibration am Handgelenk – statt mitten aus dem Tiefschlaf zur fixen Uhrzeit.
+<p align="center">
+<a href="https://github.com/r1adBE/phaseWake/actions/workflows/ci.yml"><img src="https://github.com/r1adBE/phaseWake/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-0B1A4A" alt="Lizenz MIT"></a>
+</p>
 
-## Warum
+<p align="center">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeDark_Startseite%20dunkel_de77915b_0.png" width="230" alt="Startseite dunkel">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/HomeLight_Startseite%20hell_37ff950b_0.png" width="230" alt="Startseite hell">
+<img src="https://raw.githubusercontent.com/r1adBE/phaseWake/screenshots/app/RingPhone_Wecken%20Handy_f9f7e710_0.png" width="230" alt="Wecken">
+</p>
 
-Samsung Health trackt den Schlaf ausführlich, bietet aber keinen Smart-Wake-Alarm. Kostenlose Alternativen gibt es für die Galaxy Watch nicht. phaseWake schliesst diese Lücke – offen, ohne Konto, ohne Server, ohne Abo.
+<p align="center"><a href="https://github.com/r1adBE/phaseWake/tree/screenshots">Alle Bildschirme ansehen →</a></p>
+
+## So funktioniert es
+
+Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald sie leichten Schlaf erkennt, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Spätestens zur Zielzeit weckt sie immer.
+
+- **Weckfenster** vor der Zielzeit, frei einstellbar
+- **Einschlaf-Modus**: «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
+- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton)
+- **Schlummern** 5 Minuten, höchstens 3×
+- **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
+- **Lernt mit**: Die Schwellen passen sich ab der dritten Nacht an dich an
+- **Kachel und Komplikation** auf der Uhr
+- **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
+
+Die Erkennungsregel ist offen dokumentiert: [docs/PHASENERKENNUNG.md](docs/PHASENERKENNUNG.md).
+
+## Datenschutz
+
+Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Auswertung. Wer helfen will, die Erkennung zu verbessern, kann seine Nächte freiwillig als anonyme CSV-Datei exportieren.
 
 ## Aufbau
 
 | Ordner | Inhalt |
 |---|---|
-| `android/app/` | Android-App: Wecker einrichten, Weckfenster, Verlauf |
-| `android/wear/` | Wear-OS-App: Sensorik, Phasenerkennung, Vibrationsweckung |
-| `ios/` | iPhone-App mit Apple-Watch-App (SwiftUI) |
-| `shared/testdata/` | Aufgezeichnete Nächte, die beide Plattformen gleich bewerten müssen |
-| `docs/` | Logo, Konzept |
+| `android/core` | Phasenerkennung und Logik, reines Kotlin, vollständig getestet |
+| `android/shared` | Speicher und Abgleich Handy ↔ Uhr |
+| `android/app` | Android-App (Jetpack Compose) |
+| `android/wear` | Wear-OS-App für die Galaxy Watch (Compose for Wear OS) |
+| `ios/PhaseWakeCore` | Dieselbe Logik in Swift, gleiche Tests |
+| `shared/testdata` | Testnächte, die beide Plattformen identisch bewerten müssen |
+| `docs` | Konzept, Erkennungsregel, Logo |
 
-Entwickelt und getestet auf der Galaxy Watch 8 Classic.
+## Bauen
 
-## Grundsätze
+Android (JDK 21):
 
-- Alle Daten bleiben auf Handy und Uhr. Keine Cloud, kein Konto, keine Telemetrie.
-- Keine Fremdabhängigkeiten über die Plattform-Bibliotheken hinaus (AndroidX, Wear Compose, Health Services; SwiftUI, HealthKit, CoreMotion).
-- Die Uhr weckt auch dann, wenn das Handy nicht erreichbar ist.
+```sh
+cd android
+./gradlew :core:test :app:assembleDebug :wear:assembleDebug
+```
+
+Swift-Kern (macOS mit Xcode):
+
+```sh
+cd ios/PhaseWakeCore
+swift test
+```
 
 ## Lizenz
 
-MIT – siehe [LICENSE](LICENSE).
+[MIT](LICENSE) © r1adBE · Schrift [Manrope](licenses/Manrope-OFL.txt) unter SIL Open Font License 1.1
