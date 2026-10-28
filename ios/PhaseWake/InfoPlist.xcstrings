@@ -1,0 +1,386 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSAlarmKitUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يوقظك Phase Wake كمنبّه احتياطي على iPhone."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake tě na iPhonu vzbudí jako záložní budík."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vækker dig som backupalarm på din iPhone."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake weckt dich als Zweitwecker auf dem iPhone."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake σε ξυπνά ως εφεδρικό ξυπνητήρι στο iPhone σου."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te despierta como alarma de respaldo en tu iPhone."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake به‌عنوان زنگ هشدار پشتیبان روی iPhone بیدارت می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake herättää sinut varahälytyksenä iPhonellasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te réveille comme alarme de secours sur ton iPhone."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Phase Wake מעיר אותך כשעון מעורר גיבוי ב-iPhone."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake तुम्हारे iPhone पर बैकअप अलार्म के रूप में तुम्हें जगाता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake tartalék ébresztőként ébreszt fel az iPhone-odon."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake membangunkanmu sebagai alarm cadangan di iPhone-mu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ti sveglia come sveglia di riserva su iPhone."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、iPhoneのバックアップアラームとしてあなたを起こします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 iPhone의 백업 알람으로 너를 깨웁니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengejutkanmu sebagai penggera sandaran pada iPhone-mu."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vekker deg som reservealarm på iPhonen din."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake maakt je wakker als back-upwekker op je iPhone."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake budzi cię jako zapasowy budzik na iPhonie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake acorda você como alarme de reserva no seu iPhone."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake acorda-te como alarme de reserva no teu iPhone."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te trezește ca alarmă de rezervă pe iPhone-ul tău."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake будит тебя как резервный будильник на iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake väcker dig som reservlarm på din iPhone."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ปลุกคุณเป็นนาฬิกาปลุกสำรองบน iPhone"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, iPhone'unda yedek alarm olarak seni uyandırır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake будить тебе як резервний будильник на iPhone."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake đánh thức bạn như một báo thức dự phòng trên iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake会在你的 iPhone 上作为备用闹钟唤醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake會在你的 iPhone 上作為備用鬧鐘喚醒你。"
+          }
+        }
+      }
+    },
+    "NSHealthShareUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقرأ Phase Wake مراحل نومك بعد استيقاظك للتحقق مما إذا تم إيقاظك أثناء النوم الخفيف."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake po probuzení načte tvoje fáze spánku, aby zjistil, jestli tě vzbudil v lehkém spánku."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake læser dine søvnfaser, når du er vågnet, for at tjekke, om du blev vækket i let søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake liest nach dem Aufwachen deine Schlafphasen, um zu prüfen, ob du im leichten Schlaf geweckt wurdest."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake διαβάζει τις φάσεις ύπνου σου αφού ξυπνήσεις, για να ελέγξει αν σε ξύπνησε σε ελαφρύ ύπνο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lee tus fases de sueño después de despertarte para comprobar si te despertó en sueño ligero."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake پس از بیدار شدنت مراحل خوابت را می‌خواند تا بررسی کند در خواب سبک بیدار شده‌ای یا نه."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lukee unenvaiheesi heräämisen jälkeen tarkistaakseen, herätettiinkö sinut kevyestä unesta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lit tes phases de sommeil après ton réveil pour vérifier si tu as été réveillé(e) pendant un sommeil léger."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Phase Wake קורא את שלבי השינה שלך לאחר ההתעוררות כדי לבדוק אם התעוררת בשינה קלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake जागने के बाद तुम्हारे नींद के चरण पढ़ता है, ताकि यह जाँच सके कि तुम्हें हल्की नींद में जगाया गया या नहीं।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake ébredés után beolvassa az alvási szakaszaidat, hogy ellenőrizze, könnyű alvásban ébresztett-e fel."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake membaca fase tidurmu setelah kamu bangun untuk memeriksa apakah kamu dibangunkan saat tidur ringan."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake legge le tue fasi del sonno dopo il risveglio per verificare se sei stato svegliato durante il sonno leggero."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、起床後に睡眠ステージを読み取り、浅い眠りで起こせたかを確認します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 기상 후 수면 단계를 읽어 얕은 잠에서 깼는지 확인합니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake membaca peringkat tidurmu selepas kamu bangun untuk menyemak sama ada kamu dikejutkan semasa tidur ringan."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake leser søvnfasene dine etter at du har våknet, for å sjekke om du ble vekket i lett søvn."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake leest je slaapfases na het wakker worden om te controleren of je in lichte slaap bent gewekt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake odczytuje twoje fazy snu po przebudzeniu, aby sprawdzić, czy obudził cię w fazie lekkiego snu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake lê suas fases do sono depois que você acorda para verificar se você foi acordado durante o sono leve."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake lê as tuas fases do sono depois de acordares para verificar se foste acordado durante o sono leve."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake citește fazele somnului tău după ce te trezești, pentru a verifica dacă ai fost trezit în somn ușor."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake считывает твои фазы сна после пробуждения, чтобы проверить, разбудил ли он тебя в фазе лёгкого сна."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake läser dina sömnfaser efter att du vaknat för att kontrollera om du väcktes i lätt sömn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake อ่านระยะการนอนหลับของคุณหลังตื่น เพื่อตรวจสอบว่าคุณถูกปลุกในช่วงหลับตื้นหรือไม่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, uyandıktan sonra uyku evrelerini okuyarak hafif uykuda uyandırılıp uyandırılmadığını kontrol eder."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake зчитує твої фази сну після пробудження, щоб перевірити, чи розбудив він тебе в фазі легкого сну."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake đọc các giai đoạn giấc ngủ của bạn sau khi thức dậy để kiểm tra xem bạn có được đánh thức lúc ngủ nông hay không."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake会在你醒来后读取睡眠阶段，以检查你是否在浅睡时被唤醒。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake會在你醒來後讀取睡眠階段，以檢查你是否在淺眠時被喚醒。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

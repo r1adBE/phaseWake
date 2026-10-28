@@ -19,13 +19,8 @@ struct EditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Picker("", selection: $sleepMode) {
-                    Text(L("editor_mode_clock")).tag(false)
-                    Text(L("editor_mode_sleep")).tag(true)
-                }
-                .pickerStyle(.segmented)
-                .listRowBackground(Color.clear)
-
+                // Einschlaf-Modus gibt es auf Apple nicht: Die Smart-Alarm-Sitzung der Apple Watch
+                // läuft höchstens 30 Minuten und kann die Nacht nicht ab «Gute Nacht» begleiten.
                 Section(L(sleepMode ? "editor_latest" : "editor_target")) {
                     DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
                         .datePickerStyle(.wheel)

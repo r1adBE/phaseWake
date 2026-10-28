@@ -32,7 +32,7 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
 | Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
-| Daten | lokal (Android: DataStore, iOS: SwiftData) | lokal |
+| Daten | lokal (Android: DataStore, iOS: UserDefaults und Datei) | lokal |
 
 Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; das Handy zeigt dann nur den Verlauf nach.
 
@@ -89,7 +89,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Sync Handy ↔ Uhr: Android über Wearable Data Layer (`DataClient` für Wecker, `MessageClient` für Ereignisse; einzige Google-Play-Services-Abhängigkeit, auf Galaxy Watches ohnehin vorhanden), Apple über WatchConnectivity.
 - Keine weiteren Fremdabhängigkeiten.
 - Tests: Phasenerkennung als reine Kotlin-Logik ohne Android-Abhängigkeit, mit aufgezeichneten Nächten als Testdaten. Abdeckung: Logik ≥ 90 %, Oberfläche ≥ 50 %.
-- Sprachen v1: Deutsch (Schweizer Schreibung) und Englisch, Du-Form.
+- Sprachen: 32, Du-Form (Deutsch in Schweizer Schreibung). Android-Texte sind die Quelle, die Apple-Kataloge werden daraus erzeugt.
 
 ## Umfang v1
 
@@ -101,7 +101,7 @@ Alles in v1, nichts auf später verschoben:
 - Weckfenster-Vorschlag aus dem Verlauf
 - Tile und Komplikation auf der Uhr
 - anonymer Export des Verlaufs (CSV)
-- Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit
+- Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit – nur Galaxy Watch; die Smart-Alarm-Sitzung der Apple Watch dauert höchstens 30 Min und kann nicht die ganze Nacht messen
 
 ## Entscheide (28.10.2026)
 

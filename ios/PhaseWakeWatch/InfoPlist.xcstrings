@@ -1,0 +1,386 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSHealthShareUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقيس Phase Wake معدل نبضات القلب خلال فترة الاستيقاظ لاكتشاف النوم الخفيف."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake měří tvůj srdeční tep během okna buzení, aby rozpoznal lehký spánek."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler din puls i vækningsvinduet for at registrere let søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misst im Weckfenster deinen Puls, um leichten Schlaf zu erkennen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake μετρά τον καρδιακό σου ρυθμό κατά το παράθυρο αφύπνισης για να εντοπίσει τον ελαφρύ ύπνο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mide tu frecuencia cardíaca durante la ventana de despertar para detectar el sueño ligero."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake در بازه بیدارسازی ضربان قلبت را اندازه می‌گیرد تا خواب سبک را تشخیص دهد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mittaa sykettäsi heräämisikkunan aikana tunnistaakseen kevyen unen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mesure ta fréquence cardiaque pendant la fenêtre de réveil pour détecter le sommeil léger."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Phase Wake מודד את הדופק שלך בחלון ההתעוררות כדי לזהות שינה קלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake हल्की नींद पहचानने के लिए जागने की अवधि में तुम्हारी हृदय गति मापता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake az ébresztési ablak alatt méri a pulzusodat, hogy felismerje a könnyű alvást."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur detak jantungmu selama jendela bangun untuk mendeteksi tidur ringan."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misura la tua frequenza cardiaca durante la finestra di risveglio per rilevare il sonno leggero."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、浅い眠りを検出するため、起床ウィンドウ中の心拍数を測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 얕은 잠을 감지하기 위해 기상 구간 동안 심박수를 측정합니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur kadar denyutan jantungmu semasa tetingkap bangun untuk mengesan tidur ringan."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler pulsen din i våknevinduet for å oppdage lett søvn."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meet je hartslag tijdens het wekvenster om lichte slaap te herkennen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mierzy twoje tętno w oknie budzenia, aby wykryć lekki sen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake mede seus batimentos cardíacos durante a janela de despertar para detectar o sono leve."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake mede a tua frequência cardíaca durante a janela de despertar para detetar o sono leve."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake îți măsoară pulsul în intervalul de trezire pentru a detecta somnul ușor."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake измеряет твой пульс в окне пробуждения, чтобы определить лёгкий сон."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mäter din puls under väckningsfönstret för att upptäcka lätt sömn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake วัดอัตราการเต้นของหัวใจของคุณในช่วงเวลาปลุก เพื่อตรวจจับการหลับตื้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, hafif uykuyu algılamak için uyanma aralığında kalp atış hızını ölçer."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake вимірює твій пульс у вікні пробудження, щоб виявити легкий сон."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake đo nhịp tim của bạn trong khung giờ thức dậy để phát hiện giấc ngủ nông."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake会在唤醒时段内测量你的心率，以检测浅睡。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake會在喚醒時段內測量你的心率，以偵測淺眠。"
+          }
+        }
+      }
+    },
+    "NSMotionUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقيس Phase Wake حركتك خلال فترة الاستيقاظ لاكتشاف النوم الخفيف."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake měří tvůj pohyb během okna buzení, aby rozpoznal lehký spánek."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler din bevægelse i vækningsvinduet for at registrere let søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misst im Weckfenster deine Bewegung, um leichten Schlaf zu erkennen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake μετρά την κίνησή σου κατά το παράθυρο αφύπνισης για να εντοπίσει τον ελαφρύ ύπνο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mide tu movimiento durante la ventana de despertar para detectar el sueño ligero."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake در بازه بیدارسازی حرکتت را اندازه می‌گیرد تا خواب سبک را تشخیص دهد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mittaa liikettäsi heräämisikkunan aikana tunnistaakseen kevyen unen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mesure tes mouvements pendant la fenêtre de réveil pour détecter le sommeil léger."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Phase Wake מודד את התנועה שלך בחלון ההתעוררות כדי לזהות שינה קלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake हल्की नींद पहचानने के लिए जागने की अवधि में तुम्हारी गतिविधि मापता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake az ébresztési ablak alatt méri a mozgásodat, hogy felismerje a könnyű alvást."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur gerakanmu selama jendela bangun untuk mendeteksi tidur ringan."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misura i tuoi movimenti durante la finestra di risveglio per rilevare il sonno leggero."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、浅い眠りを検出するため、起床ウィンドウ中の動きを測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 얕은 잠을 감지하기 위해 기상 구간 동안 움직임을 측정합니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur pergerakanmu semasa tetingkap bangun untuk mengesan tidur ringan."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler bevegelsene dine i våknevinduet for å oppdage lett søvn."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meet je beweging tijdens het wekvenster om lichte slaap te herkennen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mierzy twój ruch w oknie budzenia, aby wykryć lekki sen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake mede seus movimentos durante a janela de despertar para detectar o sono leve."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake mede os teus movimentos durante a janela de despertar para detetar o sono leve."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake îți măsoară mișcările în intervalul de trezire pentru a detecta somnul ușor."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake измеряет твои движения в окне пробуждения, чтобы определить лёгкий сон."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mäter dina rörelser under väckningsfönstret för att upptäcka lätt sömn."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake วัดการเคลื่อนไหวของคุณในช่วงเวลาปลุก เพื่อตรวจจับการหลับตื้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, hafif uykuyu algılamak için uyanma aralığında hareketlerini ölçer."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake вимірює твої рухи у вікні пробудження, щоб виявити легкий сон."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake đo chuyển động của bạn trong khung giờ thức dậy để phát hiện giấc ngủ nông."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake会在唤醒时段内测量你的动作，以检测浅睡。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake會在喚醒時段內測量你的動作，以偵測淺眠。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

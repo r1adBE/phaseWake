@@ -5,7 +5,7 @@
 <p align="center">
 Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b> – weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf.<br>
 Open Source · ohne Konto · ohne Server · ohne Abo<br>
-<sub>Stand: Android und Galaxy Watch in Entwicklung, Apple-Version folgt.</sub>
+<sub>Stand: in Entwicklung, noch nicht in den Stores.</sub>
 </p>
 
 <p align="center">
@@ -26,13 +26,14 @@ Open Source · ohne Konto · ohne Server · ohne Abo<br>
 Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald sie leichten Schlaf erkennt, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Spätestens zur Zielzeit weckt sie immer.
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
-- **Einschlaf-Modus**: «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
+- **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
 - **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton)
 - **Schlummern** 5 Minuten, höchstens 3×
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
 - **Lernt mit**: Die Schwellen passen sich ab der dritten Nacht an dich an
 - **Kachel und Komplikation** auf der Uhr
 - **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
+- **32 Sprachen**
 
 Die Erkennungsregel ist offen dokumentiert: [docs/PHASENERKENNUNG.md](docs/PHASENERKENNUNG.md).
 
@@ -49,6 +50,8 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 | `android/app` | Android-App (Jetpack Compose) |
 | `android/wear` | Wear-OS-App für die Galaxy Watch (Compose for Wear OS) |
 | `ios/PhaseWakeCore` | Dieselbe Logik in Swift, gleiche Tests |
+| `ios/PhaseWake` | iPhone-App (SwiftUI) |
+| `ios/PhaseWakeWatch` | Apple-Watch-App (SwiftUI, Smart-Alarm-Sitzung) |
 | `shared/testdata` | Testnächte, die beide Plattformen identisch bewerten müssen |
 | `docs` | Konzept, Erkennungsregel, Logo |
 
@@ -61,12 +64,14 @@ cd android
 ./gradlew :core:test :app:assembleDebug :wear:assembleDebug
 ```
 
-Swift-Kern (macOS mit Xcode):
+Apple (macOS mit Xcode 26):
 
 ```sh
-cd ios/PhaseWakeCore
-swift test
+cd ios/PhaseWakeCore && swift test
+open ../PhaseWake.xcodeproj
 ```
+
+Die Texte der Apple-Apps entstehen aus den Android-Texten: `python3 .github/scripts/gen-xcstrings.py`.
 
 ## Lizenz
 
