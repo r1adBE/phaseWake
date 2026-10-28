@@ -25,7 +25,7 @@ dependencies {
     api(libs.kotlinx.coroutines.android)
     api(libs.play.services.wearable)
     implementation(libs.kotlinx.coroutines.play.services)
-    implementation(libs.androidx.datastore.preferences)
+    api(libs.androidx.datastore.preferences)
     implementation(libs.androidx.core.ktx)
 
     testImplementation(kotlin("test"))

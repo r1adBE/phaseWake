@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Zweitwecker</string>
+    <string name="channel_alarm_description">Klingelt auf dem Handy zusammen mit der Uhr.</string>
+    <string name="ring_greeting">Guten Morgen</string>
+    <string name="ring_notification_text">Dein Phase-Wake-Wecker klingelt</string>
+    <string name="ring_stop">Stoppen</string>
+    <string name="ring_snooze">Schlummern %1$d Min · %2$d übrig</string>
+    <string name="ring_snoozed">Schlummern für %1$d Min</string>
+
+    <string name="nav_alarms">Wecker</string>
+    <string name="nav_history">Verlauf</string>
+    <string name="nav_settings">Einstellungen</string>
+
+    <string name="home_next_today">Heute</string>
+    <string name="home_next_tomorrow">Morgen</string>
+    <string name="home_next_in">Weckt im leichten Schlaf · in %1$s</string>
+    <string name="home_no_alarm_title">Im richtigen Moment aufwachen</string>
+    <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich, wenn du leicht schläfst.</string>
+    <string name="home_add_alarm">Neuer Wecker</string>
+    <string name="home_last_night">Letzte Nacht</string>
+    <string name="home_last_night_summary">%1$s · %2$s</string>
+    <string name="home_alarms">Deine Wecker</string>
+    <string name="home_permission_title">Wecker erlauben</string>
+    <string name="home_permission_text">Phase Wake braucht Mitteilungen und Vollbild-Hinweise, um dich zu wecken.</string>
+    <string name="home_permission_action">Erlauben</string>
+
+    <string name="reason_light">Leichter Schlaf</string>
+    <string name="reason_awake">Schon wach</string>
+    <string name="reason_deadline">Zielzeit</string>
+    <string name="woke_early">%1$d Min vor der Zielzeit · %2$s</string>
+    <string name="woke_on_time">Zur Zielzeit · %1$s</string>
+    <string name="no_snooze">ohne Schlummern</string>
+    <string name="snoozed_times">%1$d× geschlummert</string>
+
+    <string name="alarm_once">Einmalig</string>
+    <string name="alarm_every_day">Täglich</string>
+    <string name="alarm_after_sleep">nach %1$s</string>
+    <string name="alarm_latest">spätestens %1$s</string>
+
+    <string name="editor_new">Neuer Wecker</string>
+    <string name="editor_edit">Wecker bearbeiten</string>
+    <string name="editor_save">Speichern</string>
+    <string name="editor_delete">Wecker löschen</string>
+    <string name="editor_mode_clock">Uhrzeit</string>
+    <string name="editor_mode_sleep">Schlafdauer</string>
+    <string name="editor_target">Weck mich bis</string>
+    <string name="editor_latest">Spätestens</string>
+    <string name="editor_sleep_duration">%1$s schlafen</string>
+    <string name="editor_sleep_hint">Zählt ab dem Einschlafen. Tippe auf der Uhr auf «Gute Nacht».</string>
+    <string name="editor_window">Fenster: %1$d Min</string>
+    <string name="editor_window_hint">Weckt dich zwischen %1$s und %2$s</string>
+    <string name="editor_days">Wiederholen</string>
+    <string name="editor_weekdays">Werktage</string>
+    <string name="editor_weekend">Wochenende</string>
+    <string name="editor_phone_backup">Zweitwecker auf dem Handy</string>
+    <string name="editor_phone_backup_hint">Klingelt mit der Uhr – und allein, falls sich die Uhr nicht meldet.</string>
+    <string name="editor_label">Name</string>
+    <string name="editor_label_hint">Arbeit</string>
+
+    <string name="history_title">Verlauf</string>
+    <string name="history_empty_title">Noch keine Nächte</string>
+    <string name="history_empty_text">Nach der ersten Nacht mit der Uhr siehst du hier, wann und warum sie dich geweckt hat.</string>
+    <string name="history_average">Ø %1$d Min früher</string>
+    <string name="history_light_share">%1$d %% im leichten Schlaf</string>
+    <string name="history_nights">%1$d Nächte</string>
+    <string name="history_export">Anonym exportieren</string>
+    <string name="history_export_subject">Phase-Wake-Nächte (anonym)</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_theme">Darstellung</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Hell</string>
+    <string name="settings_theme_dark">Dunkel</string>
+    <string name="settings_data">Deine Daten</string>
+    <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung.</string>
+    <string name="settings_export">Nächte anonym exportieren</string>
+    <string name="settings_export_hint">Hilf mit, die Erkennung zu verbessern: CSV ohne Namen, Datum oder Gerätekennung.</string>
+    <string name="settings_about">Über</string>
+    <string name="settings_open_source">Open Source auf GitHub</string>
+    <string name="settings_licenses">Lizenzen</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <string name="duration_minutes">%1$d Min</string>
+    <string name="duration_hours">%1$d Std.</string>
+    <string name="duration_hours_half">%1$d½ Std.</string>
+    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
+</resources>

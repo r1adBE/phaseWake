@@ -1,3 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phase Wake</string>
+    <string name="app_name" translatable="false">Phase Wake</string>
+
+    <string name="channel_alarm">Backup alarm</string>
+    <string name="channel_alarm_description">Rings on your phone together with your watch.</string>
+    <string name="ring_greeting">Good morning</string>
+    <string name="ring_notification_text">Your Phase Wake alarm is ringing</string>
+    <string name="ring_stop">Stop</string>
+    <string name="ring_snooze">Snooze %1$d min · %2$d left</string>
+    <string name="ring_snoozed">Snoozing for %1$d min</string>
+
+    <string name="nav_alarms">Alarms</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="home_next_today">Today</string>
+    <string name="home_next_tomorrow">Tomorrow</string>
+    <string name="home_next_in">Wakes you in light sleep · in %1$s</string>
+    <string name="home_no_alarm_title">Wake up at the right moment</string>
+    <string name="home_no_alarm_text">Set a time and a window. Your watch wakes you when you sleep lightly.</string>
+    <string name="home_add_alarm">New alarm</string>
+    <string name="home_last_night">Last night</string>
+    <string name="home_last_night_summary">%1$s · %2$s</string>
+    <string name="home_alarms">Your alarms</string>
+    <string name="home_permission_title">Allow alarms</string>
+    <string name="home_permission_text">Phase Wake needs notifications and full-screen alerts to wake you.</string>
+    <string name="home_permission_action">Allow</string>
+
+    <string name="reason_light">Light sleep</string>
+    <string name="reason_awake">Already awake</string>
+    <string name="reason_deadline">Target time</string>
+    <string name="woke_early">%1$d min before target · %2$s</string>
+    <string name="woke_on_time">At target time · %1$s</string>
+    <string name="no_snooze">no snooze</string>
+    <string name="snoozed_times">snoozed %1$d×</string>
+
+    <string name="alarm_once">Once</string>
+    <string name="alarm_every_day">Every day</string>
+    <string name="alarm_after_sleep">after %1$s</string>
+    <string name="alarm_latest">latest %1$s</string>
+
+    <string name="editor_new">New alarm</string>
+    <string name="editor_edit">Edit alarm</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_delete">Delete alarm</string>
+    <string name="editor_mode_clock">Clock time</string>
+    <string name="editor_mode_sleep">Sleep duration</string>
+    <string name="editor_target">Wake me by</string>
+    <string name="editor_latest">At the latest</string>
+    <string name="editor_sleep_duration">Sleep for %1$s</string>
+    <string name="editor_sleep_hint">Starts counting when you fall asleep. Tap “Good night” on your watch.</string>
+    <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_window_hint">Wakes you between %1$s and %2$s</string>
+    <string name="editor_days">Repeat</string>
+    <string name="editor_weekdays">Weekdays</string>
+    <string name="editor_weekend">Weekend</string>
+    <string name="editor_phone_backup">Backup alarm on phone</string>
+    <string name="editor_phone_backup_hint">Rings with your watch, and on its own if the watch doesn’t respond.</string>
+    <string name="editor_label">Name</string>
+    <string name="editor_label_hint">Work</string>
+
+    <string name="history_title">History</string>
+    <string name="history_empty_title">No nights yet</string>
+    <string name="history_empty_text">After your first night with the watch, you’ll see when and why it woke you.</string>
+    <string name="history_average">Ø %1$d min early</string>
+    <string name="history_light_share">%1$d %% in light sleep</string>
+    <string name="history_nights">%1$d nights</string>
+    <string name="history_export">Export anonymously</string>
+    <string name="history_export_subject">Phase Wake nights (anonymous)</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_theme">Appearance</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_data">Your data</string>
+    <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking.</string>
+    <string name="settings_export">Export nights anonymously</string>
+    <string name="settings_export_hint">Help improve detection: CSV without names, dates or device IDs.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_open_source">Open source on GitHub</string>
+    <string name="settings_licenses">Licenses</string>
+    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
 </resources>

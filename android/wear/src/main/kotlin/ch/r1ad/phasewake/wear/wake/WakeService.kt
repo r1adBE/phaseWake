@@ -144,7 +144,7 @@ class WakeService : LifecycleService() {
     private fun onDeadline() {
         val n = night ?: return
         if (n.phase == Phase.MEASURING) {
-            n.reason = n.detector.finish()
+            n.reason = n.detector.finish().reason
             ring()
         }
     }
