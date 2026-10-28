@@ -77,3 +77,11 @@ motion,hr
 - Die Nächte gelten mit den Startwerten.
 
 Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte, anonym exportierte Nächte kommen dazu, sobald es sie gibt.
+
+## 6. Einschlaf-Modus
+
+Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr Bewegung stromsparend in denselben 30-s-Epochen.
+
+- **Einschlafzeit** = Beginn der ersten Strecke von 30 aufeinanderfolgenden Epochen (15 Min), in denen die Bewegung vorhanden und kleiner als die Leicht-Schwelle ist. Leere Bewegung unterbricht die Strecke.
+- **Zielzeit** = Einschlafzeit + Schlafdauer, höchstens die eingestellte Weckzeit.
+- Wird bis 15 Min vor der eingestellten Weckzeit keine Einschlafzeit gefunden, gilt die eingestellte Weckzeit.

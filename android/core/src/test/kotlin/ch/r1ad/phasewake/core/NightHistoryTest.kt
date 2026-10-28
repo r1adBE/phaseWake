@@ -1,0 +1,55 @@
+package ch.r1ad.phasewake.core
+
+import java.time.Duration
+import java.time.Instant
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+
+class NightHistoryTest {
+
+    private val start = Instant.parse("2026-10-01T04:30:00Z")
+
+    private fun night(day: Long, epochs: List<Epoch> = listOf(Epoch(0.0, 52.0)), wokeMinutes: Long = 18) = NightRecord(
+        alarmId = "geheim-123",
+        windowStart = start.plus(Duration.ofDays(day)),
+        target = start.plus(Duration.ofDays(day)).plus(Duration.ofMinutes(30)),
+        wokeAt = start.plus(Duration.ofDays(day)).plus(Duration.ofMinutes(wokeMinutes)),
+        reason = WakeReason.LIGHT_SLEEP,
+        snoozes = 1,
+        epochs = epochs,
+    )
+
+    @Test
+    fun keepsNewestNinety() {
+        val nights = (0L until 100L).reversed().map { night(it) }
+        val kept = NightHistory.trim(nights)
+        assertEquals(90, kept.size)
+        assertEquals(start.plus(Duration.ofDays(10)), kept.first().windowStart)
+        assertEquals(start.plus(Duration.ofDays(99)), kept.last().windowStart)
+    }
+
+    @Test
+    fun minutesBeforeTarget() {
+        assertEquals(12, night(0).minutesBeforeTarget)
+        assertEquals(0, night(0, wokeMinutes = 35).minutesBeforeTarget)
+    }
+
+    @Test
+    fun csvIsAnonymous() {
+        val csv = NightHistory.exportCsv(listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))), night(0)))
+        val lines = csv.trimEnd().lines()
+        assertEquals("night,window_minutes,reason,woke_minutes_before_target,snoozes,epoch,motion,hr", lines[0])
+        assertEquals("1,30,LIGHT_SLEEP,12,1,0,0.000000,52.0", lines[1])
+        assertEquals("2,30,LIGHT_SLEEP,12,1,0,0.002100,52.3", lines[2])
+        assertEquals("2,30,LIGHT_SLEEP,12,1,1,,", lines[3])
+        assertFalse("geheim" in csv)
+        assertFalse("2026" in csv)
+    }
+
+    @Test
+    fun calibrationInputDropsNothingButOrders() {
+        val motions = NightHistory.motionsForCalibration(listOf(night(2, listOf(Epoch(0.3, null))), night(1)))
+        assertEquals(listOf(listOf<Double?>(0.0), listOf<Double?>(0.3)), motions)
+    }
+}
