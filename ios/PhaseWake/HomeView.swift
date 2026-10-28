@@ -37,7 +37,8 @@ struct HomeView: View {
                                     LastNightCard(
                                         night: night,
                                         now: context.date,
-                                        hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights)
+                                        // Ungemessene erste Minuten der Apple Watch zählen nicht als Lücke.
+                                        hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights.map(measuredPart))
                                     ) { model.setFeeling($0, for: night) }
                                 }
                             }
@@ -51,6 +52,13 @@ struct HomeView: View {
                                 .padding(.top, 8)
                             ForEach(model.alarms) { alarm in
                                 AlarmRow(alarm: alarm) { editing = alarm }
+                            }
+                            if !model.canAddAlarm {
+                                Text(L("alarms_limit_apple", PhoneModel.maxAlarms))
+                                    .font(Fonts.manrope(12, relativeTo: .caption))
+                                    .foregroundStyle(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 20)
                             }
                         }
                         Spacer(minLength: 80)
@@ -71,6 +79,8 @@ struct HomeView: View {
                     .foregroundStyle(scheme == .dark ? .white : Brand.nightTop)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .padding(16)
+                    // Höchstens acht Wecker; der Hinweis steht unter der Liste.
+                    .disabled(!model.canAddAlarm)
                 }
             }
             .task(id: scenePhase) {
@@ -198,9 +208,12 @@ private struct LastNightCard: View {
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
-            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 46)
+            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 46)
             Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if let unmeasured = unmeasuredText(night) {
+                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
             if let hint {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LP("hint_title", MissHint.nights, MissHint.nights)).font(Fonts.manrope(13, .semibold, relativeTo: .footnote))

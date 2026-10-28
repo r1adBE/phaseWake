@@ -4,8 +4,31 @@ import SwiftUI
 /// Befinden, Datenqualität und Trends – gleiche Texte und Regeln wie Android.
 func feelingName(_ feeling: Int) -> String { L("feeling_\(min(5, max(1, feeling)))") }
 
+/// Die Smart-Alarm-Sitzung der Apple Watch beginnt höchstens 25 Minuten vor der Zielzeit
+/// (`SmartAlarm.sessionLead`), das System darf sie bis 2 Minuten später starten (`startTolerance`).
+let appleSessionLeadMinutes = 25
+private let appleStartToleranceSeconds = 120
+
+/// Epochen am Fensterbeginn, die vor dem Start der Sitzung lagen: ungemessen, nicht «kein leichter
+/// Schlaf» und keine Lücke. Nur bei Fenstern über 25 Minuten und nur, solange sie ganz leer sind.
+func unmeasuredEpochs(_ night: NightRecord) -> Int {
+    let beforeSession = Int(night.target.timeIntervalSince(night.windowStart)) - appleSessionLeadMinutes * 60
+    guard beforeSession > 0 else { return 0 }
+    let limit = (beforeSession + appleStartToleranceSeconds) / DetectorConfig.epochSeconds
+    return min(limit, night.epochs.prefix { $0.motion == nil && $0.heartRate == nil }.count)
+}
+
+/// Die Nacht ab Start der Messung, für Datenqualität und Hinweise. Die Erkennung auf der Uhr wärmt
+/// ebenfalls erst danach auf; die Regeln selbst bleiben unverändert.
+func measuredPart(_ night: NightRecord) -> NightRecord {
+    let skip = unmeasuredEpochs(night)
+    guard skip > 0 else { return night }
+    return NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                       reason: night.reason, snoozes: night.snoozes, epochs: Array(night.epochs.dropFirst(skip)), feeling: night.feeling)
+}
+
 func qualityText(_ night: NightRecord) -> String {
-    switch NightQuality.of(night) {
+    switch NightQuality.of(measuredPart(night)) {
     case .full: L("quality_full")
     case .motionOnly: L("quality_motion_only")
     case .partial: L("quality_partial")
@@ -15,6 +38,13 @@ func qualityText(_ night: NightRecord) -> String {
 
 func nightDetails(_ night: NightRecord) -> String {
     ([qualityText(night)] + (night.feeling.map { [L("feeling_value", feelingName($0))] } ?? [])).joined(separator: " · ")
+}
+
+/// «Erste 5 Min nicht gemessen …» oder `nil`, wenn die Uhr das ganze Fenster gemessen hat.
+func unmeasuredText(_ night: NightRecord) -> String? {
+    let epochs = unmeasuredEpochs(night)
+    guard epochs > 0 else { return nil }
+    return L("night_unmeasured_apple", max(1, epochs * DetectorConfig.epochSeconds / 60), appleSessionLeadMinutes)
 }
 
 /// Fünf runde Knöpfe von «erschöpft» bis «erholt»; ein Tipp genügt.

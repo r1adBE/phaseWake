@@ -15,4 +15,11 @@
     <string name="watch_not_armed">सोने से पहले Phase Wake खोलें, ताकि आपकी वॉच अलार्म को सक्रिय कर सके।</string>
     <string name="check_watch_arm">वॉच पर अलार्म सक्रिय है</string>
     <string name="check_watch_arm_problem">सोने से पहले अपनी Apple Watch पर Phase Wake खोलें। watchOS अलार्म को तभी सक्रिय करता है जब ऐप खुला हो।</string>
+    <string name="woke_late_apple">लक्ष्य से %1$d मि. बाद · %2$s</string>
+    <string name="night_unmeasured_apple">पहले %1$d मि. मापे नहीं गए – Apple Watch लक्ष्य से पहले के केवल आख़िरी %2$d मि. मापती है।</string>
+    <string name="check_watch_battery_apple">घड़ी की बैटरी</string>
+    <string name="check_watch_battery_apple_problem">%1$d %% से कम – Apple Watch चार्ज करें ताकि वह आपको जगा सके।</string>
+    <string name="export_contents_apple">फ़ाइल में हर रात की आपकी गतिविधि और धड़कन की शृंखलाएँ हैं।</string>
+    <string name="editor_more_apple">और</string>
+    <string name="alarms_limit_apple">आप अधिकतम %1$d अलार्म बना सकते हैं।</string>
 </resources>

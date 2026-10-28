@@ -1,6 +1,7 @@
 import Foundation
 import PhaseWakeCore
 import WatchConnectivity
+import WatchKit
 
 /// Verbindung zum iPhone: Wecker kommen als Anwendungskontext, Nächte gehen als Benutzerdaten,
 /// Weck-Ereignisse als Nachricht, ohne Verbindung als Benutzerdaten nachgereicht.
@@ -34,10 +35,31 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     }
 
     /// Vor der Aktivierung (z. B. beim Hintergrundstart für eine Sitzung) bleibt der Stand gemerkt und
-    /// geht nach `activationDidComplete` nach.
+    /// geht nach `activationDidComplete` nach. Jedes Senden nimmt den aktuellen Akkustand der Uhr mit
+    /// (Nacht-Check auf dem iPhone).
     private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
+        let device = WKInterfaceDevice.current()
+        device.isBatteryMonitoringEnabled = true
+        if device.batteryState == .unplugged, device.batteryLevel >= 0 {
+            context[SyncKeys.battery] = Int64((device.batteryLevel * 100).rounded())
+            context[SyncKeys.batteryAt] = Int64(Date().timeIntervalSince1970 * 1000)
+        } else {
+            // Am Laden oder unbekannt: nichts melden, das iPhone warnt dann nicht.
+            context[SyncKeys.battery] = nil
+            context[SyncKeys.batteryAt] = nil
+        }
         try? WCSession.default.updateApplicationContext(context)
+    }
+
+    /// Beim Öffnen der App: Akkustand neu melden, auch wenn sich sonst nichts geändert hat.
+    func publishBattery() {
+        if context[SyncKeys.alarms] == nil {
+            let snapshot = PhaseWakeStorage.watchShared.snapshot()
+            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
+            context[SyncKeys.updatedAt] = snapshot.updatedAt
+        }
+        sendContext()
     }
 
     func send(night: NightRecord) {

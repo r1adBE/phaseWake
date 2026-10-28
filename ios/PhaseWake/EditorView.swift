@@ -20,6 +20,7 @@ struct EditorView: View {
     @State private var confirmDiscard = false
     @State private var confirmDelete = false
     @State private var newId = UUID().uuidString
+    @State private var showMore = false
 
     var body: some View {
         NavigationStack {
@@ -92,28 +93,32 @@ struct EditorView: View {
                     Text(L("editor_alert"))
                 }
 
+                // Selten gebraucht: Sonnenaufgang und Name zugeklappt unter «Mehr».
                 Section {
-                    Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
-                    Picker(L("editor_sunrise"), selection: $sunrise) {
-                        Text(L("alert_off")).tag(Sunrise.off)
-                        Text(L("sunrise_ring")).tag(Sunrise.ring)
-                        Text(L("sunrise_window")).tag(Sunrise.window)
+                    DisclosureGroup(isExpanded: $showMore) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L("editor_sunrise")).font(.headline)
+                            Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
+                            Picker(L("editor_sunrise"), selection: $sunrise) {
+                                Text(L("alert_off")).tag(Sunrise.off)
+                                Text(L("sunrise_ring")).tag(Sunrise.ring)
+                                Text(L("sunrise_window")).tag(Sunrise.window)
+                            }
+                            .pickerStyle(.segmented)
+                            if sunrise != .off {
+                                Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
+                                    .font(.footnote).foregroundStyle(.secondary)
+                                // Auf dem iPhone nur mit offener App möglich.
+                                Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                            }
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L("editor_label")).font(.headline)
+                            TextField(L("editor_label_hint"), text: $label)
+                        }
+                    } label: {
+                        Text(L("editor_more_apple"))
                     }
-                    .pickerStyle(.segmented)
-                    if sunrise != .off {
-                        Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
-                            .font(.footnote).foregroundStyle(.secondary)
-                        // Auf dem iPhone nur mit offener App möglich.
-                        Text(L("editor_sunrise_ios_hint")).font(.footnote)
-                    }
-                } header: {
-                    Text(L("editor_sunrise"))
-                }
-
-                Section {
-                    TextField(L("editor_label_hint"), text: $label)
-                } header: {
-                    Text(L("editor_label"))
                 }
 
                 if let existing {
@@ -172,6 +177,8 @@ struct EditorView: View {
         watchSound = existing.watchSound
         label = existing.label
         sunrise = existing.sunrise
+        // Schon gesetzte Optionen nicht verstecken.
+        showMore = existing.sunrise != .off || !existing.label.isEmpty
     }
 
     private func current() -> AlarmSpec? {

@@ -15,4 +15,11 @@
     <string name="watch_not_armed">睡覺前請開啟 Phase Wake，這樣你的手錶才能啟用鬧鐘。</string>
     <string name="check_watch_arm">手錶上的鬧鐘已啟用</string>
     <string name="check_watch_arm_problem">睡覺前請在你的 Apple Watch 上開啟 Phase Wake。watchOS 只有在 App 開啟時才會啟用鬧鐘。</string>
+    <string name="woke_late_apple">比目標晚 %1$d 分鐘 · %2$s</string>
+    <string name="night_unmeasured_apple">前 %1$d 分鐘未測量——Apple Watch 只測量目標時間前的最後 %2$d 分鐘。</string>
+    <string name="check_watch_battery_apple">手錶電量</string>
+    <string name="check_watch_battery_apple_problem">低於 %1$d %%——請為 Apple Watch 充電，好讓它能叫醒你。</string>
+    <string name="export_contents_apple">此檔案包含你每晚的活動與心率序列。</string>
+    <string name="editor_more_apple">更多</string>
+    <string name="alarms_limit_apple">最多可設定 %1$d 個鬧鐘。</string>
 </resources>

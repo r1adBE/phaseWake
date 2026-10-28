@@ -17,4 +17,11 @@
     <string name="watch_not_armed">Open Phase Wake before you go to sleep so your watch can arm the alarm.</string>
     <string name="check_watch_arm">Alarm armed on the watch</string>
     <string name="check_watch_arm_problem">Open Phase Wake on your Apple Watch before you go to sleep. watchOS only arms the alarm while the app is open.</string>
+    <string name="woke_late_apple">%1$d min after target · %2$s</string>
+    <string name="night_unmeasured_apple">First %1$d min not measured – the Apple Watch only measures the last %2$d min before the target.</string>
+    <string name="check_watch_battery_apple">Watch battery</string>
+    <string name="check_watch_battery_apple_problem">Below %1$d %% – charge your Apple Watch so it can wake you.</string>
+    <string name="export_contents_apple">The file contains your movement and heart rate series for each night.</string>
+    <string name="editor_more_apple">More</string>
+    <string name="alarms_limit_apple">You can set up to %1$d alarms.</string>
 </resources>

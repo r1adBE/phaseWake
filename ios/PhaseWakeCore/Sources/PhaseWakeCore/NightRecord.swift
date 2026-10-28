@@ -33,6 +33,9 @@ public struct NightRecord: Equatable, Sendable {
 
     /// Ganze Minuten vor der Zielzeit (abgerundet, nie negativ), wie `Duration.toMinutes()`.
     public var minutesBeforeTarget: Int { max(0, Int(target.timeIntervalSince(wokeAt) / 60)) }
+
+    /// Ganze Minuten nach der Zielzeit (abgerundet; 0, wenn nicht zu spät geweckt), wie `Duration.toMinutes()`.
+    public var minutesAfterTarget: Int { max(0, Int(wokeAt.timeIntervalSince(target) / 60)) }
 }
 
 /// Aufbewahrung und anonymer Export. Identisch zu `NightHistory` (Kotlin).

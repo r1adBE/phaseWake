@@ -15,4 +15,11 @@
     <string name="watch_not_armed">پیش از خواب Phase Wake را باز کن تا ساعتت بتواند زنگ را فعال کند.</string>
     <string name="check_watch_arm">زنگ روی ساعت فعال است</string>
     <string name="check_watch_arm_problem">پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند.</string>
+    <string name="woke_late_apple">%1$d دق بعد از زمان هدف · %2$s</string>
+    <string name="night_unmeasured_apple">%1$d دق اول اندازه‌گیری نشد – Apple Watch فقط %2$d دق آخر پیش از زمان هدف را اندازه می‌گیرد.</string>
+    <string name="check_watch_battery_apple">باتری ساعت</string>
+    <string name="check_watch_battery_apple_problem">کمتر از %1$d %% – Apple Watch را شارژ کن تا بتواند بیدارت کند.</string>
+    <string name="export_contents_apple">این فایل شامل سری‌های حرکت و ضربان قلب هر شب توست.</string>
+    <string name="editor_more_apple">بیشتر</string>
+    <string name="alarms_limit_apple">حداکثر %1$d زنگ می‌توانی بسازی.</string>
 </resources>

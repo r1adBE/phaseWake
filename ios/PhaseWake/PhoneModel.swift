@@ -17,7 +17,12 @@ final class PhoneModel {
     private(set) var lastRing: Date?
     /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
     private(set) var watchArmedTarget: Date?
-    private(set) var watchReported = false
+    /// Akkustand der Apple Watch in Prozent, wie zuletzt gemeldet, und Zeitpunkt der Messung.
+    private var watchBatteryLevel: (percent: Int, at: Date)?
+
+    /// Höchstens so viele Wecker (wie Android): Die Uhr führt ohnehin nur die nächste Nacht.
+    static let maxAlarms = 8
+    var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
 
     private init() {
         alarms = storage.snapshot().alarms
@@ -34,7 +39,7 @@ final class PhoneModel {
     func upsert(_ spec: AlarmSpec) {
         change { list in
             var list = list
-            if let i = list.firstIndex(where: { $0.id == spec.id }) { list[i] = spec } else { list.append(spec) }
+            if let i = list.firstIndex(where: { $0.id == spec.id }) { list[i] = spec } else if list.count < Self.maxAlarms { list.append(spec) }
             return list
         }
     }
@@ -57,7 +62,7 @@ final class PhoneModel {
     }
 
     func setFeeling(_ feeling: Int, for night: NightRecord) {
-        storage.setFeeling(feeling, windowStart: night.windowStart)
+        storage.setFeeling(feeling, alarmId: night.alarmId, windowStart: night.windowStart)
         nights = storage.nights()
     }
 
@@ -81,7 +86,15 @@ final class PhoneModel {
 
     func watchArmed(_ target: Date?) {
         watchArmedTarget = target
-        watchReported = true
+    }
+
+    func setWatchBattery(_ level: (percent: Int, at: Date)?) { watchBatteryLevel = level }
+
+    /// Akkustand der Uhr; `nil`, wenn unbekannt oder älter als 6 Stunden.
+    func watchBattery(now: Date = Date()) -> Int? {
+        guard let level = watchBatteryLevel,
+              now.timeIntervalSince(level.at) * 1000 < Double(SyncKeys.maxBatteryAgeMs) else { return nil }
+        return level.percent
     }
 
     func clearHistory() {

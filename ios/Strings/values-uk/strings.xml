@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Відкрий Phase Wake перед сном, щоб годинник міг активувати будильник.</string>
     <string name="check_watch_arm">Будильник активовано на годиннику</string>
     <string name="check_watch_arm_problem">Відкрий Phase Wake на Apple Watch перед сном. watchOS активує будильник, лише поки застосунок відкритий.</string>
+    <string name="woke_late_apple">через %1$d хв після цілі · %2$s</string>
+    <string name="night_unmeasured_apple">Перші %1$d хв не виміряно – Apple Watch вимірює лише останні %2$d хв до цілі.</string>
+    <string name="check_watch_battery_apple">Заряд годинника</string>
+    <string name="check_watch_battery_apple_problem">Нижче %1$d %% – заряди Apple Watch, щоб він міг тебе розбудити.</string>
+    <string name="export_contents_apple">Файл містить твої ряди руху й пульсу за кожну ніч.</string>
+    <string name="editor_more_apple">Більше</string>
+    <string name="alarms_limit_apple">Можна створити щонайбільше %1$d будильників.</string>
 </resources>

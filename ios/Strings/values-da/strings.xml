@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Åbn Phase Wake, før du går i seng, så dit ur kan aktivere alarmen.</string>
     <string name="check_watch_arm">Alarm aktiveret på uret</string>
     <string name="check_watch_arm_problem">Åbn Phase Wake på dit Apple Watch, før du går i seng. watchOS aktiverer kun alarmen, mens appen er åben.</string>
+    <string name="woke_late_apple">%1$d min efter ønsket tid · %2$s</string>
+    <string name="night_unmeasured_apple">Første %1$d min ikke målt – Apple Watch måler kun de sidste %2$d min før ønsket tid.</string>
+    <string name="check_watch_battery_apple">Urets batteri</string>
+    <string name="check_watch_battery_apple_problem">Under %1$d %% – oplad dit Apple Watch, så det kan vække dig.</string>
+    <string name="export_contents_apple">Filen indeholder dine bevægelses- og pulsserier for hver nat.</string>
+    <string name="editor_more_apple">Mere</string>
+    <string name="alarms_limit_apple">Du kan oprette højst %1$d alarmer.</string>
 </resources>

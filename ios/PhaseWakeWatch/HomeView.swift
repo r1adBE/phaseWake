@@ -53,9 +53,16 @@ struct HomeView: View {
         }
         .onChange(of: scenePhase) { _, phase in
             // Nur bei aktiver App lässt sich die Smart-Alarm-Sitzung planen.
-            if phase == .active { model.reschedule() }
+            // Dabei auch den Akkustand ans iPhone (Nacht-Check warnt unter 20 %).
+            if phase == .active {
+                model.reschedule()
+                WatchConnectivityBridge.shared.publishBattery()
+            }
         }
-        .onAppear { model.reschedule() }
+        .onAppear {
+            model.reschedule()
+            WatchConnectivityBridge.shared.publishBattery()
+        }
         .task { await SmartAlarm.shared.requestAccess() }
     }
 }

@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Avaa Phase Wake ennen nukkumaanmenoa, jotta kellosi voi aktivoida herätyksen.</string>
     <string name="check_watch_arm">Herätys aktivoitu kellossa</string>
     <string name="check_watch_arm_problem">Avaa Phase Wake Apple Watchissa ennen nukkumaanmenoa. watchOS aktivoi herätyksen vain, kun sovellus on auki.</string>
+    <string name="woke_late_apple">%1$d min tavoiteajan jälkeen · %2$s</string>
+    <string name="night_unmeasured_apple">Ensimmäiset %1$d min mittaamatta – Apple Watch mittaa vain viimeiset %2$d min ennen tavoiteaikaa.</string>
+    <string name="check_watch_battery_apple">Kellon akku</string>
+    <string name="check_watch_battery_apple_problem">Alle %1$d %% – lataa Apple Watch, jotta se voi herättää sinut.</string>
+    <string name="export_contents_apple">Tiedosto sisältää jokaisen yön liike- ja sykesarjasi.</string>
+    <string name="editor_more_apple">Lisää</string>
+    <string name="alarms_limit_apple">Voit luoda enintään %1$d herätystä.</string>
 </resources>

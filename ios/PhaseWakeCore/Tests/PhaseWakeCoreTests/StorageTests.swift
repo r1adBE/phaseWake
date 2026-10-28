@@ -61,5 +61,37 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.nights(), [night])
         s.clearNights()
         XCTAssertEqual(s.nights(), [])
+        s.clearNights()
+    }
+
+    /// Zwei Wecker mit exakt gleichem Fensterbeginn sind zwei Nächte; das Befinden gilt nur für eine.
+    func testNightsKeyedByAlarmAndWindowStart() {
+        let s = storage()
+        let start = Date(timeIntervalSince1970: 1_793_165_400)
+        func night(_ id: String) -> NightRecord {
+            NightRecord(alarmId: id, windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0, epochs: [])
+        }
+        s.add(night("a"))
+        s.add(night("b"))
+        XCTAssertEqual(s.nights().map(\.alarmId).sorted(), ["a", "b"])
+        s.setFeeling(4, alarmId: "b", windowStart: start)
+        XCTAssertNil(s.nights().first { $0.alarmId == "a" }?.feeling)
+        XCTAssertEqual(s.nights().first { $0.alarmId == "b" }?.feeling, 4)
+        // Dieselbe Nacht noch einmal von der Uhr: ersetzt, Befinden bleibt.
+        s.add(night("b"))
+        XCTAssertEqual(s.nights().count, 2)
+        XCTAssertEqual(s.nights().first { $0.alarmId == "b" }?.feeling, 4)
+    }
+
+    func testMinutesBeforeAndAfterTarget() {
+        let target = Date(timeIntervalSince1970: 1_793_167_200)
+        func night(_ offset: TimeInterval) -> NightRecord {
+            NightRecord(alarmId: "a", windowStart: target.addingTimeInterval(-1800), target: target, wokeAt: target.addingTimeInterval(offset), reason: .deadline, snoozes: 0, epochs: [])
+        }
+        XCTAssertEqual(night(-12 * 60 - 30).minutesBeforeTarget, 12)
+        XCTAssertEqual(night(-12 * 60 - 30).minutesAfterTarget, 0)
+        XCTAssertEqual(night(7 * 60 + 59).minutesBeforeTarget, 0)
+        XCTAssertEqual(night(7 * 60 + 59).minutesAfterTarget, 7)
+        XCTAssertEqual(night(59).minutesAfterTarget, 0)
     }
 }

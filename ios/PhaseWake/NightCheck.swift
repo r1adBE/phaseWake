@@ -9,13 +9,14 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
-    case watch, watchApp, watchArm, alarms, notifications, battery
+    case watch, watchApp, watchArm, watchBattery, alarms, notifications, battery
 
     var title: String {
         switch self {
         case .watch: L("check_watch")
         case .watchApp: L("check_watch_app")
         case .watchArm: L("check_watch_arm")
+        case .watchBattery: L("check_watch_battery_apple")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -27,6 +28,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watch: L("check_watch_problem_apple")
         case .watchApp: L("check_watch_app_problem")
         case .watchArm: L("check_watch_arm_problem")
+        case .watchBattery: L("check_watch_battery_apple_problem", NightCheck.lowBatteryPercent)
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -39,6 +41,8 @@ enum PhoneCheck: CaseIterable, Hashable {
 @MainActor
 enum NightCheck {
     nonisolated static let lowBatteryPercent = 20
+    /// So weit im Voraus nimmt watchOS eine Smart-Alarm-Sitzung an (`SmartAlarm.maxLeadTime` auf der Uhr).
+    private static let armLeadTime: TimeInterval = 36 * 3600
 
     static func collect() async -> [PhoneCheck] {
         var failed: [PhoneCheck] = []
@@ -50,9 +54,16 @@ enum NightCheck {
             failed.append(.watch)
         } else if session?.isWatchAppInstalled != true {
             failed.append(.watchApp)
-        } else if let plan, model.watchReported, model.watchArmedTarget != plan.target {
+        } else {
             // watchOS plant den Smart Alarm nur bei offener Uhr-App und höchstens 36 h im Voraus.
-            failed.append(.watchArm)
+            // Hat die Uhr noch nie gemeldet (App dort nie geöffnet), ist sie auch nicht scharf.
+            // Weiter voraus lässt es sich noch nicht scharf schalten, also auch nicht warnen.
+            if let plan, plan.windowStart.timeIntervalSinceNow < armLeadTime, model.watchArmedTarget != plan.target {
+                failed.append(.watchArm)
+            }
+            if let percent = model.watchBattery(), percent < lowBatteryPercent {
+                failed.append(.watchBattery)
+            }
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
@@ -100,7 +111,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .battery:
+        case .watch, .watchApp, .watchArm, .watchBattery, .battery:
             break
         }
     }

@@ -15,4 +15,11 @@
     <string name="watch_not_armed">פתחו את Phase Wake לפני השינה כדי שהשעון יוכל להפעיל את המעורר.</string>
     <string name="check_watch_arm">המעורר פעיל בשעון</string>
     <string name="check_watch_arm_problem">פתחו את Phase Wake ב-Apple Watch שלכם לפני השינה. watchOS מפעיל את המעורר רק כשהאפליקציה פתוחה.</string>
+    <string name="woke_late_apple">%1$d דק׳ אחרי היעד · %2$s</string>
+    <string name="night_unmeasured_apple">%1$d הדק׳ הראשונות לא נמדדו – Apple Watch מודד רק את %2$d הדק׳ האחרונות לפני היעד.</string>
+    <string name="check_watch_battery_apple">סוללת השעון</string>
+    <string name="check_watch_battery_apple_problem">מתחת ל-%1$d %% – טען את ה-Apple Watch כדי שיוכל להעיר אותך.</string>
+    <string name="export_contents_apple">הקובץ מכיל את סדרות התנועה והדופק שלך לכל לילה.</string>
+    <string name="editor_more_apple">עוד</string>
+    <string name="alarms_limit_apple">אפשר להגדיר עד %1$d התראות.</string>
 </resources>

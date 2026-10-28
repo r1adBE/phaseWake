@@ -340,11 +340,16 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         let queue = assemblerQueue
         let handler: @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?) -> Void = { [weak self] _, samples, _, _, _ in
             guard let samples = samples as? [HKQuantitySample], !samples.isEmpty else { return }
+            // Zeitstempel der Probe auf die Systemlaufzeit umrechnen (gleiche Uhr wie CoreMotion): Alter der
+            // Probe gegen die Wanduhr, abgezogen von der Laufzeit. Beide Bezugswerte im selben Moment und
+            // einmal je Lieferung genommen. Bewusst kein fester Versatz ab Sitzungsbeginn: HealthKit stempelt
+            // nach der Wanduhr, nach einem Zeitsprung (NTP) verschöbe ein alter Versatz jede spätere Probe
+            // um den ganzen Sprung. So trifft es nur Proben, die vor dem Sprung entstanden und erst danach kommen.
             let uptime = ProcessInfo.processInfo.systemUptime
+            let wall = Date()
             let closed: [Epoch] = queue.sync {
                 samples.flatMap { sample in
-                    // Zeitstempel der Probe auf die Systemlaufzeit umrechnen (gleiche Uhr wie CoreMotion).
-                    let nanos = Int64((uptime - Date().timeIntervalSince(sample.endDate)) * 1e9)
+                    let nanos = Int64((uptime - wall.timeIntervalSince(sample.endDate)) * 1e9)
                     return assembler.addHeartRate(timestampNanos: nanos, bpm: sample.quantity.doubleValue(for: unit))
                 }
             }

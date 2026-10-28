@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Ouvre Phase Wake avant de dormir pour que ta montre puisse activer l’alarme.</string>
     <string name="check_watch_arm">Alarme activée sur la montre</string>
     <string name="check_watch_arm_problem">Ouvre Phase Wake sur ton Apple Watch avant de dormir. watchOS n’active l’alarme que tant que l’app est ouverte.</string>
+    <string name="woke_late_apple">%1$d min après l’heure cible · %2$s</string>
+    <string name="night_unmeasured_apple">%1$d premières min non mesurées – l’Apple Watch ne mesure que les %2$d dernières min avant l’heure cible.</string>
+    <string name="check_watch_battery_apple">Batterie de la montre</string>
+    <string name="check_watch_battery_apple_problem">Moins de %1$d %% – recharge ton Apple Watch pour qu’elle puisse te réveiller.</string>
+    <string name="export_contents_apple">Le fichier contient tes séries de mouvement et de pouls pour chaque nuit.</string>
+    <string name="editor_more_apple">Plus</string>
+    <string name="alarms_limit_apple">Tu peux créer au maximum %1$d alarmes.</string>
 </resources>

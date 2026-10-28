@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Apri Phase Wake prima di dormire, così il tuo orologio può attivare la sveglia.</string>
     <string name="check_watch_arm">Sveglia attivata sull’orologio</string>
     <string name="check_watch_arm_problem">Apri Phase Wake sul tuo Apple Watch prima di dormire. watchOS attiva la sveglia solo finché l’app è aperta.</string>
+    <string name="woke_late_apple">%1$d min dopo l’orario obiettivo · %2$s</string>
+    <string name="night_unmeasured_apple">Primi %1$d min non misurati – l’Apple Watch misura solo gli ultimi %2$d min prima dell’orario obiettivo.</string>
+    <string name="check_watch_battery_apple">Batteria dell’orologio</string>
+    <string name="check_watch_battery_apple_problem">Sotto il %1$d %% – ricarica l’Apple Watch perché possa svegliarti.</string>
+    <string name="export_contents_apple">Il file contiene le tue serie di movimento e battito di ogni notte.</string>
+    <string name="editor_more_apple">Altro</string>
+    <string name="alarms_limit_apple">Puoi creare al massimo %1$d sveglie.</string>
 </resources>

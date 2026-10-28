@@ -41,6 +41,8 @@ struct HeroWave: View {
 struct NightBars: View {
     let epochs: [Epoch]
     let totalEpochs: Int
+    /// Ungemessene Epochen am Anfang (vor der Sitzung der Apple Watch): nur angedeutet, nicht als Lücke.
+    var unmeasured = 0
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
@@ -54,7 +56,7 @@ struct NightBars: View {
             let track = scheme == .dark ? Color(hex: 0x24345A) : Color(hex: 0xE1E6F0)
             for (i, e) in epochs.enumerated() {
                 let h: CGFloat = e.motion.map { 3 + (size.height - 13) * CGFloat($0 / maxMotion) } ?? 3
-                let color = e.motion == nil ? track : (i >= epochs.count - 3 ? active : quiet)
+                let color = i < unmeasured ? track.opacity(0.35) : e.motion == nil ? track : (i >= epochs.count - 3 ? active : quiet)
                 context.fill(Path(roundedRect: CGRect(x: CGFloat(i) * (w + gap), y: size.height - h, width: w, height: h), cornerRadius: w / 2), with: .color(color))
             }
             if !epochs.isEmpty {
@@ -66,14 +68,21 @@ struct NightBars: View {
     }
 }
 
-/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern».
+/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern»;
+/// zu spät geweckt: «3 Min nach der Zielzeit · …».
 func nightSummary(_ night: NightRecord) -> String {
     let reason: String = switch night.reason {
     case .lightSleep: L("reason_light")
     case .awake: L("reason_awake")
     case .deadline: L("reason_deadline")
     }
-    let timing = night.minutesBeforeTarget > 0 ? L("woke_early", night.minutesBeforeTarget, reason) : L("woke_on_time", reason)
+    let timing: String = if night.minutesBeforeTarget > 0 {
+        L("woke_early", night.minutesBeforeTarget, reason)
+    } else if night.minutesAfterTarget > 0 {
+        L("woke_late_apple", night.minutesAfterTarget, reason)
+    } else {
+        L("woke_on_time", reason)
+    }
     let snooze = night.snoozes == 0 ? L("no_snooze") : L("snoozed_times", night.snoozes)
     return "\(timing) · \(snooze)"
 }

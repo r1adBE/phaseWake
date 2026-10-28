@@ -114,6 +114,15 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let date = armed > 0 ? Date(timeIntervalSince1970: Double(armed) / 1000) : nil
             Task { @MainActor in PhoneModel.shared.watchArmed(date) }
         }
+        // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
+        var battery: (percent: Int, at: Date)?
+        if let percent = context[SyncKeys.battery] as? Int64, let at = context[SyncKeys.batteryAt] as? Int64 {
+            battery = (percent: Int(percent), at: Date(timeIntervalSince1970: Double(at) / 1000))
+        }
+        let level = battery
+        if !context.isEmpty {
+            Task { @MainActor in PhoneModel.shared.setWatchBattery(level) }
+        }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,
               let alarms = try? Codec.decodeAlarms(text) else { return }

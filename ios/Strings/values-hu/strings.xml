@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Lefekvés előtt nyisd meg a Phase Wake-et, hogy az órád élesíthesse az ébresztőt.</string>
     <string name="check_watch_arm">Ébresztő élesítve az órán</string>
     <string name="check_watch_arm_problem">Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van.</string>
+    <string name="woke_late_apple">%1$d p a célidő után · %2$s</string>
+    <string name="night_unmeasured_apple">Az első %1$d p nincs mérve – az Apple Watch csak a célidő előtti utolsó %2$d percet méri.</string>
+    <string name="check_watch_battery_apple">Óra akkumulátora</string>
+    <string name="check_watch_battery_apple_problem">%1$d %% alatt – töltsd fel az Apple Watchot, hogy fel tudjon ébreszteni.</string>
+    <string name="export_contents_apple">A fájl minden éjszakád mozgás- és pulzussorait tartalmazza.</string>
+    <string name="editor_more_apple">Továbbiak</string>
+    <string name="alarms_limit_apple">Legfeljebb %1$d ébresztőt állíthatsz be.</string>
 </resources>

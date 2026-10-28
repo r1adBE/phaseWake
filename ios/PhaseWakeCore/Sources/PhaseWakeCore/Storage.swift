@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(os)
+import os
+#endif
 
 /// Wecker samt Zeitpunkt der letzten Änderung (für den Abgleich iPhone ↔ Uhr; letzte Änderung gewinnt).
 public struct AlarmSnapshot: Equatable, Sendable {
@@ -104,19 +107,26 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return nightsLocked()
     }
 
-    /// Fügt eine Nacht hinzu (gleicher Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
+    /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
     /// Ein schon angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
+    /// Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon.
     public func add(_ night: NightRecord) {
         lock.lock(); defer { lock.unlock() }
         let current = nightsLocked()
-        let feeling = night.feeling ?? current.first { $0.windowStart == night.windowStart }?.feeling
-        writeNightsLocked(NightHistory.trim(current.filter { $0.windowStart != night.windowStart } + [night.with(feeling: feeling)]))
+        let feeling = night.feeling ?? current.first { Self.sameNight($0, night) }?.feeling
+        writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [night.with(feeling: feeling)]))
     }
 
-    /// Speichert das Befinden (1–5) zur Nacht mit diesem Fensterbeginn.
-    public func setFeeling(_ feeling: Int, windowStart: Date) {
+    /// Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn.
+    public func setFeeling(_ feeling: Int, alarmId: String, windowStart: Date) {
         lock.lock(); defer { lock.unlock() }
-        writeNightsLocked(nightsLocked().map { $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
+        writeNightsLocked(nightsLocked().map { $0.alarmId == alarmId && $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
+    }
+
+    /// Dieselbe Nacht: gleicher Wecker und gleicher Fensterbeginn. Zwei Wecker mit exakt gleichem
+    /// Fenster bleiben so getrennt (wie `NightRepository` auf Android).
+    private static func sameNight(_ a: NightRecord, _ b: NightRecord) -> Bool {
+        a.alarmId == b.alarmId && a.windowStart == b.windowStart
     }
 
     private func nightsLocked() -> [NightRecord] {
@@ -126,15 +136,37 @@ public final class PhaseWakeStorage: @unchecked Sendable {
             .compactMap { try? Codec.decodeNight($0.trimmingCharacters(in: CharacterSet(charactersIn: "\n")) + "\n") }
     }
 
+    /// Schreibt atomar (temporäre Datei, dann ersetzen): Scheitert das Schreiben, etwa bei vollem
+    /// Speicher, bleibt die bisherige Datei unverändert stehen. Der Fehler wird protokolliert.
     private func writeNightsLocked(_ nights: [NightRecord]) {
         let text = nights.map(Codec.encodeNight).joined(separator: Self.separator)
-        try? text.write(to: nightsURL, atomically: true, encoding: .utf8)
+        do {
+            try Data(text.utf8).write(to: nightsURL, options: .atomic)
+        } catch {
+            Self.log("Verlauf nicht gespeichert, bisheriger Stand bleibt: \(error)")
+        }
     }
 
     public func clearNights() {
         lock.lock(); defer { lock.unlock() }
-        try? FileManager.default.removeItem(at: nightsURL)
+        do {
+            try FileManager.default.removeItem(at: nightsURL)
+        } catch CocoaError.fileNoSuchFile {
+            // Kein Verlauf vorhanden.
+        } catch {
+            Self.log("Verlauf nicht gelöscht: \(error)")
+        }
     }
+
+    private static func log(_ message: String) {
+        #if canImport(os)
+        logger.error("\(message, privacy: .public)")
+        #endif
+    }
+
+    #if canImport(os)
+    private static let logger = Logger(subsystem: "com.phasewake.app", category: "Storage")
+    #endif
 }
 
 /// Schlüssel der Verbindung iPhone ↔ Uhr (WatchConnectivity).
@@ -156,4 +188,10 @@ public enum SyncKeys {
     public static let maxRingAgeMs: Int64 = 2 * 60_000
     /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
     public static let armedTarget = "armedTarget"
+    /// Uhr → iPhone im Anwendungskontext: Akkustand der Uhr in Prozent und Zeitpunkt der Messung (ms).
+    /// Ältere Uhr-Versionen schicken beides nicht.
+    public static let battery = "battery"
+    public static let batteryAt = "batteryAt"
+    /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
+    public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 }

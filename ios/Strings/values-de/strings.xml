@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Öffne Phase Wake vor dem Schlafen, damit die Uhr den Wecker scharf schaltet.</string>
     <string name="check_watch_arm">Wecker auf der Uhr scharf</string>
     <string name="check_watch_arm_problem">Öffne Phase Wake vor dem Schlafen auf der Apple Watch. watchOS schaltet den Wecker nur bei offener App scharf.</string>
+    <string name="woke_late_apple">%1$d Min nach der Zielzeit · %2$s</string>
+    <string name="night_unmeasured_apple">Erste %1$d Min nicht gemessen – die Apple Watch misst nur die letzten %2$d Min vor der Zielzeit.</string>
+    <string name="check_watch_battery_apple">Akku der Uhr</string>
+    <string name="check_watch_battery_apple_problem">Unter %1$d %% – lade deine Apple Watch, damit sie dich wecken kann.</string>
+    <string name="export_contents_apple">Die Datei enthält deine Bewegungs- und Pulsreihen jeder Nacht.</string>
+    <string name="editor_more_apple">Mehr</string>
+    <string name="alarms_limit_apple">Du kannst höchstens %1$d Wecker anlegen.</string>
 </resources>

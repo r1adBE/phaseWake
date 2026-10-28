@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Před spaním otevři Phase Wake, aby mohly hodinky budík aktivovat.</string>
     <string name="check_watch_arm">Budík je v hodinkách aktivní</string>
     <string name="check_watch_arm_problem">Před spaním otevři Phase Wake na Apple Watch. watchOS aktivuje budík, jen když je aplikace otevřená.</string>
+    <string name="woke_late_apple">%1$d min po cílovém čase · %2$s</string>
+    <string name="night_unmeasured_apple">Prvních %1$d min neměřeno – Apple Watch měří jen posledních %2$d min před cílovým časem.</string>
+    <string name="check_watch_battery_apple">Baterie hodinek</string>
+    <string name="check_watch_battery_apple_problem">Pod %1$d %% – nabij Apple Watch, aby tě mohly vzbudit.</string>
+    <string name="export_contents_apple">Soubor obsahuje tvé řady pohybu a tepu za každou noc.</string>
+    <string name="editor_more_apple">Více</string>
+    <string name="alarms_limit_apple">Můžeš nastavit nejvýše %1$d budíků.</string>
 </resources>

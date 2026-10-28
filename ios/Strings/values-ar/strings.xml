@@ -15,4 +15,11 @@
     <string name="watch_not_armed">افتح Phase Wake قبل أن تنام لتتمكن ساعتك من تفعيل المنبه.</string>
     <string name="check_watch_arm">المنبه مفعّل على الساعة</string>
     <string name="check_watch_arm_problem">افتح Phase Wake على Apple Watch قبل أن تنام. لا يفعّل watchOS المنبه إلا أثناء فتح التطبيق.</string>
+    <string name="woke_late_apple">بعد الموعد بـ %1$d د · %2$s</string>
+    <string name="night_unmeasured_apple">أول %1$d د لم تُقس – لا تقيس Apple Watch إلا آخر %2$d د قبل الموعد.</string>
+    <string name="check_watch_battery_apple">بطارية الساعة</string>
+    <string name="check_watch_battery_apple_problem">أقل من %1$d %% – اشحن Apple Watch لتتمكن من إيقاظك.</string>
+    <string name="export_contents_apple">يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة.</string>
+    <string name="editor_more_apple">المزيد</string>
+    <string name="alarms_limit_apple">يمكنك إعداد %1$d منبهات كحد أقصى.</string>
 </resources>

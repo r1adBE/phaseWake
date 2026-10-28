@@ -15,4 +15,11 @@
     <string name="watch_not_armed">Open Phase Wake voordat je gaat slapen, zodat je horloge de wekker kan activeren.</string>
     <string name="check_watch_arm">Wekker geactiveerd op het horloge</string>
     <string name="check_watch_arm_problem">Open Phase Wake op je Apple Watch voordat je gaat slapen. watchOS activeert de wekker alleen zolang de app geopend is.</string>
+    <string name="woke_late_apple">%1$d min na de doeltijd · %2$s</string>
+    <string name="night_unmeasured_apple">Eerste %1$d min niet gemeten – de Apple Watch meet alleen de laatste %2$d min voor de doeltijd.</string>
+    <string name="check_watch_battery_apple">Batterij van het horloge</string>
+    <string name="check_watch_battery_apple_problem">Onder %1$d %% – laad je Apple Watch op zodat hij je kan wekken.</string>
+    <string name="export_contents_apple">Het bestand bevat je bewegings- en hartslagreeksen van elke nacht.</string>
+    <string name="editor_more_apple">Meer</string>
+    <string name="alarms_limit_apple">Je kunt maximaal %1$d wekkers instellen.</string>
 </resources>

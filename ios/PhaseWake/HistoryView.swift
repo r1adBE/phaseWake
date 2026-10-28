@@ -26,13 +26,19 @@ struct HistoryView: View {
                             healthConnected: healthRequested,
                             onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep() } }
                         )
-                        ForEach(model.nights.reversed(), id: \.windowStart) { night in
+                        ForEach(model.nights.reversed(), id: \.listId) { night in
                             NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
                         }
                         ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
                         }
-                        .padding()
+                        .padding(.top)
+                        Text(L("export_contents_apple"))
+                            .font(Fonts.manrope(12, relativeTo: .caption))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                            .padding(.bottom)
                     }
                 }
                 .padding(.vertical)
@@ -60,6 +66,11 @@ struct HistoryView: View {
     }
 }
 
+private extension NightRecord {
+    /// Eine Nacht ist Wecker plus Fensterbeginn (zwei Wecker können gleich beginnen).
+    var listId: String { "\(alarmId)|\(windowStart.timeIntervalSince1970)" }
+}
+
 private struct NightCard: View {
     @Environment(PhoneModel.self) private var model
     let night: NightRecord
@@ -72,9 +83,12 @@ private struct NightCard: View {
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
-            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 44)
+            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 44)
             Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if let unmeasured = unmeasuredText(night) {
+                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
             if let verdict {
                 Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
             }
