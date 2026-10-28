@@ -471,6 +471,8 @@ class WakeService : LifecycleService() {
      * «systemExempted» (Wecker-Apps). Schlägt «health» fehl, läuft der Dienst ohne Messung weiter.
      * @return `true`, wenn gemessen werden darf.
      */
+    // Die Diensttypen (API 34) setzt ServiceCompat auf älteren Versionen nicht; das Einbetten ist unbedenklich.
+    @android.annotation.SuppressLint("InlinedApi")
     private fun goForeground(shown: android.app.Notification, measuring: Boolean): Boolean {
         notification = shown
         if (measuring) {

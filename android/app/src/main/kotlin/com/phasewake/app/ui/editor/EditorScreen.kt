@@ -71,6 +71,7 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.ui.Format
@@ -381,7 +382,7 @@ private fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) -
 /** Anzeigename des gewählten Wecktons; leer = Standard-Weckton. */
 private fun soundTitle(context: Context, sound: String): String {
     if (sound.isEmpty()) return context.getString(R.string.editor_sound_default)
-    return runCatching { RingtoneManager.getRingtone(context, Uri.parse(sound))?.getTitle(context) }.getOrNull()
+    return runCatching { RingtoneManager.getRingtone(context, sound.toUri())?.getTitle(context) }.getOrNull()
         ?: context.getString(R.string.editor_sound_default)
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Phase Wake</string>
 
     <string name="channel_alarm">Backup alarm</string>
@@ -7,7 +7,7 @@
     <string name="ring_greeting">Good morning</string>
     <string name="ring_notification_text">Your Phase Wake alarm is ringing</string>
     <!-- Nur iOS (AlarmKit-Knopf); Android stoppt durch Halten. -->
-    <string name="ring_stop">Stop</string>
+    <string name="ring_stop" tools:ignore="UnusedResources">Stop</string>
     <string name="ring_open">Open</string>
     <plurals name="ring_snooze">
         <item quantity="one">Snooze %1$d min · %2$d left</item>

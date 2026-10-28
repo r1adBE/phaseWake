@@ -2,7 +2,6 @@ package com.phasewake.app.ui
 
 import android.Manifest
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -38,6 +37,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.platform.LocalView
+import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import com.phasewake.app.ui.components.Intro
 import com.phasewake.app.ui.components.Night
@@ -265,13 +265,13 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                             Check.FULL_SCREEN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                                 openSettings(
                                     context,
-                                    Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}")),
+                                    Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, "package:${context.packageName}".toUri()),
                                 )
                             }
                             Check.EXACT_ALARMS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                                 openSettings(
                                     context,
-                                    Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:${context.packageName}")),
+                                    Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, "package:${context.packageName}".toUri()),
                                 )
                             }
                             Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
@@ -359,7 +359,7 @@ private fun animationsEnabled(context: android.content.Context): Boolean =
 private fun openSettings(context: android.content.Context, intent: Intent) {
     val fallbacks = listOf(
         intent,
-        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}")),
+        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "package:${context.packageName}".toUri()),
         Intent(Settings.ACTION_SETTINGS),
     )
     for (candidate in fallbacks) {

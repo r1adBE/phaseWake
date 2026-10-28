@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.StrokeCap
@@ -203,7 +204,7 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
             contentPadding = if (compact) PaddingValues(horizontal = 12.dp, vertical = 2.dp) else ButtonDefaults.ContentPadding,
             label = {
                 Text(
-                    LocalContext.current.resources.getQuantityString(R.plurals.ring_snooze, ui.snoozesLeft, Snooze.MINUTES, ui.snoozesLeft),
+                    LocalResources.current.getQuantityString(R.plurals.ring_snooze, ui.snoozesLeft, Snooze.MINUTES, ui.snoozesLeft),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )

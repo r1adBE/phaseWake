@@ -376,7 +376,8 @@ class BackupAlarm(
         private const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
         private const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
 
-        /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest). */
+        /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest); nur Text, auf jeder Version unbedenklich. */
+        @android.annotation.SuppressLint("InlinedApi")
         private val SYSTEM_ACTIONS = setOf(
             Intent.ACTION_LOCKED_BOOT_COMPLETED,
             Intent.ACTION_BOOT_COMPLETED,

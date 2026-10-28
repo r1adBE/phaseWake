@@ -48,7 +48,7 @@ jobs:
           set +e +o pipefail
           for f in */build/reports/lint-results-debug.txt; do
             [ -f "$f" ] || continue
-            list=$(grep -E ": (Warning|Information):" "$f" | sed -E 's#^.*/android/##; s/: (Warning|Information): .*\[([A-Za-z0-9]+).*$/ [\2]/')
+            list=$(grep -E ": (Warning|Information):" "$f" | sed -E 's#^.*/android/##; s/: (Warning|Information): (.{0,180}).*\[([A-Za-z0-9]+).*$/ [\3] \2/')
             n=$(printf '%s\n' "$list" | grep -c .)
             echo "::notice title=Lint ${f%%/*} ($n)::$(printf '%s\n' "$list" | sed ':a;N;$!ba;s/\n/%0A/g')"
           done
