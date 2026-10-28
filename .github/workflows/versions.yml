@@ -14,4 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - run: .github/scripts/latest-versions.sh
+      - name: Versionen
+        shell: bash
+        run: |
+          .github/scripts/latest-versions.sh | tee versions.txt
+          # Als Hinweis, damit es ohne Log-Download über die Checks-API lesbar ist.
+          echo "::notice title=Versionen::$(sed 's/%/%25/g' versions.txt | awk 'BEGIN{ORS="%0A"}{print}')"
