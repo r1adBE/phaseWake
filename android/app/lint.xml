@@ -4,4 +4,6 @@
     <issue id="Typos">
         <ignore path="src/main/res/values-de/strings.xml" />
     </issue>
+    <!-- Ziel-SDK 36 wie die Uhr (Wear OS 6); auf 37 erst nach Test auf einem Android-17-Handy. -->
+    <issue id="OldTargetApi" severity="ignore" />
 </lint>
