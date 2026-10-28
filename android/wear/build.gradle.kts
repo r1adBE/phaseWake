@@ -26,6 +26,8 @@ android {
     }
 
     buildFeatures { compose = true }
+    // Sprachliste für die Sprachwahl pro App (Android 13+) automatisch aus den Ressourcen.
+    androidResources { generateLocaleConfig = true }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

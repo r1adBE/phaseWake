@@ -9,7 +9,6 @@
     <string name="notification_window_title">Watching for light sleep</string>
     <string name="notification_window_text">Wakes you by %1$s at the latest</string>
     <string name="notification_ring_title">Good morning</string>
-    <string name="notification_snoozed_text">Snoozing until %1$s</string>
 
     <string name="ring_greeting">Good morning</string>
     <string name="ring_reason_light">Light sleep detected</string>
@@ -31,7 +30,6 @@
     <string name="home_permissions_hint">Needed to detect light sleep.</string>
     <string name="alarm_once">Once</string>
     <string name="alarm_every_day">Every day</string>
-    <string name="alarm_after_sleep">After %1$s of sleep</string>
     <string name="tile_label">Next alarm</string>
     <string name="tile_next">Next alarm</string>
     <string name="tile_light_sleep">Wakes you in light sleep</string>
@@ -42,4 +40,6 @@
     <string name="home_good_night_active">Waiting for sleep · tap to cancel</string>
     <string name="dnd_title">Alarms blocked</string>
     <string name="dnd_text">Allow alarms in Do Not Disturb.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
 </resources>

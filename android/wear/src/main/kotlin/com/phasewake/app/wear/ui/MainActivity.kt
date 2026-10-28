@@ -248,7 +248,11 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
 private fun GoodNightButton(active: Boolean, sleepMinutes: Int, onClick: () -> Unit) {
     val hours = sleepMinutes / 60
     val rest = sleepMinutes % 60
-    val duration = if (rest == 0) "$hours h" else "$hours h $rest min"
+    val duration = if (rest == 0) {
+        stringResource(R.string.duration_hours, hours)
+    } else {
+        stringResource(R.string.duration_hours_minutes, hours, rest)
+    }
     Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),

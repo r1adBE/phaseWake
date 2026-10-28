@@ -19,7 +19,6 @@
     <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich, wenn du leicht schläfst.</string>
     <string name="home_add_alarm">Neuer Wecker</string>
     <string name="home_last_night">Letzte Nacht</string>
-    <string name="home_last_night_summary">%1$s · %2$s</string>
     <string name="home_alarms">Deine Wecker</string>
     <string name="home_permission_title">Wecker erlauben</string>
     <string name="home_permission_text">Phase Wake braucht Mitteilungen und Vollbild-Hinweise, um dich zu wecken.</string>
@@ -62,7 +61,6 @@
     <string name="history_empty_text">Nach der ersten Nacht mit der Uhr siehst du hier, wann und warum sie dich geweckt hat.</string>
     <string name="history_average">Ø %1$d Min früher</string>
     <string name="history_light_share">%1$d %% im leichten Schlaf</string>
-    <string name="history_nights">%1$d Nächte</string>
     <string name="history_export">Anonym exportieren</string>
     <string name="history_export_subject">Phase-Wake-Nächte (anonym)</string>
 

@@ -21,7 +21,6 @@
     <string name="home_no_alarm_text">Set a time and a window. Your watch wakes you when you sleep lightly.</string>
     <string name="home_add_alarm">New alarm</string>
     <string name="home_last_night">Last night</string>
-    <string name="home_last_night_summary">%1$s · %2$s</string>
     <string name="home_alarms">Your alarms</string>
     <string name="home_permission_title">Allow alarms</string>
     <string name="home_permission_text">Phase Wake needs notifications and full-screen alerts to wake you.</string>
@@ -64,7 +63,6 @@
     <string name="history_empty_text">After your first night with the watch, you’ll see when and why it woke you.</string>
     <string name="history_average">Ø %1$d min early</string>
     <string name="history_light_share">%1$d %% in light sleep</string>
-    <string name="history_nights">%1$d nights</string>
     <string name="history_export">Export anonymously</string>
     <string name="history_export_subject">Phase Wake nights (anonymous)</string>
 

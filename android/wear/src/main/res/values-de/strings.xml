@@ -7,7 +7,6 @@
     <string name="notification_window_title">Wartet auf leichten Schlaf</string>
     <string name="notification_window_text">Weckt dich spätestens um %1$s</string>
     <string name="notification_ring_title">Guten Morgen</string>
-    <string name="notification_snoozed_text">Schlummern bis %1$s</string>
 
     <string name="ring_greeting">Guten Morgen</string>
     <string name="ring_reason_light">Leichter Schlaf erkannt</string>
@@ -29,7 +28,6 @@
     <string name="home_permissions_hint">Nötig, um leichten Schlaf zu erkennen.</string>
     <string name="alarm_once">Einmalig</string>
     <string name="alarm_every_day">Täglich</string>
-    <string name="alarm_after_sleep">Nach %1$s Schlaf</string>
     <string name="tile_label">Nächster Wecker</string>
     <string name="tile_next">Nächster Wecker</string>
     <string name="tile_light_sleep">Weckt im leichten Schlaf</string>
@@ -40,4 +38,6 @@
     <string name="home_good_night_active">Wartet aufs Einschlafen · Tippen zum Abbrechen</string>
     <string name="dnd_title">Wecker blockiert</string>
     <string name="dnd_text">Erlaube Wecker bei «Nicht stören».</string>
+    <string name="duration_hours">%1$d Std.</string>
+    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
 </resources>
