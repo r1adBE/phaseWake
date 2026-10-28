@@ -42,9 +42,11 @@ class WearSync(context: Context) {
     }
 
     /** Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt). */
-    suspend fun publishWatchReady(ready: Boolean) = guarded("Status senden") {
+    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null) = guarded("Status senden") {
         val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
+            if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
         }
         dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
     }
@@ -54,6 +56,21 @@ class WearSync(context: Context) {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
             items.firstOrNull()?.let { DataMapItem.fromDataItem(it).dataMap.getBoolean(DataLayer.KEY_READY) }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: zuletzt gemeldeter Akkustand der Uhr in Prozent; `null`, wenn unbekannt oder älter als [maxAgeMs]. */
+    suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        try {
+            items.firstOrNull()?.let { DataMapItem.fromDataItem(it).dataMap }
+                ?.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && System.currentTimeMillis() - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
+                ?.getInt(DataLayer.KEY_BATTERY)
         } finally {
             items.release()
         }

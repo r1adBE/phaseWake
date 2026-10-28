@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :app:assembleDebug :wear:assembleDebug :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :shared:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
       - name: Fehler als Annotation
         if: failure()
         shell: bash

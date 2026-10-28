@@ -33,6 +33,9 @@ object DataLayer {
     const val PATH_WATCH_STATUS = "/phasewake/watch-status"
     const val KEY_READY = "ready"
 
+    /** Akkustand der Uhr in Prozent (0–100), im selben Paket wie [KEY_READY]; fehlt bei älteren Versionen. */
+    const val KEY_BATTERY = "battery"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
 

@@ -1,21 +1,27 @@
 package com.phasewake.app.shared
 
 /**
- * Inhalt der Nachrichten [DataLayer.PATH_RING] und [DataLayer.PATH_STOP]: «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig».
+ * Inhalt der Nachrichten [DataLayer.PATH_RING] und [DataLayer.PATH_STOP]:
+ * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs».
  * Ältere Versionen schicken nur die Kennung (oder nichts); fehlende Felder sind dann `null`.
  *
  * @property target Zielzeit der laufenden Nacht (für das Aussetzen des Zweitweckers, nicht «jetzt»).
  * @property sentAt Sendezeit; ein verspätet zugestelltes «klingeln» wird verworfen.
  * @property snoozesLeft verbleibende Schlummer-Runden auf der Uhr (nur bei «klingeln»).
+ * @property snoozeUntil nur bei «stop» beim Schlummern: Ende des Schlummerns. Das Handy stellt dann eine
+ *   eigene Sicherung kurz danach, falls die Uhr nicht wieder klingelt; ohne das Feld ist die Nacht beendet.
  */
 data class RingMessage(
     val alarmId: String?,
     val target: Long? = null,
     val sentAt: Long? = null,
     val snoozesLeft: Int? = null,
+    val snoozeUntil: Long? = null,
 ) {
-    fun encode(): ByteArray = listOf(alarmId.orEmpty(), target?.toString().orEmpty(), sentAt?.toString().orEmpty(), snoozesLeft?.toString().orEmpty())
-        .joinToString("|").encodeToByteArray()
+    fun encode(): ByteArray = listOf(
+        alarmId.orEmpty(), target?.toString().orEmpty(), sentAt?.toString().orEmpty(),
+        snoozesLeft?.toString().orEmpty(), snoozeUntil?.toString().orEmpty(),
+    ).joinToString("|").encodeToByteArray()
 
     /** Ob die Nachricht zu spät ankam (älter als [MAX_AGE_MS]); ohne Sendezeit (ältere Version) nie. */
     fun isStale(nowMs: Long): Boolean = sentAt != null && nowMs - sentAt > MAX_AGE_MS
@@ -31,6 +37,7 @@ data class RingMessage(
                 target = parts.getOrNull(1)?.toLongOrNull(),
                 sentAt = parts.getOrNull(2)?.toLongOrNull(),
                 snoozesLeft = parts.getOrNull(3)?.toIntOrNull(),
+                snoozeUntil = parts.getOrNull(4)?.toLongOrNull(),
             )
         }
     }
