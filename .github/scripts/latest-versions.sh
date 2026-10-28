@@ -41,6 +41,14 @@ latest $central org.jetbrains.kotlinx:kotlinx-coroutines-test
 latest $central org.jetbrains.kotlinx:kover-gradle-plugin
 latest $central org.robolectric:robolectric
 latest $central junit:junit
+# Auch Vorabversionen (manche Werkzeuge gibt es nur so):
+any() {
+  local repo=$1 coord=$2
+  local path="${coord%%:*}"; path="${path//./\/}/${coord##*:}"
+  printf '%-60s %s\n' "$coord (inkl. Vorab)" "$(curl -fsSL "$repo/$path/maven-metadata.xml" | grep -o '<version>[^<]*</version>' | sed 's/<[^>]*>//g' | sort -V | tail -1 || echo '?')"
+}
+any https://plugins.gradle.org/m2 com.android.compose.screenshot:com.android.compose.screenshot.gradle.plugin
+any $google com.android.tools.screenshot:screenshot-validation-api
 echo
 gv=$(curl -fsSL https://services.gradle.org/versions/current | grep -o '"version" *: *"[^"]*"' | cut -d'"' -f4)
 echo "gradle $gv sha256 $(curl -fsSL https://services.gradle.org/distributions/gradle-$gv-bin.zip.sha256)"
