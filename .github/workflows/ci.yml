@@ -76,13 +76,20 @@ jobs:
           xcode=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
           sudo xcode-select -s "$xcode"
           xcodebuild -version
-      - name: Bauen
+      - name: iPhone-App (mit eingebetteter Watch-App) bauen
         shell: bash
         run: |
           set -o pipefail
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake \
             -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log | grep -E "error:|warning:|BUILD" || true
+            CODE_SIGNING_ALLOWED=NO build > build.log 2>&1
+      - name: Watch-App einzeln bauen
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch \
+            -destination 'generic/platform=watchOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build >> build.log 2>&1
       - name: Fehler als Annotation
         if: failure()
         shell: bash
