@@ -67,6 +67,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -198,7 +199,7 @@ fun EditorScreen(
                     // Senkrecht: Im 12-h-Format bricht so «vorm./nachm.» in langen Sprachen nicht um.
                     layoutType = TimePickerLayoutType.Vertical,
                     colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
-                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp),
+                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp).scaled(TIME_PICKER_SCALE),
                 )
             }
 
@@ -422,7 +423,7 @@ private fun Section(content: @Composable androidx.compose.foundation.layout.Colu
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(16.dp), content = content)
+        Column(Modifier.fillMaxWidth().padding(16.dp), content = content)
     }
 }
 
@@ -456,5 +457,30 @@ private fun DayToggle(label: String, description: String, selected: Boolean, onT
             maxLines = 1,
             softWrap = false,
         )
+    }
+}
+
+/** Uhrzeit-Wähler etwas kleiner als die Vorgabe von Material: Er soll die Seite nicht beherrschen. */
+private const val TIME_PICKER_SCALE = 0.82f
+
+/**
+ * Verkleinert den Inhalt samt Platzbedarf (anders als `scale`, das nur zeichnet). Antippen und
+ * Ziehen bleiben richtig, weil die Ebene die Eingaben mit umrechnet.
+ */
+private fun Modifier.scaled(factor: Float): Modifier = layout { measurable, constraints ->
+    val inner = constraints.copy(
+        minWidth = 0,
+        minHeight = 0,
+        maxWidth = if (constraints.hasBoundedWidth) (constraints.maxWidth / factor).toInt() else constraints.maxWidth,
+        maxHeight = if (constraints.hasBoundedHeight) (constraints.maxHeight / factor).toInt() else constraints.maxHeight,
+    )
+    val placeable = measurable.measure(inner)
+    val width = (placeable.width * factor).roundToInt()
+    val height = (placeable.height * factor).roundToInt()
+    layout(width, height) {
+        placeable.placeWithLayer((width - placeable.width) / 2, (height - placeable.height) / 2) {
+            scaleX = factor
+            scaleY = factor
+        }
     }
 }
