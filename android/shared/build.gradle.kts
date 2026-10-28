@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ch.r1ad.phasewake.shared"
+    namespace = "com.phasewake.app.shared"
     compileSdk = 37
 
     defaultConfig {

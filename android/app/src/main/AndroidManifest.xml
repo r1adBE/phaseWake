@@ -35,7 +35,7 @@
             android:exported="false"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
-            android:taskAffinity="ch.r1ad.phasewake.ring" />
+            android:taskAffinity="com.phasewake.app.ring" />
 
         <service
             android:name=".ring.PhoneRingService"

@@ -47,7 +47,7 @@
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:showWhenLocked="true"
-            android:taskAffinity="ch.r1ad.phasewake.ring"
+            android:taskAffinity="com.phasewake.app.ring"
             android:theme="@style/Theme.PhaseWake"
             android:turnScreenOn="true" />
 

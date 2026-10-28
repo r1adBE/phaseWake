@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ch.r1ad.phasewake"
+    namespace = "com.phasewake.app"
     compileSdk = 37
 
     defaultConfig {

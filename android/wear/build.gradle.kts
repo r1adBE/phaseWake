@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ch.r1ad.phasewake.wear"
+    namespace = "com.phasewake.app.wear"
     compileSdk = 37
 
     defaultConfig {
