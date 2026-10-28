@@ -40,21 +40,21 @@ private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = PhaseWakeT
     )
 }
 
-@PreviewTest @Preview(name = "Uhr Start", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Start", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchHome() = Home(alarms)
 
-@PreviewTest @Preview(name = "Uhr Gute Nacht", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Gute Nacht", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchGoodNight() = Home(sleepAlarms)
 
-@PreviewTest @Preview(name = "Uhr ohne Wecker", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr ohne Wecker", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchEmpty() = Home(emptyList())
 
-@PreviewTest @Preview(name = "Uhr Wecken", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchRing() = PhaseWakeTheme {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
-@PreviewTest @Preview(name = "Uhr Schlummern", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Schlummern", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchSnoozed() = PhaseWakeTheme {
     RingScreen(RingUi.Snoozed("", now.plusSeconds(300), snoozesLeft = 2), onDismiss = {}, onSnooze = {})
 }

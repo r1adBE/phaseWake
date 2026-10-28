@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
@@ -93,7 +94,8 @@ fun NightBars(
     description: String? = null,
 ) {
     val brand = PhaseWakeTheme.brand
-    val grow = remember(epochs) { Animatable(0f) }
+    val inspection = LocalInspectionMode.current
+    val grow = remember(epochs) { Animatable(if (inspection) 1f else 0f) }
     LaunchedEffect(epochs) { grow.animateTo(1f, tween(900, easing = FastOutSlowInEasing)) }
     // Die Kurve selbst ist für Bildschirmleser nicht lesbar; der Text daneben sagt dasselbe.
     Canvas(modifier.clearAndSetSemantics { description?.let { contentDescription = it } }) {

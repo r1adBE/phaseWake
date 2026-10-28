@@ -99,14 +99,14 @@
     <string name="stage_rem">REM sleep</string>
     <string name="stage_awake">awake</string>
     <string name="editor_alert">How to wake you</string>
-    <string name="editor_alert_hint">Alarms also ring with Do Not Disturb, bedtime mode and a silent phone.</string>
+    <string name="editor_alert_hint">Sound always comes with vibration. Alarms also ring with Do Not Disturb, bedtime mode and a silent phone.</string>
     <string name="editor_alert_watch">Watch</string>
     <string name="editor_alert_phone">Phone</string>
     <string name="alert_vibrate_only">Vibration only</string>
     <string name="alert_vibrate_sound">Vibration + sound</string>
     <string name="alert_off">Off</string>
     <string name="alert_vibrate">Vibration</string>
-    <string name="alert_sound">Sound + vibration</string>
+    <string name="alert_sound">Sound</string>
     <string name="editor_sound">Alarm sound</string>
     <string name="editor_sound_default">Default</string>
     <string name="dnd_title">Do Not Disturb blocks alarms</string>

@@ -41,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.animation.core.tween
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -150,7 +151,9 @@ private fun Header(
     onEdit: (String) -> Unit,
 ) {
     val context = LocalContext.current
-    var appeared by remember { mutableStateOf(false) }
+    // In Vorschau und Bildschirmfotos gibt es keinen zweiten Frame: dort gleich sichtbar.
+    val inspection = LocalInspectionMode.current
+    var appeared by remember { mutableStateOf(inspection) }
     LaunchedEffect(Unit) { appeared = true }
     val shape = RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp)
     val base = Modifier

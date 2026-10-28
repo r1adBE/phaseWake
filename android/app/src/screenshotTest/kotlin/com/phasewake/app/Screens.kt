@@ -68,41 +68,41 @@ private fun Home(mode: ThemeMode, list: List<AlarmSpec>) = Themed(mode) {
     HomeScreen(list, nights.last(), needsPermission = false, dndBlocks = false, onOpenDnd = {}, contentPadding = padding, onRequestPermission = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> })
 }
 
-@PreviewTest @Preview(name = "Startseite hell", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Startseite hell", device = PHONE) @Composable
 fun HomeLight() = Home(ThemeMode.LIGHT, alarms)
 
-@PreviewTest @Preview(name = "Startseite dunkel", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Startseite dunkel", device = PHONE) @Composable
 fun HomeDark() = Home(ThemeMode.DARK, alarms)
 
-@PreviewTest @Preview(name = "Startseite leer hell", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Startseite leer hell", device = PHONE) @Composable
 fun HomeEmptyLight() = Home(ThemeMode.LIGHT, emptyList())
 
-@PreviewTest @Preview(name = "Startseite leer dunkel", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Startseite leer dunkel", device = PHONE) @Composable
 fun HomeEmptyDark() = Home(ThemeMode.DARK, emptyList())
 
-@PreviewTest @Preview(name = "Editor hell", device = PHONE_TALL) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Editor hell", device = PHONE_TALL) @Composable
 fun EditorLight() = Themed(ThemeMode.LIGHT) { EditorScreen(alarms.first(), onBack = {}, onSave = {}, onDelete = {}) }
 
-@PreviewTest @Preview(name = "Editor dunkel", device = PHONE_TALL) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Editor dunkel", device = PHONE_TALL) @Composable
 fun EditorDark() = Themed(ThemeMode.DARK) { EditorScreen(alarms.first(), onBack = {}, onSave = {}, onDelete = {}) }
 
-@PreviewTest @Preview(name = "Verlauf hell", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE) @Composable
 fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}) }
 
-@PreviewTest @Preview(name = "Verlauf dunkel", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE) @Composable
 fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}) }
 
-@PreviewTest @Preview(name = "Einstellungen hell", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {
     SettingsScreen(ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, health = HealthState.CONNECTED, onConnectHealth = {})
 }
 
-@PreviewTest @Preview(name = "Einstellungen dunkel", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen dunkel", device = PHONE) @Composable
 fun SettingsDark() = Themed(ThemeMode.DARK) {
     SettingsScreen(ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, health = HealthState.AVAILABLE, onConnectHealth = {})
 }
 
-@PreviewTest @Preview(name = "Wecken Handy", device = PHONE) @Composable
+@PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable
 fun RingPhone() = PhaseWakeTheme(ThemeMode.DARK) {
     RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {})
 }
