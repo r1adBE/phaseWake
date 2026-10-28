@@ -86,3 +86,4 @@ Später: mehrere Wecker, Weckfenster-Vorschlag aus dem Verlauf, Tile und Komplik
 - Schlummern 5 Min, maximal 3×.
 - Verlauf 90 Nächte, Grundlage für die Kalibrierung.
 - Anzeigename «Phase Wake» (Repo und Code: phaseWake).
+- Daten bleiben lokal. Wer helfen will, exportiert seine Nächte freiwillig als anonyme Datei (ohne Namen, Gerätekennung oder Standort) und schickt sie per GitHub-Issue oder E-Mail. Kein Server, keine Internet-Berechtigung.
