@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Stoppen</string>
     <string name="sound_rec_plug_in">Aufnahme läuft. Schliess das Handy für die Nacht am besten ans Ladegerät an.</string>
     <string name="sound_rec_default">Für neue Nächte einschalten</string>
-    <string name="sound_rec_default_hint">Startet, wenn du Phase Wake am Abend öffnest. Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
+    <string name="sound_rec_default_hint">Startet, wenn du Phase Wake ab deiner Bettzeit öffnest (ohne Wecker ab 21 Uhr). Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
     <string name="sound_type_snore">Schnarchen</string>
     <string name="sound_type_talk">Sprechen</string>
     <string name="sound_type_other">Anderes Geräusch</string>

@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Stoppa</string>
     <string name="sound_rec_plug_in">Inspelning pågår. Anslut gärna telefonen till laddaren över natten.</string>
     <string name="sound_rec_default">På för nya nätter</string>
-    <string name="sound_rec_default_hint">Startar när du öppnar Phase Wake på kvällen. Bara korta klipp; de stannar på telefonen och raderas efter 7 dagar.</string>
+    <string name="sound_rec_default_hint">Startar när du öppnar Phase Wake från din läggtid (utan alarm från kl. 21). Bara korta klipp; de stannar på telefonen och raderas efter 7 dagar.</string>
     <string name="sound_type_snore">Snarkning</string>
     <string name="sound_type_talk">Prat</string>
     <string name="sound_type_other">Annat ljud</string>

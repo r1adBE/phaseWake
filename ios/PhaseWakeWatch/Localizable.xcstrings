@@ -50920,193 +50920,193 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يبدأ عندما تفتح Phase Wake مساءً. مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام."
+            "value": "يبدأ عندما تفتح Phase Wake بدءًا من موعد نومك (بدون منبّه من الساعة 9 مساءً). مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spustí se, když večer otevřeš Phase Wake. Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou."
+            "value": "Spustí se, když otevřeš Phase Wake od své doby spánku (bez budíku od 21:00). Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter, når du åbner Phase Wake om aftenen. Kun korte klip; de bliver på telefonen og slettes efter 7 dage."
+            "value": "Starter, når du åbner Phase Wake fra din sengetid (uden alarm fra kl. 21). Kun korte klip; de bliver på telefonen og slettes efter 7 dage."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startet, wenn du Phase Wake am Abend öffnest. Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht."
+            "value": "Startet, wenn du Phase Wake ab deiner Bettzeit öffnest (ohne Wecker ab 21 Uhr). Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ξεκινά όταν ανοίγεις το Phase Wake το βράδυ. Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες."
+            "value": "Ξεκινά όταν ανοίγεις το Phase Wake από την ώρα ύπνου σου (χωρίς ξυπνητήρι από τις 21:00). Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starts when you open Phase Wake in the evening. Only short clips; they stay on your phone and are deleted after 7 days."
+            "value": "Starts when you open Phase Wake from your bedtime on (without an alarm from 9 pm). Only short clips; they stay on your phone and are deleted after 7 days."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Empieza cuando abres Phase Wake por la noche. Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días."
+            "value": "Empieza cuando abres Phase Wake a partir de tu hora de dormir (sin alarma, desde las 21:00). Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "وقتی Phase Wake را عصر باز کنی شروع می‌شود. فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند."
+            "value": "وقتی Phase Wake را از زمان خوابت به بعد باز کنی شروع می‌شود (بدون زنگ از ساعت ۲۱). فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Käynnistyy, kun avaat Phase Waken illalla. Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua."
+            "value": "Käynnistyy, kun avaat Phase Waken nukkumaanmenoajastasi alkaen (ilman herätystä klo 21 alkaen). Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarre quand tu ouvres Phase Wake le soir. Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours."
+            "value": "Démarre quand tu ouvres Phase Wake à partir de ton heure de coucher (sans réveil, dès 21 h). Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מתחיל כשפותחים את Phase Wake בערב. רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים."
+            "value": "מתחיל כשפותחים את Phase Wake משעת השינה (בלי שעון מעורר – מ־21:00). רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "शाम को Phase Wake खोलने पर शुरू होता है। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।"
+            "value": "सोने के समय से Phase Wake खोलने पर शुरू होता है (अलार्म न हो तो रात 9 बजे से)। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akkor indul, amikor este megnyitod a Phase Wake-et. Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek."
+            "value": "Akkor indul, amikor a lefekvési időpontodtól megnyitod a Phase Wake-et (ébresztő nélkül 21:00-tól). Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mulai saat kamu membuka Phase Wake di malam hari. Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari."
+            "value": "Mulai saat kamu membuka Phase Wake sejak jam tidurmu (tanpa alarm mulai pukul 21.00). Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parte quando apri Phase Wake la sera. Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni."
+            "value": "Parte quando apri Phase Wake dalla tua ora di andare a letto (senza sveglia dalle 21:00). Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "夜に Phase Wake を開くと始まります。短い断片だけ。スマホに残り、7日後に削除されます。"
+            "value": "就寝時刻以降に Phase Wake を開くと始まります（アラームなしの場合は21時から）。短い断片だけ。スマホに残り、7日後に削除されます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "저녁에 Phase Wake를 열면 시작돼요. 짧은 조각만 저장하고, 휴대폰에만 남으며 7일 뒤 삭제돼요."
+            "value": "취침 시간부터 Phase Wake를 열면 시작돼요(알람이 없으면 오후 9시부터). 짧은 조각만 저장하고, 휴대폰에만 남으며 7일 뒤 삭제돼요."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bermula apabila anda membuka Phase Wake pada waktu malam. Hanya keratan pendek; kekal di telefon anda dan dipadam selepas 7 hari."
+            "value": "Bermula apabila anda membuka Phase Wake dari waktu tidur anda (tanpa penggera, mulai 9 malam). Hanya keratan pendek; kekal di telefon anda dan dipadam selepas 7 hari."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter når du åpner Phase Wake om kvelden. Bare korte klipp; de blir på telefonen og slettes etter 7 dager."
+            "value": "Starter når du åpner Phase Wake fra leggetiden din (uten alarm fra kl. 21). Bare korte klipp; de blir på telefonen og slettes etter 7 dager."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Start wanneer je Phase Wake ’s avonds opent. Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist."
+            "value": "Start wanneer je Phase Wake vanaf je bedtijd opent (zonder wekker vanaf 21:00). Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startuje, gdy otworzysz Phase Wake wieczorem. Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach."
+            "value": "Startuje, gdy otworzysz Phase Wake od swojej pory snu (bez budzika od 21:00). Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começa quando você abre o Phase Wake à noite. Só trechos curtos; ficam no seu celular e são apagados depois de 7 dias."
+            "value": "Começa quando você abre o Phase Wake a partir da sua hora de dormir (sem alarme, das 21h em diante). Só trechos curtos; ficam no seu celular e são apagados depois de 7 dias."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começa quando abres o Phase Wake à noite. Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias."
+            "value": "Começa quando abres o Phase Wake a partir da tua hora de deitar (sem alarme, desde as 21:00). Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pornește când deschizi Phase Wake seara. Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile."
+            "value": "Pornește când deschizi Phase Wake de la ora ta de culcare (fără alarmă, de la 21:00). Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Запускается, когда ты открываешь Phase Wake вечером. Только короткие фрагменты; они остаются на телефоне и удаляются через 7 дней."
+            "value": "Запускается, когда ты открываешь Phase Wake начиная со времени отхода ко сну (без будильника — с 21:00). Только короткие фрагменты; они остаются на телефоне и удаляются через 7 дней."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Startar när du öppnar Phase Wake på kvällen. Bara korta klipp; de stannar på telefonen och raderas efter 7 dagar."
+            "value": "Startar när du öppnar Phase Wake från din läggtid (utan alarm från kl. 21). Bara korta klipp; de stannar på telefonen och raderas efter 7 dagar."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เริ่มเมื่อคุณเปิด Phase Wake ตอนเย็น เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน"
+            "value": "เริ่มเมื่อคุณเปิด Phase Wake ตั้งแต่เวลาเข้านอน (ถ้าไม่ตั้งปลุก เริ่มตั้งแต่ 21:00 น.) เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akşam Phase Wake’i açtığında başlar. Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir."
+            "value": "Yatma saatinden itibaren Phase Wake’i açtığında başlar (alarm yoksa 21:00’den itibaren). Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Запускається, коли ти відкриваєш Phase Wake увечері. Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів."
+            "value": "Запускається, коли ти відкриваєш Phase Wake від часу сну (без будильника — з 21:00). Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bắt đầu khi bạn mở Phase Wake vào buổi tối. Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày."
+            "value": "Bắt đầu khi bạn mở Phase Wake từ giờ đi ngủ (không đặt báo thức thì từ 21:00). Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "晚上打开 Phase Wake 时开始。只保存短片段；片段留在手机上，7 天后删除。"
+            "value": "从你的就寝时间起打开 Phase Wake 时开始（未设闹钟则从 21:00 起）。只保存短片段；片段留在手机上，7 天后删除。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "晚上開啟 Phase Wake 時開始。只保存短片段；片段留在手機上，7 天後刪除。"
+            "value": "從你的就寢時間起開啟 Phase Wake 時開始（未設鬧鐘則從 21:00 起）。只保存短片段；片段留在手機上，7 天後刪除。"
           }
         }
       }

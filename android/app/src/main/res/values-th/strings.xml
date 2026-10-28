@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">หยุด</string>
     <string name="sound_rec_plug_in">กำลังบันทึก ควรเสียบชาร์จโทรศัพท์ไว้ตลอดคืน</string>
     <string name="sound_rec_default">เปิดสำหรับคืนใหม่</string>
-    <string name="sound_rec_default_hint">เริ่มเมื่อคุณเปิด Phase Wake ตอนเย็น เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
+    <string name="sound_rec_default_hint">เริ่มเมื่อคุณเปิด Phase Wake ตั้งแต่เวลาเข้านอน (ถ้าไม่ตั้งปลุก เริ่มตั้งแต่ 21:00 น.) เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
     <string name="sound_type_snore">กรน</string>
     <string name="sound_type_talk">ละเมอพูด</string>
     <string name="sound_type_other">เสียงอื่น</string>

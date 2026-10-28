@@ -268,7 +268,7 @@
     <string name="sound_rec_stop">Stop</string>
     <string name="sound_rec_plug_in">Recording is on. Best plug in your phone for the night.</string>
     <string name="sound_rec_default">On for new nights</string>
-    <string name="sound_rec_default_hint">Starts when you open Phase Wake in the evening. Only short clips; they stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_rec_default_hint">Starts when you open Phase Wake from your bedtime on (without an alarm from 9 pm). Only short clips; they stay on your phone and are deleted after 7 days.</string>
     <string name="sound_type_snore">Snoring</string>
     <string name="sound_type_talk">Talking</string>
     <string name="sound_type_other">Other sound</string>

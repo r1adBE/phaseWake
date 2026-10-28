@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Leállítás</string>
     <string name="sound_rec_plug_in">A rögzítés fut. Éjszakára legjobb töltőre tenni a telefont.</string>
     <string name="sound_rec_default">Bekapcsolva az új éjszakákra</string>
-    <string name="sound_rec_default_hint">Akkor indul, amikor este megnyitod a Phase Wake-et. Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek.</string>
+    <string name="sound_rec_default_hint">Akkor indul, amikor a lefekvési időpontodtól megnyitod a Phase Wake-et (ébresztő nélkül 21:00-tól). Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek.</string>
     <string name="sound_type_snore">Horkolás</string>
     <string name="sound_type_talk">Beszéd</string>
     <string name="sound_type_other">Egyéb hang</string>

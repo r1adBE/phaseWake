@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Lopeta</string>
     <string name="sound_rec_plug_in">Tallennus käynnissä. Laita puhelin mieluiten lataukseen yöksi.</string>
     <string name="sound_rec_default">Päällä uusille öille</string>
-    <string name="sound_rec_default_hint">Käynnistyy, kun avaat Phase Waken illalla. Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
+    <string name="sound_rec_default_hint">Käynnistyy, kun avaat Phase Waken nukkumaanmenoajastasi alkaen (ilman herätystä klo 21 alkaen). Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
     <string name="sound_type_snore">Kuorsaus</string>
     <string name="sound_type_talk">Puhe</string>
     <string name="sound_type_other">Muu ääni</string>

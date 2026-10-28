@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Parar</string>
     <string name="sound_rec_plug_in">Gravação ativa. É melhor ligares o telemóvel ao carregador durante a noite.</string>
     <string name="sound_rec_default">Ativar para novas noites</string>
-    <string name="sound_rec_default_hint">Começa quando abres o Phase Wake à noite. Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias.</string>
+    <string name="sound_rec_default_hint">Começa quando abres o Phase Wake a partir da tua hora de deitar (sem alarme, desde as 21:00). Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias.</string>
     <string name="sound_type_snore">Ressonar</string>
     <string name="sound_type_talk">Falar</string>
     <string name="sound_type_other">Outro som</string>

@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">중지</string>
     <string name="sound_rec_plug_in">녹음 중이에요. 밤새 휴대폰을 충전기에 연결해 두는 게 좋아요.</string>
     <string name="sound_rec_default">새로운 밤에 켜기</string>
-    <string name="sound_rec_default_hint">저녁에 Phase Wake를 열면 시작돼요. 짧은 조각만 저장하고, 휴대폰에만 남으며 7일 뒤 삭제돼요.</string>
+    <string name="sound_rec_default_hint">취침 시간부터 Phase Wake를 열면 시작돼요(알람이 없으면 오후 9시부터). 짧은 조각만 저장하고, 휴대폰에만 남으며 7일 뒤 삭제돼요.</string>
     <string name="sound_type_snore">코골이</string>
     <string name="sound_type_talk">잠꼬대</string>
     <string name="sound_type_other">기타 소리</string>

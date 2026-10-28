@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Ferma</string>
     <string name="sound_rec_plug_in">Registrazione attiva. Meglio collegare il telefono al caricatore per la notte.</string>
     <string name="sound_rec_default">Attiva per le nuove notti</string>
-    <string name="sound_rec_default_hint">Parte quando apri Phase Wake la sera. Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni.</string>
+    <string name="sound_rec_default_hint">Parte quando apri Phase Wake dalla tua ora di andare a letto (senza sveglia dalle 21:00). Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni.</string>
     <string name="sound_type_snore">Russare</string>
     <string name="sound_type_talk">Parlare</string>
     <string name="sound_type_other">Altro rumore</string>

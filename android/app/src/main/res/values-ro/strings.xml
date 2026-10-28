@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Oprește</string>
     <string name="sound_rec_plug_in">Înregistrarea e pornită. Cel mai bine pune telefonul la încărcat peste noapte.</string>
     <string name="sound_rec_default">Pornit pentru nopțile noi</string>
-    <string name="sound_rec_default_hint">Pornește când deschizi Phase Wake seara. Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile.</string>
+    <string name="sound_rec_default_hint">Pornește când deschizi Phase Wake de la ora ta de culcare (fără alarmă, de la 21:00). Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile.</string>
     <string name="sound_type_snore">Sforăit</string>
     <string name="sound_type_talk">Vorbit</string>
     <string name="sound_type_other">Alt sunet</string>

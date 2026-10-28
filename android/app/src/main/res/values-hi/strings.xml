@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">रोकें</string>
     <string name="sound_rec_plug_in">रिकॉर्डिंग चल रही है। बेहतर है कि रात भर फ़ोन चार्जर पर लगा रहे।</string>
     <string name="sound_rec_default">नई रातों के लिए चालू</string>
-    <string name="sound_rec_default_hint">शाम को Phase Wake खोलने पर शुरू होता है। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।</string>
+    <string name="sound_rec_default_hint">सोने के समय से Phase Wake खोलने पर शुरू होता है (अलार्म न हो तो रात 9 बजे से)। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।</string>
     <string name="sound_type_snore">खर्राटे</string>
     <string name="sound_type_talk">बातचीत</string>
     <string name="sound_type_other">दूसरी आवाज़</string>

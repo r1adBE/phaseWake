@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Stopp</string>
     <string name="sound_rec_plug_in">Opptaket pågår. Sett gjerne telefonen til lading om natten.</string>
     <string name="sound_rec_default">På for nye netter</string>
-    <string name="sound_rec_default_hint">Starter når du åpner Phase Wake om kvelden. Bare korte klipp; de blir på telefonen og slettes etter 7 dager.</string>
+    <string name="sound_rec_default_hint">Starter når du åpner Phase Wake fra leggetiden din (uten alarm fra kl. 21). Bare korte klipp; de blir på telefonen og slettes etter 7 dager.</string>
     <string name="sound_type_snore">Snorking</string>
     <string name="sound_type_talk">Prat</string>
     <string name="sound_type_other">Annen lyd</string>

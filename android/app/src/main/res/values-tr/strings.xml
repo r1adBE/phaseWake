@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Durdur</string>
     <string name="sound_rec_plug_in">Kayıt sürüyor. Telefonu gece şarja takman en iyisi.</string>
     <string name="sound_rec_default">Yeni geceler için açık</string>
-    <string name="sound_rec_default_hint">Akşam Phase Wake’i açtığında başlar. Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir.</string>
+    <string name="sound_rec_default_hint">Yatma saatinden itibaren Phase Wake’i açtığında başlar (alarm yoksa 21:00’den itibaren). Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir.</string>
     <string name="sound_type_snore">Horlama</string>
     <string name="sound_type_talk">Konuşma</string>
     <string name="sound_type_other">Başka ses</string>

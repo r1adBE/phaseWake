@@ -84,8 +84,10 @@ public enum SoundEvents {
     /// bis zur Zielzeit. Liegt kein Wecker innerhalb von 24 Std. (oder keiner), ab 21 Uhr bis Mitternacht.
     /// Davor startet sie nur, wenn der Nutzer sie selbst einschaltet. Identisch zu Kotlin `mayAutoStart`.
     /// `nextTarget` = Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
-    public static func mayAutoStart(now: Date, nextTarget: Date?, goalMinutes: Int, calendar: Calendar) -> Bool {
+    public static func mayAutoStart(now: Date, nextTarget: Date?, goalMinutes: Int, calendar: Calendar, windowStart: Date? = nil) -> Bool {
         if let nextTarget, nextTarget > now, nextTarget <= now.addingTimeInterval(autoStartLookahead) {
+            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach (entschieden mit r1AD).
+            if let windowStart, now >= windowStart { return false }
             return now >= Bedtime.bedtime(nextAlarmTarget: nextTarget, goalMinutes: goalMinutes)
         }
         return calendar.component(.hour, from: now) >= autoStartHour

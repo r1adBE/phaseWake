@@ -234,7 +234,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val soundRecAuto = remember(soundRecDefault, alarms, sleepGoal, checkRun) {
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        soundRecDefault && SoundEvents.mayAutoStart(now, AlarmSchedule.earliestPlan(alarms, now, zone)?.target, sleepGoal, zone)
+        soundRecDefault && AlarmSchedule.earliestPlan(alarms, now, zone).let { plan -> SoundEvents.mayAutoStart(now, plan?.target, sleepGoal, zone, plan?.windowStart) }
     }
     val soundRecWanted = soundRecChosen ?: soundRecAuto
     var micDenied by rememberSaveable { mutableStateOf(false) }

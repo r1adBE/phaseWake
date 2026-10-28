@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Stoppen</string>
     <string name="sound_rec_plug_in">Opname loopt. Sluit je telefoon voor de nacht het best aan op de lader.</string>
     <string name="sound_rec_default">Aan voor nieuwe nachten</string>
-    <string name="sound_rec_default_hint">Start wanneer je Phase Wake ’s avonds opent. Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist.</string>
+    <string name="sound_rec_default_hint">Start wanneer je Phase Wake vanaf je bedtijd opent (zonder wekker vanaf 21:00). Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist.</string>
     <string name="sound_type_snore">Snurken</string>
     <string name="sound_type_talk">Praten</string>
     <string name="sound_type_other">Ander geluid</string>

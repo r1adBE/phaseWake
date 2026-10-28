@@ -101,6 +101,8 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:59"), nextTarget: target, goalMinutes: 450, calendar: zurich))
         XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T23:00"), nextTarget: target, goalMinutes: 450, calendar: zurich))
         XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-28T02:00"), nextTarget: target, goalMinutes: 450, calendar: zurich))
+        // Im Weckfenster nicht mehr automatisch.
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: target.addingTimeInterval(-600), nextTarget: target, goalMinutes: 450, calendar: zurich, windowStart: target.addingTimeInterval(-1800)))
         // Ab 21 Uhr gilt mit Wecker die Bettzeit, nicht 21 Uhr.
         XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T21:30"), nextTarget: target, goalMinutes: 450, calendar: zurich))
         // Nach der Zielzeit zählt der nächste Wecker (hier am Abend darauf noch vor der Bettzeit).

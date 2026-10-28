@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">停止</string>
     <string name="sound_rec_plug_in">録音中。夜はスマホを充電器につないでおくのがおすすめです。</string>
     <string name="sound_rec_default">新しい夜はオン</string>
-    <string name="sound_rec_default_hint">夜に Phase Wake を開くと始まります。短い断片だけ。スマホに残り、7日後に削除されます。</string>
+    <string name="sound_rec_default_hint">就寝時刻以降に Phase Wake を開くと始まります（アラームなしの場合は21時から）。短い断片だけ。スマホに残り、7日後に削除されます。</string>
     <string name="sound_type_snore">いびき</string>
     <string name="sound_type_talk">寝言</string>
     <string name="sound_type_other">その他の音</string>

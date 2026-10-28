@@ -281,7 +281,7 @@
     <string name="sound_rec_stop">Зупинити</string>
     <string name="sound_rec_plug_in">Запис триває. Краще постав телефон на ніч заряджатися.</string>
     <string name="sound_rec_default">Вмикати для нових ночей</string>
-    <string name="sound_rec_default_hint">Запускається, коли ти відкриваєш Phase Wake увечері. Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів.</string>
+    <string name="sound_rec_default_hint">Запускається, коли ти відкриваєш Phase Wake від часу сну (без будильника — з 21:00). Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів.</string>
     <string name="sound_type_snore">Хропіння</string>
     <string name="sound_type_talk">Розмова</string>
     <string name="sound_type_other">Інший звук</string>

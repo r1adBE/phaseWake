@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">Henti</string>
     <string name="sound_rec_plug_in">Rakaman berjalan. Sebaiknya cas telefon sepanjang malam.</string>
     <string name="sound_rec_default">Hidup untuk malam baharu</string>
-    <string name="sound_rec_default_hint">Bermula apabila anda membuka Phase Wake pada waktu malam. Hanya keratan pendek; kekal di telefon anda dan dipadam selepas 7 hari.</string>
+    <string name="sound_rec_default_hint">Bermula apabila anda membuka Phase Wake dari waktu tidur anda (tanpa penggera, mulai 9 malam). Hanya keratan pendek; kekal di telefon anda dan dipadam selepas 7 hari.</string>
     <string name="sound_type_snore">Berdengkur</string>
     <string name="sound_type_talk">Bercakap</string>
     <string name="sound_type_other">Bunyi lain</string>

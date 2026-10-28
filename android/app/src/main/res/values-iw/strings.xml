@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">עצירה</string>
     <string name="sound_rec_plug_in">ההקלטה פועלת. עדיף לחבר את הטלפון למטען בלילה.</string>
     <string name="sound_rec_default">מופעל ללילות חדשים</string>
-    <string name="sound_rec_default_hint">מתחיל כשפותחים את Phase Wake בערב. רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
+    <string name="sound_rec_default_hint">מתחיל כשפותחים את Phase Wake משעת השינה (בלי שעון מעורר – מ־21:00). רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
     <string name="sound_type_snore">נחירות</string>
     <string name="sound_type_talk">דיבור</string>
     <string name="sound_type_other">קול אחר</string>

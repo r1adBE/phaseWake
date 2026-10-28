@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Parar</string>
     <string name="sound_rec_plug_in">Gravação ativa. Melhor deixar o celular no carregador durante a noite.</string>
     <string name="sound_rec_default">Ativar para novas noites</string>
-    <string name="sound_rec_default_hint">Começa quando você abre o Phase Wake à noite. Só trechos curtos; ficam no seu celular e são apagados depois de 7 dias.</string>
+    <string name="sound_rec_default_hint">Começa quando você abre o Phase Wake a partir da sua hora de dormir (sem alarme, das 21h em diante). Só trechos curtos; ficam no seu celular e são apagados depois de 7 dias.</string>
     <string name="sound_type_snore">Ronco</string>
     <string name="sound_type_talk">Fala</string>
     <string name="sound_type_other">Outro som</string>

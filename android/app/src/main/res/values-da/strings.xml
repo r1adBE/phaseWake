@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Stop</string>
     <string name="sound_rec_plug_in">Optagelsen kører. Sæt helst telefonen til opladning om natten.</string>
     <string name="sound_rec_default">Til for nye nætter</string>
-    <string name="sound_rec_default_hint">Starter, når du åbner Phase Wake om aftenen. Kun korte klip; de bliver på telefonen og slettes efter 7 dage.</string>
+    <string name="sound_rec_default_hint">Starter, når du åbner Phase Wake fra din sengetid (uden alarm fra kl. 21). Kun korte klip; de bliver på telefonen og slettes efter 7 dage.</string>
     <string name="sound_type_snore">Snorken</string>
     <string name="sound_type_talk">Tale</string>
     <string name="sound_type_other">Anden lyd</string>

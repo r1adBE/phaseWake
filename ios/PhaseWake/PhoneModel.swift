@@ -265,7 +265,7 @@ extension PhoneModel {
             guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
         } else {
             guard soundRecDefault,
-                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .current) else { return }
+                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .current, windowStart: plan?.windowStart) else { return }
         }
         await recorder.start(nextAlarmTarget: plan?.target)
     }

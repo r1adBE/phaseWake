@@ -295,7 +295,7 @@
     <string name="sound_rec_stop">إيقاف</string>
     <string name="sound_rec_plug_in">التسجيل يعمل. الأفضل أن تشحن هاتفك طوال الليل.</string>
     <string name="sound_rec_default">تشغيل للليالي الجديدة</string>
-    <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake مساءً. مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake بدءًا من موعد نومك (بدون منبّه من الساعة 9 مساءً). مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
     <string name="sound_type_snore">شخير</string>
     <string name="sound_type_talk">كلام</string>
     <string name="sound_type_other">صوت آخر</string>

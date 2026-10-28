@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">توقف</string>
     <string name="sound_rec_plug_in">ضبط روشن است. بهتر است گوشی را شب به شارژر بزنی.</string>
     <string name="sound_rec_default">روشن برای شب‌های جدید</string>
-    <string name="sound_rec_default_hint">وقتی Phase Wake را عصر باز کنی شروع می‌شود. فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند.</string>
+    <string name="sound_rec_default_hint">وقتی Phase Wake را از زمان خوابت به بعد باز کنی شروع می‌شود (بدون زنگ از ساعت ۲۱). فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند.</string>
     <string name="sound_type_snore">خروپف</string>
     <string name="sound_type_talk">حرف زدن</string>
     <string name="sound_type_other">صدای دیگر</string>

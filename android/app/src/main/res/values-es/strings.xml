@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Detener</string>
     <string name="sound_rec_plug_in">Grabación activa. Mejor conecta el teléfono al cargador por la noche.</string>
     <string name="sound_rec_default">Activar para noches nuevas</string>
-    <string name="sound_rec_default_hint">Empieza cuando abres Phase Wake por la noche. Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días.</string>
+    <string name="sound_rec_default_hint">Empieza cuando abres Phase Wake a partir de tu hora de dormir (sin alarma, desde las 21:00). Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días.</string>
     <string name="sound_type_snore">Ronquidos</string>
     <string name="sound_type_talk">Habla</string>
     <string name="sound_type_other">Otro sonido</string>

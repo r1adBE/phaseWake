@@ -102,6 +102,8 @@ class SoundEventsTest {
         assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T22:59"), target, 450, zone))
         assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T23:00"), target, 450, zone))
         assertTrue(SoundEvents.mayAutoStart(at("2026-10-28T02:00"), target, 450, zone))
+        // Im Weckfenster nicht mehr automatisch.
+        assertEquals(false, SoundEvents.mayAutoStart(target.minusSeconds(600), target, 450, zone, target.minusSeconds(1800)))
         // Ab 21 Uhr gilt mit Wecker die Bettzeit, nicht 21 Uhr.
         assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T21:30"), target, 450, zone))
         // Nach der Zielzeit zählt der nächste Wecker (hier am Abend darauf noch vor der Bettzeit).

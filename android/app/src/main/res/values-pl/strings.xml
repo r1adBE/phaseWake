@@ -281,7 +281,7 @@
     <string name="sound_rec_stop">Zatrzymaj</string>
     <string name="sound_rec_plug_in">Nagrywanie trwa. Najlepiej podłącz telefon na noc do ładowarki.</string>
     <string name="sound_rec_default">Włącz dla nowych nocy</string>
-    <string name="sound_rec_default_hint">Startuje, gdy otworzysz Phase Wake wieczorem. Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach.</string>
+    <string name="sound_rec_default_hint">Startuje, gdy otworzysz Phase Wake od swojej pory snu (bez budzika od 21:00). Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach.</string>
     <string name="sound_type_snore">Chrapanie</string>
     <string name="sound_type_talk">Mówienie</string>
     <string name="sound_type_other">Inny dźwięk</string>

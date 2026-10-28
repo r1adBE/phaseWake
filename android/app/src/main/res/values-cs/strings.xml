@@ -281,7 +281,7 @@
     <string name="sound_rec_stop">Zastavit</string>
     <string name="sound_rec_plug_in">Nahrávání běží. Telefon dej na noc nejlépe nabíjet.</string>
     <string name="sound_rec_default">Zapnout pro nové noci</string>
-    <string name="sound_rec_default_hint">Spustí se, když večer otevřeš Phase Wake. Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou.</string>
+    <string name="sound_rec_default_hint">Spustí se, když otevřeš Phase Wake od své doby spánku (bez budíku od 21:00). Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou.</string>
     <string name="sound_type_snore">Chrápání</string>
     <string name="sound_type_talk">Mluvení</string>
     <string name="sound_type_other">Jiný zvuk</string>

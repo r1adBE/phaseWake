@@ -274,7 +274,7 @@
     <string name="sound_rec_stop">Arrêter</string>
     <string name="sound_rec_plug_in">Enregistrement en cours. Branche de préférence ton téléphone pour la nuit.</string>
     <string name="sound_rec_default">Activer pour les nouvelles nuits</string>
-    <string name="sound_rec_default_hint">Démarre quand tu ouvres Phase Wake le soir. Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
+    <string name="sound_rec_default_hint">Démarre quand tu ouvres Phase Wake à partir de ton heure de coucher (sans réveil, dès 21 h). Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
     <string name="sound_type_snore">Ronflement</string>
     <string name="sound_type_talk">Paroles</string>
     <string name="sound_type_other">Autre bruit</string>

@@ -267,7 +267,7 @@
     <string name="sound_rec_stop">Διακοπή</string>
     <string name="sound_rec_plug_in">Η καταγραφή τρέχει. Καλύτερα βάλε το τηλέφωνο στον φορτιστή για τη νύχτα.</string>
     <string name="sound_rec_default">Ενεργό για νέες νύχτες</string>
-    <string name="sound_rec_default_hint">Ξεκινά όταν ανοίγεις το Phase Wake το βράδυ. Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες.</string>
+    <string name="sound_rec_default_hint">Ξεκινά όταν ανοίγεις το Phase Wake από την ώρα ύπνου σου (χωρίς ξυπνητήρι από τις 21:00). Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες.</string>
     <string name="sound_type_snore">Ροχαλητό</string>
     <string name="sound_type_talk">Ομιλία</string>
     <string name="sound_type_other">Άλλος ήχος</string>

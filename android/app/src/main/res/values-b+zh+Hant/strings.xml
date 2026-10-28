@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">停止</string>
     <string name="sound_rec_plug_in">正在錄音。夜裡最好幫手機接上充電器。</string>
     <string name="sound_rec_default">新的夜晚預設開啟</string>
-    <string name="sound_rec_default_hint">晚上開啟 Phase Wake 時開始。只保存短片段；片段留在手機上，7 天後刪除。</string>
+    <string name="sound_rec_default_hint">從你的就寢時間起開啟 Phase Wake 時開始（未設鬧鐘則從 21:00 起）。只保存短片段；片段留在手機上，7 天後刪除。</string>
     <string name="sound_type_snore">打鼾</string>
     <string name="sound_type_talk">說夢話</string>
     <string name="sound_type_other">其他聲音</string>

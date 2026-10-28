@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">Hentikan</string>
     <string name="sound_rec_plug_in">Perekaman berjalan. Sebaiknya isi daya ponsel semalaman.</string>
     <string name="sound_rec_default">Aktif untuk malam baru</string>
-    <string name="sound_rec_default_hint">Mulai saat kamu membuka Phase Wake di malam hari. Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari.</string>
+    <string name="sound_rec_default_hint">Mulai saat kamu membuka Phase Wake sejak jam tidurmu (tanpa alarm mulai pukul 21.00). Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari.</string>
     <string name="sound_type_snore">Mendengkur</string>
     <string name="sound_type_talk">Bicara</string>
     <string name="sound_type_other">Suara lain</string>

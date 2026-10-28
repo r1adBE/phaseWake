@@ -87,8 +87,10 @@ object SoundEvents {
      *
      * @param nextTarget Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
      */
-    fun mayAutoStart(now: Instant, nextTarget: Instant?, goalMinutes: Int, zone: ZoneId): Boolean {
+    fun mayAutoStart(now: Instant, nextTarget: Instant?, goalMinutes: Int, zone: ZoneId, windowStart: Instant? = null): Boolean {
         if (nextTarget != null && nextTarget.isAfter(now) && !nextTarget.isAfter(now.plus(AUTO_START_LOOKAHEAD))) {
+            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach (entschieden mit r1AD).
+            if (windowStart != null && !now.isBefore(windowStart)) return false
             return !now.isBefore(Bedtime.bedtime(nextTarget, goalMinutes))
         }
         return now.atZone(zone).hour >= AUTO_START_HOUR

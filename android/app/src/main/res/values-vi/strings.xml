@@ -260,7 +260,7 @@
     <string name="sound_rec_stop">Dừng</string>
     <string name="sound_rec_plug_in">Đang ghi âm. Tốt nhất là cắm sạc điện thoại qua đêm.</string>
     <string name="sound_rec_default">Bật cho các đêm mới</string>
-    <string name="sound_rec_default_hint">Bắt đầu khi bạn mở Phase Wake vào buổi tối. Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
+    <string name="sound_rec_default_hint">Bắt đầu khi bạn mở Phase Wake từ giờ đi ngủ (không đặt báo thức thì từ 21:00). Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
     <string name="sound_type_snore">Ngáy</string>
     <string name="sound_type_talk">Nói mớ</string>
     <string name="sound_type_other">Âm thanh khác</string>
