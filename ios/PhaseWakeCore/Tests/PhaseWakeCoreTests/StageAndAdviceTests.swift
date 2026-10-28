@@ -25,6 +25,6 @@ final class StageAndAdviceTests: XCTestCase {
         let history = [night(0, .deadline), night(1, .lightSleep), night(2, .deadline)]
         XCTAssertEqual(WindowAdvice.suggest(spec, history: history)?.windowMinutes, 25)
         XCTAssertNil(WindowAdvice.suggest(spec, history: Array(history.prefix(2))))
-        XCTAssertNil(WindowAdvice.suggest(spec, history: history.map { night(0, .deadline, "b") }))
+        XCTAssertNil(WindowAdvice.suggest(spec, history: history.map { _ in night(0, .deadline, "b") }))
     }
 }
