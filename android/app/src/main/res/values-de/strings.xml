@@ -86,4 +86,15 @@
     <string name="duration_hours">%1$d Std.</string>
     <string name="duration_hours_half">%1$d½ Std.</string>
     <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
+    <string name="health_title">Schlafphasen aus Health Connect</string>
+    <string name="health_rationale">Phase Wake kann die Schlafphasen lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) nach dem Aufwachen ablegt. Sie dienen nur dazu zu prüfen, ob du im leichten Schlaf geweckt wurdest, und die Erkennung für dich zu verbessern. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
+    <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>
+    <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
+    <string name="health_connected">Verbunden</string>
+    <string name="health_unavailable">Health Connect ist auf diesem Handy nicht verfügbar.</string>
+    <string name="verdict_good">Gesundheitsdaten: %1$s ✓</string>
+    <string name="verdict_deep">Gesundheitsdaten: Tiefschlaf</string>
+    <string name="stage_light">leichter Schlaf</string>
+    <string name="stage_rem">REM-Schlaf</string>
+    <string name="stage_awake">wach</string>
 </resources>

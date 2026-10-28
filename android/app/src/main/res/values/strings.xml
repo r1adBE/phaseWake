@@ -88,4 +88,15 @@
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Sleep stages from Health Connect</string>
+    <string name="health_rationale">Phase Wake can read the sleep stages that your health app (for example Samsung Health) stores after you wake up. They are used only to check whether you were woken in light sleep and to improve detection for you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
+    <string name="health_connect">Compare with health data</string>
+    <string name="health_connect_hint">Reads sleep stages from Health Connect after waking, to check and improve detection.</string>
+    <string name="health_connected">Connected</string>
+    <string name="health_unavailable">Health Connect is not available on this phone.</string>
+    <string name="verdict_good">Health data: %1$s ✓</string>
+    <string name="verdict_deep">Health data: deep sleep</string>
+    <string name="stage_light">light sleep</string>
+    <string name="stage_rem">REM sleep</string>
+    <string name="stage_awake">awake</string>
 </resources>

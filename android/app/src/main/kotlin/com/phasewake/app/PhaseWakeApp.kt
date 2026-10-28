@@ -2,6 +2,7 @@ package com.phasewake.app
 
 import android.app.Application
 import android.content.Context
+import com.phasewake.app.health.HealthSleep
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ring.RingNotifications
 import com.phasewake.app.shared.AlarmRepository
@@ -23,6 +24,7 @@ class PhaseWakeApp : Application() {
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val settings by lazy { SettingsRepository(phaseWakeStore) }
     val sync by lazy { WearSync(this) }
+    val health by lazy { HealthSleep(this) }
     val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore) }
 
     override fun onCreate() {

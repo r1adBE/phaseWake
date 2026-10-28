@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.history
 
 import android.content.Context
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,17 +20,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.SleepStage
+import com.phasewake.app.core.StageCheck
+import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -56,7 +66,12 @@ fun nightSummary(context: Context, night: NightRecord): String {
 
 /** Verlauf: Kennzahlen und jede Nacht mit ihrer Bewegungskurve, neueste zuerst. */
 @Composable
-fun HistoryScreen(nights: List<NightRecord>, contentPadding: PaddingValues, onExport: () -> Unit) {
+fun HistoryScreen(
+    nights: List<NightRecord>,
+    contentPadding: PaddingValues,
+    loadStages: (suspend (NightRecord) -> List<StageSpan>)?,
+    onExport: () -> Unit,
+) {
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -87,7 +102,7 @@ fun HistoryScreen(nights: List<NightRecord>, contentPadding: PaddingValues, onEx
         }
         item(key = "stats") { Stats(nights) }
         items(nights.asReversed(), key = { it.windowStart.toEpochMilli() }) { night ->
-            NightCard(night, Modifier.animateItem())
+            NightCard(night, loadStages, Modifier.animateItem())
         }
         item(key = "export") {
             OutlinedButton(onClick = onExport, modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
@@ -120,8 +135,9 @@ private fun StatTile(text: String, modifier: Modifier) {
 }
 
 @Composable
-private fun NightCard(night: NightRecord, modifier: Modifier) {
+private fun NightCard(night: NightRecord, loadStages: (suspend (NightRecord) -> List<StageSpan>)?, modifier: Modifier) {
     val context = LocalContext.current
+    val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
     val zone = ZoneId.systemDefault()
     val date = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(night.wokeAt.atZone(zone))
     Card(
@@ -145,6 +161,53 @@ private fun NightCard(night: NightRecord, modifier: Modifier) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
             )
+            if (stages.isNotEmpty()) {
+                StageStrip(
+                    StageCheck.clip(stages, night.windowStart, night.target),
+                    night.windowStart, night.target,
+                    Modifier.fillMaxWidth().height(8.dp).padding(top = 2.dp),
+                )
+                verdict(context, stages, night)?.let { (text, good) ->
+                    Text(
+                        text,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = if (good) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
+                }
+            }
+        }
+    }
+}
+
+/** Abgleich mit der Gesundheits-App, z. B. «Gesundheitsdaten: leichter Schlaf ✓». */
+private fun verdict(context: Context, stages: List<StageSpan>, night: NightRecord): Pair<String, Boolean>? =
+    when (StageCheck.stageAtWake(stages, night.wokeAt)) {
+        SleepStage.LIGHT -> context.getString(R.string.verdict_good, context.getString(R.string.stage_light)) to true
+        SleepStage.REM -> context.getString(R.string.verdict_good, context.getString(R.string.stage_rem)) to true
+        SleepStage.AWAKE -> context.getString(R.string.verdict_good, context.getString(R.string.stage_awake)) to true
+        SleepStage.DEEP -> context.getString(R.string.verdict_deep) to false
+        SleepStage.UNKNOWN, null -> null
+    }
+
+/** Schlafphasen im Weckfenster als farbiges Band: Tief dunkel, Leicht hell, REM mittel, Wach weiss. */
+@Composable
+private fun StageStrip(spans: List<StageSpan>, from: java.time.Instant, to: java.time.Instant, modifier: Modifier) {
+    val brand = PhaseWakeTheme.brand
+    val total = Duration.between(from, to).toMillis().toFloat().coerceAtLeast(1f)
+    Canvas(modifier.padding(top = 6.dp)) {
+        drawRoundRect(brand.chartTrack, cornerRadius = CornerRadius(size.height / 2))
+        spans.forEach { span ->
+            val x0 = size.width * Duration.between(from, span.start).toMillis() / total
+            val x1 = size.width * Duration.between(from, span.end).toMillis() / total
+            val color = when (span.stage) {
+                SleepStage.DEEP -> brand.echo
+                SleepStage.REM -> brand.chartQuiet
+                SleepStage.LIGHT -> brand.wave
+                SleepStage.AWAKE -> brand.dot
+                SleepStage.UNKNOWN -> brand.chartTrack
+            }
+            drawRect(color, Offset(x0, 0f), Size((x1 - x0).coerceAtLeast(1f), size.height))
         }
     }
 }

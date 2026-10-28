@@ -11,6 +11,7 @@ datastore = "1.3.0"
 wearCompose = "1.7.1"
 wearOngoing = "1.1.0"
 healthServices = "1.1.0"
+healthConnect = "1.1.0"
 tiles = "1.6.2"
 protolayout = "1.4.2"
 complications = "1.3.0"
@@ -38,6 +39,7 @@ wear-tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "til
 wear-protolayout = { group = "androidx.wear.protolayout", name = "protolayout", version.ref = "protolayout" }
 wear-protolayout-material3 = { group = "androidx.wear.protolayout", name = "protolayout-material3", version.ref = "protolayout" }
 wear-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "complications" }
+health-connect = { group = "androidx.health.connect", name = "connect-client", version.ref = "healthConnect" }
 health-services = { group = "androidx.health", name = "health-services-client", version.ref = "healthServices" }
 play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }

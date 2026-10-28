@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.health.connect.client.PermissionController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -57,6 +58,7 @@ import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.SettingsScreen
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
@@ -106,8 +108,21 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
         needsPermission = missingAlarmAccess(context)
     }
+    var health by remember { mutableStateOf(HealthState.UNAVAILABLE) }
+    var healthCheck by remember { mutableStateOf(0) }
+    LaunchedEffect(healthCheck) {
+        health = when {
+            !app.health.isAvailable -> HealthState.UNAVAILABLE
+            app.health.isGranted() -> HealthState.CONNECTED
+            else -> HealthState.AVAILABLE
+        }
+    }
+    val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
+        healthCheck++
+    }
     LifecycleResumeEffect(Unit) {
         needsPermission = missingAlarmAccess(context)
+        healthCheck++
         onPauseOrDispose { }
     }
 
@@ -173,7 +188,12 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 )
             }
             composable(Routes.HISTORY) {
-                HistoryScreen(nights.orEmpty(), content, onExport = { Export.share(context, nights.orEmpty()) })
+                HistoryScreen(
+                    nights.orEmpty(),
+                    content,
+                    loadStages = if (health == HealthState.CONNECTED) app.health::stagesFor else null,
+                    onExport = { Export.share(context, nights.orEmpty()) },
+                )
             }
             composable(Routes.SETTINGS) {
                 val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
@@ -183,6 +203,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     contentPadding = content,
                     onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
                     onExport = { Export.share(context, nights.orEmpty()) },
+                    health = health,
+                    onConnectHealth = { healthPermission.launch(app.health.permissions) },
                 )
             }
             composable(Routes.EDITOR) { entry ->

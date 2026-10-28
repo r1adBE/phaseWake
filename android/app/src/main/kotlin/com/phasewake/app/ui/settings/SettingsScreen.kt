@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +34,8 @@ fun SettingsScreen(
     contentPadding: PaddingValues,
     onThemeMode: (ThemeMode) -> Unit,
     onExport: () -> Unit,
+    health: HealthState,
+    onConnectHealth: () -> Unit,
 ) {
     val uri = LocalUriHandler.current
     Column(
@@ -66,6 +69,23 @@ fun SettingsScreen(
             }
         }
 
+        Group(stringResource(R.string.health_connect)) {
+            Text(stringResource(R.string.health_connect_hint), style = MaterialTheme.typography.bodyMedium)
+            when (health) {
+                HealthState.UNAVAILABLE -> Text(
+                    stringResource(R.string.health_unavailable),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                HealthState.CONNECTED -> Text(
+                    stringResource(R.string.health_connected),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                HealthState.AVAILABLE -> Button(onClick = onConnectHealth) { Text(stringResource(R.string.health_connect)) }
+            }
+        }
+
         Group(stringResource(R.string.settings_about)) {
             Text(
                 stringResource(R.string.settings_open_source),
@@ -84,6 +104,9 @@ fun SettingsScreen(
         }
     }
 }
+
+/** Zustand der Verbindung zu Health Connect. */
+enum class HealthState { UNAVAILABLE, AVAILABLE, CONNECTED }
 
 private const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 
