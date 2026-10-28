@@ -35,3 +35,4 @@ Hier steht, was während der Arbeit entschieden wurde: ohne Rückfrage jeweils d
 | 28.10.2026 | iPhone schlummert für die Uhr | Wählst du am iPhone «Schlummern», stellt es zusätzlich eine eigene Sicherung kurz nach dem Schlummer-Ende (+ 90 s); klingelt die Uhr wieder, fällt sie weg. | Die Apple Watch kann ihre neue Sitzung im Hintergrund nicht immer starten. |
 | 28.10.2026 | Erledigt pro Wecker | Uhr und Handy (Android und Apple) merken pro Wecker, bis wann die Nacht erledigt bzw. der Zweitwecker ausgesetzt ist. | Audit: Ein zweiter Wecker am selben Morgen fiel sonst weg. |
 | 28.10.2026 | Ziel-SDK Handy | Bleibt 36 wie die Uhr; Lint-Hinweis darauf ausgeblendet. Wechsel auf 37 erst nach Test auf einem Android-17-Handy. | Entschieden mit r1AD. |
+| 28.10.2026 | Stopp des Zweitweckers (Android) | Stoppst du am Handy einen Zweitwecker, stoppt auch die Galaxy Watch denselben Wecker. | Entschieden mit r1AD: wie bei Apple, ein Stopp gilt für beide Geräte. |
