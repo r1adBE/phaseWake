@@ -5,6 +5,7 @@
     <string name="ring_greeting">Goedemorgen</string>
     <string name="ring_notification_text">Je Phase Wake-wekker gaat af</string>
     <string name="ring_stop">Stop</string>
+    <string name="ring_open">Openen</string>
     <plurals name="ring_snooze">
         <item quantity="one">Snooze %1$d min · nog %2$d</item>
         <item quantity="other">Snooze %1$d min · nog %2$d</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Zonder meldingen kan je telefoon niet overgaan als back-upwekker.</string>
     <string name="check_full_screen">Wekker op volledig scherm toegestaan</string>
     <string name="check_full_screen_problem">Sta dit toe zodat de wekker ook verschijnt als je telefoon vergrendeld is.</string>
+    <string name="check_exact_alarms">Exacte wekkers toegestaan</string>
+    <string name="check_exact_alarms_problem">Sta wekkers en herinneringen toe zodat de reservewekker op tijd afgaat.</string>
     <string name="check_dnd">Niet storen laat wekkers door</string>
     <string name="check_battery">Telefoonbatterij</string>
     <string name="check_battery_problem">Onder %1$d %% – laad je telefoon op zodat de back-upwekker kan afgaan.</string>

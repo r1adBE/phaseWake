@@ -114,8 +114,8 @@ object Codec {
         if (lines.firstOrNull() != NIGHT_HEADER) throw CodecException("Unbekanntes Nachtformat")
         return parse("Nacht") {
             val f = lines.getOrElse(1) { "" }.split(SEP)
-            // 7 Felder; ältere Stände ohne Befinden haben 6.
-            require(f.size == 7 || f.size == 6) { "7 Felder erwartet, ${f.size} gefunden" }
+            // 7 Felder; ältere Stände ohne Befinden haben 6, neuere dürfen weitere anhängen (werden ignoriert).
+            require(f.size >= 6) { "mindestens 6 Felder erwartet, ${f.size} gefunden" }
             val epochLine = lines.getOrElse(2) { "" }
             NightRecord(
                 alarmId = unescape(f[0]),

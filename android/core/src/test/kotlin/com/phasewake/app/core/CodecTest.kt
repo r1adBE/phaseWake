@@ -61,6 +61,14 @@ class CodecTest {
     }
 
     @Test
+    fun nightFromNewerVersionWithExtraFieldIsRead() {
+        val read = Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|4|extra\n0.0;52.0\n")
+        assertEquals(4, read.feeling)
+        assertEquals(1, read.epochs.size)
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE\n\n") }
+    }
+
+    @Test
     fun nightRoundTrip() {
         val night = NightRecord(
             alarmId = "3f2a-77",

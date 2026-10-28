@@ -5,6 +5,7 @@
     <string name="ring_greeting">Bonjour</string>
     <string name="ring_notification_text">Ton réveil Phase Wake sonne</string>
     <string name="ring_stop">Arrêter</string>
+    <string name="ring_open">Ouvrir</string>
     <plurals name="ring_snooze">
         <item quantity="one">Rappel %1$d min · %2$d restant</item>
         <item quantity="many">Rappel %1$d min · %2$d restants</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">Sans notifications, ton téléphone ne peut pas sonner comme alarme de secours.</string>
     <string name="check_full_screen">Alarme en plein écran autorisée</string>
     <string name="check_full_screen_problem">Autorise-la pour que l’alarme s’affiche même quand le téléphone est verrouillé.</string>
+    <string name="check_exact_alarms">Alarmes exactes autorisées</string>
+    <string name="check_exact_alarms_problem">Autorise les alarmes et rappels pour que l’alarme de secours sonne à l’heure.</string>
     <string name="check_dnd">Ne pas déranger laisse passer les alarmes</string>
     <string name="check_battery">Batterie du téléphone</string>
     <string name="check_battery_problem">Moins de %1$d %% – recharge ton téléphone pour que l’alarme de secours puisse sonner.</string>

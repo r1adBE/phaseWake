@@ -5,6 +5,7 @@
     <string name="ring_greeting">Huomenta</string>
     <string name="ring_notification_text">Phase Wake -herätyksesi soi</string>
     <string name="ring_stop">Pysäytä</string>
+    <string name="ring_open">Avaa</string>
     <plurals name="ring_snooze">
         <item quantity="one">Torkku %1$d min · %2$d jäljellä</item>
         <item quantity="other">Torkku %1$d min · %2$d jäljellä</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Ilman ilmoituksia puhelimesi ei voi soida varaherätyksenä.</string>
     <string name="check_full_screen">Koko näytön herätys sallittu</string>
     <string name="check_full_screen_problem">Salli tämä, jotta herätys näkyy myös puhelimen ollessa lukittu.</string>
+    <string name="check_exact_alarms">Tarkat herätykset sallittu</string>
+    <string name="check_exact_alarms_problem">Salli herätykset ja muistutukset, jotta varaherätys soi ajallaan.</string>
     <string name="check_dnd">Älä häiritse päästää herätykset läpi</string>
     <string name="check_battery">Puhelimen akku</string>
     <string name="check_battery_problem">Alle %1$d %% – lataa puhelin, jotta varaherätys voi soida.</string>

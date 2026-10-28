@@ -5,6 +5,7 @@
     <string name="ring_greeting">Доброе утро</string>
     <string name="ring_notification_text">Звонит твой будильник Phase Wake</string>
     <string name="ring_stop">Стоп</string>
+    <string name="ring_open">Открыть</string>
     <plurals name="ring_snooze">
         <item quantity="one">Отложить на %1$d мин · осталось: %2$d</item>
         <item quantity="few">Отложить на %1$d мин · осталось: %2$d</item>
@@ -150,6 +151,8 @@
     <string name="check_notifications_problem">Без уведомлений телефон не сможет зазвонить как резервный будильник.</string>
     <string name="check_full_screen">Полноэкранный будильник разрешён</string>
     <string name="check_full_screen_problem">Разреши это, чтобы будильник появлялся даже на заблокированном телефоне.</string>
+    <string name="check_exact_alarms">Точные будильники разрешены</string>
+    <string name="check_exact_alarms_problem">Разреши будильники и напоминания, чтобы резервный будильник звонил вовремя.</string>
     <string name="check_dnd">Режим «Не беспокоить» пропускает будильники</string>
     <string name="check_battery">Заряд телефона</string>
     <string name="check_battery_problem">Ниже %1$d %% – поставь телефон на зарядку, чтобы резервный будильник смог зазвонить.</string>

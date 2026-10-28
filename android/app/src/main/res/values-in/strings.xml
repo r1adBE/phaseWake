@@ -5,6 +5,7 @@
     <string name="ring_greeting">Selamat pagi</string>
     <string name="ring_notification_text">Alarm Phase Wake-mu berbunyi</string>
     <string name="ring_stop">Berhenti</string>
+    <string name="ring_open">Buka</string>
     <plurals name="ring_snooze">
         <item quantity="other">Tunda %1$d mnt · sisa %2$d</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">Tanpa notifikasi, ponselmu tidak bisa berbunyi sebagai alarm cadangan.</string>
     <string name="check_full_screen">Alarm layar penuh diizinkan</string>
     <string name="check_full_screen_problem">Izinkan agar alarm muncul meskipun ponsel terkunci.</string>
+    <string name="check_exact_alarms">Alarm tepat waktu diizinkan</string>
+    <string name="check_exact_alarms_problem">Izinkan alarm &amp; pengingat agar alarm cadangan berbunyi tepat waktu.</string>
     <string name="check_dnd">Jangan Ganggu meloloskan alarm</string>
     <string name="check_battery">Baterai ponsel</string>
     <string name="check_battery_problem">Di bawah %1$d %% – isi daya ponselmu agar alarm cadangan bisa berbunyi.</string>

@@ -75,6 +75,13 @@ final class CodecTests: XCTestCase {
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
     }
 
+    func testNightFromNewerVersionWithExtraField() throws {
+        let read = try Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0|4|extra\n0.0;52.0\n")
+        XCTAssertEqual(read.feeling, 4)
+        XCTAssertEqual(read.epochs.count, 1)
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE\n\n"))
+    }
+
     func testDayFormat() {
         let de = Locale(identifier: "de_CH")
         func f(_ d: Set<Weekday>, _ l: Locale = de) -> String { DayFormat.format(d, locale: l, once: "Einmalig", daily: "Täglich") }

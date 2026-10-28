@@ -5,6 +5,7 @@
     <string name="ring_greeting">Guten Morgen</string>
     <string name="ring_notification_text">Dein Phase-Wake-Wecker klingelt</string>
     <string name="ring_stop">Stoppen</string>
+    <string name="ring_open">Öffnen</string>
     <plurals name="ring_snooze">
         <item quantity="one">Schlummern %1$d Min · %2$d übrig</item>
         <item quantity="other">Schlummern %1$d Min · %2$d übrig</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Ohne Mitteilungen kann das Handy nicht als Zweitwecker klingeln.</string>
     <string name="check_full_screen">Wecker im Vollbild erlaubt</string>
     <string name="check_full_screen_problem">Erlaube das, damit der Wecker auch bei gesperrtem Handy erscheint.</string>
+    <string name="check_exact_alarms">Exakte Wecker erlaubt</string>
+    <string name="check_exact_alarms_problem">Erlaube «Wecker und Erinnerungen», damit der Zweitwecker pünktlich klingelt.</string>
     <string name="check_dnd">«Nicht stören» lässt Wecker durch</string>
     <string name="check_battery">Akku des Handys</string>
     <string name="check_battery_problem">Unter %1$d %% – lade das Handy, damit der Zweitwecker sicher klingelt.</string>

@@ -5,6 +5,7 @@
     <string name="ring_greeting">Günaydın</string>
     <string name="ring_notification_text">Phase Wake alarmın çalıyor</string>
     <string name="ring_stop">Durdur</string>
+    <string name="ring_open">Aç</string>
     <plurals name="ring_snooze">
         <item quantity="one">Ertele %1$d dk · kalan: %2$d</item>
         <item quantity="other">Ertele %1$d dk · kalan: %2$d</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Bildirimler olmadan telefonun yedek alarm olarak çalamaz.</string>
     <string name="check_full_screen">Tam ekran alarma izin verildi</string>
     <string name="check_full_screen_problem">Telefonun kilitliyken bile alarmın görünmesi için buna izin ver.</string>
+    <string name="check_exact_alarms">Tam zamanlı alarmlara izin verildi</string>
+    <string name="check_exact_alarms_problem">Yedek alarmın zamanında çalması için alarmlara ve hatırlatıcılara izin ver.</string>
     <string name="check_dnd">Rahatsız Etme alarmların çalmasına izin veriyor</string>
     <string name="check_battery">Telefon pili</string>
     <string name="check_battery_problem">Pil %1$d %% altında – yedek alarmın çalabilmesi için telefonunu şarj et.</string>

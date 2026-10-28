@@ -75,9 +75,9 @@ public enum Codec {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
         let f = (lines.count > 1 ? lines[1] : "").components(separatedBy: "|")
-        // 7 Felder; ältere Stände ohne Befinden haben 6.
-        guard f.count == 7 || f.count == 6 else { throw CodecError(description: "Nacht: 7 Felder erwartet") }
-        let feeling: Int? = try f.count == 7 && !f[6].isEmpty ? int(f[6]) : nil
+        // 7 Felder; ältere Stände ohne Befinden haben 6, neuere dürfen weitere anhängen.
+        guard f.count >= 6 else { throw CodecError(description: "Nacht: 7 Felder erwartet") }
+        let feeling: Int? = try f.count >= 7 && !f[6].isEmpty ? int(f[6]) : nil
         if let feeling, !NightRecord.feelingRange.contains(feeling) { throw CodecError(description: "Nacht: Befinden '\(feeling)'") }
         guard let reason = WakeReason(rawValue: f[4]) else { throw CodecError(description: "Nacht: Grund '\(f[4])'") }
         let epochLine = lines.count > 2 ? lines[2] : ""

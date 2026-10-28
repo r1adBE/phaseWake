@@ -5,6 +5,7 @@
     <string name="ring_greeting">Selamat pagi</string>
     <string name="ring_notification_text">Penggera Phase Wake awak sedang berbunyi</string>
     <string name="ring_stop">Henti</string>
+    <string name="ring_open">Buka</string>
     <plurals name="ring_snooze">
         <item quantity="other">Tangguh %1$d min · baki %2$d</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">Tanpa pemberitahuan, telefon awak tidak boleh berdering sebagai penggera sandaran.</string>
     <string name="check_full_screen">Penggera skrin penuh dibenarkan</string>
     <string name="check_full_screen_problem">Benarkan ini supaya penggera dipaparkan walaupun telefon awak dikunci.</string>
+    <string name="check_exact_alarms">Penggera tepat dibenarkan</string>
+    <string name="check_exact_alarms_problem">Benarkan penggera &amp; peringatan supaya penggera sandaran berbunyi tepat pada masanya.</string>
     <string name="check_dnd">Jangan Ganggu membenarkan penggera</string>
     <string name="check_battery">Bateri telefon</string>
     <string name="check_battery_problem">Kurang daripada %1$d %% – cas telefon awak supaya penggera sandaran boleh berdering.</string>

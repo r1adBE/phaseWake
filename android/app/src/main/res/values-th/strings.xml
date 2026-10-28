@@ -5,6 +5,7 @@
     <string name="ring_greeting">อรุณสวัสดิ์</string>
     <string name="ring_notification_text">นาฬิกาปลุก Phase Wake กำลังดัง</string>
     <string name="ring_stop">หยุด</string>
+    <string name="ring_open">เปิด</string>
     <plurals name="ring_snooze">
         <item quantity="other">ปลุกซ้ำ %1$d นาที · เหลือ %2$d ครั้ง</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">หากไม่มีการแจ้งเตือน โทรศัพท์ของคุณจะส่งเสียงเป็นนาฬิกาปลุกสำรองไม่ได้</string>
     <string name="check_full_screen">อนุญาตนาฬิกาปลุกแบบเต็มหน้าจอแล้ว</string>
     <string name="check_full_screen_problem">อนุญาตสิ่งนี้เพื่อให้นาฬิกาปลุกแสดงขึ้นแม้โทรศัพท์จะล็อกอยู่</string>
+    <string name="check_exact_alarms">อนุญาตการปลุกที่แม่นยำแล้ว</string>
+    <string name="check_exact_alarms_problem">อนุญาตการปลุกและการช่วยเตือนเพื่อให้นาฬิกาปลุกสำรองดังตรงเวลา</string>
     <string name="check_dnd">โหมดห้ามรบกวนยังให้นาฬิกาปลุกดังได้</string>
     <string name="check_battery">แบตเตอรี่โทรศัพท์</string>
     <string name="check_battery_problem">ต่ำกว่า %1$d %% – ชาร์จโทรศัพท์เพื่อให้นาฬิกาปลุกสำรองดังได้</string>

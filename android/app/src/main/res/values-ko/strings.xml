@@ -5,6 +5,7 @@
     <string name="ring_greeting">좋은 아침이에요</string>
     <string name="ring_notification_text">Phase Wake 알람이 울리고 있어요</string>
     <string name="ring_stop">중지</string>
+    <string name="ring_open">열기</string>
     <plurals name="ring_snooze">
         <item quantity="other">다시 알림 %1$d분 · %2$d회 남음</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">알림이 없으면 휴대폰이 예비 알람으로 울릴 수 없어요.</string>
     <string name="check_full_screen">전체 화면 알람 허용됨</string>
     <string name="check_full_screen_problem">휴대폰이 잠겨 있어도 알람이 표시되도록 허용해 주세요.</string>
+    <string name="check_exact_alarms">정확한 알람 허용됨</string>
+    <string name="check_exact_alarms_problem">보조 알람이 제시간에 울리도록 알람 및 리마인더를 허용해 주세요.</string>
     <string name="check_dnd">방해 금지 모드에서도 알람이 울려요</string>
     <string name="check_battery">휴대폰 배터리</string>
     <string name="check_battery_problem">%1$d %% 미만 – 예비 알람이 울릴 수 있도록 휴대폰을 충전해 주세요.</string>

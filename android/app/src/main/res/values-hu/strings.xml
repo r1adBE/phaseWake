@@ -5,6 +5,7 @@
     <string name="ring_greeting">Jó reggelt</string>
     <string name="ring_notification_text">Szól a Phase Wake ébresztőd</string>
     <string name="ring_stop">Leállítás</string>
+    <string name="ring_open">Megnyitás</string>
     <plurals name="ring_snooze">
         <item quantity="one">Szundi %1$d p · még %2$d</item>
         <item quantity="other">Szundi %1$d p · még %2$d</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Értesítések nélkül a telefonod nem tud tartalék ébresztőként csörögni.</string>
     <string name="check_full_screen">Teljes képernyős ébresztés engedélyezve</string>
     <string name="check_full_screen_problem">Engedélyezd, hogy az ébresztés zárolt telefonon is megjelenjen.</string>
+    <string name="check_exact_alarms">Pontos ébresztések engedélyezve</string>
+    <string name="check_exact_alarms_problem">Engedélyezd az ébresztéseket és emlékeztetőket, hogy a tartalék ébresztés pontosan szóljon.</string>
     <string name="check_dnd">A Ne zavarjanak átengedi az ébresztőket</string>
     <string name="check_battery">Telefon akkumulátora</string>
     <string name="check_battery_problem">%1$d %% alatt – töltsd fel a telefont, hogy a tartalék ébresztő meg tudjon szólalni.</string>

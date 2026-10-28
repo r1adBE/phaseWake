@@ -5,6 +5,7 @@
     <string name="ring_greeting">Buongiorno</string>
     <string name="ring_notification_text">La tua sveglia Phase Wake sta suonando</string>
     <string name="ring_stop">Stop</string>
+    <string name="ring_open">Apri</string>
     <plurals name="ring_snooze">
         <item quantity="one">Posticipa %1$d min · %2$d rimasta</item>
         <item quantity="many">Posticipa %1$d min · %2$d rimaste</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">Senza notifiche il telefono non può suonare come sveglia di riserva.</string>
     <string name="check_full_screen">Sveglia a schermo intero consentita</string>
     <string name="check_full_screen_problem">Consentila perché la sveglia compaia anche a telefono bloccato.</string>
+    <string name="check_exact_alarms">Sveglie esatte consentite</string>
+    <string name="check_exact_alarms_problem">Consenti sveglie e promemoria perché la sveglia di riserva suoni puntuale.</string>
     <string name="check_dnd">Non disturbare lascia passare le sveglie</string>
     <string name="check_battery">Batteria del telefono</string>
     <string name="check_battery_problem">Sotto il %1$d %% – ricarica il telefono perché la sveglia di riserva possa suonare.</string>

@@ -5,6 +5,7 @@
     <string name="ring_greeting">God morgen</string>
     <string name="ring_notification_text">Phase Wake-alarmen din ringer</string>
     <string name="ring_stop">Stopp</string>
+    <string name="ring_open">Åpne</string>
     <plurals name="ring_snooze">
         <item quantity="one">Slumre %1$d min · %2$d igjen</item>
         <item quantity="other">Slumre %1$d min · %2$d igjen</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Uten varsler kan ikke telefonen ringe som reservealarm.</string>
     <string name="check_full_screen">Fullskjermalarm er tillatt</string>
     <string name="check_full_screen_problem">Tillat dette slik at alarmen vises selv når telefonen er låst.</string>
+    <string name="check_exact_alarms">Nøyaktige alarmer tillatt</string>
+    <string name="check_exact_alarms_problem">Tillat alarmer og påminnelser slik at reservealarmen ringer i tide.</string>
     <string name="check_dnd">Ikke forstyrr slipper gjennom alarmer</string>
     <string name="check_battery">Telefonbatteri</string>
     <string name="check_battery_problem">Under %1$d %% – lad telefonen slik at reservealarmen kan ringe.</string>

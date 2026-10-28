@@ -5,6 +5,7 @@
     <string name="ring_greeting">Chào buổi sáng</string>
     <string name="ring_notification_text">Báo thức Phase Wake đang đổ chuông</string>
     <string name="ring_stop">Dừng</string>
+    <string name="ring_open">Mở</string>
     <plurals name="ring_snooze">
         <item quantity="other">Báo lại %1$d phút · còn %2$d lần</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">Không có thông báo, điện thoại của bạn không thể reo làm báo thức dự phòng.</string>
     <string name="check_full_screen">Đã cho phép báo thức toàn màn hình</string>
     <string name="check_full_screen_problem">Hãy cho phép để báo thức hiện ra ngay cả khi điện thoại đang khóa.</string>
+    <string name="check_exact_alarms">Đã cho phép báo thức chính xác</string>
+    <string name="check_exact_alarms_problem">Hãy cho phép báo thức và lời nhắc để báo thức dự phòng reo đúng giờ.</string>
     <string name="check_dnd">Chế độ Không làm phiền vẫn cho báo thức kêu</string>
     <string name="check_battery">Pin điện thoại</string>
     <string name="check_battery_problem">Dưới %1$d %% – hãy sạc điện thoại để báo thức dự phòng có thể reo.</string>

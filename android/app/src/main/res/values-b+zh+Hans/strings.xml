@@ -5,6 +5,7 @@
     <string name="ring_greeting">早上好</string>
     <string name="ring_notification_text">你的 Phase Wake 闹钟正在响铃</string>
     <string name="ring_stop">停止</string>
+    <string name="ring_open">打开</string>
     <plurals name="ring_snooze">
         <item quantity="other">贪睡 %1$d 分钟 · 剩余 %2$d 次</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">没有通知，手机无法作为备用闹钟响铃。</string>
     <string name="check_full_screen">全屏闹钟已允许</string>
     <string name="check_full_screen_problem">请允许此项，这样手机锁屏时闹钟也能显示。</string>
+    <string name="check_exact_alarms">已允许精确闹钟</string>
+    <string name="check_exact_alarms_problem">请允许“闹钟和提醒”，这样备用闹钟才能准时响起。</string>
     <string name="check_dnd">勿扰模式允许闹钟</string>
     <string name="check_battery">手机电量</string>
     <string name="check_battery_problem">低于 %1$d %% – 请给手机充电，以便备用闹钟能够响铃。</string>

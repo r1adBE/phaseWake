@@ -26,7 +26,7 @@ class AlarmRepository(
     private val clock: () -> Long = System::currentTimeMillis,
 ) {
     val snapshot: Flow<AlarmSnapshot> = store.data
-        .map { prefs -> AlarmSnapshot(decode(prefs[ALARMS]), prefs[UPDATED_AT] ?: 0L) }
+        .map { prefs -> AlarmSnapshot(decode(prefs[ALARMS]).orEmpty(), prefs[UPDATED_AT] ?: 0L) }
         .distinctUntilChanged()
 
     val alarms: Flow<List<AlarmSpec>> = snapshot.map { it.alarms }.distinctUntilChanged()
@@ -61,7 +61,9 @@ class AlarmRepository(
     private suspend fun mutate(change: (List<AlarmSpec>) -> List<AlarmSpec>): AlarmSnapshot {
         lateinit var result: AlarmSnapshot
         store.edit { prefs ->
-            val updated = change(decode(prefs[ALARMS])).sortedWith(ORDER)
+            // Unlesbarer Stand (z. B. Format einer neueren Version): nicht mit einer leeren Liste überschreiben.
+            val current = decode(prefs[ALARMS]) ?: throw CodecException("Gespeicherte Wecker nicht lesbar, Änderung verworfen")
+            val updated = change(current).sortedWith(ORDER)
             // Streng steigend, damit zwei Änderungen in derselben Millisekunde unterscheidbar bleiben.
             val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
             prefs[ALARMS] = Codec.encodeAlarms(updated)
@@ -71,13 +73,14 @@ class AlarmRepository(
         return result
     }
 
-    private fun decode(text: String?): List<AlarmSpec> {
+    /** @return die Wecker, oder `null`, wenn der gespeicherte Text unlesbar ist. */
+    private fun decode(text: String?): List<AlarmSpec>? {
         if (text.isNullOrEmpty()) return emptyList()
         return try {
             Codec.decodeAlarms(text)
         } catch (e: CodecException) {
             Log.w(TAG, "Gespeicherte Wecker nicht lesbar", e)
-            emptyList()
+            null
         }
     }
 

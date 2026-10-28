@@ -5,6 +5,7 @@
     <string name="ring_greeting">Bom dia</string>
     <string name="ring_notification_text">O teu alarme do Phase Wake está a tocar</string>
     <string name="ring_stop">Parar</string>
+    <string name="ring_open">Abrir</string>
     <plurals name="ring_snooze">
         <item quantity="one">Soneca %1$d min · resta %2$d</item>
         <item quantity="many">Soneca %1$d min · restam %2$d</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">Sem notificações, o telemóvel não pode tocar como alarme de reserva.</string>
     <string name="check_full_screen">Alarme em ecrã inteiro permitido</string>
     <string name="check_full_screen_problem">Permite isto para que o alarme apareça mesmo com o telemóvel bloqueado.</string>
+    <string name="check_exact_alarms">Alarmes exatos permitidos</string>
+    <string name="check_exact_alarms_problem">Permite alarmes e lembretes para que o alarme de reserva toque à hora certa.</string>
     <string name="check_dnd">Não incomodar deixa passar os alarmes</string>
     <string name="check_battery">Bateria do telemóvel</string>
     <string name="check_battery_problem">Abaixo de %1$d %% – carrega o telemóvel para que o alarme de reserva possa tocar.</string>

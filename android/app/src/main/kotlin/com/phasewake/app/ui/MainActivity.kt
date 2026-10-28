@@ -255,19 +255,27 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                                     notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                                 } else {
                                     // Dauerhaft abgelehnt: Android fragt nicht mehr, also direkt zu den Mitteilungs-Einstellungen.
-                                    context.startActivity(
+                                    openSettings(
+                                        context,
                                         Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
                                             .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName),
                                     )
                                 }
                             }
                             Check.FULL_SCREEN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                context.startActivity(
+                                openSettings(
+                                    context,
                                     Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:${context.packageName}")),
                                 )
                             }
+                            Check.EXACT_ALARMS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                openSettings(
+                                    context,
+                                    Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:${context.packageName}")),
+                                )
+                            }
                             Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
-                            Check.VOLUME -> context.startActivity(Intent(Settings.ACTION_SOUND_SETTINGS))
+                            Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
                             Check.WATCH, Check.WATCH_SETUP, Check.BATTERY -> Unit
                         }
                     },
@@ -346,3 +354,20 @@ private fun NavHostController.switchTab(route: String) = navigate(route) {
 
 private fun animationsEnabled(context: android.content.Context): Boolean =
     Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f
+
+/** Öffnet eine Einstellungsseite; fehlt sie auf dem Gerät, die Seite der App, ersatzweise die Einstellungen. */
+private fun openSettings(context: android.content.Context, intent: Intent) {
+    val fallbacks = listOf(
+        intent,
+        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}")),
+        Intent(Settings.ACTION_SETTINGS),
+    )
+    for (candidate in fallbacks) {
+        try {
+            context.startActivity(candidate)
+            return
+        } catch (_: android.content.ActivityNotFoundException) {
+            // Nächste Seite versuchen.
+        }
+    }
+}

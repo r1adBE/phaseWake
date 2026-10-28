@@ -5,6 +5,7 @@
     <string name="ring_greeting">Bună dimineața</string>
     <string name="ring_notification_text">Alarma ta Phase Wake sună</string>
     <string name="ring_stop">Oprește</string>
+    <string name="ring_open">Deschide</string>
     <plurals name="ring_snooze">
         <item quantity="one">Amânare %1$d min · %2$d rămasă</item>
         <item quantity="few">Amânare %1$d min · %2$d rămase</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">Fără notificări, telefonul tău nu poate suna ca alarmă de rezervă.</string>
     <string name="check_full_screen">Alarmă pe ecran complet permisă</string>
     <string name="check_full_screen_problem">Permite acest lucru pentru ca alarma să apară chiar și cu telefonul blocat.</string>
+    <string name="check_exact_alarms">Alarme exacte permise</string>
+    <string name="check_exact_alarms_problem">Permite alarmele și mementourile pentru ca alarma de rezervă să sune la timp.</string>
     <string name="check_dnd">Nu deranja lasă alarmele să treacă</string>
     <string name="check_battery">Bateria telefonului</string>
     <string name="check_battery_problem">Sub %1$d %% – încarcă telefonul ca alarma de rezervă să poată suna.</string>

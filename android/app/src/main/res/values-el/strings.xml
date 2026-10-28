@@ -5,6 +5,7 @@
     <string name="ring_greeting">Καλημέρα</string>
     <string name="ring_notification_text">Το ξυπνητήρι σου στο Phase Wake χτυπά</string>
     <string name="ring_stop">Διακοπή</string>
+    <string name="ring_open">Άνοιγμα</string>
     <plurals name="ring_snooze">
         <item quantity="one">Αναβολή %1$d λ. · απομένουν: %2$d</item>
         <item quantity="other">Αναβολή %1$d λ. · απομένουν: %2$d</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Χωρίς ειδοποιήσεις, το κινητό σου δεν μπορεί να χτυπήσει ως εφεδρικό ξυπνητήρι.</string>
     <string name="check_full_screen">Το ξυπνητήρι πλήρους οθόνης επιτρέπεται</string>
     <string name="check_full_screen_problem">Επίτρεψέ το, ώστε το ξυπνητήρι να εμφανίζεται ακόμη και όταν το κινητό είναι κλειδωμένο.</string>
+    <string name="check_exact_alarms">Επιτρέπονται ακριβή ξυπνητήρια</string>
+    <string name="check_exact_alarms_problem">Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις, ώστε το εφεδρικό ξυπνητήρι να χτυπά στην ώρα του.</string>
     <string name="check_dnd">Το «Μην ενοχλείτε» επιτρέπει ξυπνητήρια</string>
     <string name="check_battery">Μπαταρία κινητού</string>
     <string name="check_battery_problem">Κάτω από %1$d %% – φόρτισε το κινητό σου, ώστε να μπορεί να χτυπήσει το εφεδρικό ξυπνητήρι.</string>

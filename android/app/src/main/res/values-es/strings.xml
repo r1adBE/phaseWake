@@ -5,6 +5,7 @@
     <string name="ring_greeting">Buenos días</string>
     <string name="ring_notification_text">Tu alarma de Phase Wake está sonando</string>
     <string name="ring_stop">Parar</string>
+    <string name="ring_open">Abrir</string>
     <plurals name="ring_snooze">
         <item quantity="one">Posponer %1$d min · queda %2$d</item>
         <item quantity="many">Posponer %1$d min · quedan %2$d</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">Sin notificaciones, tu teléfono no puede sonar como alarma de respaldo.</string>
     <string name="check_full_screen">Alarma a pantalla completa permitida</string>
     <string name="check_full_screen_problem">Permítelo para que la alarma aparezca incluso con el teléfono bloqueado.</string>
+    <string name="check_exact_alarms">Alarmas exactas permitidas</string>
+    <string name="check_exact_alarms_problem">Permite alarmas y recordatorios para que la alarma de respaldo suene a tiempo.</string>
     <string name="check_dnd">No molestar deja pasar las alarmas</string>
     <string name="check_battery">Batería del teléfono</string>
     <string name="check_battery_problem">Menos del %1$d %% – carga tu teléfono para que la alarma de respaldo pueda sonar.</string>

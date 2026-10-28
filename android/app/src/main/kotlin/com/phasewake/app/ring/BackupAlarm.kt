@@ -5,21 +5,31 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.UserManager
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.PhoneAlert
+import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.AlarmRepository
+import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.ui.MainActivity
-import java.time.Clock
 import java.time.Duration
 import java.time.Instant
+import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 /**
  * Zweitwecker auf dem Handy. Normalerweise meldet die Uhr den Weckmoment und das Handy klingelt mit.
@@ -31,25 +41,60 @@ class BackupAlarm(
     private val alarms: AlarmRepository,
     private val store: DataStore<Preferences>,
     private val sync: com.phasewake.app.shared.WearSync,
-    private val clock: Clock = Clock.systemDefaultZone(),
+    private val now: () -> Instant = Instant::now,
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
-    suspend fun reschedule() {
+    /** Mehrere Stellen planen gleichzeitig neu (Editor, Data Layer, Receiver): nie verschränkt. */
+    private val mutex = Mutex()
+
+    /** Bei jedem Aufruf die aktuelle Zeitzone (Reisen): nie beim Erzeugen festhalten. */
+    private val zone: ZoneId get() = ZoneId.systemDefault()
+
+    suspend fun reschedule() = mutex.withLock {
         rescheduleSunrise()
         alarmManager.cancel(pending())
         val backups = alarms.current().alarms.filter { it.phoneBackup }
-        // Hat die Uhr die laufende Nacht übernommen, gilt erst der nächste Wecker danach.
-        val suppressed = Instant.ofEpochMilli(store.data.first()[SUPPRESSED_UNTIL] ?: 0L)
-        val from = maxOf(clock.instant(), suppressed)
-        val plan = AlarmSchedule.earliestPlan(backups, from, clock.zone) ?: return
+        val prefs = store.data.first()
+        // Hat die Uhr eine Nacht übernommen oder klingelte der Zweitwecker schon, gilt für diesen
+        // Wecker erst die nächste Nacht danach. Andere Wecker bleiben unberührt.
+        val suppressed = decodeSuppressed(prefs[SUPPRESSED])
+        val current = now()
         // Ohne Uhr (nie eine gemeldet): das Handy ist der Wecker und klingelt pünktlich zur Zielzeit.
-        val at = if (sync.watchReady() == null) plan.target else plan.target.plus(GRACE)
-        val show = PendingIntent.getActivity(
-            context, 1, Intent(context, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), pending(plan.alarmId))
+        val grace = if (sync.watchReady() == null) Duration.ZERO else GRACE
+        val upcoming = backups.mapNotNull { spec ->
+            AlarmSchedule.nextPlan(spec, maxOf(current, suppressed[spec.id] ?: Instant.EPOCH), zone)
+        }
+        // Läuft gerade die Nachfrist eines schon geplanten Zweitweckers, bleibt er bestehen
+        // (Neuplanen zwischen Zielzeit und Zielzeit + Nachfrist, z. B. beim Prozessstart).
+        val inGrace = prefs[PLANNED_ID]?.let { id ->
+            val target = Instant.ofEpochMilli(prefs[PLANNED_TARGET] ?: 0L)
+            val spec = backups.firstOrNull { it.id == id }
+            if (spec != null && !target.isAfter(current) && target.plus(grace).isAfter(current) &&
+                AlarmSchedule.nextTarget(spec, target.minusMillis(1), zone) == target &&
+                (suppressed[id] ?: Instant.EPOCH) < target
+            ) {
+                WakePlan(id, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
+            } else {
+                null
+            }
+        }
+        val plan = (upcoming + listOfNotNull(inGrace)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+        if (plan == null) {
+            if (prefs[PLANNED_ID] != null) store.edit { it.remove(PLANNED_ID); it.remove(PLANNED_TARGET) }
+            DirectBoot.clear(context)
+            return@withLock
+        }
+        if (prefs[PLANNED_ID] != plan.alarmId || prefs[PLANNED_TARGET] != plan.target.toEpochMilli()) {
+            store.edit {
+                it[PLANNED_ID] = plan.alarmId
+                it[PLANNED_TARGET] = plan.target.toEpochMilli()
+            }
+        }
+        val at = plan.target.plus(grace)
+        setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
+        // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen.
+        DirectBoot.save(context, at, plan.alarmId, plan.target)
     }
 
     /** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn will. */
@@ -58,16 +103,10 @@ class BackupAlarm(
         val wanted = alarms.current().alarms.filter { it.sunrise == Sunrise.WINDOW }
         // Ein bereits gezeigtes Licht nicht noch einmal starten.
         val shown = Instant.ofEpochMilli(store.data.first()[SUNRISE_SHOWN_UNTIL] ?: 0L)
-        val plan = AlarmSchedule.earliestPlan(wanted, maxOf(clock.instant(), shown), clock.zone) ?: return
-        val show = PendingIntent.getActivity(
-            context, 3, Intent(context, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        val at = maxOf(plan.windowStart, clock.instant())
-        alarmManager.setAlarmClock(
-            AlarmManager.AlarmClockInfo(at.toEpochMilli(), show),
-            sunrisePending(plan.alarmId, plan.windowStart, plan.target),
-        )
+        val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone) ?: return
+        val at = maxOf(plan.windowStart, now())
+        // Kein Wecker-Alarm: sonst zeigten Sperrbildschirm und andere Apps den Fensterbeginn als Weckzeit.
+        setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, plan.windowStart, plan.target))
     }
 
     private fun sunrisePending(alarmId: String? = null, start: Instant? = null, end: Instant? = null): PendingIntent {
@@ -82,7 +121,7 @@ class BackupAlarm(
     internal suspend fun startSunrise(intent: Intent) {
         val end = Instant.ofEpochMilli(intent.getLongExtra(SunriseLight.EXTRA_END, 0L))
         store.edit { it[SUNRISE_SHOWN_UNTIL] = end.toEpochMilli() }
-        if (end.isAfter(clock.instant())) {
+        if (end.isAfter(now())) {
             SunriseLight.start(
                 context,
                 SunriseLight.Active(
@@ -95,58 +134,159 @@ class BackupAlarm(
     }
 
     /**
-     * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker bis
-     * kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker
-     * am selben Morgen weg.
+     * Die Uhr meldet den Weckmoment: mitklingeln und den Zweitwecker dieser Nacht aussetzen.
+     * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr.
+     */
+    suspend fun watchRang(message: RingMessage) {
+        if (message.isStale(now().toEpochMilli())) {
+            Log.i(TAG, "Veraltete Weckmeldung der Uhr verworfen")
+        } else {
+            val spec = message.alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
+            // Weckart «Aus» ohne Licht: das Handy bleibt ganz still (kein Vollbild, kein Bildschirm).
+            if (spec == null || spec.phone != PhoneAlert.OFF || spec.sunrise != Sunrise.OFF) forwardRing(message)
+        }
+        watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+    }
+
+    /**
+     * Die Meldung kommt im Hintergrund an; von dort darf ab Android 12 kein Vordergrund-Dienst
+     * starten. Ein Wecker-Alarm in einer Sekunde darf es: über ihn zum [Receiver].
+     */
+    private fun forwardRing(message: RingMessage) {
+        val intent = Intent(context, Receiver::class.java).setAction(ACTION_WATCH_RING)
+            .putExtra(PhoneRingService.EXTRA_ALARM_ID, message.alarmId)
+        message.target?.let { intent.putExtra(PhoneRingService.EXTRA_TARGET, it) }
+        message.snoozesLeft?.let { intent.putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, it) }
+        if (canScheduleExact(context)) {
+            val operation = PendingIntent.getBroadcast(context, 4, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            try {
+                alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(now().plus(FORWARD_DELAY).toEpochMilli(), showIntent()), operation)
+                return
+            } catch (e: SecurityException) {
+                Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
+            }
+        }
+        // Ohne exakte Alarme: direkt versuchen (kann ab Android 12 im Hintergrund scheitern).
+        PhoneRingService.ring(context, message.alarmId, fromWatch = true, target = message.target, snoozesLeft = message.snoozesLeft)
+    }
+
+    /**
+     * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker dieses
+     * Weckers bis kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein
+     * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen Nacht läuft.
      */
     suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
-        val now = clock.instant()
-        val spec = alarms.current().alarms.firstOrNull { it.id == alarmId }
-        // Zielzeit der laufenden Nacht: die nächste Zielzeit ab Beginn des längsten Fensters.
-        val nightTarget = target
-            ?: spec?.let { AlarmSchedule.nextTarget(it, now.minus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())), clock.zone) }
-            ?: now.plus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong()))
-        val until = nightTarget.plus(GRACE)
-        store.edit { if ((it[SUPPRESSED_UNTIL] ?: 0L) < until.toEpochMilli()) it[SUPPRESSED_UNTIL] = until.toEpochMilli() }
+        val current = now()
+        val specs = alarms.current().alarms
+        val until: Map<String, Instant> = if (alarmId != null) {
+            mapOf(alarmId to nightTarget(specs.firstOrNull { it.id == alarmId }, target, current).plus(GRACE))
+        } else {
+            val window = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
+            specs.mapNotNull { spec ->
+                AlarmSchedule.nextTarget(spec.copy(enabled = true), current.minus(LOOKBACK), zone)
+                    ?.takeIf { !it.isAfter(current.plus(window)) }
+                    ?.let { spec.id to it.plus(GRACE) }
+            }.toMap()
+        }
+        suppress(until)
         reschedule()
     }
 
-    /** Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. */
-    fun snoozeUntil(at: Instant, alarmId: String?) {
-        val show = PendingIntent.getActivity(
-            context, 1, Intent(context, MainActivity::class.java),
+    /**
+     * Zielzeit, bis zu der der Zweitwecker dieser Nacht ausgesetzt wird. Im Einschlaf-Modus weckt die
+     * Uhr früher; der Zweitwecker liegt aber auf der eingestellten Zeit – also mindestens bis dorthin.
+     */
+    private fun nightTarget(spec: AlarmSpec?, target: Instant?, current: Instant): Instant {
+        // Auch ein soeben ausgeschalteter Einmal-Wecker zählt für diese Nacht noch.
+        val on = spec?.copy(enabled = true)
+        val configured = on?.let { AlarmSchedule.nextTarget(it, (target ?: current.minus(LOOKBACK)).minusMillis(1), zone) }
+        if (target == null) return configured ?: current.plus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong()))
+        // Nur die Weckzeit derselben Nacht (höchstens die längste Schlafdauer später).
+        val sameNight = configured?.takeIf { !it.isAfter(target.plus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong()))) }
+        return maxOf(target, sameNight ?: target)
+    }
+
+    /**
+     * Der Zweitwecker hat geklingelt: diese Nacht nicht noch einmal planen, und einen Einmal-Wecker
+     * ausschalten – mit Abgleich zur Uhr, sonst klingelte er ab jetzt jeden Tag.
+     */
+    internal suspend fun backupRang(alarmId: String?, target: Instant?) {
+        if (alarmId == null) return
+        if (target != null) suppress(mapOf(alarmId to target.plus(GRACE)))
+        disableOneShot(alarmId)
+    }
+
+    /** Schaltet einen noch eingeschalteten Einmal-Wecker aus (über die Uhr-Synchronisation). */
+    suspend fun disableOneShot(alarmId: String?) {
+        val spec = alarms.current().alarms.firstOrNull { it.id == alarmId } ?: return
+        if (spec.isOneShot && spec.enabled) context.phoneApp.afterAlarmsChanged { alarms.setEnabled(spec.id, false) }
+    }
+
+    /** Pro Wecker: ausgesetzt bis; ein späterer Zeitpunkt gewinnt, abgelaufene fallen weg. */
+    private suspend fun suppress(until: Map<String, Instant>) {
+        if (until.isEmpty()) return
+        val keepAfter = now().minus(Duration.ofDays(1))
+        store.edit { prefs ->
+            val merged = decodeSuppressed(prefs[SUPPRESSED]).toMutableMap()
+            until.forEach { (id, at) -> merged[id] = maxOf(merged[id] ?: Instant.EPOCH, at) }
+            prefs[SUPPRESSED] = encodeSuppressed(merged.filterValues { it.isAfter(keepAfter) })
+            // Früher galt eine einzige Sperre für alle Wecker.
+            prefs.remove(LEGACY_SUPPRESSED_UNTIL)
+        }
+    }
+
+    /** Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. [snoozes]: bisherige Runden. */
+    fun snoozeUntil(at: Instant, alarmId: String?, snoozes: Int) {
+        val intent = Intent(context, Receiver::class.java).setAction(ACTION)
+            .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozes)
+        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
+        setAlarm(at, showIntent(), PendingIntent.getBroadcast(context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+    }
+
+    fun cancelSnooze() = alarmManager.cancel(
+        PendingIntent.getBroadcast(
+            context, 3, Intent(context, Receiver::class.java).setAction(ACTION),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), snoozePending(alarmId))
-    }
+        ),
+    )
 
-    fun cancelSnooze() = alarmManager.cancel(snoozePending(null))
+    private fun showIntent(): PendingIntent = showPending(context)
 
-    private fun snoozePending(alarmId: String?): PendingIntent {
-        val intent = Intent(context, Receiver::class.java).setAction(ACTION)
-        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-        return PendingIntent.getBroadcast(context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-    }
+    private fun pending(alarmId: String? = null, target: Instant? = null): PendingIntent = backupPending(context, alarmId, target)
 
-    private fun pending(alarmId: String? = null): PendingIntent {
-        val intent = Intent(context, Receiver::class.java).setAction(ACTION)
-        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-    }
+    /**
+     * Exakt planen; mit [show] als Wecker (Sperrbildschirm zeigt ihn), sonst still. Ohne Recht für
+     * exakte Alarme (Android 12/12L, entziehbar) ungenau statt gar nicht.
+     */
+    private fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) = setExact(context, at, show, operation)
 
     /** Löst den Zweitwecker aus und plant den nächsten. Nicht exportiert: nur eigene Alarme. */
     class Receiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            val alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID)
+            val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
             when (intent.action) {
-                ACTION -> PhoneRingService.ring(context, intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID))
+                ACTION -> PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+                ACTION_WATCH_RING -> {
+                    val left = if (intent.hasExtra(PhoneRingService.EXTRA_SNOOZES_LEFT)) intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 0) else null
+                    PhoneRingService.ring(context, alarmId, fromWatch = true, target = target, snoozesLeft = left)
+                    return
+                }
                 ACTION_SUNRISE -> Unit // unten, nach dem Merken
                 else -> return
+            }
+            // Vor dem ersten Entsperren (Neustart in der Nacht) sind Wecker und Einstellungen nicht lesbar.
+            if (!isUnlocked(context)) {
+                DirectBoot.clear(context)
+                return
             }
             val pending = goAsync()
             val app = context.phoneApp
             app.appScope.launch {
                 try {
                     if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
+                    // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns.
+                    if (intent.action == ACTION && target != null) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
                     app.backup.reschedule()
                 } finally {
                     pending.finish()
@@ -155,9 +295,16 @@ class BackupAlarm(
         }
     }
 
-    /** Neustart, App-Update, Zeit- oder Zeitzonenwechsel: Alarme sind weg oder verschoben, neu planen. */
+    /**
+     * Neustart, App-Update, Zeit- oder Zeitzonenwechsel, Recht für exakte Alarme erteilt: Alarme
+     * sind weg oder verschoben, neu planen. Vor dem ersten Entsperren nur den abgelegten Zweitwecker.
+     */
     class SystemReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            if (!isUnlocked(context)) {
+                DirectBoot.restore(context)
+                return
+            }
             val pending = goAsync()
             val app = context.phoneApp
             app.appScope.launch {
@@ -170,13 +317,105 @@ class BackupAlarm(
         }
     }
 
-    private companion object {
-        const val ACTION = "com.phasewake.app.action.BACKUP_RING"
-        const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
-        val SUPPRESSED_UNTIL = longPreferencesKey("backup_suppressed_until")
-        val SUNRISE_SHOWN_UNTIL = longPreferencesKey("sunrise_shown_until")
+    /**
+     * Nächster Zweitwecker im geräteverschlüsselten Speicher: Startet das Handy nachts neu, ist bis
+     * zum ersten Entsperren nur dieser lesbar. Beim Entsperren plant [SystemReceiver] alles neu.
+     */
+    private object DirectBoot {
+        private const val FILE = "backup_direct_boot"
+        private const val KEY_AT = "at"
+        private const val KEY_ID = "alarmId"
+        private const val KEY_TARGET = "target"
+
+        private fun prefs(context: Context) =
+            context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
+
+        fun save(context: Context, at: Instant, alarmId: String, target: Instant) {
+            prefs(context).edit().putLong(KEY_AT, at.toEpochMilli()).putString(KEY_ID, alarmId).putLong(KEY_TARGET, target.toEpochMilli()).apply()
+        }
+
+        fun clear(context: Context) {
+            prefs(context).edit().clear().apply()
+        }
+
+        fun restore(context: Context) {
+            val prefs = prefs(context)
+            val at = Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L))
+            val current = Instant.now()
+            // Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später.
+            if (at.isBefore(current.minus(MISSED_DURING_BOOT))) return
+            val target = prefs.getLong(KEY_TARGET, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli)
+            setExact(context, maxOf(at, current.plus(FORWARD_DELAY)), showPending(context), backupPending(context, prefs.getString(KEY_ID, null), target))
+        }
+    }
+
+    companion object {
+        private const val TAG = "BackupAlarm"
+        private const val ACTION = "com.phasewake.app.action.BACKUP_RING"
+        private const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
+        private const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
+        private val SUPPRESSED = stringPreferencesKey("backup_suppressed")
+        private val LEGACY_SUPPRESSED_UNTIL = longPreferencesKey("backup_suppressed_until")
+        private val PLANNED_ID = stringPreferencesKey("backup_planned_id")
+        private val PLANNED_TARGET = longPreferencesKey("backup_planned_target")
+        private val SUNRISE_SHOWN_UNTIL = longPreferencesKey("sunrise_shown_until")
 
         /** So lange nach der Zielzeit wartet das Handy auf die Uhr. */
-        val GRACE: Duration = Duration.ofMinutes(2)
+        private val GRACE: Duration = Duration.ofMinutes(2)
+
+        /** Weiterleitung der Weckmeldung der Uhr über einen Wecker-Alarm. */
+        private val FORWARD_DELAY: Duration = Duration.ofSeconds(1)
+
+        /** Ohne Zielzeit (ältere Uhr): so weit zurück kann die Nacht begonnen haben (Fenster, Schlummern, Klingeln). */
+        private val LOOKBACK: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
+
+        private val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
+
+        /** Ob exakte Alarme erlaubt sind; entziehbar nur auf Android 12/12L (ab 13 gilt USE_EXACT_ALARM). */
+        fun canScheduleExact(context: Context): Boolean =
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.S || context.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
+
+        /** Ob der Speicher entsperrt ist (nach einem Neustart erst nach dem ersten Entsperren). */
+        fun isUnlocked(context: Context): Boolean = context.getSystemService(UserManager::class.java).isUserUnlocked
+
+        /** Antippen der Weckzeit im System öffnet die App. */
+        private fun showPending(context: Context): PendingIntent = PendingIntent.getActivity(
+            context, 1, Intent(context, MainActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+
+        private fun backupPending(context: Context, alarmId: String?, target: Instant?): PendingIntent {
+            val intent = Intent(context, Receiver::class.java).setAction(ACTION)
+            if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
+            if (target != null) intent.putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        private fun setExact(context: Context, at: Instant, show: PendingIntent?, operation: PendingIntent) {
+            val alarmManager = context.getSystemService(AlarmManager::class.java)
+            if (canScheduleExact(context)) {
+                try {
+                    if (show != null) {
+                        alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
+                    } else {
+                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)
+                    }
+                    return
+                } catch (e: SecurityException) {
+                    Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
+                }
+            }
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)
+        }
+
+        /** «kennung=millis» je Zeile. */
+        internal fun encodeSuppressed(map: Map<String, Instant>): String =
+            map.entries.joinToString("\n") { (id, at) -> "$id=${at.toEpochMilli()}" }
+
+        internal fun decodeSuppressed(text: String?): Map<String, Instant> =
+            text.orEmpty().lines().mapNotNull { line ->
+                val millis = line.substringAfterLast('=', "").toLongOrNull() ?: return@mapNotNull null
+                line.substringBeforeLast('=') to Instant.ofEpochMilli(millis)
+            }.toMap()
     }
 }

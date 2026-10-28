@@ -3,16 +3,18 @@ package com.phasewake.app.sync
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
+import java.time.Instant
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Weck- und Stopp-Meldungen. */
+/** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Status, Weck- und Stopp-Meldungen. */
 class PhoneListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -20,10 +22,13 @@ class PhoneListenerService : WearableListenerService() {
         val changed = dataEvents.filter { it.type == DataEvent.TYPE_CHANGED }.map { it.dataItem }
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
-            changed.filter { it.uri.path == DataLayer.PATH_ALARMS }
+            val applied = changed.filter { it.uri.path == DataLayer.PATH_ALARMS }
                 .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it).dataMap) }
                 .maxByOrNull { it.updatedAt }
-                ?.let { if (app.alarms.applyRemote(it)) app.backup.reschedule() }
+                ?.let { app.alarms.applyRemote(it) } == true
+            // Eine (neu gekoppelte) Uhr meldet sich: Der Zweitwecker wartet jetzt die Nachfrist ab.
+            val status = changed.any { it.uri.path == DataLayer.PATH_WATCH_STATUS }
+            if (applied || status) app.backup.reschedule()
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
                 val night = WearSync.readNight(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
                 app.nights.add(night)
@@ -36,11 +41,21 @@ class PhoneListenerService : WearableListenerService() {
     }
 
     override fun onMessageReceived(event: MessageEvent) {
+        val app = phoneApp
         when (event.path) {
-            DataLayer.PATH_RING -> PhoneRingService.ring(this, event.data.decodeToString(), fromWatch = true)
+            // Nicht direkt den Weckdienst starten: aus dem Hintergrund ab Android 12 nicht erlaubt.
+            DataLayer.PATH_RING -> {
+                val message = RingMessage.decode(event.data)
+                app.appScope.launch { app.backup.watchRang(message) }
+            }
             DataLayer.PATH_STOP -> {
+                val message = RingMessage.decode(event.data)
                 PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
-                phoneApp.appScope.launch { phoneApp.backup.watchHandled(null) }
+                app.appScope.launch {
+                    app.backup.watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+                    // Hat die Uhr einen Einmal-Wecker beendet, ist er auch am Handy aus (falls ihr Abgleich fehlt).
+                    app.backup.disableOneShot(message.alarmId)
+                }
             }
         }
     }

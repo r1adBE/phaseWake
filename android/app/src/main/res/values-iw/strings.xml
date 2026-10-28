@@ -5,6 +5,7 @@
     <string name="ring_greeting">בוקר טוב</string>
     <string name="ring_notification_text">המעורר של Phase Wake מצלצל</string>
     <string name="ring_stop">עצירה</string>
+    <string name="ring_open">פתיחה</string>
     <plurals name="ring_snooze">
         <item quantity="one">נודניק %1$d דק׳ · נותר: %2$d</item>
         <item quantity="two">נודניק %1$d דק׳ · נותרו: %2$d</item>
@@ -147,6 +148,8 @@
     <string name="check_notifications_problem">בלי התראות הטלפון לא יוכל לצלצל כשעון מעורר גיבוי.</string>
     <string name="check_full_screen">הרשאת מסך מלא ניתנה</string>
     <string name="check_full_screen_problem">אשרו זאת כדי שהשעון המעורר יופיע גם כשהטלפון נעול.</string>
+    <string name="check_exact_alarms">שעונים מעוררים מדויקים מאושרים</string>
+    <string name="check_exact_alarms_problem">אשרו שעונים מעוררים ותזכורות כדי שהשעון המעורר הגיבוי יצלצל בזמן.</string>
     <string name="check_dnd">״נא לא להפריע״ מאפשר שעונים מעוררים</string>
     <string name="check_battery">סוללת הטלפון</string>
     <string name="check_battery_problem">מתחת ל-%1$d %% – טענו את הטלפון כדי שהשעון המעורר לגיבוי יוכל לצלצל.</string>

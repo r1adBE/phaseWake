@@ -5,6 +5,7 @@
     <string name="ring_greeting">Dobré ráno</string>
     <string name="ring_notification_text">Zvoní tvůj budík Phase Wake</string>
     <string name="ring_stop">Zastavit</string>
+    <string name="ring_open">Otevřít</string>
     <plurals name="ring_snooze">
         <item quantity="one">Odložit %1$d min · zbývá: %2$d</item>
         <item quantity="few">Odložit %1$d min · zbývá: %2$d</item>
@@ -150,6 +151,8 @@
     <string name="check_notifications_problem">Bez oznámení nemůže telefon zazvonit jako záložní budík.</string>
     <string name="check_full_screen">Budík na celou obrazovku povolen</string>
     <string name="check_full_screen_problem">Povol to, aby se budík zobrazil i při zamčeném telefonu.</string>
+    <string name="check_exact_alarms">Přesné budíky povoleny</string>
+    <string name="check_exact_alarms_problem">Povol budíky a připomenutí, aby záložní budík zazvonil včas.</string>
     <string name="check_dnd">Režim Nerušit propouští budíky</string>
     <string name="check_battery">Baterie telefonu</string>
     <string name="check_battery_problem">Pod %1$d %% – nabij telefon, aby mohl zazvonit záložní budík.</string>

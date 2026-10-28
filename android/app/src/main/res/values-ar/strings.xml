@@ -5,6 +5,7 @@
     <string name="ring_greeting">صباح الخير</string>
     <string name="ring_notification_text">منبّه Phase Wake يرنّ</string>
     <string name="ring_stop">إيقاف</string>
+    <string name="ring_open">فتح</string>
     <plurals name="ring_snooze">
         <item quantity="zero">غفوة %1$d د · المتبقي: %2$d</item>
         <item quantity="one">غفوة %1$d د · المتبقي: %2$d</item>
@@ -156,6 +157,8 @@
     <string name="check_notifications_problem">بدون الإشعارات لن يتمكن هاتفك من الرنين كمنبه احتياطي.</string>
     <string name="check_full_screen">منبه الشاشة الكاملة مسموح</string>
     <string name="check_full_screen_problem">اسمح بذلك ليظهر المنبه حتى عندما يكون الهاتف مقفلًا.</string>
+    <string name="check_exact_alarms">المنبهات الدقيقة مسموحة</string>
+    <string name="check_exact_alarms_problem">اسمح بالمنبهات والتذكيرات ليرنّ المنبه الاحتياطي في الوقت المحدد.</string>
     <string name="check_dnd">عدم الإزعاج يسمح بالمنبهات</string>
     <string name="check_battery">بطارية الهاتف</string>
     <string name="check_battery_problem">أقل من %1$d %% – اشحن هاتفك ليتمكن المنبه الاحتياطي من الرنين.</string>

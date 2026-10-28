@@ -144,8 +144,18 @@ internal fun RingScreen(
                     }
                 }
             }
-            is PhoneRingService.State.Snoozed ->
+            is PhoneRingService.State.Snoozed -> {
                 Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = content)
+                // Auch beim Schlummern lässt sich der Wecker durch Halten ganz beenden.
+                Spacer(Modifier.height(24.dp))
+                HoldToStopButton(
+                    label = stringResource(R.string.ring_hold_to_stop),
+                    container = content,
+                    content = if (content == Color.White) Night else Color.White,
+                    onStop = onStop,
+                    modifier = Modifier.fillMaxWidth().height(60.dp),
+                )
+            }
             PhoneRingService.State.Idle -> Unit
         }
     }

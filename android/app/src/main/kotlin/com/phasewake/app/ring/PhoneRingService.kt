@@ -24,6 +24,7 @@ import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RingMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -39,8 +40,8 @@ class PhoneRingService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private var player: MediaPlayer? = null
     private var volume = 0f
-    private var snoozes = 0
     private var lastAlarmId: String? = null
+    private var lastTarget: Long? = null
 
     private val fadeIn = object : Runnable {
         override fun run() {
@@ -56,7 +57,13 @@ class PhoneRingService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
-            ACTION_RING -> start(intent.getStringExtra(EXTRA_ALARM_ID), fromWatch = intent.getBooleanExtra(EXTRA_FROM_WATCH, false))
+            ACTION_RING -> start(
+                intent.getStringExtra(EXTRA_ALARM_ID),
+                fromWatch = intent.getBooleanExtra(EXTRA_FROM_WATCH, false),
+                target = if (intent.hasExtra(EXTRA_TARGET)) intent.getLongExtra(EXTRA_TARGET, 0L) else null,
+                watchSnoozesLeft = if (intent.hasExtra(EXTRA_SNOOZES_LEFT)) intent.getIntExtra(EXTRA_SNOOZES_LEFT, 0) else null,
+                snoozesDone = intent.getIntExtra(EXTRA_SNOOZES_DONE, 0),
+            )
             ACTION_STOP -> stop(notifyWatch = true)
             ACTION_STOP_SILENT -> stop(notifyWatch = false)
             ACTION_SNOOZE -> snooze()
@@ -70,7 +77,12 @@ class PhoneRingService : Service() {
         super.onDestroy()
     }
 
-    private fun start(alarmId: String?, fromWatch: Boolean) {
+    /**
+     * Schlummer-Runden: Bei der Uhr zählt deren Angabe [watchSnoozesLeft] (ältere Uhren schicken keine:
+     * dann der Zähler im Prozess), beim Handy allein [snoozesDone] aus dem Schlummer-Alarm. So stimmt
+     * die Zahl auch, wenn der Dienst zwischendurch beendet wurde.
+     */
+    private fun start(alarmId: String?, fromWatch: Boolean, target: Long?, watchSnoozesLeft: Int?, snoozesDone: Int) {
         phoneApp.backup.cancelSnooze()
         ServiceCompat.startForeground(
             this, RingNotifications.ID_RING, RingNotifications.ringing(this),
@@ -78,13 +90,15 @@ class PhoneRingService : Service() {
         )
         if (state.value is State.Ringing) return
         if (state.value is State.Snoozed) state.value = State.Idle
-        state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = Snooze.MAX_COUNT - snoozes)
-        if (fromWatch) phoneApp.appScope.launch { phoneApp.backup.watchHandled(alarmId) }
+        val left = if (fromWatch) watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes()) else Snooze.MAX_COUNT - snoozesDone
+        state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
         startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         handler.postDelayed(timeout, TIMEOUT_MS)
         lastAlarmId = alarmId
+        lastTarget = target
         phoneApp.appScope.launch(Dispatchers.Main) {
-            val spec = phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId }
+            // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
+            val spec = if (BackupAlarm.isUnlocked(this@PhoneRingService)) phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId } else null
             val sunrise = spec?.sunrise ?: Sunrise.OFF
             if (sunrise != Sunrise.OFF) {
                 // Läuft schon ein Licht ab Weckfenster, macht der Weckbildschirm dort weiter.
@@ -105,29 +119,33 @@ class PhoneRingService : Service() {
 
     private fun snooze() {
         val ringing = state.value as? State.Ringing ?: return
-        if (!Snooze.canSnooze(snoozes)) return
-        snoozes++
+        if (ringing.snoozesLeft <= 0) return
+        val done = Snooze.MAX_COUNT - ringing.snoozesLeft + 1
         release()
         if (ringing.fromWatch) {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
+            legacySnoozes = done
+            legacySnoozedAt = System.currentTimeMillis()
             phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE) }
             state.value = State.Idle
             stopSelf()
         } else {
-            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - snoozes, sunrise = ringing.sunrise)
+            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise)
             // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
-            phoneApp.backup.snoozeUntil(Snooze.nextRing(java.time.Instant.now()), lastAlarmId)
+            phoneApp.backup.snoozeUntil(Snooze.nextRing(java.time.Instant.now()), lastAlarmId, done)
         }
     }
 
     private fun stop(notifyWatch: Boolean) {
         val wasFromWatch = (state.value as? State.Ringing)?.fromWatch == true
+        legacySnoozes = 0
         release()
         phoneApp.backup.cancelSnooze()
         SunriseLight.stop(this)
         state.value = State.Idle
         if (notifyWatch && wasFromWatch) {
-            phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP) }
+            val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis())
+            phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode()) }
         }
         stopSelf()
     }
@@ -212,6 +230,12 @@ class PhoneRingService : Service() {
         const val ACTION_STOP_SILENT = "com.phasewake.app.ring.STOP_SILENT"
         const val ACTION_SNOOZE = "com.phasewake.app.ring.SNOOZE"
         const val EXTRA_ALARM_ID = "alarmId"
+        /** Zielzeit der Nacht in Millisekunden (nur Zweitwecker und Weckmeldung der Uhr). */
+        const val EXTRA_TARGET = "target"
+        /** Verbleibende Schlummer-Runden laut Uhr. */
+        const val EXTRA_SNOOZES_LEFT = "snoozesLeft"
+        /** Bisherige Schlummer-Runden des Handys allein (aus dem Schlummer-Alarm). */
+        const val EXTRA_SNOOZES_DONE = "snoozesDone"
         private const val EXTRA_FROM_WATCH = "fromWatch"
         private const val FADE_STEP = 0.05f
         private const val FADE_INTERVAL_MS = 1500L
@@ -220,14 +244,42 @@ class PhoneRingService : Service() {
         private val state = MutableStateFlow<State>(State.Idle)
         val ringState: StateFlow<State> = state.asStateFlow()
 
-        fun ring(context: Context, alarmId: String?, fromWatch: Boolean = false) {
-            ContextCompat.startForegroundService(
-                context,
-                Intent(context, PhoneRingService::class.java)
-                    .setAction(ACTION_RING)
-                    .putExtra(EXTRA_ALARM_ID, alarmId)
-                    .putExtra(EXTRA_FROM_WATCH, fromWatch),
-            )
+        /**
+         * Schlummer-Runden einer älteren Uhr (schickt keine Zahl mit): über Neustarts des Dienstes
+         * hinweg im Prozess gezählt; nach einer halben Stunde ohne Schlummern gilt ein neuer Weckvorgang.
+         */
+        private var legacySnoozes = 0
+        private var legacySnoozedAt = 0L
+
+        private fun legacyWatchSnoozes(): Int =
+            if (System.currentTimeMillis() - legacySnoozedAt > LEGACY_SNOOZE_RESET_MS) 0 else legacySnoozes
+
+        private const val LEGACY_SNOOZE_RESET_MS = 30 * 60_000L
+
+        /** @return ob der Dienst starten durfte (aus dem Hintergrund ohne Wecker-Alarm ab Android 12 nicht immer). */
+        fun ring(
+            context: Context,
+            alarmId: String?,
+            fromWatch: Boolean = false,
+            target: Long? = null,
+            snoozesLeft: Int? = null,
+            snoozesDone: Int = 0,
+        ): Boolean {
+            val intent = Intent(context, PhoneRingService::class.java)
+                .setAction(ACTION_RING)
+                .putExtra(EXTRA_ALARM_ID, alarmId)
+                .putExtra(EXTRA_FROM_WATCH, fromWatch)
+                .putExtra(EXTRA_SNOOZES_DONE, snoozesDone)
+            if (target != null) intent.putExtra(EXTRA_TARGET, target)
+            if (snoozesLeft != null) intent.putExtra(EXTRA_SNOOZES_LEFT, snoozesLeft)
+            return try {
+                ContextCompat.startForegroundService(context, intent)
+                true
+            } catch (e: IllegalStateException) {
+                // ForegroundServiceStartNotAllowedException (Android 12+) ist eine IllegalStateException.
+                Log.w(TAG, "Weckdienst durfte nicht starten", e)
+                false
+            }
         }
 
         fun command(context: Context, action: String) {

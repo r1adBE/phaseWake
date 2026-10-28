@@ -5,6 +5,7 @@
     <string name="ring_greeting">おはようございます</string>
     <string name="ring_notification_text">Phase Wakeのアラームが鳴っています</string>
     <string name="ring_stop">停止</string>
+    <string name="ring_open">開く</string>
     <plurals name="ring_snooze">
         <item quantity="other">スヌーズ %1$d分 · 残り%2$d回</item>
     </plurals>
@@ -141,6 +142,8 @@
     <string name="check_notifications_problem">通知がないと、スマートフォンがバックアップのアラームとして鳴りません。</string>
     <string name="check_full_screen">全画面アラームが許可されています</string>
     <string name="check_full_screen_problem">ロック中でもアラームが表示されるよう、許可してください。</string>
+    <string name="check_exact_alarms">正確なアラームが許可されています</string>
+    <string name="check_exact_alarms_problem">予備のアラームが時間どおりに鳴るよう、「アラームとリマインダー」を許可してください。</string>
     <string name="check_dnd">おやすみモード中もアラームが鳴ります</string>
     <string name="check_battery">スマートフォンのバッテリー</string>
     <string name="check_battery_problem">%1$d %%未満です – バックアップのアラームが鳴るよう、スマートフォンを充電してください。</string>

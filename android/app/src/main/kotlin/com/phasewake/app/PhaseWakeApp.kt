@@ -38,9 +38,12 @@ class PhaseWakeApp : Application() {
         super.onCreate()
         RingNotifications.createChannels(this)
         com.phasewake.app.ui.Format.update(this)
+        com.phasewake.app.ring.SunriseLight.createChannel(this)
+        // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
+        // nicht lesbar; neu geplant wird beim Entsperren (BOOT_COMPLETED).
+        if (!BackupAlarm.isUnlocked(this)) return
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
-        com.phasewake.app.ring.SunriseLight.createChannel(this)
         appScope.launch { backup.reschedule() }
     }
 

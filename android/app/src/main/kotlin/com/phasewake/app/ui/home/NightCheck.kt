@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
+import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
 
 /**
@@ -56,6 +57,12 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
 
     /** Wecker-Lautstärke auf 0: Der Zweitwecker klingelt dann lautlos. */
     VOLUME(R.string.check_volume, R.string.check_volume_problem, R.string.dnd_action),
+
+    /** Exakte Alarme: nur auf Android 12/12L entziehbar (ab 13 gilt USE_EXACT_ALARM), nur dort gelistet. */
+    EXACT_ALARMS(
+        R.string.check_exact_alarms, R.string.check_exact_alarms_problem, R.string.check_allow,
+        inReadyList = Build.VERSION.SDK_INT in Build.VERSION_CODES.S..Build.VERSION_CODES.S_V2,
+    ),
 }
 
 /** Ergebnis aller Prüfungen; `failed` leer heisst: bereit für die Nacht. */
@@ -71,6 +78,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             buildList {
                 if (!watchReachable) add(Check.WATCH) else if (watchReady == false) add(Check.WATCH_SETUP)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
+                if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
                     !context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
                 ) add(Check.FULL_SCREEN)

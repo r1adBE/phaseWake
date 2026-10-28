@@ -5,6 +5,7 @@
     <string name="ring_greeting">Dzień dobry</string>
     <string name="ring_notification_text">Twój budzik Phase Wake dzwoni</string>
     <string name="ring_stop">Zatrzymaj</string>
+    <string name="ring_open">Otwórz</string>
     <plurals name="ring_snooze">
         <item quantity="one">Drzemka %1$d min · zostało: %2$d</item>
         <item quantity="few">Drzemka %1$d min · zostało: %2$d</item>
@@ -150,6 +151,8 @@
     <string name="check_notifications_problem">Bez powiadomień telefon nie zadzwoni jako zapasowy budzik.</string>
     <string name="check_full_screen">Budzik na pełnym ekranie dozwolony</string>
     <string name="check_full_screen_problem">Zezwól na to, aby budzik pojawiał się także przy zablokowanym telefonie.</string>
+    <string name="check_exact_alarms">Dokładne alarmy dozwolone</string>
+    <string name="check_exact_alarms_problem">Zezwól na alarmy i przypomnienia, aby zapasowy budzik zadzwonił na czas.</string>
     <string name="check_dnd">Nie przeszkadzać przepuszcza budziki</string>
     <string name="check_battery">Bateria telefonu</string>
     <string name="check_battery_problem">Poniżej %1$d %% – naładuj telefon, aby zapasowy budzik mógł zadzwonić.</string>

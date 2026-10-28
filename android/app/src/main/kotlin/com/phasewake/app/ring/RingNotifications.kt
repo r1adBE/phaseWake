@@ -30,10 +30,6 @@ object RingNotifications {
             context, 0, Intent(context, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        val stop = PendingIntent.getService(
-            context, 1, Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_STOP),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
         return NotificationCompat.Builder(context, CHANNEL_ALARM)
             .setSmallIcon(R.drawable.ic_stat_moon)
             .setContentTitle(context.getString(R.string.ring_greeting))
@@ -44,7 +40,8 @@ object RingNotifications {
             .setSilent(true)
             .setFullScreenIntent(open, true)
             .setContentIntent(open)
-            .addAction(0, context.getString(R.string.ring_stop), stop)
+            // «Öffnen» statt «Stopp»: Beendet wird nur durch Halten auf dem Weckbildschirm.
+            .addAction(0, context.getString(R.string.ring_open), open)
             .build()
     }
 }

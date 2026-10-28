@@ -5,6 +5,7 @@
     <string name="ring_greeting">God morgon</string>
     <string name="ring_notification_text">Ditt Phase Wake-larm ringer</string>
     <string name="ring_stop">Stoppa</string>
+    <string name="ring_open">Öppna</string>
     <plurals name="ring_snooze">
         <item quantity="one">Snooze %1$d min · %2$d kvar</item>
         <item quantity="other">Snooze %1$d min · %2$d kvar</item>
@@ -144,6 +145,8 @@
     <string name="check_notifications_problem">Utan aviseringar kan inte telefonen ringa som reservalarm.</string>
     <string name="check_full_screen">Helskärmslarm tillåtet</string>
     <string name="check_full_screen_problem">Tillåt detta så att alarmet visas även när telefonen är låst.</string>
+    <string name="check_exact_alarms">Exakta alarm tillåtna</string>
+    <string name="check_exact_alarms_problem">Tillåt alarm och påminnelser så att reservalarmet ringer i tid.</string>
     <string name="check_dnd">Stör ej släpper igenom alarm</string>
     <string name="check_battery">Telefonbatteri</string>
     <string name="check_battery_problem">Under %1$d %% – ladda telefonen så att reservalarmet kan ringa.</string>

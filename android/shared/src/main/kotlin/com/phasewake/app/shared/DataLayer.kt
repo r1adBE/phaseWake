@@ -8,13 +8,16 @@ object DataLayer {
     /** Präfix der Nacht-Pakete der Uhr, gefolgt vom Fensterbeginn in Millisekunden. */
     const val PATH_NIGHT_PREFIX = "/phasewake/night/"
 
-    /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = Wecker-Kennung (UTF-8). */
+    /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"
 
-    /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet (gestoppt oder geschlummert). */
+    /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet (gestoppt); Inhalt = [RingMessage] (ohne Schlummer). */
     const val PATH_STOP = "/phasewake/stop"
 
-    /** Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. */
+    /**
+     * Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. Hat die Uhr keine Runde mehr,
+     * antwortet sie mit [PATH_RING], damit das Handy weiterklingelt.
+     */
     const val PATH_SNOOZE = "/phasewake/snooze"
 
     /**
