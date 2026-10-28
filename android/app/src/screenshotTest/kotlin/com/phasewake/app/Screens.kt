@@ -61,7 +61,11 @@ private val stages = nights.last().let { n ->
 private val padding = PaddingValues(top = 24.dp, bottom = 96.dp)
 
 @Composable
-private fun Themed(mode: ThemeMode, content: @Composable () -> Unit) = PhaseWakeTheme(mode) { Surface { content() } }
+private fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
+    // Auf dem Gerät folgt die Standard-Sprache der App-Sprache; im Renderer muss man sie setzen.
+    java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
+    PhaseWakeTheme(mode) { Surface { content() } }
+}
 
 @Composable
 private fun Home(mode: ThemeMode, list: List<AlarmSpec>) = Themed(mode) {
@@ -103,7 +107,7 @@ fun SettingsDark() = Themed(ThemeMode.DARK) {
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable
-fun RingPhone() = PhaseWakeTheme(ThemeMode.DARK) {
+fun RingPhone() = Themed(ThemeMode.DARK) {
     RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {})
 }
 

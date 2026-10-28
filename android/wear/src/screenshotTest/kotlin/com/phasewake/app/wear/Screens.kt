@@ -25,7 +25,7 @@ private val alarms = listOf(
 private val sleepAlarms = listOf(AlarmSpec(id = "sleep", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450))
 
 @Composable
-private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = PhaseWakeTheme {
+private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = Swiss {
     HomeContent(
         alarms = list,
         plan = AlarmSchedule.earliestPlan(list, now, zone),
@@ -50,13 +50,20 @@ fun WatchGoodNight() = Home(sleepAlarms)
 fun WatchEmpty() = Home(emptyList())
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
-fun WatchRing() = PhaseWakeTheme {
+fun WatchRing() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Schlummern", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
-fun WatchSnoozed() = PhaseWakeTheme {
+fun WatchSnoozed() = Swiss {
     RingScreen(RingUi.Snoozed("", now.plusSeconds(300), snoozesLeft = 2), onDismiss = {}, onSnooze = {})
+}
+
+/** Auf dem Gerät folgt die Standard-Sprache der App-Sprache; im Renderer muss man sie setzen. */
+@Composable
+private fun Swiss(content: @Composable () -> Unit) {
+    java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
+    PhaseWakeTheme(content)
 }
 
 private const val WATCH = "id:wearos_large_round"
