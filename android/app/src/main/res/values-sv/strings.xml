@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Anteckningar för i natt</string>
+    <string name="note_caffeine">Kaffe på eftermiddagen</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Träning</string>
+    <string name="note_stress">Stress</string>
+    <string name="note_late_meal">Åt sent</string>
+    <string name="note_screen">Skärm i sängen</string>
+    <string name="note_nap">Tupplur</string>
+    <string name="note_sick">Sjuk</string>
+    <string name="notes_custom_add">Lägg till anteckning</string>
+    <string name="notes_custom_title">Egna anteckningar</string>
+    <string name="notes_custom_hint">Upp till %1$d egna anteckningar, till exempel ”Meditation”.</string>
+    <string name="notes_custom_rename">Byt namn</string>
+    <string name="notes_custom_delete">Radera %1$s</string>
+    <string name="notes_label">Anteckningar</string>
+    <string name="notes_value">Anteckningar: %1$s</string>
+    <string name="notes_effects_title">Vad som påverkar din sömn</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Efter ”%1$s” mående %2$s (%3$d mot %4$d natt)</item>
+        <item quantity="other">Efter ”%1$s” mående %2$s (%3$d mot %4$d nätter)</item>
+    </plurals>
+    <string name="notes_effect_none">Ingen tydlig skillnad än</string>
+    <string name="notes_effect_hint">Anteckna några kvällar, så ser du här vad som gör skillnad.</string>
+    <string name="goal_title">Sömnmål</string>
+    <string name="goal_value">%1$s per natt</string>
+    <string name="goal_hint">Används i veckobalansen och bestämmer din läggdags.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Sömnmål nått: %1$d av %2$d natt</item>
+        <item quantity="other">Sömnmål nått: %1$d av %2$d nätter</item>
+    </plurals>
+    <string name="bedtime_title">Påminnelse om läggdags</string>
+    <string name="bedtime_text">Påminner dig %1$d min före läggdags: väckningstid minus sömnmål.</string>
+    <string name="bedtime_notification">Läggdags kl. %1$s – då hinner du sova %2$s till alarmet kl. %3$s.</string>
+    <string name="channel_reminders">Påminnelser</string>
+    <string name="sounds_title">Insomningsljud</string>
+    <string name="sound_white">Vitt brus</string>
+    <string name="sound_pink">Rosa brus</string>
+    <string name="sound_brown">Brunt brus</string>
+    <string name="sound_rain">Regn</string>
+    <string name="sound_ocean">Hav</string>
+    <string name="sounds_timer">Timer</string>
+    <string name="sounds_timer_off">Ingen</string>
+    <string name="sounds_play">Spela</string>
+    <string name="sounds_stop">Stoppa</string>
+    <string name="sounds_remaining">%1$s kvar</string>
+    <string name="sounds_hint">Spelas på medievolym och slutar senast när ditt väckningsfönster börjar.</string>
 </resources>

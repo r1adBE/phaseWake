@@ -15,10 +15,10 @@ import java.io.File
 
 /** Teilt den Verlauf als anonyme CSV-Datei (Format siehe [NightHistory.exportCsv]). */
 object Export {
-    fun share(context: Context, nights: List<NightRecord>) {
+    fun share(context: Context, nights: List<NightRecord>, notes: Map<java.time.LocalDate, List<String>> = emptyMap()) {
         val dir = File(context.cacheDir, "export").apply { mkdirs() }
         val file = File(dir, "phasewake-nights.csv")
-        file.writeText(NightHistory.exportCsv(nights))
+        file.writeText(NightHistory.exportCsv(nights, notes, java.time.ZoneId.systemDefault()))
         val uri = FileProvider.getUriForFile(context, "${context.packageName}.export", file)
         val send = Intent(Intent.ACTION_SEND)
             .setType("text/csv")

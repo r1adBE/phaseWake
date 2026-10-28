@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">บันทึกสำหรับคืนนี้</string>
+    <string name="note_caffeine">กาแฟตอนบ่าย</string>
+    <string name="note_alcohol">แอลกอฮอล์</string>
+    <string name="note_exercise">ออกกำลังกาย</string>
+    <string name="note_stress">ความเครียด</string>
+    <string name="note_late_meal">กินดึก</string>
+    <string name="note_screen">ดูจอบนเตียง</string>
+    <string name="note_nap">งีบกลางวัน</string>
+    <string name="note_sick">ป่วย</string>
+    <string name="notes_custom_add">เพิ่มบันทึก</string>
+    <string name="notes_custom_title">บันทึกของคุณเอง</string>
+    <string name="notes_custom_hint">บันทึกของคุณเองได้สูงสุด %1$d รายการ เช่น “นั่งสมาธิ”</string>
+    <string name="notes_custom_rename">เปลี่ยนชื่อ</string>
+    <string name="notes_custom_delete">ลบ %1$s</string>
+    <string name="notes_label">บันทึก</string>
+    <string name="notes_value">บันทึก: %1$s</string>
+    <string name="notes_effects_title">สิ่งที่ส่งผลต่อการนอนของคุณ</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">หลัง “%1$s” ความรู้สึก %2$s (%3$d ต่อ %4$d คืน)</item>
+    </plurals>
+    <string name="notes_effect_none">ยังไม่เห็นความต่างชัดเจน</string>
+    <string name="notes_effect_hint">จดไว้สักสองสามคืน แล้วคุณจะเห็นที่นี่ว่าอะไรได้ผล</string>
+    <string name="goal_title">เป้าหมายการนอน</string>
+    <string name="goal_value">%1$s ต่อคืน</string>
+    <string name="goal_hint">นับรวมในสรุปรายสัปดาห์และกำหนดเวลาเข้านอน</string>
+    <plurals name="goal_week">
+        <item quantity="other">ถึงเป้าหมายการนอน: %1$d จาก %2$d คืน</item>
+    </plurals>
+    <string name="bedtime_title">เตือนเวลาเข้านอน</string>
+    <string name="bedtime_text">เตือนก่อนเวลาเข้านอน %1$d นาที: เวลาปลุกลบเป้าหมายการนอน</string>
+    <string name="bedtime_notification">เข้านอนตอน %1$s – แล้วคุณจะได้นอน %2$s ก่อนนาฬิกาปลุกตอน %3$s</string>
+    <string name="channel_reminders">การเตือน</string>
+    <string name="sounds_title">เสียงช่วยนอน</string>
+    <string name="sound_white">เสียงรบกวนสีขาว</string>
+    <string name="sound_pink">เสียงรบกวนสีชมพู</string>
+    <string name="sound_brown">เสียงรบกวนสีน้ำตาล</string>
+    <string name="sound_rain">ฝน</string>
+    <string name="sound_ocean">ทะเล</string>
+    <string name="sounds_timer">ตั้งเวลา</string>
+    <string name="sounds_timer_off">ไม่ตั้ง</string>
+    <string name="sounds_play">เล่น</string>
+    <string name="sounds_stop">หยุด</string>
+    <string name="sounds_remaining">เหลือ %1$s</string>
+    <string name="sounds_hint">เล่นด้วยระดับเสียงสื่อ และหยุดอย่างช้าที่สุดเมื่อช่วงเวลาปลุกของคุณเริ่ม</string>
 </resources>

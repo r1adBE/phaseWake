@@ -33,12 +33,16 @@ class PhaseWakeApp : Application() {
     val sync by lazy { WearSync(this) }
     val health by lazy { HealthSleep(this) }
     val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
+    val notes by lazy { com.phasewake.app.notes.NotesRepository(phaseWakeStore) }
+    val bedtime by lazy { com.phasewake.app.reminder.BedtimeReminder(this, alarms, settings) }
 
     override fun onCreate() {
         super.onCreate()
         RingNotifications.createChannels(this)
         com.phasewake.app.ui.Format.update(this)
         com.phasewake.app.ring.SunriseLight.createChannel(this)
+        com.phasewake.app.reminder.BedtimeReminder.createChannel(this)
+        com.phasewake.app.sounds.SleepSoundService.createChannel(this)
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
         // nicht lesbar; neu geplant wird beim Entsperren (BOOT_COMPLETED).
         if (!BackupAlarm.isUnlocked(this)) return

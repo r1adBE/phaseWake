@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">오전</string>
     <string name="m3c_time_picker_pm">오후</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">오늘 밤 메모</string>
+    <string name="note_caffeine">오후 커피</string>
+    <string name="note_alcohol">술</string>
+    <string name="note_exercise">운동</string>
+    <string name="note_stress">스트레스</string>
+    <string name="note_late_meal">늦은 식사</string>
+    <string name="note_screen">침대에서 화면</string>
+    <string name="note_nap">낮잠</string>
+    <string name="note_sick">아픔</string>
+    <string name="notes_custom_add">메모 추가</string>
+    <string name="notes_custom_title">나만의 메모</string>
+    <string name="notes_custom_hint">나만의 메모는 최대 %1$d개 (예: ‘명상’).</string>
+    <string name="notes_custom_rename">이름 바꾸기</string>
+    <string name="notes_custom_delete">%1$s 삭제</string>
+    <string name="notes_label">메모</string>
+    <string name="notes_value">메모: %1$s</string>
+    <string name="notes_effects_title">수면에 영향을 주는 것</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">‘%1$s’ 후 컨디션 %2$s (%3$d 대 %4$d 밤)</item>
+    </plurals>
+    <string name="notes_effect_none">아직 뚜렷한 차이가 없어요</string>
+    <string name="notes_effect_hint">며칠 저녁 기록하면 무엇이 효과가 있는지 여기서 볼 수 있어요.</string>
+    <string name="goal_title">수면 목표</string>
+    <string name="goal_value">하룻밤 %1$s</string>
+    <string name="goal_hint">주간 결과에 반영되고 취침 시간을 정해요.</string>
+    <plurals name="goal_week">
+        <item quantity="other">수면 목표 달성: %2$d일 중 %1$d일</item>
+    </plurals>
+    <string name="bedtime_title">취침 알림</string>
+    <string name="bedtime_text">취침 시간 %1$d분 전에 알려 줘요: 알람 시간에서 수면 목표를 뺀 시간.</string>
+    <string name="bedtime_notification">%1$s에 취침 – 그러면 %3$s 알람까지 %2$s 잘 수 있어요.</string>
+    <string name="channel_reminders">알림</string>
+    <string name="sounds_title">수면 사운드</string>
+    <string name="sound_white">화이트 노이즈</string>
+    <string name="sound_pink">핑크 노이즈</string>
+    <string name="sound_brown">브라운 노이즈</string>
+    <string name="sound_rain">비</string>
+    <string name="sound_ocean">바다</string>
+    <string name="sounds_timer">타이머</string>
+    <string name="sounds_timer_off">없음</string>
+    <string name="sounds_play">재생</string>
+    <string name="sounds_stop">정지</string>
+    <string name="sounds_remaining">%1$s 남음</string>
+    <string name="sounds_hint">미디어 볼륨으로 재생되며 늦어도 기상 시간대가 시작되면 멈춰요.</string>
 </resources>

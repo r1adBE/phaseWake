@@ -217,4 +217,53 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Notas para esta noite</string>
+    <string name="note_caffeine">Café à tarde</string>
+    <string name="note_alcohol">Álcool</string>
+    <string name="note_exercise">Exercício</string>
+    <string name="note_stress">Estresse</string>
+    <string name="note_late_meal">Jantei tarde</string>
+    <string name="note_screen">Tela na cama</string>
+    <string name="note_nap">Cochilo</string>
+    <string name="note_sick">Doente</string>
+    <string name="notes_custom_add">Adicionar nota</string>
+    <string name="notes_custom_title">Suas notas</string>
+    <string name="notes_custom_hint">Até %1$d notas suas, por exemplo “Meditação”.</string>
+    <string name="notes_custom_rename">Renomear</string>
+    <string name="notes_custom_delete">Excluir %1$s</string>
+    <string name="notes_label">Notas</string>
+    <string name="notes_value">Notas: %1$s</string>
+    <string name="notes_effects_title">O que influencia seu sono</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Depois de “%1$s”, bem-estar %2$s (%3$d vs. %4$d noite)</item>
+        <item quantity="many">Depois de “%1$s”, bem-estar %2$s (%3$d vs. %4$d noites)</item>
+        <item quantity="other">Depois de “%1$s”, bem-estar %2$s (%3$d vs. %4$d noites)</item>
+    </plurals>
+    <string name="notes_effect_none">Ainda sem diferença clara</string>
+    <string name="notes_effect_hint">Anote algumas noites e aqui você vai ver o que faz efeito.</string>
+    <string name="goal_title">Meta de sono</string>
+    <string name="goal_value">%1$s por noite</string>
+    <string name="goal_hint">Conta para o balanço semanal e define seu horário de dormir.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Meta de sono atingida: %1$d de %2$d noite</item>
+        <item quantity="many">Meta de sono atingida: %1$d de %2$d noites</item>
+        <item quantity="other">Meta de sono atingida: %1$d de %2$d noites</item>
+    </plurals>
+    <string name="bedtime_title">Lembrete de dormir</string>
+    <string name="bedtime_text">Avisa você %1$d min antes da hora de dormir: horário do alarme menos meta de sono.</string>
+    <string name="bedtime_notification">Hora de dormir às %1$s – assim você dorme %2$s até o alarme das %3$s.</string>
+    <string name="channel_reminders">Lembretes</string>
+    <string name="sounds_title">Sons para adormecer</string>
+    <string name="sound_white">Ruído branco</string>
+    <string name="sound_pink">Ruído rosa</string>
+    <string name="sound_brown">Ruído marrom</string>
+    <string name="sound_rain">Chuva</string>
+    <string name="sound_ocean">Mar</string>
+    <string name="sounds_timer">Temporizador</string>
+    <string name="sounds_timer_off">Sem</string>
+    <string name="sounds_play">Tocar</string>
+    <string name="sounds_stop">Parar</string>
+    <string name="sounds_remaining">faltam %1$s</string>
+    <string name="sounds_hint">Toca no volume de mídia e para, no máximo, quando começa sua janela de despertar.</string>
 </resources>

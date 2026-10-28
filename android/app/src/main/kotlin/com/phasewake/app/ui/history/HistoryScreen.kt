@@ -32,7 +32,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.NoteEffect
+import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.ui.notes.NightNotes
+import com.phasewake.app.ui.notes.NoteEffectsCard
+import java.time.LocalDate
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageCheck
 import com.phasewake.app.core.StageSpan
@@ -77,6 +83,13 @@ fun HistoryScreen(
     trends: Trends? = null,
     healthConnected: Boolean = false,
     onConnectHealth: () -> Unit = {},
+    /** Schlafziel erreicht (Nächte, gezählt) aus der Gesundheits-App; `null` ohne Daten. */
+    goalWeek: Pair<Int, Int>? = null,
+    notes: Map<LocalDate, List<String>> = emptyMap(),
+    customNotes: List<CustomNote> = emptyList(),
+    onToggleNote: (LocalDate, String) -> Unit = { _, _ -> },
+    /** Wirkung der Notizen; `null`: Karte nicht zeigen (Bildschirmfotos). */
+    noteEffects: List<NoteEffect>? = null,
 ) {
     LazyColumn(
         contentPadding = contentPadding,
@@ -107,10 +120,12 @@ fun HistoryScreen(
             return@LazyColumn
         }
         item(key = "stats") { Stats(nights) }
-        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth) } }
+        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek) } }
+        noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         // Schlüssel wie im Verlauf: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
         items(nights.asReversed(), key = { "${it.alarmId}@${it.windowStart.toEpochMilli()}" }) { night ->
-            NightCard(night, loadStages, Modifier.animateItem())
+            val date = SleepNotes.nightDate(night, ZoneId.systemDefault())
+            NightCard(night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes, onToggleNote = { onToggleNote(date, it) })
         }
         item(key = "export") {
             OutlinedButton(onClick = onExport, modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
@@ -143,7 +158,14 @@ private fun StatTile(text: String, modifier: Modifier) {
 }
 
 @Composable
-private fun NightCard(night: NightRecord, loadStages: (suspend (NightRecord) -> List<StageSpan>)?, modifier: Modifier) {
+private fun NightCard(
+    night: NightRecord,
+    loadStages: (suspend (NightRecord) -> List<StageSpan>)?,
+    modifier: Modifier,
+    notes: List<String>,
+    customNotes: List<CustomNote>,
+    onToggleNote: (String) -> Unit,
+) {
     val context = LocalContext.current
     val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
     val zone = ZoneId.systemDefault()
@@ -189,6 +211,7 @@ private fun NightCard(night: NightRecord, loadStages: (suspend (NightRecord) -> 
                     )
                 }
             }
+            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
         }
     }
 }

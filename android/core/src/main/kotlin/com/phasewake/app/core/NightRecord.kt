@@ -51,11 +51,20 @@ object NightHistory {
     /**
      * Anonymer CSV-Export: keine Kennungen, keine Datums- oder Uhrzeitangaben, nur relative Werte.
      * Nächte werden durchnummeriert (1 = älteste). Dezimalpunkt, Komma als Trenner.
+     * Letzte Spalte `notes`: Schlafnotizen der Nacht mit «;» getrennt, eigene nur als «custom»
+     * (am Ende angefügt, damit ältere Leser weiter funktionieren).
+     *
+     * @param notes Schlafnotizen je Nachtdatum (siehe [SleepNotes.nightDate]).
      */
-    fun exportCsv(nights: List<NightRecord>): String = buildString {
-        append("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr\n")
+    fun exportCsv(
+        nights: List<NightRecord>,
+        notes: Map<java.time.LocalDate, List<String>> = emptyMap(),
+        zone: java.time.ZoneId = java.time.ZoneId.systemDefault(),
+    ): String = buildString {
+        append("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n")
         trim(nights).forEachIndexed { nightIndex, night ->
             val windowMinutes = Duration.between(night.windowStart, night.target).toMinutes()
+            val noteText = notes[SleepNotes.nightDate(night, zone)].orEmpty().joinToString(";") { SleepNotes.exportId(it) }
             night.epochs.forEachIndexed { epochIndex, epoch ->
                 append(nightIndex + 1).append(',')
                 append(windowMinutes).append(',')
@@ -65,7 +74,8 @@ object NightHistory {
                 append(night.feeling?.toString() ?: "").append(',')
                 append(epochIndex).append(',')
                 append(epoch.motion?.let { String.format(Locale.ROOT, "%.6f", it) } ?: "").append(',')
-                append(epoch.heartRate?.let { String.format(Locale.ROOT, "%.1f", it) } ?: "").append('\n')
+                append(epoch.heartRate?.let { String.format(Locale.ROOT, "%.1f", it) } ?: "").append(',')
+                append(noteText).append('\n')
             }
         }
     }

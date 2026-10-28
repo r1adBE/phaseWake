@@ -82,7 +82,7 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
 
 /** Wochenvergleich: Schlafdauer, Regelmässigkeit, Befinden – nur was die Daten tragen. */
 @Composable
-fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> Unit) {
+fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> Unit, goalWeek: Pair<Int, Int>? = null) {
     val context = LocalContext.current
     val res = LocalResources.current
     val lines = buildList {
@@ -97,6 +97,10 @@ fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> 
                     },
                 )
             }
+        }
+        // Schlafziel: nur mit Schlafdauer aus der Gesundheits-App (sonst deckt der Hinweis unten das ab).
+        goalWeek?.takeIf { healthConnected && it.second > 0 }?.let { (reached, total) ->
+            add(res.getQuantityString(R.plurals.goal_week, total, reached, total))
         }
         trends.bedtimeSpreadMinutes?.let { spread ->
             add(res.getString(R.string.trends_bedtime, Format.duration(context, Duration.ofMinutes(spread))))

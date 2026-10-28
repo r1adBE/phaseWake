@@ -36,3 +36,6 @@ Hier steht, was während der Arbeit entschieden wurde: ohne Rückfrage jeweils d
 | 28.10.2026 | Erledigt pro Wecker | Uhr und Handy (Android und Apple) merken pro Wecker, bis wann die Nacht erledigt bzw. der Zweitwecker ausgesetzt ist. | Audit: Ein zweiter Wecker am selben Morgen fiel sonst weg. |
 | 28.10.2026 | Ziel-SDK Handy | Bleibt 36 wie die Uhr; Lint-Hinweis darauf ausgeblendet. Wechsel auf 37 erst nach Test auf einem Android-17-Handy. | Entschieden mit r1AD. |
 | 28.10.2026 | Stopp des Zweitweckers (Android) | Stoppst du am Handy einen Zweitwecker, stoppt auch die Galaxy Watch denselben Wecker. | Entschieden mit r1AD: wie bei Apple, ein Stopp gilt für beide Geräte. |
+| 28.10.2026 | Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge | Nach Vorbild Sleep Cycle, nur Handy; Notizen 8 fest + 5 eigene, Ziel 7½ Std., Erinnerung 30 Min vorher (aus), 5 Klänge aus Code mit Timer. | Entschieden mit r1AD. |
+| 28.10.2026 | «Verlauf löschen» und Notizen | Löscht auch die Notizen aller Nächte; die Namen eigener Notizen bleiben. | Gleiches Verhalten auf Android und iPhone. |
+| 28.10.2026 | Ultraschall-Messung | Nicht eingebaut. | Entschieden mit r1AD: Die Uhr misst direkt und genauer. |

@@ -222,4 +222,55 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Заметки на эту ночь</string>
+    <string name="note_caffeine">Кофе после обеда</string>
+    <string name="note_alcohol">Алкоголь</string>
+    <string name="note_exercise">Спорт</string>
+    <string name="note_stress">Стресс</string>
+    <string name="note_late_meal">Поздний ужин</string>
+    <string name="note_screen">Экран в постели</string>
+    <string name="note_nap">Дневной сон</string>
+    <string name="note_sick">Болезнь</string>
+    <string name="notes_custom_add">Добавить заметку</string>
+    <string name="notes_custom_title">Свои заметки</string>
+    <string name="notes_custom_hint">До %1$d своих заметок, например «Медитация».</string>
+    <string name="notes_custom_rename">Переименовать</string>
+    <string name="notes_custom_delete">Удалить %1$s</string>
+    <string name="notes_label">Заметки</string>
+    <string name="notes_value">Заметки: %1$s</string>
+    <string name="notes_effects_title">Что влияет на твой сон</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">После «%1$s» самочувствие %2$s (%3$d против %4$d ночи)</item>
+        <item quantity="few">После «%1$s» самочувствие %2$s (%3$d против %4$d ночей)</item>
+        <item quantity="many">После «%1$s» самочувствие %2$s (%3$d против %4$d ночей)</item>
+        <item quantity="other">После «%1$s» самочувствие %2$s (%3$d против %4$d ночей)</item>
+    </plurals>
+    <string name="notes_effect_none">Пока нет явной разницы</string>
+    <string name="notes_effect_hint">Отметь несколько вечеров — и здесь увидишь, что влияет.</string>
+    <string name="goal_title">Цель сна</string>
+    <string name="goal_value">%1$s за ночь</string>
+    <string name="goal_hint">Учитывается в итогах недели и определяет время отхода ко сну.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Цель сна достигнута: %1$d из %2$d ночи</item>
+        <item quantity="few">Цель сна достигнута: %1$d из %2$d ночей</item>
+        <item quantity="many">Цель сна достигнута: %1$d из %2$d ночей</item>
+        <item quantity="other">Цель сна достигнута: %1$d из %2$d ночей</item>
+    </plurals>
+    <string name="bedtime_title">Напоминание о сне</string>
+    <string name="bedtime_text">Напоминает за %1$d мин до отхода ко сну: время будильника минус цель сна.</string>
+    <string name="bedtime_notification">Спать в %1$s — так ты поспишь %2$s до будильника в %3$s.</string>
+    <string name="channel_reminders">Напоминания</string>
+    <string name="sounds_title">Звуки для сна</string>
+    <string name="sound_white">Белый шум</string>
+    <string name="sound_pink">Розовый шум</string>
+    <string name="sound_brown">Коричневый шум</string>
+    <string name="sound_rain">Дождь</string>
+    <string name="sound_ocean">Море</string>
+    <string name="sounds_timer">Таймер</string>
+    <string name="sounds_timer_off">Без</string>
+    <string name="sounds_play">Включить</string>
+    <string name="sounds_stop">Стоп</string>
+    <string name="sounds_remaining">ещё %1$s</string>
+    <string name="sounds_hint">Играет на громкости медиа и выключается не позже начала твоего окна пробуждения.</string>
 </resources>

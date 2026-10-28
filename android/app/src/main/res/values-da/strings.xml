@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Noter til i nat</string>
+    <string name="note_caffeine">Kaffe om eftermiddagen</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Motion</string>
+    <string name="note_stress">Stress</string>
+    <string name="note_late_meal">Spiste sent</string>
+    <string name="note_screen">Skærm i sengen</string>
+    <string name="note_nap">Middagslur</string>
+    <string name="note_sick">Syg</string>
+    <string name="notes_custom_add">Tilføj note</string>
+    <string name="notes_custom_title">Egne noter</string>
+    <string name="notes_custom_hint">Op til %1$d egne noter, for eksempel “Meditation”.</string>
+    <string name="notes_custom_rename">Omdøb</string>
+    <string name="notes_custom_delete">Slet %1$s</string>
+    <string name="notes_label">Noter</string>
+    <string name="notes_value">Noter: %1$s</string>
+    <string name="notes_effects_title">Hvad der påvirker din søvn</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Efter “%1$s” velvære %2$s (%3$d mod %4$d nat)</item>
+        <item quantity="other">Efter “%1$s” velvære %2$s (%3$d mod %4$d nætter)</item>
+    </plurals>
+    <string name="notes_effect_none">Endnu ingen tydelig forskel</string>
+    <string name="notes_effect_hint">Skriv et par aftener ned, så ser du her, hvad der virker.</string>
+    <string name="goal_title">Søvnmål</string>
+    <string name="goal_value">%1$s pr. nat</string>
+    <string name="goal_hint">Bruges i ugens status og bestemmer din sengetid.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Søvnmål nået: %1$d af %2$d nat</item>
+        <item quantity="other">Søvnmål nået: %1$d af %2$d nætter</item>
+    </plurals>
+    <string name="bedtime_title">Påmindelse om sengetid</string>
+    <string name="bedtime_text">Minder dig om det %1$d min før sengetid: vækketid minus søvnmål.</string>
+    <string name="bedtime_notification">Sengetid kl. %1$s – så når du %2$s søvn før alarmen kl. %3$s.</string>
+    <string name="channel_reminders">Påmindelser</string>
+    <string name="sounds_title">Lyde til at falde i søvn</string>
+    <string name="sound_white">Hvid støj</string>
+    <string name="sound_pink">Lyserød støj</string>
+    <string name="sound_brown">Brun støj</string>
+    <string name="sound_rain">Regn</string>
+    <string name="sound_ocean">Hav</string>
+    <string name="sounds_timer">Timer</string>
+    <string name="sounds_timer_off">Ingen</string>
+    <string name="sounds_play">Afspil</string>
+    <string name="sounds_stop">Stop</string>
+    <string name="sounds_remaining">%1$s tilbage</string>
+    <string name="sounds_hint">Afspilles med medielydstyrken og stopper senest, når dit vækkevindue begynder.</string>
 </resources>

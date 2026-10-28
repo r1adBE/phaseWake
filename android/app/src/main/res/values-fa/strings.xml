@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">ق.ظ.</string>
     <string name="m3c_time_picker_pm">ب.ظ.</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">یادداشت‌های امشب</string>
+    <string name="note_caffeine">قهوه بعدازظهر</string>
+    <string name="note_alcohol">الکل</string>
+    <string name="note_exercise">ورزش</string>
+    <string name="note_stress">استرس</string>
+    <string name="note_late_meal">شام دیر</string>
+    <string name="note_screen">صفحه‌نمایش در تخت</string>
+    <string name="note_nap">چرت روزانه</string>
+    <string name="note_sick">بیمار</string>
+    <string name="notes_custom_add">افزودن یادداشت</string>
+    <string name="notes_custom_title">یادداشت‌های خودت</string>
+    <string name="notes_custom_hint">تا %1$d یادداشت خودت، مثلاً «مدیتیشن».</string>
+    <string name="notes_custom_rename">تغییر نام</string>
+    <string name="notes_custom_delete">حذف %1$s</string>
+    <string name="notes_label">یادداشت‌ها</string>
+    <string name="notes_value">یادداشت‌ها: %1$s</string>
+    <string name="notes_effects_title">چه چیزی روی خوابت اثر دارد</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">بعد از «%1$s» حال %2$s (%3$d در برابر %4$d شب)</item>
+        <item quantity="other">بعد از «%1$s» حال %2$s (%3$d در برابر %4$d شب)</item>
+    </plurals>
+    <string name="notes_effect_none">هنوز تفاوت روشنی نیست</string>
+    <string name="notes_effect_hint">چند شب یادداشت کن، اینجا می‌بینی چه چیزی اثر دارد.</string>
+    <string name="goal_title">هدف خواب</string>
+    <string name="goal_value">%1$s در هر شب</string>
+    <string name="goal_hint">در جمع‌بندی هفته حساب می‌شود و زمان خوابت را تعیین می‌کند.</string>
+    <plurals name="goal_week">
+        <item quantity="one">هدف خواب برآورده شد: %1$d از %2$d شب</item>
+        <item quantity="other">هدف خواب برآورده شد: %1$d از %2$d شب</item>
+    </plurals>
+    <string name="bedtime_title">یادآور زمان خواب</string>
+    <string name="bedtime_text">%1$d دقیقه پیش از زمان خواب یادآوری می‌کند: زمان زنگ منهای هدف خواب.</string>
+    <string name="bedtime_notification">زمان خواب %1$s – این‌طور تا زنگ ساعت %3$s، %2$s می‌خوابی.</string>
+    <string name="channel_reminders">یادآورها</string>
+    <string name="sounds_title">صداهای خواب</string>
+    <string name="sound_white">نویز سفید</string>
+    <string name="sound_pink">نویز صورتی</string>
+    <string name="sound_brown">نویز قهوه‌ای</string>
+    <string name="sound_rain">باران</string>
+    <string name="sound_ocean">دریا</string>
+    <string name="sounds_timer">زمان‌سنج</string>
+    <string name="sounds_timer_off">بدون</string>
+    <string name="sounds_play">پخش</string>
+    <string name="sounds_stop">توقف</string>
+    <string name="sounds_remaining">%1$s مانده</string>
+    <string name="sounds_hint">با صدای رسانه پخش می‌شود و حداکثر با شروع پنجرهٔ بیداری‌ات قطع می‌شود.</string>
 </resources>

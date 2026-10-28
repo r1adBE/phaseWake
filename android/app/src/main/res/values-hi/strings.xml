@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">आज रात के नोट्स</string>
+    <string name="note_caffeine">दोपहर में कॉफ़ी</string>
+    <string name="note_alcohol">शराब</string>
+    <string name="note_exercise">व्यायाम</string>
+    <string name="note_stress">तनाव</string>
+    <string name="note_late_meal">देर से खाना</string>
+    <string name="note_screen">बिस्तर में स्क्रीन</string>
+    <string name="note_nap">दोपहर की झपकी</string>
+    <string name="note_sick">बीमार</string>
+    <string name="notes_custom_add">नोट जोड़ें</string>
+    <string name="notes_custom_title">तुम्हारे अपने नोट्स</string>
+    <string name="notes_custom_hint">अपने %1$d नोट्स तक, जैसे “ध्यान”।</string>
+    <string name="notes_custom_rename">नाम बदलें</string>
+    <string name="notes_custom_delete">%1$s हटाएँ</string>
+    <string name="notes_label">नोट्स</string>
+    <string name="notes_value">नोट्स: %1$s</string>
+    <string name="notes_effects_title">तुम्हारी नींद पर क्या असर डालता है</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">“%1$s” के बाद अनुभव %2$s (%3$d बनाम %4$d रात)</item>
+        <item quantity="other">“%1$s” के बाद अनुभव %2$s (%3$d बनाम %4$d रातें)</item>
+    </plurals>
+    <string name="notes_effect_none">अभी कोई साफ़ अंतर नहीं</string>
+    <string name="notes_effect_hint">कुछ शामें नोट करो, फिर यहाँ दिखेगा कि किसका असर होता है।</string>
+    <string name="goal_title">नींद का लक्ष्य</string>
+    <string name="goal_value">हर रात %1$s</string>
+    <string name="goal_hint">साप्ताहिक हिसाब में गिना जाता है और सोने का समय तय करता है।</string>
+    <plurals name="goal_week">
+        <item quantity="one">नींद का लक्ष्य पूरा: %2$d में से %1$d रात</item>
+        <item quantity="other">नींद का लक्ष्य पूरा: %2$d में से %1$d रातें</item>
+    </plurals>
+    <string name="bedtime_title">सोने का रिमाइंडर</string>
+    <string name="bedtime_text">सोने के समय से %1$d मिनट पहले याद दिलाता है: अलार्म का समय घटा नींद का लक्ष्य।</string>
+    <string name="bedtime_notification">%1$s बजे सो जाओ – ऐसे %3$s बजे के अलार्म तक %2$s की नींद होगी।</string>
+    <string name="channel_reminders">रिमाइंडर</string>
+    <string name="sounds_title">नींद की आवाज़ें</string>
+    <string name="sound_white">सफ़ेद शोर</string>
+    <string name="sound_pink">गुलाबी शोर</string>
+    <string name="sound_brown">भूरा शोर</string>
+    <string name="sound_rain">बारिश</string>
+    <string name="sound_ocean">समुद्र</string>
+    <string name="sounds_timer">टाइमर</string>
+    <string name="sounds_timer_off">कोई नहीं</string>
+    <string name="sounds_play">चलाएँ</string>
+    <string name="sounds_stop">रोकें</string>
+    <string name="sounds_remaining">%1$s बाकी</string>
+    <string name="sounds_hint">मीडिया वॉल्यूम पर चलता है और ज़्यादा से ज़्यादा तब रुक जाता है जब तुम्हारी जागने की विंडो शुरू होती है।</string>
 </resources>

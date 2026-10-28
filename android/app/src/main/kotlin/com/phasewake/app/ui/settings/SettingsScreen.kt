@@ -30,9 +30,28 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.Bedtime
+import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.SleepGoal
+import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.ui.Format
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
+import java.time.Duration
+import kotlin.math.roundToInt
 import com.phasewake.app.ui.theme.ThemeMode
 
-/** Einstellungen: Darstellung, Daten, Über. */
+/** Einstellungen: Darstellung, Schlafziel und Bettzeit-Erinnerung, eigene Notizen, Daten, Über. */
 @Composable
 fun SettingsScreen(
     themeMode: ThemeMode,
@@ -45,6 +64,14 @@ fun SettingsScreen(
     onClearHistory: () -> Unit,
     health: HealthState,
     onConnectHealth: () -> Unit,
+    goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    onGoal: (Int) -> Unit = {},
+    bedtimeReminder: Boolean = false,
+    onBedtimeReminder: (Boolean) -> Unit = {},
+    customNotes: List<CustomNote> = emptyList(),
+    onAddCustomNote: (String) -> Unit = {},
+    onRenameCustomNote: (String, String) -> Unit = { _, _ -> },
+    onDeleteCustomNote: (String) -> Unit = {},
 ) {
     val uri = LocalUriHandler.current
     Column(
@@ -69,6 +96,42 @@ fun SettingsScreen(
                 }
             }
         }
+
+        Group(stringResource(R.string.goal_title)) {
+            val context = LocalContext.current
+            // Beim Ziehen nur anzeigen, gespeichert (und die Erinnerung neu geplant) beim Loslassen.
+            var dragging by remember(goalMinutes) { mutableFloatStateOf(goalMinutes.toFloat()) }
+            Text(
+                stringResource(R.string.goal_value, Format.duration(context, Duration.ofMinutes(dragging.roundToInt().toLong()))),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Slider(
+                value = dragging,
+                onValueChange = { dragging = SleepGoal.clamp(it.roundToInt()).toFloat() },
+                onValueChangeFinished = { onGoal(dragging.roundToInt()) },
+                valueRange = SleepGoal.MIN_MINUTES.toFloat()..SleepGoal.MAX_MINUTES.toFloat(),
+                steps = (SleepGoal.MAX_MINUTES - SleepGoal.MIN_MINUTES) / SleepGoal.STEP_MINUTES - 1,
+            )
+            Text(stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Row(
+                Modifier.fillMaxWidth().toggleable(value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder).padding(top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                    Text(stringResource(R.string.bedtime_title), style = MaterialTheme.typography.titleSmall)
+                    Text(
+                        stringResource(R.string.bedtime_text, Bedtime.LEAD_MINUTES),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                // Die ganze Zeile schaltet; der Schalter zeigt nur den Zustand.
+                Switch(checked = bedtimeReminder, onCheckedChange = null)
+            }
+        }
+
+        CustomNotesGroup(customNotes, onAddCustomNote, onRenameCustomNote, onDeleteCustomNote)
 
         Group(stringResource(R.string.settings_data)) {
             Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
@@ -149,6 +212,64 @@ fun SettingsScreen(
                 modifier = Modifier.padding(top = 12.dp),
             )
         }
+    }
+}
+
+/** Eigene Schlafnotizen: hinzufügen, umbenennen, löschen (höchstens [SleepNotes.MAX_CUSTOM]). */
+@Composable
+private fun CustomNotesGroup(
+    notes: List<CustomNote>,
+    onAdd: (String) -> Unit,
+    onRename: (String, String) -> Unit,
+    onDelete: (String) -> Unit,
+) {
+    // Bearbeitete Notiz: `null` = keine, leere Kennung = neue Notiz.
+    var editing by remember { mutableStateOf<CustomNote?>(null) }
+    Group(stringResource(R.string.notes_custom_title)) {
+        Text(
+            stringResource(R.string.notes_custom_hint, SleepNotes.MAX_CUSTOM),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        notes.forEach { note ->
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(note.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                TextButton(onClick = { editing = note }) { Text(stringResource(R.string.notes_custom_rename)) }
+                IconButton(onClick = { onDelete(note.id) }) {
+                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, note.name))
+                }
+            }
+        }
+        if (notes.size < SleepNotes.MAX_CUSTOM) {
+            TextButton(onClick = { editing = CustomNote("", "") }, contentPadding = PaddingValues(0.dp)) {
+                Text(stringResource(R.string.notes_custom_add))
+            }
+        }
+    }
+    editing?.let { note ->
+        var name by remember(note) { mutableStateOf(note.name) }
+        AlertDialog(
+            onDismissRequest = { editing = null },
+            title = { Text(stringResource(if (note.id.isEmpty()) R.string.notes_custom_add else R.string.notes_custom_rename)) },
+            text = {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it.replace("\n", "").take(SleepNotes.MAX_NAME_LENGTH) },
+                    label = { Text(stringResource(R.string.editor_label)) },
+                    singleLine = true,
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    enabled = SleepNotes.cleanName(name).isNotEmpty(),
+                    onClick = {
+                        if (note.id.isEmpty()) onAdd(name) else onRename(note.id, name)
+                        editing = null
+                    },
+                ) { Text(stringResource(R.string.editor_save)) }
+            },
+            dismissButton = { TextButton(onClick = { editing = null }) { Text(stringResource(R.string.action_cancel)) } },
+        )
     }
 }
 

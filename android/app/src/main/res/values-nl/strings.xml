@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Notities voor vannacht</string>
+    <string name="note_caffeine">Koffie in de middag</string>
+    <string name="note_alcohol">Alcohol</string>
+    <string name="note_exercise">Sport</string>
+    <string name="note_stress">Stress</string>
+    <string name="note_late_meal">Laat gegeten</string>
+    <string name="note_screen">Scherm in bed</string>
+    <string name="note_nap">Middagdutje</string>
+    <string name="note_sick">Ziek</string>
+    <string name="notes_custom_add">Notitie toevoegen</string>
+    <string name="notes_custom_title">Eigen notities</string>
+    <string name="notes_custom_hint">Tot %1$d eigen notities, bijvoorbeeld ‘Meditatie’.</string>
+    <string name="notes_custom_rename">Hernoemen</string>
+    <string name="notes_custom_delete">%1$s verwijderen</string>
+    <string name="notes_label">Notities</string>
+    <string name="notes_value">Notities: %1$s</string>
+    <string name="notes_effects_title">Wat je slaap beïnvloedt</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Na ‘%1$s’ gevoel %2$s (%3$d vs. %4$d nacht)</item>
+        <item quantity="other">Na ‘%1$s’ gevoel %2$s (%3$d vs. %4$d nachten)</item>
+    </plurals>
+    <string name="notes_effect_none">Nog geen duidelijk verschil</string>
+    <string name="notes_effect_hint">Noteer een paar avonden, dan zie je hier wat werkt.</string>
+    <string name="goal_title">Slaapdoel</string>
+    <string name="goal_value">%1$s per nacht</string>
+    <string name="goal_hint">Telt mee in je weekoverzicht en bepaalt je bedtijd.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Slaapdoel gehaald: %1$d van %2$d nacht</item>
+        <item quantity="other">Slaapdoel gehaald: %1$d van %2$d nachten</item>
+    </plurals>
+    <string name="bedtime_title">Bedtijdherinnering</string>
+    <string name="bedtime_text">Herinnert je %1$d min voor bedtijd: wektijd min slaapdoel.</string>
+    <string name="bedtime_notification">Bedtijd om %1$s – zo slaap je %2$s tot je wekker om %3$s.</string>
+    <string name="channel_reminders">Herinneringen</string>
+    <string name="sounds_title">Slaapgeluiden</string>
+    <string name="sound_white">Witte ruis</string>
+    <string name="sound_pink">Roze ruis</string>
+    <string name="sound_brown">Bruine ruis</string>
+    <string name="sound_rain">Regen</string>
+    <string name="sound_ocean">Zee</string>
+    <string name="sounds_timer">Timer</string>
+    <string name="sounds_timer_off">Geen</string>
+    <string name="sounds_play">Afspelen</string>
+    <string name="sounds_stop">Stoppen</string>
+    <string name="sounds_remaining">nog %1$s</string>
+    <string name="sounds_hint">Speelt op mediavolume en stopt uiterlijk wanneer je wekvenster begint.</string>
 </resources>

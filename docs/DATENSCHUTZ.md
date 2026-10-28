@@ -19,6 +19,8 @@ E-Mail: riad.work@outlook.com
 | Bewegung (Beschleunigungssensor) im Weckfenster | leichten Schlaf erkennen | Uhr, Verlauf auch Handy | 90 Nächte |
 | Puls im Weckfenster | leichten Schlaf erkennen | Uhr, Verlauf auch Handy | 90 Nächte |
 | Bewegung nach «Gute Nacht» | Einschlafzeit erkennen | nur Uhr | bis zur nächsten Nacht |
+| Schlafnotizen (z. B. «Kaffee», «Sport», eigene Notizen) und Befinden | Auswertung, was deinen Schlaf beeinflusst | nur Handy | 90 Nächte; «Verlauf löschen» entfernt sie |
+| Schlafziel und Einstellungen der Bettzeit-Erinnerung | Erinnerung, Wochenstand | nur Handy | bis du sie änderst |
 | Schlafphasen aus Health Connect bzw. Apple Health (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern | nur Handy, nur gelesen | werden nicht gespeichert |
 
 Handy und Uhr tauschen Wecker und Nächte direkt über die Verbindung des Betriebssystems aus (Wear OS Data Layer bzw. WatchConnectivity). Phase Wake hat keine Internet-Berechtigung.

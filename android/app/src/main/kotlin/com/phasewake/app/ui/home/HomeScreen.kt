@@ -54,6 +54,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.sounds.SleepSoundService
+import com.phasewake.app.ui.notes.NightNotes
+import com.phasewake.app.ui.notes.TonightNotesCard
+import java.time.LocalDate
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakePlan
@@ -85,6 +91,13 @@ fun HomeScreen(
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
     missHint: MissHint? = null,
+    /** Schlafnotizen je Nachtdatum und die eigenen Notizen. */
+    notes: Map<LocalDate, List<String>> = emptyMap(),
+    customNotes: List<CustomNote> = emptyList(),
+    onToggleNote: (LocalDate, String) -> Unit = { _, _ -> },
+    /** Laufende Einschlafklänge; [onSounds] `null`: kein Einstieg (Bildschirmfotos). */
+    soundPlaying: SleepSoundService.Playing? = null,
+    onSounds: (() -> Unit)? = null,
     /** Uhrzeit-Quelle; Bildschirmfotos setzen eine feste Zeit, damit sie nicht vom Tag abhängen. */
     clock: () -> Instant = Instant::now,
 ) {
@@ -113,8 +126,27 @@ fun HomeScreen(
         if (check != null && plan != null) {
             item(key = "check") { NightCheckCard(check, cardColor(), onFix) }
         }
+        // Am Abend bis zum Weckfenster: Notizen für die kommende Nacht.
+        if (SleepNotes.entryVisible(now, zone, plan?.windowStart)) {
+            val tonight = SleepNotes.nightDate(now, zone)
+            item(key = "notes") {
+                TonightNotesCard(notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) })
+            }
+        }
+        if (onSounds != null) {
+            item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
+        }
         if (lastNight != null) {
-            item(key = "night") { LastNightCard(lastNight, now, missHint, onFeeling = { onFeeling(lastNight, it) }) }
+            val date = SleepNotes.nightDate(lastNight, zone)
+            item(key = "night") {
+                LastNightCard(
+                    lastNight, now, missHint,
+                    onFeeling = { onFeeling(lastNight, it) },
+                    notes = notes[date].orEmpty(),
+                    customNotes = customNotes,
+                    onToggleNote = { onToggleNote(date, it) },
+                )
+            }
         }
         if (alarms.isNotEmpty()) {
             item(key = "header") {
@@ -268,7 +300,15 @@ private fun greeting(now: Instant, zone: ZoneId): Int = when (now.atZone(zone).h
 }
 
 @Composable
-private fun LastNightCard(night: NightRecord, now: Instant, missHint: MissHint?, onFeeling: (Int) -> Unit) {
+private fun LastNightCard(
+    night: NightRecord,
+    now: Instant,
+    missHint: MissHint?,
+    onFeeling: (Int) -> Unit,
+    notes: List<String>,
+    customNotes: List<CustomNote>,
+    onToggleNote: (String) -> Unit,
+) {
     // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
     val morning = Duration.between(night.wokeAt, now) < MORNING
     val askFeeling = morning && night.feeling == null
@@ -329,6 +369,39 @@ private fun LastNightCard(night: NightRecord, now: Instant, missHint: MissHint?,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(top = 6.dp),
+                    )
+                }
+            }
+            // Morgenbericht: Notizen des Abends nachtragen oder ändern.
+            if (morning) NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 6.dp))
+        }
+    }
+}
+
+/** Einstieg zu den Einschlafklängen; läuft ein Klang, mit Restzeit. */
+@Composable
+private fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onClick: () -> Unit) {
+    val context = LocalContext.current
+    Card(
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(containerColor = cardColor()),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+    ) {
+        Row(Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+            Icon(painterResource(R.drawable.ic_sound), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Column(Modifier.weight(1f).padding(start = 14.dp)) {
+                Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleSmall)
+                if (playing != null) {
+                    val name = stringResource(SleepSoundService.soundName(playing.sound))
+                    // Auf 20 s genau (so oft aktualisiert die Startseite); angefangene Minuten zählen voll.
+                    val left = playing.endsAt?.let { end ->
+                        val minutes = (Duration.between(now, end).seconds.coerceAtLeast(0) + 59) / 60
+                        stringResource(R.string.sounds_remaining, Format.duration(context, Duration.ofMinutes(minutes)))
+                    }
+                    Text(
+                        listOfNotNull(name, left).joinToString(" · "),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }

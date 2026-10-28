@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Notizen für heute Nacht</string>
+    <string name="note_caffeine">Kaffee am Nachmittag</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Sport</string>
+    <string name="note_stress">Stress</string>
+    <string name="note_late_meal">spät gegessen</string>
+    <string name="note_screen">Bildschirm im Bett</string>
+    <string name="note_nap">Mittagsschlaf</string>
+    <string name="note_sick">krank</string>
+    <string name="notes_custom_add">Notiz hinzufügen</string>
+    <string name="notes_custom_title">Eigene Notizen</string>
+    <string name="notes_custom_hint">Bis zu %1$d eigene Notizen, z. B. «Meditation».</string>
+    <string name="notes_custom_rename">Umbenennen</string>
+    <string name="notes_custom_delete">%1$s löschen</string>
+    <string name="notes_label">Notizen</string>
+    <string name="notes_value">Notizen: %1$s</string>
+    <string name="notes_effects_title">Was deinen Schlaf beeinflusst</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Nach ‹%1$s› Befinden %2$s (%3$d vs. %4$d Nacht)</item>
+        <item quantity="other">Nach ‹%1$s› Befinden %2$s (%3$d vs. %4$d Nächte)</item>
+    </plurals>
+    <string name="notes_effect_none">Noch kein deutlicher Unterschied</string>
+    <string name="notes_effect_hint">Notiere ein paar Abende, dann siehst du hier, was wirkt.</string>
+    <string name="goal_title">Schlafziel</string>
+    <string name="goal_value">%1$s pro Nacht</string>
+    <string name="goal_hint">Zählt für die Wochenbilanz und bestimmt deine Bettzeit.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Schlafziel erreicht: %1$d von %2$d Nacht</item>
+        <item quantity="other">Schlafziel erreicht: %1$d von %2$d Nächten</item>
+    </plurals>
+    <string name="bedtime_title">Bettzeit-Erinnerung</string>
+    <string name="bedtime_text">Erinnert dich %1$d Min vor der Bettzeit: Weckzeit minus Schlafziel.</string>
+    <string name="bedtime_notification">Bettzeit um %1$s – so schaffst du %2$s bis zum Wecker um %3$s.</string>
+    <string name="channel_reminders">Erinnerungen</string>
+    <string name="sounds_title">Einschlafklänge</string>
+    <string name="sound_white">Weisses Rauschen</string>
+    <string name="sound_pink">Rosa Rauschen</string>
+    <string name="sound_brown">Braunes Rauschen</string>
+    <string name="sound_rain">Regen</string>
+    <string name="sound_ocean">Meer</string>
+    <string name="sounds_timer">Timer</string>
+    <string name="sounds_timer_off">Ohne</string>
+    <string name="sounds_play">Abspielen</string>
+    <string name="sounds_stop">Stopp</string>
+    <string name="sounds_remaining">noch %1$s</string>
+    <string name="sounds_hint">Spielt mit der Medienlautstärke und hört spätestens auf, wenn dein Weckfenster beginnt.</string>
 </resources>

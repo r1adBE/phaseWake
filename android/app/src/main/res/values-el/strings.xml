@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Σημειώσεις για απόψε</string>
+    <string name="note_caffeine">Καφές το απόγευμα</string>
+    <string name="note_alcohol">Αλκοόλ</string>
+    <string name="note_exercise">Άθληση</string>
+    <string name="note_stress">Άγχος</string>
+    <string name="note_late_meal">Αργό φαγητό</string>
+    <string name="note_screen">Οθόνη στο κρεβάτι</string>
+    <string name="note_nap">Μεσημεριανός ύπνος</string>
+    <string name="note_sick">Άρρωστος</string>
+    <string name="notes_custom_add">Προσθήκη σημείωσης</string>
+    <string name="notes_custom_title">Δικές σου σημειώσεις</string>
+    <string name="notes_custom_hint">Έως %1$d δικές σου σημειώσεις, π.χ. «Διαλογισμός».</string>
+    <string name="notes_custom_rename">Μετονομασία</string>
+    <string name="notes_custom_delete">Διαγραφή %1$s</string>
+    <string name="notes_label">Σημειώσεις</string>
+    <string name="notes_value">Σημειώσεις: %1$s</string>
+    <string name="notes_effects_title">Τι επηρεάζει τον ύπνο σου</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Μετά από «%1$s» διάθεση %2$s (%3$d έναντι %4$d νύχτας)</item>
+        <item quantity="other">Μετά από «%1$s» διάθεση %2$s (%3$d έναντι %4$d νυχτών)</item>
+    </plurals>
+    <string name="notes_effect_none">Καμία σαφής διαφορά ακόμη</string>
+    <string name="notes_effect_hint">Σημείωσε μερικά βράδια και εδώ θα δεις τι επιδρά.</string>
+    <string name="goal_title">Στόχος ύπνου</string>
+    <string name="goal_value">%1$s τη νύχτα</string>
+    <string name="goal_hint">Μετράει στον απολογισμό της εβδομάδας και ορίζει την ώρα ύπνου.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Στόχος ύπνου επιτεύχθηκε: %1$d από %2$d νύχτα</item>
+        <item quantity="other">Στόχος ύπνου επιτεύχθηκε: %1$d από %2$d νύχτες</item>
+    </plurals>
+    <string name="bedtime_title">Υπενθύμιση ύπνου</string>
+    <string name="bedtime_text">Σου θυμίζει %1$d λεπτά πριν την ώρα ύπνου: ώρα αφύπνισης μείον στόχος ύπνου.</string>
+    <string name="bedtime_notification">Ύπνος στις %1$s – έτσι κοιμάσαι %2$s ως το ξυπνητήρι στις %3$s.</string>
+    <string name="channel_reminders">Υπενθυμίσεις</string>
+    <string name="sounds_title">Ήχοι για ύπνο</string>
+    <string name="sound_white">Λευκός θόρυβος</string>
+    <string name="sound_pink">Ροζ θόρυβος</string>
+    <string name="sound_brown">Καφέ θόρυβος</string>
+    <string name="sound_rain">Βροχή</string>
+    <string name="sound_ocean">Θάλασσα</string>
+    <string name="sounds_timer">Χρονόμετρο</string>
+    <string name="sounds_timer_off">Χωρίς</string>
+    <string name="sounds_play">Αναπαραγωγή</string>
+    <string name="sounds_stop">Διακοπή</string>
+    <string name="sounds_remaining">απομένουν %1$s</string>
+    <string name="sounds_hint">Παίζει με την ένταση πολυμέσων και σταματά το αργότερο όταν αρχίζει το παράθυρο αφύπνισής σου.</string>
 </resources>

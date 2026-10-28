@@ -65,7 +65,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.phasewake.app.R
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.MissHint
+import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.NoteEffect
+import com.phasewake.app.core.SleepGoal
+import com.phasewake.app.core.SleepSound
+import com.phasewake.app.core.SleepSounds
+import com.phasewake.app.sounds.SleepSoundService
+import com.phasewake.app.ui.sounds.SoundsScreen
 import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WindowAdvice
@@ -107,6 +115,7 @@ private object Routes {
     const val HISTORY = "history"
     const val SETTINGS = "settings"
     const val EDITOR = "editor?id={id}"
+    const val SOUNDS = "sounds"
     fun editor(id: String?) = if (id == null) "editor" else "editor?id=$id"
 }
 
@@ -128,6 +137,13 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
     val nights by app.nights.nights.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.nights.load() }
+    val notes by app.notes.notes.collectAsStateWithLifecycle(initialValue = emptyMap())
+    val customNotes by app.notes.custom.collectAsStateWithLifecycle(initialValue = emptyList())
+    val sleepGoal by app.settings.sleepGoal.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
+    val bedtimeReminder by app.settings.bedtimeReminder.collectAsStateWithLifecycle(initialValue = false)
+    val soundTimer by app.settings.soundTimer.collectAsStateWithLifecycle(initialValue = SleepSounds.DEFAULT_TIMER_MINUTES)
+    val sound by app.settings.sound.collectAsStateWithLifecycle(initialValue = SleepSound.PINK)
+    val soundPlaying by SleepSoundService.playing.collectAsStateWithLifecycle()
 
     var check by remember { mutableStateOf<NightCheckState?>(null) }
     var checkRun by remember { mutableStateOf(0) }
@@ -146,7 +162,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     // Trends: Schlafdauer aus Health Connect (falls verbunden) und Befinden aus dem Verlauf.
     // Bei jedem Öffnen neu lesen (healthCheck zählt beim Fortsetzen hoch): neue Nächte aus Health Connect.
     val sleeps by produceState(emptyList<SleepSummary>(), health, healthCheck) {
-        value = if (health == HealthState.CONNECTED) app.health.recentSleep() else emptyList()
+        // So weit zurück wie der Verlauf: auch für die Wirkung der Notizen (Trends nehmen nur 14 Tage).
+        value = if (health == HealthState.CONNECTED) app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L) else emptyList()
     }
     // Schlafphasen für den ganzen Verlauf in einer Abfrage statt einer je Nacht beim Scrollen.
     val stages by produceState(emptyList<com.phasewake.app.core.StageSpan>(), health, healthCheck, nights?.size) {
@@ -158,6 +175,19 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         }
     }
     val trends = remember(nights, sleeps) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), ZoneId.systemDefault()) }
+    val goalWeek = remember(sleeps, sleepGoal) { SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, ZoneId.systemDefault()), sleepGoal) }
+    val noteEffects = remember(nights, notes, sleeps) {
+        val zone = ZoneId.systemDefault()
+        NoteEffect.compute(nights.orEmpty(), notes, zone, NoteEffect.asleepByNight(sleeps, zone))
+    }
+    // Einschlafklänge: Ende nach dem Timer, spätestens zu Beginn des nächsten Weckfensters.
+    fun startSounds(chosen: SleepSound, timer: Int?) {
+        val now = Instant.now()
+        val endsAt = SleepSounds.stopAt(now, timer, AlarmSchedule.earliestPlan(alarms, now, ZoneId.systemDefault())?.windowStart)
+        if (endsAt != null && !endsAt.isAfter(now)) return
+        SleepSoundService.play(context, chosen, endsAt)
+    }
+
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthCheck++
     }
@@ -203,7 +233,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     Scaffold(
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
-            if (route != Routes.EDITOR) {
+            if (route != Routes.EDITOR && route != Routes.SOUNDS) {
                 val onNight = route == Routes.ALARMS && PhaseWakeTheme.isDark
                 NavigationBar(containerColor = if (onNight) Night.Bottom.copy(alpha = 0.92f) else MaterialTheme.colorScheme.surfaceContainerLow) {
                     tabs.forEach { tab ->
@@ -288,6 +318,11 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onEdit = { nav.navigate(Routes.editor(it)) },
                     onToggle = { alarm, enabled -> app.afterAlarmsChanged { app.alarms.setEnabled(alarm.id, enabled) } },
                     onFeeling = { night, feeling -> app.appScope.launch { app.nights.setFeeling(night.alarmId, night.windowStart, feeling) } },
+                    notes = notes,
+                    customNotes = customNotes,
+                    onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
+                    soundPlaying = soundPlaying,
+                    onSounds = { nav.navigate(Routes.SOUNDS) },
                 )
             }
             composable(Routes.HISTORY) {
@@ -303,6 +338,11 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     trends = trends,
                     healthConnected = health == HealthState.CONNECTED,
                     onConnectHealth = { healthPermission.launch(app.health.permissions) },
+                    goalWeek = goalWeek,
+                    notes = notes,
+                    customNotes = customNotes,
+                    onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
+                    noteEffects = noteEffects,
                 )
             }
             composable(Routes.SETTINGS) {
@@ -317,11 +357,59 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onClearHistory = {
                         app.appScope.launch {
                             app.nights.clear()
+                            app.notes.clearNotes()
                             app.sync.clearHistoryEverywhere()
                         }
                     },
                     health = health,
                     onConnectHealth = { healthPermission.launch(app.health.permissions) },
+                    goalMinutes = sleepGoal,
+                    onGoal = { minutes ->
+                        app.appScope.launch {
+                            app.settings.setSleepGoal(minutes)
+                            app.bedtime.reschedule()
+                        }
+                    },
+                    bedtimeReminder = bedtimeReminder,
+                    onBedtimeReminder = { enabled ->
+                        // Ohne Mitteilungen keine Erinnerung: beim Einschalten einmal fragen.
+                        if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                            context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED
+                        ) {
+                            notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        }
+                        app.appScope.launch {
+                            app.settings.setBedtimeReminder(enabled)
+                            app.bedtime.reschedule()
+                        }
+                    },
+                    customNotes = customNotes,
+                    onAddCustomNote = { name -> app.appScope.launch { app.notes.addCustom(name) } },
+                    onRenameCustomNote = { id, name -> app.appScope.launch { app.notes.renameCustom(id, name) } },
+                    onDeleteCustomNote = { id -> app.appScope.launch { app.notes.deleteCustom(id) } },
+                )
+            }
+            composable(Routes.SOUNDS) {
+                val now = Instant.now()
+                val windowStart = AlarmSchedule.earliestPlan(alarms, now, ZoneId.systemDefault())?.windowStart
+                SoundsScreen(
+                    playing = soundPlaying,
+                    selected = sound,
+                    timer = soundTimer,
+                    canPlay = windowStart == null || windowStart.isAfter(now),
+                    onBack = { nav.popBackStack() },
+                    onSelect = { chosen ->
+                        app.appScope.launch { app.settings.setSound(chosen) }
+                        // Läuft schon ein Klang: gleich wechseln.
+                        if (soundPlaying != null) startSounds(chosen, soundTimer)
+                    },
+                    onTimer = { minutes ->
+                        app.appScope.launch { app.settings.setSoundTimer(minutes) }
+                        // Läuft schon ein Klang: Timer ab jetzt neu.
+                        soundPlaying?.let { startSounds(it.sound, minutes) }
+                    },
+                    onPlay = { startSounds(sound, soundTimer) },
+                    onStop = { SleepSoundService.stop(context) },
                 )
             }
             composable(
@@ -351,7 +439,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         ExportDialog(
             onShare = {
                 askExport = false
-                Export.share(context, nights.orEmpty())
+                Export.share(context, nights.orEmpty(), notes)
             },
             onDismiss = { askExport = false },
         )

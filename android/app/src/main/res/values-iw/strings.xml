@@ -217,4 +217,53 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">הערות ללילה הזה</string>
+    <string name="note_caffeine">קפה אחר הצהריים</string>
+    <string name="note_alcohol">אלכוהול</string>
+    <string name="note_exercise">ספורט</string>
+    <string name="note_stress">לחץ</string>
+    <string name="note_late_meal">אכלתי מאוחר</string>
+    <string name="note_screen">מסך במיטה</string>
+    <string name="note_nap">תנומת צהריים</string>
+    <string name="note_sick">חולה</string>
+    <string name="notes_custom_add">הוספת הערה</string>
+    <string name="notes_custom_title">הערות משלך</string>
+    <string name="notes_custom_hint">עד %1$d הערות משלך, למשל ״מדיטציה״.</string>
+    <string name="notes_custom_rename">שינוי שם</string>
+    <string name="notes_custom_delete">מחיקת %1$s</string>
+    <string name="notes_label">הערות</string>
+    <string name="notes_value">הערות: %1$s</string>
+    <string name="notes_effects_title">מה משפיע על השינה שלך</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">אחרי ״%1$s״ הרגשה %2$s (%3$d לעומת %4$d לילה)</item>
+        <item quantity="two">אחרי ״%1$s״ הרגשה %2$s (%3$d לעומת %4$d לילות)</item>
+        <item quantity="other">אחרי ״%1$s״ הרגשה %2$s (%3$d לעומת %4$d לילות)</item>
+    </plurals>
+    <string name="notes_effect_none">עדיין אין הבדל ברור</string>
+    <string name="notes_effect_hint">רשום כמה ערבים, ותראה כאן מה משפיע.</string>
+    <string name="goal_title">יעד שינה</string>
+    <string name="goal_value">%1$s בלילה</string>
+    <string name="goal_hint">נספר במאזן השבועי וקובע את שעת השינה שלך.</string>
+    <plurals name="goal_week">
+        <item quantity="one">יעד השינה הושג: %1$d מתוך %2$d לילה</item>
+        <item quantity="two">יעד השינה הושג: %1$d מתוך %2$d לילות</item>
+        <item quantity="other">יעד השינה הושג: %1$d מתוך %2$d לילות</item>
+    </plurals>
+    <string name="bedtime_title">תזכורת לשעת שינה</string>
+    <string name="bedtime_text">מזכירה לך %1$d דק׳ לפני שעת השינה: שעת ההשכמה פחות יעד השינה.</string>
+    <string name="bedtime_notification">שעת שינה ב־%1$s – כך תישן %2$s עד השעון המעורר ב־%3$s.</string>
+    <string name="channel_reminders">תזכורות</string>
+    <string name="sounds_title">צלילים להירדמות</string>
+    <string name="sound_white">רעש לבן</string>
+    <string name="sound_pink">רעש ורוד</string>
+    <string name="sound_brown">רעש חום</string>
+    <string name="sound_rain">גשם</string>
+    <string name="sound_ocean">ים</string>
+    <string name="sounds_timer">טיימר</string>
+    <string name="sounds_timer_off">ללא</string>
+    <string name="sounds_play">הפעלה</string>
+    <string name="sounds_stop">עצירה</string>
+    <string name="sounds_remaining">נותרו %1$s</string>
+    <string name="sounds_hint">מתנגן בעוצמת המדיה ונעצר לכל המאוחר כשחלון ההשכמה שלך מתחיל.</string>
 </resources>

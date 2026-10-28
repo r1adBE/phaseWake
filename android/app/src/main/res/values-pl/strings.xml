@@ -222,4 +222,55 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Notatki na dzisiejszą noc</string>
+    <string name="note_caffeine">Kawa po południu</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Sport</string>
+    <string name="note_stress">Stres</string>
+    <string name="note_late_meal">Późny posiłek</string>
+    <string name="note_screen">Ekran w łóżku</string>
+    <string name="note_nap">Drzemka</string>
+    <string name="note_sick">Choroba</string>
+    <string name="notes_custom_add">Dodaj notatkę</string>
+    <string name="notes_custom_title">Własne notatki</string>
+    <string name="notes_custom_hint">Do %1$d własnych notatek, np. „Medytacja”.</string>
+    <string name="notes_custom_rename">Zmień nazwę</string>
+    <string name="notes_custom_delete">Usuń %1$s</string>
+    <string name="notes_label">Notatki</string>
+    <string name="notes_value">Notatki: %1$s</string>
+    <string name="notes_effects_title">Co wpływa na twój sen</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Po „%1$s” samopoczucie %2$s (%3$d vs %4$d noc)</item>
+        <item quantity="few">Po „%1$s” samopoczucie %2$s (%3$d vs %4$d noce)</item>
+        <item quantity="many">Po „%1$s” samopoczucie %2$s (%3$d vs %4$d nocy)</item>
+        <item quantity="other">Po „%1$s” samopoczucie %2$s (%3$d vs %4$d nocy)</item>
+    </plurals>
+    <string name="notes_effect_none">Na razie brak wyraźnej różnicy</string>
+    <string name="notes_effect_hint">Zanotuj kilka wieczorów, a tutaj zobaczysz, co działa.</string>
+    <string name="goal_title">Cel snu</string>
+    <string name="goal_value">%1$s na noc</string>
+    <string name="goal_hint">Liczy się do bilansu tygodnia i wyznacza porę snu.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Cel snu osiągnięty: %1$d z %2$d nocy</item>
+        <item quantity="few">Cel snu osiągnięty: %1$d z %2$d nocy</item>
+        <item quantity="many">Cel snu osiągnięty: %1$d z %2$d nocy</item>
+        <item quantity="other">Cel snu osiągnięty: %1$d z %2$d nocy</item>
+    </plurals>
+    <string name="bedtime_title">Przypomnienie o śnie</string>
+    <string name="bedtime_text">Przypomina %1$d min przed porą snu: godzina budzika minus cel snu.</string>
+    <string name="bedtime_notification">Pora spać o %1$s – wtedy prześpisz %2$s do budzika o %3$s.</string>
+    <string name="channel_reminders">Przypomnienia</string>
+    <string name="sounds_title">Dźwięki do zasypiania</string>
+    <string name="sound_white">Biały szum</string>
+    <string name="sound_pink">Różowy szum</string>
+    <string name="sound_brown">Brązowy szum</string>
+    <string name="sound_rain">Deszcz</string>
+    <string name="sound_ocean">Morze</string>
+    <string name="sounds_timer">Minutnik</string>
+    <string name="sounds_timer_off">Bez</string>
+    <string name="sounds_play">Odtwórz</string>
+    <string name="sounds_stop">Zatrzymaj</string>
+    <string name="sounds_remaining">jeszcze %1$s</string>
+    <string name="sounds_hint">Gra z głośnością multimediów i milknie najpóźniej, gdy zaczyna się twoje okno budzenia.</string>
 </resources>

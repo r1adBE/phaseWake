@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">午前</string>
     <string name="m3c_time_picker_pm">午後</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">今夜のメモ</string>
+    <string name="note_caffeine">午後のコーヒー</string>
+    <string name="note_alcohol">お酒</string>
+    <string name="note_exercise">運動</string>
+    <string name="note_stress">ストレス</string>
+    <string name="note_late_meal">遅い食事</string>
+    <string name="note_screen">ベッドで画面</string>
+    <string name="note_nap">昼寝</string>
+    <string name="note_sick">体調不良</string>
+    <string name="notes_custom_add">メモを追加</string>
+    <string name="notes_custom_title">自分のメモ</string>
+    <string name="notes_custom_hint">自分のメモは %1$d 個まで(例:「瞑想」)。</string>
+    <string name="notes_custom_rename">名前を変更</string>
+    <string name="notes_custom_delete">%1$s を削除</string>
+    <string name="notes_label">メモ</string>
+    <string name="notes_value">メモ:%1$s</string>
+    <string name="notes_effects_title">睡眠に影響していること</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">「%1$s」のあと体調 %2$s(%3$d 日 対 %4$d 日)</item>
+    </plurals>
+    <string name="notes_effect_none">まだはっきりした差はありません</string>
+    <string name="notes_effect_hint">何晩か記録すると、何が効いているかここでわかります。</string>
+    <string name="goal_title">睡眠目標</string>
+    <string name="goal_value">1晩 %1$s</string>
+    <string name="goal_hint">週のまとめに使われ、就寝時刻を決めます。</string>
+    <plurals name="goal_week">
+        <item quantity="other">睡眠目標の達成:%2$d 晩中 %1$d 晩</item>
+    </plurals>
+    <string name="bedtime_title">就寝リマインダー</string>
+    <string name="bedtime_text">就寝時刻の %1$d 分前にお知らせ:起床時刻から睡眠目標を引いた時刻。</string>
+    <string name="bedtime_notification">%1$s に就寝 – %3$s のアラームまで %2$s 眠れます。</string>
+    <string name="channel_reminders">リマインダー</string>
+    <string name="sounds_title">入眠サウンド</string>
+    <string name="sound_white">ホワイトノイズ</string>
+    <string name="sound_pink">ピンクノイズ</string>
+    <string name="sound_brown">ブラウンノイズ</string>
+    <string name="sound_rain">雨</string>
+    <string name="sound_ocean">海</string>
+    <string name="sounds_timer">タイマー</string>
+    <string name="sounds_timer_off">なし</string>
+    <string name="sounds_play">再生</string>
+    <string name="sounds_stop">停止</string>
+    <string name="sounds_remaining">残り %1$s</string>
+    <string name="sounds_hint">メディアの音量で再生し、遅くとも起床ウィンドウが始まると止まります。</string>
 </resources>

@@ -106,6 +106,9 @@ Alles in v1, nichts auf später verschoben:
 - Trends im Verlauf: Ø Schlaf der letzten 7 Tage gegenüber der Vorwoche und Schwankung der Einschlafzeit (aus Health Connect bzw. Apple Health, je mind. 3 bzw. 5 Nächte), Ø Befinden; ohne genug Daten keine Aussage
 - Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone im Nachttisch-Modus (App bleibt nachts offen, Bildschirm schwarz bis zum Licht), weil iOS bei gesperrtem Bildschirm keinen eigenen Vollbildschirm erlaubt
 - anonymer Export des Verlaufs (CSV)
+- Schlafnotizen (28.10.2026): 8 feste und bis zu 5 eigene Notizen pro Abend; im Verlauf «Was deinen Schlaf beeinflusst» (ab je 3 Nächten mit und ohne, Unterschied im Befinden ab 0,5)
+- Schlafziel (Standard 7½ Std.) mit Wochenstand aus Health Connect bzw. Apple Health, Bettzeit-Erinnerung 30 Min vorher (standardmässig aus)
+- Einschlafklänge, in der App erzeugt (weisses, rosa, braunes Rauschen, Regen, Meer), Timer 15/30/60 Min, enden spätestens zum Weckfenster
 - Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit, «Gute Nacht» ab 16 Std. vor der Weckzeit – nur Galaxy Watch; die Smart-Alarm-Sitzung der Apple Watch dauert höchstens 30 Min und kann nicht die ganze Nacht messen
 
 ## Entscheide (28.10.2026)

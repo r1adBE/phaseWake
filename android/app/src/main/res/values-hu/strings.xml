@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Jegyzetek ma éjszakára</string>
+    <string name="note_caffeine">Délutáni kávé</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Sport</string>
+    <string name="note_stress">Stressz</string>
+    <string name="note_late_meal">Késői evés</string>
+    <string name="note_screen">Képernyő az ágyban</string>
+    <string name="note_nap">Délutáni alvás</string>
+    <string name="note_sick">Beteg</string>
+    <string name="notes_custom_add">Jegyzet hozzáadása</string>
+    <string name="notes_custom_title">Saját jegyzetek</string>
+    <string name="notes_custom_hint">Legfeljebb %1$d saját jegyzet, például „Meditáció”.</string>
+    <string name="notes_custom_rename">Átnevezés</string>
+    <string name="notes_custom_delete">%1$s törlése</string>
+    <string name="notes_label">Jegyzetek</string>
+    <string name="notes_value">Jegyzetek: %1$s</string>
+    <string name="notes_effects_title">Mi hat az alvásodra</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">„%1$s” után közérzet %2$s (%3$d vs. %4$d éjszaka)</item>
+        <item quantity="other">„%1$s” után közérzet %2$s (%3$d vs. %4$d éjszaka)</item>
+    </plurals>
+    <string name="notes_effect_none">Még nincs egyértelmű különbség</string>
+    <string name="notes_effect_hint">Jegyezz fel néhány estét, és itt meglátod, mi hat.</string>
+    <string name="goal_title">Alvási cél</string>
+    <string name="goal_value">%1$s éjszakánként</string>
+    <string name="goal_hint">A heti mérlegbe számít, és meghatározza a lefekvés idejét.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Alvási cél teljesítve: %1$d / %2$d éjszaka</item>
+        <item quantity="other">Alvási cél teljesítve: %1$d / %2$d éjszaka</item>
+    </plurals>
+    <string name="bedtime_title">Lefekvési emlékeztető</string>
+    <string name="bedtime_text">%1$d perccel lefekvés előtt emlékeztet: ébresztési idő mínusz alvási cél.</string>
+    <string name="bedtime_notification">Lefekvés: %1$s – így %2$s alvásod lesz az ébresztőig (%3$s).</string>
+    <string name="channel_reminders">Emlékeztetők</string>
+    <string name="sounds_title">Elalvást segítő hangok</string>
+    <string name="sound_white">Fehér zaj</string>
+    <string name="sound_pink">Rózsaszín zaj</string>
+    <string name="sound_brown">Barna zaj</string>
+    <string name="sound_rain">Eső</string>
+    <string name="sound_ocean">Tenger</string>
+    <string name="sounds_timer">Időzítő</string>
+    <string name="sounds_timer_off">Nincs</string>
+    <string name="sounds_play">Lejátszás</string>
+    <string name="sounds_stop">Leállítás</string>
+    <string name="sounds_remaining">még %1$s</string>
+    <string name="sounds_hint">Médiahangerőn szól, és legkésőbb akkor elhallgat, amikor az ébresztési ablakod kezdődik.</string>
 </resources>

@@ -217,4 +217,53 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Notițe pentru noaptea asta</string>
+    <string name="note_caffeine">Cafea după-amiaza</string>
+    <string name="note_alcohol">Alcool</string>
+    <string name="note_exercise">Sport</string>
+    <string name="note_stress">Stres</string>
+    <string name="note_late_meal">Am mâncat târziu</string>
+    <string name="note_screen">Ecran în pat</string>
+    <string name="note_nap">Somn de după-amiază</string>
+    <string name="note_sick">Bolnav</string>
+    <string name="notes_custom_add">Adaugă notiță</string>
+    <string name="notes_custom_title">Notițele tale</string>
+    <string name="notes_custom_hint">Până la %1$d notițe proprii, de exemplu „Meditație”.</string>
+    <string name="notes_custom_rename">Redenumește</string>
+    <string name="notes_custom_delete">Șterge %1$s</string>
+    <string name="notes_label">Notițe</string>
+    <string name="notes_value">Notițe: %1$s</string>
+    <string name="notes_effects_title">Ce îți influențează somnul</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">După „%1$s”, stare %2$s (%3$d vs. %4$d noapte)</item>
+        <item quantity="few">După „%1$s”, stare %2$s (%3$d vs. %4$d nopți)</item>
+        <item quantity="other">După „%1$s”, stare %2$s (%3$d vs. %4$d de nopți)</item>
+    </plurals>
+    <string name="notes_effect_none">Încă nicio diferență clară</string>
+    <string name="notes_effect_hint">Notează câteva seri și aici vei vedea ce are efect.</string>
+    <string name="goal_title">Obiectiv de somn</string>
+    <string name="goal_value">%1$s pe noapte</string>
+    <string name="goal_hint">Contează pentru bilanțul săptămânii și stabilește ora de culcare.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Obiectiv de somn atins: %1$d din %2$d noapte</item>
+        <item quantity="few">Obiectiv de somn atins: %1$d din %2$d nopți</item>
+        <item quantity="other">Obiectiv de somn atins: %1$d din %2$d de nopți</item>
+    </plurals>
+    <string name="bedtime_title">Memento de culcare</string>
+    <string name="bedtime_text">Îți amintește cu %1$d min înainte de ora de culcare: ora alarmei minus obiectivul de somn.</string>
+    <string name="bedtime_notification">La culcare la %1$s – așa dormi %2$s până la alarma de la %3$s.</string>
+    <string name="channel_reminders">Mementouri</string>
+    <string name="sounds_title">Sunete pentru adormit</string>
+    <string name="sound_white">Zgomot alb</string>
+    <string name="sound_pink">Zgomot roz</string>
+    <string name="sound_brown">Zgomot maro</string>
+    <string name="sound_rain">Ploaie</string>
+    <string name="sound_ocean">Mare</string>
+    <string name="sounds_timer">Temporizator</string>
+    <string name="sounds_timer_off">Fără</string>
+    <string name="sounds_play">Redă</string>
+    <string name="sounds_stop">Oprește</string>
+    <string name="sounds_remaining">mai sunt %1$s</string>
+    <string name="sounds_hint">Se aude la volumul media și se oprește cel târziu când începe fereastra ta de trezire.</string>
 </resources>

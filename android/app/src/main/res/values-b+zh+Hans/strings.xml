@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">上午</string>
     <string name="m3c_time_picker_pm">下午</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">今晚的备注</string>
+    <string name="note_caffeine">下午喝咖啡</string>
+    <string name="note_alcohol">饮酒</string>
+    <string name="note_exercise">运动</string>
+    <string name="note_stress">压力</string>
+    <string name="note_late_meal">吃得晚</string>
+    <string name="note_screen">床上看屏幕</string>
+    <string name="note_nap">午睡</string>
+    <string name="note_sick">生病</string>
+    <string name="notes_custom_add">添加备注</string>
+    <string name="notes_custom_title">自定义备注</string>
+    <string name="notes_custom_hint">最多 %1$d 条自定义备注,例如“冥想”。</string>
+    <string name="notes_custom_rename">重命名</string>
+    <string name="notes_custom_delete">删除%1$s</string>
+    <string name="notes_label">备注</string>
+    <string name="notes_value">备注:%1$s</string>
+    <string name="notes_effects_title">影响你睡眠的因素</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">“%1$s”之后感受 %2$s(%3$d 晚 对 %4$d 晚)</item>
+    </plurals>
+    <string name="notes_effect_none">暂时还没有明显差异</string>
+    <string name="notes_effect_hint">记录几个晚上,就能在这里看到什么有影响。</string>
+    <string name="goal_title">睡眠目标</string>
+    <string name="goal_value">每晚 %1$s</string>
+    <string name="goal_hint">计入每周统计,并决定你的就寝时间。</string>
+    <plurals name="goal_week">
+        <item quantity="other">达成睡眠目标:%2$d 晚中 %1$d 晚</item>
+    </plurals>
+    <string name="bedtime_title">就寝提醒</string>
+    <string name="bedtime_text">在就寝时间前 %1$d 分钟提醒你:闹钟时间减去睡眠目标。</string>
+    <string name="bedtime_notification">%1$s 就寝 – 这样到 %3$s 的闹钟前你能睡 %2$s。</string>
+    <string name="channel_reminders">提醒</string>
+    <string name="sounds_title">助眠声音</string>
+    <string name="sound_white">白噪音</string>
+    <string name="sound_pink">粉红噪音</string>
+    <string name="sound_brown">棕色噪音</string>
+    <string name="sound_rain">雨声</string>
+    <string name="sound_ocean">海浪</string>
+    <string name="sounds_timer">定时</string>
+    <string name="sounds_timer_off">不定时</string>
+    <string name="sounds_play">播放</string>
+    <string name="sounds_stop">停止</string>
+    <string name="sounds_remaining">还剩 %1$s</string>
+    <string name="sounds_hint">以媒体音量播放,最迟在你的唤醒时段开始时停止。</string>
 </resources>

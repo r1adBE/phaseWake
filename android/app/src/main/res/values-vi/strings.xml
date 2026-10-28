@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Ghi chú cho đêm nay</string>
+    <string name="note_caffeine">Cà phê buổi chiều</string>
+    <string name="note_alcohol">Rượu bia</string>
+    <string name="note_exercise">Thể thao</string>
+    <string name="note_stress">Căng thẳng</string>
+    <string name="note_late_meal">Ăn muộn</string>
+    <string name="note_screen">Màn hình trên giường</string>
+    <string name="note_nap">Ngủ trưa</string>
+    <string name="note_sick">Bị ốm</string>
+    <string name="notes_custom_add">Thêm ghi chú</string>
+    <string name="notes_custom_title">Ghi chú của bạn</string>
+    <string name="notes_custom_hint">Tối đa %1$d ghi chú của riêng bạn, ví dụ “Thiền”.</string>
+    <string name="notes_custom_rename">Đổi tên</string>
+    <string name="notes_custom_delete">Xóa %1$s</string>
+    <string name="notes_label">Ghi chú</string>
+    <string name="notes_value">Ghi chú: %1$s</string>
+    <string name="notes_effects_title">Điều gì ảnh hưởng đến giấc ngủ của bạn</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">Sau “%1$s” cảm giác %2$s (%3$d so với %4$d đêm)</item>
+    </plurals>
+    <string name="notes_effect_none">Chưa có khác biệt rõ ràng</string>
+    <string name="notes_effect_hint">Ghi lại vài buổi tối, rồi bạn sẽ thấy ở đây điều gì có tác dụng.</string>
+    <string name="goal_title">Mục tiêu ngủ</string>
+    <string name="goal_value">%1$s mỗi đêm</string>
+    <string name="goal_hint">Được tính vào tổng kết tuần và xác định giờ đi ngủ của bạn.</string>
+    <plurals name="goal_week">
+        <item quantity="other">Đạt mục tiêu ngủ: %1$d trên %2$d đêm</item>
+    </plurals>
+    <string name="bedtime_title">Nhắc giờ đi ngủ</string>
+    <string name="bedtime_text">Nhắc bạn %1$d phút trước giờ đi ngủ: giờ báo thức trừ mục tiêu ngủ.</string>
+    <string name="bedtime_notification">Đi ngủ lúc %1$s – như vậy bạn ngủ được %2$s trước báo thức lúc %3$s.</string>
+    <string name="channel_reminders">Lời nhắc</string>
+    <string name="sounds_title">Âm thanh ru ngủ</string>
+    <string name="sound_white">Tiếng ồn trắng</string>
+    <string name="sound_pink">Tiếng ồn hồng</string>
+    <string name="sound_brown">Tiếng ồn nâu</string>
+    <string name="sound_rain">Mưa</string>
+    <string name="sound_ocean">Biển</string>
+    <string name="sounds_timer">Hẹn giờ</string>
+    <string name="sounds_timer_off">Không</string>
+    <string name="sounds_play">Phát</string>
+    <string name="sounds_stop">Dừng</string>
+    <string name="sounds_remaining">còn %1$s</string>
+    <string name="sounds_hint">Phát theo âm lượng phương tiện và dừng muộn nhất khi khung giờ đánh thức của bạn bắt đầu.</string>
 </resources>

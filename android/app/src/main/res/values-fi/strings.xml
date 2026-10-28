@@ -212,4 +212,51 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Muistiinpanot tälle yölle</string>
+    <string name="note_caffeine">Kahvia iltapäivällä</string>
+    <string name="note_alcohol">Alkoholia</string>
+    <string name="note_exercise">Liikuntaa</string>
+    <string name="note_stress">Stressiä</string>
+    <string name="note_late_meal">Söin myöhään</string>
+    <string name="note_screen">Näyttö sängyssä</string>
+    <string name="note_nap">Päiväunet</string>
+    <string name="note_sick">Sairas</string>
+    <string name="notes_custom_add">Lisää muistiinpano</string>
+    <string name="notes_custom_title">Omat muistiinpanot</string>
+    <string name="notes_custom_hint">Enintään %1$d omaa muistiinpanoa, esimerkiksi ”Meditaatio”.</string>
+    <string name="notes_custom_rename">Nimeä uudelleen</string>
+    <string name="notes_custom_delete">Poista %1$s</string>
+    <string name="notes_label">Muistiinpanot</string>
+    <string name="notes_value">Muistiinpanot: %1$s</string>
+    <string name="notes_effects_title">Mikä vaikuttaa uneesi</string>
+    <plurals name="notes_effect_line">
+        <item quantity="one">Kun ”%1$s”, vointi %2$s (%3$d vs. %4$d yö)</item>
+        <item quantity="other">Kun ”%1$s”, vointi %2$s (%3$d vs. %4$d yötä)</item>
+    </plurals>
+    <string name="notes_effect_none">Ei vielä selvää eroa</string>
+    <string name="notes_effect_hint">Merkitse muutama ilta, niin näet täällä, mikä vaikuttaa.</string>
+    <string name="goal_title">Unitavoite</string>
+    <string name="goal_value">%1$s yössä</string>
+    <string name="goal_hint">Käytetään viikon yhteenvedossa ja nukkumaanmenoajassa.</string>
+    <plurals name="goal_week">
+        <item quantity="one">Unitavoite saavutettu: %1$d / %2$d yö</item>
+        <item quantity="other">Unitavoite saavutettu: %1$d / %2$d yötä</item>
+    </plurals>
+    <string name="bedtime_title">Nukkumaanmenomuistutus</string>
+    <string name="bedtime_text">Muistuttaa %1$d min ennen nukkumaanmenoa: herätysaika miinus unitavoite.</string>
+    <string name="bedtime_notification">Nukkumaan klo %1$s – niin ehdit nukkua %2$s ennen herätystä klo %3$s.</string>
+    <string name="channel_reminders">Muistutukset</string>
+    <string name="sounds_title">Nukahtamisäänet</string>
+    <string name="sound_white">Valkoinen kohina</string>
+    <string name="sound_pink">Vaaleanpunainen kohina</string>
+    <string name="sound_brown">Ruskea kohina</string>
+    <string name="sound_rain">Sade</string>
+    <string name="sound_ocean">Meri</string>
+    <string name="sounds_timer">Ajastin</string>
+    <string name="sounds_timer_off">Ei</string>
+    <string name="sounds_play">Toista</string>
+    <string name="sounds_stop">Lopeta</string>
+    <string name="sounds_remaining">%1$s jäljellä</string>
+    <string name="sounds_hint">Soi median äänenvoimakkuudella ja loppuu viimeistään, kun herätysikkunasi alkaa.</string>
 </resources>

@@ -51,7 +51,21 @@ class BackupAlarm(
     /** Bei jedem Aufruf die aktuelle Zeitzone (Reisen): nie beim Erzeugen festhalten. */
     private val zone: ZoneId get() = ZoneId.systemDefault()
 
-    suspend fun reschedule() = mutex.withLock {
+    /**
+     * Plant Zweitwecker und Sonnenaufgang neu, danach die Bettzeit-Erinnerung (hängt an denselben
+     * Ereignissen: Wecker geändert, Neustart, Zeit oder Zeitzone). Ein Fehler dort stört den Zweitwecker nicht.
+     */
+    suspend fun reschedule() {
+        rescheduleBackup()
+        try {
+            context.phoneApp.bedtime.reschedule()
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Bettzeit-Erinnerung nicht planbar", e)
+        }
+    }
+
+    private suspend fun rescheduleBackup() = mutex.withLock {
         rescheduleSunrise()
         // Eine Schlummer-Sicherung ist unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
         SnoozeSafety.restore(context)

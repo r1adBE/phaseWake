@@ -207,4 +207,49 @@
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am">AM</string>
     <string name="m3c_time_picker_pm">PM</string>
+    <!-- Schlafnotizen, Schlafziel, Bettzeit-Erinnerung, Einschlafklänge -->
+    <string name="notes_title">Catatan untuk malam ini</string>
+    <string name="note_caffeine">Kopi di sore hari</string>
+    <string name="note_alcohol">Alkohol</string>
+    <string name="note_exercise">Olahraga</string>
+    <string name="note_stress">Stres</string>
+    <string name="note_late_meal">Makan larut</string>
+    <string name="note_screen">Layar di tempat tidur</string>
+    <string name="note_nap">Tidur siang</string>
+    <string name="note_sick">Sakit</string>
+    <string name="notes_custom_add">Tambah catatan</string>
+    <string name="notes_custom_title">Catatan sendiri</string>
+    <string name="notes_custom_hint">Hingga %1$d catatan sendiri, misalnya “Meditasi”.</string>
+    <string name="notes_custom_rename">Ganti nama</string>
+    <string name="notes_custom_delete">Hapus %1$s</string>
+    <string name="notes_label">Catatan</string>
+    <string name="notes_value">Catatan: %1$s</string>
+    <string name="notes_effects_title">Apa yang memengaruhi tidurmu</string>
+    <plurals name="notes_effect_line">
+        <item quantity="other">Setelah “%1$s” perasaan %2$s (%3$d vs. %4$d malam)</item>
+    </plurals>
+    <string name="notes_effect_none">Belum ada perbedaan yang jelas</string>
+    <string name="notes_effect_hint">Catat beberapa malam, lalu di sini kamu akan melihat apa yang berpengaruh.</string>
+    <string name="goal_title">Target tidur</string>
+    <string name="goal_value">%1$s per malam</string>
+    <string name="goal_hint">Dihitung dalam ringkasan mingguan dan menentukan waktu tidurmu.</string>
+    <plurals name="goal_week">
+        <item quantity="other">Target tidur tercapai: %1$d dari %2$d malam</item>
+    </plurals>
+    <string name="bedtime_title">Pengingat waktu tidur</string>
+    <string name="bedtime_text">Mengingatkanmu %1$d mnt sebelum waktu tidur: jam alarm dikurangi target tidur.</string>
+    <string name="bedtime_notification">Tidur pukul %1$s – dengan begitu kamu tidur %2$s sampai alarm pukul %3$s.</string>
+    <string name="channel_reminders">Pengingat</string>
+    <string name="sounds_title">Suara pengantar tidur</string>
+    <string name="sound_white">Derau putih</string>
+    <string name="sound_pink">Derau merah muda</string>
+    <string name="sound_brown">Derau cokelat</string>
+    <string name="sound_rain">Hujan</string>
+    <string name="sound_ocean">Laut</string>
+    <string name="sounds_timer">Timer</string>
+    <string name="sounds_timer_off">Tanpa</string>
+    <string name="sounds_play">Putar</string>
+    <string name="sounds_stop">Hentikan</string>
+    <string name="sounds_remaining">sisa %1$s</string>
+    <string name="sounds_hint">Diputar dengan volume media dan berhenti paling lambat saat jendela bangunmu dimulai.</string>
 </resources>

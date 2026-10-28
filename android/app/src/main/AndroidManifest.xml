@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+    <!-- Einschlafklänge: Wiedergabe als Vordergrund-Dienst (Medien-Kanal). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <!-- Wecker-App: exakte Alarme ohne Rückfrage (ab Android 13), davor über SCHEDULE_EXACT_ALARM. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
@@ -80,6 +82,11 @@
             android:foregroundServiceType="systemExempted" />
 
         <service
+            android:name=".sounds.SleepSoundService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <service
             android:name=".sync.PhoneListenerService"
             android:exported="true">
             <intent-filter>
@@ -96,6 +103,11 @@
         <receiver
             android:name=".ring.BackupAlarm$Receiver"
             android:directBootAware="true"
+            android:exported="false" />
+
+        <!-- Bettzeit-Erinnerung (eigener, ungenauer Alarm): nicht von aussen auslösbar. -->
+        <receiver
+            android:name=".reminder.BedtimeReminder$Receiver"
             android:exported="false" />
 
         <receiver

@@ -84,6 +84,8 @@ class PhoneRingService : Service() {
      */
     private fun start(alarmId: String?, fromWatch: Boolean, target: Long?, watchSnoozesLeft: Int?, snoozesDone: Int) {
         phoneApp.backup.cancelSnooze()
+        // Einschlafklänge überdecken nie das Wecken (enden sonst schon zu Beginn des Weckfensters).
+        com.phasewake.app.sounds.SleepSoundService.stop(this)
         ServiceCompat.startForeground(
             this, RingNotifications.ID_RING, RingNotifications.ringing(this),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
