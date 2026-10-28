@@ -1,6 +1,7 @@
 import Observation
 import PhaseWakeCore
 import SwiftUI
+import WidgetKit
 
 /// Zustand der Uhr-App: Wecker, nächster Plan, Verlauf.
 @MainActor
@@ -8,7 +9,7 @@ import SwiftUI
 final class WatchModel {
     static let shared = WatchModel()
 
-    let storage = PhaseWakeStorage()
+    let storage = PhaseWakeStorage.watchShared
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
 
@@ -43,5 +44,7 @@ final class WatchModel {
     func reschedule() {
         refresh()
         SmartAlarm.shared.schedule(plan)
+        // Komplikation auf dem Zifferblatt sofort aktualisieren.
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

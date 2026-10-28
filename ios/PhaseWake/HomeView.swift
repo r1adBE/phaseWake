@@ -196,7 +196,7 @@ private struct LastNightCard: View {
             Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if let hint {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(L("hint_title", MissHint.nights)).font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                    Text(LP("hint_title", MissHint.nights, MissHint.nights)).font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                     Text(L(hint == .gaps ? "hint_gaps" : hint == .heartMissing ? "hint_heart" : "hint_calm"))
                         .font(Fonts.manrope(12, relativeTo: .caption))
                 }

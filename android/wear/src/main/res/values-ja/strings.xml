@@ -13,7 +13,9 @@
     <string name="ring_reason_awake">すでに起きていました</string>
     <string name="ring_reason_deadline">目標時刻になりました</string>
     <string name="ring_hold_to_stop">長押しで停止</string>
-    <string name="ring_snooze">%1$d分 · 残り%2$d回</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d分 · 残り%2$d回</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$sまでスヌーズ</string>
 
     <string name="home_no_alarm">アラーム未設定</string>

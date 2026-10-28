@@ -5,7 +5,10 @@
     <string name="ring_greeting">Günaydın</string>
     <string name="ring_notification_text">Phase Wake alarmın çalıyor</string>
     <string name="ring_stop">Durdur</string>
-    <string name="ring_snooze">Ertele %1$d dk · kalan: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Ertele %1$d dk · kalan: %2$d</item>
+        <item quantity="other">Ertele %1$d dk · kalan: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">%1$d dk ertelendi</string>
 
     <string name="nav_alarms">Alarmlar</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Sil</string>
     <string name="action_cancel">İptal</string>
     <string name="editor_advice_title">İpucu: daha geniş bir aralık</string>
-    <string name="editor_advice_text">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
+        <item quantity="other">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d dk kullan</string>
     <string name="channel_sunrise">Gün doğumu</string>
     <string name="channel_sunrise_description">Sen uyanmadan önce ekranı gün doğumu gibi aydınlatır.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Ekran soluk bir turuncu parıltıyla başlar ve tam parlaklıkta parlak, sıcak bir ışığa dönüşür. Telefonu ekranı yukarı bakacak şekilde bırak.</string>
     <string name="sunrise_ring">Uyanırken</string>
     <string name="sunrise_window">Aralıktan</string>
-    <string name="editor_sunrise_ring_hint">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</item>
+        <item quantity="other">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Aralıkla birlikte başlar ve hedef saatte tam parlaklığa ulaşır.</string>
     <string name="check_ready">Bu gece hazır</string>
     <string name="check_ready_text">Saat bağlı, alarmlara izin verildi. Ayrıntılar için dokun.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Uyku süresi ve düzeni Health Connect’ten gelir.</string>
     <string name="settings_support">Phase Wake’i destekle</string>
     <string name="settings_support_text">Phase Wake ücretsiz, açık kaynaklı ve reklamsız. Beğendiysen geliştirilmesini destekleyebilirsin.</string>
-    <string name="hint_title">%1$d gece hafif uyku yok</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d gece hafif uyku yok</item>
+        <item quantity="other">%1$d gece hafif uyku yok</item>
+    </plurals>
     <string name="hint_gaps">Ölçümde boşluklar vardı. Saat geceleri şarjda mıydı yoksa çıkarılmış mıydı?</string>
     <string name="hint_heart">Nabız verisi eksikti. Saati geceleri biraz daha sıkı tak.</string>
     <string name="hint_calm">Ölçüm eksiksizdi – sadece sakin uyudun. Bu durumda Phase Wake seni hedef saatte güvenilir şekilde uyandırır.</string>
+    <string name="check_dnd_blocked">Rahatsız Etme alarmları engelliyor</string>
+    <string name="check_dnd_unknown">Rahatsız Etme açık</string>
+    <string name="check_dnd_unknown_problem">Android, alarmların çalıp çalmayacağını uygulamalara bildirmez. Rahatsız Etme\'de alarmlara izin verildiğini kontrol et.</string>
+    <string name="check_watch_setup">Saatte Phase Wake</string>
+    <string name="check_watch_setup_problem">Saatte Phase Wake’i bir kez aç; sensörlere ve bildirimlere izin ver.</string>
+    <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
+    <string name="settings_privacy">Gizlilik politikası</string>
 </resources>

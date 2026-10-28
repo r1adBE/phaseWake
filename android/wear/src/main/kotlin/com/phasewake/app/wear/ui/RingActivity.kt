@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.StrokeCap
@@ -165,7 +166,7 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit) {
         Button(
             onClick = onSnooze,
             colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon),
-            label = { Text(stringResource(R.string.ring_snooze, Snooze.MINUTES, ui.snoozesLeft)) },
+            label = { Text(LocalContext.current.resources.getQuantityString(R.plurals.ring_snooze, ui.snoozesLeft, Snooze.MINUTES, ui.snoozesLeft)) },
         )
     }
 }

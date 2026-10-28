@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">일출 알람 없음</string>
     <string name="editor_sunrise_ios_hint">iPhone은 Phase Wake가 열려 있는 동안에만 빛을 보여줄 수 있어요 – 자기 전에 탁상 모드를 시작하세요.</string>
     <string name="trends_health_hint_apple">수면 시간과 규칙성은 Apple Health에서 가져와요.</string>
+    <string name="watch_not_armed">잠들기 전에 Phase Wake를 열어 주세요. 그래야 워치가 알람을 활성화할 수 있어요.</string>
+    <string name="check_watch_arm">워치에서 알람 활성화됨</string>
+    <string name="check_watch_arm_problem">잠들기 전에 Apple Watch에서 Phase Wake를 열어 주세요. watchOS는 앱이 열려 있는 동안에만 알람을 활성화해요.</string>
 </resources>

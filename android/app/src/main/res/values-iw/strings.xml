@@ -5,7 +5,11 @@
     <string name="ring_greeting">בוקר טוב</string>
     <string name="ring_notification_text">המעורר של Phase Wake מצלצל</string>
     <string name="ring_stop">עצירה</string>
-    <string name="ring_snooze">נודניק %1$d דק׳ · נותרו: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">נודניק %1$d דק׳ · נותר: %2$d</item>
+        <item quantity="two">נודניק %1$d דק׳ · נותרו: %2$d</item>
+        <item quantity="other">נודניק %1$d דק׳ · נותרו: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">נודניק ל-%1$d דק׳</string>
 
     <string name="nav_alarms">מעוררים</string>
@@ -113,7 +117,11 @@
     <string name="settings_clear_history_confirm">מחיקה</string>
     <string name="action_cancel">ביטול</string>
     <string name="editor_advice_title">טיפ: חלון גדול יותר</string>
-    <string name="editor_advice_text">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">ב-%1$d מתוך הלילה האחרון (%2$d) לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+        <item quantity="two">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+        <item quantity="other">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+    </plurals>
     <string name="editor_advice_apply">שימוש ב-%1$d דק׳</string>
     <string name="channel_sunrise">זריחה</string>
     <string name="channel_sunrise_description">מאיר את המסך כמו זריחה לפני שתתעוררו.</string>
@@ -124,7 +132,11 @@
     <string name="editor_sunrise_hint">המסך מתחיל בזוהר כתום חלש והופך לאור חם ובהיר בבהירות מלאה. הניחו את הטלפון כשהמסך כלפי מעלה.</string>
     <string name="sunrise_ring">בהשכמה</string>
     <string name="sunrise_window">מהחלון</string>
-    <string name="editor_sunrise_ring_hint">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקה.</item>
+        <item quantity="two">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</item>
+        <item quantity="other">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">מתחיל עם החלון ובהיר לגמרי בזמן היעד.</string>
     <string name="check_ready">מוכנים ללילה</string>
     <string name="check_ready_text">השעון מחובר, ההתראות מאושרות. הקישו לפרטים.</string>
@@ -166,8 +178,19 @@
     <string name="trends_health_hint">משך השינה והסדירות שלה מגיעים מ-Health Connect.</string>
     <string name="settings_support">תמכו ב-Phase Wake</string>
     <string name="settings_support_text">Phase Wake חינמית, בקוד פתוח וללא פרסומות. אם היא מוצאת חן בעיניכם, אפשר לתמוך בפיתוח שלה.</string>
-    <string name="hint_title">%1$d לילות בלי שינה קלה</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d לילה בלי שינה קלה</item>
+        <item quantity="two">%1$d לילות בלי שינה קלה</item>
+        <item quantity="other">%1$d לילות בלי שינה קלה</item>
+    </plurals>
     <string name="hint_gaps">במדידה היו חוסרים. השעון היה בטעינה או לא על היד בלילה?</string>
     <string name="hint_heart">הדופק לא נמדד. מומלץ לענוד את השעון קצת יותר הדוק בלילה.</string>
     <string name="hint_calm">המדידה הייתה מלאה – פשוט הייתה שינה רגועה. במקרה כזה Phase Wake מעירה בצורה אמינה בשעת היעד.</string>
+    <string name="check_dnd_blocked">״נא לא להפריע״ חוסם שעונים מעוררים</string>
+    <string name="check_dnd_unknown">״נא לא להפריע״ פעיל</string>
+    <string name="check_dnd_unknown_problem">Android לא מדווח לאפליקציות אם שעונים מעוררים עוברים. ודאו ששעונים מעוררים מותרים ב״נא לא להפריע״.</string>
+    <string name="check_watch_setup">Phase Wake בשעון</string>
+    <string name="check_watch_setup_problem">פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים והתראות.</string>
+    <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
+    <string name="settings_privacy">מדיניות פרטיות</string>
 </resources>

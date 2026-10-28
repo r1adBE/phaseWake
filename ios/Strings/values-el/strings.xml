@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Κανένα ξυπνητήρι με ανατολή</string>
     <string name="editor_sunrise_ios_hint">Το iPhone σου μπορεί να δείξει το φως μόνο όσο το Phase Wake είναι ανοιχτό – ξεκίνα τη λειτουργία κομοδίνου πριν κοιμηθείς.</string>
     <string name="trends_health_hint_apple">Η διάρκεια και η κανονικότητα του ύπνου προέρχονται από το Apple Health.</string>
+    <string name="watch_not_armed">Άνοιξε το Phase Wake πριν κοιμηθείς, ώστε το ρολόι σου να ενεργοποιήσει το ξυπνητήρι.</string>
+    <string name="check_watch_arm">Το ξυπνητήρι ενεργοποιήθηκε στο ρολόι</string>
+    <string name="check_watch_arm_problem">Άνοιξε το Phase Wake στο Apple Watch σου πριν κοιμηθείς. Το watchOS ενεργοποιεί το ξυπνητήρι μόνο όσο η εφαρμογή είναι ανοιχτή.</string>
 </resources>

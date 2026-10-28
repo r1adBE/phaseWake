@@ -13,7 +13,9 @@
     <string name="ring_reason_awake">Bạn đã thức sẵn</string>
     <string name="ring_reason_deadline">Đã đến giờ mục tiêu</string>
     <string name="ring_hold_to_stop">Giữ để dừng</string>
-    <string name="ring_snooze">%1$d phút · còn %2$d lần</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d phút · còn %2$d lần</item>
+    </plurals>
     <string name="ring_snoozed_until">Báo lại lúc %1$s</string>
 
     <string name="home_no_alarm">Chưa đặt báo thức</string>

@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Tidak ada alarm dengan matahari terbit</string>
     <string name="editor_sunrise_ios_hint">iPhone-mu hanya bisa menampilkan cahaya selama Phase Wake terbuka – mulai mode samping tempat tidur sebelum tidur.</string>
     <string name="trends_health_hint_apple">Durasi dan keteraturan tidur berasal dari Apple Health.</string>
+    <string name="watch_not_armed">Buka Phase Wake sebelum tidur agar jam tanganmu bisa mengaktifkan alarm.</string>
+    <string name="check_watch_arm">Alarm aktif di jam tangan</string>
+    <string name="check_watch_arm_problem">Buka Phase Wake di Apple Watch-mu sebelum tidur. watchOS hanya mengaktifkan alarm selama aplikasi terbuka.</string>
 </resources>

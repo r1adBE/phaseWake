@@ -5,7 +5,9 @@
     <string name="ring_greeting">早安</string>
     <string name="ring_notification_text">你的 Phase Wake 鬧鐘正在響</string>
     <string name="ring_stop">停止</string>
-    <string name="ring_snooze">貪睡 %1$d 分鐘 · 剩 %2$d 次</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">貪睡 %1$d 分鐘 · 剩 %2$d 次</item>
+    </plurals>
     <string name="ring_snoozed">貪睡 %1$d 分鐘</string>
 
     <string name="nav_alarms">鬧鐘</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">刪除</string>
     <string name="action_cancel">取消</string>
     <string name="editor_advice_title">提示：使用更大的視窗</string>
-    <string name="editor_advice_text">在最近 %2$d 個夜晚中，有 %1$d 個夜晚視窗內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">在最近 %2$d 個夜晚中，有 %1$d 個夜晚視窗內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</item>
+    </plurals>
     <string name="editor_advice_apply">使用 %1$d 分鐘</string>
     <string name="channel_sunrise">日出</string>
     <string name="channel_sunrise_description">在你醒來前，讓螢幕像日出一樣亮起。</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">螢幕先泛起微弱的橙色光，再逐漸變為全亮度的明亮暖光。請將手機螢幕朝上放置。</string>
     <string name="sunrise_ring">喚醒時</string>
     <string name="sunrise_window">從時間範圍起</string>
-    <string name="editor_sunrise_ring_hint">在叫醒你時開始，%1$d 分鐘後達到最亮。</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">在叫醒你時開始，%1$d 分鐘後達到最亮。</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">隨時間範圍開始，到目標時間達到最亮。</string>
     <string name="check_ready">今晚已就緒</string>
     <string name="check_ready_text">手錶已連線，鬧鐘已允許。點一下查看詳情。</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">睡眠時間長度和規律性來自 Health Connect。</string>
     <string name="settings_support">支持 Phase Wake</string>
     <string name="settings_support_text">Phase Wake 免費、開源且沒有廣告。如果你喜歡它，可以支持它的開發。</string>
-    <string name="hint_title">連續 %1$d 晚沒有淺眠</string>
+    <plurals name="hint_title">
+        <item quantity="other">連續 %1$d 晚沒有淺眠</item>
+    </plurals>
     <string name="hint_gaps">測量有中斷。夜裡手錶是在充電還是沒有配戴？</string>
     <string name="hint_heart">缺少心率資料。夜裡把手錶戴緊一點。</string>
     <string name="hint_calm">測量是完整的——你只是睡得很安穩。這時 Phase Wake 會在目標時間可靠地叫醒你。</string>
+    <string name="check_dnd_blocked">勿擾模式會封鎖鬧鐘</string>
+    <string name="check_dnd_unknown">勿擾模式已開啟</string>
+    <string name="check_dnd_unknown_problem">Android 不會告訴 App 鬧鐘能否響起。請檢查勿擾模式下是否允許鬧鐘。</string>
+    <string name="check_watch_setup">手錶上的 Phase Wake</string>
+    <string name="check_watch_setup_problem">請在手錶上開啟一次 Phase Wake，並允許使用感測器和通知。</string>
+    <string name="ring_hold_to_stop">長按停止</string>
+    <string name="settings_privacy">隱私權政策</string>
 </resources>

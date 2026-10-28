@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Ingen alarm med soloppgang</string>
     <string name="editor_sunrise_ios_hint">iPhone kan bare vise lyset mens Phase Wake er åpen – start nattbordmodus før du legger deg.</string>
     <string name="trends_health_hint_apple">Søvnlengde og regelmessighet hentes fra Apple Health.</string>
+    <string name="watch_not_armed">Åpne Phase Wake før du legger deg, så klokken kan aktivere alarmen.</string>
+    <string name="check_watch_arm">Alarmen er aktivert på klokken</string>
+    <string name="check_watch_arm_problem">Åpne Phase Wake på Apple Watch før du legger deg. watchOS aktiverer bare alarmen mens appen er åpen.</string>
 </resources>

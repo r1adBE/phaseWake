@@ -5,7 +5,9 @@
     <string name="ring_greeting">Chào buổi sáng</string>
     <string name="ring_notification_text">Báo thức Phase Wake đang đổ chuông</string>
     <string name="ring_stop">Dừng</string>
-    <string name="ring_snooze">Báo lại %1$d phút · còn %2$d lần</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">Báo lại %1$d phút · còn %2$d lần</item>
+    </plurals>
     <string name="ring_snoozed">Báo lại sau %1$d phút</string>
 
     <string name="nav_alarms">Báo thức</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">Xóa</string>
     <string name="action_cancel">Hủy</string>
     <string name="editor_advice_title">Mẹo: khung giờ rộng hơn</string>
-    <string name="editor_advice_text">Trong %1$d trong %2$d đêm gần nhất, khung giờ không có giấc ngủ nhẹ. Với %3$d phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">Trong %1$d trong %2$d đêm gần nhất, khung giờ không có giấc ngủ nhẹ. Với %3$d phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn.</item>
+    </plurals>
     <string name="editor_advice_apply">Dùng %1$d phút</string>
     <string name="channel_sunrise">Bình minh</string>
     <string name="channel_sunrise_description">Làm sáng màn hình như bình minh trước khi bạn thức dậy.</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">Màn hình bắt đầu bằng ánh cam mờ rồi chuyển thành ánh sáng ấm, rực rỡ ở độ sáng tối đa. Hãy đặt điện thoại ngửa màn hình lên trên.</string>
     <string name="sunrise_ring">Khi đánh thức</string>
     <string name="sunrise_window">Từ đầu khoảng</string>
-    <string name="editor_sunrise_ring_hint">Bắt đầu khi bạn được đánh thức và sáng hoàn toàn sau %1$d phút.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">Bắt đầu khi bạn được đánh thức và sáng hoàn toàn sau %1$d phút.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Bắt đầu cùng khoảng thời gian và sáng hoàn toàn vào giờ mục tiêu.</string>
     <string name="check_ready">Sẵn sàng cho đêm nay</string>
     <string name="check_ready_text">Đã kết nối đồng hồ, đã cho phép báo thức. Chạm để xem chi tiết.</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">Thời lượng và độ đều đặn của giấc ngủ lấy từ Health Connect.</string>
     <string name="settings_support">Ủng hộ Phase Wake</string>
     <string name="settings_support_text">Phase Wake miễn phí, mã nguồn mở và không có quảng cáo. Nếu thích, bạn có thể ủng hộ quá trình phát triển.</string>
-    <string name="hint_title">%1$d đêm không có giấc ngủ nông</string>
+    <plurals name="hint_title">
+        <item quantity="other">%1$d đêm không có giấc ngủ nông</item>
+    </plurals>
     <string name="hint_gaps">Phép đo bị gián đoạn. Đồng hồ có đang sạc hoặc được tháo ra ban đêm không?</string>
     <string name="hint_heart">Thiếu dữ liệu nhịp tim. Hãy đeo đồng hồ chặt hơn một chút vào ban đêm.</string>
     <string name="hint_calm">Phép đo đầy đủ – bạn chỉ đơn giản là ngủ yên. Khi đó Phase Wake vẫn đánh thức bạn đúng lúc vào giờ mục tiêu.</string>
+    <string name="check_dnd_blocked">Chế độ Không làm phiền đang chặn báo thức</string>
+    <string name="check_dnd_unknown">Chế độ Không làm phiền đang bật</string>
+    <string name="check_dnd_unknown_problem">Android không cho ứng dụng biết báo thức có được phép kêu hay không. Hãy kiểm tra xem báo thức đã được cho phép trong chế độ Không làm phiền chưa.</string>
+    <string name="check_watch_setup">Phase Wake trên đồng hồ</string>
+    <string name="check_watch_setup_problem">Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến cùng thông báo.</string>
+    <string name="ring_hold_to_stop">Giữ để dừng</string>
+    <string name="settings_privacy">Chính sách quyền riêng tư</string>
 </resources>

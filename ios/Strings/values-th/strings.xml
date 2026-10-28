@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">ไม่มีการปลุกพร้อมแสงอาทิตย์ขึ้น</string>
     <string name="editor_sunrise_ios_hint">iPhone แสดงแสงได้ก็ต่อเมื่อเปิด Phase Wake อยู่ – เริ่มโหมดข้างเตียงก่อนเข้านอน</string>
     <string name="trends_health_hint_apple">ระยะเวลาและความสม่ำเสมอของการนอนมาจาก Apple Health</string>
+    <string name="watch_not_armed">เปิด Phase Wake ก่อนเข้านอน เพื่อให้นาฬิกาเปิดใช้งานนาฬิกาปลุกได้</string>
+    <string name="check_watch_arm">เปิดใช้งานนาฬิกาปลุกบนนาฬิกาแล้ว</string>
+    <string name="check_watch_arm_problem">เปิด Phase Wake บน Apple Watch ก่อนเข้านอน watchOS จะเปิดใช้งานนาฬิกาปลุกเฉพาะตอนที่แอปเปิดอยู่</string>
 </resources>

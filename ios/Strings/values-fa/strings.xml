@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">بدون زنگ با طلوع</string>
     <string name="editor_sunrise_ios_hint">iPhone فقط تا وقتی Phase Wake باز است می‌تواند نور را نشان بدهد – پیش از خواب حالت پاتختی را شروع کن.</string>
     <string name="trends_health_hint_apple">مدت و نظم خواب از Apple Health می‌آید.</string>
+    <string name="watch_not_armed">پیش از خواب Phase Wake را باز کن تا ساعتت بتواند زنگ را فعال کند.</string>
+    <string name="check_watch_arm">زنگ روی ساعت فعال است</string>
+    <string name="check_watch_arm_problem">پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند.</string>
 </resources>

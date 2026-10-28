@@ -13,7 +13,9 @@
     <string name="ring_reason_awake">คุณตื่นอยู่แล้ว</string>
     <string name="ring_reason_deadline">ถึงเวลาเป้าหมายแล้ว</string>
     <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
-    <string name="ring_snooze">%1$d นาที · เหลือ %2$d ครั้ง</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d นาที · เหลือ %2$d ครั้ง</item>
+    </plurals>
     <string name="ring_snoozed_until">ปลุกซ้ำเวลา %1$s</string>
 
     <string name="home_no_alarm">ยังไม่ได้ตั้งปลุก</string>

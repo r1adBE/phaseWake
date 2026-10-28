@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Nessuna sveglia con alba</string>
     <string name="editor_sunrise_ios_hint">Il tuo iPhone può mostrare la luce solo finché Phase Wake è aperta – avvia la modalità comodino prima di dormire.</string>
     <string name="trends_health_hint_apple">Durata e regolarità del sonno provengono da Apple Health.</string>
+    <string name="watch_not_armed">Apri Phase Wake prima di dormire, così il tuo orologio può attivare la sveglia.</string>
+    <string name="check_watch_arm">Sveglia attivata sull’orologio</string>
+    <string name="check_watch_arm_problem">Apri Phase Wake sul tuo Apple Watch prima di dormire. watchOS attiva la sveglia solo finché l’app è aperta.</string>
 </resources>

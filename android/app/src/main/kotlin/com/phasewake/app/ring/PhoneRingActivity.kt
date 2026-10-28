@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -94,12 +95,18 @@ class PhoneRingActivity : ComponentActivity() {
 private val Night = NightColors.Bottom
 
 @Composable
-internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
-    var now by remember { mutableStateOf(Instant.now()) }
+internal fun RingScreen(
+    state: PhoneRingService.State,
+    onStop: () -> Unit,
+    onSnooze: () -> Unit,
+    light: Float? = null,
+    clock: () -> Instant = Instant::now,
+) {
+    var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
         while (true) {
             delay(1_000)
-            now = Instant.now()
+            now = clock()
         }
     }
     // Mit Sonnenaufgang: Licht statt Nachthimmel, Farben passen sich der Helligkeit an.
@@ -132,7 +139,7 @@ internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSno
                 if (state.snoozesLeft > 0) {
                     Spacer(Modifier.height(12.dp))
                     OutlinedButton(onClick = onSnooze, border = BorderStroke(1.dp, content.copy(alpha = 0.5f)), modifier = Modifier.fillMaxWidth().height(56.dp)) {
-                        Text(stringResource(R.string.ring_snooze, Snooze.MINUTES, state.snoozesLeft), color = content)
+                        Text(LocalContext.current.resources.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft), color = content)
                     }
                 }
             }

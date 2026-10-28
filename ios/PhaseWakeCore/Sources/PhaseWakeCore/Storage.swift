@@ -21,6 +21,12 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     private static let updatedKey = "alarmsUpdatedAt"
     private static let separator = "\n%%\n"
 
+    /// App-Gruppe der Uhr-App und ihrer Komplikation.
+    public static let watchGroup = "group.com.phasewake.app"
+
+    /// Speicher der Uhr: Wecker in der App-Gruppe, damit die Komplikation sie lesen kann.
+    public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? .standard)
+
     public init(defaults: UserDefaults = .standard, directory: URL? = nil) {
         self.defaults = defaults
         let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]

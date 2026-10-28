@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Nicio alarmă cu răsărit</string>
     <string name="editor_sunrise_ios_hint">iPhone-ul poate arăta lumina doar cât timp Phase Wake este deschis – pornește modul noptieră înainte de culcare.</string>
     <string name="trends_health_hint_apple">Durata și regularitatea somnului provin din Apple Health.</string>
+    <string name="watch_not_armed">Deschide Phase Wake înainte de culcare, ca ceasul să poată activa alarma.</string>
+    <string name="check_watch_arm">Alarmă activată pe ceas</string>
+    <string name="check_watch_arm_problem">Deschide Phase Wake pe Apple Watch înainte de culcare. watchOS activează alarma doar cât timp aplicația este deschisă.</string>
 </resources>

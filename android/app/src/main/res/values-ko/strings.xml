@@ -5,7 +5,9 @@
     <string name="ring_greeting">좋은 아침이에요</string>
     <string name="ring_notification_text">Phase Wake 알람이 울리고 있어요</string>
     <string name="ring_stop">중지</string>
-    <string name="ring_snooze">다시 알림 %1$d분 · %2$d회 남음</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">다시 알림 %1$d분 · %2$d회 남음</item>
+    </plurals>
     <string name="ring_snoozed">%1$d분 후 다시 알려드려요</string>
 
     <string name="nav_alarms">알람</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">삭제</string>
     <string name="action_cancel">취소</string>
     <string name="editor_advice_title">팁: 더 넓은 구간</string>
-    <string name="editor_advice_text">최근 %2$d일 중 %1$d일은 구간 안에 얕은 잠이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">최근 %2$d일 중 %1$d일은 구간 안에 얕은 잠이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d분 사용</string>
     <string name="channel_sunrise">일출</string>
     <string name="channel_sunrise_description">깨우기 전에 화면을 일출처럼 밝혀요.</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">화면이 희미한 주황빛으로 시작해 최대 밝기의 밝고 따뜻한 빛으로 바뀌어요. 휴대폰을 화면이 위로 가게 두세요.</string>
     <string name="sunrise_ring">깨울 때</string>
     <string name="sunrise_window">범위부터</string>
-    <string name="editor_sunrise_ring_hint">깨울 때 시작해 %1$d분 후 가장 밝아져요.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">깨울 때 시작해 %1$d분 후 가장 밝아져요.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">범위 시작과 함께 켜지고 목표 시각에 가장 밝아져요.</string>
     <string name="check_ready">오늘 밤 준비 완료</string>
     <string name="check_ready_text">워치 연결됨, 알람 허용됨. 탭하면 자세히 볼 수 있어요.</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">수면 시간과 규칙성은 Health Connect에서 가져와요.</string>
     <string name="settings_support">Phase Wake 후원하기</string>
     <string name="settings_support_text">Phase Wake는 무료 오픈 소스이고 광고도 없어요. 마음에 든다면 개발을 후원할 수 있어요.</string>
-    <string name="hint_title">%1$d일 연속 얕은 잠 없음</string>
+    <plurals name="hint_title">
+        <item quantity="other">%1$d일 연속 얕은 잠 없음</item>
+    </plurals>
     <string name="hint_gaps">측정이 끊긴 구간이 있었어요. 밤에 워치를 충전 중이거나 벗어 두지 않았나요?</string>
     <string name="hint_heart">심박수가 없었어요. 밤에는 워치를 조금 더 꽉 착용해 보세요.</string>
     <string name="hint_calm">측정은 온전했어요. 그냥 편안하게 잤을 뿐이에요. 이럴 땐 Phase Wake가 목표 시간에 확실하게 깨워 줘요.</string>
+    <string name="check_dnd_blocked">방해 금지 모드가 알람을 차단해요</string>
+    <string name="check_dnd_unknown">방해 금지 모드가 켜져 있어요</string>
+    <string name="check_dnd_unknown_problem">Android는 알람이 울릴 수 있는지 앱에 알려 주지 않아요. 방해 금지 모드에서 알람이 허용되어 있는지 확인해 주세요.</string>
+    <string name="check_watch_setup">워치의 Phase Wake</string>
+    <string name="check_watch_setup_problem">워치에서 Phase Wake를 한 번 열고 센서와 알림을 허용해 주세요.</string>
+    <string name="ring_hold_to_stop">길게 눌러 중지</string>
+    <string name="settings_privacy">개인정보 처리방침</string>
 </resources>

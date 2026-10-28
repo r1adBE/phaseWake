@@ -26,7 +26,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     func publish(armedTarget: Date?) {
         context[SyncKeys.armedTarget] = Int64((armedTarget?.timeIntervalSince1970 ?? 0) * 1000)
         if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage().snapshot()
+            let snapshot = PhaseWakeStorage.watchShared.snapshot()
             context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
             context[SyncKeys.updatedAt] = snapshot.updatedAt
         }

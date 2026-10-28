@@ -5,7 +5,9 @@
     <string name="ring_greeting">Selamat pagi</string>
     <string name="ring_notification_text">Penggera Phase Wake awak sedang berbunyi</string>
     <string name="ring_stop">Henti</string>
-    <string name="ring_snooze">Tangguh %1$d min · baki %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">Tangguh %1$d min · baki %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Ditangguh %1$d min</string>
 
     <string name="nav_alarms">Penggera</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">Padam</string>
     <string name="action_cancel">Batal</string>
     <string name="editor_advice_title">Tip: tetingkap lebih besar</string>
-    <string name="editor_advice_text">Dalam %1$d daripada %2$d malam terakhir, tiada tidur ringan dalam tetingkap. Dengan %3$d min, kamu lebih kerap bangun pada saat yang sesuai.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">Dalam %1$d daripada %2$d malam terakhir, tiada tidur ringan dalam tetingkap. Dengan %3$d min, kamu lebih kerap bangun pada saat yang sesuai.</item>
+    </plurals>
     <string name="editor_advice_apply">Guna %1$d min</string>
     <string name="channel_sunrise">Matahari terbit</string>
     <string name="channel_sunrise_description">Menyalakan skrin seperti matahari terbit sebelum awak bangun.</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">Skrin bermula dengan cahaya oren yang malap, kemudian bertukar menjadi cahaya hangat yang cerah pada kecerahan penuh. Letakkan telefon dengan skrin menghadap ke atas.</string>
     <string name="sunrise_ring">Semasa bangun</string>
     <string name="sunrise_window">Dari tetingkap</string>
-    <string name="editor_sunrise_ring_hint">Bermula apabila awak dikejutkan dan cerah sepenuhnya selepas %1$d minit.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">Bermula apabila awak dikejutkan dan cerah sepenuhnya selepas %1$d minit.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Bermula bersama tetingkap dan cerah sepenuhnya pada masa sasaran.</string>
     <string name="check_ready">Sedia untuk malam ini</string>
     <string name="check_ready_text">Jam tangan disambungkan, penggera dibenarkan. Ketik untuk butiran.</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">Tempoh dan keteraturan tidur datang daripada Health Connect.</string>
     <string name="settings_support">Sokong Phase Wake</string>
     <string name="settings_support_text">Phase Wake percuma, sumber terbuka dan tiada iklan. Jika awak suka, awak boleh menyokong pembangunannya.</string>
-    <string name="hint_title">%1$d malam tanpa tidur ringan</string>
+    <plurals name="hint_title">
+        <item quantity="other">%1$d malam tanpa tidur ringan</item>
+    </plurals>
     <string name="hint_gaps">Pengukuran ada celah. Adakah jam sedang dicas atau ditanggalkan pada waktu malam?</string>
     <string name="hint_heart">Kadar denyutan jantung tiada. Pakai jam sedikit lebih ketat pada waktu malam.</string>
     <string name="hint_calm">Pengukuran lengkap – awak hanya tidur dengan lena. Dalam keadaan ini, Phase Wake tetap mengejutkan awak dengan tepat pada masa sasaran.</string>
+    <string name="check_dnd_blocked">Jangan Ganggu menyekat penggera</string>
+    <string name="check_dnd_unknown">Jangan Ganggu dihidupkan</string>
+    <string name="check_dnd_unknown_problem">Android tidak memberitahu apl sama ada penggera dibenarkan. Semak sama ada penggera dibenarkan dalam Jangan Ganggu.</string>
+    <string name="check_watch_setup">Phase Wake pada jam tangan</string>
+    <string name="check_watch_setup_problem">Buka Phase Wake pada jam tangan sekali dan benarkan penderia serta pemberitahuan.</string>
+    <string name="ring_hold_to_stop">Tahan untuk henti</string>
+    <string name="settings_privacy">Dasar privasi</string>
 </resources>

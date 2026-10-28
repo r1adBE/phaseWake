@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Нет будильника с рассветом</string>
     <string name="editor_sunrise_ios_hint">iPhone может показывать свет, только пока Phase Wake открыт – включи режим прикроватных часов перед сном.</string>
     <string name="trends_health_hint_apple">Длительность и регулярность сна берутся из Apple Health.</string>
+    <string name="watch_not_armed">Открой Phase Wake перед сном, чтобы часы могли активировать будильник.</string>
+    <string name="check_watch_arm">Будильник активирован на часах</string>
+    <string name="check_watch_arm_problem">Открой Phase Wake на Apple Watch перед сном. watchOS активирует будильник, только пока приложение открыто.</string>
 </resources>

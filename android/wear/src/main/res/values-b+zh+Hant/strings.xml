@@ -13,7 +13,9 @@
     <string name="ring_reason_awake">你已經醒了</string>
     <string name="ring_reason_deadline">已到目標時間</string>
     <string name="ring_hold_to_stop">長按停止</string>
-    <string name="ring_snooze">%1$d 分鐘 · 剩 %2$d 次</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d 分鐘 · 剩 %2$d 次</item>
+    </plurals>
     <string name="ring_snoozed_until">貪睡至 %1$s</string>
 
     <string name="home_no_alarm">未設定鬧鐘</string>

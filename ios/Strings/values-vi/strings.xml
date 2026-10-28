@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Không có báo thức kèm bình minh</string>
     <string name="editor_sunrise_ios_hint">iPhone chỉ hiển thị được ánh sáng khi Phase Wake đang mở – hãy bắt đầu chế độ đầu giường trước khi đi ngủ.</string>
     <string name="trends_health_hint_apple">Thời lượng và độ đều đặn của giấc ngủ lấy từ Apple Health.</string>
+    <string name="watch_not_armed">Hãy mở Phase Wake trước khi đi ngủ để đồng hồ có thể kích hoạt báo thức.</string>
+    <string name="check_watch_arm">Báo thức đã được kích hoạt trên đồng hồ</string>
+    <string name="check_watch_arm_problem">Hãy mở Phase Wake trên Apple Watch trước khi đi ngủ. watchOS chỉ kích hoạt báo thức khi ứng dụng đang mở.</string>
 </resources>

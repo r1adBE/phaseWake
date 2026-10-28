@@ -5,7 +5,10 @@
     <string name="ring_greeting">Bom dia</string>
     <string name="ring_notification_text">O teu alarme do Phase Wake está a tocar</string>
     <string name="ring_stop">Parar</string>
-    <string name="ring_snooze">Soneca %1$d min · restam %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Soneca %1$d min · resta %2$d</item>
+        <item quantity="other">Soneca %1$d min · restam %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Soneca de %1$d min</string>
 
     <string name="nav_alarms">Alarmes</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Apagar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="editor_advice_title">Dica: uma janela maior</string>
-    <string name="editor_advice_text">Em %1$d das últimas %2$d noites não houve sono leve na janela. Com %3$d min, vais acordar mais vezes num bom momento.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">Em %1$d de %2$d noite recente não houve sono leve na janela. Com %3$d min, vais acordar mais vezes num bom momento.</item>
+        <item quantity="other">Em %1$d das últimas %2$d noites não houve sono leve na janela. Com %3$d min, vais acordar mais vezes num bom momento.</item>
+    </plurals>
     <string name="editor_advice_apply">Usar %1$d min</string>
     <string name="channel_sunrise">Nascer do sol</string>
     <string name="channel_sunrise_description">Ilumina o ecrã como um nascer do sol antes de acordares.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">O ecrã começa com um brilho laranja fraco e torna-se uma luz quente e intensa com o brilho no máximo. Deixa o telemóvel com o ecrã para cima.</string>
     <string name="sunrise_ring">Ao acordar</string>
     <string name="sunrise_window">Desde a janela</string>
-    <string name="editor_sunrise_ring_hint">Começa quando és acordado e fica totalmente claro após %1$d minutos.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Começa quando és acordado e fica totalmente claro após %1$d minuto.</item>
+        <item quantity="other">Começa quando és acordado e fica totalmente claro após %1$d minutos.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Começa com a janela e fica totalmente claro à hora-alvo.</string>
     <string name="check_ready">Pronto para esta noite</string>
     <string name="check_ready_text">Relógio ligado, alarmes permitidos. Toca para ver os detalhes.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">A duração e a regularidade do sono vêm do Health Connect.</string>
     <string name="settings_support">Apoia o Phase Wake</string>
     <string name="settings_support_text">O Phase Wake é gratuito, de código aberto e sem anúncios. Se gostares, podes apoiar o desenvolvimento.</string>
-    <string name="hint_title">%1$d noites sem sono leve</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d noite sem sono leve</item>
+        <item quantity="other">%1$d noites sem sono leve</item>
+    </plurals>
     <string name="hint_gaps">A medição teve falhas. O relógio estava a carregar ou fora do pulso à noite?</string>
     <string name="hint_heart">Faltou a frequência cardíaca. Usa o relógio um pouco mais justo à noite.</string>
     <string name="hint_calm">A medição estava completa – simplesmente dormiste descansado. Nesse caso, o Phase Wake acorda-te com fiabilidade à hora-alvo.</string>
+    <string name="check_dnd_blocked">Não incomodar bloqueia os alarmes</string>
+    <string name="check_dnd_unknown">Não incomodar está ativado</string>
+    <string name="check_dnd_unknown_problem">O Android não informa as apps se os alarmes são permitidos. Verifica se os alarmes estão permitidos em Não incomodar.</string>
+    <string name="check_watch_setup">Phase Wake no relógio</string>
+    <string name="check_watch_setup_problem">Abre o Phase Wake no relógio uma vez e permite sensores e notificações.</string>
+    <string name="ring_hold_to_stop">Mantém para parar</string>
+    <string name="settings_privacy">Política de privacidade</string>
 </resources>

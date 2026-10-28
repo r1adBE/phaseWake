@@ -5,7 +5,10 @@
     <string name="ring_greeting">Buongiorno</string>
     <string name="ring_notification_text">La tua sveglia Phase Wake sta suonando</string>
     <string name="ring_stop">Stop</string>
-    <string name="ring_snooze">Posticipa %1$d min · %2$d rimaste</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Posticipa %1$d min · %2$d rimasta</item>
+        <item quantity="other">Posticipa %1$d min · %2$d rimaste</item>
+    </plurals>
     <string name="ring_snoozed">Posticipata di %1$d min</string>
 
     <string name="nav_alarms">Sveglie</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Elimina</string>
     <string name="action_cancel">Annulla</string>
     <string name="editor_advice_title">Consiglio: una finestra più ampia</string>
-    <string name="editor_advice_text">In %1$d delle ultime %2$d notti non c\'era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">In %1$d dell’ultima notte (%2$d) non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+        <item quantity="other">In %1$d delle ultime %2$d notti non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+    </plurals>
     <string name="editor_advice_apply">Usa %1$d min</string>
     <string name="channel_sunrise">Alba</string>
     <string name="channel_sunrise_description">Illumina lo schermo come un’alba prima che ti svegli.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Lo schermo parte con un tenue bagliore arancione e diventa una luce calda e intensa alla massima luminosità. Appoggia il telefono con lo schermo verso l’alto.</string>
     <string name="sunrise_ring">Alla sveglia</string>
     <string name="sunrise_window">Da finestra</string>
-    <string name="editor_sunrise_ring_hint">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuto.</item>
+        <item quantity="other">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Parte con la finestra e raggiunge la piena luminosità all’ora impostata.</string>
     <string name="check_ready">Pronto per stanotte</string>
     <string name="check_ready_text">Orologio connesso, sveglie consentite. Tocca per i dettagli.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Durata e regolarità del sonno provengono da Health Connect.</string>
     <string name="settings_support">Sostieni Phase Wake</string>
     <string name="settings_support_text">Phase Wake è gratuita, open source e senza pubblicità. Se ti piace, puoi sostenerne lo sviluppo.</string>
-    <string name="hint_title">%1$d notti senza sonno leggero</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d notte senza sonno leggero</item>
+        <item quantity="other">%1$d notti senza sonno leggero</item>
+    </plurals>
     <string name="hint_gaps">La misurazione aveva delle lacune. L\'orologio era in carica o tolto di notte?</string>
     <string name="hint_heart">Mancava la frequenza cardiaca. Porta l\'orologio un po\' più stretto di notte.</string>
     <string name="hint_calm">La misurazione era completa: hai semplicemente dormito tranquillo. In questo caso Phase Wake ti sveglia in modo affidabile all\'orario obiettivo.</string>
+    <string name="check_dnd_blocked">Non disturbare blocca le sveglie</string>
+    <string name="check_dnd_unknown">Non disturbare è attivo</string>
+    <string name="check_dnd_unknown_problem">Android non comunica alle app se le sveglie passano. Controlla che le sveglie siano consentite in Non disturbare.</string>
+    <string name="check_watch_setup">Phase Wake sull’orologio</string>
+    <string name="check_watch_setup_problem">Apri Phase Wake sull’orologio una volta e consenti sensori e notifiche.</string>
+    <string name="ring_hold_to_stop">Tieni premuto per fermare</string>
+    <string name="settings_privacy">Informativa sulla privacy</string>
 </resources>

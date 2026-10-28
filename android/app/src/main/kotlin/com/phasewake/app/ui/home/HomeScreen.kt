@@ -84,12 +84,14 @@ fun HomeScreen(
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
     missHint: MissHint? = null,
+    /** Uhrzeit-Quelle; Bildschirmfotos setzen eine feste Zeit, damit sie nicht vom Tag abhängen. */
+    clock: () -> Instant = Instant::now,
 ) {
-    var now by remember { mutableStateOf(Instant.now()) }
+    var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
         while (true) {
             delay(20_000)
-            now = Instant.now()
+            now = clock()
         }
     }
     val zone = ZoneId.systemDefault()
@@ -267,7 +269,7 @@ private fun LastNightCard(night: NightRecord, now: Instant, missHint: MissHint?,
                         .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f))
                         .padding(12.dp),
                 ) {
-                    Text(stringResource(R.string.hint_title, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
+                    Text(LocalContext.current.resources.getQuantityString(R.plurals.hint_title, MissHint.NIGHTS, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
                     Text(
                         stringResource(
                             when (hint) {

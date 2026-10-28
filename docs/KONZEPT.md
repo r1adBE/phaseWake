@@ -78,7 +78,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Alles bleibt auf Uhr und Handy. Kein Konto, kein Server, keine Analytik, kein Internet-Recht im Manifest.
 - Gespeichert werden Weckereinstellungen und pro Nacht: Zielzeit, Fenster, tatsächliche Weckzeit, Weckgrund, Bewegungskurve des Fensters (30-s-Werte). Verlauf nach 90 Nächten automatisch gekürzt, jederzeit löschbar.
 - Apple: HealthKit-Lesezugriff Herzfrequenz, Bewegung über CoreMotion.
-- Android-Berechtigungen Uhr: `BODY_SENSORS` (Puls), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE_HEALTH`, `SCHEDULE_EXACT_ALARM`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `SCHEDULE_EXACT_ALARM`, `POST_NOTIFICATIONS`, `VIBRATE`.
+- Android-Berechtigungen Uhr: `BODY_SENSORS` bzw. `health.READ_HEART_RATE` (Puls), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_HEALTH`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `USE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `USE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `RECEIVE_BOOT_COMPLETED`, `POST_NOTIFICATIONS`, `VIBRATE`, `health.READ_SLEEP` (optional). Keine Internet-Berechtigung.
 - Datenschutzerklärung: Verantwortlicher Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf; Kontakt riad.work@outlook.com.
 
 ## Technik

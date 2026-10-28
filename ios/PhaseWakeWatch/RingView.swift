@@ -41,7 +41,7 @@ struct RingView: View {
             Text(L(reasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
             Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
             if snoozesLeft > 0 {
-                Button(L("ring_snooze", Snooze.minutes, snoozesLeft)) { alarm.snooze() }
+                Button(LP("ring_snooze", snoozesLeft, Snooze.minutes, snoozesLeft)) { alarm.snooze() }
                     .tint(Brand.deep)
             }
         case .snoozed(let until, _):

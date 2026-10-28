@@ -13,7 +13,10 @@
     <string name="ring_reason_awake">Você já estava acordado</string>
     <string name="ring_reason_deadline">Horário-alvo atingido</string>
     <string name="ring_hold_to_stop">Segure para parar</string>
-    <string name="ring_snooze">%1$d min · restam %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · resta %2$d</item>
+        <item quantity="other">%1$d min · restam %2$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Soneca até %1$s</string>
 
     <string name="home_no_alarm">Nenhum alarme</string>

@@ -13,7 +13,11 @@
     <string name="ring_reason_awake">Erai deja treaz</string>
     <string name="ring_reason_deadline">Ora țintă atinsă</string>
     <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
-    <string name="ring_snooze">%1$d min · %2$d rămase</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Amânare %1$d min · %2$d rămasă</item>
+        <item quantity="few">Amânare %1$d min · %2$d rămase</item>
+        <item quantity="other">Amânare %1$d min · %2$d rămase</item>
+    </plurals>
     <string name="ring_snoozed_until">Amânat până la %1$s</string>
 
     <string name="home_no_alarm">Nicio alarmă setată</string>

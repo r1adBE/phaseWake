@@ -5,7 +5,9 @@
     <string name="ring_greeting">おはようございます</string>
     <string name="ring_notification_text">Phase Wakeのアラームが鳴っています</string>
     <string name="ring_stop">停止</string>
-    <string name="ring_snooze">スヌーズ %1$d分 · 残り%2$d回</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">スヌーズ %1$d分 · 残り%2$d回</item>
+    </plurals>
     <string name="ring_snoozed">%1$d分間スヌーズします</string>
 
     <string name="nav_alarms">アラーム</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">削除</string>
     <string name="action_cancel">キャンセル</string>
     <string name="editor_advice_title">ヒント：ウィンドウを広げよう</string>
-    <string name="editor_advice_text">直近 %2$d 日のうち %1$d 日は、ウィンドウ内に浅い眠りがありませんでした。%3$d 分にすると、よりよいタイミングで起きやすくなります。</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">直近 %2$d 日のうち %1$d 日は、ウィンドウ内に浅い眠りがありませんでした。%3$d 分にすると、よりよいタイミングで起きやすくなります。</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d 分を使う</string>
     <string name="channel_sunrise">日の出</string>
     <string name="channel_sunrise_description">起きる前に、日の出のように画面を明るくします。</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">画面はかすかなオレンジ色の光から始まり、最大輝度の明るく暖かい光に変わります。スマホは画面を上にして置いてください。</string>
     <string name="sunrise_ring">起床時</string>
     <string name="sunrise_window">時間幅から</string>
-    <string name="editor_sunrise_ring_hint">起こされた時点で始まり、%1$d分後に最も明るくなります。</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">起こされた時点で始まり、%1$d分後に最も明るくなります。</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">時間幅の開始とともに始まり、目標時刻に最も明るくなります。</string>
     <string name="check_ready">今夜の準備OK</string>
     <string name="check_ready_text">ウォッチ接続済み、アラーム許可済み。タップで詳細を表示します。</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">睡眠時間と規則性は Health Connect から取得されます。</string>
     <string name="settings_support">Phase Wakeを応援</string>
     <string name="settings_support_text">Phase Wakeは無料でオープンソース、広告もありません。気に入っていただけたら、開発を支援できます。</string>
-    <string name="hint_title">%1$d 晩連続で浅い睡眠なし</string>
+    <plurals name="hint_title">
+        <item quantity="other">%1$d 晩連続で浅い睡眠なし</item>
+    </plurals>
     <string name="hint_gaps">計測に途切れがありました。夜間、ウォッチは充電中か外していませんでしたか？</string>
     <string name="hint_heart">心拍数が取得できていませんでした。夜はウォッチを少しきつめに装着してください。</string>
     <string name="hint_calm">計測は完全でした。ただ静かに眠れていたようです。その場合も、Phase Wakeは目標時刻にしっかり起こします。</string>
+    <string name="check_dnd_blocked">サイレントモードがアラームをブロックしています</string>
+    <string name="check_dnd_unknown">サイレントモードがオンです</string>
+    <string name="check_dnd_unknown_problem">Androidでは、アラームが鳴るかどうかをアプリから確認できません。サイレントモードでアラームが許可されているか確認してください。</string>
+    <string name="check_watch_setup">ウォッチのPhase Wake</string>
+    <string name="check_watch_setup_problem">ウォッチでPhase Wakeを一度開き、センサーと通知を許可してください。</string>
+    <string name="ring_hold_to_stop">長押しで停止</string>
+    <string name="settings_privacy">プライバシーポリシー</string>
 </resources>

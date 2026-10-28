@@ -5,7 +5,10 @@
     <string name="ring_greeting">Huomenta</string>
     <string name="ring_notification_text">Phase Wake -herätyksesi soi</string>
     <string name="ring_stop">Pysäytä</string>
-    <string name="ring_snooze">Torkku %1$d min · %2$d jäljellä</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Torkku %1$d min · %2$d jäljellä</item>
+        <item quantity="other">Torkku %1$d min · %2$d jäljellä</item>
+    </plurals>
     <string name="ring_snoozed">Torkku %1$d min</string>
 
     <string name="nav_alarms">Herätykset</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Poista</string>
     <string name="action_cancel">Peruuta</string>
     <string name="editor_advice_title">Vinkki: isompi ikkuna</string>
-    <string name="editor_advice_text">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
+        <item quantity="other">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
+    </plurals>
     <string name="editor_advice_apply">Käytä %1$d min</string>
     <string name="channel_sunrise">Auringonnousu</string>
     <string name="channel_sunrise_description">Valaisee näytön kuin auringonnousun ennen heräämistäsi.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Näyttö alkaa himmeänä oranssina hehkuna ja muuttuu kirkkaaksi, lämpimäksi valoksi täydellä kirkkaudella. Aseta puhelin näyttö ylöspäin.</string>
     <string name="sunrise_ring">Herätessä</string>
     <string name="sunrise_window">Aikaikkunasta</string>
-    <string name="editor_sunrise_ring_hint">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</item>
+        <item quantity="other">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Alkaa aikaikkunan mukana ja on täysin kirkas tavoiteajankohtana.</string>
     <string name="check_ready">Valmiina tähän yöhön</string>
     <string name="check_ready_text">Kello on yhdistetty, herätykset sallittu. Napauta nähdäksesi lisätiedot.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Unen kesto ja säännöllisyys tulevat Health Connectista.</string>
     <string name="settings_support">Tue Phase Wakea</string>
     <string name="settings_support_text">Phase Wake on ilmainen, avoimen lähdekoodin ja mainokseton. Jos pidät siitä, voit tukea sen kehitystä.</string>
-    <string name="hint_title">%1$d yötä ilman kevyttä unta</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d yö ilman kevyttä unta</item>
+        <item quantity="other">%1$d yötä ilman kevyttä unta</item>
+    </plurals>
     <string name="hint_gaps">Mittauksessa oli aukkoja. Latautuiko kello yöllä vai oliko se pois ranteesta?</string>
     <string name="hint_heart">Syke puuttui. Pidä kelloa yöllä hieman tiukemmin.</string>
     <string name="hint_calm">Mittaus oli täydellinen – nukuit vain rauhallisesti. Silloin Phase Wake herättää sinut luotettavasti tavoiteaikana.</string>
+    <string name="check_dnd_blocked">Älä häiritse estää herätykset</string>
+    <string name="check_dnd_unknown">Älä häiritse on päällä</string>
+    <string name="check_dnd_unknown_problem">Android ei kerro sovelluksille, päästetäänkö herätykset läpi. Tarkista, että herätykset on sallittu Älä häiritse -tilassa.</string>
+    <string name="check_watch_setup">Phase Wake kellossa</string>
+    <string name="check_watch_setup_problem">Avaa Phase Wake kellossa kerran ja salli anturit ja ilmoitukset.</string>
+    <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
+    <string name="settings_privacy">Tietosuojakäytäntö</string>
 </resources>

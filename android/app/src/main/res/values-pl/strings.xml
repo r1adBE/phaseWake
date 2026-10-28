@@ -5,7 +5,12 @@
     <string name="ring_greeting">Dzień dobry</string>
     <string name="ring_notification_text">Twój budzik Phase Wake dzwoni</string>
     <string name="ring_stop">Zatrzymaj</string>
-    <string name="ring_snooze">Drzemka %1$d min · zostało: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Drzemka %1$d min · zostało: %2$d</item>
+        <item quantity="few">Drzemka %1$d min · zostało: %2$d</item>
+        <item quantity="many">Drzemka %1$d min · zostało: %2$d</item>
+        <item quantity="other">Drzemka %1$d min · zostało: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Drzemka: %1$d min</string>
 
     <string name="nav_alarms">Budziki</string>
@@ -113,7 +118,12 @@
     <string name="settings_clear_history_confirm">Usuń</string>
     <string name="action_cancel">Anuluj</string>
     <string name="editor_advice_title">Wskazówka: większe okno</string>
-    <string name="editor_advice_text">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">W %1$d z ostatniej %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="few">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="many">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="other">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+    </plurals>
     <string name="editor_advice_apply">Użyj %1$d min</string>
     <string name="channel_sunrise">Wschód słońca</string>
     <string name="channel_sunrise_description">Rozjaśnia ekran jak wschód słońca, zanim się obudzisz.</string>
@@ -124,7 +134,12 @@
     <string name="editor_sunrise_hint">Ekran zaczyna od słabej pomarańczowej poświaty i zmienia się w jasne, ciepłe światło przy pełnej jasności. Połóż telefon ekranem do góry.</string>
     <string name="sunrise_ring">Przy budzeniu</string>
     <string name="sunrise_window">Od okna</string>
-    <string name="editor_sunrise_ring_hint">Zaczyna się, gdy cię obudzimy, a po %1$d minutach świeci pełną jasnością.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Zaczyna się, gdy cię obudzimy, a po %1$d minucie świeci pełną jasnością.</item>
+        <item quantity="few">Zaczyna się, gdy cię obudzimy, a po %1$d minutach świeci pełną jasnością.</item>
+        <item quantity="many">Zaczyna się, gdy cię obudzimy, a po %1$d minutach świeci pełną jasnością.</item>
+        <item quantity="other">Zaczyna się, gdy cię obudzimy, a po %1$d minuty świeci pełną jasnością.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Zaczyna się wraz z oknem, a o czasie docelowym świeci pełną jasnością.</string>
     <string name="check_ready">Gotowe na noc</string>
     <string name="check_ready_text">Zegarek połączony, budziki dozwolone. Dotknij, aby zobaczyć szczegóły.</string>
@@ -166,8 +181,20 @@
     <string name="trends_health_hint">Czas i regularność snu pochodzą z Health Connect.</string>
     <string name="settings_support">Wesprzyj Phase Wake</string>
     <string name="settings_support_text">Phase Wake jest darmowy, open source i bez reklam. Jeśli ci się podoba, możesz wesprzeć jego rozwój.</string>
-    <string name="hint_title">%1$d nocy bez lekkiego snu</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d noc bez lekkiego snu</item>
+        <item quantity="few">%1$d noce bez lekkiego snu</item>
+        <item quantity="many">%1$d nocy bez lekkiego snu</item>
+        <item quantity="other">%1$d nocy bez lekkiego snu</item>
+    </plurals>
     <string name="hint_gaps">Pomiar miał luki. Czy zegarek się ładował lub był zdjęty w nocy?</string>
     <string name="hint_heart">Brakowało tętna. Noś zegarek w nocy nieco ciaśniej.</string>
     <string name="hint_calm">Pomiar był kompletny – po prostu spałeś spokojnie. Wtedy Phase Wake budzi cię niezawodnie w czasie docelowym.</string>
+    <string name="check_dnd_blocked">Nie przeszkadzać blokuje budziki</string>
+    <string name="check_dnd_unknown">Tryb Nie przeszkadzać jest włączony</string>
+    <string name="check_dnd_unknown_problem">Android nie informuje aplikacji, czy budziki są przepuszczane. Sprawdź, czy budziki są dozwolone w trybie Nie przeszkadzać.</string>
+    <string name="check_watch_setup">Phase Wake na zegarku</string>
+    <string name="check_watch_setup_problem">Raz otwórz Phase Wake na zegarku i zezwól na czujniki oraz powiadomienia.</string>
+    <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
+    <string name="settings_privacy">Polityka prywatności</string>
 </resources>

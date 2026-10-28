@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Tiada penggera dengan matahari terbit</string>
     <string name="editor_sunrise_ios_hint">iPhone hanya boleh menunjukkan cahaya semasa Phase Wake terbuka – mulakan mod meja sisi katil sebelum awak tidur.</string>
     <string name="trends_health_hint_apple">Tempoh dan keteraturan tidur datang daripada Apple Health.</string>
+    <string name="watch_not_armed">Buka Phase Wake sebelum awak tidur supaya jam tangan boleh mengaktifkan penggera.</string>
+    <string name="check_watch_arm">Penggera diaktifkan pada jam tangan</string>
+    <string name="check_watch_arm_problem">Buka Phase Wake pada Apple Watch sebelum awak tidur. watchOS hanya mengaktifkan penggera semasa apl dibuka.</string>
 </resources>

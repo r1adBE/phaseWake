@@ -13,7 +13,11 @@ RES = {
     "wear": ROOT / "android/wear/src/main/res",
     "apple": ROOT / "ios/Strings",  # Texte nur für die Apple-Apps
 }
-TARGETS = {"PhaseWake": ("app", "wear", "apple"), "PhaseWakeWatch": ("wear", "app", "apple")}
+TARGETS = {
+    "PhaseWake": ("app", "wear", "apple"),
+    "PhaseWakeWatch": ("wear", "app", "apple"),
+    "PhaseWakeWidget": ("wear", "app", "apple"),
+}
 
 
 def apple_locale(folder: str) -> str | None:
@@ -37,13 +41,19 @@ def unescape(text: str) -> str:
 
 
 def load(module: str) -> dict[str, dict[str, str]]:
+    """Texte je Sprache. Pluralformen werden zu «name|kategorie» (z. B. «hint_title|one»);
+    die Apps wählen die Kategorie selbst nach den CLDR-Regeln (Shared/Plural.swift)."""
     out: dict[str, dict[str, str]] = {}
     for folder in sorted(p for p in RES[module].iterdir() if p.name.startswith("values")):
         lang = apple_locale(folder.name)
         f = folder / "strings.xml"
         if lang and f.exists():
-            for key, value in re.findall(r'<string name="([^"]+)"(?![^>]*translatable="false")[^>]*>(.*?)</string>', f.read_text(), re.S):
+            text = f.read_text()
+            for key, value in re.findall(r'<string name="([^"]+)"(?![^>]*translatable="false")[^>]*>(.*?)</string>', text, re.S):
                 out.setdefault(lang, {})[key] = unescape(value)
+            for name, body in re.findall(r'<plurals name="([^"]+)"[^>]*>(.*?)</plurals>', text, re.S):
+                for quantity, value in re.findall(r'<item quantity="([^"]+)">(.*?)</item>', body, re.S):
+                    out.setdefault(lang, {})[f"{name}|{quantity}"] = unescape(value)
     return out
 
 

@@ -13,7 +13,10 @@
     <string name="ring_reason_awake">Tu étais déjà éveillé</string>
     <string name="ring_reason_deadline">Heure cible atteinte</string>
     <string name="ring_hold_to_stop">Maintiens pour arrêter</string>
-    <string name="ring_snooze">%1$d min · %2$d restant(s)</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d restant</item>
+        <item quantity="other">%1$d min · %2$d restants</item>
+    </plurals>
     <string name="ring_snoozed_until">Rappel à %1$s</string>
 
     <string name="home_no_alarm">Aucun réveil</string>

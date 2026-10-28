@@ -13,7 +13,10 @@
     <string name="ring_reason_awake">Du var allerede våken</string>
     <string name="ring_reason_deadline">Ønsket tid nådd</string>
     <string name="ring_hold_to_stop">Hold for å stoppe</string>
-    <string name="ring_snooze">%1$d min · %2$d igjen</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d igjen</item>
+        <item quantity="other">%1$d min · %2$d igjen</item>
+    </plurals>
     <string name="ring_snoozed_until">Slumrer til %1$s</string>
 
     <string name="home_no_alarm">Ingen alarm stilt</string>

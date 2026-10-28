@@ -15,7 +15,10 @@
     <string name="ring_reason_awake">You were already awake</string>
     <string name="ring_reason_deadline">Target time reached</string>
     <string name="ring_hold_to_stop">Hold to stop</string>
-    <string name="ring_snooze">%1$d min · %2$d left</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d left</item>
+        <item quantity="other">%1$d min · %2$d left</item>
+    </plurals>
     <string name="ring_snoozed_until">Snoozing until %1$s</string>
 
     <string name="home_no_alarm">No alarm set</string>

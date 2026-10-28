@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">サンライズ付きのアラームなし</string>
     <string name="editor_sunrise_ios_hint">iPhoneはPhase Wakeを開いている間しかライトを表示できません – 眠る前にナイトスタンドモードを開始してください。</string>
     <string name="trends_health_hint_apple">睡眠時間と規則性は Apple Health から取得されます。</string>
+    <string name="watch_not_armed">眠る前にPhase Wakeを開いてください。ウォッチがアラームを有効にできるようになります。</string>
+    <string name="check_watch_arm">ウォッチでアラーム有効</string>
+    <string name="check_watch_arm_problem">眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。</string>
 </resources>

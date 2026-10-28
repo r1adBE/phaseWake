@@ -5,7 +5,10 @@
     <string name="ring_greeting">Jó reggelt</string>
     <string name="ring_notification_text">Szól a Phase Wake ébresztőd</string>
     <string name="ring_stop">Leállítás</string>
-    <string name="ring_snooze">Szundi %1$d p · még %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Szundi %1$d p · még %2$d</item>
+        <item quantity="other">Szundi %1$d p · még %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Szundi %1$d percre</string>
 
     <string name="nav_alarms">Ébresztők</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Törlés</string>
     <string name="action_cancel">Mégse</string>
     <string name="editor_advice_title">Tipp: nagyobb ablak</string>
-    <string name="editor_advice_text">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
+        <item quantity="other">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d perc használata</string>
     <string name="channel_sunrise">Napfelkelte</string>
     <string name="channel_sunrise_description">Napfelkeltéhez hasonlóan világítja meg a képernyőt ébredés előtt.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">A képernyő halvány narancsszínű fénnyel indul, majd teljes fényerőn erős, meleg fénnyé válik. Fektesd a telefont képernyővel felfelé.</string>
     <string name="sunrise_ring">Ébresztéskor</string>
     <string name="sunrise_window">Időablaktól</string>
-    <string name="editor_sunrise_ring_hint">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</item>
+        <item quantity="other">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Az időablakkal indul, és a célidőpontra teljes fényerővel világít.</string>
     <string name="check_ready">Készen áll a mai éjszakára</string>
     <string name="check_ready_text">Az óra csatlakoztatva, az ébresztők engedélyezve. Koppints a részletekért.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Az alvás időtartama és rendszeressége a Health Connectből származik.</string>
     <string name="settings_support">Támogasd a Phase Wake-et</string>
     <string name="settings_support_text">A Phase Wake ingyenes, nyílt forráskódú és reklámmentes. Ha tetszik, támogathatod a fejlesztését.</string>
-    <string name="hint_title">%1$d éjszaka könnyű alvás nélkül</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d éjszaka könnyű alvás nélkül</item>
+        <item quantity="other">%1$d éjszaka könnyű alvás nélkül</item>
+    </plurals>
     <string name="hint_gaps">A mérésben hiányok voltak. Az óra töltődött, vagy le volt véve éjjel?</string>
     <string name="hint_heart">Hiányzott a pulzus. Viseld éjjel kicsit szorosabban az órát.</string>
     <string name="hint_calm">A mérés teljes volt – egyszerűen nyugodtan aludtál. Ilyenkor a Phase Wake megbízhatóan felébreszt a célidőben.</string>
+    <string name="check_dnd_blocked">A Ne zavarjanak blokkolja az ébresztőket</string>
+    <string name="check_dnd_unknown">A Ne zavarjanak be van kapcsolva</string>
+    <string name="check_dnd_unknown_problem">Az Android nem jelzi az alkalmazásoknak, hogy az ébresztők átjutnak-e. Ellenőrizd, hogy az ébresztők engedélyezve vannak-e a Ne zavarjanak módban.</string>
+    <string name="check_watch_setup">Phase Wake az órán</string>
+    <string name="check_watch_setup_problem">Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket és az értesítéseket.</string>
+    <string name="ring_hold_to_stop">Tartsd a leállításhoz</string>
+    <string name="settings_privacy">Adatvédelmi irányelvek</string>
 </resources>

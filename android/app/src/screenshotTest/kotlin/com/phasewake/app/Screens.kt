@@ -34,6 +34,9 @@ import java.time.Instant
 
 /** Bildschirmfotos aller Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. */
 
+/** Feste Testzeit: Mittwoch 28.10.2026, 07:20 in Zürich. Bilder hängen so nicht vom Tag des Laufs ab. */
+private val FIXED_NOW: Instant = java.time.ZonedDateTime.of(2026, 10, 28, 7, 20, 0, 0, java.time.ZoneId.of("Europe/Zurich")).toInstant()
+
 private val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
 private val alarms = listOf(
@@ -42,8 +45,8 @@ private val alarms = listOf(
 )
 
 private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRecord {
-    // Relativ zu jetzt, damit die jüngste Nacht als «Dein Morgen» erscheint.
-    val start = Instant.now().minus(Duration.ofDays(daysAgo)).minus(Duration.ofHours(2))
+    // Relativ zur festen Testzeit, damit die jüngste Nacht als «Dein Morgen» erscheint.
+    val start = FIXED_NOW.minus(Duration.ofDays(daysAgo)).minus(Duration.ofHours(2))
     val epochs = List((wokeMinute * 2).toInt()) { i ->
         val m = when {
             i % 9 == 4 -> 0.0015
@@ -77,7 +80,7 @@ private fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
 
 @Composable
 private fun Home(mode: ThemeMode, list: List<AlarmSpec>, check: NightCheckState = NightCheckState(emptyList())) = Themed(mode) {
-    HomeScreen(list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {}, onToggle = { _, _ -> })
+    HomeScreen(list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW })
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite hell", device = PHONE) @Composable
@@ -121,7 +124,7 @@ fun SettingsDark() = Themed(ThemeMode.DARK) {
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable
 fun RingPhone() = Themed(ThemeMode.DARK) {
-    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {})
+    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {}, clock = { FIXED_NOW })
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Sonnenaufgang Anfang", device = PHONE) @Composable
@@ -136,7 +139,7 @@ fun SunriseMiddle() = Themed(ThemeMode.DARK) {
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken mit Sonnenaufgang", device = PHONE) @Composable
 fun RingSunrise() = Themed(ThemeMode.DARK) {
-    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {}, onSnooze = {}, light = 0.92f)
+    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {}, onSnooze = {}, light = 0.92f, clock = { FIXED_NOW })
 }
 
 private const val PHONE = "spec:width=411dp,height=891dp"

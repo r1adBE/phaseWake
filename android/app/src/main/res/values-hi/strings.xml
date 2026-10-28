@@ -5,7 +5,10 @@
     <string name="ring_greeting">सुप्रभात</string>
     <string name="ring_notification_text">तुम्हारा Phase Wake अलार्म बज रहा है</string>
     <string name="ring_stop">रोको</string>
-    <string name="ring_snooze">स्नूज़ %1$d मि. · बाकी: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">स्नूज़ %1$d मि. · बाकी: %2$d</item>
+        <item quantity="other">स्नूज़ %1$d मि. · बाकी: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">%1$d मि. के लिए स्नूज़</string>
 
     <string name="nav_alarms">अलार्म</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">हटाएँ</string>
     <string name="action_cancel">रद्द करें</string>
     <string name="editor_advice_title">सुझाव: बड़ी विंडो</string>
-    <string name="editor_advice_text">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">पिछली %2$d रात में से %1$d रात में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
+        <item quantity="other">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d मिनट इस्तेमाल करें</string>
     <string name="channel_sunrise">सूर्योदय</string>
     <string name="channel_sunrise_description">जगाने से पहले आपकी स्क्रीन को सूर्योदय की तरह रोशन करता है।</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">स्क्रीन हल्की नारंगी चमक से शुरू होती है और पूरी ब्राइटनेस पर तेज़, गर्म रोशनी बन जाती है। फ़ोन को स्क्रीन ऊपर करके रखें।</string>
     <string name="sunrise_ring">जगाते समय</string>
     <string name="sunrise_window">विंडो से</string>
-    <string name="editor_sunrise_ring_hint">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</item>
+        <item quantity="other">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">विंडो के साथ शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।</string>
     <string name="check_ready">आज रात के लिए तैयार</string>
     <string name="check_ready_text">वॉच कनेक्टेड है, अलार्म की अनुमति है। विवरण के लिए टैप करें।</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">नींद की अवधि और नियमितता Health Connect से आती है।</string>
     <string name="settings_support">Phase Wake का समर्थन करें</string>
     <string name="settings_support_text">Phase Wake मुफ़्त, ओपन सोर्स और विज्ञापन-रहित है। अगर यह आपको पसंद है, तो आप इसके विकास का समर्थन कर सकते हैं।</string>
-    <string name="hint_title">%1$d रातें बिना हल्की नींद के</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d रात बिना हल्की नींद के</item>
+        <item quantity="other">%1$d रातें बिना हल्की नींद के</item>
+    </plurals>
     <string name="hint_gaps">माप में कुछ अंतराल थे। क्या रात में घड़ी चार्ज हो रही थी या उतारी हुई थी?</string>
     <string name="hint_heart">हृदय गति का डेटा नहीं मिला। रात में घड़ी को थोड़ा कसकर पहनें।</string>
     <string name="hint_calm">माप पूरा था – बस नींद शांत रही। ऐसे में Phase Wake आपको लक्ष्य समय पर भरोसेमंद ढंग से जगाता है।</string>
+    <string name="check_dnd_blocked">डू नॉट डिस्टर्ब अलार्म को रोकता है</string>
+    <string name="check_dnd_unknown">डू नॉट डिस्टर्ब चालू है</string>
+    <string name="check_dnd_unknown_problem">Android ऐप्स को नहीं बताता कि अलार्म आगे जाते हैं या नहीं। जाँच लें कि डू नॉट डिस्टर्ब में अलार्म की अनुमति है।</string>
+    <string name="check_watch_setup">वॉच पर Phase Wake</string>
+    <string name="check_watch_setup_problem">वॉच पर एक बार Phase Wake खोलें और सेंसर व नोटिफ़िकेशन की अनुमति दें।</string>
+    <string name="ring_hold_to_stop">रोकने के लिए दबाए रखो</string>
+    <string name="settings_privacy">गोपनीयता नीति</string>
 </resources>

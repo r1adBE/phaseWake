@@ -5,7 +5,10 @@
     <string name="ring_greeting">Goedemorgen</string>
     <string name="ring_notification_text">Je Phase Wake-wekker gaat af</string>
     <string name="ring_stop">Stop</string>
-    <string name="ring_snooze">Snooze %1$d min · nog %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Snooze %1$d min · nog %2$d</item>
+        <item quantity="other">Snooze %1$d min · nog %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Snoozen voor %1$d min</string>
 
     <string name="nav_alarms">Wekkers</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Wissen</string>
     <string name="action_cancel">Annuleren</string>
     <string name="editor_advice_title">Tip: een groter venster</string>
-    <string name="editor_advice_text">In %1$d van de laatste %2$d nachten zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">In %1$d van de laatste %2$d nacht zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
+        <item quantity="other">In %1$d van de laatste %2$d nachten zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
+    </plurals>
     <string name="editor_advice_apply">%1$d min gebruiken</string>
     <string name="channel_sunrise">Zonsopgang</string>
     <string name="channel_sunrise_description">Laat je scherm oplichten als een zonsopgang voordat je wakker wordt.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Het scherm begint met een zwakke oranje gloed en wordt helder, warm licht op volle helderheid. Leg je telefoon met het scherm omhoog.</string>
     <string name="sunrise_ring">Bij wekken</string>
     <string name="sunrise_window">Vanaf venster</string>
-    <string name="editor_sunrise_ring_hint">Begint wanneer je gewekt wordt en is na %1$d minuten volledig helder.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Begint wanneer je gewekt wordt en is na %1$d minuut volledig helder.</item>
+        <item quantity="other">Begint wanneer je gewekt wordt en is na %1$d minuten volledig helder.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Begint met het venster en is op de doeltijd volledig helder.</string>
     <string name="check_ready">Klaar voor vannacht</string>
     <string name="check_ready_text">Horloge verbonden, wekkers toegestaan. Tik voor details.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Slaapduur en regelmaat komen uit Health Connect.</string>
     <string name="settings_support">Steun Phase Wake</string>
     <string name="settings_support_text">Phase Wake is gratis, open source en heeft geen advertenties. Als je de app leuk vindt, kun je de ontwikkeling steunen.</string>
-    <string name="hint_title">%1$d nachten zonder lichte slaap</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d nacht zonder lichte slaap</item>
+        <item quantity="other">%1$d nachten zonder lichte slaap</item>
+    </plurals>
     <string name="hint_gaps">De meting had hiaten. Was het horloge \'s nachts aan het opladen of af?</string>
     <string name="hint_heart">Je hartslag ontbrak. Draag het horloge \'s nachts wat strakker.</string>
     <string name="hint_calm">De meting was compleet – je sliep gewoon rustig. Dan wekt Phase Wake je betrouwbaar op de doeltijd.</string>
+    <string name="check_dnd_blocked">Niet storen blokkeert wekkers</string>
+    <string name="check_dnd_unknown">Niet storen staat aan</string>
+    <string name="check_dnd_unknown_problem">Android laat apps niet weten of wekkers doorkomen. Controleer of wekkers zijn toegestaan bij Niet storen.</string>
+    <string name="check_watch_setup">Phase Wake op het horloge</string>
+    <string name="check_watch_setup_problem">Open Phase Wake één keer op het horloge en sta sensoren en meldingen toe.</string>
+    <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
+    <string name="settings_privacy">Privacybeleid</string>
 </resources>

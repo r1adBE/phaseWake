@@ -180,7 +180,7 @@ fun EditorScreen(
                     Column(Modifier.padding(16.dp)) {
                         Text(stringResource(R.string.editor_advice_title), style = MaterialTheme.typography.titleSmall)
                         Text(
-                            stringResource(R.string.editor_advice_text, advice.deadlineNights, advice.nights, advice.windowMinutes),
+                            context.resources.getQuantityString(R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes),
                             style = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.padding(top = 4.dp),
                         )
@@ -283,7 +283,7 @@ fun EditorScreen(
                 AnimatedVisibility(sunrise != Sunrise.OFF) {
                     Text(
                         if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                        else stringResource(R.string.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60),
+                        else context.resources.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(top = 6.dp),

@@ -40,7 +40,7 @@ struct EditorView: View {
                 if let existing, let advice = WindowAdvice.suggest(existing, history: model.nights), Int(window) < advice.windowMinutes {
                     Section {
                         Text(L("editor_advice_title")).font(.headline)
-                        Text(L("editor_advice_text", advice.deadlineNights, advice.nights, advice.windowMinutes)).font(.footnote)
+                        Text(LP("editor_advice_text", advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes)).font(.footnote)
                         Button(L("editor_advice_apply", advice.windowMinutes)) { window = Double(advice.windowMinutes) }
                     }
                 }
@@ -97,7 +97,7 @@ struct EditorView: View {
                     }
                     .pickerStyle(.segmented)
                     if sunrise != .off {
-                        Text(sunrise == .window ? L("editor_sunrise_window_hint") : L("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60))
+                        Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
                             .font(.footnote).foregroundStyle(.secondary)
                         // Auf dem iPhone nur mit offener App möglich.
                         Text(L("editor_sunrise_ios_hint")).font(.footnote)

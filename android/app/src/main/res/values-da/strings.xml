@@ -5,7 +5,10 @@
     <string name="ring_greeting">Godmorgen</string>
     <string name="ring_notification_text">Din Phase Wake-alarm ringer</string>
     <string name="ring_stop">Stop</string>
-    <string name="ring_snooze">Slumre %1$d min · %2$d tilbage</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Slumre %1$d min · %2$d tilbage</item>
+        <item quantity="other">Slumre %1$d min · %2$d tilbage</item>
+    </plurals>
     <string name="ring_snoozed">Slumrer i %1$d min</string>
 
     <string name="nav_alarms">Alarmer</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Slet</string>
     <string name="action_cancel">Annuller</string>
     <string name="editor_advice_title">Tip: et større vindue</string>
-    <string name="editor_advice_text">I %1$d af de seneste %2$d nætter var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">I %1$d af den seneste %2$d nat var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
+        <item quantity="other">I %1$d af de seneste %2$d nætter var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
+    </plurals>
     <string name="editor_advice_apply">Brug %1$d min</string>
     <string name="channel_sunrise">Solopgang</string>
     <string name="channel_sunrise_description">Tænder skærmen som en solopgang, før du vågner.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Skærmen starter med et svagt orange skær og bliver til klart, varmt lys ved fuld lysstyrke. Læg telefonen med skærmen opad.</string>
     <string name="sunrise_ring">Ved vækning</string>
     <string name="sunrise_window">Fra vinduet</string>
-    <string name="editor_sunrise_ring_hint">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Starter, når du bliver vækket, og er fuldt lys efter %1$d minut.</item>
+        <item quantity="other">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på måltidspunktet.</string>
     <string name="check_ready">Klar til i nat</string>
     <string name="check_ready_text">Uret er forbundet, alarmer er tilladt. Tryk for detaljer.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Søvnlængde og regelmæssighed kommer fra Health Connect.</string>
     <string name="settings_support">Støt Phase Wake</string>
     <string name="settings_support_text">Phase Wake er gratis, open source og uden reklamer. Hvis du kan lide den, kan du støtte udviklingen.</string>
-    <string name="hint_title">%1$d nætter uden let søvn</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d nat uden let søvn</item>
+        <item quantity="other">%1$d nætter uden let søvn</item>
+    </plurals>
     <string name="hint_gaps">Målingen havde huller. Var uret på opladeren eller taget af om natten?</string>
     <string name="hint_heart">Pulsen manglede. Bær uret lidt strammere om natten.</string>
     <string name="hint_calm">Målingen var komplet – du sov bare roligt. Så vækker Phase Wake dig pålideligt på ønsket tid.</string>
+    <string name="check_dnd_blocked">Forstyr ikke blokerer alarmer</string>
+    <string name="check_dnd_unknown">Forstyr ikke er slået til</string>
+    <string name="check_dnd_unknown_problem">Android fortæller ikke apps, om alarmer kommer igennem. Tjek, at alarmer er tilladt i Forstyr ikke.</string>
+    <string name="check_watch_setup">Phase Wake på uret</string>
+    <string name="check_watch_setup_problem">Åbn Phase Wake på uret én gang, og tillad sensorer og notifikationer.</string>
+    <string name="ring_hold_to_stop">Hold for at stoppe</string>
+    <string name="settings_privacy">Privatlivspolitik</string>
 </resources>

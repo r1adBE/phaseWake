@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Aucune alarme avec lever de soleil</string>
     <string name="editor_sunrise_ios_hint">Ton iPhone ne peut afficher la lumière que tant que Phase Wake est ouverte – démarre le mode table de chevet avant de dormir.</string>
     <string name="trends_health_hint_apple">La durée et la régularité du sommeil proviennent d’Apple Health.</string>
+    <string name="watch_not_armed">Ouvre Phase Wake avant de dormir pour que ta montre puisse activer l’alarme.</string>
+    <string name="check_watch_arm">Alarme activée sur la montre</string>
+    <string name="check_watch_arm_problem">Ouvre Phase Wake sur ton Apple Watch avant de dormir. watchOS n’active l’alarme que tant que l’app est ouverte.</string>
 </resources>

@@ -5,7 +5,12 @@
     <string name="ring_greeting">Доброго ранку</string>
     <string name="ring_notification_text">Дзвонить твій будильник Phase Wake</string>
     <string name="ring_stop">Стоп</string>
-    <string name="ring_snooze">Відкласти на %1$d хв · залишилось: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Відкласти на %1$d хв · залишилось: %2$d</item>
+        <item quantity="few">Відкласти на %1$d хв · залишилось: %2$d</item>
+        <item quantity="many">Відкласти на %1$d хв · залишилось: %2$d</item>
+        <item quantity="other">Відкласти на %1$d хв · залишилось: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Відкладено на %1$d хв</string>
 
     <string name="nav_alarms">Будильники</string>
@@ -113,7 +118,12 @@
     <string name="settings_clear_history_confirm">Видалити</string>
     <string name="action_cancel">Скасувати</string>
     <string name="editor_advice_title">Порада: ширше вікно</string>
-    <string name="editor_advice_text">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">У %1$d з останніх %2$d ночі у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="few">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="many">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="other">У %1$d з останніх %2$d ночі у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+    </plurals>
     <string name="editor_advice_apply">Обрати %1$d хв</string>
     <string name="channel_sunrise">Світанок</string>
     <string name="channel_sunrise_description">Підсвічує екран, як світанок, перш ніж ти прокинешся.</string>
@@ -124,7 +134,12 @@
     <string name="editor_sunrise_hint">Екран починає слабо світитися помаранчевим, а потім стає яскравим теплим світлом на повній яскравості. Поклади телефон екраном догори.</string>
     <string name="sunrise_ring">Під дзвінок</string>
     <string name="sunrise_window">Від вікна</string>
-    <string name="editor_sunrise_ring_hint">Починається, коли тебе будять, і через %1$d хв світить на повну яскравість.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Починається, коли тебе будять, і через %1$d хвилину світить на повну яскравість.</item>
+        <item quantity="few">Починається, коли тебе будять, і через %1$d хвилини світить на повну яскравість.</item>
+        <item quantity="many">Починається, коли тебе будять, і через %1$d хвилин світить на повну яскравість.</item>
+        <item quantity="other">Починається, коли тебе будять, і через %1$d хвилини світить на повну яскравість.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Починається разом із вікном і до цільового часу світить на повну яскравість.</string>
     <string name="check_ready">Готово до ночі</string>
     <string name="check_ready_text">Годинник підключено, будильники дозволено. Торкнися, щоб побачити подробиці.</string>
@@ -166,8 +181,20 @@
     <string name="trends_health_hint">Тривалість і регулярність сну беруться з Health Connect.</string>
     <string name="settings_support">Підтримати Phase Wake</string>
     <string name="settings_support_text">Phase Wake безкоштовний, з відкритим кодом і без реклами. Якщо він тобі подобається, можеш підтримати його розробку.</string>
-    <string name="hint_title">%1$d ночі без легкого сну</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d ніч без легкого сну</item>
+        <item quantity="few">%1$d ночі без легкого сну</item>
+        <item quantity="many">%1$d ночей без легкого сну</item>
+        <item quantity="other">%1$d ночі без легкого сну</item>
+    </plurals>
     <string name="hint_gaps">У вимірюванні були пропуски. Годинник заряджався чи був знятий уночі?</string>
     <string name="hint_heart">Бракувало даних про пульс. Одягай годинник на ніч трохи щільніше.</string>
     <string name="hint_calm">Вимірювання було повним – ти просто спокійно спав. Тоді Phase Wake надійно розбудить тебе в цільовий час.</string>
+    <string name="check_dnd_blocked">Режим «Не турбувати» блокує будильники</string>
+    <string name="check_dnd_unknown">Режим «Не турбувати» увімкнено</string>
+    <string name="check_dnd_unknown_problem">Android не повідомляє застосункам, чи пропускаються будильники. Перевір, чи дозволено будильники в режимі «Не турбувати».</string>
+    <string name="check_watch_setup">Phase Wake на годиннику</string>
+    <string name="check_watch_setup_problem">Один раз відкрий Phase Wake на годиннику та дозволь датчики й сповіщення.</string>
+    <string name="ring_hold_to_stop">Утримуй, щоб зупинити</string>
+    <string name="settings_privacy">Політика конфіденційності</string>
 </resources>

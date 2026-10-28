@@ -5,7 +5,14 @@
     <string name="ring_greeting">صباح الخير</string>
     <string name="ring_notification_text">منبّه Phase Wake يرنّ</string>
     <string name="ring_stop">إيقاف</string>
-    <string name="ring_snooze">غفوة %1$d د · المتبقي: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="zero">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="one">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="two">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="few">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="many">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="other">غفوة %1$d د · المتبقي: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">غفوة لمدة %1$d د</string>
 
     <string name="nav_alarms">المنبّهات</string>
@@ -113,7 +120,14 @@
     <string name="settings_clear_history_confirm">حذف</string>
     <string name="action_cancel">إلغاء</string>
     <string name="editor_advice_title">نصيحة: نافذة أوسع</string>
-    <string name="editor_advice_text">في %1$d من آخر %2$d ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="zero">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="one">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="two">في %1$d من آخر %2$d ليلتين لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="few">في %1$d من آخر %2$d ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="many">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="other">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+    </plurals>
     <string name="editor_advice_apply">استخدام %1$d دقيقة</string>
     <string name="channel_sunrise">شروق الشمس</string>
     <string name="channel_sunrise_description">يضيء شاشتك مثل شروق الشمس قبل أن تستيقظ.</string>
@@ -124,7 +138,14 @@
     <string name="editor_sunrise_hint">تبدأ الشاشة بتوهج برتقالي خافت ثم تتحول إلى ضوء دافئ ساطع بأقصى سطوع. ضع الهاتف والشاشة للأعلى.</string>
     <string name="sunrise_ring">عند الإيقاظ</string>
     <string name="sunrise_window">من النافذة</string>
-    <string name="editor_sunrise_ring_hint">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="zero">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
+        <item quantity="one">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
+        <item quantity="two">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقتين.</item>
+        <item quantity="few">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقائق.</item>
+        <item quantity="many">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
+        <item quantity="other">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">يبدأ مع بداية النافذة ويصبح ساطعًا تمامًا في الوقت المستهدف.</string>
     <string name="check_ready">جاهز لهذه الليلة</string>
     <string name="check_ready_text">الساعة متصلة والمنبهات مسموحة. اضغط للتفاصيل.</string>
@@ -166,8 +187,22 @@
     <string name="trends_health_hint">مدة النوم وانتظامه يأتيان من Health Connect.</string>
     <string name="settings_support">ادعم Phase Wake</string>
     <string name="settings_support_text">Phase Wake مجاني ومفتوح المصدر وبلا إعلانات. إن أعجبك، يمكنك دعم تطويره.</string>
-    <string name="hint_title">%1$d ليالٍ بلا نوم خفيف</string>
+    <plurals name="hint_title">
+        <item quantity="zero">%1$d ليلة بلا نوم خفيف</item>
+        <item quantity="one">%1$d ليلة بلا نوم خفيف</item>
+        <item quantity="two">%1$d ليلتان بلا نوم خفيف</item>
+        <item quantity="few">%1$d ليالٍ بلا نوم خفيف</item>
+        <item quantity="many">%1$d ليلة بلا نوم خفيف</item>
+        <item quantity="other">%1$d ليلة بلا نوم خفيف</item>
+    </plurals>
     <string name="hint_gaps">كانت هناك فجوات في القياس. هل كانت الساعة قيد الشحن أو غير مرتدية ليلًا؟</string>
     <string name="hint_heart">كان معدل النبض مفقودًا. يُفضَّل ارتداء الساعة بإحكام أكبر ليلًا.</string>
     <string name="hint_calm">كان القياس كاملًا – لقد نمت نومًا هادئًا ببساطة. عندها يوقظك Phase Wake بدقة في الموعد.</string>
+    <string name="check_dnd_blocked">عدم الإزعاج يمنع المنبهات</string>
+    <string name="check_dnd_unknown">وضع عدم الإزعاج قيد التشغيل</string>
+    <string name="check_dnd_unknown_problem">لا يخبر Android التطبيقات ما إذا كانت المنبهات تمر. تأكد من السماح بالمنبهات في وضع عدم الإزعاج.</string>
+    <string name="check_watch_setup">Phase Wake على الساعة</string>
+    <string name="check_watch_setup_problem">افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات.</string>
+    <string name="ring_hold_to_stop">ضغط مطوّل للإيقاف</string>
+    <string name="settings_privacy">سياسة الخصوصية</string>
 </resources>

@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Немає будильника зі світанком</string>
     <string name="editor_sunrise_ios_hint">iPhone може показувати світло, лише поки Phase Wake відкритий – увімкни режим нічного столика перед сном.</string>
     <string name="trends_health_hint_apple">Тривалість і регулярність сну беруться з Apple Health.</string>
+    <string name="watch_not_armed">Відкрий Phase Wake перед сном, щоб годинник міг активувати будильник.</string>
+    <string name="check_watch_arm">Будильник активовано на годиннику</string>
+    <string name="check_watch_arm_problem">Відкрий Phase Wake на Apple Watch перед сном. watchOS активує будильник, лише поки застосунок відкритий.</string>
 </resources>

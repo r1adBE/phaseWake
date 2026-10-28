@@ -5,7 +5,11 @@
     <string name="ring_greeting">Bună dimineața</string>
     <string name="ring_notification_text">Alarma ta Phase Wake sună</string>
     <string name="ring_stop">Oprește</string>
-    <string name="ring_snooze">Amânare %1$d min · %2$d rămase</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Amânare %1$d min · %2$d rămasă</item>
+        <item quantity="few">Amânare %1$d min · %2$d rămase</item>
+        <item quantity="other">Amânare %1$d min · %2$d rămase</item>
+    </plurals>
     <string name="ring_snoozed">Amânat pentru %1$d min</string>
 
     <string name="nav_alarms">Alarme</string>
@@ -113,7 +117,11 @@
     <string name="settings_clear_history_confirm">Șterge</string>
     <string name="action_cancel">Anulează</string>
     <string name="editor_advice_title">Sfat: o fereastră mai mare</string>
-    <string name="editor_advice_text">În %1$d din ultimele %2$d nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">În %1$d din %2$d noapte recentă nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+        <item quantity="few">În %1$d din ultimele %2$d nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+        <item quantity="other">În %1$d din ultimele %2$d de nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+    </plurals>
     <string name="editor_advice_apply">Folosește %1$d min</string>
     <string name="channel_sunrise">Răsărit</string>
     <string name="channel_sunrise_description">Luminează ecranul ca un răsărit înainte să te trezești.</string>
@@ -124,7 +132,11 @@
     <string name="editor_sunrise_hint">Ecranul începe cu o strălucire portocalie slabă și devine o lumină caldă și intensă la luminozitate maximă. Așază telefonul cu ecranul în sus.</string>
     <string name="sunrise_ring">La trezire</string>
     <string name="sunrise_window">De la interval</string>
-    <string name="editor_sunrise_ring_hint">Pornește când ești trezit și este complet luminos după %1$d minute.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Pornește când ești trezit și este complet luminos după %1$d minut.</item>
+        <item quantity="few">Pornește când ești trezit și este complet luminos după %1$d minute.</item>
+        <item quantity="other">Pornește când ești trezit și este complet luminos după %1$d de minute.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Pornește odată cu intervalul și este complet luminos la ora țintă.</string>
     <string name="check_ready">Gata pentru noapte</string>
     <string name="check_ready_text">Ceas conectat, alarme permise. Atinge pentru detalii.</string>
@@ -166,8 +178,19 @@
     <string name="trends_health_hint">Durata și regularitatea somnului provin din Health Connect.</string>
     <string name="settings_support">Susține Phase Wake</string>
     <string name="settings_support_text">Phase Wake este gratuit, open source și fără reclame. Dacă îți place, poți susține dezvoltarea.</string>
-    <string name="hint_title">%1$d nopți fără somn ușor</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d noapte fără somn ușor</item>
+        <item quantity="few">%1$d nopți fără somn ușor</item>
+        <item quantity="other">%1$d de nopți fără somn ușor</item>
+    </plurals>
     <string name="hint_gaps">Măsurătoarea a avut goluri. Ceasul se încărca sau era scos noaptea?</string>
     <string name="hint_heart">Lipsea pulsul. Poartă ceasul puțin mai strâns noaptea.</string>
     <string name="hint_calm">Măsurătoarea a fost completă – pur și simplu ai dormit liniștit. Atunci Phase Wake te trezește sigur la ora țintă.</string>
+    <string name="check_dnd_blocked">Nu deranja blochează alarmele</string>
+    <string name="check_dnd_unknown">Nu deranja este activat</string>
+    <string name="check_dnd_unknown_problem">Android nu spune aplicațiilor dacă alarmele sunt lăsate să treacă. Verifică dacă alarmele sunt permise în modul Nu deranja.</string>
+    <string name="check_watch_setup">Phase Wake pe ceas</string>
+    <string name="check_watch_setup_problem">Deschide Phase Wake pe ceas o dată și permite senzorii și notificările.</string>
+    <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
+    <string name="settings_privacy">Politica de confidențialitate</string>
 </resources>

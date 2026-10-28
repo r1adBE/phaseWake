@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Ninguna alarma con amanecer</string>
     <string name="editor_sunrise_ios_hint">Tu iPhone solo puede mostrar la luz mientras Phase Wake esté abierta: inicia el modo mesita de noche antes de dormir.</string>
     <string name="trends_health_hint_apple">La duración y la regularidad del sueño provienen de Apple Health.</string>
+    <string name="watch_not_armed">Abre Phase Wake antes de dormir para que tu reloj pueda activar la alarma.</string>
+    <string name="check_watch_arm">Alarma activada en el reloj</string>
+    <string name="check_watch_arm_problem">Abre Phase Wake en tu Apple Watch antes de dormir. watchOS solo activa la alarma mientras la app está abierta.</string>
 </resources>

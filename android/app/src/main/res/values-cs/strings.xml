@@ -5,7 +5,11 @@
     <string name="ring_greeting">Dobré ráno</string>
     <string name="ring_notification_text">Zvoní tvůj budík Phase Wake</string>
     <string name="ring_stop">Zastavit</string>
-    <string name="ring_snooze">Odložit %1$d min · zbývá: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Odložit %1$d min · zbývá: %2$d</item>
+        <item quantity="few">Odložit %1$d min · zbývá: %2$d</item>
+        <item quantity="other">Odložit %1$d min · zbývá: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Odloženo o %1$d min</string>
 
     <string name="nav_alarms">Budíky</string>
@@ -113,7 +117,11 @@
     <string name="settings_clear_history_confirm">Smazat</string>
     <string name="action_cancel">Zrušit</string>
     <string name="editor_advice_title">Tip: větší okno</string>
-    <string name="editor_advice_text">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">V %1$d z poslední %2$d noci se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="few">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="other">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+    </plurals>
     <string name="editor_advice_apply">Použít %1$d min</string>
     <string name="channel_sunrise">Východ slunce</string>
     <string name="channel_sunrise_description">Rozsvítí displej jako východ slunce, než se probudíš.</string>
@@ -124,7 +132,11 @@
     <string name="editor_sunrise_hint">Displej nejdřív slabě zoranží a pak přejde v jasné, teplé světlo na plný jas. Polož telefon displejem nahoru.</string>
     <string name="sunrise_ring">Při buzení</string>
     <string name="sunrise_window">Od okna</string>
-    <string name="editor_sunrise_ring_hint">Začne, když tě probudí, a po %1$d minutách naplno září.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Začne, když tě probudí, a po %1$d minutě naplno září.</item>
+        <item quantity="few">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
+        <item quantity="other">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Začne s oknem buzení a v cílový čas naplno září.</string>
     <string name="check_ready">Připraveno na dnešní noc</string>
     <string name="check_ready_text">Hodinky jsou připojené, budíky povolené. Klepnutím zobrazíš podrobnosti.</string>
@@ -166,8 +178,19 @@
     <string name="trends_health_hint">Délka a pravidelnost spánku pocházejí z Health Connect.</string>
     <string name="settings_support">Podpořit Phase Wake</string>
     <string name="settings_support_text">Phase Wake je zdarma, open source a bez reklam. Pokud se ti líbí, můžeš podpořit jeho vývoj.</string>
-    <string name="hint_title">%1$d noci bez lehkého spánku</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d noc bez lehkého spánku</item>
+        <item quantity="few">%1$d noci bez lehkého spánku</item>
+        <item quantity="other">%1$d nocí bez lehkého spánku</item>
+    </plurals>
     <string name="hint_gaps">Měření mělo mezery. Nabíjely se hodinky přes noc, nebo byly sundané?</string>
     <string name="hint_heart">Chyběl tep. Noste hodinky v noci o něco těsněji.</string>
     <string name="hint_calm">Měření bylo úplné – prostě jsi spal(a) klidně. Phase Wake tě pak spolehlivě vzbudí v cílový čas.</string>
+    <string name="check_dnd_blocked">Režim Nerušit blokuje budíky</string>
+    <string name="check_dnd_unknown">Režim Nerušit je zapnutý</string>
+    <string name="check_dnd_unknown_problem">Android aplikacím neříká, zda budíky projdou. Zkontroluj, že jsou budíky v režimu Nerušit povolené.</string>
+    <string name="check_watch_setup">Phase Wake v hodinkách</string>
+    <string name="check_watch_setup_problem">Jednou otevři Phase Wake v hodinkách a povol senzory a oznámení.</string>
+    <string name="ring_hold_to_stop">Podrž pro zastavení</string>
+    <string name="settings_privacy">Zásady ochrany soukromí</string>
 </resources>

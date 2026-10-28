@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Gün doğumlu alarm yok</string>
     <string name="editor_sunrise_ios_hint">iPhone ışığı yalnızca Phase Wake açıkken gösterebilir – uyumadan önce komodin modunu başlat.</string>
     <string name="trends_health_hint_apple">Uyku süresi ve düzeni Apple Health’ten gelir.</string>
+    <string name="watch_not_armed">Uyumadan önce Phase Wake’i aç; böylece saatin alarmı etkinleştirebilir.</string>
+    <string name="check_watch_arm">Alarm saatte etkin</string>
+    <string name="check_watch_arm_problem">Uyumadan önce Apple Watch’ta Phase Wake’i aç. watchOS alarmı yalnızca uygulama açıkken etkinleştirir.</string>
 </resources>

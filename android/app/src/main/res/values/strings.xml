@@ -7,7 +7,10 @@
     <string name="ring_greeting">Good morning</string>
     <string name="ring_notification_text">Your Phase Wake alarm is ringing</string>
     <string name="ring_stop">Stop</string>
-    <string name="ring_snooze">Snooze %1$d min · %2$d left</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Snooze %1$d min · %2$d left</item>
+        <item quantity="other">Snooze %1$d min · %2$d left</item>
+    </plurals>
     <string name="ring_snoozed">Snoozing for %1$d min</string>
 
     <string name="nav_alarms">Alarms</string>
@@ -115,7 +118,10 @@
     <string name="settings_clear_history_confirm">Delete</string>
     <string name="action_cancel">Cancel</string>
     <string name="editor_advice_title">Tip: a larger window</string>
-    <string name="editor_advice_text">In %1$d of the last %2$d nights there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">In %1$d of the last %2$d night there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</item>
+        <item quantity="other">In %1$d of the last %2$d nights there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</item>
+    </plurals>
     <string name="editor_advice_apply">Use %1$d min</string>
     <string name="channel_sunrise">Sunrise</string>
     <string name="channel_sunrise_description">Lights up your screen like a sunrise before you wake.</string>
@@ -126,7 +132,10 @@
     <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness. Place your phone screen up.</string>
     <string name="sunrise_ring">On waking</string>
     <string name="sunrise_window">From window</string>
-    <string name="editor_sunrise_ring_hint">Starts when you’re woken and is fully bright after %1$d minutes.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Starts when you’re woken and is fully bright after %1$d minute.</item>
+        <item quantity="other">Starts when you’re woken and is fully bright after %1$d minutes.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Starts with the wake window and is fully bright at the target time.</string>
     <string name="check_ready">Ready for tonight</string>
     <string name="check_ready_text">Watch connected, alarms allowed. Tap for details.</string>
@@ -168,7 +177,10 @@
     <string name="trends_health_hint">Sleep duration and regularity come from Health Connect.</string>
     <string name="settings_support">Support Phase Wake</string>
     <string name="settings_support_text">Phase Wake is free, open source and has no ads. If you like it, you can support its development.</string>
-    <string name="hint_title">%1$d nights without light sleep</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d night without light sleep</item>
+        <item quantity="other">%1$d nights without light sleep</item>
+    </plurals>
     <string name="hint_gaps">There were gaps in the measurement. Was the watch charging or off at night?</string>
     <string name="hint_heart">Your heart rate was missing. Wear the watch a little tighter at night.</string>
     <string name="hint_calm">The measurement was complete – you simply slept calmly. Phase Wake then reliably wakes you at the target time.</string>

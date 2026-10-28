@@ -13,7 +13,9 @@
     <string name="ring_reason_awake">Awak sudah bangun</string>
     <string name="ring_reason_deadline">Masa sasaran dicapai</string>
     <string name="ring_hold_to_stop">Tahan untuk henti</string>
-    <string name="ring_snooze">%1$d min · baki %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d min · baki %2$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Ditangguh hingga %1$s</string>
 
     <string name="home_no_alarm">Tiada penggera ditetapkan</string>

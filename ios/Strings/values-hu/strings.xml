@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">Nincs ébresztő napfelkeltével</string>
     <string name="editor_sunrise_ios_hint">Az iPhone csak akkor tudja megjeleníteni a fényt, amíg a Phase Wake nyitva van – lefekvés előtt indítsd el az éjjeliszekrény-módot.</string>
     <string name="trends_health_hint_apple">Az alvás időtartama és rendszeressége az Apple Healthből származik.</string>
+    <string name="watch_not_armed">Lefekvés előtt nyisd meg a Phase Wake-et, hogy az órád élesíthesse az ébresztőt.</string>
+    <string name="check_watch_arm">Ébresztő élesítve az órán</string>
+    <string name="check_watch_arm_problem">Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van.</string>
 </resources>

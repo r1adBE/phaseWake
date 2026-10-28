@@ -5,7 +5,12 @@
     <string name="ring_greeting">Доброе утро</string>
     <string name="ring_notification_text">Звонит твой будильник Phase Wake</string>
     <string name="ring_stop">Стоп</string>
-    <string name="ring_snooze">Отложить на %1$d мин · осталось: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Отложить на %1$d мин · осталось: %2$d</item>
+        <item quantity="few">Отложить на %1$d мин · осталось: %2$d</item>
+        <item quantity="many">Отложить на %1$d мин · осталось: %2$d</item>
+        <item quantity="other">Отложить на %1$d мин · осталось: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Отложено на %1$d мин</string>
 
     <string name="nav_alarms">Будильники</string>
@@ -113,7 +118,12 @@
     <string name="settings_clear_history_confirm">Удалить</string>
     <string name="action_cancel">Отмена</string>
     <string name="editor_advice_title">Совет: окно побольше</string>
-    <string name="editor_advice_text">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">В %1$d из последних %2$d ночи в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="few">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="many">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="other">В %1$d из последних %2$d ночи в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+    </plurals>
     <string name="editor_advice_apply">Выбрать %1$d мин</string>
     <string name="channel_sunrise">Рассвет</string>
     <string name="channel_sunrise_description">Подсвечивает экран, как рассвет, перед твоим пробуждением.</string>
@@ -124,7 +134,12 @@
     <string name="editor_sunrise_hint">Экран начинает слабо светиться оранжевым, а затем становится ярким тёплым светом на полной яркости. Положи телефон экраном вверх.</string>
     <string name="sunrise_ring">При подъёме</string>
     <string name="sunrise_window">С начала окна</string>
-    <string name="editor_sunrise_ring_hint">Начинается, когда тебя будят, и через %1$d мин. светит на полную яркость.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Начинается, когда тебя будят, и через %1$d минуту светит на полную яркость.</item>
+        <item quantity="few">Начинается, когда тебя будят, и через %1$d минуты светит на полную яркость.</item>
+        <item quantity="many">Начинается, когда тебя будят, и через %1$d минут светит на полную яркость.</item>
+        <item quantity="other">Начинается, когда тебя будят, и через %1$d минуты светит на полную яркость.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Начинается вместе с окном и к целевому времени светит на полную яркость.</string>
     <string name="check_ready">Всё готово к ночи</string>
     <string name="check_ready_text">Часы подключены, будильники разрешены. Нажми, чтобы узнать подробности.</string>
@@ -166,8 +181,20 @@
     <string name="trends_health_hint">Длительность и регулярность сна берутся из Health Connect.</string>
     <string name="settings_support">Поддержать Phase Wake</string>
     <string name="settings_support_text">Phase Wake бесплатный, с открытым кодом и без рекламы. Если он тебе нравится, можешь поддержать его разработку.</string>
-    <string name="hint_title">%1$d ночи без лёгкого сна</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d ночь без лёгкого сна</item>
+        <item quantity="few">%1$d ночи без лёгкого сна</item>
+        <item quantity="many">%1$d ночей без лёгкого сна</item>
+        <item quantity="other">%1$d ночи без лёгкого сна</item>
+    </plurals>
     <string name="hint_gaps">В измерении были пропуски. Часы заряжались или были сняты ночью?</string>
     <string name="hint_heart">Не хватало данных о пульсе. Надевай часы на ночь чуть плотнее.</string>
     <string name="hint_calm">Измерение было полным – ты просто спокойно спал. Тогда Phase Wake надёжно разбудит тебя в целевое время.</string>
+    <string name="check_dnd_blocked">Режим «Не беспокоить» блокирует будильники</string>
+    <string name="check_dnd_unknown">Режим «Не беспокоить» включён</string>
+    <string name="check_dnd_unknown_problem">Android не сообщает приложениям, пропускаются ли будильники. Проверь, что будильники разрешены в режиме «Не беспокоить».</string>
+    <string name="check_watch_setup">Phase Wake на часах</string>
+    <string name="check_watch_setup_problem">Один раз открой Phase Wake на часах и разреши датчики и уведомления.</string>
+    <string name="ring_hold_to_stop">Удерживай, чтобы остановить</string>
+    <string name="settings_privacy">Политика конфиденциальности</string>
 </resources>

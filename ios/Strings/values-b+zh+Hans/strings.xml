@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">没有日出闹钟</string>
     <string name="editor_sunrise_ios_hint">你的 iPhone 只有在 Phase Wake 打开时才能显示光线 – 请在睡觉前开始床头模式。</string>
     <string name="trends_health_hint_apple">睡眠时长和规律性来自 Apple Health。</string>
+    <string name="watch_not_armed">睡觉前请打开 Phase Wake，这样你的手表才能启用闹钟。</string>
+    <string name="check_watch_arm">手表上的闹钟已启用</string>
+    <string name="check_watch_arm_problem">睡觉前请在你的 Apple Watch 上打开 Phase Wake。watchOS 只有在应用打开时才会启用闹钟。</string>
 </resources>

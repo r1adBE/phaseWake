@@ -5,7 +5,9 @@
     <string name="ring_greeting">อรุณสวัสดิ์</string>
     <string name="ring_notification_text">นาฬิกาปลุก Phase Wake กำลังดัง</string>
     <string name="ring_stop">หยุด</string>
-    <string name="ring_snooze">ปลุกซ้ำ %1$d นาที · เหลือ %2$d ครั้ง</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">ปลุกซ้ำ %1$d นาที · เหลือ %2$d ครั้ง</item>
+    </plurals>
     <string name="ring_snoozed">ปลุกซ้ำใน %1$d นาที</string>
 
     <string name="nav_alarms">นาฬิกาปลุก</string>
@@ -113,7 +115,9 @@
     <string name="settings_clear_history_confirm">ลบ</string>
     <string name="action_cancel">ยกเลิก</string>
     <string name="editor_advice_title">เคล็ดลับ: ช่วงเวลาที่กว้างขึ้น</string>
-    <string name="editor_advice_text">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</string>
+    <plurals name="editor_advice_text">
+        <item quantity="other">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</item>
+    </plurals>
     <string name="editor_advice_apply">ใช้ %1$d นาที</string>
     <string name="channel_sunrise">พระอาทิตย์ขึ้น</string>
     <string name="channel_sunrise_description">ทำให้หน้าจอสว่างเหมือนพระอาทิตย์ขึ้นก่อนที่คุณจะตื่น</string>
@@ -124,7 +128,9 @@
     <string name="editor_sunrise_hint">หน้าจอเริ่มจากแสงสีส้มจาง ๆ แล้วค่อยเป็นแสงอุ่นสว่างที่ความสว่างเต็มที่ วางโทรศัพท์โดยหงายหน้าจอขึ้น</string>
     <string name="sunrise_ring">ตอนปลุก</string>
     <string name="sunrise_window">ตั้งแต่ช่วงเวลา</string>
-    <string name="editor_sunrise_ring_hint">เริ่มเมื่อคุณถูกปลุก และสว่างเต็มที่หลังผ่านไป %1$d นาที</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="other">เริ่มเมื่อคุณถูกปลุก และสว่างเต็มที่หลังผ่านไป %1$d นาที</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">เริ่มพร้อมช่วงเวลา และสว่างเต็มที่ตามเวลาเป้าหมาย</string>
     <string name="check_ready">พร้อมสำหรับคืนนี้</string>
     <string name="check_ready_text">เชื่อมต่อนาฬิกาแล้ว อนุญาตการปลุกแล้ว แตะเพื่อดูรายละเอียด</string>
@@ -166,8 +172,17 @@
     <string name="trends_health_hint">ระยะเวลาและความสม่ำเสมอของการนอนมาจาก Health Connect</string>
     <string name="settings_support">สนับสนุน Phase Wake</string>
     <string name="settings_support_text">Phase Wake ใช้ฟรี เป็นโอเพนซอร์ส และไม่มีโฆษณา หากคุณชอบ คุณสามารถสนับสนุนการพัฒนาได้</string>
-    <string name="hint_title">%1$d คืนไม่มีช่วงหลับตื้น</string>
+    <plurals name="hint_title">
+        <item quantity="other">%1$d คืนไม่มีช่วงหลับตื้น</item>
+    </plurals>
     <string name="hint_gaps">การวัดมีช่วงที่ขาดหายไป นาฬิกาชาร์จอยู่หรือถอดออกตอนกลางคืนหรือเปล่า</string>
     <string name="hint_heart">ไม่มีข้อมูลอัตราการเต้นของหัวใจ ลองสวมนาฬิกาให้กระชับขึ้นอีกนิดตอนกลางคืน</string>
     <string name="hint_calm">การวัดครบถ้วนดี คุณเพียงแค่หลับสบายเท่านั้น กรณีนี้ Phase Wake จะปลุกคุณได้อย่างแม่นยำตรงเวลาเป้าหมาย</string>
+    <string name="check_dnd_blocked">โหมดห้ามรบกวนบล็อกนาฬิกาปลุก</string>
+    <string name="check_dnd_unknown">โหมดห้ามรบกวนเปิดอยู่</string>
+    <string name="check_dnd_unknown_problem">Android ไม่แจ้งแอปว่านาฬิกาปลุกดังได้หรือไม่ โปรดตรวจสอบว่าอนุญาตนาฬิกาปลุกในโหมดห้ามรบกวนแล้ว</string>
+    <string name="check_watch_setup">Phase Wake บนนาฬิกา</string>
+    <string name="check_watch_setup_problem">เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์และการแจ้งเตือน</string>
+    <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
+    <string name="settings_privacy">นโยบายความเป็นส่วนตัว</string>
 </resources>

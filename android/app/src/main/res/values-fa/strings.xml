@@ -5,7 +5,10 @@
     <string name="ring_greeting">صبح بخیر</string>
     <string name="ring_notification_text">زنگ Phase Wake در حال به صدا درآمدن است</string>
     <string name="ring_stop">توقف</string>
-    <string name="ring_snooze">چرت %1$d دق · مانده: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">چرت %1$d دق · مانده: %2$d</item>
+        <item quantity="other">چرت %1$d دق · مانده: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">چرت برای %1$d دق</string>
 
     <string name="nav_alarms">زنگ‌ها</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">پاک کردن</string>
     <string name="action_cancel">لغو</string>
     <string name="editor_advice_title">نکته: بازه‌ی بزرگ‌تر</string>
-    <string name="editor_advice_text">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
+        <item quantity="other">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
+    </plurals>
     <string name="editor_advice_apply">استفاده از %1$d دقیقه</string>
     <string name="channel_sunrise">طلوع خورشید</string>
     <string name="channel_sunrise_description">پیش از بیدار شدنت، صفحه را مثل طلوع خورشید روشن می‌کند.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">صفحه با درخششی کم‌رنگ و نارنجی شروع می‌شود و با نور کامل به نوری روشن و گرم تبدیل می‌شود. گوشی را رو به بالا بگذار.</string>
     <string name="sunrise_ring">هنگام بیداری</string>
     <string name="sunrise_window">از شروع بازه</string>
-    <string name="editor_sunrise_ring_hint">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</item>
+        <item quantity="other">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">با شروع بازه آغاز می‌شود و در زمان هدف کاملاً روشن است.</string>
     <string name="check_ready">آماده برای امشب</string>
     <string name="check_ready_text">ساعت متصل است و هشدارها مجاز است. برای جزئیات بزن.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">مدت و نظم خواب از Health Connect می‌آید.</string>
     <string name="settings_support">از Phase Wake حمایت کن</string>
     <string name="settings_support_text">Phase Wake رایگان، متن‌باز و بدون تبلیغ است. اگر دوستش داری، می‌توانی از توسعه‌اش حمایت کنی.</string>
-    <string name="hint_title">%1$d شب بدون خواب سبک</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d شب بدون خواب سبک</item>
+        <item quantity="other">%1$d شب بدون خواب سبک</item>
+    </plurals>
     <string name="hint_gaps">اندازه‌گیری وقفه داشت. ساعت شب شارژ بود یا از مچ درآمده بود؟</string>
     <string name="hint_heart">ضربان قلب ثبت نشده بود. شب‌ها ساعت را کمی محکم‌تر ببند.</string>
     <string name="hint_calm">اندازه‌گیری کامل بود – تو فقط آرام خوابیدی. در این صورت Phase Wake مطمئناً تو را در زمان هدف بیدار می‌کند.</string>
+    <string name="check_dnd_blocked">مزاحم نشو، زنگ‌ها را مسدود می‌کند</string>
+    <string name="check_dnd_unknown">مزاحم نشو روشن است</string>
+    <string name="check_dnd_unknown_problem">Android به برنامه‌ها نمی‌گوید که زنگ‌ها عبور می‌کنند یا نه. بررسی کن که زنگ‌ها در حالت «مزاحم نشو» مجاز باشند.</string>
+    <string name="check_watch_setup">Phase Wake روی ساعت</string>
+    <string name="check_watch_setup_problem">یک بار Phase Wake را روی ساعت باز کن و حسگرها و اعلان‌ها را مجاز کن.</string>
+    <string name="ring_hold_to_stop">برای توقف نگه دار</string>
+    <string name="settings_privacy">سیاست حریم خصوصی</string>
 </resources>

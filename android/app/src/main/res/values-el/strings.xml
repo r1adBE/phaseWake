@@ -5,7 +5,10 @@
     <string name="ring_greeting">Καλημέρα</string>
     <string name="ring_notification_text">Το ξυπνητήρι σου στο Phase Wake χτυπά</string>
     <string name="ring_stop">Διακοπή</string>
-    <string name="ring_snooze">Αναβολή %1$d λ. · απομένουν: %2$d</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Αναβολή %1$d λ. · απομένουν: %2$d</item>
+        <item quantity="other">Αναβολή %1$d λ. · απομένουν: %2$d</item>
+    </plurals>
     <string name="ring_snoozed">Αναβολή για %1$d λ.</string>
 
     <string name="nav_alarms">Ξυπνητήρια</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Διαγραφή</string>
     <string name="action_cancel">Ακύρωση</string>
     <string name="editor_advice_title">Συμβουλή: μεγαλύτερο παράθυρο</string>
-    <string name="editor_advice_text">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">Σε %1$d από την τελευταία %2$d νύχτα δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
+        <item quantity="other">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
+    </plurals>
     <string name="editor_advice_apply">Χρήση %1$d λεπτών</string>
     <string name="channel_sunrise">Ανατολή ηλίου</string>
     <string name="channel_sunrise_description">Φωτίζει την οθόνη σου σαν ανατολή ηλίου πριν ξυπνήσεις.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Η οθόνη ξεκινά με ένα αχνό πορτοκαλί φως και γίνεται έντονο, ζεστό φως στη μέγιστη φωτεινότητα. Τοποθέτησε το κινητό με την οθόνη προς τα πάνω.</string>
     <string name="sunrise_ring">Στο ξύπνημα</string>
     <string name="sunrise_window">Από παράθυρο</string>
-    <string name="editor_sunrise_ring_hint">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτά.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτό.</item>
+        <item quantity="other">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτά.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Ξεκινά με το παράθυρο και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο.</string>
     <string name="check_ready">Έτοιμο για απόψε</string>
     <string name="check_ready_text">Το ρολόι είναι συνδεδεμένο, τα ξυπνητήρια επιτρέπονται. Πάτα για λεπτομέρειες.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Η διάρκεια και η κανονικότητα του ύπνου προέρχονται από το Health Connect.</string>
     <string name="settings_support">Στήριξε το Phase Wake</string>
     <string name="settings_support_text">Το Phase Wake είναι δωρεάν, ανοιχτού κώδικα και χωρίς διαφημίσεις. Αν σου αρέσει, μπορείς να στηρίξεις την ανάπτυξή του.</string>
-    <string name="hint_title">%1$d νύχτες χωρίς ελαφρύ ύπνο</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d νύχτα χωρίς ελαφρύ ύπνο</item>
+        <item quantity="other">%1$d νύχτες χωρίς ελαφρύ ύπνο</item>
+    </plurals>
     <string name="hint_gaps">Η μέτρηση είχε κενά. Το ρολόι φόρτιζε ή ήταν βγαλμένο τη νύχτα;</string>
     <string name="hint_heart">Έλειπε ο παλμός. Φόρα το ρολόι λίγο πιο σφιχτά τη νύχτα.</string>
     <string name="hint_calm">Η μέτρηση ήταν πλήρης – απλώς κοιμήθηκες ήρεμα. Τότε το Phase Wake σε ξυπνά αξιόπιστα στην ώρα στόχου.</string>
+    <string name="check_dnd_blocked">Το «Μην ενοχλείτε» μπλοκάρει τα ξυπνητήρια</string>
+    <string name="check_dnd_unknown">Το «Μην ενοχλείτε» είναι ενεργό</string>
+    <string name="check_dnd_unknown_problem">Το Android δεν ενημερώνει τις εφαρμογές αν περνούν τα ξυπνητήρια. Έλεγξε ότι τα ξυπνητήρια επιτρέπονται στο «Μην ενοχλείτε».</string>
+    <string name="check_watch_setup">Το Phase Wake στο ρολόι</string>
+    <string name="check_watch_setup_problem">Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες και ειδοποιήσεις.</string>
+    <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
+    <string name="settings_privacy">Πολιτική απορρήτου</string>
 </resources>

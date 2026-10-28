@@ -5,7 +5,10 @@
     <string name="ring_greeting">God morgon</string>
     <string name="ring_notification_text">Ditt Phase Wake-larm ringer</string>
     <string name="ring_stop">Stoppa</string>
-    <string name="ring_snooze">Snooze %1$d min · %2$d kvar</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Snooze %1$d min · %2$d kvar</item>
+        <item quantity="other">Snooze %1$d min · %2$d kvar</item>
+    </plurals>
     <string name="ring_snoozed">Snooze i %1$d min</string>
 
     <string name="nav_alarms">Larm</string>
@@ -113,7 +116,10 @@
     <string name="settings_clear_history_confirm">Radera</string>
     <string name="action_cancel">Avbryt</string>
     <string name="editor_advice_title">Tips: ett större fönster</string>
-    <string name="editor_advice_text">Under %1$d av de senaste %2$d nätterna fanns ingen lätt sömn i fönstret. Med %3$d min vaknar du oftare vid ett bra tillfälle.</string>
+    <plurals name="editor_advice_text">
+        <item quantity="one">Under %1$d av den senaste %2$d natten fanns ingen lätt sömn i fönstret. Med %3$d min vaknar du oftare vid ett bra tillfälle.</item>
+        <item quantity="other">Under %1$d av de senaste %2$d nätterna fanns ingen lätt sömn i fönstret. Med %3$d min vaknar du oftare vid ett bra tillfälle.</item>
+    </plurals>
     <string name="editor_advice_apply">Använd %1$d min</string>
     <string name="channel_sunrise">Soluppgång</string>
     <string name="channel_sunrise_description">Tänder skärmen som en soluppgång innan du vaknar.</string>
@@ -124,7 +130,10 @@
     <string name="editor_sunrise_hint">Skärmen börjar med ett svagt orange sken och blir ett starkt, varmt ljus med full ljusstyrka. Lägg mobilen med skärmen uppåt.</string>
     <string name="sunrise_ring">Vid väckning</string>
     <string name="sunrise_window">Från fönstret</string>
-    <string name="editor_sunrise_ring_hint">Börjar när du väcks och är helt ljus efter %1$d minuter.</string>
+    <plurals name="editor_sunrise_ring_hint">
+        <item quantity="one">Börjar när du väcks och är helt ljus efter %1$d minut.</item>
+        <item quantity="other">Börjar när du väcks och är helt ljus efter %1$d minuter.</item>
+    </plurals>
     <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid måltiden.</string>
     <string name="check_ready">Redo för natten</string>
     <string name="check_ready_text">Klockan är ansluten, alarm är tillåtna. Tryck för detaljer.</string>
@@ -166,8 +175,18 @@
     <string name="trends_health_hint">Sömnlängd och regelbundenhet kommer från Health Connect.</string>
     <string name="settings_support">Stöd Phase Wake</string>
     <string name="settings_support_text">Phase Wake är gratis, öppen källkod och har inga annonser. Gillar du den kan du stödja utvecklingen.</string>
-    <string name="hint_title">%1$d nätter utan lätt sömn</string>
+    <plurals name="hint_title">
+        <item quantity="one">%1$d natt utan lätt sömn</item>
+        <item quantity="other">%1$d nätter utan lätt sömn</item>
+    </plurals>
     <string name="hint_gaps">Mätningen hade luckor. Laddades klockan eller var den av under natten?</string>
     <string name="hint_heart">Pulsen saknades. Bär klockan lite tightare på natten.</string>
     <string name="hint_calm">Mätningen var komplett – du sov helt enkelt lugnt. Då väcker Phase Wake dig pålitligt vid måltid.</string>
+    <string name="check_dnd_blocked">Stör ej blockerar alarm</string>
+    <string name="check_dnd_unknown">Stör ej är på</string>
+    <string name="check_dnd_unknown_problem">Android talar inte om för appar om alarm släpps igenom. Kontrollera att alarm är tillåtna i Stör ej.</string>
+    <string name="check_watch_setup">Phase Wake på klockan</string>
+    <string name="check_watch_setup_problem">Öppna Phase Wake på klockan en gång och tillåt sensorer och aviseringar.</string>
+    <string name="ring_hold_to_stop">Håll för att stoppa</string>
+    <string name="settings_privacy">Integritetspolicy</string>
 </resources>

@@ -13,7 +13,10 @@
     <string name="ring_reason_awake">Olit jo hereillä</string>
     <string name="ring_reason_deadline">Tavoiteaika saavutettu</string>
     <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
-    <string name="ring_snooze">%1$d min · %2$d jäljellä</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d jäljellä</item>
+        <item quantity="other">%1$d min · %2$d jäljellä</item>
+    </plurals>
     <string name="ring_snoozed_until">Torkku %1$s asti</string>
 
     <string name="home_no_alarm">Ei herätystä</string>

@@ -12,4 +12,7 @@
     <string name="nightstand_no_alarm">सूर्योदय वाला कोई अलार्म नहीं</string>
     <string name="editor_sunrise_ios_hint">आपका iPhone रोशनी तभी दिखा सकता है जब Phase Wake खुला हो – सोने से पहले बेडसाइड मोड शुरू करें।</string>
     <string name="trends_health_hint_apple">नींद की अवधि और नियमितता Apple Health से आती है।</string>
+    <string name="watch_not_armed">सोने से पहले Phase Wake खोलें, ताकि आपकी वॉच अलार्म को सक्रिय कर सके।</string>
+    <string name="check_watch_arm">वॉच पर अलार्म सक्रिय है</string>
+    <string name="check_watch_arm_problem">सोने से पहले अपनी Apple Watch पर Phase Wake खोलें। watchOS अलार्म को तभी सक्रिय करता है जब ऐप खुला हो।</string>
 </resources>
