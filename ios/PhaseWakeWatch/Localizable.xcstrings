@@ -4315,10 +4315,34 @@
     },
     "check_dnd_blocked": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عدم الإزعاج يمنع المنبهات"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Režim Nerušit blokuje budíky"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forstyr ikke blokerer alarmer"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "«Nicht stören» blockiert Wecker"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το «Μην ενοχλείτε» μπλοκάρει τα ξυπνητήρια"
           }
         },
         "en": {
@@ -4326,15 +4350,195 @@
             "state": "translated",
             "value": "Do Not Disturb blocks alarms"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No molestar bloquea las alarmas"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزاحم نشو، زنگ‌ها را مسدود می‌کند"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Älä häiritse estää herätykset"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ne pas déranger bloque les alarmes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "״נא לא להפריע״ חוסם שעונים מעוררים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डू नॉट डिस्टर्ब अलार्म को रोकता है"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Ne zavarjanak blokkolja az ébresztőket"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jangan Ganggu memblokir alarm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non disturbare blocca le sveglie"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイレントモードがアラームをブロックしています"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "방해 금지 모드가 알람을 차단해요"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jangan Ganggu menyekat penggera"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke forstyrr blokkerer alarmer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet storen blokkeert wekkers"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie przeszkadzać blokuje budziki"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não perturbe bloqueia os alarmes"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não incomodar bloqueia os alarmes"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu deranja blochează alarmele"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим «Не беспокоить» блокирует будильники"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stör ej blockerar alarm"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โหมดห้ามรบกวนบล็อกนาฬิกาปลุก"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rahatsız Etme alarmları engelliyor"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим «Не турбувати» блокує будильники"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ Không làm phiền đang chặn báo thức"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "勿扰模式会屏蔽闹钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "勿擾模式會封鎖鬧鐘"
+          }
         }
       }
     },
     "check_dnd_unknown": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وضع عدم الإزعاج قيد التشغيل"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Režim Nerušit je zapnutý"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forstyr ikke er slået til"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "«Nicht stören» ist an"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το «Μην ενοχλείτε» είναι ενεργό"
           }
         },
         "en": {
@@ -4342,21 +4546,357 @@
             "state": "translated",
             "value": "Do Not Disturb is on"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No molestar está activado"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مزاحم نشو روشن است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Älä häiritse on päällä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ne pas déranger est activé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "״נא לא להפריע״ פעיל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डू नॉट डिस्टर्ब चालू है"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Ne zavarjanak be van kapcsolva"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jangan Ganggu aktif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non disturbare è attivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイレントモードがオンです"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "방해 금지 모드가 켜져 있어요"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jangan Ganggu dihidupkan"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke forstyrr er på"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet storen staat aan"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb Nie przeszkadzać jest włączony"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não perturbe está ativado"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não incomodar está ativado"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu deranja este activat"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим «Не беспокоить» включён"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stör ej är på"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โหมดห้ามรบกวนเปิดอยู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rahatsız Etme açık"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим «Не турбувати» увімкнено"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ Không làm phiền đang bật"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "勿扰模式已开启"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "勿擾模式已開啟"
+          }
         }
       }
     },
     "check_dnd_unknown_problem": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يخبر Android التطبيقات ما إذا كانت المنبهات تمر. تأكد من السماح بالمنبهات في وضع عدم الإزعاج."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android aplikacím neříká, zda budíky projdou. Zkontroluj, že jsou budíky v režimu Nerušit povolené."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android fortæller ikke apps, om alarmer kommer igennem. Tjek, at alarmer er tilladt i Forstyr ikke."
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Android verrät Apps nicht, ob Wecker durchkommen. Prüfe, ob Wecker bei «Nicht stören» erlaubt sind."
           }
         },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Android δεν ενημερώνει τις εφαρμογές αν περνούν τα ξυπνητήρια. Έλεγξε ότι τα ξυπνητήρια επιτρέπονται στο «Μην ενοχλείτε»."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Android doesn’t tell apps whether alarms get through. Check that alarms are allowed in Do Not Disturb."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android no informa a las apps de si las alarmas se dejan pasar. Comprueba que las alarmas estén permitidas en No molestar."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android به برنامه‌ها نمی‌گوید که زنگ‌ها عبور می‌کنند یا نه. بررسی کن که زنگ‌ها در حالت «مزاحم نشو» مجاز باشند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android ei kerro sovelluksille, päästetäänkö herätykset läpi. Tarkista, että herätykset on sallittu Älä häiritse -tilassa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android n’indique pas aux apps si les alarmes passent. Vérifie que les alarmes sont autorisées dans Ne pas déranger."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android לא מדווח לאפליקציות אם שעונים מעוררים עוברים. ודאו ששעונים מעוררים מותרים ב״נא לא להפריע״."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android ऐप्स को नहीं बताता कि अलार्म आगे जाते हैं या नहीं। जाँच लें कि डू नॉट डिस्टर्ब में अलार्म की अनुमति है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az Android nem jelzi az alkalmazásoknak, hogy az ébresztők átjutnak-e. Ellenőrizd, hogy az ébresztők engedélyezve vannak-e a Ne zavarjanak módban."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android tidak memberi tahu aplikasi apakah alarm diloloskan. Pastikan alarm diizinkan di Jangan Ganggu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android non comunica alle app se le sveglie passano. Controlla che le sveglie siano consentite in Non disturbare."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Androidでは、アラームが鳴るかどうかをアプリから確認できません。サイレントモードでアラームが許可されているか確認してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android는 알람이 울릴 수 있는지 앱에 알려 주지 않아요. 방해 금지 모드에서 알람이 허용되어 있는지 확인해 주세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android tidak memberitahu apl sama ada penggera dibenarkan. Semak sama ada penggera dibenarkan dalam Jangan Ganggu."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android forteller ikke apper om alarmer slipper gjennom. Sjekk at alarmer er tillatt i Ikke forstyrr."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android laat apps niet weten of wekkers doorkomen. Controleer of wekkers zijn toegestaan bij Niet storen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android nie informuje aplikacji, czy budziki są przepuszczane. Sprawdź, czy budziki są dozwolone w trybie Nie przeszkadzać."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Android não informa aos apps se os alarmes são permitidos. Verifique se os alarmes estão permitidos no Não perturbe."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Android não informa as apps se os alarmes são permitidos. Verifica se os alarmes estão permitidos em Não incomodar."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android nu spune aplicațiilor dacă alarmele sunt lăsate să treacă. Verifică dacă alarmele sunt permise în modul Nu deranja."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android не сообщает приложениям, пропускаются ли будильники. Проверь, что будильники разрешены в режиме «Не беспокоить»."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android talar inte om för appar om alarm släpps igenom. Kontrollera att alarm är tillåtna i Stör ej."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android ไม่แจ้งแอปว่านาฬิกาปลุกดังได้หรือไม่ โปรดตรวจสอบว่าอนุญาตนาฬิกาปลุกในโหมดห้ามรบกวนแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android, alarmların çalıp çalmayacağını uygulamalara bildirmez. Rahatsız Etme'de alarmlara izin verildiğini kontrol et."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android не повідомляє застосункам, чи пропускаються будильники. Перевір, чи дозволено будильники в режимі «Не турбувати»."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android không cho ứng dụng biết báo thức có được phép kêu hay không. Hãy kiểm tra xem báo thức đã được cho phép trong chế độ Không làm phiền chưa."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android 不会告诉应用闹钟能否响起。请检查勿扰模式下是否允许闹钟。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Android 不會告訴 App 鬧鐘能否響起。請檢查勿擾模式下是否允許鬧鐘。"
           }
         }
       }
@@ -6323,10 +6863,34 @@
     },
     "check_watch_arm": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبه مفعّل على الساعة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budík je v hodinkách aktivní"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm aktiveret på uret"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Wecker auf der Uhr scharf"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το ξυπνητήρι ενεργοποιήθηκε στο ρολόι"
           }
         },
         "en": {
@@ -6334,21 +6898,357 @@
             "state": "translated",
             "value": "Alarm armed on the watch"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma activada en el reloj"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ روی ساعت فعال است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herätys aktivoitu kellossa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme activée sur la montre"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המעורר פעיל בשעון"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर अलार्म सक्रिय है"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ébresztő élesítve az órán"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm aktif di jam tangan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglia attivata sull’orologio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチでアラーム有効"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치에서 알람 활성화됨"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera diaktifkan pada jam tangan"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmen er aktivert på klokken"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekker geactiveerd op het horloge"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budzik aktywny na zegarku"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme ativado no relógio"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme ativado no relógio"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmă activată pe ceas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник активирован на часах"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmet är aktiverat på klockan"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดใช้งานนาฬิกาปลุกบนนาฬิกาแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm saatte etkin"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник активовано на годиннику"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Báo thức đã được kích hoạt trên đồng hồ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表上的闹钟已启用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶上的鬧鐘已啟用"
+          }
         }
       }
     },
     "check_watch_arm_problem": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح Phase Wake على Apple Watch قبل أن تنام. لا يفعّل watchOS المنبه إلا أثناء فتح التطبيق."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Před spaním otevři Phase Wake na Apple Watch. watchOS aktivuje budík, jen když je aplikace otevřená."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn Phase Wake på dit Apple Watch, før du går i seng. watchOS aktiverer kun alarmen, mens appen er åben."
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Öffne Phase Wake vor dem Schlafen auf der Apple Watch. watchOS schaltet den Wecker nur bei offener App scharf."
           }
         },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιξε το Phase Wake στο Apple Watch σου πριν κοιμηθείς. Το watchOS ενεργοποιεί το ξυπνητήρι μόνο όσο η εφαρμογή είναι ανοιχτή."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Phase Wake on your Apple Watch before you go to sleep. watchOS only arms the alarm while the app is open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake en tu Apple Watch antes de dormir. watchOS solo activa la alarma mientras la app está abierta."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa Phase Wake Apple Watchissa ennen nukkumaanmenoa. watchOS aktivoi herätyksen vain, kun sovellus on auki."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Phase Wake sur ton Apple Watch avant de dormir. watchOS n’active l’alarme que tant que l’app est ouverte."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתחו את Phase Wake ב-Apple Watch שלכם לפני השינה. watchOS מפעיל את המעורר רק כשהאפליקציה פתוחה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने से पहले अपनी Apple Watch पर Phase Wake खोलें। watchOS अलार्म को तभी सक्रिय करता है जब ऐप खुला हो।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake di Apple Watch-mu sebelum tidur. watchOS hanya mengaktifkan alarm selama aplikasi terbuka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Phase Wake sul tuo Apple Watch prima di dormire. watchOS attiva la sveglia solo finché l’app è aperta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠들기 전에 Apple Watch에서 Phase Wake를 열어 주세요. watchOS는 앱이 열려 있는 동안에만 알람을 활성화해요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake pada Apple Watch sebelum awak tidur. watchOS hanya mengaktifkan penggera semasa apl dibuka."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Phase Wake på Apple Watch før du legger deg. watchOS aktiverer bare alarmen mens appen er åpen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake op je Apple Watch voordat je gaat slapen. watchOS activeert de wekker alleen zolang de app geopend is."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz Phase Wake na Apple Watch przed snem. watchOS aktywuje budzik tylko wtedy, gdy aplikacja jest otwarta."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Phase Wake no seu Apple Watch antes de dormir. O watchOS só ativa o alarme enquanto o app está aberto."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Phase Wake no teu Apple Watch antes de dormires. O watchOS só ativa o alarme enquanto a app estiver aberta."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide Phase Wake pe Apple Watch înainte de culcare. watchOS activează alarma doar cât timp aplicația este deschisă."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открой Phase Wake на Apple Watch перед сном. watchOS активирует будильник, только пока приложение открыто."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Phase Wake på Apple Watch innan du somnar. watchOS aktiverar bara alarmet medan appen är öppen."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Phase Wake บน Apple Watch ก่อนเข้านอน watchOS จะเปิดใช้งานนาฬิกาปลุกเฉพาะตอนที่แอปเปิดอยู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyumadan önce Apple Watch’ta Phase Wake’i aç. watchOS alarmı yalnızca uygulama açıkken etkinleştirir."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрий Phase Wake на Apple Watch перед сном. watchOS активує будильник, лише поки застосунок відкритий."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy mở Phase Wake trên Apple Watch trước khi đi ngủ. watchOS chỉ kích hoạt báo thức khi ứng dụng đang mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡觉前请在你的 Apple Watch 上打开 Phase Wake。watchOS 只有在应用打开时才会启用闹钟。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡覺前請在你的 Apple Watch 上開啟 Phase Wake。watchOS 只有在 App 開啟時才會啟用鬧鐘。"
           }
         }
       }
@@ -6747,10 +7647,34 @@
     },
     "check_watch_setup": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake على الساعة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake v hodinkách"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake på uret"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake auf der Uhr"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake στο ρολόι"
           }
         },
         "en": {
@@ -6758,21 +7682,357 @@
             "state": "translated",
             "value": "Phase Wake on the watch"
           }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake en el reloj"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake روی ساعت"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kellossa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake sur la montre"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake בשעון"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर Phase Wake"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake az órán"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake di jam tangan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake sull’orologio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチのPhase Wake"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치의 Phase Wake"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pada jam tangan"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake på klokken"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake op het horloge"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake na zegarku"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake no relógio"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake no relógio"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pe ceas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake на часах"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake på klockan"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake บนนาฬิกา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte Phase Wake"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake на годиннику"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake trên đồng hồ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表上的 Phase Wake"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶上的 Phase Wake"
+          }
         }
       }
     },
     "check_watch_setup_problem": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح Phase Wake على الساعة مرة واحدة واسمح بالمستشعرات والإشعارات."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jednou otevři Phase Wake v hodinkách a povol senzory a oznámení."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn Phase Wake på uret én gang, og tillad sensorer og notifikationer."
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Öffne Phase Wake einmal auf der Uhr und erlaube Sensoren und Mitteilungen."
           }
         },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες και ειδοποιήσεις."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Phase Wake on the watch once and allow sensors and notifications."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake en el reloj una vez y permite los sensores y las notificaciones."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یک بار Phase Wake را روی ساعت باز کن و حسگرها و اعلان‌ها را مجاز کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa Phase Wake kellossa kerran ja salli anturit ja ilmoitukset."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Phase Wake une fois sur la montre et autorise les capteurs et les notifications."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתחו את Phase Wake בשעון פעם אחת ואפשרו חיישנים והתראות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर एक बार Phase Wake खोलें और सेंसर व नोटिफ़िकेशन की अनुमति दें।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyisd meg egyszer a Phase Wake-et az órán, és engedélyezd az érzékelőket és az értesítéseket."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake di jam tangan sekali dan izinkan sensor serta notifikasi."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Phase Wake sull’orologio una volta e consenti sensori e notifiche."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチでPhase Wakeを一度開き、センサーと通知を許可してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치에서 Phase Wake를 한 번 열고 센서와 알림을 허용해 주세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake pada jam tangan sekali dan benarkan penderia serta pemberitahuan."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Phase Wake på klokken én gang og tillat sensorer og varsler."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake één keer op het horloge en sta sensoren en meldingen toe."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raz otwórz Phase Wake na zegarku i zezwól na czujniki oraz powiadomienia."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Phase Wake no relógio uma vez e permita sensores e notificações."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Phase Wake no relógio uma vez e permite sensores e notificações."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide Phase Wake pe ceas o dată și permite senzorii și notificările."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один раз открой Phase Wake на часах и разреши датчики и уведомления."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Phase Wake på klockan en gång och tillåt sensorer och aviseringar."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Phase Wake บนนาฬิกาสักครั้ง แล้วอนุญาตเซนเซอร์และการแจ้งเตือน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte Phase Wake’i bir kez aç; sensörlere ve bildirimlere izin ver."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один раз відкрий Phase Wake на годиннику та дозволь датчики й сповіщення."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến cùng thông báo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在手表上打开一次 Phase Wake，并允许使用传感器和通知。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在手錶上開啟一次 Phase Wake，並允許使用感測器和通知。"
           }
         }
       }
@@ -8345,12 +9605,160 @@
         }
       }
     },
-    "editor_advice_text": {
+    "editor_advice_text|one": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V %1$lld z poslední %2$lld noci se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %1$lld af den seneste %2$lld nat var der ingen let søvn i vinduet. Med %3$lld min vågner du oftere på et godt tidspunkt."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In %1$lld der letzten %2$lld Nacht kam kein leichter Schlaf ins Fenster. Mit %3$lld Min erwischst du öfter einen guten Moment."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σε %1$lld από την τελευταία %2$lld νύχτα δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$lld λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In %1$lld of the last %2$lld night there was no light sleep in the window. With %3$lld min you’ll more often wake at a good moment."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En %1$lld de la última noche (%2$lld) no hubo sueño ligero dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در %1$lld شب از %2$lld شب اخیر، در بازه خواب سبک نبود. با %3$lld دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld viimeisestä %2$lld yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$lld min, heräät useammin hyvällä hetkellä."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans %1$lld de la dernière nuit (%2$lld), il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ב-%1$lld מתוך הלילה האחרון (%2$lld) לא הייתה שינה קלה בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछली %2$lld रात में से %1$lld रात में विंडो के दौरान हल्की नींद नहीं आई। %3$lld मिनट से तुम अक्सर सही समय पर जागोगे।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az utolsó %2$lld éjszakából %1$lld alkalommal nem volt könnyű alvás az ablakban. %3$lld perccel gyakrabban ébredsz jó pillanatban."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In %1$lld dell’ultima notte (%2$lld) non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %1$lld av den siste %2$lld natten var det ingen lett søvn i vinduet. Med %3$lld min våkner du oftere på et godt tidspunkt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In %1$lld van de laatste %2$lld nacht zat er geen lichte slaap in het venster. Met %3$lld min word je vaker op een goed moment wakker."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W %1$lld z ostatniej %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em %1$lld de %2$lld noite recente não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em %1$lld de %2$lld noite recente não houve sono leve na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În %1$lld din %2$lld noapte recentă nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В %1$lld из последних %2$lld ночи в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld av den senaste %2$lld natten fanns ingen lätt sömn i fönstret. Med %3$lld min vaknar du oftare vid ett bra tillfälle."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son %2$lld gecenin %1$lld tanesinde aralıkta hafif uyku yoktu. %3$lld dk ile daha sık uygun bir anda uyanırsın."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У %1$lld з останніх %2$lld ночі у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+          }
+        }
+      }
+    },
+    "editor_advice_text|other": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "cs": {
@@ -8404,7 +9812,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans %1$lld des %2$lld dernières nuits, il n'y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
           }
         },
         "he": {
@@ -8434,7 +9842,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld delle ultime %2$lld notti non c'era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+            "value": "In %1$lld delle ultime %2$lld notti non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
           }
         },
         "ja": {
@@ -8476,7 +9884,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes em um bom momento."
+            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
           }
         },
         "pt-PT": {
@@ -8488,13 +9896,13 @@
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "În %1$lld din ultimele %2$lld nopți nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+            "value": "În %1$lld din ultimele %2$lld de nopți nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld из последних %2$lld ночей в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+            "value": "В %1$lld из последних %2$lld ночи в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
           }
         },
         "sv": {
@@ -8518,7 +9926,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld з останніх %2$lld ночей у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+            "value": "У %1$lld з останніх %2$lld ночі у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
           }
         },
         "vi": {
@@ -13049,7 +14457,155 @@
         }
       }
     },
-    "editor_sunrise_ring_hint": {
+    "editor_sunrise_ring_hint|one": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$lld دقيقة."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začne, když tě probudí, a po %1$lld minutě naplno září."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starter, når du bliver vækket, og er fuldt lys efter %1$lld minut."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginnt beim Wecken und ist nach %1$lld Minute voll hell."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$lld λεπτό."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starts when you’re woken and is fully bright after %1$lld minute."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza cuando te despierta y alcanza el brillo máximo tras %1$lld minuto."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقتی بیدارت کنند شروع می‌شود و پس از %1$lld دقیقه کاملاً روشن است."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alkaa, kun sinut herätetään, ja on täysin kirkas %1$lld minuutin kuluttua."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$lld minute."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$lld דקה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपको जगाने पर शुरू होता है और %1$lld मिनट बाद पूरी तरह तेज़ हो जाता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az ébresztéskor indul, és %1$lld perc múlva teljes fényerővel világít."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$lld minuto."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starter når du blir vekket og er fullt lys etter %1$lld minutt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begint wanneer je gewekt wordt en is na %1$lld minuut volledig helder."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaczyna się, gdy cię obudzimy, a po %1$lld minucie świeci pełną jasnością."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começa quando você é acordado e fica totalmente clara após %1$lld minuto."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começa quando és acordado e fica totalmente claro após %1$lld minuto."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pornește când ești trezit și este complet luminos după %1$lld minut."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начинается, когда тебя будят, и через %1$lld минуту светит на полную яркость."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Börjar när du väcks och är helt ljus efter %1$lld minut."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyandırıldığında başlar ve %1$lld dakika sonra tam parlaklığa ulaşır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Починається, коли тебе будять, і через %1$lld хвилину світить на повну яскравість."
+          }
+        }
+      }
+    },
+    "editor_sunrise_ring_hint|other": {
       "localizations": {
         "ar": {
           "stringUnit": {
@@ -13174,7 +14730,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zaczyna się, gdy cię obudzimy, a po %1$lld minutach świeci pełną jasnością."
+            "value": "Zaczyna się, gdy cię obudzimy, a po %1$lld minuty świeci pełną jasnością."
           }
         },
         "pt-BR": {
@@ -13192,13 +14748,13 @@
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pornește când ești trezit și este complet luminos după %1$lld minute."
+            "value": "Pornește când ești trezit și este complet luminos după %1$lld de minute."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Начинается, когда тебя будят, и через %1$lld мин. светит на полную яркость."
+            "value": "Начинается, когда тебя будят, и через %1$lld минуты светит на полную яркость."
           }
         },
         "sv": {
@@ -13222,7 +14778,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Починається, коли тебе будять, і через %1$lld хв світить на повну яскравість."
+            "value": "Починається, коли тебе будять, і через %1$lld хвилини світить на повну яскравість."
           }
         },
         "vi": {
@@ -18733,18 +20289,166 @@
         }
       }
     },
-    "hint_title": {
+    "hint_title|one": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليالٍ بلا نوم خفيف"
+            "value": "%1$lld ليلة بلا نوم خفيف"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noci bez lehkého spánku"
+            "value": "%1$lld noc bez lehkého spánku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nat uden let søvn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Nacht ohne leichten Schlaf"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld νύχτα χωρίς ελαφρύ ύπνο"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld night without light sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noche sin sueño ligero"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld شب بدون خواب سبک"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld yö ilman kevyttä unta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nuit sans sommeil léger"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld לילה בלי שינה קלה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld रात बिना हल्की नींद के"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld éjszaka könnyű alvás nélkül"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld notte senza sonno leggero"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld natt uten lett søvn"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nacht zonder lichte slaap"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noc bez lekkiego snu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noite sem sono leve"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noite sem sono leve"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noapte fără somn ușor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночь без лёгкого сна"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld natt utan lätt sömn"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld gece hafif uyku yok"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ніч без легкого сну"
+          }
+        }
+      }
+    },
+    "hint_title|other": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليلة بلا نوم خفيف"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nocí bez lehkého spánku"
           }
         },
         "da": {
@@ -18876,7 +20580,7 @@
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nopți fără somn ușor"
+            "value": "%1$lld de nopți fără somn ușor"
           }
         },
         "ru": {
@@ -29513,202 +31217,6 @@
         }
       }
     },
-    "ring_snooze": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld د · المتبقي %2$lld"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · zbývá: %2$lld"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld tilbage"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld Min · %2$lld übrig"
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld λ. · απομένουν: %2$lld"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld left"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · quedan %2$lld"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld دق · مانده: %2$lld"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld jäljellä"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld restant(s)"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld דק׳ · נותרו %2$lld"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld मि. · बाकी: %2$lld"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld p · még %2$lld"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld mnt · sisa %2$lld"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld rimaste"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld分 · 残り%2$lld回"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld분 · %2$lld회 남음"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · baki %2$lld"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld igjen"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · nog %2$lld"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · zostało: %2$lld"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · restam %2$lld"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · restam %2$lld"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld rămase"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld мин · осталось: %2$lld"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld min · %2$lld kvar"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld นาที · เหลือ %2$lld ครั้ง"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld dk · kalan: %2$lld"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld хв · залишилось: %2$lld"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld phút · còn %2$lld lần"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld 分钟 · 剩余 %2$lld 次"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld 分鐘 · 剩 %2$lld 次"
-          }
-        }
-      }
-    },
     "ring_snoozed": {
       "localizations": {
         "ar": {
@@ -30097,6 +31605,350 @@
           "stringUnit": {
             "state": "translated",
             "value": "貪睡至 %1$@"
+          }
+        }
+      }
+    },
+    "ring_snooze|one": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld د · المتبقي %2$lld"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · zbývá: %2$lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld tilbage"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Min · %2$lld übrig"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld λ. · απομένουν: %2$lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld left"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · queda %2$lld"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld دق · مانده: %2$lld"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld jäljellä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld restant"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld דק׳ · נותר %2$lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld मि. · बाकी: %2$lld"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld p · még %2$lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld rimasta"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld igjen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · nog %2$lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · zostało: %2$lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · resta %2$lld"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · resta %2$lld"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amânare %1$lld min · %2$lld rămasă"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld мин · осталось: %2$lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld kvar"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld dk · kalan: %2$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld хв · залишилось: %2$lld"
+          }
+        }
+      }
+    },
+    "ring_snooze|other": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld د · المتبقي %2$lld"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · zbývá: %2$lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld tilbage"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Min · %2$lld übrig"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld λ. · απομένουν: %2$lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld left"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · quedan %2$lld"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld دق · مانده: %2$lld"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld jäljellä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld restants"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld דק׳ · נותרו %2$lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld मि. · बाकी: %2$lld"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld p · még %2$lld"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld mnt · sisa %2$lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld rimaste"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld分 · 残り%2$lld回"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld분 · %2$lld회 남음"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · baki %2$lld"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld igjen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · nog %2$lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · zostało: %2$lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · restam %2$lld"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · restam %2$lld"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amânare %1$lld min · %2$lld rămase"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld мин · осталось: %2$lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min · %2$lld kvar"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld นาที · เหลือ %2$lld ครั้ง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld dk · kalan: %2$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld хв · залишилось: %2$lld"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld phút · còn %2$lld lần"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld 分钟 · 剩余 %2$lld 次"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld 分鐘 · 剩 %2$lld 次"
           }
         }
       }
@@ -32455,16 +34307,196 @@
     },
     "settings_privacy": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سياسة الخصوصية"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zásady ochrany soukromí"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privatlivspolitik"
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Datenschutzerklärung"
           }
         },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πολιτική απορρήτου"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Privacy policy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Política de privacidad"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سیاست حریم خصوصی"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tietosuojakäytäntö"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Politique de confidentialité"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מדיניות פרטיות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गोपनीयता नीति"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adatvédelmi irányelvek"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kebijakan privasi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informativa sulla privacy"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プライバシーポリシー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개인정보 처리방침"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dasar privasi"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personvernerklæring"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacybeleid"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polityka prywatności"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Política de privacidade"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Política de privacidade"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Politica de confidențialitate"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Политика конфиденциальности"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integritetspolicy"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นโยบายความเป็นส่วนตัว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizlilik politikası"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Політика конфіденційності"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chính sách quyền riêng tư"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐私政策"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隱私權政策"
           }
         }
       }
@@ -39135,16 +41167,196 @@
     },
     "watch_not_armed": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح Phase Wake قبل أن تنام لتتمكن ساعتك من تفعيل المنبه."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Před spaním otevři Phase Wake, aby mohly hodinky budík aktivovat."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn Phase Wake, før du går i seng, så dit ur kan aktivere alarmen."
+          }
+        },
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Öffne Phase Wake vor dem Schlafen, damit die Uhr den Wecker scharf schaltet."
           }
         },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιξε το Phase Wake πριν κοιμηθείς, ώστε το ρολόι σου να ενεργοποιήσει το ξυπνητήρι."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Phase Wake before you go to sleep so your watch can arm the alarm."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake antes de dormir para que tu reloj pueda activar la alarma."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پیش از خواب Phase Wake را باز کن تا ساعتت بتواند زنگ را فعال کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa Phase Wake ennen nukkumaanmenoa, jotta kellosi voi aktivoida herätyksen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Phase Wake avant de dormir pour que ta montre puisse activer l’alarme."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתחו את Phase Wake לפני השינה כדי שהשעון יוכל להפעיל את המעורר."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने से पहले Phase Wake खोलें, ताकि आपकी वॉच अलार्म को सक्रिय कर सके।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lefekvés előtt nyisd meg a Phase Wake-et, hogy az órád élesíthesse az ébresztőt."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake sebelum tidur agar jam tanganmu bisa mengaktifkan alarm."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Phase Wake prima di dormire, così il tuo orologio può attivare la sveglia."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "眠る前にPhase Wakeを開いてください。ウォッチがアラームを有効にできるようになります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠들기 전에 Phase Wake를 열어 주세요. 그래야 워치가 알람을 활성화할 수 있어요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake sebelum awak tidur supaya jam tangan boleh mengaktifkan penggera."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Phase Wake før du legger deg, så klokken kan aktivere alarmen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake voordat je gaat slapen, zodat je horloge de wekker kan activeren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz Phase Wake przed snem, aby zegarek mógł aktywować budzik."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Phase Wake antes de dormir para que seu relógio possa ativar o alarme."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Phase Wake antes de dormires para que o relógio possa ativar o alarme."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide Phase Wake înainte de culcare, ca ceasul să poată activa alarma."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открой Phase Wake перед сном, чтобы часы могли активировать будильник."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Phase Wake innan du somnar så att klockan kan aktivera alarmet."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Phase Wake ก่อนเข้านอน เพื่อให้นาฬิกาเปิดใช้งานนาฬิกาปลุกได้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyumadan önce Phase Wake’i aç; böylece saatin alarmı etkinleştirebilir."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрий Phase Wake перед сном, щоб годинник міг активувати будильник."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy mở Phase Wake trước khi đi ngủ để đồng hồ có thể kích hoạt báo thức."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡觉前请打开 Phase Wake，这样你的手表才能启用闹钟。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡覺前請開啟 Phase Wake，這樣你的手錶才能啟用鬧鐘。"
           }
         }
       }
