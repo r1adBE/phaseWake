@@ -50,6 +50,9 @@ def load(module: str) -> dict[str, dict[str, str]]:
         if lang and f.exists():
             text = f.read_text()
             for key, value in re.findall(r'<string name="([^"]+)"(?![^>]*translatable="false")[^>]*>(.*?)</string>', text, re.S):
+                # Überschriebene Material-Texte (Android-Zeitwähler) gehören nicht in die Apple-Kataloge.
+                if key.startswith("m3c_"):
+                    continue
                 out.setdefault(lang, {})[key] = unescape(value)
             for name, body in re.findall(r'<plurals name="([^"]+)"[^>]*>(.*?)</plurals>', text, re.S):
                 for quantity, value in re.findall(r'<item quantity="([^"]+)">(.*?)</item>', body, re.S):

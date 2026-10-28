@@ -219,4 +219,7 @@
     <string name="export_contents_hint">Plik zawiera serie ruchu i tętna z każdej nocy – bez imion, dat i identyfikatorów urządzeń.</string>
     <string name="editor_more">Więcej</string>
     <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Filen indeholder bevægelses- og pulsserier for hver nat – uden navne, datoer eller enheds-id’er.</string>
     <string name="editor_more">Mere</string>
     <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

@@ -229,4 +229,7 @@
     <string name="export_contents_hint">يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
     <string name="editor_more">المزيد</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">ص</string>
+    <string name="m3c_time_picker_pm">م</string>
 </resources>

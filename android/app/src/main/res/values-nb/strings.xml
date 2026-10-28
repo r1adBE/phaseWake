@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Filen inneholder bevegelses- og pulsserier for hver natt – uten navn, datoer eller enhets-ID-er.</string>
     <string name="editor_more">Mer</string>
     <string name="home_max_alarms">Maks %1$d alarmer – slett en for å legge til en ny.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

@@ -209,4 +209,7 @@
     <string name="export_contents_hint">फ़ाइल में हर रात की हलचल और हृदय गति की शृंखलाएँ हैं – बिना नाम, तारीख या डिवाइस आईडी के।</string>
     <string name="editor_more">और</string>
     <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

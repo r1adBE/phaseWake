@@ -219,4 +219,7 @@
     <string name="export_contents_hint">Файл містить ряди руху та пульсу за кожну ніч – без імен, дат та ідентифікаторів пристроїв.</string>
     <string name="editor_more">Більше</string>
     <string name="home_max_alarms">Не більше %1$d будильників – видали один, щоб додати новий.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

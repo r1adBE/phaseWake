@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Το αρχείο περιέχει σειρές κίνησης και καρδιακών παλμών για κάθε νύχτα – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευών.</string>
     <string name="editor_more">Περισσότερα</string>
     <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

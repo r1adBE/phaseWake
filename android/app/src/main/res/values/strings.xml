@@ -213,4 +213,7 @@
     <string name="editor_more">More</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

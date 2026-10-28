@@ -214,4 +214,7 @@
     <string name="export_contents_hint">הקובץ מכיל סדרות של תנועה ודופק לכל לילה – ללא שמות, תאריכים או מזהי מכשירים.</string>
     <string name="editor_more">עוד</string>
     <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

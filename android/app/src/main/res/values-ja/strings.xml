@@ -204,4 +204,7 @@
     <string name="export_contents_hint">ファイルには各夜の体動と心拍数の記録が含まれます（名前、日付、デバイスIDは含まれません）。</string>
     <string name="editor_more">その他</string>
     <string name="home_max_alarms">アラームは最大%1$d件です – 新しく追加するには1件削除してください。</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">午前</string>
+    <string name="m3c_time_picker_pm">午後</string>
 </resources>

@@ -204,4 +204,7 @@
     <string name="export_contents_hint">ไฟล์มีข้อมูลการเคลื่อนไหวและอัตราการเต้นของหัวใจของแต่ละคืน โดยไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
     <string name="editor_more">เพิ่มเติม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

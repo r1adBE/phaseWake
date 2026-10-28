@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Die Datei enthält Bewegungs- und Pulsreihen jeder Nacht – ohne Namen, Datum oder Geräte-IDs.</string>
     <string name="editor_more">Mehr</string>
     <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

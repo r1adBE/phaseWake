@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Het bestand bevat bewegings- en hartslagreeksen van elke nacht – zonder namen, datums of apparaat-ID’s.</string>
     <string name="editor_more">Meer</string>
     <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

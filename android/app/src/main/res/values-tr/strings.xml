@@ -209,4 +209,7 @@
     <string name="export_contents_hint">Dosya her gecenin hareket ve nabız serilerini içerir – ad, tarih veya cihaz kimliği olmadan.</string>
     <string name="editor_more">Daha fazla</string>
     <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

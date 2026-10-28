@@ -214,4 +214,7 @@
     <string name="export_contents_hint">O arquivo contém séries de movimento e frequência cardíaca de cada noite – sem nomes, datas ou IDs de dispositivos.</string>
     <string name="editor_more">Mais</string>
     <string name="home_max_alarms">No máximo %1$d alarmes – exclua um para adicionar outro.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>

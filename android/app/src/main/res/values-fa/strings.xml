@@ -209,4 +209,7 @@
     <string name="export_contents_hint">فایل شامل سری‌های حرکت و ضربان قلب هر شب است – بدون نام، تاریخ یا شناسه دستگاه.</string>
     <string name="editor_more">بیشتر</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">ق.ظ.</string>
+    <string name="m3c_time_picker_pm">ب.ظ.</string>
 </resources>

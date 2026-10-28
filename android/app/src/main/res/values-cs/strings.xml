@@ -219,4 +219,7 @@
     <string name="export_contents_hint">Soubor obsahuje průběh pohybu a tepu za každou noc – bez jmen, dat a ID zařízení.</string>
     <string name="editor_more">Další</string>
     <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>
+    <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
+    <string name="m3c_time_picker_am">AM</string>
+    <string name="m3c_time_picker_pm">PM</string>
 </resources>
