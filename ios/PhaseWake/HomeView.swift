@@ -108,7 +108,7 @@ struct HomeView: View {
         let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current)
         return VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 10) {
-                LogoMark().frame(width: 34, height: 34)
+                LogoMark().frame(width: 48, height: 48)
                 Text("Phase Wake").font(Fonts.manrope(20, .bold, relativeTo: .title3))
             }
             .padding(.bottom, 26)
