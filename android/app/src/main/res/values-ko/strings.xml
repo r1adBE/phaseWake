@@ -196,4 +196,12 @@
     <string name="check_volume">알람 볼륨</string>
     <string name="check_volume_problem">알람 볼륨이 0으로 설정되어 있어요. 휴대폰이 소리 없이 울려요.</string>
     <string name="health_update">Health Connect 업데이트</string>
+    <plurals name="woke_late">
+        <item quantity="other">목표 %1$d분 후 · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">워치 배터리</string>
+    <string name="check_watch_battery_problem">%1$d %% 미만 – 밤새 버티고 깨워 줄 수 있도록 워치를 충전해 주세요.</string>
+    <string name="export_contents_hint">파일에는 이름, 날짜, 기기 ID 없이 밤마다의 움직임 및 심박수 데이터가 들어 있습니다.</string>
+    <string name="editor_more">더보기</string>
+    <string name="home_max_alarms">알람은 최대 %1$d개입니다 – 새로 추가하려면 하나를 삭제하세요.</string>
 </resources>

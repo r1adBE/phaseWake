@@ -22,6 +22,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.core.content.IntentCompat
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
@@ -114,6 +115,8 @@ fun EditorScreen(
         if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
     }
     var label by rememberSaveable { mutableStateOf(base.label) }
+    // «Mehr» aufgeklappt: übersteht Drehen und Neuaufbau.
+    var more by rememberSaveable { mutableStateOf(false) }
 
     fun result() = base.copy(
         hour = time.hour,
@@ -294,57 +297,80 @@ fun EditorScreen(
                 if (phone != PhoneAlert.OFF) {
                     Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
                 }
-                AnimatedVisibility(phone == PhoneAlert.SOUND) {
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp)
-                            .clip(MaterialTheme.shapes.small)
-                            .clickable {
-                                soundPicker.launch(
-                                    Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.ifEmpty { null }?.let(Uri::parse)),
-                                )
-                            }
-                            .padding(vertical = 10.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                        Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
-                    }
-                }
             }
 
-            Section {
-                Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
-                Choice(
-                    options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
-                    selected = sunrise,
-                    onSelect = { sunrise = it },
+            // Selten gebrauchte Optionen (Weckton, Sonnenaufgang, Name) zugeklappt unter «Mehr»: kürzerer Editor auf kleinen Handys.
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(MaterialTheme.shapes.small)
+                    .clickable(role = Role.Button) { more = !more }
+                    .padding(horizontal = 4.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(stringResource(R.string.editor_more), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Icon(
+                    painterResource(R.drawable.ic_expand),
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp).rotate(if (more) 180f else 0f),
                 )
-                AnimatedVisibility(sunrise != Sunrise.OFF) {
-                    Text(
-                        if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                        else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = 6.dp),
+            }
+
+            AnimatedVisibility(more) {
+                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    AnimatedVisibility(phone == PhoneAlert.SOUND) {
+                        Section {
+                            Row(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .clip(MaterialTheme.shapes.small)
+                                    .clickable {
+                                        soundPicker.launch(
+                                            Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
+                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
+                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                                                .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.ifEmpty { null }?.let(Uri::parse)),
+                                        )
+                                    }
+                                    .padding(vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                                Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
+                            }
+                        }
+                    }
+
+                    Section {
+                        Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
+                        Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
+                        Choice(
+                            options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
+                            selected = sunrise,
+                            onSelect = { sunrise = it },
+                        )
+                        AnimatedVisibility(sunrise != Sunrise.OFF) {
+                            Text(
+                                if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
+                                else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = 6.dp),
+                            )
+                        }
+                    }
+
+                    OutlinedTextField(
+                        value = label,
+                        onValueChange = { label = it.take(40) },
+                        label = { Text(stringResource(R.string.editor_label)) },
+                        placeholder = { Text(stringResource(R.string.editor_label_hint)) },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
             }
-
-            OutlinedTextField(
-                value = label,
-                onValueChange = { label = it.take(40) },
-                label = { Text(stringResource(R.string.editor_label)) },
-                placeholder = { Text(stringResource(R.string.editor_label_hint)) },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
 
             if (existing != null) {
                 TextButton(onClick = { confirmDelete = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {

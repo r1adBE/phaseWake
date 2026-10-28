@@ -204,4 +204,14 @@
     <string name="check_volume">עוצמת המעורר</string>
     <string name="check_volume_problem">עוצמת המעורר מוגדרת ל-0 – הטלפון יצלצל בלי קול.</string>
     <string name="health_update">עדכון Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d דק׳ אחרי היעד · %2$s</item>
+        <item quantity="two">%1$d דק׳ אחרי היעד · %2$s</item>
+        <item quantity="other">%1$d דק׳ אחרי היעד · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">סוללת השעון</string>
+    <string name="check_watch_battery_problem">מתחת ל-%1$d %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם.</string>
+    <string name="export_contents_hint">הקובץ מכיל סדרות של תנועה ודופק לכל לילה – ללא שמות, תאריכים או מזהי מכשירים.</string>
+    <string name="editor_more">עוד</string>
+    <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
 </resources>

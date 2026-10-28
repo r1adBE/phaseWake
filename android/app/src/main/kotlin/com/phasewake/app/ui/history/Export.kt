@@ -2,6 +2,11 @@ package com.phasewake.app.ui.history
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.FileProvider
 import com.phasewake.app.R
 import com.phasewake.app.core.NightHistory
@@ -22,4 +27,18 @@ object Export {
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         context.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
+}
+
+/**
+ * Vor dem Teilen ein Satz dazu, was die Datei enthält: Bewegungs- und Pulsreihen je Nacht. Ohne Namen
+ * und Daten, aber nicht anonym im engeren Sinn – das soll man vor dem Weitergeben wissen.
+ */
+@Composable
+fun ExportDialog(onShare: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        text = { Text(stringResource(R.string.export_contents_hint)) },
+        confirmButton = { TextButton(onClick = onShare) { Text(stringResource(R.string.history_export)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
+    )
 }

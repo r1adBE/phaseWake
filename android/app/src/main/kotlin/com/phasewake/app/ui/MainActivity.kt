@@ -76,9 +76,11 @@ import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.Export
+import com.phasewake.app.ui.history.ExportDialog
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.SettingsScreen
@@ -171,7 +173,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     LaunchedEffect(checkRun) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             while (true) {
-                check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady())
+                check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady(), app.sync.watchBattery())
                 delay(30_000)
             }
         }
@@ -194,6 +196,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     }
     // Wer «Animationen entfernen» eingeschaltet hat, bekommt keine Start-Animation.
     var intro by rememberSaveable { mutableStateOf(animationsEnabled(context)) }
+    // Teilen des Verlaufs: zuerst ein Satz dazu, was die Datei enthält.
+    var askExport by rememberSaveable { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize()) {
     Scaffold(
@@ -214,7 +218,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
             }
         },
         floatingActionButton = {
-            if (route == Routes.ALARMS && alarms.isNotEmpty()) {
+            if (route == Routes.ALARMS && alarms.isNotEmpty() && alarms.size < MAX_ALARMS) {
                 ExtendedFloatingActionButton(
                     onClick = { nav.navigate(Routes.editor(null)) },
                     icon = { Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(20.dp)) },
@@ -276,14 +280,14 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                             }
                             Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
                             Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
-                            Check.WATCH, Check.WATCH_SETUP, Check.BATTERY -> Unit
+                            Check.WATCH, Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.BATTERY -> Unit
                         }
                     },
                     contentPadding = content,
                     onAdd = { nav.navigate(Routes.editor(null)) },
                     onEdit = { nav.navigate(Routes.editor(it)) },
                     onToggle = { alarm, enabled -> app.afterAlarmsChanged { app.alarms.setEnabled(alarm.id, enabled) } },
-                    onFeeling = { night, feeling -> app.appScope.launch { app.nights.setFeeling(night.windowStart, feeling) } },
+                    onFeeling = { night, feeling -> app.appScope.launch { app.nights.setFeeling(night.alarmId, night.windowStart, feeling) } },
                 )
             }
             composable(Routes.HISTORY) {
@@ -295,7 +299,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     } else {
                         null
                     },
-                    onExport = { Export.share(context, nights.orEmpty()) },
+                    onExport = { askExport = true },
                     trends = trends,
                     healthConnected = health == HealthState.CONNECTED,
                     onConnectHealth = { healthPermission.launch(app.health.permissions) },
@@ -308,7 +312,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     version = version,
                     contentPadding = content,
                     onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
-                    onExport = { Export.share(context, nights.orEmpty()) },
+                    onExport = { askExport = true },
                     canExport = !nights.isNullOrEmpty(),
                     onClearHistory = {
                         app.appScope.launch {
@@ -331,7 +335,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     advice = existing?.let { WindowAdvice.suggest(it, nights.orEmpty()) },
                     onBack = { nav.popBackStack() },
                     onSave = { spec ->
-                        app.afterAlarmsChanged { app.alarms.upsert(spec) }
+                        // Ein neuer Wecker über dem Limit (z. B. gleichzeitig auf der Uhr angelegt) wird nicht gespeichert.
+                        if (existing != null || alarms.size < MAX_ALARMS) app.afterAlarmsChanged { app.alarms.upsert(spec) }
                         nav.popBackStack()
                     },
                     onDelete = { spec ->
@@ -341,6 +346,15 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 )
             }
         }
+    }
+    if (askExport) {
+        ExportDialog(
+            onShare = {
+                askExport = false
+                Export.share(context, nights.orEmpty())
+            },
+            onDismiss = { askExport = false },
+        )
     }
     if (intro) Intro(onFinished = { intro = false })
     }

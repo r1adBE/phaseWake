@@ -196,4 +196,12 @@
     <string name="check_volume">闹钟音量</string>
     <string name="check_volume_problem">闹钟音量为 0——手机会无声响铃。</string>
     <string name="health_update">更新 Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="other">比目标晚 %1$d 分钟 · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">手表电量</string>
+    <string name="check_watch_battery_problem">低于 %1$d %% – 请给手表充电，以便它整夜运行并按时唤醒你。</string>
+    <string name="export_contents_hint">文件包含每晚的体动和心率序列，不含姓名、日期或设备 ID。</string>
+    <string name="editor_more">更多</string>
+    <string name="home_max_alarms">最多 %1$d 个闹钟 – 删除一个后才能新建。</string>
 </resources>

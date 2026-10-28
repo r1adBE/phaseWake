@@ -36,6 +36,17 @@ class NightHistoryTest {
     }
 
     @Test
+    fun minutesAfterTarget() {
+        assertEquals(0, night(0).minutesAfterTarget)
+        assertEquals(0, night(0, wokeMinutes = 30).minutesAfterTarget)
+        assertEquals(5, night(0, wokeMinutes = 35).minutesAfterTarget)
+        // Angefangene Minuten zählen nicht (wie vor der Zielzeit): 30 s danach gilt als pünktlich.
+        val halfMinute = night(0).let { it.copy(wokeAt = it.target.plusSeconds(30)) }
+        assertEquals(0, halfMinute.minutesAfterTarget)
+        assertEquals(0, halfMinute.minutesBeforeTarget)
+    }
+
+    @Test
     fun csvIsAnonymous() {
         val csv = NightHistory.exportCsv(listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))).copy(feeling = 4), night(0)))
         val lines = csv.trimEnd().lines()

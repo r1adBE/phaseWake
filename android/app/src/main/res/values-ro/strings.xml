@@ -204,4 +204,14 @@
     <string name="check_volume">Volumul alarmei</string>
     <string name="check_volume_problem">Volumul alarmei este setat la 0 – telefonul ar suna fără sunet.</string>
     <string name="health_update">Actualizează Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min după ora țintă · %2$s</item>
+        <item quantity="few">%1$d min după ora țintă · %2$s</item>
+        <item quantity="other">%1$d min după ora țintă · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Bateria ceasului</string>
+    <string name="check_watch_battery_problem">Sub %1$d %% – încarcă ceasul ca să reziste toată noaptea și să te poată trezi.</string>
+    <string name="export_contents_hint">Fișierul conține seriile de mișcare și puls din fiecare noapte – fără nume, date sau ID-uri de dispozitiv.</string>
+    <string name="editor_more">Mai multe</string>
+    <string name="home_max_alarms">Maximum %1$d alarme – șterge una ca să adaugi una nouă.</string>
 </resources>

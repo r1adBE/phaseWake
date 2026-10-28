@@ -200,4 +200,13 @@
     <string name="check_volume">अलार्म की आवाज़</string>
     <string name="check_volume_problem">अलार्म की आवाज़ 0 पर है – तुम्हारा फ़ोन बिना आवाज़ के बजेगा।</string>
     <string name="health_update">Health Connect अपडेट करो</string>
+    <plurals name="woke_late">
+        <item quantity="one">लक्ष्य से %1$d मि. बाद · %2$s</item>
+        <item quantity="other">लक्ष्य से %1$d मि. बाद · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">वॉच की बैटरी</string>
+    <string name="check_watch_battery_problem">%1$d %% से कम – अपनी वॉच चार्ज करें ताकि वह पूरी रात चले और आपको जगा सके।</string>
+    <string name="export_contents_hint">फ़ाइल में हर रात की हलचल और हृदय गति की शृंखलाएँ हैं – बिना नाम, तारीख या डिवाइस आईडी के।</string>
+    <string name="editor_more">और</string>
+    <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>
 </resources>

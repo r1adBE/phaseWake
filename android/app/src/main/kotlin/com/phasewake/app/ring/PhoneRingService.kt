@@ -88,7 +88,17 @@ class PhoneRingService : Service() {
             this, RingNotifications.ID_RING, RingNotifications.ringing(this),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
         )
-        if (state.value is State.Ringing) return
+        val ringing = state.value as? State.Ringing
+        if (ringing != null) {
+            // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
+            // Restzahl der Uhr übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
+            if (fromWatch && watchSnoozesLeft != null && RingMessage(alarmId, target).sameNight(lastAlarmId, lastTarget)) {
+                state.value = ringing.copy(fromWatch = true, snoozesLeft = watchSnoozesLeft.coerceIn(0, Snooze.MAX_COUNT))
+                if (lastAlarmId == null) lastAlarmId = alarmId
+                if (lastTarget == null) lastTarget = target
+            }
+            return
+        }
         if (state.value is State.Snoozed) state.value = State.Idle
         val left = if (fromWatch) watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes()) else Snooze.MAX_COUNT - snoozesDone
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
@@ -126,7 +136,14 @@ class PhoneRingService : Service() {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
             legacySnoozes = done
             legacySnoozedAt = System.currentTimeMillis()
-            phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE) }
+            val alarmId = lastAlarmId
+            val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+            phoneApp.appScope.launch {
+                // Zuerst die eigene Sicherung: Erreicht die Bitte die Uhr nicht oder klingelt sie danach
+                // nicht wieder, klingelt das Handy kurz nach dem Schlummer-Ende selbst.
+                phoneApp.backup.snoozeSafety(alarmId, safetyAt, done)
+                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE)
+            }
             state.value = State.Idle
             stopSelf()
         } else {
@@ -141,6 +158,9 @@ class PhoneRingService : Service() {
         legacySnoozes = 0
         release()
         phoneApp.backup.cancelSnooze()
+        // Am Handy beendet: auch keine Sicherung nach dem Schlummern mehr (nicht beim stillen Stopp
+        // auf «stop» der Uhr hin, der kann ein Schlummern sein).
+        if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId)
         SunriseLight.stop(this)
         state.value = State.Idle
         if (notifyWatch && wasFromWatch) {

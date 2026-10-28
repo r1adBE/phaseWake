@@ -200,4 +200,13 @@
     <string name="check_volume">Ένταση ξυπνητηριού</string>
     <string name="check_volume_problem">Η ένταση του ξυπνητηριού είναι στο 0 – το κινητό σου θα χτυπούσε χωρίς ήχο.</string>
     <string name="health_update">Ενημέρωση του Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d λ. μετά τον στόχο · %2$s</item>
+        <item quantity="other">%1$d λ. μετά τον στόχο · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Μπαταρία ρολογιού</string>
+    <string name="check_watch_battery_problem">Κάτω από %1$d %% – φόρτισε το ρολόι σου, ώστε να αντέξει όλη τη νύχτα και να σε ξυπνήσει.</string>
+    <string name="export_contents_hint">Το αρχείο περιέχει σειρές κίνησης και καρδιακών παλμών για κάθε νύχτα – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευών.</string>
+    <string name="editor_more">Περισσότερα</string>
+    <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>
 </resources>

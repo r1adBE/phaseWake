@@ -200,4 +200,13 @@
     <string name="check_volume">Alarm ses düzeyi</string>
     <string name="check_volume_problem">Alarm ses düzeyi 0 olarak ayarlı – telefonun sessiz çalar.</string>
     <string name="health_update">Health Connect\'i güncelle</string>
+    <plurals name="woke_late">
+        <item quantity="one">Hedeften %1$d dk sonra · %2$s</item>
+        <item quantity="other">Hedeften %1$d dk sonra · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Saat pili</string>
+    <string name="check_watch_battery_problem">Pil %1$d %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et.</string>
+    <string name="export_contents_hint">Dosya her gecenin hareket ve nabız serilerini içerir – ad, tarih veya cihaz kimliği olmadan.</string>
+    <string name="editor_more">Daha fazla</string>
+    <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
 </resources>

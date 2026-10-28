@@ -200,4 +200,13 @@
     <string name="check_volume">Herätyksen äänenvoimakkuus</string>
     <string name="check_volume_problem">Herätyksen äänenvoimakkuus on 0 – puhelimesi soisi äänettömästi.</string>
     <string name="health_update">Päivitä Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min tavoiteajan jälkeen · %2$s</item>
+        <item quantity="other">%1$d min tavoiteajan jälkeen · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Kellon akku</string>
+    <string name="check_watch_battery_problem">Alle %1$d %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut.</string>
+    <string name="export_contents_hint">Tiedosto sisältää jokaisen yön liike- ja sykesarjat – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
+    <string name="editor_more">Lisää</string>
+    <string name="home_max_alarms">Enintään %1$d herätystä – poista yksi lisätäksesi uuden.</string>
 </resources>

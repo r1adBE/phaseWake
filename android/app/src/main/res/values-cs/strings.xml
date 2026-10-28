@@ -208,4 +208,15 @@
     <string name="check_volume">Hlasitost budíku</string>
     <string name="check_volume_problem">Hlasitost budíku je nastavená na 0 – telefon by zvonil bez zvuku.</string>
     <string name="health_update">Aktualizovat Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min po cílovém čase · %2$s</item>
+        <item quantity="few">%1$d min po cílovém čase · %2$s</item>
+        <item quantity="many">%1$d min po cílovém čase · %2$s</item>
+        <item quantity="other">%1$d min po cílovém čase · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Baterie hodinek</string>
+    <string name="check_watch_battery_problem">Pod %1$d %% – nabij hodinky, aby vydržely celou noc a mohly tě vzbudit.</string>
+    <string name="export_contents_hint">Soubor obsahuje průběh pohybu a tepu za každou noc – bez jmen, dat a ID zařízení.</string>
+    <string name="editor_more">Další</string>
+    <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>
 </resources>

@@ -208,4 +208,15 @@
     <string name="check_volume">Гучність будильника</string>
     <string name="check_volume_problem">Гучність будильника дорівнює 0 – телефон дзвонитиме без звуку.</string>
     <string name="health_update">Оновити Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">на %1$d хв пізніше цілі · %2$s</item>
+        <item quantity="few">на %1$d хв пізніше цілі · %2$s</item>
+        <item quantity="many">на %1$d хв пізніше цілі · %2$s</item>
+        <item quantity="other">на %1$d хв пізніше цілі · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Заряд годинника</string>
+    <string name="check_watch_battery_problem">Нижче %1$d %% – постав годинник на зарядку, щоб його вистачило на всю ніч і він зміг тебе розбудити.</string>
+    <string name="export_contents_hint">Файл містить ряди руху та пульсу за кожну ніч – без імен, дат та ідентифікаторів пристроїв.</string>
+    <string name="editor_more">Більше</string>
+    <string name="home_max_alarms">Не більше %1$d будильників – видали один, щоб додати новий.</string>
 </resources>

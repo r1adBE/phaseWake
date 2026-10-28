@@ -196,4 +196,12 @@
     <string name="check_volume">ระดับเสียงนาฬิกาปลุก</string>
     <string name="check_volume_problem">ระดับเสียงนาฬิกาปลุกตั้งไว้ที่ 0 – โทรศัพท์ของคุณจะดังแบบไม่มีเสียง</string>
     <string name="health_update">อัปเดต Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="other">หลังเป้าหมาย %1$d นาที · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">แบตเตอรี่นาฬิกา</string>
+    <string name="check_watch_battery_problem">ต่ำกว่า %1$d %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้</string>
+    <string name="export_contents_hint">ไฟล์มีข้อมูลการเคลื่อนไหวและอัตราการเต้นของหัวใจของแต่ละคืน โดยไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
+    <string name="editor_more">เพิ่มเติม</string>
+    <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
 </resources>

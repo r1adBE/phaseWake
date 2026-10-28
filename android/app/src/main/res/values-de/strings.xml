@@ -200,4 +200,13 @@
     <string name="check_volume">Wecker-Lautstärke</string>
     <string name="check_volume_problem">Die Wecker-Lautstärke steht auf 0 – das Handy würde lautlos klingeln.</string>
     <string name="health_update">Health Connect aktualisieren</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d Min nach der Zielzeit · %2$s</item>
+        <item quantity="other">%1$d Min nach der Zielzeit · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Akku der Uhr</string>
+    <string name="check_watch_battery_problem">Unter %1$d %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt.</string>
+    <string name="export_contents_hint">Die Datei enthält Bewegungs- und Pulsreihen jeder Nacht – ohne Namen, Datum oder Geräte-IDs.</string>
+    <string name="editor_more">Mehr</string>
+    <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
 </resources>

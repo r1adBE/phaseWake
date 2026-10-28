@@ -196,4 +196,12 @@
     <string name="check_volume">鬧鐘音量</string>
     <string name="check_volume_problem">鬧鐘音量為 0——手機會無聲響鈴。</string>
     <string name="health_update">更新 Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="other">比目標晚 %1$d 分鐘 · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">手錶電量</string>
+    <string name="check_watch_battery_problem">低於 %1$d %% – 請為手錶充電，讓它撐過整晚並按時喚醒你。</string>
+    <string name="export_contents_hint">檔案包含每晚的體動和心率序列，不含姓名、日期或裝置 ID。</string>
+    <string name="editor_more">更多</string>
+    <string name="home_max_alarms">最多 %1$d 個鬧鐘 – 刪除一個後才能新增。</string>
 </resources>

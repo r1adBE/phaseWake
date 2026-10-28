@@ -204,4 +204,14 @@
     <string name="check_volume">Volume do alarme</string>
     <string name="check_volume_problem">O volume do alarme está a 0 – o telemóvel tocaria em silêncio.</string>
     <string name="health_update">Atualizar o Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min depois da hora-alvo · %2$s</item>
+        <item quantity="many">%1$d min depois da hora-alvo · %2$s</item>
+        <item quantity="other">%1$d min depois da hora-alvo · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Bateria do relógio</string>
+    <string name="check_watch_battery_problem">Abaixo de %1$d %% – carrega o relógio para que dure a noite toda e te possa acordar.</string>
+    <string name="export_contents_hint">O ficheiro contém séries de movimento e frequência cardíaca de cada noite – sem nomes, datas ou IDs de dispositivos.</string>
+    <string name="editor_more">Mais</string>
+    <string name="home_max_alarms">No máximo %1$d alarmes – elimina um para adicionar outro.</string>
 </resources>

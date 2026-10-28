@@ -107,7 +107,7 @@ fun HomeScreen(
         modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
-            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark, onAdd = onAdd, onEdit = onEdit)
+            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark, onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit)
         }
         // Nacht-Check nur, wenn ein Wecker ansteht – sonst gibt es nichts abzusichern.
         if (check != null && plan != null) {
@@ -128,12 +128,26 @@ fun HomeScreen(
             items(alarms, key = { it.id }) { alarm ->
                 AlarmRow(alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) })
             }
+            // Am Limit fehlt der Knopf «Neuer Wecker»; hier steht, warum.
+            if (alarms.size >= MAX_ALARMS) {
+                item(key = "limit") {
+                    Text(
+                        stringResource(R.string.home_max_alarms, MAX_ALARMS),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(horizontal = 20.dp),
+                    )
+                }
+            }
         }
         item(key = "spacer") { Spacer(Modifier.height(72.dp)) }
     }
     }
     if (dark) AnimatedNight(Modifier.fillMaxSize()) { list() } else list()
 }
+
+/** Höchstens so viele Wecker: Die Uhr führt ohnehin nur eine Nacht zugleich, und die Liste bleibt übersichtlich. */
+internal const val MAX_ALARMS = 8
 
 /** Kartenfarbe: auf dem Nachthimmel durchscheinend, sonst die normale Fläche. */
 @Composable
@@ -151,7 +165,8 @@ private fun Header(
     now: Instant,
     zone: ZoneId,
     fullPage: Boolean,
-    onAdd: () -> Unit,
+    /** `null`: Limit erreicht, kein Knopf «Neuer Wecker». */
+    onAdd: (() -> Unit)?,
     onEdit: (String) -> Unit,
 ) {
     val context = LocalContext.current
@@ -214,13 +229,15 @@ private fun Header(
                         )
                         Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
                         HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
-                        Button(
-                            onClick = onAdd,
-                            colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Night.Bottom),
-                        ) {
-                            Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(Modifier.width(8.dp))
-                            Text(stringResource(R.string.home_add_alarm))
+                        if (onAdd != null) {
+                            Button(
+                                onClick = onAdd,
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Night.Bottom),
+                            ) {
+                                Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(R.string.home_add_alarm))
+                            }
                         }
                     }
                 }

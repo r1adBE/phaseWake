@@ -196,4 +196,12 @@
     <string name="check_volume">Âm lượng báo thức</string>
     <string name="check_volume_problem">Âm lượng báo thức đang là 0 – điện thoại của bạn sẽ đổ chuông không có tiếng.</string>
     <string name="health_update">Cập nhật Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="other">Muộn %1$d phút so với mục tiêu · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Pin đồng hồ</string>
+    <string name="check_watch_battery_problem">Dưới %1$d %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn.</string>
+    <string name="export_contents_hint">Tệp chứa chuỗi dữ liệu chuyển động và nhịp tim của từng đêm – không có tên, ngày hay ID thiết bị.</string>
+    <string name="editor_more">Thêm</string>
+    <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
 </resources>

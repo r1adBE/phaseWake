@@ -200,4 +200,13 @@
     <string name="check_volume">صدای زنگ</string>
     <string name="check_volume_problem">صدای زنگ روی ۰ است – گوشی‌ات بی‌صدا زنگ می‌زند.</string>
     <string name="health_update">به‌روزرسانی Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d دق بعد از زمان هدف · %2$s</item>
+        <item quantity="other">%1$d دق بعد از زمان هدف · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">باتری ساعت</string>
+    <string name="check_watch_battery_problem">کمتر از %1$d %% – ساعت را شارژ کن تا تمام شب روشن بماند و بیدارت کند.</string>
+    <string name="export_contents_hint">فایل شامل سری‌های حرکت و ضربان قلب هر شب است – بدون نام، تاریخ یا شناسه دستگاه.</string>
+    <string name="editor_more">بیشتر</string>
+    <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
 </resources>

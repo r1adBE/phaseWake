@@ -196,4 +196,12 @@
     <string name="check_volume">アラームの音量</string>
     <string name="check_volume_problem">アラームの音量が0になっています。スマートフォンが無音で鳴ります。</string>
     <string name="health_update">Health Connectを更新</string>
+    <plurals name="woke_late">
+        <item quantity="other">目標の%1$d分後 · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">ウォッチのバッテリー</string>
+    <string name="check_watch_battery_problem">%1$d %%未満です – 一晩もって確実に起こせるよう、ウォッチを充電してください。</string>
+    <string name="export_contents_hint">ファイルには各夜の体動と心拍数の記録が含まれます（名前、日付、デバイスIDは含まれません）。</string>
+    <string name="editor_more">その他</string>
+    <string name="home_max_alarms">アラームは最大%1$d件です – 新しく追加するには1件削除してください。</string>
 </resources>

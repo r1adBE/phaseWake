@@ -200,4 +200,13 @@
     <string name="check_volume">Ébresztő hangereje</string>
     <string name="check_volume_problem">Az ébresztő hangereje 0-ra van állítva – a telefonod némán csörögne.</string>
     <string name="health_update">Health Connect frissítése</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d p a célidő után · %2$s</item>
+        <item quantity="other">%1$d p a célidő után · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Óra akkumulátora</string>
+    <string name="check_watch_battery_problem">%1$d %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni.</string>
+    <string name="export_contents_hint">A fájl minden éjszaka mozgás- és pulzussorait tartalmazza – nevek, dátumok és eszközazonosítók nélkül.</string>
+    <string name="editor_more">Továbbiak</string>
+    <string name="home_max_alarms">Legfeljebb %1$d ébresztő – törölj egyet, hogy újat adhass hozzá.</string>
 </resources>

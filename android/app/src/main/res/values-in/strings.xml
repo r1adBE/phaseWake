@@ -196,4 +196,12 @@
     <string name="check_volume">Volume alarm</string>
     <string name="check_volume_problem">Volume alarm diatur ke 0 – ponselmu akan berdering tanpa suara.</string>
     <string name="health_update">Perbarui Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="other">%1$d mnt setelah target · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Baterai jam tangan</string>
+    <string name="check_watch_battery_problem">Di bawah %1$d %% – isi daya jam tanganmu agar bertahan semalaman dan bisa membangunkanmu.</string>
+    <string name="export_contents_hint">File berisi rangkaian data gerakan dan detak jantung setiap malam – tanpa nama, tanggal, atau ID perangkat.</string>
+    <string name="editor_more">Lainnya</string>
+    <string name="home_max_alarms">Maksimal %1$d alarm – hapus satu untuk menambahkan yang baru.</string>
 </resources>

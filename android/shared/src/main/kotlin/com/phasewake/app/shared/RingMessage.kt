@@ -26,9 +26,27 @@ data class RingMessage(
     /** Ob die Nachricht zu spät ankam (älter als [MAX_AGE_MS]); ohne Sendezeit (ältere Version) nie. */
     fun isStale(nowMs: Long): Boolean = sentAt != null && nowMs - sentAt > MAX_AGE_MS
 
+    /**
+     * Zeitpunkt der Handy-Sicherung nach einem «stop» beim Schlummern: [SNOOZE_SAFETY_MS] nach dem
+     * Schlummer-Ende. `null` bei einem endgültigen «stop» oder wenn der Zeitpunkt schon vorbei ist
+     * (verspätet zugestellt: die Uhr hat inzwischen wieder geklingelt).
+     */
+    fun snoozeSafetyAt(nowMs: Long): Long? = snoozeUntil?.plus(SNOOZE_SAFETY_MS)?.takeIf { it > nowMs }
+
+    /**
+     * Ob die Meldung zur Nacht mit [otherAlarmId] und [otherTarget] gehört. Fehlende Angaben
+     * (ältere Versionen, Sicherung ohne Zielzeit) widersprechen nicht.
+     */
+    fun sameNight(otherAlarmId: String?, otherTarget: Long?): Boolean =
+        (alarmId == null || otherAlarmId == null || alarmId == otherAlarmId) &&
+            (target == null || otherTarget == null || target == otherTarget)
+
     companion object {
         /** Höchstalter eines «klingeln», danach gilt es als veraltet. */
         const val MAX_AGE_MS = 2 * 60_000L
+
+        /** So lange nach dem Schlummer-Ende wartet das Handy auf ein neues «klingeln» der Uhr (wie auf dem iPhone). */
+        const val SNOOZE_SAFETY_MS = 90_000L
 
         fun decode(data: ByteArray?): RingMessage {
             val parts = data?.decodeToString()?.split('|').orEmpty()

@@ -53,6 +53,8 @@ class BackupAlarm(
 
     suspend fun reschedule() = mutex.withLock {
         rescheduleSunrise()
+        // Eine Schlummer-Sicherung ist unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
+        SnoozeSafety.restore(context)
         alarmManager.cancel(pending())
         val backups = alarms.current().alarms.filter { it.phoneBackup }
         val prefs = store.data.first()
@@ -141,6 +143,8 @@ class BackupAlarm(
         if (message.isStale(now().toEpochMilli())) {
             Log.i(TAG, "Veraltete Weckmeldung der Uhr verworfen")
         } else {
+            // Die Uhr klingelt wieder: Die Sicherung nach dem Schlummern ist nicht mehr nötig.
+            cancelSnoozeSafety(message.alarmId)
             val spec = message.alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
             // Weckart «Aus» ohne Licht: das Handy bleibt ganz still (kein Vollbild, kein Bildschirm).
             if (spec == null || spec.phone != PhoneAlert.OFF || spec.sunrise != Sunrise.OFF) forwardRing(message)
@@ -168,6 +172,54 @@ class BackupAlarm(
         }
         // Ohne exakte Alarme: direkt versuchen (kann ab Android 12 im Hintergrund scheitern).
         PhoneRingService.ring(context, message.alarmId, fromWatch = true, target = message.target, snoozesLeft = message.snoozesLeft)
+    }
+
+    /**
+     * Die Uhr meldet «stop». Mit Schlummer-Ende (auf der Uhr geschlummert) stellt das Handy eine eigene
+     * Sicherung kurz danach, falls die Uhr dann nicht wieder klingelt (Akku leer, Verbindung weg);
+     * ohne (Nacht beendet) fällt eine solche Sicherung weg. [ringingSnoozesLeft]: Restzahl des
+     * Handy-Klingelns vor diesem «stop», falls es mitklingelte.
+     */
+    suspend fun watchStopped(message: RingMessage, ringingSnoozesLeft: Int?) {
+        val safetyAt = message.snoozeSafetyAt(now().toEpochMilli())
+        when {
+            safetyAt != null -> {
+                // Bisherige Runden inklusive dieser; ohne Mitklingeln die Zahl einer schon gestellten Sicherung.
+                val done = ringingSnoozesLeft?.let { Snooze.MAX_COUNT - it + 1 }
+                    ?: SnoozeSafety.load(context)?.takeIf { it.alarmId == message.alarmId }?.snoozesDone
+                    ?: 0
+                snoozeSafety(message.alarmId, Instant.ofEpochMilli(safetyAt), done)
+            }
+            // Ohne Schlummer-Ende ist die Nacht beendet; ein verspätetes Schlummer-«stop» ändert nichts.
+            message.snoozeUntil == null -> cancelSnoozeSafety(message.alarmId)
+        }
+        watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+    }
+
+    /**
+     * Sicherung nach dem Schlummern einer Nacht, die die Uhr führt: klingelt um [at] als Zweitwecker
+     * dieses Weckers (mit dessen Weckart und Weckton), wenn bis dahin kein neues «klingeln» der Uhr kam.
+     * Liegt neben dem Zweitwecker: Dessen Aussetzen über [watchHandled] berührt sie nicht. Mit Handy
+     * «Aus» keine Sicherung (wie beim Zweitwecker). [snoozesDone]: bisherige Schlummer-Runden.
+     */
+    suspend fun snoozeSafety(alarmId: String?, at: Instant, snoozesDone: Int) {
+        val spec = alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
+        if (spec != null && !spec.phoneBackup) {
+            cancelSnoozeSafety(alarmId)
+            return
+        }
+        val done = snoozesDone.coerceIn(0, Snooze.MAX_COUNT)
+        // Zuerst ablegen (auch vor dem ersten Entsperren lesbar), dann planen.
+        SnoozeSafety.save(context, SnoozeSafety.Saved(at, alarmId, done))
+        setAlarm(at, showIntent(), safetyPending(context, alarmId, done))
+    }
+
+    /** Hebt die Sicherung nach dem Schlummern auf; mit [alarmId] nur, wenn sie diesem Wecker gilt. */
+    fun cancelSnoozeSafety(alarmId: String? = null) {
+        val saved = SnoozeSafety.load(context)
+        if (alarmId != null && saved?.alarmId != null && saved.alarmId != alarmId) return
+        alarmManager.cancel(safetyPending(context, null, 0))
+        SnoozeSafety.clear(context)
     }
 
     /**
@@ -267,6 +319,13 @@ class BackupAlarm(
             val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
             when (intent.action) {
                 ACTION -> PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+                // Die Uhr hat sich nach dem Schlummern nicht mehr gemeldet: das Handy klingelt selbst.
+                ACTION_SNOOZE_SAFETY -> {
+                    SnoozeSafety.clear(context)
+                    PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+                    // Vor dem ersten Entsperren: der abgelegte Zweitwecker bleibt, wie er ist.
+                    if (!isUnlocked(context)) return
+                }
                 ACTION_WATCH_RING -> {
                     val left = if (intent.hasExtra(PhoneRingService.EXTRA_SNOOZES_LEFT)) intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 0) else null
                     PhoneRingService.ring(context, alarmId, fromWatch = true, target = target, snoozesLeft = left)
@@ -290,6 +349,8 @@ class BackupAlarm(
                     if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
                     // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns.
                     if (intent.action == ACTION && target != null) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
+                    // Die Uhr hat diese Nacht nicht beendet: einen Einmal-Wecker schaltet dann das Handy aus.
+                    if (intent.action == ACTION_SNOOZE_SAFETY) app.backup.disableOneShot(alarmId)
                     app.backup.reschedule()
                 } finally {
                     pending.finish()
@@ -307,6 +368,7 @@ class BackupAlarm(
             if (intent.action !in SYSTEM_ACTIONS) return
             if (!isUnlocked(context)) {
                 DirectBoot.restore(context)
+                SnoozeSafety.restore(context)
                 return
             }
             val pending = goAsync()
@@ -370,11 +432,54 @@ class BackupAlarm(
         }
     }
 
+    /**
+     * Sicherung nach dem Schlummern im geräteverschlüsselten Speicher: übersteht Prozessende und
+     * Neustart und ist auch vor dem ersten Entsperren lesbar.
+     */
+    private object SnoozeSafety {
+        private const val FILE = "backup_snooze_safety"
+        private const val KEY_AT = "at"
+        private const val KEY_ID = "alarmId"
+        private const val KEY_DONE = "snoozesDone"
+
+        data class Saved(val at: Instant, val alarmId: String?, val snoozesDone: Int)
+
+        private fun prefs(context: Context) =
+            context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
+
+        fun save(context: Context, saved: Saved) {
+            prefs(context).edit().putLong(KEY_AT, saved.at.toEpochMilli()).putString(KEY_ID, saved.alarmId)
+                .putInt(KEY_DONE, saved.snoozesDone).apply()
+        }
+
+        fun load(context: Context): Saved? {
+            val prefs = prefs(context)
+            if (!prefs.contains(KEY_AT)) return null
+            return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0))
+        }
+
+        fun clear(context: Context) {
+            prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_DONE).apply()
+        }
+
+        /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. */
+        fun restore(context: Context) {
+            val saved = load(context) ?: return
+            val current = Instant.now()
+            if (saved.at.isBefore(current.minus(MISSED_DURING_BOOT))) {
+                clear(context)
+                return
+            }
+            setExact(context, maxOf(saved.at, current.plus(FORWARD_DELAY)), showPending(context), safetyPending(context, saved.alarmId, saved.snoozesDone))
+        }
+    }
+
     companion object {
         private const val TAG = "BackupAlarm"
         private const val ACTION = "com.phasewake.app.action.BACKUP_RING"
         private const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
         private const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
+        private const val ACTION_SNOOZE_SAFETY = "com.phasewake.app.action.SNOOZE_SAFETY"
 
         /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest); nur Text, auf jeder Version unbedenklich. */
         @android.annotation.SuppressLint("InlinedApi")
@@ -421,6 +526,14 @@ class BackupAlarm(
             if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
             if (target != null) intent.putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /** Sicherung nach dem Schlummern: eigener Alarm neben dem Zweitwecker (eigener Request-Code, eigene Aktion). */
+        private fun safetyPending(context: Context, alarmId: String?, snoozesDone: Int): PendingIntent {
+            val intent = Intent(context, Receiver::class.java).setAction(ACTION_SNOOZE_SAFETY)
+                .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozesDone)
+            if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
+            return PendingIntent.getBroadcast(context, 5, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         private fun setExact(context: Context, at: Instant, show: PendingIntent?, operation: PendingIntent) {

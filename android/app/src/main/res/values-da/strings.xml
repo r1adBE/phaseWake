@@ -200,4 +200,13 @@
     <string name="check_volume">Alarmlydstyrke</string>
     <string name="check_volume_problem">Alarmlydstyrken er sat til 0 – din telefon ville ringe uden lyd.</string>
     <string name="health_update">Opdatér Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min efter ønsket tid · %2$s</item>
+        <item quantity="other">%1$d min efter ønsket tid · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Urets batteri</string>
+    <string name="check_watch_battery_problem">Under %1$d %% – oplad dit ur, så det holder natten igennem og kan vække dig.</string>
+    <string name="export_contents_hint">Filen indeholder bevægelses- og pulsserier for hver nat – uden navne, datoer eller enheds-id’er.</string>
+    <string name="editor_more">Mere</string>
+    <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
 </resources>

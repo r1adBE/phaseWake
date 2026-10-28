@@ -204,4 +204,14 @@
     <string name="check_volume">Volume della sveglia</string>
     <string name="check_volume_problem">Il volume della sveglia è a 0: il tuo telefono suonerebbe in silenzio.</string>
     <string name="health_update">Aggiorna Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min dopo l’orario obiettivo · %2$s</item>
+        <item quantity="many">%1$d min dopo l’orario obiettivo · %2$s</item>
+        <item quantity="other">%1$d min dopo l’orario obiettivo · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Batteria dell’orologio</string>
+    <string name="check_watch_battery_problem">Sotto il %1$d %% – ricarica l’orologio perché duri tutta la notte e possa svegliarti.</string>
+    <string name="export_contents_hint">Il file contiene le serie di movimento e frequenza cardiaca di ogni notte, senza nomi, date o ID dei dispositivi.</string>
+    <string name="editor_more">Altro</string>
+    <string name="home_max_alarms">Massimo %1$d sveglie: eliminane una per aggiungerne una nuova.</string>
 </resources>

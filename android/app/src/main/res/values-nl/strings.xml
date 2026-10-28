@@ -200,4 +200,13 @@
     <string name="check_volume">Wekkervolume</string>
     <string name="check_volume_problem">Het wekkervolume staat op 0 – je telefoon zou geluidloos overgaan.</string>
     <string name="health_update">Health Connect updaten</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min na de doeltijd · %2$s</item>
+        <item quantity="other">%1$d min na de doeltijd · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Horlogebatterij</string>
+    <string name="check_watch_battery_problem">Onder %1$d %% – laad je horloge op zodat het de nacht doorkomt en je kan wekken.</string>
+    <string name="export_contents_hint">Het bestand bevat bewegings- en hartslagreeksen van elke nacht – zonder namen, datums of apparaat-ID’s.</string>
+    <string name="editor_more">Meer</string>
+    <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
 </resources>

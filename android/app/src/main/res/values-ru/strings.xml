@@ -208,4 +208,15 @@
     <string name="check_volume">Громкость будильника</string>
     <string name="check_volume_problem">Громкость будильника равна 0 – телефон зазвонит без звука.</string>
     <string name="health_update">Обновить Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">на %1$d мин позже цели · %2$s</item>
+        <item quantity="few">на %1$d мин позже цели · %2$s</item>
+        <item quantity="many">на %1$d мин позже цели · %2$s</item>
+        <item quantity="other">на %1$d мин позже цели · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Заряд часов</string>
+    <string name="check_watch_battery_problem">Ниже %1$d %% – поставь часы на зарядку, чтобы их хватило на всю ночь и они смогли тебя разбудить.</string>
+    <string name="export_contents_hint">Файл содержит ряды движения и пульса за каждую ночь – без имён, дат и идентификаторов устройств.</string>
+    <string name="editor_more">Ещё</string>
+    <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>
 </resources>

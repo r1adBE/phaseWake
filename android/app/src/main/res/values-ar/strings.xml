@@ -216,4 +216,17 @@
     <string name="check_volume">مستوى صوت المنبّه</string>
     <string name="check_volume_problem">مستوى صوت المنبّه 0 – سيرنّ الهاتف بصمت.</string>
     <string name="health_update">تحديث Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="zero">بعد الموعد بـ %1$d د · %2$s</item>
+        <item quantity="one">بعد الموعد بـ %1$d د · %2$s</item>
+        <item quantity="two">بعد الموعد بـ %1$d د · %2$s</item>
+        <item quantity="few">بعد الموعد بـ %1$d د · %2$s</item>
+        <item quantity="many">بعد الموعد بـ %1$d د · %2$s</item>
+        <item quantity="other">بعد الموعد بـ %1$d د · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">بطارية الساعة</string>
+    <string name="check_watch_battery_problem">أقل من %1$d %% – اشحن ساعتك لتصمد طوال الليل وتوقظك.</string>
+    <string name="export_contents_hint">يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
+    <string name="editor_more">المزيد</string>
+    <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
 </resources>

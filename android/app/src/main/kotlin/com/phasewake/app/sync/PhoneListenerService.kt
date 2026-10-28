@@ -10,7 +10,6 @@ import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
-import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
 /** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Status, Weck- und Stopp-Meldungen. */
@@ -31,7 +30,9 @@ class PhoneListenerService : WearableListenerService() {
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
                 val night = WearSync.readNight(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
                 app.nights.add(night)
-                // Die Uhr hat geweckt: Sicherung dieser Nacht nicht mehr nötig (falls «ring» verloren ging).
+                // Die Uhr hat geweckt und die Nacht beendet: Sicherungen dieser Nacht nicht mehr nötig
+                // (falls «ring» oder das letzte «stop» verloren ging).
+                app.backup.cancelSnoozeSafety(night.alarmId)
                 app.backup.watchHandled(night.alarmId, night.target)
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)
@@ -50,9 +51,11 @@ class PhoneListenerService : WearableListenerService() {
             }
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
+                // Restzahl vor dem Verstummen: für die Sicherung, falls die Uhr nach dem Schlummern ausfällt.
+                val left = (PhoneRingService.ringState.value as? PhoneRingService.State.Ringing)?.snoozesLeft
                 PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
-                // Die Uhr schickt «stop» auch beim Schlummern; einen Einmal-Wecker schaltet sie selbst aus.
-                runBlocking { app.backup.watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli)) }
+                // Die Uhr schickt «stop» auch beim Schlummern (mit Schlummer-Ende); einen Einmal-Wecker schaltet sie selbst aus.
+                runBlocking { app.backup.watchStopped(message, left) }
             }
         }
     }

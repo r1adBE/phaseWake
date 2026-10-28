@@ -208,4 +208,15 @@
     <string name="check_volume">Głośność budzika</string>
     <string name="check_volume_problem">Głośność budzika jest ustawiona na 0 – telefon zadzwoniłby bez dźwięku.</string>
     <string name="health_update">Zaktualizuj Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min po czasie docelowym · %2$s</item>
+        <item quantity="few">%1$d min po czasie docelowym · %2$s</item>
+        <item quantity="many">%1$d min po czasie docelowym · %2$s</item>
+        <item quantity="other">%1$d min po czasie docelowym · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Bateria zegarka</string>
+    <string name="check_watch_battery_problem">Poniżej %1$d %% – naładuj zegarek, aby wytrzymał całą noc i mógł cię obudzić.</string>
+    <string name="export_contents_hint">Plik zawiera serie ruchu i tętna z każdej nocy – bez imion, dat i identyfikatorów urządzeń.</string>
+    <string name="editor_more">Więcej</string>
+    <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
 </resources>

@@ -56,10 +56,12 @@ fun nightSummary(context: Context, night: NightRecord): String {
             WakeReason.DEADLINE -> R.string.reason_deadline
         },
     )
-    val timing = if (night.minutesBeforeTarget > 0) {
-        context.getString(R.string.woke_early, night.minutesBeforeTarget.toInt(), reason)
-    } else {
-        context.getString(R.string.woke_on_time, reason)
+    val late = night.minutesAfterTarget.toInt()
+    val timing = when {
+        night.minutesBeforeTarget > 0 -> context.getString(R.string.woke_early, night.minutesBeforeTarget.toInt(), reason)
+        // Nach Schlummern über die Zielzeit hinaus: ehrlich als Verspätung, nicht als «zur Zielzeit».
+        late > 0 -> context.resources.getQuantityString(R.plurals.woke_late, late, late, reason)
+        else -> context.getString(R.string.woke_on_time, reason)
     }
     val snooze = if (night.snoozes == 0) context.getString(R.string.no_snooze) else context.getString(R.string.snoozed_times, night.snoozes)
     return "$timing · $snooze"
@@ -106,7 +108,8 @@ fun HistoryScreen(
         }
         item(key = "stats") { Stats(nights) }
         trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth) } }
-        items(nights.asReversed(), key = { it.windowStart.toEpochMilli() }) { night ->
+        // Schlüssel wie im Verlauf: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
+        items(nights.asReversed(), key = { "${it.alarmId}@${it.windowStart.toEpochMilli()}" }) { night ->
             NightCard(night, loadStages, Modifier.animateItem())
         }
         item(key = "export") {

@@ -47,6 +47,12 @@ import com.phasewake.app.shared.DoNotDisturb
 enum class Check(val title: Int, val problem: Int, val action: Int?, val problemTitle: Int = title, val inReadyList: Boolean = true) {
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
     WATCH_SETUP(R.string.check_watch_setup, R.string.check_watch_setup_problem, null),
+
+    /**
+     * Akku der Uhr unter [NightCheckState.LOW_BATTERY_PERCENT]: Sie hält die Nacht womöglich nicht durch.
+     * Nicht in der Bereit-Liste: Ältere Uhren melden keinen Akkustand, ein Häkchen wäre dann geraten.
+     */
+    WATCH_BATTERY(R.string.check_watch_battery, R.string.check_watch_battery_problem, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
@@ -70,13 +76,17 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
     val ready: Boolean get() = failed.isEmpty()
 
     companion object {
-        /** Unter diesem Akkustand (ohne Ladekabel) warnt der Check vor dem Zweitwecker. */
+        /** Unter diesem Akkustand (Handy ohne Ladekabel, Uhr laut ihrer Meldung) warnt der Check. */
         const val LOW_BATTERY_PERCENT = 20
 
-        /** Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable]. */
-        fun collect(context: Context, watchReachable: Boolean, watchReady: Boolean?): NightCheckState = NightCheckState(
+        /**
+         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady] und
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt).
+         */
+        fun collect(context: Context, watchReachable: Boolean, watchReady: Boolean?, watchBattery: Int? = null): NightCheckState = NightCheckState(
             buildList {
                 if (!watchReachable) add(Check.WATCH) else if (watchReady == false) add(Check.WATCH_SETUP)
+                if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
@@ -158,7 +168,7 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
                     Text(stringResource(check.problemTitle), style = MaterialTheme.typography.labelLarge)
-                    val problem = if (check == Check.BATTERY) {
+                    val problem = if (check == Check.BATTERY || check == Check.WATCH_BATTERY) {
                         stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
                     } else {
                         stringResource(check.problem)

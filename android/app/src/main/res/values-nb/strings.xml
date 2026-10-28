@@ -200,4 +200,13 @@
     <string name="check_volume">Alarmvolum</string>
     <string name="check_volume_problem">Alarmvolumet er satt til 0 – telefonen ville ringt uten lyd.</string>
     <string name="health_update">Oppdater Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min etter ønsket tid · %2$s</item>
+        <item quantity="other">%1$d min etter ønsket tid · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Klokkebatteri</string>
+    <string name="check_watch_battery_problem">Under %1$d %% – lad klokken slik at den varer natten og kan vekke deg.</string>
+    <string name="export_contents_hint">Filen inneholder bevegelses- og pulsserier for hver natt – uten navn, datoer eller enhets-ID-er.</string>
+    <string name="editor_more">Mer</string>
+    <string name="home_max_alarms">Maks %1$d alarmer – slett en for å legge til en ny.</string>
 </resources>

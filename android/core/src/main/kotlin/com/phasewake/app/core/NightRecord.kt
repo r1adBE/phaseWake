@@ -24,8 +24,11 @@ data class NightRecord(
         require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) { "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen" }
     }
 
-    /** Wie viele Minuten vor der Zielzeit geweckt wurde (0 bei Zielzeit). */
+    /** Wie viele Minuten vor der Zielzeit geweckt wurde (0 bei Zielzeit und danach). */
     val minutesBeforeTarget: Long get() = Duration.between(wokeAt, target).toMinutes().coerceAtLeast(0)
+
+    /** Wie viele Minuten nach der Zielzeit geweckt wurde, z. B. nach Schlummern (0 bei Zielzeit und davor). */
+    val minutesAfterTarget: Long get() = Duration.between(target, wokeAt).toMinutes().coerceAtLeast(0)
 
     companion object {
         const val FEELING_MIN: Int = 1

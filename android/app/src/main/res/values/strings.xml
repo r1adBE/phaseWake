@@ -203,4 +203,13 @@
     <string name="check_volume">Alarm volume</string>
     <string name="check_volume_problem">Alarm volume is set to 0 – your phone would ring silently.</string>
     <string name="health_update">Update Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min after target · %2$s</item>
+        <item quantity="other">%1$d min after target · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Watch battery</string>
+    <string name="check_watch_battery_problem">Below %1$d %% – charge your watch so it lasts the night and can wake you.</string>
+    <string name="export_contents_hint">The file contains motion and heart rate series for each night – without names, dates or device IDs.</string>
+    <string name="editor_more">More</string>
+    <string name="home_max_alarms">Up to %1$d alarms – delete one to add a new one.</string>
 </resources>

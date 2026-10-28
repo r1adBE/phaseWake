@@ -204,4 +204,14 @@
     <string name="check_volume">Volume du réveil</string>
     <string name="check_volume_problem">Le volume du réveil est à 0 – ton téléphone sonnerait en silence.</string>
     <string name="health_update">Mettre à jour Health Connect</string>
+    <plurals name="woke_late">
+        <item quantity="one">%1$d min après l’heure cible · %2$s</item>
+        <item quantity="many">%1$d min après l’heure cible · %2$s</item>
+        <item quantity="other">%1$d min après l’heure cible · %2$s</item>
+    </plurals>
+    <string name="check_watch_battery">Batterie de la montre</string>
+    <string name="check_watch_battery_problem">Moins de %1$d %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller.</string>
+    <string name="export_contents_hint">Le fichier contient les séries de mouvement et de fréquence cardiaque de chaque nuit – sans noms, dates ni identifiants d’appareil.</string>
+    <string name="editor_more">Plus</string>
+    <string name="home_max_alarms">%1$d réveils au maximum – supprime-en un pour en ajouter un nouveau.</string>
 </resources>
