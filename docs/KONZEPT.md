@@ -28,7 +28,7 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 | | Handy-App | Uhr-App |
 |---|---|---|
-| Wecker anlegen/ändern | ja | nur Ein/Aus, Fenster kürzen |
+| Wecker anlegen/ändern | ja | nur Ein/Aus |
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
 | Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
@@ -68,10 +68,10 @@ In der ersten Fensterminute wird nicht entschieden (Basiswerte sammeln). Fehlt d
 
 Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 
-- Ausserhalb des Fensters läuft nichts; kein Hintergrund-Tracking.
+- Ausserhalb des Fensters läuft nichts, ausser nach «Gute Nacht»: dann nur Bewegung, stromsparend gebündelt, bis zum Einschlafen. Kein Hintergrund-Tracking.
 - Beschleunigung mit Batching (`maxReportLatency` 10 s), Display bleibt aus.
 - Puls nur im Fenster, über Health Services statt rohem Sensor.
-- Wakelock nur solange der Service misst.
+- Wakelock nur, solange der Dienst misst oder weckt; nach «Gute Nacht» nur auf Uhren ohne aufweckenden Beschleunigungssensor (höchstens 16 Std.).
 
 ## Daten und Datenschutz
 
@@ -100,7 +100,7 @@ Alles in v1, nichts auf später verschoben:
 - Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung
 - Weckfenster-Vorschlag aus dem Verlauf
 - Tile und Komplikation auf der Uhr
-- Nacht-Check auf der Startseite, sobald ein Wecker ansteht: Uhr erreichbar, Mitteilungen und Vollbild-Wecker erlaubt (iPhone: AlarmKit), «Nicht stören» lässt Wecker durch, Wecker-Lautstärke nicht auf 0, exakte Wecker erlaubt (Android 12), Handy-Akku über 20 % oder am Laden
+- Nacht-Check auf der Startseite, sobald ein Wecker ansteht: Uhr erreichbar und eingerichtet (Sensoren, Mitteilungen, Weckbildschirm), Mitteilungen und Vollbild-Wecker erlaubt (iPhone: AlarmKit), «Nicht stören» lässt Wecker durch, Wecker-Lautstärke nicht auf 0, exakte Wecker erlaubt (Android 12), Handy-Akku über 20 % oder am Laden
 - Morgenbericht: Weckgrund, Datenqualität (Bewegung und Puls / nur Bewegung / Lücken) und Befinden 1–5 mit einem Tipp; Befinden im Verlauf, im Export und in den Trends
 - Hinweis nach 3 Nächten in Folge ohne leichten Schlaf trotz 30-Min-Fenster: wahrscheinliche Ursache aus der Datenqualität (Lücken → Uhr abgelegt/am Laden, Puls fehlte → enger tragen, vollständig → ruhiger Schlaf, Wecken zur Zielzeit ist richtig). Das Fenster bleibt höchstens 30 Min.
 - Trends im Verlauf: Ø Schlaf der letzten 7 Tage gegenüber der Vorwoche und Schwankung der Einschlafzeit (aus Health Connect bzw. Apple Health, je mind. 3 bzw. 5 Nächte), Ø Befinden; ohne genug Daten keine Aussage

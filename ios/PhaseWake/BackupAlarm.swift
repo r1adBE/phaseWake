@@ -16,7 +16,9 @@ import AppIntents
 @MainActor
 final class BackupAlarm {
     private static let grace: TimeInterval = 120
-    private static let suppressedKey = "backupSuppressedUntil"
+    /// Pro Wecker: Sicherung ausgesetzt bis (Sekunden seit 1970).
+    private static let suppressedKey = "backupSuppressedByAlarm"
+    private static let legacySuppressedKey = "backupSuppressedUntil"
     private static let backupIdsKey = "backupAlarmIds"
     private static let ringingKey = "backupRingingId"
     private static let oneShotKey = "backupOneShotTargets"
@@ -55,11 +57,12 @@ final class BackupAlarm {
         let expired = alarms.filter { spec in firstTargets[spec.id].map { now > $0.addingTimeInterval(Self.grace) } ?? false }
         for spec in expired { PhoneModel.shared.setEnabled(spec, false) }
         var skip = Set(expired.map(\.id))
-        let suppressed = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: Self.suppressedKey))
-        var from = max(now, suppressed)
+        let suppressed = suppressedUntil()
+        var from = now
         var ids: [String] = []
         while ids.count < Self.nightsAhead {
-            guard let plan = AlarmSchedule.earliestPlan(alarms.filter { $0.phoneBackup && !skip.contains($0.id) }, now: from, calendar: .current) else { break }
+            guard let plan = AlarmSchedule.earliestPlan(alarms.filter { $0.phoneBackup && !skip.contains($0.id) }, now: from,
+                                                        doneUntil: suppressed, calendar: .current) else { break }
             from = plan.target
             if let first = firstTargets[plan.alarmId] {
                 // Einmalig: nur das erste Vorkommen. Ist es ausgesetzt, folgt keine weitere Nacht.
@@ -114,10 +117,19 @@ final class BackupAlarm {
             ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .current) }
             ?? now.addingTimeInterval(window)
         let until = nightTarget.addingTimeInterval(Self.grace)
-        if until.timeIntervalSince1970 > UserDefaults.standard.double(forKey: Self.suppressedKey) {
-            UserDefaults.standard.set(until.timeIntervalSince1970, forKey: Self.suppressedKey)
-        }
+        // Ohne Kennung (ältere Uhr): alle Wecker dieser Nacht, wie bisher.
+        let ids = alarmId.map { [$0] } ?? alarms.map(\.id)
+        var raw = UserDefaults.standard.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
+        for id in ids { raw[id] = max(raw[id] ?? 0, until.timeIntervalSince1970) }
+        let keepAfter = now.addingTimeInterval(-24 * 3600).timeIntervalSince1970
+        UserDefaults.standard.set(raw.filter { $0.value > keepAfter }, forKey: Self.suppressedKey)
+        UserDefaults.standard.removeObject(forKey: Self.legacySuppressedKey)
         await reschedule(alarms)
+    }
+
+    private func suppressedUntil() -> [String: Date] {
+        let raw = UserDefaults.standard.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
+        return raw.mapValues { Date(timeIntervalSince1970: $0) }
     }
 
     /// Stoppt den Mitklingel-Wecker und jeden gerade klingelnden Alarm (auch eine Sicherung).

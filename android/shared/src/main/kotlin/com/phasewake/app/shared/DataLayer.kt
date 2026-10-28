@@ -11,7 +11,7 @@ object DataLayer {
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"
 
-    /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet (gestoppt); Inhalt = [RingMessage] (ohne Schlummer). */
+    /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet oder auf der Uhr geschlummert; Inhalt = [RingMessage] ohne Schlummer-Runden. */
     const val PATH_STOP = "/phasewake/stop"
 
     /**
@@ -27,7 +27,7 @@ object DataLayer {
     const val PATH_CLEAR_HISTORY = "/phasewake/clear-history"
 
     /**
-     * Datenpaket Uhr → Handy: Ist die Uhr bereit für die Nacht (Sensoren, Mitteilungen erlaubt)?
+     * Datenpaket Uhr → Handy: Ist die Uhr bereit für die Nacht (Sensoren, Mitteilungen und Weckbildschirm erlaubt)?
      * Schlüssel [KEY_READY], [KEY_UPDATED_AT]. Der Nacht-Check am Handy zeigt es an.
      */
     const val PATH_WATCH_STATUS = "/phasewake/watch-status"

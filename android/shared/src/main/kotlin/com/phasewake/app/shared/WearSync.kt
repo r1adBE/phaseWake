@@ -41,7 +41,7 @@ class WearSync(context: Context) {
         dataClient.putDataItem(request.asPutDataRequest()).await()
     }
 
-    /** Uhr: meldet, ob sie für die Nacht bereit ist (Berechtigungen erteilt). */
+    /** Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt). */
     suspend fun publishWatchReady(ready: Boolean) = guarded("Status senden") {
         val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)

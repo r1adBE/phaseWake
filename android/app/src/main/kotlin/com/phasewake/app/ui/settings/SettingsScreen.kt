@@ -152,7 +152,6 @@ fun SettingsScreen(
     }
 }
 
-/** Zustand der Verbindung zu Health Connect. */
 /** Health Connect: fehlt, muss aktualisiert werden, ist bereit oder schon verbunden. */
 enum class HealthState { UNAVAILABLE, UPDATE_REQUIRED, AVAILABLE, CONNECTED }
 

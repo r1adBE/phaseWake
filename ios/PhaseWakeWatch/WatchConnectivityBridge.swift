@@ -3,7 +3,7 @@ import PhaseWakeCore
 import WatchConnectivity
 
 /// Verbindung zum iPhone: Wecker kommen als Anwendungskontext, Nächte gehen als Benutzerdaten,
-/// Weck-Ereignisse als Nachricht (nur wenn das iPhone erreichbar ist).
+/// Weck-Ereignisse als Nachricht, ohne Verbindung als Benutzerdaten nachgereicht.
 final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchConnectivityBridge()
 

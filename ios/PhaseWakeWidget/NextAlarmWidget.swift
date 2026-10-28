@@ -34,7 +34,7 @@ struct NextAlarmProvider: TimelineProvider {
 
     private func entry(at date: Date) -> NextAlarmEntry {
         let storage = PhaseWakeStorage.watchShared
-        let plan = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: max(date, storage.doneUntil), calendar: .current)
+        let plan = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil, calendar: .current)
         return NextAlarmEntry(date: date, plan: plan)
     }
 }

@@ -64,7 +64,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlinx.coroutines.launch
 
-/** Weckbildschirm: erscheint über dem Sperrbildschirm, bis gestoppt oder geschlummert wird. */
+/** Weckbildschirm: erscheint über dem Sperrbildschirm, solange es klingelt; beim Schlummern schliesst er sich, ausser er wurde über die Schlummer-Mitteilung geöffnet. */
 class RingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -31,7 +31,7 @@ class WatchListenerService : WearableListenerService() {
     }
 
     override fun onMessageReceived(event: MessageEvent) {
-        // Inhalt nachsichtig lesen: Ältere Handy-Versionen schicken nichts, dann gilt der Befehl der laufenden Nacht.
+        // Inhalt nachsichtig lesen: «snooze» und ältere Handy-Versionen schicken keine Kennung, dann gilt der Befehl der laufenden Nacht.
         val alarmId = RingMessage.decode(event.data).alarmId
         when (event.path) {
             DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS, remoteAlarmId = alarmId)

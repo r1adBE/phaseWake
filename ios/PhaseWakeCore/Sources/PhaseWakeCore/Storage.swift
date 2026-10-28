@@ -63,19 +63,25 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return true
     }
 
-    /// Bis zu diesem Zeitpunkt ist eine Weck-Nacht erledigt; sie wird nicht noch einmal geplant.
-    public var doneUntil: Date {
-        get {
-            lock.lock(); defer { lock.unlock() }
-            return Date(timeIntervalSince1970: defaults.double(forKey: Self.doneKey))
-        }
-        set {
-            lock.lock(); defer { lock.unlock() }
-            defaults.set(newValue.timeIntervalSince1970, forKey: Self.doneKey)
-        }
+    /// Pro Wecker: bis zu diesem Zeitpunkt ist seine Weck-Nacht erledigt; sie wird nicht noch einmal geplant.
+    public var doneUntil: [String: Date] {
+        lock.lock(); defer { lock.unlock() }
+        let raw = defaults.dictionary(forKey: Self.doneKey) as? [String: Double] ?? [:]
+        return raw.mapValues { Date(timeIntervalSince1970: $0) }
     }
 
-    private static let doneKey = "nightDoneUntil"
+    /// Merkt die Nacht des Weckers bis `until` als erledigt; ein späterer Wert bleibt, alte fallen weg.
+    public func markDone(alarmId: String, until: Date, now: Date = Date()) {
+        lock.lock(); defer { lock.unlock() }
+        var raw = defaults.dictionary(forKey: Self.doneKey) as? [String: Double] ?? [:]
+        raw[alarmId] = max(raw[alarmId] ?? 0, until.timeIntervalSince1970)
+        let keepAfter = now.addingTimeInterval(-2 * 24 * 3600).timeIntervalSince1970
+        defaults.set(raw.filter { $0.value > keepAfter }, forKey: Self.doneKey)
+        defaults.removeObject(forKey: Self.legacyDoneKey)
+    }
+
+    private static let doneKey = "nightDoneUntilByAlarm"
+    private static let legacyDoneKey = "nightDoneUntil"
 
     private func snapshotLocked() -> AlarmSnapshot {
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
@@ -141,8 +147,8 @@ public enum SyncKeys {
     public static let stop = "stop"
     public static let snooze = "snooze"
     public static let clearHistory = "clearHistory"
-    /// Bei «ring», «stop» und «snooze»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
-    /// auch die verbleibenden Schlummer-Runden der Uhr. Ältere Versionen schicken sie nicht.
+    /// Uhr → iPhone bei «ring» und «stop»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
+    /// auch die verbleibenden Schlummer-Runden. iPhone → Uhr: nur die Sendezeit. Ältere Versionen schicken nichts davon.
     public static let target = "target"
     public static let sentAt = "sentAt"
     public static let snoozesLeft = "snoozesLeft"

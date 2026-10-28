@@ -477,7 +477,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             )
             model.storage.add(night)
             // Diese Nacht ist erledigt: nicht noch einmal planen, auch wenn die Zielzeit noch vorn liegt.
-            model.storage.doneUntil = nightPlan.target
+            model.storage.markDone(alarmId: nightPlan.alarmId, until: nightPlan.target)
             WatchConnectivityBridge.shared.send(night: night)
         }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }

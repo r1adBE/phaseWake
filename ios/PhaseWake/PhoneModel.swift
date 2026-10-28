@@ -70,9 +70,14 @@ final class PhoneModel {
         PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
     }
 
-    /// Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt (früh geweckt).
-    /// Gleich wie `doneUntil` auf der Uhr.
-    var doneUntil: Date? { nights.map(\.target).filter { $0 > Date() }.max() }
+    /// Pro Wecker: Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt
+    /// (früh geweckt). Gleich wie `doneUntil` auf der Uhr.
+    var doneUntil: [String: Date] {
+        let now = Date()
+        return nights.filter { $0.target > now }.reduce(into: [:]) { done, night in
+            done[night.alarmId] = max(done[night.alarmId] ?? .distantPast, night.target)
+        }
+    }
 
     func watchArmed(_ target: Date?) {
         watchArmedTarget = target

@@ -24,7 +24,7 @@ final class WatchModel {
     }
 
     /// Nächster Plan; eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
-    var plan: WakePlan? { AlarmSchedule.earliestPlan(alarms, now: max(now, storage.doneUntil), calendar: .current) }
+    var plan: WakePlan? { AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current) }
 
     func refresh() {
         now = Date()

@@ -159,7 +159,13 @@ public enum AlarmSchedule {
     }
 
     public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar) -> WakePlan? {
-        specs.compactMap { nextPlan($0, now: now, calendar: calendar) }
+        earliestPlan(specs, now: now, doneUntil: [:], calendar: calendar)
+    }
+
+    /// Wie oben, aber pro Wecker erst ab `doneUntil[id]` (erledigte bzw. ausgesetzte Nacht).
+    /// Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
+    public static func earliestPlan(_ specs: [AlarmSpec], now: Date, doneUntil: [String: Date], calendar: Calendar) -> WakePlan? {
+        specs.compactMap { nextPlan($0, now: max(now, doneUntil[$0.id] ?? .distantPast), calendar: calendar) }
             .min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
     }
 

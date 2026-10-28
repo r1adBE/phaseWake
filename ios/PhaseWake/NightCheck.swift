@@ -45,7 +45,7 @@ enum NightCheck {
         let session = WCSession.isSupported() ? WCSession.default : nil
         let model = PhoneModel.shared
         // Wie auf der Uhr: Eine heute schon abgeschlossene Nacht zählt nicht mehr.
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: max(Date(), model.doneUntil ?? .distantPast), calendar: .current)
+        let plan = AlarmSchedule.earliestPlan(model.alarms, now: Date(), doneUntil: model.doneUntil, calendar: .current)
         if session?.activationState != .activated || session?.isPaired != true {
             failed.append(.watch)
         } else if session?.isWatchAppInstalled != true {

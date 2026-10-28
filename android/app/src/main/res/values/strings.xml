@@ -6,6 +6,7 @@
     <string name="channel_alarm_description">Rings on your phone together with your watch.</string>
     <string name="ring_greeting">Good morning</string>
     <string name="ring_notification_text">Your Phase Wake alarm is ringing</string>
+    <!-- Nur iOS (AlarmKit-Knopf); Android stoppt durch Halten. -->
     <string name="ring_stop">Stop</string>
     <string name="ring_open">Open</string>
     <plurals name="ring_snooze">

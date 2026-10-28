@@ -9,7 +9,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.phasewake.app.R
 
-/** Mitteilungen des Handys: nur der Zweitwecker. */
+/** Mitteilungen des Handys: nur der Weckvorgang (Mitklingeln mit der Uhr und Zweitwecker). */
 object RingNotifications {
     const val CHANNEL_ALARM = "alarm"
     const val ID_RING = 1
@@ -37,7 +37,7 @@ object RingNotifications {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setOngoing(true)
-            .setSilent(true)
+            // Kein setSilent: Es unterdrückt den Vollbildstart. Der Kanal ist ohnehin stumm.
             .setFullScreenIntent(open, true)
             .setContentIntent(open)
             // «Öffnen» statt «Stopp»: Beendet wird nur durch Halten auf dem Weckbildschirm.

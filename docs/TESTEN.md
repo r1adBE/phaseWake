@@ -12,7 +12,7 @@ Dort liegen zwei Dateien:
 
 1. Auf dem Handy die Seite oben öffnen und `PhaseWake-Handy.apk` herunterladen.
 2. Die Datei öffnen. Beim ersten Mal fragt Android, ob der Browser Apps installieren darf: **Einstellungen → Zulassen**, zurück, **Installieren**.
-3. Phase Wake öffnen und einen Wecker anlegen.
+3. Phase Wake öffnen, Mitteilungen erlauben und einen Wecker anlegen. Zeigt der Nacht-Check einen roten Punkt, auf dessen Knopf tippen und die Erlaubnis geben.
 
 ## 2. Uhr (einmalig einrichten)
 
@@ -44,7 +44,7 @@ Die Uhr hat keinen Browser für Apps; die Datei kommt vom Computer über WLAN. U
 adb install -r PhaseWake-Uhr.apk
 ```
 
-«Success» heisst: installiert. Phase Wake auf der Uhr öffnen und alle Berechtigungen erlauben (Sensoren, Mitteilungen, Wecker).
+«Success» heisst: installiert. Phase Wake auf der Uhr öffnen und alle Berechtigungen erlauben: Sensoren (Puls, Bewegung), Mitteilungen und danach «Puls im Hintergrund» («Immer erlauben»). Zeigt die Uhr den Hinweis weiter, nochmals antippen: Dann öffnen sich die Einstellungen der App bzw. die Erlaubnis für den Weckbildschirm.
 
 Für spätere Testversionen genügen Schritt 6 (`adb connect …`) und Schritt 3.
 

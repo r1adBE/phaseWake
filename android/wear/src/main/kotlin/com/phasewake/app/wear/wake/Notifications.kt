@@ -14,7 +14,7 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.RingActivity
 
-/** Mitteilungen der Uhr: ruhige Daueranzeige während des Fensters, laute beim Wecken. */
+/** Mitteilungen der Uhr: ruhige Daueranzeige während des Fensters, Weck-Mitteilung mit Vollbild beim Wecken (Vibration steuert der Dienst). */
 object Notifications {
     const val CHANNEL_WINDOW = "window"
     const val CHANNEL_ALARM = "alarm"

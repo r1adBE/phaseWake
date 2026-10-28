@@ -31,7 +31,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Sonnenaufgang** auf dem Handy (Option): Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf dem iPhone im Nachttisch-Modus
 - **Schlummern** 5 Minuten, höchstens 3×
 - **Nacht-Check** vor dem Schlafen: Uhr verbunden, Wecker erlaubt, «Nicht stören», Akku – mit Knopf zum Beheben
-- **Morgenbericht**: wann und warum geweckt wurde, worauf die Entscheidung beruhte, und ein Tipp, wie du dich fühlst
+- **Morgenbericht**: wann und warum geweckt wurde, worauf die Entscheidung beruhte, dein Befinden (1–5) und ein Tipp
 - **Trends**: Schlafdauer und Regelmässigkeit (aus Health Connect bzw. Apple Health) und dein Befinden im Wochenvergleich
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
 - **Lernt mit**: Die Schwellen passen sich ab der dritten Nacht an dich an
@@ -57,7 +57,7 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 | `ios/PhaseWake` | iPhone-App (SwiftUI) |
 | `ios/PhaseWakeWatch` | Apple-Watch-App (SwiftUI, Smart-Alarm-Sitzung) |
 | `shared/testdata` | Testnächte, die beide Plattformen identisch bewerten müssen |
-| `docs` | Konzept, Erkennungsregel, Logo |
+| `docs` | Konzept, Entscheide, Erkennungsregel, Testanleitung, Datenschutz, Logo |
 
 ## Testen
 

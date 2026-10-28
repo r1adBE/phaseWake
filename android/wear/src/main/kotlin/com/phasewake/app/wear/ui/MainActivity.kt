@@ -160,7 +160,7 @@ private fun HomeScreen() {
         backgroundMissing?.let { backgroundLauncher.launch(it) }
         app.appScope.launch { app.scheduler.reschedule() }
     }
-    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen aus): beim Öffnen zeigen.
+    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen oder Vollbild nicht erlaubt): beim Öffnen zeigen.
     val ring by app.ringState.ui.collectAsStateWithLifecycle()
     LaunchedEffect(ring) {
         if (ring is RingUi.Ringing) context.startActivity(Intent(context, RingActivity::class.java))

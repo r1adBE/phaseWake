@@ -46,7 +46,8 @@ class AlarmScheduler(
     private val onsetOverride: OnsetOverride,
     private val store: DataStore<Preferences>,
     private val sync: WearSync,
-    private val clock: Clock = Clock.systemDefaultZone(),
+    /** Uhrzeit; die Zeitzone wird bei jedem Aufruf neu gelesen, nie beim Erzeugen festgehalten (Reisen). */
+    private val clock: () -> Clock = { Clock.system(java.time.ZoneId.systemDefault()) },
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
@@ -62,7 +63,7 @@ class AlarmScheduler(
      * Startseite, Kachel und Komplikation zeigen genau diesen.
      */
     suspend fun nextPlan(): WakePlan? {
-        val now = clock.instant()
+        val now = clock().instant()
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
         // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
         val saved = decodeDone(store.data.first()[DONE_UNTIL_BY_ALARM])
@@ -70,7 +71,7 @@ class AlarmScheduler(
         val plan = alarms.current().alarms
             .mapNotNull { spec ->
                 val done = maxOf(saved[spec.id] ?: Instant.EPOCH, memory[spec.id] ?: Instant.EPOCH)
-                AlarmSchedule.nextPlan(spec, maxOf(now, done), clock.zone)
+                AlarmSchedule.nextPlan(spec, maxOf(now, done), clock().zone)
             }
             .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
         return onsetOverride.apply(plan, now)
@@ -78,7 +79,7 @@ class AlarmScheduler(
 
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
     suspend fun reschedule(): WakePlan? = rescheduleLock.withLock {
-        val now = clock.instant()
+        val now = clock().instant()
         val plan = nextPlan()
 
         // Läuft eine Messung für einen Plan, der nicht mehr gilt (Wecker aus, gelöscht, verschoben): beenden.
@@ -116,7 +117,7 @@ class AlarmScheduler(
     /** Schreibt den Stand aus [markDone] in den Speicher; spätere Werte bleiben, alte fallen weg. */
     suspend fun saveDone() {
         val memory = doneInMemory
-        val keepAfter = clock.instant().minus(Duration.ofDays(2))
+        val keepAfter = clock().instant().minus(Duration.ofDays(2))
         store.edit { prefs ->
             val merged = decodeDone(prefs[DONE_UNTIL_BY_ALARM]).toMutableMap()
             memory.forEach { (id, at) -> merged[id] = maxOf(merged[id] ?: Instant.EPOCH, at) }
@@ -149,7 +150,8 @@ class AlarmScheduler(
     fun isReady(): Boolean {
         val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
         val notifications = NotificationManagerCompat.from(context)
-        // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst.
+        // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst. Das Hintergrundrecht
+        // für den Puls ist nicht nötig: Ohne Puls entscheidet die Bewegung allein.
         return sensors && notifications.areNotificationsEnabled() && notifications.canUseFullScreenIntent()
     }
 

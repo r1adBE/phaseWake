@@ -35,11 +35,13 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.snapshot().alarms.count, 200)
     }
 
-    func testDoneUntilPersists() {
+    func testDoneUntilPerAlarm() {
         let s = storage()
         let date = Date(timeIntervalSince1970: 1_793_173_963)
-        s.doneUntil = date
-        XCTAssertEqual(s.doneUntil, date)
+        s.markDone(alarmId: "a", until: date, now: date)
+        s.markDone(alarmId: "a", until: date.addingTimeInterval(-60), now: date)
+        XCTAssertEqual(s.doneUntil["a"], date)
+        XCTAssertNil(s.doneUntil["b"])
     }
 
     func testApplyRemoteOnlyWhenNewer() throws {
