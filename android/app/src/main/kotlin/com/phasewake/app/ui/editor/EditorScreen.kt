@@ -1,6 +1,17 @@
 package com.phasewake.app.ui.editor
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.media.RingtoneManager
+import android.net.Uri
 import android.text.format.DateFormat
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.draw.clip
+import androidx.core.content.IntentCompat
+import com.phasewake.app.core.PhoneAlert
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,7 +40,6 @@ import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Slider
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
@@ -77,7 +87,13 @@ fun EditorScreen(
     var days by remember { mutableStateOf(base.days) }
     var sleepMode by remember { mutableStateOf(base.sleepDurationMinutes != null) }
     var sleepMinutes by remember { mutableFloatStateOf((base.sleepDurationMinutes ?: 450).toFloat()) }
-    var phoneBackup by remember { mutableStateOf(base.phoneBackup) }
+    var phone by remember { mutableStateOf(base.phone) }
+    var watchSound by remember { mutableStateOf(base.watchSound) }
+    var sound by remember { mutableStateOf(base.sound) }
+    val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
+        if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
+    }
     var label by remember { mutableStateOf(base.label) }
 
     fun result() = base.copy(
@@ -86,7 +102,9 @@ fun EditorScreen(
         days = days,
         windowMinutes = window.roundToInt(),
         sleepDurationMinutes = if (sleepMode) sleepMinutes.roundToInt() else null,
-        phoneBackup = phoneBackup,
+        phone = phone,
+        watchSound = watchSound,
+        sound = sound,
         label = label.trim(),
         enabled = true,
     )
@@ -183,13 +201,46 @@ fun EditorScreen(
             }
 
             Section {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(painterResource(R.drawable.ic_phone), contentDescription = null, modifier = Modifier.size(22.dp))
-                    Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {
-                        Text(stringResource(R.string.editor_phone_backup), style = MaterialTheme.typography.titleSmall)
-                        Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(R.string.editor_alert), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.editor_alert_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+
+                AlertLabel(R.drawable.ic_watch, R.string.editor_alert_watch)
+                Choice(
+                    options = listOf(false to R.string.alert_vibrate_only, true to R.string.alert_vibrate_sound),
+                    selected = watchSound,
+                    onSelect = { watchSound = it },
+                )
+
+                AlertLabel(R.drawable.ic_phone, R.string.editor_alert_phone)
+                Choice(
+                    options = listOf(PhoneAlert.OFF to R.string.alert_off, PhoneAlert.VIBRATE to R.string.alert_vibrate, PhoneAlert.SOUND to R.string.alert_sound),
+                    selected = phone,
+                    onSelect = { phone = it },
+                )
+                if (phone != PhoneAlert.OFF) {
+                    Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
+                }
+                AnimatedVisibility(phone == PhoneAlert.SOUND) {
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                            .clip(MaterialTheme.shapes.small)
+                            .clickable {
+                                soundPicker.launch(
+                                    Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.ifEmpty { null }?.let(Uri::parse)),
+                                )
+                            }
+                            .padding(vertical = 10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                        Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
                     }
-                    Switch(checked = phoneBackup, onCheckedChange = { phoneBackup = it })
                 }
             }
 
@@ -211,6 +262,35 @@ fun EditorScreen(
             Spacer(Modifier.height(32.dp))
         }
     }
+}
+
+@Composable
+private fun AlertLabel(icon: Int, label: Int) {
+    Row(Modifier.padding(top = 14.dp, bottom = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+        Icon(painterResource(icon), contentDescription = null, modifier = Modifier.size(18.dp))
+        Text(stringResource(label), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp))
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) -> Unit) {
+    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+        options.forEachIndexed { index, (value, label) ->
+            SegmentedButton(
+                selected = value == selected,
+                onClick = { onSelect(value) },
+                shape = SegmentedButtonDefaults.itemShape(index, options.size),
+            ) { Text(stringResource(label), maxLines = 1) }
+        }
+    }
+}
+
+/** Anzeigename des gewählten Wecktons; leer = Standard-Weckton. */
+private fun soundTitle(context: Context, sound: String): String {
+    if (sound.isEmpty()) return context.getString(R.string.editor_sound_default)
+    return runCatching { RingtoneManager.getRingtone(context, Uri.parse(sound))?.getTitle(context) }.getOrNull()
+        ?: context.getString(R.string.editor_sound_default)
 }
 
 @Composable

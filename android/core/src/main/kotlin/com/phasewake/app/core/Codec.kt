@@ -20,6 +20,9 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
+    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name */
+    private const val FIELDS = 11
+
     private val dayCodes = mapOf(
         DayOfWeek.MONDAY to "MO", DayOfWeek.TUESDAY to "TU", DayOfWeek.WEDNESDAY to "WE",
         DayOfWeek.THURSDAY to "TH", DayOfWeek.FRIDAY to "FR", DayOfWeek.SATURDAY to "SA", DayOfWeek.SUNDAY to "SU",
@@ -36,8 +39,10 @@ object Codec {
                 a.days.sorted().joinToString(",") { dayCodes.getValue(it) },
                 a.windowMinutes.toString(),
                 if (a.enabled) "1" else "0",
-                if (a.phoneBackup) "1" else "0",
+                a.phone.name,
+                if (a.watchSound) "1" else "0",
                 a.sleepDurationMinutes?.toString().orEmpty(),
+                escape(a.sound),
                 escape(a.label),
             ).joinToString(SEP)).append('\n')
         }
@@ -49,7 +54,7 @@ object Codec {
         return lines.drop(1).mapIndexed { index, line ->
             parse("Wecker ${index + 1}") {
                 val f = line.split(SEP)
-                require(f.size == 9) { "9 Felder erwartet, ${f.size} gefunden" }
+                require(f.size == FIELDS) { "$FIELDS Felder erwartet, ${f.size} gefunden" }
                 AlarmSpec(
                     id = unescape(f[0]),
                     hour = f[1].toInt(),
@@ -59,9 +64,11 @@ object Codec {
                     }.toSet(),
                     windowMinutes = f[4].toInt(),
                     enabled = f[5] == "1",
-                    phoneBackup = f[6] == "1",
-                    sleepDurationMinutes = f[7].ifEmpty { null }?.toInt(),
-                    label = unescape(f[8]),
+                    phone = PhoneAlert.valueOf(f[6]),
+                    watchSound = f[7] == "1",
+                    sleepDurationMinutes = f[8].ifEmpty { null }?.toInt(),
+                    sound = unescape(f[9]),
+                    label = unescape(f[10]),
                 )
             }
         }

@@ -55,7 +55,6 @@
     <string name="editor_days">Repeat</string>
     <string name="editor_weekdays">Weekdays</string>
     <string name="editor_weekend">Weekend</string>
-    <string name="editor_phone_backup">Backup alarm on phone</string>
     <string name="editor_phone_backup_hint">Rings with your watch, and on its own if the watch doesn’t respond.</string>
     <string name="editor_label">Name</string>
     <string name="editor_label_hint">Work</string>
@@ -99,4 +98,18 @@
     <string name="stage_light">light sleep</string>
     <string name="stage_rem">REM sleep</string>
     <string name="stage_awake">awake</string>
+    <string name="editor_alert">How to wake you</string>
+    <string name="editor_alert_hint">Alarms also ring with Do Not Disturb, bedtime mode and a silent phone.</string>
+    <string name="editor_alert_watch">Watch</string>
+    <string name="editor_alert_phone">Phone</string>
+    <string name="alert_vibrate_only">Vibration only</string>
+    <string name="alert_vibrate_sound">Vibration + sound</string>
+    <string name="alert_off">Off</string>
+    <string name="alert_vibrate">Vibration</string>
+    <string name="alert_sound">Sound + vibration</string>
+    <string name="editor_sound">Alarm sound</string>
+    <string name="editor_sound_default">Default</string>
+    <string name="dnd_title">Do Not Disturb blocks alarms</string>
+    <string name="dnd_text">Allow alarms in Do Not Disturb, otherwise your phone stays silent.</string>
+    <string name="dnd_action">Open settings</string>
 </resources>

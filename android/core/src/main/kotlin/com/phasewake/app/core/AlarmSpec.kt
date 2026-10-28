@@ -11,7 +11,9 @@ import java.time.DayOfWeek
  * @property days Wochentage, an denen der Wecker gilt; leer = einmalig.
  * @property windowMinutes Weckfenster vor der Zielzeit, 10–30 Minuten.
  * @property enabled Ob der Wecker aktiv ist.
- * @property phoneBackup Ob das Handy als Zweitwecker mitklingelt.
+ * @property phone Wie das Handy als Zweitwecker weckt (aus, nur Vibration, Ton und Vibration).
+ * @property watchSound Ob die Uhr zusätzlich zur Vibration einen Ton spielt.
+ * @property sound Weckton des Handys als Uri-Text; leer = Standard-Weckton des Systems.
  * @property sleepDurationMinutes Optional: Zielzeit = Einschlafzeit + Dauer, höchstens [hour]:[minute].
  * @property label Freier Name, z. B. «Arbeit».
  */
@@ -22,7 +24,9 @@ data class AlarmSpec(
     val days: Set<DayOfWeek> = emptySet(),
     val windowMinutes: Int = DEFAULT_WINDOW_MINUTES,
     val enabled: Boolean = true,
-    val phoneBackup: Boolean = true,
+    val phone: PhoneAlert = PhoneAlert.SOUND,
+    val watchSound: Boolean = false,
+    val sound: String = "",
     val sleepDurationMinutes: Int? = null,
     val label: String = "",
 ) {
@@ -38,6 +42,9 @@ data class AlarmSpec(
         }
     }
 
+    /** Ob das Handy als Zweitwecker mitweckt. */
+    val phoneBackup: Boolean get() = phone != PhoneAlert.OFF
+
     /** Einmaliger Wecker: wird nach dem Klingeln ausgeschaltet. */
     val isOneShot: Boolean get() = days.isEmpty()
 
@@ -51,4 +58,16 @@ data class AlarmSpec(
         const val MIN_SLEEP_MINUTES: Int = 60
         const val MAX_SLEEP_MINUTES: Int = 12 * 60
     }
+}
+
+/** Weckart des Handy-Zweitweckers. Wecker gelten als Wecker: auch bei «Nicht stören» und lautlosem Handy. */
+enum class PhoneAlert {
+    /** Handy weckt nicht mit. */
+    OFF,
+
+    /** Nur Vibration, kein Ton. */
+    VIBRATE,
+
+    /** Ton (sanft lauter werdend) und Vibration. */
+    SOUND,
 }

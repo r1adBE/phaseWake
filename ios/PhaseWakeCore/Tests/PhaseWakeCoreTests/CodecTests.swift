@@ -5,14 +5,14 @@ final class CodecTests: XCTestCase {
 
     func testAlarmsRoundTripAndFormat() throws {
         let alarms = [
-            try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25, phoneBackup: false, label: "Arbeit | früh, 100 %"),
-            try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, sleepDurationMinutes: 450),
+            try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25, phone: .vibrate, watchSound: true, sound: "content://media/internal/audio/media/42", label: "Arbeit | früh, 100 %"),
+            try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|0||Arbeit+%7C+fr%C3%BCh%2C+100+%25\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25\n"
         )
     }
 
@@ -36,9 +36,10 @@ final class CodecTests: XCTestCase {
 
     func testBrokenInput() {
         XCTAssertThrowsError(try Codec.decodeAlarms(""))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|25|0|||30|1|1||"))
-        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|1||"))
+        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"))
+        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"))
         XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
+        XCTAssertThrowsError(try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0|||"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
     }

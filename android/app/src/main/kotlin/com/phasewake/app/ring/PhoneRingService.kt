@@ -7,6 +7,7 @@ import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
@@ -18,9 +19,11 @@ import android.os.VibratorManager
 import android.util.Log
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,6 +39,7 @@ class PhoneRingService : Service() {
     private var player: MediaPlayer? = null
     private var volume = 0f
     private var snoozes = 0
+    private var lastAlarmId: String? = null
 
     private val fadeIn = object : Runnable {
         override fun run() {
@@ -51,7 +55,7 @@ class PhoneRingService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
-            ACTION_RING -> start(fromWatch = intent.getBooleanExtra(EXTRA_FROM_WATCH, false))
+            ACTION_RING -> start(intent.getStringExtra(EXTRA_ALARM_ID), fromWatch = intent.getBooleanExtra(EXTRA_FROM_WATCH, false))
             ACTION_STOP -> stop(notifyWatch = true)
             ACTION_STOP_SILENT -> stop(notifyWatch = false)
             ACTION_SNOOZE -> snooze()
@@ -65,7 +69,7 @@ class PhoneRingService : Service() {
         super.onDestroy()
     }
 
-    private fun start(fromWatch: Boolean) {
+    private fun start(alarmId: String?, fromWatch: Boolean) {
         ServiceCompat.startForeground(
             this, RingNotifications.ID_RING, RingNotifications.ringing(this),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
@@ -74,9 +78,19 @@ class PhoneRingService : Service() {
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = Snooze.MAX_COUNT - snoozes)
         if (fromWatch) phoneApp.appScope.launch { phoneApp.backup.watchIsRinging() }
         startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        playSound()
-        vibrate()
         handler.postDelayed(timeout, TIMEOUT_MS)
+        lastAlarmId = alarmId
+        phoneApp.appScope.launch(Dispatchers.Main) {
+            val spec = phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId }
+            when (spec?.phone ?: PhoneAlert.SOUND) {
+                PhoneAlert.OFF -> stop(notifyWatch = false)
+                PhoneAlert.VIBRATE -> vibrate()
+                PhoneAlert.SOUND -> {
+                    playSound(spec?.sound.orEmpty())
+                    vibrate()
+                }
+            }
+        }
     }
 
     private fun snooze() {
@@ -91,7 +105,7 @@ class PhoneRingService : Service() {
             stopSelf()
         } else {
             state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - snoozes)
-            handler.postDelayed({ state.value = State.Idle; start(fromWatch = false) }, Snooze.MINUTES * 60_000L)
+            handler.postDelayed({ state.value = State.Idle; start(lastAlarmId, fromWatch = false) }, Snooze.MINUTES * 60_000L)
         }
     }
 
@@ -105,8 +119,10 @@ class PhoneRingService : Service() {
         stopSelf()
     }
 
-    private fun playSound() {
-        val uri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
+    private fun playSound(chosen: String) {
+        if (state.value !is State.Ringing) return
+        val uri = chosen.ifEmpty { null }?.let(Uri::parse)
+            ?: RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         try {
             player = MediaPlayer().apply {
@@ -125,6 +141,7 @@ class PhoneRingService : Service() {
     }
 
     private fun vibrate() {
+        if (state.value !is State.Ringing) return
         val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             getSystemService(VibratorManager::class.java).defaultVibrator
         } else {

@@ -16,10 +16,12 @@ class CodecTest {
             days = setOf(DayOfWeek.FRIDAY, DayOfWeek.MONDAY),
             windowMinutes = 25,
             enabled = true,
-            phoneBackup = false,
+            phone = PhoneAlert.VIBRATE,
+            watchSound = true,
+            sound = "content://media/internal/audio/media/42",
             label = "Arbeit | früh, 100 %",
         ),
-        AlarmSpec(id = "b", hour = 9, minute = 30, enabled = false, sleepDurationMinutes = 450),
+        AlarmSpec(id = "b", hour = 9, minute = 30, enabled = false, phone = PhoneAlert.OFF, sleepDurationMinutes = 450),
     )
 
     @Test
@@ -31,7 +33,7 @@ class CodecTest {
     @Test
     fun alarmsFormatIsStable() {
         val text = Codec.encodeAlarms(alarms.take(1))
-        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|0||Arbeit+%7C+fr%C3%BCh%2C+100+%25\n", text)
+        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25\n", text)
     }
 
     @Test
@@ -52,9 +54,10 @@ class CodecTest {
     @Test
     fun brokenInputIsReported() {
         assertFailsWith<CodecException> { Codec.decodeAlarms("") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|25|0|||30|1|1||") }
-        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|1||") }
+        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||") }
+        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||") }
         assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6") }
+        assertFailsWith<CodecException> { Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0|||") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-alarms 1\n") }
     }

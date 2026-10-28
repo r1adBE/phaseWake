@@ -53,7 +53,6 @@
     <string name="editor_days">Wiederholen</string>
     <string name="editor_weekdays">Werktage</string>
     <string name="editor_weekend">Wochenende</string>
-    <string name="editor_phone_backup">Zweitwecker auf dem Handy</string>
     <string name="editor_phone_backup_hint">Klingelt mit der Uhr – und allein, falls sich die Uhr nicht meldet.</string>
     <string name="editor_label">Name</string>
     <string name="editor_label_hint">Arbeit</string>
@@ -97,4 +96,18 @@
     <string name="stage_light">leichter Schlaf</string>
     <string name="stage_rem">REM-Schlaf</string>
     <string name="stage_awake">wach</string>
+    <string name="editor_alert">So weckt dich Phase Wake</string>
+    <string name="editor_alert_hint">Wecker klingeln auch bei «Nicht stören», im Bettzeitmodus und bei lautlosem Handy.</string>
+    <string name="editor_alert_watch">Uhr</string>
+    <string name="editor_alert_phone">Handy</string>
+    <string name="alert_vibrate_only">Nur Vibration</string>
+    <string name="alert_vibrate_sound">Vibration + Ton</string>
+    <string name="alert_off">Aus</string>
+    <string name="alert_vibrate">Vibration</string>
+    <string name="alert_sound">Ton + Vibration</string>
+    <string name="editor_sound">Weckton</string>
+    <string name="editor_sound_default">Standard</string>
+    <string name="dnd_title">«Nicht stören» blockiert Wecker</string>
+    <string name="dnd_text">Erlaube Wecker bei «Nicht stören», sonst bleibt dein Handy still.</string>
+    <string name="dnd_action">Einstellungen öffnen</string>
 </resources>

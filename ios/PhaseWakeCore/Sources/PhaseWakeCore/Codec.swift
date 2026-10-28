@@ -20,8 +20,8 @@ public enum Codec {
             out += [
                 escape(a.id), String(a.hour), String(a.minute),
                 a.days.sorted().map { dayCodes[$0]! }.joined(separator: ","),
-                String(a.windowMinutes), a.enabled ? "1" : "0", a.phoneBackup ? "1" : "0",
-                a.sleepDurationMinutes.map(String.init) ?? "", escape(a.label),
+                String(a.windowMinutes), a.enabled ? "1" : "0", a.phone.rawValue, a.watchSound ? "1" : "0",
+                a.sleepDurationMinutes.map(String.init) ?? "", escape(a.sound), escape(a.label),
             ].joined(separator: "|") + "\n"
         }
         return out
@@ -32,7 +32,8 @@ public enum Codec {
         guard lines.first == alarmsHeader else { throw CodecError(description: "Unbekanntes Weckerformat") }
         return try lines.dropFirst().enumerated().map { index, line in
             let f = line.components(separatedBy: "|")
-            guard f.count == 9 else { throw CodecError(description: "Wecker \(index + 1): 9 Felder erwartet") }
+            guard f.count == 11 else { throw CodecError(description: "Wecker \(index + 1): 11 Felder erwartet") }
+            guard let phone = PhoneAlert(rawValue: f[6]) else { throw CodecError(description: "Wecker \(index + 1): Weckart '\(f[6])'") }
             let days: Set<Weekday> = try f[3].isEmpty ? [] : Set(f[3].components(separatedBy: ",").map {
                 guard let day = daysByCode[$0] else { throw CodecError(description: "Wochentag '\($0)'") }
                 return day
@@ -40,8 +41,8 @@ public enum Codec {
             do {
                 return try AlarmSpec(
                     id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
-                    enabled: f[5] == "1", phoneBackup: f[6] == "1",
-                    sleepDurationMinutes: f[7].isEmpty ? nil : int(f[7]), label: unescape(f[8])
+                    enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
+                    sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10])
                 )
             } catch let error as DetectorConfigError {
                 throw CodecError(description: "Wecker \(index + 1): \(error.message)")

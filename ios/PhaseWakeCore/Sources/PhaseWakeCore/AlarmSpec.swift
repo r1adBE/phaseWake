@@ -14,6 +14,11 @@ public enum Weekday: Int, CaseIterable, Comparable, Sendable {
     }
 }
 
+/// Weckart des Handy-Zweitweckers. Rohwerte wie die Kotlin-Namen.
+public enum PhoneAlert: String, CaseIterable, Sendable {
+    case off = "OFF", vibrate = "VIBRATE", sound = "SOUND"
+}
+
 /// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public static let defaultWindowMinutes = 30
@@ -29,7 +34,10 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let days: Set<Weekday>
     public let windowMinutes: Int
     public let enabled: Bool
-    public let phoneBackup: Bool
+    public let phone: PhoneAlert
+    public let watchSound: Bool
+    /// Weckton des iPhones; leer = Standard.
+    public let sound: String
     public let sleepDurationMinutes: Int?
     public let label: String
 
@@ -41,8 +49,10 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         days: Set<Weekday> = [],
         windowMinutes: Int = AlarmSpec.defaultWindowMinutes,
         enabled: Bool = true,
-        phoneBackup: Bool = true,
+        phone: PhoneAlert = .sound,
+        watchSound: Bool = false,
         sleepDurationMinutes: Int? = nil,
+        sound: String = "",
         label: String = ""
     ) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
@@ -60,10 +70,15 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.days = days
         self.windowMinutes = windowMinutes
         self.enabled = enabled
-        self.phoneBackup = phoneBackup
+        self.phone = phone
+        self.watchSound = watchSound
+        self.sound = sound
         self.sleepDurationMinutes = sleepDurationMinutes
         self.label = label
     }
+
+    /// Ob das iPhone als Zweitwecker mitweckt.
+    public var phoneBackup: Bool { phone != .off }
 
     /// Einmaliger Wecker: wird nach dem Klingeln ausgeschaltet.
     public var isOneShot: Bool { days.isEmpty }
@@ -73,7 +88,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         // Werte stammen aus einem gültigen Wecker; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
-            enabled: enabled, phoneBackup: phoneBackup, sleepDurationMinutes: sleepDurationMinutes, label: label
+            enabled: enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
+            sound: sound, label: label
         )
     }
 }
