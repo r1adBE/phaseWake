@@ -252,4 +252,53 @@
     <string name="sounds_stop">Dừng</string>
     <string name="sounds_remaining">còn %1$s</string>
     <string name="sounds_hint">Phát theo âm lượng phương tiện và dừng muộn nhất khi khung giờ đánh thức của bạn bắt đầu.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Ghi âm âm thanh</string>
+    <string name="sound_rec_hint">Chỉ những đoạn ngắn. Chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
+    <string name="sound_rec_permission">Để ghi âm, Phase Wake cần micrô. Nó chỉ nghe khi đang ghi âm.</string>
+    <string name="sound_rec_running">Đang ghi âm âm thanh</string>
+    <string name="sound_rec_stop">Dừng</string>
+    <string name="sound_rec_plug_in">Đang ghi âm. Tốt nhất là cắm sạc điện thoại qua đêm.</string>
+    <string name="sound_rec_default">Bật cho các đêm mới</string>
+    <string name="sound_rec_default_hint">Bắt đầu khi bạn mở Phase Wake vào buổi tối. Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
+    <string name="sound_type_snore">Ngáy</string>
+    <string name="sound_type_talk">Nói mớ</string>
+    <string name="sound_type_other">Âm thanh khác</string>
+    <plurals name="sound_summary">
+        <item quantity="other">Ngáy: %1$s (%2$d đoạn)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="other">Nói mớ: %1$d đoạn</item>
+    </plurals>
+    <string name="sound_clips_title">Âm thanh</string>
+    <string name="sound_clip_delete">Xóa đoạn lúc %1$s</string>
+    <string name="sound_clips_delete_all">Xóa tất cả các đoạn</string>
+    <plurals name="habit_regular">
+        <item quantity="other">Đi ngủ đều đặn: %1$d trên %2$d tối</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="other">%1$d đêm liên tiếp đạt mục tiêu ngủ</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="other">Chuỗi dài nhất trong 90 ngày: %1$d đêm</item>
+    </plurals>
+    <string name="weekly_title">Tổng kết tuần</string>
+    <string name="weekly_toggle">Chủ nhật lúc 18:00, một thông báo về tuần của bạn.</string>
+    <string name="weekly_notification_title">Tuần của bạn</string>
+    <string name="weekly_notification_text">Ø ngủ %1$s · mục tiêu %2$d/7 · đều đặn %3$d/7 · cảm giác %4$s</string>
+    <string name="weekly_notification_feeling">Ø cảm giác tuần này: %1$s</string>
+    <string name="routine_title">Thói quen buổi tối</string>
+    <string name="routine_add">Thêm mục</string>
+    <string name="routine_item_phone">Cất điện thoại</string>
+    <string name="routine_item_light">Giảm đèn</string>
+    <string name="routine_item_water">Chuẩn bị nước</string>
+    <string name="routine_avg">Thói quen buổi tối: Ø %1$s trên %2$d</string>
+    <string name="wake_task_title">Để tắt</string>
+    <string name="wake_task_hold">Giữ</string>
+    <string name="wake_task_math">Phép tính</string>
+    <string name="wake_task_hint">Giải 3 phép cộng trước khi báo thức im. Báo lại không cần giải.</string>
+    <string name="wake_task_solve">Phép tính %1$d trên %2$d</string>
+    <string name="wake_task_wrong">Chưa đúng – đây là phép mới.</string>
+    <string name="wake_task_delete">Xóa chữ số</string>
+    <string name="wake_task_check">OK</string>
 </resources>

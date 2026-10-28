@@ -20,8 +20,8 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
-    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang */
-    private const val FIELDS = 12
+    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe */
+    private const val FIELDS = 13
 
     /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
     private const val FIELDS_V1 = 11
@@ -48,6 +48,7 @@ object Codec {
                 escape(a.sound),
                 escape(a.label),
                 a.sunrise.name,
+                a.wakeTask.name,
             ).joinToString(SEP)).append('\n')
         }
     }
@@ -89,6 +90,8 @@ object Codec {
                     sound = unescape(f[9]),
                     label = unescape(f[10]),
                     sunrise = if (f.size > FIELDS_V1) Sunrise.entries.firstOrNull { it.name == f[11] } ?: Sunrise.OFF else Sunrise.OFF,
+                    // Feld 13 fehlt bei älteren Ständen, unbekannt aus neueren: Halten.
+                    wakeTask = f.getOrNull(FIELDS - 1)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
                 )
             }
 

@@ -266,4 +266,63 @@
     <string name="sounds_stop">עצירה</string>
     <string name="sounds_remaining">נותרו %1$s</string>
     <string name="sounds_hint">מתנגן בעוצמת המדיה ונעצר לכל המאוחר כשחלון ההשכמה שלך מתחיל.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">הקלטת קולות</string>
+    <string name="sound_rec_hint">רק קטעים קצרים. הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
+    <string name="sound_rec_permission">כדי להקליט, Phase Wake צריך את המיקרופון. הוא מקשיב רק כשההקלטה פועלת.</string>
+    <string name="sound_rec_running">מקליט קולות</string>
+    <string name="sound_rec_stop">עצירה</string>
+    <string name="sound_rec_plug_in">ההקלטה פועלת. עדיף לחבר את הטלפון למטען בלילה.</string>
+    <string name="sound_rec_default">מופעל ללילות חדשים</string>
+    <string name="sound_rec_default_hint">מתחיל כשפותחים את Phase Wake בערב. רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
+    <string name="sound_type_snore">נחירות</string>
+    <string name="sound_type_talk">דיבור</string>
+    <string name="sound_type_other">קול אחר</string>
+    <plurals name="sound_summary">
+        <item quantity="one">נחירות: %1$s (קטע %2$d)</item>
+        <item quantity="two">נחירות: %1$s (%2$d קטעים)</item>
+        <item quantity="other">נחירות: %1$s (%2$d קטעים)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">דיבור: קטע %1$d</item>
+        <item quantity="two">דיבור: %1$d קטעים</item>
+        <item quantity="other">דיבור: %1$d קטעים</item>
+    </plurals>
+    <string name="sound_clips_title">קולות</string>
+    <string name="sound_clip_delete">מחיקת הקטע מ־%1$s</string>
+    <string name="sound_clips_delete_all">מחיקת כל הקטעים</string>
+    <plurals name="habit_regular">
+        <item quantity="one">שעת שינה קבועה: %1$d מתוך ערב %2$d</item>
+        <item quantity="two">שעת שינה קבועה: %1$d מתוך %2$d ערבים</item>
+        <item quantity="other">שעת שינה קבועה: %1$d מתוך %2$d ערבים</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">לילה %1$d ברציפות עם יעד השינה</item>
+        <item quantity="two">%1$d לילות ברציפות עם יעד השינה</item>
+        <item quantity="other">%1$d לילות ברציפות עם יעד השינה</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">הרצף הארוך ביותר ב־90 ימים: לילה %1$d</item>
+        <item quantity="two">הרצף הארוך ביותר ב־90 ימים: %1$d לילות</item>
+        <item quantity="other">הרצף הארוך ביותר ב־90 ימים: %1$d לילות</item>
+    </plurals>
+    <string name="weekly_title">סיכום שבועי</string>
+    <string name="weekly_toggle">בימי ראשון ב־18:00 התראה על השבוע שלך.</string>
+    <string name="weekly_notification_title">השבוע שלך</string>
+    <string name="weekly_notification_text">Ø %1$s שינה · יעד שינה %2$d/7 · קבוע %3$d/7 · תחושה %4$s</string>
+    <string name="weekly_notification_feeling">Ø תחושה השבוע: %1$s</string>
+    <string name="routine_title">שגרת ערב</string>
+    <string name="routine_add">הוספת פריט</string>
+    <string name="routine_item_phone">הטלפון בצד</string>
+    <string name="routine_item_light">אור עמום</string>
+    <string name="routine_item_water">מים מוכנים</string>
+    <string name="routine_avg">שגרת ערב: Ø %1$s מתוך %2$d</string>
+    <string name="wake_task_title">כדי לעצור</string>
+    <string name="wake_task_hold">לחיצה ארוכה</string>
+    <string name="wake_task_math">תרגיל חשבון</string>
+    <string name="wake_task_hint">לפתור 3 תרגילים לפני שהשעון משתתק. נודניק עובד גם בלי תרגיל.</string>
+    <string name="wake_task_solve">תרגיל %1$d מתוך %2$d</string>
+    <string name="wake_task_wrong">לא בדיוק – הנה תרגיל חדש.</string>
+    <string name="wake_task_delete">מחיקת ספרה</string>
+    <string name="wake_task_check">אישור</string>
 </resources>

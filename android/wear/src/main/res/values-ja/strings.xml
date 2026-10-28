@@ -44,4 +44,6 @@
     <string name="home_last_night">昨夜</string>
     <string name="notification_open">開く</string>
     <string name="home_good_night_too_far">アラームの16時間前から使えます</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">止めるにはスマホで問題を解いてください</string>
 </resources>

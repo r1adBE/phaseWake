@@ -82,7 +82,14 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
 
 /** Wochenvergleich: Schlafdauer, Regelmässigkeit, Befinden – nur was die Daten tragen. */
 @Composable
-fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> Unit, goalWeek: Pair<Int, Int>? = null) {
+fun TrendsCard(
+    trends: Trends,
+    healthConnected: Boolean,
+    onConnectHealth: () -> Unit,
+    goalWeek: Pair<Int, Int>? = null,
+    /** Gewohnheiten: Regelmässigkeit, Serien, Abendroutine. */
+    habits: HabitLines? = null,
+) {
     val context = LocalContext.current
     val res = LocalResources.current
     val lines = buildList {
@@ -110,6 +117,7 @@ fun TrendsCard(trends: Trends, healthConnected: Boolean, onConnectHealth: () -> 
             val last = trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }.orEmpty()
             add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
         }
+        habits?.let { addAll(habitLines(context, it, healthConnected)) }
     }
     Card(
         shape = MaterialTheme.shapes.medium,

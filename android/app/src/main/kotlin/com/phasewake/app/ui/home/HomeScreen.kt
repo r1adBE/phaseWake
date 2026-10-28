@@ -59,6 +59,12 @@ import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.ui.notes.NightNotes
 import com.phasewake.app.ui.notes.TonightNotesCard
+import com.phasewake.app.core.RoutineItem
+import com.phasewake.app.core.SoundClip
+import com.phasewake.app.core.SoundEvents
+import com.phasewake.app.ui.sounds.SoundClipsSection
+import com.phasewake.app.ui.sounds.SoundRecordingCard
+import java.io.File
 import java.time.LocalDate
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.NightRecord
@@ -98,6 +104,18 @@ fun HomeScreen(
     /** Laufende Einschlafklänge; [onSounds] `null`: kein Einstieg (Bildschirmfotos). */
     soundPlaying: SleepSoundService.Playing? = null,
     onSounds: (() -> Unit)? = null,
+    /** «Geräusche aufnehmen» für diese Nacht; `null`: kein Schalter (Bildschirmfotos). */
+    soundRec: SoundRecState? = null,
+    onSoundRec: (Boolean) -> Unit = {},
+    /** Aufgenommene Geräusche (alle Nächte) für den Morgenbericht. */
+    soundClips: List<SoundClip> = emptyList(),
+    soundFile: (SoundClip) -> File? = { null },
+    onDeleteClip: (SoundClip) -> Unit = {},
+    onDeleteNightClips: (LocalDate) -> Unit = {},
+    /** Abendroutine: Punkte und Haken je Nachtdatum. */
+    routineItems: List<RoutineItem> = emptyList(),
+    routineTicks: Map<LocalDate, List<String>> = emptyMap(),
+    onToggleRoutine: (LocalDate, String) -> Unit = { _, _ -> },
     /** Uhrzeit-Quelle; Bildschirmfotos setzen eine feste Zeit, damit sie nicht vom Tag abhängen. */
     clock: () -> Instant = Instant::now,
 ) {
@@ -132,6 +150,14 @@ fun HomeScreen(
             item(key = "notes") {
                 TonightNotesCard(notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) })
             }
+            if (routineItems.isNotEmpty()) {
+                item(key = "routine") {
+                    RoutineCard(routineItems, routineTicks[tonight].orEmpty(), cardColor(), onToggle = { onToggleRoutine(tonight, it) })
+                }
+            }
+            soundRec?.let { rec ->
+                item(key = "soundRec") { SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec) }
+            }
         }
         if (onSounds != null) {
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
@@ -145,6 +171,10 @@ fun HomeScreen(
                     notes = notes[date].orEmpty(),
                     customNotes = customNotes,
                     onToggleNote = { onToggleNote(date, it) },
+                    clips = SoundEvents.forNight(soundClips, date),
+                    soundFile = soundFile,
+                    onDeleteClip = onDeleteClip,
+                    onDeleteClips = { onDeleteNightClips(date) },
                 )
             }
         }
@@ -308,6 +338,10 @@ private fun LastNightCard(
     notes: List<String>,
     customNotes: List<CustomNote>,
     onToggleNote: (String) -> Unit,
+    clips: List<SoundClip> = emptyList(),
+    soundFile: (SoundClip) -> File? = { null },
+    onDeleteClip: (SoundClip) -> Unit = {},
+    onDeleteClips: () -> Unit = {},
 ) {
     // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
     val morning = Duration.between(night.wokeAt, now) < MORNING
@@ -374,6 +408,8 @@ private fun LastNightCard(
             }
             // Morgenbericht: Notizen des Abends nachtragen oder ändern.
             if (morning) NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 6.dp))
+            // Morgenbericht: Geräusche der Nacht (sonst im Verlauf).
+            if (morning) SoundClipsSection(clips, soundFile, onDeleteClip, onDeleteClips)
         }
     }
 }
@@ -408,6 +444,9 @@ private fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCli
         }
     }
 }
+
+/** Schalter «Geräusche aufnehmen» für diese Nacht. */
+data class SoundRecState(val enabled: Boolean, val recording: Boolean, val permissionDenied: Boolean)
 
 /** So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen». */
 private val MORNING: Duration = Duration.ofHours(12)

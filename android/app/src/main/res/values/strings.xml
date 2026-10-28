@@ -260,6 +260,60 @@
     <string name="sounds_stop">Stop</string>
     <string name="sounds_remaining">%1$s left</string>
     <string name="sounds_hint">Plays at media volume and stops at the latest when your wake window begins.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Record sounds</string>
+    <string name="sound_rec_hint">Only short clips. They stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_rec_permission">To record, Phase Wake needs the microphone. It only listens while recording is on.</string>
+    <string name="sound_rec_running">Recording sounds</string>
+    <string name="sound_rec_stop">Stop</string>
+    <string name="sound_rec_plug_in">Recording is on. Best plug in your phone for the night.</string>
+    <string name="sound_rec_default">On for new nights</string>
+    <string name="sound_rec_default_hint">Starts when you open Phase Wake in the evening. Only short clips; they stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_type_snore">Snoring</string>
+    <string name="sound_type_talk">Talking</string>
+    <string name="sound_type_other">Other sound</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Snoring: %1$s (%2$d clip)</item>
+        <item quantity="other">Snoring: %1$s (%2$d clips)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Talking: %1$d clip</item>
+        <item quantity="other">Talking: %1$d clips</item>
+    </plurals>
+    <string name="sound_clips_title">Sounds</string>
+    <string name="sound_clip_delete">Delete clip from %1$s</string>
+    <string name="sound_clips_delete_all">Delete all clips</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Regular bedtime: %1$d of %2$d evening</item>
+        <item quantity="other">Regular bedtime: %1$d of %2$d evenings</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d night in a row with your sleep goal</item>
+        <item quantity="other">%1$d nights in a row with your sleep goal</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Longest streak in 90 days: %1$d night</item>
+        <item quantity="other">Longest streak in 90 days: %1$d nights</item>
+    </plurals>
+    <string name="weekly_title">Weekly review</string>
+    <string name="weekly_toggle">On Sundays at 6 pm, a notification about your week.</string>
+    <string name="weekly_notification_title">Your week</string>
+    <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s sleep · sleep goal %2$d/7 · regular bedtime %3$d/7 · feeling %4$s</string>
+    <string name="weekly_notification_feeling">Ø feeling this week: %1$s</string>
+    <string name="routine_title">Evening routine</string>
+    <string name="routine_add">Add item</string>
+    <string name="routine_item_phone">Phone away</string>
+    <string name="routine_item_light">Dim the lights</string>
+    <string name="routine_item_water">Water ready</string>
+    <string name="routine_avg" tools:ignore="PluralsCandidate">Evening routine: Ø %1$s of %2$d</string>
+    <string name="wake_task_title">To stop</string>
+    <string name="wake_task_hold">Hold</string>
+    <string name="wake_task_math">Math task</string>
+    <string name="wake_task_hint">Solve 3 sums before the alarm goes quiet. Snoozing works without a task.</string>
+    <string name="wake_task_solve" tools:ignore="PluralsCandidate">Task %1$d of %2$d</string>
+    <string name="wake_task_wrong">Not quite – here’s a new one.</string>
+    <string name="wake_task_delete">Delete digit</string>
+    <string name="wake_task_check">OK</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am" tools:override="true">AM</string>
     <string name="m3c_time_picker_pm" tools:override="true">PM</string>

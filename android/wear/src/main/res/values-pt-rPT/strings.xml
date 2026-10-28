@@ -46,4 +46,6 @@
     <string name="home_last_night">Ontem à noite</string>
     <string name="notification_open">Abrir</string>
     <string name="home_good_night_too_far">Disponível a partir de 16 h antes do alarme</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Para parar, resolve a conta no telemóvel</string>
 </resources>

@@ -10,9 +10,10 @@ import kotlinx.coroutines.flow.asStateFlow
 sealed interface RingUi {
     data object Idle : RingUi
 
-    data class Ringing(val label: String, val reason: WakeReason, val since: Instant, val snoozesLeft: Int) : RingUi
+    /** [taskOnPhone]: Weckaufgabe am Handy statt Halten (nur, solange das Handy erreichbar ist). */
+    data class Ringing(val label: String, val reason: WakeReason, val since: Instant, val snoozesLeft: Int, val taskOnPhone: Boolean = false) : RingUi
 
-    data class Snoozed(val label: String, val until: Instant, val snoozesLeft: Int) : RingUi
+    data class Snoozed(val label: String, val until: Instant, val snoozesLeft: Int, val taskOnPhone: Boolean = false) : RingUi
 }
 
 class RingState {

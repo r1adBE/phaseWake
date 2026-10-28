@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.WakeTask
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.RingMessage
@@ -40,13 +41,20 @@ class PhoneRingService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private var player: MediaPlayer? = null
     private var volume = 0f
+
+    /** Beim Lösen der Weckaufgabe leiser ([TYPING_VOLUME]), nach [TYPING_IDLE_MS] ohne Eingabe wieder voll. */
+    private var duck = 1f
+    private val unduck = Runnable {
+        duck = 1f
+        applyVolume()
+    }
     private var lastAlarmId: String? = null
     private var lastTarget: Long? = null
 
     private val fadeIn = object : Runnable {
         override fun run() {
             volume = (volume + FADE_STEP).coerceAtMost(1f)
-            player?.setVolume(volume, volume)
+            applyVolume()
             if (volume < 1f) handler.postDelayed(this, FADE_INTERVAL_MS)
         }
     }
@@ -67,6 +75,12 @@ class PhoneRingService : Service() {
             ACTION_STOP -> stop(notifyWatch = true)
             ACTION_STOP_SILENT -> stop(notifyWatch = false)
             ACTION_SNOOZE -> snooze()
+            ACTION_TYPING -> if (state.value is State.Ringing) {
+                duck = TYPING_VOLUME
+                applyVolume()
+                handler.removeCallbacks(unduck)
+                handler.postDelayed(unduck, TYPING_IDLE_MS)
+            }
         }
         return START_NOT_STICKY
     }
@@ -114,6 +128,9 @@ class PhoneRingService : Service() {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
             val spec = if (BackupAlarm.isUnlocked(this@PhoneRingService)) phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId } else null
             val sunrise = spec?.sunrise ?: Sunrise.OFF
+            // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
+            val task = spec?.takeIf { it.phone != PhoneAlert.OFF }?.wakeTask ?: WakeTask.NONE
+            if (task != WakeTask.NONE) (state.value as? State.Ringing)?.let { state.value = it.copy(wakeTask = task) }
             if (sunrise != Sunrise.OFF) {
                 // Läuft schon ein Licht ab Weckfenster, macht der Weckbildschirm dort weiter.
                 val from = SunriseLight.progressFor(alarmId)
@@ -151,7 +168,7 @@ class PhoneRingService : Service() {
             state.value = State.Idle
             stopSelf()
         } else {
-            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise)
+            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise, wakeTask = ringing.wakeTask)
             // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
             phoneApp.backup.snoozeUntil(Snooze.nextRing(java.time.Instant.now()), lastAlarmId, done)
         }
@@ -220,6 +237,10 @@ class PhoneRingService : Service() {
         }
     }
 
+    private fun applyVolume() {
+        player?.setVolume(volume * duck, volume * duck)
+    }
+
     private fun vibrate() {
         if (state.value !is State.Ringing) return
         val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -239,6 +260,7 @@ class PhoneRingService : Service() {
 
     private fun release() {
         handler.removeCallbacksAndMessages(null)
+        duck = 1f
         player?.run {
             runCatching { stop() }
             release()
@@ -262,8 +284,10 @@ class PhoneRingService : Service() {
             val snoozesLeft: Int,
             val sunrise: Sunrise = Sunrise.OFF,
             val lightFrom: Float = 0f,
+            /** Was zum Beenden nötig ist (Schlummern geht immer ohne). */
+            val wakeTask: WakeTask = WakeTask.NONE,
         ) : State
-        data class Snoozed(val snoozesLeft: Int, val sunrise: Sunrise = Sunrise.OFF) : State
+        data class Snoozed(val snoozesLeft: Int, val sunrise: Sunrise = Sunrise.OFF, val wakeTask: WakeTask = WakeTask.NONE) : State
     }
 
     companion object {
@@ -272,6 +296,11 @@ class PhoneRingService : Service() {
         const val ACTION_STOP = "com.phasewake.app.ring.STOP"
         const val ACTION_STOP_SILENT = "com.phasewake.app.ring.STOP_SILENT"
         const val ACTION_SNOOZE = "com.phasewake.app.ring.SNOOZE"
+
+        /** Eingabe in der Weckaufgabe: Ton vorübergehend leiser. */
+        const val ACTION_TYPING = "com.phasewake.app.ring.TYPING"
+        private const val TYPING_VOLUME = 0.5f
+        private const val TYPING_IDLE_MS = 10_000L
         const val EXTRA_ALARM_ID = "alarmId"
         /** Zielzeit der Nacht in Millisekunden (nur Zweitwecker und Weckmeldung der Uhr). */
         const val EXTRA_TARGET = "target"

@@ -11,6 +11,7 @@ import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.ui.theme.ThemeMode
+import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -71,7 +72,46 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[SOUND] = sound.name }
     }
 
+    /** Geräusche aufnehmen: Vorgabe für neue Nächte (Standard aus). */
+    val soundRecDefault: Flow<Boolean> = store.data.map { it[SOUND_REC_DEFAULT] ?: false }
+
+    suspend fun setSoundRecDefault(enabled: Boolean) {
+        store.edit { it[SOUND_REC_DEFAULT] = enabled }
+    }
+
+    /**
+     * Geräusche aufnehmen für eine bestimmte Nacht: (Nachtdatum, an/aus), wenn der Nutzer für diese
+     * Nacht selbst gewählt (oder die Aufnahme gestoppt) hat; sonst gilt [soundRecDefault].
+     */
+    val soundRecChoice: Flow<Pair<LocalDate, Boolean>?> = store.data.map { prefs ->
+        val text = prefs[SOUND_REC_NIGHT] ?: return@map null
+        val date = runCatching { LocalDate.parse(text.substringBefore('|')) }.getOrNull() ?: return@map null
+        date to (text.substringAfter('|', "") == "1")
+    }
+
+    suspend fun setSoundRecChoice(night: LocalDate, enabled: Boolean) {
+        store.edit { it[SOUND_REC_NIGHT] = "$night|" + if (enabled) "1" else "0" }
+    }
+
+    /** Wochenrückblick am Sonntag um 18:00 (Standard aus). */
+    val weeklyReview: Flow<Boolean> = store.data.map { it[WEEKLY_REVIEW] ?: false }
+
+    suspend fun setWeeklyReview(enabled: Boolean) {
+        store.edit { it[WEEKLY_REVIEW] = enabled }
+    }
+
+    /** Zeitpunkt des zuletzt gezeigten Wochenrückblicks (Millisekunden), damit er nicht doppelt kommt. */
+    suspend fun weeklyShownAt(): Long = store.data.first()[WEEKLY_SHOWN_AT] ?: 0L
+
+    suspend fun setWeeklyShownAt(millis: Long) {
+        store.edit { it[WEEKLY_SHOWN_AT] = millis }
+    }
+
     private companion object {
+        val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")
+        val SOUND_REC_NIGHT = stringPreferencesKey("sound_rec_night")
+        val WEEKLY_REVIEW = booleanPreferencesKey("weekly_review")
+        val WEEKLY_SHOWN_AT = longPreferencesKey("weekly_shown_at")
         val THEME = stringPreferencesKey("theme_mode")
         val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
         val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")

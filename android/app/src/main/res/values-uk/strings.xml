@@ -273,4 +273,68 @@
     <string name="sounds_stop">Стоп</string>
     <string name="sounds_remaining">ще %1$s</string>
     <string name="sounds_hint">Грає з гучністю медіа і вимикається не пізніше початку твого вікна пробудження.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Записувати звуки</string>
+    <string name="sound_rec_hint">Лише короткі фрагменти. Вони залишаються на телефоні й видаляються через 7 днів.</string>
+    <string name="sound_rec_permission">Для запису Phase Wake потрібен мікрофон. Він слухає лише під час запису.</string>
+    <string name="sound_rec_running">Триває запис звуків</string>
+    <string name="sound_rec_stop">Зупинити</string>
+    <string name="sound_rec_plug_in">Запис триває. Краще постав телефон на ніч заряджатися.</string>
+    <string name="sound_rec_default">Вмикати для нових ночей</string>
+    <string name="sound_rec_default_hint">Запускається, коли ти відкриваєш Phase Wake увечері. Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів.</string>
+    <string name="sound_type_snore">Хропіння</string>
+    <string name="sound_type_talk">Розмова</string>
+    <string name="sound_type_other">Інший звук</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Хропіння: %1$s (%2$d фрагмент)</item>
+        <item quantity="few">Хропіння: %1$s (%2$d фрагменти)</item>
+        <item quantity="many">Хропіння: %1$s (%2$d фрагментів)</item>
+        <item quantity="other">Хропіння: %1$s (%2$d фрагмента)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Розмова: %1$d фрагмент</item>
+        <item quantity="few">Розмова: %1$d фрагменти</item>
+        <item quantity="many">Розмова: %1$d фрагментів</item>
+        <item quantity="other">Розмова: %1$d фрагмента</item>
+    </plurals>
+    <string name="sound_clips_title">Звуки</string>
+    <string name="sound_clip_delete">Видалити фрагмент від %1$s</string>
+    <string name="sound_clips_delete_all">Видалити всі фрагменти</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Регулярний відбій: %1$d з %2$d вечора</item>
+        <item quantity="few">Регулярний відбій: %1$d з %2$d вечорів</item>
+        <item quantity="many">Регулярний відбій: %1$d з %2$d вечорів</item>
+        <item quantity="other">Регулярний відбій: %1$d з %2$d вечорів</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d ніч поспіль із ціллю сну</item>
+        <item quantity="few">%1$d ночі поспіль із ціллю сну</item>
+        <item quantity="many">%1$d ночей поспіль із ціллю сну</item>
+        <item quantity="other">%1$d ночі поспіль із ціллю сну</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Найдовша серія за 90 днів: %1$d ніч</item>
+        <item quantity="few">Найдовша серія за 90 днів: %1$d ночі</item>
+        <item quantity="many">Найдовша серія за 90 днів: %1$d ночей</item>
+        <item quantity="other">Найдовша серія за 90 днів: %1$d ночі</item>
+    </plurals>
+    <string name="weekly_title">Підсумок тижня</string>
+    <string name="weekly_toggle">Щонеділі о 18:00 сповіщення про твій тиждень.</string>
+    <string name="weekly_notification_title">Твій тиждень</string>
+    <string name="weekly_notification_text">Ø %1$s сну · ціль %2$d/7 · регулярно %3$d/7 · самопочуття %4$s</string>
+    <string name="weekly_notification_feeling">Ø самопочуття цього тижня: %1$s</string>
+    <string name="routine_title">Вечірній ритуал</string>
+    <string name="routine_add">Додати пункт</string>
+    <string name="routine_item_phone">Телефон убік</string>
+    <string name="routine_item_light">Приглушити світло</string>
+    <string name="routine_item_water">Вода поруч</string>
+    <string name="routine_avg">Вечірній ритуал: Ø %1$s з %2$d</string>
+    <string name="wake_task_title">Щоб вимкнути</string>
+    <string name="wake_task_hold">Утримання</string>
+    <string name="wake_task_math">Приклад</string>
+    <string name="wake_task_hint">Розв’яжи 3 приклади, перш ніж будильник замовкне. Відкласти можна без прикладу.</string>
+    <string name="wake_task_solve">Приклад %1$d з %2$d</string>
+    <string name="wake_task_wrong">Не зовсім – ось новий.</string>
+    <string name="wake_task_delete">Видалити цифру</string>
+    <string name="wake_task_check">OK</string>
 </resources>

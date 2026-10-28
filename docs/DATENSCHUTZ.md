@@ -21,7 +21,13 @@ E-Mail: riad.work@outlook.com
 | Bewegung nach «Gute Nacht» | Einschlafzeit erkennen | nur Uhr | bis zur nächsten Nacht |
 | Schlafnotizen (z. B. «Kaffee», «Sport», eigene Notizen) und Befinden | Auswertung, was deinen Schlaf beeinflusst | nur Handy | 90 Nächte; «Verlauf löschen» entfernt sie |
 | Schlafziel und Einstellungen der Bettzeit-Erinnerung | Erinnerung, Wochenstand | nur Handy | bis du sie änderst |
-| Schlafphasen aus Health Connect bzw. Apple Health (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern | nur Handy, nur gelesen | werden nicht gespeichert |
+| Schlafphasen aus Health Connect bzw. Apple Health (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern, Regelmässigkeit und Serien | nur Handy, nur gelesen | werden nicht gespeichert |
+| Kurze Tonausschnitte nächtlicher Geräusche über das Mikrofon (nur wenn du «Geräusche aufnehmen» einschaltest) | Schnarchen und Sprechen erkennen und dir zum Anhören zeigen | nur Handy, im App-Ordner | 7 Tage; einzeln oder alle löschbar, auch mit «Verlauf löschen» |
+| Abendroutine (deine Punkte und was du abgehakt hast) | Checkliste, Durchschnitt in den Trends | nur Handy | 90 Abende; «Verlauf löschen» entfernt die Haken |
+
+## Mikrofon
+
+Das Mikrofon nutzt Phase Wake nur, wenn du «Geräusche aufnehmen» einschaltest, und nur, solange die Aufnahme läuft (auf Android sichtbar an einer Mitteilung, mit der du sie jederzeit stoppst, auf dem iPhone an der Mikrofon-Anzeige des Systems; spätestens 30 Minuten nach deinem Wecker endet sie). Dauernd ausgewertet wird nur die Lautstärke; gespeichert werden nur kurze Ausschnitte lauter Geräusche (höchstens 10 Sekunden). Ob es Schnarchen, Sprechen oder ein anderes Geräusch ist, erkennt ein Modell direkt auf dem Handy. Die Ausschnitte bleiben im privaten Ordner der App, kommen nicht in Sicherungen und nicht in den CSV-Export, werden nie übertragen und nach 7 Tagen automatisch gelöscht. Das Mikrofon-Recht kannst du jederzeit in den Einstellungen des Systems entziehen.
 
 Handy und Uhr tauschen Wecker und Nächte direkt über die Verbindung des Betriebssystems aus (Wear OS Data Layer bzw. WatchConnectivity). Phase Wake hat keine Internet-Berechtigung.
 
@@ -55,4 +61,6 @@ Phase Wake processes all data only on your phone and your watch. There is no acc
 
 Phone and watch exchange alarms and nights directly via the operating system’s connection (Wear OS Data Layer or WatchConnectivity). Phase Wake has no internet permission and shares no data with us or third parties. If you export your nights as a CSV file, you decide whom to share it with; it contains no names, dates or device identifiers.
 
-Motion, heart rate and sleep stages are health data. They are used only for waking you and improving detection on your device. You can revoke access to Health Connect or Apple Health at any time in your system settings. To delete everything, uninstall the app; you can also clear the history in the app. Questions: riad.work@outlook.com.
+Motion, heart rate and sleep stages are health data. They are used only for waking you and improving detection on your device. You can revoke access to Health Connect or Apple Health at any time in your system settings.
+
+**Microphone (optional):** only if you turn on “Record sounds”, and only while recording runs (on Android shown by a notification you can stop it from, on iPhone by the system’s microphone indicator; it ends at the latest 30 minutes after your alarm). Only the loudness is analysed continuously; only short clips of loud sounds (at most 10 seconds) are stored. Whether a clip is snoring, talking or another sound is recognised by a model on the phone. Clips stay in the app’s private folder, are not included in backups or the CSV export, are never transmitted and are deleted automatically after 7 days. Your evening routine (items and ticks) also stays on the phone only. To delete everything, uninstall the app; you can also clear the history in the app. Questions: riad.work@outlook.com.

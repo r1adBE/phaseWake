@@ -252,4 +252,53 @@
     <string name="sounds_stop">หยุด</string>
     <string name="sounds_remaining">เหลือ %1$s</string>
     <string name="sounds_hint">เล่นด้วยระดับเสียงสื่อ และหยุดอย่างช้าที่สุดเมื่อช่วงเวลาปลุกของคุณเริ่ม</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">บันทึกเสียง</string>
+    <string name="sound_rec_hint">เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
+    <string name="sound_rec_permission">การบันทึกต้องใช้ไมโครโฟน จะฟังเฉพาะตอนที่เปิดบันทึกอยู่</string>
+    <string name="sound_rec_running">กำลังบันทึกเสียง</string>
+    <string name="sound_rec_stop">หยุด</string>
+    <string name="sound_rec_plug_in">กำลังบันทึก ควรเสียบชาร์จโทรศัพท์ไว้ตลอดคืน</string>
+    <string name="sound_rec_default">เปิดสำหรับคืนใหม่</string>
+    <string name="sound_rec_default_hint">เริ่มเมื่อคุณเปิด Phase Wake ตอนเย็น เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
+    <string name="sound_type_snore">กรน</string>
+    <string name="sound_type_talk">ละเมอพูด</string>
+    <string name="sound_type_other">เสียงอื่น</string>
+    <plurals name="sound_summary">
+        <item quantity="other">กรน: %1$s (%2$d ช่วง)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="other">ละเมอพูด: %1$d ช่วง</item>
+    </plurals>
+    <string name="sound_clips_title">เสียง</string>
+    <string name="sound_clip_delete">ลบช่วงเสียงเวลา %1$s</string>
+    <string name="sound_clips_delete_all">ลบทุกช่วงเสียง</string>
+    <plurals name="habit_regular">
+        <item quantity="other">เข้านอนสม่ำเสมอ: %1$d จาก %2$d คืน</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="other">ถึงเป้าหมายการนอน %1$d คืนติดกัน</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="other">สถิติยาวสุดใน 90 วัน: %1$d คืน</item>
+    </plurals>
+    <string name="weekly_title">สรุปรายสัปดาห์</string>
+    <string name="weekly_toggle">ทุกวันอาทิตย์ 18:00 แจ้งเตือนสรุปสัปดาห์ของคุณ</string>
+    <string name="weekly_notification_title">สัปดาห์ของคุณ</string>
+    <string name="weekly_notification_text">Ø นอน %1$s · เป้าหมาย %2$d/7 · สม่ำเสมอ %3$d/7 · ความรู้สึก %4$s</string>
+    <string name="weekly_notification_feeling">Ø ความรู้สึกสัปดาห์นี้: %1$s</string>
+    <string name="routine_title">กิจวัตรตอนเย็น</string>
+    <string name="routine_add">เพิ่มรายการ</string>
+    <string name="routine_item_phone">วางโทรศัพท์</string>
+    <string name="routine_item_light">หรี่ไฟ</string>
+    <string name="routine_item_water">เตรียมน้ำ</string>
+    <string name="routine_avg">กิจวัตรตอนเย็น: Ø %1$s จาก %2$d</string>
+    <string name="wake_task_title">วิธีปิด</string>
+    <string name="wake_task_hold">กดค้าง</string>
+    <string name="wake_task_math">โจทย์เลข</string>
+    <string name="wake_task_hint">แก้โจทย์บวก 3 ข้อก่อนนาฬิกาปลุกเงียบ เลื่อนปลุกได้โดยไม่ต้องทำโจทย์</string>
+    <string name="wake_task_solve">ข้อ %1$d จาก %2$d</string>
+    <string name="wake_task_wrong">ยังไม่ใช่ – ข้อใหม่มาแล้ว</string>
+    <string name="wake_task_delete">ลบตัวเลข</string>
+    <string name="wake_task_check">ตกลง</string>
 </resources>

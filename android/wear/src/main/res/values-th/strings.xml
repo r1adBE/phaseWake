@@ -44,4 +44,6 @@
     <string name="home_last_night">เมื่อคืน</string>
     <string name="notification_open">เปิด</string>
     <string name="home_good_night_too_far">ใช้ได้ตั้งแต่ 16 ชม. ก่อนเวลาปลุก</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">แก้โจทย์บนโทรศัพท์เพื่อปิด</string>
 </resources>

@@ -44,4 +44,6 @@
     <string name="home_last_night">Semalam</string>
     <string name="notification_open">Buka</string>
     <string name="home_good_night_too_far">Tersedia mulai 16 jam sebelum alarm</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Untuk berhenti, selesaikan soal di ponsel</string>
 </resources>

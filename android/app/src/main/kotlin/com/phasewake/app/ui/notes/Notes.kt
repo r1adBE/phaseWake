@@ -130,3 +130,9 @@ fun NoteEffectsCard(effects: List<NoteEffect>, custom: List<CustomNote>) {
 /** «+0,5» bzw. «−0,8» (echtes Minuszeichen), eine Nachkommastelle nach Sprache. */
 private fun signed(value: Double): String =
     String.format(Locale.getDefault(), "%+.1f", value).replace('-', '−')
+
+/** Eine Zeile «Nach ‹Alkohol› Befinden −0,8 (3 vs. 7 Nächte)»; `null` für eine gelöschte eigene Notiz. */
+fun noteEffectLine(context: Context, effect: NoteEffect, custom: List<CustomNote>): String? {
+    val name = noteName(context, effect.noteId, custom) ?: return null
+    return context.resources.getQuantityString(R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith, effect.nightsWithout)
+}

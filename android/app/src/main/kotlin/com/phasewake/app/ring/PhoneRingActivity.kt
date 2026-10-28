@@ -38,6 +38,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.MathChallenge
+import com.phasewake.app.core.WakeTask
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.Night as NightColors
@@ -88,6 +90,7 @@ class PhoneRingActivity : ComponentActivity() {
                     light = if (sunrise == Sunrise.OFF) null else light.value,
                     onStop = { PhoneRingService.command(this, PhoneRingService.ACTION_STOP) },
                     onSnooze = { PhoneRingService.command(this, PhoneRingService.ACTION_SNOOZE) },
+                    onTyping = { PhoneRingService.command(this, PhoneRingService.ACTION_TYPING) },
                 )
             }
         }
@@ -103,6 +106,7 @@ internal fun RingScreen(
     onSnooze: () -> Unit,
     light: Float? = null,
     clock: () -> Instant = Instant::now,
+    onTyping: () -> Unit = {},
 ) {
     var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
@@ -118,20 +122,31 @@ internal fun RingScreen(
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
         if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize()) { inner() }
     }
+    val task = when (state) {
+        is PhoneRingService.State.Ringing -> state.wakeTask
+        is PhoneRingService.State.Snoozed -> state.wakeTask
+        PhoneRingService.State.Idle -> WakeTask.NONE
+    }
+    // Über Schlummern hinweg dieselbe Aufgabe: gelöste Schritte bleiben gelöst.
+    val challenge = remember { MathChallenge() }
+    val math = task == WakeTask.MATH
     background {
     Column(
         Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        PulsingDot(Modifier.size(180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
-        Spacer(Modifier.height(24.dp))
-        Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = content)
+        // Mit Aufgabe braucht die Tastatur den Platz: kleiner Punkt, knappere Abstände.
+        PulsingDot(Modifier.size(if (math) 72.dp else 180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
+        Spacer(Modifier.height(if (math) 8.dp else 24.dp))
+        Text(Format.time(now), style = if (math) MaterialTheme.typography.displayMedium else MaterialTheme.typography.displayLarge, color = content)
         Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = muted)
-        Spacer(Modifier.height(48.dp))
+        Spacer(Modifier.height(if (math) 16.dp else 48.dp))
         when (state) {
             is PhoneRingService.State.Ringing -> {
-                HoldToStopButton(
+                if (math) {
+                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
+                } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
                     container = content,
                     content = if (content == Color.White) Night else Color.White,
@@ -147,9 +162,11 @@ internal fun RingScreen(
             }
             is PhoneRingService.State.Snoozed -> {
                 Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = content)
-                // Auch beim Schlummern lässt sich der Wecker durch Halten ganz beenden.
+                // Auch beim Schlummern lässt sich der Wecker ganz beenden: durch Halten oder mit der Aufgabe.
                 Spacer(Modifier.height(24.dp))
-                HoldToStopButton(
+                if (math) {
+                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
+                } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
                     container = content,
                     content = if (content == Color.White) Night else Color.White,

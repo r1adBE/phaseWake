@@ -273,4 +273,68 @@
     <string name="sounds_stop">Zastavit</string>
     <string name="sounds_remaining">ještě %1$s</string>
     <string name="sounds_hint">Hraje hlasitostí médií a skončí nejpozději, když začne tvé okno buzení.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Nahrávat zvuky</string>
+    <string name="sound_rec_hint">Jen krátké úryvky. Zůstávají v telefonu a po 7 dnech se smažou.</string>
+    <string name="sound_rec_permission">K nahrávání potřebuje Phase Wake mikrofon. Poslouchá jen, dokud nahrávání běží.</string>
+    <string name="sound_rec_running">Nahrávají se zvuky</string>
+    <string name="sound_rec_stop">Zastavit</string>
+    <string name="sound_rec_plug_in">Nahrávání běží. Telefon dej na noc nejlépe nabíjet.</string>
+    <string name="sound_rec_default">Zapnout pro nové noci</string>
+    <string name="sound_rec_default_hint">Spustí se, když večer otevřeš Phase Wake. Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou.</string>
+    <string name="sound_type_snore">Chrápání</string>
+    <string name="sound_type_talk">Mluvení</string>
+    <string name="sound_type_other">Jiný zvuk</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Chrápání: %1$s (%2$d úryvek)</item>
+        <item quantity="few">Chrápání: %1$s (%2$d úryvky)</item>
+        <item quantity="many">Chrápání: %1$s (%2$d úryvku)</item>
+        <item quantity="other">Chrápání: %1$s (%2$d úryvků)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Mluvení: %1$d úryvek</item>
+        <item quantity="few">Mluvení: %1$d úryvky</item>
+        <item quantity="many">Mluvení: %1$d úryvku</item>
+        <item quantity="other">Mluvení: %1$d úryvků</item>
+    </plurals>
+    <string name="sound_clips_title">Zvuky</string>
+    <string name="sound_clip_delete">Smazat úryvek z %1$s</string>
+    <string name="sound_clips_delete_all">Smazat všechny úryvky</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Pravidelně do postele: %1$d z %2$d večera</item>
+        <item quantity="few">Pravidelně do postele: %1$d z %2$d večerů</item>
+        <item quantity="many">Pravidelně do postele: %1$d z %2$d večera</item>
+        <item quantity="other">Pravidelně do postele: %1$d z %2$d večerů</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d noc v řadě se splněným cílem spánku</item>
+        <item quantity="few">%1$d noci v řadě se splněným cílem spánku</item>
+        <item quantity="many">%1$d noci v řadě se splněným cílem spánku</item>
+        <item quantity="other">%1$d nocí v řadě se splněným cílem spánku</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Nejdelší série za 90 dní: %1$d noc</item>
+        <item quantity="few">Nejdelší série za 90 dní: %1$d noci</item>
+        <item quantity="many">Nejdelší série za 90 dní: %1$d noci</item>
+        <item quantity="other">Nejdelší série za 90 dní: %1$d nocí</item>
+    </plurals>
+    <string name="weekly_title">Týdenní přehled</string>
+    <string name="weekly_toggle">V neděli v 18:00 oznámení o tvém týdnu.</string>
+    <string name="weekly_notification_title">Tvůj týden</string>
+    <string name="weekly_notification_text">Ø %1$s spánku · cíl %2$d/7 · pravidelně %3$d/7 · pocit %4$s</string>
+    <string name="weekly_notification_feeling">Ø pocit tento týden: %1$s</string>
+    <string name="routine_title">Večerní rutina</string>
+    <string name="routine_add">Přidat bod</string>
+    <string name="routine_item_phone">Telefon pryč</string>
+    <string name="routine_item_light">Ztlumit světlo</string>
+    <string name="routine_item_water">Voda připravená</string>
+    <string name="routine_avg">Večerní rutina: Ø %1$s z %2$d</string>
+    <string name="wake_task_title">Pro ukončení</string>
+    <string name="wake_task_hold">Podržet</string>
+    <string name="wake_task_math">Příklad</string>
+    <string name="wake_task_hint">Vyřeš 3 příklady, než budík utichne. Odložení funguje bez příkladu.</string>
+    <string name="wake_task_solve">Příklad %1$d z %2$d</string>
+    <string name="wake_task_wrong">Ne tak docela – tady je nový.</string>
+    <string name="wake_task_delete">Smazat číslici</string>
+    <string name="wake_task_check">OK</string>
 </resources>

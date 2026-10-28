@@ -287,4 +287,78 @@
     <string name="sounds_stop">إيقاف</string>
     <string name="sounds_remaining">متبقٍ %1$s</string>
     <string name="sounds_hint">يعمل بمستوى صوت الوسائط ويتوقف على الأكثر عند بدء نافذة الاستيقاظ.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">تسجيل الأصوات</string>
+    <string name="sound_rec_hint">مقاطع قصيرة فقط. تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_rec_permission">للتسجيل يحتاج Phase Wake إلى الميكروفون. لا يستمع إلا أثناء التسجيل.</string>
+    <string name="sound_rec_running">جارٍ تسجيل الأصوات</string>
+    <string name="sound_rec_stop">إيقاف</string>
+    <string name="sound_rec_plug_in">التسجيل يعمل. الأفضل أن تشحن هاتفك طوال الليل.</string>
+    <string name="sound_rec_default">تشغيل للليالي الجديدة</string>
+    <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake مساءً. مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_type_snore">شخير</string>
+    <string name="sound_type_talk">كلام</string>
+    <string name="sound_type_other">صوت آخر</string>
+    <plurals name="sound_summary">
+        <item quantity="zero">شخير: %1$s (%2$d مقطع)</item>
+        <item quantity="one">شخير: %1$s (%2$d مقطع)</item>
+        <item quantity="two">شخير: %1$s (%2$d مقطعان)</item>
+        <item quantity="few">شخير: %1$s (%2$d مقاطع)</item>
+        <item quantity="many">شخير: %1$s (%2$d مقطعًا)</item>
+        <item quantity="other">شخير: %1$s (%2$d مقطع)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="zero">كلام: %1$d مقطع</item>
+        <item quantity="one">كلام: %1$d مقطع</item>
+        <item quantity="two">كلام: %1$d مقطعان</item>
+        <item quantity="few">كلام: %1$d مقاطع</item>
+        <item quantity="many">كلام: %1$d مقطعًا</item>
+        <item quantity="other">كلام: %1$d مقطع</item>
+    </plurals>
+    <string name="sound_clips_title">الأصوات</string>
+    <string name="sound_clip_delete">حذف المقطع من %1$s</string>
+    <string name="sound_clips_delete_all">حذف كل المقاطع</string>
+    <plurals name="habit_regular">
+        <item quantity="zero">نوم منتظم: %1$d من %2$d أمسية</item>
+        <item quantity="one">نوم منتظم: %1$d من %2$d أمسية</item>
+        <item quantity="two">نوم منتظم: %1$d من %2$d أمسيتين</item>
+        <item quantity="few">نوم منتظم: %1$d من %2$d أمسيات</item>
+        <item quantity="many">نوم منتظم: %1$d من %2$d أمسية</item>
+        <item quantity="other">نوم منتظم: %1$d من %2$d أمسية</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="zero">%1$d ليلة متتالية مع هدف النوم</item>
+        <item quantity="one">%1$d ليلة متتالية مع هدف النوم</item>
+        <item quantity="two">%1$d ليلتان متتاليتان مع هدف النوم</item>
+        <item quantity="few">%1$d ليالٍ متتالية مع هدف النوم</item>
+        <item quantity="many">%1$d ليلة متتالية مع هدف النوم</item>
+        <item quantity="other">%1$d ليلة متتالية مع هدف النوم</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="zero">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
+        <item quantity="one">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
+        <item quantity="two">أطول سلسلة خلال 90 يومًا: %1$d ليلتان</item>
+        <item quantity="few">أطول سلسلة خلال 90 يومًا: %1$d ليالٍ</item>
+        <item quantity="many">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
+        <item quantity="other">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
+    </plurals>
+    <string name="weekly_title">ملخص الأسبوع</string>
+    <string name="weekly_toggle">يوم الأحد الساعة 18:00 إشعار عن أسبوعك.</string>
+    <string name="weekly_notification_title">أسبوعك</string>
+    <string name="weekly_notification_text">متوسط Ø %1$s نوم · هدف النوم %2$d/7 · منتظم %3$d/7 · الشعور %4$s</string>
+    <string name="weekly_notification_feeling">متوسط Ø الشعور هذا الأسبوع: %1$s</string>
+    <string name="routine_title">روتين المساء</string>
+    <string name="routine_add">إضافة بند</string>
+    <string name="routine_item_phone">الهاتف بعيدًا</string>
+    <string name="routine_item_light">إضاءة خافتة</string>
+    <string name="routine_item_water">الماء جاهز</string>
+    <string name="routine_avg">روتين المساء: Ø %1$s من %2$d</string>
+    <string name="wake_task_title">للإيقاف</string>
+    <string name="wake_task_hold">ضغط مطوّل</string>
+    <string name="wake_task_math">عملية حسابية</string>
+    <string name="wake_task_hint">حلّ 3 عمليات قبل أن يصمت المنبه. الغفوة تعمل بدون عملية.</string>
+    <string name="wake_task_solve">العملية %1$d من %2$d</string>
+    <string name="wake_task_wrong">ليس تمامًا – إليك عملية جديدة.</string>
+    <string name="wake_task_delete">حذف الرقم</string>
+    <string name="wake_task_check">موافق</string>
 </resources>

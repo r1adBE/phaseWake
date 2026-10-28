@@ -45,4 +45,6 @@
     <string name="home_last_night">Dün gece</string>
     <string name="notification_open">Aç</string>
     <string name="home_good_night_too_far">Alarmdan 16 saat önce kullanılabilir</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Durdurmak için işlemi telefonda çöz</string>
 </resources>

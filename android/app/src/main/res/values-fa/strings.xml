@@ -259,4 +259,58 @@
     <string name="sounds_stop">توقف</string>
     <string name="sounds_remaining">%1$s مانده</string>
     <string name="sounds_hint">با صدای رسانه پخش می‌شود و حداکثر با شروع پنجرهٔ بیداری‌ات قطع می‌شود.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">ضبط صداها</string>
+    <string name="sound_rec_hint">فقط قطعه‌های کوتاه. روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند.</string>
+    <string name="sound_rec_permission">برای ضبط، Phase Wake به میکروفون نیاز دارد. فقط تا وقتی ضبط روشن است گوش می‌دهد.</string>
+    <string name="sound_rec_running">در حال ضبط صداها</string>
+    <string name="sound_rec_stop">توقف</string>
+    <string name="sound_rec_plug_in">ضبط روشن است. بهتر است گوشی را شب به شارژر بزنی.</string>
+    <string name="sound_rec_default">روشن برای شب‌های جدید</string>
+    <string name="sound_rec_default_hint">وقتی Phase Wake را عصر باز کنی شروع می‌شود. فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند.</string>
+    <string name="sound_type_snore">خروپف</string>
+    <string name="sound_type_talk">حرف زدن</string>
+    <string name="sound_type_other">صدای دیگر</string>
+    <plurals name="sound_summary">
+        <item quantity="one">خروپف: %1$s (%2$d قطعه)</item>
+        <item quantity="other">خروپف: %1$s (%2$d قطعه)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">حرف زدن: %1$d قطعه</item>
+        <item quantity="other">حرف زدن: %1$d قطعه</item>
+    </plurals>
+    <string name="sound_clips_title">صداها</string>
+    <string name="sound_clip_delete">حذف قطعهٔ %1$s</string>
+    <string name="sound_clips_delete_all">حذف همهٔ قطعه‌ها</string>
+    <plurals name="habit_regular">
+        <item quantity="one">خواب منظم: %1$d از %2$d شب</item>
+        <item quantity="other">خواب منظم: %1$d از %2$d شب</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d شب پشت سر هم با هدف خواب</item>
+        <item quantity="other">%1$d شب پشت سر هم با هدف خواب</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">طولانی‌ترین زنجیره در ۹۰ روز: %1$d شب</item>
+        <item quantity="other">طولانی‌ترین زنجیره در ۹۰ روز: %1$d شب</item>
+    </plurals>
+    <string name="weekly_title">مرور هفته</string>
+    <string name="weekly_toggle">یکشنبه‌ها ساعت ۱۸:۰۰ اعلانی دربارهٔ هفته‌ات.</string>
+    <string name="weekly_notification_title">هفتهٔ تو</string>
+    <string name="weekly_notification_text">میانگین Ø %1$s خواب · هدف خواب %2$d/7 · منظم %3$d/7 · حس %4$s</string>
+    <string name="weekly_notification_feeling">میانگین Ø حس این هفته: %1$s</string>
+    <string name="routine_title">روال شب</string>
+    <string name="routine_add">افزودن مورد</string>
+    <string name="routine_item_phone">گوشی کنار</string>
+    <string name="routine_item_light">نور کم</string>
+    <string name="routine_item_water">آب آماده</string>
+    <string name="routine_avg">روال شب: Ø %1$s از %2$d</string>
+    <string name="wake_task_title">برای قطع</string>
+    <string name="wake_task_hold">نگه داشتن</string>
+    <string name="wake_task_math">حساب</string>
+    <string name="wake_task_hint">پیش از آنکه زنگ ساکت شود ۳ جمع را حل کن. چرت بدون حساب ممکن است.</string>
+    <string name="wake_task_solve">مسئلهٔ %1$d از %2$d</string>
+    <string name="wake_task_wrong">نه کاملاً – این یکی جدید است.</string>
+    <string name="wake_task_delete">حذف رقم</string>
+    <string name="wake_task_check">تأیید</string>
 </resources>

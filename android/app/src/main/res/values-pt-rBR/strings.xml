@@ -266,4 +266,63 @@
     <string name="sounds_stop">Parar</string>
     <string name="sounds_remaining">faltam %1$s</string>
     <string name="sounds_hint">Toca no volume de mídia e para, no máximo, quando começa sua janela de despertar.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Gravar sons</string>
+    <string name="sound_rec_hint">Só trechos curtos. Ficam no seu celular e são apagados depois de 7 dias.</string>
+    <string name="sound_rec_permission">Para gravar, o Phase Wake precisa do microfone. Ele só escuta enquanto a gravação está ativa.</string>
+    <string name="sound_rec_running">Gravando sons</string>
+    <string name="sound_rec_stop">Parar</string>
+    <string name="sound_rec_plug_in">Gravação ativa. Melhor deixar o celular no carregador durante a noite.</string>
+    <string name="sound_rec_default">Ativar para novas noites</string>
+    <string name="sound_rec_default_hint">Começa quando você abre o Phase Wake à noite. Só trechos curtos; ficam no seu celular e são apagados depois de 7 dias.</string>
+    <string name="sound_type_snore">Ronco</string>
+    <string name="sound_type_talk">Fala</string>
+    <string name="sound_type_other">Outro som</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Ronco: %1$s (%2$d trecho)</item>
+        <item quantity="many">Ronco: %1$s (%2$d trechos)</item>
+        <item quantity="other">Ronco: %1$s (%2$d trechos)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Fala: %1$d trecho</item>
+        <item quantity="many">Fala: %1$d trechos</item>
+        <item quantity="other">Fala: %1$d trechos</item>
+    </plurals>
+    <string name="sound_clips_title">Sons</string>
+    <string name="sound_clip_delete">Apagar trecho das %1$s</string>
+    <string name="sound_clips_delete_all">Apagar todos os trechos</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Hora de dormir regular: %1$d de %2$d noite</item>
+        <item quantity="many">Hora de dormir regular: %1$d de %2$d noites</item>
+        <item quantity="other">Hora de dormir regular: %1$d de %2$d noites</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d noite seguida com sua meta de sono</item>
+        <item quantity="many">%1$d noites seguidas com sua meta de sono</item>
+        <item quantity="other">%1$d noites seguidas com sua meta de sono</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Maior sequência em 90 dias: %1$d noite</item>
+        <item quantity="many">Maior sequência em 90 dias: %1$d noites</item>
+        <item quantity="other">Maior sequência em 90 dias: %1$d noites</item>
+    </plurals>
+    <string name="weekly_title">Resumo semanal</string>
+    <string name="weekly_toggle">Aos domingos às 18:00, uma notificação sobre a sua semana.</string>
+    <string name="weekly_notification_title">Sua semana</string>
+    <string name="weekly_notification_text">Ø %1$s de sono · meta %2$d/7 · regular %3$d/7 · sensação %4$s</string>
+    <string name="weekly_notification_feeling">Ø sensação esta semana: %1$s</string>
+    <string name="routine_title">Rotina da noite</string>
+    <string name="routine_add">Adicionar item</string>
+    <string name="routine_item_phone">Celular longe</string>
+    <string name="routine_item_light">Luz baixa</string>
+    <string name="routine_item_water">Água pronta</string>
+    <string name="routine_avg">Rotina da noite: Ø %1$s de %2$d</string>
+    <string name="wake_task_title">Para parar</string>
+    <string name="wake_task_hold">Segurar</string>
+    <string name="wake_task_math">Cálculo</string>
+    <string name="wake_task_hint">Resolva 3 contas antes de o alarme silenciar. Soneca funciona sem conta.</string>
+    <string name="wake_task_solve">Cálculo %1$d de %2$d</string>
+    <string name="wake_task_wrong">Quase – aqui vai uma nova.</string>
+    <string name="wake_task_delete">Apagar dígito</string>
+    <string name="wake_task_check">OK</string>
 </resources>

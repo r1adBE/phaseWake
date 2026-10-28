@@ -259,4 +259,58 @@
     <string name="sounds_stop">रोकें</string>
     <string name="sounds_remaining">%1$s बाकी</string>
     <string name="sounds_hint">मीडिया वॉल्यूम पर चलता है और ज़्यादा से ज़्यादा तब रुक जाता है जब तुम्हारी जागने की विंडो शुरू होती है।</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">आवाज़ें रिकॉर्ड करें</string>
+    <string name="sound_rec_hint">सिर्फ़ छोटे अंश। ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।</string>
+    <string name="sound_rec_permission">रिकॉर्ड करने के लिए Phase Wake को माइक्रोफ़ोन चाहिए। यह सिर्फ़ रिकॉर्डिंग के दौरान सुनता है।</string>
+    <string name="sound_rec_running">आवाज़ें रिकॉर्ड हो रही हैं</string>
+    <string name="sound_rec_stop">रोकें</string>
+    <string name="sound_rec_plug_in">रिकॉर्डिंग चल रही है। बेहतर है कि रात भर फ़ोन चार्जर पर लगा रहे।</string>
+    <string name="sound_rec_default">नई रातों के लिए चालू</string>
+    <string name="sound_rec_default_hint">शाम को Phase Wake खोलने पर शुरू होता है। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।</string>
+    <string name="sound_type_snore">खर्राटे</string>
+    <string name="sound_type_talk">बातचीत</string>
+    <string name="sound_type_other">दूसरी आवाज़</string>
+    <plurals name="sound_summary">
+        <item quantity="one">खर्राटे: %1$s (%2$d अंश)</item>
+        <item quantity="other">खर्राटे: %1$s (%2$d अंश)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">बातचीत: %1$d अंश</item>
+        <item quantity="other">बातचीत: %1$d अंश</item>
+    </plurals>
+    <string name="sound_clips_title">आवाज़ें</string>
+    <string name="sound_clip_delete">%1$s का अंश मिटाएँ</string>
+    <string name="sound_clips_delete_all">सारे अंश मिटाएँ</string>
+    <plurals name="habit_regular">
+        <item quantity="one">नियमित सोने का समय: %2$d में से %1$d शाम</item>
+        <item quantity="other">नियमित सोने का समय: %2$d में से %1$d शामें</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">लगातार %1$d रात नींद का लक्ष्य पूरा</item>
+        <item quantity="other">लगातार %1$d रातें नींद का लक्ष्य पूरा</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">90 दिनों में सबसे लंबी लड़ी: %1$d रात</item>
+        <item quantity="other">90 दिनों में सबसे लंबी लड़ी: %1$d रातें</item>
+    </plurals>
+    <string name="weekly_title">साप्ताहिक सार</string>
+    <string name="weekly_toggle">रविवार शाम 6 बजे तुम्हारे हफ़्ते के बारे में एक सूचना।</string>
+    <string name="weekly_notification_title">तुम्हारा हफ़्ता</string>
+    <string name="weekly_notification_text">औसत Ø %1$s नींद · नींद का लक्ष्य %2$d/7 · नियमित %3$d/7 · एहसास %4$s</string>
+    <string name="weekly_notification_feeling">इस हफ़्ते औसत Ø एहसास: %1$s</string>
+    <string name="routine_title">शाम की दिनचर्या</string>
+    <string name="routine_add">बिंदु जोड़ें</string>
+    <string name="routine_item_phone">फ़ोन दूर</string>
+    <string name="routine_item_light">रोशनी धीमी</string>
+    <string name="routine_item_water">पानी तैयार</string>
+    <string name="routine_avg">शाम की दिनचर्या: Ø %2$d में से %1$s</string>
+    <string name="wake_task_title">बंद करने के लिए</string>
+    <string name="wake_task_hold">दबाए रखें</string>
+    <string name="wake_task_math">गणित</string>
+    <string name="wake_task_hint">अलार्म चुप होने से पहले 3 जोड़ हल करो। स्नूज़ बिना सवाल के चलता है।</string>
+    <string name="wake_task_solve">सवाल %2$d में से %1$d</string>
+    <string name="wake_task_wrong">पूरा नहीं – यह रहा नया।</string>
+    <string name="wake_task_delete">अंक मिटाएँ</string>
+    <string name="wake_task_check">ठीक है</string>
 </resources>

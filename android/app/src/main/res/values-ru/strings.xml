@@ -273,4 +273,68 @@
     <string name="sounds_stop">Стоп</string>
     <string name="sounds_remaining">ещё %1$s</string>
     <string name="sounds_hint">Играет на громкости медиа и выключается не позже начала твоего окна пробуждения.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Записывать звуки</string>
+    <string name="sound_rec_hint">Только короткие фрагменты. Они остаются на телефоне и удаляются через 7 дней.</string>
+    <string name="sound_rec_permission">Для записи Phase Wake нужен микрофон. Он слушает только во время записи.</string>
+    <string name="sound_rec_running">Идёт запись звуков</string>
+    <string name="sound_rec_stop">Остановить</string>
+    <string name="sound_rec_plug_in">Запись идёт. Лучше поставь телефон на зарядку на ночь.</string>
+    <string name="sound_rec_default">Включать для новых ночей</string>
+    <string name="sound_rec_default_hint">Запускается, когда ты открываешь Phase Wake вечером. Только короткие фрагменты; они остаются на телефоне и удаляются через 7 дней.</string>
+    <string name="sound_type_snore">Храп</string>
+    <string name="sound_type_talk">Разговор</string>
+    <string name="sound_type_other">Другой звук</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Храп: %1$s (%2$d фрагмент)</item>
+        <item quantity="few">Храп: %1$s (%2$d фрагмента)</item>
+        <item quantity="many">Храп: %1$s (%2$d фрагментов)</item>
+        <item quantity="other">Храп: %1$s (%2$d фрагмента)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Разговор: %1$d фрагмент</item>
+        <item quantity="few">Разговор: %1$d фрагмента</item>
+        <item quantity="many">Разговор: %1$d фрагментов</item>
+        <item quantity="other">Разговор: %1$d фрагмента</item>
+    </plurals>
+    <string name="sound_clips_title">Звуки</string>
+    <string name="sound_clip_delete">Удалить фрагмент от %1$s</string>
+    <string name="sound_clips_delete_all">Удалить все фрагменты</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Регулярный отбой: %1$d из %2$d вечера</item>
+        <item quantity="few">Регулярный отбой: %1$d из %2$d вечеров</item>
+        <item quantity="many">Регулярный отбой: %1$d из %2$d вечеров</item>
+        <item quantity="other">Регулярный отбой: %1$d из %2$d вечеров</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d ночь подряд с целью сна</item>
+        <item quantity="few">%1$d ночи подряд с целью сна</item>
+        <item quantity="many">%1$d ночей подряд с целью сна</item>
+        <item quantity="other">%1$d ночи подряд с целью сна</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Самая длинная серия за 90 дней: %1$d ночь</item>
+        <item quantity="few">Самая длинная серия за 90 дней: %1$d ночи</item>
+        <item quantity="many">Самая длинная серия за 90 дней: %1$d ночей</item>
+        <item quantity="other">Самая длинная серия за 90 дней: %1$d ночи</item>
+    </plurals>
+    <string name="weekly_title">Итоги недели</string>
+    <string name="weekly_toggle">По воскресеньям в 18:00 уведомление о твоей неделе.</string>
+    <string name="weekly_notification_title">Твоя неделя</string>
+    <string name="weekly_notification_text">Ø %1$s сна · цель %2$d/7 · регулярно %3$d/7 · самочувствие %4$s</string>
+    <string name="weekly_notification_feeling">Ø самочувствие за неделю: %1$s</string>
+    <string name="routine_title">Вечерний ритуал</string>
+    <string name="routine_add">Добавить пункт</string>
+    <string name="routine_item_phone">Телефон в сторону</string>
+    <string name="routine_item_light">Приглушить свет</string>
+    <string name="routine_item_water">Вода рядом</string>
+    <string name="routine_avg">Вечерний ритуал: Ø %1$s из %2$d</string>
+    <string name="wake_task_title">Чтобы выключить</string>
+    <string name="wake_task_hold">Удержание</string>
+    <string name="wake_task_math">Пример</string>
+    <string name="wake_task_hint">Реши 3 примера, прежде чем будильник замолчит. Отложить можно без примера.</string>
+    <string name="wake_task_solve">Пример %1$d из %2$d</string>
+    <string name="wake_task_wrong">Не совсем – вот новый.</string>
+    <string name="wake_task_delete">Удалить цифру</string>
+    <string name="wake_task_check">OK</string>
 </resources>

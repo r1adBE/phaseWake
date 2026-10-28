@@ -252,4 +252,53 @@
     <string name="sounds_stop">停止</string>
     <string name="sounds_remaining">残り %1$s</string>
     <string name="sounds_hint">メディアの音量で再生し、遅くとも起床ウィンドウが始まると止まります。</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">音を録音</string>
+    <string name="sound_rec_hint">短い断片だけ。スマホに残り、7日後に削除されます。</string>
+    <string name="sound_rec_permission">録音にはマイクが必要です。録音中だけ聞き取ります。</string>
+    <string name="sound_rec_running">音を録音中</string>
+    <string name="sound_rec_stop">停止</string>
+    <string name="sound_rec_plug_in">録音中。夜はスマホを充電器につないでおくのがおすすめです。</string>
+    <string name="sound_rec_default">新しい夜はオン</string>
+    <string name="sound_rec_default_hint">夜に Phase Wake を開くと始まります。短い断片だけ。スマホに残り、7日後に削除されます。</string>
+    <string name="sound_type_snore">いびき</string>
+    <string name="sound_type_talk">寝言</string>
+    <string name="sound_type_other">その他の音</string>
+    <plurals name="sound_summary">
+        <item quantity="other">いびき: %1$s（%2$d件）</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="other">寝言: %1$d件</item>
+    </plurals>
+    <string name="sound_clips_title">音</string>
+    <string name="sound_clip_delete">%1$sの断片を削除</string>
+    <string name="sound_clips_delete_all">すべての断片を削除</string>
+    <plurals name="habit_regular">
+        <item quantity="other">規則的な就寝: %2$d晩中%1$d晩</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="other">%1$d晩連続で睡眠目標を達成</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="other">90日間の最長記録: %1$d晩</item>
+    </plurals>
+    <string name="weekly_title">週の振り返り</string>
+    <string name="weekly_toggle">日曜18:00に1週間のまとめを通知します。</string>
+    <string name="weekly_notification_title">今週</string>
+    <string name="weekly_notification_text">Ø 睡眠 %1$s · 睡眠目標 %2$d/7 · 規則的 %3$d/7 · 気分 %4$s</string>
+    <string name="weekly_notification_feeling">今週の Ø 気分: %1$s</string>
+    <string name="routine_title">夜のルーティン</string>
+    <string name="routine_add">項目を追加</string>
+    <string name="routine_item_phone">スマホを置く</string>
+    <string name="routine_item_light">照明を落とす</string>
+    <string name="routine_item_water">水を用意</string>
+    <string name="routine_avg">夜のルーティン: Ø %2$d項目中%1$s</string>
+    <string name="wake_task_title">止めるには</string>
+    <string name="wake_task_hold">長押し</string>
+    <string name="wake_task_math">計算問題</string>
+    <string name="wake_task_hint">アラームが止まる前に計算を3問解きます。スヌーズは問題なしでできます。</string>
+    <string name="wake_task_solve">問題 %1$d/%2$d</string>
+    <string name="wake_task_wrong">惜しい – 新しい問題です。</string>
+    <string name="wake_task_delete">1桁削除</string>
+    <string name="wake_task_check">OK</string>
 </resources>

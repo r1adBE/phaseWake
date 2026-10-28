@@ -259,4 +259,58 @@
     <string name="sounds_stop">Διακοπή</string>
     <string name="sounds_remaining">απομένουν %1$s</string>
     <string name="sounds_hint">Παίζει με την ένταση πολυμέσων και σταματά το αργότερο όταν αρχίζει το παράθυρο αφύπνισής σου.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Καταγραφή ήχων</string>
+    <string name="sound_rec_hint">Μόνο σύντομα αποσπάσματα. Μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες.</string>
+    <string name="sound_rec_permission">Για την καταγραφή το Phase Wake χρειάζεται το μικρόφωνο. Ακούει μόνο όσο τρέχει η καταγραφή.</string>
+    <string name="sound_rec_running">Καταγραφή ήχων</string>
+    <string name="sound_rec_stop">Διακοπή</string>
+    <string name="sound_rec_plug_in">Η καταγραφή τρέχει. Καλύτερα βάλε το τηλέφωνο στον φορτιστή για τη νύχτα.</string>
+    <string name="sound_rec_default">Ενεργό για νέες νύχτες</string>
+    <string name="sound_rec_default_hint">Ξεκινά όταν ανοίγεις το Phase Wake το βράδυ. Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες.</string>
+    <string name="sound_type_snore">Ροχαλητό</string>
+    <string name="sound_type_talk">Ομιλία</string>
+    <string name="sound_type_other">Άλλος ήχος</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Ροχαλητό: %1$s (%2$d απόσπασμα)</item>
+        <item quantity="other">Ροχαλητό: %1$s (%2$d αποσπάσματα)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Ομιλία: %1$d απόσπασμα</item>
+        <item quantity="other">Ομιλία: %1$d αποσπάσματα</item>
+    </plurals>
+    <string name="sound_clips_title">Ήχοι</string>
+    <string name="sound_clip_delete">Διαγραφή αποσπάσματος των %1$s</string>
+    <string name="sound_clips_delete_all">Διαγραφή όλων των αποσπασμάτων</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Τακτικός ύπνος: %1$d από %2$d βράδυ</item>
+        <item quantity="other">Τακτικός ύπνος: %1$d από %2$d βράδια</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d νύχτα στη σειρά με τον στόχο ύπνου</item>
+        <item quantity="other">%1$d νύχτες στη σειρά με τον στόχο ύπνου</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Μεγαλύτερο σερί σε 90 ημέρες: %1$d νύχτα</item>
+        <item quantity="other">Μεγαλύτερο σερί σε 90 ημέρες: %1$d νύχτες</item>
+    </plurals>
+    <string name="weekly_title">Εβδομαδιαία ανασκόπηση</string>
+    <string name="weekly_toggle">Την Κυριακή στις 18:00 μια ειδοποίηση για την εβδομάδα σου.</string>
+    <string name="weekly_notification_title">Η εβδομάδα σου</string>
+    <string name="weekly_notification_text">Ø %1$s ύπνος · στόχος %2$d/7 · τακτικά %3$d/7 · αίσθηση %4$s</string>
+    <string name="weekly_notification_feeling">Ø αίσθηση αυτή την εβδομάδα: %1$s</string>
+    <string name="routine_title">Βραδινή ρουτίνα</string>
+    <string name="routine_add">Προσθήκη σημείου</string>
+    <string name="routine_item_phone">Τηλέφωνο μακριά</string>
+    <string name="routine_item_light">Χαμηλό φως</string>
+    <string name="routine_item_water">Νερό έτοιμο</string>
+    <string name="routine_avg">Βραδινή ρουτίνα: Ø %1$s από %2$d</string>
+    <string name="wake_task_title">Για διακοπή</string>
+    <string name="wake_task_hold">Κράτημα</string>
+    <string name="wake_task_math">Πράξη</string>
+    <string name="wake_task_hint">Λύσε 3 πράξεις πριν σωπάσει το ξυπνητήρι. Η αναβολή γίνεται χωρίς πράξη.</string>
+    <string name="wake_task_solve">Πράξη %1$d από %2$d</string>
+    <string name="wake_task_wrong">Όχι ακριβώς – ορίστε μια νέα.</string>
+    <string name="wake_task_delete">Διαγραφή ψηφίου</string>
+    <string name="wake_task_check">OK</string>
 </resources>

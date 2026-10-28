@@ -47,4 +47,6 @@
     <string name="home_last_night">Ostatnia noc</string>
     <string name="notification_open">Otwórz</string>
     <string name="home_good_night_too_far">Dostępne od 16 godz. przed budzikiem</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Aby wyłączyć, rozwiąż zadanie na telefonie</string>
 </resources>

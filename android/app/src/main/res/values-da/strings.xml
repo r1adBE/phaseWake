@@ -259,4 +259,58 @@
     <string name="sounds_stop">Stop</string>
     <string name="sounds_remaining">%1$s tilbage</string>
     <string name="sounds_hint">Afspilles med medielydstyrken og stopper senest, når dit vækkevindue begynder.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Optag lyde</string>
+    <string name="sound_rec_hint">Kun korte klip. De bliver på telefonen og slettes efter 7 dage.</string>
+    <string name="sound_rec_permission">For at optage skal Phase Wake bruge mikrofonen. Den lytter kun, mens optagelsen kører.</string>
+    <string name="sound_rec_running">Lyde optages</string>
+    <string name="sound_rec_stop">Stop</string>
+    <string name="sound_rec_plug_in">Optagelsen kører. Sæt helst telefonen til opladning om natten.</string>
+    <string name="sound_rec_default">Til for nye nætter</string>
+    <string name="sound_rec_default_hint">Starter, når du åbner Phase Wake om aftenen. Kun korte klip; de bliver på telefonen og slettes efter 7 dage.</string>
+    <string name="sound_type_snore">Snorken</string>
+    <string name="sound_type_talk">Tale</string>
+    <string name="sound_type_other">Anden lyd</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Snorken: %1$s (%2$d klip)</item>
+        <item quantity="other">Snorken: %1$s (%2$d klip)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Tale: %1$d klip</item>
+        <item quantity="other">Tale: %1$d klip</item>
+    </plurals>
+    <string name="sound_clips_title">Lyde</string>
+    <string name="sound_clip_delete">Slet klip fra %1$s</string>
+    <string name="sound_clips_delete_all">Slet alle klip</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Regelmæssig sengetid: %1$d af %2$d aften</item>
+        <item quantity="other">Regelmæssig sengetid: %1$d af %2$d aftener</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d nat i træk med dit søvnmål</item>
+        <item quantity="other">%1$d nætter i træk med dit søvnmål</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Længste stribe på 90 dage: %1$d nat</item>
+        <item quantity="other">Længste stribe på 90 dage: %1$d nætter</item>
+    </plurals>
+    <string name="weekly_title">Ugeoverblik</string>
+    <string name="weekly_toggle">Om søndagen kl. 18 en notifikation om din uge.</string>
+    <string name="weekly_notification_title">Din uge</string>
+    <string name="weekly_notification_text">Ø %1$s søvn · søvnmål %2$d/7 · regelmæssigt %3$d/7 · følelse %4$s</string>
+    <string name="weekly_notification_feeling">Ø følelse denne uge: %1$s</string>
+    <string name="routine_title">Aftenrutine</string>
+    <string name="routine_add">Tilføj punkt</string>
+    <string name="routine_item_phone">Telefonen væk</string>
+    <string name="routine_item_light">Dæmp lyset</string>
+    <string name="routine_item_water">Vand klar</string>
+    <string name="routine_avg">Aftenrutine: Ø %1$s af %2$d</string>
+    <string name="wake_task_title">For at stoppe</string>
+    <string name="wake_task_hold">Hold</string>
+    <string name="wake_task_math">Regneopgave</string>
+    <string name="wake_task_hint">Løs 3 opgaver, før alarmen tier. Udsæt virker uden opgave.</string>
+    <string name="wake_task_solve">Opgave %1$d af %2$d</string>
+    <string name="wake_task_wrong">Ikke helt – her er en ny.</string>
+    <string name="wake_task_delete">Slet ciffer</string>
+    <string name="wake_task_check">OK</string>
 </resources>

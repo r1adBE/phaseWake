@@ -17,6 +17,7 @@ import java.time.DayOfWeek
  * @property sleepDurationMinutes Optional: Zielzeit = Einschlafzeit + Dauer, höchstens [hour]:[minute].
  * @property label Freier Name, z. B. «Arbeit».
  * @property sunrise Sonnenaufgang auf dem Handy-Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters.
+ * @property wakeTask Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy.
  */
 data class AlarmSpec(
     val id: String,
@@ -31,6 +32,7 @@ data class AlarmSpec(
     val sleepDurationMinutes: Int? = null,
     val label: String = "",
     val sunrise: Sunrise = Sunrise.OFF,
+    val wakeTask: WakeTask = WakeTask.NONE,
 ) {
     init {
         require(id.isNotBlank()) { "id darf nicht leer sein" }
@@ -72,6 +74,18 @@ enum class PhoneAlert {
 
     /** Ton (sanft lauter werdend) und Vibration. */
     SOUND,
+}
+
+/**
+ * Weckaufgabe: was zum Beenden des Weckers nötig ist. Schlummern geht immer ohne Aufgabe.
+ * Auf dem iPhone nicht wählbar (der Stopp-Knopf des Systems lässt sich nicht ersetzen); dort gilt [NONE].
+ */
+enum class WakeTask {
+    /** Halten zum Stoppen. */
+    NONE,
+
+    /** [MathChallenge.STEPS] Additionen am Handy lösen. */
+    MATH,
 }
 
 /**

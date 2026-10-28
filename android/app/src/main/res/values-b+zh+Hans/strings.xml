@@ -252,4 +252,53 @@
     <string name="sounds_stop">停止</string>
     <string name="sounds_remaining">还剩 %1$s</string>
     <string name="sounds_hint">以媒体音量播放,最迟在你的唤醒时段开始时停止。</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">录制声音</string>
+    <string name="sound_rec_hint">只保存短片段。片段留在手机上，7 天后删除。</string>
+    <string name="sound_rec_permission">录音需要麦克风。只在录音开启时收听。</string>
+    <string name="sound_rec_running">正在录制声音</string>
+    <string name="sound_rec_stop">停止</string>
+    <string name="sound_rec_plug_in">正在录音。夜里最好给手机接上充电器。</string>
+    <string name="sound_rec_default">新的夜晚默认开启</string>
+    <string name="sound_rec_default_hint">晚上打开 Phase Wake 时开始。只保存短片段；片段留在手机上，7 天后删除。</string>
+    <string name="sound_type_snore">打鼾</string>
+    <string name="sound_type_talk">说梦话</string>
+    <string name="sound_type_other">其他声音</string>
+    <plurals name="sound_summary">
+        <item quantity="other">打鼾：%1$s（%2$d 段）</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="other">说梦话：%1$d 段</item>
+    </plurals>
+    <string name="sound_clips_title">声音</string>
+    <string name="sound_clip_delete">删除 %1$s 的片段</string>
+    <string name="sound_clips_delete_all">删除所有片段</string>
+    <plurals name="habit_regular">
+        <item quantity="other">规律就寝：%2$d 晚中 %1$d 晚</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="other">连续 %1$d 晚达到睡眠目标</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="other">90 天内最长连续：%1$d 晚</item>
+    </plurals>
+    <string name="weekly_title">每周回顾</string>
+    <string name="weekly_toggle">每周日 18:00 推送一周总结。</string>
+    <string name="weekly_notification_title">你的一周</string>
+    <string name="weekly_notification_text">Ø 睡眠 %1$s · 睡眠目标 %2$d/7 · 规律 %3$d/7 · 感觉 %4$s</string>
+    <string name="weekly_notification_feeling">本周 Ø 感觉：%1$s</string>
+    <string name="routine_title">晚间习惯</string>
+    <string name="routine_add">添加项目</string>
+    <string name="routine_item_phone">放下手机</string>
+    <string name="routine_item_light">调暗灯光</string>
+    <string name="routine_item_water">备好水</string>
+    <string name="routine_avg">晚间习惯：Ø %1$s / %2$d</string>
+    <string name="wake_task_title">关闭方式</string>
+    <string name="wake_task_hold">长按</string>
+    <string name="wake_task_math">算术题</string>
+    <string name="wake_task_hint">闹钟停止前要解 3 道加法题。贪睡无需答题。</string>
+    <string name="wake_task_solve">第 %1$d 题，共 %2$d 题</string>
+    <string name="wake_task_wrong">差一点 – 换一道新题。</string>
+    <string name="wake_task_delete">删除数字</string>
+    <string name="wake_task_check">确定</string>
 </resources>

@@ -259,4 +259,58 @@
     <string name="sounds_stop">Durdur</string>
     <string name="sounds_remaining">%1$s kaldı</string>
     <string name="sounds_hint">Medya ses seviyesinde çalar ve en geç uyandırma pencereni başladığında durur.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Sesleri kaydet</string>
+    <string name="sound_rec_hint">Yalnızca kısa parçalar. Telefonunda kalır ve 7 gün sonra silinir.</string>
+    <string name="sound_rec_permission">Kayıt için Phase Wake mikrofona ihtiyaç duyar. Yalnızca kayıt açıkken dinler.</string>
+    <string name="sound_rec_running">Sesler kaydediliyor</string>
+    <string name="sound_rec_stop">Durdur</string>
+    <string name="sound_rec_plug_in">Kayıt sürüyor. Telefonu gece şarja takman en iyisi.</string>
+    <string name="sound_rec_default">Yeni geceler için açık</string>
+    <string name="sound_rec_default_hint">Akşam Phase Wake’i açtığında başlar. Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir.</string>
+    <string name="sound_type_snore">Horlama</string>
+    <string name="sound_type_talk">Konuşma</string>
+    <string name="sound_type_other">Başka ses</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Horlama: %1$s (%2$d parça)</item>
+        <item quantity="other">Horlama: %1$s (%2$d parça)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Konuşma: %1$d parça</item>
+        <item quantity="other">Konuşma: %1$d parça</item>
+    </plurals>
+    <string name="sound_clips_title">Sesler</string>
+    <string name="sound_clip_delete">%1$s parçasını sil</string>
+    <string name="sound_clips_delete_all">Tüm parçaları sil</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Düzenli yatış: %2$d akşamın %1$d’i</item>
+        <item quantity="other">Düzenli yatış: %2$d akşamın %1$d’i</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">Üst üste %1$d gece uyku hedefi tuttu</item>
+        <item quantity="other">Üst üste %1$d gece uyku hedefi tuttu</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">90 günde en uzun seri: %1$d gece</item>
+        <item quantity="other">90 günde en uzun seri: %1$d gece</item>
+    </plurals>
+    <string name="weekly_title">Haftalık özet</string>
+    <string name="weekly_toggle">Pazar günleri 18:00’de haftan hakkında bir bildirim.</string>
+    <string name="weekly_notification_title">Haftan</string>
+    <string name="weekly_notification_text">Ø %1$s uyku · uyku hedefi %2$d/7 · düzenli %3$d/7 · hissediş %4$s</string>
+    <string name="weekly_notification_feeling">Bu hafta Ø hissediş: %1$s</string>
+    <string name="routine_title">Akşam rutini</string>
+    <string name="routine_add">Madde ekle</string>
+    <string name="routine_item_phone">Telefon uzakta</string>
+    <string name="routine_item_light">Işıkları kıs</string>
+    <string name="routine_item_water">Su hazır</string>
+    <string name="routine_avg">Akşam rutini: Ø %1$s / %2$d</string>
+    <string name="wake_task_title">Durdurmak için</string>
+    <string name="wake_task_hold">Basılı tut</string>
+    <string name="wake_task_math">İşlem</string>
+    <string name="wake_task_hint">Alarm susmadan önce 3 işlem çöz. Erteleme işlemsiz çalışır.</string>
+    <string name="wake_task_solve">İşlem %1$d / %2$d</string>
+    <string name="wake_task_wrong">Tam değil – işte yenisi.</string>
+    <string name="wake_task_delete">Rakamı sil</string>
+    <string name="wake_task_check">Tamam</string>
 </resources>

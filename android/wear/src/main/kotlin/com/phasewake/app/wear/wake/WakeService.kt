@@ -20,6 +20,8 @@ import com.phasewake.app.core.Decision
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.PhoneAlert
+import com.phasewake.app.core.WakeTask
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
@@ -40,6 +42,8 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -73,9 +77,12 @@ class WakeService : LifecycleService() {
         /** Uhr-Ton und Name aus [DirectBoot], solange der Wecker selbst nicht lesbar ist. */
         var lockedSound: Boolean = false,
         var lockedLabel: String = "",
+        /** Beenden nur über die Weckaufgabe am Handy (siehe [checkTaskOnPhone]). */
+        var taskOnPhone: Boolean = false,
     )
 
     private val app by lazy { wearApp }
+    private var taskCheck: kotlinx.coroutines.Job? = null
     private val handler = Handler(Looper.getMainLooper())
     private val escalation by lazy { Escalation(this) }
     private var wakeLock: PowerManager.WakeLock? = null
@@ -325,6 +332,7 @@ class WakeService : LifecycleService() {
                     if (canMeasure) startSensors(current)
                 }
                 Phase.RINGING -> {
+                    checkTaskOnPhone(current)
                     publishRinging(current)
                     if (saved != null) goForeground(ringingNotification(current), measuring = false)
                     // Nach einem Neustart ging «klingeln» mit 0 Runden ans Handy: korrigierte Restzahl nachschicken.
@@ -407,6 +415,7 @@ class WakeService : LifecycleService() {
         val reason = n.reason ?: WakeReason.DEADLINE
         holdWakeLock(RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
 
+        checkTaskOnPhone(n)
         publishRinging(n)
         goForeground(ringingNotification(n), measuring = false)
         // Aus dem Dienst nur mit neuer Aufgabe möglich (Lint «WearRecents» trifft hier nicht zu).
@@ -455,8 +464,38 @@ class WakeService : LifecycleService() {
 
     private fun publishRinging(n: Night) {
         app.ringState.publish(
-            RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, n.firstRing ?: Instant.now(), Snooze.MAX_COUNT - n.snoozes),
+            RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, n.firstRing ?: Instant.now(), Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone),
         )
+    }
+
+    /**
+     * Weckaufgabe ([WakeTask.MATH]): Die Uhr zeigt «Aufgabe am Handy lösen» statt Halten. Sicherheit:
+     * Nur wenn das Handy für diesen Wecker mitweckt und erreichbar ist; sonst – und sobald es nicht mehr
+     * erreichbar ist (alle [TASK_CHECK_MS] geprüft) – wieder Halten. Nie ein Wecker, der sich nicht beenden lässt.
+     */
+    private fun checkTaskOnPhone(n: Night) {
+        val spec = n.spec
+        val wanted = !n.locked && spec != null && spec.wakeTask == WakeTask.MATH && spec.phone != PhoneAlert.OFF
+        n.taskOnPhone = wanted
+        taskCheck?.cancel()
+        if (!wanted) return
+        taskCheck = lifecycleScope.launch {
+            while (night === n && n.taskOnPhone && n.phase != Phase.MEASURING) {
+                val reachable = withTimeoutOrNull(TASK_REACH_TIMEOUT_MS) { app.sync.isReachable(DataLayer.CAPABILITY_PHONE) } ?: false
+                if (night !== n) return@launch
+                if (!reachable) {
+                    Log.i(TAG, "Handy nicht erreichbar: Beenden durch Halten")
+                    n.taskOnPhone = false
+                    when (n.phase) {
+                        Phase.RINGING -> publishRinging(n)
+                        Phase.SNOOZED -> (app.ringState.ui.value as? RingUi.Snoozed)?.let { app.ringState.publish(it.copy(taskOnPhone = false)) }
+                        Phase.MEASURING -> Unit
+                    }
+                    return@launch
+                }
+                delay(TASK_CHECK_MS)
+            }
+        }
     }
 
     /**
@@ -475,7 +514,7 @@ class WakeService : LifecycleService() {
         n.snoozes++
         n.phase = Phase.SNOOZED
         val until = Snooze.nextRing(Instant.now())
-        app.ringState.publish(RingUi.Snoozed(label(n), until, Snooze.MAX_COUNT - n.snoozes))
+        app.ringState.publish(RingUi.Snoozed(label(n), until, Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone))
         goForeground(Notifications.snoozed(this, formatTime(until)), measuring = false)
         AlarmScheduler.setSnoozeEnd(this, n.plan, until)
         // Startet die Uhr während des Schlummerns neu, weckt sie zum Schlummer-Ende (auch vor dem Entsperren).
@@ -648,6 +687,10 @@ class WakeService : LifecycleService() {
 
     companion object {
         private const val TAG = "WakeService"
+
+        /** Weckaufgabe: so oft prüfen, ob das Handy noch erreichbar ist, und so lange auf die Antwort warten. */
+        private const val TASK_CHECK_MS = 30_000L
+        private const val TASK_REACH_TIMEOUT_MS = 5_000L
         const val ACTION_START = "com.phasewake.app.wake.START"
         const val ACTION_DEADLINE = "com.phasewake.app.wake.DEADLINE"
         const val ACTION_SNOOZE_END = "com.phasewake.app.wake.SNOOZE_END"

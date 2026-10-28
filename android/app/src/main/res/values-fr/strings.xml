@@ -266,4 +266,63 @@
     <string name="sounds_stop">Arrêter</string>
     <string name="sounds_remaining">encore %1$s</string>
     <string name="sounds_hint">Joue au volume multimédia et s’arrête au plus tard au début de ta fenêtre de réveil.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Enregistrer les bruits</string>
+    <string name="sound_rec_hint">Seulement de courts extraits. Ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
+    <string name="sound_rec_permission">Pour enregistrer, Phase Wake a besoin du micro. Il n’écoute que pendant l’enregistrement.</string>
+    <string name="sound_rec_running">Enregistrement des bruits</string>
+    <string name="sound_rec_stop">Arrêter</string>
+    <string name="sound_rec_plug_in">Enregistrement en cours. Branche de préférence ton téléphone pour la nuit.</string>
+    <string name="sound_rec_default">Activer pour les nouvelles nuits</string>
+    <string name="sound_rec_default_hint">Démarre quand tu ouvres Phase Wake le soir. Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
+    <string name="sound_type_snore">Ronflement</string>
+    <string name="sound_type_talk">Paroles</string>
+    <string name="sound_type_other">Autre bruit</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Ronflement : %1$s (%2$d extrait)</item>
+        <item quantity="many">Ronflement : %1$s (%2$d extraits)</item>
+        <item quantity="other">Ronflement : %1$s (%2$d extraits)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Paroles : %1$d extrait</item>
+        <item quantity="many">Paroles : %1$d extraits</item>
+        <item quantity="other">Paroles : %1$d extraits</item>
+    </plurals>
+    <string name="sound_clips_title">Bruits</string>
+    <string name="sound_clip_delete">Supprimer l’extrait de %1$s</string>
+    <string name="sound_clips_delete_all">Supprimer tous les extraits</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Coucher régulier : %1$d sur %2$d soir</item>
+        <item quantity="many">Coucher régulier : %1$d sur %2$d soirs</item>
+        <item quantity="other">Coucher régulier : %1$d sur %2$d soirs</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d nuit d’affilée avec ton objectif de sommeil</item>
+        <item quantity="many">%1$d nuits d’affilée avec ton objectif de sommeil</item>
+        <item quantity="other">%1$d nuits d’affilée avec ton objectif de sommeil</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Plus longue série sur 90 jours : %1$d nuit</item>
+        <item quantity="many">Plus longue série sur 90 jours : %1$d nuits</item>
+        <item quantity="other">Plus longue série sur 90 jours : %1$d nuits</item>
+    </plurals>
+    <string name="weekly_title">Bilan de la semaine</string>
+    <string name="weekly_toggle">Le dimanche à 18 h, une notification sur ta semaine.</string>
+    <string name="weekly_notification_title">Ta semaine</string>
+    <string name="weekly_notification_text">Ø %1$s de sommeil · objectif %2$d/7 · coucher régulier %3$d/7 · ressenti %4$s</string>
+    <string name="weekly_notification_feeling">Ø ressenti cette semaine : %1$s</string>
+    <string name="routine_title">Routine du soir</string>
+    <string name="routine_add">Ajouter un élément</string>
+    <string name="routine_item_phone">Téléphone rangé</string>
+    <string name="routine_item_light">Lumière tamisée</string>
+    <string name="routine_item_water">Eau prête</string>
+    <string name="routine_avg">Routine du soir : Ø %1$s sur %2$d</string>
+    <string name="wake_task_title">Pour arrêter</string>
+    <string name="wake_task_hold">Maintenir</string>
+    <string name="wake_task_math">Calcul</string>
+    <string name="wake_task_hint">Résous 3 calculs avant que l’alarme se taise. La répétition fonctionne sans calcul.</string>
+    <string name="wake_task_solve">Calcul %1$d sur %2$d</string>
+    <string name="wake_task_wrong">Pas tout à fait – en voici un nouveau.</string>
+    <string name="wake_task_delete">Effacer le chiffre</string>
+    <string name="wake_task_check">OK</string>
 </resources>

@@ -266,4 +266,63 @@
     <string name="sounds_stop">Detener</string>
     <string name="sounds_remaining">quedan %1$s</string>
     <string name="sounds_hint">Suena con el volumen multimedia y se detiene como muy tarde cuando empieza tu ventana de alarma.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Grabar sonidos</string>
+    <string name="sound_rec_hint">Solo fragmentos cortos. Se quedan en tu teléfono y se borran a los 7 días.</string>
+    <string name="sound_rec_permission">Para grabar, Phase Wake necesita el micrófono. Solo escucha mientras la grabación está activa.</string>
+    <string name="sound_rec_running">Grabando sonidos</string>
+    <string name="sound_rec_stop">Detener</string>
+    <string name="sound_rec_plug_in">Grabación activa. Mejor conecta el teléfono al cargador por la noche.</string>
+    <string name="sound_rec_default">Activar para noches nuevas</string>
+    <string name="sound_rec_default_hint">Empieza cuando abres Phase Wake por la noche. Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días.</string>
+    <string name="sound_type_snore">Ronquidos</string>
+    <string name="sound_type_talk">Habla</string>
+    <string name="sound_type_other">Otro sonido</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Ronquidos: %1$s (%2$d fragmento)</item>
+        <item quantity="many">Ronquidos: %1$s (%2$d fragmentos)</item>
+        <item quantity="other">Ronquidos: %1$s (%2$d fragmentos)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Habla: %1$d fragmento</item>
+        <item quantity="many">Habla: %1$d fragmentos</item>
+        <item quantity="other">Habla: %1$d fragmentos</item>
+    </plurals>
+    <string name="sound_clips_title">Sonidos</string>
+    <string name="sound_clip_delete">Borrar fragmento de las %1$s</string>
+    <string name="sound_clips_delete_all">Borrar todos los fragmentos</string>
+    <plurals name="habit_regular">
+        <item quantity="one">A la cama con regularidad: %1$d de %2$d noche</item>
+        <item quantity="many">A la cama con regularidad: %1$d de %2$d noches</item>
+        <item quantity="other">A la cama con regularidad: %1$d de %2$d noches</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d noche seguida con tu objetivo de sueño</item>
+        <item quantity="many">%1$d noches seguidas con tu objetivo de sueño</item>
+        <item quantity="other">%1$d noches seguidas con tu objetivo de sueño</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Racha más larga en 90 días: %1$d noche</item>
+        <item quantity="many">Racha más larga en 90 días: %1$d noches</item>
+        <item quantity="other">Racha más larga en 90 días: %1$d noches</item>
+    </plurals>
+    <string name="weekly_title">Resumen semanal</string>
+    <string name="weekly_toggle">Los domingos a las 18:00, una notificación sobre tu semana.</string>
+    <string name="weekly_notification_title">Tu semana</string>
+    <string name="weekly_notification_text">Ø %1$s de sueño · objetivo %2$d/7 · regular %3$d/7 · sensación %4$s</string>
+    <string name="weekly_notification_feeling">Ø sensación esta semana: %1$s</string>
+    <string name="routine_title">Rutina nocturna</string>
+    <string name="routine_add">Añadir punto</string>
+    <string name="routine_item_phone">Teléfono fuera</string>
+    <string name="routine_item_light">Luz tenue</string>
+    <string name="routine_item_water">Agua lista</string>
+    <string name="routine_avg">Rutina nocturna: Ø %1$s de %2$d</string>
+    <string name="wake_task_title">Para parar</string>
+    <string name="wake_task_hold">Mantener</string>
+    <string name="wake_task_math">Cálculo</string>
+    <string name="wake_task_hint">Resuelve 3 sumas antes de que la alarma se calle. Posponer funciona sin cálculo.</string>
+    <string name="wake_task_solve">Cálculo %1$d de %2$d</string>
+    <string name="wake_task_wrong">Casi – aquí tienes uno nuevo.</string>
+    <string name="wake_task_delete">Borrar cifra</string>
+    <string name="wake_task_check">OK</string>
 </resources>

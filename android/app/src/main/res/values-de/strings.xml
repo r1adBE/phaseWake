@@ -259,4 +259,58 @@
     <string name="sounds_stop">Stopp</string>
     <string name="sounds_remaining">noch %1$s</string>
     <string name="sounds_hint">Spielt mit der Medienlautstärke und hört spätestens auf, wenn dein Weckfenster beginnt.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Geräusche aufnehmen</string>
+    <string name="sound_rec_hint">Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
+    <string name="sound_rec_permission">Für die Aufnahme braucht Phase Wake das Mikrofon. Es hört nur zu, solange die Aufnahme läuft.</string>
+    <string name="sound_rec_running">Geräusche werden aufgenommen</string>
+    <string name="sound_rec_stop">Stoppen</string>
+    <string name="sound_rec_plug_in">Aufnahme läuft. Schliess das Handy für die Nacht am besten ans Ladegerät an.</string>
+    <string name="sound_rec_default">Für neue Nächte einschalten</string>
+    <string name="sound_rec_default_hint">Startet, wenn du Phase Wake am Abend öffnest. Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
+    <string name="sound_type_snore">Schnarchen</string>
+    <string name="sound_type_talk">Sprechen</string>
+    <string name="sound_type_other">Anderes Geräusch</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Schnarchen: %1$s (%2$d Ausschnitt)</item>
+        <item quantity="other">Schnarchen: %1$s (%2$d Ausschnitte)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Sprechen: %1$d Ausschnitt</item>
+        <item quantity="other">Sprechen: %1$d Ausschnitte</item>
+    </plurals>
+    <string name="sound_clips_title">Geräusche</string>
+    <string name="sound_clip_delete">Ausschnitt von %1$s löschen</string>
+    <string name="sound_clips_delete_all">Alle Ausschnitte löschen</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Regelmässig ins Bett: %1$d von %2$d Abend</item>
+        <item quantity="other">Regelmässig ins Bett: %1$d von %2$d Abenden</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d Nacht in Folge Schlafziel erreicht</item>
+        <item quantity="other">%1$d Nächte in Folge Schlafziel erreicht</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Längste Serie in 90 Tagen: %1$d Nacht</item>
+        <item quantity="other">Längste Serie in 90 Tagen: %1$d Nächte</item>
+    </plurals>
+    <string name="weekly_title">Wochenrückblick</string>
+    <string name="weekly_toggle">Am Sonntag um 18 Uhr eine Mitteilung zu deiner Woche.</string>
+    <string name="weekly_notification_title">Deine Woche</string>
+    <string name="weekly_notification_text">Ø %1$s Schlaf · Schlafziel %2$d/7 · regelmässig %3$d/7 · Befinden %4$s</string>
+    <string name="weekly_notification_feeling">Ø Befinden diese Woche: %1$s</string>
+    <string name="routine_title">Abendroutine</string>
+    <string name="routine_add">Punkt hinzufügen</string>
+    <string name="routine_item_phone">Handy weg</string>
+    <string name="routine_item_light">Licht dimmen</string>
+    <string name="routine_item_water">Wasser bereit</string>
+    <string name="routine_avg">Abendroutine: Ø %1$s von %2$d</string>
+    <string name="wake_task_title">Zum Beenden</string>
+    <string name="wake_task_hold">Halten</string>
+    <string name="wake_task_math">Rechenaufgabe</string>
+    <string name="wake_task_hint">3 Aufgaben lösen, bevor der Wecker verstummt. Schlummern geht ohne Aufgabe.</string>
+    <string name="wake_task_solve">Aufgabe %1$d von %2$d</string>
+    <string name="wake_task_wrong">Nicht ganz – hier eine neue.</string>
+    <string name="wake_task_delete">Ziffer löschen</string>
+    <string name="wake_task_check">OK</string>
 </resources>

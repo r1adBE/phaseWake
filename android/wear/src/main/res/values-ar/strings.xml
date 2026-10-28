@@ -49,4 +49,6 @@
     <string name="home_last_night">الليلة الماضية</string>
     <string name="notification_open">فتح</string>
     <string name="home_good_night_too_far">متاح قبل المنبّه بـ 16 ساعة</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">للإيقاف حلّ العملية على الهاتف</string>
 </resources>

@@ -44,4 +44,6 @@
     <string name="home_last_night">昨晚</string>
     <string name="notification_open">開啟</string>
     <string name="home_good_night_too_far">鬧鐘前 16 小時內可用</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">請在手機上解題以關閉</string>
 </resources>

@@ -47,4 +47,6 @@
     <string name="home_last_night">Minulá noc</string>
     <string name="notification_open">Otevřít</string>
     <string name="home_good_night_too_far">Dostupné od 16 h před budíkem</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Pro ukončení vyřeš příklad na telefonu</string>
 </resources>

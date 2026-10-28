@@ -259,4 +259,58 @@
     <string name="sounds_stop">Lopeta</string>
     <string name="sounds_remaining">%1$s jäljellä</string>
     <string name="sounds_hint">Soi median äänenvoimakkuudella ja loppuu viimeistään, kun herätysikkunasi alkaa.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Tallenna äänet</string>
+    <string name="sound_rec_hint">Vain lyhyitä pätkiä. Ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
+    <string name="sound_rec_permission">Tallentamiseen Phase Wake tarvitsee mikrofonin. Se kuuntelee vain tallennuksen aikana.</string>
+    <string name="sound_rec_running">Ääniä tallennetaan</string>
+    <string name="sound_rec_stop">Lopeta</string>
+    <string name="sound_rec_plug_in">Tallennus käynnissä. Laita puhelin mieluiten lataukseen yöksi.</string>
+    <string name="sound_rec_default">Päällä uusille öille</string>
+    <string name="sound_rec_default_hint">Käynnistyy, kun avaat Phase Waken illalla. Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
+    <string name="sound_type_snore">Kuorsaus</string>
+    <string name="sound_type_talk">Puhe</string>
+    <string name="sound_type_other">Muu ääni</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Kuorsaus: %1$s (%2$d pätkä)</item>
+        <item quantity="other">Kuorsaus: %1$s (%2$d pätkää)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Puhe: %1$d pätkä</item>
+        <item quantity="other">Puhe: %1$d pätkää</item>
+    </plurals>
+    <string name="sound_clips_title">Äänet</string>
+    <string name="sound_clip_delete">Poista pätkä klo %1$s</string>
+    <string name="sound_clips_delete_all">Poista kaikki pätkät</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Säännöllinen nukkumaanmeno: %1$d/%2$d ilta</item>
+        <item quantity="other">Säännöllinen nukkumaanmeno: %1$d/%2$d iltaa</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d yö peräkkäin unitavoite saavutettu</item>
+        <item quantity="other">%1$d yötä peräkkäin unitavoite saavutettu</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Pisin putki 90 päivässä: %1$d yö</item>
+        <item quantity="other">Pisin putki 90 päivässä: %1$d yötä</item>
+    </plurals>
+    <string name="weekly_title">Viikkokatsaus</string>
+    <string name="weekly_toggle">Sunnuntaisin klo 18 ilmoitus viikostasi.</string>
+    <string name="weekly_notification_title">Viikkosi</string>
+    <string name="weekly_notification_text">Ø %1$s unta · unitavoite %2$d/7 · säännöllinen %3$d/7 · olo %4$s</string>
+    <string name="weekly_notification_feeling">Ø olo tällä viikolla: %1$s</string>
+    <string name="routine_title">Iltarutiini</string>
+    <string name="routine_add">Lisää kohta</string>
+    <string name="routine_item_phone">Puhelin pois</string>
+    <string name="routine_item_light">Valot himmeiksi</string>
+    <string name="routine_item_water">Vesi valmiina</string>
+    <string name="routine_avg">Iltarutiini: Ø %1$s/%2$d</string>
+    <string name="wake_task_title">Lopettaaksesi</string>
+    <string name="wake_task_hold">Pidä</string>
+    <string name="wake_task_math">Laskutehtävä</string>
+    <string name="wake_task_hint">Ratkaise 3 laskua ennen kuin herätys hiljenee. Torkku toimii ilman tehtävää.</string>
+    <string name="wake_task_solve">Tehtävä %1$d/%2$d</string>
+    <string name="wake_task_wrong">Ei aivan – tässä uusi.</string>
+    <string name="wake_task_delete">Poista numero</string>
+    <string name="wake_task_check">OK</string>
 </resources>

@@ -47,4 +47,6 @@
     <string name="home_last_night">Минула ніч</string>
     <string name="notification_open">Відкрити</string>
     <string name="home_good_night_too_far">Доступно за 16 год до будильника</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Щоб вимкнути, розв’яжи приклад на телефоні</string>
 </resources>

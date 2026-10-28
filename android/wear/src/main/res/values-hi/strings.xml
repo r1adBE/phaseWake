@@ -45,4 +45,6 @@
     <string name="home_last_night">बीती रात</string>
     <string name="notification_open">खोलें</string>
     <string name="home_good_night_too_far">अलार्म से 16 घंटे पहले से उपलब्ध</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">बंद करने के लिए फ़ोन पर सवाल हल करो</string>
 </resources>

@@ -35,6 +35,9 @@ class PhaseWakeApp : Application() {
     val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
     val notes by lazy { com.phasewake.app.notes.NotesRepository(phaseWakeStore) }
     val bedtime by lazy { com.phasewake.app.reminder.BedtimeReminder(this, alarms, settings) }
+    val weekly by lazy { com.phasewake.app.reminder.WeeklyReminder(this) }
+    val sounds by lazy { com.phasewake.app.sounds.SoundStore(this) }
+    val routine by lazy { com.phasewake.app.habits.RoutineRepository(phaseWakeStore) }
 
     override fun onCreate() {
         super.onCreate()
@@ -43,12 +46,16 @@ class PhaseWakeApp : Application() {
         com.phasewake.app.ring.SunriseLight.createChannel(this)
         com.phasewake.app.reminder.BedtimeReminder.createChannel(this)
         com.phasewake.app.sounds.SleepSoundService.createChannel(this)
+        com.phasewake.app.sounds.SoundRecorderService.createChannel(this)
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
         // nicht lesbar; neu geplant wird beim Entsperren (BOOT_COMPLETED).
         if (!BackupAlarm.isUnlocked(this)) return
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
         appScope.launch { backup.reschedule() }
+        // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
+        appScope.launch { sounds.cleanup() }
+        com.phasewake.app.sounds.SoundStore.scheduleCleanup(this)
     }
 
     /** Speichert eine Änderung an den Weckern, schickt sie an die Uhr und plant den Zweitwecker neu. */

@@ -266,4 +266,63 @@
     <string name="sounds_stop">Oprește</string>
     <string name="sounds_remaining">mai sunt %1$s</string>
     <string name="sounds_hint">Se aude la volumul media și se oprește cel târziu când începe fereastra ta de trezire.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Înregistrează sunete</string>
+    <string name="sound_rec_hint">Doar fragmente scurte. Rămân pe telefon și se șterg după 7 zile.</string>
+    <string name="sound_rec_permission">Pentru înregistrare, Phase Wake are nevoie de microfon. Ascultă doar cât timp înregistrarea e pornită.</string>
+    <string name="sound_rec_running">Se înregistrează sunete</string>
+    <string name="sound_rec_stop">Oprește</string>
+    <string name="sound_rec_plug_in">Înregistrarea e pornită. Cel mai bine pune telefonul la încărcat peste noapte.</string>
+    <string name="sound_rec_default">Pornit pentru nopțile noi</string>
+    <string name="sound_rec_default_hint">Pornește când deschizi Phase Wake seara. Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile.</string>
+    <string name="sound_type_snore">Sforăit</string>
+    <string name="sound_type_talk">Vorbit</string>
+    <string name="sound_type_other">Alt sunet</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Sforăit: %1$s (%2$d fragment)</item>
+        <item quantity="few">Sforăit: %1$s (%2$d fragmente)</item>
+        <item quantity="other">Sforăit: %1$s (%2$d de fragmente)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Vorbit: %1$d fragment</item>
+        <item quantity="few">Vorbit: %1$d fragmente</item>
+        <item quantity="other">Vorbit: %1$d de fragmente</item>
+    </plurals>
+    <string name="sound_clips_title">Sunete</string>
+    <string name="sound_clip_delete">Șterge fragmentul de la %1$s</string>
+    <string name="sound_clips_delete_all">Șterge toate fragmentele</string>
+    <plurals name="habit_regular">
+        <item quantity="one">La culcare regulat: %1$d din %2$d seară</item>
+        <item quantity="few">La culcare regulat: %1$d din %2$d seri</item>
+        <item quantity="other">La culcare regulat: %1$d din %2$d de seri</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d noapte la rând cu obiectivul de somn</item>
+        <item quantity="few">%1$d nopți la rând cu obiectivul de somn</item>
+        <item quantity="other">%1$d de nopți la rând cu obiectivul de somn</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Cea mai lungă serie în 90 de zile: %1$d noapte</item>
+        <item quantity="few">Cea mai lungă serie în 90 de zile: %1$d nopți</item>
+        <item quantity="other">Cea mai lungă serie în 90 de zile: %1$d de nopți</item>
+    </plurals>
+    <string name="weekly_title">Rezumatul săptămânii</string>
+    <string name="weekly_toggle">Duminica la 18:00, o notificare despre săptămâna ta.</string>
+    <string name="weekly_notification_title">Săptămâna ta</string>
+    <string name="weekly_notification_text">Ø %1$s de somn · obiectiv %2$d/7 · regulat %3$d/7 · stare %4$s</string>
+    <string name="weekly_notification_feeling">Ø stare săptămâna aceasta: %1$s</string>
+    <string name="routine_title">Rutina de seară</string>
+    <string name="routine_add">Adaugă punct</string>
+    <string name="routine_item_phone">Telefonul deoparte</string>
+    <string name="routine_item_light">Lumină slabă</string>
+    <string name="routine_item_water">Apă pregătită</string>
+    <string name="routine_avg">Rutina de seară: Ø %1$s din %2$d</string>
+    <string name="wake_task_title">Pentru oprire</string>
+    <string name="wake_task_hold">Ține apăsat</string>
+    <string name="wake_task_math">Calcul</string>
+    <string name="wake_task_hint">Rezolvă 3 calcule înainte ca alarma să tacă. Amânarea merge fără calcul.</string>
+    <string name="wake_task_solve">Calculul %1$d din %2$d</string>
+    <string name="wake_task_wrong">Nu chiar – iată unul nou.</string>
+    <string name="wake_task_delete">Șterge cifra</string>
+    <string name="wake_task_check">OK</string>
 </resources>

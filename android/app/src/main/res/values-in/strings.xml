@@ -252,4 +252,53 @@
     <string name="sounds_stop">Hentikan</string>
     <string name="sounds_remaining">sisa %1$s</string>
     <string name="sounds_hint">Diputar dengan volume media dan berhenti paling lambat saat jendela bangunmu dimulai.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Rekam suara</string>
+    <string name="sound_rec_hint">Hanya potongan pendek. Tetap di ponselmu dan dihapus setelah 7 hari.</string>
+    <string name="sound_rec_permission">Untuk merekam, Phase Wake butuh mikrofon. Mikrofon hanya mendengar selama perekaman aktif.</string>
+    <string name="sound_rec_running">Merekam suara</string>
+    <string name="sound_rec_stop">Hentikan</string>
+    <string name="sound_rec_plug_in">Perekaman berjalan. Sebaiknya isi daya ponsel semalaman.</string>
+    <string name="sound_rec_default">Aktif untuk malam baru</string>
+    <string name="sound_rec_default_hint">Mulai saat kamu membuka Phase Wake di malam hari. Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari.</string>
+    <string name="sound_type_snore">Mendengkur</string>
+    <string name="sound_type_talk">Bicara</string>
+    <string name="sound_type_other">Suara lain</string>
+    <plurals name="sound_summary">
+        <item quantity="other">Mendengkur: %1$s (%2$d potongan)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="other">Bicara: %1$d potongan</item>
+    </plurals>
+    <string name="sound_clips_title">Suara</string>
+    <string name="sound_clip_delete">Hapus potongan pukul %1$s</string>
+    <string name="sound_clips_delete_all">Hapus semua potongan</string>
+    <plurals name="habit_regular">
+        <item quantity="other">Tidur teratur: %1$d dari %2$d malam</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="other">%1$d malam berturut-turut mencapai target tidur</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="other">Rentetan terpanjang dalam 90 hari: %1$d malam</item>
+    </plurals>
+    <string name="weekly_title">Ringkasan mingguan</string>
+    <string name="weekly_toggle">Setiap Minggu pukul 18.00, notifikasi tentang minggumu.</string>
+    <string name="weekly_notification_title">Minggumu</string>
+    <string name="weekly_notification_text">Ø tidur %1$s · target %2$d/7 · teratur %3$d/7 · perasaan %4$s</string>
+    <string name="weekly_notification_feeling">Ø perasaan minggu ini: %1$s</string>
+    <string name="routine_title">Rutinitas malam</string>
+    <string name="routine_add">Tambah poin</string>
+    <string name="routine_item_phone">Ponsel dijauhkan</string>
+    <string name="routine_item_light">Redupkan lampu</string>
+    <string name="routine_item_water">Air siap</string>
+    <string name="routine_avg">Rutinitas malam: Ø %1$s dari %2$d</string>
+    <string name="wake_task_title">Untuk berhenti</string>
+    <string name="wake_task_hold">Tahan</string>
+    <string name="wake_task_math">Soal hitung</string>
+    <string name="wake_task_hint">Selesaikan 3 soal sebelum alarm diam. Tunda bisa tanpa soal.</string>
+    <string name="wake_task_solve">Soal %1$d dari %2$d</string>
+    <string name="wake_task_wrong">Belum tepat – ini soal baru.</string>
+    <string name="wake_task_delete">Hapus angka</string>
+    <string name="wake_task_check">OK</string>
 </resources>

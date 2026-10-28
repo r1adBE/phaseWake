@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <!-- Einschlafklänge: Wiedergabe als Vordergrund-Dienst (Medien-Kanal). -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- Optional, nur auf Wunsch: Geräusche in der Nacht (Schnarchen, Sprechen). Ausschnitte bleiben auf dem Handy. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <!-- Wecker-App: exakte Alarme ohne Rückfrage (ab Android 13), davor über SCHEDULE_EXACT_ALARM. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
@@ -87,6 +90,11 @@
             android:foregroundServiceType="mediaPlayback" />
 
         <service
+            android:name=".sounds.SoundRecorderService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <service
             android:name=".sync.PhoneListenerService"
             android:exported="true">
             <intent-filter>
@@ -108,6 +116,15 @@
         <!-- Bettzeit-Erinnerung (eigener, ungenauer Alarm): nicht von aussen auslösbar. -->
         <receiver
             android:name=".reminder.BedtimeReminder$Receiver"
+            android:exported="false" />
+
+        <!-- Wochenrückblick und tägliches Löschen alter Geräusche (eigene, ungenaue Alarme): nicht von aussen auslösbar. -->
+        <receiver
+            android:name=".reminder.WeeklyReminder$Receiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".sounds.SoundStore$CleanupReceiver"
             android:exported="false" />
 
         <receiver

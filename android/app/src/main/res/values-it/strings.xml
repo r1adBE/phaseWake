@@ -266,4 +266,63 @@
     <string name="sounds_stop">Stop</string>
     <string name="sounds_remaining">ancora %1$s</string>
     <string name="sounds_hint">Suona al volume multimediale e si ferma al più tardi quando inizia la tua finestra di sveglia.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Registra i rumori</string>
+    <string name="sound_rec_hint">Solo brevi estratti. Restano sul telefono e vengono eliminati dopo 7 giorni.</string>
+    <string name="sound_rec_permission">Per registrare, Phase Wake ha bisogno del microfono. Ascolta solo mentre la registrazione è attiva.</string>
+    <string name="sound_rec_running">Registrazione dei rumori</string>
+    <string name="sound_rec_stop">Ferma</string>
+    <string name="sound_rec_plug_in">Registrazione attiva. Meglio collegare il telefono al caricatore per la notte.</string>
+    <string name="sound_rec_default">Attiva per le nuove notti</string>
+    <string name="sound_rec_default_hint">Parte quando apri Phase Wake la sera. Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni.</string>
+    <string name="sound_type_snore">Russare</string>
+    <string name="sound_type_talk">Parlare</string>
+    <string name="sound_type_other">Altro rumore</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Russare: %1$s (%2$d estratto)</item>
+        <item quantity="many">Russare: %1$s (%2$d estratti)</item>
+        <item quantity="other">Russare: %1$s (%2$d estratti)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Parlare: %1$d estratto</item>
+        <item quantity="many">Parlare: %1$d estratti</item>
+        <item quantity="other">Parlare: %1$d estratti</item>
+    </plurals>
+    <string name="sound_clips_title">Rumori</string>
+    <string name="sound_clip_delete">Elimina l’estratto delle %1$s</string>
+    <string name="sound_clips_delete_all">Elimina tutti gli estratti</string>
+    <plurals name="habit_regular">
+        <item quantity="one">A letto con regolarità: %1$d su %2$d sera</item>
+        <item quantity="many">A letto con regolarità: %1$d su %2$d sere</item>
+        <item quantity="other">A letto con regolarità: %1$d su %2$d sere</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d notte di fila con l’obiettivo di sonno</item>
+        <item quantity="many">%1$d notti di fila con l’obiettivo di sonno</item>
+        <item quantity="other">%1$d notti di fila con l’obiettivo di sonno</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Serie più lunga in 90 giorni: %1$d notte</item>
+        <item quantity="many">Serie più lunga in 90 giorni: %1$d notti</item>
+        <item quantity="other">Serie più lunga in 90 giorni: %1$d notti</item>
+    </plurals>
+    <string name="weekly_title">Riepilogo settimanale</string>
+    <string name="weekly_toggle">La domenica alle 18, una notifica sulla tua settimana.</string>
+    <string name="weekly_notification_title">La tua settimana</string>
+    <string name="weekly_notification_text">Ø %1$s di sonno · obiettivo %2$d/7 · regolare %3$d/7 · sensazione %4$s</string>
+    <string name="weekly_notification_feeling">Ø sensazione questa settimana: %1$s</string>
+    <string name="routine_title">Routine serale</string>
+    <string name="routine_add">Aggiungi voce</string>
+    <string name="routine_item_phone">Telefono via</string>
+    <string name="routine_item_light">Luci soffuse</string>
+    <string name="routine_item_water">Acqua pronta</string>
+    <string name="routine_avg">Routine serale: Ø %1$s su %2$d</string>
+    <string name="wake_task_title">Per fermare</string>
+    <string name="wake_task_hold">Tieni premuto</string>
+    <string name="wake_task_math">Calcolo</string>
+    <string name="wake_task_hint">Risolvi 3 calcoli prima che la sveglia taccia. Il posticipo funziona senza calcolo.</string>
+    <string name="wake_task_solve">Calcolo %1$d di %2$d</string>
+    <string name="wake_task_wrong">Non proprio – eccone uno nuovo.</string>
+    <string name="wake_task_delete">Cancella cifra</string>
+    <string name="wake_task_check">OK</string>
 </resources>

@@ -73,6 +73,14 @@ import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.sounds.SleepSoundService
+import com.phasewake.app.sounds.SoundRecorderService
+import com.phasewake.app.core.Regularity
+import com.phasewake.app.core.Routine
+import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.core.Streak
+import com.phasewake.app.core.WeeklySummary
+import com.phasewake.app.ui.history.HabitLines
+import com.phasewake.app.ui.home.SoundRecState
 import com.phasewake.app.ui.sounds.SoundsScreen
 import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.Trends
@@ -103,10 +111,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val app = phoneApp
+        // Aus dem Wochenrückblick geöffnet: gleich der Verlauf.
+        val openHistory = intent?.getStringExtra(EXTRA_OPEN) == OPEN_HISTORY
         setContent {
             val mode by app.settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM)
-            PhaseWakeTheme(mode) { PhaseWakeNav(mode) }
+            PhaseWakeTheme(mode) { PhaseWakeNav(mode, openHistory) }
         }
+    }
+
+    companion object {
+        /** Was beim Öffnen gezeigt wird (z. B. aus einer Mitteilung). */
+        const val EXTRA_OPEN = "open"
+        const val OPEN_HISTORY = "history"
     }
 }
 
@@ -128,7 +144,7 @@ private val tabs = listOf(
 )
 
 @Composable
-private fun PhaseWakeNav(themeMode: ThemeMode) {
+private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val context = LocalContext.current
     val app = context.phoneApp
     val nav = rememberNavController()
@@ -144,6 +160,14 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
     val soundTimer by app.settings.soundTimer.collectAsStateWithLifecycle(initialValue = SleepSounds.DEFAULT_TIMER_MINUTES)
     val sound by app.settings.sound.collectAsStateWithLifecycle(initialValue = SleepSound.PINK)
     val soundPlaying by SleepSoundService.playing.collectAsStateWithLifecycle()
+    val recording by SoundRecorderService.recording.collectAsStateWithLifecycle()
+    val soundRecDefault by app.settings.soundRecDefault.collectAsStateWithLifecycle(initialValue = false)
+    val soundRecChoice by app.settings.soundRecChoice.collectAsStateWithLifecycle(initialValue = null)
+    val weeklyReview by app.settings.weeklyReview.collectAsStateWithLifecycle(initialValue = false)
+    val soundClips by app.sounds.clips.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.sounds.load() }
+    val routineItems by app.routine.items.collectAsStateWithLifecycle(initialValue = emptyList())
+    val routineTicks by app.routine.ticks.collectAsStateWithLifecycle(initialValue = emptyMap())
 
     var check by remember { mutableStateOf<NightCheckState?>(null) }
     var checkRun by remember { mutableStateOf(0) }
@@ -180,6 +204,50 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         val zone = ZoneId.systemDefault()
         NoteEffect.compute(nights.orEmpty(), notes, zone, NoteEffect.asleepByNight(sleeps, zone))
     }
+    // Gewohnheiten: Regelmässigkeit und Serien aus der Gesundheits-App, Abendroutine aus den Haken.
+    val habits = remember(sleeps, sleepGoal, routineItems, routineTicks) {
+        val zone = ZoneId.systemDefault()
+        val today = SleepNotes.nightDate(Instant.now(), zone)
+        val reached = Streak.reachedByNight(sleeps, zone, sleepGoal)
+        HabitLines(
+            regular = Regularity.count(Regularity.bedtimesOf(sleeps, zone), zone, until = today),
+            streak = Streak.current(reached, today),
+            bestStreak = Streak.longest(reached, today),
+            routineAverage = Routine.average(routineTicks, routineItems, today),
+            routineItems = routineItems.size,
+        )
+    }
+    // Wochenrückblick als Karte am Sonntag und Montag.
+    val weekly = remember(nights, sleeps, notes, sleepGoal) {
+        val zone = ZoneId.systemDefault()
+        val today = java.time.LocalDate.now(zone)
+        if (!WeeklySummary.cardVisible(today)) null
+        else WeeklySummary.of(nights.orEmpty(), sleeps, notes, zone, sleepGoal, WeeklySummary.weekEnd(today)).takeIf { it.hasData }
+    }
+
+    // Geräusche aufnehmen: für diese Nacht gewählt, sonst die Vorgabe aus den Einstellungen.
+    fun tonight() = SleepNotes.nightDate(Instant.now(), ZoneId.systemDefault())
+    val soundRecWanted = soundRecChoice?.takeIf { it.first == tonight() }?.second ?: soundRecDefault
+    var micDenied by rememberSaveable { mutableStateOf(false) }
+    fun hasMic() = context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == android.content.pm.PackageManager.PERMISSION_GRANTED
+    fun startRecording() = SoundRecorderService.start(context)
+    val micPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        micDenied = !granted
+        if (granted) {
+            app.appScope.launch { app.settings.setSoundRecChoice(tonight(), true) }
+            startRecording()
+        }
+    }
+    // Vorgabe in den Einstellungen: nur fragen, nichts starten.
+    val micPermissionDefault = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> micDenied = !granted }
+    fun onSoundRec(enabled: Boolean) {
+        if (enabled && !hasMic()) {
+            micPermission.launch(Manifest.permission.RECORD_AUDIO)
+            return
+        }
+        app.appScope.launch { app.settings.setSoundRecChoice(tonight(), enabled) }
+        if (enabled) startRecording() else SoundRecorderService.stop(context)
+    }
     // Einschlafklänge: Ende nach dem Timer, spätestens zu Beginn des nächsten Weckfensters.
     fun startSounds(chosen: SleepSound, timer: Int?) {
         val now = Instant.now()
@@ -196,6 +264,24 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         checkRun++
         healthCheck++
         onPauseOrDispose { }
+    }
+    // Aufnahme für diese Nacht gewünscht, aber (noch) nicht gestartet: beim Öffnen am Abend starten.
+    // Nur sichtbar (Mikrofon-Dienst ab Android 14 nur aus der sichtbaren App) und mit Mikrofon-Recht.
+    val lifecycleOwner = LocalLifecycleOwner.current
+    LaunchedEffect(soundRecWanted, recording, alarms, checkRun) {
+        if (!soundRecWanted || recording != null || !hasMic()) return@LaunchedEffect
+        if (!lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return@LaunchedEffect
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        if (SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(alarms, now, zone)?.windowStart)) startRecording()
+    }
+    // Aus dem Wochenrückblick: einmal zum Verlauf.
+    var openedHistory by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(openHistory) {
+        if (openHistory && !openedHistory) {
+            openedHistory = true
+            nav.switchTab(Routes.HISTORY)
+        }
     }
     // Nacht-Check: bei jedem Öffnen und danach jede halbe Minute (die Uhr kann kommen und gehen).
     // Nur solange die App sichtbar ist – im Hintergrund nicht abfragen (Akku).
@@ -323,6 +409,15 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
                     soundPlaying = soundPlaying,
                     onSounds = { nav.navigate(Routes.SOUNDS) },
+                    soundRec = SoundRecState(soundRecWanted && (recording != null || hasMic()), recording != null, micDenied),
+                    onSoundRec = ::onSoundRec,
+                    soundClips = soundClips.orEmpty(),
+                    soundFile = { app.sounds.file(it) },
+                    onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
+                    onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
+                    routineItems = routineItems,
+                    routineTicks = routineTicks,
+                    onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
                 )
             }
             composable(Routes.HISTORY) {
@@ -343,6 +438,12 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     customNotes = customNotes,
                     onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
                     noteEffects = noteEffects,
+                    habits = habits,
+                    weekly = weekly,
+                    soundClips = soundClips.orEmpty(),
+                    soundFile = { app.sounds.file(it) },
+                    onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
+                    onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
                 )
             }
             composable(Routes.SETTINGS) {
@@ -358,6 +459,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                         app.appScope.launch {
                             app.nights.clear()
                             app.notes.clearNotes()
+                            app.routine.clearTicks()
+                            app.sounds.clear()
                             app.sync.clearHistoryEverywhere()
                         }
                     },
@@ -387,6 +490,26 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                     onAddCustomNote = { name -> app.appScope.launch { app.notes.addCustom(name) } },
                     onRenameCustomNote = { id, name -> app.appScope.launch { app.notes.renameCustom(id, name) } },
                     onDeleteCustomNote = { id -> app.appScope.launch { app.notes.deleteCustom(id) } },
+                    weeklyReview = weeklyReview,
+                    onWeeklyReview = { enabled ->
+                        if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                            context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED
+                        ) {
+                            notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        }
+                        app.appScope.launch {
+                            app.settings.setWeeklyReview(enabled)
+                            app.weekly.reschedule()
+                        }
+                    },
+                    soundRecDefault = soundRecDefault,
+                    onSoundRecDefault = { enabled ->
+                        if (enabled && !hasMic()) micPermissionDefault.launch(Manifest.permission.RECORD_AUDIO)
+                        app.appScope.launch { app.settings.setSoundRecDefault(enabled) }
+                    },
+                    routineItems = routineItems,
+                    onAddRoutineItem = { text -> app.appScope.launch { app.routine.add(text) } },
+                    onRemoveRoutineItem = { id -> app.appScope.launch { app.routine.remove(id) } },
                 )
             }
             composable(Routes.SOUNDS) {

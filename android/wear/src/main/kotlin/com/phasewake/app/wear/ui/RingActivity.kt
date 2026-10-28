@@ -114,6 +114,12 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
     val holdLabel = stringResource(R.string.ring_hold_to_stop)
     // Kleine runde Displays (um 192 dp): kleinerer Punkt, knappere Abstände, damit unten nichts abgeschnitten wird.
     val compact = LocalConfiguration.current.screenHeightDp < COMPACT_HEIGHT_DP
+    // Weckaufgabe am Handy: hier kein Halten (fällt die Verbindung weg, schaltet der Dienst auf Halten zurück).
+    val taskOnPhone = when (ui) {
+        is RingUi.Ringing -> ui.taskOnPhone
+        is RingUi.Snoozed -> ui.taskOnPhone
+        RingUi.Idle -> false
+    }
 
     Box(Modifier.fillMaxSize().nightGlow(), contentAlignment = Alignment.Center) {
         // Fortschritt des Haltens als Ring am Rand.
@@ -134,11 +140,12 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
             PulsingDot(
                 Modifier
                     .size(if (compact) 48.dp else 76.dp)
-                    .semantics {
+                    .then(if (taskOnPhone) Modifier else Modifier.semantics {
                         contentDescription = holdLabel
                         onClick(label = holdLabel) { onDismiss(); true }
-                    }
-                    .pointerInput(Unit) {
+                    })
+                    .pointerInput(taskOnPhone) {
+                        if (taskOnPhone) return@pointerInput
                         detectTapGestures(onPress = {
                             haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                             val hold = scope.launch {
@@ -189,10 +196,12 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
         overflow = TextOverflow.Ellipsis,
     )
     Text(
-        stringResource(R.string.ring_hold_to_stop),
+        stringResource(if (ui.taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop),
         style = MaterialTheme.typography.labelSmall,
         color = Brand.Muted,
-        maxLines = 1,
+        textAlign = TextAlign.Center,
+        // Der Hinweis zur Aufgabe ist länger: zwei Zeilen.
+        maxLines = if (ui.taskOnPhone) 2 else 1,
         overflow = TextOverflow.Ellipsis,
     )
     if (ui.snoozesLeft > 0) {
@@ -221,10 +230,11 @@ private fun Snoozed(ui: RingUi.Snoozed) {
         style = MaterialTheme.typography.titleMedium,
         textAlign = TextAlign.Center,
     )
-    // Beenden auch hier nur durch Halten (Punkt oben): ein Tipp im Halbschlaf beendet nicht die Nacht.
+    // Beenden auch hier nur durch Halten (Punkt oben) oder mit der Aufgabe am Handy.
     Text(
-        stringResource(R.string.ring_hold_to_stop),
+        stringResource(if (ui.taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop),
         style = MaterialTheme.typography.labelSmall,
         color = Brand.Muted,
+        textAlign = TextAlign.Center,
     )
 }

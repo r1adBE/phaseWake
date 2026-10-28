@@ -38,6 +38,12 @@ import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.ui.notes.NightNotes
 import com.phasewake.app.ui.notes.NoteEffectsCard
+import com.phasewake.app.core.SoundClip
+import com.phasewake.app.core.SoundEvents
+import com.phasewake.app.core.WeeklySummary
+import com.phasewake.app.ui.sounds.SoundClipsSection
+import androidx.compose.runtime.remember
+import java.io.File
 import java.time.LocalDate
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageCheck
@@ -90,7 +96,19 @@ fun HistoryScreen(
     onToggleNote: (LocalDate, String) -> Unit = { _, _ -> },
     /** Wirkung der Notizen; `null`: Karte nicht zeigen (Bildschirmfotos). */
     noteEffects: List<NoteEffect>? = null,
+    /** Gewohnheiten in der Trends-Karte. */
+    habits: HabitLines? = null,
+    /** Wochenrückblick (Sonntag und Montag); `null`: keine Karte. */
+    weekly: WeeklySummary? = null,
+    /** Aufgenommene Geräusche (alle Nächte). */
+    soundClips: List<SoundClip> = emptyList(),
+    soundFile: (SoundClip) -> File? = { null },
+    onDeleteClip: (SoundClip) -> Unit = {},
+    onDeleteNightClips: (LocalDate) -> Unit = {},
 ) {
+    val latestByDate = remember(nights) {
+        nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
+    }
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -120,12 +138,21 @@ fun HistoryScreen(
             return@LazyColumn
         }
         item(key = "stats") { Stats(nights) }
-        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek) } }
+        weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes) } }
+        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         // Schlüssel wie im Verlauf: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
         items(nights.asReversed(), key = { "${it.alarmId}@${it.windowStart.toEpochMilli()}" }) { night ->
             val date = SleepNotes.nightDate(night, ZoneId.systemDefault())
-            NightCard(night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes, onToggleNote = { onToggleNote(date, it) })
+            NightCard(
+                night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
+                onToggleNote = { onToggleNote(date, it) },
+                // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
+                clips = if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
+                soundFile = soundFile,
+                onDeleteClip = onDeleteClip,
+                onDeleteClips = { onDeleteNightClips(date) },
+            )
         }
         item(key = "export") {
             OutlinedButton(onClick = onExport, modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
@@ -165,6 +192,10 @@ private fun NightCard(
     notes: List<String>,
     customNotes: List<CustomNote>,
     onToggleNote: (String) -> Unit,
+    clips: List<SoundClip> = emptyList(),
+    soundFile: (SoundClip) -> File? = { null },
+    onDeleteClip: (SoundClip) -> Unit = {},
+    onDeleteClips: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
@@ -212,6 +243,7 @@ private fun NightCard(
                 }
             }
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
+            SoundClipsSection(clips, soundFile, onDeleteClip, onDeleteClips)
         }
     }
 }

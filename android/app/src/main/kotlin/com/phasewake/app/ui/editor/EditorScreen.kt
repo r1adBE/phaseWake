@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.core.content.IntentCompat
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.WakeTask
 import com.phasewake.app.core.WindowAdvice
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
@@ -113,6 +114,7 @@ fun EditorScreen(
     var watchSound by rememberSaveable { mutableStateOf(base.watchSound) }
     var sound by rememberSaveable { mutableStateOf(base.sound) }
     var sunrise by rememberSaveable { mutableStateOf(base.sunrise) }
+    var wakeTask by rememberSaveable { mutableStateOf(base.wakeTask) }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
         if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
@@ -132,6 +134,7 @@ fun EditorScreen(
         sound = sound,
         label = label.trim(),
         sunrise = sunrise,
+        wakeTask = wakeTask,
         enabled = true,
     )
 
@@ -305,6 +308,21 @@ fun EditorScreen(
                 )
                 if (phone != PhoneAlert.OFF) {
                     Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
+                    // Weckaufgabe: nur mit Handy-Wecker (gelöst wird am Handy; ohne ihn gilt Halten).
+                    Text(stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
+                    Choice(
+                        options = listOf(WakeTask.NONE to R.string.wake_task_hold, WakeTask.MATH to R.string.wake_task_math),
+                        selected = wakeTask,
+                        onSelect = { wakeTask = it },
+                    )
+                    AnimatedVisibility(wakeTask == WakeTask.MATH) {
+                        Text(
+                            stringResource(R.string.wake_task_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 6.dp),
+                        )
+                    }
                 }
             }
 

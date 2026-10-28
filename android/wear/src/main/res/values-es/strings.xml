@@ -46,4 +46,6 @@
     <string name="home_last_night">Anoche</string>
     <string name="notification_open">Abrir</string>
     <string name="home_good_night_too_far">Disponible desde 16 h antes de la alarma</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Para parar, resuelve el cálculo en el teléfono</string>
 </resources>

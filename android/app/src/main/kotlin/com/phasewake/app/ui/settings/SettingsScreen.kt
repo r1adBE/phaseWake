@@ -34,6 +34,9 @@ import com.phasewake.app.core.Bedtime
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.core.Routine
+import com.phasewake.app.core.RoutineItem
+import com.phasewake.app.ui.home.routineName
 import com.phasewake.app.ui.Format
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.selection.toggleable
@@ -72,6 +75,13 @@ fun SettingsScreen(
     onAddCustomNote: (String) -> Unit = {},
     onRenameCustomNote: (String, String) -> Unit = { _, _ -> },
     onDeleteCustomNote: (String) -> Unit = {},
+    weeklyReview: Boolean = false,
+    onWeeklyReview: (Boolean) -> Unit = {},
+    soundRecDefault: Boolean = false,
+    onSoundRecDefault: (Boolean) -> Unit = {},
+    routineItems: List<RoutineItem> = emptyList(),
+    onAddRoutineItem: (String) -> Unit = {},
+    onRemoveRoutineItem: (String) -> Unit = {},
 ) {
     val uri = LocalUriHandler.current
     Column(
@@ -129,9 +139,16 @@ fun SettingsScreen(
                 // Die ganze Zeile schaltet; der Schalter zeigt nur den Zustand.
                 Switch(checked = bedtimeReminder, onCheckedChange = null)
             }
+            SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
         }
 
         CustomNotesGroup(customNotes, onAddCustomNote, onRenameCustomNote, onDeleteCustomNote)
+
+        RoutineGroup(routineItems, onAddRoutineItem, onRemoveRoutineItem)
+
+        Group(stringResource(R.string.sound_rec_title)) {
+            SwitchRow(stringResource(R.string.sound_rec_default), stringResource(R.string.sound_rec_default_hint), soundRecDefault, onSoundRecDefault)
+        }
 
         Group(stringResource(R.string.settings_data)) {
             Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
@@ -269,6 +286,69 @@ private fun CustomNotesGroup(
                 ) { Text(stringResource(R.string.editor_save)) }
             },
             dismissButton = { TextButton(onClick = { editing = null }) { Text(stringResource(R.string.action_cancel)) } },
+        )
+    }
+}
+
+/** Zeile mit Titel, Erklärung und Schalter; die ganze Zeile schaltet. */
+@Composable
+private fun SwitchRow(title: String, text: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f).padding(end = 12.dp)) {
+            Text(title, style = MaterialTheme.typography.titleSmall)
+            Text(text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        Switch(checked = checked, onCheckedChange = null)
+    }
+}
+
+/** Abendroutine: Punkte hinzufügen und entfernen (höchstens [Routine.MAX_ITEMS]). */
+@Composable
+private fun RoutineGroup(items: List<RoutineItem>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
+    val context = LocalContext.current
+    var adding by remember { mutableStateOf(false) }
+    Group(stringResource(R.string.routine_title)) {
+        items.forEach { item ->
+            val name = routineName(context, item)
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                IconButton(onClick = { onRemove(item.id) }) {
+                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, name))
+                }
+            }
+        }
+        if (items.size < Routine.MAX_ITEMS) {
+            TextButton(onClick = { adding = true }, contentPadding = PaddingValues(0.dp)) {
+                Text(stringResource(R.string.routine_add))
+            }
+        }
+    }
+    if (adding) {
+        var text by remember { mutableStateOf("") }
+        AlertDialog(
+            onDismissRequest = { adding = false },
+            title = { Text(stringResource(R.string.routine_add)) },
+            text = {
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = { text = it.replace("\n", "").take(Routine.MAX_TEXT_LENGTH) },
+                    label = { Text(stringResource(R.string.editor_label)) },
+                    singleLine = true,
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    enabled = Routine.cleanText(text).isNotEmpty(),
+                    onClick = {
+                        onAdd(text)
+                        adding = false
+                    },
+                ) { Text(stringResource(R.string.editor_save)) }
+            },
+            dismissButton = { TextButton(onClick = { adding = false }) { Text(stringResource(R.string.action_cancel)) } },
         )
     }
 }

@@ -44,4 +44,6 @@
     <string name="home_last_night">어젯밤</string>
     <string name="notification_open">열기</string>
     <string name="home_good_night_too_far">알람 16시간 전부터 사용 가능</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">끄려면 휴대폰에서 문제를 풀어요</string>
 </resources>

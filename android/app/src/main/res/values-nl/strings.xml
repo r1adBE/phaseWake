@@ -259,4 +259,58 @@
     <string name="sounds_stop">Stoppen</string>
     <string name="sounds_remaining">nog %1$s</string>
     <string name="sounds_hint">Speelt op mediavolume en stopt uiterlijk wanneer je wekvenster begint.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Geluiden opnemen</string>
+    <string name="sound_rec_hint">Alleen korte fragmenten. Ze blijven op je telefoon en worden na 7 dagen gewist.</string>
+    <string name="sound_rec_permission">Om op te nemen heeft Phase Wake de microfoon nodig. Die luistert alleen zolang de opname loopt.</string>
+    <string name="sound_rec_running">Geluiden worden opgenomen</string>
+    <string name="sound_rec_stop">Stoppen</string>
+    <string name="sound_rec_plug_in">Opname loopt. Sluit je telefoon voor de nacht het best aan op de lader.</string>
+    <string name="sound_rec_default">Aan voor nieuwe nachten</string>
+    <string name="sound_rec_default_hint">Start wanneer je Phase Wake ’s avonds opent. Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist.</string>
+    <string name="sound_type_snore">Snurken</string>
+    <string name="sound_type_talk">Praten</string>
+    <string name="sound_type_other">Ander geluid</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Snurken: %1$s (%2$d fragment)</item>
+        <item quantity="other">Snurken: %1$s (%2$d fragmenten)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Praten: %1$d fragment</item>
+        <item quantity="other">Praten: %1$d fragmenten</item>
+    </plurals>
+    <string name="sound_clips_title">Geluiden</string>
+    <string name="sound_clip_delete">Fragment van %1$s wissen</string>
+    <string name="sound_clips_delete_all">Alle fragmenten wissen</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Regelmatig naar bed: %1$d van %2$d avond</item>
+        <item quantity="other">Regelmatig naar bed: %1$d van %2$d avonden</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d nacht op rij je slaapdoel gehaald</item>
+        <item quantity="other">%1$d nachten op rij je slaapdoel gehaald</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Langste reeks in 90 dagen: %1$d nacht</item>
+        <item quantity="other">Langste reeks in 90 dagen: %1$d nachten</item>
+    </plurals>
+    <string name="weekly_title">Weekoverzicht</string>
+    <string name="weekly_toggle">Op zondag om 18:00 een melding over je week.</string>
+    <string name="weekly_notification_title">Jouw week</string>
+    <string name="weekly_notification_text">Ø %1$s slaap · slaapdoel %2$d/7 · regelmatig %3$d/7 · gevoel %4$s</string>
+    <string name="weekly_notification_feeling">Ø gevoel deze week: %1$s</string>
+    <string name="routine_title">Avondroutine</string>
+    <string name="routine_add">Punt toevoegen</string>
+    <string name="routine_item_phone">Telefoon weg</string>
+    <string name="routine_item_light">Licht dimmen</string>
+    <string name="routine_item_water">Water klaar</string>
+    <string name="routine_avg">Avondroutine: Ø %1$s van %2$d</string>
+    <string name="wake_task_title">Om te stoppen</string>
+    <string name="wake_task_hold">Vasthouden</string>
+    <string name="wake_task_math">Rekensom</string>
+    <string name="wake_task_hint">Los 3 sommen op voordat de wekker stil wordt. Sluimeren kan zonder som.</string>
+    <string name="wake_task_solve">Som %1$d van %2$d</string>
+    <string name="wake_task_wrong">Net niet – hier is een nieuwe.</string>
+    <string name="wake_task_delete">Cijfer wissen</string>
+    <string name="wake_task_check">OK</string>
 </resources>

@@ -259,4 +259,58 @@
     <string name="sounds_stop">Leállítás</string>
     <string name="sounds_remaining">még %1$s</string>
     <string name="sounds_hint">Médiahangerőn szól, és legkésőbb akkor elhallgat, amikor az ébresztési ablakod kezdődik.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Hangok rögzítése</string>
+    <string name="sound_rec_hint">Csak rövid részletek. A telefonon maradnak, és 7 nap után törlődnek.</string>
+    <string name="sound_rec_permission">A rögzítéshez a Phase Wake-nek kell a mikrofon. Csak a rögzítés alatt figyel.</string>
+    <string name="sound_rec_running">Hangok rögzítése folyamatban</string>
+    <string name="sound_rec_stop">Leállítás</string>
+    <string name="sound_rec_plug_in">A rögzítés fut. Éjszakára legjobb töltőre tenni a telefont.</string>
+    <string name="sound_rec_default">Bekapcsolva az új éjszakákra</string>
+    <string name="sound_rec_default_hint">Akkor indul, amikor este megnyitod a Phase Wake-et. Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek.</string>
+    <string name="sound_type_snore">Horkolás</string>
+    <string name="sound_type_talk">Beszéd</string>
+    <string name="sound_type_other">Egyéb hang</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Horkolás: %1$s (%2$d részlet)</item>
+        <item quantity="other">Horkolás: %1$s (%2$d részlet)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Beszéd: %1$d részlet</item>
+        <item quantity="other">Beszéd: %1$d részlet</item>
+    </plurals>
+    <string name="sound_clips_title">Hangok</string>
+    <string name="sound_clip_delete">%1$s részlet törlése</string>
+    <string name="sound_clips_delete_all">Összes részlet törlése</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Rendszeres lefekvés: %1$d/%2$d este</item>
+        <item quantity="other">Rendszeres lefekvés: %1$d/%2$d este</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d éjszaka egymás után elérted az alvási célt</item>
+        <item quantity="other">%1$d éjszaka egymás után elérted az alvási célt</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Leghosszabb sorozat 90 napban: %1$d éjszaka</item>
+        <item quantity="other">Leghosszabb sorozat 90 napban: %1$d éjszaka</item>
+    </plurals>
+    <string name="weekly_title">Heti összefoglaló</string>
+    <string name="weekly_toggle">Vasárnap 18:00-kor értesítés a hetedről.</string>
+    <string name="weekly_notification_title">A heted</string>
+    <string name="weekly_notification_text">Ø %1$s alvás · alvási cél %2$d/7 · rendszeres %3$d/7 · érzés %4$s</string>
+    <string name="weekly_notification_feeling">Ø érzés ezen a héten: %1$s</string>
+    <string name="routine_title">Esti rutin</string>
+    <string name="routine_add">Pont hozzáadása</string>
+    <string name="routine_item_phone">Telefon félre</string>
+    <string name="routine_item_light">Fények tompítása</string>
+    <string name="routine_item_water">Víz előkészítve</string>
+    <string name="routine_avg">Esti rutin: Ø %1$s/%2$d</string>
+    <string name="wake_task_title">Leállításhoz</string>
+    <string name="wake_task_hold">Nyomva tartás</string>
+    <string name="wake_task_math">Számolás</string>
+    <string name="wake_task_hint">Oldj meg 3 feladatot, mielőtt az ébresztő elhallgat. A szundi feladat nélkül is megy.</string>
+    <string name="wake_task_solve">%1$d./%2$d feladat</string>
+    <string name="wake_task_wrong">Nem egészen – itt egy új.</string>
+    <string name="wake_task_delete">Számjegy törlése</string>
+    <string name="wake_task_check">OK</string>
 </resources>

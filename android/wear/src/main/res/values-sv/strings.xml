@@ -45,4 +45,6 @@
     <string name="home_last_night">Senaste natten</string>
     <string name="notification_open">Öppna</string>
     <string name="home_good_night_too_far">Tillgängligt från 16 h före larmet</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Lös uppgiften på telefonen för att stoppa</string>
 </resources>
