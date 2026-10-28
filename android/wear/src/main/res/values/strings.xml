@@ -1,3 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phase Wake</string>
+    <string name="app_name" translatable="false">Phase Wake</string>
+
+    <string name="channel_window">Wake window</string>
+    <string name="channel_window_description">Shown while Phase Wake watches for light sleep.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Wakes you up.</string>
+    <string name="notification_window_title">Watching for light sleep</string>
+    <string name="notification_window_text">Wakes you by %1$s at the latest</string>
+    <string name="notification_ring_title">Good morning</string>
+    <string name="notification_snoozed_text">Snoozing until %1$s</string>
+
+    <string name="ring_greeting">Good morning</string>
+    <string name="ring_reason_light">Light sleep detected</string>
+    <string name="ring_reason_awake">You were already awake</string>
+    <string name="ring_reason_deadline">Target time reached</string>
+    <string name="ring_hold_to_stop">Hold to stop</string>
+    <string name="ring_snooze">%1$d min · %2$d left</string>
+    <string name="ring_snoozed_until">Snoozing until %1$s</string>
+    <string name="ring_stop_now">Stop alarm</string>
+
+    <string name="home_no_alarm">No alarm set</string>
+    <string name="home_no_alarm_hint">Set alarms in Phase Wake on your phone.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Today</string>
+    <string name="home_tomorrow">Tomorrow</string>
+    <string name="home_window_length">%1$d min window</string>
+    <string name="home_alarms">Alarms</string>
+    <string name="home_permissions">Allow sensors</string>
+    <string name="home_permissions_hint">Needed to detect light sleep.</string>
+    <string name="alarm_once">Once</string>
+    <string name="alarm_every_day">Every day</string>
+    <string name="alarm_after_sleep">After %1$s of sleep</string>
 </resources>

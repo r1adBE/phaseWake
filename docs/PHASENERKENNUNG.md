@@ -85,3 +85,12 @@ Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr
 - **Einschlafzeit** = Beginn der ersten Strecke von 30 aufeinanderfolgenden Epochen (15 Min), in denen die Bewegung vorhanden und kleiner als die Leicht-Schwelle ist. Leere Bewegung unterbricht die Strecke.
 - **Zielzeit** = Einschlafzeit + Schlafdauer, höchstens die eingestellte Weckzeit.
 - Wird bis 15 Min vor der eingestellten Weckzeit keine Einschlafzeit gefunden, gilt die eingestellte Weckzeit.
+
+## 7. Zuordnung zu Epochen
+
+Sensorwerte werden über ihren eigenen Zeitstempel (monotone Uhr) einer Epoche zugeordnet, nicht über den Zeitpunkt, an dem sie bei der App ankommen. So darf der Sensor Werte gebündelt liefern.
+
+- Epoche *k* umfasst die Zeitstempel von Fensterbeginn + *k*·30 s (einschliesslich) bis Fensterbeginn + (*k*+1)·30 s (ausschliesslich).
+- Werte vor dem Fensterbeginn und Werte für eine bereits abgeschlossene Epoche werden verworfen.
+- Ein Wert für eine spätere Epoche schliesst die laufende und alle dazwischen liegenden ab; dazwischen liegende Epochen ohne Werte sind leer.
+- Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende länger als die Bündelungs-Verzögerung plus 2 s zurückliegt.

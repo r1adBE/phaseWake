@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Weckfenster</string>
+    <string name="channel_window_description">Erscheint, während Phase Wake auf leichten Schlaf wartet.</string>
+    <string name="channel_alarm">Wecker</string>
+    <string name="channel_alarm_description">Weckt dich.</string>
+    <string name="notification_window_title">Wartet auf leichten Schlaf</string>
+    <string name="notification_window_text">Weckt dich spätestens um %1$s</string>
+    <string name="notification_ring_title">Guten Morgen</string>
+    <string name="notification_snoozed_text">Schlummern bis %1$s</string>
+
+    <string name="ring_greeting">Guten Morgen</string>
+    <string name="ring_reason_light">Leichter Schlaf erkannt</string>
+    <string name="ring_reason_awake">Du warst schon wach</string>
+    <string name="ring_reason_deadline">Zielzeit erreicht</string>
+    <string name="ring_hold_to_stop">Halten zum Stoppen</string>
+    <string name="ring_snooze">%1$d Min · %2$d übrig</string>
+    <string name="ring_snoozed_until">Schlummern bis %1$s</string>
+    <string name="ring_stop_now">Wecker beenden</string>
+
+    <string name="home_no_alarm">Kein Wecker gestellt</string>
+    <string name="home_no_alarm_hint">Stelle Wecker in Phase Wake auf dem Handy.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Heute</string>
+    <string name="home_tomorrow">Morgen</string>
+    <string name="home_window_length">%1$d Min Fenster</string>
+    <string name="home_alarms">Wecker</string>
+    <string name="home_permissions">Sensoren erlauben</string>
+    <string name="home_permissions_hint">Nötig, um leichten Schlaf zu erkennen.</string>
+    <string name="alarm_once">Einmalig</string>
+    <string name="alarm_every_day">Täglich</string>
+    <string name="alarm_after_sleep">Nach %1$s Schlaf</string>
+</resources>

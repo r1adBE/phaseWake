@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "phaseWake"
-include(":core", ":app", ":wear")
+include(":core", ":shared", ":app", ":wear")

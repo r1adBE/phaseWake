@@ -1,0 +1,33 @@
+plugins {
+    alias(libs.plugins.android.library)
+}
+
+android {
+    namespace = "ch.r1ad.phasewake.shared"
+    compileSdk = 37
+
+    defaultConfig {
+        minSdk = 30
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+}
+
+dependencies {
+    api(project(":core"))
+    api(libs.kotlinx.coroutines.android)
+    api(libs.play.services.wearable)
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.core.ktx)
+
+    testImplementation(kotlin("test"))
+    testImplementation(libs.kotlinx.coroutines.test)
+}
