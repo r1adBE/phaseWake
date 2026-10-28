@@ -271,7 +271,7 @@ private fun Header(
     background(base) {
         Column(Modifier.statusBarsPadding().padding(start = 22.dp, end = 22.dp, top = 18.dp, bottom = 24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                LogoMark(34.dp)
+                LogoMark(48.dp)
                 Text(
                     "Phase Wake",
                     style = MaterialTheme.typography.titleLarge,
