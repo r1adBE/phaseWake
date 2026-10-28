@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Reservealarm</string>
+    <string name="channel_alarm_description">Ringer på telefonen sammen med klokka.</string>
+    <string name="ring_greeting">God morgen</string>
+    <string name="ring_notification_text">Phase Wake-alarmen din ringer</string>
+    <string name="ring_stop">Stopp</string>
+    <string name="ring_snooze">Slumre %1$d min · %2$d igjen</string>
+    <string name="ring_snoozed">Slumrer i %1$d min</string>
+
+    <string name="nav_alarms">Alarmer</string>
+    <string name="nav_history">Historikk</string>
+    <string name="nav_settings">Innstillinger</string>
+
+    <string name="home_next_today">I dag</string>
+    <string name="home_next_tomorrow">I morgen</string>
+    <string name="home_next_in">Vekker deg i lett søvn · om %1$s</string>
+    <string name="home_no_alarm_title">Våkne i riktig øyeblikk</string>
+    <string name="home_no_alarm_text">Velg et tidspunkt og et vindu. Klokka vekker deg når du sover lett.</string>
+    <string name="home_add_alarm">Ny alarm</string>
+    <string name="home_last_night">Siste natt</string>
+    <string name="home_alarms">Alarmene dine</string>
+    <string name="home_permission_title">Tillat alarmer</string>
+    <string name="home_permission_text">Phase Wake trenger varsler og fullskjermsvarsler for å vekke deg.</string>
+    <string name="home_permission_action">Tillat</string>
+
+    <string name="reason_light">Lett søvn</string>
+    <string name="reason_awake">Allerede våken</string>
+    <string name="reason_deadline">Ønsket tid</string>
+    <string name="woke_early">%1$d min før ønsket tid · %2$s</string>
+    <string name="woke_on_time">På ønsket tid · %1$s</string>
+    <string name="no_snooze">ingen slumring</string>
+    <string name="snoozed_times">slumret %1$d×</string>
+
+    <string name="alarm_once">Én gang</string>
+    <string name="alarm_every_day">Hver dag</string>
+    <string name="alarm_after_sleep">etter %1$s</string>
+    <string name="alarm_latest">senest %1$s</string>
+
+    <string name="editor_new">Ny alarm</string>
+    <string name="editor_edit">Rediger alarm</string>
+    <string name="editor_save">Lagre</string>
+    <string name="editor_delete">Slett alarm</string>
+    <string name="editor_mode_clock">Klokkeslett</string>
+    <string name="editor_mode_sleep">Søvnlengde</string>
+    <string name="editor_target">Vekk meg senest</string>
+    <string name="editor_latest">Senest</string>
+    <string name="editor_sleep_duration">Sov i %1$s</string>
+    <string name="editor_sleep_hint">Teller fra du sovner. Trykk på «God natt» på klokka.</string>
+    <string name="editor_window">Vindu: %1$d min</string>
+    <string name="editor_window_hint">Vekker deg mellom %1$s og %2$s</string>
+    <string name="editor_days">Gjenta</string>
+    <string name="editor_weekdays">Ukedager</string>
+    <string name="editor_weekend">Helg</string>
+    <string name="editor_phone_backup_hint">Ringer sammen med klokka, og av seg selv hvis klokka ikke svarer.</string>
+    <string name="editor_label">Navn</string>
+    <string name="editor_label_hint">Jobb</string>
+
+    <string name="history_title">Historikk</string>
+    <string name="history_empty_title">Ingen netter ennå</string>
+    <string name="history_empty_text">Etter den første natten med klokka ser du her når og hvorfor den vekket deg.</string>
+    <string name="history_average">Ø %1$d min tidligere</string>
+    <string name="history_light_share">%1$d %% i lett søvn</string>
+    <string name="history_export">Eksporter anonymt</string>
+    <string name="history_export_subject">Phase Wake-netter (anonymt)</string>
+
+    <string name="settings_title">Innstillinger</string>
+    <string name="settings_theme">Utseende</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Lys</string>
+    <string name="settings_theme_dark">Mørk</string>
+    <string name="settings_data">Dine data</string>
+    <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing.</string>
+    <string name="settings_export">Eksporter netter anonymt</string>
+    <string name="settings_export_hint">Hjelp til med å forbedre gjenkjenningen: CSV uten navn, datoer eller enhets-ID.</string>
+    <string name="settings_about">Om</string>
+    <string name="settings_open_source">Åpen kildekode på GitHub</string>
+    <string name="settings_licenses">Lisenser</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-lisens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versjon %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_half">%1$d½ t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="health_title">Søvnfaser fra Health Connect</string>
+    <string name="health_rationale">Phase Wake kan lese søvnfasene som helse-appen din (for eksempel Samsung Health) lagrer etter at du har våknet. De brukes bare til å sjekke om du ble vekket i lett søvn, og til å forbedre gjenkjenningen for deg. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din.</string>
+    <string name="health_connect">Sammenlign med helsedata</string>
+    <string name="health_connect_hint">Leser søvnfaser fra Health Connect etter oppvåkning for å sjekke og forbedre gjenkjenningen.</string>
+    <string name="health_connected">Tilkoblet</string>
+    <string name="health_unavailable">Health Connect er ikke tilgjengelig på denne telefonen.</string>
+    <string name="verdict_good">Helsedata: %1$s ✓</string>
+    <string name="verdict_deep">Helsedata: dyp søvn</string>
+    <string name="stage_light">lett søvn</string>
+    <string name="stage_rem">REM-søvn</string>
+    <string name="stage_awake">våken</string>
+    <string name="editor_alert">Slik vekkes du</string>
+    <string name="editor_alert_hint">Lyd kommer alltid med vibrasjon. Alarmer ringer også i Ikke forstyrr, sengetidsmodus og med lydløs telefon.</string>
+    <string name="editor_alert_watch">Klokke</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Bare vibrasjon</string>
+    <string name="alert_vibrate_sound">Vibrasjon + lyd</string>
+    <string name="alert_off">Av</string>
+    <string name="alert_vibrate">Vibrasjon</string>
+    <string name="alert_sound">Lyd</string>
+    <string name="editor_sound">Alarmlyd</string>
+    <string name="editor_sound_default">Standard</string>
+    <string name="dnd_title">Ikke forstyrr blokkerer alarmer</string>
+    <string name="dnd_text">Tillat alarmer i Ikke forstyrr, ellers blir telefonen stille.</string>
+    <string name="dnd_action">Åpne innstillinger</string>
+    <string name="greeting_morning">God morgen</string>
+    <string name="greeting_day">Hei</string>
+    <string name="greeting_evening">God kveld</string>
+    <string name="greeting_night">God natt</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Ébresztési ablak</string>
+    <string name="channel_window_description">Addig látszik, amíg a Phase Wake a könnyű alvást figyeli.</string>
+    <string name="channel_alarm">Ébresztő</string>
+    <string name="channel_alarm_description">Felébreszt.</string>
+    <string name="notification_window_title">Könnyű alvást figyel</string>
+    <string name="notification_window_text">Ébresztés legkésőbb: %1$s</string>
+    <string name="notification_ring_title">Jó reggelt</string>
+
+    <string name="ring_greeting">Jó reggelt</string>
+    <string name="ring_reason_light">Könnyű alvás észlelve</string>
+    <string name="ring_reason_awake">Már ébren voltál</string>
+    <string name="ring_reason_deadline">Célidő elérve</string>
+    <string name="ring_hold_to_stop">Tartsd a leállításhoz</string>
+    <string name="ring_snooze">%1$d p · még %2$d</string>
+    <string name="ring_snoozed_until">Szundi eddig: %1$s</string>
+    <string name="ring_stop_now">Ébresztő leállítása</string>
+
+    <string name="home_no_alarm">Nincs ébresztő beállítva</string>
+    <string name="home_no_alarm_hint">Állíts be ébresztőt a telefonod Phase Wake appjában.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Ma</string>
+    <string name="home_tomorrow">Holnap</string>
+    <string name="home_window_length">%1$d p ablak</string>
+    <string name="home_alarms">Ébresztők</string>
+    <string name="home_permissions">Szenzorok engedélyezése</string>
+    <string name="home_permissions_hint">A könnyű alvás észleléséhez kell.</string>
+    <string name="alarm_once">Egyszeri</string>
+    <string name="alarm_every_day">Naponta</string>
+    <string name="tile_label">Következő ébresztő</string>
+    <string name="tile_next">Következő ébresztő</string>
+    <string name="tile_light_sleep">Könnyű alvásban ébreszt</string>
+    <string name="notification_good_night_title">Aludj jól</string>
+    <string name="notification_good_night_text">Várja, hogy elaludj</string>
+    <string name="home_good_night">Jó éjszakát</string>
+    <string name="home_good_night_hint">Mostantól alvás: %1$s</string>
+    <string name="home_good_night_active">Elalvásra vár · koppints a megszakításhoz</string>
+    <string name="dnd_title">Ébresztők letiltva</string>
+    <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban.</string>
+    <string name="duration_hours">%1$d ó</string>
+    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
+</resources>

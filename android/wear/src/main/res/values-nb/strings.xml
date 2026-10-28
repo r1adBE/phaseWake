@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Vekkevindu</string>
+    <string name="channel_window_description">Vises mens Phase Wake følger med på lett søvn.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Vekker deg.</string>
+    <string name="notification_window_title">Følger med på lett søvn</string>
+    <string name="notification_window_text">Vekker deg senest %1$s</string>
+    <string name="notification_ring_title">God morgen</string>
+
+    <string name="ring_greeting">God morgen</string>
+    <string name="ring_reason_light">Lett søvn oppdaget</string>
+    <string name="ring_reason_awake">Du var allerede våken</string>
+    <string name="ring_reason_deadline">Ønsket tid nådd</string>
+    <string name="ring_hold_to_stop">Hold for å stoppe</string>
+    <string name="ring_snooze">%1$d min · %2$d igjen</string>
+    <string name="ring_snoozed_until">Slumrer til %1$s</string>
+    <string name="ring_stop_now">Stopp alarmen</string>
+
+    <string name="home_no_alarm">Ingen alarm stilt</string>
+    <string name="home_no_alarm_hint">Still alarmer i Phase Wake på telefonen.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">I dag</string>
+    <string name="home_tomorrow">I morgen</string>
+    <string name="home_window_length">%1$d min vindu</string>
+    <string name="home_alarms">Alarmer</string>
+    <string name="home_permissions">Tillat sensorer</string>
+    <string name="home_permissions_hint">Trengs for å oppdage lett søvn.</string>
+    <string name="alarm_once">Én gang</string>
+    <string name="alarm_every_day">Hver dag</string>
+    <string name="tile_label">Neste alarm</string>
+    <string name="tile_next">Neste alarm</string>
+    <string name="tile_light_sleep">Vekker deg i lett søvn</string>
+    <string name="notification_good_night_title">Sov godt</string>
+    <string name="notification_good_night_text">Venter på at du sovner</string>
+    <string name="home_good_night">God natt</string>
+    <string name="home_good_night_hint">Sov %1$s fra nå</string>
+    <string name="home_good_night_active">Venter på søvn · trykk for å avbryte</string>
+    <string name="dnd_title">Alarmer blokkert</string>
+    <string name="dnd_text">Tillat alarmer i Ikke forstyrr.</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+</resources>

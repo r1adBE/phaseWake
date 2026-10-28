@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Väckningsfönster</string>
+    <string name="channel_window_description">Visas medan Phase Wake bevakar lätt sömn.</string>
+    <string name="channel_alarm">Larm</string>
+    <string name="channel_alarm_description">Väcker dig.</string>
+    <string name="notification_window_title">Bevakar lätt sömn</string>
+    <string name="notification_window_text">Väcker dig senast %1$s</string>
+    <string name="notification_ring_title">God morgon</string>
+
+    <string name="ring_greeting">God morgon</string>
+    <string name="ring_reason_light">Lätt sömn upptäckt</string>
+    <string name="ring_reason_awake">Du var redan vaken</string>
+    <string name="ring_reason_deadline">Måltiden nådd</string>
+    <string name="ring_hold_to_stop">Håll för att stoppa</string>
+    <string name="ring_snooze">%1$d min · %2$d kvar</string>
+    <string name="ring_snoozed_until">Snooze till %1$s</string>
+    <string name="ring_stop_now">Stoppa larmet</string>
+
+    <string name="home_no_alarm">Inget larm inställt</string>
+    <string name="home_no_alarm_hint">Ställ in larm i Phase Wake på mobilen.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Idag</string>
+    <string name="home_tomorrow">I morgon</string>
+    <string name="home_window_length">%1$d min fönster</string>
+    <string name="home_alarms">Larm</string>
+    <string name="home_permissions">Tillåt sensorer</string>
+    <string name="home_permissions_hint">Behövs för att upptäcka lätt sömn.</string>
+    <string name="alarm_once">En gång</string>
+    <string name="alarm_every_day">Varje dag</string>
+    <string name="tile_label">Nästa larm</string>
+    <string name="tile_next">Nästa larm</string>
+    <string name="tile_light_sleep">Väcker dig i lätt sömn</string>
+    <string name="notification_good_night_title">Sov gott</string>
+    <string name="notification_good_night_text">Väntar på att du ska somna</string>
+    <string name="home_good_night">Godnatt</string>
+    <string name="home_good_night_hint">Sov %1$s från nu</string>
+    <string name="home_good_night_active">Väntar på sömn · tryck för att avbryta</string>
+    <string name="dnd_title">Larm blockerade</string>
+    <string name="dnd_text">Tillåt larm i Stör ej.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+</resources>

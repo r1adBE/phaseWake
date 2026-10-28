@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Varaherätys</string>
+    <string name="channel_alarm_description">Soi puhelimessa yhdessä kellon kanssa.</string>
+    <string name="ring_greeting">Huomenta</string>
+    <string name="ring_notification_text">Phase Wake -herätyksesi soi</string>
+    <string name="ring_stop">Pysäytä</string>
+    <string name="ring_snooze">Torkku %1$d min · %2$d jäljellä</string>
+    <string name="ring_snoozed">Torkku %1$d min</string>
+
+    <string name="nav_alarms">Herätykset</string>
+    <string name="nav_history">Historia</string>
+    <string name="nav_settings">Asetukset</string>
+
+    <string name="home_next_today">Tänään</string>
+    <string name="home_next_tomorrow">Huomenna</string>
+    <string name="home_next_in">Herättää kevyessä unessa · %1$s päästä</string>
+    <string name="home_no_alarm_title">Herää oikealla hetkellä</string>
+    <string name="home_no_alarm_text">Aseta aika ja aikaikkuna. Kellosi herättää sinut, kun nukut kevyesti.</string>
+    <string name="home_add_alarm">Uusi herätys</string>
+    <string name="home_last_night">Viime yö</string>
+    <string name="home_alarms">Herätyksesi</string>
+    <string name="home_permission_title">Salli herätykset</string>
+    <string name="home_permission_text">Phase Wake tarvitsee ilmoitukset ja koko näytön hälytykset herättääkseen sinut.</string>
+    <string name="home_permission_action">Salli</string>
+
+    <string name="reason_light">Kevyt uni</string>
+    <string name="reason_awake">Jo hereillä</string>
+    <string name="reason_deadline">Tavoiteaika</string>
+    <string name="woke_early">%1$d min ennen tavoiteaikaa · %2$s</string>
+    <string name="woke_on_time">Tavoiteaikana · %1$s</string>
+    <string name="no_snooze">ei torkkua</string>
+    <string name="snoozed_times">torkku %1$d×</string>
+
+    <string name="alarm_once">Kerran</string>
+    <string name="alarm_every_day">Joka päivä</string>
+    <string name="alarm_after_sleep">%1$s jälkeen</string>
+    <string name="alarm_latest">viimeistään %1$s</string>
+
+    <string name="editor_new">Uusi herätys</string>
+    <string name="editor_edit">Muokkaa herätystä</string>
+    <string name="editor_save">Tallenna</string>
+    <string name="editor_delete">Poista herätys</string>
+    <string name="editor_mode_clock">Kellonaika</string>
+    <string name="editor_mode_sleep">Unen pituus</string>
+    <string name="editor_target">Herätä viimeistään</string>
+    <string name="editor_latest">Viimeistään</string>
+    <string name="editor_sleep_duration">Nuku %1$s</string>
+    <string name="editor_sleep_hint">Laskenta alkaa, kun nukahdat. Napauta kellossa ”Hyvää yötä”.</string>
+    <string name="editor_window">Aikaikkuna: %1$d min</string>
+    <string name="editor_window_hint">Herättää aikavälillä %1$s – %2$s</string>
+    <string name="editor_days">Toista</string>
+    <string name="editor_weekdays">Arkisin</string>
+    <string name="editor_weekend">Viikonloppu</string>
+    <string name="editor_phone_backup_hint">Soi kellon kanssa ja itsenäisesti, jos kello ei vastaa.</string>
+    <string name="editor_label">Nimi</string>
+    <string name="editor_label_hint">Työ</string>
+
+    <string name="history_title">Historia</string>
+    <string name="history_empty_title">Ei vielä öitä</string>
+    <string name="history_empty_text">Ensimmäisen kellon kanssa nukutun yön jälkeen näet täällä, milloin ja miksi se herätti sinut.</string>
+    <string name="history_average">Ø %1$d min aiemmin</string>
+    <string name="history_light_share">%1$d %% kevyessä unessa</string>
+    <string name="history_export">Vie anonyymisti</string>
+    <string name="history_export_subject">Phase Wake -yöt (anonyymi)</string>
+
+    <string name="settings_title">Asetukset</string>
+    <string name="settings_theme">Ulkoasu</string>
+    <string name="settings_theme_system">Järjestelmä</string>
+    <string name="settings_theme_light">Vaalea</string>
+    <string name="settings_theme_dark">Tumma</string>
+    <string name="settings_data">Tietosi</string>
+    <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa.</string>
+    <string name="settings_export">Vie yöt anonyymisti</string>
+    <string name="settings_export_hint">Auta parantamaan tunnistusta: CSV ilman nimiä, päivämääriä tai laitetunnisteita.</string>
+    <string name="settings_about">Tietoja</string>
+    <string name="settings_open_source">Avoin lähdekoodi GitHubissa</string>
+    <string name="settings_licenses">Lisenssit</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versio %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_half">%1$d½ t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="health_title">Univaiheet Health Connectista</string>
+    <string name="health_rationale">Phase Wake voi lukea univaiheet, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa heräämisen jälkeen. Niitä käytetään vain tarkistamaan, herätettiinkö sinut kevyessä unessa, ja parantamaan tunnistusta sinulle. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
+    <string name="health_connect">Vertaa terveystietoihin</string>
+    <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
+    <string name="health_connected">Yhdistetty</string>
+    <string name="health_unavailable">Health Connect ei ole käytettävissä tässä puhelimessa.</string>
+    <string name="verdict_good">Terveystiedot: %1$s ✓</string>
+    <string name="verdict_deep">Terveystiedot: syvä uni</string>
+    <string name="stage_light">kevyt uni</string>
+    <string name="stage_rem">REM-uni</string>
+    <string name="stage_awake">hereillä</string>
+    <string name="editor_alert">Näin sinut herätetään</string>
+    <string name="editor_alert_hint">Ääni tulee aina värinän kanssa. Herätykset soivat myös Älä häiritse -tilassa, nukkumaanmenotilassa ja äänettömällä puhelimella.</string>
+    <string name="editor_alert_watch">Kello</string>
+    <string name="editor_alert_phone">Puhelin</string>
+    <string name="alert_vibrate_only">Vain värinä</string>
+    <string name="alert_vibrate_sound">Värinä + ääni</string>
+    <string name="alert_off">Pois</string>
+    <string name="alert_vibrate">Värinä</string>
+    <string name="alert_sound">Ääni</string>
+    <string name="editor_sound">Herätysääni</string>
+    <string name="editor_sound_default">Oletus</string>
+    <string name="dnd_title">Älä häiritse estää herätykset</string>
+    <string name="dnd_text">Salli herätykset Älä häiritse -tilassa, muuten puhelimesi pysyy hiljaa.</string>
+    <string name="dnd_action">Avaa asetukset</string>
+    <string name="greeting_morning">Huomenta</string>
+    <string name="greeting_day">Hei</string>
+    <string name="greeting_evening">Hyvää iltaa</string>
+    <string name="greeting_night">Hyvää yötä</string>
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Reservlarm</string>
+    <string name="channel_alarm_description">Ringer på mobilen tillsammans med klockan.</string>
+    <string name="ring_greeting">God morgon</string>
+    <string name="ring_notification_text">Ditt Phase Wake-larm ringer</string>
+    <string name="ring_stop">Stoppa</string>
+    <string name="ring_snooze">Snooze %1$d min · %2$d kvar</string>
+    <string name="ring_snoozed">Snooze i %1$d min</string>
+
+    <string name="nav_alarms">Larm</string>
+    <string name="nav_history">Historik</string>
+    <string name="nav_settings">Inställningar</string>
+
+    <string name="home_next_today">Idag</string>
+    <string name="home_next_tomorrow">I morgon</string>
+    <string name="home_next_in">Väcker dig i lätt sömn · om %1$s</string>
+    <string name="home_no_alarm_title">Vakna i rätt ögonblick</string>
+    <string name="home_no_alarm_text">Ställ in en tid och ett intervall. Klockan väcker dig när du sover lätt.</string>
+    <string name="home_add_alarm">Nytt larm</string>
+    <string name="home_last_night">Senaste natten</string>
+    <string name="home_alarms">Dina larm</string>
+    <string name="home_permission_title">Tillåt larm</string>
+    <string name="home_permission_text">Phase Wake behöver aviseringar och helskärmsvarningar för att väcka dig.</string>
+    <string name="home_permission_action">Tillåt</string>
+
+    <string name="reason_light">Lätt sömn</string>
+    <string name="reason_awake">Redan vaken</string>
+    <string name="reason_deadline">Måltid</string>
+    <string name="woke_early">%1$d min före måltid · %2$s</string>
+    <string name="woke_on_time">Vid måltid · %1$s</string>
+    <string name="no_snooze">ingen snooze</string>
+    <string name="snoozed_times">snooze %1$d×</string>
+
+    <string name="alarm_once">En gång</string>
+    <string name="alarm_every_day">Varje dag</string>
+    <string name="alarm_after_sleep">efter %1$s</string>
+    <string name="alarm_latest">senast %1$s</string>
+
+    <string name="editor_new">Nytt larm</string>
+    <string name="editor_edit">Ändra larm</string>
+    <string name="editor_save">Spara</string>
+    <string name="editor_delete">Ta bort larm</string>
+    <string name="editor_mode_clock">Klockslag</string>
+    <string name="editor_mode_sleep">Sömnlängd</string>
+    <string name="editor_target">Väck mig senast</string>
+    <string name="editor_latest">Senast</string>
+    <string name="editor_sleep_duration">Sov i %1$s</string>
+    <string name="editor_sleep_hint">Räknas från att du somnar. Tryck på ”Godnatt” på klockan.</string>
+    <string name="editor_window">Fönster: %1$d min</string>
+    <string name="editor_window_hint">Väcker dig mellan %1$s och %2$s</string>
+    <string name="editor_days">Upprepa</string>
+    <string name="editor_weekdays">Vardagar</string>
+    <string name="editor_weekend">Helg</string>
+    <string name="editor_phone_backup_hint">Ringer med klockan, och på egen hand om klockan inte svarar.</string>
+    <string name="editor_label">Namn</string>
+    <string name="editor_label_hint">Jobb</string>
+
+    <string name="history_title">Historik</string>
+    <string name="history_empty_title">Inga nätter än</string>
+    <string name="history_empty_text">Efter din första natt med klockan ser du här när och varför den väckte dig.</string>
+    <string name="history_average">Ø %1$d min tidigare</string>
+    <string name="history_light_share">%1$d %% i lätt sömn</string>
+    <string name="history_export">Exportera anonymt</string>
+    <string name="history_export_subject">Phase Wake-nätter (anonymt)</string>
+
+    <string name="settings_title">Inställningar</string>
+    <string name="settings_theme">Utseende</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Ljust</string>
+    <string name="settings_theme_dark">Mörkt</string>
+    <string name="settings_data">Din data</string>
+    <string name="settings_data_text">Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning.</string>
+    <string name="settings_export">Exportera nätter anonymt</string>
+    <string name="settings_export_hint">Hjälp till att förbättra igenkänningen: CSV utan namn, datum eller enhets-ID.</string>
+    <string name="settings_about">Om</string>
+    <string name="settings_open_source">Öppen källkod på GitHub</string>
+    <string name="settings_licenses">Licenser</string>
+    <string name="settings_licenses_text">Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Sömnfaser från Health Connect</string>
+    <string name="health_rationale">Phase Wake kan läsa de sömnfaser som din hälsoapp (till exempel Samsung Health) sparar efter att du vaknat. De används bara för att kontrollera om du väcktes i lätt sömn och för att förbättra igenkänningen åt dig. Phase Wake läser bara, skriver aldrig, och inget lämnar din mobil.</string>
+    <string name="health_connect">Jämför med hälsodata</string>
+    <string name="health_connect_hint">Läser sömnfaser från Health Connect efter uppvaknandet för att kontrollera och förbättra igenkänningen.</string>
+    <string name="health_connected">Ansluten</string>
+    <string name="health_unavailable">Health Connect är inte tillgängligt på den här mobilen.</string>
+    <string name="verdict_good">Hälsodata: %1$s ✓</string>
+    <string name="verdict_deep">Hälsodata: djupsömn</string>
+    <string name="stage_light">lätt sömn</string>
+    <string name="stage_rem">REM-sömn</string>
+    <string name="stage_awake">vaken</string>
+    <string name="editor_alert">Så väcks du</string>
+    <string name="editor_alert_hint">Ljud kommer alltid med vibration. Larm ringer även i Stör ej, sänggåendeläge och med ljudlös mobil.</string>
+    <string name="editor_alert_watch">Klocka</string>
+    <string name="editor_alert_phone">Mobil</string>
+    <string name="alert_vibrate_only">Bara vibration</string>
+    <string name="alert_vibrate_sound">Vibration + ljud</string>
+    <string name="alert_off">Av</string>
+    <string name="alert_vibrate">Vibration</string>
+    <string name="alert_sound">Ljud</string>
+    <string name="editor_sound">Larmljud</string>
+    <string name="editor_sound_default">Standard</string>
+    <string name="dnd_title">Stör ej blockerar larm</string>
+    <string name="dnd_text">Tillåt larm i Stör ej, annars förblir mobilen tyst.</string>
+    <string name="dnd_action">Öppna inställningar</string>
+    <string name="greeting_morning">God morgon</string>
+    <string name="greeting_day">Hej</string>
+    <string name="greeting_evening">God kväll</string>
+    <string name="greeting_night">Godnatt</string>
+</resources>

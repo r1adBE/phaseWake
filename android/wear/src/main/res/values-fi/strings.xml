@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Herätysikkuna</string>
+    <string name="channel_window_description">Näkyy, kun Phase Wake seuraa kevyttä unta.</string>
+    <string name="channel_alarm">Herätys</string>
+    <string name="channel_alarm_description">Herättää sinut.</string>
+    <string name="notification_window_title">Seuraa kevyttä unta</string>
+    <string name="notification_window_text">Herättää viimeistään %1$s</string>
+    <string name="notification_ring_title">Huomenta</string>
+
+    <string name="ring_greeting">Huomenta</string>
+    <string name="ring_reason_light">Kevyt uni havaittu</string>
+    <string name="ring_reason_awake">Olit jo hereillä</string>
+    <string name="ring_reason_deadline">Tavoiteaika saavutettu</string>
+    <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
+    <string name="ring_snooze">%1$d min · %2$d jäljellä</string>
+    <string name="ring_snoozed_until">Torkku %1$s asti</string>
+    <string name="ring_stop_now">Pysäytä herätys</string>
+
+    <string name="home_no_alarm">Ei herätystä</string>
+    <string name="home_no_alarm_hint">Aseta herätykset puhelimen Phase Wake -sovelluksessa.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Tänään</string>
+    <string name="home_tomorrow">Huomenna</string>
+    <string name="home_window_length">Ikkuna %1$d min</string>
+    <string name="home_alarms">Herätykset</string>
+    <string name="home_permissions">Salli anturit</string>
+    <string name="home_permissions_hint">Tarvitaan kevyen unen havaitsemiseen.</string>
+    <string name="alarm_once">Kerran</string>
+    <string name="alarm_every_day">Joka päivä</string>
+    <string name="tile_label">Seuraava herätys</string>
+    <string name="tile_next">Seuraava herätys</string>
+    <string name="tile_light_sleep">Herättää kevyessä unessa</string>
+    <string name="notification_good_night_title">Hyvää yötä</string>
+    <string name="notification_good_night_text">Odottaa, että nukahdat</string>
+    <string name="home_good_night">Hyvää yötä</string>
+    <string name="home_good_night_hint">Nuku nyt %1$s</string>
+    <string name="home_good_night_active">Odottaa untasi · peruuta napauttamalla</string>
+    <string name="dnd_title">Herätykset estetty</string>
+    <string name="dnd_text">Salli herätykset Älä häiritse -tilassa.</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+</resources>

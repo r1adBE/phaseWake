@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Alarmă de rezervă</string>
+    <string name="channel_alarm_description">Sună pe telefon, împreună cu ceasul.</string>
+    <string name="ring_greeting">Bună dimineața</string>
+    <string name="ring_notification_text">Alarma ta Phase Wake sună</string>
+    <string name="ring_stop">Oprește</string>
+    <string name="ring_snooze">Amânare %1$d min · %2$d rămase</string>
+    <string name="ring_snoozed">Amânat pentru %1$d min</string>
+
+    <string name="nav_alarms">Alarme</string>
+    <string name="nav_history">Istoric</string>
+    <string name="nav_settings">Setări</string>
+
+    <string name="home_next_today">Azi</string>
+    <string name="home_next_tomorrow">Mâine</string>
+    <string name="home_next_in">Te trezește din somn ușor · peste %1$s</string>
+    <string name="home_no_alarm_title">Trezește-te la momentul potrivit</string>
+    <string name="home_no_alarm_text">Alege o oră și un interval. Ceasul te trezește când dormi ușor.</string>
+    <string name="home_add_alarm">Alarmă nouă</string>
+    <string name="home_last_night">Noaptea trecută</string>
+    <string name="home_alarms">Alarmele tale</string>
+    <string name="home_permission_title">Permite alarmele</string>
+    <string name="home_permission_text">Phase Wake are nevoie de notificări și alerte pe tot ecranul ca să te trezească.</string>
+    <string name="home_permission_action">Permite</string>
+
+    <string name="reason_light">Somn ușor</string>
+    <string name="reason_awake">Deja treaz</string>
+    <string name="reason_deadline">Ora țintă</string>
+    <string name="woke_early">%1$d min înainte de ora țintă · %2$s</string>
+    <string name="woke_on_time">La ora țintă · %1$s</string>
+    <string name="no_snooze">fără amânare</string>
+    <string name="snoozed_times">amânat %1$d×</string>
+
+    <string name="alarm_once">O dată</string>
+    <string name="alarm_every_day">Zilnic</string>
+    <string name="alarm_after_sleep">după %1$s</string>
+    <string name="alarm_latest">cel târziu %1$s</string>
+
+    <string name="editor_new">Alarmă nouă</string>
+    <string name="editor_edit">Editează alarma</string>
+    <string name="editor_save">Salvează</string>
+    <string name="editor_delete">Șterge alarma</string>
+    <string name="editor_mode_clock">Ora exactă</string>
+    <string name="editor_mode_sleep">Durata somnului</string>
+    <string name="editor_target">Trezește-mă până la</string>
+    <string name="editor_latest">Cel târziu</string>
+    <string name="editor_sleep_duration">Dormi %1$s</string>
+    <string name="editor_sleep_hint">Numărătoarea începe când adormi. Atinge „Noapte bună” pe ceas.</string>
+    <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_window_hint">Te trezește între %1$s și %2$s</string>
+    <string name="editor_days">Repetă</string>
+    <string name="editor_weekdays">Zile lucrătoare</string>
+    <string name="editor_weekend">Weekend</string>
+    <string name="editor_phone_backup_hint">Sună împreună cu ceasul și singur, dacă ceasul nu răspunde.</string>
+    <string name="editor_label">Nume</string>
+    <string name="editor_label_hint">Serviciu</string>
+
+    <string name="history_title">Istoric</string>
+    <string name="history_empty_title">Încă nicio noapte</string>
+    <string name="history_empty_text">După prima noapte cu ceasul vei vedea aici când și de ce te-a trezit.</string>
+    <string name="history_average">Ø %1$d min mai devreme</string>
+    <string name="history_light_share">%1$d %% în somn ușor</string>
+    <string name="history_export">Exportă anonim</string>
+    <string name="history_export_subject">Nopți Phase Wake (anonim)</string>
+
+    <string name="settings_title">Setări</string>
+    <string name="settings_theme">Aspect</string>
+    <string name="settings_theme_system">Sistem</string>
+    <string name="settings_theme_light">Luminos</string>
+    <string name="settings_theme_dark">Întunecat</string>
+    <string name="settings_data">Datele tale</string>
+    <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire.</string>
+    <string name="settings_export">Exportă nopțile anonim</string>
+    <string name="settings_export_hint">Ajută la îmbunătățirea detectării: CSV fără nume, date sau ID-uri de dispozitiv.</string>
+    <string name="settings_about">Despre</string>
+    <string name="settings_open_source">Open source pe GitHub</string>
+    <string name="settings_licenses">Licențe</string>
+    <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Versiunea %1$s</string>
+
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="health_title">Fazele somnului din Health Connect</string>
+    <string name="health_rationale">Phase Wake poate citi fazele somnului pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează după ce te trezești. Sunt folosite doar pentru a verifica dacă ai fost trezit din somn ușor și pentru a îmbunătăți detectarea pentru tine. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
+    <string name="health_connect">Compară cu datele de sănătate</string>
+    <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
+    <string name="health_connected">Conectat</string>
+    <string name="health_unavailable">Health Connect nu este disponibil pe acest telefon.</string>
+    <string name="verdict_good">Date de sănătate: %1$s ✓</string>
+    <string name="verdict_deep">Date de sănătate: somn profund</string>
+    <string name="stage_light">somn ușor</string>
+    <string name="stage_rem">somn REM</string>
+    <string name="stage_awake">treaz</string>
+    <string name="editor_alert">Cum te trezim</string>
+    <string name="editor_alert_hint">Sunetul vine mereu cu vibrație. Alarmele sună și în modul Nu deranja, în modul de culcare și cu telefonul pe silențios.</string>
+    <string name="editor_alert_watch">Ceas</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Doar vibrație</string>
+    <string name="alert_vibrate_sound">Vibrație + sunet</string>
+    <string name="alert_off">Oprit</string>
+    <string name="alert_vibrate">Vibrație</string>
+    <string name="alert_sound">Sunet</string>
+    <string name="editor_sound">Sunet alarmă</string>
+    <string name="editor_sound_default">Implicit</string>
+    <string name="dnd_title">Nu deranja blochează alarmele</string>
+    <string name="dnd_text">Permite alarmele în modul Nu deranja, altfel telefonul tău rămâne mut.</string>
+    <string name="dnd_action">Deschide setările</string>
+    <string name="greeting_morning">Bună dimineața</string>
+    <string name="greeting_day">Bună ziua</string>
+    <string name="greeting_evening">Bună seara</string>
+    <string name="greeting_night">Noapte bună</string>
+</resources>

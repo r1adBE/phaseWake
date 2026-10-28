@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_window">Interval de trezire</string>
+    <string name="channel_window_description">Apare cât timp Phase Wake urmărește somnul ușor.</string>
+    <string name="channel_alarm">Alarmă</string>
+    <string name="channel_alarm_description">Te trezește.</string>
+    <string name="notification_window_title">Urmărește somnul ușor</string>
+    <string name="notification_window_text">Te trezește cel târziu la %1$s</string>
+    <string name="notification_ring_title">Bună dimineața</string>
+
+    <string name="ring_greeting">Bună dimineața</string>
+    <string name="ring_reason_light">Somn ușor detectat</string>
+    <string name="ring_reason_awake">Erai deja treaz</string>
+    <string name="ring_reason_deadline">Ora țintă atinsă</string>
+    <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
+    <string name="ring_snooze">%1$d min · %2$d rămase</string>
+    <string name="ring_snoozed_until">Amânat până la %1$s</string>
+    <string name="ring_stop_now">Oprește alarma</string>
+
+    <string name="home_no_alarm">Nicio alarmă setată</string>
+    <string name="home_no_alarm_hint">Setează alarmele în Phase Wake pe telefon.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Azi</string>
+    <string name="home_tomorrow">Mâine</string>
+    <string name="home_window_length">Interval %1$d min</string>
+    <string name="home_alarms">Alarme</string>
+    <string name="home_permissions">Permite senzorii</string>
+    <string name="home_permissions_hint">Necesari pentru a detecta somnul ușor.</string>
+    <string name="alarm_once">O dată</string>
+    <string name="alarm_every_day">Zilnic</string>
+    <string name="tile_label">Următoarea alarmă</string>
+    <string name="tile_next">Următoarea alarmă</string>
+    <string name="tile_light_sleep">Te trezește din somn ușor</string>
+    <string name="notification_good_night_title">Somn ușor</string>
+    <string name="notification_good_night_text">Așteaptă să adormi</string>
+    <string name="home_good_night">Noapte bună</string>
+    <string name="home_good_night_hint">Dormi %1$s de acum</string>
+    <string name="home_good_night_active">Așteaptă somnul · atinge pentru anulare</string>
+    <string name="dnd_title">Alarme blocate</string>
+    <string name="dnd_text">Permite alarmele în modul Nu deranja.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+</resources>

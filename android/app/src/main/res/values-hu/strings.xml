@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_alarm">Tartalék ébresztő</string>
+    <string name="channel_alarm_description">A telefonon is csörög az órával együtt.</string>
+    <string name="ring_greeting">Jó reggelt</string>
+    <string name="ring_notification_text">Szól a Phase Wake ébresztőd</string>
+    <string name="ring_stop">Leállítás</string>
+    <string name="ring_snooze">Szundi %1$d p · még %2$d</string>
+    <string name="ring_snoozed">Szundi %1$d percre</string>
+
+    <string name="nav_alarms">Ébresztők</string>
+    <string name="nav_history">Előzmények</string>
+    <string name="nav_settings">Beállítások</string>
+
+    <string name="home_next_today">Ma</string>
+    <string name="home_next_tomorrow">Holnap</string>
+    <string name="home_next_in">Könnyű alvásban ébreszt · %1$s múlva</string>
+    <string name="home_no_alarm_title">Ébredj a megfelelő pillanatban</string>
+    <string name="home_no_alarm_text">Állíts be egy időpontot és egy időablakot. Az órád akkor ébreszt, amikor könnyen alszol.</string>
+    <string name="home_add_alarm">Új ébresztő</string>
+    <string name="home_last_night">Múlt éjszaka</string>
+    <string name="home_alarms">Ébresztőid</string>
+    <string name="home_permission_title">Ébresztők engedélyezése</string>
+    <string name="home_permission_text">A Phase Wake-nek értesítésekre és teljes képernyős riasztásokra van szüksége az ébresztéshez.</string>
+    <string name="home_permission_action">Engedélyezés</string>
+
+    <string name="reason_light">Könnyű alvás</string>
+    <string name="reason_awake">Már ébren</string>
+    <string name="reason_deadline">Célidő</string>
+    <string name="woke_early">%1$d p a célidő előtt · %2$s</string>
+    <string name="woke_on_time">Célidőben · %1$s</string>
+    <string name="no_snooze">nincs szundi</string>
+    <string name="snoozed_times">%1$d× szundizva</string>
+
+    <string name="alarm_once">Egyszeri</string>
+    <string name="alarm_every_day">Naponta</string>
+    <string name="alarm_after_sleep">%1$s után</string>
+    <string name="alarm_latest">legkésőbb %1$s</string>
+
+    <string name="editor_new">Új ébresztő</string>
+    <string name="editor_edit">Ébresztő szerkesztése</string>
+    <string name="editor_save">Mentés</string>
+    <string name="editor_delete">Ébresztő törlése</string>
+    <string name="editor_mode_clock">Időpont</string>
+    <string name="editor_mode_sleep">Alvásidő</string>
+    <string name="editor_target">Ébressz eddig</string>
+    <string name="editor_latest">Legkésőbb</string>
+    <string name="editor_sleep_duration">Alvás: %1$s</string>
+    <string name="editor_sleep_hint">Az elalvástól számít. Koppints az óránál a „Jó éjszakát” gombra.</string>
+    <string name="editor_window">Időablak: %1$d p</string>
+    <string name="editor_window_hint">%1$s és %2$s között ébreszt</string>
+    <string name="editor_days">Ismétlés</string>
+    <string name="editor_weekdays">Hétköznapok</string>
+    <string name="editor_weekend">Hétvége</string>
+    <string name="editor_phone_backup_hint">Az órával együtt csörög, és magától is, ha az óra nem jelez.</string>
+    <string name="editor_label">Név</string>
+    <string name="editor_label_hint">Munka</string>
+
+    <string name="history_title">Előzmények</string>
+    <string name="history_empty_title">Még nincs éjszaka</string>
+    <string name="history_empty_text">Az első, órával töltött éjszaka után itt látod, mikor és miért ébresztett az óra.</string>
+    <string name="history_average">Ø %1$d p korábban</string>
+    <string name="history_light_share">%1$d %% könnyű alvásban</string>
+    <string name="history_export">Exportálás névtelenül</string>
+    <string name="history_export_subject">Phase Wake éjszakák (névtelen)</string>
+
+    <string name="settings_title">Beállítások</string>
+    <string name="settings_theme">Megjelenés</string>
+    <string name="settings_theme_system">Rendszer</string>
+    <string name="settings_theme_light">Világos</string>
+    <string name="settings_theme_dark">Sötét</string>
+    <string name="settings_data">Adataid</string>
+    <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés.</string>
+    <string name="settings_export">Éjszakák névtelen exportja</string>
+    <string name="settings_export_hint">Segíts a felismerés javításában: CSV nevek, dátumok és eszközazonosítók nélkül.</string>
+    <string name="settings_about">Névjegy</string>
+    <string name="settings_open_source">Nyílt forráskód a GitHubon</string>
+    <string name="settings_licenses">Licencek</string>
+    <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_version">Verzió: %1$s</string>
+
+    <string name="duration_minutes">%1$d p</string>
+    <string name="duration_hours">%1$d ó</string>
+    <string name="duration_hours_half">%1$d½ ó</string>
+    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
+    <string name="health_title">Alvási fázisok a Health Connectből</string>
+    <string name="health_rationale">A Phase Wake el tudja olvasni az alvási fázisokat, amelyeket az egészségügyi appod (például a Samsung Health) ébredés után eltárol. Ezeket csak annak ellenőrzésére használja, hogy könnyű alvásban ébresztettek-e, és hogy javítsa az észlelést számodra. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
+    <string name="health_connect">Összevetés egészségügyi adatokkal</string>
+    <string name="health_connect_hint">Ébredés után beolvassa az alvási fázisokat a Health Connectből, hogy ellenőrizze és javítsa az észlelést.</string>
+    <string name="health_connected">Csatlakoztatva</string>
+    <string name="health_unavailable">A Health Connect nem érhető el ezen a telefonon.</string>
+    <string name="verdict_good">Egészségügyi adatok: %1$s ✓</string>
+    <string name="verdict_deep">Egészségügyi adatok: mély alvás</string>
+    <string name="stage_light">könnyű alvás</string>
+    <string name="stage_rem">REM-alvás</string>
+    <string name="stage_awake">ébren</string>
+    <string name="editor_alert">Hogyan ébresszünk</string>
+    <string name="editor_alert_hint">A hang mindig rezgéssel jár együtt. Az ébresztők Ne zavarjanak módban, lefekvési módban és némított telefonnál is szólnak.</string>
+    <string name="editor_alert_watch">Óra</string>
+    <string name="editor_alert_phone">Telefon</string>
+    <string name="alert_vibrate_only">Csak rezgés</string>
+    <string name="alert_vibrate_sound">Rezgés + hang</string>
+    <string name="alert_off">Ki</string>
+    <string name="alert_vibrate">Rezgés</string>
+    <string name="alert_sound">Hang</string>
+    <string name="editor_sound">Ébresztőhang</string>
+    <string name="editor_sound_default">Alapértelmezett</string>
+    <string name="dnd_title">A Ne zavarjanak letiltja az ébresztőket</string>
+    <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban, különben a telefonod néma marad.</string>
+    <string name="dnd_action">Beállítások megnyitása</string>
+    <string name="greeting_morning">Jó reggelt</string>
+    <string name="greeting_day">Jó napot</string>
+    <string name="greeting_evening">Jó estét</string>
+    <string name="greeting_night">Jó éjszakát</string>
+</resources>
