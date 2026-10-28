@@ -166,10 +166,14 @@ private val AppShapes = Shapes(
 )
 
 val LocalBrand = staticCompositionLocalOf { DarkBrand }
+private val LocalDark = staticCompositionLocalOf { true }
 
-/** Zugriff auf die Markenfarben im aktuellen Modus. */
+/** Zugriff auf die Markenfarben und den aufgelösten Modus. */
 object PhaseWakeTheme {
     val brand: BrandColors @Composable get() = LocalBrand.current
+
+    /** `true`, wenn gerade das dunkle Design gilt (gewählt oder vom System). */
+    val isDark: Boolean @Composable get() = LocalDark.current
 }
 
 @Composable
@@ -190,7 +194,7 @@ fun PhaseWakeTheme(mode: ThemeMode, content: @Composable () -> Unit) {
             }
         }
     }
-    androidx.compose.runtime.CompositionLocalProvider(LocalBrand provides if (dark) DarkBrand else LightBrand) {
+    androidx.compose.runtime.CompositionLocalProvider(LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark) {
         MaterialTheme(colorScheme = scheme, typography = AppTypography, shapes = AppShapes, content = content)
     }
 }

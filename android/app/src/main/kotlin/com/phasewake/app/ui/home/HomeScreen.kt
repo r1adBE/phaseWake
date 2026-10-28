@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -54,6 +55,7 @@ import com.phasewake.app.ui.components.HeroWave
 import com.phasewake.app.ui.components.LogoMark
 import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.NightBars
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.history.nightSummary
 import java.time.Duration
 import java.time.Instant
@@ -85,13 +87,16 @@ fun HomeScreen(
     val zone = ZoneId.systemDefault()
     val plan = remember(alarms, now) { AlarmSchedule.earliestPlan(alarms, now, zone) }
 
+    // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
+    val dark = PhaseWakeTheme.isDark
+    val list = @Composable {
     LazyColumn(
         contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding()),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
-            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, onAdd = onAdd, onEdit = onEdit)
+            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark, onAdd = onAdd, onEdit = onEdit)
         }
         if (needsPermission) {
             item(key = "permission") {
@@ -119,23 +124,41 @@ fun HomeScreen(
         }
         item(key = "spacer") { Spacer(Modifier.height(72.dp)) }
     }
+    }
+    if (dark) AnimatedNight(Modifier.fillMaxSize()) { list() } else list()
 }
+
+/** Kartenfarbe: auf dem Nachthimmel durchscheinend, sonst die normale Fläche. */
+@Composable
+private fun cardColor(): Color =
+    if (PhaseWakeTheme.isDark) Color.White.copy(alpha = 0.07f) else MaterialTheme.colorScheme.surfaceContainer
 
 /**
  * Kopfbereich im Nachthimmel-Verlauf, randlos bis unter die Statusleiste: Logo, Begrüssung und
  * das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
  */
 @Composable
-private fun Header(plan: WakePlan?, alarm: AlarmSpec?, now: Instant, zone: ZoneId, onAdd: () -> Unit, onEdit: (String) -> Unit) {
+private fun Header(
+    plan: WakePlan?,
+    alarm: AlarmSpec?,
+    now: Instant,
+    zone: ZoneId,
+    fullPage: Boolean,
+    onAdd: () -> Unit,
+    onEdit: (String) -> Unit,
+) {
     val context = LocalContext.current
     var appeared by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { appeared = true }
-    AnimatedNight(
-        Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp))
-            .then(if (plan != null) Modifier.clickable { onEdit(plan.alarmId) } else Modifier),
-    ) {
+    val shape = RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp)
+    val base = Modifier
+        .fillMaxWidth()
+        .clip(shape)
+        .then(if (plan != null) Modifier.clickable { onEdit(plan.alarmId) } else Modifier)
+    // Auf der ganzseitigen Nacht (dunkel) braucht der Kopf keinen eigenen Hintergrund.
+    val background: @Composable (Modifier, @Composable () -> Unit) -> Unit =
+        if (fullPage) { m, c -> Box(m) { c() } } else { m, c -> AnimatedNight(m) { c() } }
+    background(base) {
         Column(Modifier.statusBarsPadding().padding(start = 22.dp, end = 22.dp, top = 18.dp, bottom = 24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 LogoMark(34.dp)
@@ -221,7 +244,7 @@ private fun LastNightCard(night: NightRecord) {
     val context = LocalContext.current
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = CardDefaults.cardColors(containerColor = cardColor()),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
@@ -250,7 +273,7 @@ private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, 
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = CardDefaults.cardColors(containerColor = cardColor()),
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(

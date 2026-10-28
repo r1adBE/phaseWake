@@ -41,6 +41,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.phasewake.app.ui.components.Intro
+import com.phasewake.app.ui.components.Night
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -151,7 +152,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
             if (route != Routes.EDITOR) {
-                NavigationBar(containerColor = MaterialTheme.colorScheme.surfaceContainerLow) {
+                val onNight = route == Routes.ALARMS && PhaseWakeTheme.isDark
+                NavigationBar(containerColor = if (onNight) Night.Bottom.copy(alpha = 0.92f) else MaterialTheme.colorScheme.surfaceContainerLow) {
                     tabs.forEach { tab ->
                         NavigationBarItem(
                             selected = route == tab.route,
