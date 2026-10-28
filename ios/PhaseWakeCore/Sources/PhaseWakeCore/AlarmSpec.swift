@@ -40,6 +40,16 @@ public enum Sunrise: String, CaseIterable, Sendable {
     }
 }
 
+/// Weckaufgabe: was es zum Beenden braucht. Rohwerte wie die Kotlin-Namen.
+/// Auf Apple nur im Format: AlarmKit lässt den Stopp-Knopf des Systems nicht ersetzen, darum bietet
+/// der iPhone-Editor die Aufgabe nicht an, und die Apple Watch behandelt jeden Wert wie `none` (Halten).
+public enum WakeTask: String, CaseIterable, Sendable {
+    /// Halten zum Beenden (Standard).
+    case none = "NONE"
+    /// Rechenaufgaben am Handy (nur Android).
+    case math = "MATH"
+}
+
 /// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public static let defaultWindowMinutes = 30
@@ -63,6 +73,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let label: String
     /// Sonnenaufgang auf dem Handy-Bildschirm.
     public let sunrise: Sunrise
+    /// Weckaufgabe; auf Apple ohne Wirkung, wird aber erhalten und mit der Uhr abgeglichen.
+    public let wakeTask: WakeTask
 
     /// - Throws: ``DetectorConfigError`` bei ungültigen Werten (gleiche Regeln wie Kotlin).
     public init(
@@ -77,7 +89,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         sleepDurationMinutes: Int? = nil,
         sound: String = "",
         label: String = "",
-        sunrise: Sunrise = .off
+        sunrise: Sunrise = .off,
+        wakeTask: WakeTask = WakeTask.none
     ) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
@@ -100,6 +113,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.sleepDurationMinutes = sleepDurationMinutes
         self.label = label
         self.sunrise = sunrise
+        self.wakeTask = wakeTask
     }
 
     /// Ob das iPhone als Zweitwecker mitweckt.
@@ -114,7 +128,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
             enabled: enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
-            sound: sound, label: label, sunrise: sunrise
+            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask
         )
     }
 }

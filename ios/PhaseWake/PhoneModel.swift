@@ -15,6 +15,25 @@ final class PhoneModel {
     private(set) var nights: [NightRecord] = []
     let bedtime = BedtimeReminder()
     let sounds = SoundPlayer()
+    /// Geräusche in der Nacht (nur auf Wunsch).
+    let recorder = SoundRecorder()
+    let weekly = WeeklyReview()
+    /// Gewählter Reiter (eine Mitteilung kann den Verlauf öffnen).
+    var selectedTab = AppTab.alarms
+    /// Geräusche aufnehmen: Vorgabe für neue Nächte, Standard aus.
+    private(set) var soundRecDefault = false
+    /// Wahl für eine bestimmte Nacht (Nachtdatum, an/aus), falls selbst gewählt oder gestoppt.
+    private(set) var soundRecChoice: (night: String, on: Bool)?
+    /// Abendroutine: Punkte und Haken je Nachtdatum.
+    private(set) var routineItems: [RoutineItem] = Routine.defaults
+    private(set) var routineTicks: [String: [String]] = [:]
+    /// Wochenrückblick am Sonntag um 18 Uhr, Standard aus.
+    private(set) var weeklyReview = false
+    private static let soundRecDefaultKey = "soundRecDefault"
+    private static let soundRecNightKey = "soundRecNight"
+    private static let routineItemsKey = "routineItems"
+    private static let routineTicksKey = "routineTicks"
+    private static let weeklyKey = "weeklyReview"
     /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
     private(set) var notes: [String: [String]] = [:]
     private(set) var customNotes: [CustomNote] = []
@@ -43,6 +62,15 @@ final class PhoneModel {
         let goal = UserDefaults.standard.integer(forKey: Self.sleepGoalKey)
         sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
         bedtimeReminder = UserDefaults.standard.bool(forKey: Self.bedtimeKey)
+        let defaults = UserDefaults.standard
+        soundRecDefault = defaults.bool(forKey: Self.soundRecDefaultKey)
+        if let text = defaults.string(forKey: Self.soundRecNightKey) {
+            let parts = text.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+            if parts.count == 2, NightDate.isValid(parts[0]) { soundRecChoice = (night: parts[0], on: parts[1] == "1") }
+        }
+        routineItems = Routine.decodeItems(defaults.string(forKey: Self.routineItemsKey))
+        routineTicks = Routine.decodeTicks(defaults.string(forKey: Self.routineTicksKey))
+        weeklyReview = defaults.bool(forKey: Self.weeklyKey)
         // Zeitzone oder Uhrzeit geändert (Reise): Die AlarmKit-Wecker stehen auf festen Zeitpunkten, also neu planen.
         let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange, UIApplication.significantTimeChangeNotification]
         for name in names {
@@ -81,11 +109,13 @@ final class PhoneModel {
         nights = storage.nights()
         // Früh geweckt: Die nächste Nacht beginnt jetzt, die Erinnerung richtet sich danach.
         Task { await replanBedtime() }
+        Task { await replanWeekly() }
     }
 
     func setFeeling(_ feeling: Int, for night: NightRecord) {
         storage.setFeeling(feeling, alarmId: night.alarmId, windowStart: night.windowStart)
         nights = storage.nights()
+        Task { await replanWeekly() }
     }
 
     func watchRang() { lastRing = Date() }
@@ -125,6 +155,10 @@ final class PhoneModel {
         // Notizen gehören zum Verlauf und gehen mit.
         storage.clearNotes()
         notes = [:]
+        // Ebenso die Haken der Abendroutine und die Geräusch-Ausschnitte.
+        routineTicks = [:]
+        UserDefaults.standard.removeObject(forKey: Self.routineTicksKey)
+        recorder.deleteEverything()
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
@@ -196,6 +230,111 @@ final class PhoneModel {
     func replanBedtime() async {
         await bedtime.reschedule(alarms: alarms, doneUntil: doneUntil, goalMinutes: sleepGoal, enabled: bedtimeReminder)
     }
+}
+
+// MARK: - Runde 2: Geräusche, Abendroutine, Wochenrückblick
+
+extension PhoneModel {
+    /// Ob für diese Nacht aufgenommen werden soll: eigene Wahl, sonst die Vorgabe.
+    func soundRecEnabled(night: String) -> Bool {
+        if let choice = soundRecChoice, choice.night == night { return choice.on }
+        return soundRecDefault
+    }
+
+    /// Schalter auf der Startseite: merkt die Wahl für diese Nacht und startet bzw. stoppt die Aufnahme.
+    func setSoundRec(_ on: Bool, night: String) async {
+        setSoundRecChoice(night: night, on: on)
+        if on {
+            let started = await recorder.start(nextAlarmTarget: nextAlarmTarget())
+            // Mikrofon verweigert: Schalter bleibt aus.
+            if !started { setSoundRecChoice(night: night, on: false) }
+        } else {
+            recorder.stop()
+        }
+    }
+
+    /// Vorgabe «an»: Am Abend startet die Aufnahme beim Öffnen der App von selbst (nur mit erteiltem
+    /// Mikrofon; ein Stopp gilt für die ganze Nacht).
+    func autoStartSoundRec(now: Date = Date()) async {
+        guard !recorder.running, recorder.permissionGranted else { return }
+        let plan = AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current)
+        guard SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
+        let night = SleepNotes.nightDate(now, calendar: .current)
+        guard soundRecEnabled(night: night) else { return }
+        await recorder.start(nextAlarmTarget: plan?.target)
+    }
+
+    func setSoundRecDefault(_ on: Bool) async {
+        if on, !(await SoundRecorder.requestPermission()) { return }
+        soundRecDefault = on
+        UserDefaults.standard.set(on, forKey: Self.soundRecDefaultKey)
+    }
+
+    private func setSoundRecChoice(night: String, on: Bool) {
+        soundRecChoice = (night: night, on: on)
+        UserDefaults.standard.set("\(night)|\(on ? "1" : "0")", forKey: Self.soundRecNightKey)
+    }
+
+    /// Zielzeit des nächsten Weckers (früh geweckte Nächte übersprungen).
+    private func nextAlarmTarget(now: Date = Date()) -> Date? {
+        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current)?.target
+    }
+
+    // MARK: Abendroutine
+
+    var canAddRoutineItem: Bool { routineItems.count < Routine.maxItems }
+
+    func addRoutineItem(_ text: String) {
+        let clean = Routine.cleanText(text)
+        guard canAddRoutineItem, !clean.isEmpty else { return }
+        setRoutineItems(routineItems + [RoutineItem(id: Routine.customId(UUID().uuidString.lowercased()), text: clean)])
+    }
+
+    func removeRoutineItem(_ id: String) { setRoutineItems(routineItems.filter { $0.id != id }) }
+
+    private func setRoutineItems(_ items: [RoutineItem]) {
+        let text = Routine.encodeItems(items)
+        UserDefaults.standard.set(text, forKey: Self.routineItemsKey)
+        routineItems = Routine.decodeItems(text)
+    }
+
+    func routineDone(night: String) -> [String] { routineTicks[night] ?? [] }
+
+    func toggleRoutine(_ id: String, night: String) {
+        routineTicks = Routine.toggle(routineTicks, date: night, id: id)
+        UserDefaults.standard.set(Routine.encodeTicks(routineTicks), forKey: Self.routineTicksKey)
+    }
+
+    /// Anzeigename: Vorschläge übersetzt, eigene mit ihrem Text.
+    func routineName(_ item: RoutineItem) -> String {
+        switch item.id {
+        case Routine.phone: L("routine_item_phone")
+        case Routine.light: L("routine_item_light")
+        case Routine.water: L("routine_item_water")
+        default: item.text
+        }
+    }
+
+    // MARK: Wochenrückblick
+
+    func setWeeklyReview(_ enabled: Bool) {
+        weeklyReview = enabled
+        UserDefaults.standard.set(enabled, forKey: Self.weeklyKey)
+        Task {
+            if enabled { await bedtime.requestPermission() }
+            await replanWeekly()
+        }
+    }
+
+    /// Plant die Mitteilung zum nächsten Sonntag 18 Uhr mit dem aktuellen Stand neu.
+    func replanWeekly() async {
+        await weekly.reschedule(model: self)
+    }
+}
+
+/// Reiter der App.
+enum AppTab: Hashable {
+    case alarms, history, settings
 }
 
 extension SleepNote {

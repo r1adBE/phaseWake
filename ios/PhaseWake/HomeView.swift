@@ -36,8 +36,15 @@ struct HomeView: View {
                                 }
                                 // Abends bis zum Weckfenster: Notizen für die kommende Nacht.
                                 let next = AlarmSchedule.earliestPlan(model.alarms, now: context.date, doneUntil: model.doneUntil, calendar: .current)
-                                if SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current) {
-                                    TonightNotesCard(nightDate: SleepNotes.nightDate(context.date, calendar: .current))
+                                let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current)
+                                let tonight = SleepNotes.nightDate(context.date, calendar: .current)
+                                if evening {
+                                    TonightNotesCard(nightDate: tonight)
+                                    RoutineCard(night: tonight)
+                                }
+                                // Geräusche: abends zum Einschalten, und solange die Aufnahme läuft.
+                                if evening || model.recorder.running {
+                                    SoundRecordingCard(night: tonight)
                                 }
                                 SoundsButton { sounds = true }
                                 if let night = model.nights.last {
@@ -94,6 +101,8 @@ struct HomeView: View {
                 // Bei jedem Öffnen und danach jede halbe Minute prüfen.
                 while scenePhase == .active, !Task.isCancelled {
                     failedChecks = await NightCheck.collect()
+                    // Vorgabe «Geräusche aufnehmen» an: abends von selbst starten.
+                    await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))
                 }
             }
@@ -240,6 +249,8 @@ private struct LastNightCard: View {
                 NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
                                  title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
                     .padding(.top, 4)
+                NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+                                  title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
             }
         }
         .card()

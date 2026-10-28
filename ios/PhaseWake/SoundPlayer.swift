@@ -77,12 +77,13 @@ final class SoundPlayer {
 
     private func start(_ sound: SleepSound, end: Date?, now: Date) {
         guard let format = AVAudioFormat(standardFormatWithSampleRate: Self.sampleRate, channels: 1) else { return }
-        let session = AVAudioSession.sharedInstance()
+        // Medium, nicht mit anderen Apps gemischt; läuft die Geräusch-Aufnahme, teilen sich beide die Sitzung.
+        AudioSessionUse.playing = true
         do {
-            // Medium, nicht mit anderen Apps gemischt.
-            try session.setCategory(.playback, mode: .default, options: [])
-            try session.setActive(true)
+            try AudioSessionUse.activate()
         } catch {
+            AudioSessionUse.playing = false
+            AudioSessionUse.release()
             return
         }
         let state = RenderState(
@@ -99,7 +100,8 @@ final class SoundPlayer {
         do {
             try engine.start()
         } catch {
-            try? session.setActive(false, options: .notifyOthersOnDeactivation)
+            AudioSessionUse.playing = false
+            AudioSessionUse.release()
             return
         }
         generation += 1
@@ -131,7 +133,9 @@ final class SoundPlayer {
         releaseEngine()
         playing = nil
         endsAt = nil
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        // Sitzung frei, ausser die Geräusch-Aufnahme läuft noch.
+        AudioSessionUse.playing = false
+        AudioSessionUse.release()
     }
 
     private func releaseEngine() {

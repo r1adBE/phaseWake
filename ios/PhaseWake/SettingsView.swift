@@ -33,8 +33,15 @@ struct SettingsView: View {
                 Section {
                     Toggle(L("bedtime_title"), isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
                     Text(L("bedtime_text", Bedtime.leadMinutes)).font(.footnote).foregroundStyle(.secondary)
+                    Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
+                    Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
                 }
                 CustomNotesSection()
+                RoutineSection()
+                Section(L("sound_rec_title")) {
+                    Toggle(L("sound_rec_default"), isOn: Binding(get: { model.soundRecDefault }, set: { on in Task { await model.setSoundRecDefault(on) } }))
+                    Text(L("sound_rec_default_hint")).font(.footnote).foregroundStyle(.secondary)
+                }
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
                     ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {

@@ -380,6 +380,196 @@
           }
         }
       }
+    },
+    "NSMicrophoneUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يسجّل Phase Wake ليلاً مقاطع قصيرة من الشخير والكلام أثناء النوم إذا فعّلت ذلك. تبقى على iPhone وتُحذف بعد 7 أيام."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake v noci nahrává krátké úryvky chrápání a mluvení ze spaní, pokud to zapneš. Zůstanou v tvém iPhonu a po 7 dnech se smažou."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake optager korte klip af snorken og søvnsnak om natten, hvis du slår det til. De bliver på din iPhone og slettes efter 7 dage."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake nimmt nachts kurze Ausschnitte von Schnarchen und Sprechen im Schlaf auf, wenn du es einschaltest. Sie bleiben auf deinem iPhone und werden nach 7 Tagen gelöscht."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake ηχογραφεί τη νύχτα σύντομα αποσπάσματα από ροχαλητό και ομιλία στον ύπνο, αν το ενεργοποιήσεις. Μένουν στο iPhone σου και διαγράφονται μετά από 7 ημέρες."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake graba por la noche fragmentos cortos de ronquidos y de hablar en sueños si lo activas. Se quedan en tu iPhone y se borran después de 7 días."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگر روشنش کنی، Phase Wake شب‌ها تکه‌های کوتاهی از خروپف و حرف زدن در خواب ضبط می‌کند. آن‌ها روی iPhone تو می‌مانند و پس از ۷ روز پاک می‌شوند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake nauhoittaa öisin lyhyitä pätkiä kuorsauksesta ja unissa puhumisesta, jos otat sen käyttöön. Ne pysyvät iPhonessasi ja poistetaan 7 päivän kuluttua."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu l’actives, Phase Wake enregistre la nuit de courts extraits de ronflements et de paroles pendant le sommeil. Ils restent sur ton iPhone et sont supprimés après 7 jours."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אם תפעיל את זה, Phase Wake מקליט בלילה קטעים קצרים של נחירות ודיבור מתוך שינה. הם נשארים ב-iPhone שלך ונמחקים אחרי 7 ימים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर तुम इसे चालू करो, तो Phase Wake रात में खर्राटों और नींद में बोलने के छोटे अंश रिकॉर्ड करता है। ये तुम्हारे iPhone पर ही रहते हैं और 7 दिन बाद मिटा दिए जाते हैं।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha bekapcsolod, a Phase Wake éjjel rövid részleteket rögzít a horkolásról és az alvás közbeni beszédről. Ezek az iPhone-odon maradnak, és 7 nap után törlődnek."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika kamu menyalakannya, Phase Wake merekam potongan pendek dengkuran dan mengigau di malam hari. Rekaman tetap di iPhone-mu dan dihapus setelah 7 hari."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se lo attivi, Phase Wake registra di notte brevi estratti di russamento e di parole nel sonno. Restano sul tuo iPhone e vengono eliminati dopo 7 giorni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オンにすると、Phase Wake は夜間のいびきや寝言を短く録音します。録音は iPhone に保存され、7日後に削除されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "켜 두면 Phase Wake가 밤에 코골이와 잠꼬대를 짧게 녹음해. 녹음은 iPhone에만 남고 7일 후에 삭제돼."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika kamu menghidupkannya, Phase Wake merakam klip pendek dengkuran dan bercakap semasa tidur pada waktu malam. Klip kekal pada iPhone kamu dan dipadam selepas 7 hari."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake tar opp korte klipp av snorking og søvnprat om natten hvis du slår det på. De blir på iPhonen din og slettes etter 7 dager."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake neemt ’s nachts korte fragmenten van snurken en praten in je slaap op als je dit aanzet. Ze blijven op je iPhone en worden na 7 dagen verwijderd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeśli to włączysz, Phase Wake nagrywa w nocy krótkie fragmenty chrapania i mówienia przez sen. Zostają na twoim iPhonie i są usuwane po 7 dniach."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você ativar, o Phase Wake grava à noite trechos curtos de ronco e de fala durante o sono. Eles ficam no seu iPhone e são apagados após 7 dias."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se ativares, o Phase Wake grava à noite excertos curtos de ressonar e de falar a dormir. Ficam no teu iPhone e são apagados ao fim de 7 dias."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dacă activezi asta, Phase Wake înregistrează noaptea fragmente scurte de sforăit și vorbit prin somn. Rămân pe iPhone-ul tău și sunt șterse după 7 zile."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если ты включишь эту функцию, Phase Wake будет ночью записывать короткие фрагменты храпа и разговоров во сне. Они остаются на твоём iPhone и удаляются через 7 дней."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake spelar in korta klipp av snarkning och sömnprat på natten om du slår på det. De stannar på din iPhone och raderas efter 7 dagar."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หากเปิดใช้ Phase Wake จะบันทึกเสียงกรนและการละเมอพูดช่วงสั้นๆ ในตอนกลางคืน คลิปจะอยู่บน iPhone ของคุณเท่านั้นและจะถูกลบหลังจาก 7 วัน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açarsan Phase Wake geceleri horlama ve uykuda konuşmadan kısa kesitler kaydeder. Bunlar iPhone’unda kalır ve 7 gün sonra silinir."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Якщо ти це ввімкнеш, Phase Wake уночі записуватиме короткі фрагменти хропіння та розмов уві сні. Вони залишаються на твоєму iPhone і видаляються через 7 днів."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nếu bạn bật, Phase Wake sẽ ghi lại các đoạn ngắn tiếng ngáy và nói mớ vào ban đêm. Chúng chỉ lưu trên iPhone của bạn và bị xóa sau 7 ngày."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开启后，Phase Wake 会在夜间录下打鼾和说梦话的简短片段。片段只保存在你的 iPhone 上，7 天后自动删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟後，Phase Wake 會在夜間錄下打鼾和說夢話的簡短片段。片段只保存在你的 iPhone 上，7 天後自動刪除。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

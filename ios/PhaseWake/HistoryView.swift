@@ -20,12 +20,16 @@ struct HistoryView: View {
                         }
                         .card()
                     } else {
+                        if let weekly {
+                            WeeklyCard(summary: weekly)
+                        }
                         stats
                         TrendsCard(
                             trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
-                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } }
+                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } },
+                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested)
                         )
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight, calendar: .current))
                         ForEach(model.nights.reversed(), id: \.listId) { night in
@@ -65,6 +69,15 @@ struct HistoryView: View {
             let date = SleepNotes.nightDate(sleep.start, calendar: .current)
             out[date] = max(out[date] ?? 0, sleep.asleepMinutes)
         }
+    }
+
+    /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
+    private var weekly: WeeklySummary? {
+        let today = NightDate.today(Date(), calendar: .current)
+        guard WeeklySummary.cardVisible(today: today) else { return nil }
+        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .current,
+                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today))
+        return summary.hasData ? summary : nil
     }
 
     /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
@@ -115,6 +128,8 @@ private struct NightCard: View {
             }
             NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
+            NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
         .card()
         .accessibilityElement(children: .combine)

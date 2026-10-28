@@ -195,7 +195,10 @@ struct EditorView: View {
             sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
             sound: existing?.sound ?? "",
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
-            sunrise: sunrise
+            sunrise: sunrise,
+            // Weckaufgabe gibt es auf Apple nicht (AlarmKit-Stopp lässt sich nicht ersetzen): nicht
+            // anbieten, einen vorhandenen Wert aber unverändert behalten.
+            wakeTask: existing?.wakeTask ?? WakeTask.none
         )
     }
 

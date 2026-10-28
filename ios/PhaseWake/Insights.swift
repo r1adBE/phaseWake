@@ -88,6 +88,8 @@ struct TrendsCard: View {
     let goalWeek: (reached: Int, total: Int)?
     let healthConnected: Bool
     let onConnectHealth: () -> Void
+    /// Gewohnheiten (Regelmässigkeit, Serien, Abendroutine), fertig formuliert.
+    var habits: [String] = []
 
     /// Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten.
     private static let irregularMinutes = 45
@@ -113,6 +115,7 @@ struct TrendsCard: View {
             let last = trends.feelingLastWeek.map { " · " + L("trends_feeling_change", decimal($0)) } ?? ""
             out.append(L("trends_feeling", decimal(feeling)) + last)
         }
+        out += habits
         return out
     }
 
