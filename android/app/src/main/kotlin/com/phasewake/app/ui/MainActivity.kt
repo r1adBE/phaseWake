@@ -60,6 +60,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.phasewake.app.R
+import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WindowAdvice
@@ -211,6 +212,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 HomeScreen(
                     alarms = alarms,
                     lastNight = nights?.lastOrNull(),
+                    missHint = nights?.lastOrNull()?.let { last -> MissHint.of(alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },
                     check = check,
                     onFix = { item ->
                         when (item) {

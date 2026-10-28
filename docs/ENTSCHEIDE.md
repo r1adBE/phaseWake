@@ -13,3 +13,4 @@ Hier steht, was während der Arbeit ohne Rückfrage entschieden wurde (jeweils d
 | 28.10.2026 | Morgenbericht | Gilt 12 Stunden nach dem Wecken; danach heisst die Karte wieder «Letzte Nacht». Befinden-Frage nur in dieser Zeit. | Abends nach dem Befinden am Morgen zu fragen, wäre ungenau. |
 | 28.10.2026 | Trends-Schwellen | Wochenwerte ab 3 Nächten, Schwankung der Einschlafzeit ab 5 Nächten in 14 Tagen; Hinweis auf regelmässige Schlafzeiten ab ± 45 Min. | Lieber nichts sagen als etwas Zufälliges. |
 | 28.10.2026 | Apple-eigene Texte | In `ios/Strings`, gleiches Format wie Android, gleiche Prüfung, in die Kataloge erzeugt. | Eine Werkzeugkette für alle Texte. |
+| 28.10.2026 | Kein Fenster über 30 Min | Nach 3 Nächten ohne leichten Schlaf nur ein Hinweis zur Ursache, kein längeres Fenster. | Entschieden mit r1AD: gleiche Grenze wie Apple Watch, in den letzten 30 Min gibt es fast immer leichten Schlaf. |

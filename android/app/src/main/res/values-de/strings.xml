@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Schlafdauer und Regelmässigkeit kommen aus Health Connect.</string>
     <string name="settings_support">Phase Wake unterstützen</string>
     <string name="settings_support_text">Phase Wake ist gratis, Open Source und ohne Werbung. Wenn es dir gefällt, kannst du die Entwicklung unterstützen.</string>
+    <string name="hint_title">%1$d Nächte ohne leichten Schlaf</string>
+    <string name="hint_gaps">Die Messung hatte Lücken. War die Uhr nachts am Laden oder abgelegt?</string>
+    <string name="hint_heart">Der Puls fehlte. Trag die Uhr nachts etwas enger.</string>
+    <string name="hint_calm">Die Messung war vollständig – du hast einfach ruhig geschlafen. Phase Wake weckt dich dann zuverlässig zur Zielzeit.</string>
 </resources>

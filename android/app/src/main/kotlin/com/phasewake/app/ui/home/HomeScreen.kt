@@ -5,6 +5,8 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.clickable
+import com.phasewake.app.core.MissHint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -80,6 +82,7 @@ fun HomeScreen(
     onEdit: (String) -> Unit,
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
+    missHint: MissHint? = null,
 ) {
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
@@ -107,7 +110,7 @@ fun HomeScreen(
             item(key = "check") { NightCheckCard(check, cardColor(), onFix) }
         }
         if (lastNight != null) {
-            item(key = "night") { LastNightCard(lastNight, now, onFeeling = { onFeeling(lastNight, it) }) }
+            item(key = "night") { LastNightCard(lastNight, now, missHint, onFeeling = { onFeeling(lastNight, it) }) }
         }
         if (alarms.isNotEmpty()) {
             item(key = "header") {
@@ -223,7 +226,7 @@ private fun greeting(now: Instant, zone: ZoneId): Int = when (now.atZone(zone).h
 }
 
 @Composable
-private fun LastNightCard(night: NightRecord, now: Instant, onFeeling: (Int) -> Unit) {
+private fun LastNightCard(night: NightRecord, now: Instant, missHint: MissHint?, onFeeling: (Int) -> Unit) {
     // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
     val morning = Duration.between(night.wokeAt, now) < MORNING
     val askFeeling = morning && night.feeling == null
@@ -254,6 +257,28 @@ private fun LastNightCard(night: NightRecord, now: Instant, onFeeling: (Int) -> 
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            missHint?.let { hint ->
+                Column(
+                    Modifier
+                        .padding(top = 12.dp)
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.small)
+                        .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f))
+                        .padding(12.dp),
+                ) {
+                    Text(stringResource(R.string.hint_title, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
+                    Text(
+                        stringResource(
+                            when (hint) {
+                                MissHint.GAPS -> R.string.hint_gaps
+                                MissHint.HEART_MISSING -> R.string.hint_heart
+                                MissHint.CALM -> R.string.hint_calm
+                            },
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+            }
             AnimatedVisibility(askFeeling) {
                 Column(Modifier.padding(top = 14.dp)) {
                     FeelingPicker(onPick = onFeeling)

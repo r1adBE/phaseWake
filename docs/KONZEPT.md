@@ -102,6 +102,7 @@ Alles in v1, nichts auf später verschoben:
 - Tile und Komplikation auf der Uhr
 - Nacht-Check auf der Startseite, sobald ein Wecker ansteht: Uhr erreichbar, Mitteilungen und Vollbild-Wecker erlaubt (iPhone: AlarmKit), «Nicht stören» lässt Wecker durch, Handy-Akku über 20 % oder am Laden
 - Morgenbericht: Weckgrund, Datenqualität (Bewegung und Puls / nur Bewegung / Lücken) und Befinden 1–5 mit einem Tipp; Befinden im Verlauf, im Export und in den Trends
+- Hinweis nach 3 Nächten in Folge ohne leichten Schlaf trotz 30-Min-Fenster: wahrscheinliche Ursache aus der Datenqualität (Lücken → Uhr abgelegt/am Laden, Puls fehlte → enger tragen, vollständig → ruhiger Schlaf, Wecken zur Zielzeit ist richtig). Das Fenster bleibt höchstens 30 Min.
 - Trends im Verlauf: Ø Schlaf der letzten 7 Tage gegenüber der Vorwoche und Schwankung der Einschlafzeit (aus Health Connect bzw. Apple Health, je mind. 3 bzw. 5 Nächte), Ø Befinden; ohne genug Daten keine Aussage
 - Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone im Nachttisch-Modus (App bleibt nachts offen, Bildschirm schwarz bis zum Licht), weil iOS bei gesperrtem Bildschirm keinen eigenen Vollbildschirm erlaubt
 - anonymer Export des Verlaufs (CSV)

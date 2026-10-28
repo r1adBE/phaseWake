@@ -95,3 +95,37 @@ class InsightsTest {
         assertEquals(9, Trends.compute(emptyList(), sleeps, now, zone).bedtimeSpreadMinutes)
     }
 }
+
+class MissHintTest {
+    private val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
+    private val start = Instant.parse("2026-10-20T05:30:00Z")
+
+    private fun night(day: Long, reason: WakeReason = WakeReason.DEADLINE, hr: Double? = 55.0, motion: Double? = 0.0005, id: String = "a") =
+        NightRecord(
+            alarmId = id,
+            windowStart = start.plus(Duration.ofDays(day)),
+            target = start.plus(Duration.ofDays(day)).plusSeconds(1800),
+            wokeAt = start.plus(Duration.ofDays(day)).plusSeconds(1800),
+            reason = reason,
+            snoozes = 0,
+            epochs = List(60) { Epoch(motion, hr) },
+        )
+
+    @Test
+    fun needsThreeDeadlineNightsWithFullWindow() {
+        val three = listOf(night(0), night(1), night(2))
+        assertEquals(MissHint.CALM, MissHint.of(spec, three))
+        assertNull(MissHint.of(spec, three.take(2)))
+        assertNull(MissHint.of(spec.copy(windowMinutes = 20), three))
+        assertNull(MissHint.of(spec, three + night(3, WakeReason.LIGHT_SLEEP)))
+        assertNull(MissHint.of(null, three))
+        // Nächte anderer Wecker zählen nicht.
+        assertNull(MissHint.of(spec, listOf(night(0), night(1), night(2, id = "b"))))
+    }
+
+    @Test
+    fun causeFollowsDataQuality() {
+        assertEquals(MissHint.HEART_MISSING, MissHint.of(spec, listOf(night(0, hr = null), night(1, hr = null), night(2))))
+        assertEquals(MissHint.GAPS, MissHint.of(spec, listOf(night(0, motion = null), night(1, motion = null), night(2, hr = null))))
+    }
+}

@@ -128,3 +128,36 @@ data class Trends(
         }
     }
 }
+
+/**
+ * Hinweis, wenn trotz vollem Weckfenster mehrere Nächte nacheinander erst zur Zielzeit geweckt
+ * wurde. Ein grösseres Fenster schlägt [WindowAdvice] vor; dieser Hinweis nennt die
+ * wahrscheinliche Ursache aus der Datenqualität.
+ */
+enum class MissHint {
+    /** Lücken in der Messung: Uhr am Laden oder abgelegt. */
+    GAPS,
+
+    /** Bewegung vollständig, Puls fehlte meist: Uhr sitzt locker. */
+    HEART_MISSING,
+
+    /** Messung vollständig: ruhiger Schlaf; Wecken zur Zielzeit ist dann richtig. */
+    CALM;
+
+    companion object {
+        const val NIGHTS: Int = 3
+
+        fun of(spec: AlarmSpec?, nights: List<NightRecord>): MissHint? {
+            if (spec == null || spec.windowMinutes < AlarmSpec.MAX_WINDOW_MINUTES) return null
+            val recent = nights.filter { it.alarmId == spec.id }.sortedBy { it.windowStart }.takeLast(NIGHTS)
+            if (recent.size < NIGHTS || recent.any { it.reason != WakeReason.DEADLINE }) return null
+            val qualities = recent.map { NightQuality.of(it) }
+            val majority = NIGHTS / 2 + 1
+            return when {
+                qualities.count { it == DataQuality.PARTIAL || it == DataQuality.NONE } >= majority -> GAPS
+                qualities.count { it == DataQuality.MOTION_ONLY } >= majority -> HEART_MISSING
+                else -> CALM
+            }
+        }
+    }
+}

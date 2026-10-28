@@ -168,4 +168,8 @@
     <string name="trends_health_hint">Sleep duration and regularity come from Health Connect.</string>
     <string name="settings_support">Support Phase Wake</string>
     <string name="settings_support_text">Phase Wake is free, open source and has no ads. If you like it, you can support its development.</string>
+    <string name="hint_title">%1$d nights without light sleep</string>
+    <string name="hint_gaps">There were gaps in the measurement. Was the watch charging or off at night?</string>
+    <string name="hint_heart">Your heart rate was missing. Wear the watch a little tighter at night.</string>
+    <string name="hint_calm">The measurement was complete – you simply slept calmly. Phase Wake then reliably wakes you at the target time.</string>
 </resources>

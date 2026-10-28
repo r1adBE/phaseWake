@@ -80,3 +80,30 @@ final class InsightsTests: XCTestCase {
         XCTAssertEqual(Trends.compute(nights: [], sleeps: sleeps, now: now, calendar: utc).bedtimeSpreadMinutes, 9)
     }
 }
+
+/// Gleiche Fälle wie `MissHintTest` (Kotlin).
+final class MissHintTests: XCTestCase {
+    private let spec = try! AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 30)
+    private let start = ISO8601DateFormatter().date(from: "2026-10-20T05:30:00Z")!
+
+    private func night(_ day: Double, _ reason: WakeReason = .deadline, hr: Double? = 55, motion: Double? = 0.0005, id: String = "a") -> NightRecord {
+        let ws = start.addingTimeInterval(day * 86_400)
+        return NightRecord(alarmId: id, windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1800), reason: reason, snoozes: 0,
+                           epochs: Array(repeating: Epoch(motion: motion, heartRate: hr), count: 60))
+    }
+
+    func testNeedsThreeDeadlineNightsWithFullWindow() throws {
+        let three = [night(0), night(1), night(2)]
+        XCTAssertEqual(MissHint.of(spec, nights: three), .calm)
+        XCTAssertNil(MissHint.of(spec, nights: Array(three.prefix(2))))
+        XCTAssertNil(MissHint.of(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 20), nights: three))
+        XCTAssertNil(MissHint.of(spec, nights: three + [night(3, .lightSleep)]))
+        XCTAssertNil(MissHint.of(nil, nights: three))
+        XCTAssertNil(MissHint.of(spec, nights: [night(0), night(1), night(2, id: "b")]))
+    }
+
+    func testCauseFollowsDataQuality() {
+        XCTAssertEqual(MissHint.of(spec, nights: [night(0, hr: nil), night(1, hr: nil), night(2)]), .heartMissing)
+        XCTAssertEqual(MissHint.of(spec, nights: [night(0, motion: nil), night(1, motion: nil), night(2, hr: nil)]), .gaps)
+    }
+}

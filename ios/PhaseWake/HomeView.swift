@@ -34,7 +34,11 @@ struct HomeView: View {
                                     NightstandButton { nightstand = true }
                                 }
                                 if let night = model.nights.last {
-                                    LastNightCard(night: night, now: context.date) { model.setFeeling($0, for: night) }
+                                    LastNightCard(
+                                        night: night,
+                                        now: context.date,
+                                        hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights)
+                                    ) { model.setFeeling($0, for: night) }
                                 }
                             }
                         }
@@ -173,6 +177,7 @@ private struct NightstandButton: View {
 private struct LastNightCard: View {
     let night: NightRecord
     let now: Date
+    let hint: MissHint?
     let onFeeling: (Int) -> Void
 
     /// So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen».
@@ -189,6 +194,17 @@ private struct LastNightCard: View {
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 46)
             Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if let hint {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(L("hint_title", MissHint.nights)).font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                    Text(L(hint == .gaps ? "hint_gaps" : hint == .heartMissing ? "hint_heart" : "hint_calm"))
+                        .font(Fonts.manrope(12, relativeTo: .caption))
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.accentColor.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
+                .padding(.top, 6)
+            }
             if isMorning && night.feeling == nil {
                 FeelingPicker(onPick: onFeeling).padding(.top, 8)
             }

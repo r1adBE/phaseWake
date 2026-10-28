@@ -105,3 +105,21 @@ public struct Trends: Equatable, Sendable {
         )
     }
 }
+
+/// Hinweis nach mehreren Nächten ohne leichten Schlaf trotz vollem Fenster. Identisch zu `MissHint` (Kotlin).
+public enum MissHint: String, Sendable {
+    case gaps = "GAPS", heartMissing = "HEART_MISSING", calm = "CALM"
+
+    public static let nights = 3
+
+    public static func of(_ spec: AlarmSpec?, nights: [NightRecord]) -> MissHint? {
+        guard let spec, spec.windowMinutes >= AlarmSpec.maxWindowMinutes else { return nil }
+        let recent = Array(nights.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }.suffix(Self.nights))
+        guard recent.count >= Self.nights, recent.allSatisfy({ $0.reason == .deadline }) else { return nil }
+        let qualities = recent.map { NightQuality.of($0) }
+        let majority = Self.nights / 2 + 1
+        if qualities.filter({ $0 == .partial || $0 == .none }).count >= majority { return .gaps }
+        if qualities.filter({ $0 == .motionOnly }).count >= majority { return .heartMissing }
+        return .calm
+    }
+}
