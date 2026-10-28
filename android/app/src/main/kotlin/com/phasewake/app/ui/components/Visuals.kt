@@ -32,8 +32,14 @@ import kotlin.math.sin
  * Rands) auslaufen und im pulsierenden Weckpunkt enden.
  */
 @Composable
-fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f) {
-    val brand = PhaseWakeTheme.brand
+fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNight: Boolean = false) {
+    val themed = PhaseWakeTheme.brand
+    // Auf dem Nachthimmel immer die hellen Nachtfarben, unabhängig vom Hell/Dunkel-Modus.
+    val brand = if (onNight) {
+        themed.copy(heroWindow = Color.White.copy(alpha = 0.08f), wave = Night.Wave, echo = Night.WaveEcho, dot = Color.White)
+    } else {
+        themed
+    }
     val transition = rememberInfiniteTransition(label = "hero")
     val phase by transition.animateFloat(
         0f, (2 * PI).toFloat(), infiniteRepeatable(tween(7000, easing = LinearEasing)), label = "phase",

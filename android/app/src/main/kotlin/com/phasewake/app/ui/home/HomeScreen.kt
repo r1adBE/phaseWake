@@ -16,9 +16,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -33,6 +36,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.animation.core.tween
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -43,10 +49,12 @@ import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.ui.Format
+import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.HeroWave
+import com.phasewake.app.ui.components.LogoMark
+import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.NightBars
 import com.phasewake.app.ui.history.nightSummary
-import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
@@ -78,16 +86,12 @@ fun HomeScreen(
     val plan = remember(alarms, now) { AlarmSchedule.earliestPlan(alarms, now, zone) }
 
     LazyColumn(
-        contentPadding = contentPadding,
+        contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding()),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
-            if (plan != null) {
-                HeroCard(plan, alarms.first { it.id == plan.alarmId }, now, zone, onClick = { onEdit(plan.alarmId) })
-            } else {
-                EmptyHero(onAdd)
-            }
+            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, onAdd = onAdd, onEdit = onEdit)
         }
         if (needsPermission) {
             item(key = "permission") {
@@ -106,7 +110,7 @@ fun HomeScreen(
                     stringResource(R.string.home_alarms),
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(start = 4.dp, top = 8.dp),
+                    modifier = Modifier.padding(start = 20.dp, top = 8.dp),
                 )
             }
             items(alarms, key = { it.id }) { alarm ->
@@ -117,70 +121,80 @@ fun HomeScreen(
     }
 }
 
+/**
+ * Kopfbereich im Nachthimmel-Verlauf, randlos bis unter die Statusleiste: Logo, Begrüssung und
+ * das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
+ */
 @Composable
-private fun HeroCard(plan: WakePlan, alarm: AlarmSpec, now: Instant, zone: ZoneId, onClick: () -> Unit) {
-    val brand = PhaseWakeTheme.brand
+private fun Header(plan: WakePlan?, alarm: AlarmSpec?, now: Instant, zone: ZoneId, onAdd: () -> Unit, onEdit: (String) -> Unit) {
     val context = LocalContext.current
     var appeared by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { appeared = true }
-    AnimatedVisibility(appeared, enter = fadeIn() + slideInVertically { it / 6 }) {
-        Card(
-            onClick = onClick,
-            shape = MaterialTheme.shapes.large,
-            colors = CardDefaults.cardColors(containerColor = brand.hero, contentColor = brand.onHero),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Column(Modifier.padding(20.dp).animateContentSize()) {
-                val day = plan.target.atZone(zone).toLocalDate()
-                val dayText = stringResource(if (day == LocalDate.now(zone)) R.string.home_next_today else R.string.home_next_tomorrow)
+    AnimatedNight(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp))
+            .then(if (plan != null) Modifier.clickable { onEdit(plan.alarmId) } else Modifier),
+    ) {
+        Column(Modifier.statusBarsPadding().padding(start = 22.dp, end = 22.dp, top = 18.dp, bottom = 24.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                LogoMark(34.dp)
                 Text(
-                    listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = brand.onHeroMuted,
+                    "Phase Wake",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.White,
+                    modifier = Modifier.padding(start = 10.dp),
                 )
-                Text(
-                    Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone),
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.padding(top = 4.dp),
-                )
-                Text(
-                    stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart))),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = brand.onHeroMuted,
-                )
-                HeroWave(
-                    Modifier.fillMaxWidth().height(72.dp).padding(top = 14.dp),
-                    windowFraction = 0.32f,
-                )
+            }
+            AnimatedVisibility(appeared, enter = fadeIn(tween(500)) + slideInVertically(tween(500)) { it / 4 }) {
+                Column(Modifier.padding(top = 28.dp)) {
+                    Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = Night.Muted)
+                    if (plan != null && alarm != null) {
+                        val day = plan.target.atZone(zone).toLocalDate()
+                        val dayText = stringResource(if (day == LocalDate.now(zone)) R.string.home_next_today else R.string.home_next_tomorrow)
+                        Text(
+                            Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone),
+                            style = MaterialTheme.typography.displayMedium,
+                            color = Color.White,
+                            modifier = Modifier.padding(top = 2.dp),
+                        )
+                        Text(
+                            listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · ") + " · " +
+                                stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart))),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Night.Muted,
+                        )
+                        HeroWave(Modifier.fillMaxWidth().height(76.dp).padding(top = 18.dp), windowFraction = 0.32f, onNight = true)
+                    } else {
+                        Text(
+                            stringResource(R.string.home_no_alarm_title),
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = Color.White,
+                            modifier = Modifier.padding(top = 2.dp),
+                        )
+                        Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
+                        HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
+                        Button(
+                            onClick = onAdd,
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Night.Bottom),
+                        ) {
+                            Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.home_add_alarm))
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-@Composable
-private fun EmptyHero(onAdd: () -> Unit) {
-    val brand = PhaseWakeTheme.brand
-    Card(
-        shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.cardColors(containerColor = brand.hero, contentColor = brand.onHero),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(Modifier.padding(20.dp)) {
-            Text(stringResource(R.string.home_no_alarm_title), style = MaterialTheme.typography.headlineSmall)
-            Text(
-                stringResource(R.string.home_no_alarm_text),
-                style = MaterialTheme.typography.bodyMedium,
-                color = brand.onHeroMuted,
-                modifier = Modifier.padding(top = 6.dp),
-            )
-            HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 12.dp))
-            Button(onClick = onAdd) {
-                Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
-                Spacer(Modifier.width(8.dp))
-                Text(stringResource(R.string.home_add_alarm))
-            }
-        }
-    }
+/** «Guten Morgen» bis 11, «Guten Tag» bis 17, «Guten Abend» bis 22, danach «Gute Nacht». */
+private fun greeting(now: Instant, zone: ZoneId): Int = when (now.atZone(zone).hour) {
+    in 5..10 -> R.string.greeting_morning
+    in 11..16 -> R.string.greeting_day
+    in 17..21 -> R.string.greeting_evening
+    else -> R.string.greeting_night
 }
 
 @Composable
@@ -188,7 +202,7 @@ private fun WarningCard(title: Int, text: Int, action: Int, onClick: () -> Unit)
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -208,7 +222,7 @@ private fun LastNightCard(night: NightRecord) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -237,7 +251,7 @@ private fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, 
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(
             Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp),

@@ -110,4 +110,8 @@
     <string name="dnd_title">«Nicht stören» blockiert Wecker</string>
     <string name="dnd_text">Erlaube Wecker bei «Nicht stören», sonst bleibt dein Handy still.</string>
     <string name="dnd_action">Einstellungen öffnen</string>
+    <string name="greeting_morning">Guten Morgen</string>
+    <string name="greeting_day">Guten Tag</string>
+    <string name="greeting_evening">Guten Abend</string>
+    <string name="greeting_night">Gute Nacht</string>
 </resources>

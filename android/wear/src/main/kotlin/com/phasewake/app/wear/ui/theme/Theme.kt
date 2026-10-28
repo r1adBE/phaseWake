@@ -1,6 +1,7 @@
 package com.phasewake.app.wear.ui.theme
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -82,3 +83,25 @@ private val typography = Typography().let { t ->
 fun PhaseWakeTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = colors, typography = typography, content = content)
 }
+
+/**
+ * Nachthimmel wie auf dem Handy: Tiefblau mit Lichtschein oben rechts. [strength] 0–1: auf dem
+ * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll.
+ */
+fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compose.ui.Modifier =
+    this.then(
+        androidx.compose.ui.Modifier.drawBehind {
+            drawRect(
+                androidx.compose.ui.graphics.Brush.verticalGradient(
+                    listOf(Color(0xFF0B2170).copy(alpha = strength), Color(0xFF050D2B).copy(alpha = strength), Color.Black),
+                ),
+            )
+            drawRect(
+                androidx.compose.ui.graphics.Brush.radialGradient(
+                    listOf(Color(0xFF3A74FF).copy(alpha = 0.5f * strength), Color.Transparent),
+                    center = androidx.compose.ui.geometry.Offset(size.width * 0.8f, size.height * 0.12f),
+                    radius = size.maxDimension * 0.65f,
+                ),
+            )
+        },
+    )

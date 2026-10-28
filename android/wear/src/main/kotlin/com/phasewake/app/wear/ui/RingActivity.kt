@@ -8,7 +8,6 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -49,6 +48,7 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.components.PulsingDot
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
+import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.RingUi
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
@@ -87,7 +87,7 @@ private fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit) 
     val haptics = LocalHapticFeedback.current
     val holdLabel = stringResource(R.string.ring_hold_to_stop)
 
-    Box(Modifier.fillMaxSize().background(Brand.Night), contentAlignment = Alignment.Center) {
+    Box(Modifier.fillMaxSize().nightGlow(), contentAlignment = Alignment.Center) {
         // Fortschritt des Haltens als Ring am Rand.
         Canvas(Modifier.fillMaxSize()) {
             val stroke = 5.dp.toPx()

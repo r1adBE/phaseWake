@@ -33,6 +33,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
+import com.phasewake.app.ui.components.Intro
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -129,6 +137,16 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
         onPauseOrDispose { }
     }
 
+    // Kopfbereich der Startseite ist immer Nachtblau: dort helle Statusleisten-Symbole.
+    val view = LocalView.current
+    val lightBars = themeMode == ThemeMode.LIGHT || (themeMode == ThemeMode.SYSTEM && !isSystemInDarkTheme())
+    SideEffect {
+        val window = (view.context as? android.app.Activity)?.window ?: return@SideEffect
+        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars && route != Routes.ALARMS
+    }
+    var intro by rememberSaveable { mutableStateOf(true) }
+
+    Box(Modifier.fillMaxSize()) {
     Scaffold(
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
@@ -228,6 +246,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode) {
                 )
             }
         }
+    }
+    if (intro) Intro(onFinished = { intro = false })
     }
 }
 

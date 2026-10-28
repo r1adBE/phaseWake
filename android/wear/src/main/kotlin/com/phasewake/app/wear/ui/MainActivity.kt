@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -52,6 +53,7 @@ import com.phasewake.app.wear.ui.components.FlowingWave
 import com.phasewake.app.wear.ui.components.WindowRing
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
+import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
@@ -114,7 +116,7 @@ private fun HomeScreen() {
     val listState = rememberScalingLazyListState()
     AppScaffold {
         ScreenScaffold(scrollState = listState) {
-            ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
+            ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
                 item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone) }
                 if (sleepAlarm != null) {
                     item {

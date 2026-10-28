@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -34,6 +33,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.ui.Format
+import com.phasewake.app.ui.components.AnimatedNight
+import com.phasewake.app.ui.components.Night as NightColors
 import com.phasewake.app.ui.components.PulsingDot
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
@@ -61,11 +62,10 @@ class PhoneRingActivity : ComponentActivity() {
     }
 }
 
-private val Night = Color(0xFF0B1A4A)
+private val Night = NightColors.Bottom
 
 @Composable
 private fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit) {
-    val brand = PhaseWakeTheme.brand
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
         while (true) {
@@ -73,15 +73,16 @@ private fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnoo
             now = Instant.now()
         }
     }
+    AnimatedNight(Modifier.fillMaxSize()) {
     Column(
-        Modifier.fillMaxSize().background(Night).safeDrawingPadding().padding(24.dp),
+        Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        PulsingDot(Modifier.size(180.dp), color = brand.wave, dot = brand.dot)
+        PulsingDot(Modifier.size(180.dp), color = NightColors.Wave, dot = Color.White)
         Spacer(Modifier.height(24.dp))
         Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = Color.White)
-        Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = brand.onHeroMuted)
+        Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = NightColors.Muted)
         Spacer(Modifier.height(48.dp))
         when (state) {
             is PhoneRingService.State.Ringing -> {
@@ -101,5 +102,6 @@ private fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnoo
                 Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = Color.White)
             PhoneRingService.State.Idle -> Unit
         }
+    }
     }
 }
