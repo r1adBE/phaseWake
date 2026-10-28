@@ -14,6 +14,9 @@ object DataLayer {
     /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet (gestoppt oder geschlummert). */
     const val PATH_STOP = "/phasewake/stop"
 
+    /** Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. */
+    const val PATH_SNOOZE = "/phasewake/snooze"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
 

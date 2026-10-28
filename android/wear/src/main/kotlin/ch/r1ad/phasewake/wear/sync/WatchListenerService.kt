@@ -28,6 +28,9 @@ class WatchListenerService : WearableListenerService() {
     }
 
     override fun onMessageReceived(event: MessageEvent) {
-        if (event.path == DataLayer.PATH_STOP) WakeService.command(this, WakeService.ACTION_DISMISS)
+        when (event.path) {
+            DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS)
+            DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_SNOOZE)
+        }
     }
 }
