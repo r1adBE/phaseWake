@@ -78,7 +78,7 @@ private struct NextWindow: View {
                         .font(Fonts.manrope(20, .bold, relativeTo: .title3))
                         .minimumScaleFactor(0.7)
                         .lineLimit(1)
-                    Text(L("home_window_length", alarm?.windowMinutes ?? AlarmSpec.defaultWindowMinutes))
+                    Text(L("home_window_length", Int64(alarm?.windowMinutes ?? AlarmSpec.defaultWindowMinutes)))
                         .font(Fonts.manrope(11, relativeTo: .caption2))
                         .foregroundStyle(Brand.muted)
                 } else {

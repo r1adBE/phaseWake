@@ -48,6 +48,7 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SwitchButton
 import androidx.wear.compose.material3.Text
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.NightRecord
@@ -61,6 +62,7 @@ import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
+import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -85,6 +87,17 @@ private fun requiredPermissions(): List<String> = buildList {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) add(Manifest.permission.POST_NOTIFICATIONS)
 }
 
+/** Puls im Hintergrund (ab Wear OS 4); das System verlangt es getrennt und erst nach dem Pulsrecht. */
+private fun backgroundPermission(): String? = when {
+    Build.VERSION.SDK_INT >= 36 -> "android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND"
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> "android.permission.BODY_SENSORS_BACKGROUND"
+    else -> null
+}
+
+/** Das Vordergrundrecht für den Puls, ohne das es kein Hintergrundrecht gibt. */
+private fun heartRatePermission(): String =
+    if (Build.VERSION.SDK_INT >= 36) "android.permission.health.READ_HEART_RATE" else Manifest.permission.BODY_SENSORS
+
 @Composable
 private fun HomeScreen() {
     val context = LocalContext.current
@@ -108,21 +121,35 @@ private fun HomeScreen() {
     LaunchedEffect(loaded, now) { plan = app.scheduler.nextPlan() }
     val goodNightSince by app.goodNight.collectAsStateWithLifecycle()
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
-
-    fun missing() = requiredPermissions().filter {
-        ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
+    // «Gute Nacht» nur für die kommende Nacht (eingestellte Weckzeit höchstens 16 Std. entfernt).
+    fun goodNightTooFar(at: Instant): Boolean {
+        val latest = sleepAlarm?.let { AlarmSchedule.nextTarget(it, at, zone) } ?: return true
+        return Duration.between(at, latest) > WakeService.GOOD_NIGHT_MAX_AHEAD
     }
+
+    fun granted(permission: String) = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    fun missing() = requiredPermissions().filterNot(::granted)
+    // Hintergrundrecht erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es ab).
+    fun missingBackground() = backgroundPermission()?.takeIf { granted(heartRatePermission()) && !granted(it) }
     var missingPermissions by remember { mutableStateOf(missing()) }
+    var backgroundMissing by remember { mutableStateOf(missingBackground()) }
     var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
     LifecycleResumeEffect(Unit) {
         dndBlocks = DoNotDisturb.blocksAlarms(context)
         missingPermissions = missing()
+        backgroundMissing = missingBackground()
         // Neu planen meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
         app.appScope.launch { app.scheduler.reschedule() }
         onPauseOrDispose { }
     }
+    val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+        backgroundMissing = missingBackground()
+    }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         missingPermissions = missing()
+        backgroundMissing = missingBackground()
+        // Gleich danach das Hintergrundrecht: Es lässt sich nur getrennt anfragen.
+        backgroundMissing?.let { backgroundLauncher.launch(it) }
         app.appScope.launch { app.scheduler.reschedule() }
     }
     // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen aus): beim Öffnen zeigen.
@@ -138,17 +165,22 @@ private fun HomeScreen() {
         plan = plan,
         zone = zone,
         goodNightActive = goodNightSince != null,
-        permissionsMissing = missingPermissions.isNotEmpty(),
+        goodNightTooFar = goodNightTooFar(now),
+        permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null,
         dndBlocks = dndBlocks,
         onGoodNight = {
             val alarm = sleepAlarm ?: return@HomeContent
             if (goodNightSince != null) {
                 WakeService.command(context, WakeService.ACTION_GOOD_NIGHT_CANCEL)
-            } else {
+            } else if (!goodNightTooFar(Instant.now())) {
                 WakeService.goodNight(context, alarm.id)
             }
         },
-        onRequestPermissions = { launcher.launch(missingPermissions.toTypedArray()) },
+        onRequestPermissions = {
+            val background = backgroundMissing
+            if (missingPermissions.isEmpty() && background != null) backgroundLauncher.launch(background)
+            else launcher.launch(missingPermissions.toTypedArray())
+        },
         onOpenDnd = { DoNotDisturb.openSettings(context) },
         onToggle = { alarm, enabled ->
             scope.launch {
@@ -168,6 +200,7 @@ internal fun HomeContent(
     lastNight: NightRecord? = null,
     zone: ZoneId,
     goodNightActive: Boolean,
+    goodNightTooFar: Boolean = false,
     permissionsMissing: Boolean,
     dndBlocks: Boolean,
     onGoodNight: () -> Unit,
@@ -185,6 +218,7 @@ internal fun HomeContent(
                     item {
                         GoodNightButton(
                             active = goodNightActive,
+                            tooFar = goodNightTooFar && !goodNightActive,
                             sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
                             onClick = onGoodNight,
                         )
@@ -297,7 +331,7 @@ private fun LastNight(night: NightRecord, zone: ZoneId) {
 }
 
 @Composable
-private fun GoodNightButton(active: Boolean, sleepMinutes: Int, onClick: () -> Unit) {
+private fun GoodNightButton(active: Boolean, tooFar: Boolean, sleepMinutes: Int, onClick: () -> Unit) {
     val hours = sleepMinutes / 60
     val rest = sleepMinutes % 60
     val duration = if (rest == 0) {
@@ -308,6 +342,8 @@ private fun GoodNightButton(active: Boolean, sleepMinutes: Int, onClick: () -> U
     Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
+        // Weckzeit zu weit weg: Hinweis statt Messung.
+        enabled = !tooFar,
         colors = ButtonDefaults.buttonColors(
             containerColor = if (active) Brand.Deep else Brand.Echo,
             contentColor = Brand.Moon,
@@ -316,8 +352,11 @@ private fun GoodNightButton(active: Boolean, sleepMinutes: Int, onClick: () -> U
         label = { Text(stringResource(R.string.home_good_night)) },
         secondaryLabel = {
             Text(
-                if (active) stringResource(R.string.home_good_night_active)
-                else stringResource(R.string.home_good_night_hint, duration),
+                when {
+                    active -> stringResource(R.string.home_good_night_active)
+                    tooFar -> stringResource(R.string.home_good_night_too_far)
+                    else -> stringResource(R.string.home_good_night_hint, duration)
+                },
             )
         },
     )

@@ -44,4 +44,6 @@
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Anoche</string>
+    <string name="notification_open">Abrir</string>
+    <string name="home_good_night_too_far">Disponible desde 16 h antes de la alarma</string>
 </resources>

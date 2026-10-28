@@ -113,6 +113,9 @@ struct NightstandView: View {
             // App verlassen oder gesperrt: Helligkeit und Ruhezustand sofort zurück, nicht erst beim Schliessen.
             if phase == .active {
                 UIApplication.shared.isIdleTimerDisabled = true
+                // Zurück im Nachttisch-Modus: wieder abdunkeln (bzw. Licht des Sonnenaufgangs), sonst bliebe es hell.
+                savedBrightness = screen?.brightness ?? savedBrightness
+                setBrightness(progress(at: Date()).map(Sunrise.brightness) ?? 0)
             } else {
                 restoreScreen()
             }

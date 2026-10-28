@@ -57,14 +57,24 @@ def load(module: str) -> dict[str, dict[str, str]]:
     return out
 
 
+def base(key: str) -> str:
+    """Schlüssel, nach dem die Quelle gewählt wird: bei «name|kategorie» die Form «name|other»."""
+    return key.split("|")[0] + "|other" if "|" in key else key
+
+
 def catalog(*modules: str) -> str:
     sources = [load(m) for m in modules]
-    keys = sorted(set().union(*(s["en"] for s in sources)))
+    keys = set().union(*(s["en"] for s in sources))
+    # Pluralformen über alle Sprachen vereinigen: Englisch kennt nur «one» und «other»,
+    # ru, pl, cs, ar, he, ro brauchen auch «zero», «two», «few» oder «many».
+    keys |= {k for s in sources for texts in s.values() for k in texts if "|" in k and base(k) in keys}
+    keys = sorted(keys)
     langs = sorted(set().union(*sources))
     strings = {}
     for key in keys:
-        # Die erste Quelle, die den Text auf Englisch hat, liefert ihn in allen Sprachen.
-        source = next(s for s in sources if key in s["en"])
+        # Die erste Quelle, die den Text auf Englisch hat, liefert ihn in allen Sprachen
+        # (bei Pluralformen gilt die Englisch-Form «other» desselben Namens).
+        source = next(s for s in sources if base(key) in s["en"])
         loc = {}
         for lang in langs:
             value = source.get(lang, {}).get(key)

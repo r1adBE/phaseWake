@@ -15,6 +15,12 @@ final class WatchModel {
 
     private init() {
         alarms = storage.snapshot().alarms
+        // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
+        for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
+            _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
+                Task { @MainActor in WatchModel.shared.reschedule() }
+            }
+        }
     }
 
     /// Nächster Plan; eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).

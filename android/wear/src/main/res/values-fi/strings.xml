@@ -43,4 +43,6 @@
     <string name="duration_hours">%1$d t</string>
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="home_last_night">Viime yö</string>
+    <string name="notification_open">Avaa</string>
+    <string name="home_good_night_too_far">Käytettävissä 16 h ennen herätystä</string>
 </resources>

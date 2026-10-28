@@ -33,8 +33,10 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
+    /// Vor der Aktivierung (z. B. beim Hintergrundstart für eine Sitzung) bleibt der Stand gemerkt und
+    /// geht nach `activationDidComplete` nach.
     private func sendContext() {
-        guard WCSession.default.activationState == .activated else { return }
+        guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
         try? WCSession.default.updateApplicationContext(context)
     }
 
@@ -43,8 +45,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     }
 
     /// Sofort, wenn das iPhone erreichbar ist; sonst zugestellt, sobald es das wieder ist.
-    func send(command: String, alarmId: String = "") {
-        let payload: [String: Any] = [SyncKeys.command: command, SyncKeys.alarms: alarmId]
+    /// Mit Zielzeit der Nacht und Sendezeit: Das iPhone verwirft ein verspätetes «klingeln» und setzt
+    /// die Sicherung genau für diese Nacht aus.
+    func send(command: String, alarmId: String = "", target: Date? = nil, snoozesLeft: Int? = nil) {
+        var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.alarms: alarmId,
+                                      SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
+        if let target { payload[SyncKeys.target] = Int64(target.timeIntervalSince1970 * 1000) }
+        if let snoozesLeft { payload[SyncKeys.snoozesLeft] = Int64(snoozesLeft) }
         if WCSession.default.isReachable {
             WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
         } else {
@@ -55,7 +62,10 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     // MARK: WCSessionDelegate
 
     func session(_ session: WCSession, activationDidCompleteWith state: WCSessionActivationState, error: Error?) {
-        if state == .activated { receive(session.receivedApplicationContext) }
+        guard state == .activated else { return }
+        receive(session.receivedApplicationContext)
+        // `context` wird auf dem Main-Thread geschrieben.
+        DispatchQueue.main.async { self.sendContext() }
     }
 
     func session(_ session: WCSession, didReceiveApplicationContext context: [String: Any]) {
@@ -68,10 +78,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let command = message[SyncKeys.command] as? String else { return }
+        // Verspätet zugestelltes Stopp oder Schlummern vom iPhone träfe sonst eine spätere Nacht.
+        if command != SyncKeys.clearHistory, let sentAt = message[SyncKeys.sentAt] as? Int64,
+           Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs { return }
         Task { @MainActor in
             switch command {
             case SyncKeys.stop: SmartAlarm.shared.dismiss(notifyPhone: false)
-            case SyncKeys.snooze: SmartAlarm.shared.snooze()
+            case SyncKeys.snooze: SmartAlarm.shared.snoozeFromPhone()
             case SyncKeys.clearHistory: WatchModel.shared.storage.clearNights()
             default: break
             }

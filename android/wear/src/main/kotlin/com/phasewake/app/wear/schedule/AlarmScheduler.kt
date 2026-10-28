@@ -29,6 +29,8 @@ import java.time.Clock
 import java.time.Duration
 import java.time.Instant
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 /**
  * Stellt die System-Alarme für den nächsten Wecker.
@@ -47,7 +49,13 @@ class AlarmScheduler(
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
-    /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
+    /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
+    private val rescheduleLock = Mutex()
+
+    /** Erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
+    @Volatile
+    private var doneInMemory: Instant = Instant.EPOCH
+
     /**
      * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht.
      * Startseite, Kachel und Komplikation zeigen genau diesen.
@@ -55,11 +63,12 @@ class AlarmScheduler(
     suspend fun nextPlan(): WakePlan? {
         val now = clock.instant()
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
-        val done = Instant.ofEpochMilli(store.data.first()[DONE_UNTIL] ?: 0L)
+        val done = maxOf(Instant.ofEpochMilli(store.data.first()[DONE_UNTIL] ?: 0L), doneInMemory)
         return onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, maxOf(now, done), clock.zone), now)
     }
 
-    suspend fun reschedule(): WakePlan? {
+    /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
+    suspend fun reschedule(): WakePlan? = rescheduleLock.withLock {
         val now = clock.instant()
         val plan = nextPlan()
 
@@ -74,7 +83,7 @@ class AlarmScheduler(
         sync.publishWatchReady(isReady())
         if (plan == null) {
             Log.i(TAG, "Kein aktiver Wecker")
-            return null
+            return@withLock null
         }
         setDeadline(plan)
         // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
@@ -82,12 +91,22 @@ class AlarmScheduler(
         val start = maxOf(plan.windowStart, now.plus(IMMEDIATE))
         setAlarmClock(start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
         Log.i(TAG, "Geplant: Fenster ${plan.windowStart} bis ${plan.target}")
-        return plan
+        plan
     }
 
-    /** Merkt, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch einmal. */
-    suspend fun markDone(target: Instant) {
-        store.edit { it[DONE_UNTIL] = target.toEpochMilli() }
+    /**
+     * Merkt sofort, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch
+     * einmal. Gilt ab dem Aufruf (auch für ein gleichzeitiges Neuplanen), [saveDone] macht es dauerhaft.
+     */
+    @Synchronized
+    fun markDone(target: Instant) {
+        if (target.isAfter(doneInMemory)) doneInMemory = target
+    }
+
+    /** Schreibt den Stand aus [markDone] in den Speicher; ein späterer Wert bleibt stehen. */
+    suspend fun saveDone() {
+        val done = doneInMemory.toEpochMilli()
+        store.edit { if ((it[DONE_UNTIL] ?: 0L) < done) it[DONE_UNTIL] = done }
     }
 
     /** Sicherungs-Alarm zur Zielzeit. */
@@ -106,7 +125,9 @@ class AlarmScheduler(
     /** Sind die Rechte erteilt, die Messen und Wecken brauchen? Fürs Handy und die Startseite. */
     fun isReady(): Boolean {
         val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
-        return sensors && NotificationManagerCompat.from(context).areNotificationsEnabled()
+        val notifications = NotificationManagerCompat.from(context)
+        // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst.
+        return sensors && notifications.areNotificationsEnabled() && notifications.canUseFullScreenIntent()
     }
 
     /** Kachel und Komplikation sofort aktualisieren, nicht erst beim nächsten Abruf des Systems. */

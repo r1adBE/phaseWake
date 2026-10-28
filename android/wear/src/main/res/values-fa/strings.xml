@@ -43,4 +43,6 @@
     <string name="duration_hours">%1$d س</string>
     <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="home_last_night">شب گذشته</string>
+    <string name="notification_open">باز کردن</string>
+    <string name="home_good_night_too_far">از ۱۶ ساعت پیش از زنگ در دسترس است</string>
 </resources>

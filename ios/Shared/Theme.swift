@@ -144,8 +144,9 @@ enum Format {
         return date.formatted(.dateTime.weekday(.wide)).capitalized(with: .current)
     }
 
+    /// `%lld` braucht 64 Bit; `Int` hat auf arm64_32-Uhren nur 32, daher `Int64`.
     static func duration(minutes: Int) -> String {
-        let m = max(0, minutes)
+        let m = Int64(max(0, minutes))
         if m < 60 { return L("duration_minutes", m) }
         if m % 60 == 0 { return L("duration_hours", m / 60) }
         if m % 30 == 0 { return L("duration_hours_half", m / 60) }

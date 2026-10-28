@@ -22,6 +22,13 @@ final class PhoneModel {
     private init() {
         alarms = storage.snapshot().alarms
         nights = storage.nights()
+        // Zeitzone oder Uhrzeit geändert (Reise): Die AlarmKit-Wecker stehen auf festen Zeitpunkten, also neu planen.
+        let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange, UIApplication.significantTimeChangeNotification]
+        for name in names {
+            _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
+                Task { @MainActor in await PhoneModel.shared.backup.reschedule(PhoneModel.shared.alarms) }
+            }
+        }
     }
 
     func upsert(_ spec: AlarmSpec) {
@@ -55,6 +62,16 @@ final class PhoneModel {
     }
 
     func watchRang() { lastRing = Date() }
+
+    /// Am iPhone gestoppt oder geschlummert, während es mit der Uhr klingelt: Die Uhr macht mit (wie Android).
+    func phoneRingEnded(snooze: Bool) async {
+        await backup.stopRinging()
+        PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
+    }
+
+    /// Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt (früh geweckt).
+    /// Gleich wie `doneUntil` auf der Uhr.
+    var doneUntil: Date? { nights.map(\.target).filter { $0 > Date() }.max() }
 
     func watchArmed(_ target: Date?) {
         watchArmedTarget = target

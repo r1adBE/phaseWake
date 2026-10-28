@@ -3,4 +3,9 @@
     <style name="Theme.PhaseWake" parent="@android:style/Theme.DeviceDefault">
         <item name="android:windowBackground">@android:color/black</item>
     </style>
+
+    <!-- Weckbildschirm: Ein Wisch im Halbschlaf darf ihn nicht schliessen, während es weiter vibriert. -->
+    <style name="Theme.PhaseWake.Ring">
+        <item name="android:windowSwipeToDismiss">false</item>
+    </style>
 </resources>

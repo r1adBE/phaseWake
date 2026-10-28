@@ -7,6 +7,7 @@ import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.OnsetOverride
+import com.phasewake.app.wear.wake.NightProgress
 import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wake.RingState
 import java.io.File
@@ -34,6 +35,7 @@ class PhaseWakeWear : Application() {
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val sync by lazy { WearSync(this) }
     val onsetOverride by lazy { OnsetOverride(phaseWakeStore) }
+    val nightProgress by lazy { NightProgress(phaseWakeStore) }
     val scheduler by lazy { AlarmScheduler(this, alarms, onsetOverride, phaseWakeStore, sync) }
     val ringState = RingState()
 

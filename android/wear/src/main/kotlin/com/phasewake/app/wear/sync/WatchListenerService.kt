@@ -1,6 +1,7 @@
 package com.phasewake.app.wear.sync
 
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
@@ -30,9 +31,12 @@ class WatchListenerService : WearableListenerService() {
     }
 
     override fun onMessageReceived(event: MessageEvent) {
+        // Inhalt nachsichtig lesen: Ältere Handy-Versionen schicken nichts, dann gilt der Befehl der laufenden Nacht.
+        val alarmId = RingMessage.decode(event.data).alarmId
         when (event.path) {
-            DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS)
-            DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_SNOOZE)
+            DataLayer.PATH_STOP -> WakeService.command(this, WakeService.ACTION_DISMISS, remoteAlarmId = alarmId)
+            // Hat die Uhr keine Schlummer-Runde mehr, antwortet der Dienst mit «klingeln».
+            DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_PHONE_SNOOZE, remoteAlarmId = alarmId)
         }
     }
 }

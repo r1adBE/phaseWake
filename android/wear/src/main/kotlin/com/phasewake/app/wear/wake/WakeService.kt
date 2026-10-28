@@ -24,7 +24,9 @@ import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
+import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.AlarmReceiver
 import com.phasewake.app.wear.ui.RingActivity
@@ -34,7 +36,10 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import kotlin.coroutines.cancellation.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Führt eine Weck-Nacht durch: misst im Fenster, weckt im richtigen Moment, verwaltet Schlummern
@@ -74,6 +79,10 @@ class WakeService : LifecycleService() {
     private val deadline = Runnable { onDeadline() }
     private val snoozeEnd = Runnable { ring() }
     private val ringTimeout = Runnable { onRingTimeout() }
+    private val hardLimit = Runnable { onHardLimit() }
+
+    /** Laufende Abschlüsse ([finishNight]); bis sie gespeichert und neu geplant haben, bleibt der Dienst. */
+    private var finishing = 0
 
     override fun onCreate() {
         super.onCreate()
@@ -88,15 +97,29 @@ class WakeService : LifecycleService() {
             ACTION_DEADLINE -> if (night == null) plan?.let { begin(it); onDeadline() } else onDeadline()
             ACTION_SNOOZE_END -> if (night == null) plan?.let { begin(it); ring() } else ring()
             ACTION_SNOOZE -> snooze(notifyPhone = true)
-            ACTION_DISMISS -> dismiss(notifyPhone = true)
+            ACTION_PHONE_SNOOZE -> if (isForThisNight(intent)) snooze(notifyPhone = true, fromPhone = true)
+            ACTION_DISMISS -> if (isForThisNight(intent)) dismiss(notifyPhone = true)
             ACTION_CANCEL -> cancelMeasuring()
             ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let(::startGoodNight)
             ACTION_GOOD_NIGHT_CANCEL -> stopGoodNight()
         }
         // Jeder Start über startForegroundService verlangt eine Vordergrund-Meldung, auch wenn schon eine steht.
         if (plan != null || intent?.action == ACTION_GOOD_NIGHT) notification?.let { goForeground(it, measuring = night?.phase == Phase.MEASURING || onset != null || goodNightPending) }
-        if (night == null && onset == null && !goodNightPending) stopSelf(startId)
+        if (isIdle()) stopSelf(startId)
         return START_NOT_STICKY
+    }
+
+    private fun isIdle() = night == null && onset == null && !goodNightPending && finishing == 0
+
+    private fun stopIfIdle() {
+        if (isIdle()) stopSelf()
+    }
+
+    /** Befehl vom Handy: Nennt er einen anderen Wecker als den laufenden, gilt er nicht dieser Nacht. */
+    private fun isForThisNight(intent: Intent): Boolean {
+        val remote = intent.getStringExtra(EXTRA_REMOTE_ALARM_ID) ?: return true
+        val current = night?.plan?.alarmId ?: return true
+        return remote == current
     }
 
     override fun onDestroy() {
@@ -131,13 +154,16 @@ class WakeService : LifecycleService() {
             val spec = app.alarms.current().alarms.firstOrNull { it.id == alarmId }
             val duration = spec?.sleepDurationMinutes
             val latest = spec?.let { AlarmSchedule.nextTarget(it, Instant.now(), ZoneId.systemDefault()) }
-            if (spec == null || duration == null || latest == null) {
+            // Nur für die kommende Nacht: liegt die Weckzeit weiter weg, zeigt die Startseite einen Hinweis.
+            if (spec == null || duration == null || latest == null || Duration.between(Instant.now(), latest) > GOOD_NIGHT_MAX_AHEAD) {
                 goodNightPending = false
                 stopGoodNight()
                 return@launch
             }
             val threshold = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())).lightThreshold
-            onset = OnsetMonitor(this@WakeService, threshold) { asleep ->
+            val giveUpAt = latest.minus(ONSET_GIVE_UP)
+            // giveUpAt: hartes Zeitlimit nach Uhrzeit, auch wenn der Zeitgeber im Tiefschlaf stehen bleibt.
+            onset = OnsetMonitor(this@WakeService, threshold, giveUpAt, onGiveUp = ::stopGoodNight) { asleep ->
                 val target = AlarmSchedule.sleepTarget(asleep, duration, latest)
                 val plan = WakePlan(alarmId, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
                 Log.i(TAG, "Eingeschlafen $asleep, neue Zielzeit $target")
@@ -148,11 +174,11 @@ class WakeService : LifecycleService() {
                     app.onsetOverride.set(plan)
                     app.scheduler.reschedule()
                 }
-                if (night == null) stopSelf()
+                stopIfIdle()
             }.also { it.start() }
             goodNightPending = false
             // Spätestens 15 Minuten vor der eingestellten Weckzeit aufgeben: dann gilt sie.
-            handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), latest.minus(ONSET_GIVE_UP)).toMillis().coerceAtLeast(0))
+            handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), giveUpAt).toMillis().coerceAtLeast(0))
         }
     }
 
@@ -162,7 +188,7 @@ class WakeService : LifecycleService() {
         onset?.stop()
         onset = null
         app.goodNight.value = null
-        if (night == null) stopSelf()
+        stopIfIdle()
     }
 
     // ---------------------------------------------------------------- Messen
@@ -185,16 +211,26 @@ class WakeService : LifecycleService() {
         val current = Night(plan, spec = null, detector = WakeDetector())
         night = current
         measuringPlan = plan
-        app.scheduler.setDeadline(plan)
+        // Nach einem Neustart zur Zielzeit oder beim Schlummer-Ende liegt sie schon zurück: keine Sicherung mehr.
+        if (plan.target.isAfter(Instant.now())) app.scheduler.setDeadline(plan)
         handler.postDelayed(deadline, Duration.between(Instant.now(), plan.target).toMillis().coerceAtLeast(0))
+        // Hartes Zeitlimit: Klingeln und Schlummern sind lange vorher zu Ende.
+        handler.postDelayed(hardLimit, Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0))
 
         lifecycleScope.launch {
             // Wecker und kalibrierte Schwellen laden. Auch wenn schon geweckt wird (Neustart zur
             // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
             val spec = app.alarms.current().alarms.firstOrNull { it.id == plan.alarmId }
             val config = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load()))
+            // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
+            val saved = app.nightProgress.load(plan)
             if (night !== current) return@launch
             current.spec = spec
+            if (saved != null) {
+                saved.firstRing?.let { first -> if (current.firstRing?.isAfter(first) != false) current.firstRing = first }
+                saved.reason?.let { current.reason = it }
+                current.snoozes = maxOf(current.snoozes, saved.snoozes)
+            }
             when (current.phase) {
                 Phase.MEASURING -> {
                     current.detector = WakeDetector(config)
@@ -202,6 +238,7 @@ class WakeService : LifecycleService() {
                 }
                 Phase.RINGING -> {
                     publishRinging(current)
+                    if (saved != null) goForeground(ringingNotification(current), measuring = false)
                     if (spec?.watchSound == true) escalation.start(withSound = true)
                 }
                 Phase.SNOOZED -> Unit
@@ -230,7 +267,7 @@ class WakeService : LifecycleService() {
         NotificationManagerCompat.from(this).cancel(Notifications.ID_SERVICE)
         releaseWakeLock()
         app.appScope.launch { app.scheduler.reschedule() }
-        stopSelf()
+        stopIfIdle()
     }
 
     private fun onEpochs(n: Night, epochs: List<Epoch>) {
@@ -270,15 +307,33 @@ class WakeService : LifecycleService() {
         holdWakeLock(RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
 
         publishRinging(n)
-        goForeground(Notifications.ringing(this, reasonText(reason)), measuring = false)
+        goForeground(ringingNotification(n), measuring = false)
         startActivity(Intent(this, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         escalation.start(withSound = n.spec?.watchSound == true)
         handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
+        saveProgress(n)
 
         // Immer melden: Das Handy entscheidet selbst (Zweitwecker, Sonnenaufgang, Unterdrückung der Sicherung).
-        lifecycleScope.launch {
-            app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_RING, n.plan.alarmId.encodeToByteArray())
-        }
+        sendRing(n)
+    }
+
+    private fun ringingNotification(n: Night) =
+        Notifications.ringing(this, reasonText(n.reason ?: WakeReason.DEADLINE), Snooze.MAX_COUNT - n.snoozes)
+
+    /** Meldet dem Handy «klingeln» mit Zielzeit, Sendezeit und verbleibenden Schlummer-Runden. */
+    private fun sendRing(n: Night) {
+        val message = RingMessage(n.plan.alarmId, n.plan.target.toEpochMilli(), System.currentTimeMillis(), Snooze.MAX_COUNT - n.snoozes)
+        lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_RING, message.encode()) }
+    }
+
+    private fun stopMessage(plan: WakePlan) = RingMessage(plan.alarmId, plan.target.toEpochMilli()).encode()
+
+    /** Hält den Stand der Nacht fest, damit ein Neustart des Dienstes ihn nicht verliert. */
+    private fun saveProgress(n: Night) {
+        val firstRing = n.firstRing
+        val reason = n.reason ?: WakeReason.DEADLINE
+        val snoozes = n.snoozes
+        app.appScope.launch { app.nightProgress.save(n.plan, firstRing, reason, snoozes) }
     }
 
     private fun publishRinging(n: Night) {
@@ -287,10 +342,18 @@ class WakeService : LifecycleService() {
         )
     }
 
-    /** [notifyPhone]: Hat der Nutzer geschlummert, schweigt auch das Handy; beim Auto-Schlummern klingelt es weiter. */
-    private fun snooze(notifyPhone: Boolean) {
+    /**
+     * [notifyPhone]: Hat der Nutzer geschlummert, schweigt auch das Handy; beim Auto-Schlummern klingelt es weiter.
+     * [fromPhone]: Am Handy geschlummert. Hat die Uhr keine Runde mehr, klingelt sie weiter und bittet
+     * das Handy mit «klingeln», ebenfalls weiterzuklingeln.
+     */
+    private fun snooze(notifyPhone: Boolean, fromPhone: Boolean = false) {
         val n = night ?: return
-        if (n.phase != Phase.RINGING || !Snooze.canSnooze(n.snoozes)) return
+        if (n.phase != Phase.RINGING) return
+        if (!Snooze.canSnooze(n.snoozes)) {
+            if (fromPhone) sendRing(n)
+            return
+        }
         stopRinging()
         n.snoozes++
         n.phase = Phase.SNOOZED
@@ -300,14 +363,15 @@ class WakeService : LifecycleService() {
         app.scheduler.setSnoozeEnd(n.plan, until)
         holdWakeLock(Duration.between(Instant.now(), until).toMillis() + RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
         handler.postDelayed(snoozeEnd, Duration.between(Instant.now(), until).toMillis())
-        if (notifyPhone) lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP) }
+        saveProgress(n)
+        if (notifyPhone) lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
     }
 
+    /** Beendet die Nacht; der Dienst endet, sobald [finishNight] gespeichert und neu geplant hat. */
     private fun dismiss(notifyPhone: Boolean) {
         if (night == null) return
         stopRinging()
         finishNight(notifyPhone)
-        stopSelf()
     }
 
     /** Niemand reagiert: schlummern, solange es geht, sonst beenden (das Handy klingelt weiter). */
@@ -316,6 +380,13 @@ class WakeService : LifecycleService() {
         if (n.phase != Phase.RINGING) return
         // Das Handy klingelt als Sicherung weiter: niemand hat reagiert.
         if (Snooze.canSnooze(n.snoozes)) snooze(notifyPhone = false) else dismiss(notifyPhone = false)
+    }
+
+    /** Sicherheitsnetz: Die Nacht läuft weit über die Zielzeit hinaus. Beenden statt endlos messen oder klingeln. */
+    private fun onHardLimit() {
+        if (night == null) return
+        Log.w(TAG, "Zeitlimit der Nacht erreicht, beende")
+        dismiss(notifyPhone = false)
     }
 
     private fun stopRinging() {
@@ -339,20 +410,58 @@ class WakeService : LifecycleService() {
         val record = n.firstRing?.let { wokeAt ->
             NightRecord(n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList())
         }
-        // Prozessweiter Bereich: Speichern und Neuplanen dürfen das Ende des Dienstes überdauern.
+        // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
+        // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
+        if (record != null) app.scheduler.markDone(doneUntil(n.plan, n.spec))
+        if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
+
+        // Prozessweiter Bereich. Der Dienst bleibt (Vordergrund), bis gespeichert und neu geplant ist:
+        // Sonst könnte das System den Prozess vorher beenden, und für morgen stünde kein Wecker.
+        // Jeder Schritt für sich abgesichert, damit ein Fehler die folgenden nicht überspringt.
+        finishing++
         app.appScope.launch {
-            app.onsetOverride.clear()
-            if (record != null) {
-                app.nights.add(record)
-                app.sync.publishNight(record)
-                app.scheduler.markDone(n.plan.target)
+            var disabled: AlarmSnapshot? = null
+            try {
+                // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
+                val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
+                if (record != null) {
+                    if (n.spec == null) app.scheduler.markDone(doneUntil(n.plan, spec))
+                    runStep("Erledigt speichern") { app.scheduler.saveDone() }
+                }
+                runStep("Einschlaf-Ausnahme löschen") { app.onsetOverride.clear() }
+                runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
+                if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
+                if (spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
+                runStep("Neu planen") { app.scheduler.reschedule() }
+            } finally {
+                withContext(Dispatchers.Main) {
+                    finishing--
+                    stopIfIdle()
+                }
             }
-            if (notifyPhone) app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP)
-            // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
-            val spec = app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId }
-            if (spec?.isOneShot == true && spec.enabled) app.sync.publishAlarms(app.alarms.setEnabled(spec.id, false))
-            app.scheduler.reschedule()
+            // Senden darf das Ende des Dienstes überdauern; die Daten liegen schon lokal.
+            if (record != null) app.sync.publishNight(record)
+            disabled?.let { app.sync.publishAlarms(it) }
         }
+    }
+
+    /**
+     * Bis wann die Nacht erledigt ist: die eingestellte Weckzeit, auch wenn «Gute Nacht» früher geweckt
+     * hat. Sonst begänne danach dieselbe Nacht noch einmal (Fenster vor der eingestellten Zeit).
+     */
+    private fun doneUntil(plan: WakePlan, spec: AlarmSpec?): Instant {
+        val nominal = spec?.let { AlarmSchedule.nextTarget(it, plan.target.minusMillis(1), ZoneId.systemDefault()) }
+            ?: return plan.target
+        return if (nominal.isAfter(plan.target) && Duration.between(plan.target, nominal) <= GOOD_NIGHT_MAX_AHEAD) nominal else plan.target
+    }
+
+    /** Führt einen Schritt des Abschlusses aus; ein Fehler wird geloggt und ergibt `null`. */
+    private suspend fun <T> runStep(what: String, block: suspend () -> T): T? = try {
+        block()
+    } catch (e: Exception) {
+        if (e is CancellationException) throw e
+        Log.e(TAG, "$what fehlgeschlagen", e)
+        null
     }
 
     /**
@@ -409,11 +518,19 @@ class WakeService : LifecycleService() {
         const val ACTION_SNOOZE_END = "com.phasewake.app.wake.SNOOZE_END"
         const val ACTION_SNOOZE = "com.phasewake.app.wake.SNOOZE"
         const val ACTION_DISMISS = "com.phasewake.app.wake.DISMISS"
+        const val ACTION_PHONE_SNOOZE = "com.phasewake.app.wake.PHONE_SNOOZE"
         const val ACTION_CANCEL = "com.phasewake.app.wake.CANCEL"
         const val ACTION_GOOD_NIGHT = "com.phasewake.app.wake.GOOD_NIGHT"
         const val ACTION_GOOD_NIGHT_CANCEL = "com.phasewake.app.wake.GOOD_NIGHT_CANCEL"
         private const val EXTRA_ALARM_ID = "goodNightAlarmId"
+        private const val EXTRA_REMOTE_ALARM_ID = "remoteAlarmId"
         private val ONSET_GIVE_UP: Duration = Duration.ofMinutes(15)
+
+        /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
+        val GOOD_NIGHT_MAX_AHEAD: Duration = Duration.ofHours(16)
+
+        /** Spätestens so lange nach der Zielzeit endet eine Nacht (4 × 10 Min Klingeln + 3 × 5 Min Schlummern passen gut hinein). */
+        private val NIGHT_HARD_LIMIT: Duration = Duration.ofHours(2)
 
         /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
         private const val RING_TIMEOUT_MS = 10 * 60_000L
@@ -446,9 +563,13 @@ class WakeService : LifecycleService() {
             )
         }
 
-        /** Befehl an den Dienst; [plan] erlaubt einen Neustart, falls er inzwischen beendet wurde. */
-        fun command(context: Context, action: String, plan: WakePlan? = null) {
+        /**
+         * Befehl an den Dienst; [plan] erlaubt einen Neustart, falls er inzwischen beendet wurde.
+         * [remoteAlarmId]: Wecker, den das Handy meint (aus [RingMessage]); `null` gilt für jede Nacht.
+         */
+        fun command(context: Context, action: String, plan: WakePlan? = null, remoteAlarmId: String? = null) {
             val intent = Intent(context, WakeService::class.java).setAction(action)
+            if (remoteAlarmId != null) intent.putExtra(EXTRA_REMOTE_ALARM_ID, remoteAlarmId)
             if (plan != null) {
                 AlarmReceiver.putPlan(intent, plan)
                 ContextCompat.startForegroundService(context, intent)

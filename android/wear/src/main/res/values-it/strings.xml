@@ -44,4 +44,6 @@
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Ieri notte</string>
+    <string name="notification_open">Apri</string>
+    <string name="home_good_night_too_far">Disponibile da 16 h prima della sveglia</string>
 </resources>

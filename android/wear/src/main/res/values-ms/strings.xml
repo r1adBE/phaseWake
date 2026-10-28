@@ -42,4 +42,6 @@
     <string name="duration_hours">%1$d j</string>
     <string name="duration_hours_minutes">%1$d j %2$d min</string>
     <string name="home_last_night">Semalam</string>
+    <string name="notification_open">Buka</string>
+    <string name="home_good_night_too_far">Tersedia dari 16 jam sebelum penggera</string>
 </resources>

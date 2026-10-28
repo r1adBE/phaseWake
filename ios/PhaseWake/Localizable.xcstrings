@@ -4901,6 +4901,398 @@
         }
       }
     },
+    "check_exact_alarms": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبهات الدقيقة مسموحة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přesné budíky povoleny"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Præcise alarmer tilladt"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exakte Wecker erlaubt"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επιτρέπονται ακριβή ξυπνητήρια"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exact alarms allowed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmas exactas permitidas"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ‌های دقیق مجاز است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarkat herätykset sallittu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmes exactes autorisées"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שעונים מעוררים מדויקים מאושרים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सटीक अलार्म की अनुमति है"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontos ébresztések engedélyezve"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm tepat waktu diizinkan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglie esatte consentite"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正確なアラームが許可されています"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정확한 알람 허용됨"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera tepat dibenarkan"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nøyaktige alarmer tillatt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exacte wekkers toegestaan"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokładne alarmy dozwolone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmes exatos permitidos"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmes exatos permitidos"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme exacte permise"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Точные будильники разрешены"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exakta alarm tillåtna"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อนุญาตการปลุกที่แม่นยำแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam zamanlı alarmlara izin verildi"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Точні будильники дозволено"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã cho phép báo thức chính xác"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已允许精确闹钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已允許精確鬧鐘"
+          }
+        }
+      }
+    },
+    "check_exact_alarms_problem": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسمح بالمنبهات والتذكيرات ليرنّ المنبه الاحتياطي في الوقت المحدد."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povol budíky a připomenutí, aby záložní budík zazvonil včas."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillad alarmer og påmindelser, så reservealarmen ringer til tiden."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube «Wecker und Erinnerungen», damit der Zweitwecker pünktlich klingelt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις, ώστε το εφεδρικό ξυπνητήρι να χτυπά στην ώρα του."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow alarms & reminders so the backup alarm rings on time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite alarmas y recordatorios para que la alarma de respaldo suene a tiempo."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ‌ها و یادآوری‌ها را مجاز کن تا زنگ پشتیبان سر وقت به صدا درآید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salli herätykset ja muistutukset, jotta varaherätys soi ajallaan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorise les alarmes et rappels pour que l’alarme de secours sonne à l’heure."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אשרו שעונים מעוררים ותזכורות כדי שהשעון המעורר הגיבוי יצלצל בזמן."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म और रिमाइंडर की अनुमति दें ताकि बैकअप अलार्म समय पर बजे।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engedélyezd az ébresztéseket és emlékeztetőket, hogy a tartalék ébresztés pontosan szóljon."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izinkan alarm & pengingat agar alarm cadangan berbunyi tepat waktu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consenti sveglie e promemoria perché la sveglia di riserva suoni puntuale."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "予備のアラームが時間どおりに鳴るよう、「アラームとリマインダー」を許可してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "보조 알람이 제시간에 울리도록 알람 및 리마인더를 허용해 주세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benarkan penggera & peringatan supaya penggera sandaran berbunyi tepat pada masanya."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillat alarmer og påminnelser slik at reservealarmen ringer i tide."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sta wekkers en herinneringen toe zodat de reservewekker op tijd afgaat."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zezwól na alarmy i przypomnienia, aby zapasowy budzik zadzwonił na czas."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permita alarmes e lembretes para que o alarme reserva toque na hora certa."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite alarmes e lembretes para que o alarme de reserva toque à hora certa."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite alarmele și mementourile pentru ca alarma de rezervă să sune la timp."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разреши будильники и напоминания, чтобы резервный будильник звонил вовремя."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillåt alarm och påminnelser så att reservalarmet ringer i tid."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อนุญาตการปลุกและการช่วยเตือนเพื่อให้นาฬิกาปลุกสำรองดังตรงเวลา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek alarmın zamanında çalması için alarmlara ve hatırlatıcılara izin ver."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дозволь будильники й нагадування, щоб резервний будильник дзвонив вчасно."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy cho phép báo thức và lời nhắc để báo thức dự phòng reo đúng giờ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请允许“闹钟和提醒”，这样备用闹钟才能准时响起。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請允許「鬧鐘與提醒」，這樣備用鬧鐘才能準時響起。"
+          }
+        }
+      }
+    },
     "check_full_screen": {
       "localizations": {
         "ar": {
@@ -9997,6 +10389,110 @@
         }
       }
     },
+    "editor_advice_text|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %1$lld من آخر %2$lld ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În %1$lld din ultimele %2$lld nopți nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В %1$lld из последних %2$lld ночей в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У %1$lld з останніх %2$lld ночей у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+          }
+        }
+      }
+    },
+    "editor_advice_text|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En %1$lld de las últimas %2$lld noches no hubo sueño ligero dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In %1$lld delle ultime %2$lld notti non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В %1$lld из последних %2$lld ночей в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У %1$lld з останніх %2$lld ночей у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+          }
+        }
+      }
+    },
     "editor_advice_text|one": {
       "localizations": {
         "ar": {
@@ -10337,6 +10833,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "在最近 %2$lld 個夜晚中，有 %1$lld 個夜晚視窗內沒有淺眠。設為 %3$lld 分鐘，你會更容易在合適的時刻醒來。"
+          }
+        }
+      }
+    },
+    "editor_advice_text|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %1$lld من آخر %2$lld ليلتين لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ב-%1$lld מתוך %2$lld הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
+          }
+        }
+      }
+    },
+    "editor_advice_text|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         }
       }
@@ -15633,6 +16155,110 @@
         }
       }
     },
+    "editor_sunrise_ring_hint|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$lld دقائق."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začne, když tě probudí, a po %1$lld minutách naplno září."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaczyna się, gdy cię obudzimy, a po %1$lld minutach świeci pełną jasnością."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pornește când ești trezit și este complet luminos după %1$lld minute."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начинается, когда тебя будят, и через %1$lld минуты светит на полную яркость."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Починається, коли тебе будять, і через %1$lld хвилини світить на повну яскравість."
+          }
+        }
+      }
+    },
+    "editor_sunrise_ring_hint|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$lld دقيقة."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začne, když tě probudí, a po %1$lld minutách naplno září."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza cuando te despierta y alcanza el brillo máximo a los %1$lld minutos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$lld minutes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$lld minuti."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaczyna się, gdy cię obudzimy, a po %1$lld minutach świeci pełną jasnością."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começa quando você é acordado e fica totalmente clara após %1$lld minutos."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começa quando és acordado e fica totalmente claro após %1$lld minutos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начинается, когда тебя будят, и через %1$lld минут светит на полную яркость."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Починається, коли тебе будять, і через %1$lld хвилин світить на повну яскравість."
+          }
+        }
+      }
+    },
     "editor_sunrise_ring_hint|one": {
       "localizations": {
         "ar": {
@@ -15973,6 +16599,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "在叫醒你時開始，%1$lld 分鐘後達到最亮。"
+          }
+        }
+      }
+    },
+    "editor_sunrise_ring_hint|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$lld دقيقتين."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$lld דקות."
+          }
+        }
+      }
+    },
+    "editor_sunrise_ring_hint|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$lld دقيقة."
           }
         }
       }
@@ -21661,6 +22313,110 @@
         }
       }
     },
+    "hint_title|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليالٍ بلا نوم خفيف"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noci bez lehkého spánku"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noce bez lekkiego snu"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nopți fără somn ușor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночи без лёгкого сна"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночі без легкого сну"
+          }
+        }
+      }
+    },
+    "hint_title|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليلة بلا نوم خفيف"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nocí bez lehkého spánku"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noches sin sueño ligero"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nuits sans sommeil léger"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld notti senza sonno leggero"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nocy bez lekkiego snu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noites sem sono leve"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noites sem sono leve"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночей без лёгкого сна"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночей без легкого сну"
+          }
+        }
+      }
+    },
     "hint_title|one": {
       "localizations": {
         "ar": {
@@ -22001,6 +22757,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "連續 %1$lld 晚沒有淺眠"
+          }
+        }
+      }
+    },
+    "hint_title|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليلتان بلا نوم خفيف"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld לילות בלי שינה קלה"
+          }
+        }
+      }
+    },
+    "hint_title|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليلة بلا نوم خفيف"
           }
         }
       }
@@ -24353,6 +25135,202 @@
           "stringUnit": {
             "state": "translated",
             "value": "從現在起睡 %1$@"
+          }
+        }
+      }
+    },
+    "home_good_night_too_far": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متاح قبل المنبّه بـ 16 ساعة"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dostupné od 16 h před budíkem"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilgængelig fra 16 t før alarmen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ab 16 Std. vor dem Wecker möglich"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διαθέσιμο από 16 ώρες πριν το ξυπνητήρι"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available from 16 h before the alarm"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponible desde 16 h antes de la alarma"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از ۱۶ ساعت پیش از زنگ در دسترس است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Käytettävissä 16 h ennen herätystä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponible dès 16 h avant le réveil"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "זמין מ-16 שעות לפני המעורר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म से 16 घंटे पहले से उपलब्ध"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az ébresztő előtt 16 órától elérhető"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tersedia mulai 16 jam sebelum alarm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibile da 16 h prima della sveglia"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アラームの16時間前から使えます"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알람 16시간 전부터 사용 가능"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tersedia dari 16 jam sebelum penggera"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilgjengelig fra 16 t før alarmen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beschikbaar vanaf 16 u voor de wekker"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dostępne od 16 godz. przed budzikiem"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponível a partir de 16 h antes do alarme"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponível a partir de 16 h antes do alarme"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibil cu 16 h înainte de alarmă"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Доступно за 16 ч до будильника"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillgängligt från 16 h före larmet"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ได้ตั้งแต่ 16 ชม. ก่อนเวลาปลุก"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmdan 16 saat önce kullanılabilir"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Доступно за 16 год до будильника"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng được từ 16 giờ trước báo thức"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "闹钟前 16 小时内可用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鬧鐘前 16 小時內可用"
           }
         }
       }
@@ -29649,6 +30627,202 @@
         }
       }
     },
+    "notification_open": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevřít"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιγμα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باز کردن"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "खोलें"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megnyitás"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開く"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "열기"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Openen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aç"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрити"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟"
+          }
+        }
+      }
+    },
     "notification_ring_title": {
       "localizations": {
         "ar": {
@@ -32197,6 +33371,202 @@
         }
       }
     },
+    "ring_open": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevřít"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιγμα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باز کردن"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "खोलें"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megnyitás"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開く"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "열기"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Openen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aç"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрити"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟"
+          }
+        }
+      }
+    },
     "ring_reason_awake": {
       "localizations": {
         "ar": {
@@ -33177,6 +34547,110 @@
         }
       }
     },
+    "ring_snooze|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غفوة %1$lld د · المتبقي: %2$lld"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odložit %1$lld min · zbývá: %2$lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drzemka %1$lld min · zostało: %2$lld"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amânare %1$lld min · %2$lld rămase"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отложить на %1$lld мин · осталось: %2$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкласти на %1$lld хв · залишилось: %2$lld"
+          }
+        }
+      }
+    },
+    "ring_snooze|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غفوة %1$lld د · المتبقي: %2$lld"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odložit %1$lld min · zbývá: %2$lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posponer %1$lld min · quedan %2$lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel %1$lld min · %2$lld restants"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posticipa %1$lld min · %2$lld rimaste"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drzemka %1$lld min · zostało: %2$lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soneca %1$lld min · restam %2$lld"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soneca %1$lld min · restam %2$lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отложить на %1$lld мин · осталось: %2$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкласти на %1$lld хв · залишилось: %2$lld"
+          }
+        }
+      }
+    },
     "ring_snooze|one": {
       "localizations": {
         "ar": {
@@ -33517,6 +34991,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "貪睡 %1$lld 分鐘 · 剩 %2$lld 次"
+          }
+        }
+      }
+    },
+    "ring_snooze|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غفوة %1$lld د · المتبقي: %2$lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נודניק %1$lld דק׳ · נותרו: %2$lld"
+          }
+        }
+      }
+    },
+    "ring_snooze|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غفوة %1$lld د · المتبقي: %2$lld"
           }
         }
       }

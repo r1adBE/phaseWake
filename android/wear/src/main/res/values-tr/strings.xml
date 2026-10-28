@@ -43,4 +43,6 @@
     <string name="duration_hours">%1$d sa</string>
     <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
     <string name="home_last_night">Dün gece</string>
+    <string name="notification_open">Aç</string>
+    <string name="home_good_night_too_far">Alarmdan 16 saat önce kullanılabilir</string>
 </resources>

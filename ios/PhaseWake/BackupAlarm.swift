@@ -3,6 +3,7 @@ import PhaseWakeCore
 import UserNotifications
 #if canImport(AlarmKit)
 import AlarmKit
+import AppIntents
 #endif
 
 /// Zweitwecker auf dem iPhone.
@@ -10,14 +11,22 @@ import AlarmKit
 /// Ab iOS 26 über AlarmKit: echter Wecker, der auch bei Lautlos und Fokus klingelt. Er klingelt,
 /// wenn die Uhr den Weckmoment meldet, und als Sicherung 2 Minuten nach der Zielzeit, falls sich
 /// die Uhr nicht meldet. Vor iOS 26 bleibt nur eine zeitkritische Mitteilung (weniger zuverlässig).
+/// Stoppen oder Schlummern am iPhone nimmt die Uhr mit (wie Android), sofern sie das Klingeln ausgelöst hat.
+/// Einmalige Wecker: Sicherung nur für ihr erstes Vorkommen; danach schaltet das iPhone sie selbst aus.
 @MainActor
 final class BackupAlarm {
     private static let grace: TimeInterval = 120
     private static let suppressedKey = "backupSuppressedUntil"
     private static let backupIdsKey = "backupAlarmIds"
+    private static let ringingKey = "backupRingingId"
+    private static let oneShotKey = "backupOneShotTargets"
     /// So viele Nächte im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird.
     private static let nightsAhead = 3
-    private var ringingId: UUID?
+    /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
+    private var ringingId: UUID? {
+        get { UserDefaults.standard.string(forKey: Self.ringingKey).flatMap(UUID.init(uuidString:)) }
+        set { UserDefaults.standard.set(newValue?.uuidString, forKey: Self.ringingKey) }
+    }
     /// Neuplanungen laufen nacheinander, nie verschränkt (sonst blieben Alarme ohne gemerkte Kennung).
     private var queue: Task<Void, Never>?
 
@@ -34,27 +43,56 @@ final class BackupAlarm {
 
     private func rescheduleNow(_ alarms: [AlarmSpec]) async {
         await cancelBackups()
+        let now = Date()
+        let firstTargets = oneShotTargets(alarms, now: now)
+        // Einmaliger Wecker, dessen erstes Vorkommen samt Nachfrist vorbei ist: ausschalten (geht auch an die Uhr).
+        let expired = alarms.filter { spec in firstTargets[spec.id].map { now > $0.addingTimeInterval(Self.grace) } ?? false }
+        for spec in expired { PhoneModel.shared.setEnabled(spec, false) }
+        var skip = Set(expired.map(\.id))
         let suppressed = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: Self.suppressedKey))
-        var from = max(Date(), suppressed)
+        var from = max(now, suppressed)
         var ids: [String] = []
-        for _ in 0..<Self.nightsAhead {
-            guard let plan = AlarmSchedule.earliestPlan(alarms.filter(\.phoneBackup), now: from, calendar: .current) else { break }
+        while ids.count < Self.nightsAhead {
+            guard let plan = AlarmSchedule.earliestPlan(alarms.filter { $0.phoneBackup && !skip.contains($0.id) }, now: from, calendar: .current) else { break }
+            from = plan.target
+            if let first = firstTargets[plan.alarmId] {
+                // Einmalig: nur das erste Vorkommen. Ist es ausgesetzt, folgt keine weitere Nacht.
+                skip.insert(plan.alarmId)
+                if plan.target != first { continue }
+            }
             let id = UUID()
             ids.append(id.uuidString)
             await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace))
-            from = plan.target
         }
         UserDefaults.standard.set(ids, forKey: Self.backupIdsKey)
     }
 
+    /// Zielzeit des ersten Vorkommens je eingeschaltetem einmaligem Wecker, gemerkt ab dem ersten Planen.
+    /// Neu berechnet, wenn sich Uhrzeit oder Zeitzone ändern; ausgeschaltete Wecker fallen heraus.
+    private func oneShotTargets(_ alarms: [AlarmSpec], now: Date) -> [String: Date] {
+        let stored = UserDefaults.standard.dictionary(forKey: Self.oneShotKey) as? [String: Double] ?? [:]
+        var keep: [String: Double] = [:]
+        var targets: [String: Date] = [:]
+        for spec in alarms where spec.isOneShot && spec.enabled {
+            let key = "\(spec.id)|\(spec.hour):\(spec.minute)|\(TimeZone.current.identifier)"
+            guard let target = stored[key].map(Date.init(timeIntervalSince1970:))
+                ?? AlarmSchedule.nextTarget(spec, now: now, calendar: .current) else { continue }
+            keep[key] = target.timeIntervalSince1970
+            targets[spec.id] = target
+        }
+        UserDefaults.standard.set(keep, forKey: Self.oneShotKey)
+        return targets
+    }
+
     /// Die Uhr klingelt gerade: sofort mitklingeln (falls gewünscht) und die Sicherung dieser Nacht aussetzen.
-    func ringNow(alarm: AlarmSpec?) async {
+    /// `target` ist die Zielzeit der Nacht laut Uhr (ältere Versionen schicken sie nicht).
+    func ringNow(alarm: AlarmSpec?, target: Date?, snoozesLeft: Int) async {
         if alarm?.phone != .off {
             let id = UUID()
             ringingId = id
-            await schedule(id: id, at: Date().addingTimeInterval(2))
+            await schedule(id: id, at: Date().addingTimeInterval(2), fromWatch: true, snoozesLeft: snoozesLeft)
         }
-        await watchHandled(alarmId: alarm?.id, target: nil)
+        await watchHandled(alarmId: alarm?.id, target: target)
     }
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
@@ -74,24 +112,33 @@ final class BackupAlarm {
         await reschedule(alarms)
     }
 
+    /// Stoppt den Mitklingel-Wecker und jeden gerade klingelnden Alarm (auch eine Sicherung).
     func stopRinging() async {
-        guard let id = ringingId else { return }
+        let id = ringingId
         ringingId = nil
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            try? AlarmManager.shared.stop(id: id)
+            if let id {
+                try? AlarmManager.shared.stop(id: id)
+                // Noch nicht klingelnd (geplant in 2 s): verwerfen.
+                try? AlarmManager.shared.cancel(id: id)
+            }
+            let alerting = ((try? AlarmManager.shared.alarms) ?? []).filter { $0.state == .alerting }
+            for alarm in alerting { try? AlarmManager.shared.stop(id: alarm.id) }
             return
         }
         #endif
+        guard let id else { return }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id.uuidString])
     }
 
     // MARK: Plattform
 
-    private func schedule(id: UUID, at date: Date) async {
+    private func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0) async {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            await scheduleAlarmKit(id: id, at: date)
+            await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft)
             return
         }
         #endif
@@ -114,15 +161,30 @@ final class BackupAlarm {
 
     #if canImport(AlarmKit)
     @available(iOS 26.0, *)
-    private func scheduleAlarmKit(id: UUID, at date: Date) async {
+    private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int) async {
         do {
             if AlarmManager.shared.authorizationState != .authorized {
                 _ = try await AlarmManager.shared.requestAuthorization()
             }
             let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white, systemImageName: "stop.fill")
-            let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop)
+            // Klingelt das iPhone mit der Uhr: Schlummern nur, solange die Uhr noch Runden hat.
+            let snooze = fromWatch && snoozesLeft > 0
+                ? AlarmButton(text: LocalizedStringResource(stringLiteral: LP("ring_snooze", snoozesLeft, Int64(Snooze.minutes), Int64(snoozesLeft))),
+                              textColor: .white, systemImageName: "zzz")
+                : nil
+            let behavior: AlarmPresentation.Alert.SecondaryButtonBehavior? = snooze == nil ? nil : .custom
+            let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop,
+                                                secondaryButton: snooze, secondaryButtonBehavior: behavior)
             let attributes = AlarmAttributes<PhaseWakeAlarm>(presentation: AlarmPresentation(alert: alert), tintColor: Brand.accentLight)
-            let configuration = AlarmManager.AlarmConfiguration<PhaseWakeAlarm>.alarm(schedule: .fixed(date), attributes: attributes)
+            // Nur beim Mitklingeln geht Stopp bzw. Schlummern an die Uhr; eine Sicherung klingelt ohne Uhr.
+            let stopIntent: (any LiveActivityIntent)? = fromWatch ? StopRingIntent(alarmId: id.uuidString) : nil
+            let snoozeIntent: (any LiveActivityIntent)? = snooze == nil ? nil : SnoozeRingIntent(alarmId: id.uuidString)
+            let configuration = AlarmManager.AlarmConfiguration<PhaseWakeAlarm>.alarm(
+                schedule: .fixed(date),
+                attributes: attributes,
+                stopIntent: stopIntent,
+                secondaryIntent: snoozeIntent
+            )
             _ = try await AlarmManager.shared.schedule(id: id, configuration: configuration)
         } catch {
             await scheduleNotification(id: id, at: date)
@@ -147,4 +209,43 @@ final class BackupAlarm {
 /// Zusatzdaten des Weckers für AlarmKit (keine nötig).
 @available(iOS 26.0, *)
 struct PhaseWakeAlarm: AlarmMetadata {}
+
+/// «Stopp» am iPhone, während es mit der Uhr klingelt: stoppt auch die Uhr.
+@available(iOS 26.0, *)
+struct StopRingIntent: LiveActivityIntent {
+    static let title: LocalizedStringResource = "ring_stop"
+    static let isDiscoverable = false
+
+    @Parameter(title: "Alarm")
+    var alarmId: String
+
+    init() { alarmId = "" }
+    init(alarmId: String) { self.alarmId = alarmId }
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        await PhoneModel.shared.phoneRingEnded(snooze: false)
+        return .result()
+    }
+}
+
+/// «Schlummern» am iPhone, während es mit der Uhr klingelt: Die Uhr schlummert und meldet sich wieder.
+@available(iOS 26.0, *)
+struct SnoozeRingIntent: LiveActivityIntent {
+    // Nicht sichtbar (nicht in Kurzbefehlen); der Knopf trägt den übersetzten Text.
+    static let title: LocalizedStringResource = "Snooze"
+    static let isDiscoverable = false
+
+    @Parameter(title: "Alarm")
+    var alarmId: String
+
+    init() { alarmId = "" }
+    init(alarmId: String) { self.alarmId = alarmId }
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        await PhoneModel.shared.phoneRingEnded(snooze: true)
+        return .result()
+    }
+}
 #endif

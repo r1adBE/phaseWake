@@ -8,6 +8,9 @@
     <!-- Puls: bis Wear OS 5 über BODY_SENSORS, ab Wear OS 6 über die Health-Berechtigung. -->
     <uses-permission android:name="android.permission.BODY_SENSORS" android:maxSdkVersion="35" />
     <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
+    <!-- Puls im Hintergrund (Fenster startet per Alarm bei dunklem Display): Wear OS 4–5 bzw. ab Wear OS 6. -->
+    <uses-permission android:name="android.permission.BODY_SENSORS_BACKGROUND" android:maxSdkVersion="35" />
+    <uses-permission android:name="android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
@@ -50,7 +53,7 @@
             android:launchMode="singleInstance"
             android:showWhenLocked="true"
             android:taskAffinity="com.phasewake.app.ring"
-            android:theme="@style/Theme.PhaseWake"
+            android:theme="@style/Theme.PhaseWake.Ring"
             android:turnScreenOn="true" />
 
         <service

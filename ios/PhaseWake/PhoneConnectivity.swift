@@ -20,10 +20,24 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         ])
     }
 
+    /// Befehle, die vor der Aktivierung kamen (z. B. Stopp am Wecker, App dafür im Hintergrund gestartet).
+    /// Nur auf dem Main-Thread.
+    private var pending: [[String: Any]] = []
+
     /// Sofort, wenn die Uhr erreichbar ist; sonst zugestellt, sobald sie es wieder ist.
+    @MainActor
     func send(command: String) {
-        guard WCSession.default.activationState == .activated else { return }
-        let payload: [String: Any] = [SyncKeys.command: command]
+        guard WCSession.isSupported() else { return }
+        let payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
+        guard WCSession.default.activationState == .activated else {
+            pending.append(payload)
+            if WCSession.default.delegate == nil { activate() }
+            return
+        }
+        deliver(payload)
+    }
+
+    private func deliver(_ payload: [String: Any]) {
         if WCSession.default.isReachable {
             WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
         } else {
@@ -36,7 +50,12 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     func session(_ session: WCSession, activationDidCompleteWith state: WCSessionActivationState, error: Error?) {
         guard state == .activated else { return }
         receive(context: session.receivedApplicationContext)
-        Task { @MainActor in self.publish(PhoneModel.shared.storage.snapshot()) }
+        Task { @MainActor in
+            self.publish(PhoneModel.shared.storage.snapshot())
+            let queued = self.pending
+            self.pending = []
+            queued.forEach(self.deliver)
+        }
     }
 
     func sessionDidBecomeInactive(_ session: WCSession) {}
@@ -66,16 +85,25 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let command = message[SyncKeys.command] as? String else { return }
-        let alarmId = message[SyncKeys.alarms] as? String
+        let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
+        // Zielzeit der Nacht und Sendezeit; ältere Uhr-Versionen schicken sie nicht.
+        let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let sentAt = message[SyncKeys.sentAt] as? Int64
+        let snoozesLeft = (message[SyncKeys.snoozesLeft] as? Int64).map { Int($0) } ?? 0
         Task { @MainActor in
             let model = PhoneModel.shared
             switch command {
             case SyncKeys.ring:
-                model.watchRang()
-                await model.backup.ringNow(alarm: model.alarms.first { $0.id == alarmId })
+                if let sentAt, Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs {
+                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln, nur diese Nacht als erledigt merken.
+                    await model.backup.watchHandled(alarmId: alarmId, target: target)
+                } else {
+                    model.watchRang()
+                    await model.backup.ringNow(alarm: model.alarms.first { $0.id == alarmId }, target: target, snoozesLeft: snoozesLeft)
+                }
             case SyncKeys.stop:
                 await model.backup.stopRinging()
-                await model.backup.watchHandled(alarmId: nil, target: nil)
+                await model.backup.watchHandled(alarmId: alarmId, target: target)
             default: break
             }
         }

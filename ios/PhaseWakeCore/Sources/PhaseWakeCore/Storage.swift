@@ -141,6 +141,13 @@ public enum SyncKeys {
     public static let stop = "stop"
     public static let snooze = "snooze"
     public static let clearHistory = "clearHistory"
+    /// Bei «ring», «stop» und «snooze»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
+    /// auch die verbleibenden Schlummer-Runden der Uhr. Ältere Versionen schicken sie nicht.
+    public static let target = "target"
+    public static let sentAt = "sentAt"
+    public static let snoozesLeft = "snoozesLeft"
+    /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
+    public static let maxRingAgeMs: Int64 = 2 * 60_000
     /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
     public static let armedTarget = "armedTarget"
 }

@@ -9,6 +9,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.wear.ongoing.OngoingActivity
 import androidx.wear.ongoing.Status
+import com.phasewake.app.core.Snooze
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.RingActivity
@@ -61,10 +62,8 @@ object Notifications {
 
     /** Daueranzeige beim Schlummern: wann es wieder klingelt. */
     fun snoozed(context: Context, untilText: String): Notification {
-        val open = PendingIntent.getActivity(
-            context, 0, Intent(context, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
+        // Öffnet den Weckbildschirm: Dort lässt sich die Nacht auch beim Schlummern durch Halten beenden.
+        val open = ringScreen(context)
         return NotificationCompat.Builder(context, CHANNEL_WINDOW)
             .setSmallIcon(R.drawable.ic_moon)
             .setContentTitle(context.getString(R.string.notification_ring_title))
@@ -99,22 +98,38 @@ object Notifications {
         return builder.build()
     }
 
-    /** Weck-Mitteilung mit Vollbild-Absicht: öffnet den Weckbildschirm auch bei gesperrter Uhr. */
-    fun ringing(context: Context, text: String): Notification {
-        val ring = PendingIntent.getActivity(
-            context, 1, Intent(context, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        return NotificationCompat.Builder(context, CHANNEL_ALARM)
+    /**
+     * Weck-Mitteilung mit Vollbild-Absicht: öffnet den Weckbildschirm auch bei gesperrter Uhr.
+     *
+     * Ohne `setSilent`: Das legt eine stille Gruppe an, und das System unterdrückt dann den
+     * Vollbildstart. Still ist sie trotzdem, der Kanal hat weder Ton noch Vibration.
+     * Stoppen nur auf dem Weckbildschirm durch Halten; die Mitteilung bietet Öffnen und Schlummern.
+     */
+    fun ringing(context: Context, text: String, snoozesLeft: Int): Notification {
+        val ring = ringScreen(context)
+        val builder = NotificationCompat.Builder(context, CHANNEL_ALARM)
             .setSmallIcon(R.drawable.ic_moon)
             .setContentTitle(context.getString(R.string.notification_ring_title))
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setOngoing(true)
-            .setSilent(true)
             .setFullScreenIntent(ring, true)
             .setContentIntent(ring)
-            .build()
+            .addAction(R.drawable.ic_moon, context.getString(R.string.notification_open), ring)
+        if (snoozesLeft > 0) {
+            val snooze = PendingIntent.getService(
+                context, 3, Intent(context, WakeService::class.java).setAction(WakeService.ACTION_SNOOZE),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
+            val label = context.resources.getQuantityString(R.plurals.ring_snooze, snoozesLeft, Snooze.MINUTES, snoozesLeft)
+            builder.addAction(R.drawable.ic_moon, label, snooze)
+        }
+        return builder.build()
     }
+
+    private fun ringScreen(context: Context): PendingIntent = PendingIntent.getActivity(
+        context, 1, Intent(context, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+    )
 }
