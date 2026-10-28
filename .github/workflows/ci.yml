@@ -40,6 +40,20 @@ jobs:
         if: failure()
         shell: bash
         run: ../.github/scripts/annotate-errors.sh build.log
+      - name: Warnungen (Übersicht)
+        if: always()
+        shell: bash
+        run: |
+          # Lint-Warnungen und Kotlin-Warnungen gezählt, als Hinweis sichtbar (auch wenn alles grün ist).
+          for f in */build/reports/lint-results-debug.txt; do
+            [ -f "$f" ] || continue
+            body=$(grep -E ": Warning:|: Information:" "$f" | sed -E 's/.*\[([A-Za-z0-9]+).*$/\1/' | sort | uniq -c | sort -rn | awk '{printf "%s×%s; ", $1, $2}')
+            echo "::notice title=Lint ${f%%/*}::${body:-keine}"
+            grep -E ": Warning:" "$f" | head -40 | sed 's/^/::notice title=Lint-Warnung::/' || true
+          done
+          kw=$(grep -E "^w: " build.log | sed 's#file://[^ ]*/phaseWake/##' | sort -u)
+          echo "::notice title=Kotlin-Warnungen::$(echo "$kw" | grep -c . ) Stück"
+          echo "$kw" | head -30 | sed 's/^/::notice title=Kotlin-Warnung::/' || true
       - name: Lint-Befunde
         if: failure()
         shell: bash
