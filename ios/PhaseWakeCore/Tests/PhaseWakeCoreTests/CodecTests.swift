@@ -12,7 +12,7 @@ final class CodecTests: XCTestCase {
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE\n"
         )
     }
 
@@ -20,13 +20,28 @@ final class CodecTests: XCTestCase {
         let math = try AlarmSpec(id: "m", hour: 6, minute: 0, wakeTask: .math)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([math])), [math])
         // Byte-gleich mit Android: 13. Feld am Ende.
-        XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH\n")
+        XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE\n")
         // Ältere Stände ohne 13. Feld und unbekannte Werte → Halten.
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF\n").first?.wakeTask, WakeTask.none)
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|PUZZLE|extra\n").first?.wakeTask, WakeTask.none)
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|MATH|extra\n").first?.wakeTask, .math)
         // Ein-/Ausschalten behält die Aufgabe.
         XCTAssertEqual(math.with(enabled: false).wakeTask, .math)
+    }
+
+    func testSunriseDeviceField() throws {
+        let watch = try AlarmSpec(id: "d", hour: 6, minute: 15, windowMinutes: 20, phone: .off, sunrise: .ring, sunriseDevice: .watch)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([watch])), [watch])
+        // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable): 14. Feld am Ende.
+        XCTAssertEqual(Codec.encodeAlarms([watch]), "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH\n")
+        // Ältere Stände ohne 14. Feld und unbekannte Werte → Handy (wie CodecTest.sunriseDeviceIsTolerant).
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").first?.sunriseDevice, .both)
+        // Pro Gerät (wie CodecTest.sunrisePerDevice); Ein-/Ausschalten behält das Gerät.
+        XCTAssertEqual(watch.phoneSunrise, .off)
+        XCTAssertEqual(watch.watchSunrise, .ring)
+        XCTAssertEqual(watch.with(enabled: false).sunriseDevice, .watch)
     }
 
     func testOlderFormatWithoutSunrise() throws {

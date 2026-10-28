@@ -133,6 +133,10 @@
         <item quantity="other">เริ่มเมื่อคุณถูกปลุก และสว่างเต็มที่หลังผ่านไป %1$d นาที</item>
     </plurals>
     <string name="editor_sunrise_window_hint">เริ่มพร้อมช่วงเวลา และสว่างเต็มที่ตามเวลาเป้าหมาย</string>
+    <string name="sunrise_device_title">ที่ไหน</string>
+    <string name="sunrise_device_phone">โทรศัพท์</string>
+    <string name="sunrise_device_watch">นาฬิกา</string>
+    <string name="sunrise_device_both">ทั้งสอง</string>
     <string name="check_ready">พร้อมสำหรับคืนนี้</string>
     <string name="check_ready_text">เชื่อมต่อนาฬิกาแล้ว อนุญาตการปลุกแล้ว แตะเพื่อดูรายละเอียด</string>
     <string name="check_not_ready">ตรวจสอบก่อนนอน</string>

@@ -133,6 +133,10 @@
         <item quantity="other">Mulai saat kamu dibangunkan dan terang penuh setelah %1$d menit.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Mulai bersama rentang dan terang penuh pada waktu target.</string>
+    <string name="sunrise_device_title">Di mana</string>
+    <string name="sunrise_device_phone">Ponsel</string>
+    <string name="sunrise_device_watch">Jam tangan</string>
+    <string name="sunrise_device_both">Keduanya</string>
     <string name="check_ready">Siap untuk malam ini</string>
     <string name="check_ready_text">Jam tangan terhubung, alarm diizinkan. Ketuk untuk detail.</string>
     <string name="check_not_ready">Periksa sebelum tidur</string>

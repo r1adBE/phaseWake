@@ -136,6 +136,10 @@
         <item quantity="other">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτά.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Ξεκινά με το παράθυρο και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο.</string>
+    <string name="sunrise_device_title">Πού</string>
+    <string name="sunrise_device_phone">Κινητό</string>
+    <string name="sunrise_device_watch">Ρολόι</string>
+    <string name="sunrise_device_both">Και τα δύο</string>
     <string name="check_ready">Έτοιμο για απόψε</string>
     <string name="check_ready_text">Το ρολόι είναι συνδεδεμένο, τα ξυπνητήρια επιτρέπονται. Πάτα για λεπτομέρειες.</string>
     <string name="check_not_ready">Έλεγξε πριν κοιμηθείς</string>

@@ -133,6 +133,10 @@
         <item quantity="other">깨울 때 시작해 %1$d분 후 가장 밝아져요.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">범위 시작과 함께 켜지고 목표 시각에 가장 밝아져요.</string>
+    <string name="sunrise_device_title">표시 위치</string>
+    <string name="sunrise_device_phone">휴대폰</string>
+    <string name="sunrise_device_watch">워치</string>
+    <string name="sunrise_device_both">둘 다</string>
     <string name="check_ready">오늘 밤 준비 완료</string>
     <string name="check_ready_text">워치 연결됨, 알람 허용됨. 탭하면 자세히 볼 수 있어요.</string>
     <string name="check_not_ready">자기 전에 확인하세요</string>

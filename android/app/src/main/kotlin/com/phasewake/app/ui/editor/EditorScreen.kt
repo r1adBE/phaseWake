@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.core.content.IntentCompat
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.SunriseDevice
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.core.WindowAdvice
 import androidx.compose.animation.AnimatedVisibility
@@ -114,6 +115,7 @@ fun EditorScreen(
     var watchSound by rememberSaveable { mutableStateOf(base.watchSound) }
     var sound by rememberSaveable { mutableStateOf(base.sound) }
     var sunrise by rememberSaveable { mutableStateOf(base.sunrise) }
+    var sunriseDevice by rememberSaveable { mutableStateOf(base.sunriseDevice) }
     var wakeTask by rememberSaveable { mutableStateOf(base.wakeTask) }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
@@ -134,6 +136,7 @@ fun EditorScreen(
         sound = sound,
         label = label.trim(),
         sunrise = sunrise,
+        sunriseDevice = sunriseDevice,
         wakeTask = wakeTask,
         enabled = true,
     )
@@ -326,7 +329,39 @@ fun EditorScreen(
                 }
             }
 
-            // Selten gebrauchte Optionen (Weckton, Sonnenaufgang, Name) zugeklappt unter «Mehr»: kürzerer Editor auf kleinen Handys.
+            // Sonnenaufgang im Haupteditor, mit Gerätewahl (Handy, Uhr oder beide).
+            Section {
+                Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
+                Choice(
+                    options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
+                    selected = sunrise,
+                    onSelect = { sunrise = it },
+                )
+                AnimatedVisibility(sunrise != Sunrise.OFF) {
+                    Column {
+                        Text(
+                            if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
+                            else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 6.dp),
+                        )
+                        Text(stringResource(R.string.sunrise_device_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
+                        Choice(
+                            options = listOf(
+                                SunriseDevice.PHONE to R.string.sunrise_device_phone,
+                                SunriseDevice.WATCH to R.string.sunrise_device_watch,
+                                SunriseDevice.BOTH to R.string.sunrise_device_both,
+                            ),
+                            selected = sunriseDevice,
+                            onSelect = { sunriseDevice = it },
+                        )
+                    }
+                }
+            }
+
+            // Selten gebrauchte Optionen (Weckton, Name) zugeklappt unter «Mehr»: kürzerer Editor auf kleinen Handys.
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -366,25 +401,6 @@ fun EditorScreen(
                                 Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                                 Text(soundTitle(context, sound), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
                             }
-                        }
-                    }
-
-                    Section {
-                        Text(stringResource(R.string.editor_sunrise), style = MaterialTheme.typography.titleMedium)
-                        Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
-                        Choice(
-                            options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
-                            selected = sunrise,
-                            onSelect = { sunrise = it },
-                        )
-                        AnimatedVisibility(sunrise != Sunrise.OFF) {
-                            Text(
-                                if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                                else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 6.dp),
-                            )
                         }
                     }
 

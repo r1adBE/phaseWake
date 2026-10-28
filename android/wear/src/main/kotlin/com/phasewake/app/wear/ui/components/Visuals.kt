@@ -71,9 +71,9 @@ fun FlowingWave(modifier: Modifier = Modifier, color: Color = Brand.Wave) {
     }
 }
 
-/** Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm. */
+/** Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm. [color]/[dot]: hell auf Sonnenaufgang anpassbar. */
 @Composable
-fun PulsingDot(modifier: Modifier = Modifier) {
+fun PulsingDot(modifier: Modifier = Modifier, color: Color = Brand.Wave, dot: Color = Brand.Moon) {
     val t by rememberInfiniteTransition(label = "pulse").animateFloat(
         initialValue = 0f, targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(1800, easing = LinearEasing)), label = "t",
@@ -83,11 +83,11 @@ fun PulsingDot(modifier: Modifier = Modifier) {
         for (k in 0 until 3) {
             val p = (t + k / 3f) % 1f
             drawCircle(
-                Brand.Wave.copy(alpha = (1f - p) * 0.7f),
+                color.copy(alpha = (1f - p) * 0.7f),
                 radius = base * (0.25f + 0.75f * p),
                 style = Stroke(1.5.dp.toPx()),
             )
         }
-        drawCircle(Brand.Moon, radius = base * 0.22f)
+        drawCircle(dot, radius = base * 0.22f)
     }
 }

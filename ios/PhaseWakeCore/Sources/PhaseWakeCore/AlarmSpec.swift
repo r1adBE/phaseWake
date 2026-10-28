@@ -19,7 +19,7 @@ public enum PhoneAlert: String, CaseIterable, Sendable {
     case off = "OFF", vibrate = "VIBRATE", sound = "SOUND"
 }
 
-/// Sonnenaufgang auf dem Handy: erst schwach dunkelorange, dann volles warmes Licht. Identisch zu Kotlin.
+/// Sonnenaufgang auf dem Bildschirm: erst schwach dunkelorange, dann volles warmes Licht. Identisch zu Kotlin.
 public enum Sunrise: String, CaseIterable, Sendable {
     case off = "OFF", ring = "RING", window = "WINDOW"
 
@@ -38,6 +38,21 @@ public enum Sunrise: String, CaseIterable, Sendable {
         let p = min(1, max(0, progress))
         return 0.01 + 0.99 * p * p
     }
+}
+
+/// Wo der Sonnenaufgang leuchtet. Rohwerte wie die Kotlin-Namen.
+/// Auf Apple nur im Format: Die Apple Watch hält ihren Bildschirm in der Weck-Sitzung nicht zuverlässig
+/// an, darum bietet der iPhone-Editor keine Wahl, und das iPhone zeigt den Sonnenaufgang bei jedem Wert.
+public enum SunriseDevice: String, CaseIterable, Sendable {
+    /// Nur auf dem Handy (Standard, wie vor der Gerätewahl).
+    case phone = "PHONE"
+    /// Nur auf der Uhr (nur Android).
+    case watch = "WATCH"
+    /// Auf Handy und Uhr (nur Android).
+    case both = "BOTH"
+
+    public var onPhone: Bool { self != .watch }
+    public var onWatch: Bool { self != .phone }
 }
 
 /// Weckaufgabe: was es zum Beenden braucht. Rohwerte wie die Kotlin-Namen.
@@ -73,6 +88,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let label: String
     /// Sonnenaufgang auf dem Handy-Bildschirm.
     public let sunrise: Sunrise
+    /// Wo der Sonnenaufgang leuchtet; auf Apple ohne Wirkung, wird aber erhalten und mit der Uhr abgeglichen.
+    public let sunriseDevice: SunriseDevice
     /// Weckaufgabe; auf Apple ohne Wirkung, wird aber erhalten und mit der Uhr abgeglichen.
     public let wakeTask: WakeTask
 
@@ -90,7 +107,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         sound: String = "",
         label: String = "",
         sunrise: Sunrise = .off,
-        wakeTask: WakeTask = WakeTask.none
+        wakeTask: WakeTask = WakeTask.none,
+        sunriseDevice: SunriseDevice = .phone
     ) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
@@ -114,6 +132,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.label = label
         self.sunrise = sunrise
         self.wakeTask = wakeTask
+        self.sunriseDevice = sunriseDevice
     }
 
     /// Ob das iPhone als Zweitwecker mitweckt.
@@ -122,13 +141,19 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     /// Einmaliger Wecker: wird nach dem Klingeln ausgeschaltet.
     public var isOneShot: Bool { days.isEmpty }
 
+    /// Sonnenaufgang auf dem Handy-Bildschirm; `.off`, wenn er nur auf der Uhr leuchtet (wie Kotlin).
+    public var phoneSunrise: Sunrise { sunriseDevice.onPhone ? sunrise : .off }
+
+    /// Sonnenaufgang auf dem Uhr-Bildschirm; `.off`, wenn er nur auf dem Handy leuchtet (wie Kotlin).
+    public var watchSunrise: Sunrise { sunriseDevice.onWatch ? sunrise : .off }
+
     /// Kopie mit geändertem Ein/Aus-Zustand.
     public func with(enabled: Bool) -> AlarmSpec {
         // Werte stammen aus einem gültigen Wecker; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
             enabled: enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
-            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask
+            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice
         )
     }
 }

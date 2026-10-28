@@ -136,6 +136,10 @@
         <item quantity="other">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Az időablakkal indul, és a célidőpontra teljes fényerővel világít.</string>
+    <string name="sunrise_device_title">Hol</string>
+    <string name="sunrise_device_phone">Telefon</string>
+    <string name="sunrise_device_watch">Óra</string>
+    <string name="sunrise_device_both">Mindkettő</string>
     <string name="check_ready">Készen áll a mai éjszakára</string>
     <string name="check_ready_text">Az óra csatlakoztatva, az ébresztők engedélyezve. Koppints a részletekért.</string>
     <string name="check_not_ready">Ellenőrizd lefekvés előtt</string>

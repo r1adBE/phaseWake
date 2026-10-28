@@ -136,6 +136,10 @@
         <item quantity="other">Begint wanneer je gewekt wordt en is na %1$d minuten volledig helder.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Begint met het venster en is op de doeltijd volledig helder.</string>
+    <string name="sunrise_device_title">Waar</string>
+    <string name="sunrise_device_phone">Telefoon</string>
+    <string name="sunrise_device_watch">Horloge</string>
+    <string name="sunrise_device_both">Beide</string>
     <string name="check_ready">Klaar voor vannacht</string>
     <string name="check_ready_text">Horloge verbonden, wekkers toegestaan. Tik voor details.</string>
     <string name="check_not_ready">Controleer voor het slapengaan</string>

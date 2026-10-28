@@ -148,6 +148,10 @@
         <item quantity="other">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">يبدأ مع بداية النافذة ويصبح ساطعًا تمامًا في الوقت المستهدف.</string>
+    <string name="sunrise_device_title">أين</string>
+    <string name="sunrise_device_phone">الهاتف</string>
+    <string name="sunrise_device_watch">الساعة</string>
+    <string name="sunrise_device_both">كلاهما</string>
     <string name="check_ready">جاهز لهذه الليلة</string>
     <string name="check_ready_text">الساعة متصلة والمنبهات مسموحة. اضغط للتفاصيل.</string>
     <string name="check_not_ready">تحقق قبل النوم</string>

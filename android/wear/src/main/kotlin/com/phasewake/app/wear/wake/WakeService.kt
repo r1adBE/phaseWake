@@ -21,6 +21,7 @@ import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.PhoneAlert
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.WakeDetector
@@ -175,6 +176,7 @@ class WakeService : LifecycleService() {
         night?.sensors?.stop()
         escalation.stop()
         releaseWakeLock()
+        WatchSunrise.stop(this)
         app.ringState.publish(RingUi.Idle)
         super.onDestroy()
     }
@@ -343,6 +345,10 @@ class WakeService : LifecycleService() {
                 Phase.MEASURING -> {
                     current.detector = WakeDetector(config)
                     if (canMeasure) startSensors(current)
+                    // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
+                    if (spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) {
+                        WatchSunrise.start(this@WakeService, WatchSunrise.Active(plan.alarmId, plan.windowStart, plan.target), formatTime(plan.target))
+                    }
                 }
                 Phase.RINGING -> {
                     checkTaskOnPhone(current)
@@ -368,6 +374,7 @@ class WakeService : LifecycleService() {
     /** Messung für einen anderen Plan aufgeben, ohne Aufzeichnung und ohne Neuplanen (das folgt mit dem neuen Plan). */
     private fun abandonMeasuring(n: Night) {
         Log.i(TAG, "Messung für ${n.plan.alarmId} verworfen, anderer Plan beginnt")
+        WatchSunrise.stop(this)
         night = null
         measuringPlan = null
         activePlan = null
@@ -380,6 +387,7 @@ class WakeService : LifecycleService() {
         val n = night ?: return
         if (n.phase != Phase.MEASURING) return
         Log.i(TAG, "Messung abgebrochen: Wecker geändert")
+        WatchSunrise.stop(this)
         night = null
         measuringPlan = null
         activePlan = null
@@ -423,6 +431,8 @@ class WakeService : LifecycleService() {
         n.sensors?.stop()
         n.phase = Phase.RINGING
         measuringPlan = null
+        // Der Weckbildschirm übernimmt das Licht.
+        WatchSunrise.stop(this)
         val now = Instant.now()
         if (n.firstRing == null) n.firstRing = now
         val reason = n.reason ?: WakeReason.DEADLINE
@@ -476,8 +486,18 @@ class WakeService : LifecycleService() {
     }
 
     private fun publishRinging(n: Night) {
+        val since = n.firstRing ?: Instant.now()
+        // Vor dem Entsperren (kein Wecker lesbar) ohne Licht.
+        val sunrise = n.spec?.watchSunrise ?: Sunrise.OFF
+        // Ab Fenster: weiter, wo das Licht beim ersten Klingeln stand. Nach dem Schlummern gleich voll hell (nie zurück).
+        val lightFrom = when {
+            sunrise == Sunrise.OFF -> 0f
+            n.snoozes > 0 -> 1f
+            sunrise == Sunrise.WINDOW -> Sunrise.progress(n.plan.windowStart, n.plan.target, since)
+            else -> 0f
+        }
         app.ringState.publish(
-            RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, n.firstRing ?: Instant.now(), Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone),
+            RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, since, Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone, sunrise, lightFrom),
         )
     }
 
@@ -584,6 +604,7 @@ class WakeService : LifecycleService() {
 
     private fun finishNight(notifyPhone: Boolean = true) {
         val n = night ?: return
+        WatchSunrise.stop(this)
         night = null
         measuringPlan = null
         activePlan = null

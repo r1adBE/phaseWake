@@ -136,6 +136,10 @@
         <item quantity="other">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på måltidspunktet.</string>
+    <string name="sunrise_device_title">Hvor</string>
+    <string name="sunrise_device_phone">Telefon</string>
+    <string name="sunrise_device_watch">Ur</string>
+    <string name="sunrise_device_both">Begge</string>
     <string name="check_ready">Klar til i nat</string>
     <string name="check_ready_text">Uret er forbundet, alarmer er tilladt. Tryk for detaljer.</string>
     <string name="check_not_ready">Tjek før du sover</string>

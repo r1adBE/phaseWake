@@ -139,6 +139,10 @@
         <item quantity="other">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Parte con la finestra e raggiunge la piena luminosità all’ora impostata.</string>
+    <string name="sunrise_device_title">Dove</string>
+    <string name="sunrise_device_phone">Telefono</string>
+    <string name="sunrise_device_watch">Smartwatch</string>
+    <string name="sunrise_device_both">Entrambi</string>
     <string name="check_ready">Pronto per stanotte</string>
     <string name="check_ready_text">Orologio connesso, sveglie consentite. Tocca per i dettagli.</string>
     <string name="check_not_ready">Controlla prima di dormire</string>

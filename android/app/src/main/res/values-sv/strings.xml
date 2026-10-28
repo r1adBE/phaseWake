@@ -136,6 +136,10 @@
         <item quantity="other">Börjar när du väcks och är helt ljus efter %1$d minuter.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid måltiden.</string>
+    <string name="sunrise_device_title">Var</string>
+    <string name="sunrise_device_phone">Mobil</string>
+    <string name="sunrise_device_watch">Klocka</string>
+    <string name="sunrise_device_both">Båda</string>
     <string name="check_ready">Redo för natten</string>
     <string name="check_ready_text">Klockan är ansluten, alarm är tillåtna. Tryck för detaljer.</string>
     <string name="check_not_ready">Kontrollera innan du sover</string>

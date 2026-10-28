@@ -119,10 +119,10 @@ class BackupAlarm(
         DirectBoot.save(context, at, plan.alarmId, plan.target)
     }
 
-    /** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn will. */
+    /** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn auf dem Handy will. */
     private suspend fun rescheduleSunrise() {
         alarmManager.cancel(sunrisePending())
-        val wanted = alarms.current().alarms.filter { it.sunrise == Sunrise.WINDOW }
+        val wanted = alarms.current().alarms.filter { it.phoneSunrise == Sunrise.WINDOW }
         // Ein bereits gezeigtes Licht nicht noch einmal starten.
         val shown = Instant.ofEpochMilli(store.data.first()[SUNRISE_SHOWN_UNTIL] ?: 0L)
         val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone) ?: return
@@ -173,8 +173,8 @@ class BackupAlarm(
             // Die Uhr klingelt wieder: Die Sicherung nach dem Schlummern ist nicht mehr nötig.
             cancelSnoozeSafety(message.alarmId)
             val spec = message.alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
-            // Weckart «Aus» ohne Licht: das Handy bleibt ganz still (kein Vollbild, kein Bildschirm).
-            if (spec == null || spec.phone != PhoneAlert.OFF || spec.sunrise != Sunrise.OFF) forwardRing(message)
+            // Weckart «Aus» ohne Licht auf dem Handy: das Handy bleibt ganz still (kein Vollbild, kein Bildschirm).
+            if (spec == null || spec.phone != PhoneAlert.OFF || spec.phoneSunrise != Sunrise.OFF) forwardRing(message)
         }
         watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
     }

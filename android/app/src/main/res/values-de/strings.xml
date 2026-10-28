@@ -136,6 +136,10 @@
         <item quantity="other">Beginnt beim Wecken und ist nach %1$d Minuten voll hell.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell.</string>
+    <string name="sunrise_device_title">Wo</string>
+    <string name="sunrise_device_phone">Handy</string>
+    <string name="sunrise_device_watch">Uhr</string>
+    <string name="sunrise_device_both">Beide</string>
     <string name="check_ready">Bereit für die Nacht</string>
     <string name="check_ready_text">Uhr verbunden, Wecker erlaubt. Tippen für Details.</string>
     <string name="check_not_ready">Vor dem Schlafen prüfen</string>

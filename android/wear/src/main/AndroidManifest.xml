@@ -63,6 +63,19 @@
             android:theme="@style/Theme.PhaseWake.Ring"
             android:turnScreenOn="true" />
 
+        <!-- Sonnenaufgang ab Weckfenster (Gerätewahl «Uhr» oder «Beide»): hält das Display an, bis getippt
+             wird oder der Weckbildschirm übernimmt. Nur nach dem Entsperren (braucht den Wecker). -->
+        <activity
+            android:name=".ui.SunriseActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            tools:ignore="WearRecents"
+            android:launchMode="singleInstance"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.phasewake.app.sunrise"
+            android:theme="@style/Theme.PhaseWake"
+            android:turnScreenOn="true" />
+
         <service
             android:name=".wake.WakeService"
             android:directBootAware="true"

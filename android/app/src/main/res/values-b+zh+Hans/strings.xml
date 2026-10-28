@@ -133,6 +133,10 @@
         <item quantity="other">在叫醒你时开始，%1$d 分钟后达到最亮。</item>
     </plurals>
     <string name="editor_sunrise_window_hint">随时间窗开始，到目标时间达到最亮。</string>
+    <string name="sunrise_device_title">显示在</string>
+    <string name="sunrise_device_phone">手机</string>
+    <string name="sunrise_device_watch">手表</string>
+    <string name="sunrise_device_both">两者</string>
     <string name="check_ready">今晚已就绪</string>
     <string name="check_ready_text">手表已连接，闹钟已允许。点按查看详情。</string>
     <string name="check_not_ready">睡前请检查</string>

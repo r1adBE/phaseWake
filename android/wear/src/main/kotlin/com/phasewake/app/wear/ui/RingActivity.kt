@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -33,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -51,9 +53,12 @@ import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.Snooze
+import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.components.PulsingDot
+import com.phasewake.app.wear.ui.components.SunriseSky
+import com.phasewake.app.wear.ui.components.sunriseSky
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.nightGlow
@@ -91,10 +96,31 @@ class RingActivity : ComponentActivity() {
                         }
                     }
                 }
+                // Sonnenaufgang auf der Uhr als Hintergrund: beim Wecken in zwei Minuten von dunkel zu hell,
+                // ab Fenster in einer Minute vom erreichten Stand aus (wie auf dem Handy).
+                val ringing = ui as? RingUi.Ringing
+                val sunrise = ringing?.sunrise ?: Sunrise.OFF
+                val light = remember { Animatable(0f) }
+                LaunchedEffect(sunrise, ringing?.lightFrom) {
+                    val from = ringing?.lightFrom ?: return@LaunchedEffect
+                    if (sunrise == Sunrise.OFF) return@LaunchedEffect
+                    // Nur heller werden, nie zurück.
+                    if (from > light.value) light.snapTo(from)
+                    val millis = if (from > 0f) Sunrise.CATCH_UP_SECONDS * 1000 else (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
+                    light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
+                }
+                LaunchedEffect(sunrise) {
+                    snapshotFlow { light.value }.collect { value ->
+                        window.attributes = window.attributes.apply {
+                            screenBrightness = if (sunrise == Sunrise.OFF) WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE else Sunrise.brightness(value)
+                        }
+                    }
+                }
                 RingScreen(
                     ui = ui,
                     onDismiss = { WakeService.command(this, WakeService.ACTION_DISMISS) },
                     onSnooze = { WakeService.command(this, WakeService.ACTION_SNOOZE) },
+                    light = if (sunrise == Sunrise.OFF) null else light.value,
                 )
             }
         }
@@ -109,8 +135,9 @@ private const val EMERGENCY_HOLD_MILLIS = 5000
 /** Darunter gilt das Display als klein (kleine runde Uhren haben etwa 192 dp). */
 private const val COMPACT_HEIGHT_DP = 210
 
+/** [light]: Fortschritt des Sonnenaufgangs (0–1) als Hintergrund, `null` = Nachthimmel. */
 @Composable
-internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit) {
+internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
@@ -121,14 +148,19 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
     val taskOnPhone = (ui as? RingUi.Ringing)?.taskOnPhone == true
     val holdMillis = if (taskOnPhone) EMERGENCY_HOLD_MILLIS else HOLD_MILLIS
     val holdLabel = stringResource(if (taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop)
+    // Mit Sonnenaufgang: Licht statt Nachthimmel, Schrift passt sich der Helligkeit an.
+    val sky = light?.let { SunriseSky.colors(it) }
+    val content = sky?.content ?: Brand.Moon
+    val accent = sky?.content?.copy(alpha = 0.6f) ?: Brand.Wave
+    val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow()
 
-    Box(Modifier.fillMaxSize().nightGlow(), contentAlignment = Alignment.Center) {
+    Box(Modifier.fillMaxSize().then(background), contentAlignment = Alignment.Center) {
         // Fortschritt des Haltens als Ring am Rand.
         Canvas(Modifier.fillMaxSize()) {
             val stroke = 5.dp.toPx()
             val inset = stroke / 2 + 1.dp.toPx()
             drawArc(
-                Brand.Wave, -90f, 360f * progress.value, false,
+                if (sky != null) content else Brand.Wave, -90f, 360f * progress.value, false,
                 Offset(inset, inset), Size(size.width - 2 * inset, size.height - 2 * inset),
                 style = Stroke(stroke, cap = StrokeCap.Round),
             )
@@ -139,7 +171,9 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
             modifier = Modifier.padding(horizontal = if (compact) 22.dp else 18.dp),
         ) {
             PulsingDot(
-                Modifier
+                color = accent,
+                dot = content,
+                modifier = Modifier
                     .size(if (compact) 48.dp else 76.dp)
                     // Auch mit Aufgabe beendet die Bedienungshilfe (Notausgang, wie langes Halten).
                     .semantics {
@@ -168,7 +202,7 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
             )
             Spacer(Modifier.height(if (compact) 2.dp else 6.dp))
             when (ui) {
-                is RingUi.Ringing -> Ringing(ui, onSnooze, compact)
+                is RingUi.Ringing -> Ringing(ui, onSnooze, compact, content = content, muted = sky?.contentMuted)
                 is RingUi.Snoozed -> Snoozed(ui)
                 RingUi.Idle -> Unit
             }
@@ -176,12 +210,14 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit)
     }
 }
 
+/** [content]/[muted]: Schriftfarben; [muted] `null` = Farben des Nachthimmels. */
 @Composable
-private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean = false) {
+private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean = false, content: Color = Brand.Moon, muted: Color? = null) {
     // Jede Zeile einzeilig: Lange Namen oder Übersetzungen dürfen den Schlummer-Knopf nicht nach unten schieben.
     Text(
         ui.label.ifBlank { stringResource(R.string.ring_greeting) },
         style = if (compact) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleLarge,
+        color = content,
         textAlign = TextAlign.Center,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
@@ -195,7 +231,7 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
             },
         ),
         style = MaterialTheme.typography.bodySmall,
-        color = Brand.Mist,
+        color = muted ?: Brand.Mist,
         textAlign = TextAlign.Center,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
@@ -203,7 +239,7 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
     Text(
         stringResource(if (ui.taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop),
         style = MaterialTheme.typography.labelSmall,
-        color = Brand.Muted,
+        color = muted ?: Brand.Muted,
         textAlign = TextAlign.Center,
         // Der Hinweis zur Aufgabe ist länger: zwei Zeilen.
         maxLines = if (ui.taskOnPhone) 2 else 1,

@@ -133,6 +133,10 @@
         <item quantity="other">Bermula apabila awak dikejutkan dan cerah sepenuhnya selepas %1$d minit.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Bermula bersama tetingkap dan cerah sepenuhnya pada masa sasaran.</string>
+    <string name="sunrise_device_title">Di mana</string>
+    <string name="sunrise_device_phone">Telefon</string>
+    <string name="sunrise_device_watch">Jam tangan</string>
+    <string name="sunrise_device_both">Kedua-dua</string>
     <string name="check_ready">Sedia untuk malam ini</string>
     <string name="check_ready_text">Jam tangan disambungkan, penggera dibenarkan. Ketik untuk butiran.</string>
     <string name="check_not_ready">Semak sebelum tidur</string>

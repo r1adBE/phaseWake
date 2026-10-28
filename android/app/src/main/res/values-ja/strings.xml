@@ -133,6 +133,10 @@
         <item quantity="other">起こされた時点で始まり、%1$d分後に最も明るくなります。</item>
     </plurals>
     <string name="editor_sunrise_window_hint">時間幅の開始とともに始まり、目標時刻に最も明るくなります。</string>
+    <string name="sunrise_device_title">表示先</string>
+    <string name="sunrise_device_phone">スマホ</string>
+    <string name="sunrise_device_watch">ウォッチ</string>
+    <string name="sunrise_device_both">両方</string>
     <string name="check_ready">今夜の準備OK</string>
     <string name="check_ready_text">ウォッチ接続済み、アラーム許可済み。タップで詳細を表示します。</string>
     <string name="check_not_ready">就寝前に確認</string>

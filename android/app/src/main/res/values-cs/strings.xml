@@ -142,6 +142,10 @@
         <item quantity="other">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Začne s oknem buzení a v cílový čas naplno září.</string>
+    <string name="sunrise_device_title">Kde</string>
+    <string name="sunrise_device_phone">Telefon</string>
+    <string name="sunrise_device_watch">Hodinky</string>
+    <string name="sunrise_device_both">Obojí</string>
     <string name="check_ready">Připraveno na dnešní noc</string>
     <string name="check_ready_text">Hodinky jsou připojené, budíky povolené. Klepnutím zobrazíš podrobnosti.</string>
     <string name="check_not_ready">Zkontroluj před spaním</string>

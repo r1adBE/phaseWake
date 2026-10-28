@@ -20,8 +20,8 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
-    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe */
-    private const val FIELDS = 13
+    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|Sonnenaufgang-Gerät */
+    private const val FIELDS = 14
 
     /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
     private const val FIELDS_V1 = 11
@@ -49,6 +49,7 @@ object Codec {
                 escape(a.label),
                 a.sunrise.name,
                 a.wakeTask.name,
+                a.sunriseDevice.name,
             ).joinToString(SEP)).append('\n')
         }
     }
@@ -91,7 +92,9 @@ object Codec {
                     label = unescape(f[10]),
                     sunrise = if (f.size > FIELDS_V1) Sunrise.entries.firstOrNull { it.name == f[11] } ?: Sunrise.OFF else Sunrise.OFF,
                     // Feld 13 fehlt bei älteren Ständen, unbekannt aus neueren: Halten.
-                    wakeTask = f.getOrNull(FIELDS - 1)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
+                    wakeTask = f.getOrNull(12)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
+                    // Feld 14 fehlt bei älteren Ständen, unbekannt aus neueren: Handy.
+                    sunriseDevice = f.getOrNull(13)?.let { v -> SunriseDevice.entries.firstOrNull { it.name == v } } ?: SunriseDevice.PHONE,
                 )
             }
 

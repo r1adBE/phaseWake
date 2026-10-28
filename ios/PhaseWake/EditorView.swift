@@ -93,25 +93,30 @@ struct EditorView: View {
                     Text(L("editor_alert"))
                 }
 
-                // Selten gebraucht: Sonnenaufgang und Name zugeklappt unter «Mehr».
+                // Sonnenaufgang im Haupteditor. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in
+                // der Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(L("editor_sunrise")).font(.headline)
+                        Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Picker(L("editor_sunrise"), selection: $sunrise) {
+                            Text(L("alert_off")).tag(Sunrise.off)
+                            Text(L("sunrise_ring")).tag(Sunrise.ring)
+                            Text(L("sunrise_window")).tag(Sunrise.window)
+                        }
+                        .pickerStyle(.segmented)
+                        if sunrise != .off {
+                            Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
+                                .font(.footnote).foregroundStyle(.secondary)
+                            // Auf dem iPhone nur mit offener App möglich.
+                            Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                        }
+                    }
+                }
+
+                // Selten gebraucht: Name zugeklappt unter «Mehr».
                 Section {
                     DisclosureGroup(isExpanded: $showMore) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(L("editor_sunrise")).font(.headline)
-                            Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
-                            Picker(L("editor_sunrise"), selection: $sunrise) {
-                                Text(L("alert_off")).tag(Sunrise.off)
-                                Text(L("sunrise_ring")).tag(Sunrise.ring)
-                                Text(L("sunrise_window")).tag(Sunrise.window)
-                            }
-                            .pickerStyle(.segmented)
-                            if sunrise != .off {
-                                Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
-                                    .font(.footnote).foregroundStyle(.secondary)
-                                // Auf dem iPhone nur mit offener App möglich.
-                                Text(L("editor_sunrise_ios_hint")).font(.footnote)
-                            }
-                        }
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L("editor_label")).font(.headline)
                             TextField(L("editor_label_hint"), text: $label)
@@ -178,7 +183,7 @@ struct EditorView: View {
         label = existing.label
         sunrise = existing.sunrise
         // Schon gesetzte Optionen nicht verstecken.
-        showMore = existing.sunrise != .off || !existing.label.isEmpty
+        showMore = !existing.label.isEmpty
     }
 
     private func current() -> AlarmSpec? {
@@ -198,7 +203,9 @@ struct EditorView: View {
             sunrise: sunrise,
             // Weckaufgabe gibt es auf Apple nicht (AlarmKit-Stopp lässt sich nicht ersetzen): nicht
             // anbieten, einen vorhandenen Wert aber unverändert behalten.
-            wakeTask: existing?.wakeTask ?? WakeTask.none
+            wakeTask: existing?.wakeTask ?? WakeTask.none,
+            // Gerätewahl gibt es auf Apple nicht (nur iPhone): vorhandenen Wert behalten, neu = Handy.
+            sunriseDevice: existing?.sunriseDevice ?? .phone
         )
     }
 

@@ -24,7 +24,7 @@ public enum Codec {
                 a.days.sorted().map { dayCodes[$0]! }.joined(separator: ","),
                 String(a.windowMinutes), a.enabled ? "1" : "0", a.phone.rawValue, a.watchSound ? "1" : "0",
                 a.sleepDurationMinutes.map(String.init) ?? "", escape(a.sound), escape(a.label), a.sunrise.rawValue,
-                a.wakeTask.rawValue,
+                a.wakeTask.rawValue, a.sunriseDevice.rawValue,
             ].joined(separator: "|") + "\n"
         }
         return out
@@ -41,10 +41,12 @@ public enum Codec {
     private static func decodeAlarm(_ index: Int, _ line: String) throws -> AlarmSpec {
         let f = line.components(separatedBy: "|")
         // Neuere Versionen dürfen Felder anhängen; gelesen wird, was diese Version kennt.
-        guard f.count >= 11 else { throw CodecError(description: "Wecker \(index + 1): 13 Felder erwartet") }
+        guard f.count >= 11 else { throw CodecError(description: "Wecker \(index + 1): 14 Felder erwartet") }
         let sunrise = f.count >= 12 ? Sunrise(rawValue: f[11]) ?? .off : .off
         // 13. Feld (Weckaufgabe): fehlt bei älteren Ständen, unbekannt bei neueren → Halten.
         let wakeTask: WakeTask = f.count >= 13 ? WakeTask(rawValue: f[12]) ?? WakeTask.none : WakeTask.none
+        // 14. Feld (Sonnenaufgang-Gerät): fehlt bei älteren Ständen, unbekannt bei neueren → Handy.
+        let sunriseDevice: SunriseDevice = f.count >= 14 ? SunriseDevice(rawValue: f[13]) ?? .phone : .phone
         let phone = PhoneAlert(rawValue: f[6]) ?? .sound
         let days: Set<Weekday> = try f[3].isEmpty ? [] : Set(f[3].components(separatedBy: ",").map {
             guard let day = daysByCode[$0] else { throw CodecError(description: "Wochentag '\($0)'") }
@@ -55,7 +57,7 @@ public enum Codec {
                 id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
                 enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
                 sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]), sunrise: sunrise,
-                wakeTask: wakeTask
+                wakeTask: wakeTask, sunriseDevice: sunriseDevice
             )
         } catch let error as DetectorConfigError {
             throw CodecError(description: "Wecker \(index + 1): \(error.message)")

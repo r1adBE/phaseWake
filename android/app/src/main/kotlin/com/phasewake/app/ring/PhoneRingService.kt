@@ -130,7 +130,8 @@ class PhoneRingService : Service() {
         phoneApp.appScope.launch(Dispatchers.Main) {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
             val spec = if (BackupAlarm.isUnlocked(this@PhoneRingService)) phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId } else null
-            val sunrise = spec?.sunrise ?: Sunrise.OFF
+            // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
+            val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
             // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
             val task = spec?.takeIf { it.phone != PhoneAlert.OFF }?.wakeTask ?: WakeTask.NONE
             if (task != WakeTask.NONE) (state.value as? State.Ringing)?.let { state.value = it.copy(wakeTask = task) }

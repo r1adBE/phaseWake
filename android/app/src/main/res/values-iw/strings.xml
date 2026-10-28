@@ -139,6 +139,10 @@
         <item quantity="other">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">מתחיל עם החלון ובהיר לגמרי בזמן היעד.</string>
+    <string name="sunrise_device_title">איפה</string>
+    <string name="sunrise_device_phone">טלפון</string>
+    <string name="sunrise_device_watch">שעון</string>
+    <string name="sunrise_device_both">שניהם</string>
     <string name="check_ready">מוכנים ללילה</string>
     <string name="check_ready_text">השעון מחובר, ההתראות מאושרות. הקישו לפרטים.</string>
     <string name="check_not_ready">בדקו לפני השינה</string>

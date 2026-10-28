@@ -133,6 +133,10 @@
         <item quantity="other">Bắt đầu khi bạn được đánh thức và sáng hoàn toàn sau %1$d phút.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Bắt đầu cùng khoảng thời gian và sáng hoàn toàn vào giờ mục tiêu.</string>
+    <string name="sunrise_device_title">Ở đâu</string>
+    <string name="sunrise_device_phone">Điện thoại</string>
+    <string name="sunrise_device_watch">Đồng hồ</string>
+    <string name="sunrise_device_both">Cả hai</string>
     <string name="check_ready">Sẵn sàng cho đêm nay</string>
     <string name="check_ready_text">Đã kết nối đồng hồ, đã cho phép báo thức. Chạm để xem chi tiết.</string>
     <string name="check_not_ready">Kiểm tra trước khi ngủ</string>

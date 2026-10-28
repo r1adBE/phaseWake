@@ -142,6 +142,10 @@
         <item quantity="other">Починається, коли тебе будять, і через %1$d хвилини світить на повну яскравість.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Починається разом із вікном і до цільового часу світить на повну яскравість.</string>
+    <string name="sunrise_device_title">Де</string>
+    <string name="sunrise_device_phone">Телефон</string>
+    <string name="sunrise_device_watch">Годинник</string>
+    <string name="sunrise_device_both">Обидва</string>
     <string name="check_ready">Готово до ночі</string>
     <string name="check_ready_text">Годинник підключено, будильники дозволено. Торкнися, щоб побачити подробиці.</string>
     <string name="check_not_ready">Перевір перед сном</string>

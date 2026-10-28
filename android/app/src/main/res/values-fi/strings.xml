@@ -136,6 +136,10 @@
         <item quantity="other">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Alkaa aikaikkunan mukana ja on täysin kirkas tavoiteajankohtana.</string>
+    <string name="sunrise_device_title">Missä</string>
+    <string name="sunrise_device_phone">Puhelin</string>
+    <string name="sunrise_device_watch">Kello</string>
+    <string name="sunrise_device_both">Molemmat</string>
     <string name="check_ready">Valmiina tähän yöhön</string>
     <string name="check_ready_text">Kello on yhdistetty, herätykset sallittu. Napauta nähdäksesi lisätiedot.</string>
     <string name="check_not_ready">Tarkista ennen nukkumaanmenoa</string>

@@ -136,6 +136,10 @@
         <item quantity="other">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Aralıkla birlikte başlar ve hedef saatte tam parlaklığa ulaşır.</string>
+    <string name="sunrise_device_title">Nerede</string>
+    <string name="sunrise_device_phone">Telefon</string>
+    <string name="sunrise_device_watch">Saat</string>
+    <string name="sunrise_device_both">İkisi de</string>
     <string name="check_ready">Bu gece hazır</string>
     <string name="check_ready_text">Saat bağlı, alarmlara izin verildi. Ayrıntılar için dokun.</string>
     <string name="check_not_ready">Uyumadan önce kontrol et</string>

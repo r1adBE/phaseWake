@@ -139,6 +139,10 @@
         <item quantity="other">Empieza cuando te despierta y alcanza el brillo máximo a los %1$d minutos.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Empieza con la ventana y alcanza el brillo máximo a la hora objetivo.</string>
+    <string name="sunrise_device_title">Dónde</string>
+    <string name="sunrise_device_phone">Móvil</string>
+    <string name="sunrise_device_watch">Reloj</string>
+    <string name="sunrise_device_both">Ambos</string>
     <string name="check_ready">Listo para esta noche</string>
     <string name="check_ready_text">Reloj conectado, alarmas permitidas. Toca para ver los detalles.</string>
     <string name="check_not_ready">Revisa antes de dormir</string>

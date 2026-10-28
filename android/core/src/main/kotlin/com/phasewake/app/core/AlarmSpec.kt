@@ -16,7 +16,8 @@ import java.time.DayOfWeek
  * @property sound Weckton des Handys als Uri-Text; leer = Standard-Weckton des Systems.
  * @property sleepDurationMinutes Optional: Zielzeit = Einschlafzeit + Dauer, höchstens [hour]:[minute].
  * @property label Freier Name, z. B. «Arbeit».
- * @property sunrise Sonnenaufgang auf dem Handy-Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters.
+ * @property sunrise Sonnenaufgang auf dem Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters.
+ * @property sunriseDevice Wo der Sonnenaufgang leuchtet: Handy (Standard), Uhr oder beide. Auf Apple nur Handy.
  * @property wakeTask Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy.
  */
 data class AlarmSpec(
@@ -32,6 +33,7 @@ data class AlarmSpec(
     val sleepDurationMinutes: Int? = null,
     val label: String = "",
     val sunrise: Sunrise = Sunrise.OFF,
+    val sunriseDevice: SunriseDevice = SunriseDevice.PHONE,
     val wakeTask: WakeTask = WakeTask.NONE,
 ) {
     init {
@@ -51,6 +53,12 @@ data class AlarmSpec(
 
     /** Einmaliger Wecker: wird nach dem Klingeln ausgeschaltet. */
     val isOneShot: Boolean get() = days.isEmpty()
+
+    /** Sonnenaufgang auf dem Handy-Bildschirm; [Sunrise.OFF], wenn er nur auf der Uhr leuchtet. */
+    val phoneSunrise: Sunrise get() = if (sunriseDevice.onPhone) sunrise else Sunrise.OFF
+
+    /** Sonnenaufgang auf dem Uhr-Bildschirm; [Sunrise.OFF], wenn er nur auf dem Handy leuchtet. */
+    val watchSunrise: Sunrise get() = if (sunriseDevice.onWatch) sunrise else Sunrise.OFF
 
     companion object {
         const val DEFAULT_WINDOW_MINUTES: Int = 30
@@ -89,7 +97,7 @@ enum class WakeTask {
 }
 
 /**
- * Sonnenaufgang auf dem Handy: Der Bildschirm leuchtet erst schwach dunkelorange und wird bis
+ * Sonnenaufgang: Der Bildschirm (Handy, Uhr oder beide, siehe [SunriseDevice]) leuchtet erst schwach dunkelorange und wird bis
  * zu vollem, warmem Licht bei voller Helligkeit. Unabhängig von [PhoneAlert].
  */
 enum class Sunrise {
@@ -119,4 +127,23 @@ enum class Sunrise {
             return 0.01f + 0.99f * p * p
         }
     }
+}
+
+/**
+ * Wo der Sonnenaufgang leuchtet. Gleiche Farbkurve und Helligkeit auf beiden Geräten.
+ * Auf Apple nicht wählbar (die Apple Watch hält ihren Bildschirm in der Weck-Sitzung nicht
+ * zuverlässig an); dort gilt immer das Handy, der Wert bleibt aber im Format erhalten.
+ */
+enum class SunriseDevice {
+    /** Nur auf dem Handy (Standard, wie vor der Gerätewahl). */
+    PHONE,
+
+    /** Nur auf der Uhr. */
+    WATCH,
+
+    /** Auf Handy und Uhr. */
+    BOTH;
+
+    val onPhone: Boolean get() = this != WATCH
+    val onWatch: Boolean get() = this != PHONE
 }

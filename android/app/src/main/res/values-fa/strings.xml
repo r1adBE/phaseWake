@@ -136,6 +136,10 @@
         <item quantity="other">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">با شروع بازه آغاز می‌شود و در زمان هدف کاملاً روشن است.</string>
+    <string name="sunrise_device_title">کجا</string>
+    <string name="sunrise_device_phone">گوشی</string>
+    <string name="sunrise_device_watch">ساعت</string>
+    <string name="sunrise_device_both">هر دو</string>
     <string name="check_ready">آماده برای امشب</string>
     <string name="check_ready_text">ساعت متصل است و هشدارها مجاز است. برای جزئیات بزن.</string>
     <string name="check_not_ready">قبل از خواب بررسی کن</string>
