@@ -6,4 +6,5 @@
     <exclude domain="database" path="." />
     <exclude domain="sharedpref" path="." />
     <exclude domain="external" path="." />
+    <exclude domain="device_sharedpref" path="." />
 </full-backup-content>

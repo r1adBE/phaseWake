@@ -12,6 +12,13 @@ import java.time.Instant
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == ACTION_GOOD_NIGHT_CHECK) {
+            // Vor dem Entsperren ist «Gute Nacht» nicht lesbar; nach dem Entsperren plant der Neustart-Empfänger die Prüfung neu.
+            if (!DirectBoot.isUnlocked(context)) return
+            // Misst «Gute Nacht» noch, nur die nächste Prüfung stellen; sonst den Dienst neu starten (er liest den Stand).
+            if (WakeService.goodNightActive) AlarmScheduler.armGoodNightCheck(context) else WakeService.resumeGoodNight(context)
+            return
+        }
         val plan = planFrom(intent) ?: return
         when (intent.action) {
             ACTION_WINDOW_START -> WakeService.start(context, plan)
@@ -24,6 +31,7 @@ class AlarmReceiver : BroadcastReceiver() {
         const val ACTION_WINDOW_START = "com.phasewake.app.action.WINDOW_START"
         const val ACTION_DEADLINE = "com.phasewake.app.action.DEADLINE"
         const val ACTION_SNOOZE_END = "com.phasewake.app.action.SNOOZE_END"
+        const val ACTION_GOOD_NIGHT_CHECK = "com.phasewake.app.action.GOOD_NIGHT_CHECK"
 
         private const val EXTRA_ALARM_ID = "alarmId"
         private const val EXTRA_WINDOW_START = "windowStart"

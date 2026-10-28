@@ -15,11 +15,5 @@
     <string name="watch_not_armed">เปิด Phase Wake ก่อนเข้านอน เพื่อให้นาฬิกาเปิดใช้งานนาฬิกาปลุกได้</string>
     <string name="check_watch_arm">เปิดใช้งานนาฬิกาปลุกบนนาฬิกาแล้ว</string>
     <string name="check_watch_arm_problem">เปิด Phase Wake บน Apple Watch ก่อนเข้านอน watchOS จะเปิดใช้งานนาฬิกาปลุกเฉพาะตอนที่แอปเปิดอยู่</string>
-    <string name="woke_late_apple">หลังเป้าหมาย %1$d นาที · %2$s</string>
     <string name="night_unmeasured_apple">%1$d นาทีแรกไม่ได้วัด – Apple Watch วัดเฉพาะ %2$d นาทีสุดท้ายก่อนเวลาเป้าหมาย</string>
-    <string name="check_watch_battery_apple">แบตเตอรี่นาฬิกา</string>
-    <string name="check_watch_battery_apple_problem">ต่ำกว่า %1$d %% – ชาร์จ Apple Watch เพื่อให้ปลุกคุณได้</string>
-    <string name="export_contents_apple">ไฟล์นี้มีชุดข้อมูลการเคลื่อนไหวและชีพจรของคุณในแต่ละคืน</string>
-    <string name="editor_more_apple">เพิ่มเติม</string>
-    <string name="alarms_limit_apple">ตั้งปลุกได้สูงสุด %1$d รายการ</string>
 </resources>

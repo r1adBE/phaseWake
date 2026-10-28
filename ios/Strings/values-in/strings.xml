@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Buka Phase Wake sebelum tidur agar jam tanganmu bisa mengaktifkan alarm.</string>
     <string name="check_watch_arm">Alarm aktif di jam tangan</string>
     <string name="check_watch_arm_problem">Buka Phase Wake di Apple Watch-mu sebelum tidur. watchOS hanya mengaktifkan alarm selama aplikasi terbuka.</string>
-    <string name="woke_late_apple">%1$d mnt setelah target · %2$s</string>
     <string name="night_unmeasured_apple">%1$d mnt pertama tidak diukur – Apple Watch hanya mengukur %2$d mnt terakhir sebelum target.</string>
-    <string name="check_watch_battery_apple">Baterai jam</string>
-    <string name="check_watch_battery_apple_problem">Di bawah %1$d %% – isi daya Apple Watch agar bisa membangunkanmu.</string>
-    <string name="export_contents_apple">File ini berisi deret gerakan dan denyut nadimu untuk setiap malam.</string>
-    <string name="editor_more_apple">Lainnya</string>
-    <string name="alarms_limit_apple">Kamu bisa membuat paling banyak %1$d alarm.</string>
 </resources>

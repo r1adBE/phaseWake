@@ -33,7 +33,7 @@ struct HistoryView: View {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
                         }
                         .padding(.top)
-                        Text(L("export_contents_apple"))
+                        Text(L("export_contents_hint"))
                             .font(Fonts.manrope(12, relativeTo: .caption))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)

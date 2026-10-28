@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Άνοιξε το Phase Wake πριν κοιμηθείς, ώστε το ρολόι σου να ενεργοποιήσει το ξυπνητήρι.</string>
     <string name="check_watch_arm">Το ξυπνητήρι ενεργοποιήθηκε στο ρολόι</string>
     <string name="check_watch_arm_problem">Άνοιξε το Phase Wake στο Apple Watch σου πριν κοιμηθείς. Το watchOS ενεργοποιεί το ξυπνητήρι μόνο όσο η εφαρμογή είναι ανοιχτή.</string>
-    <string name="woke_late_apple">%1$d λ. μετά τον στόχο · %2$s</string>
     <string name="night_unmeasured_apple">Τα πρώτα %1$d λ. δεν μετρήθηκαν – το Apple Watch μετρά μόνο τα τελευταία %2$d λ. πριν τον στόχο.</string>
-    <string name="check_watch_battery_apple">Μπαταρία ρολογιού</string>
-    <string name="check_watch_battery_apple_problem">Κάτω από %1$d %% – φόρτισε το Apple Watch για να μπορεί να σε ξυπνήσει.</string>
-    <string name="export_contents_apple">Το αρχείο περιέχει τις σειρές κίνησης και παλμών σου για κάθε νύχτα.</string>
-    <string name="editor_more_apple">Περισσότερα</string>
-    <string name="alarms_limit_apple">Μπορείς να ορίσεις έως %1$d ξυπνητήρια.</string>
 </resources>

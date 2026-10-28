@@ -49,9 +49,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Kein noHistory: Ginge das Display aus, schlösse sich der Weckbildschirm während es vibriert. -->
+        <!-- Kein noHistory: Ginge das Display aus, schlösse sich der Weckbildschirm während es vibriert.
+             Weckbildschirm, Weckdienst und Alarme laufen auch vor dem ersten Entsperren nach einem Neustart. -->
         <activity
             android:name=".ui.RingActivity"
+            android:directBootAware="true"
             android:exported="false"
             android:excludeFromRecents="true"
             tools:ignore="WearRecents"
@@ -63,6 +65,7 @@
 
         <service
             android:name=".wake.WakeService"
+            android:directBootAware="true"
             android:exported="false"
             android:foregroundServiceType="health|systemExempted" />
 
@@ -112,12 +115,15 @@
 
         <receiver
             android:name=".schedule.AlarmReceiver"
+            android:directBootAware="true"
             android:exported="false" />
 
         <receiver
             android:name=".schedule.SystemEventReceiver"
+            android:directBootAware="true"
             android:exported="true">
             <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
                 <action android:name="android.intent.action.TIME_SET" />

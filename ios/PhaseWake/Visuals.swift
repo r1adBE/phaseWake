@@ -79,7 +79,7 @@ func nightSummary(_ night: NightRecord) -> String {
     let timing: String = if night.minutesBeforeTarget > 0 {
         L("woke_early", night.minutesBeforeTarget, reason)
     } else if night.minutesAfterTarget > 0 {
-        L("woke_late_apple", night.minutesAfterTarget, reason)
+        LP("woke_late", night.minutesAfterTarget, Int64(night.minutesAfterTarget), reason)
     } else {
         L("woke_on_time", reason)
     }

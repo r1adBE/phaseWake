@@ -7,19 +7,23 @@ import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.OnsetOverride
+import com.phasewake.app.wear.wake.GoodNightState
 import com.phasewake.app.wear.wake.NightProgress
 import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wake.RingState
 import java.io.File
-import java.time.Instant
 import android.util.Log
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 
-/** Einstieg der Uhr-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). */
+/**
+ * Einstieg der Uhr-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek).
+ *
+ * Läuft auch vor dem ersten Entsperren (Direct Boot): Dann keines der Objekte mit Speicher anfassen
+ * (Wecker, Nächte, DataStore), siehe [com.phasewake.app.wear.schedule.DirectBoot].
+ */
 class PhaseWakeWear : Application() {
 
     /** Lebt so lange wie der Prozess; für Arbeit, die eine Activity oder einen Empfänger überdauert. */
@@ -39,8 +43,8 @@ class PhaseWakeWear : Application() {
     val scheduler by lazy { AlarmScheduler(this, alarms, onsetOverride, phaseWakeStore, sync) }
     val ringState = RingState()
 
-    /** Seit wann nach «Gute Nacht» auf das Einschlafen gewartet wird; `null`, wenn nicht. */
-    val goodNight = MutableStateFlow<Instant?>(null)
+    /** «Gute Nacht» (gespeichert, überlebt das Ende des Prozesses). */
+    val goodNight by lazy { GoodNightState(phaseWakeStore) }
 
     override fun onCreate() {
         super.onCreate()

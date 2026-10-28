@@ -15,11 +15,5 @@
     <string name="watch_not_armed">잠들기 전에 Phase Wake를 열어 주세요. 그래야 워치가 알람을 활성화할 수 있어요.</string>
     <string name="check_watch_arm">워치에서 알람 활성화됨</string>
     <string name="check_watch_arm_problem">잠들기 전에 Apple Watch에서 Phase Wake를 열어 주세요. watchOS는 앱이 열려 있는 동안에만 알람을 활성화해요.</string>
-    <string name="woke_late_apple">목표 %1$d분 후 · %2$s</string>
     <string name="night_unmeasured_apple">처음 %1$d분은 측정되지 않음 – Apple Watch는 목표 전 마지막 %2$d분만 측정합니다.</string>
-    <string name="check_watch_battery_apple">워치 배터리</string>
-    <string name="check_watch_battery_apple_problem">%1$d %% 미만 – 깨울 수 있도록 Apple Watch를 충전하세요.</string>
-    <string name="export_contents_apple">이 파일에는 매일 밤의 움직임과 심박 데이터가 들어 있습니다.</string>
-    <string name="editor_more_apple">더 보기</string>
-    <string name="alarms_limit_apple">알람은 최대 %1$d개까지 만들 수 있습니다.</string>
 </resources>

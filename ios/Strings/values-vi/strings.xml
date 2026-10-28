@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Hãy mở Phase Wake trước khi đi ngủ để đồng hồ có thể kích hoạt báo thức.</string>
     <string name="check_watch_arm">Báo thức đã được kích hoạt trên đồng hồ</string>
     <string name="check_watch_arm_problem">Hãy mở Phase Wake trên Apple Watch trước khi đi ngủ. watchOS chỉ kích hoạt báo thức khi ứng dụng đang mở.</string>
-    <string name="woke_late_apple">Muộn %1$d phút so với mục tiêu · %2$s</string>
     <string name="night_unmeasured_apple">%1$d phút đầu không được đo – Apple Watch chỉ đo %2$d phút cuối trước giờ mục tiêu.</string>
-    <string name="check_watch_battery_apple">Pin đồng hồ</string>
-    <string name="check_watch_battery_apple_problem">Dưới %1$d %% – hãy sạc Apple Watch để nó có thể đánh thức bạn.</string>
-    <string name="export_contents_apple">Tệp chứa chuỗi chuyển động và nhịp tim của bạn cho mỗi đêm.</string>
-    <string name="editor_more_apple">Thêm</string>
-    <string name="alarms_limit_apple">Bạn có thể đặt tối đa %1$d báo thức.</string>
 </resources>

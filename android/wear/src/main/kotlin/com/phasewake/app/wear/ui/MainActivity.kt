@@ -120,7 +120,8 @@ private fun HomeScreen() {
     // Wie Kachel und Komplikation: mit erkanntem Einschlafen, ohne eine schon erledigte Nacht.
     var plan by remember { mutableStateOf<WakePlan?>(null) }
     LaunchedEffect(loaded, now) { plan = app.scheduler.nextPlan() }
-    val goodNightSince by app.goodNight.collectAsStateWithLifecycle()
+    // Aus dem Speicher: zeigt «Gute Nacht» auch nach einem Neustart des Prozesses richtig an.
+    val goodNightSince by app.goodNight.since.collectAsStateWithLifecycle(initialValue = null)
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
     // «Gute Nacht» nur für die kommende Nacht (eingestellte Weckzeit höchstens 16 Std. entfernt).
     fun goodNightTooFar(at: Instant): Boolean {
@@ -179,7 +180,7 @@ private fun HomeScreen() {
         onGoodNight = {
             val alarm = sleepAlarm ?: return@HomeContent
             if (goodNightSince != null) {
-                WakeService.command(context, WakeService.ACTION_GOOD_NIGHT_CANCEL)
+                WakeService.cancelGoodNight(context)
             } else if (!goodNightTooFar(Instant.now())) {
                 WakeService.goodNight(context, alarm.id)
             }

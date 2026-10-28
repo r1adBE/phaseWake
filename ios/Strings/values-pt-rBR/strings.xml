@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Abra o Phase Wake antes de dormir para que seu relógio possa ativar o alarme.</string>
     <string name="check_watch_arm">Alarme ativado no relógio</string>
     <string name="check_watch_arm_problem">Abra o Phase Wake no seu Apple Watch antes de dormir. O watchOS só ativa o alarme enquanto o app está aberto.</string>
-    <string name="woke_late_apple">%1$d min depois do horário-alvo · %2$s</string>
     <string name="night_unmeasured_apple">Primeiros %1$d min sem medição – o Apple Watch só mede os últimos %2$d min antes do horário-alvo.</string>
-    <string name="check_watch_battery_apple">Bateria do relógio</string>
-    <string name="check_watch_battery_apple_problem">Abaixo de %1$d %% – carregue o Apple Watch para que ele possa te acordar.</string>
-    <string name="export_contents_apple">O arquivo contém suas séries de movimento e pulso de cada noite.</string>
-    <string name="editor_more_apple">Mais</string>
-    <string name="alarms_limit_apple">Você pode criar no máximo %1$d alarmes.</string>
 </resources>

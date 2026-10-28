@@ -54,7 +54,7 @@ struct HomeView: View {
                                 AlarmRow(alarm: alarm) { editing = alarm }
                             }
                             if !model.canAddAlarm {
-                                Text(L("alarms_limit_apple", PhoneModel.maxAlarms))
+                                Text(L("home_max_alarms", PhoneModel.maxAlarms))
                                     .font(Fonts.manrope(12, relativeTo: .caption))
                                     .foregroundStyle(.secondary)
                                     .frame(maxWidth: .infinity, alignment: .leading)

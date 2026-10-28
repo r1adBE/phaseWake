@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Otwórz Phase Wake przed snem, aby zegarek mógł aktywować budzik.</string>
     <string name="check_watch_arm">Budzik aktywny na zegarku</string>
     <string name="check_watch_arm_problem">Otwórz Phase Wake na Apple Watch przed snem. watchOS aktywuje budzik tylko wtedy, gdy aplikacja jest otwarta.</string>
-    <string name="woke_late_apple">%1$d min po czasie docelowym · %2$s</string>
     <string name="night_unmeasured_apple">Pierwsze %1$d min bez pomiaru – Apple Watch mierzy tylko ostatnie %2$d min przed czasem docelowym.</string>
-    <string name="check_watch_battery_apple">Bateria zegarka</string>
-    <string name="check_watch_battery_apple_problem">Poniżej %1$d %% – naładuj Apple Watch, aby mógł cię obudzić.</string>
-    <string name="export_contents_apple">Plik zawiera twoje serie ruchu i tętna z każdej nocy.</string>
-    <string name="editor_more_apple">Więcej</string>
-    <string name="alarms_limit_apple">Możesz ustawić najwyżej %1$d budzików.</string>
 </resources>

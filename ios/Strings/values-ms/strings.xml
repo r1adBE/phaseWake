@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Buka Phase Wake sebelum awak tidur supaya jam tangan boleh mengaktifkan penggera.</string>
     <string name="check_watch_arm">Penggera diaktifkan pada jam tangan</string>
     <string name="check_watch_arm_problem">Buka Phase Wake pada Apple Watch sebelum awak tidur. watchOS hanya mengaktifkan penggera semasa apl dibuka.</string>
-    <string name="woke_late_apple">%1$d min selepas sasaran · %2$s</string>
     <string name="night_unmeasured_apple">%1$d min pertama tidak diukur – Apple Watch hanya mengukur %2$d min terakhir sebelum sasaran.</string>
-    <string name="check_watch_battery_apple">Bateri jam</string>
-    <string name="check_watch_battery_apple_problem">Di bawah %1$d %% – cas Apple Watch supaya ia dapat membangunkan anda.</string>
-    <string name="export_contents_apple">Fail ini mengandungi siri pergerakan dan nadi anda bagi setiap malam.</string>
-    <string name="editor_more_apple">Lagi</string>
-    <string name="alarms_limit_apple">Anda boleh menetapkan paling banyak %1$d penggera.</string>
 </resources>

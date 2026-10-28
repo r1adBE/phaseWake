@@ -117,7 +117,7 @@ struct EditorView: View {
                             TextField(L("editor_label_hint"), text: $label)
                         }
                     } label: {
-                        Text(L("editor_more_apple"))
+                        Text(L("editor_more"))
                     }
                 }
 

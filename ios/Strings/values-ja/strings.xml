@@ -15,11 +15,5 @@
     <string name="watch_not_armed">眠る前にPhase Wakeを開いてください。ウォッチがアラームを有効にできるようになります。</string>
     <string name="check_watch_arm">ウォッチでアラーム有効</string>
     <string name="check_watch_arm_problem">眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。</string>
-    <string name="woke_late_apple">目標の%1$d分後 · %2$s</string>
     <string name="night_unmeasured_apple">最初の%1$d分は未計測 – Apple Watchが計測するのは目標時刻前の最後の%2$d分だけです。</string>
-    <string name="check_watch_battery_apple">ウォッチのバッテリー</string>
-    <string name="check_watch_battery_apple_problem">%1$d %%未満です – 起こせるようにApple Watchを充電してください。</string>
-    <string name="export_contents_apple">このファイルには毎晩の動きと心拍のデータ列が含まれます。</string>
-    <string name="editor_more_apple">その他</string>
-    <string name="alarms_limit_apple">アラームは最大%1$d件まで設定できます。</string>
 </resources>

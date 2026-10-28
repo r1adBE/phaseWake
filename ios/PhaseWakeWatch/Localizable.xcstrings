@@ -981,202 +981,6 @@
         }
       }
     },
-    "alarms_limit_apple": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "يمكنك إعداد %1$lld منبهات كحد أقصى."
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Můžeš nastavit nejvýše %1$lld budíků."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du kan oprette højst %1$lld alarmer."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du kannst höchstens %1$lld Wecker anlegen."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Μπορείς να ορίσεις έως %1$lld ξυπνητήρια."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You can set up to %1$lld alarms."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Puedes crear como máximo %1$lld alarmas."
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "حداکثر %1$lld زنگ می‌توانی بسازی."
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voit luoda enintään %1$lld herätystä."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu peux créer au maximum %1$lld alarmes."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "אפשר להגדיר עד %1$lld התראות."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आप अधिकतम %1$lld अलार्म बना सकते हैं।"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Legfeljebb %1$lld ébresztőt állíthatsz be."
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kamu bisa membuat paling banyak %1$lld alarm."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Puoi creare al massimo %1$lld sveglie."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アラームは最大%1$lld件まで設定できます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알람은 최대 %1$lld개까지 만들 수 있습니다."
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anda boleh menetapkan paling banyak %1$lld penggera."
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du kan opprette høyst %1$lld alarmer."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je kunt maximaal %1$lld wekkers instellen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Możesz ustawić najwyżej %1$lld budzików."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você pode criar no máximo %1$lld alarmes."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Podes criar no máximo %1$lld alarmes."
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poți seta cel mult %1$lld alarme."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Можно создать не более %1$lld будильников."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du kan skapa högst %1$lld larm."
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ตั้งปลุกได้สูงสุด %1$lld รายการ"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En fazla %1$lld alarm kurabilirsin."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Можна створити щонайбільше %1$lld будильників."
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bạn có thể đặt tối đa %1$lld báo thức."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最多可设置 %1$lld 个闹钟。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最多可設定 %1$lld 個鬧鐘。"
-          }
-        }
-      }
-    },
     "alert_off": {
       "localizations": {
         "ar": {
@@ -8233,7 +8037,7 @@
         }
       }
     },
-    "check_watch_battery_apple": {
+    "check_watch_battery": {
       "localizations": {
         "ar": {
           "stringUnit": {
@@ -8304,7 +8108,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "घड़ी की बैटरी"
+            "value": "वॉच की बैटरी"
           }
         },
         "hu": {
@@ -8316,7 +8120,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterai jam"
+            "value": "Baterai jam tangan"
           }
         },
         "it": {
@@ -8340,7 +8144,7 @@
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateri jam"
+            "value": "Bateri jam tangan"
           }
         },
         "nb": {
@@ -8352,7 +8156,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batterij van het horloge"
+            "value": "Horlogebatterij"
           }
         },
         "pl": {
@@ -8429,198 +8233,198 @@
         }
       }
     },
-    "check_watch_battery_apple_problem": {
+    "check_watch_battery_problem": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أقل من %1$lld %% – اشحن Apple Watch لتتمكن من إيقاظك."
+            "value": "أقل من %1$lld %% – اشحن ساعتك لتصمد طوال الليل وتوقظك."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pod %1$lld %% – nabij Apple Watch, aby tě mohly vzbudit."
+            "value": "Pod %1$lld %% – nabij hodinky, aby vydržely celou noc a mohly tě vzbudit."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under %1$lld %% – oplad dit Apple Watch, så det kan vække dig."
+            "value": "Under %1$lld %% – oplad dit ur, så det holder natten igennem og kan vække dig."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unter %1$lld %% – lade deine Apple Watch, damit sie dich wecken kann."
+            "value": "Unter %1$lld %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Κάτω από %1$lld %% – φόρτισε το Apple Watch για να μπορεί να σε ξυπνήσει."
+            "value": "Κάτω από %1$lld %% – φόρτισε το ρολόι σου, ώστε να αντέξει όλη τη νύχτα και να σε ξυπνήσει."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Below %1$lld %% – charge your Apple Watch so it can wake you."
+            "value": "Below %1$lld %% – charge your watch so it lasts the night and can wake you."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Menos del %1$lld %%: carga tu Apple Watch para que pueda despertarte."
+            "value": "Menos del %1$lld %% – carga tu reloj para que aguante toda la noche y pueda despertarte."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "کمتر از %1$lld %% – Apple Watch را شارژ کن تا بتواند بیدارت کند."
+            "value": "کمتر از %1$lld %% – ساعت را شارژ کن تا تمام شب روشن بماند و بیدارت کند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle %1$lld %% – lataa Apple Watch, jotta se voi herättää sinut."
+            "value": "Alle %1$lld %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Moins de %1$lld %% – recharge ton Apple Watch pour qu’elle puisse te réveiller."
+            "value": "Moins de %1$lld %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מתחת ל-%1$lld %% – טען את ה-Apple Watch כדי שיוכל להעיר אותך."
+            "value": "מתחת ל-%1$lld %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% से कम – Apple Watch चार्ज करें ताकि वह आपको जगा सके।"
+            "value": "%1$lld %% से कम – अपनी वॉच चार्ज करें ताकि वह पूरी रात चले और आपको जगा सके।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% alatt – töltsd fel az Apple Watchot, hogy fel tudjon ébreszteni."
+            "value": "%1$lld %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Di bawah %1$lld %% – isi daya Apple Watch agar bisa membangunkanmu."
+            "value": "Di bawah %1$lld %% – isi daya jam tanganmu agar bertahan semalaman dan bisa membangunkanmu."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sotto il %1$lld %% – ricarica l’Apple Watch perché possa svegliarti."
+            "value": "Sotto il %1$lld %% – ricarica l’orologio perché duri tutta la notte e possa svegliarti."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %%未満です – 起こせるようにApple Watchを充電してください。"
+            "value": "%1$lld %%未満です – 一晩もって確実に起こせるよう、ウォッチを充電してください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% 미만 – 깨울 수 있도록 Apple Watch를 충전하세요."
+            "value": "%1$lld %% 미만 – 밤새 버티고 깨워 줄 수 있도록 워치를 충전해 주세요."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Di bawah %1$lld %% – cas Apple Watch supaya ia dapat membangunkan anda."
+            "value": "Kurang daripada %1$lld %% – cas jam tangan awak supaya tahan sepanjang malam dan boleh mengejutkan awak."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under %1$lld %% – lad Apple Watch så den kan vekke deg."
+            "value": "Under %1$lld %% – lad klokken slik at den varer natten og kan vekke deg."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Onder %1$lld %% – laad je Apple Watch op zodat hij je kan wekken."
+            "value": "Onder %1$lld %% – laad je horloge op zodat het de nacht doorkomt en je kan wekken."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Poniżej %1$lld %% – naładuj Apple Watch, aby mógł cię obudzić."
+            "value": "Poniżej %1$lld %% – naładuj zegarek, aby wytrzymał całą noc i mógł cię obudzić."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abaixo de %1$lld %% – carregue o Apple Watch para que ele possa te acordar."
+            "value": "Abaixo de %1$lld %% – carregue seu relógio para que ele dure a noite toda e possa te acordar."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abaixo de %1$lld %% – carrega o Apple Watch para que te possa acordar."
+            "value": "Abaixo de %1$lld %% – carrega o relógio para que dure a noite toda e te possa acordar."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sub %1$lld %% – încarcă Apple Watch ca să te poată trezi."
+            "value": "Sub %1$lld %% – încarcă ceasul ca să reziste toată noaptea și să te poată trezi."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ниже %1$lld %% – зарядите Apple Watch, чтобы они смогли вас разбудить."
+            "value": "Ниже %1$lld %% – поставь часы на зарядку, чтобы их хватило на всю ночь и они смогли тебя разбудить."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under %1$lld %% – ladda din Apple Watch så att den kan väcka dig."
+            "value": "Under %1$lld %% – ladda klockan så att den räcker hela natten och kan väcka dig."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ต่ำกว่า %1$lld %% – ชาร์จ Apple Watch เพื่อให้ปลุกคุณได้"
+            "value": "ต่ำกว่า %1$lld %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% altında – seni uyandırabilmesi için Apple Watch’u şarj et."
+            "value": "Pil %1$lld %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нижче %1$lld %% – заряди Apple Watch, щоб він міг тебе розбудити."
+            "value": "Нижче %1$lld %% – постав годинник на зарядку, щоб його вистачило на всю ніч і він зміг тебе розбудити."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dưới %1$lld %% – hãy sạc Apple Watch để nó có thể đánh thức bạn."
+            "value": "Dưới %1$lld %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "低于 %1$lld %%——请为 Apple Watch 充电，以便它能叫醒你。"
+            "value": "低于 %1$lld %% – 请给手表充电，以便它整夜运行并按时唤醒你。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "低於 %1$lld %%——請為 Apple Watch 充電，好讓它能叫醒你。"
+            "value": "低於 %1$lld %% – 請為手錶充電，讓它撐過整晚並按時喚醒你。"
           }
         }
       }
@@ -14783,7 +14587,7 @@
         }
       }
     },
-    "editor_more_apple": {
+    "editor_more": {
       "localizations": {
         "ar": {
           "stringUnit": {
@@ -14794,7 +14598,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Více"
+            "value": "Další"
           }
         },
         "da": {
@@ -14884,7 +14688,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "더 보기"
+            "value": "더보기"
           }
         },
         "ms": {
@@ -14926,7 +14730,7 @@
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mai mult"
+            "value": "Mai multe"
           }
         },
         "ru": {
@@ -18589,198 +18393,198 @@
         }
       }
     },
-    "export_contents_apple": {
+    "export_contents_hint": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة."
+            "value": "يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة – دون أسماء أو تواريخ أو معرّفات أجهزة."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soubor obsahuje tvé řady pohybu a tepu za každou noc."
+            "value": "Soubor obsahuje průběh pohybu a tepu za každou noc – bez jmen, dat a ID zařízení."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen indeholder dine bevægelses- og pulsserier for hver nat."
+            "value": "Filen indeholder bevægelses- og pulsserier for hver nat – uden navne, datoer eller enheds-id’er."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Datei enthält deine Bewegungs- und Pulsreihen jeder Nacht."
+            "value": "Die Datei enthält Bewegungs- und Pulsreihen jeder Nacht – ohne Namen, Datum oder Geräte-IDs."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το αρχείο περιέχει τις σειρές κίνησης και παλμών σου για κάθε νύχτα."
+            "value": "Το αρχείο περιέχει σειρές κίνησης και καρδιακών παλμών για κάθε νύχτα – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευών."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The file contains your movement and heart rate series for each night."
+            "value": "The file contains motion and heart rate series for each night – without names, dates or device IDs."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El archivo contiene tus series de movimiento y pulso de cada noche."
+            "value": "El archivo contiene series de movimiento y frecuencia cardiaca de cada noche, sin nombres, fechas ni identificadores de dispositivos."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "این فایل شامل سری‌های حرکت و ضربان قلب هر شب توست."
+            "value": "فایل شامل سری‌های حرکت و ضربان قلب هر شب است – بدون نام، تاریخ یا شناسه دستگاه."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiedosto sisältää jokaisen yön liike- ja sykesarjasi."
+            "value": "Tiedosto sisältää jokaisen yön liike- ja sykesarjat – ilman nimiä, päivämääriä tai laitetunnuksia."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le fichier contient tes séries de mouvement et de pouls pour chaque nuit."
+            "value": "Le fichier contient les séries de mouvement et de fréquence cardiaque de chaque nuit – sans noms, dates ni identifiants d’appareil."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "הקובץ מכיל את סדרות התנועה והדופק שלך לכל לילה."
+            "value": "הקובץ מכיל סדרות של תנועה ודופק לכל לילה – ללא שמות, תאריכים או מזהי מכשירים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़ाइल में हर रात की आपकी गतिविधि और धड़कन की शृंखलाएँ हैं।"
+            "value": "फ़ाइल में हर रात की हलचल और हृदय गति की शृंखलाएँ हैं – बिना नाम, तारीख या डिवाइस आईडी के।"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A fájl minden éjszakád mozgás- és pulzussorait tartalmazza."
+            "value": "A fájl minden éjszaka mozgás- és pulzussorait tartalmazza – nevek, dátumok és eszközazonosítók nélkül."
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "File ini berisi deret gerakan dan denyut nadimu untuk setiap malam."
+            "value": "File berisi rangkaian data gerakan dan detak jantung setiap malam – tanpa nama, tanggal, atau ID perangkat."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il file contiene le tue serie di movimento e battito di ogni notte."
+            "value": "Il file contiene le serie di movimento e frequenza cardiaca di ogni notte, senza nomi, date o ID dei dispositivi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "このファイルには毎晩の動きと心拍のデータ列が含まれます。"
+            "value": "ファイルには各夜の体動と心拍数の記録が含まれます（名前、日付、デバイスIDは含まれません）。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 파일에는 매일 밤의 움직임과 심박 데이터가 들어 있습니다."
+            "value": "파일에는 이름, 날짜, 기기 ID 없이 밤마다의 움직임 및 심박수 데이터가 들어 있습니다."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fail ini mengandungi siri pergerakan dan nadi anda bagi setiap malam."
+            "value": "Fail ini mengandungi siri pergerakan dan kadar denyutan jantung bagi setiap malam – tanpa nama, tarikh atau ID peranti."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen inneholder bevegelses- og pulsseriene dine for hver natt."
+            "value": "Filen inneholder bevegelses- og pulsserier for hver natt – uten navn, datoer eller enhets-ID-er."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Het bestand bevat je bewegings- en hartslagreeksen van elke nacht."
+            "value": "Het bestand bevat bewegings- en hartslagreeksen van elke nacht – zonder namen, datums of apparaat-ID’s."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plik zawiera twoje serie ruchu i tętna z każdej nocy."
+            "value": "Plik zawiera serie ruchu i tętna z każdej nocy – bez imion, dat i identyfikatorów urządzeń."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O arquivo contém suas séries de movimento e pulso de cada noite."
+            "value": "O arquivo contém séries de movimento e frequência cardíaca de cada noite – sem nomes, datas ou IDs de dispositivos."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O ficheiro contém as tuas séries de movimento e pulsação de cada noite."
+            "value": "O ficheiro contém séries de movimento e frequência cardíaca de cada noite – sem nomes, datas ou IDs de dispositivos."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fișierul conține seriile tale de mișcare și puls din fiecare noapte."
+            "value": "Fișierul conține seriile de mișcare și puls din fiecare noapte – fără nume, date sau ID-uri de dispozitiv."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файл содержит ваши ряды движения и пульса за каждую ночь."
+            "value": "Файл содержит ряды движения и пульса за каждую ночь – без имён, дат и идентификаторов устройств."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen innehåller dina rörelse- och pulsserier för varje natt."
+            "value": "Filen innehåller rörelse- och pulsserier för varje natt – utan namn, datum eller enhets-id."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ไฟล์นี้มีชุดข้อมูลการเคลื่อนไหวและชีพจรของคุณในแต่ละคืน"
+            "value": "ไฟล์มีข้อมูลการเคลื่อนไหวและอัตราการเต้นของหัวใจของแต่ละคืน โดยไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dosya her geceye ait hareket ve nabız serilerini içerir."
+            "value": "Dosya her gecenin hareket ve nabız serilerini içerir – ad, tarih veya cihaz kimliği olmadan."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файл містить твої ряди руху й пульсу за кожну ніч."
+            "value": "Файл містить ряди руху та пульсу за кожну ніч – без імен, дат та ідентифікаторів пристроїв."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tệp chứa chuỗi chuyển động và nhịp tim của bạn cho mỗi đêm."
+            "value": "Tệp chứa chuỗi dữ liệu chuyển động và nhịp tim của từng đêm – không có tên, ngày hay ID thiết bị."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "该文件包含你每晚的活动和心率序列。"
+            "value": "文件包含每晚的体动和心率序列，不含姓名、日期或设备 ID。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "此檔案包含你每晚的活動與心率序列。"
+            "value": "檔案包含每晚的體動和心率序列，不含姓名、日期或裝置 ID。"
           }
         }
       }
@@ -26507,6 +26311,202 @@
           "stringUnit": {
             "state": "translated",
             "value": "昨晚"
+          }
+        }
+      }
+    },
+    "home_max_alarms": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nejvýše %1$lld budíků – pro nový nejdřív jeden smaž."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højst %1$lld alarmer – slet en for at tilføje en ny."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höchstens %1$lld Wecker – lösche einen, um einen neuen anzulegen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Έως %1$lld ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to %1$lld alarms – delete one to add a new one."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máximo %1$lld alarmas: elimina una para añadir otra."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حداکثر %1$lld زنگ – برای افزودن زنگ جدید، یکی را حذف کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enintään %1$lld herätystä – poista yksi lisätäksesi uuden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld réveils au maximum – supprime-en un pour en ajouter un nouveau."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עד %1$lld מעוררים – מחקו אחד כדי להוסיף חדש."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम %1$lld अलार्म – नया जोड़ने के लिए एक हटाएँ।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legfeljebb %1$lld ébresztő – törölj egyet, hogy újat adhass hozzá."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maksimal %1$lld alarm – hapus satu untuk menambahkan yang baru."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massimo %1$lld sveglie: eliminane una per aggiungerne una nuova."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アラームは最大%1$lld件です – 新しく追加するには1件削除してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알람은 최대 %1$lld개입니다 – 새로 추가하려면 하나를 삭제하세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maksimum %1$lld penggera – padam satu untuk menambah yang baharu."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maks %1$lld alarmer – slett en for å legge til en ny."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximaal %1$lld wekkers – verwijder er een om een nieuwe toe te voegen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maksymalnie %1$lld budzików – usuń jeden, aby dodać nowy."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No máximo %1$lld alarmes – exclua um para adicionar outro."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No máximo %1$lld alarmes – elimina um para adicionar outro."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum %1$lld alarme – șterge una ca să adaugi una nouă."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не больше %1$lld будильников – удали один, чтобы добавить новый."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högst %1$lld larm – ta bort ett för att lägga till ett nytt."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตั้งได้สูงสุด %1$lld รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En fazla %1$lld alarm – yenisini eklemek için birini sil."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не більше %1$lld будильників – видали один, щоб додати новий."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tối đa %1$lld báo thức – hãy xóa một báo thức để thêm báo thức mới."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最多 %1$lld 个闹钟 – 删除一个后才能新建。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最多 %1$lld 個鬧鐘 – 刪除一個後才能新增。"
           }
         }
       }
@@ -45801,7 +45801,259 @@
         }
       }
     },
-    "woke_late_apple": {
+    "woke_late|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد الموعد بـ %1$lld د · %2$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po cílovém čase · %2$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po czasie docelowym · %2$@"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min după ora țintă · %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld мин позже цели · %2$@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld хв пізніше цілі · %2$@"
+          }
+        }
+      }
+    },
+    "woke_late|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد الموعد بـ %1$lld د · %2$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po cílovém čase · %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min después de la hora objetivo · %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min après l’heure cible · %2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min dopo l’orario obiettivo · %2$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po czasie docelowym · %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min depois do horário-alvo · %2$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min depois da hora-alvo · %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld мин позже цели · %2$@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld хв пізніше цілі · %2$@"
+          }
+        }
+      }
+    },
+    "woke_late|one": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد الموعد بـ %1$lld د · %2$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po cílovém čase · %2$@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min efter ønsket tid · %2$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Min nach der Zielzeit · %2$@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld λ. μετά τον στόχο · %2$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min after target · %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min después de la hora objetivo · %2$@"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld دق بعد از زمان هدف · %2$@"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min tavoiteajan jälkeen · %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min après l’heure cible · %2$@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld דק׳ אחרי היעד · %2$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य से %1$lld मि. बाद · %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld p a célidő után · %2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min dopo l’orario obiettivo · %2$@"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min etter ønsket tid · %2$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min na de doeltijd · %2$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min po czasie docelowym · %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min depois do horário-alvo · %2$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min depois da hora-alvo · %2$@"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min după ora țintă · %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld мин позже цели · %2$@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min efter måltid · %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedeften %1$lld dk sonra · %2$@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "на %1$lld хв пізніше цілі · %2$@"
+          }
+        }
+      }
+    },
+    "woke_late|other": {
       "localizations": {
         "ar": {
           "stringUnit": {
@@ -45950,7 +46202,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "через %1$lld мин после цели · %2$@"
+            "value": "на %1$lld мин позже цели · %2$@"
           }
         },
         "sv": {
@@ -45974,7 +46226,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "через %1$lld хв після цілі · %2$@"
+            "value": "на %1$lld хв пізніше цілі · %2$@"
           }
         },
         "vi": {
@@ -45993,6 +46245,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "比目標晚 %1$lld 分鐘 · %2$@"
+          }
+        }
+      }
+    },
+    "woke_late|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد الموعد بـ %1$lld د · %2$@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld דק׳ אחרי היעד · %2$@"
+          }
+        }
+      }
+    },
+    "woke_late|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد الموعد بـ %1$lld د · %2$@"
           }
         }
       }

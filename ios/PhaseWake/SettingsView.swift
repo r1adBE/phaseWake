@@ -29,7 +29,7 @@ struct SettingsView: View {
                         Text(L("settings_export"))
                     }
                     .disabled(model.nights.isEmpty)
-                    Text(L("export_contents_apple")).font(.footnote).foregroundStyle(.secondary)
+                    Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
                     Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
                 }
                 Section(L("settings_about")) {

@@ -15,11 +15,5 @@
     <string name="watch_not_armed">Deschide Phase Wake înainte de culcare, ca ceasul să poată activa alarma.</string>
     <string name="check_watch_arm">Alarmă activată pe ceas</string>
     <string name="check_watch_arm_problem">Deschide Phase Wake pe Apple Watch înainte de culcare. watchOS activează alarma doar cât timp aplicația este deschisă.</string>
-    <string name="woke_late_apple">%1$d min după ora țintă · %2$s</string>
     <string name="night_unmeasured_apple">Primele %1$d min nemăsurate – Apple Watch măsoară doar ultimele %2$d min dinainte de ora țintă.</string>
-    <string name="check_watch_battery_apple">Bateria ceasului</string>
-    <string name="check_watch_battery_apple_problem">Sub %1$d %% – încarcă Apple Watch ca să te poată trezi.</string>
-    <string name="export_contents_apple">Fișierul conține seriile tale de mișcare și puls din fiecare noapte.</string>
-    <string name="editor_more_apple">Mai mult</string>
-    <string name="alarms_limit_apple">Poți seta cel mult %1$d alarme.</string>
 </resources>
