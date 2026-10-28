@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Tidak ada Apple Watch yang dipasangkan dengan iPhone ini.</string>
+    <string name="check_watch_app">Phase Wake di jam tangan</string>
+    <string name="check_watch_app_problem">Instal Phase Wake di Apple Watch-mu lewat aplikasi Watch.</string>
+    <string name="check_alarmkit">Alarm diizinkan</string>
+    <string name="check_alarmkit_problem">Izinkan Phase Wake mengatur alarm agar iPhone-mu bisa berbunyi sebagai alarm cadangan.</string>
+    <string name="nightstand_start">Mulai mode samping tempat tidur</string>
+    <string name="nightstand_hint">Untuk matahari terbit, biarkan Phase Wake terbuka di pengisi daya semalaman. Layar tetap gelap sampai cahaya mulai menyala.</string>
+    <string name="nightstand_end">Selesai</string>
+    <string name="nightstand_waiting">Matahari terbit pukul %1$s</string>
+    <string name="nightstand_no_alarm">Tidak ada alarm dengan matahari terbit</string>
+    <string name="editor_sunrise_ios_hint">iPhone-mu hanya bisa menampilkan cahaya selama Phase Wake terbuka – mulai mode samping tempat tidur sebelum tidur.</string>
+    <string name="trends_health_hint_apple">Durasi dan keteraturan tidur berasal dari Apple Health.</string>
+</resources>

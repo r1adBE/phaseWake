@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">S tímto iPhonem není spárované žádné Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake v hodinkách</string>
+    <string name="check_watch_app_problem">Nainstaluj Phase Wake do Apple Watch v aplikaci Watch.</string>
+    <string name="check_alarmkit">Budíky povoleny</string>
+    <string name="check_alarmkit_problem">Povol Phase Wake nastavovat budíky, aby tvůj iPhone mohl zazvonit jako záložní budík.</string>
+    <string name="nightstand_start">Spustit noční režim</string>
+    <string name="nightstand_hint">Pro východ slunce nech Phase Wake přes noc otevřenou na nabíječce. Displej zůstane tmavý, dokud nezačne světlo.</string>
+    <string name="nightstand_end">Ukončit</string>
+    <string name="nightstand_waiting">Východ slunce v %1$s</string>
+    <string name="nightstand_no_alarm">Žádný budík s východem slunce</string>
+    <string name="editor_sunrise_ios_hint">Tvůj iPhone může zobrazit světlo, jen když je Phase Wake otevřená – před spaním spusť noční režim.</string>
+    <string name="trends_health_hint_apple">Délka a pravidelnost spánku pocházejí z Apple Health.</string>
+</resources>

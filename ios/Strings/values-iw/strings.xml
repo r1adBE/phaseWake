@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">אין Apple Watch מותאם ל-iPhone הזה.</string>
+    <string name="check_watch_app">Phase Wake בשעון</string>
+    <string name="check_watch_app_problem">התקינו את Phase Wake ב-Apple Watch שלכם דרך אפליקציית Watch.</string>
+    <string name="check_alarmkit">שעונים מעוררים מאושרים</string>
+    <string name="check_alarmkit_problem">אשרו ל-Phase Wake להגדיר שעונים מעוררים, כדי שה-iPhone שלכם יוכל לצלצל כשעון גיבוי.</string>
+    <string name="nightstand_start">הפעלת מצב שידת לילה</string>
+    <string name="nightstand_hint">לזריחה, השאירו את Phase Wake פתוחה על המטען לאורך הלילה. המסך נשאר חשוך עד שהאור מתחיל.</string>
+    <string name="nightstand_end">סיום</string>
+    <string name="nightstand_waiting">זריחה ב-%1$s</string>
+    <string name="nightstand_no_alarm">אין שעון מעורר עם זריחה</string>
+    <string name="editor_sunrise_ios_hint">ה-iPhone יכול להציג את האור רק כש-Phase Wake פתוחה – הפעילו מצב שידת לילה לפני השינה.</string>
+    <string name="trends_health_hint_apple">משך השינה והסדירות שלה מגיעים מ-Apple Health.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">इस iPhone के साथ कोई Apple Watch पेयर नहीं है।</string>
+    <string name="check_watch_app">वॉच पर Phase Wake</string>
+    <string name="check_watch_app_problem">Watch ऐप में अपनी Apple Watch पर Phase Wake इंस्टॉल करें।</string>
+    <string name="check_alarmkit">अलार्म की अनुमति है</string>
+    <string name="check_alarmkit_problem">Phase Wake को अलार्म सेट करने की अनुमति दें ताकि आपका iPhone बैकअप अलार्म के रूप में बज सके।</string>
+    <string name="nightstand_start">बेडसाइड मोड शुरू करें</string>
+    <string name="nightstand_hint">सूर्योदय के लिए Phase Wake को रात भर चार्जर पर खुला छोड़ें। रोशनी शुरू होने तक स्क्रीन अँधेरी रहती है।</string>
+    <string name="nightstand_end">समाप्त</string>
+    <string name="nightstand_waiting">सूर्योदय %1$s पर</string>
+    <string name="nightstand_no_alarm">सूर्योदय वाला कोई अलार्म नहीं</string>
+    <string name="editor_sunrise_ios_hint">आपका iPhone रोशनी तभी दिखा सकता है जब Phase Wake खुला हो – सोने से पहले बेडसाइड मोड शुरू करें।</string>
+    <string name="trends_health_hint_apple">नींद की अवधि और नियमितता Apple Health से आती है।</string>
+</resources>

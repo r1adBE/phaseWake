@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Aucune Apple Watch n’est associée à cet iPhone.</string>
+    <string name="check_watch_app">Phase Wake sur la montre</string>
+    <string name="check_watch_app_problem">Installe Phase Wake sur ton Apple Watch depuis l’app Watch.</string>
+    <string name="check_alarmkit">Alarmes autorisées</string>
+    <string name="check_alarmkit_problem">Autorise Phase Wake à programmer des alarmes pour que ton iPhone puisse sonner comme alarme de secours.</string>
+    <string name="nightstand_start">Démarrer le mode table de chevet</string>
+    <string name="nightstand_hint">Pour le lever de soleil, laisse Phase Wake ouverte toute la nuit sur le chargeur. L’écran reste noir jusqu’au début de la lumière.</string>
+    <string name="nightstand_end">Terminer</string>
+    <string name="nightstand_waiting">Lever de soleil à %1$s</string>
+    <string name="nightstand_no_alarm">Aucune alarme avec lever de soleil</string>
+    <string name="editor_sunrise_ios_hint">Ton iPhone ne peut afficher la lumière que tant que Phase Wake est ouverte – démarre le mode table de chevet avant de dormir.</string>
+    <string name="trends_health_hint_apple">La durée et la régularité du sommeil proviennent d’Apple Health.</string>
+</resources>

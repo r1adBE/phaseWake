@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">لا توجد ساعة Apple Watch مقترنة بهذا الـ iPhone.</string>
+    <string name="check_watch_app">Phase Wake على الساعة</string>
+    <string name="check_watch_app_problem">ثبّت Phase Wake على Apple Watch من تطبيق Watch.</string>
+    <string name="check_alarmkit">المنبهات مسموحة</string>
+    <string name="check_alarmkit_problem">اسمح لـ Phase Wake بضبط المنبهات ليتمكن الـ iPhone من الرنين كمنبه احتياطي.</string>
+    <string name="nightstand_start">بدء وضع المنضدة</string>
+    <string name="nightstand_hint">لشروق الشمس، اترك Phase Wake مفتوحًا على الشاحن طوال الليل. تبقى الشاشة معتمة حتى يبدأ الضوء.</string>
+    <string name="nightstand_end">إنهاء</string>
+    <string name="nightstand_waiting">شروق الشمس في %1$s</string>
+    <string name="nightstand_no_alarm">لا منبه مع شروق الشمس</string>
+    <string name="editor_sunrise_ios_hint">لا يستطيع الـ iPhone عرض الضوء إلا أثناء فتح Phase Wake – ابدأ وضع المنضدة قبل النوم.</string>
+    <string name="trends_health_hint_apple">مدة النوم وانتظامه يأتيان من Apple Health.</string>
+</resources>

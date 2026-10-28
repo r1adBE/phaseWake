@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Ehhez az iPhone-hoz nincs párosítva Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake az órán</string>
+    <string name="check_watch_app_problem">Telepítsd a Phase Wake-et az Apple Watchodra a Watch alkalmazásban.</string>
+    <string name="check_alarmkit">Ébresztők engedélyezve</string>
+    <string name="check_alarmkit_problem">Engedélyezd a Phase Wake-nek az ébresztők beállítását, hogy az iPhone-od tartalék ébresztőként megszólalhasson.</string>
+    <string name="nightstand_start">Éjjeliszekrény-mód indítása</string>
+    <string name="nightstand_hint">A napfelkeltéhez hagyd nyitva a Phase Wake-et a töltőn egész éjjel. A kijelző sötét marad, amíg a fény el nem kezdődik.</string>
+    <string name="nightstand_end">Befejezés</string>
+    <string name="nightstand_waiting">Napfelkelte: %1$s</string>
+    <string name="nightstand_no_alarm">Nincs ébresztő napfelkeltével</string>
+    <string name="editor_sunrise_ios_hint">Az iPhone csak akkor tudja megjeleníteni a fényt, amíg a Phase Wake nyitva van – lefekvés előtt indítsd el az éjjeliszekrény-módot.</string>
+    <string name="trends_health_hint_apple">Az alvás időtartama és rendszeressége az Apple Healthből származik.</string>
+</resources>

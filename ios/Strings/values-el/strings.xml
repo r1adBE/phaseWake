@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Κανένα Apple Watch δεν είναι συζευγμένο με αυτό το iPhone.</string>
+    <string name="check_watch_app">Το Phase Wake στο ρολόι</string>
+    <string name="check_watch_app_problem">Εγκατέστησε το Phase Wake στο Apple Watch σου από την εφαρμογή Watch.</string>
+    <string name="check_alarmkit">Τα ξυπνητήρια επιτρέπονται</string>
+    <string name="check_alarmkit_problem">Επίτρεψε στο Phase Wake να ορίζει ξυπνητήρια, ώστε το iPhone σου να χτυπά ως εφεδρικό ξυπνητήρι.</string>
+    <string name="nightstand_start">Έναρξη λειτουργίας κομοδίνου</string>
+    <string name="nightstand_hint">Για την ανατολή, άφησε το Phase Wake ανοιχτό στον φορτιστή όλη νύχτα. Η οθόνη μένει σκοτεινή μέχρι να αρχίσει το φως.</string>
+    <string name="nightstand_end">Τέλος</string>
+    <string name="nightstand_waiting">Ανατολή στις %1$s</string>
+    <string name="nightstand_no_alarm">Κανένα ξυπνητήρι με ανατολή</string>
+    <string name="editor_sunrise_ios_hint">Το iPhone σου μπορεί να δείξει το φως μόνο όσο το Phase Wake είναι ανοιχτό – ξεκίνα τη λειτουργία κομοδίνου πριν κοιμηθείς.</string>
+    <string name="trends_health_hint_apple">Η διάρκεια και η κανονικότητα του ύπνου προέρχονται από το Apple Health.</string>
+</resources>

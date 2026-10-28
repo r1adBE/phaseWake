@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">没有 Apple Watch 与这台 iPhone 配对。</string>
+    <string name="check_watch_app">手表上的 Phase Wake</string>
+    <string name="check_watch_app_problem">请在 Watch 应用中将 Phase Wake 安装到你的 Apple Watch 上。</string>
+    <string name="check_alarmkit">闹钟已允许</string>
+    <string name="check_alarmkit_problem">请允许 Phase Wake 设置闹钟，这样你的 iPhone 可以作为备用闹钟响铃。</string>
+    <string name="nightstand_start">开始床头模式</string>
+    <string name="nightstand_hint">为了日出唤醒，请让 Phase Wake 整晚在充电器上保持打开。屏幕会保持黑暗，直到光线开始亮起。</string>
+    <string name="nightstand_end">结束</string>
+    <string name="nightstand_waiting">日出时间 %1$s</string>
+    <string name="nightstand_no_alarm">没有日出闹钟</string>
+    <string name="editor_sunrise_ios_hint">你的 iPhone 只有在 Phase Wake 打开时才能显示光线 – 请在睡觉前开始床头模式。</string>
+    <string name="trends_health_hint_apple">睡眠时长和规律性来自 Apple Health。</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">هیچ Apple Watch ای با این iPhone جفت نشده است.</string>
+    <string name="check_watch_app">Phase Wake روی ساعت</string>
+    <string name="check_watch_app_problem">Phase Wake را از برنامه Watch روی Apple Watch خود نصب کن.</string>
+    <string name="check_alarmkit">زنگ‌ها مجاز است</string>
+    <string name="check_alarmkit_problem">به Phase Wake اجازه بده زنگ تنظیم کند تا iPhone بتواند به‌عنوان زنگ پشتیبان زنگ بزند.</string>
+    <string name="nightstand_start">شروع حالت پاتختی</string>
+    <string name="nightstand_hint">برای طلوع، Phase Wake را تمام شب روی شارژر باز بگذار. صفحه تا شروع نور تاریک می‌ماند.</string>
+    <string name="nightstand_end">پایان</string>
+    <string name="nightstand_waiting">طلوع در %1$s</string>
+    <string name="nightstand_no_alarm">بدون زنگ با طلوع</string>
+    <string name="editor_sunrise_ios_hint">iPhone فقط تا وقتی Phase Wake باز است می‌تواند نور را نشان بدهد – پیش از خواب حالت پاتختی را شروع کن.</string>
+    <string name="trends_health_hint_apple">مدت و نظم خواب از Apple Health می‌آید.</string>
+</resources>

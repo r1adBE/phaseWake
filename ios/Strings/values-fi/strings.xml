@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Tähän iPhoneen ei ole yhdistetty Apple Watchia.</string>
+    <string name="check_watch_app">Phase Wake kellossa</string>
+    <string name="check_watch_app_problem">Asenna Phase Wake Apple Watchiisi Watch-sovelluksessa.</string>
+    <string name="check_alarmkit">Herätykset sallittu</string>
+    <string name="check_alarmkit_problem">Salli Phase Waken asettaa herätyksiä, jotta iPhonesi voi soida varaherätyksenä.</string>
+    <string name="nightstand_start">Käynnistä yöpöytätila</string>
+    <string name="nightstand_hint">Auringonnousua varten jätä Phase Wake auki laturissa yön yli. Näyttö pysyy pimeänä, kunnes valo alkaa.</string>
+    <string name="nightstand_end">Lopeta</string>
+    <string name="nightstand_waiting">Auringonnousu klo %1$s</string>
+    <string name="nightstand_no_alarm">Ei herätystä auringonnousulla</string>
+    <string name="editor_sunrise_ios_hint">iPhonesi voi näyttää valon vain Phase Waken ollessa auki – käynnistä yöpöytätila ennen nukkumaanmenoa.</string>
+    <string name="trends_health_hint_apple">Unen kesto ja säännöllisyys tulevat Apple Healthista.</string>
+</resources>

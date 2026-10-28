@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Nessun Apple Watch è associato a questo iPhone.</string>
+    <string name="check_watch_app">Phase Wake sull’orologio</string>
+    <string name="check_watch_app_problem">Installa Phase Wake sul tuo Apple Watch dall’app Watch.</string>
+    <string name="check_alarmkit">Sveglie consentite</string>
+    <string name="check_alarmkit_problem">Consenti a Phase Wake di impostare sveglie, così il tuo iPhone può suonare come sveglia di riserva.</string>
+    <string name="nightstand_start">Avvia modalità comodino</string>
+    <string name="nightstand_hint">Per l’alba, lascia Phase Wake aperta tutta la notte sul caricabatterie. Lo schermo resta buio finché non inizia la luce.</string>
+    <string name="nightstand_end">Termina</string>
+    <string name="nightstand_waiting">Alba alle %1$s</string>
+    <string name="nightstand_no_alarm">Nessuna sveglia con alba</string>
+    <string name="editor_sunrise_ios_hint">Il tuo iPhone può mostrare la luce solo finché Phase Wake è aperta – avvia la modalità comodino prima di dormire.</string>
+    <string name="trends_health_hint_apple">Durata e regolarità del sonno provengono da Apple Health.</string>
+</resources>
