@@ -1,6 +1,6 @@
 # phaseWake – Konzept
 
-Stand: 28.10.2026, Entwurf zur Freigabe.
+Stand: 28.10.2026.
 
 ## Ziel
 
@@ -14,7 +14,7 @@ Nicht Ziel: ein vollständiges Schlaf-Staging (Tief/REM/Leicht) wie Samsung Heal
 |---|---|---|
 | Wecker anlegen/ändern | ja | nur Ein/Aus, Fenster kürzen |
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
-| Wecken | Ton + Vibration als Zweitwecker, abschaltbar | Vibration, Pflicht |
+| Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
 | Daten | lokal (DataStore) | lokal (DataStore) |
 
@@ -22,12 +22,12 @@ Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; 
 
 ## Ablauf einer Nacht
 
-1. Nutzer stellt am Handy Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–60 Min).
+1. Nutzer stellt am Handy Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–30 Min).
 2. Der Wecker wird per Data Layer an die Uhr übertragen. Die Uhr setzt einen exakten Alarm (`AlarmManager`, `setAlarmClock`) auf *Zielzeit − Fenster*.
 3. Fensterbeginn: Ein Foreground-Service (Typ `health`) startet, hält einen Partial-Wakelock und liest Sensoren.
 4. Alle 30 s wird eine Epoche bewertet. Erkennt die Bewertung Leichtschlaf oder Aufwachen, löst die Uhr den Weckvorgang aus.
 5. Ist die Zielzeit erreicht, ohne dass die Bewertung angeschlagen hat, weckt die Uhr trotzdem (Rückfall).
-6. Weckvorgang: Vibrationsmuster in drei Stufen (sanft → deutlich → anhaltend), je 60 s; Abstellen durch Tippen und Halten, Schlummern 5 Min (maximal 2×). Parallel bekommt das Handy ein Signal und kann Ton abspielen.
+6. Weckvorgang: Vibrationsmuster in drei Stufen (sanft → deutlich → anhaltend), je 60 s; Abstellen durch Tippen und Halten, Schlummern 5 Min (maximal 3×). Parallel bekommt das Handy ein Signal und kann Ton abspielen.
 7. Die Uhr schreibt eine Zusammenfassung der Nacht (Weckzeitpunkt, Grund, Bewegungsverlauf im Fenster) und sendet sie ans Handy.
 
 ## Phasenerkennung
@@ -79,10 +79,10 @@ Drin: ein Wecker (wiederholbar nach Wochentagen), Weckfenster, Vibrationsweckung
 
 Später: mehrere Wecker, Weckfenster-Vorschlag aus dem Verlauf, Tile und Komplikation auf der Uhr, Export des Verlaufs als CSV, Einschlaf-Erkennung (Fenster relativ zur Einschlafzeit statt zur Uhrzeit).
 
-## Offene Entscheide
+## Entscheide (28.10.2026)
 
-1. Weckfenster-Standard 30 Min – ok?
-2. Handy-Zweitwecker standardmässig an oder aus?
-3. Schlummern 5 Min, maximal 2× – ok?
-4. Verlauf 90 Nächte behalten – ok?
-5. Anzeigename «Phase Wake» in beide `strings.xml` eintragen?
+- Weckfenster Standard 30 Min, einstellbar 10–30 Min. Morgens überwiegt Leicht- und REM-Schlaf, Tiefschlaf ist selten; 30 Min reichen fast immer für einen guten Moment. Ein längeres Fenster würde nur unnötig früh wecken.
+- Handy-Zweitwecker standardmässig an.
+- Schlummern 5 Min, maximal 3×.
+- Verlauf 90 Nächte, Grundlage für die Kalibrierung.
+- Anzeigename «Phase Wake» (Repo und Code: phaseWake).
