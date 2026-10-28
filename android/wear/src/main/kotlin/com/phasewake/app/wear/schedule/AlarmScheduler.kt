@@ -140,8 +140,8 @@ class AlarmScheduler(
             val start = windowStart.toEpochMilli()
             val end = until.toEpochMilli()
             val extend = oldFrom != null && oldUntil != null && start <= oldUntil
-            val from = if (extend) minOf(oldFrom!!, start) else start
-            val to = if (extend) maxOf(oldUntil!!, end) else end
+            val from = if (extend) minOf(oldFrom, start) else start
+            val to = if (extend) maxOf(oldUntil, end) else end
             prefs[CATCH_UP_FROM] = from
             prefs[CATCH_UP_UNTIL] = to
             val due = specs.filter { spec ->
@@ -271,7 +271,6 @@ class AlarmScheduler(
             it[STATUS_AT] = now
             if (battery != null) it[STATUS_BATTERY] = battery else it.remove(STATUS_BATTERY)
         }
-        Unit
     }
 
     /**
