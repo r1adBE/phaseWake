@@ -631,10 +631,8 @@ private fun HypnogramCard(h: Hypnogram, night: NightRecord, modifier: Modifier) 
 
 fun feelingTakeaway(context: Context, f: FeelingSeries): String? {
     val last = f.lastWeek?.let { context.getString(R.string.trends_feeling_change, decimal(it)) }
-    return when {
-        f.thisWeek != null -> context.getString(R.string.trends_feeling, decimal(f.thisWeek)) + (last?.let { " · $it" } ?: "")
-        else -> last
-    }
+    val thisWeek = f.thisWeek ?: return last
+    return context.getString(R.string.trends_feeling, decimal(thisWeek)) + (last?.let { " · $it" } ?: "")
 }
 
 /** «28. Okt. · Befinden: Gut · Notizen: Koffein, Sport» */
