@@ -1,0 +1,178 @@
+import PhaseWakeCore
+import SwiftUI
+
+/// Startseite: Kopf im Nachthimmel mit dem nächsten Fenster, letzte Nacht, alle Wecker.
+/// Dunkel ist die ganze Seite Nachthimmel, hell nur der Kopf.
+struct HomeView: View {
+    @Environment(PhoneModel.self) private var model
+    @Environment(\.colorScheme) private var scheme
+    @State private var editing: AlarmSpec?
+    @State private var creating = false
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                if scheme == .dark { NightSky() }
+                ScrollView {
+                    VStack(spacing: 12) {
+                        TimelineView(.everyMinute) { context in
+                            header(now: context.date)
+                        }
+                        if let night = model.nights.last { LastNightCard(night: night) }
+                        if !model.alarms.isEmpty {
+                            Text(L("home_alarms"))
+                                .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
+                                .foregroundStyle(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, 20)
+                                .padding(.top, 8)
+                            ForEach(model.alarms) { alarm in
+                                AlarmRow(alarm: alarm) { editing = alarm }
+                            }
+                        }
+                        Spacer(minLength: 80)
+                    }
+                }
+                .ignoresSafeArea(edges: .top)
+            }
+            .background(scheme == .dark ? Color.clear : Color(hex: 0xF4F6FB))
+            .overlay(alignment: .bottomTrailing) {
+                if !model.alarms.isEmpty {
+                    Button { creating = true } label: {
+                        Label(L("home_add_alarm"), systemImage: "plus")
+                            .font(Fonts.manrope(15, .bold, relativeTo: .headline))
+                            .padding(.horizontal, 20).padding(.vertical, 16)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(scheme == .dark ? Brand.echo : Color(hex: 0xDCE4FF))
+                    .foregroundStyle(scheme == .dark ? .white : Brand.nightTop)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(16)
+                }
+            }
+            .sheet(item: $editing) { EditorView(existing: $0) }
+            .sheet(isPresented: $creating) { EditorView(existing: nil) }
+        }
+    }
+
+    private func header(now: Date) -> some View {
+        let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current)
+        return VStack(alignment: .leading, spacing: 2) {
+            HStack(spacing: 10) {
+                LogoMark().frame(width: 34, height: 34)
+                Text("Phase Wake").font(Fonts.manrope(20, .bold, relativeTo: .title3))
+            }
+            .padding(.bottom, 26)
+            Text(L(greetingKey(now))).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+            if let plan, let alarm = model.alarms.first(where: { $0.id == plan.alarmId }) {
+                Text(Format.time(plan.windowStart) + " – " + Format.time(plan.target))
+                    .font(Fonts.manrope(44, .heavy, relativeTo: .largeTitle))
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
+                let day = Calendar.current.isDateInToday(plan.target) ? L("home_next_today") : L("home_next_tomorrow")
+                let minutes = Int(plan.windowStart.timeIntervalSince(now) / 60)
+                Text(([day, alarm.label].filter { !$0.isEmpty } + [L("home_next_in", Format.duration(minutes: minutes))]).joined(separator: " · "))
+                    .font(Fonts.manrope(14, relativeTo: .subheadline))
+                    .foregroundStyle(Brand.muted)
+                HeroWave().frame(height: 72).padding(.top, 14)
+            } else {
+                Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
+                Text(L("home_no_alarm_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+                HeroWave(windowFraction: 0.3).frame(height: 60).padding(.vertical, 12)
+                Button { creating = true } label: {
+                    Label(L("home_add_alarm"), systemImage: "plus").font(Fonts.manrope(15, .bold, relativeTo: .headline))
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.white)
+                .foregroundStyle(Brand.nightBottom)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isHeader)
+        .foregroundStyle(.white)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 22)
+        .padding(.top, 70)
+        .padding(.bottom, 24)
+        .background {
+            if scheme != .dark {
+                NightSky().clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
+            }
+        }
+        .onTapGesture { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
+    }
+
+    private func greetingKey(_ now: Date) -> String {
+        switch Calendar.current.component(.hour, from: now) {
+        case 5...10: "greeting_morning"
+        case 11...16: "greeting_day"
+        case 17...21: "greeting_evening"
+        default: "greeting_night"
+        }
+    }
+}
+
+/// Karte auf dem Hintergrund: dunkel durchscheinend, hell weiss.
+struct CardBackground: ViewModifier {
+    @Environment(\.colorScheme) private var scheme
+    func body(content: Content) -> some View {
+        content
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(scheme == .dark ? Color.white.opacity(0.07) : Color.white, in: RoundedRectangle(cornerRadius: 20))
+            .padding(.horizontal, 16)
+    }
+}
+
+extension View {
+    func card() -> some View { modifier(CardBackground()) }
+}
+
+private struct LastNightCard: View {
+    let night: NightRecord
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(L("home_last_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Spacer()
+                Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
+            }
+            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30)).frame(height: 46)
+            Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+        }
+        .card()
+    }
+}
+
+private struct AlarmRow: View {
+    @Environment(PhoneModel.self) private var model
+    let alarm: AlarmSpec
+    let onTap: () -> Void
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(alarm.sleepDurationMinutes.map { L("alarm_after_sleep", Format.duration(minutes: $0)) } ?? Format.window(alarm))
+                    .font(Fonts.manrope(22, .bold, relativeTo: .title2))
+                    .foregroundStyle(alarm.enabled ? .primary : .secondary)
+                Text(details).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
+            Spacer()
+            Toggle("", isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
+                .labelsHidden()
+        }
+        .contentShape(Rectangle())
+        .onTapGesture(perform: onTap)
+        .card()
+        .accessibilityElement(children: .combine)
+    }
+
+    private var details: String {
+        var parts = [Format.days(alarm)]
+        if alarm.sleepDurationMinutes != nil { parts.append(L("alarm_latest", Format.time(hour: alarm.hour, minute: alarm.minute))) }
+        if !alarm.label.isEmpty { parts.append(alarm.label) }
+        return parts.joined(separator: " · ")
+    }
+}
+

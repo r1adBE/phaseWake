@@ -1,0 +1,101 @@
+import PhaseWakeCore
+import SwiftUI
+
+/// Startbildschirm der Uhr: nächstes Weckfenster als Ring, Wecker ein/aus.
+struct HomeView: View {
+    @Environment(WatchModel.self) private var model
+    @Environment(\.scenePhase) private var scenePhase
+
+    var body: some View {
+        NavigationStack {
+            List {
+                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId })
+                    .listRowBackground(Color.clear)
+                if !model.alarms.isEmpty {
+                    Section(L("home_alarms")) {
+                        ForEach(model.alarms) { alarm in
+                            Toggle(isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) })) {
+                                VStack(alignment: .leading) {
+                                    Text(Format.window(alarm)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                                    Text([Format.days(alarm), alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
+                                        .font(Fonts.manrope(12, relativeTo: .footnote))
+                                        .foregroundStyle(Brand.muted)
+                                }
+                            }
+                            .tint(Brand.echo)
+                        }
+                    }
+                }
+            }
+            .background(NightSky(strength: 0.55))
+            .scrollContentBackground(.hidden)
+        }
+        .onChange(of: scenePhase) { _, phase in
+            // Nur bei aktiver App lässt sich die Smart-Alarm-Sitzung planen.
+            if phase == .active { model.reschedule() }
+        }
+        .onAppear { model.reschedule() }
+    }
+}
+
+private struct NextWindow: View {
+    let plan: WakePlan?
+    let alarm: AlarmSpec?
+
+    var body: some View {
+        ZStack {
+            if let plan {
+                WindowRing(start: dial(plan.windowStart), end: dial(plan.target))
+            }
+            VStack(spacing: 2) {
+                if let plan {
+                    Text(Calendar.current.isDateInToday(plan.target) ? L("home_today") : L("home_tomorrow"))
+                        .font(Fonts.manrope(12, relativeTo: .caption))
+                        .foregroundStyle(Brand.muted)
+                    Text(Format.time(plan.windowStart) + "–" + Format.time(plan.target))
+                        .font(Fonts.manrope(20, .bold, relativeTo: .title3))
+                        .minimumScaleFactor(0.7)
+                        .lineLimit(1)
+                    Text(L("home_window_length", alarm?.windowMinutes ?? AlarmSpec.defaultWindowMinutes))
+                        .font(Fonts.manrope(11, relativeTo: .caption2))
+                        .foregroundStyle(Brand.muted)
+                } else {
+                    Text(L("home_no_alarm")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                    Text(L("home_no_alarm_hint"))
+                        .font(Fonts.manrope(12, relativeTo: .caption))
+                        .foregroundStyle(Brand.muted)
+                        .multilineTextAlignment(.center)
+                }
+            }
+            .padding(.horizontal, 18)
+            .accessibilityElement(children: .combine)
+        }
+        .frame(height: 160)
+        .frame(maxWidth: .infinity)
+    }
+
+    /// Position auf dem 12-Stunden-Zifferblatt (0 = 12 Uhr).
+    private func dial(_ date: Date) -> Double {
+        let c = Calendar.current.dateComponents([.hour, .minute], from: date)
+        return Double((c.hour ?? 0) % 12 * 60 + (c.minute ?? 0)) / 720
+    }
+}
+
+/// Ring mit dem Weckfenster als Bogen und dem Weckpunkt am Ende.
+private struct WindowRing: View {
+    let start: Double
+    let end: Double
+
+    var body: some View {
+        let sweep = max(0.01, (end - start + 1).truncatingRemainder(dividingBy: 1))
+        ZStack {
+            Circle().stroke(Brand.track, lineWidth: 5)
+            Circle()
+                .trim(from: 0, to: sweep)
+                .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                .rotationEffect(.degrees(start * 360 - 90))
+        }
+        .padding(4)
+        .accessibilityHidden(true)
+    }
+}

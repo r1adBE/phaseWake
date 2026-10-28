@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90DC5565E35865FF0CEE58C1 /* PhaseWakeCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE531B06CD60150F6351DF9E /* PhaseWakeCore */; };
+		CE5DDFEBD2AC3EC8966A2B76 /* PhaseWakeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3E88DCF8AB433F351A9EDD86 /* PhaseWakeCore */; };
+		DD35847EAC3720E011F08C5C /* PhaseWakeWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5A6A79EF150FE1A588E9A90 /* PhaseWakeWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		431387EB7262E1CFC79B125E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16F4112AC81B2DD7CBA456D7;
+			remoteInfo = PhaseWakeWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BCCC4AA2FD4375225A6099DD /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				DD35847EAC3720E011F08C5C /* PhaseWakeWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DB90CFEBD2C1C06E9EA54A6 /* PhaseWake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhaseWake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A6A79EF150FE1A588E9A90 /* PhaseWakeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhaseWakeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DBA7D381269FDCD75C35C004 /* Exceptions for "PhaseWake" folder in "PhaseWake" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PhaseWake.entitlements,
+			);
+			target = 778130C49534A4D32801D13D /* PhaseWake */;
+		};
+		023FE429595889D233197437 /* Exceptions for "PhaseWakeWatch" folder in "PhaseWakeWatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				PhaseWakeWatch.entitlements,
+			);
+			target = 16F4112AC81B2DD7CBA456D7 /* PhaseWakeWatch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CF1A2C9B05526F3AE4CD0F35 /* PhaseWake */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (DBA7D381269FDCD75C35C004 /* Exceptions for "PhaseWake" folder in "PhaseWake" target */, ); path = PhaseWake; sourceTree = "<group>"; };
+		599E443B7F57EC3D4F5F47D0 /* PhaseWakeWatch */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (023FE429595889D233197437 /* Exceptions for "PhaseWakeWatch" folder in "PhaseWakeWatch" target */, ); path = PhaseWakeWatch; sourceTree = "<group>"; };
+		48B3E5AA3956423BE92D6AA1 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; path = Resources; sourceTree = "<group>"; };
+		F1A370516F16A91DEBE885E5 /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; path = Shared; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F72F053D4455B87BA57FD8AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90DC5565E35865FF0CEE58C1 /* PhaseWakeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BF9EFBA9FD10E63AE6AB6C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE5DDFEBD2AC3EC8966A2B76 /* PhaseWakeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B731CEFC6751AAE0EC69B98 = {
+			isa = PBXGroup;
+			children = (
+				CF1A2C9B05526F3AE4CD0F35 /* PhaseWake */,
+				599E443B7F57EC3D4F5F47D0 /* PhaseWakeWatch */,
+				48B3E5AA3956423BE92D6AA1 /* Resources */,
+				F1A370516F16A91DEBE885E5 /* Shared */,
+				86024CAD1E83101D97359D73 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		86024CAD1E83101D97359D73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DB90CFEBD2C1C06E9EA54A6 /* PhaseWake.app */,
+				D5A6A79EF150FE1A588E9A90 /* PhaseWakeWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		778130C49534A4D32801D13D /* PhaseWake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC573CC2B6EF8ABF3A944EA0 /* Build configuration list for PBXNativeTarget "PhaseWake" */;
+			buildPhases = (
+				A26B49697F3E690398527AAB /* Sources */,
+				F72F053D4455B87BA57FD8AA /* Frameworks */,
+				509E3C5AD660F43AEF16CAB4 /* Resources */,
+				BCCC4AA2FD4375225A6099DD /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12135613CE93203A2C467133 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CF1A2C9B05526F3AE4CD0F35 /* PhaseWake */,
+				48B3E5AA3956423BE92D6AA1 /* Resources */,
+				F1A370516F16A91DEBE885E5 /* Shared */,
+			);
+			name = PhaseWake;
+			packageProductDependencies = (
+				FE531B06CD60150F6351DF9E /* PhaseWakeCore */,
+			);
+			productName = PhaseWake;
+			productReference = 8DB90CFEBD2C1C06E9EA54A6 /* PhaseWake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		16F4112AC81B2DD7CBA456D7 /* PhaseWakeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CA56A6EEAB7975650A5DE57 /* Build configuration list for PBXNativeTarget "PhaseWakeWatch" */;
+			buildPhases = (
+				23B85FD3AF44B1E37AEEAC86 /* Sources */,
+				5BF9EFBA9FD10E63AE6AB6C7 /* Frameworks */,
+				79A9040A1F22CA6CDE4593D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				599E443B7F57EC3D4F5F47D0 /* PhaseWakeWatch */,
+				48B3E5AA3956423BE92D6AA1 /* Resources */,
+				F1A370516F16A91DEBE885E5 /* Shared */,
+			);
+			name = PhaseWakeWatch;
+			packageProductDependencies = (
+				3E88DCF8AB433F351A9EDD86 /* PhaseWakeCore */,
+			);
+			productName = PhaseWakeWatch;
+			productReference = D5A6A79EF150FE1A588E9A90 /* PhaseWakeWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = FB0A9E0824BEDFF6DE8AA308 /* Build configuration list for PBXProject "PhaseWake" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+				cs,
+				da,
+				de,
+				el,
+				es,
+				fa,
+				fi,
+				fr,
+				he,
+				hi,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nb,
+				nl,
+				pl,
+				"pt-BR",
+				"pt-PT",
+				ro,
+				ru,
+				sv,
+				th,
+				tr,
+				uk,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
+			);
+			mainGroup = 2B731CEFC6751AAE0EC69B98;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9C3BF4A3AE1F0A28DED2AA3E /* XCLocalSwiftPackageReference "PhaseWakeCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 86024CAD1E83101D97359D73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				778130C49534A4D32801D13D /* PhaseWake */,
+				16F4112AC81B2DD7CBA456D7 /* PhaseWakeWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		509E3C5AD660F43AEF16CAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A9040A1F22CA6CDE4593D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A26B49697F3E690398527AAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23B85FD3AF44B1E37AEEAC86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12135613CE93203A2C467133 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16F4112AC81B2DD7CBA456D7 /* PhaseWakeWatch */;
+			targetProxy = 431387EB7262E1CFC79B125E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B69466B536F8CE43B6356EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+			};
+			name = Debug;
+		};
+		64E1E1CBE1CA8E88EF3A838A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				VALIDATE_PRODUCT = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+			};
+			name = Release;
+		};
+		523AF537946B79C4F8369ED3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhaseWake/PhaseWake.entitlements;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake liest nach dem Aufwachen deine Schlafphasen, um zu prüfen, ob du im leichten Schlaf geweckt wurdest.";
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Phase Wake weckt dich als Zweitwecker auf dem iPhone.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C582DEC943FF7B743AA0691D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhaseWake/PhaseWake.entitlements;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake liest nach dem Aufwachen deine Schlafphasen, um zu prüfen, ob du im leichten Schlaf geweckt wurdest.";
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Phase Wake weckt dich als Zweitwecker auf dem iPhone.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DD3BA2CCA7DA8526615BE73D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhaseWakeWatch/PhaseWakeWatch.entitlements;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake misst im Weckfenster deinen Puls, um leichten Schlaf zu erkennen.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake misst im Weckfenster deine Bewegung, um leichten Schlaf zu erkennen.";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		F3151D23F9C88EA74E0229BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PhaseWakeWatch/PhaseWakeWatch.entitlements;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake misst im Weckfenster deinen Puls, um leichten Schlaf zu erkennen.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake misst im Weckfenster deine Bewegung, um leichten Schlaf zu erkennen.";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB0A9E0824BEDFF6DE8AA308 /* Build configuration list for PBXProject "PhaseWake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B69466B536F8CE43B6356EC1 /* Debug */,
+				64E1E1CBE1CA8E88EF3A838A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC573CC2B6EF8ABF3A944EA0 /* Build configuration list for PBXNativeTarget "PhaseWake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				523AF537946B79C4F8369ED3 /* Debug */,
+				C582DEC943FF7B743AA0691D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CA56A6EEAB7975650A5DE57 /* Build configuration list for PBXNativeTarget "PhaseWakeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD3BA2CCA7DA8526615BE73D /* Debug */,
+				F3151D23F9C88EA74E0229BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		9C3BF4A3AE1F0A28DED2AA3E /* XCLocalSwiftPackageReference "PhaseWakeCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = PhaseWakeCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE531B06CD60150F6351DF9E /* PhaseWakeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhaseWakeCore;
+		};
+		3E88DCF8AB433F351A9EDD86 /* PhaseWakeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhaseWakeCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}

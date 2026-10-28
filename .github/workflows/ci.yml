@@ -28,7 +28,9 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
       - name: Übersetzungen prüfen
-        run: python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res
+        run: |
+          python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res
+          python3 ../.github/scripts/gen-xcstrings.py --check
       - name: Tests und Builds
         shell: bash
         run: |
@@ -63,3 +65,28 @@ jobs:
         if: failure()
         shell: bash
         run: ../../.github/scripts/annotate-errors.sh test.log
+
+  apple-app:
+    name: Apple-Apps (iPhone, Watch)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Neuestes Xcode wählen
+        run: |
+          xcode=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$xcode"
+          xcodebuild -version
+      - name: Bauen
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log | grep -E "error:|warning:|BUILD" || true
+      - name: Fehler als Annotation
+        if: failure()
+        shell: bash
+        run: |
+          grep -E "error:" build.log | sort -u > errors.log || true
+          [ -s errors.log ] || tail -60 build.log > errors.log
+          .github/scripts/annotate-errors.sh errors.log
