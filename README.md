@@ -27,7 +27,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
-- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton)
+- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton
 - **Sonnenaufgang** auf dem Handy (Option): Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf dem iPhone im Nachttisch-Modus
 - **Schlummern** 5 Minuten, höchstens 3×
 - **Nacht-Check** vor dem Schlafen: Uhr verbunden, Wecker erlaubt, «Nicht stören», Akku – mit Knopf zum Beheben

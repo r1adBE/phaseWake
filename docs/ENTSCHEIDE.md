@@ -1,6 +1,6 @@
-# Entscheide ohne Rückfrage
+# Entscheide
 
-Hier steht, was während der Arbeit ohne Rückfrage entschieden wurde (jeweils die empfohlene Variante). Wer anders will: Zeile ändern, Code folgt.
+Hier steht, was während der Arbeit entschieden wurde: ohne Rückfrage jeweils die empfohlene Variante, mit Rückfrage mit dem Vermerk «Entschieden mit r1AD». Wer anders will: Zeile ändern, Code folgt.
 
 | Datum | Thema | Entscheid | Grund |
 |---|---|---|---|
@@ -18,9 +18,9 @@ Hier steht, was während der Arbeit ohne Rückfrage entschieden wurde (jeweils d
 | 28.10.2026 | Weckart auf Apple | Uhr «Vibration + Ton» und iPhone «Nur Vibration» ausgeblendet; iPhone: aus oder Ton. | Entschieden mit r1AD (Review): Die Apple Watch weckt nur per Haptik, AlarmKit klingelt immer mit Ton. |
 | 28.10.2026 | Nacht-Check «Nicht stören» | Blockiert → «‹Nicht stören› blockiert Wecker»; ohne Sonderrecht nicht lesbar → «‹Nicht stören› ist an» mit Bitte um Prüfung, statt fälschlich grün. | Entschieden mit r1AD (Review). |
 | 28.10.2026 | Uhr ohne Sensorrechte | Die Uhr weckt trotzdem zur Zielzeit (Vordergrund als Wecker-App, ohne Messung); der Nacht-Check am Handy meldet «Phase Wake auf der Uhr». | Ein Wecker muss wecken, auch wenn die Erkennung nicht laufen darf. |
-| 28.10.2026 | Apple Watch: Rückfall | Lokale Mitteilung 1 Min nach der Zielzeit, beim Wecken entfernt; Planung nur bei offener App und ≤ 36 h, sonst Hinweis auf Uhr und iPhone. | Grenzen von watchOS; so weckt die Uhr auch, wenn die Sitzung scheitert. |
+| 28.10.2026 | Apple Watch: Rückfall | Lokale Mitteilung 1 Min nach der Zielzeit, erst beim Beenden entfernt; Planung nur bei offener App und ≤ 36 h, sonst Hinweis auf Uhr und iPhone. | Grenzen von watchOS; so weckt die Uhr auch, wenn die Sitzung scheitert. |
 | 28.10.2026 | Pluralformen | Android `<plurals>`, Apple «name|kategorie» mit CLDR-Regeln in `Shared/Plural.swift`. | Eine Quelle, korrekte Grammatik in allen 32 Sprachen. |
-| 28.10.2026 | Direct Boot (Uhr) | Nicht umgesetzt: Nach einem Neustart ohne Entsperren plant die Uhr erst nach dem ersten Entsperren; das Handy weckt als Rückfall. | Wear-Uhren werden meist sofort entsperrt; Speicher im Geräteschutz wäre ein grosser Umbau. |
+| 28.10.2026 | Direct Boot (Uhr) | Nicht umgesetzt: Nach einem Neustart ohne Entsperren plant die Uhr erst nach dem ersten Entsperren; das Handy weckt als Rückfall (es plant seinen Zweitwecker auch vor dem ersten Entsperren, dann mit Standardton). | Wear-Uhren werden meist sofort entsperrt; Speicher im Geräteschutz wäre ein grosser Umbau. |
 | 28.10.2026 | Gleichzeitige Änderungen | Die Weckerliste gilt als Ganzes: Die zuletzt gespeicherte Liste gewinnt (Handy ↔ Uhr). | Einfach und vorhersehbar; gleichzeitiges Bearbeiten auf beiden Geräten ist selten. |
 | 28.10.2026 | «Fenster kürzen» auf der Uhr | Nicht auf der Uhr, nur im Editor am Handy. | Kleiner Bildschirm; der Hinweis erscheint am Handy. |
 | 28.10.2026 | Später geprüft | Swift 6 (strikte Nebenläufigkeit) und Trainings-Sitzung für dichtere Herzfrequenz auf der Apple Watch. | Erst nach Tests auf echten Geräten sinnvoll. |

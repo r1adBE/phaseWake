@@ -85,6 +85,8 @@ Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr
 - **Einschlafzeit** = Beginn der ersten Strecke von 30 aufeinanderfolgenden Epochen (15 Min), in denen die Bewegung vorhanden und kleiner als die Leicht-Schwelle ist. Leere Bewegung unterbricht die Strecke.
 - **Zielzeit** = Einschlafzeit + Schlafdauer, höchstens die eingestellte Weckzeit.
 - Wird bis 15 Min vor der eingestellten Weckzeit keine Einschlafzeit gefunden, gilt die eingestellte Weckzeit.
+- «Gute Nacht» ist nur möglich, wenn die eingestellte Weckzeit höchstens 16 Std. entfernt ist.
+- Uhren ohne aufweckenden Beschleunigungssensor bündeln hier nur 10 s und halten einen Wakelock, sonst liefe der Sensorpuffer im Tiefschlaf über.
 
 ## 7. Zuordnung zu Epochen
 
@@ -94,3 +96,5 @@ Sensorwerte werden über ihren eigenen Zeitstempel (monotone Uhr) einer Epoche z
 - Werte vor dem Fensterbeginn, Werte für eine bereits abgeschlossene Epoche und Werte mehr als 24 Stunden (2880 Epochen) nach Fensterbeginn (Zeitsprung der Sensoruhr) werden verworfen.
 - Ein Wert für eine spätere Epoche schliesst die laufende und alle dazwischen liegenden ab; dazwischen liegende Epochen ohne Werte sind leer.
 - Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende länger als die Bündelungs-Verzögerung plus 2 s zurückliegt.
+- Galaxy Watch: Die Bewegung kommt gebündelt bis 10 s verspätet, der Puls sofort. Die Uhr hält deshalb jeden Pulswert zurück, bis Bewegungswerte mit gleichem oder späterem Zeitstempel da sind (höchstens Bündelungs-Verzögerung plus 2 s). Sonst schlösse ein früher Pulswert die Epoche, bevor ihre Bewegung da ist. Die Regel oben bleibt gleich.
+- Apple Watch: Die Smart-Alarm-Sitzung (höchstens 30 Min) beginnt bei max(Fensterbeginn, Zielzeit − 25 Min). Epochen davor bleiben leer und zählen nicht für die Erkennung.
