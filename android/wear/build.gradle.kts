@@ -13,8 +13,21 @@ android {
         applicationId = "com.phasewake.app"
         minSdk = 30
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        // Testversionen aus GitHub bekommen die Laufnummer, damit sie sich ohne Deinstallieren aktualisieren lassen.
+        val build = providers.environmentVariable("PHASEWAKE_BUILD").orNull?.toIntOrNull()
+        versionCode = build ?: 1
+        versionName = if (build != null) "1.0-test.$build" else "1.0"
+    }
+
+    signingConfigs {
+        // Fester Test-Schlüssel (öffentlich, nur für Testversionen): Handy und Uhr brauchen dieselbe
+        // Signatur für den Data Layer, und Updates müssen gleich signiert sein wie die erste Installation.
+        getByName("debug") {
+            storeFile = rootProject.file("testing/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {

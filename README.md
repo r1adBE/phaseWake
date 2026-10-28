@@ -59,6 +59,10 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 | `shared/testdata` | Testnächte, die beide Plattformen identisch bewerten müssen |
 | `docs` | Konzept, Erkennungsregel, Logo |
 
+## Testen
+
+Fertige Testversion für Android-Handy und Galaxy Watch: [Releases → test](https://github.com/r1adBE/phaseWake/releases/tag/test). Anleitung Schritt für Schritt: [docs/TESTEN.md](docs/TESTEN.md).
+
 ## Bauen
 
 Android (JDK 21):

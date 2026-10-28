@@ -1,0 +1,59 @@
+name: Testversion
+
+# Baut Handy- und Uhr-App und legt sie als Vorabversion «test» auf GitHub ab:
+# https://github.com/r1adBE/phaseWake/releases/tag/test
+on:
+  push:
+    branches: [main]
+    paths: [android/**, .github/workflows/testversion.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: testversion
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v5
+      - name: Bauen
+        shell: bash
+        working-directory: android
+        env:
+          PHASEWAKE_BUILD: ${{ github.run_number }}
+        run: |
+          set -o pipefail
+          ./gradlew --stacktrace :app:assembleDebug :wear:assembleDebug 2>&1 | tee build.log
+      - name: Fehler als Annotation
+        if: failure()
+        shell: bash
+        working-directory: android
+        run: ../.github/scripts/annotate-errors.sh build.log
+      - name: Als Vorabversion «test» veröffentlichen
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cp android/app/build/outputs/apk/debug/app-debug.apk PhaseWake-Handy.apk
+          cp android/wear/build/outputs/apk/debug/wear-debug.apk PhaseWake-Uhr.apk
+          gh release delete test --cleanup-tag --yes || true
+          git push origin :refs/tags/test || true
+          cat > notes.md <<NOTES
+          Testversion ${{ github.run_number }} aus Stand \`${GITHUB_SHA::7}\` – automatisch gebaut, nicht für den Alltag.
+
+          - **PhaseWake-Handy.apk**: auf dem Android-Handy öffnen und installieren.
+          - **PhaseWake-Uhr.apk**: auf die Galaxy Watch mit \`adb install -r PhaseWake-Uhr.apk\` (Anleitung: docs/TESTEN.md).
+          NOTES
+          gh release create test PhaseWake-Handy.apk PhaseWake-Uhr.apk \
+            --prerelease --target "$GITHUB_SHA" \
+            --title "Testversion ${{ github.run_number }}" --notes-file notes.md
