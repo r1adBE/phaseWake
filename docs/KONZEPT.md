@@ -60,7 +60,7 @@ Im Fenster wird nur das gemessen, was für die Entscheidung nötig ist. Zwei Sig
 - `leicht`: Bewegungsenergie über dem Leicht-Schwellwert in mindestens 2 der letzten 4 Epochen **und** Puls mindestens 5 % über dem Fenster-Basiswert → wecken.
 - sonst: weiter warten.
 
-Die Schwellwerte starten mit festen Werten und werden ab der dritten Nacht pro Nutzer kalibriert (Median der Bewegungsenergie der letzten Nächte als Basis). Keine Modelle, kein Training, keine Daten verlassen die Uhr.
+Die Schwellwerte starten mit festen Werten und werden ab der dritten Nacht pro Nutzer kalibriert (80. Perzentil der Bewegung der letzten 14 Nächte). Die genaue, verbindliche Regel steht in [PHASENERKENNUNG.md](PHASENERKENNUNG.md). Keine Modelle, kein Training, keine Daten verlassen die Uhr.
 
 In der ersten Fensterminute wird nicht entschieden (Basiswerte sammeln). Fehlt der Puls (Uhr sitzt locker), entscheidet nur die Bewegung.
 

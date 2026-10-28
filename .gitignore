@@ -10,3 +10,7 @@ captures/
 *.jks
 *.keystore
 .DS_Store
+.build/
+.swiftpm/
+xcuserdata/
+DerivedData/
