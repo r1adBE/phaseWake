@@ -49,7 +49,8 @@ object Night {
     val Moon = Color.White
     val Wave = Color(0xFF8CBBFF)
     val WaveEcho = Color(0xFF3557C8)
-    val Muted = Color(0xFFA9BCF0)
+    // Hell genug für Kontrast ≥ 4.5:1 auch im Lichtschein (WCAG AA).
+    val Muted = Color(0xFFCFDBFF)
 }
 
 /**
