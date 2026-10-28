@@ -37,6 +37,7 @@ wear-compose-material3 = { group = "androidx.wear.compose", name = "compose-mate
 wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
 wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
 wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "wearOngoing" }
+wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version = "1.1.0" }
 wear-tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "tiles" }
 wear-protolayout = { group = "androidx.wear.protolayout", name = "protolayout", version.ref = "protolayout" }
 wear-protolayout-material3 = { group = "androidx.wear.protolayout", name = "protolayout-material3", version.ref = "protolayout" }

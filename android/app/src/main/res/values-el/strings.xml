@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Το Android δεν ενημερώνει τις εφαρμογές αν περνούν τα ξυπνητήρια. Έλεγξε ότι τα ξυπνητήρια επιτρέπονται στο «Μην ενοχλείτε».</string>
     <string name="check_watch_setup">Το Phase Wake στο ρολόι</string>
     <string name="check_watch_setup_problem">Άνοιξε το Phase Wake στο ρολόι μία φορά και επίτρεψε αισθητήρες, ειδοποιήσεις και την οθόνη ξυπνητηριού.</string>
+    <string name="check_watch_app">Το Phase Wake στο ρολόι</string>
+    <string name="check_watch_app_problem">Το ρολόι σου είναι συνδεδεμένο, αλλά το Phase Wake δεν έχει εγκατασταθεί ακόμα σε αυτό.</string>
+    <string name="check_watch_app_action">Εγκατάσταση στο ρολόι</string>
     <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
     <string name="settings_privacy">Πολιτική απορρήτου</string>
     <string name="editor_discard_title">Απόρριψη αλλαγών;</string>

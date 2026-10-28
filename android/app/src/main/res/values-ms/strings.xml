@@ -186,6 +186,9 @@
     <string name="check_dnd_unknown_problem">Android tidak memberitahu apl sama ada penggera dibenarkan. Semak sama ada penggera dibenarkan dalam Jangan Ganggu.</string>
     <string name="check_watch_setup">Phase Wake pada jam tangan</string>
     <string name="check_watch_setup_problem">Buka Phase Wake pada jam tangan sekali dan benarkan penderia, pemberitahuan serta skrin penggera.</string>
+    <string name="check_watch_app">Phase Wake pada jam tangan</string>
+    <string name="check_watch_app_problem">Jam tangan awak disambungkan, tetapi Phase Wake belum dipasang padanya.</string>
+    <string name="check_watch_app_action">Pasang pada jam tangan</string>
     <string name="ring_hold_to_stop">Tahan untuk henti</string>
     <string name="settings_privacy">Dasar privasi</string>
     <string name="editor_discard_title">Buang perubahan?</string>

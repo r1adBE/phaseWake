@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Android ei kerro sovelluksille, päästetäänkö herätykset läpi. Tarkista, että herätykset on sallittu Älä häiritse -tilassa.</string>
     <string name="check_watch_setup">Phase Wake kellossa</string>
     <string name="check_watch_setup_problem">Avaa Phase Wake kellossa kerran ja salli anturit, ilmoitukset ja herätysnäyttö.</string>
+    <string name="check_watch_app">Phase Wake kellossa</string>
+    <string name="check_watch_app_problem">Kellosi on yhdistetty, mutta Phase Wakea ei ole vielä asennettu siihen.</string>
+    <string name="check_watch_app_action">Asenna kelloon</string>
     <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
     <string name="settings_privacy">Tietosuojakäytäntö</string>
     <string name="editor_discard_title">Hylätäänkö muutokset?</string>

@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Android, alarmların çalıp çalmayacağını uygulamalara bildirmez. Rahatsız Etme\'de alarmlara izin verildiğini kontrol et.</string>
     <string name="check_watch_setup">Saatte Phase Wake</string>
     <string name="check_watch_setup_problem">Saatte Phase Wake’i bir kez aç; sensörlere, bildirimlere ve alarm ekranına izin ver.</string>
+    <string name="check_watch_app">Saatte Phase Wake</string>
+    <string name="check_watch_app_problem">Saatin bağlı, ancak Phase Wake henüz saatte yüklü değil.</string>
+    <string name="check_watch_app_action">Saate yükle</string>
     <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
     <string name="settings_privacy">Gizlilik politikası</string>
     <string name="editor_discard_title">Değişiklikler silinsin mi?</string>

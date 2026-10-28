@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Android talar inte om för appar om alarm släpps igenom. Kontrollera att alarm är tillåtna i Stör ej.</string>
     <string name="check_watch_setup">Phase Wake på klockan</string>
     <string name="check_watch_setup_problem">Öppna Phase Wake på klockan en gång och tillåt sensorer, aviseringar och larmskärmen.</string>
+    <string name="check_watch_app">Phase Wake på klockan</string>
+    <string name="check_watch_app_problem">Klockan är ansluten, men Phase Wake är inte installerat på den än.</string>
+    <string name="check_watch_app_action">Installera på klockan</string>
     <string name="ring_hold_to_stop">Håll för att stoppa</string>
     <string name="settings_privacy">Integritetspolicy</string>
     <string name="editor_discard_title">Förkasta ändringar?</string>

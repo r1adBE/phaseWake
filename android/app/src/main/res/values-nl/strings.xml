@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Android laat apps niet weten of wekkers doorkomen. Controleer of wekkers zijn toegestaan bij Niet storen.</string>
     <string name="check_watch_setup">Phase Wake op het horloge</string>
     <string name="check_watch_setup_problem">Open Phase Wake één keer op het horloge en sta sensoren, meldingen en het wekkerscherm toe.</string>
+    <string name="check_watch_app">Phase Wake op het horloge</string>
+    <string name="check_watch_app_problem">Je horloge is verbonden, maar Phase Wake is er nog niet op geïnstalleerd.</string>
+    <string name="check_watch_app_action">Installeren op horloge</string>
     <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
     <string name="settings_privacy">Privacybeleid</string>
     <string name="editor_discard_title">Wijzigingen negeren?</string>

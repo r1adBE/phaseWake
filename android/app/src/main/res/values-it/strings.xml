@@ -194,6 +194,9 @@
     <string name="check_dnd_unknown_problem">Android non comunica alle app se le sveglie passano. Controlla che le sveglie siano consentite in Non disturbare.</string>
     <string name="check_watch_setup">Phase Wake sull’orologio</string>
     <string name="check_watch_setup_problem">Apri Phase Wake sull’orologio una volta e consenti sensori, notifiche e la schermata della sveglia.</string>
+    <string name="check_watch_app">Phase Wake sull\'orologio</string>
+    <string name="check_watch_app_problem">Il tuo orologio è connesso, ma Phase Wake non è ancora installato.</string>
+    <string name="check_watch_app_action">Installa sull\'orologio</string>
     <string name="ring_hold_to_stop">Tieni premuto per fermare</string>
     <string name="settings_privacy">Informativa sulla privacy</string>
     <string name="editor_discard_title">Scartare le modifiche?</string>

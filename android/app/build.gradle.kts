@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.health.connect)
+    // Play Store auf der Uhr öffnen, wenn dort Phase Wake fehlt.
+    implementation(libs.wear.remote.interactions)
     // Geräusche in der Nacht einordnen (YAMNet, auf dem Gerät). Modell: src/main/assets/yamnet.tflite, siehe README.
     implementation(libs.mediapipe.tasks.audio)
     implementation(platform(libs.compose.bom))

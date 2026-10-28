@@ -46,6 +46,9 @@ import com.phasewake.app.shared.DoNotDisturb
  */
 enum class Check(val title: Int, val problem: Int, val action: Int?, val problemTitle: Int = title, val inReadyList: Boolean = true) {
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
+
+    /** Uhr verbunden, aber Phase Wake fehlt dort: Knopf öffnet den Play Store auf der Uhr. */
+    WATCH_APP(R.string.check_watch_app, R.string.check_watch_app_problem, R.string.check_watch_app_action, inReadyList = false),
     WATCH_SETUP(R.string.check_watch_setup, R.string.check_watch_setup_problem, null),
 
     /**
@@ -83,9 +86,19 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady] und
          * [watchBattery] (Prozent, `null` = unbekannt oder zu alt).
          */
-        fun collect(context: Context, watchReachable: Boolean, watchReady: Boolean?, watchBattery: Int? = null): NightCheckState = NightCheckState(
+        fun collect(
+            context: Context,
+            watchReachable: Boolean,
+            watchReady: Boolean?,
+            watchBattery: Int? = null,
+            watchAppMissing: Boolean = false,
+        ): NightCheckState = NightCheckState(
             buildList {
-                if (!watchReachable) add(Check.WATCH) else if (watchReady == false) add(Check.WATCH_SETUP)
+                when {
+                    watchAppMissing && !watchReachable -> add(Check.WATCH_APP)
+                    !watchReachable -> add(Check.WATCH)
+                    watchReady == false -> add(Check.WATCH_SETUP)
+                }
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)

@@ -193,6 +193,9 @@
     <string name="check_dnd_unknown_problem">Android doesn’t tell apps whether alarms get through. Check that alarms are allowed in Do Not Disturb.</string>
     <string name="check_watch_setup">Phase Wake on the watch</string>
     <string name="check_watch_setup_problem">Open Phase Wake on the watch once and allow sensors, notifications and the alarm screen.</string>
+    <string name="check_watch_app">Phase Wake on the watch</string>
+    <string name="check_watch_app_problem">Your watch is connected, but Phase Wake isn\'t installed on it yet.</string>
+    <string name="check_watch_app_action">Install on watch</string>
     <string name="ring_hold_to_stop">Hold to stop</string>
     <string name="settings_privacy">Privacy policy</string>
     <string name="editor_discard_title">Discard changes?</string>

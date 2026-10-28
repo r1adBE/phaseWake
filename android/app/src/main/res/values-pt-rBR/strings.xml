@@ -194,6 +194,9 @@
     <string name="check_dnd_unknown_problem">O Android não informa aos apps se os alarmes são permitidos. Verifique se os alarmes estão permitidos no Não perturbe.</string>
     <string name="check_watch_setup">Phase Wake no relógio</string>
     <string name="check_watch_setup_problem">Abra o Phase Wake no relógio uma vez e permita sensores, notificações e a tela de alarme.</string>
+    <string name="check_watch_app">Phase Wake no relógio</string>
+    <string name="check_watch_app_problem">Seu relógio está conectado, mas o Phase Wake ainda não está instalado nele.</string>
+    <string name="check_watch_app_action">Instalar no relógio</string>
     <string name="ring_hold_to_stop">Segure para parar</string>
     <string name="settings_privacy">Política de privacidade</string>
     <string name="editor_discard_title">Descartar alterações?</string>

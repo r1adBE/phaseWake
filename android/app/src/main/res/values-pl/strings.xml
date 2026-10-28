@@ -198,6 +198,9 @@
     <string name="check_dnd_unknown_problem">Android nie informuje aplikacji, czy budziki są przepuszczane. Sprawdź, czy budziki są dozwolone w trybie Nie przeszkadzać.</string>
     <string name="check_watch_setup">Phase Wake na zegarku</string>
     <string name="check_watch_setup_problem">Raz otwórz Phase Wake na zegarku i zezwól na czujniki, powiadomienia oraz ekran budzika.</string>
+    <string name="check_watch_app">Phase Wake na zegarku</string>
+    <string name="check_watch_app_problem">Zegarek jest połączony, ale Phase Wake nie jest jeszcze na nim zainstalowany.</string>
+    <string name="check_watch_app_action">Zainstaluj na zegarku</string>
     <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
     <string name="settings_privacy">Polityka prywatności</string>
     <string name="editor_discard_title">Odrzucić zmiany?</string>

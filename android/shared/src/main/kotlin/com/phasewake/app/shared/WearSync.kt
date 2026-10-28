@@ -136,6 +136,19 @@ class WearSync(context: Context) {
     }
 
     /** Ob gerade ein Gerät mit [capability] erreichbar ist; `false` auch ohne Wear-Dienste. */
+    /**
+     * Gekoppelte Uhren, auf denen Phase Wake fehlt: verbunden, melden die Fähigkeit aber nicht.
+     * Leer, wenn keine Uhr verbunden ist oder überall die App läuft.
+     */
+    suspend fun nodesWithout(capability: String): List<String> = try {
+        val connected = Wearable.getNodeClient(app).connectedNodes.await().map { it.id }
+        val withApp = capabilityClient.getCapability(capability, CapabilityClient.FILTER_ALL).await().nodes.map { it.id }.toSet()
+        connected.filterNot { it in withApp }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        emptyList()
+    }
+
     suspend fun isReachable(capability: String): Boolean = try {
         capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.isNotEmpty()
     } catch (e: Exception) {

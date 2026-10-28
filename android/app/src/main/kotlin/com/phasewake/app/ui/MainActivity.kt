@@ -305,10 +305,19 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     // Nacht-Check: bei jedem Öffnen und danach jede halbe Minute (die Uhr kann kommen und gehen).
     // Nur solange die App sichtbar ist – im Hintergrund nicht abfragen (Akku).
     val lifecycle = LocalLifecycleOwner.current.lifecycle
+    // Uhren ohne Phase Wake (für den Knopf «Auf der Uhr installieren»).
+    var missingOn by remember { mutableStateOf(emptyList<String>()) }
     LaunchedEffect(checkRun) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             while (true) {
-                check = NightCheckState.collect(context, app.sync.isReachable(DataLayer.CAPABILITY_WATCH), app.sync.watchReady(), app.sync.watchBattery())
+                missingOn = app.sync.nodesWithout(DataLayer.CAPABILITY_WATCH)
+                check = NightCheckState.collect(
+                    context,
+                    app.sync.isReachable(DataLayer.CAPABILITY_WATCH),
+                    app.sync.watchReady(),
+                    app.sync.watchBattery(),
+                    watchAppMissing = missingOn.isNotEmpty(),
+                )
                 delay(30_000)
             }
         }
@@ -415,6 +424,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                             }
                             Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
                             Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
+                            Check.WATCH_APP -> missingOn.firstOrNull()?.let { node -> openStoreOnWatch(context, node) }
                             Check.WATCH, Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.BATTERY -> Unit
                         }
                     },
@@ -617,5 +627,16 @@ private fun openSettings(context: android.content.Context, intent: Intent) {
         } catch (_: android.content.ActivityNotFoundException) {
             // Nächste Seite versuchen.
         }
+    }
+}
+
+/** Öffnet den Play-Store-Eintrag von Phase Wake auf der Uhr, damit dort die Uhr-App dazukommt. */
+private fun openStoreOnWatch(context: android.content.Context, nodeId: String) {
+    val intent = Intent(Intent.ACTION_VIEW, "market://details?id=${context.packageName}".toUri())
+        .addCategory(Intent.CATEGORY_BROWSABLE)
+    try {
+        androidx.wear.remote.interactions.RemoteActivityHelper(context).startRemoteActivity(intent, nodeId)
+    } catch (e: Exception) {
+        android.util.Log.w("PhaseWake", "Play Store auf der Uhr nicht geöffnet", e)
     }
 }

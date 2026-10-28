@@ -186,6 +186,9 @@
     <string name="check_dnd_unknown_problem">Android không cho ứng dụng biết báo thức có được phép kêu hay không. Hãy kiểm tra xem báo thức đã được cho phép trong chế độ Không làm phiền chưa.</string>
     <string name="check_watch_setup">Phase Wake trên đồng hồ</string>
     <string name="check_watch_setup_problem">Hãy mở Phase Wake trên đồng hồ một lần và cho phép cảm biến, thông báo cùng màn hình báo thức.</string>
+    <string name="check_watch_app">Phase Wake trên đồng hồ</string>
+    <string name="check_watch_app_problem">Đồng hồ đã được kết nối nhưng Phase Wake chưa được cài trên đồng hồ.</string>
+    <string name="check_watch_app_action">Cài trên đồng hồ</string>
     <string name="ring_hold_to_stop">Giữ để dừng</string>
     <string name="settings_privacy">Chính sách quyền riêng tư</string>
     <string name="editor_discard_title">Bỏ các thay đổi?</string>

@@ -8126,7 +8126,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake sull’orologio"
+            "value": "Phase Wake sull'orologio"
           }
         },
         "ja": {
@@ -8233,198 +8233,394 @@
         }
       }
     },
-    "check_watch_app_problem": {
+    "check_watch_app_action": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "ثبّت Phase Wake على Apple Watch من تطبيق Watch."
+            "value": "التثبيت على الساعة"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nainstaluj Phase Wake do Apple Watch v aplikaci Watch."
+            "value": "Nainstalovat do hodinek"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installer Phase Wake på dit Apple Watch i Watch-appen."
+            "value": "Installer på uret"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installiere Phase Wake in der Watch-App auf deiner Apple Watch."
+            "value": "Auf der Uhr installieren"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Εγκατέστησε το Phase Wake στο Apple Watch σου από την εφαρμογή Watch."
+            "value": "Εγκατάσταση στο ρολόι"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Install Phase Wake on your Apple Watch in the Watch app."
+            "value": "Install on watch"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instala Phase Wake en tu Apple Watch desde la app Watch."
+            "value": "Instalar en el reloj"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake را از برنامه Watch روی Apple Watch خود نصب کن."
+            "value": "نصب روی ساعت"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Asenna Phase Wake Apple Watchiisi Watch-sovelluksessa."
+            "value": "Asenna kelloon"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installe Phase Wake sur ton Apple Watch depuis l’app Watch."
+            "value": "Installer sur la montre"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "התקינו את Phase Wake ב-Apple Watch שלכם דרך אפליקציית Watch."
+            "value": "התקנה בשעון"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Watch ऐप में अपनी Apple Watch पर Phase Wake इंस्टॉल करें।"
+            "value": "वॉच पर इंस्टॉल करें"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telepítsd a Phase Wake-et az Apple Watchodra a Watch alkalmazásban."
+            "value": "Telepítés az órára"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instal Phase Wake di Apple Watch-mu lewat aplikasi Watch."
+            "value": "Pasang di jam tangan"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installa Phase Wake sul tuo Apple Watch dall’app Watch."
+            "value": "Installa sull'orologio"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "WatchアプリでApple WatchにPhase Wakeをインストールしてください。"
+            "value": "ウォッチにインストール"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Watch 앱에서 Apple Watch에 Phase Wake를 설치해 주세요."
+            "value": "워치에 설치"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pasang Phase Wake pada Apple Watch awak dalam apl Watch."
+            "value": "Pasang pada jam tangan"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installer Phase Wake på Apple Watch i Watch-appen."
+            "value": "Installer på klokken"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installeer Phase Wake op je Apple Watch via de Watch-app."
+            "value": "Installeren op horloge"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zainstaluj Phase Wake na Apple Watch w aplikacji Watch."
+            "value": "Zainstaluj na zegarku"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instale o Phase Wake no seu Apple Watch pelo app Watch."
+            "value": "Instalar no relógio"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instala o Phase Wake no teu Apple Watch na app Watch."
+            "value": "Instalar no relógio"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instalează Phase Wake pe Apple Watch din aplicația Watch."
+            "value": "Instalează pe ceas"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Установи Phase Wake на Apple Watch в приложении Watch."
+            "value": "Установить на часы"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Installera Phase Wake på din Apple Watch i Watch-appen."
+            "value": "Installera på klockan"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ติดตั้ง Phase Wake บน Apple Watch ของคุณในแอป Watch"
+            "value": "ติดตั้งบนนาฬิกา"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Watch uygulamasından Apple Watch’ına Phase Wake’i yükle."
+            "value": "Saate yükle"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Встанови Phase Wake на Apple Watch у застосунку Watch."
+            "value": "Встановити на годинник"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hãy cài Phase Wake trên Apple Watch của bạn trong ứng dụng Watch."
+            "value": "Cài trên đồng hồ"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请在 Watch 应用中将 Phase Wake 安装到你的 Apple Watch 上。"
+            "value": "在手表上安装"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "請在 Watch App 中將 Phase Wake 安裝到你的 Apple Watch 上。"
+            "value": "在手錶上安裝"
+          }
+        }
+      }
+    },
+    "check_watch_app_problem": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعتك متصلة، لكن Phase Wake غير مثبّت عليها بعد."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky jsou připojené, ale Phase Wake v nich ještě není nainstalovaný."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dit ur er forbundet, men Phase Wake er endnu ikke installeret på det."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Uhr ist verbunden, aber Phase Wake ist dort noch nicht installiert."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το ρολόι σου είναι συνδεδεμένο, αλλά το Phase Wake δεν έχει εγκατασταθεί ακόμα σε αυτό."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your watch is connected, but Phase Wake isn't installed on it yet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu reloj está conectado, pero Phase Wake aún no está instalado en él."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعتت متصل است، اما Phase Wake هنوز روی آن نصب نشده است."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellosi on yhdistetty, mutta Phase Wakea ei ole vielä asennettu siihen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta montre est connectée, mais Phase Wake n'y est pas encore installé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השעון שלכם מחובר, אבל Phase Wake עדיין לא מותקן בו."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी वॉच कनेक्टेड है, लेकिन उस पर अभी Phase Wake इंस्टॉल नहीं है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az órád csatlakoztatva van, de a Phase Wake még nincs telepítve rá."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tanganmu terhubung, tetapi Phase Wake belum terpasang di jam tangan."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo orologio è connesso, ma Phase Wake non è ancora installato."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチは接続されていますが、Phase Wakeがまだインストールされていません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치가 연결되어 있지만 아직 워치에 Phase Wake가 설치되지 않았어요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tangan awak disambungkan, tetapi Phase Wake belum dipasang padanya."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokken er tilkoblet, men Phase Wake er ikke installert på den ennå."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je horloge is verbonden, maar Phase Wake is er nog niet op geïnstalleerd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zegarek jest połączony, ale Phase Wake nie jest jeszcze na nim zainstalowany."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu relógio está conectado, mas o Phase Wake ainda não está instalado nele."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu relógio está ligado, mas o Phase Wake ainda não está instalado nele."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceasul tău este conectat, dar Phase Wake nu este încă instalat pe el."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часы подключены, но Phase Wake на них ещё не установлен."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockan är ansluten, men Phase Wake är inte installerat på den än."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาของคุณเชื่อมต่ออยู่ แต่ยังไม่ได้ติดตั้ง Phase Wake บนนาฬิกา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatin bağlı, ancak Phase Wake henüz saatte yüklü değil."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Годинник підключено, але Phase Wake на ньому ще не встановлено."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng hồ đã được kết nối nhưng Phase Wake chưa được cài trên đồng hồ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的手表已连接，但手表上尚未安装 Phase Wake。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的手錶已連線，但手錶上尚未安裝 Phase Wake。"
           }
         }
       }

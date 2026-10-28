@@ -194,6 +194,9 @@
     <string name="check_dnd_unknown_problem">Android n’indique pas aux apps si les alarmes passent. Vérifie que les alarmes sont autorisées dans Ne pas déranger.</string>
     <string name="check_watch_setup">Phase Wake sur la montre</string>
     <string name="check_watch_setup_problem">Ouvre Phase Wake une fois sur la montre et autorise les capteurs, les notifications et l\'écran de réveil.</string>
+    <string name="check_watch_app">Phase Wake sur la montre</string>
+    <string name="check_watch_app_problem">Ta montre est connectée, mais Phase Wake n\'y est pas encore installé.</string>
+    <string name="check_watch_app_action">Installer sur la montre</string>
     <string name="ring_hold_to_stop">Maintiens pour arrêter</string>
     <string name="settings_privacy">Politique de confidentialité</string>
     <string name="editor_discard_title">Abandonner les modifications ?</string>

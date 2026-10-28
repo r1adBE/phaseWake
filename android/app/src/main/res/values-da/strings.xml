@@ -190,6 +190,9 @@
     <string name="check_dnd_unknown_problem">Android fortæller ikke apps, om alarmer kommer igennem. Tjek, at alarmer er tilladt i Forstyr ikke.</string>
     <string name="check_watch_setup">Phase Wake på uret</string>
     <string name="check_watch_setup_problem">Åbn Phase Wake på uret én gang, og tillad sensorer, notifikationer og alarmskærmen.</string>
+    <string name="check_watch_app">Phase Wake på uret</string>
+    <string name="check_watch_app_problem">Dit ur er forbundet, men Phase Wake er endnu ikke installeret på det.</string>
+    <string name="check_watch_app_action">Installer på uret</string>
     <string name="ring_hold_to_stop">Hold for at stoppe</string>
     <string name="settings_privacy">Privatlivspolitik</string>
     <string name="editor_discard_title">Kassér ændringer?</string>
