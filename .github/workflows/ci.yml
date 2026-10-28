@@ -85,6 +85,15 @@ jobs:
         run: |
           set -o pipefail
           swift test 2>&1 | tee test.log
+      - name: Warnungen (Übersicht)
+        if: always()
+        shell: bash
+        run: |
+          set +e +o pipefail
+          w=$(grep -E "warning:" test.log | sed -E 's#^.*/ios/##' | sort -u)
+          n=$(printf '%s\n' "$w" | grep -c .)
+          echo "::notice title=Swift-Warnungen Kern ($n)::$(printf '%s\n' "$w" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"
+          exit 0
       - name: Fehler als Annotation
         if: failure()
         shell: bash
@@ -114,6 +123,15 @@ jobs:
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch \
             -destination 'generic/platform=watchOS Simulator' \
             CODE_SIGNING_ALLOWED=NO build >> build.log 2>&1
+      - name: Warnungen (Übersicht)
+        if: always()
+        shell: bash
+        run: |
+          set +e +o pipefail
+          w=$(grep -E "warning:" build.log | grep -v "^ld: warning: ignoring duplicate" | sed -E 's#^.*/ios/##' | sort -u)
+          n=$(printf '%s\n' "$w" | grep -c .)
+          echo "::notice title=Xcode-Warnungen ($n)::$(printf '%s\n' "$w" | cut -c1-220 | head -80 | sed ':a;N;$!ba;s/\n/%0A/g')"
+          exit 0
       - name: Fehler als Annotation
         if: failure()
         shell: bash

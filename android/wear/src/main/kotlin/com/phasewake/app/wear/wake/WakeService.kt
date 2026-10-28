@@ -310,6 +310,8 @@ class WakeService : LifecycleService() {
 
         publishRinging(n)
         goForeground(ringingNotification(n), measuring = false)
+        // Aus dem Dienst nur mit neuer Aufgabe möglich (Lint «WearRecents» trifft hier nicht zu).
+        @Suppress("WearRecents")
         startActivity(Intent(this, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         escalation.start(withSound = n.spec?.watchSound == true)
         handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)

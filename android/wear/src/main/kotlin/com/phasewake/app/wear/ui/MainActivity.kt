@@ -407,7 +407,7 @@ private fun formatTime(time: LocalTime): String = shortTime.format(time)
 private fun openAppSettings(context: android.content.Context) {
     val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, android.net.Uri.fromParts("package", context.packageName, null))
     try {
-        context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        context.startActivity(intent)
     } catch (_: android.content.ActivityNotFoundException) {
         // Ohne Einstellungsseite bleibt nur der Hinweis.
     }
@@ -418,7 +418,7 @@ private fun openFullScreenSettings(context: android.content.Context) {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
         val intent = Intent(android.provider.Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, android.net.Uri.fromParts("package", context.packageName, null))
         try {
-            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(intent)
             return
         } catch (_: android.content.ActivityNotFoundException) {
             // weiter unten
