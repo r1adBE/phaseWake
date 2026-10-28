@@ -304,6 +304,7 @@ class BackupAlarm(
      */
     class SystemReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action !in SYSTEM_ACTIONS) return
             if (!isUnlocked(context)) {
                 DirectBoot.restore(context)
                 return
@@ -374,6 +375,16 @@ class BackupAlarm(
         private const val ACTION = "com.phasewake.app.action.BACKUP_RING"
         private const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
         private const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
+
+        /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest). */
+        private val SYSTEM_ACTIONS = setOf(
+            Intent.ACTION_LOCKED_BOOT_COMPLETED,
+            Intent.ACTION_BOOT_COMPLETED,
+            Intent.ACTION_MY_PACKAGE_REPLACED,
+            Intent.ACTION_TIME_CHANGED,
+            Intent.ACTION_TIMEZONE_CHANGED,
+            AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED,
+        )
         private val SUPPRESSED = stringPreferencesKey("backup_suppressed")
         private val LEGACY_SUPPRESSED_UNTIL = longPreferencesKey("backup_suppressed_until")
         private val PLANNED_ID = stringPreferencesKey("backup_planned_id")

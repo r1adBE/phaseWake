@@ -44,16 +44,18 @@ jobs:
         if: always()
         shell: bash
         run: |
-          # Lint-Warnungen und Kotlin-Warnungen gezählt, als Hinweis sichtbar (auch wenn alles grün ist).
+          # Alle Lint- und Kotlin-Warnungen je Modul in einem Hinweis (auch wenn alles grün ist).
+          set +e +o pipefail
           for f in */build/reports/lint-results-debug.txt; do
             [ -f "$f" ] || continue
-            body=$(grep -E ": Warning:|: Information:" "$f" | sed -E 's/.*\[([A-Za-z0-9]+).*$/\1/' | sort | uniq -c | sort -rn | awk '{printf "%s×%s; ", $1, $2}')
-            echo "::notice title=Lint ${f%%/*}::${body:-keine}"
-            grep -E ": Warning:" "$f" | head -40 | sed 's/^/::notice title=Lint-Warnung::/' || true
+            list=$(grep -E ": (Warning|Information):" "$f" | sed -E 's#^.*/android/##; s/: (Warning|Information): .*\[([A-Za-z0-9]+).*$/ [\2]/')
+            n=$(printf '%s\n' "$list" | grep -c .)
+            echo "::notice title=Lint ${f%%/*} ($n)::$(printf '%s\n' "$list" | sed ':a;N;$!ba;s/\n/%0A/g')"
           done
-          kw=$(grep -E "^w: " build.log | sed 's#file://[^ ]*/phaseWake/##' | sort -u)
-          echo "::notice title=Kotlin-Warnungen::$(echo "$kw" | grep -c . ) Stück"
-          echo "$kw" | head -30 | sed 's/^/::notice title=Kotlin-Warnung::/' || true
+          kw=$(grep -E "^w: " build.log | sed -E 's#file://[^ ]*/android/##' | sort -u)
+          n=$(printf '%s\n' "$kw" | grep -c .)
+          echo "::notice title=Kotlin-Warnungen ($n)::$(printf '%s\n' "$kw" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"
+          exit 0
       - name: Lint-Befunde
         if: failure()
         shell: bash

@@ -30,6 +30,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -140,7 +141,7 @@ internal fun RingScreen(
                 if (state.snoozesLeft > 0) {
                     Spacer(Modifier.height(12.dp))
                     OutlinedButton(onClick = onSnooze, border = BorderStroke(1.dp, content.copy(alpha = 0.5f)), modifier = Modifier.fillMaxWidth().height(56.dp)) {
-                        Text(LocalContext.current.resources.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft), color = content)
+                        Text(LocalResources.current.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft), color = content)
                     }
                 }
             }
