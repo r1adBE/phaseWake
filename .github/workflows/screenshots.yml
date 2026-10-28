@@ -4,7 +4,7 @@ name: Bildschirmfotos
 on:
   push:
     branches: [main]
-    paths: [android/**, .github/workflows/screenshots.yml]
+    paths: [android/**, .github/workflows/screenshots.yml, .github/screenshots/**]
   workflow_dispatch:
 
 permissions:
@@ -46,22 +46,7 @@ jobs:
             find "android/$m/src/screenshotTestDebug/reference" -name '*.png' -print0 |
               while IFS= read -r -d '' f; do b=$(basename "$f"); cp "$f" "$out/$m/${b%%_*}.png"; done
           done
-          {
-            echo "# Phase Wake – Bildschirmfotos"
-            echo
-            echo "Automatisch aus dem Stand \`${GITHUB_SHA::7}\` gerendert. Beispieldaten, keine echten Nächte."
-            for m in app wear; do
-              echo
-              [ "$m" = app ] && echo "## Handy" || echo "## Uhr"
-              echo
-              for f in $(ls "$out/$m" | sort); do
-                echo "### ${f%.png}"
-                echo
-                echo "<img src=\"$m/$f\" width=\"320\">"
-                echo
-              done
-            done
-          } > "$out/README.md"
+          sed "s/@SHA@/${GITHUB_SHA::7}/" .github/screenshots/README.md > "$out/README.md"
           cd "$out"
           git init -q -b screenshots
           git config user.name "r1AD"
