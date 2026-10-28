@@ -13,6 +13,17 @@ final class PhoneModel {
     let health = HealthSleep()
     private(set) var alarms: [AlarmSpec] = []
     private(set) var nights: [NightRecord] = []
+    let bedtime = BedtimeReminder()
+    let sounds = SoundPlayer()
+    /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
+    private(set) var notes: [String: [String]] = [:]
+    private(set) var customNotes: [CustomNote] = []
+    /// Schlafziel in Minuten (360–600, Standard 450).
+    private(set) var sleepGoal: Int = SleepGoal.defaultMinutes
+    /// Bettzeit-Erinnerung, Standard aus.
+    private(set) var bedtimeReminder = false
+    private static let sleepGoalKey = "sleepGoalMinutes"
+    private static let bedtimeKey = "bedtimeReminder"
     /// Zeitpunkt, zu dem die Uhr zuletzt geweckt hat – der Nachttisch-Modus holt dann das Licht nach.
     private(set) var lastRing: Date?
     /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
@@ -27,11 +38,19 @@ final class PhoneModel {
     private init() {
         alarms = storage.snapshot().alarms
         nights = storage.nights()
+        notes = storage.notes()
+        customNotes = storage.customNotes()
+        let goal = UserDefaults.standard.integer(forKey: Self.sleepGoalKey)
+        sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
+        bedtimeReminder = UserDefaults.standard.bool(forKey: Self.bedtimeKey)
         // Zeitzone oder Uhrzeit geändert (Reise): Die AlarmKit-Wecker stehen auf festen Zeitpunkten, also neu planen.
         let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange, UIApplication.significantTimeChangeNotification]
         for name in names {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
-                Task { @MainActor in await PhoneModel.shared.backup.reschedule(PhoneModel.shared.alarms) }
+                Task { @MainActor in
+                    await PhoneModel.shared.backup.reschedule(PhoneModel.shared.alarms)
+                    await PhoneModel.shared.replanBedtime()
+                }
             }
         }
     }
@@ -54,11 +73,14 @@ final class PhoneModel {
         guard storage.applyRemote(snapshot) else { return }
         alarms = snapshot.alarms
         Task { await backup.reschedule(alarms) }
+        Task { await replanBedtime() }
     }
 
     func add(night: NightRecord) {
         storage.add(night)
         nights = storage.nights()
+        // Früh geweckt: Die nächste Nacht beginnt jetzt, die Erinnerung richtet sich danach.
+        Task { await replanBedtime() }
     }
 
     func setFeeling(_ feeling: Int, for night: NightRecord) {
@@ -100,6 +122,9 @@ final class PhoneModel {
     func clearHistory() {
         storage.clearNights()
         nights = []
+        // Notizen gehören zum Verlauf und gehen mit.
+        storage.clearNotes()
+        notes = [:]
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
@@ -108,5 +133,72 @@ final class PhoneModel {
         alarms = snapshot.alarms
         PhoneConnectivity.shared.publish(snapshot)
         Task { await backup.reschedule(alarms) }
+        Task { await replanBedtime() }
     }
+
+    // MARK: Schlafnotizen
+
+    /// Notizen einer Nacht; unbekannte (gelöschte) eigene Notizen fallen weg.
+    func selectedNotes(_ nightDate: String) -> [String] {
+        (notes[nightDate] ?? []).filter { !SleepNotes.isCustom($0) || customNotes.contains { c in c.id == $0 } }
+    }
+
+    func toggleNote(_ id: String, nightDate: String) {
+        notes = storage.setNotes(SleepNotes.toggle(id, in: notes[nightDate] ?? []), nightDate: nightDate)
+    }
+
+    /// Name zur Kennung: feste Notizen übersetzt, eigene mit ihrem Namen; `nil` = unbekannt.
+    func noteName(_ id: String) -> String? {
+        if let fixed = SleepNote(rawValue: id) { return L(fixed.textKey) }
+        return customNotes.first { $0.id == id }?.name
+    }
+
+    var canAddCustomNote: Bool { customNotes.count < SleepNotes.maxCustom }
+
+    func addCustomNote(_ name: String) {
+        let note = CustomNote(id: SleepNotes.newCustomId(), name: name)
+        guard canAddCustomNote, !note.name.isEmpty else { return }
+        setCustom(customNotes + [note])
+    }
+
+    func renameCustomNote(_ id: String, _ name: String) {
+        let clean = SleepNotes.cleanName(name)
+        guard !clean.isEmpty else { return }
+        setCustom(customNotes.map { $0.id == id ? CustomNote(id: id, name: clean) : $0 })
+    }
+
+    /// Entfernt die Notiz aus der Auswahl; vergangene Nächte behalten die Kennung (zeigen sie aber nicht).
+    func deleteCustomNote(_ id: String) { setCustom(customNotes.filter { $0.id != id }) }
+
+    private func setCustom(_ list: [CustomNote]) {
+        storage.setCustomNotes(list)
+        customNotes = storage.customNotes()
+    }
+
+    // MARK: Schlafziel und Bettzeit
+
+    func setSleepGoal(_ minutes: Int) {
+        sleepGoal = SleepGoal.clamp(minutes)
+        UserDefaults.standard.set(sleepGoal, forKey: Self.sleepGoalKey)
+        Task { await replanBedtime() }
+    }
+
+    func setBedtimeReminder(_ enabled: Bool) {
+        bedtimeReminder = enabled
+        UserDefaults.standard.set(enabled, forKey: Self.bedtimeKey)
+        Task {
+            if enabled { await bedtime.requestPermission() }
+            await replanBedtime()
+        }
+    }
+
+    /// Plant die Bettzeit-Erinnerung neu (Wecker, Ziel, Einstellung, Zeitzone oder neue Nacht geändert).
+    func replanBedtime() async {
+        await bedtime.reschedule(alarms: alarms, doneUntil: doneUntil, goalMinutes: sleepGoal, enabled: bedtimeReminder)
+    }
+}
+
+extension SleepNote {
+    /// Textschlüssel wie Android («note_caffeine» …).
+    var textKey: String { "note_" + rawValue.lowercased() }
 }

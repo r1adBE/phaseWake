@@ -158,6 +158,45 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         }
     }
 
+    // MARK: Schlafnotizen (nur iPhone, nicht an die Uhr)
+
+    private static let notesKey = "sleepNotes"
+    private static let customNotesKey = "customNotes"
+
+    /// Notizen je Nachtdatum «yyyy-MM-dd».
+    public func notes() -> [String: [String]] {
+        lock.lock(); defer { lock.unlock() }
+        return SleepNotes.decode(defaults.string(forKey: Self.notesKey) ?? "")
+    }
+
+    /// Setzt die Notizen einer Nacht (leer = entfernen) und behält höchstens 90 Nachtdaten. - Returns: neuer Stand.
+    @discardableResult
+    public func setNotes(_ ids: [String], nightDate: String) -> [String: [String]] {
+        lock.lock(); defer { lock.unlock() }
+        var all = SleepNotes.decode(defaults.string(forKey: Self.notesKey) ?? "")
+        all[nightDate] = SleepNotes.normalize(ids)
+        let text = SleepNotes.encode(all)
+        defaults.set(text, forKey: Self.notesKey)
+        return SleepNotes.decode(text)
+    }
+
+    /// Löscht die Notizen aller Nächte (mit dem Verlauf); die eigenen Notizen bleiben zur Auswahl.
+    public func clearNotes() {
+        lock.lock(); defer { lock.unlock() }
+        defaults.removeObject(forKey: Self.notesKey)
+    }
+
+    public func customNotes() -> [CustomNote] {
+        lock.lock(); defer { lock.unlock() }
+        return SleepNotes.decodeCustom(defaults.string(forKey: Self.customNotesKey) ?? "")
+    }
+
+    /// Speichert die eigenen Notizen (höchstens 5). Vergangene Nächte behalten gelöschte Kennungen.
+    public func setCustomNotes(_ notes: [CustomNote]) {
+        lock.lock(); defer { lock.unlock() }
+        defaults.set(SleepNotes.encodeCustom(notes.filter { !$0.name.isEmpty }), forKey: Self.customNotesKey)
+    }
+
     private static func log(_ message: String) {
         #if canImport(os)
         logger.error("\(message, privacy: .public)")

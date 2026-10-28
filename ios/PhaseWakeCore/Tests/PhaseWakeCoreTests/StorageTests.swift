@@ -94,4 +94,18 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(night(7 * 60 + 59).minutesAfterTarget, 7)
         XCTAssertEqual(night(59).minutesAfterTarget, 0)
     }
+
+    func testNotesArePersistedPerNight() {
+        let s = storage()
+        XCTAssertEqual(s.notes(), [:])
+        s.setNotes(["STRESS", "ALCOHOL"], nightDate: "2026-10-27")
+        s.setNotes(["NAP"], nightDate: "2026-10-26")
+        s.setNotes([], nightDate: "2026-10-26")
+        XCTAssertEqual(s.notes(), ["2026-10-27": ["ALCOHOL", "STRESS"]])
+        s.setCustomNotes([CustomNote(id: "custom:a", name: "Tee"), CustomNote(id: "custom:b", name: " ")])
+        XCTAssertEqual(s.customNotes(), [CustomNote(id: "custom:a", name: "Tee")])
+        s.clearNotes()
+        XCTAssertEqual(s.notes(), [:])
+        XCTAssertEqual(s.customNotes().count, 1)
+    }
 }

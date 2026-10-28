@@ -17,7 +17,10 @@ struct PhaseWakeApp: App {
             RootView()
                 .environment(model)
                 .preferredColorScheme(themeMode.colorScheme)
-                .task { await model.backup.reschedule(model.alarms) }
+                .task {
+                    await model.backup.reschedule(model.alarms)
+                    await model.replanBedtime()
+                }
         }
     }
 }

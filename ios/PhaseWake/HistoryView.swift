@@ -23,13 +23,15 @@ struct HistoryView: View {
                         stats
                         TrendsCard(
                             trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current),
+                            goalWeek: goalWeek,
                             healthConnected: healthRequested,
-                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep() } }
+                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } }
                         )
+                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight, calendar: .current))
                         ForEach(model.nights.reversed(), id: \.listId) { night in
                             NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
                         }
-                        ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
+                        ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
                         }
                         .padding(.top)
@@ -46,12 +48,31 @@ struct HistoryView: View {
             .navigationTitle(L("history_title"))
             .task(id: healthRequested) {
                 guard healthRequested else { return }
-                sleeps = await model.health.recentSleep()
+                sleeps = await model.health.recentSleep(days: Self.sleepDays)
                 if let first = model.nights.first, let last = model.nights.last {
                     allStages = await model.health.stages(from: first.windowStart.addingTimeInterval(-14 * 3600), to: last.wokeAt.addingTimeInterval(2 * 3600))
                 }
             }
         }
+    }
+
+    /// Schlafdauer für Trends und für die Wirkung der Notizen (90 Nächte).
+    private static let sleepDays: Double = Double(NightHistory.maxNights + 2)
+
+    /// Geschlafene Minuten je Nachtdatum (Einschlafen − 12 h ergibt den Abend); bei zwei Einträgen der längere.
+    private var asleepByNight: [String: Int] {
+        sleeps.reduce(into: [:]) { out, sleep in
+            let date = SleepNotes.nightDate(sleep.start, calendar: .current)
+            out[date] = max(out[date] ?? 0, sleep.asleepMinutes)
+        }
+    }
+
+    /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
+    private var goalWeek: (reached: Int, total: Int)? {
+        let weekAgo = Date().addingTimeInterval(-7 * 86_400)
+        let recent = sleeps.filter { $0.end > weekAgo }.map { (date: SleepNotes.nightDate($0.start, calendar: .current), asleepMinutes: $0.asleepMinutes) }
+        let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
+        return status.total > 0 ? status : nil
     }
 
     private var stats: some View {
@@ -92,6 +113,8 @@ private struct NightCard: View {
             if let verdict {
                 Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
             }
+            NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
+                             title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
         .card()
         .accessibilityElement(children: .combine)

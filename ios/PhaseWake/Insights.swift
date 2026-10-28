@@ -84,6 +84,8 @@ struct FeelingPicker: View {
 /// Wochenvergleich: Schlafdauer, Regelmässigkeit, Befinden – nur was die Daten tragen.
 struct TrendsCard: View {
     let trends: Trends
+    /// «Schlafziel erreicht: N von M Nächten»; `nil` ohne Daten aus Apple Health.
+    let goalWeek: (reached: Int, total: Int)?
     let healthConnected: Bool
     let onConnectHealth: () -> Void
 
@@ -99,6 +101,9 @@ struct TrendsCard: View {
                 else if change > 0 { out.append(L("trends_asleep_change_more", Format.duration(minutes: change))) }
                 else { out.append(L("trends_asleep_change_less", Format.duration(minutes: -change))) }
             }
+        }
+        if let goalWeek {
+            out.append(LP("goal_week", goalWeek.total, goalWeek.reached, goalWeek.total))
         }
         if let spread = trends.bedtimeSpreadMinutes {
             out.append(L("trends_bedtime", Format.duration(minutes: spread)))
@@ -133,8 +138,8 @@ struct TrendsCard: View {
 }
 
 /// Verlauf als echte .csv-Datei zum Teilen (nicht als Text).
-func exportFile(_ nights: [NightRecord]) -> URL {
+func exportFile(_ nights: [NightRecord], notes: [String: [String]]) -> URL {
     let url = FileManager.default.temporaryDirectory.appendingPathComponent("phasewake-nights.csv")
-    try? NightHistory.exportCsv(nights).write(to: url, atomically: true, encoding: .utf8)
+    try? NightHistory.exportCsv(nights, notes: notes).write(to: url, atomically: true, encoding: .utf8)
     return url
 }

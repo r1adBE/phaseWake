@@ -23,9 +23,21 @@ struct SettingsView: View {
                     Text(L("health_rationale")).font(.footnote)
                     Button(L("health_connect")) { Task { healthRequested = await model.health.requestAccess() } }
                 }
+                Section(L("goal_title")) {
+                    Stepper(value: Binding(get: { model.sleepGoal }, set: { model.setSleepGoal($0) }),
+                            in: SleepGoal.minMinutes...SleepGoal.maxMinutes, step: SleepGoal.stepMinutes) {
+                        Text(L("goal_value", Format.duration(minutes: model.sleepGoal)))
+                    }
+                    Text(L("goal_hint")).font(.footnote).foregroundStyle(.secondary)
+                }
+                Section {
+                    Toggle(L("bedtime_title"), isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
+                    Text(L("bedtime_text", Bedtime.leadMinutes)).font(.footnote).foregroundStyle(.secondary)
+                }
+                CustomNotesSection()
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
-                    ShareLink(item: exportFile(model.nights), preview: SharePreview(L("history_export_subject"))) {
+                    ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
                         Text(L("settings_export"))
                     }
                     .disabled(model.nights.isEmpty)

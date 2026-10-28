@@ -10,6 +10,7 @@ struct HomeView: View {
     @State private var creating = false
     @State private var failedChecks: [PhoneCheck] = []
     @State private var nightstand = false
+    @State private var sounds = false
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -33,6 +34,12 @@ struct HomeView: View {
                                 if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
                                     NightstandButton { nightstand = true }
                                 }
+                                // Abends bis zum Weckfenster: Notizen für die kommende Nacht.
+                                let next = AlarmSchedule.earliestPlan(model.alarms, now: context.date, doneUntil: model.doneUntil, calendar: .current)
+                                if SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current) {
+                                    TonightNotesCard(nightDate: SleepNotes.nightDate(context.date, calendar: .current))
+                                }
+                                SoundsButton { sounds = true }
                                 if let night = model.nights.last {
                                     LastNightCard(
                                         night: night,
@@ -91,6 +98,7 @@ struct HomeView: View {
                 }
             }
             .fullScreenCover(isPresented: $nightstand) { NightstandView() }
+            .sheet(isPresented: $sounds) { SoundsSheet().environment(model) }
             .sheet(item: $editing) { EditorView(existing: $0) }
             .sheet(isPresented: $creating) { EditorView(existing: nil) }
         }
@@ -227,6 +235,11 @@ private struct LastNightCard: View {
             }
             if isMorning && night.feeling == nil {
                 FeelingPicker(onPick: onFeeling).padding(.top, 8)
+            }
+            if isMorning {
+                NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
+                                 title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
+                    .padding(.top, 4)
             }
         }
         .card()

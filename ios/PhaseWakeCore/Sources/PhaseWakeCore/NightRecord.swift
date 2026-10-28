@@ -50,15 +50,18 @@ public enum NightHistory {
         trim(nights).map { $0.epochs.map(\.motion) }
     }
 
-    /// Anonymer CSV-Export: gleiche Spalten und Zahlenformate wie Android.
-    public static func exportCsv(_ nights: [NightRecord]) -> String {
-        var out = "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr\n"
+    /// Anonymer CSV-Export: gleiche Spalten und Zahlenformate wie Android. Die Spalte `notes` steht
+    /// zuletzt, damit ältere Leser weiter funktionieren: Notizen je Nachtdatum (siehe `SleepNotes`),
+    /// mit «;» getrennt, eigene nur als «custom».
+    public static func exportCsv(_ nights: [NightRecord], notes: [String: [String]] = [:], calendar: Calendar = .current) -> String {
+        var out = "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n"
         for (nightIndex, night) in trim(nights).enumerated() {
             let windowMinutes = Int(night.target.timeIntervalSince(night.windowStart) / 60)
+            let noteValue = SleepNotes.csvValue(notes[SleepNotes.nightDate(of: night, calendar: calendar)] ?? [])
             for (epochIndex, epoch) in night.epochs.enumerated() {
                 let motion = epoch.motion.map { String(format: "%.6f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
                 let hr = epoch.heartRate.map { String(format: "%.1f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
-                out += "\(nightIndex + 1),\(windowMinutes),\(night.reason.rawValue),\(night.minutesBeforeTarget),\(night.snoozes),\(night.feeling.map(String.init) ?? ""),\(epochIndex),\(motion),\(hr)\n"
+                out += "\(nightIndex + 1),\(windowMinutes),\(night.reason.rawValue),\(night.minutesBeforeTarget),\(night.snoozes),\(night.feeling.map(String.init) ?? ""),\(epochIndex),\(motion),\(hr),\(noteValue)\n"
             }
         }
         return out
