@@ -134,18 +134,17 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 }
             }
             state.failed.forEach { check ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(stringResource(check.title), style = MaterialTheme.typography.labelLarge)
-                        val problem = if (check == Check.BATTERY) {
-                            stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
-                        } else {
-                            stringResource(check.problem)
-                        }
-                        Text(problem, style = MaterialTheme.typography.bodySmall)
+                // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
+                Column(Modifier.fillMaxWidth()) {
+                    Text(stringResource(check.title), style = MaterialTheme.typography.labelLarge)
+                    val problem = if (check == Check.BATTERY) {
+                        stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
+                    } else {
+                        stringResource(check.problem)
                     }
+                    Text(problem, style = MaterialTheme.typography.bodySmall)
                     check.action?.let { action ->
-                        FilledTonalButton(onClick = { onFix(check) }, modifier = Modifier.padding(start = 12.dp)) {
+                        FilledTonalButton(onClick = { onFix(check) }, modifier = Modifier.align(Alignment.End).padding(top = 6.dp)) {
                             Text(stringResource(action))
                         }
                     }
