@@ -28,10 +28,9 @@ jobs:
         run: |
           exec > >(tee build.log) 2>&1
           pip install --quiet numpy
-          rain=$(find raw/rain -iname '*.ogg' | head -1)
+          rain=$(ls -S raw/rain/*.ogg | head -1)  # längste Aufnahme
           ffmpeg -loglevel error -y -i "$rain" -ac 2 -ar 44100 raw/rain.wav
           ffmpeg -loglevel error -y -i raw/ocean.mp3 -ac 2 -ar 44100 raw/ocean.wav
-          ffprobe -v error -show_entries format=duration -of csv=p=0 raw/rain.wav raw/ocean.wav
           rd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/rain.wav)
           rlen=$(python3 -c "print(min(90, float('$rd') - 6))")
           python3 .github/scripts/make-sound-loops.py raw/rain.wav raw/rain-loop.wav 1 "$rlen"
