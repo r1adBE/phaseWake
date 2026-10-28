@@ -27,6 +27,8 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
+      - name: Übersetzungen prüfen
+        run: python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res
       - name: Tests und Builds
         shell: bash
         run: |
