@@ -81,7 +81,7 @@ class RingActivity : ComponentActivity() {
 private const val HOLD_MILLIS = 1200
 
 @Composable
-private fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit) {
+internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit) {
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current

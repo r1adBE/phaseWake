@@ -114,6 +114,47 @@ private fun HomeScreen() {
         missingPermissions = missing()
     }
 
+    HomeContent(
+        alarms = alarms,
+        plan = plan,
+        zone = zone,
+        goodNightActive = goodNightSince != null,
+        permissionsMissing = missingPermissions.isNotEmpty(),
+        dndBlocks = dndBlocks,
+        onGoodNight = {
+            val alarm = sleepAlarm ?: return@HomeContent
+            if (goodNightSince != null) {
+                WakeService.command(context, WakeService.ACTION_GOOD_NIGHT_CANCEL)
+            } else {
+                WakeService.goodNight(context, alarm.id)
+            }
+        },
+        onRequestPermissions = { launcher.launch(missingPermissions.toTypedArray()) },
+        onOpenDnd = { DoNotDisturb.openSettings(context) },
+        onToggle = { alarm, enabled ->
+            scope.launch {
+                app.sync.publishAlarms(app.alarms.setEnabled(alarm.id, enabled))
+                app.scheduler.reschedule()
+            }
+        },
+    )
+}
+
+/** Startbildschirm ohne eigenen Zustand; so auch für Vorschau und Bildschirmfotos nutzbar. */
+@Composable
+internal fun HomeContent(
+    alarms: List<AlarmSpec>,
+    plan: WakePlan?,
+    zone: ZoneId,
+    goodNightActive: Boolean,
+    permissionsMissing: Boolean,
+    dndBlocks: Boolean,
+    onGoodNight: () -> Unit,
+    onRequestPermissions: () -> Unit,
+    onOpenDnd: () -> Unit,
+    onToggle: (AlarmSpec, Boolean) -> Unit,
+) {
+    val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
     val listState = rememberScalingLazyListState()
     AppScaffold {
         ScreenScaffold(scrollState = listState) {
@@ -122,22 +163,16 @@ private fun HomeScreen() {
                 if (sleepAlarm != null) {
                     item {
                         GoodNightButton(
-                            active = goodNightSince != null,
+                            active = goodNightActive,
                             sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
-                            onClick = {
-                                if (goodNightSince != null) {
-                                    WakeService.command(context, WakeService.ACTION_GOOD_NIGHT_CANCEL)
-                                } else {
-                                    WakeService.goodNight(context, sleepAlarm.id)
-                                }
-                            },
+                            onClick = onGoodNight,
                         )
                     }
                 }
-                if (missingPermissions.isNotEmpty()) {
+                if (permissionsMissing) {
                     item {
                         Button(
-                            onClick = { launcher.launch(missingPermissions.toTypedArray()) },
+                            onClick = onRequestPermissions,
                             modifier = Modifier.fillMaxWidth(),
                             label = { Text(stringResource(R.string.home_permissions)) },
                             secondaryLabel = { Text(stringResource(R.string.home_permissions_hint)) },
@@ -147,7 +182,7 @@ private fun HomeScreen() {
                 if (dndBlocks) {
                     item {
                         Button(
-                            onClick = { DoNotDisturb.openSettings(context) },
+                            onClick = onOpenDnd,
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
                             label = { Text(stringResource(R.string.dnd_title)) },
@@ -160,12 +195,7 @@ private fun HomeScreen() {
                 }
                 items(alarms.size) { index ->
                     val alarm = alarms[index]
-                    AlarmSwitch(alarm) { enabled ->
-                        scope.launch {
-                            app.sync.publishAlarms(app.alarms.setEnabled(alarm.id, enabled))
-                            app.scheduler.reschedule()
-                        }
-                    }
+                    AlarmSwitch(alarm) { enabled -> onToggle(alarm, enabled) }
                 }
             }
         }

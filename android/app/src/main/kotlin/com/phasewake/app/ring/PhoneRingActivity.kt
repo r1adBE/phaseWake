@@ -65,7 +65,7 @@ class PhoneRingActivity : ComponentActivity() {
 private val Night = NightColors.Bottom
 
 @Composable
-private fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit) {
+internal fun RingScreen(state: PhoneRingService.State, onStop: () -> Unit, onSnooze: () -> Unit) {
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(Unit) {
         while (true) {
