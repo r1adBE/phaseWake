@@ -19,13 +19,14 @@ jobs:
         run: |
           mkdir -p raw && cd raw
           # Regen: «Rain (loopable)» von Ylmir, CC0 – https://opengameart.org/content/rain-loopable
-          curl -fsSL -o rain.zip "https://opengameart.org/sites/default/files/Rain%20OGG.zip"
+          curl -fsSL -A "Mozilla/5.0" -o rain.zip "https://opengameart.org/sites/default/files/Rain%20OGG.zip"
           unzip -o -q rain.zip -d rain
           # Meer: «Sea and river wave sounds» (Vistula) von RandomMind, CC0 – https://opengameart.org/content/sea-and-river-wave-sounds
-          curl -fsSL -o ocean.mp3 "https://opengameart.org/sites/default/files/VistulaShort_0.mp3"
+          curl -fsSL -A "Mozilla/5.0" -o ocean.mp3 "https://opengameart.org/sites/default/files/VistulaShort_0.mp3"
           ls -laR
       - name: Schleifen bauen
         run: |
+          exec > >(tee build.log) 2>&1
           pip install --quiet numpy
           rain=$(find raw/rain -iname '*.ogg' | head -1)
           ffmpeg -loglevel error -y -i "$rain" -ac 2 -ar 44100 raw/rain.wav
@@ -52,3 +53,8 @@ jobs:
           git add android/app/src/main/res/raw ios/PhaseWake/Sounds
           git commit -m "Einschlafklänge: Regen und Meer als Aufnahmen (CC0)"
           git push -f origin klaenge
+      - name: Fehler anzeigen
+        if: failure()
+        run: |
+          echo "::error title=Dateien::$(ls -laR raw out 2>&1 | head -30 | tr '\n' ' ')"
+          [ -f build.log ] && echo "::error title=Log::$(tail -20 build.log | tr '\n' ' ')" || true
