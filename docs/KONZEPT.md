@@ -75,9 +75,15 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 
 ## Umfang v1
 
-Drin: ein Wecker (wiederholbar nach Wochentagen), Weckfenster, Vibrationsweckung mit Schlummern, Handy-Zweitwecker, Verlauf der letzten Nächte mit Bewegungskurve, Kalibrierung.
+Alles in v1, nichts auf später verschoben:
 
-Später: mehrere Wecker, Weckfenster-Vorschlag aus dem Verlauf, Tile und Komplikation auf der Uhr, Export des Verlaufs als CSV, Einschlaf-Erkennung (Fenster relativ zur Einschlafzeit statt zur Uhrzeit).
+- mehrere Wecker, je wiederholbar nach Wochentagen
+- Weckfenster, Vibrationsweckung mit Schlummern, Handy-Zweitwecker
+- Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung
+- Weckfenster-Vorschlag aus dem Verlauf
+- Tile und Komplikation auf der Uhr
+- anonymer Export des Verlaufs (CSV)
+- Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit
 
 ## Entscheide (28.10.2026)
 
