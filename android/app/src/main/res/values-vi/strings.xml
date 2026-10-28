@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Thời lượng và độ đều đặn của giấc ngủ lấy từ Health Connect.</string>
     <string name="settings_support">Ủng hộ Phase Wake</string>
     <string name="settings_support_text">Phase Wake miễn phí, mã nguồn mở và không có quảng cáo. Nếu thích, bạn có thể ủng hộ quá trình phát triển.</string>
+    <string name="hint_title">%1$d đêm không có giấc ngủ nông</string>
+    <string name="hint_gaps">Phép đo bị gián đoạn. Đồng hồ có đang sạc hoặc được tháo ra ban đêm không?</string>
+    <string name="hint_heart">Thiếu dữ liệu nhịp tim. Hãy đeo đồng hồ chặt hơn một chút vào ban đêm.</string>
+    <string name="hint_calm">Phép đo đầy đủ – bạn chỉ đơn giản là ngủ yên. Khi đó Phase Wake vẫn đánh thức bạn đúng lúc vào giờ mục tiêu.</string>
 </resources>

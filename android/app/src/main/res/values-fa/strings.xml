@@ -166,4 +166,8 @@
     <string name="trends_health_hint">مدت و نظم خواب از Health Connect می‌آید.</string>
     <string name="settings_support">از Phase Wake حمایت کن</string>
     <string name="settings_support_text">Phase Wake رایگان، متن‌باز و بدون تبلیغ است. اگر دوستش داری، می‌توانی از توسعه‌اش حمایت کنی.</string>
+    <string name="hint_title">%1$d شب بدون خواب سبک</string>
+    <string name="hint_gaps">اندازه‌گیری وقفه داشت. ساعت شب شارژ بود یا از مچ درآمده بود؟</string>
+    <string name="hint_heart">ضربان قلب ثبت نشده بود. شب‌ها ساعت را کمی محکم‌تر ببند.</string>
+    <string name="hint_calm">اندازه‌گیری کامل بود – تو فقط آرام خوابیدی. در این صورت Phase Wake مطمئناً تو را در زمان هدف بیدار می‌کند.</string>
 </resources>

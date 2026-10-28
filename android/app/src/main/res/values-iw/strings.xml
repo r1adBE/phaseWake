@@ -166,4 +166,8 @@
     <string name="trends_health_hint">משך השינה והסדירות שלה מגיעים מ-Health Connect.</string>
     <string name="settings_support">תמכו ב-Phase Wake</string>
     <string name="settings_support_text">Phase Wake חינמית, בקוד פתוח וללא פרסומות. אם היא מוצאת חן בעיניכם, אפשר לתמוך בפיתוח שלה.</string>
+    <string name="hint_title">%1$d לילות בלי שינה קלה</string>
+    <string name="hint_gaps">במדידה היו חוסרים. השעון היה בטעינה או לא על היד בלילה?</string>
+    <string name="hint_heart">הדופק לא נמדד. מומלץ לענוד את השעון קצת יותר הדוק בלילה.</string>
+    <string name="hint_calm">המדידה הייתה מלאה – פשוט הייתה שינה רגועה. במקרה כזה Phase Wake מעירה בצורה אמינה בשעת היעד.</string>
 </resources>

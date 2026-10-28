@@ -18033,6 +18033,790 @@
         }
       }
     },
+    "hint_calm": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كان القياس كاملًا – لقد نمت نومًا هادئًا ببساطة. عندها يوقظك Phase Wake بدقة في الموعد."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Měření bylo úplné – prostě jsi spal(a) klidně. Phase Wake tě pak spolehlivě vzbudí v cílový čas."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målingen var komplet – du sov bare roligt. Så vækker Phase Wake dig pålideligt på ønsket tid."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Messung war vollständig – du hast einfach ruhig geschlafen. Phase Wake weckt dich dann zuverlässig zur Zielzeit."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η μέτρηση ήταν πλήρης – απλώς κοιμήθηκες ήρεμα. Τότε το Phase Wake σε ξυπνά αξιόπιστα στην ώρα στόχου."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The measurement was complete – you simply slept calmly. Phase Wake then reliably wakes you at the target time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La medición estuvo completa: simplemente dormiste tranquilo. Entonces Phase Wake te despierta de forma fiable a la hora objetivo."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اندازه‌گیری کامل بود – تو فقط آرام خوابیدی. در این صورت Phase Wake مطمئناً تو را در زمان هدف بیدار می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittaus oli täydellinen – nukuit vain rauhallisesti. Silloin Phase Wake herättää sinut luotettavasti tavoiteaikana."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mesure était complète : tu as simplement dormi d'un sommeil calme. Phase Wake te réveille alors de façon fiable à l'heure cible."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המדידה הייתה מלאה – פשוט הייתה שינה רגועה. במקרה כזה Phase Wake מעירה בצורה אמינה בשעת היעד."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "माप पूरा था – बस नींद शांत रही। ऐसे में Phase Wake आपको लक्ष्य समय पर भरोसेमंद ढंग से जगाता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mérés teljes volt – egyszerűen nyugodtan aludtál. Ilyenkor a Phase Wake megbízhatóan felébreszt a célidőben."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengukurannya lengkap – kamu hanya tidur dengan tenang. Dalam kasus ini, Phase Wake tetap membangunkanmu dengan andal pada waktu target."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La misurazione era completa: hai semplicemente dormito tranquillo. In questo caso Phase Wake ti sveglia in modo affidabile all'orario obiettivo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計測は完全でした。ただ静かに眠れていたようです。その場合も、Phase Wakeは目標時刻にしっかり起こします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "측정은 온전했어요. 그냥 편안하게 잤을 뿐이에요. 이럴 땐 Phase Wake가 목표 시간에 확실하게 깨워 줘요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengukuran lengkap – awak hanya tidur dengan lena. Dalam keadaan ini, Phase Wake tetap mengejutkan awak dengan tepat pada masa sasaran."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målingen var komplett – du sov bare rolig. Da vekker Phase Wake deg pålitelig på ønsket tid."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De meting was compleet – je sliep gewoon rustig. Dan wekt Phase Wake je betrouwbaar op de doeltijd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomiar był kompletny – po prostu spałeś spokojnie. Wtedy Phase Wake budzi cię niezawodnie w czasie docelowym."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A medição estava completa – você simplesmente dormiu tranquilo. Nesse caso, o Phase Wake acorda você com confiança no horário-alvo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A medição estava completa – simplesmente dormiste descansado. Nesse caso, o Phase Wake acorda-te com fiabilidade à hora-alvo."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Măsurătoarea a fost completă – pur și simplu ai dormit liniștit. Atunci Phase Wake te trezește sigur la ora țintă."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Измерение было полным – ты просто спокойно спал. Тогда Phase Wake надёжно разбудит тебя в целевое время."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mätningen var komplett – du sov helt enkelt lugnt. Då väcker Phase Wake dig pålitligt vid måltid."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การวัดครบถ้วนดี คุณเพียงแค่หลับสบายเท่านั้น กรณีนี้ Phase Wake จะปลุกคุณได้อย่างแม่นยำตรงเวลาเป้าหมาย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ölçüm eksiksizdi – sadece sakin uyudun. Bu durumda Phase Wake seni hedef saatte güvenilir şekilde uyandırır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вимірювання було повним – ти просто спокійно спав. Тоді Phase Wake надійно розбудить тебе в цільовий час."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phép đo đầy đủ – bạn chỉ đơn giản là ngủ yên. Khi đó Phase Wake vẫn đánh thức bạn đúng lúc vào giờ mục tiêu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量是完整的——你只是睡得很安稳。这时 Phase Wake 会在目标时间可靠地叫醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量是完整的——你只是睡得很安穩。這時 Phase Wake 會在目標時間可靠地叫醒你。"
+          }
+        }
+      }
+    },
+    "hint_gaps": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كانت هناك فجوات في القياس. هل كانت الساعة قيد الشحن أو غير مرتدية ليلًا؟"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Měření mělo mezery. Nabíjely se hodinky přes noc, nebo byly sundané?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målingen havde huller. Var uret på opladeren eller taget af om natten?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Messung hatte Lücken. War die Uhr nachts am Laden oder abgelegt?"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η μέτρηση είχε κενά. Το ρολόι φόρτιζε ή ήταν βγαλμένο τη νύχτα;"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There were gaps in the measurement. Was the watch charging or off at night?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La medición tuvo huecos. ¿El reloj estaba cargando o te lo quitaste por la noche?"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اندازه‌گیری وقفه داشت. ساعت شب شارژ بود یا از مچ درآمده بود؟"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittauksessa oli aukkoja. Latautuiko kello yöllä vai oliko se pois ranteesta?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mesure comportait des trous. La montre était-elle en charge ou retirée la nuit ?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "במדידה היו חוסרים. השעון היה בטעינה או לא על היד בלילה?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "माप में कुछ अंतराल थे। क्या रात में घड़ी चार्ज हो रही थी या उतारी हुई थी?"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mérésben hiányok voltak. Az óra töltődött, vagy le volt véve éjjel?"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengukuran ada yang terputus. Apakah jam sedang diisi daya atau dilepas saat malam?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La misurazione aveva delle lacune. L'orologio era in carica o tolto di notte?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計測に途切れがありました。夜間、ウォッチは充電中か外していませんでしたか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "측정이 끊긴 구간이 있었어요. 밤에 워치를 충전 중이거나 벗어 두지 않았나요?"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pengukuran ada celah. Adakah jam sedang dicas atau ditanggalkan pada waktu malam?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målingen hadde hull. Lå klokken til lading eller var den tatt av om natten?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De meting had hiaten. Was het horloge 's nachts aan het opladen of af?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomiar miał luki. Czy zegarek się ładował lub był zdjęty w nocy?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A medição teve lacunas. O relógio estava carregando ou fora do pulso à noite?"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A medição teve falhas. O relógio estava a carregar ou fora do pulso à noite?"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Măsurătoarea a avut goluri. Ceasul se încărca sau era scos noaptea?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В измерении были пропуски. Часы заряжались или были сняты ночью?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mätningen hade luckor. Laddades klockan eller var den av under natten?"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การวัดมีช่วงที่ขาดหายไป นาฬิกาชาร์จอยู่หรือถอดออกตอนกลางคืนหรือเปล่า"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ölçümde boşluklar vardı. Saat geceleri şarjda mıydı yoksa çıkarılmış mıydı?"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У вимірюванні були пропуски. Годинник заряджався чи був знятий уночі?"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phép đo bị gián đoạn. Đồng hồ có đang sạc hoặc được tháo ra ban đêm không?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量有中断。夜里手表是在充电还是没有佩戴？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量有中斷。夜裡手錶是在充電還是沒有配戴？"
+          }
+        }
+      }
+    },
+    "hint_heart": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كان معدل النبض مفقودًا. يُفضَّل ارتداء الساعة بإحكام أكبر ليلًا."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chyběl tep. Noste hodinky v noci o něco těsněji."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen manglede. Bær uret lidt strammere om natten."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Puls fehlte. Trag die Uhr nachts etwas enger."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Έλειπε ο παλμός. Φόρα το ρολόι λίγο πιο σφιχτά τη νύχτα."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your heart rate was missing. Wear the watch a little tighter at night."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltaba el pulso. Ponte el reloj un poco más ajustado por la noche."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ضربان قلب ثبت نشده بود. شب‌ها ساعت را کمی محکم‌تر ببند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syke puuttui. Pidä kelloa yöllä hieman tiukemmin."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le pouls était absent. Serre un peu plus ta montre la nuit."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הדופק לא נמדד. מומלץ לענוד את השעון קצת יותר הדוק בלילה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति का डेटा नहीं मिला। रात में घड़ी को थोड़ा कसकर पहनें।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiányzott a pulzus. Viseld éjjel kicsit szorosabban az órát."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detak jantung tidak terbaca. Kenakan jam sedikit lebih kencang saat malam."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancava la frequenza cardiaca. Porta l'orologio un po' più stretto di notte."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心拍数が取得できていませんでした。夜はウォッチを少しきつめに装着してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "심박수가 없었어요. 밤에는 워치를 조금 더 꽉 착용해 보세요."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kadar denyutan jantung tiada. Pakai jam sedikit lebih ketat pada waktu malam."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen manglet. Bruk klokken litt strammere om natten."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hartslag ontbrak. Draag het horloge 's nachts wat strakker."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brakowało tętna. Noś zegarek w nocy nieco ciaśniej."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltou a frequência cardíaca. Use o relógio um pouco mais justo à noite."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltou a frequência cardíaca. Usa o relógio um pouco mais justo à noite."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lipsea pulsul. Poartă ceasul puțin mai strâns noaptea."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не хватало данных о пульсе. Надевай часы на ночь чуть плотнее."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen saknades. Bär klockan lite tightare på natten."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่มีข้อมูลอัตราการเต้นของหัวใจ ลองสวมนาฬิกาให้กระชับขึ้นอีกนิดตอนกลางคืน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nabız verisi eksikti. Saati geceleri biraz daha sıkı tak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бракувало даних про пульс. Одягай годинник на ніч трохи щільніше."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiếu dữ liệu nhịp tim. Hãy đeo đồng hồ chặt hơn một chút vào ban đêm."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少心率数据。夜里把手表戴紧一点。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少心率資料。夜裡把手錶戴緊一點。"
+          }
+        }
+      }
+    },
+    "hint_title": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ليالٍ بلا نوم خفيف"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noci bez lehkého spánku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nætter uden let søvn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Nächte ohne leichten Schlaf"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld νύχτες χωρίς ελαφρύ ύπνο"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nights without light sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noches sin sueño ligero"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld شب بدون خواب سبک"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld yötä ilman kevyttä unta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nuits sans sommeil léger"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld לילות בלי שינה קלה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld रातें बिना हल्की नींद के"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld éjszaka könnyű alvás nélkül"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld malam tanpa tidur ringan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld notti senza sonno leggero"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld 晩連続で浅い睡眠なし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld일 연속 얕은 잠 없음"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld malam tanpa tidur ringan"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld netter uten lett søvn"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nachten zonder lichte slaap"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nocy bez lekkiego snu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noites sem sono leve"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld noites sem sono leve"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nopți fără somn ușor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночи без лёгкого сна"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nätter utan lätt sömn"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld คืนไม่มีช่วงหลับตื้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld gece hafif uyku yok"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночі без легкого сну"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld đêm không có giấc ngủ nông"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续 %1$lld 晚没有浅睡"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續 %1$lld 晚沒有淺眠"
+          }
+        }
+      }
+    },
     "history_average": {
       "localizations": {
         "ar": {

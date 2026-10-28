@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Durata și regularitatea somnului provin din Health Connect.</string>
     <string name="settings_support">Susține Phase Wake</string>
     <string name="settings_support_text">Phase Wake este gratuit, open source și fără reclame. Dacă îți place, poți susține dezvoltarea.</string>
+    <string name="hint_title">%1$d nopți fără somn ușor</string>
+    <string name="hint_gaps">Măsurătoarea a avut goluri. Ceasul se încărca sau era scos noaptea?</string>
+    <string name="hint_heart">Lipsea pulsul. Poartă ceasul puțin mai strâns noaptea.</string>
+    <string name="hint_calm">Măsurătoarea a fost completă – pur și simplu ai dormit liniștit. Atunci Phase Wake te trezește sigur la ora țintă.</string>
 </resources>

@@ -166,4 +166,8 @@
     <string name="trends_health_hint">睡眠時間長度和規律性來自 Health Connect。</string>
     <string name="settings_support">支持 Phase Wake</string>
     <string name="settings_support_text">Phase Wake 免費、開源且沒有廣告。如果你喜歡它，可以支持它的開發。</string>
+    <string name="hint_title">連續 %1$d 晚沒有淺眠</string>
+    <string name="hint_gaps">測量有中斷。夜裡手錶是在充電還是沒有配戴？</string>
+    <string name="hint_heart">缺少心率資料。夜裡把手錶戴緊一點。</string>
+    <string name="hint_calm">測量是完整的——你只是睡得很安穩。這時 Phase Wake 會在目標時間可靠地叫醒你。</string>
 </resources>

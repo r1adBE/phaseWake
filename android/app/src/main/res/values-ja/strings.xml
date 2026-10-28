@@ -166,4 +166,8 @@
     <string name="trends_health_hint">睡眠時間と規則性は Health Connect から取得されます。</string>
     <string name="settings_support">Phase Wakeを応援</string>
     <string name="settings_support_text">Phase Wakeは無料でオープンソース、広告もありません。気に入っていただけたら、開発を支援できます。</string>
+    <string name="hint_title">%1$d 晩連続で浅い睡眠なし</string>
+    <string name="hint_gaps">計測に途切れがありました。夜間、ウォッチは充電中か外していませんでしたか？</string>
+    <string name="hint_heart">心拍数が取得できていませんでした。夜はウォッチを少しきつめに装着してください。</string>
+    <string name="hint_calm">計測は完全でした。ただ静かに眠れていたようです。その場合も、Phase Wakeは目標時刻にしっかり起こします。</string>
 </resources>

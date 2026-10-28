@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Тривалість і регулярність сну беруться з Health Connect.</string>
     <string name="settings_support">Підтримати Phase Wake</string>
     <string name="settings_support_text">Phase Wake безкоштовний, з відкритим кодом і без реклами. Якщо він тобі подобається, можеш підтримати його розробку.</string>
+    <string name="hint_title">%1$d ночі без легкого сну</string>
+    <string name="hint_gaps">У вимірюванні були пропуски. Годинник заряджався чи був знятий уночі?</string>
+    <string name="hint_heart">Бракувало даних про пульс. Одягай годинник на ніч трохи щільніше.</string>
+    <string name="hint_calm">Вимірювання було повним – ти просто спокійно спав. Тоді Phase Wake надійно розбудить тебе в цільовий час.</string>
 </resources>

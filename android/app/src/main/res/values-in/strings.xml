@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Durasi dan keteraturan tidur berasal dari Health Connect.</string>
     <string name="settings_support">Dukung Phase Wake</string>
     <string name="settings_support_text">Phase Wake gratis, open source, dan tanpa iklan. Jika kamu menyukainya, kamu bisa mendukung pengembangannya.</string>
+    <string name="hint_title">%1$d malam tanpa tidur ringan</string>
+    <string name="hint_gaps">Pengukuran ada yang terputus. Apakah jam sedang diisi daya atau dilepas saat malam?</string>
+    <string name="hint_heart">Detak jantung tidak terbaca. Kenakan jam sedikit lebih kencang saat malam.</string>
+    <string name="hint_calm">Pengukurannya lengkap – kamu hanya tidur dengan tenang. Dalam kasus ini, Phase Wake tetap membangunkanmu dengan andal pada waktu target.</string>
 </resources>

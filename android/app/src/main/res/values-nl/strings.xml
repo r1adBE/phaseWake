@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Slaapduur en regelmaat komen uit Health Connect.</string>
     <string name="settings_support">Steun Phase Wake</string>
     <string name="settings_support_text">Phase Wake is gratis, open source en heeft geen advertenties. Als je de app leuk vindt, kun je de ontwikkeling steunen.</string>
+    <string name="hint_title">%1$d nachten zonder lichte slaap</string>
+    <string name="hint_gaps">De meting had hiaten. Was het horloge \'s nachts aan het opladen of af?</string>
+    <string name="hint_heart">Je hartslag ontbrak. Draag het horloge \'s nachts wat strakker.</string>
+    <string name="hint_calm">De meting was compleet – je sliep gewoon rustig. Dan wekt Phase Wake je betrouwbaar op de doeltijd.</string>
 </resources>

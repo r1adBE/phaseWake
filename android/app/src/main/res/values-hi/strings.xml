@@ -166,4 +166,8 @@
     <string name="trends_health_hint">नींद की अवधि और नियमितता Health Connect से आती है।</string>
     <string name="settings_support">Phase Wake का समर्थन करें</string>
     <string name="settings_support_text">Phase Wake मुफ़्त, ओपन सोर्स और विज्ञापन-रहित है। अगर यह आपको पसंद है, तो आप इसके विकास का समर्थन कर सकते हैं।</string>
+    <string name="hint_title">%1$d रातें बिना हल्की नींद के</string>
+    <string name="hint_gaps">माप में कुछ अंतराल थे। क्या रात में घड़ी चार्ज हो रही थी या उतारी हुई थी?</string>
+    <string name="hint_heart">हृदय गति का डेटा नहीं मिला। रात में घड़ी को थोड़ा कसकर पहनें।</string>
+    <string name="hint_calm">माप पूरा था – बस नींद शांत रही। ऐसे में Phase Wake आपको लक्ष्य समय पर भरोसेमंद ढंग से जगाता है।</string>
 </resources>

@@ -166,4 +166,8 @@
     <string name="trends_health_hint">ระยะเวลาและความสม่ำเสมอของการนอนมาจาก Health Connect</string>
     <string name="settings_support">สนับสนุน Phase Wake</string>
     <string name="settings_support_text">Phase Wake ใช้ฟรี เป็นโอเพนซอร์ส และไม่มีโฆษณา หากคุณชอบ คุณสามารถสนับสนุนการพัฒนาได้</string>
+    <string name="hint_title">%1$d คืนไม่มีช่วงหลับตื้น</string>
+    <string name="hint_gaps">การวัดมีช่วงที่ขาดหายไป นาฬิกาชาร์จอยู่หรือถอดออกตอนกลางคืนหรือเปล่า</string>
+    <string name="hint_heart">ไม่มีข้อมูลอัตราการเต้นของหัวใจ ลองสวมนาฬิกาให้กระชับขึ้นอีกนิดตอนกลางคืน</string>
+    <string name="hint_calm">การวัดครบถ้วนดี คุณเพียงแค่หลับสบายเท่านั้น กรณีนี้ Phase Wake จะปลุกคุณได้อย่างแม่นยำตรงเวลาเป้าหมาย</string>
 </resources>

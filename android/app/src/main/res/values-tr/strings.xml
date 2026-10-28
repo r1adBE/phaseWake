@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Uyku süresi ve düzeni Health Connect’ten gelir.</string>
     <string name="settings_support">Phase Wake’i destekle</string>
     <string name="settings_support_text">Phase Wake ücretsiz, açık kaynaklı ve reklamsız. Beğendiysen geliştirilmesini destekleyebilirsin.</string>
+    <string name="hint_title">%1$d gece hafif uyku yok</string>
+    <string name="hint_gaps">Ölçümde boşluklar vardı. Saat geceleri şarjda mıydı yoksa çıkarılmış mıydı?</string>
+    <string name="hint_heart">Nabız verisi eksikti. Saati geceleri biraz daha sıkı tak.</string>
+    <string name="hint_calm">Ölçüm eksiksizdi – sadece sakin uyudun. Bu durumda Phase Wake seni hedef saatte güvenilir şekilde uyandırır.</string>
 </resources>

@@ -166,4 +166,8 @@
     <string name="trends_health_hint">A duração e a regularidade do sono vêm do Health Connect.</string>
     <string name="settings_support">Apoia o Phase Wake</string>
     <string name="settings_support_text">O Phase Wake é gratuito, de código aberto e sem anúncios. Se gostares, podes apoiar o desenvolvimento.</string>
+    <string name="hint_title">%1$d noites sem sono leve</string>
+    <string name="hint_gaps">A medição teve falhas. O relógio estava a carregar ou fora do pulso à noite?</string>
+    <string name="hint_heart">Faltou a frequência cardíaca. Usa o relógio um pouco mais justo à noite.</string>
+    <string name="hint_calm">A medição estava completa – simplesmente dormiste descansado. Nesse caso, o Phase Wake acorda-te com fiabilidade à hora-alvo.</string>
 </resources>

@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Søvnlængde og regelmæssighed kommer fra Health Connect.</string>
     <string name="settings_support">Støt Phase Wake</string>
     <string name="settings_support_text">Phase Wake er gratis, open source og uden reklamer. Hvis du kan lide den, kan du støtte udviklingen.</string>
+    <string name="hint_title">%1$d nætter uden let søvn</string>
+    <string name="hint_gaps">Målingen havde huller. Var uret på opladeren eller taget af om natten?</string>
+    <string name="hint_heart">Pulsen manglede. Bær uret lidt strammere om natten.</string>
+    <string name="hint_calm">Målingen var komplet – du sov bare roligt. Så vækker Phase Wake dig pålideligt på ønsket tid.</string>
 </resources>

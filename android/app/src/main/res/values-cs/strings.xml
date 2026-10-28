@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Délka a pravidelnost spánku pocházejí z Health Connect.</string>
     <string name="settings_support">Podpořit Phase Wake</string>
     <string name="settings_support_text">Phase Wake je zdarma, open source a bez reklam. Pokud se ti líbí, můžeš podpořit jeho vývoj.</string>
+    <string name="hint_title">%1$d noci bez lehkého spánku</string>
+    <string name="hint_gaps">Měření mělo mezery. Nabíjely se hodinky přes noc, nebo byly sundané?</string>
+    <string name="hint_heart">Chyběl tep. Noste hodinky v noci o něco těsněji.</string>
+    <string name="hint_calm">Měření bylo úplné – prostě jsi spal(a) klidně. Phase Wake tě pak spolehlivě vzbudí v cílový čas.</string>
 </resources>

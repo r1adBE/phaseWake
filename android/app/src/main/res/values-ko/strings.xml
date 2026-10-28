@@ -166,4 +166,8 @@
     <string name="trends_health_hint">수면 시간과 규칙성은 Health Connect에서 가져와요.</string>
     <string name="settings_support">Phase Wake 후원하기</string>
     <string name="settings_support_text">Phase Wake는 무료 오픈 소스이고 광고도 없어요. 마음에 든다면 개발을 후원할 수 있어요.</string>
+    <string name="hint_title">%1$d일 연속 얕은 잠 없음</string>
+    <string name="hint_gaps">측정이 끊긴 구간이 있었어요. 밤에 워치를 충전 중이거나 벗어 두지 않았나요?</string>
+    <string name="hint_heart">심박수가 없었어요. 밤에는 워치를 조금 더 꽉 착용해 보세요.</string>
+    <string name="hint_calm">측정은 온전했어요. 그냥 편안하게 잤을 뿐이에요. 이럴 땐 Phase Wake가 목표 시간에 확실하게 깨워 줘요.</string>
 </resources>

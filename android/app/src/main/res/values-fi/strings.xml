@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Unen kesto ja säännöllisyys tulevat Health Connectista.</string>
     <string name="settings_support">Tue Phase Wakea</string>
     <string name="settings_support_text">Phase Wake on ilmainen, avoimen lähdekoodin ja mainokseton. Jos pidät siitä, voit tukea sen kehitystä.</string>
+    <string name="hint_title">%1$d yötä ilman kevyttä unta</string>
+    <string name="hint_gaps">Mittauksessa oli aukkoja. Latautuiko kello yöllä vai oliko se pois ranteesta?</string>
+    <string name="hint_heart">Syke puuttui. Pidä kelloa yöllä hieman tiukemmin.</string>
+    <string name="hint_calm">Mittaus oli täydellinen – nukuit vain rauhallisesti. Silloin Phase Wake herättää sinut luotettavasti tavoiteaikana.</string>
 </resources>

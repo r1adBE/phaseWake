@@ -166,4 +166,8 @@
     <string name="trends_health_hint">مدة النوم وانتظامه يأتيان من Health Connect.</string>
     <string name="settings_support">ادعم Phase Wake</string>
     <string name="settings_support_text">Phase Wake مجاني ومفتوح المصدر وبلا إعلانات. إن أعجبك، يمكنك دعم تطويره.</string>
+    <string name="hint_title">%1$d ليالٍ بلا نوم خفيف</string>
+    <string name="hint_gaps">كانت هناك فجوات في القياس. هل كانت الساعة قيد الشحن أو غير مرتدية ليلًا؟</string>
+    <string name="hint_heart">كان معدل النبض مفقودًا. يُفضَّل ارتداء الساعة بإحكام أكبر ليلًا.</string>
+    <string name="hint_calm">كان القياس كاملًا – لقد نمت نومًا هادئًا ببساطة. عندها يوقظك Phase Wake بدقة في الموعد.</string>
 </resources>

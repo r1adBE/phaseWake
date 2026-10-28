@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Η διάρκεια και η κανονικότητα του ύπνου προέρχονται από το Health Connect.</string>
     <string name="settings_support">Στήριξε το Phase Wake</string>
     <string name="settings_support_text">Το Phase Wake είναι δωρεάν, ανοιχτού κώδικα και χωρίς διαφημίσεις. Αν σου αρέσει, μπορείς να στηρίξεις την ανάπτυξή του.</string>
+    <string name="hint_title">%1$d νύχτες χωρίς ελαφρύ ύπνο</string>
+    <string name="hint_gaps">Η μέτρηση είχε κενά. Το ρολόι φόρτιζε ή ήταν βγαλμένο τη νύχτα;</string>
+    <string name="hint_heart">Έλειπε ο παλμός. Φόρα το ρολόι λίγο πιο σφιχτά τη νύχτα.</string>
+    <string name="hint_calm">Η μέτρηση ήταν πλήρης – απλώς κοιμήθηκες ήρεμα. Τότε το Phase Wake σε ξυπνά αξιόπιστα στην ώρα στόχου.</string>
 </resources>

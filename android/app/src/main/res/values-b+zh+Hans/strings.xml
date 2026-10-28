@@ -166,4 +166,8 @@
     <string name="trends_health_hint">睡眠时长和规律性来自 Health Connect。</string>
     <string name="settings_support">支持 Phase Wake</string>
     <string name="settings_support_text">Phase Wake 免费、开源且没有广告。如果你喜欢它，可以支持它的开发。</string>
+    <string name="hint_title">连续 %1$d 晚没有浅睡</string>
+    <string name="hint_gaps">测量有中断。夜里手表是在充电还是没有佩戴？</string>
+    <string name="hint_heart">缺少心率数据。夜里把手表戴紧一点。</string>
+    <string name="hint_calm">测量是完整的——你只是睡得很安稳。这时 Phase Wake 会在目标时间可靠地叫醒你。</string>
 </resources>

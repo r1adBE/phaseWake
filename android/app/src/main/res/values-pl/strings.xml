@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Czas i regularność snu pochodzą z Health Connect.</string>
     <string name="settings_support">Wesprzyj Phase Wake</string>
     <string name="settings_support_text">Phase Wake jest darmowy, open source i bez reklam. Jeśli ci się podoba, możesz wesprzeć jego rozwój.</string>
+    <string name="hint_title">%1$d nocy bez lekkiego snu</string>
+    <string name="hint_gaps">Pomiar miał luki. Czy zegarek się ładował lub był zdjęty w nocy?</string>
+    <string name="hint_heart">Brakowało tętna. Noś zegarek w nocy nieco ciaśniej.</string>
+    <string name="hint_calm">Pomiar był kompletny – po prostu spałeś spokojnie. Wtedy Phase Wake budzi cię niezawodnie w czasie docelowym.</string>
 </resources>

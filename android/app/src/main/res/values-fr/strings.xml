@@ -166,4 +166,8 @@
     <string name="trends_health_hint">La durée et la régularité du sommeil proviennent de Health Connect.</string>
     <string name="settings_support">Soutenir Phase Wake</string>
     <string name="settings_support_text">Phase Wake est gratuite, open source et sans publicité. Si elle te plaît, tu peux soutenir son développement.</string>
+    <string name="hint_title">%1$d nuits sans sommeil léger</string>
+    <string name="hint_gaps">La mesure comportait des trous. La montre était-elle en charge ou retirée la nuit ?</string>
+    <string name="hint_heart">Le pouls était absent. Serre un peu plus ta montre la nuit.</string>
+    <string name="hint_calm">La mesure était complète : tu as simplement dormi d\'un sommeil calme. Phase Wake te réveille alors de façon fiable à l\'heure cible.</string>
 </resources>

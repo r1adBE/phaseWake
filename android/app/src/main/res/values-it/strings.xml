@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Durata e regolarità del sonno provengono da Health Connect.</string>
     <string name="settings_support">Sostieni Phase Wake</string>
     <string name="settings_support_text">Phase Wake è gratuita, open source e senza pubblicità. Se ti piace, puoi sostenerne lo sviluppo.</string>
+    <string name="hint_title">%1$d notti senza sonno leggero</string>
+    <string name="hint_gaps">La misurazione aveva delle lacune. L\'orologio era in carica o tolto di notte?</string>
+    <string name="hint_heart">Mancava la frequenza cardiaca. Porta l\'orologio un po\' più stretto di notte.</string>
+    <string name="hint_calm">La misurazione era completa: hai semplicemente dormito tranquillo. In questo caso Phase Wake ti sveglia in modo affidabile all\'orario obiettivo.</string>
 </resources>

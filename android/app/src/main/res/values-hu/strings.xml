@@ -166,4 +166,8 @@
     <string name="trends_health_hint">Az alvás időtartama és rendszeressége a Health Connectből származik.</string>
     <string name="settings_support">Támogasd a Phase Wake-et</string>
     <string name="settings_support_text">A Phase Wake ingyenes, nyílt forráskódú és reklámmentes. Ha tetszik, támogathatod a fejlesztését.</string>
+    <string name="hint_title">%1$d éjszaka könnyű alvás nélkül</string>
+    <string name="hint_gaps">A mérésben hiányok voltak. Az óra töltődött, vagy le volt véve éjjel?</string>
+    <string name="hint_heart">Hiányzott a pulzus. Viseld éjjel kicsit szorosabban az órát.</string>
+    <string name="hint_calm">A mérés teljes volt – egyszerűen nyugodtan aludtál. Ilyenkor a Phase Wake megbízhatóan felébreszt a célidőben.</string>
 </resources>
