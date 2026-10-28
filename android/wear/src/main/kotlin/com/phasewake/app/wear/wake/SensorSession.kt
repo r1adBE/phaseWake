@@ -25,12 +25,15 @@ import com.phasewake.app.core.EpochAssembler
  * keine Nebenläufigkeit im [EpochAssembler]. Die Last ist gering (gebündelte Werte alle 10 s).
  *
  * @param startNanos Fensterbeginn auf der Uhr `SystemClock.elapsedRealtimeNanos()`.
+ * @param lowPower Für die lange Einschlaf-Messung: nur Bewegung, Werte bis 5 Minuten bündeln und
+ *   bevorzugt den aufweckenden Sensor nutzen, der die Uhr nur bei vollem Puffer weckt.
  * @param onEpochs Erhält abgeschlossene Epochen in zeitlicher Reihenfolge.
  */
 class SensorSession(
     private val context: Context,
     startNanos: Long,
     private val nowNanos: () -> Long,
+    private val lowPower: Boolean = false,
     private val onEpochs: (List<Epoch>) -> Unit,
 ) {
     private val handler = Handler(Looper.getMainLooper())
@@ -72,12 +75,19 @@ class SensorSession(
     fun start() {
         if (running) return
         running = true
-        val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        val accelerometer = (if (lowPower) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null)
+            ?: sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         if (accelerometer == null) {
             Log.w(TAG, "Kein Beschleunigungssensor")
         } else {
-            sensorManager.registerListener(motionListener, accelerometer, SAMPLING_US, MAX_LATENCY_US, handler)
+            val latency = if (lowPower) LOW_POWER_LATENCY_US else MAX_LATENCY_US
+            sensorManager.registerListener(motionListener, accelerometer, SAMPLING_US, latency, handler)
         }
+        if (!lowPower) registerHeartRate()
+        handler.postDelayed(ticker, TICK_MILLIS)
+    }
+
+    private fun registerHeartRate() {
         try {
             measureClient.registerMeasureCallback(DataType.HEART_RATE_BPM, ContextCompat.getMainExecutor(context), heartRateCallback)
             heartRateRegistered = true
@@ -85,7 +95,6 @@ class SensorSession(
             // Ohne Pulsberechtigung entscheidet die Bewegung allein (Regel, Abschnitt 3).
             Log.i(TAG, "Puls nicht erlaubt, nur Bewegung", e)
         }
-        handler.postDelayed(ticker, TICK_MILLIS)
     }
 
     fun stop() {
@@ -111,6 +120,7 @@ class SensorSession(
 
         /** Werte bis 10 s bündeln: spart Strom, Entscheidung kommt trotzdem rechtzeitig. */
         const val MAX_LATENCY_US = 10_000_000
+        const val LOW_POWER_LATENCY_US = 300_000_000
         const val TICK_MILLIS = 10_000L
         const val GRACE_NANOS = 12_000_000_000L
     }

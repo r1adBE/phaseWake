@@ -6,12 +6,15 @@ import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
+import com.phasewake.app.wear.schedule.OnsetOverride
 import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wake.RingState
 import java.io.File
+import java.time.Instant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 
 /** Einstieg der Uhr-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). */
 class PhaseWakeWear : Application() {
@@ -22,8 +25,12 @@ class PhaseWakeWear : Application() {
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val sync by lazy { WearSync(this) }
-    val scheduler by lazy { AlarmScheduler(this, alarms) }
+    val onsetOverride by lazy { OnsetOverride(phaseWakeStore) }
+    val scheduler by lazy { AlarmScheduler(this, alarms, onsetOverride) }
     val ringState = RingState()
+
+    /** Seit wann nach «Gute Nacht» auf das Einschlafen gewartet wird; `null`, wenn nicht. */
+    val goodNight = MutableStateFlow<Instant?>(null)
 
     override fun onCreate() {
         super.onCreate()

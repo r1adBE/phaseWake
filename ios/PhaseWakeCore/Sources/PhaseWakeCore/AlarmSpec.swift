@@ -131,21 +131,10 @@ public enum AlarmSchedule {
         target.addingTimeInterval(-TimeInterval(windowMinutes * 60))
     }
 
-    /// Wie `ZonedDateTime.of`: Lücke → um die Lückenlänge nach vorn, Überlappung → frühere Zeit.
+    /// Wie `ZonedDateTime.of`: In der Lücke verschiebt Foundation um die Lückenlänge nach vorn,
+    /// in der Überlappung wählt es die frühere Zeit (beides durch Tests abgesichert).
     private static func resolve(_ parts: DateComponents, calendar: Calendar) -> Date? {
-        if let exact = calendar.date(from: parts),
-           calendar.component(.hour, from: exact) == parts.hour,
-           calendar.component(.minute, from: exact) == parts.minute {
-            // Foundation wählt in der Überlappung bereits die frühere Zeit.
-            return exact
-        }
-        var before = parts
-        before.hour = (parts.hour ?? 0) - 1
-        guard let earlier = calendar.date(from: before) else { return nil }
-        // Ortszeit eine Stunde früher plus die Länge der Lücke (Offset-Differenz).
-        let offsetBefore = calendar.timeZone.secondsFromGMT(for: earlier)
-        let offsetAfter = calendar.timeZone.secondsFromGMT(for: earlier.addingTimeInterval(7200))
-        return earlier.addingTimeInterval(3600 + TimeInterval(offsetAfter - offsetBefore))
+        calendar.date(from: parts)
     }
 }
 

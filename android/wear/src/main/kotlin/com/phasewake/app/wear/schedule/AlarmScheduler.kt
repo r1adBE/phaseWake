@@ -22,6 +22,7 @@ import java.time.Instant
 class AlarmScheduler(
     private val context: Context,
     private val alarms: AlarmRepository,
+    private val onsetOverride: OnsetOverride,
     private val clock: Clock = Clock.systemDefaultZone(),
 ) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
@@ -29,7 +30,7 @@ class AlarmScheduler(
     /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
     suspend fun reschedule(): WakePlan? {
         val now = clock.instant()
-        val plan = AlarmSchedule.earliestPlan(alarms.current().alarms, now, clock.zone)
+        val plan = onsetOverride.apply(AlarmSchedule.earliestPlan(alarms.current().alarms, now, clock.zone), now)
         cancelWindow()
         if (plan == null) {
             Log.i(TAG, "Kein aktiver Wecker")

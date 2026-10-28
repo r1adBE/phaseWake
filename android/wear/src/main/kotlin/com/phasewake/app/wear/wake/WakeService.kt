@@ -13,6 +13,7 @@ import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.Decision
@@ -64,6 +65,8 @@ class WakeService : LifecycleService() {
     private var wakeLock: PowerManager.WakeLock? = null
     private var night: Night? = null
     private var notification: android.app.Notification? = null
+    private var onset: OnsetMonitor? = null
+    private val onsetTimeout = Runnable { stopGoodNight() }
 
     private val deadline = Runnable { onDeadline() }
     private val snoozeEnd = Runnable { ring() }
@@ -78,15 +81,19 @@ class WakeService : LifecycleService() {
             ACTION_SNOOZE_END -> if (night == null) plan?.let { begin(it); ring() } else ring()
             ACTION_SNOOZE -> snooze()
             ACTION_DISMISS -> dismiss()
+            ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let(::startGoodNight)
+            ACTION_GOOD_NIGHT_CANCEL -> stopGoodNight()
         }
         // Jeder Start über startForegroundService verlangt eine Vordergrund-Meldung, auch wenn schon eine steht.
         if (plan != null) notification?.let(::goForeground)
-        if (night == null) stopSelf(startId)
+        if (night == null && onset == null) stopSelf(startId)
         return START_NOT_STICKY
     }
 
     override fun onDestroy() {
         handler.removeCallbacksAndMessages(null)
+        onset?.stop()
+        app.goodNight.value = null
         night?.sensors?.stop()
         escalation.stop()
         releaseWakeLock()
@@ -94,10 +101,61 @@ class WakeService : LifecycleService() {
         super.onDestroy()
     }
 
+    // ---------------------------------------------------------------- Einschlaf-Modus
+
+    /**
+     * «Gute Nacht»: misst stromsparend, bis das Einschlafen erkannt ist, und legt dann die Zielzeit
+     * auf Einschlafzeit + Schlafdauer (höchstens die eingestellte Weckzeit).
+     */
+    private fun startGoodNight(alarmId: String) {
+        if (night != null || onset != null) return
+        goForeground(Notifications.goodNight(this))
+        app.goodNight.value = Instant.now()
+        lifecycleScope.launch {
+            val spec = app.alarms.current().alarms.firstOrNull { it.id == alarmId }
+            val duration = spec?.sleepDurationMinutes
+            val latest = spec?.let { AlarmSchedule.nextTarget(it, Instant.now(), ZoneId.systemDefault()) }
+            if (spec == null || duration == null || latest == null) {
+                stopGoodNight()
+                return@launch
+            }
+            val threshold = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())).lightThreshold
+            onset = OnsetMonitor(this@WakeService, threshold) { asleep ->
+                val target = AlarmSchedule.sleepTarget(asleep, duration, latest)
+                val plan = WakePlan(alarmId, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
+                Log.i(TAG, "Eingeschlafen $asleep, neue Zielzeit $target")
+                onset?.stop()
+                onset = null
+                app.goodNight.value = null
+                app.appScope.launch {
+                    app.onsetOverride.set(plan)
+                    app.scheduler.reschedule()
+                }
+                if (night == null) stopSelf()
+            }.also { it.start() }
+            // Spätestens 15 Minuten vor der eingestellten Weckzeit aufgeben: dann gilt sie.
+            handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), latest.minus(ONSET_GIVE_UP)).toMillis().coerceAtLeast(0))
+        }
+    }
+
+    private fun stopGoodNight() {
+        handler.removeCallbacks(onsetTimeout)
+        onset?.stop()
+        onset = null
+        app.goodNight.value = null
+        if (night == null) stopSelf()
+    }
+
     // ---------------------------------------------------------------- Messen
 
     private fun begin(plan: WakePlan) {
         if (night?.plan == plan) return
+        if (onset != null) {
+            handler.removeCallbacks(onsetTimeout)
+            onset?.stop()
+            onset = null
+            app.goodNight.value = null
+        }
         if (night != null) finishNight() // neuer Plan ersetzt einen hängenden alten
 
         goForeground(Notifications.window(this, formatTime(plan.target)))
@@ -226,6 +284,7 @@ class WakeService : LifecycleService() {
         }
         // Prozessweiter Bereich: Speichern und Neuplanen dürfen das Ende des Dienstes überdauern.
         app.appScope.launch {
+            app.onsetOverride.clear()
             if (record != null) {
                 app.nights.add(record)
                 app.sync.publishNight(record)
@@ -264,6 +323,10 @@ class WakeService : LifecycleService() {
         const val ACTION_SNOOZE_END = "com.phasewake.app.wake.SNOOZE_END"
         const val ACTION_SNOOZE = "com.phasewake.app.wake.SNOOZE"
         const val ACTION_DISMISS = "com.phasewake.app.wake.DISMISS"
+        const val ACTION_GOOD_NIGHT = "com.phasewake.app.wake.GOOD_NIGHT"
+        const val ACTION_GOOD_NIGHT_CANCEL = "com.phasewake.app.wake.GOOD_NIGHT_CANCEL"
+        private const val EXTRA_ALARM_ID = "goodNightAlarmId"
+        private val ONSET_GIVE_UP: Duration = Duration.ofMinutes(15)
 
         /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
         private const val RING_TIMEOUT_MS = 10 * 60_000L
@@ -275,6 +338,14 @@ class WakeService : LifecycleService() {
             ContextCompat.startForegroundService(
                 context,
                 AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(ACTION_START), plan),
+            )
+        }
+
+        /** Startet «Gute Nacht» für den Schlafdauer-Wecker [alarmId]. */
+        fun goodNight(context: Context, alarmId: String) {
+            ContextCompat.startForegroundService(
+                context,
+                Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId),
             )
         }
 

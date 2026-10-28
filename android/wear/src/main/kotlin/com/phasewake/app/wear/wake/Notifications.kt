@@ -59,6 +59,29 @@ object Notifications {
         return builder.build()
     }
 
+    /** Daueranzeige nach «Gute Nacht», solange auf das Einschlafen gewartet wird. */
+    fun goodNight(context: Context): Notification {
+        val open = PendingIntent.getActivity(
+            context, 2, Intent(context, MainActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        val text = context.getString(R.string.notification_good_night_text)
+        val builder = NotificationCompat.Builder(context, CHANNEL_WINDOW)
+            .setSmallIcon(R.drawable.ic_moon)
+            .setContentTitle(context.getString(R.string.notification_good_night_title))
+            .setContentText(text)
+            .setOngoing(true)
+            .setSilent(true)
+            .setContentIntent(open)
+        OngoingActivity.Builder(context, ID_SERVICE, builder)
+            .setStaticIcon(R.drawable.ic_moon)
+            .setTouchIntent(open)
+            .setStatus(Status.Builder().addTemplate(text).build())
+            .build()
+            .apply(context)
+        return builder.build()
+    }
+
     /** Weck-Mitteilung mit Vollbild-Absicht: öffnet den Weckbildschirm auch bei gesperrter Uhr. */
     fun ringing(context: Context, text: String): Notification {
         val ring = PendingIntent.getActivity(

@@ -35,4 +35,9 @@
     <string name="tile_label">Next alarm</string>
     <string name="tile_next">Next alarm</string>
     <string name="tile_light_sleep">Wakes you in light sleep</string>
+    <string name="notification_good_night_title">Sleep well</string>
+    <string name="notification_good_night_text">Waiting for you to fall asleep</string>
+    <string name="home_good_night">Good night</string>
+    <string name="home_good_night_hint">Sleep %1$s from now on</string>
+    <string name="home_good_night_active">Waiting for sleep · tap to cancel</string>
 </resources>

@@ -33,4 +33,9 @@
     <string name="tile_label">Nächster Wecker</string>
     <string name="tile_next">Nächster Wecker</string>
     <string name="tile_light_sleep">Weckt im leichten Schlaf</string>
+    <string name="notification_good_night_title">Schlaf gut</string>
+    <string name="notification_good_night_text">Wartet, bis du eingeschlafen bist</string>
+    <string name="home_good_night">Gute Nacht</string>
+    <string name="home_good_night_hint">Ab jetzt %1$s schlafen</string>
+    <string name="home_good_night_active">Wartet aufs Einschlafen · Tippen zum Abbrechen</string>
 </resources>

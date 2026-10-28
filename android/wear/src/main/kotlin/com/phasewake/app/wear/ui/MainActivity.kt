@@ -35,6 +35,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
@@ -49,6 +50,7 @@ import com.phasewake.app.wear.ui.components.FlowingWave
 import com.phasewake.app.wear.ui.components.WindowRing
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
+import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import java.time.LocalDate
@@ -90,6 +92,8 @@ private fun HomeScreen() {
     }
     val zone = ZoneId.systemDefault()
     val plan = remember(alarms, now) { AlarmSchedule.earliestPlan(alarms, now, zone) }
+    val goodNightSince by app.goodNight.collectAsStateWithLifecycle()
+    val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
 
     fun missing() = requiredPermissions().filter {
         ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
@@ -104,6 +108,21 @@ private fun HomeScreen() {
         ScreenScaffold(scrollState = listState) {
             ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxWidth()) {
                 item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone) }
+                if (sleepAlarm != null) {
+                    item {
+                        GoodNightButton(
+                            active = goodNightSince != null,
+                            sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
+                            onClick = {
+                                if (goodNightSince != null) {
+                                    WakeService.command(context, WakeService.ACTION_GOOD_NIGHT_CANCEL)
+                                } else {
+                                    WakeService.goodNight(context, sleepAlarm.id)
+                                }
+                            },
+                        )
+                    }
+                }
                 if (missingPermissions.isNotEmpty()) {
                     item {
                         Button(
@@ -167,6 +186,29 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId) {
             }
         }
     }
+}
+
+@Composable
+private fun GoodNightButton(active: Boolean, sleepMinutes: Int, onClick: () -> Unit) {
+    val hours = sleepMinutes / 60
+    val rest = sleepMinutes % 60
+    val duration = if (rest == 0) "$hours h" else "$hours h $rest min"
+    Button(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (active) Brand.Deep else Brand.Echo,
+            contentColor = Brand.Moon,
+            secondaryContentColor = Brand.Star,
+        ),
+        label = { Text(stringResource(R.string.home_good_night)) },
+        secondaryLabel = {
+            Text(
+                if (active) stringResource(R.string.home_good_night_active)
+                else stringResource(R.string.home_good_night_hint, duration),
+            )
+        },
+    )
 }
 
 @Composable
