@@ -30,4 +30,7 @@
     <string name="alarm_once">Einmalig</string>
     <string name="alarm_every_day">Täglich</string>
     <string name="alarm_after_sleep">Nach %1$s Schlaf</string>
+    <string name="tile_label">Nächster Wecker</string>
+    <string name="tile_next">Nächster Wecker</string>
+    <string name="tile_light_sleep">Weckt im leichten Schlaf</string>
 </resources>

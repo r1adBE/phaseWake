@@ -112,3 +112,4 @@ Alles in v1, nichts auf später verschoben:
 - Anzeigename «Phase Wake» (Repo und Code: phaseWake).
 - Android und Apple mit gleichem Funktionsumfang, je nativ (Kotlin bzw. Swift), wie bei cryptoChecker.
 - Daten bleiben lokal. Wer helfen will, exportiert seine Nächte freiwillig als anonyme Datei (ohne Namen, Gerätekennung oder Standort) und schickt sie per GitHub-Issue oder E-Mail. Kein Server, keine Internet-Berechtigung.
+- Gesundheitsdaten (28.10.2026): Samsung Health und Apple Health liefern Schlafphasen erst nach dem Aufwachen, also nicht für den Weckmoment. v1 liest sie optional nachträglich (Android über Health Connect, iPhone über HealthKit), um die eigene Erkennung zu kalibrieren und die ganze Nacht im Verlauf zu zeigen. Nur Lesen, einzeln erlaubt, bleibt auf dem Gerät. Herzschlag-Abstände (HRV) live auf der Galaxy Watch über das Samsung Health Sensor SDK erst nach Aufnahme ins Samsung-Partnerprogramm.

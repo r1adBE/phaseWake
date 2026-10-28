@@ -32,4 +32,7 @@
     <string name="alarm_once">Once</string>
     <string name="alarm_every_day">Every day</string>
     <string name="alarm_after_sleep">After %1$s of sleep</string>
+    <string name="tile_label">Next alarm</string>
+    <string name="tile_next">Next alarm</string>
+    <string name="tile_light_sleep">Wakes you in light sleep</string>
 </resources>
