@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         // Gleiche Kennung wie die Handy-App: Pflicht für den Wearable Data Layer.
-        applicationId = "ch.r1ad.phasewake"
+        applicationId = "com.phasewake.app"
         minSdk = 30
         targetSdk = 36
         versionCode = 1
