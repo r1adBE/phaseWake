@@ -1,6 +1,7 @@
 /// Ordnet Sensorwerte anhand ihres Zeitstempels den 30-s-Epochen zu (Regel, Abschnitt 7).
-/// Identisch zu `EpochAssembler` in `android/core`.
-public final class EpochAssembler {
+/// Identisch zu `EpochAssembler` in `android/core`. Nicht threadsicher: Die Apps rufen ihn nur auf
+/// einer seriellen Warteschlange auf (daher `@unchecked Sendable`).
+public final class EpochAssembler: @unchecked Sendable {
     private static let maxBatch: Int64 = 1024
     /// 24 Stunden: Werte danach sind ein Zeitsprung der Sensoruhr, keine Messung (Abschnitt 7).
     public static let maxEpochs: Int64 = 24 * 60 * 60 / Int64(DetectorConfig.epochSeconds)

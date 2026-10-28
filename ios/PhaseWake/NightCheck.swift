@@ -38,7 +38,7 @@ enum PhoneCheck: CaseIterable, Hashable {
 
 @MainActor
 enum NightCheck {
-    static let lowBatteryPercent = 20
+    nonisolated static let lowBatteryPercent = 20
 
     static func collect() async -> [PhoneCheck] {
         var failed: [PhoneCheck] = []

@@ -242,7 +242,7 @@ final class BackupAlarm {
 
     private func scheduleNotification(id: UUID, at date: Date) async {
         let center = UNUserNotificationCenter.current()
-        _ = try? await center.requestAuthorization(options: [.alert, .sound, .timeSensitive])
+        _ = try? await center.requestAuthorization(options: [.alert, .sound]) // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_notification_text")

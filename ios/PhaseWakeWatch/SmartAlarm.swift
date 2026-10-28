@@ -49,7 +49,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let ringLimit: TimeInterval = 3600
     /// Spielraum, um den das System eine Sitzung früher oder später starten darf.
     static let startTolerance: TimeInterval = 120
-    private static let fallbackId = "phasewake.fallback"
+    nonisolated private static let fallbackId = "phasewake.fallback"
     /// Eigene Kennung für das Wecken nach einer abgebrochenen Sitzung: Neu planen ersetzt sie nicht.
     private static let interruptedId = "phasewake.fallback.interrupted"
     private static let stateKey = "smartAlarmNight"
@@ -337,16 +337,17 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
         let predicate = HKQuery.predicateForSamples(withStart: Date(), end: nil)
         let unit = HKUnit.count().unitDivided(by: .minute())
-        let handler: (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?) -> Void = { [weak self] _, samples, _, _, _ in
+        let queue = assemblerQueue
+        let handler: @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?) -> Void = { [weak self] _, samples, _, _, _ in
             guard let samples = samples as? [HKQuantitySample], !samples.isEmpty else { return }
             let uptime = ProcessInfo.processInfo.systemUptime
-            let closed: [Epoch] = self?.assemblerQueue.sync {
+            let closed: [Epoch] = queue.sync {
                 samples.flatMap { sample in
                     // Zeitstempel der Probe auf die Systemlaufzeit umrechnen (gleiche Uhr wie CoreMotion).
                     let nanos = Int64((uptime - Date().timeIntervalSince(sample.endDate)) * 1e9)
                     return assembler.addHeartRate(timestampNanos: nanos, bpm: sample.quantity.doubleValue(for: unit))
                 }
-            } ?? []
+            }
             if !closed.isEmpty { Task { @MainActor in self?.feed(closed) } }
         }
         let query = HKAnchoredObjectQuery(type: type, predicate: predicate, anchor: nil, limit: HKObjectQueryNoLimit, resultsHandler: handler)
