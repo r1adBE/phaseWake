@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.history
 
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -46,7 +47,6 @@ import com.phasewake.app.core.WakeMoments
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.util.Locale
 
 /** Trends-Zeilen, die ein Diagramm schon zeigt (dort weggelassen). */
 enum class TrendLine { ASLEEP, GOAL, REGULAR, FEELING }
@@ -131,8 +131,8 @@ internal val CHART_HEIGHT = 168.dp
 fun HistoryChartsSection(
     charts: HistoryCharts,
     customNotes: List<CustomNote>,
-    opener: (LocalDate) -> (() -> Unit)? = { null },
     modifier: Modifier = Modifier,
+    opener: (LocalDate) -> (() -> Unit)? = { null },
 ) {
     // Ein Zeitraum für alle Diagramme (wie auf Apple), Vorgabe 14 Nächte; gemerkt über Drehen und Zurückkehren.
     var nights by rememberSaveable { mutableIntStateOf(ChartData.NIGHTS) }
@@ -219,7 +219,7 @@ private fun PeriodSwitch(selected: Int, onSelect: (Int) -> Unit) {
 /** Karte ohne Daten im gewählten Zeitraum: «Keine Daten» (vorhandener Text, gross begonnen). */
 @Composable
 internal fun NoDataText() {
-    val locale = Locale.getDefault()
+    val locale = LocalConfiguration.current.locales[0]
     Text(
         stringResource(R.string.chart_no_data).replaceFirstChar { it.titlecase(locale) },
         style = MaterialTheme.typography.bodyMedium,

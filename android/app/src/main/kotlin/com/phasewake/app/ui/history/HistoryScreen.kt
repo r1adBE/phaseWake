@@ -144,7 +144,7 @@ fun HistoryScreen(
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
         val opener: (LocalDate) -> (() -> Unit)? = { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
-        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener) } }
+        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener) } }
         if (history.isEmpty()) {
             item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
             soundsOnly.forEach { (night, last) ->
