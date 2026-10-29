@@ -42,7 +42,7 @@ fun RoutineCard(items: List<RoutineItem>, done: List<String>, containerColor: Co
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(vertical = 12.dp)) {
-            Text(stringResource(R.string.routine_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(horizontal = 16.dp))
+            Text(stringResource(R.string.routine_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(horizontal = 16.dp))
             items.forEach { item ->
                 val checked = item.id in done
                 // Die ganze Zeile hakt ab; das Kästchen zeigt nur den Zustand.

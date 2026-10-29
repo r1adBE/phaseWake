@@ -175,7 +175,7 @@ fun SoundRecordingCard(
         ) {
             Icon(painterResource(R.drawable.ic_mic), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
             Column(Modifier.weight(1f).padding(horizontal = 14.dp)) {
-                Text(stringResource(R.string.sound_rec_title), style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.sound_rec_title), style = MaterialTheme.typography.titleMedium)
                 Text(
                     stringResource(
                         when {
@@ -184,7 +184,7 @@ fun SoundRecordingCard(
                             else -> R.string.sound_rec_hint
                         },
                     ),
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }

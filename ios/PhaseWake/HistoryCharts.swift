@@ -50,11 +50,11 @@ private struct ChartPalette {
 
     init(_ scheme: ColorScheme) {
         if scheme == .dark {
-            active = Color(hex: 0x7DB3FF); quiet = Color(hex: 0x2F4FB8); track = Color(hex: 0x24345A)
-            wave = Color(hex: 0x7DB3FF); echo = Color(hex: 0x2F4FB8); dot = .white
+            active = Color(hex: 0xB9AEFF); quiet = Color(hex: 0x4A43A0); track = Color(hex: 0x2A2D55)
+            wave = Color(hex: 0xB9AEFF); echo = Color(hex: 0x7B6CF6); dot = Brand.moon
         } else {
-            active = Color(hex: 0x2F4FB8); quiet = Color(hex: 0xB7C5EE); track = Color(hex: 0xE1E6F0)
-            wave = Color(hex: 0x2F4FB8); echo = Color(hex: 0x9FB4F2); dot = Color(hex: 0x0B1A4A)
+            active = Color(hex: 0x7B6CF6); quiet = Color(hex: 0xDAD4FA); track = Color(hex: 0xECE8F5)
+            wave = Color(hex: 0x7B6CF6); echo = Color(hex: 0xB3A9F7); dot = Color(hex: 0x3B3486)
         }
     }
 }
@@ -128,7 +128,7 @@ private struct ChartCard<Content: View, Trailing: View>: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .background(scheme == .dark ? Color.white.opacity(0.07) : Color.white, in: RoundedRectangle(cornerRadius: 20))
+        .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
     }
 }
 

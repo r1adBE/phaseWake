@@ -29,7 +29,7 @@ struct SoundsButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Label(L("sounds_title"), systemImage: "moon.zzz").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Label(L("sounds_title"), systemImage: "moon.zzz").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
                 if let playing = model.sounds.playing {
                     Text(L(playing.textKey)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)

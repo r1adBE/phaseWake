@@ -58,6 +58,7 @@ private struct NoteOption: Identifiable {
 /// Alle wählbaren Notizen einer Nacht als Schalter-Chips; jeder Tipp wird sofort gespeichert.
 struct NoteChips: View {
     @Environment(PhoneModel.self) private var model
+    @Environment(\.colorScheme) private var scheme
     let nightDate: String
 
     var body: some View {
@@ -72,8 +73,10 @@ struct NoteChips: View {
                         .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                         .lineLimit(1)
                         .padding(.horizontal, 12).padding(.vertical, 7)
-                        .background(on ? Color.accentColor.opacity(0.25) : Color.secondary.opacity(0.12), in: Capsule())
-                        .overlay(Capsule().stroke(on ? Color.accentColor : .clear, lineWidth: 1))
+                        // Farbwelt B: Rand Lavendel, gewählt gefüllt statt umrandet; Ecken 12 wie auf Android.
+                        .foregroundStyle(on ? Color.primary : Brand.secondaryText(scheme))
+                        .background(on ? Brand.chipSelected(scheme) : Color.clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(on ? Color.clear : Brand.chipBorder(scheme), lineWidth: 1))
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(on ? .isSelected : [])
@@ -88,7 +91,7 @@ struct TonightNotesCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Label(L("notes_title"), systemImage: "note.text").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+            Label(L("notes_title"), systemImage: "note.text").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
             NoteChips(nightDate: nightDate)
         }
         .card()

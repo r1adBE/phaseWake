@@ -42,6 +42,8 @@ import androidx.core.view.WindowCompat
 import com.phasewake.app.ui.components.Intro
 import com.phasewake.app.ui.components.Night
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -336,7 +338,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         }
     }
 
-    // Kopfbereich der Startseite ist immer Nachtblau: dort helle Statusleisten-Symbole.
+    // Kopfbereich der Startseite ist immer Nachthimmel: dort helle Statusleisten-Symbole.
     val view = LocalView.current
     val lightBars = themeMode == ThemeMode.LIGHT || (themeMode == ThemeMode.SYSTEM && !isSystemInDarkTheme())
     SideEffect {
@@ -348,13 +350,18 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     // Teilen des Verlaufs: zuerst ein Satz dazu, was die Datei enthält.
     var askExport by rememberSaveable { mutableStateOf(false) }
 
+    // Scrollstand der Startseite: «Neuer Wecker» ist nur ganz oben ausgeschrieben, beim Scrollen ein
+    // kleiner runder Knopf, damit er ruhiger über den Karten liegt.
+    val homeList = rememberLazyListState()
+    val fabExpanded by remember { derivedStateOf { !homeList.canScrollBackward } }
+
     Box(Modifier.fillMaxSize()) {
     Scaffold(
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
             if (route != Routes.EDITOR && route != Routes.SOUNDS) {
                 val onNight = route == Routes.ALARMS && PhaseWakeTheme.isDark
-                NavigationBar(containerColor = if (onNight) Night.Bottom.copy(alpha = 0.92f) else MaterialTheme.colorScheme.surfaceContainerLow) {
+                NavigationBar(containerColor = if (onNight) Night.Bar else MaterialTheme.colorScheme.surfaceContainerLow) {
                     tabs.forEach { tab ->
                         NavigationBarItem(
                             selected = route == tab.route,
@@ -368,10 +375,19 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         },
         floatingActionButton = {
             if (route == Routes.ALARMS && alarms.isNotEmpty() && alarms.size < MAX_ALARMS) {
+                // Lavendel mit dunkler Schrift (dunkel) bzw. Indigo mit Weiss (hell): Farben der Hauptfarbe.
                 ExtendedFloatingActionButton(
                     onClick = { nav.navigate(Routes.editor(null)) },
-                    icon = { Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(20.dp)) },
+                    expanded = fabExpanded,
+                    icon = {
+                        // Eingeklappt bleibt der Name für Bildschirmleser erhalten.
+                        val label = stringResource(R.string.home_add_alarm)
+                        Icon(painterResource(R.drawable.ic_add), contentDescription = if (fabExpanded) null else label, modifier = Modifier.size(20.dp))
+                    },
                     text = { Text(stringResource(R.string.home_add_alarm)) },
+                    shape = MaterialTheme.shapes.medium,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                 )
             }
         },
@@ -393,6 +409,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         ) {
             composable(Routes.ALARMS) {
                 HomeScreen(
+                    listState = homeList,
                     alarms = alarms,
                     lastNight = nights?.lastOrNull(),
                     missHint = nights?.lastOrNull()?.let { last -> MissHint.of(alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },

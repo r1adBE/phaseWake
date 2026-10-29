@@ -39,7 +39,7 @@ object SunriseSky {
             top = lerp(a.top, b.top, t),
             bottom = lerp(a.bottom, b.bottom, t),
             sun = lerp(a.sun, b.sun, t),
-            content = if (dark) Color(0xFF050D2B) else Color.White,
+            content = if (dark) Color(0xFF070914) else Color.White,
             contentMuted = if (dark) Color(0xFF3A1E08) else Color(0xFFFFD9C2),
         )
     }

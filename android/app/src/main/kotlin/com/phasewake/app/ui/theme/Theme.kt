@@ -37,7 +37,10 @@ private fun manrope(weight: Int) = Font(
 /** Manrope als variable Schrift; jede Stärke stellt die Achse «wght» passend ein. */
 val Manrope = FontFamily(manrope(400), manrope(500), manrope(600), manrope(700), manrope(800))
 
-/** Farben, die über das Material-Schema hinausgehen (Welle, Echo, Hero-Karte). */
+/**
+ * Farben, die über das Material-Schema hinausgehen (Welle, Echo, Hero-Karte, Karten und Chips der
+ * Startseite). Farbwelt «Mitternacht & Lavendel».
+ */
 @Immutable
 data class BrandColors(
     val hero: Color,
@@ -50,82 +53,102 @@ data class BrandColors(
     val chartQuiet: Color,
     val chartActive: Color,
     val chartTrack: Color,
+    /** Karten der Startseite: dunkel durchscheinend auf dem Nachthimmel, hell eine weisse Fläche. */
+    val card: Color,
+    /** Rand eines nicht gewählten Chips. */
+    val chipBorder: Color,
+    /** Fläche eines gewählten Chips. */
+    val chipSelected: Color,
+    /** Zusatzinfo (bodySmall): eine Stufe leiser als onSurfaceVariant, Kontrast ≥ 4.5:1. */
+    val mutedSoft: Color,
 )
 
+private val Lavender = Color(0xFFB9AEFF)
+
 private val DarkBrand = BrandColors(
-    hero = Color(0xFF122466),
-    onHero = Color(0xFFF2F5FF),
-    onHeroMuted = Color(0xFF9FB8FF),
-    heroWindow = Color(0xFF1E3A8A),
-    wave = Color(0xFF7DB3FF),
-    echo = Color(0xFF2F4FB8),
-    dot = Color.White,
-    chartQuiet = Color(0xFF2F4FB8),
-    chartActive = Color(0xFF7DB3FF),
-    chartTrack = Color(0xFF24345A),
+    hero = Color(0xFF141A3D),
+    onHero = Color(0xFFFBF7F0),
+    onHeroMuted = Color(0xFFC9C3E6),
+    heroWindow = Color(0xFF2A2760),
+    wave = Lavender,
+    echo = Color(0xFF7B6CF6),
+    dot = Color(0xFFFBF7F0),
+    chartQuiet = Color(0xFF4A43A0),
+    chartActive = Lavender,
+    chartTrack = Color(0xFF2A2D55),
+    card = Color.White.copy(alpha = 0.06f),
+    chipBorder = Lavender.copy(alpha = 0.25f),
+    chipSelected = Lavender.copy(alpha = 0.25f),
+    // 80 % von #C9C3E6: auf dem Nachthimmel und den Karten ≥ 6:1.
+    mutedSoft = Color(0xFFC9C3E6).copy(alpha = 0.8f),
 )
 
 private val LightBrand = BrandColors(
-    hero = Color(0xFFE3EAFF),
-    onHero = Color(0xFF0B1A4A),
-    onHeroMuted = Color(0xFF2F4FB8),
-    heroWindow = Color(0xFFC9D6FF),
-    wave = Color(0xFF2F4FB8),
-    echo = Color(0xFF9FB4F2),
-    dot = Color(0xFF0B1A4A),
-    chartQuiet = Color(0xFFB7C5EE),
-    chartActive = Color(0xFF2F4FB8),
-    chartTrack = Color(0xFFE1E6F0),
+    hero = Color(0xFF141A3D),
+    onHero = Color(0xFFFBF7F0),
+    onHeroMuted = Color(0xFFC9C3E6),
+    heroWindow = Color(0xFFE4DFFB),
+    wave = Color(0xFF7B6CF6),
+    echo = Color(0xFFB3A9F7),
+    dot = Color(0xFF3B3486),
+    chartQuiet = Color(0xFFDAD4FA),
+    chartActive = Color(0xFF7B6CF6),
+    chartTrack = Color(0xFFECE8F5),
+    card = Color.White,
+    chipBorder = Color(0xFF7B6CF6).copy(alpha = 0.35f),
+    chipSelected = Color(0xFFE4DFFB),
+    // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester, etwas hellerer Ton.
+    mutedSoft = Color(0xFF6A6684),
 )
 
 private val DarkScheme = darkColorScheme(
-    primary = Color(0xFF8FB4FF),
-    onPrimary = Color(0xFF0B1A4A),
-    primaryContainer = Color(0xFF2F4FB8),
-    onPrimaryContainer = Color(0xFFF2F5FF),
-    secondary = Color(0xFF9FB8FF),
-    onSecondary = Color(0xFF0B1A4A),
-    secondaryContainer = Color(0xFF1E2C52),
-    onSecondaryContainer = Color(0xFFDCE4FF),
-    background = Color(0xFF0B1426),
-    onBackground = Color(0xFFE8EEFF),
-    surface = Color(0xFF0B1426),
-    onSurface = Color(0xFFE8EEFF),
-    surfaceVariant = Color(0xFF15213D),
-    onSurfaceVariant = Color(0xFF8FA3CC),
-    surfaceContainerLowest = Color(0xFF080F1E),
-    surfaceContainerLow = Color(0xFF111B33),
-    surfaceContainer = Color(0xFF15213D),
-    surfaceContainerHigh = Color(0xFF1B2847),
-    surfaceContainerHighest = Color(0xFF223055),
-    outline = Color(0xFF3A4C78),
-    outlineVariant = Color(0xFF24345A),
+    primary = Lavender,
+    onPrimary = Color(0xFF141A3D),
+    primaryContainer = Color(0xFF3B3486),
+    onPrimaryContainer = Color(0xFFFBF7F0),
+    secondary = Color(0xFFC9C3E6),
+    onSecondary = Color(0xFF141A3D),
+    secondaryContainer = Color(0xFF2A2760),
+    onSecondaryContainer = Color(0xFFFBF7F0),
+    background = Color(0xFF0C1027),
+    onBackground = Color(0xFFFBF7F0),
+    surface = Color(0xFF0C1027),
+    onSurface = Color(0xFFFBF7F0),
+    surfaceVariant = Color(0xFF1A1F45),
+    onSurfaceVariant = Color(0xFFC9C3E6),
+    surfaceContainerLowest = Color(0xFF070914),
+    surfaceContainerLow = Color(0xFF11152F),
+    surfaceContainer = Color(0xFF161B3A),
+    surfaceContainerHigh = Color(0xFF1C2245),
+    surfaceContainerHighest = Color(0xFF232A52),
+    outline = Color(0xFF5A5788),
+    outlineVariant = Color(0xFF2A2D55),
     error = Color(0xFFFFB4AB),
     onError = Color(0xFF690005),
 )
 
 private val LightScheme = lightColorScheme(
-    primary = Color(0xFF2F4FB8),
+    primary = Color(0xFF3B3486),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFDCE4FF),
-    onPrimaryContainer = Color(0xFF0B1A4A),
-    secondary = Color(0xFF4A5C8C),
+    primaryContainer = Color(0xFFE4DFFB),
+    onPrimaryContainer = Color(0xFF1A1830),
+    secondary = Color(0xFF5C5876),
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFFE3EAFF),
-    onSecondaryContainer = Color(0xFF0B1A4A),
-    background = Color(0xFFF4F6FB),
-    onBackground = Color(0xFF0B1A4A),
-    surface = Color(0xFFF4F6FB),
-    onSurface = Color(0xFF0B1A4A),
-    surfaceVariant = Color(0xFFE6EAF3),
-    onSurfaceVariant = Color(0xFF5B6B8C),
+    secondaryContainer = Color(0xFFECE8F8),
+    onSecondaryContainer = Color(0xFF1A1830),
+    background = Color(0xFFFBF7F0),
+    onBackground = Color(0xFF1A1830),
+    surface = Color(0xFFFBF7F0),
+    onSurface = Color(0xFF1A1830),
+    surfaceVariant = Color(0xFFF3F0FA),
+    onSurfaceVariant = Color(0xFF5C5876),
     surfaceContainerLowest = Color.White,
-    surfaceContainerLow = Color(0xFFFAFBFE),
+    surfaceContainerLow = Color(0xFFFDFBF7),
     surfaceContainer = Color.White,
-    surfaceContainerHigh = Color(0xFFF0F3FA),
-    surfaceContainerHighest = Color(0xFFE8ECF5),
-    outline = Color(0xFFB4BED3),
-    outlineVariant = Color(0xFFE1E6F0),
+    surfaceContainerHigh = Color(0xFFF3F0FA),
+    surfaceContainerHighest = Color(0xFFEAE6F5),
+    outline = Color(0xFF8C87A8),
+    outlineVariant = Color(0xFFE2DEEF),
     error = Color(0xFFBA1A1A),
     onError = Color.White,
 )
@@ -160,7 +183,8 @@ private val AppTypography = Typography(
 private val AppShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
     small = RoundedCornerShape(12.dp),
-    medium = RoundedCornerShape(20.dp),
+    // Karten überall mit 22 dp.
+    medium = RoundedCornerShape(22.dp),
     large = RoundedCornerShape(28.dp),
     extraLarge = RoundedCornerShape(36.dp),
 )

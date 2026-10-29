@@ -10,7 +10,7 @@ Open Source · ohne Konto · ohne Server · ohne Abo<br>
 
 <p align="center">
 <a href="https://github.com/r1adBE/phaseWake/actions/workflows/ci.yml"><img src="https://github.com/r1adBE/phaseWake/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-0B1A4A" alt="Lizenz MIT"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-141A3D" alt="Lizenz MIT"></a>
 </p>
 
 <p align="center">

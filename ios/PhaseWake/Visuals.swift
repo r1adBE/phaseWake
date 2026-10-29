@@ -30,7 +30,7 @@ struct HeroWave: View {
                 let dot = CGPoint(x: dotX, y: y(80))
                 let r = 6 + 12 * pulse
                 context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
-                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(.white))
+                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(Brand.moon))
             }
         }
         .accessibilityHidden(true)
@@ -51,9 +51,10 @@ struct NightBars: View {
             let gap: CGFloat = 2
             let w = max(1, (size.width - gap * CGFloat(slots - 1)) / CGFloat(slots))
             let maxMotion = max(0.01, epochs.compactMap(\.motion).max() ?? 0.01)
-            let quiet = scheme == .dark ? Brand.echo : Color(hex: 0xB7C5EE)
-            let active = scheme == .dark ? Color(hex: 0x7DB3FF) : Brand.accentLight
-            let track = scheme == .dark ? Color(hex: 0x24345A) : Color(hex: 0xE1E6F0)
+            // Wie `BrandColors` auf Android (chartQuiet, chartActive, chartTrack).
+            let quiet = scheme == .dark ? Color(hex: 0x4A43A0) : Color(hex: 0xDAD4FA)
+            let active = scheme == .dark ? Color(hex: 0xB9AEFF) : Color(hex: 0x7B6CF6)
+            let track = scheme == .dark ? Color(hex: 0x2A2D55) : Color(hex: 0xECE8F5)
             for (i, e) in epochs.enumerated() {
                 let h: CGFloat = e.motion.map { 3 + (size.height - 13) * CGFloat($0 / maxMotion) } ?? 3
                 let color = i < unmeasured ? track.opacity(0.35) : e.motion == nil ? track : (i >= epochs.count - 3 ? active : quiet)
@@ -61,7 +62,7 @@ struct NightBars: View {
             }
             if !epochs.isEmpty {
                 let x = CGFloat(epochs.count - 1) * (w + gap) + w / 2
-                context.fill(Path(ellipseIn: CGRect(x: x - 4, y: 1, width: 8, height: 8)), with: .color(scheme == .dark ? .white : Brand.nightTop))
+                context.fill(Path(ellipseIn: CGRect(x: x - 4, y: 1, width: 8, height: 8)), with: .color(scheme == .dark ? Brand.moon : Brand.accentLight))
             }
         }
         .accessibilityHidden(true)

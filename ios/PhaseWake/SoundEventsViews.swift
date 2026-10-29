@@ -43,7 +43,7 @@ struct SoundRecordingCard: View {
                 get: { recorder.running },
                 set: { on in Task { await model.setSoundRec(on, night: night) } }
             )) {
-                Label(L("sound_rec_title"), systemImage: "mic").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Label(L("sound_rec_title"), systemImage: "mic").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
             }
             Text(hint(recorder)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if recorder.permissionDenied && !recorder.running {

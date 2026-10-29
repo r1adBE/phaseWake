@@ -51,6 +51,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -318,7 +319,7 @@ private fun SleepBarsCard(bars: SleepBars, modifier: Modifier) {
             bars.bedtimeMinute?.let { dashed(scheme.primary, Offset(x(it), 0f), Offset(x(it), size.height - axisHeight)) }
         }
         bars.bedtimeMinute?.let {
-            Legend(listOf(LegendItem(context.getString(R.string.chart_bedtime, clock(it)), LegendMark.DASH, scheme.primary)))
+            Legend(listOf(LegendItem(stringResource(R.string.chart_bedtime, clock(it)), LegendMark.DASH, scheme.primary)))
         }
     }
 }
@@ -391,7 +392,7 @@ private fun DurationsCard(week: Durations?, twoWeeks: Durations, modifier: Modif
             val last = measurer.measure(morning(d.bars.last().date, "dM"), label)
             drawText(last, topLeft = Offset(size.width - last.size.width, size.height - last.size.height))
         }
-        Legend(listOf(LegendItem(context.getString(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(d.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary)))
+        Legend(listOf(LegendItem(stringResource(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(d.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary)))
     }
 }
 
@@ -476,6 +477,7 @@ private fun wakeStyle(kind: WakeKind, active: Color, muted: Color, error: Color)
 @Composable
 private fun WakeCard(w: WakeMoments, modifier: Modifier) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val scheme = MaterialTheme.colorScheme
     val measurer = rememberTextMeasurer()
     val label = labelStyle()
@@ -486,7 +488,7 @@ private fun WakeCard(w: WakeMoments, modifier: Modifier) {
         Canvas(Modifier.fillMaxWidth().height(CHART_HEIGHT).fadeIn().semantics { contentDescription = description }) {
             val r = 5.dp.toPx()
             // Links Platz für die Minuten, unten für die Daten.
-            val labels = listOf(0, w.scaleMinutes / 2, w.scaleMinutes).map { measurer.measure(context.getString(R.string.duration_minutes, it.toLong()), label) }
+            val labels = listOf(0, w.scaleMinutes / 2, w.scaleMinutes).map { measurer.measure(res.getString(R.string.duration_minutes, it.toLong()), label) }
             val left = labels.maxOf { it.size.width } + 6.dp.toPx()
             val axisHeight = 16.dp.toPx()
             val top = r + 2.dp.toPx()
@@ -519,7 +521,7 @@ private fun WakeCard(w: WakeMoments, modifier: Modifier) {
                 WakeKind.LATE to R.string.chart_wake_late,
             ).filter { it.first in present }.map { (kind, text) ->
                 val (shape, color) = styles.getValue(kind)
-                LegendItem(context.getString(text), shape, color)
+                LegendItem(stringResource(text), shape, color)
             },
         )
     }
@@ -547,6 +549,7 @@ private fun stageTotals(context: Context, h: Hypnogram): String = stageOrder.map
 @Composable
 private fun HypnogramCard(h: Hypnogram, night: NightRecord, modifier: Modifier) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val brand = PhaseWakeTheme.brand
     val scheme = MaterialTheme.colorScheme
     val measurer = rememberTextMeasurer()
@@ -555,21 +558,17 @@ private fun HypnogramCard(h: Hypnogram, night: NightRecord, modifier: Modifier) 
     val date = morning(SleepNotes.nightDate(night, zone))
     val description = remember(h) {
         listOfNotNull(
-            context.getString(R.string.chart_stages_title) + " " + date,
+            res.getString(R.string.chart_stages_title) + " " + date,
             hypnogramTakeaway(context, h),
             Format.time(h.start, zone) + " – " + Format.time(h.end, zone),
-            context.getString(R.string.chart_window) + " " + Format.time(night.windowStart, zone) + " – " + Format.time(night.target, zone),
+            res.getString(R.string.chart_window) + " " + Format.time(night.windowStart, zone) + " – " + Format.time(night.target, zone),
             stageTotals(context, h),
         ).joinToString(". ")
     }
-    ChartCard(
-        stringResource(R.string.chart_stages_title),
-        hypnogramTakeaway(context, h),
-        modifier,
-        trailing = { Text(date, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant) },
-    ) {
+    val trailing = @Composable { Text(date, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant) }
+    ChartCard(stringResource(R.string.chart_stages_title), hypnogramTakeaway(context, h), modifier, trailing = trailing) {
         Canvas(Modifier.fillMaxWidth().height(CHART_HEIGHT).fadeIn().semantics { contentDescription = description }) {
-            val names = stageNames.map { measurer.measure(context.getString(it), label) }
+            val names = stageNames.map { measurer.measure(res.getString(it), label) }
             val left = names.maxOf { it.size.width } + 8.dp.toPx()
             val axisHeight = 16.dp.toPx()
             val plot = size.height - axisHeight
@@ -614,7 +613,7 @@ private fun HypnogramCard(h: Hypnogram, night: NightRecord, modifier: Modifier) 
         }
         Legend(
             listOf(
-                LegendItem(context.getString(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f)),
+                LegendItem(res.getString(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f)),
                 LegendItem(Format.time(night.wokeAt, zone), LegendMark.DOT, scheme.primary),
             ),
         )
@@ -648,6 +647,7 @@ private fun feelingLine(context: Context, date: LocalDate, feeling: Int?, notes:
 @Composable
 private fun FeelingCard(f: FeelingSeries, custom: List<CustomNote>, modifier: Modifier) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val brand = PhaseWakeTheme.brand
     val scheme = MaterialTheme.colorScheme
     val measurer = rememberTextMeasurer()
@@ -655,7 +655,7 @@ private fun FeelingCard(f: FeelingSeries, custom: List<CustomNote>, modifier: Mo
     var selected by remember(f) { mutableStateOf<Int?>(null) }
     val withNotes = f.points.any { p -> p.feeling != null && p.notes.any { noteName(context, it, custom) != null } }
     val description = remember(f, custom) {
-        (listOfNotNull(context.getString(R.string.chart_feeling_title), feelingTakeaway(context, f)) +
+        (listOfNotNull(res.getString(R.string.chart_feeling_title), feelingTakeaway(context, f)) +
             f.points.filter { it.feeling != null }.map { feelingLine(context, it.date, it.feeling, it.notes, custom) }).joinToString(". ")
     }
     ChartCard(stringResource(R.string.chart_feeling_title), feelingTakeaway(context, f), modifier) {

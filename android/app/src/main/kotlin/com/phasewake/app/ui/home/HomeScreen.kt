@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -51,6 +53,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
@@ -118,6 +121,8 @@ fun HomeScreen(
     onToggleRoutine: (LocalDate, String) -> Unit = { _, _ -> },
     /** Uhrzeit-Quelle; Bildschirmfotos setzen eine feste Zeit, damit sie nicht vom Tag abhängen. */
     clock: () -> Instant = Instant::now,
+    /** Scrollstand der Liste; die App liest ihn, um «Neuer Wecker» beim Scrollen einzuklappen. */
+    listState: LazyListState = rememberLazyListState(),
 ) {
     var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
@@ -132,9 +137,13 @@ fun HomeScreen(
     // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
     val dark = PhaseWakeTheme.isDark
     val list = @Composable {
+    // Unten Platz für Navigationsleiste (in [contentPadding]) und den Knopf «Neuer Wecker»: Die letzte
+    // Karte bleibt ganz sichtbar und liegt am Ende nie unter dem Knopf.
+    val fab = alarms.isNotEmpty() && alarms.size < MAX_ALARMS
     LazyColumn(
-        contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding()),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        state = listState,
+        contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding() + if (fab) FAB_CLEARANCE else 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
@@ -196,7 +205,7 @@ fun HomeScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                 ) {
                     Column(Modifier.padding(16.dp)) {
-                        Text(stringResource(R.string.home_morning), style = MaterialTheme.typography.titleSmall)
+                        Text(stringResource(R.string.home_morning), style = MaterialTheme.typography.titleMedium)
                         SoundClipsSection(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) })
                     }
                 }
@@ -206,8 +215,7 @@ fun HomeScreen(
             item(key = "header") {
                 Text(
                     stringResource(R.string.home_alarms),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(start = 20.dp, top = 8.dp),
                 )
             }
@@ -220,13 +228,12 @@ fun HomeScreen(
                     Text(
                         stringResource(R.string.home_max_alarms, MAX_ALARMS),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = PhaseWakeTheme.brand.mutedSoft,
                         modifier = Modifier.padding(horizontal = 20.dp),
                     )
                 }
             }
         }
-        item(key = "spacer") { Spacer(Modifier.height(72.dp)) }
     }
     }
     if (dark) AnimatedNight(Modifier.fillMaxSize()) { list() } else list()
@@ -235,10 +242,15 @@ fun HomeScreen(
 /** Höchstens so viele Wecker: Die Uhr führt ohnehin nur eine Nacht zugleich, und die Liste bleibt übersichtlich. */
 internal const val MAX_ALARMS = 8
 
-/** Kartenfarbe: auf dem Nachthimmel durchscheinend, sonst die normale Fläche. */
+/**
+ * Platz unter der letzten Karte für den Knopf «Neuer Wecker»: Knopfhöhe 56 dp + sein Abstand zur
+ * Navigationsleiste 16 dp + 16 dp Luft.
+ */
+internal val FAB_CLEARANCE: Dp = 88.dp
+
+/** Kartenfarbe: auf dem Nachthimmel Weiss mit 6 %, hell eine weisse Fläche. */
 @Composable
-private fun cardColor(): Color =
-    if (PhaseWakeTheme.isDark) Color.White.copy(alpha = 0.07f) else MaterialTheme.colorScheme.surfaceContainer
+private fun cardColor(): Color = PhaseWakeTheme.brand.card
 
 /**
  * Kopfbereich im Nachthimmel-Verlauf, randlos bis unter die Statusleiste: Logo, Begrüssung und
@@ -275,7 +287,7 @@ private fun Header(
                 Text(
                     "Phase Wake",
                     style = MaterialTheme.typography.titleLarge,
-                    color = Color.White,
+                    color = Night.Text,
                     modifier = Modifier.padding(start = 10.dp),
                 )
             }
@@ -287,7 +299,7 @@ private fun Header(
                         Text(
                             Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone),
                             style = MaterialTheme.typography.displayMedium,
-                            color = Color.White,
+                            color = Night.Text,
                             modifier = Modifier.padding(top = 2.dp),
                         )
                         // Zwei Zeilen statt eines Umbruchs mitten im Satz: wann und welcher – dann wie lange noch.
@@ -310,7 +322,7 @@ private fun Header(
                         Text(
                             stringResource(R.string.home_no_alarm_title),
                             style = MaterialTheme.typography.headlineMedium,
-                            color = Color.White,
+                            color = Night.Text,
                             modifier = Modifier.padding(top = 2.dp),
                         )
                         Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
@@ -318,7 +330,7 @@ private fun Header(
                         if (onAdd != null) {
                             Button(
                                 onClick = onAdd,
-                                colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Night.Bottom),
+                                colors = ButtonDefaults.buttonColors(containerColor = Night.Wave, contentColor = Night.Top),
                             ) {
                                 Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(Modifier.width(8.dp))
@@ -378,7 +390,7 @@ private fun LastNightCard(
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(if (morning) R.string.home_morning else R.string.home_last_night), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(stringResource(if (morning) R.string.home_morning else R.string.home_last_night), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                 Text(Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
             }
             NightBars(
@@ -386,16 +398,18 @@ private fun LastNightCard(
                 Modifier.fillMaxWidth().height(48.dp).padding(top = 10.dp),
                 totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt(),
             )
+            // Erklärung (bodyMedium, leise), darunter die Zusatzinfos (bodySmall, noch leiser).
             Text(
                 nightSummary(context, night),
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
             )
             Text(
                 nightDetails(context, night),
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = PhaseWakeTheme.brand.mutedSoft,
+                modifier = Modifier.padding(top = 2.dp),
             )
             missHint?.let { hint ->
                 Column(
@@ -425,7 +439,7 @@ private fun LastNightCard(
                     Text(
                         stringResource(R.string.feeling_hint),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = PhaseWakeTheme.brand.mutedSoft,
                         modifier = Modifier.padding(top = 6.dp),
                     )
                 }
@@ -450,7 +464,7 @@ private fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCli
         Row(Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(painterResource(R.drawable.ic_sound), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
             Column(Modifier.weight(1f).padding(start = 14.dp)) {
-                Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleMedium)
                 if (playing != null) {
                     val name = stringResource(SleepSoundService.soundName(playing.sound))
                     // Auf 20 s genau (so oft aktualisiert die Startseite); angefangene Minuten zählen voll.
@@ -460,7 +474,7 @@ private fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCli
                     }
                     Text(
                         listOfNotNull(name, left).joinToString(" · "),
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }

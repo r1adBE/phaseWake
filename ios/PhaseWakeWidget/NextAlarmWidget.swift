@@ -2,7 +2,7 @@ import PhaseWakeCore
 import SwiftUI
 import WidgetKit
 
-/// Komplikation: nächstes Weckfenster auf dem Zifferblatt. Liest die Wecker aus der gemeinsamen
+/// Komplikation: nächstes Weckfenster auf dem Zifferblatt; Mond in Lavendel (auf getönten Zifferblättern färbt das System). Liest die Wecker aus der gemeinsamen
 /// App-Gruppe der Uhr-App; die Uhr-App lädt die Komplikation bei jeder Änderung neu.
 @main
 struct PhaseWakeWidgets: WidgetBundle {
@@ -64,7 +64,7 @@ struct NextAlarmView: View {
         switch family {
         case .accessoryCircular:
             VStack(spacing: 0) {
-                Image(systemName: "moon.stars.fill").font(.system(size: 14))
+                Image(systemName: "moon.stars.fill").font(.system(size: 14)).foregroundStyle(Brand.wave)
                 Text(entry.plan.map { Format.time($0.target) } ?? "–")
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                     .minimumScaleFactor(0.6)
@@ -75,6 +75,7 @@ struct NextAlarmView: View {
             VStack(alignment: .leading, spacing: 1) {
                 Label("Phase Wake", systemImage: "moon.stars.fill")
                     .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Brand.wave)
                     .widgetAccentable()
                 Text(entry.plan == nil ? L("home_no_alarm") : window)
                     .font(.system(size: 17, weight: .bold, design: .rounded))
@@ -87,6 +88,7 @@ struct NextAlarmView: View {
         case .accessoryCorner:
             Image(systemName: "moon.stars.fill")
                 .font(.system(size: 20))
+                .foregroundStyle(Brand.wave)
                 .widgetAccentable()
                 .widgetLabel(entry.plan.map { Format.time($0.target) } ?? "–")
         default:

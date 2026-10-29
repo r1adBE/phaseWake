@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
 
@@ -160,10 +161,10 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 Column(Modifier.padding(start = 12.dp).weight(1f)) {
                     Text(
                         stringResource(if (ready) R.string.check_ready else R.string.check_not_ready),
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.titleMedium,
                     )
                     if (ready) {
-                        Text(stringResource(R.string.check_ready_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.check_ready_text), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             }
@@ -172,7 +173,7 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                     Check.entries.filter { it.inReadyList }.forEach { check ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(painterResource(R.drawable.ic_check), contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
-                            Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(start = 8.dp))
+                            Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, color = PhaseWakeTheme.brand.mutedSoft, modifier = Modifier.padding(start = 8.dp))
                         }
                     }
                 }
@@ -180,13 +181,13 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
             state.failed.forEach { check ->
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
-                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.labelLarge)
+                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.titleSmall)
                     val problem = if (check == Check.BATTERY || check == Check.WATCH_BATTERY) {
                         stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
                     } else {
                         stringResource(check.problem)
                     }
-                    Text(problem, style = MaterialTheme.typography.bodySmall)
+                    Text(problem, style = MaterialTheme.typography.bodyMedium)
                     check.action?.let { action ->
                         FilledTonalButton(onClick = { onFix(check) }, modifier = Modifier.align(Alignment.End).padding(top = 6.dp)) {
                             Text(stringResource(action))

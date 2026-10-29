@@ -11,6 +11,8 @@ struct HomeView: View {
     @State private var failedChecks: [PhoneCheck] = []
     @State private var nightstand = false
     @State private var sounds = false
+    /// Gescrollt: «Neuer Wecker» nur noch als runder Knopf, damit er ruhiger über den Karten liegt.
+    @State private var fabCompact = false
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -18,13 +20,13 @@ struct HomeView: View {
             ZStack {
                 if scheme == .dark { NightSky() }
                 ScrollView {
-                    VStack(spacing: 12) {
+                    VStack(spacing: 16) {
                         TimelineView(.everyMinute) { context in
                             header(now: context.date)
                         }
                         TimelineView(.everyMinute) { context in
                             let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current)
-                            VStack(spacing: 12) {
+                            VStack(spacing: 16) {
                                 // Nacht-Check nur, wenn ein Wecker ansteht.
                                 if plan != nil {
                                     NightCheckCard(failed: failedChecks) { check in
@@ -62,7 +64,7 @@ struct HomeView: View {
                                    context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,
                                    !(evening && tonight == sounds.night) {
                                     VStack(alignment: .leading, spacing: 8) {
-                                        Text(L("home_morning")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                                        Text(L("home_morning")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                                         NightSoundsButton(night: sounds.night, title: sounds.last.formatted(date: .abbreviated, time: .omitted))
                                     }
                                     .card()
@@ -71,8 +73,7 @@ struct HomeView: View {
                         }
                         if !model.alarms.isEmpty {
                             Text(L("home_alarms"))
-                                .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
-                                .foregroundStyle(.secondary)
+                                .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 20)
                                 .padding(.top, 8)
@@ -82,33 +83,24 @@ struct HomeView: View {
                             if !model.canAddAlarm {
                                 Text(L("home_max_alarms", PhoneModel.maxAlarms))
                                     .font(Fonts.manrope(12, relativeTo: .caption))
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Brand.tertiaryText(scheme))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.horizontal, 20)
                             }
                         }
-                        Spacer(minLength: 80)
                     }
+                    .padding(.bottom, 16)
                 }
                 .ignoresSafeArea(edges: .top)
-            }
-            .background(scheme == .dark ? Color.clear : Color(hex: 0xF4F6FB))
-            .overlay(alignment: .bottomTrailing) {
-                if !model.alarms.isEmpty {
-                    Button { creating = true } label: {
-                        Label(L("home_add_alarm"), systemImage: "plus")
-                            .font(Fonts.manrope(15, .bold, relativeTo: .headline))
-                            .padding(.horizontal, 20).padding(.vertical, 16)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(scheme == .dark ? Brand.echo : Color(hex: 0xDCE4FF))
-                    .foregroundStyle(scheme == .dark ? .white : Brand.nightTop)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(16)
-                    // Höchstens acht Wecker; der Hinweis steht unter der Liste.
-                    .disabled(!model.canAddAlarm)
+                .onScrollGeometryChange(for: Bool.self) { $0.contentOffset.y + $0.contentInsets.top > 8 } action: { _, scrolled in
+                    withAnimation(.snappy) { fabCompact = scrolled }
+                }
+                // Der Knopf als Einschub unten: Die Liste endet über ihm, die letzte Karte bleibt ganz sichtbar.
+                .safeAreaInset(edge: .bottom, alignment: .trailing) {
+                    if !model.alarms.isEmpty { addButton }
                 }
             }
+            .background(scheme == .dark ? Color.clear : Brand.paper)
             .task(id: scenePhase) {
                 // Bei jedem Öffnen und danach jede halbe Minute prüfen.
                 while scenePhase == .active, !Task.isCancelled {
@@ -123,6 +115,28 @@ struct HomeView: View {
             .sheet(item: $editing) { EditorView(existing: $0) }
             .sheet(isPresented: $creating) { EditorView(existing: nil) }
         }
+    }
+
+    /// «Neuer Wecker»: ganz oben ausgeschrieben, beim Scrollen nur das Plus.
+    private var addButton: some View {
+        Button { creating = true } label: {
+            Group {
+                if fabCompact {
+                    Image(systemName: "plus").frame(width: 24, height: 24).padding(16)
+                } else {
+                    Label(L("home_add_alarm"), systemImage: "plus").padding(.horizontal, 20).padding(.vertical, 16)
+                }
+            }
+            .font(Fonts.manrope(15, .bold, relativeTo: .headline))
+        }
+        .accessibilityLabel(L("home_add_alarm"))
+        .buttonStyle(.borderedProminent)
+        .tint(Brand.accent(scheme))
+        .foregroundStyle(Brand.onAccent(scheme))
+        .clipShape(RoundedRectangle(cornerRadius: Brand.cardRadius))
+        .padding(16)
+        // Höchstens acht Wecker; der Hinweis steht unter der Liste.
+        .disabled(!model.canAddAlarm)
     }
 
     private func header(now: Date) -> some View {
@@ -157,13 +171,13 @@ struct HomeView: View {
                     Label(L("home_add_alarm"), systemImage: "plus").font(Fonts.manrope(15, .bold, relativeTo: .headline))
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.white)
-                .foregroundStyle(Brand.nightBottom)
+                .tint(Brand.wave)
+                .foregroundStyle(Brand.nightTop)
             }
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)
-        .foregroundStyle(.white)
+        .foregroundStyle(Brand.moon)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 22)
         .padding(.top, 70)
@@ -189,14 +203,14 @@ struct HomeView: View {
     }
 }
 
-/// Karte auf dem Hintergrund: dunkel durchscheinend, hell weiss.
+/// Karte auf dem Hintergrund: dunkel Weiss mit 6 %, hell weiss; Radius 22 wie auf Android.
 struct CardBackground: ViewModifier {
     @Environment(\.colorScheme) private var scheme
     func body(content: Content) -> some View {
         content
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(scheme == .dark ? Color.white.opacity(0.07) : Color.white, in: RoundedRectangle(cornerRadius: 20))
+            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
             .padding(.horizontal, 16)
     }
 }
@@ -207,12 +221,13 @@ extension View {
 
 private struct NightstandButton: View {
     let action: () -> Void
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 4) {
-                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                Text(L("nightstand_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
             }
         }
         .buttonStyle(.plain)
@@ -225,6 +240,7 @@ private struct LastNightCard: View {
     let now: Date
     let hint: MissHint?
     let onFeeling: (Int) -> Void
+    @Environment(\.colorScheme) private var scheme
 
     /// So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen».
     private static let morning: TimeInterval = 12 * 3600
@@ -233,15 +249,16 @@ private struct LastNightCard: View {
         let isMorning = now.timeIntervalSince(night.wokeAt) < Self.morning
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 46)
-            Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            // Erklärung (14, leise), darunter die Zusatzinfos (12, noch leiser).
+            Text(nightSummary(night)).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
+            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
             if let unmeasured = unmeasuredText(night) {
-                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
             }
             if let hint {
                 VStack(alignment: .leading, spacing: 2) {

@@ -133,12 +133,12 @@ struct NightCheckCard: View {
             Button { if failed.isEmpty { withAnimation { expanded.toggle() } } } label: {
                 HStack(spacing: 12) {
                     Image(systemName: failed.isEmpty ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
-                        .foregroundStyle(failed.isEmpty ? Color.accentColor : .red)
+                        .foregroundStyle(failed.isEmpty ? Brand.accent(scheme) : .red)
                         .font(.title3)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(L(failed.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                        Text(L(failed.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                         if failed.isEmpty {
-                            Text(L("check_ready_text")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                            Text(L("check_ready_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
                         }
                     }
                     Spacer()
@@ -148,14 +148,14 @@ struct NightCheckCard: View {
             .disabled(!failed.isEmpty)
             if failed.isEmpty && expanded {
                 ForEach([PhoneCheck.watch, .watchApp, .alarms, .battery], id: \.self) { check in
-                    Label(check.title, systemImage: "checkmark").font(Fonts.manrope(13, relativeTo: .footnote))
+                    Label(check.title, systemImage: "checkmark").font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                 }
             }
             ForEach(failed, id: \.self) { check in
                 HStack(alignment: .center) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(check.title).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
-                        Text(check.problem).font(Fonts.manrope(12, relativeTo: .caption))
+                        Text(check.problem).font(Fonts.manrope(14, relativeTo: .subheadline))
                     }
                     Spacer()
                     if check.canFix {
@@ -168,7 +168,7 @@ struct NightCheckCard: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(failed.isEmpty ? (scheme == .dark ? Color.white.opacity(0.07) : Color.white) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: 20))
+        .background(failed.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
         .padding(.horizontal, 16)
     }
 }

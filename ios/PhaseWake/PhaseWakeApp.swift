@@ -45,6 +45,7 @@ enum ThemeMode: String, CaseIterable, Identifiable {
 struct RootView: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         @Bindable var model = model
@@ -53,7 +54,7 @@ struct RootView: View {
             HistoryView().tabItem { Label(L("nav_history"), systemImage: "chart.bar") }.tag(AppTab.history)
             SettingsView().tabItem { Label(L("nav_settings"), systemImage: "slider.horizontal.3") }.tag(AppTab.settings)
         }
-        .tint(Brand.accentDark)
+        .tint(Brand.accent(scheme))
         .onChange(of: scenePhase) { _, phase in
             guard phase == .active else { return }
             // Beim Öffnen: alte Ausschnitte weg, Wochenrückblick mit dem neuesten Stand.

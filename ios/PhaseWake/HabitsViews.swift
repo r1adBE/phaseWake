@@ -10,7 +10,7 @@ struct RoutineCard: View {
         if !model.routineItems.isEmpty {
             let done = Set(model.routineDone(night: night))
             VStack(alignment: .leading, spacing: 4) {
-                Label(L("routine_title"), systemImage: "checklist").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Label(L("routine_title"), systemImage: "checklist").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     .padding(.bottom, 4)
                 ForEach(model.routineItems) { item in
                     let checked = done.contains(item.id)
