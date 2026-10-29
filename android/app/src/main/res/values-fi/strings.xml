@@ -428,6 +428,7 @@
     <string name="backup_busy">Hetki …</string>
     <string name="restore_open">Avaa</string>
     <string name="restore_wrong_password">Väärä salasana tai ei Phase Wake -varmuuskopio. Mitään ei muutettu.</string>
+    <string name="restore_unreadable">Tiedostoa ei voitu lukea. Mitään ei muutettu.</string>
     <string name="restore_preview">Herätykset: %1$d · Yöt: %2$d · Päivät, joilla muistiinpanoja: %3$d</string>
     <string name="restore_confirm_title">Korvataanko tiedot?</string>
     <string name="restore_confirm_text">Tämän puhelimen herätykset, historia, muistiinpanot ja asetukset korvataan varmuuskopiolla.</string>

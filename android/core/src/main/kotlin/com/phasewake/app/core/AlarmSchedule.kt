@@ -72,6 +72,8 @@ object AlarmSchedule {
      * Wandzeit von [at] in [zone] in Millisekunden: Datum und Uhrzeit vor Ort, gezählt, als wäre es UTC
      * (2026-10-29 07:00 in Zürich und in New York ergibt dieselbe Zahl). So speichert [AlarmSpec.skipUntil] den
      * übersprungenen Termin: Auf Reisen fällt derselbe Kalendertag aus, nicht derselbe absolute Zeitpunkt.
+     * Bruchteile einer Millisekunde werden abgeschnitten (abgerundet, wie `Instant.toEpochMilli`); Swift rechnet
+     * gleich (`rounded(.down)`), damit beide Kerne bitgleiche Werte liefern.
      */
     fun wallMillis(at: Instant, zone: ZoneId): Long =
         at.atZone(zone).toLocalDateTime().toInstant(ZoneOffset.UTC).toEpochMilli()
@@ -144,21 +146,26 @@ object AlarmSchedule {
         if (old.hour == edited.hour && old.minute == edited.minute && old.days == edited.days) old.skipUntil else 0L
 
     /**
-     * [AlarmSpec.skipUntil] nach einem Editor mit Schalter «Nächstes Mal überspringen» (Uhr). [edited] trägt den Stand
-     * des Schalters in `skipUntil`: gleich wie bei [old] = nicht angefasst → [keepSkip]; anders und > 0 = bewusst
-     * eingeschaltet → [skipNext] auf den neuen Stand (gilt für den neuen Zeitplan, ab [doneUntil]); 0 = ausgeschaltet → 0.
+     * [AlarmSpec.skipUntil] nach einem Editor mit Schalter «Nächstes Mal überspringen» (Uhr). [requested] ist die
+     * ausdrückliche Wahl im Editor, nicht aus Werten erraten:
+     * - `null` = Schalter nicht angefasst → [keepSkip] (geänderte Zeit oder Tage heben das Überspringen auf).
+     * - `true` = bewusst eingeschaltet → [skipNext] auf den neuen Stand [edited] (nächster Termin des neuen Zeitplans,
+     *   ab [doneUntil]); Einmal-Wecker oder ohne Termin → 0.
+     * - `false` = ausgeschaltet → 0.
+     * `edited.skipUntil` wird nicht gelesen.
      */
     fun editedSkip(
         old: AlarmSpec,
         edited: AlarmSpec,
+        requested: Boolean?,
         now: Instant,
         zone: ZoneId,
         holidays: Set<LocalDate> = emptySet(),
         doneUntil: Instant? = null,
-    ): Long = when {
-        edited.skipUntil == old.skipUntil -> keepSkip(old, edited)
-        edited.skipUntil > 0L -> skipNext(edited.copy(skipUntil = 0L), now, zone, holidays, doneUntil).skipUntil
-        else -> 0L
+    ): Long = when (requested) {
+        null -> keepSkip(old, edited)
+        true -> skipNext(edited.copy(skipUntil = 0L), now, zone, holidays, doneUntil).skipUntil
+        false -> 0L
     }
 
     /** Hebt das Überspringen auf. */

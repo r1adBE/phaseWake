@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">Άνοιξε το Phase Wake στο Apple Watch σου πριν κοιμηθείς. Το watchOS ενεργοποιεί το ξυπνητήρι μόνο όσο η εφαρμογή είναι ανοιχτή.</string>
     <string name="night_unmeasured_apple">Τα πρώτα %1$d λ. δεν μετρήθηκαν – το Apple Watch μετρά μόνο τα τελευταία %2$d λ. πριν τον στόχο.</string>
     <string name="settings_licenses_text_apple">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: SoundAnalysis της Apple, ενσωματωμένο στο iOS.\nΉχοι: ελεύθερες ηχογραφήσεις (CC0) από το opengameart.org</string>
-    <string name="restore_unreadable">Δεν ήταν δυνατή η ανάγνωση του αρχείου. Δεν άλλαξε τίποτα.</string>
 </resources>

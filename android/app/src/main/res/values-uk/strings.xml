@@ -454,6 +454,7 @@
     <string name="backup_busy">Хвилинку …</string>
     <string name="restore_open">Відкрити</string>
     <string name="restore_wrong_password">Неправильний пароль або це не копія Phase Wake. Нічого не змінено.</string>
+    <string name="restore_unreadable">Не вдалося прочитати файл. Нічого не змінено.</string>
     <string name="restore_preview">Будильники: %1$d · Ночі: %2$d · Дні з нотатками: %3$d</string>
     <string name="restore_confirm_title">Замінити дані?</string>
     <string name="restore_confirm_text">Будильники, історію, нотатки й налаштування на цьому телефоні буде замінено копією.</string>

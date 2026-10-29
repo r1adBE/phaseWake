@@ -54,7 +54,8 @@ internal fun ColumnScope.BackupRows() {
     var password by remember { mutableStateOf("") }
     // Datei schon gewählt, Passwort dabei verloren: noch einmal fragen, nie mit leerem Passwort verschlüsseln.
     var saveTo by rememberSaveable { mutableStateOf<Uri?>(null) }
-    var restoreFrom by remember { mutableStateOf<Uri?>(null) }
+    // Inhalt der gewählten Datei, schon gelesen: Nicht lesbar oder zu gross meldet «nicht lesbar», nie «Falsches Passwort».
+    var restoreFrom by remember { mutableStateOf<ByteArray?>(null) }
     var preview by remember { mutableStateOf<BackupPreview?>(null) }
     var busy by remember { mutableStateOf(false) }
     fun toast(text: Int) = Toast.makeText(context, res.getString(text), Toast.LENGTH_SHORT).show()
@@ -72,7 +73,15 @@ internal fun ColumnScope.BackupRows() {
         if (uri == null) return@rememberLauncherForActivityResult
         if (BackupFile.passwordOk(chosen)) write(uri, chosen) else saveTo = uri
     }
-    val pick = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri -> restoreFrom = uri }
+    val pick = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri == null) return@rememberLauncherForActivityResult
+        scope.launch {
+            busy = true
+            val bytes = BackupManager.read(context, uri)
+            busy = false
+            if (bytes == null) toast(R.string.restore_unreadable) else restoreFrom = bytes
+        }
+    }
 
     DataRow(R.string.settings_backup, R.string.settings_backup_hint) { creating = true }
     DataRow(R.string.settings_restore, null) { pick.launch(arrayOf("*/*")) }
@@ -94,16 +103,20 @@ internal fun ColumnScope.BackupRows() {
                 saveTo = null
                 write(uri, chosen)
             },
-            onDismiss = { saveTo = null },
+            onDismiss = {
+                saveTo = null
+                // Das System hat die Datei schon angelegt; ohne Passwort bliebe sie leer liegen.
+                app.appScope.launch { BackupManager.discard(app, uri) }
+            },
         )
     }
-    restoreFrom?.let { uri ->
+    restoreFrom?.let { bytes ->
         OpenDialog(
             onOpen = { entered, onWrong ->
                 scope.launch {
                     busy = true
                     try {
-                        preview = BackupManager.open(context, uri, entered)
+                        preview = BackupManager.open(bytes, entered)
                         restoreFrom = null
                     } catch (_: BackupException) {
                         // Grund bewusst nicht unterschieden: Falsches Passwort und fremde Datei sehen gleich aus.

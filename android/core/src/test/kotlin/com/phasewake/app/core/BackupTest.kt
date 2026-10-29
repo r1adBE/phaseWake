@@ -75,6 +75,15 @@ class BackupTest {
     }
 
     @Test
+    fun readLimitedRefusesLargeFile() {
+        val data = ByteArray(200_000) { it.toByte() }
+        assertContentEquals(data, BackupFile.readLimited(data.inputStream(), limit = 200_000L))
+        assertNull(BackupFile.readLimited(data.inputStream(), limit = 199_999L))
+        assertContentEquals(ByteArray(0), BackupFile.readLimited(ByteArray(0).inputStream()))
+        assertContentEquals(data, BackupFile.readLimited(data.inputStream()))
+    }
+
+    @Test
     fun roundTrip() {
         val sealed = BackupFile.encrypt(payload.toJson().encodeToByteArray(), "geheim123", salt, nonce)
         assertContentEquals(BackupFile.MAGIC, sealed.copyOfRange(0, 5))

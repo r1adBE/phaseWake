@@ -235,13 +235,13 @@ class AlarmScheduler(
 
     /**
      * Abgelegtes Wecken aus [DirectBoot], das noch aussteht: geschlummert (Schlummer-Ende nach der
-     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und nicht älter
-     * als [DirectBoot.MISSED_DURING_BOOT]. Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
+     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und noch nachzuholen
+     * ([DirectBoot.catchesUp]: Probewecker und Powernap nur 60 s). Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
      */
     private suspend fun pendingRing(now: Instant): DirectBoot.Saved? {
         val saved = DirectBoot.load(context) ?: return null
         val late = saved.at.isAfter(saved.plan.target) || !saved.plan.target.isAfter(now)
-        if (!late || saved.at.isBefore(now.minus(DirectBoot.MISSED_DURING_BOOT))) return null
+        if (!late || !DirectBoot.catchesUp(saved, now)) return null
         val done = doneUntil(store.data.first())[saved.plan.alarmId]
         if (done != null && !done.isBefore(saved.plan.target)) return null
         if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled } && transient.specFor(saved.plan.alarmId) == null) return null

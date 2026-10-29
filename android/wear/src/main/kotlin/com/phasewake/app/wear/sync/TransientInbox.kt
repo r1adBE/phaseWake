@@ -24,6 +24,7 @@ object TransientInbox {
     /**
      * Plan vom Handy übernehmen; einen Probewecker bestätigt die Uhr gleich ([DataLayer.PATH_TEST_ACK]). Kollidiert er
      * mit einem Wecker ([conflict]), verwirft die Uhr ihn ohne Bestätigung: Die Messung des echten Weckers läuft weiter.
+     * Kommt er zu spät an (nicht mehr [Transient.isPlannable]), ebenso: Die Uhr bestätigt nie einen Test, den sie nicht plant.
      */
     suspend fun received(app: PhaseWakeWear, path: String, payload: ByteArray?) {
         val plan = try {
@@ -33,7 +34,11 @@ object TransientInbox {
             return
         }
         val expected = if (path == DataLayer.PATH_TEST) TransientKind.TEST else TransientKind.NAP
-        if (plan.kind != expected || !Transient.isActive(plan, Instant.now())) return
+        if (plan.kind != expected) return
+        if (!Transient.isPlannable(plan, Instant.now())) {
+            app.diag.log(DiagKind.OTHER, "transient too late")
+            return
+        }
         conflict(app, plan)?.let { reason ->
             app.diag.log(DiagKind.OTHER, "transient refused $reason")
             return

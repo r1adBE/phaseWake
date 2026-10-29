@@ -49,10 +49,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let ringLimit: TimeInterval = 3600
     /// Spielraum, um den das System eine Sitzung früher oder später starten darf.
     static let startTolerance: TimeInterval = 120
+    /// Kennung des Rückfalls eines echten Weckers; Probewecker und Powernap nutzen nie diese (`fallbackKey`).
     nonisolated static let fallbackId = "phasewake.fallback"
     /// Eigene Kennung für das Wecken nach einer abgebrochenen Sitzung: Neu planen ersetzt sie nicht.
     static let interruptedId = "phasewake.fallback.interrupted"
-    /// Eigene Kennung für das Wecken eines vorübergehenden Plans, der die Sitzung der Nacht nicht verdrängen durfte.
+    /// Eigene Kennung für den Rückfall eines vorübergehenden Plans (Probewecker, Powernap); `fallbackId` bleibt daneben.
     static let transientFallbackId = "phasewake.fallback.transient"
     /// Mitteilung «Öffne Phase Wake auf der Uhr», wenn die Sitzung der Nacht nur bei offener App planbar ist.
     static let openAppId = "phasewake.openApp"
@@ -79,6 +80,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var deadline: Timer?
     /// Beginn des Klingelns, für die Steigerung der Vibration.
     @ObservationIgnored var hapticStart = Date()
+    /// Zielzeit, für die `keepRealFallback` zuletzt protokolliert hat.
+    @ObservationIgnored private var keptFallback: Date?
 
     @ObservationIgnored let motion = CMMotionManager()
     /// Alle Zugriffe auf den `EpochAssembler` laufen über diese eine serielle Warteschlange.
@@ -109,31 +112,20 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Plant die Sitzung für `plan`. Gelingt das nicht (App nicht aktiv, zu weit voraus), wartet der
     /// Plan, und der Rückfall steht trotzdem.
     func schedule(_ plan: WakePlan?) {
-        if phase.isRinging || phase.isSnoozed {
-            // Hängengeblieben (z. B. nach einem Neustart der App ohne Sitzung): abschliessen; das plant neu.
-            if ringExpired { finishInterrupted() }
-            return
-        }
-        if case .measuring(let running) = phase {
-            // Wecker während der Messung geändert, aus- oder abgeschaltet: Messung ohne Aufzeichnung beenden.
-            guard running != plan else { return }
-            // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
-            if let plan, Transient.kindOf(plan.alarmId) != nil, Transient.kindOf(running.alarmId) == nil {
-                scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
-                return
-            }
-            cancelMeasuring()
-        }
+        if keepsNight(for: plan) { return }
         guard let plan else {
             invalidateSession()
-            removeFallback()
+            removeFallback([Self.fallbackId, Self.transientFallbackId])
             phase = .idle
             publishArmed()
             return
         }
+        // Rückfall je unter eigener Kennung: Ein Probewecker oder Powernap ersetzt nie den des echten Weckers, der
+        // daneben für dessen nächste Nacht stehen bleibt – auch wenn der vorübergehende Plan nie sauber endet.
+        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
+        if Transient.kindOf(plan.alarmId) != nil { keepRealFallback() }
         let active = WKApplication.shared().applicationState == .active
         if !active, keepsRealSession(for: plan) { return }
-        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay))
         if case .scheduled(let current) = phase, current == plan, session != nil { return }
 
         let start = Self.sessionStart(plan)
@@ -162,15 +154,62 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         publishArmed()
     }
 
+    /// Klingelt, schlummert oder misst gerade eine Nacht: nur Rückfälle nachführen und die Nacht laufen lassen.
+    /// Ausnahme: Eine Messung endet ohne Aufzeichnung, wenn ihr Wecker geändert, aus- oder abgeschaltet wurde (dann
+    /// plant `schedule` weiter). - Returns: ob `schedule` hier endet.
+    private func keepsNight(for plan: WakePlan?) -> Bool {
+        if phase.isRinging || phase.isSnoozed {
+            // Hängengeblieben (z. B. nach einem Neustart der App ohne Sitzung): abschliessen; das plant neu.
+            if ringExpired {
+                finishInterrupted()
+                return true
+            }
+            // Klingelt ein vorübergehender Plan, bleibt der Rückfall des echten Weckers aktuell.
+            if Transient.kindOf(nightPlan?.alarmId) != nil { keepRealFallback() }
+            return true
+        }
+        guard case .measuring(let running) = phase else { return false }
+        let runningTransient = Transient.kindOf(running.alarmId) != nil
+        if runningTransient { keepRealFallback() }
+        guard running != plan else { return true }
+        // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
+        if let plan, Transient.kindOf(plan.alarmId) != nil, !runningTransient {
+            scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+            return true
+        }
+        cancelMeasuring()
+        return false
+    }
+
     /// Bei geschlossener App lässt sich keine neue Sitzung planen: Ein vorübergehender Plan verdrängt dann nicht die
-    /// schon geplante Sitzung des echten Weckers, sondern weckt über eine eigene Rückfall-Mitteilung. Öffnet man die
-    /// App, bekommt er die Sitzung; danach plant `WatchModel.transientEnded` die Nacht neu. - Returns: ob so behandelt.
+    /// schon geplante Sitzung des echten Weckers, sondern weckt über seine eigene Rückfall-Mitteilung (in `schedule`
+    /// gestellt). Öffnet man die App, bekommt er die Sitzung; danach plant `WatchModel.transientEnded` die Nacht neu.
+    /// - Returns: ob so behandelt.
     private func keepsRealSession(for plan: WakePlan) -> Bool {
         guard Transient.kindOf(plan.alarmId) != nil, case .scheduled(let current) = phase, session != nil,
               Transient.kindOf(current.alarmId) == nil else { return false }
-        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
         DiagStore.shared.log(.scheduled, "keep session \(Format.time(current.target)), transient by notification")
         return true
+    }
+
+    /// Kennung des Rückfalls für die Nacht `alarmId`: `transientFallbackId` für Probewecker und Powernap, sonst
+    /// `fallbackId`. So entfernt oder ersetzt ein vorübergehender Plan nie den Rückfall des echten Weckers.
+    static func fallbackKey(for alarmId: String?) -> String {
+        Transient.kindOf(alarmId) != nil ? transientFallbackId : fallbackId
+    }
+
+    /// Rückfall des nächsten echten Weckers (`WatchModel.realPlan`) unter `fallbackId` stellen, solange ein
+    /// vorübergehender Plan geplant ist, misst oder klingelt; ohne echten Wecker entfernen.
+    private func keepRealFallback() {
+        guard let real = WatchModel.shared.realPlan else {
+            removeFallback([Self.fallbackId])
+            return
+        }
+        scheduleFallback(at: real.target.addingTimeInterval(Self.fallbackDelay))
+        // Diagnose: einmal je Zielzeit, nicht bei jedem Neuplanen.
+        guard keptFallback != real.target else { return }
+        keptFallback = real.target
+        DiagStore.shared.log(.scheduled, "real fallback kept \(Format.time(real.target))")
     }
 
     /// Bittet, die App zu öffnen, damit die Sitzung für `plan` geplant wird – nur, wenn sie schon planbar wäre (36 h).

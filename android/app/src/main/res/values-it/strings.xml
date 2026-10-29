@@ -441,6 +441,7 @@
     <string name="backup_busy">Un momento …</string>
     <string name="restore_open">Apri</string>
     <string name="restore_wrong_password">Password errata o file non di Phase Wake. Nulla è stato modificato.</string>
+    <string name="restore_unreadable">Impossibile leggere il file. Non è stato modificato nulla.</string>
     <string name="restore_preview">Sveglie: %1$d · Notti: %2$d · Giorni con note: %3$d</string>
     <string name="restore_confirm_title">Sostituire i dati?</string>
     <string name="restore_confirm_text">Sveglie, cronologia, note e impostazioni su questo telefono saranno sostituite dal backup.</string>

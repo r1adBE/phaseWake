@@ -1,5 +1,7 @@
 package com.phasewake.app.core
 
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.nio.charset.StandardCharsets
 import java.security.GeneralSecurityException
 import java.text.Normalizer
@@ -65,6 +67,29 @@ object BackupFile {
      * versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
      */
     const val MAX_FILE_BYTES: Long = 20L * 1024 * 1024
+
+    /** Lesepuffer von [readLimited] in Byte. */
+    private const val READ_BUFFER: Int = 64 * 1024
+
+    /**
+     * Liest [input] ganz, aber höchstens [limit] Byte (Vorgabe [MAX_FILE_BYTES]). `null`, wenn die Datei grösser
+     * ist: Sie wird nicht ganz in den Speicher gelesen, und die App meldet «Datei nicht lesbar» (`restore_unreadable`),
+     * nicht «Falsches Passwort». Fehler beim Lesen ([java.io.IOException]) gehen an den Aufrufer.
+     * Apple prüft stattdessen die Dateigrösse vorab (Dateiattribut), mit derselben Grenze und derselben Meldung.
+     */
+    fun readLimited(input: InputStream, limit: Long = MAX_FILE_BYTES): ByteArray? {
+        val out = ByteArrayOutputStream()
+        val buffer = ByteArray(READ_BUFFER)
+        var total = 0L
+        while (true) {
+            val read = input.read(buffer)
+            if (read < 0) break
+            total += read
+            if (total > limit) return null
+            out.write(buffer, 0, read)
+        }
+        return out.toByteArray()
+    }
 
     /** Ob [password] lang genug ist: mindestens [MIN_PASSWORD] Unicode-Codepunkte nach NFC. Gleiche Zählung in Swift. */
     fun passwordOk(password: String): Boolean {

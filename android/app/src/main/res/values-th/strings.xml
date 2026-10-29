@@ -415,6 +415,7 @@
     <string name="backup_busy">รอสักครู่ …</string>
     <string name="restore_open">เปิด</string>
     <string name="restore_wrong_password">รหัสผ่านผิดหรือไม่ใช่ข้อมูลสำรองของ Phase Wake ไม่มีอะไรเปลี่ยน</string>
+    <string name="restore_unreadable">อ่านไฟล์ไม่ได้ ไม่มีการเปลี่ยนแปลงใดๆ</string>
     <string name="restore_preview">การปลุก: %1$d · คืน: %2$d · วันที่มีบันทึก: %3$d</string>
     <string name="restore_confirm_title">แทนที่ข้อมูลไหม</string>
     <string name="restore_confirm_text">การปลุก ประวัติ บันทึก และการตั้งค่าในโทรศัพท์นี้จะถูกแทนที่ด้วยข้อมูลสำรอง</string>

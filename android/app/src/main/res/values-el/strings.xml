@@ -428,6 +428,7 @@
     <string name="backup_busy">Μια στιγμή …</string>
     <string name="restore_open">Άνοιγμα</string>
     <string name="restore_wrong_password">Λάθος κωδικός ή δεν είναι αντίγραφο του Phase Wake. Δεν άλλαξε τίποτα.</string>
+    <string name="restore_unreadable">Δεν ήταν δυνατή η ανάγνωση του αρχείου. Δεν άλλαξε τίποτα.</string>
     <string name="restore_preview">Αφυπνίσεις: %1$d · Νύχτες: %2$d · Μέρες με σημειώσεις: %3$d</string>
     <string name="restore_confirm_title">Αντικατάσταση δεδομένων;</string>
     <string name="restore_confirm_text">Οι αφυπνίσεις, το ιστορικό, οι σημειώσεις και οι ρυθμίσεις αυτού του κινητού θα αντικατασταθούν από το αντίγραφο.</string>

@@ -87,6 +87,9 @@ class SkipDoneTest {
     fun wallMillisIgnoresZoneAndHandlesGap() {
         assertEquals(1_793_257_200_000L, AlarmSchedule.wallMillis(at("2026-10-29T07:00"), zurich))
         assertEquals(1_793_257_200_000L, AlarmSchedule.wallMillis(at("2026-10-29T07:00", newYork), newYork))
+        // Bruchteile einer Millisekunde: abgeschnitten, nie aufgerundet (Swift gleich).
+        assertEquals(1_793_257_200_000L, AlarmSchedule.wallMillis(at("2026-10-29T07:00").plusNanos(999_999), zurich))
+        assertEquals(1_793_257_200_001L, AlarmSchedule.wallMillis(at("2026-10-29T07:00").plusNanos(1_500_000), zurich))
         // Zeitumstellung (28.3.2027, 2:30 fällt aus → 3:30): Übersprungen wird genau dieser Termin.
         val night = alarm(hour = 2, days = DayOfWeek.entries.toSet()).copy(minute = 30)
         val skipped = AlarmSchedule.skipNext(night, at("2027-03-27T22:00"), zurich)
@@ -108,21 +111,46 @@ class SkipDoneTest {
     fun editedSkipFollowsSwitch() {
         val now = at("2026-10-28T22:00")
         val old = alarm().copy(skipUntil = wall("2026-10-29T07:00"))
-        // Schalter nicht angefasst: wie keepSkip.
-        assertEquals(old.skipUntil, AlarmSchedule.editedSkip(old, old.copy(windowMinutes = 20), now, zurich))
-        assertEquals(0L, AlarmSchedule.editedSkip(old, old.copy(hour = 8), now, zurich))
+        // Schalter nicht angefasst (null): wie keepSkip; edited.skipUntil zählt nicht.
+        assertEquals(old.skipUntil, AlarmSchedule.editedSkip(old, old.copy(windowMinutes = 20), null, now, zurich))
+        assertEquals(old.skipUntil, AlarmSchedule.editedSkip(old, old.copy(skipUntil = 0L), null, now, zurich))
+        assertEquals(0L, AlarmSchedule.editedSkip(old, old.copy(hour = 8), null, now, zurich))
         // Ausgeschaltet.
-        assertEquals(0L, AlarmSchedule.editedSkip(old, old.copy(skipUntil = 0L), now, zurich))
+        assertEquals(0L, AlarmSchedule.editedSkip(old, old, false, now, zurich))
         // Zeit geändert und Schalter bewusst eingeschaltet: gilt für die neue Zeit.
         val plain = alarm()
-        val edited = plain.copy(hour = 8, skipUntil = wall("2026-10-29T07:00"))
-        assertEquals(wall("2026-10-29T08:00"), AlarmSchedule.editedSkip(plain, edited, now, zurich))
+        assertEquals(wall("2026-10-29T08:00"), AlarmSchedule.editedSkip(plain, plain.copy(hour = 8), true, now, zurich))
         // … und nach frühem Wecken ab der erledigten Nacht.
         val early = at("2026-10-29T06:50")
         assertEquals(
             wall("2026-10-30T08:00"),
-            AlarmSchedule.editedSkip(plain, edited, early, zurich, doneUntil = at("2026-10-29T08:00")),
+            AlarmSchedule.editedSkip(plain, plain.copy(hour = 8), true, early, zurich, doneUntil = at("2026-10-29T08:00")),
         )
+        // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt übersprungen.
+        val sixDays = weekdays + DayOfWeek.SATURDAY
+        assertEquals(old.skipUntil, AlarmSchedule.editedSkip(old, old.copy(days = sixDays), true, now, zurich))
+        assertEquals(0L, AlarmSchedule.editedSkip(old, old.copy(days = sixDays), null, now, zurich))
+        // Einmal-Wecker: kein Überspringen.
+        assertEquals(0L, AlarmSchedule.editedSkip(plain, plain.copy(days = emptySet()), true, now, zurich))
+    }
+
+    @Test
+    fun editorShowsSkipAsSaved() {
+        // Uhr-Editor (M2): Schalter und Datum kommen aus skippedDate(Entwurf mit editedSkip), also aus dem gespeicherten Stand.
+        val now = at("2026-10-28T22:00")
+        val old = alarm().copy(skipUntil = wall("2026-10-29T07:00"))
+        fun shown(edited: AlarmSpec, requested: Boolean?) =
+            AlarmSchedule.skippedDate(edited.copy(skipUntil = AlarmSchedule.editedSkip(old, edited, requested, now, zurich)), now, zurich)
+        // Nicht angefasst, Zeit gleich: weiter «Übersprungen: Do».
+        assertEquals(LocalDate.of(2026, 10, 29), shown(old.copy(windowMinutes = 20), null))
+        // Nicht angefasst, Zeit oder Tage geändert: Schalter aus, wie beim Speichern.
+        assertNull(shown(old.copy(hour = 8), null))
+        assertNull(shown(old.copy(days = setOf(DayOfWeek.THURSDAY)), null))
+        // Danach bewusst eingeschaltet: Do 8:00 bzw. Do 7:00 mit den neuen Tagen.
+        assertEquals(LocalDate.of(2026, 10, 29), shown(old.copy(hour = 8), true))
+        assertEquals(LocalDate.of(2026, 10, 29), shown(old.copy(days = weekdays + DayOfWeek.SATURDAY), true))
+        // Ausgeschaltet: aus.
+        assertNull(shown(old, false))
     }
 
     @Test

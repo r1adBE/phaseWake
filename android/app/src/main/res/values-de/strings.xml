@@ -428,6 +428,7 @@
     <string name="backup_busy">Einen Moment …</string>
     <string name="restore_open">Öffnen</string>
     <string name="restore_wrong_password">Falsches Passwort oder keine Phase-Wake-Sicherung. Nichts wurde geändert.</string>
+    <string name="restore_unreadable">Die Datei liess sich nicht lesen. Nichts wurde geändert.</string>
     <string name="restore_preview">Wecker: %1$d · Nächte: %2$d · Tage mit Notizen: %3$d</string>
     <string name="restore_confirm_title">Daten ersetzen?</string>
     <string name="restore_confirm_text">Wecker, Verlauf, Notizen und Einstellungen auf diesem Handy werden durch die Sicherung ersetzt.</string>

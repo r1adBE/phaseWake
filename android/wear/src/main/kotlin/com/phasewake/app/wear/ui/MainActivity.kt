@@ -56,6 +56,8 @@ private fun WatchApp() {
     val nav = rememberSwipeDismissableNavController()
     val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
     var draft by rememberSaveable(stateSaver = draftSaver) { mutableStateOf<AlarmSpec?>(null) }
+    // Schalter «Nächstes Mal überspringen» in diesem Bearbeiten: null = nicht angefasst (AlarmSchedule.editedSkip).
+    var skipRequest by rememberSaveable { mutableStateOf<Boolean?>(null) }
     val holidays by app.holidays.dates.collectAsStateWithLifecycle(initialValue = emptySet())
     // Erledigte Nächte (früh geweckt): «Nächstes Mal überspringen» trifft dann den nächsten Termin.
     var done by remember { mutableStateOf(emptyMap<String, Instant>()) }
@@ -67,6 +69,7 @@ private fun WatchApp() {
     fun open(spec: AlarmSpec) {
         if (nav.currentDestination?.route != ROUTE_HOME) return
         draft = spec
+        skipRequest = null
         nav.navigate(ROUTE_EDITOR)
     }
     AppScaffold {
@@ -102,6 +105,7 @@ private fun WatchApp() {
                         onPickTime = { if (nav.currentDestination?.route == ROUTE_EDITOR) nav.navigate(ROUTE_TIME) },
                         onChange = { draft = it },
                         onSave = {
+                            val request = skipRequest
                             // Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
                             app.appScope.launch {
                                 val list = app.alarms.current().alarms
@@ -111,23 +115,20 @@ private fun WatchApp() {
                                     val zone = ZoneId.systemDefault()
                                     val doneAt = app.scheduler.doneUntil()[current.id]
                                     val holidays = app.holidays.current()
-                                    val merged = mergeEdit(stored, current) { old, edited ->
-                                        AlarmSchedule.editedSkip(old, edited, Instant.now(), zone, holidays, doneAt)
-                                    }
+                                    val merged = savedEdit(stored, current, request, Instant.now(), zone, holidays, doneAt)
                                     app.sync.publishAlarms(app.alarms.upsert(merged))
                                     app.scheduler.reschedule()
                                 }
                             }
                             back(ROUTE_EDITOR)
                         },
-                        skipped = AlarmSchedule.skippedDate(current, Instant.now(), ZoneId.systemDefault())?.let { shortDay(it) },
-                        onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) null else { on ->
-                            draft = if (on) {
-                                AlarmSchedule.skipNext(current.copy(skipUntil = 0L), Instant.now(), ZoneId.systemDefault(), holidays, done[current.id])
-                            } else {
-                                AlarmSchedule.undoSkip(current)
-                            }
-                        },
+                        // Anzeige aus dem Stand, der gespeichert würde (gleiche Kernregel wie beim Speichern).
+                        skipped = AlarmSchedule.skippedDate(
+                            savedEdit(alarms.firstOrNull { it.id == current.id }, current, skipRequest, Instant.now(), ZoneId.systemDefault(), holidays, done[current.id]),
+                            Instant.now(),
+                            ZoneId.systemDefault(),
+                        )?.let { shortDay(it) },
+                        onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) null else { on -> skipRequest = on },
                         onDelete = {
                             app.appScope.launch {
                                 app.sync.publishAlarms(app.alarms.remove(current.id))

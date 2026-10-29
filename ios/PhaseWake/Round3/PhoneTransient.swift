@@ -105,13 +105,16 @@ final class PhoneTransient {
         DiagStore.shared.log(.nap, "cancelled")
     }
 
-    /// Nicht starten, solange ein Fenster läuft, eine Nacht klingelt bzw. schlummert oder der Plan das nächste Fenster
-    /// überdeckte (`Transient.conflict`, wie Android); der Grund steht dann in `refused`.
+    /// Nicht starten, solange ein Fenster läuft (auch das eines Probeweckers oder Powernaps), eine Nacht klingelt bzw.
+    /// schlummert oder der Plan das nächste Fenster überdeckte (`Transient.conflict`, wie Android); der Grund steht dann
+    /// in `refused`.
     private func allowed(_ plan: TransientPlan) -> Bool {
         let model = PhoneModel.shared
         let now = Date()
         let ringing = model.backup.ringActive && (model.lastRing.map { now.timeIntervalSince($0) < Self.ringLimit } ?? false)
-        if let reason = Transient.conflict(plan, next: model.nextPlan(now: now), nightActive: ringing, now: now) {
+        // Wie `Transients.conflict` auf Android: Ein vorübergehender Plan in seinem Fenster zählt als laufende Nacht.
+        let running = [test, nap].compactMap { $0 }.contains { now >= $0.plan.windowStart && now < $0.plan.target }
+        if let reason = Transient.conflict(plan, next: model.nextPlan(now: now), nightActive: ringing || running, now: now) {
             refused = (plan.kind, reason)
             DiagStore.shared.log(plan.kind == .test ? .test : .nap, "refused \(reason.rawValue)")
             return false

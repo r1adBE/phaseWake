@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">Öffne Phase Wake vor dem Schlafen auf der Apple Watch. watchOS schaltet den Wecker nur bei offener App scharf.</string>
     <string name="night_unmeasured_apple">Erste %1$d Min nicht gemessen – die Apple Watch misst nur die letzten %2$d Min vor der Zielzeit.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: SoundAnalysis von Apple, in iOS eingebaut.\nKlänge: freie Aufnahmen (CC0) von opengameart.org</string>
-    <string name="restore_unreadable">Die Datei liess sich nicht lesen. Nichts wurde geändert.</string>
 </resources>

@@ -2,6 +2,7 @@ package com.phasewake.app.ring
 
 import android.content.Context
 import androidx.core.content.edit
+import com.phasewake.app.core.Transient
 import com.phasewake.app.ring.BackupAlarm.Companion.FORWARD_DELAY
 import com.phasewake.app.ring.BackupAlarm.Companion.MISSED_DURING_BOOT
 import com.phasewake.app.ring.BackupAlarm.Companion.backupPending
@@ -53,8 +54,8 @@ internal object BackupDirectBoot {
         val prefs = prefs(context)
         val at = Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L))
         val current = Instant.now()
-        // Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später.
-        if (at.isBefore(current.minus(MISSED_DURING_BOOT))) return
+        // Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später (Probewecker und Powernap: nur 60 s).
+        if (!Transient.catchesUpAfterBoot(prefs.getString(KEY_ID, null).orEmpty(), at, current, MISSED_DURING_BOOT)) return
         val target = prefs.getLong(KEY_TARGET, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli)
         setExact(context, maxOf(at, current.plus(FORWARD_DELAY)), showPending(context), backupPending(context, prefs.getString(KEY_ID, null), target))
     }
@@ -93,7 +94,8 @@ internal object SnoozeSafety {
     fun restore(context: Context) {
         val saved = load(context) ?: return
         val current = Instant.now()
-        if (saved.at.isBefore(current.minus(MISSED_DURING_BOOT))) {
+        // Wie beim Zweitwecker: Probewecker und Powernap nur 60 s nach dem Schlummer-Ende, sonst 30 Min.
+        if (!Transient.catchesUpAfterBoot(saved.alarmId.orEmpty(), saved.at, current, MISSED_DURING_BOOT)) {
             clear(context)
             return
         }

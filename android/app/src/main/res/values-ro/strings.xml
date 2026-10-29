@@ -441,6 +441,7 @@
     <string name="backup_busy">O clipă …</string>
     <string name="restore_open">Deschide</string>
     <string name="restore_wrong_password">Parolă greșită sau nu e o copie Phase Wake. Nu s-a schimbat nimic.</string>
+    <string name="restore_unreadable">Fișierul nu a putut fi citit. Nu s-a modificat nimic.</string>
     <string name="restore_preview">Alarme: %1$d · Nopți: %2$d · Zile cu notițe: %3$d</string>
     <string name="restore_confirm_title">Înlocuiești datele?</string>
     <string name="restore_confirm_text">Alarmele, istoricul, notițele și setările de pe acest telefon vor fi înlocuite de copie.</string>

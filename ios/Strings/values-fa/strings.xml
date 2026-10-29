@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند.</string>
     <string name="night_unmeasured_apple">%1$d دق اول اندازه‌گیری نشد – Apple Watch فقط %2$d دق آخر پیش از زمان هدف را اندازه می‌گیرد.</string>
     <string name="settings_licenses_text_apple">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org</string>
-    <string name="restore_unreadable">فایل خوانده نشد. چیزی تغییر نکرد.</string>
 </resources>

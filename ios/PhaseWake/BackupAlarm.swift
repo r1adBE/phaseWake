@@ -140,7 +140,8 @@ final class BackupAlarm {
         await reschedule(alarms)
     }
 
-    private func suppressedUntil() -> [String: Date] {
+    /// Pro Wecker: Sicherung ausgesetzt bis (die Uhr hat die Nacht übernommen); auch Teil von `PhoneModel.doneUntil`.
+    func suppressedUntil() -> [String: Date] {
         let raw = UserDefaults.standard.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
         return raw.mapValues { Date(timeIntervalSince1970: $0) }
     }

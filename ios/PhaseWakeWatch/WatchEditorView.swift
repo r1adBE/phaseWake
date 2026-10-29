@@ -40,8 +40,9 @@ struct WatchEditorView: View {
     @State private var window = AlarmSpec.defaultWindowMinutes
     @State private var days: Set<Weekday> = []
     @State private var enabled = true
-    /// «Nächstes Mal überspringen» (nur wiederholte Wecker).
-    @State private var skipNext = false
+    /// Schalter «Nächstes Mal überspringen» als ausdrückliche Wahl (wie `skipRequest` auf der Galaxy Watch):
+    /// `nil` = nicht angefasst (beim Öffnen), `true` ein, `false` aus; gilt über `AlarmSchedule.editedSkip`.
+    @State private var skipRequest: Bool?
     @State private var loaded = false
     @State private var confirmDelete = false
 
@@ -88,9 +89,10 @@ struct WatchEditorView: View {
                 }
                 Section {
                     Toggle(L("editor_enabled"), isOn: $enabled).tint(Brand.echo)
-                    if !days.isEmpty {
-                        Toggle(L("alarm_skip"), isOn: $skipNext).tint(Brand.echo)
-                        if skipNext, let date = skipDate {
+                    // Nur für gespeicherte, wiederholte Wecker (wie auf der Galaxy Watch).
+                    if !isNew, !days.isEmpty {
+                        Toggle(L("alarm_skip"), isOn: Binding(get: { skipDate != nil }, set: { skipRequest = $0 })).tint(Brand.echo)
+                        if let date = skipDate {
                             Text(L("alarm_skipped", Format.shortDay(date)))
                                 .font(Fonts.manrope(12, relativeTo: .footnote))
                                 .foregroundStyle(Brand.muted)
@@ -131,10 +133,10 @@ struct WatchEditorView: View {
         window = start.windowMinutes
         days = start.days
         enabled = start.enabled
-        skipNext = AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) != nil
+        skipRequest = nil
     }
 
-    /// Stand des Editors; Überspringen wie beim Öffnen (das Modell wendet `skipEdit` an).
+    /// Stand des Editors; Überspringen wie beim Öffnen (das Modell wendet `skipRequest` über `editedSkip` an).
     private var draft: AlarmSpec? {
         try? AlarmSpec(
             id: start.id, hour: hour, minute: minute, days: days, windowMinutes: window, enabled: enabled,
@@ -144,22 +146,19 @@ struct WatchEditorView: View {
         )
     }
 
-    /// Ob der Schalter «Nächstes Mal überspringen» angefasst wurde (wie beim Öffnen → `keep`).
-    private var skipEdit: WatchModel.SkipEdit {
-        let wasSkipped = AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) != nil
-        if skipNext == wasSkipped { return .keep }
-        return skipNext ? .on : .off
-    }
-
-    /// Datum unter dem Schalter: der schon übersprungene Termin, oder der, den Einschalten überspringen würde.
+    /// Datum unter dem Schalter aus genau dem Wert, den das Speichern ergäbe (`editedSkip`): Nach geänderter Zeit oder
+    /// geänderten Tagen steht der Schalter auf «aus», bis er in diesem Bearbeiten bewusst eingeschaltet wird.
     private var skipDate: String? {
-        guard skipEdit == .on, let draft else { return AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) }
-        return AlarmSchedule.nextSkipDate(draft, now: Date(), doneUntil: model.storage.doneUntil[start.id], calendar: .current,
-                                          holidays: model.storage.holidays.dates)
+        guard let draft, !draft.isOneShot else { return nil }
+        let now = Date()
+        let saved = AlarmSchedule.editedSkip(old: start, edited: draft, requested: skipRequest, now: now,
+                                             doneUntil: model.storage.doneUntil[start.id], calendar: .current,
+                                             holidays: model.storage.holidays.dates)
+        return AlarmSchedule.skippedDate(draft.with(skipUntil: saved), now: now, calendar: .current)
     }
 
     private func save() {
-        if let draft { model.save(draft, skip: draft.isOneShot ? .off : skipEdit) }
+        if let draft { model.save(draft, skip: skipRequest) }
         dismiss()
     }
 

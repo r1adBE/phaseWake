@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">פתחו את Phase Wake ב-Apple Watch שלכם לפני השינה. watchOS מפעיל את המעורר רק כשהאפליקציה פתוחה.</string>
     <string name="night_unmeasured_apple">%1$d הדק׳ הראשונות לא נמדדו – Apple Watch מודד רק את %2$d הדק׳ האחרונות לפני היעד.</string>
     <string name="settings_licenses_text_apple">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: SoundAnalysis של Apple, מובנה ב-iOS.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org</string>
-    <string name="restore_unreadable">לא ניתן היה לקרוא את הקובץ. שום דבר לא שונה.</string>
 </resources>

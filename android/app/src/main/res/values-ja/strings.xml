@@ -415,6 +415,7 @@
     <string name="backup_busy">お待ちください …</string>
     <string name="restore_open">開く</string>
     <string name="restore_wrong_password">パスワードが違うか、Phase Wakeのバックアップではありません。何も変更されていません。</string>
+    <string name="restore_unreadable">ファイルを読み込めませんでした。何も変更されていません。</string>
     <string name="restore_preview">アラーム: %1$d · 夜: %2$d · メモのある日: %3$d</string>
     <string name="restore_confirm_title">データを置き換えますか？</string>
     <string name="restore_confirm_text">このスマホのアラーム、履歴、メモ、設定がバックアップで置き換えられます。</string>

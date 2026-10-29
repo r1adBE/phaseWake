@@ -2,6 +2,7 @@ package com.phasewake.app.backup
 
 import android.content.Context
 import android.net.Uri
+import android.provider.DocumentsContract
 import android.util.Log
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.core.BackupException
@@ -11,9 +12,8 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CodecException
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.SleepNotes
-import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
 import java.io.IOException
-import java.io.InputStream
 import java.security.SecureRandom
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -64,15 +64,45 @@ object BackupManager {
     }
 
     /**
-     * Liest und entschlüsselt [uri]. Falsches Passwort, fremde oder kaputte Datei: [BackupException]
-     * (nichts wird geändert).
+     * Liest die gewählte Datei [uri], höchstens [BackupFile.MAX_FILE_BYTES] ([BackupFile.readLimited]).
+     * @return Inhalt, oder `null`, wenn sie nicht lesbar oder zu gross ist (Meldung `restore_unreadable`, nichts geändert).
      */
-    suspend fun open(context: Context, uri: Uri, password: String): BackupPreview {
-        val bytes = try {
-            withContext(Dispatchers.IO) { context.contentResolver.openInputStream(uri)?.use { readLimited(it) } }
-        } catch (e: IOException) {
-            throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei nicht lesbar", e)
-        } ?: throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei nicht lesbar")
+    suspend fun read(context: Context, uri: Uri): ByteArray? = try {
+        withContext(Dispatchers.IO) { context.contentResolver.openInputStream(uri)?.use { BackupFile.readLimited(it) } }
+    } catch (e: IOException) {
+        Log.w(TAG, "Sicherung nicht lesbar", e)
+        null
+    } catch (e: SecurityException) {
+        // Zugriff auf die Datei entzogen (Anbieter der Datei): wie nicht lesbar.
+        Log.w(TAG, "Kein Zugriff auf die Sicherung", e)
+        null
+    }
+
+    /**
+     * Entfernt die Datei [uri], die das System beim Speichern schon angelegt hat, wenn doch nichts hineinkommt
+     * (Passwort-Abfrage abgebrochen): Sonst bliebe eine leere `.pwbak` liegen. Kann der Anbieter nicht löschen, bleibt sie.
+     */
+    suspend fun discard(context: Context, uri: Uri) {
+        withContext(Dispatchers.IO) {
+            try {
+                DocumentsContract.deleteDocument(context.contentResolver, uri)
+            } catch (e: FileNotFoundException) {
+                Log.w(TAG, "Leere Sicherung schon weg", e)
+            } catch (e: SecurityException) {
+                Log.w(TAG, "Leere Sicherung nicht löschbar", e)
+            } catch (e: UnsupportedOperationException) {
+                Log.w(TAG, "Anbieter kann nicht löschen", e)
+            } catch (e: IllegalArgumentException) {
+                Log.w(TAG, "Keine Dokument-Adresse", e)
+            }
+        }
+    }
+
+    /**
+     * Entschlüsselt den Inhalt [bytes] einer Sicherung ([read]). Falsches Passwort, fremde oder kaputte Datei:
+     * [BackupException] (nichts wird geändert).
+     */
+    suspend fun open(bytes: ByteArray, password: String): BackupPreview {
         val plain = withContext(Dispatchers.Default) { BackupFile.decrypt(bytes, password) }
         val payload = try {
             BackupPayload.fromJson(plain.decodeToString())
@@ -86,27 +116,6 @@ object BackupManager {
         }
         return BackupPreview(payload, alarms, payload.nights.size, SleepNotes.decode(payload.notes).size)
     }
-
-    /**
-     * Liest höchstens [BackupFile.MAX_FILE_BYTES]; eine grössere Datei (z. B. versehentlich ein Video) ist keine
-     * Sicherung und wird nicht ganz in den Speicher gelesen.
-     */
-    private fun readLimited(input: InputStream): ByteArray {
-        val out = ByteArrayOutputStream()
-        val buffer = ByteArray(READ_BUFFER)
-        var total = 0L
-        while (true) {
-            val read = input.read(buffer)
-            if (read < 0) break
-            total += read
-            if (total > BackupFile.MAX_FILE_BYTES) throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei zu gross")
-            out.write(buffer, 0, read)
-        }
-        return out.toByteArray()
-    }
-
-    /** Lesepuffer in Byte. */
-    private const val READ_BUFFER = 64 * 1024
 
     /** Ersetzt alle Daten durch [payload] und gleicht mit der Uhr ab. Unlesbare Nächte fallen weg. */
     suspend fun restore(app: PhaseWakeApp, payload: BackupPayload) {

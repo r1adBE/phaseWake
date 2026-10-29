@@ -428,6 +428,7 @@
     <string name="backup_busy">Bir dakika …</string>
     <string name="restore_open">Aç</string>
     <string name="restore_wrong_password">Yanlış şifre veya Phase Wake yedeği değil. Hiçbir şey değişmedi.</string>
+    <string name="restore_unreadable">Dosya okunamadı. Hiçbir şey değiştirilmedi.</string>
     <string name="restore_preview">Alarmlar: %1$d · Geceler: %2$d · Notlu günler: %3$d</string>
     <string name="restore_confirm_title">Veriler değiştirilsin mi?</string>
     <string name="restore_confirm_text">Bu telefondaki alarmlar, geçmiş, notlar ve ayarlar yedekle değiştirilecek.</string>

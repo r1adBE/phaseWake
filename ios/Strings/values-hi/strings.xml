@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">सोने से पहले अपनी Apple Watch पर Phase Wake खोलें। watchOS अलार्म को तभी सक्रिय करता है जब ऐप खुला हो।</string>
     <string name="night_unmeasured_apple">पहले %1$d मि. मापे नहीं गए – Apple Watch लक्ष्य से पहले के केवल आख़िरी %2$d मि. मापती है।</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: Apple का SoundAnalysis, iOS में अंतर्निहित।\nध्वनियाँ: opengameart.org से मुक्त रिकॉर्डिंग (CC0)</string>
-    <string name="restore_unreadable">फ़ाइल पढ़ी नहीं जा सकी। कुछ भी नहीं बदला गया।</string>
 </resources>

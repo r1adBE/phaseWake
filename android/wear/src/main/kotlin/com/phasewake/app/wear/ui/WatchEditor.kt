@@ -35,7 +35,10 @@ import com.phasewake.app.core.DayFormat
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.theme.Brand
 import java.time.DayOfWeek
+import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.time.format.TextStyle
@@ -55,11 +58,9 @@ private val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDN
 internal fun newAlarm(): AlarmSpec = AlarmSpec(id = UUID.randomUUID().toString(), hour = 7, minute = 0, days = WEEKDAYS, sound = DEFAULT_SOUND)
 
 /**
- * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus, Überspringen); alles andere
- * (Sonnenaufgang, Töne, Handy-Wecker, Aufgabe, Schlafdauer, Name) bleibt wie im gespeicherten Wecker. Überspringen
- * bestimmt [skip] aus gespeichertem und bearbeitetem Stand (der Entwurf trägt den Schalter): Ohne Angabe gilt
- * [AlarmSchedule.keepSkip]; beim Speichern [AlarmSchedule.editedSkip], damit ein bewusst eingeschalteter Schalter
- * auch nach einer geänderten Zeit gilt.
+ * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus); alles andere (Sonnenaufgang,
+ * Töne, Handy-Wecker, Aufgabe, Schlafdauer, Name) bleibt wie im gespeicherten Wecker. Überspringen bestimmt [skip] aus
+ * gespeichertem und bearbeitetem Stand: ohne Angabe [AlarmSchedule.keepSkip], beim Speichern siehe [savedEdit].
  */
 internal fun mergeEdit(
     stored: AlarmSpec?,
@@ -67,12 +68,26 @@ internal fun mergeEdit(
     skip: (old: AlarmSpec, edited: AlarmSpec) -> Long = AlarmSchedule::keepSkip,
 ): AlarmSpec {
     stored ?: return draft
-    val edited = stored.copy(
-        hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled,
-        skipUntil = draft.skipUntil,
-    )
+    val edited = stored.copy(hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled)
     return edited.copy(skipUntil = skip(stored, edited))
 }
+
+/**
+ * Der Wecker, wie das Speichern ihn aus [draft] macht: [mergeEdit] mit [AlarmSchedule.editedSkip]. [requested] ist der
+ * Schalter «Nächstes Mal überspringen» in diesem Bearbeiten: `null` = nicht angefasst, `true` = ein, `false` = aus.
+ * Der Editor zeigt den Schalter aus genau diesem Stand: Ändern sich Zeit oder Tage und ist er nicht angefasst, steht er
+ * auf «aus» (beim Speichern fällt das Überspringen weg), bis der Nutzer ihn wieder einschaltet.
+ * [doneUntil]: Nacht dieses Weckers erledigt bis (früh geweckt).
+ */
+internal fun savedEdit(
+    stored: AlarmSpec?,
+    draft: AlarmSpec,
+    requested: Boolean?,
+    now: Instant,
+    zone: ZoneId,
+    holidays: Set<LocalDate>,
+    doneUntil: Instant?,
+): AlarmSpec = mergeEdit(stored, draft) { old, edited -> AlarmSchedule.editedSkip(old, edited, requested, now, zone, holidays, doneUntil) }
 
 /** Entwurf über das Format der Wecker sichern, damit er eine Drehung oder ein Ende des Prozesses übersteht. */
 internal val draftSaver = androidx.compose.runtime.saveable.Saver<AlarmSpec?, String>(

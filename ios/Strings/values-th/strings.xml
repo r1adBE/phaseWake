@@ -17,5 +17,4 @@
     <string name="check_watch_arm_problem">เปิด Phase Wake บน Apple Watch ก่อนเข้านอน watchOS จะเปิดใช้งานนาฬิกาปลุกเฉพาะตอนที่แอปเปิดอยู่</string>
     <string name="night_unmeasured_apple">%1$d นาทีแรกไม่ได้วัด – Apple Watch วัดเฉพาะ %2$d นาทีสุดท้ายก่อนเวลาเป้าหมาย</string>
     <string name="settings_licenses_text_apple">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: SoundAnalysis ของ Apple ซึ่งมีอยู่ใน iOS\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org</string>
-    <string name="restore_unreadable">อ่านไฟล์ไม่ได้ ไม่มีการเปลี่ยนแปลงใดๆ</string>
 </resources>

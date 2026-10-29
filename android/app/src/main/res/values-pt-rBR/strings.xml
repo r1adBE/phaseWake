@@ -441,6 +441,7 @@
     <string name="backup_busy">Um momento …</string>
     <string name="restore_open">Abrir</string>
     <string name="restore_wrong_password">Senha incorreta ou não é um backup do Phase Wake. Nada foi alterado.</string>
+    <string name="restore_unreadable">Não foi possível ler o arquivo. Nada foi alterado.</string>
     <string name="restore_preview">Alarmes: %1$d · Noites: %2$d · Dias com notas: %3$d</string>
     <string name="restore_confirm_title">Substituir os dados?</string>
     <string name="restore_confirm_text">Alarmes, histórico, notas e configurações deste celular serão substituídos pelo backup.</string>

@@ -415,6 +415,7 @@
     <string name="backup_busy">Chờ một chút …</string>
     <string name="restore_open">Mở</string>
     <string name="restore_wrong_password">Sai mật khẩu hoặc không phải bản sao lưu Phase Wake. Không có gì thay đổi.</string>
+    <string name="restore_unreadable">Không thể đọc tệp. Không có gì thay đổi.</string>
     <string name="restore_preview">Báo thức: %1$d · Đêm: %2$d · Ngày có ghi chú: %3$d</string>
     <string name="restore_confirm_title">Thay thế dữ liệu?</string>
     <string name="restore_confirm_text">Báo thức, lịch sử, ghi chú và cài đặt trên điện thoại này sẽ được thay bằng bản sao lưu.</string>

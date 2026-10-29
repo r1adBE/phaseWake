@@ -415,6 +415,7 @@
     <string name="backup_busy">Sebentar …</string>
     <string name="restore_open">Buka</string>
     <string name="restore_wrong_password">Kata sandi salah atau bukan cadangan Phase Wake. Tidak ada yang diubah.</string>
+    <string name="restore_unreadable">File tidak dapat dibaca. Tidak ada yang diubah.</string>
     <string name="restore_preview">Alarm: %1$d · Malam: %2$d · Hari dengan catatan: %3$d</string>
     <string name="restore_confirm_title">Ganti data?</string>
     <string name="restore_confirm_text">Alarm, riwayat, catatan, dan setelan di ponsel ini akan diganti dengan cadangan.</string>

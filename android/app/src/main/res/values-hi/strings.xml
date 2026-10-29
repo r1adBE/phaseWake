@@ -428,6 +428,7 @@
     <string name="backup_busy">एक पल …</string>
     <string name="restore_open">खोलें</string>
     <string name="restore_wrong_password">गलत पासवर्ड या यह Phase Wake बैकअप नहीं है। कुछ नहीं बदला।</string>
+    <string name="restore_unreadable">फ़ाइल पढ़ी नहीं जा सकी। कुछ भी नहीं बदला गया।</string>
     <string name="restore_preview">अलार्म: %1$d · रातें: %2$d · नोट वाले दिन: %3$d</string>
     <string name="restore_confirm_title">डेटा बदलें?</string>
     <string name="restore_confirm_text">इस फ़ोन के अलार्म, इतिहास, नोट और सेटिंग बैकअप से बदल दिए जाएंगे।</string>

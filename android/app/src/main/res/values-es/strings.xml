@@ -441,6 +441,7 @@
     <string name="backup_busy">Un momento …</string>
     <string name="restore_open">Abrir</string>
     <string name="restore_wrong_password">Contraseña incorrecta o no es una copia de Phase Wake. No se ha cambiado nada.</string>
+    <string name="restore_unreadable">No se pudo leer el archivo. No se ha cambiado nada.</string>
     <string name="restore_preview">Alarmas: %1$d · Noches: %2$d · Días con notas: %3$d</string>
     <string name="restore_confirm_title">¿Reemplazar los datos?</string>
     <string name="restore_confirm_text">Las alarmas, el historial, las notas y los ajustes de este teléfono se reemplazarán por la copia.</string>

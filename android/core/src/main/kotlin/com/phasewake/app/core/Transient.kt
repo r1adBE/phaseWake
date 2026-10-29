@@ -123,6 +123,18 @@ object Transient {
     fun isPlannable(t: TransientPlan, now: Instant): Boolean = now.isBefore(t.plan.target.plus(PLAN_AFTER_TARGET))
 
     /**
+     * Ob ein abgelegtes Wecken nach einem Neustart noch nachgeholt wird (Galaxy Watch: Direct Boot und erstes
+     * Neuplanen; Handy: Zweitwecker und Schlummersicherung). [at]: Zeitpunkt des Weckens (Zielzeit oder Schlummer-Ende)
+     * des Plans [alarmId]; leer = unbekannte Kennung, gilt wie ein gespeicherter Wecker.
+     * - Probewecker und Powernap ([kindOf] nicht `null`): nur bis [at] + [PLAN_AFTER_TARGET] (ausschliesslich),
+     *   dieselbe Grenze wie [isPlannable] – verpasst, klingelt er nie später nach.
+     * - Gespeicherte Wecker: bis [at] + [missed] (einschliesslich); auf Uhr und Handy 30 Min (`MISSED_DURING_BOOT`).
+     * Ein noch bevorstehendes [at] gilt immer.
+     */
+    fun catchesUpAfterBoot(alarmId: String, at: Instant, now: Instant, missed: Duration): Boolean =
+        if (kindOf(alarmId) != null) now.isBefore(at.plus(PLAN_AFTER_TARGET)) else !now.isAfter(at.plus(missed))
+
+    /**
      * Welcher Plan als Nächstes gilt: [real] (nächster echter Wecker) oder [transient], wenn dieser noch geplant
      * wird ([isPlannable]); der mit der früheren Zielzeit, bei Gleichstand die kleinere Kennung. Auf allen Geräten
      * gleich: Ein Powernap verdrängt nie einen früheren echten Wecker. `null`, wenn keiner gilt.

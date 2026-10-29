@@ -432,6 +432,7 @@
     <string name="backup_busy">One moment …</string>
     <string name="restore_open">Open</string>
     <string name="restore_wrong_password">Wrong password or not a Phase Wake backup. Nothing was changed.</string>
+    <string name="restore_unreadable">Couldn’t read the file. Nothing was changed.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Alarms: %1$d · Nights: %2$d · Days with notes: %3$d</string>
     <string name="restore_confirm_title">Replace data?</string>
     <string name="restore_confirm_text">Alarms, history, notes and settings on this phone will be replaced by the backup.</string>

@@ -428,6 +428,7 @@
     <string name="backup_busy">Egy pillanat …</string>
     <string name="restore_open">Megnyitás</string>
     <string name="restore_wrong_password">Hibás jelszó, vagy nem Phase Wake-mentés. Semmi sem változott.</string>
+    <string name="restore_unreadable">A fájlt nem sikerült beolvasni. Semmi sem változott.</string>
     <string name="restore_preview">Ébresztők: %1$d · Éjszakák: %2$d · Jegyzetes napok: %3$d</string>
     <string name="restore_confirm_title">Lecseréled az adatokat?</string>
     <string name="restore_confirm_text">A telefon ébresztőit, előzményeit, jegyzeteit és beállításait a mentés váltja fel.</string>

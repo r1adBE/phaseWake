@@ -428,6 +428,7 @@
     <string name="backup_busy">Et øjeblik …</string>
     <string name="restore_open">Åbn</string>
     <string name="restore_wrong_password">Forkert adgangskode eller ikke en Phase Wake-kopi. Intet er ændret.</string>
+    <string name="restore_unreadable">Filen kunne ikke læses. Intet blev ændret.</string>
     <string name="restore_preview">Alarmer: %1$d · Nætter: %2$d · Dage med noter: %3$d</string>
     <string name="restore_confirm_title">Erstat data?</string>
     <string name="restore_confirm_text">Alarmer, historik, noter og indstillinger på denne telefon erstattes af kopien.</string>

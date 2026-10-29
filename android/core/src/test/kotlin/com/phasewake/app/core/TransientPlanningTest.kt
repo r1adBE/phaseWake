@@ -41,6 +41,40 @@ class TransientPlanningTest {
     }
 
     @Test
+    fun missedTransientDoesNotRingAfterBoot() {
+        // Powernap bis 15:00, Uhr um 14:50 aus, um 15:20 wieder an: nicht nachklingeln.
+        val nap = Transient.nap(null, now, zurich, 20, "1")
+        val at = nap.plan.target
+        val missed = java.time.Duration.ofMinutes(30)
+        assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.minusSeconds(60), missed))
+        assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plus(Transient.PLAN_AFTER_TARGET).minusMillis(1), missed))
+        assertFalse(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plus(Transient.PLAN_AFTER_TARGET), missed))
+        assertFalse(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plusSeconds(20 * 60), missed))
+        val test = Transient.test(null, now, zurich, "2")
+        assertFalse(Transient.catchesUpAfterBoot(test.plan.alarmId, test.plan.target, test.plan.target.plusSeconds(61), missed))
+        // Geschlummerter Powernap: Grenze ab dem Schlummer-Ende.
+        val snoozeEnd = at.plusSeconds(9 * 60)
+        assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, snoozeEnd, snoozeEnd.plusSeconds(30), missed))
+        // Gespeicherter Wecker: weiter bis 30 Min (einschliesslich).
+        assertTrue(Transient.catchesUpAfterBoot("a", real.target, real.target.plus(missed), missed))
+        assertFalse(Transient.catchesUpAfterBoot("a", real.target, real.target.plus(missed).plusMillis(1), missed))
+        // Handy-Schlummersicherung ohne Kennung (leer): wie ein gespeicherter Wecker.
+        assertTrue(Transient.catchesUpAfterBoot("", real.target, real.target.plusSeconds(20 * 60), missed))
+        // Zweitwecker am Handy für einen Powernap: ebenfalls nur 60 s.
+        assertFalse(Transient.catchesUpAfterBoot(Transient.NAP_PREFIX + "x", real.target, real.target.plusSeconds(61), missed))
+    }
+
+    @Test
+    fun lateTestIsNotConfirmed() {
+        // Die Uhr bestätigt nur, was sie noch plant (isPlannable), nicht alles, was noch gilt (isActive).
+        val test = Transient.test(null, now, zurich, "1")
+        val late = test.plan.target.plusSeconds(5 * 60)
+        assertTrue(Transient.isActive(test, late))
+        assertFalse(Transient.isPlannable(test, late))
+        assertNull(Transient.choose(null, test, late))
+    }
+
+    @Test
     fun conflictWhileAlarmRunsOrBeforeWindow() {
         val test = Transient.test(null, now, zurich, "1")
         assertNull(Transient.conflict(test, real, nightActive = false, now = now))

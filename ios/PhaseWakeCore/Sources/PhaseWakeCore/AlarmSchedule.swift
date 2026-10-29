@@ -95,6 +95,23 @@ public enum AlarmSchedule {
         old.hour == edited.hour && old.minute == edited.minute && old.days == edited.days ? old.skipUntil : 0
     }
 
+    /// `skipUntil` nach einem Editor mit Schalter «Nächstes Mal überspringen» (Uhr). `requested` ist die ausdrückliche
+    /// Wahl im Editor, nicht aus Werten erraten:
+    /// - `nil` = Schalter nicht angefasst → `keepSkip` (geänderte Zeit oder Tage heben das Überspringen auf).
+    /// - `true` = bewusst eingeschaltet → `skipNext` auf den neuen Stand `edited` (nächster Termin des neuen Zeitplans,
+    ///   ab `doneUntil`); Einmal-Wecker oder ohne Termin → 0.
+    /// - `false` = ausgeschaltet → 0.
+    ///
+    /// `edited.skipUntil` wird nicht gelesen.
+    public static func editedSkip(old: AlarmSpec, edited: AlarmSpec, requested: Bool?, now: Date, doneUntil: Date? = nil,
+                                  calendar: Calendar, holidays: Set<String> = []) -> Int64 {
+        switch requested {
+        case nil: keepSkip(old: old, edited: edited)
+        case true?: skipNext(undoSkip(edited), now: now, doneUntil: doneUntil, calendar: calendar, holidays: holidays).skipUntil
+        case false?: 0
+        }
+    }
+
     /// Überspringen rückgängig: `skipUntil` = 0.
     public static func undoSkip(_ spec: AlarmSpec) -> AlarmSpec { spec.with(skipUntil: 0) }
 
@@ -129,14 +146,12 @@ public enum AlarmSchedule {
 
     /// Wandzeit von `at` im Kalender in ms: Ortsdatum und -uhrzeit, gezählt, als wäre es UTC (2026-10-29 07:00 in
     /// Zürich und in New York ergibt dieselbe Zahl). So speichert `AlarmSpec.skipUntil` den übersprungenen Termin:
-    /// Auf Reisen fällt derselbe Kalendertag aus, nicht derselbe absolute Zeitpunkt. Gregorianisch gerechnet wie
-    /// `LocalDateTime` in Kotlin, auch bei anderem Kalender des Geräts.
+    /// Auf Reisen fällt derselbe Kalendertag aus, nicht derselbe absolute Zeitpunkt. Gerechnet als Zeitpunkt plus
+    /// Abstand der Zeitzone zu UTC in diesem Moment, abgeschnitten auf ganze ms – wie `LocalDateTime` und
+    /// `toEpochMilli` in Kotlin, auch bei anderem Kalender des Geräts.
     public static func wallMillis(_ at: Date, calendar: Calendar) -> Int64 {
-        var local = Calendar(identifier: .gregorian)
-        local.timeZone = calendar.timeZone
-        let parts = local.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: at)
-        guard let wall = utcCalendar.date(from: parts) else { return millis(at) }
-        return millis(wall)
+        let offset = TimeInterval(calendar.timeZone.secondsFromGMT(for: at))
+        return Int64(((at.timeIntervalSince1970 + offset) * 1000).rounded(.down))
     }
 
     /// Gregorianischer Kalender in UTC, für Wandzeiten.

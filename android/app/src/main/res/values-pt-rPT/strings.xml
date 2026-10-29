@@ -441,6 +441,7 @@
     <string name="backup_busy">Um momento …</string>
     <string name="restore_open">Abrir</string>
     <string name="restore_wrong_password">Palavra-passe errada ou não é uma cópia do Phase Wake. Nada foi alterado.</string>
+    <string name="restore_unreadable">Não foi possível ler o ficheiro. Nada foi alterado.</string>
     <string name="restore_preview">Alarmes: %1$d · Noites: %2$d · Dias com notas: %3$d</string>
     <string name="restore_confirm_title">Substituir os dados?</string>
     <string name="restore_confirm_text">Os alarmes, o histórico, as notas e as definições deste telemóvel serão substituídos pela cópia.</string>

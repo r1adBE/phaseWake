@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.UserManager
 import androidx.core.content.edit
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import java.time.Duration
 import java.time.Instant
@@ -147,11 +148,15 @@ object DirectBoot {
     fun restore(context: Context) {
         var saved = load(context) ?: return
         val now = Instant.now()
-        // Längst vorbei: dann gilt der Plan danach, falls einer abgelegt ist.
-        if (saved.at.isBefore(now.minus(MISSED_DURING_BOOT))) saved = promoteNext(context) ?: return
-        if (saved.at.isBefore(now.minus(MISSED_DURING_BOOT))) return
+        // Längst vorbei (Probewecker und Powernap: schon 60 s nach dem Wecken): dann gilt der Plan danach, falls einer abgelegt ist.
+        if (!catchesUp(saved, now)) saved = promoteNext(context) ?: return
+        if (!catchesUp(saved, now)) return
         setDeadlineAt(context, saved)
     }
+
+    /** Ob [saved] zu [now] noch nachgeholt wird ([Transient.catchesUpAfterBoot] mit [MISSED_DURING_BOOT]). */
+    fun catchesUp(saved: Saved, now: Instant): Boolean =
+        Transient.catchesUpAfterBoot(saved.plan.alarmId, saved.at, now, MISSED_DURING_BOOT)
 
     /** Sicherungs-Alarm für den Eintrag [saved]; ein schon vergangener Zeitpunkt gleich danach. */
     fun setDeadlineAt(context: Context, saved: Saved) {

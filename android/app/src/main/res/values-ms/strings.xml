@@ -415,6 +415,7 @@
     <string name="backup_busy">Sebentar …</string>
     <string name="restore_open">Buka</string>
     <string name="restore_wrong_password">Kata laluan salah atau bukan sandaran Phase Wake. Tiada apa-apa diubah.</string>
+    <string name="restore_unreadable">Fail tidak dapat dibaca. Tiada apa-apa yang diubah.</string>
     <string name="restore_preview">Penggera: %1$d · Malam: %2$d · Hari dengan nota: %3$d</string>
     <string name="restore_confirm_title">Gantikan data?</string>
     <string name="restore_confirm_text">Penggera, sejarah, nota dan tetapan pada telefon ini akan digantikan dengan sandaran.</string>

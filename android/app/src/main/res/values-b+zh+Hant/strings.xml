@@ -415,6 +415,7 @@
     <string name="backup_busy">請稍候 …</string>
     <string name="restore_open">開啟</string>
     <string name="restore_wrong_password">密碼錯誤或不是 Phase Wake 備份。沒有任何變更。</string>
+    <string name="restore_unreadable">無法讀取該檔案。未做任何變更。</string>
     <string name="restore_preview">鬧鐘：%1$d · 夜晚：%2$d · 有筆記的天數：%3$d</string>
     <string name="restore_confirm_title">要取代資料嗎？</string>
     <string name="restore_confirm_text">這支手機上的鬧鐘、紀錄、筆記和設定將被備份取代。</string>

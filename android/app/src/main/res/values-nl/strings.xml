@@ -428,6 +428,7 @@
     <string name="backup_busy">Een moment …</string>
     <string name="restore_open">Openen</string>
     <string name="restore_wrong_password">Verkeerd wachtwoord of geen Phase Wake-back-up. Er is niets gewijzigd.</string>
+    <string name="restore_unreadable">Het bestand kon niet worden gelezen. Er is niets gewijzigd.</string>
     <string name="restore_preview">Wekkers: %1$d · Nachten: %2$d · Dagen met notities: %3$d</string>
     <string name="restore_confirm_title">Gegevens vervangen?</string>
     <string name="restore_confirm_text">Wekkers, geschiedenis, notities en instellingen op deze telefoon worden vervangen door de back-up.</string>

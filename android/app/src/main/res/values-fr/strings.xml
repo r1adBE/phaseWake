@@ -441,6 +441,7 @@
     <string name="backup_busy">Un instant …</string>
     <string name="restore_open">Ouvrir</string>
     <string name="restore_wrong_password">Mot de passe incorrect ou pas une sauvegarde Phase Wake. Rien n’a été modifié.</string>
+    <string name="restore_unreadable">Impossible de lire le fichier. Rien n’a été modifié.</string>
     <string name="restore_preview">Réveils : %1$d · Nuits : %2$d · Jours avec notes : %3$d</string>
     <string name="restore_confirm_title">Remplacer les données ?</string>
     <string name="restore_confirm_text">Les réveils, l’historique, les notes et les réglages de ce téléphone seront remplacés par la sauvegarde.</string>

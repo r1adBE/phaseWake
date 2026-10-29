@@ -441,6 +441,7 @@
     <string name="backup_busy">רגע …</string>
     <string name="restore_open">פתיחה</string>
     <string name="restore_wrong_password">סיסמה שגויה או שזה לא גיבוי של Phase Wake. דבר לא השתנה.</string>
+    <string name="restore_unreadable">לא ניתן היה לקרוא את הקובץ. שום דבר לא שונה.</string>
     <string name="restore_preview">השכמות: %1$d · לילות: %2$d · ימים עם הערות: %3$d</string>
     <string name="restore_confirm_title">להחליף את הנתונים?</string>
     <string name="restore_confirm_text">ההשכמות, ההיסטוריה, ההערות וההגדרות בטלפון הזה יוחלפו בגיבוי.</string>

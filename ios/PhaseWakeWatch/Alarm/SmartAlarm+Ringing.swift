@@ -64,8 +64,8 @@ extension SmartAlarm {
         next.start(at: until)
         session = next
         self.plan = WakePlan(alarmId: plan.alarmId, windowStart: until, target: until)
-        // Rückfall auch fürs Schlummern: falls die neue Sitzung nicht startet.
-        scheduleFallback(at: until.addingTimeInterval(Self.fallbackDelay))
+        // Rückfall auch fürs Schlummern (unter der Kennung dieser Nacht): falls die neue Sitzung nicht startet.
+        scheduleFallback(at: until.addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
         save()
         WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: plan.alarmId, target: nightPlan?.target)
     }
@@ -74,7 +74,8 @@ extension SmartAlarm {
     func dismiss(notifyPhone: Bool = true) {
         guard phase.isRinging || phase.isSnoozed else { return }
         DiagStore.shared.log(.stop, notifyPhone ? "watch" : "phone")
-        removeFallback([Self.fallbackId, Self.interruptedId])
+        // Nur den Rückfall dieser Nacht: Beim Probewecker oder Powernap bleibt der des echten Weckers stehen.
+        removeFallback([Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId), Self.interruptedId])
         finish(notifyPhone: notifyPhone)
     }
 

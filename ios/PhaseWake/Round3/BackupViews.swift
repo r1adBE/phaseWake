@@ -44,7 +44,7 @@ struct BackupSection: View {
                 // Grösse zuerst: Eine versehentlich gewählte grosse Datei (Video) wird nicht ganz gelesen.
                 let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
                 guard Int64(size) <= BackupFile.maxFileBytes else {
-                    message = L("restore_wrong_password")
+                    message = L("restore_unreadable")
                     DiagStore.shared.log(.error, "backup too large: \(size) bytes")
                     return
                 }

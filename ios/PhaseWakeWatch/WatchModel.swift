@@ -68,6 +68,10 @@ final class WatchModel {
 
     /// Probewecker oder Powernap übernehmen (vom iPhone oder hier gestartet) und gleich planen.
     func startTransient(_ plan: TransientPlan) {
+        // Ersetzt einen anderen vorübergehenden Plan: dessen Rückfall gilt nicht mehr (`schedule` stellt den neuen).
+        if let transient, transient.plan.alarmId != plan.plan.alarmId {
+            SmartAlarm.shared.removeFallback([SmartAlarm.transientFallbackId])
+        }
         setTransient(plan)
         DiagStore.shared.log(plan.kind == .test ? .test : .nap, "received \(Format.time(plan.plan.target))")
         reschedule()
@@ -134,14 +138,12 @@ final class WatchModel {
     static let maxAlarms = 8
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
 
-    /// «Nächstes Mal überspringen» im Uhr-Editor: nicht angefasst, bewusst ein- oder ausgeschaltet.
-    enum SkipEdit { case keep, on, off }
-
     /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (zuletzt gespeichert gewinnt).
     /// Ein bestehender Wecker behält alles, was die Uhr nicht bearbeitet (siehe `AlarmSpec.editedOnWatch`).
-    /// Überspringen gilt nach dem Zusammenführen: nicht angefasst `keepSkip`, eingeschaltet `skipNext` auf den neuen
-    /// Stand (ab einer erledigten Nacht), ausgeschaltet `undoSkip` – wie Android.
-    func save(_ draft: AlarmSpec, skip: SkipEdit) {
+    /// `skip` ist der Schalter «Nächstes Mal überspringen» (`nil` nicht angefasst, `true` ein, `false` aus); gespeichert
+    /// wird `AlarmSchedule.editedSkip` – wie Android. Ein neuer Wecker wird so gespeichert, wie er ist (der Editor bietet
+    /// dort keinen Schalter an).
+    func save(_ draft: AlarmSpec, skip: Bool?) {
         let now = Date()
         let done = storage.doneUntil[draft.id]
         let holidays = storage.holidays.dates
@@ -149,10 +151,9 @@ final class WatchModel {
             var list = list
             let old = list.first { $0.id == draft.id }
             var merged = old.map { $0.editedOnWatch(from: draft) } ?? draft
-            switch skip {
-            case .keep: merged = merged.with(skipUntil: old.map { AlarmSchedule.keepSkip(old: $0, edited: merged) } ?? 0)
-            case .on: merged = AlarmSchedule.skipNext(AlarmSchedule.undoSkip(merged), now: now, doneUntil: done, calendar: .current, holidays: holidays)
-            case .off: merged = AlarmSchedule.undoSkip(merged)
+            if let old {
+                merged = merged.with(skipUntil: AlarmSchedule.editedSkip(old: old, edited: merged, requested: skip, now: now, doneUntil: done,
+                                                                         calendar: .current, holidays: holidays))
             }
             if let i = list.firstIndex(where: { $0.id == draft.id }) {
                 list[i] = merged

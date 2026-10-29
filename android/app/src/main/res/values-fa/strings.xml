@@ -428,6 +428,7 @@
     <string name="backup_busy">یک لحظه …</string>
     <string name="restore_open">باز کردن</string>
     <string name="restore_wrong_password">گذرواژه اشتباه است یا این پشتیبان Phase Wake نیست. چیزی تغییر نکرد.</string>
+    <string name="restore_unreadable">فایل خوانده نشد. چیزی تغییر نکرد.</string>
     <string name="restore_preview">زنگ‌ها: %1$d · شب‌ها: %2$d · روزهای دارای یادداشت: %3$d</string>
     <string name="restore_confirm_title">داده‌ها جایگزین شوند؟</string>
     <string name="restore_confirm_text">زنگ‌ها، سابقه، یادداشت‌ها و تنظیمات این گوشی با پشتیبان جایگزین می‌شوند.</string>

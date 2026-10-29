@@ -480,6 +480,7 @@
     <string name="backup_busy">لحظة …</string>
     <string name="restore_open">فتح</string>
     <string name="restore_wrong_password">كلمة مرور خاطئة أو ليست نسخة من Phase Wake. لم يتغير شيء.</string>
+    <string name="restore_unreadable">تعذّرت قراءة الملف. لم يتغيّر شيء.</string>
     <string name="restore_preview">المنبّهات: %1$d · الليالي: %2$d · أيام بملاحظات: %3$d</string>
     <string name="restore_confirm_title">استبدال البيانات؟</string>
     <string name="restore_confirm_text">ستُستبدل المنبّهات والسجل والملاحظات والإعدادات على هذا الهاتف بالنسخة.</string>

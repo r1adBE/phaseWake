@@ -454,6 +454,7 @@
     <string name="backup_busy">Okamžik …</string>
     <string name="restore_open">Otevřít</string>
     <string name="restore_wrong_password">Špatné heslo nebo to není záloha Phase Wake. Nic se nezměnilo.</string>
+    <string name="restore_unreadable">Soubor se nepodařilo přečíst. Nic se nezměnilo.</string>
     <string name="restore_preview">Budíky: %1$d · Noci: %2$d · Dny s poznámkami: %3$d</string>
     <string name="restore_confirm_title">Nahradit data?</string>
     <string name="restore_confirm_text">Budíky, historie, poznámky a nastavení v tomto telefonu budou nahrazeny zálohou.</string>

@@ -155,13 +155,15 @@ final class PhoneModel {
         PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
     }
 
-    /// Pro Wecker: Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt
-    /// (früh geweckt). Gleich wie `doneUntil` auf der Uhr.
+    /// Pro Wecker erledigt bis: Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt
+    /// (früh geweckt, gleich wie `doneUntil` auf der Uhr), oder die Sperre der Sicherung, weil die Uhr die Nacht
+    /// übernommen hat (Zielzeit + Nachfrist; wie `BackupAlarm.doneUntilFlow` auf Android). Der spätere Wert gilt.
     var doneUntil: [String: Date] {
         let now = Date()
-        return nights.filter { $0.target > now }.reduce(into: [:]) { done, night in
+        let done = nights.filter { $0.target > now }.reduce(into: [String: Date]()) { done, night in
             done[night.alarmId] = max(done[night.alarmId] ?? .distantPast, night.target)
         }
+        return done.merging(backup.suppressedUntil().filter { $0.value > now }) { max($0, $1) }
     }
 
     func watchArmed(_ target: Date?, alarmFields: Int) {
