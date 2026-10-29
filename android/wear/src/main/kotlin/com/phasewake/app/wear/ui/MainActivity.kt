@@ -110,8 +110,9 @@ private fun WatchApp() {
                                 if (stored != null || list.size < MAX_ALARMS) {
                                     val zone = ZoneId.systemDefault()
                                     val doneAt = app.scheduler.doneUntil()[current.id]
+                                    val holidays = app.holidays.current()
                                     val merged = mergeEdit(stored, current) { old, edited ->
-                                        AlarmSchedule.editedSkip(old, edited, Instant.now(), zone, app.holidays.current(), doneAt)
+                                        AlarmSchedule.editedSkip(old, edited, Instant.now(), zone, holidays, doneAt)
                                     }
                                     app.sync.publishAlarms(app.alarms.upsert(merged))
                                     app.scheduler.reschedule()

@@ -121,14 +121,14 @@ final class SkipTests: XCTestCase {
         XCTAssertTrue(text.hasSuffix("|1793000000000|1\n"))
         XCTAssertEqual(try Codec.decodeAlarms(text), [a])
         // 14 Felder (vor dieser Version): nichts überspringen.
-        let old = try XCTUnwrap(Codec.decodeAlarwall("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE\n").first)
+        let old = try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE\n").first)
         XCTAssertEqual(old.skipUntil, 0)
         XCTAssertFalse(old.skipHolidays)
         // Unlesbare oder negative Werte: tolerant.
-        let bad = try XCTUnwrap(Codec.decodeAlarwall("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|x|ja|neu\n").first)
+        let bad = try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|x|ja|neu\n").first)
         XCTAssertEqual(bad.skipUntil, 0)
         XCTAssertFalse(bad.skipHolidays)
-        XCTAssertEqual(try Codec.decodeAlarwall("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").first?.skipUntil, 0)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").first?.skipUntil, 0)
         // Kopien behalten die Felder.
         XCTAssertEqual(a.with(enabled: false).skipUntil, 1_793_000_000_000)
         XCTAssertFalse(a.with(skipHolidays: false).skipHolidays)
