@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">මෙම iPhone සමඟ Apple Watch යුගල කර නැත.</string>
+    <string name="check_watch_app">ඔරලෝසුවේ Phase Wake</string>
+    <string name="check_watch_app_problem">Watch යෙදුමෙන් ඔබේ Apple Watch හි Phase Wake ස්ථාපනය කරන්න.</string>
+    <string name="check_alarmkit">එලාමවලට ඉඩ ඇත</string>
+    <string name="check_alarmkit_problem">ඔබේ iPhone හට උපස්ථ එලාමයක් ලෙස නාද වීමට, Phase Wake හට එලාම සැකසීමට ඉඩ දෙන්න.</string>
+    <string name="nightstand_start">ඇඳ අසල ප්‍රකාරය අරඹන්න</string>
+    <string name="nightstand_hint">හිරු උදාව සඳහා, Phase Wake රාත්‍රිය පුරා ආරෝපකයේ විවෘතව තබන්න. ආලෝකය ආරම්භ වන තුරු තිරය අඳුරුව පවතී.</string>
+    <string name="nightstand_end">අවසන් කරන්න</string>
+    <string name="nightstand_waiting">හිරු උදාව %1$s ට</string>
+    <string name="nightstand_no_alarm">හිරු උදාව සහිත එලාමයක් නැත</string>
+    <string name="editor_sunrise_ios_hint">ඔබේ iPhone හට ආලෝකය පෙන්විය හැක්කේ Phase Wake විවෘතව ඇති විට පමණි – නින්දට යාමට පෙර ඇඳ අසල ප්‍රකාරය අරඹන්න.</string>
+    <string name="trends_health_hint_apple">නින්දේ කාලය සහ නිතිපතා බව Apple Health වෙතින් ලැබේ.</string>
+    <string name="watch_not_armed">ඔරලෝසුවට එලාමය සක්‍රිය කිරීමට, නින්දට යාමට පෙර Phase Wake විවෘත කරන්න.</string>
+    <string name="check_watch_arm">ඔරලෝසුවේ එලාමය සක්‍රියයි</string>
+    <string name="check_watch_arm_problem">නින්දට යාමට පෙර ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න. watchOS එලාමය සක්‍රිය කරන්නේ යෙදුම විවෘතව ඇති විට පමණි.</string>
+    <string name="night_unmeasured_apple">පළමු මිනි. %1$d මැනුණේ නැත – Apple Watch මනින්නේ ඉලක්ක වේලාවට පෙර අවසන් මිනිත්තු %2$d පමණි.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope අකුරු: SIL Open Font License 1.1, © The Manrope Project Authors.\nශබ්ද හඳුනාගැනීම: Apple හි SoundAnalysis, iOS තුළ ගොඩනගා ඇත.\nශබ්ද: opengameart.org වෙතින් නොමිලේ පටිගත කිරීම් (CC0)</string>
+</resources>

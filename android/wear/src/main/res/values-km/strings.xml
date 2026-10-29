@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">ចន្លោះពេលដាស់</string>
+    <string name="channel_window_description">បង្ហាញពេល Phase Wake កំពុងតាមដានដំណេកស្រាល។</string>
+    <string name="channel_alarm">ម៉ោងរោទ៍</string>
+    <string name="channel_alarm_description">ដាស់អ្នក។</string>
+    <string name="notification_window_title">កំពុងតាមដានដំណេកស្រាល</string>
+    <string name="notification_window_text">ដាស់អ្នកយឺតបំផុតនៅ %1$s</string>
+    <string name="notification_ring_title">អរុណសួស្តី</string>
+
+    <string name="ring_greeting">អរុណសួស្តី</string>
+    <string name="ring_reason_light">រកឃើញដំណេកស្រាល</string>
+    <string name="ring_reason_awake">អ្នកបានភ្ញាក់រួចហើយ</string>
+    <string name="ring_reason_deadline">ដល់ម៉ោងគោលដៅ</string>
+    <string name="ring_hold_to_stop">ចុចឲ្យជាប់ដើម្បីបញ្ឈប់</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d នាទី · នៅសល់ %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">ផ្អាករហូតដល់ %1$s</string>
+
+    <string name="home_no_alarm">គ្មានម៉ោងរោទ៍</string>
+    <string name="home_no_alarm_hint">បន្ថែមម៉ោងរោទ៍ – នៅទីនេះ ឬក្នុង Phase Wake លើទូរសព្ទ។</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ថ្ងៃនេះ</string>
+    <string name="home_tomorrow">ថ្ងៃស្អែក</string>
+    <string name="home_window_length">ចន្លោះពេល %1$d នាទី</string>
+    <string name="home_alarms">ម៉ោងរោទ៍</string>
+    <string name="home_permissions">អនុញ្ញាតសិទ្ធិ</string>
+    <string name="home_permissions_hint">ត្រូវការសម្រាប់ការវាស់ និងអេក្រង់ម៉ោងរោទ៍។</string>
+    <string name="alarm_once">ម្ដង</string>
+    <string name="alarm_every_day">រៀងរាល់ថ្ងៃ</string>
+    <string name="tile_label">ម៉ោងរោទ៍បន្ទាប់</string>
+    <string name="tile_next">ម៉ោងរោទ៍បន្ទាប់</string>
+    <string name="tile_light_sleep">ដាស់ពេលដេកស្រាល</string>
+    <string name="notification_good_night_title">សូមដេកលក់ស្រួល</string>
+    <string name="notification_good_night_text">កំពុងរង់ចាំអ្នកលង់លក់</string>
+    <string name="home_good_night">រាត្រីសួស្តី</string>
+    <string name="home_good_night_hint">ដេក %1$s ចាប់ពីឥឡូវ</string>
+    <string name="home_good_night_active">កំពុងរង់ចាំដំណេក · ចុចដើម្បីបោះបង់</string>
+    <string name="dnd_title">ម៉ោងរោទ៍ត្រូវបានរារាំង</string>
+    <string name="dnd_text">អនុញ្ញាតម៉ោងរោទ៍ក្នុង «កុំរំខាន»។</string>
+    <string name="duration_hours">%1$d ម៉ោង</string>
+    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
+    <string name="home_last_night">យប់មិញ</string>
+    <string name="notification_open">បើក</string>
+    <string name="home_good_night_too_far">អាចប្រើបានចាប់ពី 16 ម៉ោងមុនម៉ោងរោទ៍</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ដោះស្រាយលំហាត់លើទូរសព្ទ ឬចុចឲ្យជាប់ 5 វិ.</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">ម៉ោងរោទ៍ថ្មី</string>
+    <string name="editor_new">ម៉ោងរោទ៍ថ្មី</string>
+    <string name="editor_edit">កែម៉ោងរោទ៍</string>
+    <string name="editor_target">ដាស់ខ្ញុំត្រឹម</string>
+    <string name="editor_latest">យឺតបំផុត</string>
+    <string name="editor_window">ចន្លោះពេល៖ %1$d នាទី</string>
+    <string name="editor_days">ធ្វើម្ដងទៀត</string>
+    <string name="editor_save">រក្សាទុក</string>
+    <string name="editor_delete">លុបម៉ោងរោទ៍</string>
+    <string name="editor_delete_title">លុបម៉ោងរោទ៍នេះ?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">ច្រើនបំផុត %1$d ម៉ោងរោទ៍ – លុបមួយដើម្បីបន្ថែមថ្មី។</string>
+    <string name="editor_enabled">ម៉ោងរោទ៍បើក</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">រំលងលើកក្រោយ</string>
+    <string name="alarm_skipped">បានរំលង៖ %1$s</string>
+    <string name="nap_title">ដេកខ្លី</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d នាទី</item>
+    </plurals>
+    <string name="nap_start">ចាប់ផ្ដើម</string>
+    <string name="nap_running">រហូតដល់ %1$s</string>
+    <string name="nap_stop">បញ្ចប់ការដេកខ្លី</string>
+    <string name="diag_title">ការវិនិច្ឆ័យ</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">ចុច %1$d ដងទៀត</item>
+    </plurals>
+    <string name="diag_clear">សម្អាត</string>
+    <string name="diag_hide">លាក់ការវិនិច្ឆ័យ</string>
+    <string name="diag_empty">មិនទាន់មានព្រឹត្តិការណ៍។</string>
+    <string name="diag_next">ម៉ោងរោទ៍បន្ទាប់៖ %1$s</string>
+    <string name="diag_version">កំណែ %1$s</string>
+    <string name="transient_alarm_running">ម៉ោងរោទ៍របស់អ្នកកំពុងដំណើរការឥឡូវនេះ។</string>
+    <string name="transient_alarm_soon">ចន្លោះពេលដាស់របស់អ្នកចាប់ផ្ដើមមុននោះ។</string>
+</resources>

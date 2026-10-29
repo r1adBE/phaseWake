@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">Прозорец за събуждане</string>
+    <string name="channel_window_description">Показва се, докато Phase Wake следи за лек сън.</string>
+    <string name="channel_alarm">Будилник</string>
+    <string name="channel_alarm_description">Събужда те.</string>
+    <string name="notification_window_title">Следи за лек сън</string>
+    <string name="notification_window_text">Събужда те най-късно в %1$s</string>
+    <string name="notification_ring_title">Добро утро</string>
+
+    <string name="ring_greeting">Добро утро</string>
+    <string name="ring_reason_light">Открит лек сън</string>
+    <string name="ring_reason_awake">Вече беше на крак</string>
+    <string name="ring_reason_deadline">Целевият час настъпи</string>
+    <string name="ring_hold_to_stop">Задръж, за да спреш</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d мин · остават %2$d</item>
+        <item quantity="other">%1$d мин · остават %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Отложено до %1$s</string>
+
+    <string name="home_no_alarm">Няма будилник</string>
+    <string name="home_no_alarm_hint">Добави будилник – тук или в Phase Wake на телефона.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Днес</string>
+    <string name="home_tomorrow">Утре</string>
+    <string name="home_window_length">Прозорец %1$d мин</string>
+    <string name="home_alarms">Будилници</string>
+    <string name="home_permissions">Дай разрешения</string>
+    <string name="home_permissions_hint">Нужни за измерването и екрана на будилника.</string>
+    <string name="alarm_once">Веднъж</string>
+    <string name="alarm_every_day">Всеки ден</string>
+    <string name="tile_label">Следващ будилник</string>
+    <string name="tile_next">Следващ будилник</string>
+    <string name="tile_light_sleep">Събужда те в лек сън</string>
+    <string name="notification_good_night_title">Спи спокойно</string>
+    <string name="notification_good_night_text">Изчаква да заспиш</string>
+    <string name="home_good_night">Лека нощ</string>
+    <string name="home_good_night_hint">Сън %1$s от сега</string>
+    <string name="home_good_night_active">Изчаква съня · докосни за отказ</string>
+    <string name="dnd_title">Будилниците са блокирани</string>
+    <string name="dnd_text">Разреши будилниците при „Не безпокойте“.</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="home_last_night">Миналата нощ</string>
+    <string name="notification_open">Отвори</string>
+    <string name="home_good_night_too_far">Достъпно от 16 ч преди будилника</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Реши задачата на телефона или задръж 5 с</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Нов будилник</string>
+    <string name="editor_new">Нов будилник</string>
+    <string name="editor_edit">Редактиране</string>
+    <string name="editor_target">Събуди ме до</string>
+    <string name="editor_latest">Най-късно</string>
+    <string name="editor_window">Прозорец: %1$d мин</string>
+    <string name="editor_days">Повтаряне</string>
+    <string name="editor_save">Запази</string>
+    <string name="editor_delete">Изтрий будилника</string>
+    <string name="editor_delete_title">Изтриване на този будилник?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">До %1$d будилника – изтрий един, за да добавиш нов.</string>
+    <string name="editor_enabled">Будилникът е вкл.</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Пропусни следващия път</string>
+    <string name="alarm_skipped">Пропуснато: %1$s</string>
+    <string name="nap_title">Кратка дрямка</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="other">%1$d минути</item>
+    </plurals>
+    <string name="nap_start">Старт</string>
+    <string name="nap_running">До %1$s</string>
+    <string name="nap_stop">Край на дрямката</string>
+    <string name="diag_title">Диагностика</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Още %1$d докосване</item>
+        <item quantity="other">Още %1$d докосвания</item>
+    </plurals>
+    <string name="diag_clear">Изчисти</string>
+    <string name="diag_hide">Скрий диагностиката</string>
+    <string name="diag_empty">Още няма събития.</string>
+    <string name="diag_next">Следващ будилник: %1$s</string>
+    <string name="diag_version">Версия %1$s</string>
+    <string name="transient_alarm_running">Будилникът ти е активен в момента.</string>
+    <string name="transient_alarm_soon">Прозорецът ти за събуждане започва още преди това.</string>
+</resources>

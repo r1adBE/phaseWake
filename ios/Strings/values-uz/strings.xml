@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">Bu iPhone bilan Apple Watch juftlanmagan.</string>
+    <string name="check_watch_app">Soatdagi Phase Wake</string>
+    <string name="check_watch_app_problem">Watch ilovasi orqali Apple Watchʼingga Phase Wakeʼni oʻrnat.</string>
+    <string name="check_alarmkit">Budilniklarga ruxsat bor</string>
+    <string name="check_alarmkit_problem">iPhone zaxira budilnik sifatida jiringlay olishi uchun Phase Wakeʼga budilnik qoʻyishga ruxsat ber.</string>
+    <string name="nightstand_start">Tungi stol rejimini boshlash</string>
+    <string name="nightstand_hint">Quyosh chiqishi uchun Phase Wakeʼni tun boʻyi quvvatlagichda ochiq qoldir. Yorugʻlik boshlanguncha ekran qorongʻi turadi.</string>
+    <string name="nightstand_end">Tugatish</string>
+    <string name="nightstand_waiting">Quyosh chiqishi %1$s da</string>
+    <string name="nightstand_no_alarm">Quyosh chiqishli budilnik yoʻq</string>
+    <string name="editor_sunrise_ios_hint">iPhone yorugʻlikni faqat Phase Wake ochiq boʻlganda koʻrsata oladi – uxlashdan oldin tungi stol rejimini boshla.</string>
+    <string name="trends_health_hint_apple">Uyqu davomiyligi va muntazamligi Apple Healthʼdan olinadi.</string>
+    <string name="watch_not_armed">Soating budilnikni faollashtira olishi uchun uxlashdan oldin Phase Wakeʼni och.</string>
+    <string name="check_watch_arm">Budilnik soatda faollashtirilgan</string>
+    <string name="check_watch_arm_problem">Uxlashdan oldin Apple Watchʼingda Phase Wakeʼni och. watchOS budilnikni faqat ilova ochiq boʻlganda faollashtiradi.</string>
+    <string name="night_unmeasured_apple">Birinchi %1$d daq oʻlchanmadi – Apple Watch faqat belgilangan vaqtdan oldingi oxirgi %2$d daqiqani oʻlchaydi.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT litsenziyasi, © r1adBE.\nManrope shrifti: SIL Open Font License 1.1, © The Manrope Project Authors.\nTovushni aniqlash: Apple SoundAnalysis, iOSʼga oʻrnatilgan.\nTovushlar: bepul yozuvlar (CC0), opengameart.org</string>
+</resources>

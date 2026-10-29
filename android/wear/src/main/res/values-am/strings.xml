@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">የመቀስቀሻ ክልል</string>
+    <string name="channel_window_description">Phase Wake ቀላል እንቅልፍን ሲከታተል ይታያል።</string>
+    <string name="channel_alarm">ማንቂያ</string>
+    <string name="channel_alarm_description">ይቀሰቅስዎታል።</string>
+    <string name="notification_window_title">ቀላል እንቅልፍን እየተከታተለ ነው</string>
+    <string name="notification_window_text">ቢዘገይ %1$s ላይ ይቀሰቅስዎታል</string>
+    <string name="notification_ring_title">እንደምን አደሩ</string>
+
+    <string name="ring_greeting">እንደምን አደሩ</string>
+    <string name="ring_reason_light">ቀላል እንቅልፍ ተገኝቷል</string>
+    <string name="ring_reason_awake">ቀድሞውኑ ነቅተው ነበር</string>
+    <string name="ring_reason_deadline">የታለመው ሰዓት ደርሷል</string>
+    <string name="ring_hold_to_stop">ለማቆም ይያዙ</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d ደቂቃ · %2$d ቀርቷል</item>
+        <item quantity="other">%1$d ደቂቃ · %2$d ቀርተዋል</item>
+    </plurals>
+    <string name="ring_snoozed_until">እስከ %1$s አሸልቧል</string>
+
+    <string name="home_no_alarm">ምንም ማንቂያ አልተዘጋጀም</string>
+    <string name="home_no_alarm_hint">ማንቂያ ያክሉ – እዚህ ወይም በስልክዎ ላይ ባለው Phase Wake።</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ዛሬ</string>
+    <string name="home_tomorrow">ነገ</string>
+    <string name="home_window_length">%1$d ደቂቃ ክልል</string>
+    <string name="home_alarms">ማንቂያዎች</string>
+    <string name="home_permissions">ፈቃዶችን ፍቀድ</string>
+    <string name="home_permissions_hint">ለመለካትና ለማንቂያ ማያ ገጹ ያስፈልጋል።</string>
+    <string name="alarm_once">አንድ ጊዜ</string>
+    <string name="alarm_every_day">በየቀኑ</string>
+    <string name="tile_label">ቀጣይ ማንቂያ</string>
+    <string name="tile_next">ቀጣይ ማንቂያ</string>
+    <string name="tile_light_sleep">በቀላል እንቅልፍ ይቀሰቅስዎታል</string>
+    <string name="notification_good_night_title">መልካም እንቅልፍ</string>
+    <string name="notification_good_night_text">እስኪተኙ እየጠበቀ ነው</string>
+    <string name="home_good_night">ደህና እደሩ</string>
+    <string name="home_good_night_hint">ከአሁን ጀምሮ %1$s ይተኙ</string>
+    <string name="home_good_night_active">እንቅልፍ እየጠበቀ · ለመሰረዝ ይንኩ</string>
+    <string name="dnd_title">ማንቂያዎች ታግደዋል</string>
+    <string name="dnd_text">በአትረብሽ ውስጥ ማንቂያዎችን ይፍቀዱ።</string>
+    <string name="duration_hours">%1$d ሰ</string>
+    <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
+    <string name="home_last_night">ትናንት ማታ</string>
+    <string name="notification_open">ክፈት</string>
+    <string name="home_good_night_too_far">ከማንቂያው 16 ሰ በፊት ጀምሮ ይገኛል</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ተግባሩን በስልክዎ ላይ ይፍቱ ወይም 5 ሰከንድ ይያዙ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">አዲስ ማንቂያ</string>
+    <string name="editor_new">አዲስ ማንቂያ</string>
+    <string name="editor_edit">ማንቂያ አርትዕ</string>
+    <string name="editor_target">እስከዚህ ቀስቅሰኝ</string>
+    <string name="editor_latest">ቢዘገይ</string>
+    <string name="editor_window">ክልል: %1$d ደቂቃ</string>
+    <string name="editor_days">ድገም</string>
+    <string name="editor_save">አስቀምጥ</string>
+    <string name="editor_delete">ማንቂያ ሰርዝ</string>
+    <string name="editor_delete_title">ይህ ማንቂያ ይሰረዝ?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">እስከ %1$d ማንቂያዎች – አዲስ ለማከል አንዱን ይሰርዙ።</string>
+    <string name="editor_enabled">ማንቂያ በርቷል</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">የሚቀጥለውን ዝለል</string>
+    <string name="alarm_skipped">ተዘሏል: %1$s</string>
+    <string name="nap_title">አጭር እንቅልፍ</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d ደቂቃ</item>
+        <item quantity="other">%1$d ደቂቃዎች</item>
+    </plurals>
+    <string name="nap_start">ጀምር</string>
+    <string name="nap_running">እስከ %1$s</string>
+    <string name="nap_stop">አጭር እንቅልፍ ጨርስ</string>
+    <string name="diag_title">ምርመራ</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">ተጨማሪ %1$d መንካት</item>
+        <item quantity="other">ተጨማሪ %1$d መንካቶች</item>
+    </plurals>
+    <string name="diag_clear">አጽዳ</string>
+    <string name="diag_hide">ምርመራ ደብቅ</string>
+    <string name="diag_empty">እስካሁን ምንም ክስተት የለም።</string>
+    <string name="diag_next">ቀጣይ ማንቂያ: %1$s</string>
+    <string name="diag_version">ስሪት %1$s</string>
+    <string name="transient_alarm_running">ማንቂያዎ አሁን እየሄደ ነው።</string>
+    <string name="transient_alarm_soon">የመቀስቀሻ ክልልዎ ከዚያ በፊት ይጀምራል።</string>
+</resources>

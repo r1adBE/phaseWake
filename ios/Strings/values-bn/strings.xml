@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">এই iPhone-এর সঙ্গে কোনো Apple Watch পেয়ার করা নেই।</string>
+    <string name="check_watch_app">ঘড়িতে Phase Wake</string>
+    <string name="check_watch_app_problem">Watch অ্যাপ থেকে তোমার Apple Watch-এ Phase Wake ইনস্টল করো।</string>
+    <string name="check_alarmkit">অ্যালার্মের অনুমতি আছে</string>
+    <string name="check_alarmkit_problem">Phase Wake-কে অ্যালার্ম সেট করার অনুমতি দাও, যাতে তোমার iPhone ব্যাকআপ অ্যালার্ম হিসেবে বাজতে পারে।</string>
+    <string name="nightstand_start">নাইটস্ট্যান্ড মোড শুরু করো</string>
+    <string name="nightstand_hint">সূর্যোদয়ের জন্য সারা রাত চার্জারে Phase Wake খোলা রাখো। আলো শুরু না হওয়া পর্যন্ত স্ক্রিন অন্ধকার থাকে।</string>
+    <string name="nightstand_end">শেষ করো</string>
+    <string name="nightstand_waiting">সূর্যোদয় %1$s-এ</string>
+    <string name="nightstand_no_alarm">সূর্যোদয় সহ কোনো অ্যালার্ম নেই</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake খোলা থাকলেই শুধু তোমার iPhone আলো দেখাতে পারে – ঘুমাতে যাওয়ার আগে নাইটস্ট্যান্ড মোড শুরু করো।</string>
+    <string name="trends_health_hint_apple">ঘুমের সময়কাল আর নিয়মিততা Apple Health থেকে আসে।</string>
+    <string name="watch_not_armed">ঘুমাতে যাওয়ার আগে Phase Wake খোলো, যাতে তোমার ঘড়ি অ্যালার্ম প্রস্তুত করতে পারে।</string>
+    <string name="check_watch_arm">ঘড়িতে অ্যালার্ম প্রস্তুত</string>
+    <string name="check_watch_arm_problem">ঘুমাতে যাওয়ার আগে তোমার Apple Watch-এ Phase Wake খোলো। অ্যাপ খোলা থাকলেই শুধু watchOS অ্যালার্ম প্রস্তুত করে।</string>
+    <string name="night_unmeasured_apple">প্রথম %1$d মি. মাপা হয়নি – Apple Watch শুধু লক্ষ্যের আগের শেষ %2$d মি. মাপে।</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT লাইসেন্স, © r1adBE।\nManrope ফন্ট: SIL Open Font License 1.1, © The Manrope Project Authors।\nশব্দ শনাক্তকরণ: Apple-এর SoundAnalysis, iOS-এ অন্তর্নির্মিত।\nশব্দ: opengameart.org-এর ফ্রি রেকর্ডিং (CC0)</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">Ar šo iPhone nav savienots neviens Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake pulkstenī</string>
+    <string name="check_watch_app_problem">Instalē Phase Wake savā Apple Watch lietotnē Watch.</string>
+    <string name="check_alarmkit">Modinātāji atļauti</string>
+    <string name="check_alarmkit_problem">Atļauj Phase Wake iestatīt modinātājus, lai iPhone varētu zvanīt kā rezerves modinātājs.</string>
+    <string name="nightstand_start">Sākt naktsgaldiņa režīmu</string>
+    <string name="nightstand_hint">Lai būtu saullēkts, atstāj Phase Wake atvērtu uz lādētāja visu nakti. Ekrāns paliek tumšs, līdz sākas gaisma.</string>
+    <string name="nightstand_end">Beigt</string>
+    <string name="nightstand_waiting">Saullēkts %1$s</string>
+    <string name="nightstand_no_alarm">Nav modinātāja ar saullēktu</string>
+    <string name="editor_sunrise_ios_hint">iPhone var rādīt gaismu tikai tad, kad Phase Wake ir atvērts – pirms gulētiešanas ieslēdz naktsgaldiņa režīmu.</string>
+    <string name="trends_health_hint_apple">Miega ilgums un regularitāte – no Apple Health.</string>
+    <string name="watch_not_armed">Pirms gulētiešanas atver Phase Wake, lai pulkstenis varētu aktivizēt modinātāju.</string>
+    <string name="check_watch_arm">Modinātājs pulkstenī aktivizēts</string>
+    <string name="check_watch_arm_problem">Pirms gulētiešanas atver Phase Wake savā Apple Watch. watchOS aktivizē modinātāju tikai tad, kad lietotne ir atvērta.</string>
+    <string name="night_unmeasured_apple">Pirmās %1$d min nav izmērītas – Apple Watch mēra tikai pēdējās %2$d min pirms mērķa laika.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT licence, © r1adBE.\nFonts Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nSkaņu atpazīšana: Apple SoundAnalysis, iebūvēts iOS.\nSkaņas: bezmaksas ieraksti (CC0) no opengameart.org</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="check_watch_problem_apple">Бұл iPhone-ға Apple Watch жұптастырылмаған.</string>
+    <string name="check_watch_app">Сағаттағы Phase Wake</string>
+    <string name="check_watch_app_problem">Watch қолданбасы арқылы Apple Watch-қа Phase Wake орнат.</string>
+    <string name="check_alarmkit">Оятқыштарға рұқсат бар</string>
+    <string name="check_alarmkit_problem">iPhone қосалқы оятқыш ретінде шырылдай алуы үшін Phase Wake-ке оятқыш орнатуға рұқсат бер.</string>
+    <string name="nightstand_start">Түнгі үстел режимін бастау</string>
+    <string name="nightstand_hint">Күннің шығуы үшін Phase Wake-ті түні бойы зарядта ашық қалдыр. Жарық басталғанша экран қараңғы болады.</string>
+    <string name="nightstand_end">Аяқтау</string>
+    <string name="nightstand_waiting">Күннің шығуы: %1$s</string>
+    <string name="nightstand_no_alarm">Күннің шығуы бар оятқыш жоқ</string>
+    <string name="editor_sunrise_ios_hint">iPhone жарықты тек Phase Wake ашық кезде көрсете алады – ұйықтар алдында түнгі үстел режимін баста.</string>
+    <string name="trends_health_hint_apple">Ұйқы ұзақтығы мен тұрақтылығы Apple Health-тен алынады.</string>
+    <string name="watch_not_armed">Сағатың оятқышты іске қосуы үшін ұйықтар алдында Phase Wake-ті аш.</string>
+    <string name="check_watch_arm">Сағатта оятқыш іске қосылған</string>
+    <string name="check_watch_arm_problem">Ұйықтар алдында Apple Watch-та Phase Wake-ті аш. watchOS оятқышты тек қолданба ашық кезде іске қосады.</string>
+    <string name="night_unmeasured_apple">Алғашқы %1$d мин өлшенбеді – Apple Watch мақсатты уақытқа дейінгі соңғы %2$d минутты ғана өлшейді.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT лицензиясы, © r1adBE.\nManrope қарпі: SIL Open Font License 1.1, © The Manrope Project Authors.\nДыбыстарды тану: Apple-дің SoundAnalysis құралы, iOS-қа кірістірілген.\nДыбыстар: opengameart.org сайтындағы еркін жазбалар (CC0)</string>
+</resources>

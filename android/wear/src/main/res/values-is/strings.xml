@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Vakningargluggi</string>
+    <string name="channel_window_description">Birtist á meðan Phase Wake fylgist með léttum svefni.</string>
+    <string name="channel_alarm">Vekjari</string>
+    <string name="channel_alarm_description">Vekur þig.</string>
+    <string name="notification_window_title">Fylgist með léttum svefni</string>
+    <string name="notification_window_text">Vekur þig í síðasta lagi kl. %1$s</string>
+    <string name="notification_ring_title">Góðan daginn</string>
+
+    <string name="ring_greeting">Góðan daginn</string>
+    <string name="ring_reason_light">Léttur svefn greindist</string>
+    <string name="ring_reason_awake">Þú varst þegar vakandi</string>
+    <string name="ring_reason_deadline">Markmiðstíma náð</string>
+    <string name="ring_hold_to_stop">Haltu inni til að stöðva</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d mín · %2$d eftir</item>
+        <item quantity="other">%1$d mín · %2$d eftir</item>
+    </plurals>
+    <string name="ring_snoozed_until">Blundað til %1$s</string>
+
+    <string name="home_no_alarm">Enginn vekjari stilltur</string>
+    <string name="home_no_alarm_hint">Bættu við vekjara – hér eða í Phase Wake í símanum.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Í dag</string>
+    <string name="home_tomorrow">Á morgun</string>
+    <string name="home_window_length">%1$d mín gluggi</string>
+    <string name="home_alarms">Vekjarar</string>
+    <string name="home_permissions">Leyfa heimildir</string>
+    <string name="home_permissions_hint">Þarf fyrir mælingar og vekjaraskjáinn.</string>
+    <string name="alarm_once">Einu sinni</string>
+    <string name="alarm_every_day">Alla daga</string>
+    <string name="tile_label">Næsti vekjari</string>
+    <string name="tile_next">Næsti vekjari</string>
+    <string name="tile_light_sleep">Vekur þig í léttum svefni</string>
+    <string name="notification_good_night_title">Sofðu vel</string>
+    <string name="notification_good_night_text">Bíður eftir að þú sofnir</string>
+    <string name="home_good_night">Góða nótt</string>
+    <string name="home_good_night_hint">Sofa %1$s héðan í frá</string>
+    <string name="home_good_night_active">Bíður eftir svefni · ýttu til að hætta við</string>
+    <string name="dnd_title">Lokað á vekjara</string>
+    <string name="dnd_text">Leyfðu vekjara í „Ónáðið ekki“.</string>
+    <string name="duration_hours">%1$d klst</string>
+    <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
+    <string name="home_last_night">Síðasta nótt</string>
+    <string name="notification_open">Opna</string>
+    <string name="home_good_night_too_far">Í boði frá 16 klst fyrir vekjarann</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Leystu dæmið í símanum eða haltu inni í 5 sek</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nýr vekjari</string>
+    <string name="editor_new">Nýr vekjari</string>
+    <string name="editor_edit">Breyta vekjara</string>
+    <string name="editor_target">Vektu mig fyrir</string>
+    <string name="editor_latest">Í síðasta lagi</string>
+    <string name="editor_window">Gluggi: %1$d mín</string>
+    <string name="editor_days">Endurtaka</string>
+    <string name="editor_save">Vista</string>
+    <string name="editor_delete">Eyða vekjara</string>
+    <string name="editor_delete_title">Eyða þessum vekjara?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hámark %1$d vekjarar – eyddu einum til að bæta nýjum við.</string>
+    <string name="editor_enabled">Vekjari á</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Sleppa næst</string>
+    <string name="alarm_skipped">Sleppt: %1$s</string>
+    <string name="nap_title">Kríublundur</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d mínúta</item>
+        <item quantity="other">%1$d mínútur</item>
+    </plurals>
+    <string name="nap_start">Byrja</string>
+    <string name="nap_running">Til %1$s</string>
+    <string name="nap_stop">Ljúka kríublundi</string>
+    <string name="diag_title">Greining</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d ýting í viðbót</item>
+        <item quantity="other">%1$d ýtingar í viðbót</item>
+    </plurals>
+    <string name="diag_clear">Hreinsa</string>
+    <string name="diag_hide">Fela greiningu</string>
+    <string name="diag_empty">Engir atburðir enn.</string>
+    <string name="diag_next">Næsti vekjari: %1$s</string>
+    <string name="diag_version">Útgáfa %1$s</string>
+    <string name="transient_alarm_running">Vekjarinn þinn er í gangi núna.</string>
+    <string name="transient_alarm_soon">Vakningarglugginn byrjar fyrir þann tíma.</string>
+</resources>

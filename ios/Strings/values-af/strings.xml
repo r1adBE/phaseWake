@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Geen Apple Watch is met hierdie iPhone gekoppel nie.</string>
+    <string name="check_watch_app">Phase Wake op die horlosie</string>
+    <string name="check_watch_app_problem">Installeer Phase Wake op jou Apple Watch in die Watch-app.</string>
+    <string name="check_alarmkit">Wekkers toegelaat</string>
+    <string name="check_alarmkit_problem">Laat Phase Wake toe om wekkers te stel sodat jou iPhone as rugsteunwekker kan lui.</string>
+    <string name="nightstand_start">Begin bedkassiemodus</string>
+    <string name="nightstand_hint">Vir die sonsopkoms, laat Phase Wake oornag oop op die laaier. Die skerm bly donker totdat die lig begin.</string>
+    <string name="nightstand_end">Beëindig</string>
+    <string name="nightstand_waiting">Sonsopkoms om %1$s</string>
+    <string name="nightstand_no_alarm">Geen wekker met sonsopkoms nie</string>
+    <string name="editor_sunrise_ios_hint">Jou iPhone kan die lig net wys terwyl Phase Wake oop is – begin bedkassiemodus voor jy gaan slaap.</string>
+    <string name="trends_health_hint_apple">Slaapduur en reëlmatigheid kom uit Apple Health.</string>
+    <string name="watch_not_armed">Maak Phase Wake oop voor jy gaan slaap sodat jou horlosie die wekker kan aktiveer.</string>
+    <string name="check_watch_arm">Wekker op die horlosie geaktiveer</string>
+    <string name="check_watch_arm_problem">Maak Phase Wake op jou Apple Watch oop voor jy gaan slaap. watchOS aktiveer die wekker net terwyl die app oop is.</string>
+    <string name="night_unmeasured_apple">Eerste %1$d min nie gemeet nie – die Apple Watch meet net die laaste %2$d min voor die teikentyd.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT-lisensie, © r1adBE.\nManrope-lettertipe: SIL Open Font License 1.1, © The Manrope Project Authors.\nKlankherkenning: SoundAnalysis deur Apple, ingebou in iOS.\nKlanke: gratis opnames (CC0) van opengameart.org</string>
+</resources>

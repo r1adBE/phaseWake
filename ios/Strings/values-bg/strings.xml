@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">С този iPhone не е сдвоен Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake на часовника</string>
+    <string name="check_watch_app_problem">Инсталирай Phase Wake на Apple Watch от приложението Watch.</string>
+    <string name="check_alarmkit">Будилниците са разрешени</string>
+    <string name="check_alarmkit_problem">Разреши на Phase Wake да задава будилници, за да може iPhone да звъни като резервен будилник.</string>
+    <string name="nightstand_start">Режим нощно шкафче</string>
+    <string name="nightstand_hint">За изгрева остави Phase Wake отворено на зарядното през нощта. Екранът остава тъмен, докато започне светлината.</string>
+    <string name="nightstand_end">Край</string>
+    <string name="nightstand_waiting">Изгрев в %1$s</string>
+    <string name="nightstand_no_alarm">Няма будилник с изгрев</string>
+    <string name="editor_sunrise_ios_hint">iPhone може да показва светлината само докато Phase Wake е отворено – пусни режим нощно шкафче, преди да заспиш.</string>
+    <string name="trends_health_hint_apple">Продължителността и редовността на съня идват от Apple Health.</string>
+    <string name="watch_not_armed">Отвори Phase Wake, преди да заспиш, за да може часовникът да активира будилника.</string>
+    <string name="check_watch_arm">Будилникът на часовника е активиран</string>
+    <string name="check_watch_arm_problem">Отвори Phase Wake на Apple Watch, преди да заспиш. watchOS активира будилника само докато приложението е отворено.</string>
+    <string name="night_unmeasured_apple">Първите %1$d мин не са измерени – Apple Watch измерва само последните %2$d мин преди целевия час.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: лиценз MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРазпознаване на звуци: SoundAnalysis от Apple, вградено в iOS.\nЗвуци: свободни записи (CC0) от opengameart.org</string>
+</resources>

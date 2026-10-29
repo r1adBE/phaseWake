@@ -21,6 +21,10 @@ PLURAL_CATEGORIES = {
     "pt": {"one", "many", "other"},
     "ja": {"other"}, "ko": {"other"}, "zh": {"other"}, "th": {"other"}, "vi": {"other"},
     "in": {"other"}, "ms": {"other"},
+    "hr": {"one", "few", "other"}, "sr": {"one", "few", "other"}, "bs": {"one", "few", "other"},
+    "sl": {"one", "two", "few", "other"}, "sk": {"one", "few", "many", "other"},
+    "lt": {"one", "few", "many", "other"}, "lv": {"zero", "one", "other"}, "ca": {"one", "many", "other"},
+    "ga": {"one", "two", "few", "many", "other"}, "km": {"other"}, "lo": {"other"}, "my": {"other"},
 }
 
 

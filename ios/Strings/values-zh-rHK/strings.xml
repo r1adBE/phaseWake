@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">沒有 Apple Watch 與這部 iPhone 配對。</string>
+    <string name="check_watch_app">手錶上的 Phase Wake</string>
+    <string name="check_watch_app_problem">請在 Watch App 中將 Phase Wake 安裝到你的 Apple Watch。</string>
+    <string name="check_alarmkit">鬧鐘已允許</string>
+    <string name="check_alarmkit_problem">請允許 Phase Wake 設定鬧鐘，讓你的 iPhone 可以作為備用鬧鐘響鬧。</string>
+    <string name="nightstand_start">開始床頭模式</string>
+    <string name="nightstand_hint">如要使用日出，請整晚讓 Phase Wake 在充電時保持開啟。螢幕會保持黑暗，直至光線開始亮起。</string>
+    <string name="nightstand_end">結束</string>
+    <string name="nightstand_waiting">日出時間 %1$s</string>
+    <string name="nightstand_no_alarm">沒有設有日出的鬧鐘</string>
+    <string name="editor_sunrise_ios_hint">你的 iPhone 只會在 Phase Wake 開啟時顯示光線 – 請在睡覺前開始床頭模式。</string>
+    <string name="trends_health_hint_apple">睡眠時長和規律性來自 Apple「健康」。</string>
+    <string name="watch_not_armed">睡覺前請開啟 Phase Wake，讓手錶可以啟用鬧鐘。</string>
+    <string name="check_watch_arm">手錶上的鬧鐘已啟用</string>
+    <string name="check_watch_arm_problem">睡覺前請在 Apple Watch 上開啟 Phase Wake。watchOS 只會在 App 開啟時啟用鬧鐘。</string>
+    <string name="night_unmeasured_apple">首 %1$d 分鐘未有測量 – Apple Watch 只會測量目標時間前最後 %2$d 分鐘。</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake：MIT 授權，© r1adBE。\nManrope 字體：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：Apple 的 SoundAnalysis，內置於 iOS。\n聲音：來自 opengameart.org 的免費錄音（CC0）</string>
+</resources>

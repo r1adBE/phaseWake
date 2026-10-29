@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="check_watch_problem_apple">ამ iPhone-თან Apple Watch დაწყვილებული არ არის.</string>
+    <string name="check_watch_app">Phase Wake საათზე</string>
+    <string name="check_watch_app_problem">დააინსტალირე Phase Wake Apple Watch-ზე Watch აპში.</string>
+    <string name="check_alarmkit">მაღვიძარები დაშვებულია</string>
+    <string name="check_alarmkit_problem">დაუშვი, რომ Phase Wake-მა მაღვიძარები დააყენოს, რათა iPhone-მა სარეზერვო მაღვიძარად დარეკოს.</string>
+    <string name="nightstand_start">ღამის მაგიდის რეჟიმის დაწყება</string>
+    <string name="nightstand_hint">მზის ამოსვლისთვის Phase Wake ღამით დამტენზე ღია დატოვე. ეკრანი ბნელი რჩება, სანამ სინათლე არ დაიწყება.</string>
+    <string name="nightstand_end">დასრულება</string>
+    <string name="nightstand_waiting">მზის ამოსვლა: %1$s</string>
+    <string name="nightstand_no_alarm">მზის ამოსვლით მაღვიძარა არ არის</string>
+    <string name="editor_sunrise_ios_hint">iPhone სინათლეს მხოლოდ მაშინ აჩვენებს, როცა Phase Wake ღიაა – დაძინებამდე ჩართე ღამის მაგიდის რეჟიმი.</string>
+    <string name="trends_health_hint_apple">ძილის ხანგრძლივობა და რეგულარულობა Apple Health-დან მოდის.</string>
+    <string name="watch_not_armed">დაძინებამდე გახსენი Phase Wake, რომ საათმა მაღვიძარა გაააქტიუროს.</string>
+    <string name="check_watch_arm">მაღვიძარა საათზე აქტიურია</string>
+    <string name="check_watch_arm_problem">დაძინებამდე გახსენი Phase Wake Apple Watch-ზე. watchOS მაღვიძარას მხოლოდ მაშინ ააქტიურებს, როცა აპი ღიაა.</string>
+    <string name="night_unmeasured_apple">პირველი %1$d წთ არ გაიზომა – Apple Watch ზომავს მხოლოდ ბოლო %2$d წთ-ს სამიზნემდე.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT ლიცენზია, © r1adBE.\nManrope შრიფტი: SIL Open Font License 1.1, © The Manrope Project Authors.\nხმების ამოცნობა: Apple-ის SoundAnalysis, ჩაშენებული iOS-ში.\nხმები: თავისუფალი ჩანაწერები (CC0) opengameart.org-დან</string>
+</resources>

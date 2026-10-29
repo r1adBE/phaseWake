@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">ಎಚ್ಚರಿಸುವ ಅವಧಿ</string>
+    <string name="channel_window_description">Phase Wake ಹಗುರ ನಿದ್ರೆಗಾಗಿ ಗಮನಿಸುತ್ತಿರುವಾಗ ಕಾಣುತ್ತದೆ.</string>
+    <string name="channel_alarm">ಅಲಾರಾಂ</string>
+    <string name="channel_alarm_description">ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
+    <string name="notification_window_title">ಹಗುರ ನಿದ್ರೆಗಾಗಿ ಗಮನಿಸುತ್ತಿದೆ</string>
+    <string name="notification_window_text">ತಡವೆಂದರೆ %1$s ಕ್ಕೆ ಎಬ್ಬಿಸುತ್ತದೆ</string>
+    <string name="notification_ring_title">ಶುಭೋದಯ</string>
+
+    <string name="ring_greeting">ಶುಭೋದಯ</string>
+    <string name="ring_reason_light">ಹಗುರ ನಿದ್ರೆ ಪತ್ತೆಯಾಗಿದೆ</string>
+    <string name="ring_reason_awake">ನೀವು ಈಗಾಗಲೇ ಎಚ್ಚರವಾಗಿದ್ದಿರಿ</string>
+    <string name="ring_reason_deadline">ಗುರಿ ಸಮಯ ತಲುಪಿದೆ</string>
+    <string name="ring_hold_to_stop">ನಿಲ್ಲಿಸಲು ಒತ್ತಿ ಹಿಡಿಯಿರಿ</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d ನಿಮಿ. · %2$d ಬಾಕಿ</item>
+        <item quantity="other">%1$d ನಿಮಿ. · %2$d ಬಾಕಿ</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s ವರೆಗೆ ಸ್ನೂಜ್</string>
+
+    <string name="home_no_alarm">ಯಾವುದೇ ಅಲಾರಾಂ ಇಲ್ಲ</string>
+    <string name="home_no_alarm_hint">ಅಲಾರಾಂ ಸೇರಿಸಿ – ಇಲ್ಲಿ ಅಥವಾ ಫೋನ್‌ನ Phase Wake ನಲ್ಲಿ.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ಇಂದು</string>
+    <string name="home_tomorrow">ನಾಳೆ</string>
+    <string name="home_window_length">%1$d ನಿಮಿ. ಅವಧಿ</string>
+    <string name="home_alarms">ಅಲಾರಾಂಗಳು</string>
+    <string name="home_permissions">ಅನುಮತಿಗಳನ್ನು ನೀಡಿ</string>
+    <string name="home_permissions_hint">ಅಳತೆ ಮತ್ತು ಅಲಾರಾಂ ಪರದೆಗೆ ಬೇಕು.</string>
+    <string name="alarm_once">ಒಮ್ಮೆ</string>
+    <string name="alarm_every_day">ಪ್ರತಿದಿನ</string>
+    <string name="tile_label">ಮುಂದಿನ ಅಲಾರಾಂ</string>
+    <string name="tile_next">ಮುಂದಿನ ಅಲಾರಾಂ</string>
+    <string name="tile_light_sleep">ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ</string>
+    <string name="notification_good_night_title">ಚೆನ್ನಾಗಿ ನಿದ್ರಿಸಿ</string>
+    <string name="notification_good_night_text">ನೀವು ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಕಾಯುತ್ತಿದೆ</string>
+    <string name="home_good_night">ಶುಭ ರಾತ್ರಿ</string>
+    <string name="home_good_night_hint">ಈಗಿನಿಂದ %1$s ನಿದ್ರೆ</string>
+    <string name="home_good_night_active">ನಿದ್ರೆಗಾಗಿ ಕಾಯುತ್ತಿದೆ · ರದ್ದುಮಾಡಲು ಟ್ಯಾಪ್</string>
+    <string name="dnd_title">ಅಲಾರಾಂಗಳು ತಡೆಯಲ್ಪಟ್ಟಿವೆ</string>
+    <string name="dnd_text">ಅಡಚಣೆ ಮಾಡಬೇಡಿ ಯಲ್ಲಿ ಅಲಾರಾಂಗಳನ್ನು ಅನುಮತಿಸಿ.</string>
+    <string name="duration_hours">%1$d ಗಂ.</string>
+    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
+    <string name="home_last_night">ಕಳೆದ ರಾತ್ರಿ</string>
+    <string name="notification_open">ತೆರೆಯಿರಿ</string>
+    <string name="home_good_night_too_far">ಅಲಾರಾಂಗೆ 16 ಗಂ. ಮೊದಲಿನಿಂದ ಲಭ್ಯ</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ಫೋನ್‌ನಲ್ಲಿ ಪ್ರಶ್ನೆ ಬಿಡಿಸಿ ಅಥವಾ 5 ಸೆ. ಒತ್ತಿ ಹಿಡಿಯಿರಿ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">ಹೊಸ ಅಲಾರಾಂ</string>
+    <string name="editor_new">ಹೊಸ ಅಲಾರಾಂ</string>
+    <string name="editor_edit">ಅಲಾರಾಂ ಸಂಪಾದಿಸಿ</string>
+    <string name="editor_target">ಇಷ್ಟರೊಳಗೆ ಎಬ್ಬಿಸಿ</string>
+    <string name="editor_latest">ತಡವೆಂದರೆ</string>
+    <string name="editor_window">ಅವಧಿ: %1$d ನಿಮಿ.</string>
+    <string name="editor_days">ಪುನರಾವರ್ತನೆ</string>
+    <string name="editor_save">ಉಳಿಸಿ</string>
+    <string name="editor_delete">ಅಲಾರಾಂ ಅಳಿಸಿ</string>
+    <string name="editor_delete_title">ಈ ಅಲಾರಾಂ ಅಳಿಸಬೇಕೇ?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">ಗರಿಷ್ಠ %1$d ಅಲಾರಾಂಗಳು – ಹೊಸದನ್ನು ಸೇರಿಸಲು ಒಂದನ್ನು ಅಳಿಸಿ.</string>
+    <string name="editor_enabled">ಅಲಾರಾಂ ಆನ್</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">ಮುಂದಿನ ಬಾರಿ ಬಿಟ್ಟುಬಿಡಿ</string>
+    <string name="alarm_skipped">ಬಿಡಲಾಗಿದೆ: %1$s</string>
+    <string name="nap_title">ಪವರ್ ನ್ಯಾಪ್</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d ನಿಮಿಷ</item>
+        <item quantity="other">%1$d ನಿಮಿಷಗಳು</item>
+    </plurals>
+    <string name="nap_start">ಶುರು</string>
+    <string name="nap_running">%1$s ವರೆಗೆ</string>
+    <string name="nap_stop">ಪವರ್ ನ್ಯಾಪ್ ಮುಗಿಸಿ</string>
+    <string name="diag_title">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">ಇನ್ನೂ %1$d ಟ್ಯಾಪ್</item>
+        <item quantity="other">ಇನ್ನೂ %1$d ಟ್ಯಾಪ್‌ಗಳು</item>
+    </plurals>
+    <string name="diag_clear">ತೆರವುಗೊಳಿಸಿ</string>
+    <string name="diag_hide">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್ ಮರೆಮಾಡಿ</string>
+    <string name="diag_empty">ಇನ್ನೂ ಯಾವುದೇ ಘಟನೆ ಇಲ್ಲ.</string>
+    <string name="diag_next">ಮುಂದಿನ ಅಲಾರಾಂ: %1$s</string>
+    <string name="diag_version">ಆವೃತ್ತಿ %1$s</string>
+    <string name="transient_alarm_running">ನಿಮ್ಮ ಅಲಾರಾಂ ಈಗ ನಡೆಯುತ್ತಿದೆ.</string>
+    <string name="transient_alarm_soon">ಅದಕ್ಕೂ ಮೊದಲೇ ನಿಮ್ಮ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾಗುತ್ತದೆ.</string>
+</resources>

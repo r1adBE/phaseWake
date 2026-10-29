@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">Okno budenia</string>
+    <string name="channel_window_description">Zobrazuje sa, kým Phase Wake čaká na ľahký spánok.</string>
+    <string name="channel_alarm">Budík</string>
+    <string name="channel_alarm_description">Zobudí ťa.</string>
+    <string name="notification_window_title">Čaká na ľahký spánok</string>
+    <string name="notification_window_text">Zobudí ťa najneskôr o %1$s</string>
+    <string name="notification_ring_title">Dobré ráno</string>
+
+    <string name="ring_greeting">Dobré ráno</string>
+    <string name="ring_reason_light">Zistený ľahký spánok</string>
+    <string name="ring_reason_awake">Už hore</string>
+    <string name="ring_reason_deadline">Cieľový čas dosiahnutý</string>
+    <string name="ring_hold_to_stop">Podrž na zastavenie</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · zostáva %2$d</item>
+        <item quantity="few">%1$d min · zostáva %2$d</item>
+        <item quantity="many">%1$d min · zostáva %2$d</item>
+        <item quantity="other">%1$d min · zostáva %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Odložené do %1$s</string>
+
+    <string name="home_no_alarm">Žiadny budík</string>
+    <string name="home_no_alarm_hint">Pridaj budík – tu alebo v Phase Wake v telefóne.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Dnes</string>
+    <string name="home_tomorrow">Zajtra</string>
+    <string name="home_window_length">Okno %1$d min</string>
+    <string name="home_alarms">Budíky</string>
+    <string name="home_permissions">Udeliť povolenia</string>
+    <string name="home_permissions_hint">Potrebné na meranie a obrazovku budíka.</string>
+    <string name="alarm_once">Raz</string>
+    <string name="alarm_every_day">Každý deň</string>
+    <string name="tile_label">Ďalší budík</string>
+    <string name="tile_next">Ďalší budík</string>
+    <string name="tile_light_sleep">Zobudí ťa v ľahkom spánku</string>
+    <string name="notification_good_night_title">Dobre sa vyspi</string>
+    <string name="notification_good_night_text">Čaká, kým zaspíš</string>
+    <string name="home_good_night">Dobrú noc</string>
+    <string name="home_good_night_hint">Spánok %1$s od teraz</string>
+    <string name="home_good_night_active">Čaká na spánok · ťukni na zrušenie</string>
+    <string name="dnd_title">Budíky blokované</string>
+    <string name="dnd_text">Povoľ budíky v režime Nerušiť.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Minulá noc</string>
+    <string name="notification_open">Otvoriť</string>
+    <string name="home_good_night_too_far">Dostupné od 16 h pred budíkom</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Vyrieš úlohu v telefóne alebo podrž 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nový budík</string>
+    <string name="editor_new">Nový budík</string>
+    <string name="editor_edit">Upraviť budík</string>
+    <string name="editor_target">Zobuď ma do</string>
+    <string name="editor_latest">Najneskôr</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_days">Opakovať</string>
+    <string name="editor_save">Uložiť</string>
+    <string name="editor_delete">Odstrániť budík</string>
+    <string name="editor_delete_title">Odstrániť tento budík?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Najviac %1$d budíkov – na pridanie nového jeden odstráň.</string>
+    <string name="editor_enabled">Budík zapnutý</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Nabudúce preskočiť</string>
+    <string name="alarm_skipped">Preskočené: %1$s</string>
+    <string name="nap_title">Šlofík</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minúta</item>
+        <item quantity="few">%1$d minúty</item>
+        <item quantity="many">%1$d minúty</item>
+        <item quantity="other">%1$d minút</item>
+    </plurals>
+    <string name="nap_start">Spustiť</string>
+    <string name="nap_running">Do %1$s</string>
+    <string name="nap_stop">Ukončiť šlofík</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ešte %1$d ťuknutie</item>
+        <item quantity="few">Ešte %1$d ťuknutia</item>
+        <item quantity="many">Ešte %1$d ťuknutia</item>
+        <item quantity="other">Ešte %1$d ťuknutí</item>
+    </plurals>
+    <string name="diag_clear">Vymazať</string>
+    <string name="diag_hide">Skryť diagnostiku</string>
+    <string name="diag_empty">Zatiaľ žiadne udalosti.</string>
+    <string name="diag_next">Ďalší budík: %1$s</string>
+    <string name="diag_version">Verzia %1$s</string>
+    <string name="transient_alarm_running">Tvoj budík práve beží.</string>
+    <string name="transient_alarm_soon">Tvoje okno budenia začína už skôr.</string>
+</resources>

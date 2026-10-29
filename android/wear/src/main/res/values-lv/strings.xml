@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Modināšanas logs</string>
+    <string name="channel_window_description">Tiek rādīts, kamēr Phase Wake gaida vieglu miegu.</string>
+    <string name="channel_alarm">Modinātājs</string>
+    <string name="channel_alarm_description">Pamodina tevi.</string>
+    <string name="notification_window_title">Gaida vieglu miegu</string>
+    <string name="notification_window_text">Pamodinās vēlākais %1$s</string>
+    <string name="notification_ring_title">Labrīt</string>
+
+    <string name="ring_greeting">Labrīt</string>
+    <string name="ring_reason_light">Konstatēts viegls miegs</string>
+    <string name="ring_reason_awake">Tu jau biji nomodā</string>
+    <string name="ring_reason_deadline">Sasniegts mērķa laiks</string>
+    <string name="ring_hold_to_stop">Turi, lai apturētu</string>
+    <plurals name="ring_snooze">
+        <item quantity="zero">%1$d min · atlicis %2$d</item>
+        <item quantity="one">%1$d min · atlicis %2$d</item>
+        <item quantity="other">%1$d min · atlicis %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Atlikts līdz %1$s</string>
+
+    <string name="home_no_alarm">Nav iestatīts modinātājs</string>
+    <string name="home_no_alarm_hint">Pievieno modinātāju – šeit vai Phase Wake tālrunī.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Šodien</string>
+    <string name="home_tomorrow">Rīt</string>
+    <string name="home_window_length">%1$d min logs</string>
+    <string name="home_alarms">Modinātāji</string>
+    <string name="home_permissions">Piešķirt atļaujas</string>
+    <string name="home_permissions_hint">Vajadzīgas mērīšanai un modinātāja ekrānam.</string>
+    <string name="alarm_once">Vienreiz</string>
+    <string name="alarm_every_day">Katru dienu</string>
+    <string name="tile_label">Nākamais modinātājs</string>
+    <string name="tile_next">Nākamais modinātājs</string>
+    <string name="tile_light_sleep">Modina vieglā miegā</string>
+    <string name="notification_good_night_title">Saldu miegu</string>
+    <string name="notification_good_night_text">Gaida, kad aizmigsi</string>
+    <string name="home_good_night">Ar labu nakti</string>
+    <string name="home_good_night_hint">Gulēt %1$s no šī brīža</string>
+    <string name="home_good_night_active">Gaida miegu · pieskaries, lai atceltu</string>
+    <string name="dnd_title">Modinātāji bloķēti</string>
+    <string name="dnd_text">Atļauj modinātājus režīmā „Netraucēt“.</string>
+    <string name="duration_hours">%1$d st.</string>
+    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
+    <string name="home_last_night">Pagājusī nakts</string>
+    <string name="notification_open">Atvērt</string>
+    <string name="home_good_night_too_far">Pieejams no 16 st. pirms modinātāja</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Atrisini uzdevumu tālrunī vai turi 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Jauns modinātājs</string>
+    <string name="editor_new">Jauns modinātājs</string>
+    <string name="editor_edit">Rediģēt modinātāju</string>
+    <string name="editor_target">Pamodini mani līdz</string>
+    <string name="editor_latest">Vēlākais</string>
+    <string name="editor_window">Logs: %1$d min</string>
+    <string name="editor_days">Atkārtot</string>
+    <string name="editor_save">Saglabāt</string>
+    <string name="editor_delete">Dzēst modinātāju</string>
+    <string name="editor_delete_title">Dzēst šo modinātāju?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Līdz %1$d modinātājiem – izdzēs vienu, lai pievienotu jaunu.</string>
+    <string name="editor_enabled">Modinātājs ieslēgts</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Izlaist nākamreiz</string>
+    <string name="alarm_skipped">Izlaists: %1$s</string>
+    <string name="nap_title">Diendusa</string>
+    <plurals name="nap_minutes">
+        <item quantity="zero">%1$d minūtes</item>
+        <item quantity="one">%1$d minūte</item>
+        <item quantity="other">%1$d minūtes</item>
+    </plurals>
+    <string name="nap_start">Sākt</string>
+    <string name="nap_running">Līdz %1$s</string>
+    <string name="nap_stop">Beigt diendusu</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="zero">Vēl %1$d pieskārieni</item>
+        <item quantity="one">Vēl %1$d pieskāriens</item>
+        <item quantity="other">Vēl %1$d pieskārieni</item>
+    </plurals>
+    <string name="diag_clear">Notīrīt</string>
+    <string name="diag_hide">Paslēpt diagnostiku</string>
+    <string name="diag_empty">Vēl nav notikumu.</string>
+    <string name="diag_next">Nākamais modinātājs: %1$s</string>
+    <string name="diag_version">Versija %1$s</string>
+    <string name="transient_alarm_running">Tavs modinātājs šobrīd darbojas.</string>
+    <string name="transient_alarm_soon">Tavs modināšanas logs sākas pirms tam.</string>
+</resources>

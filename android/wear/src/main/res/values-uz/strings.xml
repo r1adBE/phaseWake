@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Uygʻotish oraligʻi</string>
+    <string name="channel_window_description">Phase Wake yengil uyquni kuzatayotganda koʻrsatiladi.</string>
+    <string name="channel_alarm">Budilnik</string>
+    <string name="channel_alarm_description">Seni uygʻotadi.</string>
+    <string name="notification_window_title">Yengil uyqu kuzatilmoqda</string>
+    <string name="notification_window_text">Eng kechi %1$s da uygʻotadi</string>
+    <string name="notification_ring_title">Xayrli tong</string>
+
+    <string name="ring_greeting">Xayrli tong</string>
+    <string name="ring_reason_light">Yengil uyqu aniqlandi</string>
+    <string name="ring_reason_awake">Allaqachon uygʻoq eding</string>
+    <string name="ring_reason_deadline">Belgilangan vaqt keldi</string>
+    <string name="ring_hold_to_stop">Toʻxtatish uchun bosib tur</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d daq · %2$d ta qoldi</item>
+        <item quantity="other">%1$d daq · %2$d ta qoldi</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s gacha kechiktirildi</string>
+
+    <string name="home_no_alarm">Budilnik yoʻq</string>
+    <string name="home_no_alarm_hint">Budilnik qoʻsh – shu yerda yoki telefoningdagi Phase Wakeʼda.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Bugun</string>
+    <string name="home_tomorrow">Ertaga</string>
+    <string name="home_window_length">%1$d daq oraliq</string>
+    <string name="home_alarms">Budilniklar</string>
+    <string name="home_permissions">Ruxsat berish</string>
+    <string name="home_permissions_hint">Oʻlchash va budilnik ekrani uchun kerak.</string>
+    <string name="alarm_once">Bir marta</string>
+    <string name="alarm_every_day">Har kuni</string>
+    <string name="tile_label">Keyingi budilnik</string>
+    <string name="tile_next">Keyingi budilnik</string>
+    <string name="tile_light_sleep">Yengil uyquda uygʻotadi</string>
+    <string name="notification_good_night_title">Yaxshi uxla</string>
+    <string name="notification_good_night_text">Uxlab qolishing kutilmoqda</string>
+    <string name="home_good_night">Xayrli tun</string>
+    <string name="home_good_night_hint">Hozirdan %1$s uxla</string>
+    <string name="home_good_night_active">Uyqu kutilmoqda · bekor qilish uchun bos</string>
+    <string name="dnd_title">Budilniklar toʻsilgan</string>
+    <string name="dnd_text">«Bezovta qilinmasin»da budilniklarga ruxsat ber.</string>
+    <string name="duration_hours">%1$d soat</string>
+    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
+    <string name="home_last_night">Oʻtgan tun</string>
+    <string name="notification_open">Ochish</string>
+    <string name="home_good_night_too_far">Budilnikdan 16 soat oldin mavjud</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Masalani telefonda yech yoki 5 s bosib tur</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Yangi budilnik</string>
+    <string name="editor_new">Yangi budilnik</string>
+    <string name="editor_edit">Budilnikni tahrirlash</string>
+    <string name="editor_target">Meni uygʻot</string>
+    <string name="editor_latest">Eng kechi</string>
+    <string name="editor_window">Oraliq: %1$d daq</string>
+    <string name="editor_days">Takrorlash</string>
+    <string name="editor_save">Saqlash</string>
+    <string name="editor_delete">Budilnikni oʻchirish</string>
+    <string name="editor_delete_title">Bu budilnik oʻchirilsinmi?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Eng koʻpi %1$d ta budilnik – yangisini qoʻshish uchun bittasini oʻchir.</string>
+    <string name="editor_enabled">Budilnik yoqiq</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Keyingisini oʻtkazib yuborish</string>
+    <string name="alarm_skipped">Oʻtkazib yuborildi: %1$s</string>
+    <string name="nap_title">Qisqa uyqu</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d daqiqa</item>
+        <item quantity="other">%1$d daqiqa</item>
+    </plurals>
+    <string name="nap_start">Boshlash</string>
+    <string name="nap_running">%1$s gacha</string>
+    <string name="nap_stop">Qisqa uyquni tugatish</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Yana %1$d marta bos</item>
+        <item quantity="other">Yana %1$d marta bos</item>
+    </plurals>
+    <string name="diag_clear">Tozalash</string>
+    <string name="diag_hide">Diagnostikani yashirish</string>
+    <string name="diag_empty">Hali hodisalar yoʻq.</string>
+    <string name="diag_next">Keyingi budilnik: %1$s</string>
+    <string name="diag_version">Versiya %1$s</string>
+    <string name="transient_alarm_running">Budilniging hozir ishlayapti.</string>
+    <string name="transient_alarm_soon">Uygʻotish oraligʻing undan oldin boshlanadi.</string>
+</resources>

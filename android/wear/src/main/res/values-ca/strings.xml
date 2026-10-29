@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">Finestra de despertar</string>
+    <string name="channel_window_description">Es mostra mentre Phase Wake espera el son lleuger.</string>
+    <string name="channel_alarm">Alarma</string>
+    <string name="channel_alarm_description">Et desperta.</string>
+    <string name="notification_window_title">Esperant el son lleuger</string>
+    <string name="notification_window_text">Et desperta com a tard a les %1$s</string>
+    <string name="notification_ring_title">Bon dia</string>
+
+    <string name="ring_greeting">Bon dia</string>
+    <string name="ring_reason_light">Son lleuger detectat</string>
+    <string name="ring_reason_awake">Ja no dormies</string>
+    <string name="ring_reason_deadline">Hora objectiu assolida</string>
+    <string name="ring_hold_to_stop">Mantén premut per aturar</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · en queden %2$d</item>
+        <item quantity="many">%1$d min · en queden %2$d</item>
+        <item quantity="other">%1$d min · en queden %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Posposada fins a les %1$s</string>
+
+    <string name="home_no_alarm">Cap alarma definida</string>
+    <string name="home_no_alarm_hint">Afegeix una alarma – aquí o a Phase Wake al telèfon.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Avui</string>
+    <string name="home_tomorrow">Demà</string>
+    <string name="home_window_length">Finestra de %1$d min</string>
+    <string name="home_alarms">Alarmes</string>
+    <string name="home_permissions">Dona permisos</string>
+    <string name="home_permissions_hint">Calen per mesurar i per a la pantalla d’alarma.</string>
+    <string name="alarm_once">Una vegada</string>
+    <string name="alarm_every_day">Cada dia</string>
+    <string name="tile_label">Propera alarma</string>
+    <string name="tile_next">Propera alarma</string>
+    <string name="tile_light_sleep">Et desperta en son lleuger</string>
+    <string name="notification_good_night_title">Que descansis</string>
+    <string name="notification_good_night_text">Esperant que t’adormis</string>
+    <string name="home_good_night">Bona nit</string>
+    <string name="home_good_night_hint">Dormir %1$s a partir d’ara</string>
+    <string name="home_good_night_active">Esperant el son · toca per cancel·lar</string>
+    <string name="dnd_title">Alarmes bloquejades</string>
+    <string name="dnd_text">Permet les alarmes amb «No molestis».</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Ahir a la nit</string>
+    <string name="notification_open">Obre</string>
+    <string name="home_good_night_too_far">Disponible des de 16 h abans de l’alarma</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Resol la tasca al telèfon o mantén premut 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarma nova</string>
+    <string name="editor_new">Alarma nova</string>
+    <string name="editor_edit">Edita l’alarma</string>
+    <string name="editor_target">Desperta’m abans de</string>
+    <string name="editor_latest">Com a tard</string>
+    <string name="editor_window">Finestra: %1$d min</string>
+    <string name="editor_days">Repeteix</string>
+    <string name="editor_save">Desa</string>
+    <string name="editor_delete">Suprimeix l’alarma</string>
+    <string name="editor_delete_title">Vols suprimir aquesta alarma?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Com a màxim %1$d alarmes – suprimeix-ne una per afegir-ne una de nova.</string>
+    <string name="editor_enabled">Alarma activada</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Omet la propera vegada</string>
+    <string name="alarm_skipped">Omesa: %1$s</string>
+    <string name="nap_title">Becaina</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="many">%1$d minuts</item>
+        <item quantity="other">%1$d minuts</item>
+    </plurals>
+    <string name="nap_start">Comença</string>
+    <string name="nap_running">Fins a les %1$s</string>
+    <string name="nap_stop">Acaba la becaina</string>
+    <string name="diag_title">Diagnòstic</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d toc més</item>
+        <item quantity="many">%1$d tocs més</item>
+        <item quantity="other">%1$d tocs més</item>
+    </plurals>
+    <string name="diag_clear">Buida</string>
+    <string name="diag_hide">Amaga el diagnòstic</string>
+    <string name="diag_empty">Encara no hi ha esdeveniments.</string>
+    <string name="diag_next">Propera alarma: %1$s</string>
+    <string name="diag_version">Versió %1$s</string>
+    <string name="transient_alarm_running">La teva alarma està en marxa ara mateix.</string>
+    <string name="transient_alarm_soon">La teva finestra de despertar comença abans.</string>
+</resources>

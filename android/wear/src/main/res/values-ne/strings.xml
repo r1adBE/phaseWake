@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">ब्युँझाउने अवधि</string>
+    <string name="channel_window_description">Phase Wake ले हल्का निद्रा पर्खिरहँदा देखिन्छ।</string>
+    <string name="channel_alarm">अलार्म</string>
+    <string name="channel_alarm_description">तिमीलाई ब्युँझाउँछ।</string>
+    <string name="notification_window_title">हल्का निद्रा पर्खँदै</string>
+    <string name="notification_window_text">बढीमा %1$s सम्म ब्युँझाउँछ</string>
+    <string name="notification_ring_title">शुभ प्रभात</string>
+
+    <string name="ring_greeting">शुभ प्रभात</string>
+    <string name="ring_reason_light">हल्का निद्रा भेटियो</string>
+    <string name="ring_reason_awake">तिमी पहिल्यै ब्युँझिसकेका थियौ</string>
+    <string name="ring_reason_deadline">लक्षित समय भयो</string>
+    <string name="ring_hold_to_stop">रोक्न थिचिरहू</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d मि. · %2$d बाँकी</item>
+        <item quantity="other">%1$d मि. · %2$d बाँकी</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s सम्म स्नुज</string>
+
+    <string name="home_no_alarm">अलार्म सेट छैन</string>
+    <string name="home_no_alarm_hint">अलार्म थप – यहाँ वा फोनको Phase Wake मा।</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">आज</string>
+    <string name="home_tomorrow">भोलि</string>
+    <string name="home_window_length">%1$d मि. अवधि</string>
+    <string name="home_alarms">अलार्म</string>
+    <string name="home_permissions">अनुमति देऊ</string>
+    <string name="home_permissions_hint">मापन र अलार्म स्क्रिनका लागि चाहिन्छ।</string>
+    <string name="alarm_once">एक पटक</string>
+    <string name="alarm_every_day">हरेक दिन</string>
+    <string name="tile_label">अर्को अलार्म</string>
+    <string name="tile_next">अर्को अलार्म</string>
+    <string name="tile_light_sleep">हल्का निद्रामा ब्युँझाउँछ</string>
+    <string name="notification_good_night_title">राम्ररी सुत</string>
+    <string name="notification_good_night_text">तिमी निदाउन पर्खँदै</string>
+    <string name="home_good_night">शुभ रात्रि</string>
+    <string name="home_good_night_hint">अहिलेदेखि %1$s सुत</string>
+    <string name="home_good_night_active">निद्रा पर्खँदै · रद्द गर्न थिच</string>
+    <string name="dnd_title">अलार्म रोकिएको छ</string>
+    <string name="dnd_text">“बाधा नपुर्‍याउनुहोस्” मा अलार्मलाई अनुमति देऊ।</string>
+    <string name="duration_hours">%1$d घ.</string>
+    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
+    <string name="home_last_night">हिजो राति</string>
+    <string name="notification_open">खोल</string>
+    <string name="home_good_night_too_far">अलार्मभन्दा १६ घ. अघिदेखि उपलब्ध</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">फोनमा प्रश्न हल गर वा ५ से. थिचिरहू</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">नयाँ अलार्म</string>
+    <string name="editor_new">नयाँ अलार्म</string>
+    <string name="editor_edit">अलार्म सम्पादन</string>
+    <string name="editor_target">मलाई ब्युँझाउने समय</string>
+    <string name="editor_latest">बढीमा</string>
+    <string name="editor_window">अवधि: %1$d मि.</string>
+    <string name="editor_days">दोहोर्‍याऊ</string>
+    <string name="editor_save">सेभ गर</string>
+    <string name="editor_delete">अलार्म मेटाऊ</string>
+    <string name="editor_delete_title">यो अलार्म मेटाउने?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">बढीमा %1$d अलार्म – नयाँ थप्न एउटा मेटाऊ।</string>
+    <string name="editor_enabled">अलार्म अन</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">अर्को पटक छोड</string>
+    <string name="alarm_skipped">छोडियो: %1$s</string>
+    <string name="nap_title">छोटो निद्रा</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d मिनेट</item>
+        <item quantity="other">%1$d मिनेट</item>
+    </plurals>
+    <string name="nap_start">सुरु गर</string>
+    <string name="nap_running">%1$s सम्म</string>
+    <string name="nap_stop">छोटो निद्रा अन्त्य गर</string>
+    <string name="diag_title">निदान</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">अझै %1$d पटक थिच</item>
+        <item quantity="other">अझै %1$d पटक थिच</item>
+    </plurals>
+    <string name="diag_clear">खाली गर</string>
+    <string name="diag_hide">निदान लुकाऊ</string>
+    <string name="diag_empty">अहिलेसम्म कुनै घटना छैन।</string>
+    <string name="diag_next">अर्को अलार्म: %1$s</string>
+    <string name="diag_version">संस्करण %1$s</string>
+    <string name="transient_alarm_running">तिम्रो अलार्म अहिले चलिरहेको छ।</string>
+    <string name="transient_alarm_soon">तिम्रो ब्युँझाउने अवधि त्योभन्दा अघि सुरु हुन्छ।</string>
+</resources>

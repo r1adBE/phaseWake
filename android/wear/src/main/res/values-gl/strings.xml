@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Xanela de espertar</string>
+    <string name="channel_window_description">Móstrase mentres Phase Wake espera o sono lixeiro.</string>
+    <string name="channel_alarm">Alarma</string>
+    <string name="channel_alarm_description">Espértate.</string>
+    <string name="notification_window_title">Esperando o sono lixeiro</string>
+    <string name="notification_window_text">Espértate como moi tarde ás %1$s</string>
+    <string name="notification_ring_title">Bos días</string>
+
+    <string name="ring_greeting">Bos días</string>
+    <string name="ring_reason_light">Sono lixeiro detectado</string>
+    <string name="ring_reason_awake">Xa estabas esperto</string>
+    <string name="ring_reason_deadline">Chegou a hora prevista</string>
+    <string name="ring_hold_to_stop">Mantén premido para parar</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · queda %2$d</item>
+        <item quantity="other">%1$d min · quedan %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Adiada ata as %1$s</string>
+
+    <string name="home_no_alarm">Sen alarma configurada</string>
+    <string name="home_no_alarm_hint">Engade unha alarma – aquí ou en Phase Wake no teléfono.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Hoxe</string>
+    <string name="home_tomorrow">Mañá</string>
+    <string name="home_window_length">Xanela de %1$d min</string>
+    <string name="home_alarms">Alarmas</string>
+    <string name="home_permissions">Permitir permisos</string>
+    <string name="home_permissions_hint">Necesarios para medir e para a pantalla de alarma.</string>
+    <string name="alarm_once">Unha vez</string>
+    <string name="alarm_every_day">Todos os días</string>
+    <string name="tile_label">Próxima alarma</string>
+    <string name="tile_next">Próxima alarma</string>
+    <string name="tile_light_sleep">Espértate no sono lixeiro</string>
+    <string name="notification_good_night_title">Que durmas ben</string>
+    <string name="notification_good_night_text">Esperando a que adormezas</string>
+    <string name="home_good_night">Boas noites</string>
+    <string name="home_good_night_hint">Durmir %1$s desde agora</string>
+    <string name="home_good_night_active">Esperando o sono · toca para cancelar</string>
+    <string name="dnd_title">Alarmas bloqueadas</string>
+    <string name="dnd_text">Permite as alarmas en «Non molestar».</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Onte á noite</string>
+    <string name="notification_open">Abrir</string>
+    <string name="home_good_night_too_far">Dispoñible desde 16 h antes da alarma</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Resolve a tarefa no teléfono ou mantén premido 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nova alarma</string>
+    <string name="editor_new">Nova alarma</string>
+    <string name="editor_edit">Editar alarma</string>
+    <string name="editor_target">Espértame ata</string>
+    <string name="editor_latest">Como moi tarde</string>
+    <string name="editor_window">Xanela: %1$d min</string>
+    <string name="editor_days">Repetir</string>
+    <string name="editor_save">Gardar</string>
+    <string name="editor_delete">Eliminar alarma</string>
+    <string name="editor_delete_title">Eliminar esta alarma?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ata %1$d alarmas – elimina unha para engadir outra nova.</string>
+    <string name="editor_enabled">Alarma activada</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Omitir a próxima</string>
+    <string name="alarm_skipped">Omitida: %1$s</string>
+    <string name="nap_title">Sesta curta</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="other">%1$d minutos</item>
+    </plurals>
+    <string name="nap_start">Comezar</string>
+    <string name="nap_running">Ata as %1$s</string>
+    <string name="nap_stop">Rematar sesta</string>
+    <string name="diag_title">Diagnóstico</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d toque máis</item>
+        <item quantity="other">%1$d toques máis</item>
+    </plurals>
+    <string name="diag_clear">Baleirar</string>
+    <string name="diag_hide">Ocultar diagnóstico</string>
+    <string name="diag_empty">Aínda non hai eventos.</string>
+    <string name="diag_next">Próxima alarma: %1$s</string>
+    <string name="diag_version">Versión %1$s</string>
+    <string name="transient_alarm_running">A túa alarma está activa agora mesmo.</string>
+    <string name="transient_alarm_soon">A túa xanela de espertar comeza antes.</string>
+</resources>

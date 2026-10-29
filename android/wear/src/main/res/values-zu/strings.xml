@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Isikhala sokuvuka</string>
+    <string name="channel_window_description">Kuboniswa ngesikhathi i-Phase Wake ibheka ubuthongo obulula.</string>
+    <string name="channel_alarm">I-alamu</string>
+    <string name="channel_alarm_description">Ikuvusa.</string>
+    <string name="notification_window_title">Ibheka ubuthongo obulula</string>
+    <string name="notification_window_text">Ikuvusa kamuva kakhulu ngo-%1$s</string>
+    <string name="notification_ring_title">Sawubona ekuseni</string>
+
+    <string name="ring_greeting">Sawubona ekuseni</string>
+    <string name="ring_reason_light">Kutholwe ubuthongo obulula</string>
+    <string name="ring_reason_awake">Ubusuvukile</string>
+    <string name="ring_reason_deadline">Isikhathi esihlosiwe sifikile</string>
+    <string name="ring_hold_to_stop">Bamba ukuze umise</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · kusele %2$d</item>
+        <item quantity="other">%1$d min · kusele %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Kusnuziwe kuze kube ngu-%1$s</string>
+
+    <string name="home_no_alarm">Ayikho i-alamu esethiwe</string>
+    <string name="home_no_alarm_hint">Engeza i-alamu – lapha noma ku-Phase Wake efonini yakho.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Namuhla</string>
+    <string name="home_tomorrow">Kusasa</string>
+    <string name="home_window_length">Isikhala sika-%1$d min</string>
+    <string name="home_alarms">Ama-alamu</string>
+    <string name="home_permissions">Vumela izimvume</string>
+    <string name="home_permissions_hint">Kudingeka ekulinganiseni nasesikrinini se-alamu.</string>
+    <string name="alarm_once">Kanye</string>
+    <string name="alarm_every_day">Nsuku zonke</string>
+    <string name="tile_label">I-alamu elandelayo</string>
+    <string name="tile_next">I-alamu elandelayo</string>
+    <string name="tile_light_sleep">Ikuvusa ebuthongweni obulula</string>
+    <string name="notification_good_night_title">Lala kahle</string>
+    <string name="notification_good_night_text">Ilinde ukuthi ulale</string>
+    <string name="home_good_night">Ulale kahle</string>
+    <string name="home_good_night_hint">Lala %1$s kusukela manje</string>
+    <string name="home_good_night_active">Ilinde ubuthongo · thepha ukuze ukhansele</string>
+    <string name="dnd_title">Ama-alamu avinjiwe</string>
+    <string name="dnd_text">Vumela ama-alamu ku-Ungaphazamisi.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Izolo ebusuku</string>
+    <string name="notification_open">Vula</string>
+    <string name="home_good_night_too_far">Kuyatholakala kusukela emahoreni ayi-16 ngaphambi kwe-alamu</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Xazulula umsebenzi efonini yakho noma ubambe imizuzwana emi-5</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">I-alamu entsha</string>
+    <string name="editor_new">I-alamu entsha</string>
+    <string name="editor_edit">Hlela i-alamu</string>
+    <string name="editor_target">Ngivuse ngo</string>
+    <string name="editor_latest">Kamuva kakhulu</string>
+    <string name="editor_window">Isikhala: %1$d min</string>
+    <string name="editor_days">Phinda</string>
+    <string name="editor_save">Londoloza</string>
+    <string name="editor_delete">Susa i-alamu</string>
+    <string name="editor_delete_title">Susa le alamu?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kufika kuma-alamu angu-%1$d – susa eyodwa ukuze ungeze entsha.</string>
+    <string name="editor_enabled">I-alamu ivuliwe</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Yeqa okulandelayo</string>
+    <string name="alarm_skipped">Kweqiwe: %1$s</string>
+    <string name="nap_title">Ukulala kancane</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">umzuzu ongu-%1$d</item>
+        <item quantity="other">imizuzu engu-%1$d</item>
+    </plurals>
+    <string name="nap_start">Qala</string>
+    <string name="nap_running">Kuze kube ngu-%1$s</string>
+    <string name="nap_stop">Qeda ukulala kancane</string>
+    <string name="diag_title">Ukuhlola amaphutha</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Thepha kanye futhi</item>
+        <item quantity="other">Thepha izikhathi ezingu-%1$d futhi</item>
+    </plurals>
+    <string name="diag_clear">Sula</string>
+    <string name="diag_hide">Fihla ukuhlola amaphutha</string>
+    <string name="diag_empty">Azikho izehlakalo okwamanje.</string>
+    <string name="diag_next">I-alamu elandelayo: %1$s</string>
+    <string name="diag_version">Inguqulo %1$s</string>
+    <string name="transient_alarm_running">I-alamu yakho iyakhala manje.</string>
+    <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
+</resources>

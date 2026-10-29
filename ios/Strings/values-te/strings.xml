@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">ఈ iPhoneతో ఏ Apple Watch జత చేయలేదు.</string>
+    <string name="check_watch_app">వాచ్‌లో Phase Wake</string>
+    <string name="check_watch_app_problem">Watch యాప్‌లో మీ Apple Watchకి Phase Wake ఇన్‌స్టాల్ చేయండి.</string>
+    <string name="check_alarmkit">అలారాలకు అనుమతి ఉంది</string>
+    <string name="check_alarmkit_problem">మీ iPhone బ్యాకప్ అలారంగా మోగగలిగేలా Phase Wakeకి అలారాలు సెట్ చేసే అనుమతి ఇవ్వండి.</string>
+    <string name="nightstand_start">నైట్‌స్టాండ్ మోడ్ మొదలుపెట్టండి</string>
+    <string name="nightstand_hint">సూర్యోదయం కోసం Phase Wakeను రాత్రంతా ఛార్జర్‌పై తెరిచి ఉంచండి. వెలుగు మొదలయ్యే వరకు స్క్రీన్ చీకటిగా ఉంటుంది.</string>
+    <string name="nightstand_end">ముగించండి</string>
+    <string name="nightstand_waiting">%1$sకి సూర్యోదయం</string>
+    <string name="nightstand_no_alarm">సూర్యోదయంతో అలారం లేదు</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake తెరిచి ఉన్నప్పుడు మాత్రమే మీ iPhone వెలుగు చూపగలదు – నిద్రపోయే ముందు నైట్‌స్టాండ్ మోడ్ మొదలుపెట్టండి.</string>
+    <string name="trends_health_hint_apple">నిద్ర వ్యవధి, క్రమబద్ధత Apple Health నుంచి వస్తాయి.</string>
+    <string name="watch_not_armed">మీ వాచ్ అలారాన్ని సిద్ధం చేయగలిగేలా నిద్రపోయే ముందు Phase Wake తెరవండి.</string>
+    <string name="check_watch_arm">వాచ్‌లో అలారం సిద్ధం</string>
+    <string name="check_watch_arm_problem">నిద్రపోయే ముందు మీ Apple Watchలో Phase Wake తెరవండి. యాప్ తెరిచి ఉన్నప్పుడు మాత్రమే watchOS అలారాన్ని సిద్ధం చేస్తుంది.</string>
+    <string name="night_unmeasured_apple">మొదటి %1$d ని. కొలవలేదు – Apple Watch లక్ష్యానికి ముందు చివరి %2$d ని. మాత్రమే కొలుస్తుంది.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope ఫాంట్: SIL Open Font License 1.1, © The Manrope Project Authors.\nధ్వని గుర్తింపు: Apple వారి SoundAnalysis, iOSలో అంతర్నిర్మితం.\nధ్వనులు: opengameart.org నుంచి ఉచిత రికార్డింగ్‌లు (CC0)</string>
+</resources>

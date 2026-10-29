@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">Walang Apple Watch na naka-pair sa iPhone na ito.</string>
+    <string name="check_watch_app">Phase Wake sa relo</string>
+    <string name="check_watch_app_problem">I-install ang Phase Wake sa Apple Watch mo sa Watch app.</string>
+    <string name="check_alarmkit">Pinapayagan ang mga alarm</string>
+    <string name="check_alarmkit_problem">Payagan ang Phase Wake na magtakda ng mga alarm para makatunog ang iPhone mo bilang backup na alarm.</string>
+    <string name="nightstand_start">Simulan ang nightstand mode</string>
+    <string name="nightstand_hint">Para sa pagsikat ng araw, iwanang bukas ang Phase Wake sa charger magdamag. Mananatiling madilim ang screen hanggang magsimula ang liwanag.</string>
+    <string name="nightstand_end">Tapusin</string>
+    <string name="nightstand_waiting">Pagsikat ng araw sa %1$s</string>
+    <string name="nightstand_no_alarm">Walang alarm na may pagsikat ng araw</string>
+    <string name="editor_sunrise_ios_hint">Maipapakita lang ng iPhone mo ang liwanag habang bukas ang Phase Wake – simulan ang nightstand mode bago ka matulog.</string>
+    <string name="trends_health_hint_apple">Galing sa Apple Health ang haba at regularidad ng tulog.</string>
+    <string name="watch_not_armed">Buksan ang Phase Wake bago ka matulog para maihanda ng relo mo ang alarm.</string>
+    <string name="check_watch_arm">Nakahanda ang alarm sa relo</string>
+    <string name="check_watch_arm_problem">Buksan ang Phase Wake sa Apple Watch mo bago ka matulog. Inihahanda lang ng watchOS ang alarm habang bukas ang app.</string>
+    <string name="night_unmeasured_apple">Hindi nasukat ang unang %1$d min – sinusukat lang ng Apple Watch ang huling %2$d min bago ang target.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nFont na Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPag-detect ng tunog: SoundAnalysis ng Apple, built-in sa iOS.\nMga tunog: libreng recording (CC0) mula sa opengameart.org</string>
+</resources>

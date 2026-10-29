@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Esnatze-leihoa</string>
+    <string name="channel_window_description">Phase Wake lo arinaren zain dagoen bitartean erakusten da.</string>
+    <string name="channel_alarm">Alarma</string>
+    <string name="channel_alarm_description">Esnatu egiten zaitu.</string>
+    <string name="notification_window_title">Lo arinaren zain</string>
+    <string name="notification_window_text">Beranduenez %1$s-rako esnatuko zaitu</string>
+    <string name="notification_ring_title">Egun on</string>
+
+    <string name="ring_greeting">Egun on</string>
+    <string name="ring_reason_light">Lo arina hauteman da</string>
+    <string name="ring_reason_awake">Esna zeunden jada</string>
+    <string name="ring_reason_deadline">Helburuko ordua iritsi da</string>
+    <string name="ring_hold_to_stop">Eutsi sakatuta gelditzeko</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d falta</item>
+        <item quantity="other">%1$d min · %2$d falta</item>
+    </plurals>
+    <string name="ring_snoozed_until">Atzeratuta %1$s arte</string>
+
+    <string name="home_no_alarm">Ez dago alarmarik</string>
+    <string name="home_no_alarm_hint">Gehitu alarma bat – hemen edo telefonoko Phase Wake-n.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Gaur</string>
+    <string name="home_tomorrow">Bihar</string>
+    <string name="home_window_length">%1$d min-ko leihoa</string>
+    <string name="home_alarms">Alarmak</string>
+    <string name="home_permissions">Eman baimenak</string>
+    <string name="home_permissions_hint">Neurtzeko eta alarma-pantailarako behar dira.</string>
+    <string name="alarm_once">Behin</string>
+    <string name="alarm_every_day">Egunero</string>
+    <string name="tile_label">Hurrengo alarma</string>
+    <string name="tile_next">Hurrengo alarma</string>
+    <string name="tile_light_sleep">Lo arinean esnatzen zaitu</string>
+    <string name="notification_good_night_title">Ondo lo egin</string>
+    <string name="notification_good_night_text">Lokartu arte zain</string>
+    <string name="home_good_night">Gabon</string>
+    <string name="home_good_night_hint">Lo egin %1$s orain hasita</string>
+    <string name="home_good_night_active">Loaren zain · sakatu bertan behera uzteko</string>
+    <string name="dnd_title">Alarmak blokeatuta</string>
+    <string name="dnd_text">Baimendu alarmak «Ez molestatu» moduan.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Bart</string>
+    <string name="notification_open">Ireki</string>
+    <string name="home_good_night_too_far">Alarma baino 16 h lehenagotik erabilgarri</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Ebatzi ariketa telefonoan edo eutsi 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarma berria</string>
+    <string name="editor_new">Alarma berria</string>
+    <string name="editor_edit">Editatu alarma</string>
+    <string name="editor_target">Esnatze-ordua</string>
+    <string name="editor_latest">Beranduenez</string>
+    <string name="editor_window">Leihoa: %1$d min</string>
+    <string name="editor_days">Errepikatu</string>
+    <string name="editor_save">Gorde</string>
+    <string name="editor_delete">Ezabatu alarma</string>
+    <string name="editor_delete_title">Alarma hau ezabatu?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Gehienez %1$d alarma – ezabatu bat berri bat gehitzeko.</string>
+    <string name="editor_enabled">Alarma aktibatuta</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Saltatu hurrengoa</string>
+    <string name="alarm_skipped">Saltatuta: %1$s</string>
+    <string name="nap_title">Siesta laburra</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">Minutu %1$d</item>
+        <item quantity="other">%1$d minutu</item>
+    </plurals>
+    <string name="nap_start">Hasi</string>
+    <string name="nap_running">%1$s arte</string>
+    <string name="nap_stop">Amaitu siesta</string>
+    <string name="diag_title">Diagnostikoa</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Sakatu %1$d aldiz gehiago</item>
+        <item quantity="other">Sakatu %1$d aldiz gehiago</item>
+    </plurals>
+    <string name="diag_clear">Garbitu</string>
+    <string name="diag_hide">Ezkutatu diagnostikoa</string>
+    <string name="diag_empty">Oraindik ez dago gertaerarik.</string>
+    <string name="diag_next">Hurrengo alarma: %1$s</string>
+    <string name="diag_version">%1$s bertsioa</string>
+    <string name="transient_alarm_running">Zure alarma martxan dago orain.</string>
+    <string name="transient_alarm_soon">Zure esnatze-leihoa hori baino lehen hasten da.</string>
+</resources>

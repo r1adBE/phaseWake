@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">අවදි පරාසය</string>
+    <string name="channel_window_description">Phase Wake සැහැල්ලු නින්ද සොයන අතරතුර පෙන්වයි.</string>
+    <string name="channel_alarm">එලාමය</string>
+    <string name="channel_alarm_description">ඔබව අවදි කරයි.</string>
+    <string name="notification_window_title">සැහැල්ලු නින්ද සොයමින්</string>
+    <string name="notification_window_text">උපරිම %1$s වන විට අවදි කරයි</string>
+    <string name="notification_ring_title">සුබ උදෑසනක්</string>
+
+    <string name="ring_greeting">සුබ උදෑසනක්</string>
+    <string name="ring_reason_light">සැහැල්ලු නින්ද හමු විය</string>
+    <string name="ring_reason_awake">ඔබ දැනටමත් අවදියි</string>
+    <string name="ring_reason_deadline">ඉලක්ක වේලාව පැමිණියා</string>
+    <string name="ring_hold_to_stop">නැවැත්වීමට අල්ලාගෙන සිටින්න</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">මිනි. %1$d · %2$d ඉතිරියි</item>
+        <item quantity="other">මිනි. %1$d · %2$d ඉතිරියි</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s දක්වා ස්නූස්</string>
+
+    <string name="home_no_alarm">එලාමයක් සකසා නැත</string>
+    <string name="home_no_alarm_hint">එලාමයක් එක් කරන්න – මෙහි හෝ දුරකථනයේ Phase Wake තුළ.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">අද</string>
+    <string name="home_tomorrow">හෙට</string>
+    <string name="home_window_length">මිනි. %1$d පරාසය</string>
+    <string name="home_alarms">එලාම</string>
+    <string name="home_permissions">අවසර දෙන්න</string>
+    <string name="home_permissions_hint">මැනීමට සහ එලාම් තිරයට අවශ්‍යයි.</string>
+    <string name="alarm_once">එක් වරක්</string>
+    <string name="alarm_every_day">සෑම දිනකම</string>
+    <string name="tile_label">ඊළඟ එලාමය</string>
+    <string name="tile_next">ඊළඟ එලාමය</string>
+    <string name="tile_light_sleep">සැහැල්ලු නින්දේදී අවදි කරයි</string>
+    <string name="notification_good_night_title">හොඳින් නිදාගන්න</string>
+    <string name="notification_good_night_text">ඔබ නින්දට යන තුරු රැඳී සිටී</string>
+    <string name="home_good_night">සුබ රාත්‍රියක්</string>
+    <string name="home_good_night_hint">දැන් සිට %1$s නිදාගන්න</string>
+    <string name="home_good_night_active">නින්දට රැඳී සිටී · අවලංගුයට තට්ටු කරන්න</string>
+    <string name="dnd_title">එලාම අවහිරයි</string>
+    <string name="dnd_text">“බාධා නොකරන්න” තුළ එලාමවලට ඉඩ දෙන්න.</string>
+    <string name="duration_hours">පැය %1$d</string>
+    <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
+    <string name="home_last_night">ඊයේ රාත්‍රිය</string>
+    <string name="notification_open">විවෘත කරන්න</string>
+    <string name="home_good_night_too_far">එලාමයට පැය 16 කට පෙර සිට ලබා ගත හැක</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">දුරකථනයේ ගැටලුව විසඳන්න හෝ තත්. 5 ක් අල්ලාගෙන සිටින්න</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">නව එලාමය</string>
+    <string name="editor_new">නව එලාමය</string>
+    <string name="editor_edit">එලාමය සංස්කරණය</string>
+    <string name="editor_target">මාව අවදි කරන්න</string>
+    <string name="editor_latest">උපරිම</string>
+    <string name="editor_window">පරාසය: මිනි. %1$d</string>
+    <string name="editor_days">නැවත කරන්න</string>
+    <string name="editor_save">සුරකින්න</string>
+    <string name="editor_delete">එලාමය මකන්න</string>
+    <string name="editor_delete_title">මෙම එලාමය මකන්නද?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">එලාම %1$d ක් දක්වා – අලුත් එකක් එක් කිරීමට එකක් මකන්න.</string>
+    <string name="editor_enabled">එලාමය සක්‍රියයි</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">ඊළඟ වර මඟ හරින්න</string>
+    <string name="alarm_skipped">මඟ හැරියා: %1$s</string>
+    <string name="nap_title">කෙටි නින්ද</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">මිනිත්තු %1$d</item>
+        <item quantity="other">මිනිත්තු %1$d</item>
+    </plurals>
+    <string name="nap_start">අරඹන්න</string>
+    <string name="nap_running">%1$s දක්වා</string>
+    <string name="nap_stop">කෙටි නින්ද අවසන් කරන්න</string>
+    <string name="diag_title">දෝෂ නිර්ණය</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">තව තට්ටු %1$d ක්</item>
+        <item quantity="other">තව තට්ටු %1$d ක්</item>
+    </plurals>
+    <string name="diag_clear">හිස් කරන්න</string>
+    <string name="diag_hide">දෝෂ නිර්ණය සඟවන්න</string>
+    <string name="diag_empty">තවම සිදුවීම් නැත.</string>
+    <string name="diag_next">ඊළඟ එලාමය: %1$s</string>
+    <string name="diag_version">අනුවාදය %1$s</string>
+    <string name="transient_alarm_running">ඔබේ එලාමය දැන් ක්‍රියාත්මකයි.</string>
+    <string name="transient_alarm_soon">ඔබේ අවදි පරාසය ඊට පෙර ආරම්භ වේ.</string>
+</resources>

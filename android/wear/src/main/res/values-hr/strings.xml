@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Interval buđenja</string>
+    <string name="channel_window_description">Prikazuje se dok Phase Wake prati lagani san.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Budi te.</string>
+    <string name="notification_window_title">Čeka se lagani san</string>
+    <string name="notification_window_text">Budi te najkasnije u %1$s</string>
+    <string name="notification_ring_title">Dobro jutro</string>
+
+    <string name="ring_greeting">Dobro jutro</string>
+    <string name="ring_reason_light">Prepoznat lagani san</string>
+    <string name="ring_reason_awake">Već ne spavaš</string>
+    <string name="ring_reason_deadline">Ciljno vrijeme je stiglo</string>
+    <string name="ring_hold_to_stop">Drži za zaustavljanje</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · još %2$d</item>
+        <item quantity="few">%1$d min · još %2$d</item>
+        <item quantity="other">%1$d min · još %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Odgođeno do %1$s</string>
+
+    <string name="home_no_alarm">Nema postavljenog alarma</string>
+    <string name="home_no_alarm_hint">Dodaj alarm – ovdje ili u aplikaciji Phase Wake na telefonu.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Danas</string>
+    <string name="home_tomorrow">Sutra</string>
+    <string name="home_window_length">Interval %1$d min</string>
+    <string name="home_alarms">Alarmi</string>
+    <string name="home_permissions">Dodijeli dopuštenja</string>
+    <string name="home_permissions_hint">Potrebno za mjerenje i zaslon alarma.</string>
+    <string name="alarm_once">Jednom</string>
+    <string name="alarm_every_day">Svaki dan</string>
+    <string name="tile_label">Sljedeći alarm</string>
+    <string name="tile_next">Sljedeći alarm</string>
+    <string name="tile_light_sleep">Budi te u laganom snu</string>
+    <string name="notification_good_night_title">Ugodan san</string>
+    <string name="notification_good_night_text">Čeka se da zaspiš</string>
+    <string name="home_good_night">Laku noć</string>
+    <string name="home_good_night_hint">Spavaj %1$s od sada</string>
+    <string name="home_good_night_active">Čeka se san · dodirni za otkazivanje</string>
+    <string name="dnd_title">Alarmi blokirani</string>
+    <string name="dnd_text">Dopusti alarme u načinu „Ne uznemiravaj“.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Prošla noć</string>
+    <string name="notification_open">Otvori</string>
+    <string name="home_good_night_too_far">Dostupno od 16 h prije alarma</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Riješi zadatak na telefonu ili drži 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Novi alarm</string>
+    <string name="editor_new">Novi alarm</string>
+    <string name="editor_edit">Uredi alarm</string>
+    <string name="editor_target">Probudi me do</string>
+    <string name="editor_latest">Najkasnije</string>
+    <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_days">Ponavljanje</string>
+    <string name="editor_save">Spremi</string>
+    <string name="editor_delete">Izbriši alarm</string>
+    <string name="editor_delete_title">Izbrisati ovaj alarm?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Najviše %1$d alarma – izbriši jedan da dodaš novi.</string>
+    <string name="editor_enabled">Alarm uključen</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Preskoči sljedeći put</string>
+    <string name="alarm_skipped">Preskočeno: %1$s</string>
+    <string name="nap_title">Kratki drijemež</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minute</item>
+        <item quantity="other">%1$d minuta</item>
+    </plurals>
+    <string name="nap_start">Pokreni</string>
+    <string name="nap_running">Do %1$s</string>
+    <string name="nap_stop">Završi kratki drijemež</string>
+    <string name="diag_title">Dijagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Još %1$d dodir</item>
+        <item quantity="few">Još %1$d dodira</item>
+        <item quantity="other">Još %1$d dodira</item>
+    </plurals>
+    <string name="diag_clear">Očisti</string>
+    <string name="diag_hide">Sakrij dijagnostiku</string>
+    <string name="diag_empty">Još nema događaja.</string>
+    <string name="diag_next">Sljedeći alarm: %1$s</string>
+    <string name="diag_version">Verzija %1$s</string>
+    <string name="transient_alarm_running">Tvoj alarm je upravo aktivan.</string>
+    <string name="transient_alarm_soon">Tvoj interval buđenja počinje prije toga.</string>
+</resources>

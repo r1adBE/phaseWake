@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">இந்த iPhone உடன் எந்த Apple Watch உம் இணைக்கப்படவில்லை.</string>
+    <string name="check_watch_app">வாட்ச்சில் Phase Wake</string>
+    <string name="check_watch_app_problem">Watch ஆப்ஸில் உங்கள் Apple Watch இல் Phase Wake ஐ நிறுவுங்கள்.</string>
+    <string name="check_alarmkit">அலாரங்கள் அனுமதிக்கப்பட்டன</string>
+    <string name="check_alarmkit_problem">உங்கள் iPhone மாற்று அலாரமாக ஒலிக்க, அலாரங்களை அமைக்க Phase Wake ஐ அனுமதியுங்கள்.</string>
+    <string name="nightstand_start">படுக்கையோர மேசைப் பயன்முறையைத் தொடங்கு</string>
+    <string name="nightstand_hint">சூரிய உதயத்துக்கு, இரவு முழுவதும் சார்ஜரில் Phase Wake ஐத் திறந்தே வையுங்கள். ஒளி தொடங்கும் வரை திரை இருட்டாக இருக்கும்.</string>
+    <string name="nightstand_end">முடி</string>
+    <string name="nightstand_waiting">%1$s க்குச் சூரிய உதயம்</string>
+    <string name="nightstand_no_alarm">சூரிய உதயத்துடன் அலாரம் இல்லை</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake திறந்திருக்கும்போது மட்டுமே உங்கள் iPhone ஒளியைக் காட்ட முடியும் – தூங்கச் செல்லும் முன் படுக்கையோர மேசைப் பயன்முறையைத் தொடங்குங்கள்.</string>
+    <string name="trends_health_hint_apple">தூக்க நேரமும் சீர்மையும் Apple Health இலிருந்து வருகின்றன.</string>
+    <string name="watch_not_armed">உங்கள் வாட்ச் அலாரத்தைத் தயார்செய்ய, தூங்கச் செல்லும் முன் Phase Wake ஐத் திறவுங்கள்.</string>
+    <string name="check_watch_arm">வாட்ச்சில் அலாரம் தயார்</string>
+    <string name="check_watch_arm_problem">தூங்கச் செல்லும் முன் உங்கள் Apple Watch இல் Phase Wake ஐத் திறவுங்கள். ஆப்ஸ் திறந்திருக்கும்போது மட்டுமே watchOS அலாரத்தைத் தயார்செய்யும்.</string>
+    <string name="night_unmeasured_apple">முதல் %1$d நிமி. அளவிடப்படவில்லை – Apple Watch இலக்குக்கு முந்தைய கடைசி %2$d நிமி. மட்டுமே அளவிடும்.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT உரிமம், © r1adBE.\nManrope எழுத்துரு: SIL Open Font License 1.1, © The Manrope Project Authors.\nஒலி கண்டறிதல்: Apple இன் SoundAnalysis, iOS இல் உள்ளமைந்தது.\nஒலிகள்: opengameart.org இலிருந்து இலவசப் பதிவுகள் (CC0)</string>
+</resources>

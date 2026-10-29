@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">எழுப்பும் வரம்பு</string>
+    <string name="channel_window_description">Phase Wake லேசான தூக்கத்தைக் கவனிக்கும்போது காட்டப்படும்.</string>
+    <string name="channel_alarm">அலாரம்</string>
+    <string name="channel_alarm_description">உங்களை எழுப்பும்.</string>
+    <string name="notification_window_title">லேசான தூக்கத்தைக் கவனிக்கிறது</string>
+    <string name="notification_window_text">அதிகபட்சம் %1$s க்குள் எழுப்பும்</string>
+    <string name="notification_ring_title">காலை வணக்கம்</string>
+
+    <string name="ring_greeting">காலை வணக்கம்</string>
+    <string name="ring_reason_light">லேசான தூக்கம் கண்டறியப்பட்டது</string>
+    <string name="ring_reason_awake">ஏற்கெனவே விழித்திருந்தீர்கள்</string>
+    <string name="ring_reason_deadline">இலக்கு நேரம் வந்தது</string>
+    <string name="ring_hold_to_stop">நிறுத்த அழுத்திப் பிடியுங்கள்</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d நிமி. · மீதம் %2$d</item>
+        <item quantity="other">%1$d நிமி. · மீதம் %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s வரை ஸ்னூஸ்</string>
+
+    <string name="home_no_alarm">அலாரம் இல்லை</string>
+    <string name="home_no_alarm_hint">அலாரத்தைச் சேருங்கள் – இங்கே அல்லது ஃபோனில் உள்ள Phase Wake இல்.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">இன்று</string>
+    <string name="home_tomorrow">நாளை</string>
+    <string name="home_window_length">%1$d நிமி. வரம்பு</string>
+    <string name="home_alarms">அலாரங்கள்</string>
+    <string name="home_permissions">அனுமதிகளை வழங்கு</string>
+    <string name="home_permissions_hint">அளவிடவும் அலாரம் திரைக்கும் தேவை.</string>
+    <string name="alarm_once">ஒருமுறை</string>
+    <string name="alarm_every_day">தினமும்</string>
+    <string name="tile_label">அடுத்த அலாரம்</string>
+    <string name="tile_next">அடுத்த அலாரம்</string>
+    <string name="tile_light_sleep">லேசான தூக்கத்தில் எழுப்பும்</string>
+    <string name="notification_good_night_title">நன்றாகத் தூங்குங்கள்</string>
+    <string name="notification_good_night_text">நீங்கள் தூங்கும் வரை காத்திருக்கிறது</string>
+    <string name="home_good_night">இனிய இரவு</string>
+    <string name="home_good_night_hint">இப்போதிலிருந்து %1$s தூக்கம்</string>
+    <string name="home_good_night_active">தூக்கத்துக்காகக் காத்திருக்கிறது · ரத்துசெய்யத் தட்டுங்கள்</string>
+    <string name="dnd_title">அலாரங்கள் தடுக்கப்பட்டன</string>
+    <string name="dnd_text">“தொந்தரவு செய்ய வேண்டாம்” இல் அலாரங்களை அனுமதியுங்கள்.</string>
+    <string name="duration_hours">%1$d மணி</string>
+    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
+    <string name="home_last_night">நேற்றிரவு</string>
+    <string name="notification_open">திற</string>
+    <string name="home_good_night_too_far">அலாரத்துக்கு 16 மணி முன்பிருந்து கிடைக்கும்</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ஃபோனில் கணக்கைத் தீருங்கள் அல்லது 5 வி. அழுத்திப் பிடியுங்கள்</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">புதிய அலாரம்</string>
+    <string name="editor_new">புதிய அலாரம்</string>
+    <string name="editor_edit">அலாரத்தைத் திருத்து</string>
+    <string name="editor_target">இதற்குள் எழுப்பு</string>
+    <string name="editor_latest">அதிகபட்சம்</string>
+    <string name="editor_window">வரம்பு: %1$d நிமி.</string>
+    <string name="editor_days">மீண்டும்</string>
+    <string name="editor_save">சேமி</string>
+    <string name="editor_delete">அலாரத்தை நீக்கு</string>
+    <string name="editor_delete_title">இந்த அலாரத்தை நீக்கவா?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">அதிகபட்சம் %1$d அலாரங்கள் – புதியதைச் சேர்க்க ஒன்றை நீக்குங்கள்.</string>
+    <string name="editor_enabled">அலாரம் ஆன்</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">அடுத்த முறை தவிர்</string>
+    <string name="alarm_skipped">தவிர்க்கப்பட்டது: %1$s</string>
+    <string name="nap_title">குட்டித் தூக்கம்</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d நிமிடம்</item>
+        <item quantity="other">%1$d நிமிடங்கள்</item>
+    </plurals>
+    <string name="nap_start">தொடங்கு</string>
+    <string name="nap_running">%1$s வரை</string>
+    <string name="nap_stop">குட்டித் தூக்கத்தை முடி</string>
+    <string name="diag_title">கண்டறிதல் தகவல்</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">இன்னும் %1$d தட்டல்</item>
+        <item quantity="other">இன்னும் %1$d தட்டல்கள்</item>
+    </plurals>
+    <string name="diag_clear">அழி</string>
+    <string name="diag_hide">கண்டறிதல் தகவலை மறை</string>
+    <string name="diag_empty">இன்னும் நிகழ்வுகள் இல்லை.</string>
+    <string name="diag_next">அடுத்த அலாரம்: %1$s</string>
+    <string name="diag_version">பதிப்பு %1$s</string>
+    <string name="transient_alarm_running">உங்கள் அலாரம் இப்போது ஒலிக்கிறது.</string>
+    <string name="transient_alarm_soon">உங்கள் எழுப்பும் வரம்பு அதற்கு முன்பே தொடங்குகிறது.</string>
+</resources>

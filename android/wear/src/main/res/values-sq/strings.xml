@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Intervali i zgjimit</string>
+    <string name="channel_window_description">Shfaqet ndërsa Phase Wake pret gjumin e lehtë.</string>
+    <string name="channel_alarm">Alarmi</string>
+    <string name="channel_alarm_description">Të zgjon.</string>
+    <string name="notification_window_title">Në pritje të gjumit të lehtë</string>
+    <string name="notification_window_text">Të zgjon së voni në %1$s</string>
+    <string name="notification_ring_title">Mirëmëngjes</string>
+
+    <string name="ring_greeting">Mirëmëngjes</string>
+    <string name="ring_reason_light">U dallua gjumë i lehtë</string>
+    <string name="ring_reason_awake">Ishe zgjuar tashmë</string>
+    <string name="ring_reason_deadline">U arrit ora e synuar</string>
+    <string name="ring_hold_to_stop">Mbaj për ta ndalur</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · mbetet %2$d</item>
+        <item quantity="other">%1$d min · mbeten %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">U shty deri në %1$s</string>
+
+    <string name="home_no_alarm">Asnjë alarm i caktuar</string>
+    <string name="home_no_alarm_hint">Shto një alarm – këtu ose te Phase Wake në telefon.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Sot</string>
+    <string name="home_tomorrow">Nesër</string>
+    <string name="home_window_length">Interval %1$d min</string>
+    <string name="home_alarms">Alarmet</string>
+    <string name="home_permissions">Jep lejet</string>
+    <string name="home_permissions_hint">Nevojiten për matjen dhe ekranin e alarmit.</string>
+    <string name="alarm_once">Një herë</string>
+    <string name="alarm_every_day">Çdo ditë</string>
+    <string name="tile_label">Alarmi i radhës</string>
+    <string name="tile_next">Alarmi i radhës</string>
+    <string name="tile_light_sleep">Të zgjon në gjumë të lehtë</string>
+    <string name="notification_good_night_title">Fli mirë</string>
+    <string name="notification_good_night_text">Në pritje që të të zërë gjumi</string>
+    <string name="home_good_night">Natën e mirë</string>
+    <string name="home_good_night_hint">Fli %1$s nga tani</string>
+    <string name="home_good_night_active">Në pritje të gjumit · prek për ta anuluar</string>
+    <string name="dnd_title">Alarmet janë bllokuar</string>
+    <string name="dnd_text">Lejo alarmet te „Mos shqetëso“.</string>
+    <string name="duration_hours">%1$d orë</string>
+    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
+    <string name="home_last_night">Nata e kaluar</string>
+    <string name="notification_open">Hap</string>
+    <string name="home_good_night_too_far">E mundur nga 16 orë para alarmit</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Zgjidh detyrën në telefon ose mbaj shtypur 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarm i ri</string>
+    <string name="editor_new">Alarm i ri</string>
+    <string name="editor_edit">Ndrysho alarmin</string>
+    <string name="editor_target">Më zgjo deri në</string>
+    <string name="editor_latest">Së voni</string>
+    <string name="editor_window">Intervali: %1$d min</string>
+    <string name="editor_days">Përsërit</string>
+    <string name="editor_save">Ruaj</string>
+    <string name="editor_delete">Fshi alarmin</string>
+    <string name="editor_delete_title">Të fshihet ky alarm?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Deri në %1$d alarme – fshi një për të shtuar një të ri.</string>
+    <string name="editor_enabled">Alarmi aktiv</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Kapërce herën tjetër</string>
+    <string name="alarm_skipped">U kapërcye: %1$s</string>
+    <string name="nap_title">Dremitje</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minutë</item>
+        <item quantity="other">%1$d minuta</item>
+    </plurals>
+    <string name="nap_start">Nis</string>
+    <string name="nap_running">Deri në %1$s</string>
+    <string name="nap_stop">Përfundo dremitjen</string>
+    <string name="diag_title">Diagnostikimi</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Edhe %1$d prekje</item>
+        <item quantity="other">Edhe %1$d prekje</item>
+    </plurals>
+    <string name="diag_clear">Pastro</string>
+    <string name="diag_hide">Fshih diagnostikimin</string>
+    <string name="diag_empty">Ende asnjë ngjarje.</string>
+    <string name="diag_next">Alarmi i radhës: %1$s</string>
+    <string name="diag_version">Versioni %1$s</string>
+    <string name="transient_alarm_running">Alarmi yt është aktiv tani.</string>
+    <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
+</resources>

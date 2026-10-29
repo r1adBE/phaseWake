@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="check_watch_problem_apple">Bu iPhone ilə heç bir Apple Watch cütləşdirilməyib.</string>
+    <string name="check_watch_app">Saatda Phase Wake</string>
+    <string name="check_watch_app_problem">Watch tətbiqində Apple Watch-a Phase Wake quraşdır.</string>
+    <string name="check_alarmkit">Siqnallara icazə var</string>
+    <string name="check_alarmkit_problem">iPhone-un ehtiyat siqnal kimi çala bilsin deyə Phase Wake-ə siqnal qurmağa icazə ver.</string>
+    <string name="nightstand_start">Gecə masası rejimini başlat</string>
+    <string name="nightstand_hint">Gündoğumu üçün Phase Wake-i gecə boyu şarjda açıq qoy. İşıq başlayana qədər ekran qaranlıq qalır.</string>
+    <string name="nightstand_end">Bitir</string>
+    <string name="nightstand_waiting">Gündoğumu: %1$s</string>
+    <string name="nightstand_no_alarm">Gündoğumlu siqnal yoxdur</string>
+    <string name="editor_sunrise_ios_hint">iPhone-un işığı yalnız Phase Wake açıq olanda göstərə bilər – yatmazdan əvvəl gecə masası rejimini başlat.</string>
+    <string name="trends_health_hint_apple">Yuxu müddəti və müntəzəmlik Apple Health-dən gəlir.</string>
+    <string name="watch_not_armed">Saatın siqnalı aktivləşdirə bilsin deyə yatmazdan əvvəl Phase Wake-i aç.</string>
+    <string name="check_watch_arm">Siqnal saatda aktivdir</string>
+    <string name="check_watch_arm_problem">Yatmazdan əvvəl Apple Watch-da Phase Wake-i aç. watchOS siqnalı yalnız tətbiq açıq olanda aktivləşdirir.</string>
+    <string name="night_unmeasured_apple">İlk %1$d dəq ölçülməyib – Apple Watch yalnız hədəfdən əvvəlki son %2$d dəqiqəni ölçür.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT lisenziyası, © r1adBE.\nManrope şrifti: SIL Open Font License 1.1, © The Manrope Project Authors.\nSəs tanıma: Apple-ın SoundAnalysis aləti, iOS-a daxildir.\nSəslər: opengameart.org saytından sərbəst yazılar (CC0)</string>
+</resources>

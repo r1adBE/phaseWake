@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Äratusaken</string>
+    <string name="channel_window_description">Kuvatakse, kui Phase Wake ootab kerget und.</string>
+    <string name="channel_alarm">Äratus</string>
+    <string name="channel_alarm_description">Äratab sind.</string>
+    <string name="notification_window_title">Kerge une ootel</string>
+    <string name="notification_window_text">Äratab sind hiljemalt kell %1$s</string>
+    <string name="notification_ring_title">Tere hommikust</string>
+
+    <string name="ring_greeting">Tere hommikust</string>
+    <string name="ring_reason_light">Tuvastati kerge uni</string>
+    <string name="ring_reason_awake">Olid juba ärkvel</string>
+    <string name="ring_reason_deadline">Sihtaeg käes</string>
+    <string name="ring_hold_to_stop">Peatamiseks hoia all</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · jäänud %2$d</item>
+        <item quantity="other">%1$d min · jäänud %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Edasi lükatud kuni %1$s</string>
+
+    <string name="home_no_alarm">Äratust pole määratud</string>
+    <string name="home_no_alarm_hint">Lisa äratus – siin või telefoni Phase Wake’is.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Täna</string>
+    <string name="home_tomorrow">Homme</string>
+    <string name="home_window_length">%1$d min aken</string>
+    <string name="home_alarms">Äratused</string>
+    <string name="home_permissions">Anna load</string>
+    <string name="home_permissions_hint">Vajalik mõõtmiseks ja äratusekraaniks.</string>
+    <string name="alarm_once">Üks kord</string>
+    <string name="alarm_every_day">Iga päev</string>
+    <string name="tile_label">Järgmine äratus</string>
+    <string name="tile_next">Järgmine äratus</string>
+    <string name="tile_light_sleep">Äratab kerges unes</string>
+    <string name="notification_good_night_title">Maga hästi</string>
+    <string name="notification_good_night_text">Ootan, kuni uinud</string>
+    <string name="home_good_night">Head ööd</string>
+    <string name="home_good_night_hint">Maga nüüdsest %1$s</string>
+    <string name="home_good_night_active">Une ootel · puuduta tühistamiseks</string>
+    <string name="dnd_title">Äratused blokeeritud</string>
+    <string name="dnd_text">Luba äratused režiimis „Mitte segada“.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Eelmine öö</string>
+    <string name="notification_open">Ava</string>
+    <string name="home_good_night_too_far">Saadaval alates 16 h enne äratust</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Lahenda ülesanne telefonis või hoia 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Uus äratus</string>
+    <string name="editor_new">Uus äratus</string>
+    <string name="editor_edit">Muuda äratust</string>
+    <string name="editor_target">Ärata mind kell</string>
+    <string name="editor_latest">Hiljemalt</string>
+    <string name="editor_window">Aken: %1$d min</string>
+    <string name="editor_days">Korda</string>
+    <string name="editor_save">Salvesta</string>
+    <string name="editor_delete">Kustuta äratus</string>
+    <string name="editor_delete_title">Kas kustutada see äratus?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kuni %1$d äratust – uue lisamiseks kustuta üks.</string>
+    <string name="editor_enabled">Äratus sees</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Jäta järgmine kord vahele</string>
+    <string name="alarm_skipped">Vahele jäetud: %1$s</string>
+    <string name="nap_title">Uinak</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="other">%1$d minutit</item>
+    </plurals>
+    <string name="nap_start">Alusta</string>
+    <string name="nap_running">Kuni %1$s</string>
+    <string name="nap_stop">Lõpeta uinak</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Veel %1$d puudutus</item>
+        <item quantity="other">Veel %1$d puudutust</item>
+    </plurals>
+    <string name="diag_clear">Tühjenda</string>
+    <string name="diag_hide">Peida diagnostika</string>
+    <string name="diag_empty">Sündmusi veel pole.</string>
+    <string name="diag_next">Järgmine äratus: %1$s</string>
+    <string name="diag_version">Versioon %1$s</string>
+    <string name="transient_alarm_running">Sinu äratus käib praegu.</string>
+    <string name="transient_alarm_soon">Sinu äratusaken algab enne seda.</string>
+</resources>

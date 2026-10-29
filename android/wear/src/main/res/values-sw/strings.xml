@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">Kipindi cha kuamka</string>
+    <string name="channel_window_description">Huonyeshwa wakati Phase Wake inasubiri usingizi mwepesi.</string>
+    <string name="channel_alarm">Kengele</string>
+    <string name="channel_alarm_description">Inakuamsha.</string>
+    <string name="notification_window_title">Inasubiri usingizi mwepesi</string>
+    <string name="notification_window_text">Inakuamsha kabla ya %1$s</string>
+    <string name="notification_ring_title">Habari za asubuhi</string>
+
+    <string name="ring_greeting">Habari za asubuhi</string>
+    <string name="ring_reason_light">Usingizi mwepesi umegunduliwa</string>
+    <string name="ring_reason_awake">Ulikuwa macho tayari</string>
+    <string name="ring_reason_deadline">Muda lengwa umefika</string>
+    <string name="ring_hold_to_stop">Shikilia ili kuzima</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">Dak %1$d · zimebaki %2$d</item>
+        <item quantity="other">Dak %1$d · zimebaki %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Imeahirishwa hadi %1$s</string>
+
+    <string name="home_no_alarm">Hakuna kengele</string>
+    <string name="home_no_alarm_hint">Ongeza kengele – hapa au kwenye Phase Wake ya simu yako.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Leo</string>
+    <string name="home_tomorrow">Kesho</string>
+    <string name="home_window_length">Kipindi cha dak %1$d</string>
+    <string name="home_alarms">Kengele</string>
+    <string name="home_permissions">Toa ruhusa</string>
+    <string name="home_permissions_hint">Zinahitajika kwa kupima na skrini ya kengele.</string>
+    <string name="alarm_once">Mara moja</string>
+    <string name="alarm_every_day">Kila siku</string>
+    <string name="tile_label">Kengele inayofuata</string>
+    <string name="tile_next">Kengele inayofuata</string>
+    <string name="tile_light_sleep">Inakuamsha katika usingizi mwepesi</string>
+    <string name="notification_good_night_title">Lala salama</string>
+    <string name="notification_good_night_text">Inasubiri ulale</string>
+    <string name="home_good_night">Usiku mwema</string>
+    <string name="home_good_night_hint">Lala %1$s kuanzia sasa</string>
+    <string name="home_good_night_active">Inasubiri usingizi · gusa ili kughairi</string>
+    <string name="dnd_title">Kengele zimezuiwa</string>
+    <string name="dnd_text">Ruhusu kengele katika “Usinisumbue”.</string>
+    <string name="duration_hours">saa %1$d</string>
+    <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
+    <string name="home_last_night">Usiku uliopita</string>
+    <string name="notification_open">Fungua</string>
+    <string name="home_good_night_too_far">Inapatikana saa 16 kabla ya kengele</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Tatua swali kwenye simu au shikilia sek 5</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Kengele mpya</string>
+    <string name="editor_new">Kengele mpya</string>
+    <string name="editor_edit">Hariri kengele</string>
+    <string name="editor_target">Niamshe kabla ya</string>
+    <string name="editor_latest">Muda wa mwisho</string>
+    <string name="editor_window">Kipindi: dak %1$d</string>
+    <string name="editor_days">Rudia</string>
+    <string name="editor_save">Hifadhi</string>
+    <string name="editor_delete">Futa kengele</string>
+    <string name="editor_delete_title">Futa kengele hii?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hadi kengele %1$d – futa moja ili kuongeza mpya.</string>
+    <string name="editor_enabled">Kengele imewashwa</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Ruka wakati ujao</string>
+    <string name="alarm_skipped">Imerukwa: %1$s</string>
+    <string name="nap_title">Usingizi mfupi</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">Dakika %1$d</item>
+        <item quantity="other">Dakika %1$d</item>
+    </plurals>
+    <string name="nap_start">Anza</string>
+    <string name="nap_running">Hadi %1$s</string>
+    <string name="nap_stop">Maliza usingizi mfupi</string>
+    <string name="diag_title">Uchunguzi</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Gusa mara %1$d zaidi</item>
+        <item quantity="other">Gusa mara %1$d zaidi</item>
+    </plurals>
+    <string name="diag_clear">Futa yote</string>
+    <string name="diag_hide">Ficha uchunguzi</string>
+    <string name="diag_empty">Bado hakuna matukio.</string>
+    <string name="diag_next">Kengele inayofuata: %1$s</string>
+    <string name="diag_version">Toleo %1$s</string>
+    <string name="transient_alarm_running">Kengele yako inalia sasa hivi.</string>
+    <string name="transient_alarm_soon">Kipindi chako cha kuamka kinaanza kabla ya hapo.</string>
+</resources>

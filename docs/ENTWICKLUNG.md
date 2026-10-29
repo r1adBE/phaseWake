@@ -76,7 +76,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 ## 6. Texte und Barrierefreiheit
 
 - Keine fest eingebauten Texte in Oberflächen; alle Texte in `strings.xml` (Android ist die Quelle, Apple-Kataloge
-  werden erzeugt). Jede neue Zeichenkette in allen 32 Sprachen, Du-Form. Prüfung: `check-translations.py`,
+  werden erzeugt). Jede neue Zeichenkette in allen 74 Sprachen, Du-Form. Prüfung: `check-translations.py`,
   `gen-xcstrings.py --check`.
 - Mengen mit Pluralformen, Platzhalter mit Position (`%1$s`).
 - Jedes Bedienelement hat eine Beschreibung für Bildschirmleser; Ziele mindestens 48 dp bzw. 44 pt;

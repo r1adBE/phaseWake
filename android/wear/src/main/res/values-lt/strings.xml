@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Žadinimo langas</string>
+    <string name="channel_window_description">Rodoma, kol Phase Wake laukia lengvo miego.</string>
+    <string name="channel_alarm">Žadintuvas</string>
+    <string name="channel_alarm_description">Pažadina tave.</string>
+    <string name="notification_window_title">Laukiama lengvo miego</string>
+    <string name="notification_window_text">Pažadins vėliausiai %1$s</string>
+    <string name="notification_ring_title">Labas rytas</string>
+
+    <string name="ring_greeting">Labas rytas</string>
+    <string name="ring_reason_light">Aptiktas lengvas miegas</string>
+    <string name="ring_reason_awake">Jau nemiegojai</string>
+    <string name="ring_reason_deadline">Pasiektas tikslinis laikas</string>
+    <string name="ring_hold_to_stop">Laikyk, kad sustabdytum</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · liko %2$d</item>
+        <item quantity="few">%1$d min · liko %2$d</item>
+        <item quantity="many">%1$d min · liko %2$d</item>
+        <item quantity="other">%1$d min · liko %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Atidėta iki %1$s</string>
+
+    <string name="home_no_alarm">Žadintuvas nenustatytas</string>
+    <string name="home_no_alarm_hint">Pridėk žadintuvą – čia arba Phase Wake telefone.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Šiandien</string>
+    <string name="home_tomorrow">Rytoj</string>
+    <string name="home_window_length">Langas %1$d min</string>
+    <string name="home_alarms">Žadintuvai</string>
+    <string name="home_permissions">Suteikti leidimus</string>
+    <string name="home_permissions_hint">Reikia matavimui ir žadintuvo ekranui.</string>
+    <string name="alarm_once">Vieną kartą</string>
+    <string name="alarm_every_day">Kasdien</string>
+    <string name="tile_label">Kitas žadintuvas</string>
+    <string name="tile_next">Kitas žadintuvas</string>
+    <string name="tile_light_sleep">Pažadins lengvo miego metu</string>
+    <string name="notification_good_night_title">Gero miego</string>
+    <string name="notification_good_night_text">Laukiama, kol užmigsi</string>
+    <string name="home_good_night">Labanakt</string>
+    <string name="home_good_night_hint">Miegas %1$s nuo dabar</string>
+    <string name="home_good_night_active">Laukiama miego · bakstelėk, kad atšauktum</string>
+    <string name="dnd_title">Žadintuvai blokuojami</string>
+    <string name="dnd_text">Leisk žadintuvus režimu „Netrukdyti“.</string>
+    <string name="duration_hours">%1$d val.</string>
+    <string name="duration_hours_minutes">%1$d val. %2$d min</string>
+    <string name="home_last_night">Praėjusi naktis</string>
+    <string name="notification_open">Atidaryti</string>
+    <string name="home_good_night_too_far">Galima likus 16 val. iki žadintuvo</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Išspręsk užduotį telefone arba laikyk 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Naujas žadintuvas</string>
+    <string name="editor_new">Naujas žadintuvas</string>
+    <string name="editor_edit">Redaguoti žadintuvą</string>
+    <string name="editor_target">Pažadink mane iki</string>
+    <string name="editor_latest">Vėliausiai</string>
+    <string name="editor_window">Langas: %1$d min</string>
+    <string name="editor_days">Kartoti</string>
+    <string name="editor_save">Išsaugoti</string>
+    <string name="editor_delete">Ištrinti žadintuvą</string>
+    <string name="editor_delete_title">Ištrinti šį žadintuvą?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Iki %1$d žadintuvų – ištrink vieną, kad pridėtum naują.</string>
+    <string name="editor_enabled">Žadintuvas įjungtas</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Praleisti kitą kartą</string>
+    <string name="alarm_skipped">Praleista: %1$s</string>
+    <string name="nap_title">Pogulis</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minutė</item>
+        <item quantity="few">%1$d minutės</item>
+        <item quantity="many">%1$d minutės</item>
+        <item quantity="other">%1$d minučių</item>
+    </plurals>
+    <string name="nap_start">Pradėti</string>
+    <string name="nap_running">Iki %1$s</string>
+    <string name="nap_stop">Baigti pogulį</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Dar %1$d bakstelėjimas</item>
+        <item quantity="few">Dar %1$d bakstelėjimai</item>
+        <item quantity="many">Dar %1$d bakstelėjimo</item>
+        <item quantity="other">Dar %1$d bakstelėjimų</item>
+    </plurals>
+    <string name="diag_clear">Išvalyti</string>
+    <string name="diag_hide">Slėpti diagnostiką</string>
+    <string name="diag_empty">Įvykių dar nėra.</string>
+    <string name="diag_next">Kitas žadintuvas: %1$s</string>
+    <string name="diag_version">Versija %1$s</string>
+    <string name="transient_alarm_running">Tavo žadintuvas šiuo metu veikia.</string>
+    <string name="transient_alarm_soon">Tavo žadinimo langas prasideda anksčiau.</string>
+</resources>

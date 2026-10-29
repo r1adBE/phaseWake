@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">S ovim iPhoneom nije uparen nijedan Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake na satu</string>
+    <string name="check_watch_app_problem">Instaliraj Phase Wake na Apple Watch u aplikaciji Watch.</string>
+    <string name="check_alarmkit">Alarmi dozvoljeni</string>
+    <string name="check_alarmkit_problem">Dozvoli aplikaciji Phase Wake postavljanje alarma kako bi iPhone mogao zvoniti kao rezervni alarm.</string>
+    <string name="nightstand_start">Pokreni način za noćni ormarić</string>
+    <string name="nightstand_hint">Za izlazak sunca ostavi Phase Wake otvoren na punjaču preko noći. Ekran ostaje taman dok svjetlo ne počne.</string>
+    <string name="nightstand_end">Završi</string>
+    <string name="nightstand_waiting">Izlazak sunca u %1$s</string>
+    <string name="nightstand_no_alarm">Nema alarma s izlaskom sunca</string>
+    <string name="editor_sunrise_ios_hint">Tvoj iPhone može prikazivati svjetlo samo dok je Phase Wake otvoren – pokreni način za noćni ormarić prije spavanja.</string>
+    <string name="trends_health_hint_apple">Trajanje i redovnost sna dolaze iz aplikacije Apple Health.</string>
+    <string name="watch_not_armed">Otvori Phase Wake prije spavanja kako bi sat mogao aktivirati alarm.</string>
+    <string name="check_watch_arm">Alarm aktiviran na satu</string>
+    <string name="check_watch_arm_problem">Otvori Phase Wake na Apple Watchu prije spavanja. watchOS aktivira alarm samo dok je aplikacija otvorena.</string>
+    <string name="night_unmeasured_apple">Prvih %1$d min nije izmjereno – Apple Watch mjeri samo zadnjih %2$d min prije ciljnog vremena.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT licenca, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPrepoznavanje zvukova: SoundAnalysis kompanije Apple, ugrađen u iOS.\nZvukovi: slobodni snimci (CC0) s opengameart.org</string>
+</resources>

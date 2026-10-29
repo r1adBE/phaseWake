@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">ຊ່ວງເວລາປຸກ</string>
+    <string name="channel_window_description">ສະແດງຕອນທີ່ Phase Wake ກຳລັງເຝົ້າເບິ່ງການຫຼັບຕື້ນ</string>
+    <string name="channel_alarm">ໂມງປຸກ</string>
+    <string name="channel_alarm_description">ປຸກເຈົ້າ</string>
+    <string name="notification_window_title">ກຳລັງເຝົ້າເບິ່ງການຫຼັບຕື້ນ</string>
+    <string name="notification_window_text">ປຸກເຈົ້າຊ້າສຸດຕອນ %1$s</string>
+    <string name="notification_ring_title">ສະບາຍດີຕອນເຊົ້າ</string>
+
+    <string name="ring_greeting">ສະບາຍດີຕອນເຊົ້າ</string>
+    <string name="ring_reason_light">ພົບການຫຼັບຕື້ນ</string>
+    <string name="ring_reason_awake">ເຈົ້າຕື່ນແລ້ວ</string>
+    <string name="ring_reason_deadline">ຮອດເວລາເປົ້າໝາຍ</string>
+    <string name="ring_hold_to_stop">ກົດຄ້າງໄວ້ເພື່ອຢຸດ</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d ນາທີ · ເຫຼືອ %2$d ເທື່ອ</item>
+    </plurals>
+    <string name="ring_snoozed_until">ເລື່ອນປຸກຈົນເຖິງ %1$s</string>
+
+    <string name="home_no_alarm">ບໍ່ໄດ້ຕັ້ງໂມງປຸກ</string>
+    <string name="home_no_alarm_hint">ເພີ່ມໂມງປຸກ – ຢູ່ນີ້ ຫຼື ໃນ Phase Wake ຢູ່ໂທລະສັບ</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ມື້ນີ້</string>
+    <string name="home_tomorrow">ມື້ອື່ນ</string>
+    <string name="home_window_length">ຊ່ວງເວລາ %1$d ນາທີ</string>
+    <string name="home_alarms">ໂມງປຸກ</string>
+    <string name="home_permissions">ອະນຸຍາດສິດ</string>
+    <string name="home_permissions_hint">ຕ້ອງໃຊ້ສຳລັບການວັດແທກ ແລະ ໜ້າຈໍໂມງປຸກ</string>
+    <string name="alarm_once">ເທື່ອດຽວ</string>
+    <string name="alarm_every_day">ທຸກມື້</string>
+    <string name="tile_label">ໂມງປຸກຖັດໄປ</string>
+    <string name="tile_next">ໂມງປຸກຖັດໄປ</string>
+    <string name="tile_light_sleep">ປຸກຕອນຫຼັບຕື້ນ</string>
+    <string name="notification_good_night_title">ນອນຫຼັບຝັນດີ</string>
+    <string name="notification_good_night_text">ກຳລັງລໍຖ້າໃຫ້ເຈົ້າຫຼັບ</string>
+    <string name="home_good_night">ລາຕີສະຫວັດ</string>
+    <string name="home_good_night_hint">ນອນ %1$s ຕັ້ງແຕ່ຕອນນີ້</string>
+    <string name="home_good_night_active">ກຳລັງລໍຖ້າການຫຼັບ · ແຕະເພື່ອຍົກເລີກ</string>
+    <string name="dnd_title">ໂມງປຸກຖືກກັນ</string>
+    <string name="dnd_text">ອະນຸຍາດໂມງປຸກໃນ “ຫ້າມລົບກວນ”</string>
+    <string name="duration_hours">%1$d ຊມ</string>
+    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
+    <string name="home_last_night">ຄືນຜ່ານມາ</string>
+    <string name="notification_open">ເປີດ</string>
+    <string name="home_good_night_too_far">ໃຊ້ໄດ້ຕັ້ງແຕ່ 16 ຊມ ກ່ອນໂມງປຸກ</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ແກ້ໂຈດຢູ່ໂທລະສັບ ຫຼື ກົດຄ້າງ 5 ວິ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">ໂມງປຸກໃໝ່</string>
+    <string name="editor_new">ໂມງປຸກໃໝ່</string>
+    <string name="editor_edit">ແກ້ໄຂໂມງປຸກ</string>
+    <string name="editor_target">ປຸກຂ້ອຍພາຍໃນ</string>
+    <string name="editor_latest">ຊ້າສຸດ</string>
+    <string name="editor_window">ຊ່ວງເວລາ: %1$d ນາທີ</string>
+    <string name="editor_days">ເຮັດຊ້ຳ</string>
+    <string name="editor_save">ບັນທຶກ</string>
+    <string name="editor_delete">ລຶບໂມງປຸກ</string>
+    <string name="editor_delete_title">ລຶບໂມງປຸກນີ້ບໍ?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">ສູງສຸດ %1$d ໂມງປຸກ – ລຶບອັນໜຶ່ງເພື່ອເພີ່ມອັນໃໝ່</string>
+    <string name="editor_enabled">ເປີດໂມງປຸກ</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">ຂ້າມຄັ້ງຕໍ່ໄປ</string>
+    <string name="alarm_skipped">ຂ້າມແລ້ວ: %1$s</string>
+    <string name="nap_title">ພັກສາຍຕາ</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d ນາທີ</item>
+    </plurals>
+    <string name="nap_start">ເລີ່ມ</string>
+    <string name="nap_running">ຈົນເຖິງ %1$s</string>
+    <string name="nap_stop">ສິ້ນສຸດການພັກສາຍຕາ</string>
+    <string name="diag_title">ການວິນິດໄສ</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">ແຕະອີກ %1$d ເທື່ອ</item>
+    </plurals>
+    <string name="diag_clear">ລ້າງ</string>
+    <string name="diag_hide">ເຊື່ອງການວິນິດໄສ</string>
+    <string name="diag_empty">ຍັງບໍ່ມີເຫດການ</string>
+    <string name="diag_next">ໂມງປຸກຖັດໄປ: %1$s</string>
+    <string name="diag_version">ເວີຊັນ %1$s</string>
+    <string name="transient_alarm_running">ໂມງປຸກຂອງເຈົ້າກຳລັງດຳເນີນຢູ່ຕອນນີ້</string>
+    <string name="transient_alarm_soon">ຊ່ວງເວລາປຸກຂອງເຈົ້າເລີ່ມກ່ອນນັ້ນ</string>
+</resources>

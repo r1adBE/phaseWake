@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">ບໍ່ມີ Apple Watch ຈັບຄູ່ກັບ iPhone ນີ້</string>
+    <string name="check_watch_app">Phase Wake ຢູ່ໂມງ</string>
+    <string name="check_watch_app_problem">ຕິດຕັ້ງ Phase Wake ໃນ Apple Watch ຜ່ານແອັບ Watch</string>
+    <string name="check_alarmkit">ອະນຸຍາດໂມງປຸກແລ້ວ</string>
+    <string name="check_alarmkit_problem">ອະນຸຍາດໃຫ້ Phase Wake ຕັ້ງໂມງປຸກ ເພື່ອໃຫ້ iPhone ດັງເປັນໂມງປຸກສຳຮອງໄດ້</string>
+    <string name="nightstand_start">ເລີ່ມໂໝດຂ້າງຕຽງ</string>
+    <string name="nightstand_hint">ສຳລັບຕາເວັນຂຶ້ນ ເປີດ Phase Wake ໄວ້ໃນຂະນະສາກໄຟຕະຫຼອດຄືນ ໜ້າຈໍຈະມືດຈົນກວ່າແສງຈະເລີ່ມ</string>
+    <string name="nightstand_end">ສິ້ນສຸດ</string>
+    <string name="nightstand_waiting">ຕາເວັນຂຶ້ນຕອນ %1$s</string>
+    <string name="nightstand_no_alarm">ບໍ່ມີໂມງປຸກທີ່ມີຕາເວັນຂຶ້ນ</string>
+    <string name="editor_sunrise_ios_hint">iPhone ສະແດງແສງໄດ້ສະເພາະຕອນ Phase Wake ເປີດຢູ່ – ເລີ່ມໂໝດຂ້າງຕຽງກ່ອນເຈົ້າເຂົ້ານອນ</string>
+    <string name="trends_health_hint_apple">ໄລຍະເວລານອນ ແລະ ຄວາມສະໝ່ຳສະເໝີມາຈາກ Apple Health</string>
+    <string name="watch_not_armed">ເປີດ Phase Wake ກ່ອນເຂົ້ານອນ ເພື່ອໃຫ້ໂມງຕັ້ງໂມງປຸກໄດ້</string>
+    <string name="check_watch_arm">ຕັ້ງໂມງປຸກໃນໂມງແລ້ວ</string>
+    <string name="check_watch_arm_problem">ເປີດ Phase Wake ຢູ່ Apple Watch ກ່ອນເຂົ້ານອນ watchOS ຕັ້ງໂມງປຸກໄດ້ສະເພາະຕອນແອັບເປີດຢູ່</string>
+    <string name="night_unmeasured_apple">%1$d ນາທີທຳອິດບໍ່ໄດ້ວັດແທກ – Apple Watch ວັດແທກສະເພາະ %2$d ນາທີສຸດທ້າຍກ່ອນເວລາເປົ້າໝາຍ</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: ໃບອະນຸຍາດ MIT, © r1adBE\nຟອນ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors\nການກວດຈັບສຽງ: SoundAnalysis ຂອງ Apple ທີ່ມີໃນ iOS\nສຽງ: ການບັນທຶກຟຣີ (CC0) ຈາກ opengameart.org</string>
+</resources>

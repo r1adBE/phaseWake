@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Сэрээх хугацаа</string>
+    <string name="channel_window_description">Phase Wake хөнгөн нойрыг хүлээж байх үед харагдана.</string>
+    <string name="channel_alarm">Сэрүүлэг</string>
+    <string name="channel_alarm_description">Чамайг сэрээнэ.</string>
+    <string name="notification_window_title">Хөнгөн нойрыг хүлээж байна</string>
+    <string name="notification_window_text">Хамгийн оройдоо %1$s-д сэрээнэ</string>
+    <string name="notification_ring_title">Өглөөний мэнд</string>
+
+    <string name="ring_greeting">Өглөөний мэнд</string>
+    <string name="ring_reason_light">Хөнгөн нойр илэрсэн</string>
+    <string name="ring_reason_awake">Чи аль хэдийн сэрүүн байсан</string>
+    <string name="ring_reason_deadline">Зорилтот цаг болсон</string>
+    <string name="ring_hold_to_stop">Зогсоохын тулд дарж барь</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d мин · %2$d үлдсэн</item>
+        <item quantity="other">%1$d мин · %2$d үлдсэн</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s хүртэл хойшлуулав</string>
+
+    <string name="home_no_alarm">Сэрүүлэг тохируулаагүй</string>
+    <string name="home_no_alarm_hint">Сэрүүлэг нэм – энд эсвэл утсан дээрх Phase Wake-д.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Өнөөдөр</string>
+    <string name="home_tomorrow">Маргааш</string>
+    <string name="home_window_length">%1$d мин хугацаа</string>
+    <string name="home_alarms">Сэрүүлэг</string>
+    <string name="home_permissions">Зөвшөөрөл олгох</string>
+    <string name="home_permissions_hint">Хэмжилт ба сэрүүлгийн дэлгэцэд хэрэгтэй.</string>
+    <string name="alarm_once">Нэг удаа</string>
+    <string name="alarm_every_day">Өдөр бүр</string>
+    <string name="tile_label">Дараагийн сэрүүлэг</string>
+    <string name="tile_next">Дараагийн сэрүүлэг</string>
+    <string name="tile_light_sleep">Хөнгөн нойронд сэрээнэ</string>
+    <string name="notification_good_night_title">Сайхан унтаарай</string>
+    <string name="notification_good_night_text">Чамайг унтахыг хүлээж байна</string>
+    <string name="home_good_night">Сайхан амраарай</string>
+    <string name="home_good_night_hint">Одооноос %1$s унт</string>
+    <string name="home_good_night_active">Нойр хүлээж байна · цуцлахын тулд дар</string>
+    <string name="dnd_title">Сэрүүлэг хаагдсан</string>
+    <string name="dnd_text">«Бүү саад бол»-д сэрүүлгийг зөвшөөр.</string>
+    <string name="duration_hours">%1$d ц</string>
+    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
+    <string name="home_last_night">Өнгөрсөн шөнө</string>
+    <string name="notification_open">Нээх</string>
+    <string name="home_good_night_too_far">Сэрүүлгээс 16 ц өмнөөс боломжтой</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Бодлогыг утсан дээр бод эсвэл 5 с дарж барь</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Шинэ сэрүүлэг</string>
+    <string name="editor_new">Шинэ сэрүүлэг</string>
+    <string name="editor_edit">Сэрүүлэг засах</string>
+    <string name="editor_target">Намайг сэрээх цаг</string>
+    <string name="editor_latest">Хамгийн оройдоо</string>
+    <string name="editor_window">Хугацаа: %1$d мин</string>
+    <string name="editor_days">Давтах</string>
+    <string name="editor_save">Хадгалах</string>
+    <string name="editor_delete">Сэрүүлэг устгах</string>
+    <string name="editor_delete_title">Энэ сэрүүлгийг устгах уу?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Дээд тал нь %1$d сэрүүлэг – шинийг нэмэхийн тулд нэгийг устга.</string>
+    <string name="editor_enabled">Сэрүүлэг асаалттай</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Дараагийнхыг алгасах</string>
+    <string name="alarm_skipped">Алгассан: %1$s</string>
+    <string name="nap_title">Богино нойр</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d минут</item>
+        <item quantity="other">%1$d минут</item>
+    </plurals>
+    <string name="nap_start">Эхлүүлэх</string>
+    <string name="nap_running">%1$s хүртэл</string>
+    <string name="nap_stop">Богино нойр дуусгах</string>
+    <string name="diag_title">Оношилгоо</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Дахиад %1$d удаа дар</item>
+        <item quantity="other">Дахиад %1$d удаа дар</item>
+    </plurals>
+    <string name="diag_clear">Цэвэрлэх</string>
+    <string name="diag_hide">Оношилгоо нуух</string>
+    <string name="diag_empty">Одоохондоо үйл явдал алга.</string>
+    <string name="diag_next">Дараагийн сэрүүлэг: %1$s</string>
+    <string name="diag_version">Хувилбар %1$s</string>
+    <string name="transient_alarm_running">Сэрүүлэг чинь яг одоо ажиллаж байна.</string>
+    <string name="transient_alarm_soon">Сэрээх хугацаа чинь түүнээс өмнө эхэлнэ.</string>
+</resources>

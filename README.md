@@ -42,7 +42,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Lernt mit**: Die Schwellen passen sich ab der dritten Nacht an dich an
 - **Kachel und Komplikation** auf der Uhr
 - **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
-- **32 Sprachen**
+- **74 Sprachen**
 
 Die Erkennungsregel ist offen dokumentiert: [docs/PHASENERKENNUNG.md](docs/PHASENERKENNUNG.md).
 

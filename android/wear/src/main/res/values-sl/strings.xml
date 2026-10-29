@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">Okno bujenja</string>
+    <string name="channel_window_description">Prikazano, medtem ko Phase Wake čaka na lahek spanec.</string>
+    <string name="channel_alarm">Budilka</string>
+    <string name="channel_alarm_description">Zbudi te.</string>
+    <string name="notification_window_title">Čaka na lahek spanec</string>
+    <string name="notification_window_text">Zbudi te najpozneje ob %1$s</string>
+    <string name="notification_ring_title">Dobro jutro</string>
+
+    <string name="ring_greeting">Dobro jutro</string>
+    <string name="ring_reason_light">Zaznan lahek spanec</string>
+    <string name="ring_reason_awake">Že pokonci</string>
+    <string name="ring_reason_deadline">Ciljni čas dosežen</string>
+    <string name="ring_hold_to_stop">Pridrži za ustavitev</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · še %2$d</item>
+        <item quantity="two">%1$d min · še %2$d</item>
+        <item quantity="few">%1$d min · še %2$d</item>
+        <item quantity="other">%1$d min · še %2$d</item>
+    </plurals>
+    <string name="ring_snoozed_until">Dremež do %1$s</string>
+
+    <string name="home_no_alarm">Ni nastavljene budilke</string>
+    <string name="home_no_alarm_hint">Dodaj budilko – tukaj ali v Phase Wake na telefonu.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Danes</string>
+    <string name="home_tomorrow">Jutri</string>
+    <string name="home_window_length">Okno %1$d min</string>
+    <string name="home_alarms">Budilke</string>
+    <string name="home_permissions">Dovoli dovoljenja</string>
+    <string name="home_permissions_hint">Potrebno za merjenje in zaslon budilke.</string>
+    <string name="alarm_once">Enkrat</string>
+    <string name="alarm_every_day">Vsak dan</string>
+    <string name="tile_label">Naslednja budilka</string>
+    <string name="tile_next">Naslednja budilka</string>
+    <string name="tile_light_sleep">Zbudi v lahkem spancu</string>
+    <string name="notification_good_night_title">Lepo spi</string>
+    <string name="notification_good_night_text">Čaka, da zaspiš</string>
+    <string name="home_good_night">Lahko noč</string>
+    <string name="home_good_night_hint">Spanec %1$s od zdaj</string>
+    <string name="home_good_night_active">Čaka na spanec · tapni za preklic</string>
+    <string name="dnd_title">Budilke blokirane</string>
+    <string name="dnd_text">Dovoli budilke v načinu »Ne moti«.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Pretekla noč</string>
+    <string name="notification_open">Odpri</string>
+    <string name="home_good_night_too_far">Na voljo od 16 h pred budilko</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Reši nalogo na telefonu ali pridrži 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nova budilka</string>
+    <string name="editor_new">Nova budilka</string>
+    <string name="editor_edit">Uredi budilko</string>
+    <string name="editor_target">Zbudi me do</string>
+    <string name="editor_latest">Najpozneje</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_days">Ponovi</string>
+    <string name="editor_save">Shrani</string>
+    <string name="editor_delete">Izbriši budilko</string>
+    <string name="editor_delete_title">Izbriši to budilko?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Največ %1$d budilk – izbriši eno, da dodaš novo.</string>
+    <string name="editor_enabled">Budilka vklopljena</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Naslednjič preskoči</string>
+    <string name="alarm_skipped">Preskočeno: %1$s</string>
+    <string name="nap_title">Kratek spanec</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="two">%1$d minuti</item>
+        <item quantity="few">%1$d minute</item>
+        <item quantity="other">%1$d minut</item>
+    </plurals>
+    <string name="nap_start">Začni</string>
+    <string name="nap_running">Do %1$s</string>
+    <string name="nap_stop">Končaj kratek spanec</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Še %1$d dotik</item>
+        <item quantity="two">Še %1$d dotika</item>
+        <item quantity="few">Še %1$d dotiki</item>
+        <item quantity="other">Še %1$d dotikov</item>
+    </plurals>
+    <string name="diag_clear">Počisti</string>
+    <string name="diag_hide">Skrij diagnostiko</string>
+    <string name="diag_empty">Še ni dogodkov.</string>
+    <string name="diag_next">Naslednja budilka: %1$s</string>
+    <string name="diag_version">Različica %1$s</string>
+    <string name="transient_alarm_running">Tvoja budilka je ravno aktivna.</string>
+    <string name="transient_alarm_soon">Tvoje okno bujenja se začne že prej.</string>
+</resources>

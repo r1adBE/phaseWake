@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">Hakuna Apple Watch iliyooanishwa na iPhone hii.</string>
+    <string name="check_watch_app">Phase Wake kwenye saa</string>
+    <string name="check_watch_app_problem">Sakinisha Phase Wake kwenye Apple Watch yako kupitia programu ya Watch.</string>
+    <string name="check_alarmkit">Kengele zimeruhusiwa</string>
+    <string name="check_alarmkit_problem">Ruhusu Phase Wake iweke kengele ili iPhone yako iweze kulia kama kengele ya akiba.</string>
+    <string name="nightstand_start">Anza hali ya meza ya kitanda</string>
+    <string name="nightstand_hint">Kwa macheo, acha Phase Wake ikiwa wazi kwenye chaja usiku kucha. Skrini inabaki giza hadi mwanga uanze.</string>
+    <string name="nightstand_end">Maliza</string>
+    <string name="nightstand_waiting">Macheo saa %1$s</string>
+    <string name="nightstand_no_alarm">Hakuna kengele yenye macheo</string>
+    <string name="editor_sunrise_ios_hint">iPhone yako inaweza kuonyesha mwanga tu Phase Wake ikiwa wazi – anza hali ya meza ya kitanda kabla ya kulala.</string>
+    <string name="trends_health_hint_apple">Muda wa usingizi na utaratibu vinatoka Apple Health.</string>
+    <string name="watch_not_armed">Fungua Phase Wake kabla ya kulala ili saa yako iweze kuandaa kengele.</string>
+    <string name="check_watch_arm">Kengele imeandaliwa kwenye saa</string>
+    <string name="check_watch_arm_problem">Fungua Phase Wake kwenye Apple Watch yako kabla ya kulala. watchOS huandaa kengele tu programu ikiwa wazi.</string>
+    <string name="night_unmeasured_apple">Dak %1$d za kwanza hazikupimwa – Apple Watch hupima dak %2$d za mwisho tu kabla ya muda lengwa.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: Leseni ya MIT, © r1adBE.\nFonti Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nUtambuzi wa sauti: SoundAnalysis ya Apple, iliyojengwa ndani ya iOS.\nSauti: rekodi huru (CC0) kutoka opengameart.org</string>
+</resources>

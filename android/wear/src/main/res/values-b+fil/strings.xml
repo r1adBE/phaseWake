@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Window ng paggising</string>
+    <string name="channel_window_description">Ipinapakita habang hinihintay ng Phase Wake ang mababaw na tulog.</string>
+    <string name="channel_alarm">Alarm</string>
+    <string name="channel_alarm_description">Ginigising ka.</string>
+    <string name="notification_window_title">Hinihintay ang mababaw na tulog</string>
+    <string name="notification_window_text">Gigisingin ka nang pinakahuli sa %1$s</string>
+    <string name="notification_ring_title">Magandang umaga</string>
+
+    <string name="ring_greeting">Magandang umaga</string>
+    <string name="ring_reason_light">May nakitang mababaw na tulog</string>
+    <string name="ring_reason_awake">Gising ka na</string>
+    <string name="ring_reason_deadline">Naabot ang target na oras</string>
+    <string name="ring_hold_to_stop">Pindutin nang matagal para ihinto</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d pa</item>
+        <item quantity="other">%1$d min · %2$d pa</item>
+    </plurals>
+    <string name="ring_snoozed_until">Naka-snooze hanggang %1$s</string>
+
+    <string name="home_no_alarm">Walang nakatakdang alarm</string>
+    <string name="home_no_alarm_hint">Magdagdag ng alarm – dito o sa Phase Wake sa telepono mo.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Ngayon</string>
+    <string name="home_tomorrow">Bukas</string>
+    <string name="home_window_length">%1$d min na window</string>
+    <string name="home_alarms">Mga alarm</string>
+    <string name="home_permissions">Payagan ang mga pahintulot</string>
+    <string name="home_permissions_hint">Kailangan para sa pagsukat at sa alarm screen.</string>
+    <string name="alarm_once">Isang beses</string>
+    <string name="alarm_every_day">Araw-araw</string>
+    <string name="tile_label">Susunod na alarm</string>
+    <string name="tile_next">Susunod na alarm</string>
+    <string name="tile_light_sleep">Gigisingin ka sa mababaw na tulog</string>
+    <string name="notification_good_night_title">Matulog nang mahimbing</string>
+    <string name="notification_good_night_text">Hinihintay kang makatulog</string>
+    <string name="home_good_night">Matutulog na</string>
+    <string name="home_good_night_hint">Matulog nang %1$s simula ngayon</string>
+    <string name="home_good_night_active">Hinihintay ang tulog · i-tap para kanselahin</string>
+    <string name="dnd_title">Naka-block ang mga alarm</string>
+    <string name="dnd_text">Payagan ang mga alarm sa Huwag Istorbohin.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Kagabi</string>
+    <string name="notification_open">Buksan</string>
+    <string name="home_good_night_too_far">Available mula 16 h bago ang alarm</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Sagutan ang gawain sa telepono o pindutin nang 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Bagong alarm</string>
+    <string name="editor_new">Bagong alarm</string>
+    <string name="editor_edit">I-edit ang alarm</string>
+    <string name="editor_target">Gisingin ako bago mag</string>
+    <string name="editor_latest">Pinakahuli</string>
+    <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_days">Ulitin</string>
+    <string name="editor_save">I-save</string>
+    <string name="editor_delete">I-delete ang alarm</string>
+    <string name="editor_delete_title">I-delete ang alarm na ito?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hanggang %1$d alarm – mag-delete ng isa para magdagdag ng bago.</string>
+    <string name="editor_enabled">Naka-on ang alarm</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Laktawan sa susunod</string>
+    <string name="alarm_skipped">Nilaktawan: %1$s</string>
+    <string name="nap_title">Power nap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="other">%1$d minuto</item>
+    </plurals>
+    <string name="nap_start">Simulan</string>
+    <string name="nap_running">Hanggang %1$s</string>
+    <string name="nap_stop">Tapusin ang power nap</string>
+    <string name="diag_title">Diagnostics</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d tap pa</item>
+        <item quantity="other">%1$d tap pa</item>
+    </plurals>
+    <string name="diag_clear">I-clear</string>
+    <string name="diag_hide">Itago ang diagnostics</string>
+    <string name="diag_empty">Wala pang event.</string>
+    <string name="diag_next">Susunod na alarm: %1$s</string>
+    <string name="diag_version">Bersyon %1$s</string>
+    <string name="transient_alarm_running">Tumatakbo na ngayon ang alarm mo.</string>
+    <string name="transient_alarm_soon">Nagsisimula bago noon ang window ng paggising mo.</string>
+</resources>

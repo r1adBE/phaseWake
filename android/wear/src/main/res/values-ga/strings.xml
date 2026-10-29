@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Fuinneog dhúisithe</string>
+    <string name="channel_window_description">Taispeántar é fad atá Phase Wake ag faire ar chodladh éadrom.</string>
+    <string name="channel_alarm">Aláram</string>
+    <string name="channel_alarm_description">Dúisíonn sé thú.</string>
+    <string name="notification_window_title">Ag faire ar chodladh éadrom</string>
+    <string name="notification_window_text">Dúiseoidh sé thú faoi %1$s ar a dhéanaí</string>
+    <string name="notification_ring_title">Maidin mhaith</string>
+
+    <string name="ring_greeting">Maidin mhaith</string>
+    <string name="ring_reason_light">Braitheadh codladh éadrom</string>
+    <string name="ring_reason_awake">Bhí tú i do dhúiseacht cheana</string>
+    <string name="ring_reason_deadline">Spriocam bainte amach</string>
+    <string name="ring_hold_to_stop">Coinnigh síos chun stopadh</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d nóim · %2$d fágtha</item>
+        <item quantity="two">%1$d nóim · %2$d fágtha</item>
+        <item quantity="few">%1$d nóim · %2$d fágtha</item>
+        <item quantity="many">%1$d nóim · %2$d fágtha</item>
+        <item quantity="other">%1$d nóim · %2$d fágtha</item>
+    </plurals>
+    <string name="ring_snoozed_until">Curtha siar go dtí %1$s</string>
+
+    <string name="home_no_alarm">Níl aon aláram socraithe</string>
+    <string name="home_no_alarm_hint">Cuir aláram leis – anseo nó in Phase Wake ar do fhón.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Inniu</string>
+    <string name="home_tomorrow">Amárach</string>
+    <string name="home_window_length">Fuinneog %1$d nóim</string>
+    <string name="home_alarms">Aláraim</string>
+    <string name="home_permissions">Ceadaigh ceadanna</string>
+    <string name="home_permissions_hint">Ag teastáil le haghaidh tomhais agus scáileán an aláraim.</string>
+    <string name="alarm_once">Uair amháin</string>
+    <string name="alarm_every_day">Gach lá</string>
+    <string name="tile_label">An chéad aláram eile</string>
+    <string name="tile_next">An chéad aláram eile</string>
+    <string name="tile_light_sleep">Dúiseoidh sé thú i gcodladh éadrom</string>
+    <string name="notification_good_night_title">Codladh sámh</string>
+    <string name="notification_good_night_text">Ag fanacht go dtitfidh tú i do chodladh</string>
+    <string name="home_good_night">Oíche mhaith</string>
+    <string name="home_good_night_hint">Codladh %1$s as seo amach</string>
+    <string name="home_good_night_active">Ag fanacht le codladh · tapáil chun cealú</string>
+    <string name="dnd_title">Aláraim faoi bhac</string>
+    <string name="dnd_text">Ceadaigh aláraim in “Ná Cuir Isteach Orm”.</string>
+    <string name="duration_hours">%1$d u</string>
+    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
+    <string name="home_last_night">Aréir</string>
+    <string name="notification_open">Oscail</string>
+    <string name="home_good_night_too_far">Ar fáil ó 16 u roimh an aláram</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Réitigh an tasc ar do fhón nó coinnigh síos 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Aláram nua</string>
+    <string name="editor_new">Aláram nua</string>
+    <string name="editor_edit">Cuir aláram in eagar</string>
+    <string name="editor_target">Dúisigh mé faoi</string>
+    <string name="editor_latest">Ar a dhéanaí</string>
+    <string name="editor_window">Fuinneog: %1$d nóim</string>
+    <string name="editor_days">Athdhéan</string>
+    <string name="editor_save">Sábháil</string>
+    <string name="editor_delete">Scrios aláram</string>
+    <string name="editor_delete_title">An t-aláram seo a scriosadh?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Suas le %1$d aláram – scrios ceann chun ceann nua a chur leis.</string>
+    <string name="editor_enabled">Aláram ar siúl</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Scipeáil an chéad cheann eile</string>
+    <string name="alarm_skipped">Scipeáilte: %1$s</string>
+    <string name="nap_title">Néal cumhachta</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d nóiméad</item>
+        <item quantity="two">%1$d nóiméad</item>
+        <item quantity="few">%1$d nóiméad</item>
+        <item quantity="many">%1$d nóiméad</item>
+        <item quantity="other">%1$d nóiméad</item>
+    </plurals>
+    <string name="nap_start">Tosaigh</string>
+    <string name="nap_running">Go dtí %1$s</string>
+    <string name="nap_stop">Críochnaigh an néal cumhachta</string>
+    <string name="diag_title">Diagnóisic</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d thapáil eile</item>
+        <item quantity="two">%1$d thapáil eile</item>
+        <item quantity="few">%1$d thapáil eile</item>
+        <item quantity="many">%1$d dtapáil eile</item>
+        <item quantity="other">%1$d tapáil eile</item>
+    </plurals>
+    <string name="diag_clear">Glan</string>
+    <string name="diag_hide">Folaigh diagnóisic</string>
+    <string name="diag_empty">Níl aon imeachtaí fós.</string>
+    <string name="diag_next">An chéad aláram eile: %1$s</string>
+    <string name="diag_version">Leagan %1$s</string>
+    <string name="transient_alarm_running">Tá d’aláram ar siúl faoi láthair.</string>
+    <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
+</resources>

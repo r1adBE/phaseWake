@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">နှိုးချိန်အပိုင်း</string>
+    <string name="channel_window_description">Phase Wake က အိပ်ရေးပေါ့ကို စောင့်ကြည့်နေစဉ် ပြသည်။</string>
+    <string name="channel_alarm">နှိုးစက်</string>
+    <string name="channel_alarm_description">သင့်ကို နှိုးပေးသည်။</string>
+    <string name="notification_window_title">အိပ်ရေးပေါ့ကို စောင့်ကြည့်နေသည်</string>
+    <string name="notification_window_text">အနောက်ကျဆုံး %1$s တွင် နှိုးမည်</string>
+    <string name="notification_ring_title">မင်္ဂလာနံနက်ခင်းပါ</string>
+
+    <string name="ring_greeting">မင်္ဂလာနံနက်ခင်းပါ</string>
+    <string name="ring_reason_light">အိပ်ရေးပေါ့ တွေ့ရှိ</string>
+    <string name="ring_reason_awake">နိုးနေပြီးသား</string>
+    <string name="ring_reason_deadline">ပစ်မှတ်အချိန် ရောက်ပြီ</string>
+    <string name="ring_hold_to_stop">ရပ်ရန် ဖိထားပါ</string>
+    <plurals name="ring_snooze">
+        <item quantity="other">%1$d မိနစ် · %2$d ကြိမ် ကျန်</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s အထိ ခဏဆိုင်း</string>
+
+    <string name="home_no_alarm">နှိုးစက် မသတ်မှတ်ရသေး</string>
+    <string name="home_no_alarm_hint">နှိုးစက်ထည့်ပါ – ဤနေရာ သို့မဟုတ် ဖုန်းပေါ်ရှိ Phase Wake တွင်။</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ယနေ့</string>
+    <string name="home_tomorrow">မနက်ဖြန်</string>
+    <string name="home_window_length">%1$d မိနစ် အပိုင်း</string>
+    <string name="home_alarms">နှိုးစက်များ</string>
+    <string name="home_permissions">ခွင့်ပြုချက်များ ပေးရန်</string>
+    <string name="home_permissions_hint">တိုင်းတာရန်နှင့် နှိုးစက်မျက်နှာပြင်အတွက် လိုအပ်သည်။</string>
+    <string name="alarm_once">တစ်ကြိမ်</string>
+    <string name="alarm_every_day">နေ့တိုင်း</string>
+    <string name="tile_label">နောက် နှိုးစက်</string>
+    <string name="tile_next">နောက် နှိုးစက်</string>
+    <string name="tile_light_sleep">အိပ်ရေးပေါ့ချိန်တွင် နှိုးမည်</string>
+    <string name="notification_good_night_title">ကောင်းကောင်း အိပ်ပါ</string>
+    <string name="notification_good_night_text">အိပ်ပျော်သည်အထိ စောင့်နေသည်</string>
+    <string name="home_good_night">ကောင်းသောညပါ</string>
+    <string name="home_good_night_hint">ယခုမှစ၍ %1$s အိပ်မည်</string>
+    <string name="home_good_night_active">အိပ်ပျော်ရန် စောင့်နေ · ပယ်ရန် တို့ပါ</string>
+    <string name="dnd_title">နှိုးစက်များ ပိတ်ဆို့ခံရ</string>
+    <string name="dnd_text">မနှောင့်ယှက်ရ တွင် နှိုးစက်များကို ခွင့်ပြုပါ။</string>
+    <string name="duration_hours">%1$d နာရီ</string>
+    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
+    <string name="home_last_night">မနေ့ညက</string>
+    <string name="notification_open">ဖွင့်ရန်</string>
+    <string name="home_good_night_too_far">နှိုးစက်မတိုင်မီ 16 နာရီမှစ၍ ရနိုင်</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ဖုန်းပေါ်တွင် ပုစ္ဆာတွက်ပါ သို့မဟုတ် 5 စက္ကန့် ဖိထားပါ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">နှိုးစက်အသစ်</string>
+    <string name="editor_new">နှိုးစက်အသစ်</string>
+    <string name="editor_edit">နှိုးစက် ပြင်ရန်</string>
+    <string name="editor_target">ဤအချိန်မတိုင်မီ နှိုးပါ</string>
+    <string name="editor_latest">အနောက်ကျဆုံး</string>
+    <string name="editor_window">အချိန်အပိုင်း- %1$d မိနစ်</string>
+    <string name="editor_days">ထပ်ခါထပ်ခါ</string>
+    <string name="editor_save">သိမ်းရန်</string>
+    <string name="editor_delete">နှိုးစက် ဖျက်ရန်</string>
+    <string name="editor_delete_title">ဤနှိုးစက်ကို ဖျက်မလား။</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">အများဆုံး နှိုးစက် %1$d ခု – အသစ်ထည့်ရန် တစ်ခု ဖျက်ပါ။</string>
+    <string name="editor_enabled">နှိုးစက် ဖွင့်</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">နောက်တစ်ကြိမ် ကျော်ရန်</string>
+    <string name="alarm_skipped">ကျော်ထားသည်- %1$s</string>
+    <string name="nap_title">ခဏအိပ်</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d မိနစ်</item>
+    </plurals>
+    <string name="nap_start">စရန်</string>
+    <string name="nap_running">%1$s အထိ</string>
+    <string name="nap_stop">ခဏအိပ် ရပ်ရန်</string>
+    <string name="diag_title">ချို့ယွင်းချက်ရှာဖွေမှု</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">နောက်ထပ် %1$d ချက် တို့ပါ</item>
+    </plurals>
+    <string name="diag_clear">ရှင်းရန်</string>
+    <string name="diag_hide">ချို့ယွင်းချက်ရှာဖွေမှု ဖျောက်ရန်</string>
+    <string name="diag_empty">ဖြစ်ရပ် မရှိသေးပါ။</string>
+    <string name="diag_next">နောက် နှိုးစက်- %1$s</string>
+    <string name="diag_version">ဗားရှင်း %1$s</string>
+    <string name="transient_alarm_running">သင့်နှိုးစက် ယခု လည်ပတ်နေသည်။</string>
+    <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
+</resources>

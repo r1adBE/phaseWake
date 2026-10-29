@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">ಈ iPhone ಜೊತೆ ಯಾವುದೇ Apple Watch ಜೋಡಿಸಲಾಗಿಲ್ಲ.</string>
+    <string name="check_watch_app">ವಾಚ್‌ನಲ್ಲಿ Phase Wake</string>
+    <string name="check_watch_app_problem">Watch ಆ್ಯಪ್‌ನಲ್ಲಿ ನಿಮ್ಮ Apple Watch ಗೆ Phase Wake ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.</string>
+    <string name="check_alarmkit">ಅಲಾರಾಂಗಳಿಗೆ ಅನುಮತಿ ಇದೆ</string>
+    <string name="check_alarmkit_problem">iPhone ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಆಗಿ ರಿಂಗ್ ಆಗಲು, Phase Wake ಗೆ ಅಲಾರಾಂ ಹೊಂದಿಸಲು ಅನುಮತಿಸಿ.</string>
+    <string name="nightstand_start">ನೈಟ್‌ಸ್ಟ್ಯಾಂಡ್ ಮೋಡ್ ಶುರು ಮಾಡಿ</string>
+    <string name="nightstand_hint">ಸೂರ್ಯೋದಯಕ್ಕಾಗಿ ರಾತ್ರಿಯಿಡೀ ಚಾರ್ಜರ್‌ನಲ್ಲಿ Phase Wake ತೆರೆದಿಡಿ. ಬೆಳಕು ಶುರುವಾಗುವವರೆಗೆ ಪರದೆ ಕತ್ತಲಾಗಿರುತ್ತದೆ.</string>
+    <string name="nightstand_end">ಮುಗಿಸಿ</string>
+    <string name="nightstand_waiting">%1$s ಕ್ಕೆ ಸೂರ್ಯೋದಯ</string>
+    <string name="nightstand_no_alarm">ಸೂರ್ಯೋದಯವಿರುವ ಅಲಾರಾಂ ಇಲ್ಲ</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake ತೆರೆದಿರುವಾಗ ಮಾತ್ರ iPhone ಬೆಳಕು ತೋರಿಸಬಲ್ಲದು – ಮಲಗುವ ಮೊದಲು ನೈಟ್‌ಸ್ಟ್ಯಾಂಡ್ ಮೋಡ್ ಶುರು ಮಾಡಿ.</string>
+    <string name="trends_health_hint_apple">ನಿದ್ರೆಯ ಅವಧಿ ಮತ್ತು ನಿಯಮಿತತೆ Apple Health ನಿಂದ ಬರುತ್ತವೆ.</string>
+    <string name="watch_not_armed">ವಾಚ್ ಅಲಾರಾಂ ಸಕ್ರಿಯಗೊಳಿಸಲು, ಮಲಗುವ ಮೊದಲು Phase Wake ತೆರೆಯಿರಿ.</string>
+    <string name="check_watch_arm">ವಾಚ್‌ನಲ್ಲಿ ಅಲಾರಾಂ ಸಕ್ರಿಯವಾಗಿದೆ</string>
+    <string name="check_watch_arm_problem">ಮಲಗುವ ಮೊದಲು ನಿಮ್ಮ Apple Watch ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ. ಆ್ಯಪ್ ತೆರೆದಿರುವಾಗ ಮಾತ್ರ watchOS ಅಲಾರಾಂ ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.</string>
+    <string name="night_unmeasured_apple">ಮೊದಲ %1$d ನಿಮಿ. ಅಳೆಯಲಾಗಿಲ್ಲ – Apple Watch ಗುರಿಗೆ ಮುಂಚಿನ ಕೊನೆಯ %2$d ನಿಮಿ. ಮಾತ್ರ ಅಳೆಯುತ್ತದೆ.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT ಪರವಾನಗಿ, © r1adBE.\nManrope ಫಾಂಟ್: SIL Open Font License 1.1, © The Manrope Project Authors.\nಶಬ್ದ ಪತ್ತೆ: Apple ನ SoundAnalysis, iOS ನಲ್ಲಿ ಅಂತರ್ಗತ.\nಶಬ್ದಗಳು: opengameart.org ನಿಂದ ಉಚಿತ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು (CC0)</string>
+</resources>

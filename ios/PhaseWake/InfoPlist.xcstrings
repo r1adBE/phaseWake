@@ -3,10 +3,52 @@
   "strings": {
     "NSAlarmKitUsageDescription": {
       "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake maak jou as rugsteunwekker op jou iPhone wakker."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake በiPhoneዎ ላይ እንደ ተጠባባቂ ማንቂያ ይቀሰቅስዎታል።"
+          }
+        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يوقظك Phase Wake كمنبّه احتياطي على iPhone."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake iPhone-da ehtiyat siqnal kimi səni oyadır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake те събужда като резервен будилник на iPhone."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake তোমার iPhone-এ ব্যাকআপ অ্যালার্ম হিসেবে তোমাকে জাগায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te budi kao rezervni alarm na iPhoneu."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake et desperta com a alarma de reserva a l’iPhone."
           }
         },
         "cs": {
@@ -39,6 +81,18 @@
             "value": "Phase Wake te despierta como alarma de respaldo en tu iPhone."
           }
         },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake äratab sind iPhone’is varuäratusena."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k ordezko alarma gisa esnatzen zaitu iPhone-an."
+          }
+        },
         "fa": {
           "stringUnit": {
             "state": "translated",
@@ -51,10 +105,34 @@
             "value": "Phase Wake herättää sinut varahälytyksenä iPhonellasi."
           }
         },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ginigising ka ng Phase Wake bilang backup na alarm sa iPhone mo."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake te réveille comme alarme de secours sur ton iPhone."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dúisíonn Phase Wake thú mar aláram cúltaca ar d’iPhone."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake espértate como alarma de reserva no iPhone."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake તમને iPhone પર બેકઅપ એલાર્મ તરીકે જગાડે છે."
           }
         },
         "he": {
@@ -69,16 +147,34 @@
             "value": "Phase Wake तुम्हारे iPhone पर बैकअप अलार्म के रूप में तुम्हें जगाता है।"
           }
         },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te budi kao rezervni alarm na iPhoneu."
+          }
+        },
         "hu": {
           "stringUnit": {
             "state": "translated",
             "value": "A Phase Wake tartalék ébresztőként ébreszt fel az iPhone-odon."
           }
         },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ը քեզ արթնացնում է iPhone-ում՝ որպես պահուստային զարթուցիչ։"
+          }
+        },
         "id": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake membangunkanmu sebagai alarm cadangan di iPhone-mu."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vekur þig sem varavekjari á iPhone."
           }
         },
         "it": {
@@ -93,10 +189,76 @@
             "value": "Phase Wakeは、iPhoneのバックアップアラームとしてあなたを起こします。"
           }
         },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake გაღვიძებს iPhone-ზე, როგორც სარეზერვო მაღვიძარა."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake сені iPhone-да қосалқы оятқыш ретінде оятады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ដាស់អ្នកជាម៉ោងរោទ៍បម្រុងលើ iPhone របស់អ្នក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ನಿಮ್ಮ iPhone ನಲ್ಲಿ ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಆಗಿ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ."
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake는 iPhone의 백업 알람으로 너를 깨웁니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ປຸກເຈົ້າເປັນໂມງປຸກສຳຮອງໃນ iPhone ຂອງເຈົ້າ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pažadina tave kaip atsarginis žadintuvas tavo iPhone."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake tevi pamodina kā rezerves modinātājs tavā iPhone."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake те буди како резервен аларм на iPhone."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake നിങ്ങളുടെ iPhone-ൽ ബാക്കപ്പ് അലാറമായി ഉണർത്തുന്നു."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake чамайг iPhone дээр нөөц сэрүүлгээр сэрээнэ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake तुम्हाला iPhone वर बॅकअप अलार्म म्हणून उठवते."
           }
         },
         "ms": {
@@ -105,16 +267,34 @@
             "value": "Phase Wake mengejutkanmu sebagai penggera sandaran pada iPhone-mu."
           }
         },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake သည် သင့် iPhone ပေါ်တွင် အရန်နှိုးစက်အဖြစ် နှိုးပေးသည်။"
+          }
+        },
         "nb": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake vekker deg som reservealarm på iPhonen din."
           }
         },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ले तिमीलाई iPhone मा ब्याकअप अलार्मको रूपमा ब्युँझाउँछ।"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake maakt je wakker als back-upwekker op je iPhone."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ਤੁਹਾਨੂੰ iPhone ’ਤੇ ਬੈਕਅੱਪ ਅਲਾਰਮ ਵਜੋਂ ਜਗਾਉਂਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -147,10 +327,58 @@
             "value": "Phase Wake будит тебя как резервный будильник на iPhone."
           }
         },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ඔබව iPhone හි උපස්ථ එලාමයක් ලෙස අවදි කරයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ťa zobudí ako záložný budík v iPhone."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te zbudi kot rezervna budilka na iPhonu."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake të zgjon si alarm rezervë në iPhone."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake те буди као резервни аларм на iPhone-у."
+          }
+        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake väcker dig som reservlarm på din iPhone."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake inakuamsha kama kengele ya akiba kwenye iPhone yako."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake உங்கள் iPhone இல் மாற்று அலாரமாக உங்களை எழுப்பும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake మిమ్మల్ని iPhoneలో బ్యాకప్ అలారంగా లేపుతుంది."
           }
         },
         "th": {
@@ -171,10 +399,28 @@
             "value": "Phase Wake будить тебе як резервний будильник на iPhone."
           }
         },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake تمہارے iPhone پر بیک اپ الارم کے طور پر تمہیں جگاتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake seni iPhoneʼda zaxira budilnik sifatida uygʻotadi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake đánh thức bạn như một báo thức dự phòng trên iPhone."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會在你的 iPhone 上作為備用鬧鐘叫醒你。"
           }
         },
         "zh-Hans": {
@@ -188,15 +434,63 @@
             "state": "translated",
             "value": "Phase Wake會在你的 iPhone 上作為備用鬧鐘喚醒你。"
           }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Phase Wake ikuvusa njenge-alamu yokwesekwa ku-iPhone yakho."
+          }
         }
       }
     },
     "NSFaceIDUsageDescription": {
       "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vra vir Face ID voordat jou geskiedenis uitgevee of jou data vervang word."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ታሪክዎን ከመሰረዙ ወይም ውሂብዎን ከመተካቱ በፊት Face ID ይጠይቃል።"
+          }
+        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يطلب Phase Wake استخدام Face ID قبل حذف سجلك أو استبدال بياناتك."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarixçən silinməzdən və ya məlumatların əvəz edilməzdən əvvəl Phase Wake Face ID istəyir."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake иска Face ID, преди историята ти да бъде изтрита или данните ти – заменени."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার ইতিহাস মোছার বা তোমার ডেটা প্রতিস্থাপনের আগে Phase Wake Face ID চায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake traži Face ID prije brisanja tvoje historije ili zamjene tvojih podataka."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake et demana Face ID abans de suprimir l’historial o substituir les teves dades."
           }
         },
         "cs": {
@@ -229,6 +523,18 @@
             "value": "Phase Wake te pide Face ID antes de borrar tu historial o reemplazar tus datos."
           }
         },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake küsib Face ID-d, enne kui su ajalugu kustutatakse või andmed asendatakse."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k Face ID eskatzen du zure historia ezabatu edo zure datuak ordeztu aurretik."
+          }
+        },
         "fa": {
           "stringUnit": {
             "state": "translated",
@@ -241,10 +547,34 @@
             "value": "Phase Wake pyytää Face ID:tä ennen kuin historiasi poistetaan tai tietosi korvataan."
           }
         },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humihingi ang Phase Wake ng Face ID bago i-delete ang kasaysayan mo o palitan ang data mo."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake demande Face ID avant de supprimer ton historique ou de remplacer tes données."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iarrann Phase Wake Face ID sula scriostar do stair nó sula n-athsholáthraítear do chuid sonraí."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pide Face ID antes de eliminar o teu historial ou substituír os teus datos."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારો ઇતિહાસ કાઢી નાખતાં કે તમારો ડેટા બદલતાં પહેલાં Phase Wake Face ID માગે છે."
           }
         },
         "he": {
@@ -259,16 +589,34 @@
             "value": "तुम्हारा इतिहास हटाने या तुम्हारा डेटा बदलने से पहले Phase Wake Face ID माँगता है।"
           }
         },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake traži Face ID prije brisanja tvoje povijesti ili zamjene tvojih podataka."
+          }
+        },
         "hu": {
           "stringUnit": {
             "state": "translated",
             "value": "A Phase Wake Face ID-t kér, mielőtt törölné az előzményeidet vagy lecserélné az adataidat."
           }
         },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ը Face ID է խնդրում՝ նախքան պատմությունդ ջնջելը կամ տվյալներդ փոխարինելը։"
+          }
+        },
         "id": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake meminta Face ID sebelum riwayatmu dihapus atau datamu diganti."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake biður um Face ID áður en ferlinum þínum er eytt eða gögnunum þínum skipt út."
           }
         },
         "it": {
@@ -283,10 +631,76 @@
             "value": "Phase Wakeは、履歴を削除したりデータを置き換えたりする前にFace IDを求めます。"
           }
         },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ითხოვს Face ID-ს, სანამ შენი ისტორია წაიშლება ან მონაცემები ჩანაცვლდება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тарихыңды жою немесе деректеріңді ауыстыру алдында Phase Wake Face ID сұрайды."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake សុំ Face ID មុនពេលលុបប្រវត្តិ ឬជំនួសទិន្នន័យរបស់អ្នក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ಇತಿಹಾಸ ಅಳಿಸುವ ಅಥವಾ ಡೇಟಾ ಬದಲಿಸುವ ಮೊದಲು Phase Wake Face ID ಕೇಳುತ್ತದೆ."
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake는 기록을 삭제하거나 데이터를 바꾸기 전에 Face ID를 요청합니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ຂໍ Face ID ກ່ອນລຶບປະຫວັດ ຫຼື ແທນທີ່ຂໍ້ມູນຂອງເຈົ້າ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake paprašo Face ID prieš ištrinant tavo istoriją ar pakeičiant tavo duomenis."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pieprasa Face ID, pirms tiek dzēsta tava vēsture vai aizstāti tavi dati."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake бара Face ID пред да се избрише твојата историја или да се заменат твоите податоци."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചരിത്രം ഇല്ലാതാക്കുന്നതിനോ ഡാറ്റ മാറ്റിസ്ഥാപിക്കുന്നതിനോ മുമ്പ് Phase Wake Face ID ചോദിക്കും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түүхийг чинь устгах эсвэл өгөгдлийг чинь солихоос өмнө Phase Wake Face ID асууна."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचा इतिहास हटवण्यापूर्वी किंवा तुमचा डेटा बदलण्यापूर्वी Phase Wake Face ID मागते."
           }
         },
         "ms": {
@@ -295,16 +709,34 @@
             "value": "Phase Wake meminta Face ID sebelum sejarahmu dipadam atau datamu diganti."
           }
         },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "မှတ်တမ်း ဖျက်ခြင်း သို့မဟုတ် ဒေတာ အစားထိုးခြင်း မပြုမီ Phase Wake က Face ID တောင်းသည်။"
+          }
+        },
         "nb": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake ber om Face ID før historikken din slettes eller dataene dine erstattes."
           }
         },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो इतिहास मेटाउनु वा डेटा बदल्नुअघि Phase Wake ले Face ID माग्छ।"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake vraagt om Face ID voordat je geschiedenis wordt verwijderd of je gegevens worden vervangen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡਾ ਇਤਿਹਾਸ ਮਿਟਾਉਣ ਜਾਂ ਤੁਹਾਡਾ ਡਾਟਾ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ Phase Wake Face ID ਮੰਗਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -337,10 +769,58 @@
             "value": "Phase Wake запрашивает Face ID, прежде чем удалить твою историю или заменить твои данные."
           }
         },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ ඉතිහාසය මැකීමට හෝ දත්ත ප්‍රතිස්ථාපනයට පෙර Phase Wake Face ID ඉල්ලයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake si vyžiada Face ID, než sa vymaže tvoja história alebo nahradia tvoje údaje."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake zahteva Face ID, preden se zgodovina izbriše ali se tvoji podatki zamenjajo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kërkon Face ID para se të fshihet historiku yt ose të zëvendësohen të dhënat e tua."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake тражи Face ID пре брисања твоје историје или замене твојих података."
+          }
+        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake ber om Face ID innan din historik raderas eller dina data ersätts."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake inaomba Face ID kabla historia yako haijafutwa au data yako kubadilishwa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் வரலாற்றை நீக்கும் முன் அல்லது உங்கள் தரவை மாற்றும் முன் Phase Wake Face ID ஐக் கேட்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ చరిత్రను తొలగించే ముందు లేదా మీ డేటాను మార్చే ముందు Phase Wake Face ID అడుగుతుంది."
           }
         },
         "th": {
@@ -361,10 +841,28 @@
             "value": "Phase Wake запитує Face ID, перш ніж видалити твою історію або замінити твої дані."
           }
         },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہارا تاریخچہ حذف کرنے یا تمہارا ڈیٹا تبدیل کرنے سے پہلے Phase Wake، Face ID مانگتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarixing oʻchirilishi yoki maʼlumotlaring almashtirilishidan oldin Phase Wake Face ID soʻraydi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake yêu cầu Face ID trước khi xóa lịch sử hoặc thay thế dữ liệu của bạn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會在刪除你的記錄或取代你的資料前要求 Face ID。"
           }
         },
         "zh-Hans": {
@@ -378,15 +876,63 @@
             "state": "translated",
             "value": "Phase Wake會在刪除你的紀錄或取代你的資料前要求Face ID。"
           }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Phase Wake icela i-Face ID ngaphambi kokuthi umlando wakho ususwe noma idatha yakho ishintshwe."
+          }
         }
       }
     },
     "NSHealthShareUsageDescription": {
       "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lees ná die wakker word jou slaapfases om na te gaan of jy in ligte slaap wakker gemaak is."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake በቀላል እንቅልፍ ላይ ሳሉ መቀስቀስዎን ለማረጋገጥ ከነቁ በኋላ የእንቅልፍ ደረጃዎችዎን ያነባል።"
+          }
+        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يقرأ Phase Wake مراحل نومك بعد استيقاظك للتحقق مما إذا تم إيقاظك أثناء النوم الخفيف."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake oyandıqdan sonra yuxu fazalarını oxuyur ki, səni yüngül yuxuda oyadıb-oyatmadığını yoxlasın."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "След събуждане Phase Wake чете фазите на съня ти, за да провери дали те е събудил в лек сън."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমাকে হালকা ঘুমে জাগানো হয়েছিল কি না দেখতে, জেগে ওঠার পর Phase Wake তোমার ঘুমের পর্যায় পড়ে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake nakon buđenja čita tvoje faze sna kako bi provjerio je li te probudio u laganom snu."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake llegeix les teves fases del son després que et despertis per comprovar si t’ha despertat en son lleuger."
           }
         },
         "cs": {
@@ -419,6 +965,18 @@
             "value": "Phase Wake lee tus fases de sueño después de despertarte para comprobar si te despertó en sueño ligero."
           }
         },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake loeb pärast ärkamist sinu unefaase, et kontrollida, kas sind äratati kerges unes."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esnatu ondoren, Phase Wake-k zure lo-faseak irakurtzen ditu, lo arinean esnatu zaituen egiaztatzeko."
+          }
+        },
         "fa": {
           "stringUnit": {
             "state": "translated",
@@ -431,10 +989,34 @@
             "value": "Phase Wake lukee unenvaiheesi heräämisen jälkeen tarkistaakseen, herätettiinkö sinut kevyestä unesta."
           }
         },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binabasa ng Phase Wake ang mga yugto ng tulog mo pagkagising mo para tingnan kung ginising ka sa mababaw na tulog."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake lit tes phases de sommeil après ton réveil pour vérifier si tu as été réveillé(e) pendant un sommeil léger."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Léann Phase Wake do chéimeanna codlata tar éis duit dúiseacht, chun a sheiceáil ar dúisíodh thú i gcodladh éadrom."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despois de espertares, Phase Wake le as túas fases do sono para comprobar se te espertou no sono lixeiro."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમને હળવી ઊંઘમાં જગાડ્યા હતા કે નહીં તે તપાસવા Phase Wake જાગ્યા પછી તમારા ઊંઘના તબક્કા વાંચે છે."
           }
         },
         "he": {
@@ -449,16 +1031,34 @@
             "value": "Phase Wake जागने के बाद तुम्हारे नींद के चरण पढ़ता है, ताकि यह जाँच सके कि तुम्हें हल्की नींद में जगाया गया या नहीं।"
           }
         },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake nakon buđenja čita tvoje faze sna kako bi provjerio je li te probudio u laganom snu."
+          }
+        },
         "hu": {
           "stringUnit": {
             "state": "translated",
             "value": "A Phase Wake ébredés után beolvassa az alvási szakaszaidat, hogy ellenőrizze, könnyű alvásban ébresztett-e fel."
           }
         },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Արթնանալուց հետո Phase Wake-ը կարդում է քնի փուլերդ՝ ստուգելու, թե արդյոք քեզ արթնացրել են թեթև քնում։"
+          }
+        },
         "id": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake membaca fase tidurmu setelah kamu bangun untuk memeriksa apakah kamu dibangunkan saat tidur ringan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake les svefnstigin þín eftir að þú vaknar til að athuga hvort þú hafir verið vakin(n) í léttum svefni."
           }
         },
         "it": {
@@ -473,10 +1073,76 @@
             "value": "Phase Wakeは、起床後に睡眠ステージを読み取り、浅い眠りで起こせたかを確認します。"
           }
         },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გაღვიძების შემდეგ Phase Wake კითხულობს შენი ძილის ფაზებს, რათა შეამოწმოს, მსუბუქ ძილში გაგაღვიძა თუ არა."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оянғаннан кейін Phase Wake сені жеңіл ұйқыда оятқанын тексеру үшін ұйқы фазаларыңды оқиды."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake អានដំណាក់កាលដំណេករបស់អ្នកក្រោយអ្នកភ្ញាក់ ដើម្បីពិនិត្យថាតើអ្នកត្រូវបានដាស់ក្នុងដំណេកស្រាលឬទេ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮನ್ನು ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸಲಾಯಿತೇ ಎಂದು ಪರಿಶೀಲಿಸಲು, ನೀವು ಎದ್ದ ನಂತರ Phase Wake ನಿಮ್ಮ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು ಓದುತ್ತದೆ."
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake는 기상 후 수면 단계를 읽어 얕은 잠에서 깼는지 확인합니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ອ່ານໄລຍະການນອນຂອງເຈົ້າຫຼັງຕື່ນ ເພື່ອກວດວ່າເຈົ້າຖືກປຸກຕອນຫຼັບຕື້ນຫຼືບໍ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake po pabudimo nuskaito tavo miego fazes, kad patikrintų, ar tave pažadino lengvo miego metu."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pēc pamošanās nolasa tavas miega fāzes, lai pārbaudītu, vai tevi pamodināja vieglā miegā."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По будењето Phase Wake ги чита твоите фази на сон за да провери дали си разбуден во лесен сон."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നേരിയ ഉറക്കത്തിലാണോ ഉണർത്തിയത് എന്ന് പരിശോധിക്കാൻ, ഉണർന്ന ശേഷം Phase Wake നിങ്ങളുടെ ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чамайг хөнгөн нойронд сэрээсэн эсэхийг шалгахын тулд Phase Wake сэрсний чинь дараа нойрны үе шатыг уншина."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हाला हलक्या झोपेत उठवले की नाही हे तपासण्यासाठी Phase Wake उठल्यानंतर तुमचे झोपेचे टप्पे वाचते."
           }
         },
         "ms": {
@@ -485,16 +1151,34 @@
             "value": "Phase Wake membaca peringkat tidurmu selepas kamu bangun untuk menyemak sama ada kamu dikejutkan semasa tidur ringan."
           }
         },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ရေးပေါ့ချိန်တွင် နှိုးခဲ့သလား စစ်ဆေးရန် နိုးပြီးနောက် Phase Wake က သင့်အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။"
+          }
+        },
         "nb": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake leser søvnfasene dine etter at du har våknet, for å sjekke om du ble vekket i lett søvn."
           }
         },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिमीलाई हल्का निद्रामा ब्युँझाइयो कि भनेर जाँच्न, ब्युँझेपछि Phase Wake ले तिम्रो निद्राका चरण पढ्छ।"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake leest je slaapfases na het wakker worden om te controleren of je in lichte slaap bent gewekt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਨੂੰ ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਇਆ ਗਿਆ ਜਾਂ ਨਹੀਂ, ਇਹ ਜਾਂਚਣ ਲਈ Phase Wake ਜਾਗਣ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੇ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -527,10 +1211,58 @@
             "value": "Phase Wake считывает твои фазы сна после пробуждения, чтобы проверить, разбудил ли он тебя в фазе лёгкого сна."
           }
         },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබව සැහැල්ලු නින්දේදී අවදි කළාද යන්න පරීක්ෂා කිරීමට, ඔබ අවදි වූ පසු Phase Wake ඔබේ නින්දේ අදියර කියවයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake po prebudení načíta tvoje fázy spánku, aby overil, či ťa zobudil v ľahkom spánku."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake po prebujenju prebere tvoje faze spanca, da preveri, ali te je zbudil v lahkem spancu."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lexon fazat e gjumit pasi zgjohesh, për të kontrolluar nëse u zgjove në gjumë të lehtë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake после буђења чита твоје фазе сна да би проверио да ли те је пробудио у лаганом сну."
+          }
+        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake läser dina sömnfaser efter att du vaknat för att kontrollera om du väcktes i lätt sömn."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake husoma hatua zako za usingizi baada ya kuamka ili kuangalia kama uliamshwa katika usingizi mwepesi."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நீங்கள் லேசான தூக்கத்தில் எழுப்பப்பட்டீர்களா என்று சரிபார்க்க, எழுந்த பிறகு Phase Wake உங்கள் தூக்க நிலைகளைப் படிக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మిమ్మల్ని తేలికపాటి నిద్రలో లేపారో లేదో చూడటానికి, మీరు మేల్కొన్న తర్వాత Phase Wake మీ నిద్ర దశలను చదువుతుంది."
           }
         },
         "th": {
@@ -551,10 +1283,28 @@
             "value": "Phase Wake зчитує твої фази сну після пробудження, щоб перевірити, чи розбудив він тебе в фазі легкого сну."
           }
         },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake جاگنے کے بعد تمہاری نیند کے مراحل پڑھتا ہے تاکہ دیکھ سکے کہ تمہیں ہلکی نیند میں جگایا گیا یا نہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yengil uyquda uygʻotilganingni tekshirish uchun Phase Wake uygʻonganingdan keyin uyqu bosqichlaringni oʻqiydi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake đọc các giai đoạn giấc ngủ của bạn sau khi thức dậy để kiểm tra xem bạn có được đánh thức lúc ngủ nông hay không."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會在你醒來後讀取睡眠階段，以檢查你是否在淺睡時被叫醒。"
           }
         },
         "zh-Hans": {
@@ -568,15 +1318,63 @@
             "state": "translated",
             "value": "Phase Wake會在你醒來後讀取睡眠階段，以檢查你是否在淺眠時被喚醒。"
           }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Phase Wake ifunda izigaba zakho zokulala ngemva kokuvuka ukuze ihlole ukuthi uvuswe yini ebuthongweni obulula."
+          }
         }
       }
     },
     "NSMicrophoneUsageDescription": {
       "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As jy dit aanskakel, neem Phase Wake snags kort snitte van snork en praat in jou slaap op. Hulle bly op jou iPhone en word ná 7 dae uitgevee."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ካበሩት፣ Phase Wake ማታ የማንኮራፋትና በእንቅልፍ የማውራት አጫጭር ቅንጥቦችን ይቀዳል። በiPhoneዎ ላይ ይቆያሉ እና ከ7 ቀናት በኋላ ይሰረዛሉ።"
+          }
+        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يسجّل Phase Wake ليلاً مقاطع قصيرة من الشخير والكلام أثناء النوم إذا فعّلت ذلك. تبقى على iPhone وتُحذف بعد 7 أيام."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açsan, Phase Wake gecə xoruldama və yuxuda danışmanın qısa kliplərini yazır. Onlar iPhone-unda qalır və 7 gündən sonra silinir."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако го включиш, Phase Wake записва нощем кратки откъси от хъркане и говорене насън. Те остават на твоя iPhone и се изтриват след 7 дни."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তুমি চালু করলে Phase Wake রাতে নাক ডাকা আর ঘুমের মধ্যে কথা বলার ছোট ক্লিপ রেকর্ড করে। এগুলো তোমার iPhone-এই থাকে আর ৭ দিন পরে মুছে যায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ako to uključiš, Phase Wake noću snima kratke isječke hrkanja i govora u snu. Ostaju na tvom iPhoneu i brišu se nakon 7 dana."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si ho actives, Phase Wake enregistra a la nit fragments curts de roncs i de parlar en somnis. Es queden al teu iPhone i se suprimeixen al cap de 7 dies."
           }
         },
         "cs": {
@@ -609,6 +1407,18 @@
             "value": "Phase Wake graba por la noche fragmentos cortos de ronquidos y de hablar en sueños si lo activas. Se quedan en tu iPhone y se borran después de 7 días."
           }
         },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kui lülitad selle sisse, salvestab Phase Wake öösel lühikesi klippe norskamisest ja unes rääkimisest. Need jäävad sinu iPhone’i ja kustutatakse 7 päeva pärast."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktibatzen baduzu, Phase Wake-k zurrungaren eta loan hitz egitearen klip laburrak grabatzen ditu gauez. Zure iPhone-an geratzen dira eta 7 egunen ondoren ezabatzen dira."
+          }
+        },
         "fa": {
           "stringUnit": {
             "state": "translated",
@@ -621,10 +1431,34 @@
             "value": "Phase Wake nauhoittaa öisin lyhyitä pätkiä kuorsauksesta ja unissa puhumisesta, jos otat sen käyttöön. Ne pysyvät iPhonessasi ja poistetaan 7 päivän kuluttua."
           }
         },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kung io-on mo ito, magre-record ang Phase Wake ng maiikling clip ng hilik at pagsasalita habang tulog sa gabi. Nananatili ang mga ito sa iPhone mo at dine-delete pagkalipas ng 7 araw."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Si tu l’actives, Phase Wake enregistre la nuit de courts extraits de ronflements et de paroles pendant le sommeil. Ils restent sur ton iPhone et sont supprimés après 7 jours."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Má chuireann tú ar siúl é, taifeadann Phase Wake gearrthóga gearra de shrannadh agus de chaint i do chodladh san oíche. Fanann siad ar d’iPhone agus scriostar iad tar éis 7 lá."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se o activas, Phase Wake grava pola noite fragmentos curtos de roncos e de falar en soños. Quedan no teu iPhone e elimínanse despois de 7 días."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમે ચાલુ કરો તો Phase Wake રાત્રે નસકોરાં અને ઊંઘમાં બોલવાની ટૂંકી ક્લિપ રેકોર્ડ કરે છે. તે તમારા iPhone પર જ રહે છે અને 7 દિવસ પછી કાઢી નખાય છે."
           }
         },
         "he": {
@@ -639,16 +1473,34 @@
             "value": "अगर तुम इसे चालू करो, तो Phase Wake रात में खर्राटों और नींद में बोलने के छोटे अंश रिकॉर्ड करता है। ये तुम्हारे iPhone पर ही रहते हैं और 7 दिन बाद मिटा दिए जाते हैं।"
           }
         },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ako to uključiš, Phase Wake noću snima kratke isječke hrkanja i govora u snu. Ostaju na tvom iPhoneu i brišu se nakon 7 dana."
+          }
+        },
         "hu": {
           "stringUnit": {
             "state": "translated",
             "value": "Ha bekapcsolod, a Phase Wake éjjel rövid részleteket rögzít a horkolásról és az alvás közbeni beszédről. Ezek az iPhone-odon maradnak, és 7 nap után törlődnek."
           }
         },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Եթե միացնես, Phase Wake-ը գիշերը ձայնագրում է խռմփոցի և քնի մեջ խոսքի կարճ հատվածներ։ Դրանք մնում են iPhone-իդ վրա և ջնջվում են 7 օր հետո։"
+          }
+        },
         "id": {
           "stringUnit": {
             "state": "translated",
             "value": "Jika kamu menyalakannya, Phase Wake merekam potongan pendek dengkuran dan mengigau di malam hari. Rekaman tetap di iPhone-mu dan dihapus setelah 7 hari."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ef þú kveikir á því tekur Phase Wake upp stuttar upptökur af hrotum og svefntali á nóttunni. Þær verða eftir á iPhone og er eytt eftir 7 daga."
           }
         },
         "it": {
@@ -663,10 +1515,76 @@
             "value": "オンにすると、Phase Wake は夜間のいびきや寝言を短く録音します。録音は iPhone に保存され、7日後に削除されます。"
           }
         },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თუ ჩართავ, Phase Wake ღამით ჩაწერს ხვრინვისა და ძილში ლაპარაკის მოკლე ფრაგმენტებს. ისინი რჩება შენს iPhone-ზე და 7 დღის შემდეგ იშლება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қоссаң, Phase Wake түнде қорылдау мен ұйқыдағы сөйлеудің қысқа үзінділерін жазады. Олар iPhone-ыңда қалады және 7 күннен кейін жойылады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើអ្នកបើកវា Phase Wake ថតឃ្លីបខ្លីៗនៃការស្រមុក និងការនិយាយពេលដេកនៅពេលយប់។ វានៅលើ iPhone របស់អ្នក ហើយត្រូវលុបក្រោយ 7 ថ្ងៃ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀವು ಆನ್ ಮಾಡಿದರೆ, Phase Wake ರಾತ್ರಿ ಗೊರಕೆ ಮತ್ತು ನಿದ್ರೆಯಲ್ಲಿ ಮಾತನಾಡುವುದರ ಚಿಕ್ಕ ಕ್ಲಿಪ್‌ಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತದೆ. ಅವು ನಿಮ್ಮ iPhone ನಲ್ಲೇ ಇರುತ್ತವೆ ಮತ್ತು 7 ದಿನಗಳ ನಂತರ ಅಳಿಸಲಾಗುತ್ತವೆ."
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "켜 두면 Phase Wake가 밤에 코골이와 잠꼬대를 짧게 녹음해. 녹음은 iPhone에만 남고 7일 후에 삭제돼."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຖ້າເຈົ້າເປີດໃຊ້ Phase Wake ຈະບັນທຶກຄລິບສັ້ນໆຂອງສຽງກົນ ແລະ ການລະເມີໃນຕອນກາງຄືນ ຄລິບຢູ່ໃນ iPhone ຂອງເຈົ້າ ແລະ ຖືກລຶບຫຼັງ 7 ມື້"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jei tai įjungsi, Phase Wake naktį įrašo trumpus knarkimo ir kalbėjimo per miegus fragmentus. Jie lieka tavo iPhone ir ištrinami po 7 dienų."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja to ieslēgsi, Phase Wake naktī ieraksta īsus krākšanas un runāšanas miegā fragmentus. Tie paliek tavā iPhone un tiek dzēsti pēc 7 dienām."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако го вклучиш, Phase Wake ноќе снима кратки снимки од хркање и зборување во сон. Остануваат на твојот iPhone и се бришат по 7 дена."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങൾ ഓണാക്കിയാൽ, രാത്രിയിൽ കൂർക്കംവലിയുടെയും ഉറക്കത്തിലെ സംസാരത്തിന്റെയും ചെറിയ ക്ലിപ്പുകൾ Phase Wake റെക്കോർഡ് ചെയ്യും. അവ iPhone-ൽ തന്നെ ഇരിക്കും, 7 ദിവസത്തിനു ശേഷം ഇല്ലാതാകും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чи асаавал Phase Wake шөнө хурхиралт, нойрондоо ярихын богино хэсгийг бичнэ. Тэдгээр нь iPhone дээр чинь үлдэж, 7 хоногийн дараа устна."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्ही चालू केल्यास Phase Wake रात्री घोरण्याच्या आणि झोपेत बोलण्याच्या छोट्या क्लिप रेकॉर्ड करते. त्या तुमच्या iPhone वरच राहतात आणि ७ दिवसांनी हटवल्या जातात."
           }
         },
         "ms": {
@@ -675,16 +1593,34 @@
             "value": "Jika kamu menghidupkannya, Phase Wake merakam klip pendek dengkuran dan bercakap semasa tidur pada waktu malam. Klip kekal pada iPhone kamu dan dipadam selepas 7 hari."
           }
         },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖွင့်ထားလျှင် Phase Wake သည် ညဘက် ဟောက်သံနှင့် အိပ်ယောင်စကားပြောသံ အတိုလေးများကို မှတ်တမ်းတင်သည်။ ၎င်းတို့သည် သင့် iPhone ပေါ်တွင်သာ ရှိပြီး 7 ရက်အကြာတွင် ဖျက်သည်။"
+          }
+        },
         "nb": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake tar opp korte klipp av snorking og søvnprat om natten hvis du slår det på. De blir på iPhonen din og slettes etter 7 dager."
           }
         },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिमीले अन गरेमा, Phase Wake ले राति घुर्ने र निद्रामा बोल्ने छोटा क्लिप रेकर्ड गर्छ। यी तिम्रो iPhone मै रहन्छन् र ७ दिनपछि मेटिन्छन्।"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake neemt ’s nachts korte fragmenten van snurken en praten in je slaap op als je dit aanzet. Ze blijven op je iPhone en worden na 7 dagen verwijderd."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜੇ ਤੁਸੀਂ ਚਾਲੂ ਕਰੋ, ਤਾਂ Phase Wake ਰਾਤ ਨੂੰ ਘੁਰਾੜਿਆਂ ਅਤੇ ਨੀਂਦ ਵਿੱਚ ਬੋਲਣ ਦੀਆਂ ਛੋਟੀਆਂ ਕਲਿੱਪਾਂ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ iPhone ’ਤੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ 7 ਦਿਨਾਂ ਬਾਅਦ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।"
           }
         },
         "pl": {
@@ -717,10 +1653,58 @@
             "value": "Если ты включишь эту функцию, Phase Wake будет ночью записывать короткие фрагменты храпа и разговоров во сне. Они остаются на твоём iPhone и удаляются через 7 дней."
           }
         },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ සක්‍රිය කළහොත්, Phase Wake රාත්‍රියේ ගොරවීමේ සහ නින්දේ කතා කිරීමේ කෙටි කොටස් පටිගත කරයි. ඒවා ඔබේ iPhone හි පවතින අතර දින 7 කට පසු මැකේ."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ak to zapneš, Phase Wake v noci nahrá krátke záznamy chrápania a rozprávania zo spánku. Zostávajú v tvojom iPhone a po 7 dňoch sa vymažú."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ponoči posname kratke posnetke smrčanja in govorjenja v spanju, če to vklopiš. Ostanejo na tvojem iPhonu in se po 7 dneh izbrišejo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nëse e aktivizon, Phase Wake regjistron natën fragmente të shkurtra të gërhitjes dhe të të folurit në gjumë. Ato mbeten në iPhone dhe fshihen pas 7 ditësh."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако то укључиш, Phase Wake ноћу снима кратке исечке хркања и говора у сну. Остају на твом iPhone-у и бришу се после 7 дана."
+          }
+        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "Phase Wake spelar in korta klipp av snarkning och sömnprat på natten om du slår på det. De stannar på din iPhone och raderas efter 7 dagar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukiwasha, Phase Wake hurekodi vipande vifupi vya kukoroma na kuongea usingizini usiku. Vinabaki kwenye iPhone yako na hufutwa baada ya siku 7."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நீங்கள் ஆன் செய்தால், Phase Wake இரவில் குறட்டை, தூக்கத்தில் பேசுதல் ஆகியவற்றின் சிறு கிளிப்புகளைப் பதிவுசெய்யும். அவை உங்கள் iPhone இலேயே இருக்கும், 7 நாட்களுக்குப் பிறகு நீக்கப்படும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు ఆన్ చేస్తే, Phase Wake రాత్రి గురక, నిద్రలో మాట్లాడటం చిన్న క్లిప్‌లుగా రికార్డ్ చేస్తుంది. అవి మీ iPhoneలోనే ఉంటాయి, 7 రోజుల తర్వాత తొలగిపోతాయి."
           }
         },
         "th": {
@@ -741,10 +1725,28 @@
             "value": "Якщо ти це ввімкнеш, Phase Wake уночі записуватиме короткі фрагменти хропіння та розмов уві сні. Вони залишаються на твоєму iPhone і видаляються через 7 днів."
           }
         },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگر تم اسے آن کرو تو Phase Wake رات کو خراٹوں اور نیند میں باتیں کرنے کے چھوٹے کلپس ریکارڈ کرتا ہے۔ یہ تمہارے iPhone پر رہتے ہیں اور 7 دن بعد حذف ہو جاتے ہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yoqsang, Phase Wake tunda xurrak va uyqudagi gaplarning qisqa parchalarini yozadi. Ular iPhoneʼingda qoladi va 7 kundan keyin oʻchiriladi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
             "value": "Nếu bạn bật, Phase Wake sẽ ghi lại các đoạn ngắn tiếng ngáy và nói mớ vào ban đêm. Chúng chỉ lưu trên iPhone của bạn và bị xóa sau 7 ngày."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟後，Phase Wake 會在晚上錄下打鼾和說夢話的短片段。片段只會留在你的 iPhone 上，7 日後刪除。"
           }
         },
         "zh-Hans": {
@@ -757,6 +1759,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "開啟後，Phase Wake 會在夜間錄下打鼾和說夢話的簡短片段。片段只保存在你的 iPhone 上，7 天後自動刪除。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma ukuvula, i-Phase Wake iqopha iziqeshana ezimfushane zokuhona nokukhuluma ebuthongweni ebusuku. Zihlala ku-iPhone yakho futhi zisuswa ngemva kwezinsuku ezi-7."
           }
         }
       }

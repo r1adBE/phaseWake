@@ -27,8 +27,29 @@ enum Plural {
             return n == 0 || (2...19).contains(mod100) ? "few" : "other"
         case "he":
             return n == 1 ? "one" : n == 2 ? "two" : "other"
-        case "fr", "hi", "fa":
+        case "fr", "hi", "fa", "bn", "hy", "si", "gu", "kn", "pa", "am", "zu":
             return n <= 1 ? "one" : "other"
+        case "hr", "sr", "bs":
+            if mod10 == 1 && mod100 != 11 { return "one" }
+            return (2...4).contains(mod10) && !(12...14).contains(mod100) ? "few" : "other"
+        case "sl":
+            return mod100 == 1 ? "one" : mod100 == 2 ? "two" : (3...4).contains(mod100) ? "few" : "other"
+        case "sk":
+            return n == 1 ? "one" : (2...4).contains(n) ? "few" : "other"
+        case "lt":
+            if (11...19).contains(mod100) { return "other" }
+            return mod10 == 1 ? "one" : mod10 >= 2 ? "few" : "other"
+        case "lv":
+            if mod10 == 0 || (11...19).contains(mod100) { return "zero" }
+            return mod10 == 1 ? "one" : "other"
+        case "mk", "is":
+            return mod10 == 1 && mod100 != 11 ? "one" : "other"
+        case "ga":
+            return n == 1 ? "one" : n == 2 ? "two" : (3...6).contains(n) ? "few" : (7...10).contains(n) ? "many" : "other"
+        case "km", "lo", "my":
+            return "other"
+        case "fil":
+            return [4, 6, 9].contains(mod10) ? "other" : "one"
         case "pt":
             let region = Locale.current.region?.identifier
             return (region == "PT" ? n == 1 : n <= 1) ? "one" : "other"

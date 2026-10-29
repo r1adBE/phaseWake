@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_window">ഉണർത്തൽ സമയപരിധി</string>
+    <string name="channel_window_description">Phase Wake നേരിയ ഉറക്കം നിരീക്ഷിക്കുമ്പോൾ കാണിക്കും.</string>
+    <string name="channel_alarm">അലാറം</string>
+    <string name="channel_alarm_description">നിങ്ങളെ ഉണർത്തുന്നു.</string>
+    <string name="notification_window_title">നേരിയ ഉറക്കം നിരീക്ഷിക്കുന്നു</string>
+    <string name="notification_window_text">പരമാവധി %1$s-ന് ഉണർത്തും</string>
+    <string name="notification_ring_title">സുപ്രഭാതം</string>
+
+    <string name="ring_greeting">സുപ്രഭാതം</string>
+    <string name="ring_reason_light">നേരിയ ഉറക്കം കണ്ടെത്തി</string>
+    <string name="ring_reason_awake">നിങ്ങൾ നേരത്തേ ഉണർന്നിരുന്നു</string>
+    <string name="ring_reason_deadline">ലക്ഷ്യസമയം എത്തി</string>
+    <string name="ring_hold_to_stop">നിർത്താൻ അമർത്തിപ്പിടിക്കുക</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d മി. · %2$d ബാക്കി</item>
+        <item quantity="other">%1$d മി. · %2$d ബാക്കി</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s വരെ സ്‌നൂസ്</string>
+
+    <string name="home_no_alarm">അലാറം സജ്ജമാക്കിയിട്ടില്ല</string>
+    <string name="home_no_alarm_hint">ഒരു അലാറം ചേർക്കുക – ഇവിടെയോ ഫോണിലെ Phase Wake-ലോ.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ഇന്ന്</string>
+    <string name="home_tomorrow">നാളെ</string>
+    <string name="home_window_length">%1$d മി. സമയപരിധി</string>
+    <string name="home_alarms">അലാറങ്ങൾ</string>
+    <string name="home_permissions">അനുമതികൾ നൽകുക</string>
+    <string name="home_permissions_hint">അളക്കാനും അലാറം സ്‌ക്രീനിനും ആവശ്യം.</string>
+    <string name="alarm_once">ഒരിക്കൽ</string>
+    <string name="alarm_every_day">എല്ലാ ദിവസവും</string>
+    <string name="tile_label">അടുത്ത അലാറം</string>
+    <string name="tile_next">അടുത്ത അലാറം</string>
+    <string name="tile_light_sleep">നേരിയ ഉറക്കത്തിൽ ഉണർത്തും</string>
+    <string name="notification_good_night_title">നന്നായി ഉറങ്ങൂ</string>
+    <string name="notification_good_night_text">നിങ്ങൾ ഉറങ്ങാൻ കാത്തിരിക്കുന്നു</string>
+    <string name="home_good_night">ശുഭരാത്രി</string>
+    <string name="home_good_night_hint">ഇപ്പോൾ മുതൽ %1$s ഉറക്കം</string>
+    <string name="home_good_night_active">ഉറക്കത്തിനായി കാത്തിരിക്കുന്നു · റദ്ദാക്കാൻ ടാപ്പ്</string>
+    <string name="dnd_title">അലാറങ്ങൾ തടഞ്ഞു</string>
+    <string name="dnd_text">ശല്യപ്പെടുത്തരുത് മോഡിൽ അലാറങ്ങൾ അനുവദിക്കുക.</string>
+    <string name="duration_hours">%1$d മ.</string>
+    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
+    <string name="home_last_night">കഴിഞ്ഞ രാത്രി</string>
+    <string name="notification_open">തുറക്കുക</string>
+    <string name="home_good_night_too_far">അലാറത്തിന് 16 മ. മുമ്പ് മുതൽ ലഭ്യം</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ഫോണിൽ കണക്ക് ചെയ്യുക അല്ലെങ്കിൽ 5 സെ. അമർത്തിപ്പിടിക്കുക</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">പുതിയ അലാറം</string>
+    <string name="editor_new">പുതിയ അലാറം</string>
+    <string name="editor_edit">അലാറം എഡിറ്റ് ചെയ്യുക</string>
+    <string name="editor_target">ഉണർത്തേണ്ട സമയം</string>
+    <string name="editor_latest">പരമാവധി</string>
+    <string name="editor_window">സമയപരിധി: %1$d മി.</string>
+    <string name="editor_days">ആവർത്തിക്കുക</string>
+    <string name="editor_save">സേവ് ചെയ്യുക</string>
+    <string name="editor_delete">അലാറം ഇല്ലാതാക്കുക</string>
+    <string name="editor_delete_title">ഈ അലാറം ഇല്ലാതാക്കണോ?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">പരമാവധി %1$d അലാറങ്ങൾ – പുതിയത് ചേർക്കാൻ ഒന്ന് ഇല്ലാതാക്കുക.</string>
+    <string name="editor_enabled">അലാറം ഓൺ</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">അടുത്ത തവണ ഒഴിവാക്കുക</string>
+    <string name="alarm_skipped">ഒഴിവാക്കി: %1$s</string>
+    <string name="nap_title">പവർ നാപ്പ്</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d മിനിറ്റ്</item>
+        <item quantity="other">%1$d മിനിറ്റ്</item>
+    </plurals>
+    <string name="nap_start">തുടങ്ങുക</string>
+    <string name="nap_running">%1$s വരെ</string>
+    <string name="nap_stop">പവർ നാപ്പ് അവസാനിപ്പിക്കുക</string>
+    <string name="diag_title">ഡയഗ്‌നോസ്റ്റിക്‌സ്</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d ടാപ്പ് കൂടി</item>
+        <item quantity="other">%1$d ടാപ്പുകൾ കൂടി</item>
+    </plurals>
+    <string name="diag_clear">മായ്‌ക്കുക</string>
+    <string name="diag_hide">ഡയഗ്‌നോസ്റ്റിക്‌സ് മറയ്ക്കുക</string>
+    <string name="diag_empty">ഇതുവരെ ഇവന്റുകളില്ല.</string>
+    <string name="diag_next">അടുത്ത അലാറം: %1$s</string>
+    <string name="diag_version">പതിപ്പ് %1$s</string>
+    <string name="transient_alarm_running">നിങ്ങളുടെ അലാറം ഇപ്പോൾ നടക്കുന്നു.</string>
+    <string name="transient_alarm_soon">അതിനു മുമ്പേ ഉണർത്തൽ സമയപരിധി തുടങ്ങും.</string>
+</resources>

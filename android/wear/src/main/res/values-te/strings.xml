@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">నిద్రలేపే వ్యవధి</string>
+    <string name="channel_window_description">Phase Wake తేలికపాటి నిద్ర కోసం చూస్తున్నప్పుడు కనిపిస్తుంది.</string>
+    <string name="channel_alarm">అలారం</string>
+    <string name="channel_alarm_description">మిమ్మల్ని లేపుతుంది.</string>
+    <string name="notification_window_title">తేలికపాటి నిద్ర కోసం చూస్తోంది</string>
+    <string name="notification_window_text">గరిష్ఠంగా %1$sకల్లా లేపుతుంది</string>
+    <string name="notification_ring_title">శుభోదయం</string>
+
+    <string name="ring_greeting">శుభోదయం</string>
+    <string name="ring_reason_light">తేలికపాటి నిద్ర గుర్తించింది</string>
+    <string name="ring_reason_awake">మీరు ముందే మేల్కొని ఉన్నారు</string>
+    <string name="ring_reason_deadline">లక్ష్య సమయం వచ్చింది</string>
+    <string name="ring_hold_to_stop">ఆపడానికి నొక్కి పట్టుకోండి</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d ని. · %2$d మిగిలాయి</item>
+        <item quantity="other">%1$d ని. · %2$d మిగిలాయి</item>
+    </plurals>
+    <string name="ring_snoozed_until">%1$s వరకు స్నూజ్</string>
+
+    <string name="home_no_alarm">అలారం సెట్ చేయలేదు</string>
+    <string name="home_no_alarm_hint">అలారం జోడించండి – ఇక్కడ లేదా ఫోన్‌లోని Phase Wakeలో.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">ఈరోజు</string>
+    <string name="home_tomorrow">రేపు</string>
+    <string name="home_window_length">%1$d ని. వ్యవధి</string>
+    <string name="home_alarms">అలారాలు</string>
+    <string name="home_permissions">అనుమతులు ఇవ్వండి</string>
+    <string name="home_permissions_hint">కొలవడానికి, అలారం స్క్రీన్‌కు అవసరం.</string>
+    <string name="alarm_once">ఒకసారి</string>
+    <string name="alarm_every_day">ప్రతిరోజూ</string>
+    <string name="tile_label">తదుపరి అలారం</string>
+    <string name="tile_next">తదుపరి అలారం</string>
+    <string name="tile_light_sleep">తేలికపాటి నిద్రలో లేపుతుంది</string>
+    <string name="notification_good_night_title">హాయిగా నిద్రపోండి</string>
+    <string name="notification_good_night_text">మీరు నిద్రపోయే వరకు వేచి ఉంది</string>
+    <string name="home_good_night">శుభ రాత్రి</string>
+    <string name="home_good_night_hint">ఇప్పటి నుంచి %1$s నిద్ర</string>
+    <string name="home_good_night_active">నిద్ర కోసం వేచి ఉంది · రద్దుకు నొక్కండి</string>
+    <string name="dnd_title">అలారాలు ఆగిపోయాయి</string>
+    <string name="dnd_text">“అంతరాయం కలిగించవద్దు”లో అలారాలను అనుమతించండి.</string>
+    <string name="duration_hours">%1$d గం.</string>
+    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
+    <string name="home_last_night">నిన్న రాత్రి</string>
+    <string name="notification_open">తెరవండి</string>
+    <string name="home_good_night_too_far">అలారానికి 16 గం. ముందు నుంచి అందుబాటులో</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">ఫోన్‌లో లెక్క చేయండి లేదా 5 సె. నొక్కి పట్టుకోండి</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">కొత్త అలారం</string>
+    <string name="editor_new">కొత్త అలారం</string>
+    <string name="editor_edit">అలారం మార్చండి</string>
+    <string name="editor_target">ఈ సమయానికల్లా లేపండి</string>
+    <string name="editor_latest">గరిష్ఠంగా</string>
+    <string name="editor_window">వ్యవధి: %1$d ని.</string>
+    <string name="editor_days">పునరావృతం</string>
+    <string name="editor_save">సేవ్ చేయండి</string>
+    <string name="editor_delete">అలారం తొలగించండి</string>
+    <string name="editor_delete_title">ఈ అలారం తొలగించాలా?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">గరిష్ఠంగా %1$d అలారాలు – కొత్తది జోడించడానికి ఒకటి తొలగించండి.</string>
+    <string name="editor_enabled">అలారం ఆన్</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">తదుపరిసారి దాటవేయండి</string>
+    <string name="alarm_skipped">దాటవేశారు: %1$s</string>
+    <string name="nap_title">పవర్ న్యాప్</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d నిమిషం</item>
+        <item quantity="other">%1$d నిమిషాలు</item>
+    </plurals>
+    <string name="nap_start">మొదలుపెట్టండి</string>
+    <string name="nap_running">%1$s వరకు</string>
+    <string name="nap_stop">పవర్ న్యాప్ ముగించండి</string>
+    <string name="diag_title">డయాగ్నస్టిక్స్</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">ఇంకా %1$d ట్యాప్</item>
+        <item quantity="other">ఇంకా %1$d ట్యాప్‌లు</item>
+    </plurals>
+    <string name="diag_clear">క్లియర్ చేయండి</string>
+    <string name="diag_hide">డయాగ్నస్టిక్స్ దాచండి</string>
+    <string name="diag_empty">ఇంకా ఈవెంట్‌లు లేవు.</string>
+    <string name="diag_next">తదుపరి అలారం: %1$s</string>
+    <string name="diag_version">వెర్షన్ %1$s</string>
+    <string name="transient_alarm_running">మీ అలారం ప్రస్తుతం నడుస్తోంది.</string>
+    <string name="transient_alarm_soon">మీ నిద్రలేపే వ్యవధి దానికంటే ముందే మొదలవుతుంది.</string>
+</resources>

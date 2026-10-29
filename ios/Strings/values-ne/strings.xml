@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">यो iPhone सँग कुनै Apple Watch जोडा बनाइएको छैन।</string>
+    <string name="check_watch_app">घडीमा Phase Wake</string>
+    <string name="check_watch_app_problem">Watch एपबाट Apple Watch मा Phase Wake इन्स्टल गर।</string>
+    <string name="check_alarmkit">अलार्मलाई अनुमति छ</string>
+    <string name="check_alarmkit_problem">तिम्रो iPhone ब्याकअप अलार्मको रूपमा बज्न सकोस् भनेर Phase Wake लाई अलार्म सेट गर्न अनुमति देऊ।</string>
+    <string name="nightstand_start">नाइटस्ट्यान्ड मोड सुरु गर</string>
+    <string name="nightstand_hint">सूर्योदयका लागि Phase Wake लाई रातभर चार्जरमा खुला छोड। प्रकाश सुरु नहुँदासम्म स्क्रिन अँध्यारो रहन्छ।</string>
+    <string name="nightstand_end">अन्त्य</string>
+    <string name="nightstand_waiting">%1$s मा सूर्योदय</string>
+    <string name="nightstand_no_alarm">सूर्योदयसहितको अलार्म छैन</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake खुला हुँदा मात्र iPhone ले प्रकाश देखाउन सक्छ – सुत्नुअघि नाइटस्ट्यान्ड मोड सुरु गर।</string>
+    <string name="trends_health_hint_apple">निद्राको अवधि र नियमितता Apple Health बाट आउँछ।</string>
+    <string name="watch_not_armed">घडीले अलार्म सक्रिय गर्न सकोस् भनेर सुत्नुअघि Phase Wake खोल।</string>
+    <string name="check_watch_arm">घडीमा अलार्म सक्रिय छ</string>
+    <string name="check_watch_arm_problem">सुत्नुअघि Apple Watch मा Phase Wake खोल। एप खुला हुँदा मात्र watchOS ले अलार्म सक्रिय गर्छ।</string>
+    <string name="night_unmeasured_apple">पहिलो %1$d मि. मापन भएन – Apple Watch ले लक्षित समयअघिको अन्तिम %2$d मिनेट मात्र मापन गर्छ।</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope फन्ट: SIL Open Font License 1.1, © The Manrope Project Authors.\nआवाज पहिचान: Apple को SoundAnalysis, iOS मा बिल्ट-इन।\nआवाजहरू: opengameart.org बाट निःशुल्क रेकर्डिङ (CC0)</string>
+</resources>

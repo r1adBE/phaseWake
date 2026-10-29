@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texte nur für die Apple-Apps. Gleiches Format wie die Android-Texte, damit Übersetzung und
+     Prüfung gleich laufen; .github/scripts/gen-xcstrings.py nimmt sie in die Kataloge auf. -->
+<resources>
+    <string name="check_watch_problem_apple">या iPhone सोबत कोणतेही Apple Watch पेअर केलेले नाही.</string>
+    <string name="check_watch_app">घड्याळावर Phase Wake</string>
+    <string name="check_watch_app_problem">Watch ॲपमधून तुमच्या Apple Watch वर Phase Wake इंस्टॉल करा.</string>
+    <string name="check_alarmkit">अलार्मना परवानगी</string>
+    <string name="check_alarmkit_problem">तुमचा iPhone बॅकअप अलार्म म्हणून वाजू शकेल म्हणून Phase Wake ला अलार्म सेट करण्याची परवानगी द्या.</string>
+    <string name="nightstand_start">नाइटस्टँड मोड सुरू करा</string>
+    <string name="nightstand_hint">सूर्योदयासाठी Phase Wake रात्रभर चार्जरवर उघडे ठेवा. प्रकाश सुरू होईपर्यंत स्क्रीन गडद राहते.</string>
+    <string name="nightstand_end">संपवा</string>
+    <string name="nightstand_waiting">%1$s ला सूर्योदय</string>
+    <string name="nightstand_no_alarm">सूर्योदय असलेला अलार्म नाही</string>
+    <string name="editor_sunrise_ios_hint">Phase Wake उघडे असतानाच तुमचा iPhone प्रकाश दाखवू शकतो – झोपण्यापूर्वी नाइटस्टँड मोड सुरू करा.</string>
+    <string name="trends_health_hint_apple">झोपेचा कालावधी आणि नियमितता Apple Health मधून येते.</string>
+    <string name="watch_not_armed">झोपण्यापूर्वी Phase Wake उघडा, म्हणजे तुमचे घड्याळ अलार्म सक्रिय करू शकेल.</string>
+    <string name="check_watch_arm">घड्याळावर अलार्म सक्रिय</string>
+    <string name="check_watch_arm_problem">झोपण्यापूर्वी तुमच्या Apple Watch वर Phase Wake उघडा. ॲप उघडे असतानाच watchOS अलार्म सक्रिय करते.</string>
+    <string name="night_unmeasured_apple">पहिली %1$d मि. मोजली नाहीत – Apple Watch लक्ष्यापूर्वीची फक्त शेवटची %2$d मि. मोजते.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope फॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors.\nआवाज ओळख: Apple चे SoundAnalysis, iOS मध्ये अंगभूत.\nआवाज: opengameart.org वरील मुक्त रेकॉर्डिंग (CC0)</string>
+</resources>

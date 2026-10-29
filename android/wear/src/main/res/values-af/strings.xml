@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="channel_window">Wekvenster</string>
+    <string name="channel_window_description">Word gewys terwyl Phase Wake vir ligte slaap oplet.</string>
+    <string name="channel_alarm">Wekker</string>
+    <string name="channel_alarm_description">Maak jou wakker.</string>
+    <string name="notification_window_title">Let op vir ligte slaap</string>
+    <string name="notification_window_text">Maak jou uiterlik om %1$s wakker</string>
+    <string name="notification_ring_title">Goeiemôre</string>
+
+    <string name="ring_greeting">Goeiemôre</string>
+    <string name="ring_reason_light">Ligte slaap bespeur</string>
+    <string name="ring_reason_awake">Jy was reeds wakker</string>
+    <string name="ring_reason_deadline">Teikentyd bereik</string>
+    <string name="ring_hold_to_stop">Hou in om te stop</string>
+    <plurals name="ring_snooze">
+        <item quantity="one">%1$d min · %2$d oor</item>
+        <item quantity="other">%1$d min · %2$d oor</item>
+    </plurals>
+    <string name="ring_snoozed_until">Sluimer tot %1$s</string>
+
+    <string name="home_no_alarm">Geen wekker gestel nie</string>
+    <string name="home_no_alarm_hint">Voeg ’n wekker by – hier of in Phase Wake op jou foon.</string>
+    <string name="home_window">%1$s – %2$s</string>
+    <string name="home_today">Vandag</string>
+    <string name="home_tomorrow">Môre</string>
+    <string name="home_window_length">%1$d min venster</string>
+    <string name="home_alarms">Wekkers</string>
+    <string name="home_permissions">Laat toestemmings toe</string>
+    <string name="home_permissions_hint">Nodig vir meting en die wekkerskerm.</string>
+    <string name="alarm_once">Eenmalig</string>
+    <string name="alarm_every_day">Elke dag</string>
+    <string name="tile_label">Volgende wekker</string>
+    <string name="tile_next">Volgende wekker</string>
+    <string name="tile_light_sleep">Maak jou in ligte slaap wakker</string>
+    <string name="notification_good_night_title">Slaap lekker</string>
+    <string name="notification_good_night_text">Wag dat jy aan die slaap raak</string>
+    <string name="home_good_night">Goeienag</string>
+    <string name="home_good_night_hint">Slaap %1$s van nou af</string>
+    <string name="home_good_night_active">Wag vir slaap · tik om te kanselleer</string>
+    <string name="dnd_title">Wekkers geblokkeer</string>
+    <string name="dnd_text">Laat wekkers in Moenie Steur Nie toe.</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="home_last_night">Gisteraand</string>
+    <string name="notification_open">Maak oop</string>
+    <string name="home_good_night_too_far">Beskikbaar vanaf 16 h voor die wekker</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Los die taak op jou foon op of hou 5 s in</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nuwe wekker</string>
+    <string name="editor_new">Nuwe wekker</string>
+    <string name="editor_edit">Wysig wekker</string>
+    <string name="editor_target">Maak my wakker teen</string>
+    <string name="editor_latest">Uiterlik</string>
+    <string name="editor_window">Venster: %1$d min</string>
+    <string name="editor_days">Herhaal</string>
+    <string name="editor_save">Stoor</string>
+    <string name="editor_delete">Vee wekker uit</string>
+    <string name="editor_delete_title">Vee hierdie wekker uit?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Tot %1$d wekkers – vee een uit om ’n nuwe by te voeg.</string>
+    <string name="editor_enabled">Wekker aan</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Slaan volgende keer oor</string>
+    <string name="alarm_skipped">Oorgeslaan: %1$s</string>
+    <string name="nap_title">Kraguiltjie</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuut</item>
+        <item quantity="other">%1$d minute</item>
+    </plurals>
+    <string name="nap_start">Begin</string>
+    <string name="nap_running">Tot %1$s</string>
+    <string name="nap_stop">Beëindig kraguiltjie</string>
+    <string name="diag_title">Diagnostiek</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Nog %1$d tik</item>
+        <item quantity="other">Nog %1$d tikke</item>
+    </plurals>
+    <string name="diag_clear">Maak skoon</string>
+    <string name="diag_hide">Versteek diagnostiek</string>
+    <string name="diag_empty">Nog geen gebeure nie.</string>
+    <string name="diag_next">Volgende wekker: %1$s</string>
+    <string name="diag_version">Weergawe %1$s</string>
+    <string name="transient_alarm_running">Jou wekker loop nou.</string>
+    <string name="transient_alarm_soon">Jou wekvenster begin voor dit.</string>
+</resources>

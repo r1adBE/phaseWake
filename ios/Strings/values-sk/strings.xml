@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_watch_problem_apple">S týmto iPhonom nie sú spárované žiadne Apple Watch.</string>
+    <string name="check_watch_app">Phase Wake v hodinkách</string>
+    <string name="check_watch_app_problem">Nainštaluj Phase Wake do Apple Watch v aplikácii Watch.</string>
+    <string name="check_alarmkit">Budíky povolené</string>
+    <string name="check_alarmkit_problem">Povoľ Phase Wake nastavovať budíky, aby mohol iPhone zvoniť ako záložný budík.</string>
+    <string name="nightstand_start">Spustiť režim nočného stolíka</string>
+    <string name="nightstand_hint">Pre východ slnka nechaj Phase Wake cez noc otvorený na nabíjačke. Obrazovka zostane tmavá, kým sa nezačne svetlo.</string>
+    <string name="nightstand_end">Ukončiť</string>
+    <string name="nightstand_waiting">Východ slnka o %1$s</string>
+    <string name="nightstand_no_alarm">Žiadny budík s východom slnka</string>
+    <string name="editor_sunrise_ios_hint">iPhone vie ukázať svetlo, len kým je Phase Wake otvorený – pred spaním spusti režim nočného stolíka.</string>
+    <string name="trends_health_hint_apple">Dĺžka a pravidelnosť spánku pochádzajú z aplikácie Apple Health.</string>
+    <string name="watch_not_armed">Pred spaním otvor Phase Wake, aby hodinky mohli budík aktivovať.</string>
+    <string name="check_watch_arm">Budík v hodinkách aktivovaný</string>
+    <string name="check_watch_arm_problem">Pred spaním otvor Phase Wake v Apple Watch. watchOS aktivuje budík, len kým je aplikácia otvorená.</string>
+    <string name="night_unmeasured_apple">Prvých %1$d min nemerané – Apple Watch meria iba posledných %2$d min pred cieľovým časom.</string>
+    <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
+    <string name="settings_licenses_text_apple">Phase Wake: licencia MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávanie zvukov: SoundAnalysis od Apple, zabudované v iOS.\nZvuky: voľné nahrávky (CC0) z opengameart.org</string>
+</resources>
