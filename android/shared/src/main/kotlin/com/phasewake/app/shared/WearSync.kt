@@ -88,6 +88,16 @@ class WearSync(context: Context) {
      */
     suspend fun watchAlarmFields(): Int? = readStatus { readAlarmFields(it) }
 
+    /** Kennungen der Geräte, die ein Status-Paket ([DataLayer.PATH_WATCH_STATUS]) geschrieben haben. */
+    private suspend fun statusNodes(): Set<String> {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        return try {
+            items.mapNotNull { it.uri.host }.toSet()
+        } finally {
+            items.release()
+        }
+    }
+
     /** Liest das Status-Paket der Uhr mit [read]; `null`, wenn keines da ist oder die Wear-Dienste fehlen. */
     private suspend fun <T> readStatus(read: (DataMap) -> T?): T? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
@@ -196,7 +206,10 @@ class WearSync(context: Context) {
     suspend fun nodesWithout(capability: String): List<String> = try {
         val connected = Wearable.getNodeClient(app).connectedNodes.await().map { it.id }
         val withApp = capabilityClient.getCapability(capability, CapabilityClient.FILTER_ALL).await().nodes.map { it.id }.toSet()
-        connected.filterNot { it in withApp }
+        // Zweiter Beleg: Eine Uhr, die schon einen Status gemeldet hat, hat die App sicher – auch wenn ihre
+        // Fähigkeit nach einer Neuinstallation (z. B. per adb) noch nicht bekannt gegeben ist.
+        val reporting = statusNodes()
+        connected.filterNot { it in withApp || it in reporting }
     } catch (e: Exception) {
         if (e is kotlinx.coroutines.CancellationException) throw e
         emptyList()
