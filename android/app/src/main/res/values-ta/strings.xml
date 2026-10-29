@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">உங்கள் எழுப்பும் வரம்பு அதற்கு முன்பே தொடங்குகிறது.</string>
     <string name="check_watch_update">உங்கள் வாட்ச்சில் Phase Wake ஐப் புதுப்பியுங்கள்</string>
     <string name="check_watch_update_problem">அதுவரை உங்கள் வாட்ச் அலாரங்களைத் தவிர்க்காது, விடுமுறை நாட்களிலும் எழுப்பும்.</string>
+    <string name="watch_store_opened">உங்கள் வாட்ச்சில் Play Store திறக்கப்பட்டது – ஒருமுறை பாருங்கள்.</string>
+    <string name="watch_store_failed">உங்கள் வாட்ச்சில் Play Store ஐத் திறக்க முடியவில்லை. அது இணைக்கப்பட்டுள்ளதா?</string>
 </resources>

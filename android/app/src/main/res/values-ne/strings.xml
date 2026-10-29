@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">तिम्रो ब्युँझाउने अवधि त्योभन्दा अघि सुरु हुन्छ।</string>
     <string name="check_watch_update">घडीमा Phase Wake अपडेट गर</string>
     <string name="check_watch_update_problem">त्यतिन्जेल तिम्रो घडीले अलार्म छोड्दैन र बिदामा पनि ब्युँझाउँछ।</string>
+    <string name="watch_store_opened">घडीमा Play Store खोलियो – एक पटक हेर।</string>
+    <string name="watch_store_failed">घडीमा Play Store खोल्न सकिएन। के घडी जोडिएको छ?</string>
 </resources>

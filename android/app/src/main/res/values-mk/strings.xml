@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Прозорецот за будење почнува пред тоа.</string>
     <string name="check_watch_update">Ажурирај го Phase Wake на часовникот</string>
     <string name="check_watch_update_problem">Дотогаш часовникот нема да прескокнува аларми и ќе те буди и на празници.</string>
+    <string name="watch_store_opened">Play Store е отворен на часовникот – погледни го.</string>
+    <string name="watch_store_failed">Play Store не можеше да се отвори на часовникот. Дали е поврзан?</string>
 </resources>

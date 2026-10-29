@@ -476,4 +476,6 @@
     <string name="transient_alarm_soon">你的喚醒時段在這之前已經開始。</string>
     <string name="check_watch_update">更新手錶上的 Phase Wake</string>
     <string name="check_watch_update_problem">在此之前，手錶不會略過鬧鐘，假期也會叫醒你。</string>
+    <string name="watch_store_opened">已在手錶上開啟 Play Store – 請看看手錶。</string>
+    <string name="watch_store_failed">無法在手錶上開啟 Play Store。手錶已連線嗎？</string>
 </resources>

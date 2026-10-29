@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">അതിനു മുമ്പേ ഉണർത്തൽ സമയപരിധി തുടങ്ങും.</string>
     <string name="check_watch_update">വാച്ചിലെ Phase Wake അപ്‌ഡേറ്റ് ചെയ്യുക</string>
     <string name="check_watch_update_problem">അതുവരെ വാച്ച് അലാറങ്ങൾ ഒഴിവാക്കില്ല, അവധിദിനങ്ങളിലും ഉണർത്തും.</string>
+    <string name="watch_store_opened">വാച്ചിൽ Play Store തുറന്നു – ഒന്ന് നോക്കൂ.</string>
+    <string name="watch_store_failed">വാച്ചിൽ Play Store തുറക്കാനായില്ല. വാച്ച് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ?</string>
 </resources>

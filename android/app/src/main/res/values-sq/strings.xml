@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
     <string name="check_watch_update">Përditëso Phase Wake në orë</string>
     <string name="check_watch_update_problem">Deri atëherë, ora nuk i kapërcen alarmet dhe të zgjon edhe në festa.</string>
+    <string name="watch_store_opened">Play Store u hap në orë – hidhi një sy.</string>
+    <string name="watch_store_failed">Play Store nuk u hap dot në orë. A është e lidhur?</string>
 </resources>

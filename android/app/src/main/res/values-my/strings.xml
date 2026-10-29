@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
     <string name="check_watch_update">နာရီပေါ်ရှိ Phase Wake ကို အပ်ဒိတ်လုပ်ပါ</string>
     <string name="check_watch_update_problem">ထိုအချိန်အထိ နာရီက နှိုးစက်များကို မကျော်ဘဲ ရုံးပိတ်ရက်များတွင်လည်း နှိုးမည်။</string>
+    <string name="watch_store_opened">နာရီပေါ်တွင် Play Store ကို ဖွင့်ထားပါပြီ – ကြည့်လိုက်ပါ။</string>
+    <string name="watch_store_failed">နာရီပေါ်တွင် Play Store ကို ဖွင့်၍မရပါ။ နာရီ ချိတ်ဆက်ထားပါသလား။</string>
 </resources>

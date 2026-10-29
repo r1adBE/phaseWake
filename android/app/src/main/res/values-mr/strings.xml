@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">तुमचा उठवण्याचा कालावधी त्याआधीच सुरू होतो.</string>
     <string name="check_watch_update">तुमच्या घड्याळावर Phase Wake अपडेट करा</string>
     <string name="check_watch_update_problem">तोपर्यंत तुमचे घड्याळ अलार्म वगळणार नाही आणि सुट्टीच्या दिवशीही तुम्हाला उठवेल.</string>
+    <string name="watch_store_opened">तुमच्या घड्याळावर Play Store उघडले – एकदा पाहा.</string>
+    <string name="watch_store_failed">तुमच्या घड्याळावर Play Store उघडता आले नाही. ते कनेक्ट आहे का?</string>
 </resources>

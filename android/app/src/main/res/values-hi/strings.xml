@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">आपके अलार्म की विंडो उससे पहले शुरू होती है।</string>
     <string name="check_watch_update">वॉच पर Phase Wake अपडेट करें</string>
     <string name="check_watch_update_problem">तब तक वॉच कोई अलार्म नहीं छोड़ेगी और छुट्टियों पर भी आपको जगाएगी।</string>
+    <string name="watch_store_opened">वॉच पर Play Store खोल दिया गया – एक बार देख लें।</string>
+    <string name="watch_store_failed">वॉच पर Play Store नहीं खुल सका। क्या वॉच कनेक्ट है?</string>
 </resources>

@@ -473,4 +473,6 @@
     <string name="transient_alarm_soon">Khoảng thời gian báo thức của bạn bắt đầu trước đó.</string>
     <string name="check_watch_update">Cập nhật Phase Wake trên đồng hồ</string>
     <string name="check_watch_update_problem">Cho đến lúc đó, đồng hồ sẽ không bỏ qua báo thức nào và vẫn đánh thức bạn vào ngày lễ.</string>
+    <string name="watch_store_opened">Đã mở Play Store trên đồng hồ – hãy xem đồng hồ của bạn.</string>
+    <string name="watch_store_failed">Không thể mở Play Store trên đồng hồ. Đồng hồ đã được kết nối chưa?</string>
 </resources>

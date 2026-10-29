@@ -515,4 +515,6 @@
     <string name="transient_alarm_soon">Окно твоего будильника начинается раньше.</string>
     <string name="check_watch_update">Обнови Phase Wake на часах</string>
     <string name="check_watch_update_problem">До этого часы не пропускают будильники и будят тебя и в праздники.</string>
+    <string name="watch_store_opened">Play Store открыт на часах – взгляни на них.</string>
+    <string name="watch_store_failed">Не удалось открыть Play Store на часах. Они подключены?</string>
 </resources>

@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">Զարթուցիչիդ պատուհանը սկսվում է դրանից առաջ։</string>
     <string name="check_watch_update">Թարմացրու Phase Wake-ը ժամացույցում</string>
     <string name="check_watch_update_problem">Մինչ այդ ժամացույցդ զարթուցիչներ բաց չի թողնի և քեզ կարթնացնի նաև տոներին։</string>
+    <string name="watch_store_opened">Play Store-ը բացվեց ժամացույցում – նայիր դրան։</string>
+    <string name="watch_store_failed">Չհաջողվեց բացել Play Store-ը ժամացույցում։ Այն միացվա՞ծ է։</string>
 </resources>

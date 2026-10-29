@@ -473,4 +473,6 @@
     <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
     <string name="check_watch_update">Perbarui Phase Wake di jam tangan</string>
     <string name="check_watch_update_problem">Sampai saat itu, jam tanganmu tidak akan melewati alarm dan tetap membangunkanmu saat hari libur.</string>
+    <string name="watch_store_opened">Play Store dibuka di jam tanganmu – coba lihat.</string>
+    <string name="watch_store_failed">Tidak dapat membuka Play Store di jam tanganmu. Apakah sudah terhubung?</string>
 </resources>

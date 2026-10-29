@@ -501,4 +501,6 @@
     <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
     <string name="check_watch_update">Mets à jour Phase Wake sur la montre</string>
     <string name="check_watch_update_problem">D\'ici là, ta montre ne saute aucun réveil et te réveille aussi les jours fériés.</string>
+    <string name="watch_store_opened">Play Store ouvert sur ta montre – jette un œil.</string>
+    <string name="watch_store_failed">Impossible d\'ouvrir le Play Store sur ta montre. Est-elle connectée ?</string>
 </resources>

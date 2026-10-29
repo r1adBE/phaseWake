@@ -492,4 +492,6 @@
     <string name="transient_alarm_soon">Your alarm window starts before that.</string>
     <string name="check_watch_update">Update Phase Wake on your watch</string>
     <string name="check_watch_update_problem">Until then, your watch won’t skip alarms and will also wake you on holidays.</string>
+    <string name="watch_store_opened">Play Store opened on your watch – have a look at it.</string>
+    <string name="watch_store_failed">Couldn’t open the Play Store on your watch. Is it connected?</string>
 </resources>

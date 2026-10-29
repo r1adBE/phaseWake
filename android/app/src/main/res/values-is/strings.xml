@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Vakningarglugginn byrjar fyrir þann tíma.</string>
     <string name="check_watch_update">Uppfærðu Phase Wake á úrinu</string>
     <string name="check_watch_update_problem">Þangað til sleppir úrið ekki vekjurum og vekur þig líka á frídögum.</string>
+    <string name="watch_store_opened">Play Store var opnað á úrinu – kíktu á það.</string>
+    <string name="watch_store_failed">Ekki tókst að opna Play Store á úrinu. Er það tengt?</string>
 </resources>

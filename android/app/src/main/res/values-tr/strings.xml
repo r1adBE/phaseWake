@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
     <string name="check_watch_update">Saatteki Phase Wake\'i güncelle</string>
     <string name="check_watch_update_problem">O zamana kadar saat hiçbir alarmı atlamaz ve tatillerde de seni uyandırır.</string>
+    <string name="watch_store_opened">Play Store saatte açıldı – bir göz at.</string>
+    <string name="watch_store_failed">Play Store saatte açılamadı. Saat bağlı mı?</string>
 </resources>

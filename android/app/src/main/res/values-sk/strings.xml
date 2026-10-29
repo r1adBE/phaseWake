@@ -517,4 +517,6 @@
     <string name="transient_alarm_soon">Tvoje okno budenia začína už skôr.</string>
     <string name="check_watch_update">Aktualizuj Phase Wake v hodinkách</string>
     <string name="check_watch_update_problem">Dovtedy hodinky nebudú budíky preskakovať a zobudia ťa aj počas sviatkov.</string>
+    <string name="watch_store_opened">Play Store sa otvoril v hodinkách – pozri sa na ne.</string>
+    <string name="watch_store_failed">Play Store sa v hodinkách nepodarilo otvoriť. Sú pripojené?</string>
 </resources>

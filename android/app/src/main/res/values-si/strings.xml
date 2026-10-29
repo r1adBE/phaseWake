@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">ඔබේ අවදි පරාසය ඊට පෙර ආරම්භ වේ.</string>
     <string name="check_watch_update">ඔරලෝසුවේ Phase Wake යාවත්කාලීන කරන්න</string>
     <string name="check_watch_update_problem">එතෙක් ඔබේ ඔරලෝසුව එලාම මඟ නොහරින අතර නිවාඩු දිනවලදීත් අවදි කරයි.</string>
+    <string name="watch_store_opened">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළා – එය බලන්න.</string>
+    <string name="watch_store_failed">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළ නොහැකි විය. එය සම්බන්ධ කර තිබේද?</string>
 </resources>

@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
     <string name="check_watch_update">Phase Wake auf der Uhr aktualisieren</string>
     <string name="check_watch_update_problem">Bis dahin überspringt die Uhr keine Termine und weckt auch an Feiertagen.</string>
+    <string name="watch_store_opened">Play Store auf der Uhr geöffnet – schau auf deine Uhr.</string>
+    <string name="watch_store_failed">Der Play Store auf der Uhr liess sich nicht öffnen. Ist sie verbunden?</string>
 </resources>

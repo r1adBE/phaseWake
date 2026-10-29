@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">તમારો જગાડવાનો સમયગાળો તે પહેલાં શરૂ થાય છે.</string>
     <string name="check_watch_update">તમારી ઘડિયાળ પર Phase Wake અપડેટ કરો</string>
     <string name="check_watch_update_problem">ત્યાં સુધી તમારી ઘડિયાળ એલાર્મ છોડશે નહીં અને રજાના દિવસે પણ તમને જગાડશે.</string>
+    <string name="watch_store_opened">તમારી ઘડિયાળ પર Play Store ખોલ્યો – એક નજર કરો.</string>
+    <string name="watch_store_failed">તમારી ઘડિયાળ પર Play Store ખોલી શકાયો નહીં. શું તે કનેક્ટ છે?</string>
 </resources>

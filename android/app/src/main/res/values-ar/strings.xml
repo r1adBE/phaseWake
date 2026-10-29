@@ -543,4 +543,6 @@
     <string name="transient_alarm_soon">نافذة منبّهك تبدأ قبل ذلك.</string>
     <string name="check_watch_update">حدّث Phase Wake على الساعة</string>
     <string name="check_watch_update_problem">حتى ذلك الحين لن تتخطى الساعة أي منبّه وستوقظك أيضًا في العطل.</string>
+    <string name="watch_store_opened">تم فتح Play Store على الساعة – ألقِ نظرة عليها.</string>
+    <string name="watch_store_failed">تعذّر فتح Play Store على الساعة. هل هي متصلة؟</string>
 </resources>

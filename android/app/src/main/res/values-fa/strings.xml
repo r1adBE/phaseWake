@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
     <string name="check_watch_update">Phase Wake را روی ساعت به‌روز کن</string>
     <string name="check_watch_update_problem">تا آن موقع ساعت هیچ زنگی را رد نمی‌کند و روزهای تعطیل هم بیدارت می‌کند.</string>
+    <string name="watch_store_opened">Play Store روی ساعت باز شد – نگاهی به آن بینداز.</string>
+    <string name="watch_store_failed">باز کردن Play Store روی ساعت ممکن نشد. آیا ساعت وصل است؟</string>
 </resources>

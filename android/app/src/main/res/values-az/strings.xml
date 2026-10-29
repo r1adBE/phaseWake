@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">Siqnal pəncərən ondan əvvəl başlayır.</string>
     <string name="check_watch_update">Saatında Phase Wake-i yenilə</string>
     <string name="check_watch_update_problem">O vaxta qədər saatın siqnalları ötürməyəcək və bayramlarda da səni oyadacaq.</string>
+    <string name="watch_store_opened">Play Store saatında açıldı – ona bir bax.</string>
+    <string name="watch_store_failed">Play Store saatında açılmadı. Saat qoşuludurmu?</string>
 </resources>

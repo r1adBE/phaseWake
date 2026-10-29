@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Dit vækkevindue starter allerede før.</string>
     <string name="check_watch_update">Opdater Phase Wake på uret</string>
     <string name="check_watch_update_problem">Indtil da springer uret ingen alarmer over og vækker dig også på helligdage.</string>
+    <string name="watch_store_opened">Play Store er åbnet på uret – tag et kig på det.</string>
+    <string name="watch_store_failed">Play Store kunne ikke åbnes på uret. Er det forbundet?</string>
 </resources>

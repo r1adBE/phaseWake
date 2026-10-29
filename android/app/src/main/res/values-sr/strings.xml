@@ -504,4 +504,6 @@
     <string name="transient_alarm_soon">Твој интервал буђења почиње пре тога.</string>
     <string name="check_watch_update">Ажурирај Phase Wake на сату</string>
     <string name="check_watch_update_problem">Дотле сат неће прескакати аларме и будиће те и празницима.</string>
+    <string name="watch_store_opened">Play Store је отворен на сату – погледај га.</string>
+    <string name="watch_store_failed">Play Store није могао да се отвори на сату. Да ли је сат повезан?</string>
 </resources>

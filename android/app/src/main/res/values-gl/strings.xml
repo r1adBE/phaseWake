@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">A túa xanela de espertar comeza antes.</string>
     <string name="check_watch_update">Actualiza Phase Wake no reloxo</string>
     <string name="check_watch_update_problem">Ata entón, o reloxo non omitirá alarmas e tamén te espertará nos festivos.</string>
+    <string name="watch_store_opened">Play Store aberta no reloxo – bótalle unha ollada.</string>
+    <string name="watch_store_failed">Non se puido abrir Play Store no reloxo. Está conectado?</string>
 </resources>

@@ -501,4 +501,6 @@
     <string name="transient_alarm_soon">La ventana de tu alarma empieza antes.</string>
     <string name="check_watch_update">Actualiza Phase Wake en el reloj</string>
     <string name="check_watch_update_problem">Hasta entonces, el reloj no saltará ninguna alarma y también te despertará en festivos.</string>
+    <string name="watch_store_opened">Play Store abierta en el reloj – échale un vistazo.</string>
+    <string name="watch_store_failed">No se pudo abrir Play Store en el reloj. ¿Está conectado?</string>
 </resources>

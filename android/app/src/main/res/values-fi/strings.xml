@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
     <string name="check_watch_update">Päivitä Phase Wake kellossa</string>
     <string name="check_watch_update_problem">Siihen asti kello ei ohita herätyksiä ja herättää myös juhlapäivinä.</string>
+    <string name="watch_store_opened">Play Store avattiin kellossa – katso kelloa.</string>
+    <string name="watch_store_failed">Play Storea ei voitu avata kellossa. Onko kello yhdistetty?</string>
 </resources>

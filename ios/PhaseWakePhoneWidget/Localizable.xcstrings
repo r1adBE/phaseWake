@@ -204791,6 +204791,902 @@
         }
       }
     },
+    "watch_store_failed": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kon nie die Play Store op jou horlosie oopmaak nie. Is dit gekoppel?"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Storeን በሰዓትዎ ላይ መክፈት አልተቻለም። ሰዓቱ ተገናኝቷል?"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر فتح Play Store على الساعة. هل هي متصلة؟"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store saatında açılmadı. Saat qoşuludurmu?"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store не можа да се отвори на часовника. Свързан ли е?"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার ঘড়িতে Play Store খোলা যায়নি। ঘড়িটি কি সংযুক্ত?"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store se nije mogao otvoriti na satu. Je li sat povezan?"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No s’ha pogut obrir la Play Store al rellotge. Està connectat?"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store se v hodinkách nepodařilo otevřít. Jsou připojené?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store kunne ikke åbnes på uret. Er det forbundet?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Play Store auf der Uhr liess sich nicht öffnen. Ist sie verbunden?"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν ήταν δυνατό να ανοίξει το Play Store στο ρολόι. Είναι συνδεδεμένο;"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t open the Play Store on your watch. Is it connected?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo abrir Play Store en el reloj. ¿Está conectado?"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store’i ei õnnestunud kellas avada. Kas kell on ühendatud?"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ezin izan da Play Store erlojuan ireki. Konektatuta dago?"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "باز کردن Play Store روی ساعت ممکن نشد. آیا ساعت وصل است؟"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Storea ei voitu avata kellossa. Onko kello yhdistetty?"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi mabuksan ang Play Store sa relo mo. Nakakonekta ba ito?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'ouvrir le Play Store sur ta montre. Est-elle connectée ?"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Níorbh fhéidir an Play Store a oscailt ar d’uaireadóir. An bhfuil sé ceangailte?"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non se puido abrir Play Store no reloxo. Está conectado?"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારી ઘડિયાળ પર Play Store ખોલી શકાયો નહીં. શું તે કનેક્ટ છે?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לפתוח את Play Store בשעון. האם הוא מחובר?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर Play Store नहीं खुल सका। क्या वॉच कनेक्ट है?"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store se nije mogao otvoriti na satu. Je li sat povezan?"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nem sikerült megnyitni a Play Store-t az órán. Csatlakoztatva van?"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Չհաջողվեց բացել Play Store-ը ժամացույցում։ Այն միացվա՞ծ է։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidak dapat membuka Play Store di jam tanganmu. Apakah sudah terhubung?"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekki tókst að opna Play Store á úrinu. Er það tengt?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile aprire il Play Store sull'orologio. È connesso?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチでPlay Storeを開けませんでした。ウォッチは接続されていますか？"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store-ის გახსნა საათზე ვერ მოხერხდა. დაკავშირებულია?"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store сағатта ашылмады. Сағат қосылған ба?"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "មិនអាចបើក Play Store លើនាឡិការបស់អ្នកបានទេ។ តើវាបានភ្ជាប់ទេ?"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಅದು ಸಂಪರ್ಕಗೊಂಡಿದೆಯೇ?"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치에서 Play Store를 열 수 없어요. 워치가 연결되어 있나요?"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ບໍ່ສາມາດເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າໄດ້. ໂມງເຊື່ອມຕໍ່ຢູ່ບໍ?"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nepavyko atidaryti Play Store laikrodyje. Ar jis prijungtas?"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neizdevās atvērt Play Store pulkstenī. Vai tas ir savienots?"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store не можеше да се отвори на часовникот. Дали е поврзан?"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിൽ Play Store തുറക്കാനായില്ല. വാച്ച് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ?"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store-ийг цаган дээр нээж чадсангүй. Цаг холбогдсон уу?"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमच्या घड्याळावर Play Store उघडता आले नाही. ते कनेक्ट आहे का?"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidak dapat membuka Play Store pada jam tangan. Adakah ia disambungkan?"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီပေါ်တွင် Play Store ကို ဖွင့်၍မရပါ။ နာရီ ချိတ်ဆက်ထားပါသလား။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunne ikke åpne Play Store på klokken. Er den tilkoblet?"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीमा Play Store खोल्न सकिएन। के घडी जोडिएको छ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kan de Play Store niet openen op je horloge. Is het verbonden?"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ। ਕੀ ਇਹ ਕਨੈਕਟ ਹੈ?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się otworzyć Play Store na zegarku. Czy jest połączony?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível abrir a Play Store no relógio. Ele está conectado?"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível abrir a Play Store no relógio. Está ligado?"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store nu s-a putut deschide pe ceas. Este conectat?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось открыть Play Store на часах. Они подключены?"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ ඔරලෝසුවේ Play Store විවෘත කළ නොහැකි විය. එය සම්බන්ධ කර තිබේද?"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store sa v hodinkách nepodarilo otvoriť. Sú pripojené?"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store ni bilo mogoče odpreti na uri. Je ura povezana?"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store nuk u hap dot në orë. A është e lidhur?"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store није могао да се отвори на сату. Да ли је сат повезан?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att öppna Play Store på klockan. Är den ansluten?"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imeshindwa kufungua Play Store kwenye saa yako. Je, imeunganishwa?"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் வாட்ச்சில் Play Store ஐத் திறக்க முடியவில்லை. அது இணைக்கப்பட்டுள்ளதா?"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ వాచ్‌లో Play Store తెరవలేకపోయాము. అది కనెక్ట్ అయి ఉందా?"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่สามารถเปิด Play Store บนนาฬิกาได้ นาฬิกาเชื่อมต่ออยู่หรือไม่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store saatte açılamadı. Saat bağlı mı?"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося відкрити Play Store на годиннику. Він підключений?"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہاری گھڑی پر Play Store نہیں کھل سکا۔ کیا گھڑی جڑی ہوئی ہے؟"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store soatingda ochilmadi. Soat ulanganmi?"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không thể mở Play Store trên đồng hồ. Đồng hồ đã được kết nối chưa?"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法在手錶上開啟 Play Store。手錶已連線嗎？"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在手表上打开 Play Store。手表已连接吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法在手錶上開啟 Play Store。手錶已連線嗎？"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayikwazanga ukuvula i-Play Store ewashini lakho. Ingabe lixhunyiwe?"
+          }
+        }
+      }
+    },
+    "watch_store_opened": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store op jou horlosie oopgemaak – kyk gerus daarna."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store በሰዓትዎ ላይ ተከፍቷል – እባክዎ ይመልከቱት።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم فتح Play Store على الساعة – ألقِ نظرة عليها."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store saatında açıldı – ona bir bax."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store е отворен на часовника – погледни го."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার ঘড়িতে Play Store খোলা হয়েছে – একবার দেখে নাও।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store je otvoren na satu – pogledaj ga."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S’ha obert la Play Store al rellotge – fes-hi un cop d’ull."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store se otevřel v hodinkách – podívej se na ně."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store er åbnet på uret – tag et kig på det."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store auf der Uhr geöffnet – schau auf deine Uhr."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Play Store άνοιξε στο ρολόι – ρίξε μια ματιά."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store opened on your watch – have a look at it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store abierta en el reloj – échale un vistazo."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store avati kellas – vaata kella."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store erlojuan ireki da – begiratu erlojuari."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store روی ساعت باز شد – نگاهی به آن بینداز."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store avattiin kellossa – katso kelloa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nabuksan ang Play Store sa relo mo – tingnan mo ito."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store ouvert sur ta montre – jette un œil."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osclaíodh an Play Store ar d’uaireadóir – féach air."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store aberta no reloxo – bótalle unha ollada."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારી ઘડિયાળ પર Play Store ખોલ્યો – એક નજર કરો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store נפתח בשעון – הציצו בו."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर Play Store खोल दिया गया – एक बार देख लें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store je otvoren na satu – pogledaj ga."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Play Store megnyílt az órán – nézz rá."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store-ը բացվեց ժամացույցում – նայիր դրան։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store dibuka di jam tanganmu – coba lihat."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store var opnað á úrinu – kíktu á það."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store aperto sull'orologio – dacci un'occhiata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチでPlay Storeを開きました – ウォッチを確認してください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store გაიხსნა საათზე – შეხედე მას."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store сағатта ашылды – оған қарап шық."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានបើក Play Store លើនាឡិការបស់អ្នក – សូមមើលវា។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಿದೆ – ಒಮ್ಮೆ ನೋಡಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치에서 Play Store를 열었어요 – 워치를 확인해 주세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າແລ້ວ – ລອງເບິ່ງໂມງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store atidaryta laikrodyje – pažiūrėk į jį."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store atvērts pulkstenī – ieskaties tajā."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store е отворен на часовникот – погледни го."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിൽ Play Store തുറന്നു – ഒന്ന് നോക്കൂ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store цаган дээр нээгдлээ – түүн рүү хар."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमच्या घड्याळावर Play Store उघडले – एकदा पाहा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store dibuka pada jam tangan – sila lihat."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီပေါ်တွင် Play Store ကို ဖွင့်ထားပါပြီ – ကြည့်လိုက်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store er åpnet på klokken – ta en titt."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीमा Play Store खोलियो – एक पटक हेर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store geopend op je horloge – kijk er even naar."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਖੋਲ੍ਹਿਆ ਗਿਆ – ਇੱਕ ਵਾਰ ਦੇਖੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwarto Play Store na zegarku – zerknij na niego."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store aberta no relógio – dê uma olhada."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store aberta no relógio – dá uma vista de olhos."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store s-a deschis pe ceas – aruncă o privire."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store открыт на часах – взгляни на них."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ ඔරලෝසුවේ Play Store විවෘත කළා – එය බලන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store sa otvoril v hodinkách – pozri sa na ne."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store je odprt na uri – poglej nanjo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store u hap në orë – hidhi një sy."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store је отворен на сату – погледај га."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store har öppnats på klockan – ta en titt."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store imefunguliwa kwenye saa yako – iangalie."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் வாட்ச்சில் Play Store திறக்கப்பட்டது – ஒருமுறை பாருங்கள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ వాచ్‌లో Play Store తెరవబడింది – ఒకసారి చూడండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Play Store บนนาฬิกาแล้ว – ลองดูที่นาฬิกา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store saatte açıldı – bir göz at."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store відкрито на годиннику – поглянь на нього."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہاری گھڑی پر Play Store کھل گیا – ایک نظر دیکھ لو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Store soatingda ochildi – unga qarab chiq."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã mở Play Store trên đồng hồ – hãy xem đồng hồ của bạn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已在手錶上開啟 Play Store – 請看看手錶。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已在手表上打开 Play Store – 请看一下手表。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已在手錶上開啟 Play Store – 請看一下手錶。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Play Store ivuliwe ewashini lakho – yibheke."
+          }
+        }
+      }
+    },
     "weekly_notification_feeling": {
       "localizations": {
         "af": {

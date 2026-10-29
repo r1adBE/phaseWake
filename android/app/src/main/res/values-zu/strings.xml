@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
     <string name="check_watch_update">Buyekeza i-Phase Wake ewashini lakho</string>
     <string name="check_watch_update_problem">Kuze kube yilapho, iwashi lakho ngeke leqe ama-alamu futhi lizokuvusa nangamaholide.</string>
+    <string name="watch_store_opened">I-Play Store ivuliwe ewashini lakho – yibheke.</string>
+    <string name="watch_store_failed">Ayikwazanga ukuvula i-Play Store ewashini lakho. Ingabe lixhunyiwe?</string>
 </resources>

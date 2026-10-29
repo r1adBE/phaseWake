@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">تمہاری جاگنے کی ونڈو اس سے پہلے شروع ہوتی ہے۔</string>
     <string name="check_watch_update">اپنی گھڑی پر Phase Wake اپ ڈیٹ کرو</string>
     <string name="check_watch_update_problem">تب تک تمہاری گھڑی الارم نہیں چھوڑے گی اور تعطیلات پر بھی جگائے گی۔</string>
+    <string name="watch_store_opened">تمہاری گھڑی پر Play Store کھل گیا – ایک نظر دیکھ لو۔</string>
+    <string name="watch_store_failed">تمہاری گھڑی پر Play Store نہیں کھل سکا۔ کیا گھڑی جڑی ہوئی ہے؟</string>
 </resources>

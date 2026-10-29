@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
     <string name="check_watch_update">Ενημέρωσε το Phase Wake στο ρολόι</string>
     <string name="check_watch_update_problem">Μέχρι τότε το ρολόι δεν παραλείπει καμία αφύπνιση και σε ξυπνά και τις αργίες.</string>
+    <string name="watch_store_opened">Το Play Store άνοιξε στο ρολόι – ρίξε μια ματιά.</string>
+    <string name="watch_store_failed">Δεν ήταν δυνατό να ανοίξει το Play Store στο ρολόι. Είναι συνδεδεμένο;</string>
 </resources>

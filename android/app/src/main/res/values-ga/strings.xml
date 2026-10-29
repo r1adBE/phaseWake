@@ -532,4 +532,6 @@
     <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
     <string name="check_watch_update">Nuashonraigh Phase Wake ar d’uaireadóir</string>
     <string name="check_watch_update_problem">Go dtí sin, ní scipeálfaidh d’uaireadóir aláraim agus dúiseoidh sé thú ar laethanta saoire freisin.</string>
+    <string name="watch_store_opened">Osclaíodh an Play Store ar d’uaireadóir – féach air.</string>
+    <string name="watch_store_failed">Níorbh fhéidir an Play Store a oscailt ar d’uaireadóir. An bhfuil sé ceangailte?</string>
 </resources>

@@ -501,4 +501,6 @@
     <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
     <string name="check_watch_update">עדכנו את Phase Wake בשעון</string>
     <string name="check_watch_update_problem">עד אז השעון לא ידלג על אף השכמה ויעיר אתכם גם בחגים.</string>
+    <string name="watch_store_opened">Play Store נפתח בשעון – הציצו בו.</string>
+    <string name="watch_store_failed">לא ניתן היה לפתוח את Play Store בשעון. האם הוא מחובר?</string>
 </resources>

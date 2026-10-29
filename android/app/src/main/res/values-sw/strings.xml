@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">Kipindi chako cha kuamka kinaanza kabla ya hapo.</string>
     <string name="check_watch_update">Sasisha Phase Wake kwenye saa yako</string>
     <string name="check_watch_update_problem">Hadi wakati huo, saa yako haitaruka kengele na itakuamsha pia siku za sikukuu.</string>
+    <string name="watch_store_opened">Play Store imefunguliwa kwenye saa yako – iangalie.</string>
+    <string name="watch_store_failed">Imeshindwa kufungua Play Store kwenye saa yako. Je, imeunganishwa?</string>
 </resources>

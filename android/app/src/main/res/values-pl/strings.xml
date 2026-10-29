@@ -515,4 +515,6 @@
     <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
     <string name="check_watch_update">Zaktualizuj Phase Wake na zegarku</string>
     <string name="check_watch_update_problem">Do tego czasu zegarek nie pominie żadnego budzika i obudzi cię także w święta.</string>
+    <string name="watch_store_opened">Otwarto Play Store na zegarku – zerknij na niego.</string>
+    <string name="watch_store_failed">Nie udało się otworzyć Play Store na zegarku. Czy jest połączony?</string>
 </resources>

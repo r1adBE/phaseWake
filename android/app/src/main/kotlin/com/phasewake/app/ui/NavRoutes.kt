@@ -87,7 +87,9 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(ExtraRoutes.ONBOARDING) {
             OnboardingScreen(app, state, actions, onDone = {
                 app.appScope.launch { app.settings.setOnboardingDone(true) }
-                actions.nav.switchTab(Routes.ALARMS)
+                // Einrichtung selbst vom Stapel nehmen (nicht nur einen Tab wählen): sonst bleibt sie offen, weil der
+                // Wecker-Tab darunter schon liegt. Zurück dorthin, woher sie kam (Startseite oder Einstellungen).
+                if (!actions.nav.popBackStack(ExtraRoutes.ONBOARDING, inclusive = true)) actions.nav.switchTab(Routes.ALARMS)
             })
         }
         composable(

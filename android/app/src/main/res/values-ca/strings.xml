@@ -503,4 +503,6 @@
     <string name="transient_alarm_soon">La teva finestra de despertar comença abans.</string>
     <string name="check_watch_update">Actualitza Phase Wake al rellotge</string>
     <string name="check_watch_update_problem">Fins aleshores, el rellotge no ometrà alarmes i també et despertarà els festius.</string>
+    <string name="watch_store_opened">S’ha obert la Play Store al rellotge – fes-hi un cop d’ull.</string>
+    <string name="watch_store_failed">No s’ha pogut obrir la Play Store al rellotge. Està connectat?</string>
 </resources>

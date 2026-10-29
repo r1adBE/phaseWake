@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Ditt väckningsfönster börjar redan innan.</string>
     <string name="check_watch_update">Uppdatera Phase Wake på klockan</string>
     <string name="check_watch_update_problem">Tills dess hoppar klockan inte över några alarm och väcker dig även på helgdagar.</string>
+    <string name="watch_store_opened">Play Store har öppnats på klockan – ta en titt.</string>
+    <string name="watch_store_failed">Det gick inte att öppna Play Store på klockan. Är den ansluten?</string>
 </resources>

@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Jou wekvenster begin voor dit.</string>
     <string name="check_watch_update">Dateer Phase Wake op jou horlosie op</string>
     <string name="check_watch_update_problem">Tot dan sal jou horlosie nie wekkers oorslaan nie en jou ook op vakansiedae wakker maak.</string>
+    <string name="watch_store_opened">Play Store op jou horlosie oopgemaak – kyk gerus daarna.</string>
+    <string name="watch_store_failed">Kon nie die Play Store op jou horlosie oopmaak nie. Is dit gekoppel?</string>
 </resources>

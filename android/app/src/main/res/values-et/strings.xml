@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Sinu äratusaken algab enne seda.</string>
     <string name="check_watch_update">Uuenda Phase Wake’i kellas</string>
     <string name="check_watch_update_problem">Seni ei jäta kell äratusi vahele ja äratab sind ka pühadel.</string>
+    <string name="watch_store_opened">Play Store avati kellas – vaata kella.</string>
+    <string name="watch_store_failed">Play Store’i ei õnnestunud kellas avada. Kas kell on ühendatud?</string>
 </resources>

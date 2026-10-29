@@ -504,4 +504,6 @@
     <string name="transient_alarm_soon">Tavs modināšanas logs sākas pirms tam.</string>
     <string name="check_watch_update">Atjaunini Phase Wake pulkstenī</string>
     <string name="check_watch_update_problem">Līdz tam pulkstenis neizlaidīs modinātājus un modinās tevi arī svētku dienās.</string>
+    <string name="watch_store_opened">Play Store atvērts pulkstenī – ieskaties tajā.</string>
+    <string name="watch_store_failed">Neizdevās atvērt Play Store pulkstenī. Vai tas ir savienots?</string>
 </resources>

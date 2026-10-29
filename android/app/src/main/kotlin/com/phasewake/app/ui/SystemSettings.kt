@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import com.phasewake.app.R
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.ui.home.Check
 
@@ -69,13 +71,29 @@ private fun openSettings(context: Context, intent: Intent) {
     }
 }
 
-/** Öffnet den Play-Store-Eintrag von Phase Wake auf der Uhr, damit dort die Uhr-App dazukommt. */
+/**
+ * Öffnet den Play-Store-Eintrag von Phase Wake auf der Uhr, damit dort die Uhr-App dazukommt. Der Aufruf läuft
+ * über die Verbindung zur Uhr und kann dauern oder scheitern; beides bekommt eine kurze Rückmeldung am Handy,
+ * damit der Knopf nie «nichts tut».
+ */
 private fun openStoreOnWatch(context: Context, nodeId: String) {
     val intent = Intent(Intent.ACTION_VIEW, "market://details?id=${context.packageName}".toUri())
         .addCategory(Intent.CATEGORY_BROWSABLE)
+    val app = context.applicationContext
+    fun tell(text: Int) = android.widget.Toast.makeText(app, text, android.widget.Toast.LENGTH_LONG).show()
     try {
-        androidx.wear.remote.interactions.RemoteActivityHelper(context).startRemoteActivity(intent, nodeId)
-    } catch (e: Exception) {
+        val result = androidx.wear.remote.interactions.RemoteActivityHelper(app).startRemoteActivity(intent, nodeId)
+        result.addListener({
+            try {
+                result.get()
+                tell(R.string.watch_store_opened)
+            } catch (e: java.util.concurrent.ExecutionException) {
+                android.util.Log.w("PhaseWake", "Play Store auf der Uhr nicht geöffnet", e)
+                tell(R.string.watch_store_failed)
+            }
+        }, ContextCompat.getMainExecutor(app))
+    } catch (e: IllegalArgumentException) {
         android.util.Log.w("PhaseWake", "Play Store auf der Uhr nicht geöffnet", e)
+        tell(R.string.watch_store_failed)
     }
 }

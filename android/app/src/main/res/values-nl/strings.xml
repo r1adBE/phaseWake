@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Je wekvenster begint al eerder.</string>
     <string name="check_watch_update">Werk Phase Wake op het horloge bij</string>
     <string name="check_watch_update_problem">Tot die tijd slaat het horloge geen wekker over en wekt het je ook op feestdagen.</string>
+    <string name="watch_store_opened">Play Store geopend op je horloge – kijk er even naar.</string>
+    <string name="watch_store_failed">Kan de Play Store niet openen op je horloge. Is het verbonden?</string>
 </resources>

@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Nagsisimula bago noon ang window ng paggising mo.</string>
     <string name="check_watch_update">I-update ang Phase Wake sa relo mo</string>
     <string name="check_watch_update_problem">Hanggang doon, hindi lalaktawan ng relo mo ang mga alarm at gigisingin ka rin nito tuwing holiday.</string>
+    <string name="watch_store_opened">Nabuksan ang Play Store sa relo mo – tingnan mo ito.</string>
+    <string name="watch_store_failed">Hindi mabuksan ang Play Store sa relo mo. Nakakonekta ba ito?</string>
 </resources>

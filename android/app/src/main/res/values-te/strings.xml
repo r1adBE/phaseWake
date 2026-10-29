@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">మీ నిద్రలేపే వ్యవధి దానికంటే ముందే మొదలవుతుంది.</string>
     <string name="check_watch_update">మీ వాచ్‌లో Phase Wake అప్‌డేట్ చేయండి</string>
     <string name="check_watch_update_problem">అప్పటి వరకు మీ వాచ్ అలారాలను దాటవేయదు, సెలవు రోజుల్లోనూ మిమ్మల్ని లేపుతుంది.</string>
+    <string name="watch_store_opened">మీ వాచ్‌లో Play Store తెరవబడింది – ఒకసారి చూడండి.</string>
+    <string name="watch_store_failed">మీ వాచ్‌లో Play Store తెరవలేకపోయాము. అది కనెక్ట్ అయి ఉందా?</string>
 </resources>

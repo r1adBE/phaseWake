@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">ຊ່ວງເວລາປຸກຂອງເຈົ້າເລີ່ມກ່ອນນັ້ນ</string>
     <string name="check_watch_update">ອັບເດດ Phase Wake ຢູ່ໂມງຂອງເຈົ້າ</string>
     <string name="check_watch_update_problem">ຈົນກວ່າຈະອັບເດດ ໂມງຈະບໍ່ຂ້າມໂມງປຸກ ແລະ ຈະປຸກເຈົ້າໃນວັນພັກນຳ</string>
+    <string name="watch_store_opened">ເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າແລ້ວ – ລອງເບິ່ງໂມງ</string>
+    <string name="watch_store_failed">ບໍ່ສາມາດເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າໄດ້. ໂມງເຊື່ອມຕໍ່ຢູ່ບໍ?</string>
 </resources>

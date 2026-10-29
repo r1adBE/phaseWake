@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">ಅದಕ್ಕೂ ಮೊದಲೇ ನಿಮ್ಮ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾಗುತ್ತದೆ.</string>
     <string name="check_watch_update">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
     <string name="check_watch_update_problem">ಅಲ್ಲಿಯವರೆಗೆ ನಿಮ್ಮ ವಾಚ್ ಅಲಾರಾಂಗಳನ್ನು ಬಿಡುವುದಿಲ್ಲ ಮತ್ತು ರಜಾದಿನಗಳಲ್ಲೂ ಎಬ್ಬಿಸುತ್ತದೆ.</string>
+    <string name="watch_store_opened">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಿದೆ – ಒಮ್ಮೆ ನೋಡಿ.</string>
+    <string name="watch_store_failed">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಅದು ಸಂಪರ್ಕಗೊಂಡಿದೆಯೇ?</string>
 </resources>

@@ -487,4 +487,6 @@
     <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
     <string name="check_watch_update">Frissítsd a Phase Wake-et az órán</string>
     <string name="check_watch_update_problem">Addig az óra nem hagy ki ébresztést, és ünnepnapokon is felébreszt.</string>
+    <string name="watch_store_opened">A Play Store megnyílt az órán – nézz rá.</string>
+    <string name="watch_store_failed">Nem sikerült megnyitni a Play Store-t az órán. Csatlakoztatva van?</string>
 </resources>

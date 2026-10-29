@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">შენი მაღვიძარის ფანჯარა მანამდე იწყება.</string>
     <string name="check_watch_update">განაახლე Phase Wake საათზე</string>
     <string name="check_watch_update_problem">მანამდე საათი მაღვიძარებს არ გამოტოვებს და დღესასწაულებზეც გაგაღვიძებს.</string>
+    <string name="watch_store_opened">Play Store გაიხსნა საათზე – შეხედე მას.</string>
+    <string name="watch_store_failed">Play Store-ის გახსნა საათზე ვერ მოხერხდა. დაკავშირებულია?</string>
 </resources>

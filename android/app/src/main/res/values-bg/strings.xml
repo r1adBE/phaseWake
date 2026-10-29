@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">Прозорецът ти за събуждане започва още преди това.</string>
     <string name="check_watch_update">Актуализирай Phase Wake на часовника</string>
     <string name="check_watch_update_problem">Дотогава часовникът няма да пропуска будилници и ще те буди и в празници.</string>
+    <string name="watch_store_opened">Play Store е отворен на часовника – погледни го.</string>
+    <string name="watch_store_failed">Play Store не можа да се отвори на часовника. Свързан ли е?</string>
 </resources>

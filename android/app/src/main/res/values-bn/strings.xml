@@ -489,4 +489,6 @@
     <string name="transient_alarm_soon">তোমার জাগানোর সময়সীমা তার আগেই শুরু হয়।</string>
     <string name="check_watch_update">তোমার ঘড়িতে Phase Wake আপডেট করো</string>
     <string name="check_watch_update_problem">ততদিন তোমার ঘড়ি অ্যালার্ম এড়াবে না আর ছুটির দিনেও জাগাবে।</string>
+    <string name="watch_store_opened">তোমার ঘড়িতে Play Store খোলা হয়েছে – একবার দেখে নাও।</string>
+    <string name="watch_store_failed">তোমার ঘড়িতে Play Store খোলা যায়নি। ঘড়িটি কি সংযুক্ত?</string>
 </resources>

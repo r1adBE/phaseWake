@@ -490,4 +490,6 @@
     <string name="transient_alarm_soon">Zure esnatze-leihoa hori baino lehen hasten da.</string>
     <string name="check_watch_update">Eguneratu Phase Wake erlojuan</string>
     <string name="check_watch_update_problem">Bitartean, erlojuak ez ditu alarmak saltatuko eta jaiegunetan ere esnatuko zaitu.</string>
+    <string name="watch_store_opened">Play Store erlojuan ireki da – begiratu erlojuari.</string>
+    <string name="watch_store_failed">Ezin izan da Play Store erlojuan ireki. Konektatuta dago?</string>
 </resources>

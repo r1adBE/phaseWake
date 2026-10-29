@@ -501,4 +501,6 @@
     <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
     <string name="check_watch_update">Actualizează Phase Wake pe ceas</string>
     <string name="check_watch_update_problem">Până atunci, ceasul nu sare peste nicio alarmă și te trezește și în sărbători.</string>
+    <string name="watch_store_opened">Play Store s-a deschis pe ceas – aruncă o privire.</string>
+    <string name="watch_store_failed">Play Store nu s-a putut deschide pe ceas. Este conectat?</string>
 </resources>

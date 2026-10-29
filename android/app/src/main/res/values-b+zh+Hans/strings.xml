@@ -473,4 +473,6 @@
     <string name="transient_alarm_soon">你的唤醒时间窗在那之前就开始了。</string>
     <string name="check_watch_update">更新手表上的 Phase Wake</string>
     <string name="check_watch_update_problem">在此之前，手表不会跳过任何闹钟，节假日也会叫醒你。</string>
+    <string name="watch_store_opened">已在手表上打开 Play Store – 请看一下手表。</string>
+    <string name="watch_store_failed">无法在手表上打开 Play Store。手表已连接吗？</string>
 </resources>

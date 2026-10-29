@@ -475,4 +475,6 @@
     <string name="transient_alarm_soon">Оятқыш терезең одан бұрын басталады.</string>
     <string name="check_watch_update">Сағаттағы Phase Wake-ті жаңарт</string>
     <string name="check_watch_update_problem">Оған дейін сағатың оятқыштарды өткізіп жібермейді және мерекелерде де оятады.</string>
+    <string name="watch_store_opened">Play Store сағатта ашылды – оған қарап шық.</string>
+    <string name="watch_store_failed">Play Store сағатта ашылмады. Сағат қосылған ба?</string>
 </resources>
