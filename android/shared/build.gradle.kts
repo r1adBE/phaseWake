@@ -18,6 +18,13 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+
+    // Abdeckung der gemeinsamen Formate und Nachrichten (Bericht: createDebugUnitTestCoverageReport).
+    buildTypes {
+        debug {
+            enableUnitTestCoverage = true
+        }
+    }
 }
 
 dependencies {
