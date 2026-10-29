@@ -47582,7 +47582,7 @@
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thepha kanye futhi"
+            "value": "Thepha izikhathi ezingu-%1$lld futhi"
           }
         }
       }

@@ -442,7 +442,7 @@
     <string name="auth_restore">Ukuze kushintshwe idatha yakho</string>
     <string name="diag_title">Ukuhlola amaphutha</string>
     <plurals name="diag_taps_left">
-        <item quantity="one">Thepha kanye futhi</item>
+        <item quantity="one">Thepha izikhathi ezingu-%1$d futhi</item>
         <item quantity="other">Thepha izikhathi ezingu-%1$d futhi</item>
     </plurals>
     <string name="diag_unlocked">Ukuhlola amaphutha manje kuboniswa ezilungiselelweni.</string>
