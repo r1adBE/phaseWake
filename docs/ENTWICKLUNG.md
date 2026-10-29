@@ -81,6 +81,10 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - Mengen mit Pluralformen, Platzhalter mit Position (`%1$s`).
 - Jedes Bedienelement hat eine Beschreibung für Bildschirmleser; Ziele mindestens 48 dp bzw. 44 pt;
   Textkontrast mindestens 4,5 : 1 (WCAG AA); «Animationen entfernen» bzw. «Bewegung reduzieren» wird beachtet.
+- **Farbe nie allein** (WCAG 1.4.1, Farbfehlsichtigkeit): Jede Information, die eine Farbe trägt, hat zusätzlich
+  Form, Symbol, Muster oder Text (z. B. Weckgrund im Diagramm: Kreis, Dreieck, Quadrat, Raute). Bedienelemente und
+  Grafiken mindestens 3 : 1 Kontrast (WCAG 1.4.11). Neue Farben werden für Deuteranopie, Protanopie und Tritanopie
+  simuliert; iOS beachtet «Ohne Farbe unterscheiden».
 - Keine Gesundheitsversprechen in Texten und Store-Einträgen.
 
 ## 7. Fehlerbehandlung und Nebenläufigkeit
