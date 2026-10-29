@@ -107,6 +107,7 @@ struct HomeView: View {
                 // Bei jedem Öffnen und danach jede halbe Minute prüfen.
                 while scenePhase == .active, !Task.isCancelled {
                     failedChecks = await NightCheck.collect()
+                    PhoneWidgetSync.publish(model, failed: failedChecks)
                     // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst starten.
                     await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))
