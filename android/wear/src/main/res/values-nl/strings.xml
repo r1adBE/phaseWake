@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Goedemorgen</string>
 
     <string name="ring_greeting">Goedemorgen</string>
-    <string name="ring_reason_light">Lichte slaap herkend</string>
+    <string name="ring_reason_light">Onrustig – waarschijnlijk lichte slaap</string>
     <string name="ring_reason_awake">Je was al wakker</string>
     <string name="ring_reason_deadline">Doeltijd bereikt</string>
+    <string name="ring_reason_exact">Precies op de doeltijd</string>
+    <string name="ring_reason_short_night">Korte nacht – pas op de doeltijd</string>
     <string name="ring_hold_to_stop">Houd vast om te stoppen</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · nog %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Wek me om</string>
     <string name="editor_latest">Uiterlijk</string>
     <string name="editor_window">Venster: %1$d min</string>
+    <string name="editor_window_exact">Precies</string>
+    <string name="editor_window_exact_hint">Gaat precies op de doeltijd af, nooit eerder. Je horloge meet toch voor je geschiedenis.</string>
+    <string name="window_exact_line">Precies om %1$s</string>
     <string name="editor_days">Herhalen</string>
     <string name="editor_save">Opslaan</string>
     <string name="editor_delete">Wekker verwijderen</string>

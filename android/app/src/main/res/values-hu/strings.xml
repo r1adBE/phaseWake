@@ -19,15 +19,18 @@
     <string name="home_next_today">Ma</string>
     <string name="home_next_tomorrow">Holnap</string>
     <string name="home_next_in">Könnyű alvásban ébreszt · %1$s múlva</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Pontosan célidőben ébreszt · %1$s múlva</string>
     <string name="home_no_alarm_title">Ébredj a megfelelő pillanatban</string>
     <string name="home_no_alarm_text">Állíts be egy időpontot és egy időablakot. Az órád akkor ébreszt, amikor könnyen alszol.</string>
     <string name="home_add_alarm">Új ébresztő</string>
     <string name="home_last_night">Múlt éjszaka</string>
     <string name="home_alarms">Ébresztőid</string>
 
-    <string name="reason_light">Könnyű alvás</string>
+    <string name="reason_light">Nyugtalan – valószínűleg könnyű alvás</string>
     <string name="reason_awake">Már ébren</string>
     <string name="reason_deadline">Nem észlelt könnyű alvást</string>
+    <string name="reason_exact">Pontosan célidőben</string>
+    <string name="reason_short_night">Rövid éjszaka – csak célidőben</string>
     <string name="woke_early">%1$d p a célidő előtt · %2$s</string>
     <string name="woke_on_time">Célidőben · %1$s</string>
     <string name="no_snooze">nincs szundi</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Ébressz eddig</string>
     <string name="editor_latest">Legkésőbb</string>
     <string name="editor_sleep_duration">Alvás: %1$s</string>
-    <string name="editor_sleep_hint">Az elalvástól számít. Koppints az óránál a „Jó éjszakát” gombra.</string>
+    <string name="editor_sleep_hint">Az elalvástól számít. Az óra automatikusan felismeri; koppints az órán a „Jó éjszakát” gombra, és azonnal indul.</string>
     <string name="editor_window">Időablak: %1$d p</string>
     <string name="editor_window_hint">%1$s és %2$s között ébreszt</string>
+    <string name="editor_window_exact">Pontos</string>
+    <string name="editor_window_exact_hint">Pontosan célidőben szól, sosem korábban. Az órád ettől még mér az előzményeidhez.</string>
+    <string name="window_exact_line">Pontosan ekkor: %1$s</string>
     <string name="editor_days">Ismétlés</string>
     <string name="editor_weekdays">Hétköznapok</string>
     <string name="editor_weekend">Hétvége</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Szerkesztés folytatása</string>
     <string name="editor_delete_title">Törlöd ezt az ébresztőt?</string>
     <string name="home_window_running">Az időablak fut – most mér</string>
+    <string name="home_auto_onset">Az órád automatikusan felismeri, mikor alszol el (kezdés: %1$s).</string>
     <string name="check_volume">Ébresztő hangereje</string>
     <string name="check_volume_problem">Az ébresztő hangereje 0-ra van állítva – a telefonod némán csörögne.</string>
     <string name="health_update">Health Connect frissítése</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">A rögzítés fut. Éjszakára legjobb töltőre tenni a telefont.</string>
     <string name="sound_rec_default">Bekapcsolva az új éjszakákra</string>
     <string name="sound_rec_default_hint">Akkor indul, amikor a lefekvési időpontodtól megnyitod a Phase Wake-et (ébresztő nélkül 21:00-tól). Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek.</string>
-    <string name="sound_type_snore">Horkolás</string>
+    <string name="sound_type_snore">Lehetséges horkolás</string>
     <string name="sound_type_talk">Beszéd</string>
     <string name="sound_type_other">Egyéb hang</string>
     <plurals name="sound_summary">
-        <item quantity="one">Horkolás: %1$s (%2$d részlet)</item>
-        <item quantity="other">Horkolás: %1$s (%2$d részlet)</item>
+        <item quantity="one">Lehetséges horkolás: %1$s (%2$d részlet)</item>
+        <item quantity="other">Lehetséges horkolás: %1$s (%2$d részlet)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Beszéd: %1$d részlet</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Szokásos %1$d–%2$d %%</string>
     <string name="stages_typical_below">Szokásos %1$d %% alatt</string>
     <string name="stages_not_medical">Nem orvosi értékelés.</string>
-    <string name="stages_verdict_awake_above">A szokásosnál több ébrenlét</string>
-    <string name="stages_verdict_deep_below">A szokásosnál kevesebb mélyalvás</string>
-    <string name="stages_verdict_deep_above">A szokásosnál több mélyalvás</string>
-    <string name="stages_verdict_rem_below">Kevés REM – gyakran rövid vagy késői éjszaka után</string>
-    <string name="stages_verdict_rem_above">A szokásosnál több REM</string>
-    <string name="stages_verdict_light_below">A szokásosnál kevesebb könnyű alvás</string>
-    <string name="stages_verdict_light_above">A szokásosnál több könnyű alvás</string>
-    <string name="stages_verdict_typical">Minden fázis a szokásos tartományban</string>
+    <string name="stages_source">Irányértékek egészséges felnőtteknek (Ohayon és mtsai, Sleep 2004). Az órák csak durván becslik a fázisokat.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s óta</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Heti átlag</string>

@@ -21,15 +21,18 @@
     <string name="home_next_today">ਅੱਜ</string>
     <string name="home_next_tomorrow">ਕੱਲ੍ਹ</string>
     <string name="home_next_in">ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
     <string name="home_no_alarm_title">ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋ</string>
     <string name="home_no_alarm_text">ਸਮਾਂ ਅਤੇ ਮਿਆਦ ਚੁਣੋ। ਜਦੋਂ ਤੁਹਾਡੀ ਨੀਂਦ ਹਲਕੀ ਹੋਵੇਗੀ, ਘੜੀ ਤੁਹਾਨੂੰ ਜਗਾ ਦੇਵੇਗੀ।</string>
     <string name="home_add_alarm">ਨਵਾਂ ਅਲਾਰਮ</string>
     <string name="home_last_night">ਪਿਛਲੀ ਰਾਤ</string>
     <string name="home_alarms">ਤੁਹਾਡੇ ਅਲਾਰਮ</string>
 
-    <string name="reason_light">ਹਲਕੀ ਨੀਂਦ</string>
+    <string name="reason_light">ਬੇਚੈਨ – ਸ਼ਾਇਦ ਹਲਕੀ ਨੀਂਦ</string>
     <string name="reason_awake">ਪਹਿਲਾਂ ਹੀ ਜਾਗੇ</string>
     <string name="reason_deadline">ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਮਿਲੀ</string>
+    <string name="reason_exact">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ</string>
+    <string name="reason_short_night">ਛੋਟੀ ਰਾਤ – ਸਿਰਫ਼ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ</string>
     <string name="woke_early">ਟੀਚੇ ਤੋਂ %1$d ਮਿੰ. ਪਹਿਲਾਂ · %2$s</string>
     <string name="woke_on_time">ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ · %1$s</string>
     <string name="no_snooze">ਸਨੂਜ਼ ਨਹੀਂ</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">ਮੈਨੂੰ ਇਸ ਸਮੇਂ ਤੱਕ ਜਗਾਓ</string>
     <string name="editor_latest">ਵੱਧ ਤੋਂ ਵੱਧ</string>
     <string name="editor_sleep_duration">%1$s ਨੀਂਦ</string>
-    <string name="editor_sleep_hint">ਗਿਣਤੀ ਤੁਹਾਡੇ ਸੌਂ ਜਾਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ। ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ’ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="editor_sleep_hint">ਤੁਹਾਡੇ ਸੌਂ ਜਾਣ ਤੋਂ ਗਿਣਦਾ ਹੈ। ਘੜੀ ਇਸਨੂੰ ਆਪਣੇ-ਆਪ ਪਛਾਣਦੀ ਹੈ; ਤੁਰੰਤ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ’ਤੇ ਟੈਪ ਕਰੋ।</string>
     <string name="editor_window">ਮਿਆਦ: %1$d ਮਿੰ.</string>
     <string name="editor_window_hint">%1$s ਅਤੇ %2$s ਵਿਚਕਾਰ ਜਗਾਏਗਾ</string>
+    <string name="editor_window_exact">ਸਹੀ ਸਮਾਂ</string>
+    <string name="editor_window_exact_hint">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਵੱਜੇਗਾ, ਕਦੇ ਪਹਿਲਾਂ ਨਹੀਂ। ਤੁਹਾਡੀ ਘੜੀ ਫਿਰ ਵੀ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਲਈ ਮਾਪਦੀ ਹੈ।</string>
+    <string name="window_exact_line">ਬਿਲਕੁਲ %1$s ਵਜੇ</string>
     <string name="editor_days">ਦੁਹਰਾਓ</string>
     <string name="editor_weekdays">ਹਫ਼ਤੇ ਦੇ ਦਿਨ</string>
     <string name="editor_weekend">ਹਫ਼ਤੇ ਦਾ ਅੰਤ</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">ਸੋਧਣਾ ਜਾਰੀ ਰੱਖੋ</string>
     <string name="editor_delete_title">ਕੀ ਇਹ ਅਲਾਰਮ ਮਿਟਾਉਣਾ ਹੈ?</string>
     <string name="home_window_running">ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਜਾਰੀ – ਹੁਣ ਮਾਪ ਹੋ ਰਿਹਾ ਹੈ</string>
+    <string name="home_auto_onset">ਤੁਹਾਡੀ ਘੜੀ %1$s ਤੋਂ ਆਪਣੇ-ਆਪ ਪਛਾਣਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਜਾਂਦੇ ਹੋ।</string>
     <string name="check_volume">ਅਲਾਰਮ ਦੀ ਆਵਾਜ਼</string>
     <string name="check_volume_problem">ਅਲਾਰਮ ਦੀ ਆਵਾਜ਼ 0 ’ਤੇ ਹੈ – ਤੁਹਾਡਾ ਫ਼ੋਨ ਬਿਨਾਂ ਆਵਾਜ਼ ਵੱਜੇਗਾ।</string>
     <string name="health_update">Health Connect ਅੱਪਡੇਟ ਕਰੋ</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">ਰਿਕਾਰਡਿੰਗ ਚਾਲੂ ਹੈ। ਰਾਤ ਲਈ ਫ਼ੋਨ ਨੂੰ ਚਾਰਜਰ ’ਤੇ ਲਾਉਣਾ ਬਿਹਤਰ ਹੈ।</string>
     <string name="sound_rec_default">ਨਵੀਆਂ ਰਾਤਾਂ ਲਈ ਚਾਲੂ</string>
     <string name="sound_rec_default_hint">ਤੁਹਾਡੇ ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ Phase Wake ਖੋਲ੍ਹਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ (ਅਲਾਰਮ ਨਾ ਹੋਵੇ ਤਾਂ ਰਾਤ 9 ਵਜੇ ਤੋਂ)। ਸਿਰਫ਼ ਛੋਟੀਆਂ ਕਲਿੱਪਾਂ; ਇਹ ਤੁਹਾਡੇ ਫ਼ੋਨ ’ਤੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ 7 ਦਿਨਾਂ ਬਾਅਦ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
-    <string name="sound_type_snore">ਘੁਰਾੜੇ</string>
+    <string name="sound_type_snore">ਸ਼ਾਇਦ ਘੁਰਾੜੇ</string>
     <string name="sound_type_talk">ਬੋਲਣਾ</string>
     <string name="sound_type_other">ਹੋਰ ਆਵਾਜ਼</string>
     <plurals name="sound_summary">
-        <item quantity="one">ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪ)</item>
-        <item quantity="other">ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪਾਂ)</item>
+        <item quantity="one">ਸ਼ਾਇਦ ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪ)</item>
+        <item quantity="other">ਸ਼ਾਇਦ ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪਾਂ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">ਬੋਲਣਾ: %1$d ਕਲਿੱਪ</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">ਆਮ ਤੌਰ ’ਤੇ %1$d–%2$d %%</string>
     <string name="stages_typical_below">ਆਮ ਤੌਰ ’ਤੇ %1$d %% ਤੋਂ ਘੱਟ</string>
     <string name="stages_not_medical">ਇਹ ਡਾਕਟਰੀ ਮੁਲਾਂਕਣ ਨਹੀਂ ਹੈ।</string>
-    <string name="stages_verdict_awake_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਜਾਗਣਾ</string>
-    <string name="stages_verdict_deep_below">ਆਮ ਨਾਲੋਂ ਘੱਟ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
-    <string name="stages_verdict_deep_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
-    <string name="stages_verdict_rem_below">ਘੱਟ REM – ਅਕਸਰ ਛੋਟੀ ਜਾਂ ਦੇਰ ਵਾਲੀ ਰਾਤ ਤੋਂ ਬਾਅਦ</string>
-    <string name="stages_verdict_rem_above">ਆਮ ਨਾਲੋਂ ਵੱਧ REM</string>
-    <string name="stages_verdict_light_below">ਆਮ ਨਾਲੋਂ ਘੱਟ ਹਲਕੀ ਨੀਂਦ</string>
-    <string name="stages_verdict_light_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਹਲਕੀ ਨੀਂਦ</string>
-    <string name="stages_verdict_typical">ਸਾਰੇ ਪੜਾਅ ਆਮ ਦਾਇਰੇ ਵਿੱਚ</string>
+    <string name="stages_source">ਤੰਦਰੁਸਤ ਬਾਲਗਾਂ ਲਈ ਹਵਾਲਾ ਮੁੱਲ (Ohayon ਅਤੇ ਹੋਰ, Sleep 2004)। ਘੜੀਆਂ ਪੜਾਵਾਂ ਦਾ ਸਿਰਫ਼ ਮੋਟਾ ਅੰਦਾਜ਼ਾ ਲਾਉਂਦੀਆਂ ਹਨ।</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ਤੋਂ</string>
     <string name="hypno_block">%1$s %2$s ਤੋਂ %3$s ਤੱਕ</string>
     <string name="chart_week_average">ਹਫ਼ਤਾਵਾਰੀ ਔਸਤ</string>

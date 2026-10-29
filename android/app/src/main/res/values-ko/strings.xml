@@ -18,15 +18,18 @@
     <string name="home_next_today">오늘</string>
     <string name="home_next_tomorrow">내일</string>
     <string name="home_next_in">얕은 잠에서 깨워요 · %1$s 후</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">목표 시간에 정확히 깨워요 · %1$s 후</string>
     <string name="home_no_alarm_title">딱 맞는 순간에 일어나세요</string>
     <string name="home_no_alarm_text">시간과 범위를 정해 보세요. 얕게 잠들었을 때 워치가 깨워 드려요.</string>
     <string name="home_add_alarm">새 알람</string>
     <string name="home_last_night">어젯밤</string>
     <string name="home_alarms">내 알람</string>
 
-    <string name="reason_light">얕은 잠</string>
+    <string name="reason_light">뒤척임 – 얕은 잠일 가능성</string>
     <string name="reason_awake">이미 깨어 있음</string>
     <string name="reason_deadline">얕은 수면이 감지되지 않음</string>
+    <string name="reason_exact">목표 시간에 정확히</string>
+    <string name="reason_short_night">짧은 밤 – 목표 시간에만</string>
     <string name="woke_early">목표 %1$d분 전 · %2$s</string>
     <string name="woke_on_time">목표 시간에 · %1$s</string>
     <string name="no_snooze">다시 알림 없음</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">일어날 시간</string>
     <string name="editor_latest">늦어도</string>
     <string name="editor_sleep_duration">%1$s 자기</string>
-    <string name="editor_sleep_hint">잠든 순간부터 계산해요. 워치에서 “잘 자요”를 탭하세요.</string>
+    <string name="editor_sleep_hint">잠든 순간부터 계산해요. 워치가 자동으로 감지하며, 바로 시작하려면 워치에서 “잘 자요”를 탭하세요.</string>
     <string name="editor_window">범위: %1$d분</string>
     <string name="editor_window_hint">%1$s~%2$s 사이에 깨워요</string>
+    <string name="editor_window_exact">정확히</string>
+    <string name="editor_window_exact_hint">목표 시간에 정확히 울리고, 더 일찍 울리지 않아요. 워치는 기록을 위해 계속 측정해요.</string>
+    <string name="window_exact_line">%1$s 정각</string>
     <string name="editor_days">반복</string>
     <string name="editor_weekdays">평일</string>
     <string name="editor_weekend">주말</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">계속 편집</string>
     <string name="editor_delete_title">이 알람을 삭제할까요?</string>
     <string name="home_window_running">범위 진행 중 – 지금 측정하고 있어요</string>
+    <string name="home_auto_onset">워치가 %1$s부터 잠드는 시점을 자동으로 감지해요.</string>
     <string name="check_volume">알람 볼륨</string>
     <string name="check_volume_problem">알람 볼륨이 0으로 설정되어 있어요. 휴대폰이 소리 없이 울려요.</string>
     <string name="health_update">Health Connect 업데이트</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">녹음 중이에요. 밤새 휴대폰을 충전기에 연결해 두는 게 좋아요.</string>
     <string name="sound_rec_default">새로운 밤에 켜기</string>
     <string name="sound_rec_default_hint">취침 시간부터 Phase Wake를 열면 시작돼요(알람이 없으면 오후 9시부터). 짧은 조각만 저장하고, 휴대폰에만 남으며 7일 뒤 삭제돼요.</string>
-    <string name="sound_type_snore">코골이</string>
+    <string name="sound_type_snore">코골이 가능성</string>
     <string name="sound_type_talk">잠꼬대</string>
     <string name="sound_type_other">기타 소리</string>
     <plurals name="sound_summary">
-        <item quantity="other">코골이: %1$s (%2$d개)</item>
+        <item quantity="other">코골이 가능성: %1$s (%2$d개)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">잠꼬대: %1$d개</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">일반적으로 %1$d–%2$d %%</string>
     <string name="stages_typical_below">일반적으로 %1$d %% 미만</string>
     <string name="stages_not_medical">의학적 평가가 아니에요.</string>
-    <string name="stages_verdict_awake_above">평소보다 깨어 있던 시간이 많아요</string>
-    <string name="stages_verdict_deep_below">평소보다 깊은 잠이 적어요</string>
-    <string name="stages_verdict_deep_above">평소보다 깊은 잠이 많아요</string>
-    <string name="stages_verdict_rem_below">REM이 적어요 – 짧거나 늦은 밤 뒤에 흔해요</string>
-    <string name="stages_verdict_rem_above">평소보다 REM이 많아요</string>
-    <string name="stages_verdict_light_below">평소보다 얕은 잠이 적어요</string>
-    <string name="stages_verdict_light_above">평소보다 얕은 잠이 많아요</string>
-    <string name="stages_verdict_typical">모든 단계가 일반적인 범위 안에 있어요</string>
+    <string name="stages_source">건강한 성인 기준값(Ohayon 외, Sleep 2004). 워치는 수면 단계를 대략적으로만 추정해요.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s째</string>
     <string name="hypno_block">%1$s %2$s~%3$s</string>
     <string name="chart_week_average">주간 평균</string>

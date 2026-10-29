@@ -38,7 +38,7 @@ struct RingView: View {
         switch alarm.phase {
         case .ringing(let reason, let snoozesLeft):
             Text(L("ring_greeting")).font(Fonts.manrope(18, .bold, relativeTo: .title3))
-            Text(L(reasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
+            Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
             Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
             if snoozesLeft > 0 {
                 Button(LP("ring_snooze", snoozesLeft, Int64(Snooze.minutes), Int64(snoozesLeft))) { alarm.snooze() }
@@ -54,12 +54,15 @@ struct RingView: View {
             EmptyView()
         }
     }
+}
 
-    private func reasonKey(_ reason: WakeReason) -> String {
-        switch reason {
-        case .lightSleep: "ring_reason_light"
-        case .awake: "ring_reason_awake"
-        case .deadline: "ring_reason_deadline"
-        }
+/// Textschlüssel des Weckgrunds auf der Uhr, wie Wear OS («ring_reason_…»); auch für «Letzte Nacht».
+func ringReasonKey(_ reason: WakeReason) -> String {
+    switch reason {
+    case .lightSleep: "ring_reason_light"
+    case .awake: "ring_reason_awake"
+    case .deadline: "ring_reason_deadline"
+    case .exact: "ring_reason_exact"
+    case .shortNight: "ring_reason_short_night"
     }
 }

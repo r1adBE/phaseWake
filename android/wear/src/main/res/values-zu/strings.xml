@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Sawubona ekuseni</string>
 
     <string name="ring_greeting">Sawubona ekuseni</string>
-    <string name="ring_reason_light">Kutholwe ubuthongo obulula</string>
+    <string name="ring_reason_light">Ukungaphumuli – mhlawumbe ubuthongo obulula</string>
     <string name="ring_reason_awake">Ubusuvukile</string>
     <string name="ring_reason_deadline">Isikhathi esihlosiwe sifikile</string>
+    <string name="ring_reason_exact">Ngqo ngesikhathi esihlosiwe</string>
+    <string name="ring_reason_short_night">Ubusuku obufushane – ngesikhathi esihlosiwe kuphela</string>
     <string name="ring_hold_to_stop">Bamba ukuze umise</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · kusele %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Ngivuse ngo</string>
     <string name="editor_latest">Kamuva kakhulu</string>
     <string name="editor_window">Isikhala: %1$d min</string>
+    <string name="editor_window_exact">Ngqo</string>
+    <string name="editor_window_exact_hint">Ikhala ngqo ngesikhathi esihlosiwe, ingalokothi ngaphambili. Iwashi lakho lisalinganisa umlando wakho.</string>
+    <string name="window_exact_line">Ngqo ngo-%1$s</string>
     <string name="editor_days">Phinda</string>
     <string name="editor_save">Londoloza</string>
     <string name="editor_delete">Susa i-alamu</string>

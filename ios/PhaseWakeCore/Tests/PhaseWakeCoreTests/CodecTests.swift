@@ -104,8 +104,25 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(newer.first?.phone, .sound)
         XCTAssertEqual(newer.first?.sunrise, .off)
         XCTAssertEqual(newer.first?.wakeTask, WakeTask.none)
-        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
+    }
+
+    func testNewReasonsStayReadableForOlderVersions() throws {
+        let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 0), target: Date(timeIntervalSince1970: 1800),
+                                wokeAt: Date(timeIntervalSince1970: 1800), reason: .exact, snoozes: 0, epochs: [])
+        // Byte-gleich mit Android (CodecTest.newReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue Grund.
+        XCTAssertEqual(Codec.encodeNight(night), "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n")
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
+        let short = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                                reason: .shortNight, snoozes: 0, epochs: [], feeling: 3)
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(short)), short)
+        // Bekannte Gründe ohne Feld 8, wie bisher.
+        let deadline = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                                   reason: .deadline, snoozes: 0, epochs: [])
+        XCTAssertEqual(Codec.encodeNight(deadline), "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0|\n\n")
+        // Unbekannter Grund aus einer neueren Version: Zielzeit.
+        XCTAssertEqual(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n").reason, .deadline)
+        XCTAssertEqual(try Codec.decodeNight("phasewake-night 1\na|1|2|3|AWAKE|0||LATER\n").reason, .awake)
     }
 
     func testNightFromNewerVersionWithExtraField() throws {

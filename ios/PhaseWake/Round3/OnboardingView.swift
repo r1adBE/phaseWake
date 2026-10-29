@@ -111,8 +111,21 @@ struct OnboardingView: View {
             .datePickerStyle(.wheel)
             .labelsHidden()
             .frame(maxWidth: .infinity)
-        Text(L("editor_window", Int(window)))
-        Slider(value: $window, in: Double(AlarmSpec.minWindowMinutes)...Double(AlarmSpec.maxWindowMinutes), step: 5)
+        // Wie im Editor: «Genau · 10 · 20 · 30».
+        let exact = Int(window) == AlarmSpec.exactWindow
+        Text(exact ? L("editor_window_exact") : L("editor_window", Int(window)))
+        Picker(L("chart_window"), selection: $window) {
+            ForEach([AlarmSpec.exactWindow, 10, 20, AlarmSpec.maxWindowMinutes], id: \.self) { minutes in
+                Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
+                    .tag(Double(minutes))
+            }
+        }
+        .pickerStyle(.segmented)
+        // Grosse Segmente: Tippziel nahe 44 pt.
+        .controlSize(.large)
+        if exact {
+            Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
+        }
         if let created {
             Label(L("onb_alarm_done", Format.window(created)), systemImage: "checkmark.circle")
         } else {

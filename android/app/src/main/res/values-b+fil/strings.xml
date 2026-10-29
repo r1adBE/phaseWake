@@ -21,15 +21,18 @@
     <string name="home_next_today">Ngayon</string>
     <string name="home_next_tomorrow">Bukas</string>
     <string name="home_next_in">Gigisingin ka sa mababaw na tulog · sa loob ng %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Gigisingin ka eksakto sa target na oras · sa loob ng %1$s</string>
     <string name="home_no_alarm_title">Gumising sa tamang sandali</string>
     <string name="home_no_alarm_text">Magtakda ng oras at window. Gigisingin ka ng relo mo kapag mababaw ang tulog mo.</string>
     <string name="home_add_alarm">Bagong alarm</string>
     <string name="home_last_night">Kagabi</string>
     <string name="home_alarms">Mga alarm mo</string>
 
-    <string name="reason_light">Mababaw na tulog</string>
+    <string name="reason_light">Balisa – malamang mababaw na tulog</string>
     <string name="reason_awake">Gising na</string>
     <string name="reason_deadline">Walang nakitang mababaw na tulog</string>
+    <string name="reason_exact">Eksakto sa target na oras</string>
+    <string name="reason_short_night">Maikling gabi – sa target na oras lang</string>
     <string name="woke_early">%1$d min bago ang target · %2$s</string>
     <string name="woke_on_time">Sa target na oras · %1$s</string>
     <string name="no_snooze">walang snooze</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Gisingin ako bago mag</string>
     <string name="editor_latest">Pinakahuli</string>
     <string name="editor_sleep_duration">Matulog nang %1$s</string>
-    <string name="editor_sleep_hint">Magsisimulang magbilang kapag nakatulog ka. I-tap ang “Matutulog na” sa relo mo.</string>
+    <string name="editor_sleep_hint">Bibilang mula nang makatulog ka. Awtomatiko itong natutukoy ng relo mo; i-tap ang “Matutulog na” sa relo para magsimula agad.</string>
     <string name="editor_window">Window: %1$d min</string>
     <string name="editor_window_hint">Gigisingin ka mula %1$s hanggang %2$s</string>
+    <string name="editor_window_exact">Eksakto</string>
+    <string name="editor_window_exact_hint">Tutunog eksakto sa target na oras, hindi kailanman mas maaga. Sumusukat pa rin ang relo mo para sa iyong history.</string>
+    <string name="window_exact_line">Eksakto nang %1$s</string>
     <string name="editor_days">Ulitin</string>
     <string name="editor_weekdays">Mga weekday</string>
     <string name="editor_weekend">Weekend</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Ituloy ang pag-edit</string>
     <string name="editor_delete_title">I-delete ang alarm na ito?</string>
     <string name="home_window_running">Aktibo ang window ng paggising – sumusukat na</string>
+    <string name="home_auto_onset">Awtomatikong matutukoy ng relo mo kung kailan ka nakatulog simula %1$s.</string>
     <string name="check_volume">Volume ng alarm</string>
     <string name="check_volume_problem">Naka-0 ang volume ng alarm – walang tunog ang alarm ng telepono mo.</string>
     <string name="health_update">I-update ang Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Naka-on ang pagre-record. Mas mabuting naka-charge ang telepono mo magdamag.</string>
     <string name="sound_rec_default">Naka-on para sa mga bagong gabi</string>
     <string name="sound_rec_default_hint">Nagsisimula kapag binuksan mo ang Phase Wake mula sa oras ng pagtulog mo (kung walang alarm, mula 9 pm). Maiikling clip lang; nananatili ang mga ito sa telepono mo at dine-delete pagkalipas ng 7 araw.</string>
-    <string name="sound_type_snore">Hilik</string>
+    <string name="sound_type_snore">Posibleng hilik</string>
     <string name="sound_type_talk">Pagsasalita</string>
     <string name="sound_type_other">Ibang tunog</string>
     <plurals name="sound_summary">
-        <item quantity="one">Hilik: %1$s (%2$d clip)</item>
-        <item quantity="other">Hilik: %1$s (%2$d clip)</item>
+        <item quantity="one">Posibleng hilik: %1$s (%2$d clip)</item>
+        <item quantity="other">Posibleng hilik: %1$s (%2$d clip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Pagsasalita: %1$d clip</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Karaniwan %1$d–%2$d %%</string>
     <string name="stages_typical_below">Karaniwan ay mas mababa sa %1$d %%</string>
     <string name="stages_not_medical">Hindi ito medikal na pagsusuri.</string>
-    <string name="stages_verdict_awake_above">Mas matagal na gising kaysa karaniwan</string>
-    <string name="stages_verdict_deep_below">Mas kaunting malalim na tulog kaysa karaniwan</string>
-    <string name="stages_verdict_deep_above">Mas maraming malalim na tulog kaysa karaniwan</string>
-    <string name="stages_verdict_rem_below">Kaunting REM – madalas pagkatapos ng maikli o huling gabi</string>
-    <string name="stages_verdict_rem_above">Mas maraming REM kaysa karaniwan</string>
-    <string name="stages_verdict_light_below">Mas kaunting mababaw na tulog kaysa karaniwan</string>
-    <string name="stages_verdict_light_above">Mas maraming mababaw na tulog kaysa karaniwan</string>
-    <string name="stages_verdict_typical">Lahat ng yugto ay nasa karaniwang saklaw</string>
+    <string name="stages_source">Mga sanggunian para sa malulusog na adulto (Ohayon et al., Sleep 2004). Halos lang ang tantiya ng mga relo sa mga yugto.</string>
     <string name="hypno_bubble">%1$s · %2$s · sa loob ng %3$s</string>
     <string name="hypno_block">%1$s mula %2$s hanggang %3$s</string>
     <string name="chart_week_average">Lingguhang average</string>

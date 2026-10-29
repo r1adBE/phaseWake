@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Bună dimineața</string>
 
     <string name="ring_greeting">Bună dimineața</string>
-    <string name="ring_reason_light">Somn ușor detectat</string>
+    <string name="ring_reason_light">Agitat – probabil somn ușor</string>
     <string name="ring_reason_awake">Erai deja treaz</string>
     <string name="ring_reason_deadline">Ora țintă atinsă</string>
+    <string name="ring_reason_exact">Exact la ora țintă</string>
+    <string name="ring_reason_short_night">Noapte scurtă – abia la ora țintă</string>
     <string name="ring_hold_to_stop">Ține apăsat pentru oprire</string>
     <plurals name="ring_snooze">
         <item quantity="one">Amânare %1$d min · %2$d rămasă</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Trezește-mă până la</string>
     <string name="editor_latest">Cel târziu</string>
     <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Sună exact la ora țintă, niciodată mai devreme. Ceasul măsoară totuși pentru istoricul tău.</string>
+    <string name="window_exact_line">Exact la %1$s</string>
     <string name="editor_days">Repetă</string>
     <string name="editor_save">Salvează</string>
     <string name="editor_delete">Șterge alarma</string>

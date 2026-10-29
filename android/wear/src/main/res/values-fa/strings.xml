@@ -9,9 +9,11 @@
     <string name="notification_ring_title">صبح بخیر</string>
 
     <string name="ring_greeting">صبح بخیر</string>
-    <string name="ring_reason_light">خواب سبک تشخیص داده شد</string>
+    <string name="ring_reason_light">ناآرام – احتمالاً خواب سبک</string>
     <string name="ring_reason_awake">از قبل بیدار بودی</string>
     <string name="ring_reason_deadline">زمان هدف رسید</string>
+    <string name="ring_reason_exact">دقیقاً در زمان هدف</string>
+    <string name="ring_reason_short_night">شب کوتاه – فقط در زمان هدف</string>
     <string name="ring_hold_to_stop">برای توقف نگه دار</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d دق · مانده: %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">بیدارم کن تا</string>
     <string name="editor_latest">حداکثر</string>
     <string name="editor_window">بازه: %1$d دق</string>
+    <string name="editor_window_exact">دقیق</string>
+    <string name="editor_window_exact_hint">دقیقاً در زمان هدف زنگ می‌زند، هرگز زودتر. ساعتت همچنان برای سابقه‌ات اندازه می‌گیرد.</string>
+    <string name="window_exact_line">دقیقاً ساعت %1$s</string>
     <string name="editor_days">تکرار</string>
     <string name="editor_save">ذخیره</string>
     <string name="editor_delete">حذف زنگ</string>

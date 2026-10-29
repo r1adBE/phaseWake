@@ -8,9 +8,11 @@
     <string name="notification_window_text">Ən gec %1$s oyadır</string>
     <string name="notification_ring_title">Sabahın xeyir</string>
     <string name="ring_greeting">Sabahın xeyir</string>
-    <string name="ring_reason_light">Yüngül yuxu aşkarlandı</string>
+    <string name="ring_reason_light">Narahat – yəqin ki, yüngül yuxu</string>
     <string name="ring_reason_awake">Artıq oyaq idin</string>
     <string name="ring_reason_deadline">Hədəf vaxtı çatdı</string>
+    <string name="ring_reason_exact">Düz hədəf vaxtında</string>
+    <string name="ring_reason_short_night">Qısa gecə – yalnız hədəf vaxtında</string>
     <string name="ring_hold_to_stop">Dayandırmaq üçün saxla</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d dəq · qalıb: %2$d</item>
@@ -51,6 +53,9 @@
     <string name="editor_target">Oyanma vaxtı</string>
     <string name="editor_latest">Ən gec</string>
     <string name="editor_window">Pəncərə: %1$d dəq</string>
+    <string name="editor_window_exact">Dəqiq</string>
+    <string name="editor_window_exact_hint">Düz hədəf vaxtında zəng çalır, heç vaxt tez yox. Saatın yenə də tarixçən üçün ölçür.</string>
+    <string name="window_exact_line">Düz saat %1$s</string>
     <string name="editor_days">Təkrar</string>
     <string name="editor_save">Yadda saxla</string>
     <string name="editor_delete">Siqnalı sil</string>

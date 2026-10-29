@@ -67,10 +67,11 @@ class WakeDetector(private val config: DetectorConfig = DetectorConfig()) {
 
     /**
      * Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
-     * [DetectorConfig.heartRateRise] über dem Basispuls. Fehlt einer der beiden Werte, ist sie erfüllt.
+     * [DetectorConfig.heartRateRise] über dem Basispuls. Fehlt einer der beiden Werte, ist sie nicht erfüllt:
+     * Bewegung allein reicht für [WakeReason.LIGHT_SLEEP] nicht («Phase nicht behaupten»).
      */
     private fun heartRateRisen(): Boolean {
-        val baseline = baselineHeartRate ?: return true
+        val baseline = baselineHeartRate ?: return false
         var sum = 0.0
         var count = 0
         for (i in maxOf(0, recent.size - CURRENT_HEART_RATE_EPOCHS) until recent.size) {
@@ -79,7 +80,7 @@ class WakeDetector(private val config: DetectorConfig = DetectorConfig()) {
                 count++
             }
         }
-        if (count == 0) return true
+        if (count == 0) return false
         return sum / count >= baseline * (1.0 + config.heartRateRise)
     }
 

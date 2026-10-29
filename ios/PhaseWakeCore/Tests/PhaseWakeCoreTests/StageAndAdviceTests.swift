@@ -59,5 +59,14 @@ final class StageAndAdviceTests: XCTestCase {
         let deadlines = (0..<3).map { night(Double($0), .deadline) }
         XCTAssertEqual(WindowAdvice.suggest(spec(window: 25), history: deadlines)?.windowMinutes, 30)
         XCTAssertNil(WindowAdvice.suggest(spec(window: 30), history: deadlines))
+        // «Genau» hat bewusst kein Fenster: kein Vorschlag.
+        XCTAssertNil(WindowAdvice.suggest(spec(window: AlarmSpec.exactWindow), history: deadlines))
+    }
+
+    func testExactAndShortNightsDoNotCount() {
+        // Nur zwei zählbare Nächte: zu wenig für einen Vorschlag, auch wenn «Genau» und kurze Nächte zur Zielzeit endeten.
+        let history = [night(0, .deadline), night(1, .exact), night(2, .shortNight), night(3, .deadline)]
+        XCTAssertNil(WindowAdvice.suggest(spec(), history: history))
+        XCTAssertEqual(WindowAdvice.suggest(spec(), history: history + [night(4, .lightSleep)])?.nights, 3)
     }
 }

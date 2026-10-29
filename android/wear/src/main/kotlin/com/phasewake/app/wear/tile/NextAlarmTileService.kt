@@ -36,6 +36,9 @@ class NextAlarmTileService : TileService() {
         val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
         val (title, line) = if (plan == null) {
             getString(R.string.home_no_alarm) to getString(R.string.home_no_alarm_hint)
+        } else if (plan.exact) {
+            // «Genau»: kein Fenster, kein Versprechen zum leichten Schlaf.
+            getString(R.string.window_exact_line, time.format(plan.target.atZone(zone))) to getString(R.string.tile_next)
         } else {
             getString(R.string.home_window, time.format(plan.windowStart.atZone(zone)), time.format(plan.target.atZone(zone))) to
                 getString(R.string.tile_light_sleep)

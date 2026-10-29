@@ -183,10 +183,16 @@ enum Format {
         return time(date)
     }
 
-    /// «06:30 – 07:00»
+    /// «06:30 – 07:00»; bei «Genau» (Fenster 0) «Genau um 07:00».
     static func window(_ alarm: AlarmSpec) -> String {
         let target = Calendar.current.date(from: DateComponents(hour: alarm.hour, minute: alarm.minute)) ?? Date()
-        return time(target.addingTimeInterval(-Double(alarm.windowMinutes * 60))) + " – " + time(target)
+        return window(start: target.addingTimeInterval(-Double(alarm.windowMinutes * 60)), target: target, exact: alarm.isExact)
+    }
+
+    /// «06:30 – 07:00» (Trenner wählbar, auf der Uhr ohne Leerzeichen); bei `exact` «Genau um 07:00»,
+    /// denn ein genauer Wecker hat kein Weckfenster (die Uhr misst nur für den Verlauf).
+    static func window(start: Date, target: Date, exact: Bool, separator: String = " – ") -> String {
+        exact ? L("window_exact_line", time(target)) : time(start) + separator + time(target)
     }
 
     static func days(_ alarm: AlarmSpec) -> String {

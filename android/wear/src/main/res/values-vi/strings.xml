@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Chào buổi sáng</string>
 
     <string name="ring_greeting">Chào buổi sáng</string>
-    <string name="ring_reason_light">Phát hiện ngủ nông</string>
+    <string name="ring_reason_light">Trằn trọc – có lẽ là ngủ nông</string>
     <string name="ring_reason_awake">Bạn đã thức sẵn</string>
     <string name="ring_reason_deadline">Đã đến giờ mục tiêu</string>
+    <string name="ring_reason_exact">Đúng giờ mục tiêu</string>
+    <string name="ring_reason_short_night">Đêm ngắn – chỉ vào giờ mục tiêu</string>
     <string name="ring_hold_to_stop">Giữ để dừng</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d phút · còn %2$d lần</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">Đánh thức tôi trước</string>
     <string name="editor_latest">Muộn nhất</string>
     <string name="editor_window">Khoảng thời gian: %1$d phút</string>
+    <string name="editor_window_exact">Đúng giờ</string>
+    <string name="editor_window_exact_hint">Reo đúng giờ mục tiêu, không bao giờ sớm hơn. Đồng hồ vẫn đo để lưu vào lịch sử của bạn.</string>
+    <string name="window_exact_line">Đúng %1$s</string>
     <string name="editor_days">Lặp lại</string>
     <string name="editor_save">Lưu</string>
     <string name="editor_delete">Xóa báo thức</string>

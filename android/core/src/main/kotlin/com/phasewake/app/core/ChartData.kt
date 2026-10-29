@@ -251,7 +251,9 @@ object ChartData {
                 reason = night.reason,
             )
         }
-        val average = Math.round(points.sumOf { it.minutesBefore }.toDouble() / points.size).toInt()
+        // «Genau» und kurze Nächte durften nicht früher wecken: nicht im Durchschnitt.
+        val counted = points.filter { it.reason.earlyAllowed }
+        val average = if (counted.isEmpty()) 0 else Math.round(counted.sumOf { it.minutesBefore }.toDouble() / counted.size).toInt()
         return WakeMoments(points, maxOf(1, points.maxOf { it.windowMinutes }), average)
     }
 

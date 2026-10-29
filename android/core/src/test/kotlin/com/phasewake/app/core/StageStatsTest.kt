@@ -38,7 +38,6 @@ class StageStatsTest {
     fun percentsAddUpToHundred() {
         val s = of(span(0, 10, SleepStage.AWAKE), span(10, 20, SleepStage.REM), span(20, 30, SleepStage.LIGHT))!!
         assertEquals(listOf(34, 33, 33, 0), percents(s))
-        assertNull(s.verdict)
     }
 
     @Test
@@ -50,7 +49,6 @@ class StageStatsTest {
         assertEquals(listOf(30L, 120L, 240L, 90L), s.totals.map { it.minutes })
         assertEquals(listOf(6, 25, 50, 19), percents(s))
         assertEquals(List(4) { StageRating.TYPICAL }, s.totals.map { it.rating })
-        assertEquals(StageVerdict.TYPICAL, s.verdict)
         assertEquals(30L, s.latencyMinutes)
         assertEquals(0, s.awakenings)
         assertEquals(90L, s.longestDeepMinutes)
@@ -72,21 +70,21 @@ class StageStatsTest {
     }
 
     @Test
-    fun verdictFollowsTheFixedOrder() {
+    fun ratingsMarkTheTypicalRange() {
         val deepAbove = of(span(0, 200, SleepStage.LIGHT), span(200, 320, SleepStage.DEEP), span(320, 400, SleepStage.REM))!!
         assertEquals(listOf(0, 20, 50, 30), percents(deepAbove))
-        assertEquals(StageVerdict.DEEP_ABOVE, deepAbove.verdict)
+        assertEquals(StageRating.ABOVE, deepAbove.total(SleepStage.DEEP)?.rating)
         val awakeAndLowDeep = of(span(0, 100, SleepStage.AWAKE), span(100, 400, SleepStage.LIGHT), span(400, 420, SleepStage.DEEP))!!
-        assertEquals(StageVerdict.AWAKE_ABOVE, awakeAndLowDeep.verdict)
+        assertEquals(StageRating.ABOVE, awakeAndLowDeep.total(SleepStage.AWAKE)?.rating)
+        assertEquals(StageRating.BELOW, awakeAndLowDeep.total(SleepStage.DEEP)?.rating)
         val lowRem = of(span(0, 260, SleepStage.LIGHT), span(260, 340, SleepStage.DEEP), span(340, 380, SleepStage.REM), span(380, 400, SleepStage.AWAKE))!!
         assertEquals(listOf(5, 10, 65, 20), percents(lowRem))
-        assertEquals(StageVerdict.REM_BELOW, lowRem.verdict)
+        assertEquals(StageRating.BELOW, lowRem.total(SleepStage.REM)?.rating)
     }
 
     @Test
-    fun tooLittleDataHasNoVerdict() {
+    fun singleStageIsTheWholeNight() {
         val s = of(span(0, 100, SleepStage.LIGHT))!!
-        assertNull(s.verdict)
         assertEquals(listOf(0, 0, 100, 0), percents(s))
     }
 

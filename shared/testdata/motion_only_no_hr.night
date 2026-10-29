@@ -1,6 +1,7 @@
 # Uhr sitzt locker, kein Puls in der ganzen Nacht.
-# Die Bewegung entscheidet allein: Epoche 32 hat 2 Treffer in 29-32.
-@expect 32 LIGHT_SLEEP
+# Leichte Bewegung in Epoche 30 und 32, aber ohne gemessenen Puls kein leichter Schlaf
+# (Pulsbedingung nicht erfüllt, «Phase nicht behaupten»); Wecken erst zur Zielzeit.
+@expect none
 motion,hr
 0.000,
 0.000,

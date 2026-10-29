@@ -16,6 +16,11 @@ data class WakePlan(
     val windowStart: Instant,
     /** Zielzeit: spätester Weckzeitpunkt, an dem in jedem Fall geklingelt wird. */
     val target: Instant,
+    /**
+     * «Genau» ([AlarmSpec.isExact]): ab [windowStart] wird nur für den Verlauf gemessen; geweckt wird erst zur
+     * Zielzeit, nie früher (Grund [WakeReason.EXACT]).
+     */
+    val exact: Boolean = false,
 )
 
 /**
@@ -81,8 +86,15 @@ object AlarmSchedule {
     /** Plan für die nächste Nacht des Weckers, oder `null`, wenn er aus ist. Ausfälle wie bei [nextTarget]. */
     fun nextPlan(spec: AlarmSpec, now: Instant, zone: ZoneId, holidays: Set<LocalDate> = emptySet()): WakePlan? {
         val target = nextTarget(spec, now, zone, holidays) ?: return null
-        return WakePlan(spec.id, windowStart(target, spec.windowMinutes), target)
+        return planAt(spec, target)
     }
+
+    /**
+     * Plan des Weckers [spec] für die Zielzeit [target]: Messbeginn [AlarmSpec.measureWindowMinutes] davor; bei «Genau»
+     * mit [WakePlan.exact].
+     */
+    fun planAt(spec: AlarmSpec, target: Instant): WakePlan =
+        WakePlan(spec.id, windowStart(target, spec.measureWindowMinutes), target, spec.isExact)
 
     /**
      * Der früheste Plan über alle Wecker, oder `null`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die

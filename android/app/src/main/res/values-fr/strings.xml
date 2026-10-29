@@ -20,15 +20,18 @@
     <string name="home_next_today">Aujourd\'hui</string>
     <string name="home_next_tomorrow">Demain</string>
     <string name="home_next_in">Te réveille en sommeil léger · dans %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Te réveille pile à l’heure cible · dans %1$s</string>
     <string name="home_no_alarm_title">Réveille-toi au bon moment</string>
     <string name="home_no_alarm_text">Choisis une heure et une plage. Ta montre te réveille quand ton sommeil est léger.</string>
     <string name="home_add_alarm">Nouveau réveil</string>
     <string name="home_last_night">Cette nuit</string>
     <string name="home_alarms">Tes réveils</string>
 
-    <string name="reason_light">Sommeil léger</string>
+    <string name="reason_light">Agité – sans doute sommeil léger</string>
     <string name="reason_awake">Déjà éveillé</string>
     <string name="reason_deadline">Aucun sommeil léger détecté</string>
+    <string name="reason_exact">Pile à l’heure cible</string>
+    <string name="reason_short_night">Nuit courte – seulement à l’heure cible</string>
     <string name="woke_early">%1$d min avant l\'heure cible · %2$s</string>
     <string name="woke_on_time">À l\'heure cible · %1$s</string>
     <string name="no_snooze">sans rappel</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Réveille-moi avant</string>
     <string name="editor_latest">Au plus tard</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
-    <string name="editor_sleep_hint">Le compte à rebours démarre à l\'endormissement. Appuie sur « Bonne nuit » sur ta montre.</string>
+    <string name="editor_sleep_hint">Compte à partir de l’endormissement. Ta montre le détecte automatiquement ; appuie sur « Bonne nuit » sur la montre pour démarrer tout de suite.</string>
     <string name="editor_window">Plage : %1$d min</string>
     <string name="editor_window_hint">Te réveille entre %1$s et %2$s</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Sonne pile à l’heure cible, jamais avant. Ta montre mesure quand même pour ton historique.</string>
+    <string name="window_exact_line">Pile à %1$s</string>
     <string name="editor_days">Répéter</string>
     <string name="editor_weekdays">Semaine</string>
     <string name="editor_weekend">Week-end</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">Continuer à modifier</string>
     <string name="editor_delete_title">Supprimer ce réveil ?</string>
     <string name="home_window_running">Plage en cours – mesure en cours</string>
+    <string name="home_auto_onset">Ta montre détecte automatiquement ton endormissement à partir de %1$s.</string>
     <string name="check_volume">Volume du réveil</string>
     <string name="check_volume_problem">Le volume du réveil est à 0 – ton téléphone sonnerait en silence.</string>
     <string name="health_update">Mettre à jour Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Enregistrement en cours. Branche de préférence ton téléphone pour la nuit.</string>
     <string name="sound_rec_default">Activer pour les nouvelles nuits</string>
     <string name="sound_rec_default_hint">Démarre quand tu ouvres Phase Wake à partir de ton heure de coucher (sans réveil, dès 21 h). Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
-    <string name="sound_type_snore">Ronflement</string>
+    <string name="sound_type_snore">Ronflement possible</string>
     <string name="sound_type_talk">Paroles</string>
     <string name="sound_type_other">Autre bruit</string>
     <plurals name="sound_summary">
-        <item quantity="one">Ronflement : %1$s (%2$d extrait)</item>
-        <item quantity="many">Ronflement : %1$s (%2$d extraits)</item>
-        <item quantity="other">Ronflement : %1$s (%2$d extraits)</item>
+        <item quantity="one">Ronflement possible : %1$s (%2$d extrait)</item>
+        <item quantity="many">Ronflement possible : %1$s (%2$d extraits)</item>
+        <item quantity="other">Ronflement possible : %1$s (%2$d extraits)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Paroles : %1$d extrait</item>
@@ -521,14 +528,7 @@
     <string name="stages_typical_range">Habituel %1$d–%2$d %%</string>
     <string name="stages_typical_below">Habituel moins de %1$d %%</string>
     <string name="stages_not_medical">Pas une évaluation médicale.</string>
-    <string name="stages_verdict_awake_above">Plus de temps éveillé que d’habitude</string>
-    <string name="stages_verdict_deep_below">Moins de sommeil profond que d’habitude</string>
-    <string name="stages_verdict_deep_above">Plus de sommeil profond que d’habitude</string>
-    <string name="stages_verdict_rem_below">Peu de REM – souvent après une nuit courte ou tardive</string>
-    <string name="stages_verdict_rem_above">Plus de REM que d’habitude</string>
-    <string name="stages_verdict_light_below">Moins de sommeil léger que d’habitude</string>
-    <string name="stages_verdict_light_above">Plus de sommeil léger que d’habitude</string>
-    <string name="stages_verdict_typical">Toutes les phases dans la plage habituelle</string>
+    <string name="stages_source">Valeurs de référence pour adultes en bonne santé (Ohayon et al., Sleep 2004). Les montres n’estiment les phases qu’approximativement.</string>
     <string name="hypno_bubble">%1$s · %2$s · depuis %3$s</string>
     <string name="hypno_block">%1$s de %2$s à %3$s</string>
     <string name="chart_week_average">Moyenne hebdomadaire</string>

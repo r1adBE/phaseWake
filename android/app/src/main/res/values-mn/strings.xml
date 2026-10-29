@@ -21,15 +21,18 @@
     <string name="home_next_today">Өнөөдөр</string>
     <string name="home_next_tomorrow">Маргааш</string>
     <string name="home_next_in">Хөнгөн нойронд сэрээнэ · %1$s дараа</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Яг зорилтот цагт сэрээнэ · %1$s дараа</string>
     <string name="home_no_alarm_title">Яг зөв мөчид сэр</string>
     <string name="home_no_alarm_text">Цаг болон хугацаа тохируул. Нойр чинь хөнгөн үед цаг чинь чамайг сэрээнэ.</string>
     <string name="home_add_alarm">Шинэ сэрүүлэг</string>
     <string name="home_last_night">Өнгөрсөн шөнө</string>
     <string name="home_alarms">Чиний сэрүүлгүүд</string>
 
-    <string name="reason_light">Хөнгөн нойр</string>
+    <string name="reason_light">Тайван бус – магадгүй хөнгөн нойр</string>
     <string name="reason_awake">Аль хэдийн сэрүүн</string>
     <string name="reason_deadline">Хөнгөн нойр илрээгүй</string>
+    <string name="reason_exact">Яг зорилтот цагт</string>
+    <string name="reason_short_night">Богино шөнө – зөвхөн зорилтот цагт</string>
     <string name="woke_early">Зорилтот цагаас %1$d мин өмнө · %2$s</string>
     <string name="woke_on_time">Зорилтот цагт · %1$s</string>
     <string name="no_snooze">хойшлуулаагүй</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Намайг сэрээх цаг</string>
     <string name="editor_latest">Хамгийн оройдоо</string>
     <string name="editor_sleep_duration">Нойр: %1$s</string>
-    <string name="editor_sleep_hint">Чамайг унтсаны дараа тоолж эхэлнэ. Цаган дээрээ «Сайхан амраарай»-г дар.</string>
+    <string name="editor_sleep_hint">Унтсан цагаас чинь тоолно. Цаг үүнийг автоматаар илрүүлнэ; шууд эхлүүлэхийн тулд цаган дээрээ «Сайхан амраарай»-г дар.</string>
     <string name="editor_window">Хугацаа: %1$d мин</string>
     <string name="editor_window_hint">Чамайг %1$s – %2$s хооронд сэрээнэ</string>
+    <string name="editor_window_exact">Яг</string>
+    <string name="editor_window_exact_hint">Яг зорилтот цагт дуугарна, хэзээ ч эрт биш. Цаг чинь түүхэнд чинь зориулж хэмжсээр байна.</string>
+    <string name="window_exact_line">Яг %1$s-д</string>
     <string name="editor_days">Давтах</string>
     <string name="editor_weekdays">Ажлын өдрүүд</string>
     <string name="editor_weekend">Амралтын өдрүүд</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Үргэлжлүүлэн засах</string>
     <string name="editor_delete_title">Энэ сэрүүлгийг устгах уу?</string>
     <string name="home_window_running">Сэрээх хугацаа эхэлсэн – хэмжиж байна</string>
+    <string name="home_auto_onset">Цаг чинь %1$s-ээс эхлэн чамайг хэзээ унтсаныг автоматаар илрүүлнэ.</string>
     <string name="check_volume">Сэрүүлгийн дууны түвшин</string>
     <string name="check_volume_problem">Сэрүүлгийн дуу 0 байна – утас чинь дуугүй дуугарна.</string>
     <string name="health_update">Health Connect шинэчлэх</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Бичлэг асаалттай. Шөнөдөө утсаа цэнэглэгчид залгавал зүгээр.</string>
     <string name="sound_rec_default">Шинэ шөнүүдэд асаалттай</string>
     <string name="sound_rec_default_hint">Унтах цагаасаа хойш Phase Wake-ийг нээхэд эхэлнэ (сэрүүлэггүй бол 21:00-аас). Зөвхөн богино хэсгүүд; утсан дээр чинь үлдэж, 7 хоногийн дараа устна.</string>
-    <string name="sound_type_snore">Хурхиралт</string>
+    <string name="sound_type_snore">Хурхирсан байж магадгүй</string>
     <string name="sound_type_talk">Ярих</string>
     <string name="sound_type_other">Бусад дуу</string>
     <plurals name="sound_summary">
-        <item quantity="one">Хурхиралт: %1$s (%2$d хэсэг)</item>
-        <item quantity="other">Хурхиралт: %1$s (%2$d хэсэг)</item>
+        <item quantity="one">Хурхирсан байж магадгүй: %1$s (%2$d хэсэг)</item>
+        <item quantity="other">Хурхирсан байж магадгүй: %1$s (%2$d хэсэг)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Ярих: %1$d хэсэг</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Ердийн %1$d–%2$d %%</string>
     <string name="stages_typical_below">Ердийн %1$d %%-иас бага</string>
     <string name="stages_not_medical">Эмнэлгийн үнэлгээ биш.</string>
-    <string name="stages_verdict_awake_above">Ердийнхөөс их сэрүүн байсан</string>
-    <string name="stages_verdict_deep_below">Ердийнхөөс бага гүн нойр</string>
-    <string name="stages_verdict_deep_above">Ердийнхөөс их гүн нойр</string>
-    <string name="stages_verdict_rem_below">REM бага – ихэвчлэн богино эсвэл оройтсон шөнийн дараа</string>
-    <string name="stages_verdict_rem_above">Ердийнхөөс их REM</string>
-    <string name="stages_verdict_light_below">Ердийнхөөс бага хөнгөн нойр</string>
-    <string name="stages_verdict_light_above">Ердийнхөөс их хөнгөн нойр</string>
-    <string name="stages_verdict_typical">Бүх үе шат ердийн хүрээнд</string>
+    <string name="stages_source">Эрүүл насанд хүрэгчдийн жишиг утга (Ohayon нар, Sleep 2004). Цагнууд үе шатыг зөвхөн ойролцоогоор тооцоолдог.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s үргэлжилж байна</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Долоо хоногийн дундаж</string>

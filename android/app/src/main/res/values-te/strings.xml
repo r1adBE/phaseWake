@@ -21,15 +21,18 @@
     <string name="home_next_today">ఈరోజు</string>
     <string name="home_next_tomorrow">రేపు</string>
     <string name="home_next_in">తేలికపాటి నిద్రలో లేపుతుంది · %1$s తర్వాత</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">సరిగ్గా లక్ష్య సమయానికి లేపుతుంది · %1$s తర్వాత</string>
     <string name="home_no_alarm_title">సరైన క్షణంలో మేల్కొనండి</string>
     <string name="home_no_alarm_text">సమయం, వ్యవధి ఎంచుకోండి. మీ నిద్ర తేలికగా ఉన్నప్పుడు వాచ్ మిమ్మల్ని లేపుతుంది.</string>
     <string name="home_add_alarm">కొత్త అలారం</string>
     <string name="home_last_night">నిన్న రాత్రి</string>
     <string name="home_alarms">మీ అలారాలు</string>
 
-    <string name="reason_light">తేలికపాటి నిద్ర</string>
+    <string name="reason_light">అశాంతి – బహుశా తేలికపాటి నిద్ర</string>
     <string name="reason_awake">ముందే మేల్కొన్నారు</string>
     <string name="reason_deadline">తేలికపాటి నిద్ర కనిపించలేదు</string>
+    <string name="reason_exact">సరిగ్గా లక్ష్య సమయానికి</string>
+    <string name="reason_short_night">చిన్న రాత్రి – లక్ష్య సమయానికే</string>
     <string name="woke_early">లక్ష్యానికి %1$d ని. ముందు · %2$s</string>
     <string name="woke_on_time">లక్ష్య సమయానికి · %1$s</string>
     <string name="no_snooze">స్నూజ్ లేదు</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">ఈ సమయానికల్లా లేపండి</string>
     <string name="editor_latest">గరిష్ఠంగా</string>
     <string name="editor_sleep_duration">%1$s నిద్ర</string>
-    <string name="editor_sleep_hint">మీరు నిద్రపోయినప్పటి నుంచి లెక్కింపు మొదలవుతుంది. వాచ్‌లో “శుభ రాత్రి” నొక్కండి.</string>
+    <string name="editor_sleep_hint">మీరు నిద్రపోయినప్పటి నుంచి లెక్కిస్తుంది. వాచ్ దాన్ని ఆటోమేటిక్‌గా గుర్తిస్తుంది; వెంటనే మొదలుపెట్టడానికి వాచ్‌లో “శుభ రాత్రి” నొక్కండి.</string>
     <string name="editor_window">వ్యవధి: %1$d ని.</string>
     <string name="editor_window_hint">%1$s, %2$s మధ్య లేపుతుంది</string>
+    <string name="editor_window_exact">కచ్చితంగా</string>
+    <string name="editor_window_exact_hint">సరిగ్గా లక్ష్య సమయానికి మోగుతుంది, ఎప్పుడూ ముందు కాదు. మీ వాచ్ అయినా మీ చరిత్ర కోసం కొలుస్తుంది.</string>
+    <string name="window_exact_line">సరిగ్గా %1$sకి</string>
     <string name="editor_days">పునరావృతం</string>
     <string name="editor_weekdays">వారం రోజులు</string>
     <string name="editor_weekend">వారాంతం</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">ఎడిట్ కొనసాగించండి</string>
     <string name="editor_delete_title">ఈ అలారం తొలగించాలా?</string>
     <string name="home_window_running">నిద్రలేపే వ్యవధి నడుస్తోంది – ఇప్పుడు కొలుస్తోంది</string>
+    <string name="home_auto_onset">%1$s నుండి మీరు ఎప్పుడు నిద్రపోతారో వాచ్ ఆటోమేటిక్‌గా గుర్తిస్తుంది.</string>
     <string name="check_volume">అలారం వాల్యూమ్</string>
     <string name="check_volume_problem">అలారం వాల్యూమ్ 0లో ఉంది – మీ ఫోన్ శబ్దం లేకుండా మోగుతుంది.</string>
     <string name="health_update">Health Connect అప్‌డేట్ చేయండి</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">రికార్డింగ్ ఆన్‌లో ఉంది. రాత్రికి ఫోన్‌ను ఛార్జర్‌కు పెట్టడం మంచిది.</string>
     <string name="sound_rec_default">కొత్త రాత్రులకు ఆన్</string>
     <string name="sound_rec_default_hint">మీ నిద్ర సమయం నుంచి Phase Wake తెరిచినప్పుడు మొదలవుతుంది (అలారం లేకపోతే రాత్రి 9 నుంచి). చిన్న క్లిప్‌లు మాత్రమే; అవి మీ ఫోన్‌లోనే ఉంటాయి, 7 రోజుల తర్వాత తొలగిపోతాయి.</string>
-    <string name="sound_type_snore">గురక</string>
+    <string name="sound_type_snore">బహుశా గురక</string>
     <string name="sound_type_talk">మాట్లాడటం</string>
     <string name="sound_type_other">ఇతర ధ్వని</string>
     <plurals name="sound_summary">
-        <item quantity="one">గురక: %1$s (%2$d క్లిప్)</item>
-        <item quantity="other">గురక: %1$s (%2$d క్లిప్‌లు)</item>
+        <item quantity="one">బహుశా గురక: %1$s (%2$d క్లిప్)</item>
+        <item quantity="other">బహుశా గురక: %1$s (%2$d క్లిప్‌లు)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">మాట్లాడటం: %1$d క్లిప్</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">సాధారణంగా %1$d–%2$d %%</string>
     <string name="stages_typical_below">సాధారణంగా %1$d %% కంటే తక్కువ</string>
     <string name="stages_not_medical">ఇది వైద్య అంచనా కాదు.</string>
-    <string name="stages_verdict_awake_above">సాధారణం కంటే ఎక్కువ మేల్కొని ఉన్నారు</string>
-    <string name="stages_verdict_deep_below">సాధారణం కంటే తక్కువ గాఢ నిద్ర</string>
-    <string name="stages_verdict_deep_above">సాధారణం కంటే ఎక్కువ గాఢ నిద్ర</string>
-    <string name="stages_verdict_rem_below">తక్కువ REM – తరచుగా చిన్న లేదా ఆలస్యమైన రాత్రి తర్వాత</string>
-    <string name="stages_verdict_rem_above">సాధారణం కంటే ఎక్కువ REM</string>
-    <string name="stages_verdict_light_below">సాధారణం కంటే తక్కువ తేలికపాటి నిద్ర</string>
-    <string name="stages_verdict_light_above">సాధారణం కంటే ఎక్కువ తేలికపాటి నిద్ర</string>
-    <string name="stages_verdict_typical">అన్ని దశలు సాధారణ పరిధిలో</string>
+    <string name="stages_source">ఆరోగ్యవంతులైన పెద్దలకు సూచన విలువలు (Ohayon మరియు ఇతరులు, Sleep 2004). వాచ్‌లు దశలను సుమారుగా మాత్రమే అంచనా వేస్తాయి.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s నుండి</string>
     <string name="hypno_block">%1$s %2$s నుండి %3$s వరకు</string>
     <string name="chart_week_average">వారపు సగటు</string>

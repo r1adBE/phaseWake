@@ -50,33 +50,6 @@ data class StageTotal(
     val rating: StageRating,
 )
 
-/** Ein Satz Einordnung je Nacht nach fester Regel ([StageStats.verdictOf]); kein medizinisches Urteil. */
-enum class StageVerdict {
-    /** Mehr Wachzeit als üblich. */
-    AWAKE_ABOVE,
-
-    /** Weniger Tiefschlaf als üblich. */
-    DEEP_BELOW,
-
-    /** Mehr Tiefschlaf als üblich. */
-    DEEP_ABOVE,
-
-    /** Wenig REM (oft nach kurzer oder später Nacht). */
-    REM_BELOW,
-
-    /** Mehr REM als üblich. */
-    REM_ABOVE,
-
-    /** Weniger leichter Schlaf als üblich. */
-    LIGHT_BELOW,
-
-    /** Mehr leichter Schlaf als üblich. */
-    LIGHT_ABOVE,
-
-    /** Alle Phasen im üblichen Bereich. */
-    TYPICAL,
-}
-
 /** Auswertung der Schlafphasen einer Nacht für die Detailseite ([StageStats.of]); gleich in Swift (`NightStages`). */
 data class NightStages(
     /** Beginn des ausgewerteten Bereichs. */
@@ -87,8 +60,6 @@ data class NightStages(
     val blocks: List<StageBlock>,
     /** Immer vier Einträge: wach, REM, leicht, tief. */
     val totals: List<StageTotal>,
-    /** Einordnung der Nacht; `null`, wenn die vier Phasen zusammen unter [StageStats.MIN_VERDICT_MINUTES] liegen. */
-    val verdict: StageVerdict?,
     /** Einschlafdauer in Minuten (abgerundet): nur wenn der erste Block «wach» ist und ein weiterer folgt; sonst `null`. */
     val latencyMinutes: Long?,
     /** Schlaf (alles ausser «wach», unbekannt zählt als Schlaf) im Verhältnis zum Bereich, gerundet, höchstens 100. */
@@ -108,13 +79,10 @@ data class NightStages(
 }
 
 /**
- * Phasen-Summen, Anteile, Einordnung und Kennzahlen einer Nacht: reine Rechnung, gleich in Swift (`StageStats`).
+ * Phasen-Summen, Anteile mit üblichem Bereich und Kennzahlen einer Nacht: reine Rechnung, gleich in Swift (`StageStats`).
  * Alles in Millisekunden gerechnet und erst am Ende auf ganze Minuten bzw. Prozent gebracht.
  */
 object StageStats {
-    /** Unter zwei Stunden Phasen sagen die Anteile wenig: dann keine Einordnung ([NightStages.verdict] `null`). */
-    const val MIN_VERDICT_MINUTES: Long = 120
-
     /**
      * Übliche Anteile für Erwachsene in Prozent (Richtwerte laut Auftrag vom 29.10.2026: wach unter 10 %,
      * REM 20–25 %, leicht 50–60 %, tief 13–23 %). Nur zur Orientierung, keine medizinische Bewertung.
@@ -132,17 +100,6 @@ object StageStats {
     internal const val MS_PER_MINUTE: Long = 60_000
 
     private const val PERCENT: Long = 100
-
-    /** Reihenfolge der Einordnung: der erste Treffer zählt. */
-    private val VERDICTS: List<Triple<SleepStage, StageRating, StageVerdict>> = listOf(
-        Triple(SleepStage.AWAKE, StageRating.ABOVE, StageVerdict.AWAKE_ABOVE),
-        Triple(SleepStage.DEEP, StageRating.BELOW, StageVerdict.DEEP_BELOW),
-        Triple(SleepStage.DEEP, StageRating.ABOVE, StageVerdict.DEEP_ABOVE),
-        Triple(SleepStage.REM, StageRating.BELOW, StageVerdict.REM_BELOW),
-        Triple(SleepStage.REM, StageRating.ABOVE, StageVerdict.REM_ABOVE),
-        Triple(SleepStage.LIGHT, StageRating.BELOW, StageVerdict.LIGHT_BELOW),
-        Triple(SleepStage.LIGHT, StageRating.ABOVE, StageVerdict.LIGHT_ABOVE),
-    )
 
     /**
      * Auswertung der [spans] im Bereich [from] bis [to] (Spannen werden darauf zugeschnitten, [StageCheck.clip]).
@@ -166,7 +123,6 @@ object StageStats {
             end = to,
             blocks = blocks,
             totals = totals,
-            verdict = if (ms.values.sum() < MIN_VERDICT_MINUTES * MS_PER_MINUTE) null else verdictOf(totals),
             latencyMinutes = if (blocks.size > 1 && blocks[0].stage == SleepStage.AWAKE) {
                 Duration.between(blocks[0].start, blocks[1].start).toMillis() / MS_PER_MINUTE
             } else {
@@ -192,11 +148,6 @@ object StageStats {
 
     /** Phasen einer Schlafsitzung aus der Gesundheits-App über die ganze Sitzung («im Bett»). */
     fun forSession(session: HealthSession): NightStages? = of(session.stages, session.start, session.end)
-
-    /** Erste Abweichung nach fester Reihenfolge ([VERDICTS]); keine: [StageVerdict.TYPICAL]. */
-    fun verdictOf(totals: List<StageTotal>): StageVerdict =
-        VERDICTS.firstOrNull { (stage, rating, _) -> totals.any { it.stage == stage && it.rating == rating } }?.third
-            ?: StageVerdict.TYPICAL
 
     /** Bekannte Phasen nach Beginn; gleiche Phase, die spätestens am bisherigen Ende beginnt, verlängert den Block. */
     private fun blocksOf(clipped: List<StageSpan>): List<StageBlock> {

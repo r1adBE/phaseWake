@@ -21,15 +21,18 @@
     <string name="home_next_today">Dziś</string>
     <string name="home_next_tomorrow">Jutro</string>
     <string name="home_next_in">Budzi w lekkim śnie · za %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Budzi dokładnie o czasie docelowym · za %1$s</string>
     <string name="home_no_alarm_title">Wstań we właściwym momencie</string>
     <string name="home_no_alarm_text">Ustaw godzinę i okno. Zegarek obudzi cię, gdy będziesz spać lekko.</string>
     <string name="home_add_alarm">Nowy budzik</string>
     <string name="home_last_night">Ostatnia noc</string>
     <string name="home_alarms">Twoje budziki</string>
 
-    <string name="reason_light">Lekki sen</string>
+    <string name="reason_light">Niespokojnie – pewnie lekki sen</string>
     <string name="reason_awake">Już nie śpisz</string>
     <string name="reason_deadline">Nie wykryto płytkiego snu</string>
+    <string name="reason_exact">Dokładnie o czasie docelowym</string>
+    <string name="reason_short_night">Krótka noc – dopiero o czasie docelowym</string>
     <string name="woke_early">%1$d min przed czasem docelowym · %2$s</string>
     <string name="woke_on_time">W czasie docelowym · %1$s</string>
     <string name="no_snooze">bez drzemki</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Obudź mnie do</string>
     <string name="editor_latest">Najpóźniej</string>
     <string name="editor_sleep_duration">Sen: %1$s</string>
-    <string name="editor_sleep_hint">Odliczanie startuje, gdy zaśniesz. Dotknij „Dobranoc” na zegarku.</string>
+    <string name="editor_sleep_hint">Liczy od zaśnięcia. Zegarek wykrywa to automatycznie; dotknij „Dobranoc” na zegarku, aby zacząć od razu.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Obudzi cię między %1$s a %2$s</string>
+    <string name="editor_window_exact">Dokładnie</string>
+    <string name="editor_window_exact_hint">Dzwoni dokładnie o czasie docelowym, nigdy wcześniej. Zegarek i tak mierzy na potrzeby twojej historii.</string>
+    <string name="window_exact_line">Dokładnie o %1$s</string>
     <string name="editor_days">Powtarzaj</string>
     <string name="editor_weekdays">Dni robocze</string>
     <string name="editor_weekend">Weekend</string>
@@ -232,6 +238,7 @@
     <string name="editor_keep_editing">Edytuj dalej</string>
     <string name="editor_delete_title">Usunąć ten budzik?</string>
     <string name="home_window_running">Okno trwa – trwa pomiar</string>
+    <string name="home_auto_onset">Zegarek od %1$s automatycznie rozpozna, kiedy zaśniesz.</string>
     <string name="check_volume">Głośność budzika</string>
     <string name="check_volume_problem">Głośność budzika jest ustawiona na 0 – telefon zadzwoniłby bez dźwięku.</string>
     <string name="health_update">Zaktualizuj Health Connect</string>
@@ -315,14 +322,14 @@
     <string name="sound_rec_plug_in">Nagrywanie trwa. Najlepiej podłącz telefon na noc do ładowarki.</string>
     <string name="sound_rec_default">Włącz dla nowych nocy</string>
     <string name="sound_rec_default_hint">Startuje, gdy otworzysz Phase Wake od swojej pory snu (bez budzika od 21:00). Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach.</string>
-    <string name="sound_type_snore">Chrapanie</string>
+    <string name="sound_type_snore">Możliwe chrapanie</string>
     <string name="sound_type_talk">Mówienie</string>
     <string name="sound_type_other">Inny dźwięk</string>
     <plurals name="sound_summary">
-        <item quantity="one">Chrapanie: %1$s (%2$d fragment)</item>
-        <item quantity="few">Chrapanie: %1$s (%2$d fragmenty)</item>
-        <item quantity="many">Chrapanie: %1$s (%2$d fragmentów)</item>
-        <item quantity="other">Chrapanie: %1$s (%2$d fragmentu)</item>
+        <item quantity="one">Możliwe chrapanie: %1$s (%2$d fragment)</item>
+        <item quantity="few">Możliwe chrapanie: %1$s (%2$d fragmenty)</item>
+        <item quantity="many">Możliwe chrapanie: %1$s (%2$d fragmentów)</item>
+        <item quantity="other">Możliwe chrapanie: %1$s (%2$d fragmentu)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Mówienie: %1$d fragment</item>
@@ -535,14 +542,7 @@
     <string name="stages_typical_range">Typowo %1$d–%2$d %%</string>
     <string name="stages_typical_below">Typowo poniżej %1$d %%</string>
     <string name="stages_not_medical">To nie jest ocena medyczna.</string>
-    <string name="stages_verdict_awake_above">Więcej czuwania niż zwykle</string>
-    <string name="stages_verdict_deep_below">Mniej snu głębokiego niż zwykle</string>
-    <string name="stages_verdict_deep_above">Więcej snu głębokiego niż zwykle</string>
-    <string name="stages_verdict_rem_below">Mało REM – często po krótkiej lub późnej nocy</string>
-    <string name="stages_verdict_rem_above">Więcej REM niż zwykle</string>
-    <string name="stages_verdict_light_below">Mniej snu płytkiego niż zwykle</string>
-    <string name="stages_verdict_light_above">Więcej snu płytkiego niż zwykle</string>
-    <string name="stages_verdict_typical">Wszystkie fazy w typowym zakresie</string>
+    <string name="stages_source">Wartości orientacyjne dla zdrowych dorosłych (Ohayon i in., Sleep 2004). Zegarki szacują fazy tylko w przybliżeniu.</string>
     <string name="hypno_bubble">%1$s · %2$s · od %3$s</string>
     <string name="hypno_block">%1$s od %2$s do %3$s</string>
     <string name="chart_week_average">Średnia tygodniowa</string>

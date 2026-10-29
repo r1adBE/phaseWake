@@ -19,15 +19,18 @@
     <string name="home_next_today">I dag</string>
     <string name="home_next_tomorrow">I morgen</string>
     <string name="home_next_in">Vekker deg i lett søvn · om %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Vekker deg nøyaktig på ønsket tid · om %1$s</string>
     <string name="home_no_alarm_title">Våkne i riktig øyeblikk</string>
     <string name="home_no_alarm_text">Velg et tidspunkt og et vindu. Klokka vekker deg når du sover lett.</string>
     <string name="home_add_alarm">Ny alarm</string>
     <string name="home_last_night">Siste natt</string>
     <string name="home_alarms">Alarmene dine</string>
 
-    <string name="reason_light">Lett søvn</string>
+    <string name="reason_light">Urolig – trolig lett søvn</string>
     <string name="reason_awake">Allerede våken</string>
     <string name="reason_deadline">Ingen lett søvn oppdaget</string>
+    <string name="reason_exact">Nøyaktig på ønsket tid</string>
+    <string name="reason_short_night">Kort natt – først på ønsket tid</string>
     <string name="woke_early">%1$d min før ønsket tid · %2$s</string>
     <string name="woke_on_time">På ønsket tid · %1$s</string>
     <string name="no_snooze">ingen slumring</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Vekk meg senest</string>
     <string name="editor_latest">Senest</string>
     <string name="editor_sleep_duration">Sov i %1$s</string>
-    <string name="editor_sleep_hint">Teller fra du sovner. Trykk på «God natt» på klokka.</string>
+    <string name="editor_sleep_hint">Teller fra du sovner. Klokka oppdager det automatisk; trykk på «God natt» på klokka for å starte med en gang.</string>
     <string name="editor_window">Vindu: %1$d min</string>
     <string name="editor_window_hint">Vekker deg mellom %1$s og %2$s</string>
+    <string name="editor_window_exact">Nøyaktig</string>
+    <string name="editor_window_exact_hint">Ringer nøyaktig på ønsket tid, aldri før. Klokken måler likevel for historikken din.</string>
+    <string name="window_exact_line">Nøyaktig kl. %1$s</string>
     <string name="editor_days">Gjenta</string>
     <string name="editor_weekdays">Ukedager</string>
     <string name="editor_weekend">Helg</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Fortsett å redigere</string>
     <string name="editor_delete_title">Slette denne alarmen?</string>
     <string name="home_window_running">Vinduet pågår – måler nå</string>
+    <string name="home_auto_onset">Klokken oppdager automatisk fra kl. %1$s når du sovner.</string>
     <string name="check_volume">Alarmvolum</string>
     <string name="check_volume_problem">Alarmvolumet er satt til 0 – telefonen ville ringt uten lyd.</string>
     <string name="health_update">Oppdater Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Opptaket pågår. Sett gjerne telefonen til lading om natten.</string>
     <string name="sound_rec_default">På for nye netter</string>
     <string name="sound_rec_default_hint">Starter når du åpner Phase Wake fra leggetiden din (uten alarm fra kl. 21). Bare korte klipp; de blir på telefonen og slettes etter 7 dager.</string>
-    <string name="sound_type_snore">Snorking</string>
+    <string name="sound_type_snore">Mulig snorking</string>
     <string name="sound_type_talk">Prat</string>
     <string name="sound_type_other">Annen lyd</string>
     <plurals name="sound_summary">
-        <item quantity="one">Snorking: %1$s (%2$d klipp)</item>
-        <item quantity="other">Snorking: %1$s (%2$d klipp)</item>
+        <item quantity="one">Mulig snorking: %1$s (%2$d klipp)</item>
+        <item quantity="other">Mulig snorking: %1$s (%2$d klipp)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Prat: %1$d klipp</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Vanligvis %1$d–%2$d %%</string>
     <string name="stages_typical_below">Vanligvis under %1$d %%</string>
     <string name="stages_not_medical">Ikke en medisinsk vurdering.</string>
-    <string name="stages_verdict_awake_above">Mer tid våken enn vanlig</string>
-    <string name="stages_verdict_deep_below">Mindre dyp søvn enn vanlig</string>
-    <string name="stages_verdict_deep_above">Mer dyp søvn enn vanlig</string>
-    <string name="stages_verdict_rem_below">Lite REM – ofte etter en kort eller sen natt</string>
-    <string name="stages_verdict_rem_above">Mer REM enn vanlig</string>
-    <string name="stages_verdict_light_below">Mindre lett søvn enn vanlig</string>
-    <string name="stages_verdict_light_above">Mer lett søvn enn vanlig</string>
-    <string name="stages_verdict_typical">Alle faser innenfor vanlig område</string>
+    <string name="stages_source">Referanseverdier for friske voksne (Ohayon mfl., Sleep 2004). Klokker anslår fasene bare grovt.</string>
     <string name="hypno_bubble">%1$s · %2$s · i %3$s</string>
     <string name="hypno_block">%1$s fra %2$s til %3$s</string>
     <string name="chart_week_average">Ukesnitt</string>

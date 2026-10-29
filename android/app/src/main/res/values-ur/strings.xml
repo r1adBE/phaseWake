@@ -20,15 +20,18 @@
     <string name="home_next_today">آج</string>
     <string name="home_next_tomorrow">کل</string>
     <string name="home_next_in">ہلکی نیند میں جگائے گا · %1$s میں</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">عین ہدف کے وقت پر جگائے گا · %1$s میں</string>
     <string name="home_no_alarm_title">صحیح لمحے پر جاگو</string>
     <string name="home_no_alarm_text">وقت اور ونڈو مقرر کرو۔ جب تمہاری نیند ہلکی ہو گی، گھڑی تمہیں جگا دے گی۔</string>
     <string name="home_add_alarm">نیا الارم</string>
     <string name="home_last_night">پچھلی رات</string>
     <string name="home_alarms">تمہارے الارم</string>
 
-    <string name="reason_light">ہلکی نیند</string>
+    <string name="reason_light">بے چین – شاید ہلکی نیند</string>
     <string name="reason_awake">پہلے سے جاگ رہے تھے</string>
     <string name="reason_deadline">ہلکی نیند نہیں ملی</string>
+    <string name="reason_exact">عین ہدف کے وقت پر</string>
+    <string name="reason_short_night">مختصر رات – صرف ہدف کے وقت پر</string>
     <string name="woke_early">ہدف سے %1$d منٹ پہلے · %2$s</string>
     <string name="woke_on_time">ہدف کے وقت پر · %1$s</string>
     <string name="no_snooze">بغیر اسنوز</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">مجھے اس وقت تک جگاؤ</string>
     <string name="editor_latest">زیادہ سے زیادہ</string>
     <string name="editor_sleep_duration">%1$s نیند</string>
-    <string name="editor_sleep_hint">گنتی تمہارے سونے کے بعد شروع ہوتی ہے۔ گھڑی پر “شب بخیر” پر ٹیپ کرو۔</string>
+    <string name="editor_sleep_hint">تمہارے سونے کے وقت سے گنتی ہوتی ہے۔ گھڑی اسے خود پہچان لیتی ہے؛ فوراً شروع کرنے کے لیے گھڑی پر “شب بخیر” پر ٹیپ کرو۔</string>
     <string name="editor_window">ونڈو: %1$d منٹ</string>
     <string name="editor_window_hint">%1$s اور %2$s کے درمیان جگاتا ہے</string>
+    <string name="editor_window_exact">عین وقت</string>
+    <string name="editor_window_exact_hint">عین ہدف کے وقت پر بجے گا، کبھی پہلے نہیں۔ تمہاری گھڑی پھر بھی تمہاری ہسٹری کے لیے پیمائش کرتی ہے۔</string>
+    <string name="window_exact_line">عین %1$s پر</string>
     <string name="editor_days">تکرار</string>
     <string name="editor_weekdays">ہفتے کے دن</string>
     <string name="editor_weekend">ویک اینڈ</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">ترمیم جاری رکھو</string>
     <string name="editor_delete_title">یہ الارم حذف کریں؟</string>
     <string name="home_window_running">جاگنے کی ونڈو جاری – پیمائش ہو رہی ہے</string>
+    <string name="home_auto_onset">تمہاری گھڑی %1$s سے خودبخود پہچان لیتی ہے کہ تم کب سو جاتے ہو۔</string>
     <string name="check_volume">الارم کا والیوم</string>
     <string name="check_volume_problem">الارم کا والیوم 0 پر ہے – تمہارا فون خاموشی سے بجے گا۔</string>
     <string name="health_update">Health Connect اپ ڈیٹ کرو</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">ریکارڈنگ آن ہے۔ بہتر ہے رات کے لیے فون چارجر پر لگا دو۔</string>
     <string name="sound_rec_default">نئی راتوں کے لیے آن</string>
     <string name="sound_rec_default_hint">جب تم اپنے سونے کے وقت سے Phase Wake کھولو تو شروع ہوتی ہے (الارم کے بغیر رات 9 بجے سے)۔ صرف چھوٹے کلپس؛ یہ تمہارے فون پر رہتے ہیں اور 7 دن بعد حذف ہو جاتے ہیں۔</string>
-    <string name="sound_type_snore">خراٹے</string>
+    <string name="sound_type_snore">ممکنہ خراٹے</string>
     <string name="sound_type_talk">باتیں کرنا</string>
     <string name="sound_type_other">دوسری آواز</string>
     <plurals name="sound_summary">
-        <item quantity="one">خراٹے: %1$s (%2$d کلپ)</item>
-        <item quantity="other">خراٹے: %1$s (%2$d کلپس)</item>
+        <item quantity="one">ممکنہ خراٹے: %1$s (%2$d کلپ)</item>
+        <item quantity="other">ممکنہ خراٹے: %1$s (%2$d کلپس)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">باتیں: %1$d کلپ</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">عموماً %1$d–%2$d %%</string>
     <string name="stages_typical_below">عموماً %1$d %% سے کم</string>
     <string name="stages_not_medical">یہ طبی جائزہ نہیں ہے۔</string>
-    <string name="stages_verdict_awake_above">معمول سے زیادہ جاگنا</string>
-    <string name="stages_verdict_deep_below">معمول سے کم گہری نیند</string>
-    <string name="stages_verdict_deep_above">معمول سے زیادہ گہری نیند</string>
-    <string name="stages_verdict_rem_below">کم REM – اکثر چھوٹی یا دیر والی رات کے بعد</string>
-    <string name="stages_verdict_rem_above">معمول سے زیادہ REM</string>
-    <string name="stages_verdict_light_below">معمول سے کم ہلکی نیند</string>
-    <string name="stages_verdict_light_above">معمول سے زیادہ ہلکی نیند</string>
-    <string name="stages_verdict_typical">سب مراحل معمول کی حد میں</string>
+    <string name="stages_source">صحت مند بالغوں کے لیے حوالہ اقدار (Ohayon وغیرہ، Sleep 2004)۔ گھڑیاں مراحل کا صرف موٹا اندازہ لگاتی ہیں۔</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s سے</string>
     <string name="hypno_block">%1$s %2$s سے %3$s تک</string>
     <string name="chart_week_average">ہفتہ وار اوسط</string>

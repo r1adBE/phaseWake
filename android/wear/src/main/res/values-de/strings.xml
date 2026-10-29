@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Guten Morgen</string>
 
     <string name="ring_greeting">Guten Morgen</string>
-    <string name="ring_reason_light">Leichter Schlaf erkannt</string>
+    <string name="ring_reason_light">Unruhig – wohl leichter Schlaf</string>
     <string name="ring_reason_awake">Du warst schon wach</string>
     <string name="ring_reason_deadline">Zielzeit erreicht</string>
+    <string name="ring_reason_exact">Genau zur Zielzeit</string>
+    <string name="ring_reason_short_night">Kurze Nacht – erst zur Zielzeit</string>
     <string name="ring_hold_to_stop">Halten zum Stoppen</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d Min · %2$d übrig</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Weck mich bis</string>
     <string name="editor_latest">Spätestens</string>
     <string name="editor_window">Fenster: %1$d Min</string>
+    <string name="editor_window_exact">Genau</string>
+    <string name="editor_window_exact_hint">Klingelt genau zur Zielzeit, nie früher. Die Uhr misst trotzdem für den Verlauf.</string>
+    <string name="window_exact_line">Genau um %1$s</string>
     <string name="editor_days">Wiederholen</string>
     <string name="editor_save">Speichern</string>
     <string name="editor_delete">Wecker löschen</string>

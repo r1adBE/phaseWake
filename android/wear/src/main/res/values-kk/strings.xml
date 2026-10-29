@@ -8,9 +8,11 @@
     <string name="notification_window_text">Ең кеші %1$s оятады</string>
     <string name="notification_ring_title">Қайырлы таң</string>
     <string name="ring_greeting">Қайырлы таң</string>
-    <string name="ring_reason_light">Жеңіл ұйқы анықталды</string>
+    <string name="ring_reason_light">Мазасыз – мүмкін жеңіл ұйқы</string>
     <string name="ring_reason_awake">Сен онсыз да ояу едің</string>
     <string name="ring_reason_deadline">Мақсатты уақыт келді</string>
+    <string name="ring_reason_exact">Дәл мақсатты уақытта</string>
+    <string name="ring_reason_short_night">Қысқа түн – тек мақсатты уақытта</string>
     <string name="ring_hold_to_stop">Тоқтату үшін ұстап тұр</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d мин · қалды: %2$d</item>
@@ -51,6 +53,9 @@
     <string name="editor_target">Оятатын уақыт</string>
     <string name="editor_latest">Ең кеші</string>
     <string name="editor_window">Терезе: %1$d мин</string>
+    <string name="editor_window_exact">Дәл</string>
+    <string name="editor_window_exact_hint">Дәл мақсатты уақытта шырылдайды, ешқашан ертерек емес. Сағат бәрібір тарихың үшін өлшейді.</string>
+    <string name="window_exact_line">Дәл %1$s</string>
     <string name="editor_days">Қайталау</string>
     <string name="editor_save">Сақтау</string>
     <string name="editor_delete">Оятқышты жою</string>

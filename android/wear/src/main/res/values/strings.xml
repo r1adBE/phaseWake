@@ -11,9 +11,11 @@
     <string name="notification_ring_title">Good morning</string>
 
     <string name="ring_greeting">Good morning</string>
-    <string name="ring_reason_light">Light sleep detected</string>
+    <string name="ring_reason_light">Restless – likely light sleep</string>
     <string name="ring_reason_awake">You were already awake</string>
     <string name="ring_reason_deadline">Target time reached</string>
+    <string name="ring_reason_exact">Right at the target time</string>
+    <string name="ring_reason_short_night">Short night – woke at the target time</string>
     <string name="ring_hold_to_stop">Hold to stop</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d left</item>
@@ -57,6 +59,9 @@
     <string name="editor_target">Wake me by</string>
     <string name="editor_latest">At the latest</string>
     <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Rings exactly at the target time, never earlier. Your watch still measures for your history.</string>
+    <string name="window_exact_line">Exactly at %1$s</string>
     <string name="editor_days">Repeat</string>
     <string name="editor_save">Save</string>
     <string name="editor_delete">Delete alarm</string>

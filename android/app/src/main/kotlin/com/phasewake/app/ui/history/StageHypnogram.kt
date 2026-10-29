@@ -47,8 +47,11 @@ import java.time.temporal.ChronoUnit
 
 // Gestuftes Hypnogramm: vier Zeilen (oben wach, REM, leicht, unten tief), gefüllte, abgerundete Blöcke je Phase.
 
-/** Weckfenster einer Phase-Wake-Nacht im Hypnogramm: Band, Zielzeit-Linie und Weckpunkt. */
-internal data class HypnoWindow(val start: Instant, val target: Instant, val wokeAt: Instant)
+/**
+ * Weckfenster einer Phase-Wake-Nacht im Hypnogramm: Band, Zielzeit-Linie und Weckpunkt. Bei [exact] («Genau») ist die
+ * Messzeit davor kein Weckfenster: dann ohne Band, nur Zielzeit-Linie und Weckpunkt.
+ */
+internal data class HypnoWindow(val start: Instant, val target: Instant, val wokeAt: Instant, val exact: Boolean = false)
 
 /** Was das Hypnogramm zeigt: Zeitachse [from] bis [to], Blöcke ([StageBlock]) und das Weckfenster (nur eigene Nächte). */
 internal data class HypnoModel(val from: Instant, val to: Instant, val blocks: List<StageBlock>, val window: HypnoWindow? = null) {
@@ -132,7 +135,7 @@ internal fun StageHypnogram(
             val plot = size.height - top - AXIS.toPx()
             val lane = plot / stageOrder.size
             fun x(at: Instant) = left + (size.width - left) * model.fraction(at)
-            model.window?.let { w -> drawRect(scheme.primary.copy(alpha = 0.12f), Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot)) }
+            model.window?.takeUnless { it.exact }?.let { w -> drawRect(scheme.primary.copy(alpha = 0.12f), Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot)) }
             names.forEachIndexed { i, text ->
                 val cy = top + lane * (i + 0.5f)
                 drawText(text, topLeft = Offset(0f, cy - text.size.height / 2f))
@@ -235,7 +238,7 @@ internal fun MiniHypnogram(model: HypnoModel, modifier: Modifier = Modifier) {
     Canvas(modifier.fillMaxWidth().height(64.dp).clearAndSetSemantics { }) {
         val lane = size.height / stageOrder.size
         for (i in 0..stageOrder.size) drawLine(scheme.outlineVariant, Offset(0f, lane * i), Offset(size.width, lane * i), strokeWidth = 0.5.dp.toPx())
-        model.window?.let { w ->
+        model.window?.takeUnless { it.exact }?.let { w ->
             val x0 = size.width * model.fraction(w.start)
             drawRect(scheme.primary.copy(alpha = 0.12f), Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height))
         }

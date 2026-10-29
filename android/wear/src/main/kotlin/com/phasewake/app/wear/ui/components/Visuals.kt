@@ -38,6 +38,8 @@ fun WindowRing(
     modifier: Modifier = Modifier,
     nowFraction: Float? = null,
     bedtimeFraction: Float? = null,
+    /** Bogen des Weckfensters zeichnen; `false` bei «Genau» (nur der Weckpunkt). */
+    showArc: Boolean = true,
 ) {
     val glow by rememberInfiniteTransition(label = "ring").animateFloat(
         initialValue = 0.35f, targetValue = 0.9f,
@@ -62,7 +64,7 @@ fun WindowRing(
         }
         val sweep = ((endFraction - startFraction + 1f) % 1f).coerceAtLeast(0.01f) * 360f
         val start = startFraction * 360f - 90f
-        drawArc(Brand.Wave, start, sweep, false, topLeft, arcSize, style = Stroke(stroke, cap = StrokeCap.Round))
+        if (showArc) drawArc(Brand.Wave, start, sweep, false, topLeft, arcSize, style = Stroke(stroke, cap = StrokeCap.Round))
         // Hohl, damit die Spur durchscheint; Mist hat auf Spur und Nachthimmel über 8 : 1 Kontrast.
         bedtimeFraction?.let { bed ->
             drawCircle(Brand.Mist, radius = stroke * 0.7f, center = at(bed, r), style = Stroke(1.5.dp.toPx()))

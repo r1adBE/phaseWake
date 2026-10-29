@@ -19,15 +19,18 @@
     <string name="home_next_today">Heute</string>
     <string name="home_next_tomorrow">Morgen</string>
     <string name="home_next_in">Weckt im leichten Schlaf · in %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Weckt genau zur Zielzeit · in %1$s</string>
     <string name="home_no_alarm_title">Im richtigen Moment aufwachen</string>
     <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich, wenn du leicht schläfst.</string>
     <string name="home_add_alarm">Neuer Wecker</string>
     <string name="home_last_night">Letzte Nacht</string>
     <string name="home_alarms">Deine Wecker</string>
 
-    <string name="reason_light">Leichter Schlaf</string>
+    <string name="reason_light">Unruhig – wohl leichter Schlaf</string>
     <string name="reason_awake">Schon wach</string>
     <string name="reason_deadline">Kein leichter Schlaf erkannt</string>
+    <string name="reason_exact">Genau zur Zielzeit</string>
+    <string name="reason_short_night">Kurze Nacht – erst zur Zielzeit</string>
     <string name="woke_early">%1$d Min vor der Zielzeit · %2$s</string>
     <string name="woke_on_time">Zur Zielzeit · %1$s</string>
     <string name="no_snooze">ohne Schlummern</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Weck mich bis</string>
     <string name="editor_latest">Spätestens</string>
     <string name="editor_sleep_duration">%1$s schlafen</string>
-    <string name="editor_sleep_hint">Zählt ab dem Einschlafen. Tippe auf der Uhr auf «Gute Nacht».</string>
+    <string name="editor_sleep_hint">Zählt ab dem Einschlafen. Die Uhr erkennt es automatisch; mit «Gute Nacht» auf der Uhr startet sie sofort.</string>
     <string name="editor_window">Fenster: %1$d Min</string>
     <string name="editor_window_hint">Weckt dich zwischen %1$s und %2$s</string>
+    <string name="editor_window_exact">Genau</string>
+    <string name="editor_window_exact_hint">Klingelt genau zur Zielzeit, nie früher. Die Uhr misst trotzdem für den Verlauf.</string>
+    <string name="window_exact_line">Genau um %1$s</string>
     <string name="editor_days">Wiederholen</string>
     <string name="editor_weekdays">Werktage</string>
     <string name="editor_weekend">Wochenende</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Weiter bearbeiten</string>
     <string name="editor_delete_title">Diesen Wecker löschen?</string>
     <string name="home_window_running">Weckfenster läuft – es wird gemessen</string>
+    <string name="home_auto_onset">Die Uhr erkennt dein Einschlafen ab %1$s automatisch.</string>
     <string name="check_volume">Wecker-Lautstärke</string>
     <string name="check_volume_problem">Die Wecker-Lautstärke steht auf 0 – das Handy würde lautlos klingeln.</string>
     <string name="health_update">Health Connect aktualisieren</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Aufnahme läuft. Schliess das Handy für die Nacht am besten ans Ladegerät an.</string>
     <string name="sound_rec_default">Für neue Nächte einschalten</string>
     <string name="sound_rec_default_hint">Startet, wenn du Phase Wake ab deiner Bettzeit öffnest (ohne Wecker ab 21 Uhr). Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
-    <string name="sound_type_snore">Schnarchen</string>
+    <string name="sound_type_snore">Möglicherweise Schnarchen</string>
     <string name="sound_type_talk">Sprechen</string>
     <string name="sound_type_other">Anderes Geräusch</string>
     <plurals name="sound_summary">
-        <item quantity="one">Schnarchen: %1$s (%2$d Ausschnitt)</item>
-        <item quantity="other">Schnarchen: %1$s (%2$d Ausschnitte)</item>
+        <item quantity="one">Möglicherweise Schnarchen: %1$s (%2$d Ausschnitt)</item>
+        <item quantity="other">Möglicherweise Schnarchen: %1$s (%2$d Ausschnitte)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Sprechen: %1$d Ausschnitt</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Üblich %1$d–%2$d %%</string>
     <string name="stages_typical_below">Üblich unter %1$d %%</string>
     <string name="stages_not_medical">Keine medizinische Bewertung.</string>
-    <string name="stages_verdict_awake_above">Mehr Wachzeit als üblich</string>
-    <string name="stages_verdict_deep_below">Weniger Tiefschlaf als üblich</string>
-    <string name="stages_verdict_deep_above">Mehr Tiefschlaf als üblich</string>
-    <string name="stages_verdict_rem_below">Wenig REM – oft nach kurzer oder später Nacht</string>
-    <string name="stages_verdict_rem_above">Mehr REM als üblich</string>
-    <string name="stages_verdict_light_below">Weniger leichter Schlaf als üblich</string>
-    <string name="stages_verdict_light_above">Mehr leichter Schlaf als üblich</string>
-    <string name="stages_verdict_typical">Alle Phasen im üblichen Bereich</string>
+    <string name="stages_source">Richtwerte für gesunde Erwachsene (Ohayon u. a., Sleep 2004). Uhren schätzen Phasen nur ungefähr.</string>
     <string name="hypno_bubble">%1$s · %2$s · seit %3$s</string>
     <string name="hypno_block">%1$s von %2$s bis %3$s</string>
     <string name="chart_week_average">Wochendurchschnitt</string>

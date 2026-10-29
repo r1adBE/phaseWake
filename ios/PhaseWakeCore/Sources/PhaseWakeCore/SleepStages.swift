@@ -68,10 +68,11 @@ public enum WindowAdvice {
         public let nights: Int
     }
 
-    /// Vorschlag, oder `nil`: nur bei einem Fenster unter 30 Min, ab 3 Nächten und wenn mehr als die Hälfte der letzten 7 Nächte erst zur Zielzeit geweckt hat.
+    /// Vorschlag, oder `nil`: nur bei einem Fenster unter 30 Min (nicht bei «Genau», bewusst ohne Fenster), ab 3 Nächten
+    /// und wenn mehr als die Hälfte der letzten 7 Nächte erst zur Zielzeit geweckt hat.
     public static func suggest(_ spec: AlarmSpec, history: [NightRecord]) -> Suggestion? {
-        guard spec.windowMinutes < AlarmSpec.maxWindowMinutes else { return nil }
-        let recent = Array(history.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }.suffix(nights))
+        guard !spec.isExact, spec.windowMinutes < AlarmSpec.maxWindowMinutes else { return nil }
+        let recent = Array(history.filter { $0.alarmId == spec.id && $0.reason.earlyAllowed }.sorted { $0.windowStart < $1.windowStart }.suffix(nights))
         guard recent.count >= minNights else { return nil }
         let deadline = recent.filter { $0.reason == .deadline }.count
         guard deadline * 2 > recent.count else { return nil }

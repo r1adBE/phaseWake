@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Góðan daginn</string>
 
     <string name="ring_greeting">Góðan daginn</string>
-    <string name="ring_reason_light">Léttur svefn greindist</string>
+    <string name="ring_reason_light">Órólegur – líklega léttur svefn</string>
     <string name="ring_reason_awake">Þú varst þegar vakandi</string>
     <string name="ring_reason_deadline">Markmiðstíma náð</string>
+    <string name="ring_reason_exact">Nákvæmlega á markmiðstíma</string>
+    <string name="ring_reason_short_night">Stutt nótt – aðeins á markmiðstíma</string>
     <string name="ring_hold_to_stop">Haltu inni til að stöðva</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d mín · %2$d eftir</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Vektu mig fyrir</string>
     <string name="editor_latest">Í síðasta lagi</string>
     <string name="editor_window">Gluggi: %1$d mín</string>
+    <string name="editor_window_exact">Nákvæmt</string>
+    <string name="editor_window_exact_hint">Hringir nákvæmlega á markmiðstíma, aldrei fyrr. Úrið mælir samt fyrir ferilinn þinn.</string>
+    <string name="window_exact_line">Nákvæmlega kl. %1$s</string>
     <string name="editor_days">Endurtaka</string>
     <string name="editor_save">Vista</string>
     <string name="editor_delete">Eyða vekjara</string>

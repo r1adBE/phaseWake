@@ -18,15 +18,18 @@
     <string name="home_next_today">今天</string>
     <string name="home_next_tomorrow">明天</string>
     <string name="home_next_in">在淺眠時喚醒你 · %1$s後</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">準時在目標時間喚醒你 · %1$s後</string>
     <string name="home_no_alarm_title">在剛剛好的時刻醒來</string>
     <string name="home_no_alarm_text">設定一個時間和喚醒時段。你睡得淺時，手錶會叫醒你。</string>
     <string name="home_add_alarm">新增鬧鐘</string>
     <string name="home_last_night">昨晚</string>
     <string name="home_alarms">你的鬧鐘</string>
 
-    <string name="reason_light">淺眠</string>
+    <string name="reason_light">睡得不安穩 – 可能是淺眠</string>
     <string name="reason_awake">已經醒了</string>
     <string name="reason_deadline">未偵測到淺眠</string>
+    <string name="reason_exact">準時在目標時間</string>
+    <string name="reason_short_night">睡眠較短 – 到目標時間才叫醒</string>
     <string name="woke_early">比目標提早 %1$d 分鐘 · %2$s</string>
     <string name="woke_on_time">目標時間 · %1$s</string>
     <string name="no_snooze">未貪睡</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">最晚叫醒我</string>
     <string name="editor_latest">最晚</string>
     <string name="editor_sleep_duration">睡 %1$s</string>
-    <string name="editor_sleep_hint">從你入睡時開始計時。請在手錶上點選「晚安」。</string>
+    <string name="editor_sleep_hint">從你入睡時開始計時。手錶會自動辨識；在手錶上點選「晚安」即可立即開始。</string>
     <string name="editor_window">喚醒時段：%1$d 分鐘</string>
     <string name="editor_window_hint">在 %1$s 到 %2$s 之間叫醒你</string>
+    <string name="editor_window_exact">準時</string>
+    <string name="editor_window_exact_hint">準時在目標時間響鈴，絕不提早。手錶仍會為你的紀錄進行測量。</string>
+    <string name="window_exact_line">準時 %1$s</string>
     <string name="editor_days">重複</string>
     <string name="editor_weekdays">平日</string>
     <string name="editor_weekend">週末</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">繼續編輯</string>
     <string name="editor_delete_title">刪除這個鬧鐘？</string>
     <string name="home_window_running">喚醒時段進行中——正在偵測</string>
+    <string name="home_auto_onset">從 %1$s 起，手錶會自動辨識你何時入睡。</string>
     <string name="check_volume">鬧鐘音量</string>
     <string name="check_volume_problem">鬧鐘音量為 0——手機會無聲響鈴。</string>
     <string name="health_update">更新 Health Connect</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">正在錄音。夜裡最好幫手機接上充電器。</string>
     <string name="sound_rec_default">新的夜晚預設開啟</string>
     <string name="sound_rec_default_hint">從你的就寢時間起開啟 Phase Wake 時開始（未設鬧鐘則從 21:00 起）。只保存短片段；片段留在手機上，7 天後刪除。</string>
-    <string name="sound_type_snore">打鼾</string>
+    <string name="sound_type_snore">可能打鼾</string>
     <string name="sound_type_talk">說夢話</string>
     <string name="sound_type_other">其他聲音</string>
     <plurals name="sound_summary">
-        <item quantity="other">打鼾：%1$s（%2$d 段）</item>
+        <item quantity="other">可能打鼾：%1$s（%2$d 段）</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">說夢話：%1$d 段</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">常見 %1$d–%2$d %%</string>
     <string name="stages_typical_below">常見低於 %1$d %%</string>
     <string name="stages_not_medical">並非醫學評估。</string>
-    <string name="stages_verdict_awake_above">清醒時間比平常多</string>
-    <string name="stages_verdict_deep_below">深眠比平常少</string>
-    <string name="stages_verdict_deep_above">深眠比平常多</string>
-    <string name="stages_verdict_rem_below">REM 較少——常見於睡得短或睡得晚的夜晚</string>
-    <string name="stages_verdict_rem_above">REM 比平常多</string>
-    <string name="stages_verdict_light_below">淺眠比平常少</string>
-    <string name="stages_verdict_light_above">淺眠比平常多</string>
-    <string name="stages_verdict_typical">所有階段都在常見範圍內</string>
+    <string name="stages_source">健康成人的參考範圍（Ohayon 等，Sleep 2004）。手錶只能粗略估計睡眠階段。</string>
     <string name="hypno_bubble">%1$s · %2$s · 已持續 %3$s</string>
     <string name="hypno_block">%1$s，%2$s 至 %3$s</string>
     <string name="chart_week_average">每週平均</string>

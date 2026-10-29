@@ -19,15 +19,18 @@
     <string name="home_next_today">Σήμερα</string>
     <string name="home_next_tomorrow">Αύριο</string>
     <string name="home_next_in">Σε ξυπνά στον ελαφρύ ύπνο · σε %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Σε ξυπνά ακριβώς στην ώρα στόχου · σε %1$s</string>
     <string name="home_no_alarm_title">Ξύπνα τη σωστή στιγμή</string>
     <string name="home_no_alarm_text">Όρισε ώρα και παράθυρο. Το ρολόι σε ξυπνά όταν κοιμάσαι ελαφρά.</string>
     <string name="home_add_alarm">Νέο ξυπνητήρι</string>
     <string name="home_last_night">Χθεσινή νύχτα</string>
     <string name="home_alarms">Τα ξυπνητήριά σου</string>
 
-    <string name="reason_light">Ελαφρύς ύπνος</string>
+    <string name="reason_light">Ανησυχία – μάλλον ελαφρύς ύπνος</string>
     <string name="reason_awake">Ήδη σε εγρήγορση</string>
     <string name="reason_deadline">Δεν εντοπίστηκε ελαφρύς ύπνος</string>
+    <string name="reason_exact">Ακριβώς στην ώρα στόχου</string>
+    <string name="reason_short_night">Σύντομη νύχτα – μόνο στην ώρα στόχου</string>
     <string name="woke_early">%1$d λ. πριν τον στόχο · %2$s</string>
     <string name="woke_on_time">Στην ώρα στόχου · %1$s</string>
     <string name="no_snooze">χωρίς αναβολή</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Ξύπνα με μέχρι</string>
     <string name="editor_latest">Το αργότερο</string>
     <string name="editor_sleep_duration">Ύπνος: %1$s</string>
-    <string name="editor_sleep_hint">Η μέτρηση ξεκινά όταν κοιμηθείς. Πάτα «Καληνύχτα» στο ρολόι σου.</string>
+    <string name="editor_sleep_hint">Μετράει από τη στιγμή που αποκοιμιέσαι. Το ρολόι το αναγνωρίζει αυτόματα· πάτα «Καληνύχτα» στο ρολόι για να ξεκινήσει αμέσως.</string>
     <string name="editor_window">Παράθυρο: %1$d λ.</string>
     <string name="editor_window_hint">Σε ξυπνά ανάμεσα σε %1$s και %2$s</string>
+    <string name="editor_window_exact">Ακριβώς</string>
+    <string name="editor_window_exact_hint">Χτυπά ακριβώς στην ώρα στόχου, ποτέ νωρίτερα. Το ρολόι σου μετρά ακόμη για το ιστορικό σου.</string>
+    <string name="window_exact_line">Ακριβώς στις %1$s</string>
     <string name="editor_days">Επανάληψη</string>
     <string name="editor_weekdays">Καθημερινές</string>
     <string name="editor_weekend">Σαββατοκύριακο</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Συνέχεια επεξεργασίας</string>
     <string name="editor_delete_title">Διαγραφή αυτού του ξυπνητηριού;</string>
     <string name="home_window_running">Το παράθυρο τρέχει – γίνεται μέτρηση</string>
+    <string name="home_auto_onset">Το ρολόι σου εντοπίζει αυτόματα από τις %1$s πότε αποκοιμιέσαι.</string>
     <string name="check_volume">Ένταση ξυπνητηριού</string>
     <string name="check_volume_problem">Η ένταση του ξυπνητηριού είναι στο 0 – το κινητό σου θα χτυπούσε χωρίς ήχο.</string>
     <string name="health_update">Ενημέρωση του Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Η καταγραφή τρέχει. Καλύτερα βάλε το τηλέφωνο στον φορτιστή για τη νύχτα.</string>
     <string name="sound_rec_default">Ενεργό για νέες νύχτες</string>
     <string name="sound_rec_default_hint">Ξεκινά όταν ανοίγεις το Phase Wake από την ώρα ύπνου σου (χωρίς ξυπνητήρι από τις 21:00). Μόνο σύντομα αποσπάσματα· μένουν στο τηλέφωνο και διαγράφονται μετά από 7 ημέρες.</string>
-    <string name="sound_type_snore">Ροχαλητό</string>
+    <string name="sound_type_snore">Πιθανό ροχαλητό</string>
     <string name="sound_type_talk">Ομιλία</string>
     <string name="sound_type_other">Άλλος ήχος</string>
     <plurals name="sound_summary">
-        <item quantity="one">Ροχαλητό: %1$s (%2$d απόσπασμα)</item>
-        <item quantity="other">Ροχαλητό: %1$s (%2$d αποσπάσματα)</item>
+        <item quantity="one">Πιθανό ροχαλητό: %1$s (%2$d απόσπασμα)</item>
+        <item quantity="other">Πιθανό ροχαλητό: %1$s (%2$d αποσπάσματα)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Ομιλία: %1$d απόσπασμα</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Συνήθως %1$d–%2$d %%</string>
     <string name="stages_typical_below">Συνήθως κάτω από %1$d %%</string>
     <string name="stages_not_medical">Δεν είναι ιατρική αξιολόγηση.</string>
-    <string name="stages_verdict_awake_above">Περισσότερος χρόνος ξύπνιος από το συνηθισμένο</string>
-    <string name="stages_verdict_deep_below">Λιγότερος βαθύς ύπνος από το συνηθισμένο</string>
-    <string name="stages_verdict_deep_above">Περισσότερος βαθύς ύπνος από το συνηθισμένο</string>
-    <string name="stages_verdict_rem_below">Λίγος REM – συχνά μετά από σύντομη ή αργή νύχτα</string>
-    <string name="stages_verdict_rem_above">Περισσότερος REM από το συνηθισμένο</string>
-    <string name="stages_verdict_light_below">Λιγότερος ελαφρύς ύπνος από το συνηθισμένο</string>
-    <string name="stages_verdict_light_above">Περισσότερος ελαφρύς ύπνος από το συνηθισμένο</string>
-    <string name="stages_verdict_typical">Όλες οι φάσεις στο συνήθες εύρος</string>
+    <string name="stages_source">Τιμές αναφοράς για υγιείς ενήλικες (Ohayon κ.ά., Sleep 2004). Τα ρολόγια εκτιμούν τις φάσεις μόνο κατά προσέγγιση.</string>
     <string name="hypno_bubble">%1$s · %2$s · εδώ και %3$s</string>
     <string name="hypno_block">%1$s από %2$s έως %3$s</string>
     <string name="chart_week_average">Εβδομαδιαίος μέσος όρος</string>

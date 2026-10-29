@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Dobro jutro</string>
 
     <string name="ring_greeting">Dobro jutro</string>
-    <string name="ring_reason_light">Prepoznat lagani san</string>
+    <string name="ring_reason_light">Nemirno – vjerovatno lagani san</string>
     <string name="ring_reason_awake">Već ne spavaš</string>
     <string name="ring_reason_deadline">Ciljno vrijeme je stiglo</string>
+    <string name="ring_reason_exact">Tačno u ciljno vrijeme</string>
+    <string name="ring_reason_short_night">Kratka noć – tek u ciljno vrijeme</string>
     <string name="ring_hold_to_stop">Drži za zaustavljanje</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · još %2$d</item>
@@ -57,6 +59,9 @@
     <string name="editor_target">Probudi me do</string>
     <string name="editor_latest">Najkasnije</string>
     <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_window_exact">Tačno</string>
+    <string name="editor_window_exact_hint">Zvoni tačno u ciljno vrijeme, nikad ranije. Sat i dalje mjeri za tvoju historiju.</string>
+    <string name="window_exact_line">Tačno u %1$s</string>
     <string name="editor_days">Ponavljanje</string>
     <string name="editor_save">Sačuvaj</string>
     <string name="editor_delete">Izbriši alarm</string>

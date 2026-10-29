@@ -20,15 +20,18 @@
     <string name="home_next_today">আজ</string>
     <string name="home_next_tomorrow">আগামীকাল</string>
     <string name="home_next_in">হালকা ঘুমে জাগাবে · %1$s পরে</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ঠিক লক্ষ্য সময়ে জাগাবে · %1$s পরে</string>
     <string name="home_no_alarm_title">ঠিক মুহূর্তে জেগে ওঠো</string>
     <string name="home_no_alarm_text">একটা সময় আর সময়সীমা ঠিক করো। তুমি হালকা ঘুমে থাকলে ঘড়ি তোমাকে জাগাবে।</string>
     <string name="home_add_alarm">নতুন অ্যালার্ম</string>
     <string name="home_last_night">গত রাত</string>
     <string name="home_alarms">তোমার অ্যালার্ম</string>
 
-    <string name="reason_light">হালকা ঘুম</string>
+    <string name="reason_light">অস্থির – সম্ভবত হালকা ঘুম</string>
     <string name="reason_awake">আগেই জেগে ছিলে</string>
     <string name="reason_deadline">হালকা ঘুম ধরা পড়েনি</string>
+    <string name="reason_exact">ঠিক লক্ষ্য সময়ে</string>
+    <string name="reason_short_night">ছোট রাত – কেবল লক্ষ্য সময়ে</string>
     <string name="woke_early">লক্ষ্যের %1$d মি. আগে · %2$s</string>
     <string name="woke_on_time">লক্ষ্য সময়ে · %1$s</string>
     <string name="no_snooze">স্নুজ ছাড়া</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">জাগার লক্ষ্য সময়</string>
     <string name="editor_latest">সর্বশেষ</string>
     <string name="editor_sleep_duration">%1$s ঘুম</string>
-    <string name="editor_sleep_hint">ঘুমিয়ে পড়ার পর থেকে গোনা শুরু হয়। ঘড়িতে “শুভরাত্রি” ট্যাপ করো।</string>
+    <string name="editor_sleep_hint">ঘুমিয়ে পড়ার সময় থেকে গোনা হয়। ঘড়ি নিজেই তা শনাক্ত করে; এখনই শুরু করতে ঘড়িতে “শুভরাত্রি” ট্যাপ করো।</string>
     <string name="editor_window">সময়সীমা: %1$d মি.</string>
     <string name="editor_window_hint">%1$s থেকে %2$s-এর মধ্যে জাগাবে</string>
+    <string name="editor_window_exact">ঠিক সময়ে</string>
+    <string name="editor_window_exact_hint">ঠিক লক্ষ্য সময়ে বাজবে, কখনো আগে নয়। তোমার ঘড়ি তবুও তোমার ইতিহাসের জন্য মাপবে।</string>
+    <string name="window_exact_line">ঠিক %1$s-এ</string>
     <string name="editor_days">পুনরাবৃত্তি</string>
     <string name="editor_weekdays">কর্মদিবস</string>
     <string name="editor_weekend">সপ্তাহান্ত</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">সম্পাদনা চালিয়ে যাও</string>
     <string name="editor_delete_title">এই অ্যালার্মটা মুছবে?</string>
     <string name="home_window_running">জাগানোর সময়সীমা চলছে – এখন মাপা হচ্ছে</string>
+    <string name="home_auto_onset">তোমার ঘড়ি %1$s থেকে নিজে থেকেই বুঝে নেবে কখন তুমি ঘুমিয়ে পড়ো।</string>
     <string name="check_volume">অ্যালার্মের ভলিউম</string>
     <string name="check_volume_problem">অ্যালার্মের ভলিউম ০ – তোমার ফোন নিঃশব্দে বাজবে।</string>
     <string name="health_update">Health Connect আপডেট করো</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">রেকর্ডিং চালু। রাতের জন্য ফোনটা চার্জে লাগিয়ে রাখাই ভালো।</string>
     <string name="sound_rec_default">নতুন রাতের জন্য চালু</string>
     <string name="sound_rec_default_hint">ঘুমানোর সময় থেকে Phase Wake খুললে শুরু হয় (অ্যালার্ম না থাকলে রাত ৯টা থেকে)। শুধু ছোট ক্লিপ; এগুলো তোমার ফোনেই থাকে আর ৭ দিন পরে মুছে যায়।</string>
-    <string name="sound_type_snore">নাক ডাকা</string>
+    <string name="sound_type_snore">সম্ভবত নাক ডাকা</string>
     <string name="sound_type_talk">কথা বলা</string>
     <string name="sound_type_other">অন্য শব্দ</string>
     <plurals name="sound_summary">
-        <item quantity="one">নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
-        <item quantity="other">নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
+        <item quantity="one">সম্ভবত নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
+        <item quantity="other">সম্ভবত নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">কথা বলা: %1$dটি ক্লিপ</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">সাধারণত %1$d–%2$d %%</string>
     <string name="stages_typical_below">সাধারণত %1$d %%-এর কম</string>
     <string name="stages_not_medical">এটি কোনো চিকিৎসা মূল্যায়ন নয়।</string>
-    <string name="stages_verdict_awake_above">স্বাভাবিকের চেয়ে বেশি জেগে থাকা</string>
-    <string name="stages_verdict_deep_below">স্বাভাবিকের চেয়ে কম গভীর ঘুম</string>
-    <string name="stages_verdict_deep_above">স্বাভাবিকের চেয়ে বেশি গভীর ঘুম</string>
-    <string name="stages_verdict_rem_below">কম REM – প্রায়ই ছোট বা দেরির রাতের পরে</string>
-    <string name="stages_verdict_rem_above">স্বাভাবিকের চেয়ে বেশি REM</string>
-    <string name="stages_verdict_light_below">স্বাভাবিকের চেয়ে কম হালকা ঘুম</string>
-    <string name="stages_verdict_light_above">স্বাভাবিকের চেয়ে বেশি হালকা ঘুম</string>
-    <string name="stages_verdict_typical">সব পর্যায় সাধারণ পরিসরে</string>
+    <string name="stages_source">সুস্থ প্রাপ্তবয়স্কদের জন্য নির্দেশক মান (Ohayon ও অন্যান্য, Sleep 2004)। ঘড়ি ঘুমের পর্যায় শুধু মোটামুটি অনুমান করে।</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ধরে</string>
     <string name="hypno_block">%1$s %2$s থেকে %3$s</string>
     <string name="chart_week_average">সাপ্তাহিক গড়</string>

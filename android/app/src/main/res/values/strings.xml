@@ -22,15 +22,18 @@
     <string name="home_next_today">Today</string>
     <string name="home_next_tomorrow">Tomorrow</string>
     <string name="home_next_in">Wakes you in light sleep · in %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Wakes you right at the target time · in %1$s</string>
     <string name="home_no_alarm_title">Wake up at the right moment</string>
     <string name="home_no_alarm_text">Set a time and a window. Your watch wakes you when you sleep lightly.</string>
     <string name="home_add_alarm">New alarm</string>
     <string name="home_last_night">Last night</string>
     <string name="home_alarms">Your alarms</string>
 
-    <string name="reason_light">Light sleep</string>
+    <string name="reason_light">Restless – likely light sleep</string>
     <string name="reason_awake">Already awake</string>
     <string name="reason_deadline">No light sleep detected</string>
+    <string name="reason_exact">Right at the target time</string>
+    <string name="reason_short_night">Short night – woke at the target time</string>
     <string name="woke_early">%1$d min before target · %2$s</string>
     <string name="woke_on_time">At target time · %1$s</string>
     <string name="no_snooze">no snooze</string>
@@ -50,9 +53,12 @@
     <string name="editor_target">Wake me by</string>
     <string name="editor_latest">At the latest</string>
     <string name="editor_sleep_duration">Sleep for %1$s</string>
-    <string name="editor_sleep_hint">Starts counting when you fall asleep. Tap “Good night” on your watch.</string>
+    <string name="editor_sleep_hint">Counts from when you fall asleep. Your watch detects it automatically; tap “Good night” on the watch to start right away.</string>
     <string name="editor_window">Window: %1$d min</string>
     <string name="editor_window_hint">Wakes you between %1$s and %2$s</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Rings exactly at the target time, never earlier. Your watch still measures for your history.</string>
+    <string name="window_exact_line">Exactly at %1$s</string>
     <string name="editor_days">Repeat</string>
     <string name="editor_weekdays">Weekdays</string>
     <string name="editor_weekend">Weekend</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">Keep editing</string>
     <string name="editor_delete_title">Delete this alarm?</string>
     <string name="home_window_running">Wake window running – measuring now</string>
+    <string name="home_auto_onset">Your watch detects when you fall asleep from %1$s automatically.</string>
     <string name="check_volume">Alarm volume</string>
     <string name="check_volume_problem">Alarm volume is set to 0 – your phone would ring silently.</string>
     <string name="health_update">Update Health Connect</string>
@@ -303,12 +310,12 @@
     <string name="sound_rec_plug_in">Recording is on. Best plug in your phone for the night.</string>
     <string name="sound_rec_default">On for new nights</string>
     <string name="sound_rec_default_hint">Starts when you open Phase Wake from your bedtime on (without an alarm from 9 pm). Only short clips; they stay on your phone and are deleted after 7 days.</string>
-    <string name="sound_type_snore">Snoring</string>
+    <string name="sound_type_snore">Possible snoring</string>
     <string name="sound_type_talk">Talking</string>
     <string name="sound_type_other">Other sound</string>
     <plurals name="sound_summary">
-        <item quantity="one">Snoring: %1$s (%2$d clip)</item>
-        <item quantity="other">Snoring: %1$s (%2$d clips)</item>
+        <item quantity="one">Possible snoring: %1$s (%2$d clip)</item>
+        <item quantity="other">Possible snoring: %1$s (%2$d clips)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Talking: %1$d clip</item>
@@ -366,14 +373,7 @@
     <string name="stages_typical_range" tools:ignore="PluralsCandidate">Typical %1$d–%2$d %%</string>
     <string name="stages_typical_below" tools:ignore="PluralsCandidate">Typical under %1$d %%</string>
     <string name="stages_not_medical">Not a medical assessment.</string>
-    <string name="stages_verdict_awake_above">More time awake than usual</string>
-    <string name="stages_verdict_deep_below">Less deep sleep than usual</string>
-    <string name="stages_verdict_deep_above">More deep sleep than usual</string>
-    <string name="stages_verdict_rem_below">Little REM – often after a short or late night</string>
-    <string name="stages_verdict_rem_above">More REM than usual</string>
-    <string name="stages_verdict_light_below">Less light sleep than usual</string>
-    <string name="stages_verdict_light_above">More light sleep than usual</string>
-    <string name="stages_verdict_typical">All stages within the typical range</string>
+    <string name="stages_source">Reference ranges for healthy adults (Ohayon et al., Sleep 2004). Watches only estimate stages roughly.</string>
     <string name="hypno_bubble">%1$s · %2$s · for %3$s</string>
     <string name="hypno_block">%1$s from %2$s to %3$s</string>
     <string name="chart_week_average">Weekly average</string>

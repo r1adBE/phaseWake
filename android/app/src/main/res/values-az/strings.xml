@@ -17,14 +17,17 @@
     <string name="home_next_today">Bu gün</string>
     <string name="home_next_tomorrow">Sabah</string>
     <string name="home_next_in">Yüngül yuxuda oyadır · %1$s sonra</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Düz hədəf vaxtında oyadır · %1$s sonra</string>
     <string name="home_no_alarm_title">Doğru anda oyan</string>
     <string name="home_no_alarm_text">Vaxt və pəncərə seç. Yüngül yatanda saatın səni oyadır.</string>
     <string name="home_add_alarm">Yeni siqnal</string>
     <string name="home_last_night">Ötən gecə</string>
     <string name="home_alarms">Siqnalların</string>
-    <string name="reason_light">Yüngül yuxu</string>
+    <string name="reason_light">Narahat – yəqin ki, yüngül yuxu</string>
     <string name="reason_awake">Artıq oyaq</string>
     <string name="reason_deadline">Yüngül yuxu tapılmadı</string>
+    <string name="reason_exact">Düz hədəf vaxtında</string>
+    <string name="reason_short_night">Qısa gecə – yalnız hədəf vaxtında</string>
     <string name="woke_early">Hədəfdən %1$d dəq əvvəl · %2$s</string>
     <string name="woke_on_time">Hədəf vaxtında · %1$s</string>
     <string name="no_snooze">təxirəsiz</string>
@@ -42,9 +45,12 @@
     <string name="editor_target">Oyanma vaxtı</string>
     <string name="editor_latest">Ən gec</string>
     <string name="editor_sleep_duration">Yuxu: %1$s</string>
-    <string name="editor_sleep_hint">Yuxuya getdiyin andan saymağa başlayır. Saatında “Gecən xeyrə” düyməsinə toxun.</string>
+    <string name="editor_sleep_hint">Yuxuya getdiyin andan sayır. Saatın bunu avtomatik aşkarlayır; dərhal başlamaq üçün saatda “Gecən xeyrə” düyməsinə toxun.</string>
     <string name="editor_window">Pəncərə: %1$d dəq</string>
     <string name="editor_window_hint">%1$s ilə %2$s arasında oyadır</string>
+    <string name="editor_window_exact">Dəqiq</string>
+    <string name="editor_window_exact_hint">Düz hədəf vaxtında zəng çalır, heç vaxt tez yox. Saatın yenə də tarixçən üçün ölçür.</string>
+    <string name="window_exact_line">Düz saat %1$s</string>
     <string name="editor_days">Təkrar</string>
     <string name="editor_weekdays">İş günləri</string>
     <string name="editor_weekend">Həftəsonu</string>
@@ -216,6 +222,7 @@
     <string name="editor_keep_editing">Redaktəyə davam et</string>
     <string name="editor_delete_title">Bu siqnal silinsin?</string>
     <string name="home_window_running">Oyanma pəncərəsi gedir – indi ölçülür</string>
+    <string name="home_auto_onset">Saatın yuxuya getməyini avtomatik aşkarlayır – başlanğıc: %1$s.</string>
     <string name="check_volume">Siqnal səsi</string>
     <string name="check_volume_problem">Siqnal səsi 0-dır – telefonun səssiz çalardı.</string>
     <string name="health_update">Health Connect-i yenilə</string>
@@ -288,12 +295,12 @@
     <string name="sound_rec_plug_in">Yazma açıqdır. Yaxşısı telefonunu gecəlik şarja qoy.</string>
     <string name="sound_rec_default">Yeni gecələr üçün açıq</string>
     <string name="sound_rec_default_hint">Phase Wake-i yatma vaxtından sonra açanda başlayır (siqnal yoxdursa, 21:00-dan). Yalnız qısa kliplər; onlar telefonunda qalır və 7 gündən sonra silinir.</string>
-    <string name="sound_type_snore">Xoruldama</string>
+    <string name="sound_type_snore">Ehtimal ki, xoruldama</string>
     <string name="sound_type_talk">Danışma</string>
     <string name="sound_type_other">Başqa səs</string>
     <plurals name="sound_summary">
-        <item quantity="one">Xoruldama: %1$s (%2$d klip)</item>
-        <item quantity="other">Xoruldama: %1$s (%2$d klip)</item>
+        <item quantity="one">Ehtimal ki, xoruldama: %1$s (%2$d klip)</item>
+        <item quantity="other">Ehtimal ki, xoruldama: %1$s (%2$d klip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Danışma: %1$d klip</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">Adətən %1$d–%2$d %%</string>
     <string name="stages_typical_below">Adətən %1$d %%-dən az</string>
     <string name="stages_not_medical">Tibbi qiymətləndirmə deyil.</string>
-    <string name="stages_verdict_awake_above">Adətən olduğundan çox oyaq vaxt</string>
-    <string name="stages_verdict_deep_below">Adətən olduğundan az dərin yuxu</string>
-    <string name="stages_verdict_deep_above">Adətən olduğundan çox dərin yuxu</string>
-    <string name="stages_verdict_rem_below">Az REM – çox vaxt qısa və ya gec gecədən sonra</string>
-    <string name="stages_verdict_rem_above">Adətən olduğundan çox REM</string>
-    <string name="stages_verdict_light_below">Adətən olduğundan az yüngül yuxu</string>
-    <string name="stages_verdict_light_above">Adətən olduğundan çox yüngül yuxu</string>
-    <string name="stages_verdict_typical">Bütün mərhələlər adi aralıqdadır</string>
+    <string name="stages_source">Sağlam yetkinlər üçün istinad dəyərləri (Ohayon və b., Sleep 2004). Saatlar mərhələləri yalnız təxminən qiymətləndirir.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s-dir</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Həftəlik orta</string>

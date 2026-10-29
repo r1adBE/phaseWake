@@ -94,7 +94,12 @@ class NextAlarmWidget : AppWidgetProvider() {
                 views.setTextViewText(R.id.widget_window, context.getString(R.string.widget_no_alarm))
                 views.setViewVisibility(R.id.widget_day, View.GONE)
             } else {
-                views.setTextViewText(R.id.widget_window, Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone))
+                val window = if (plan.exact) {
+                    context.getString(R.string.window_exact_line, Format.time(plan.target, zone))
+                } else {
+                    Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone)
+                }
+                views.setTextViewText(R.id.widget_window, window)
                 val label = alarms.firstOrNull { it.id == plan.alarmId }?.label.orEmpty()
                 views.setTextViewText(R.id.widget_day, listOf(day(context, plan.target, zone), label).filter { it.isNotBlank() }.joinToString(" · "))
                 views.setViewVisibility(R.id.widget_day, View.VISIBLE)

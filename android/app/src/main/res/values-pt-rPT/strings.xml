@@ -20,15 +20,18 @@
     <string name="home_next_today">Hoje</string>
     <string name="home_next_tomorrow">Amanhã</string>
     <string name="home_next_in">Acorda-te no sono leve · em %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Acorda-te exatamente à hora-alvo · em %1$s</string>
     <string name="home_no_alarm_title">Acorda na altura certa</string>
     <string name="home_no_alarm_text">Define uma hora e uma janela. O teu relógio acorda-te quando dormes de forma leve.</string>
     <string name="home_add_alarm">Novo alarme</string>
     <string name="home_last_night">Ontem à noite</string>
     <string name="home_alarms">Os teus alarmes</string>
 
-    <string name="reason_light">Sono leve</string>
+    <string name="reason_light">Agitado – provavelmente sono leve</string>
     <string name="reason_awake">Já acordado</string>
     <string name="reason_deadline">Nenhum sono leve detetado</string>
+    <string name="reason_exact">Exatamente à hora-alvo</string>
+    <string name="reason_short_night">Noite curta – só à hora-alvo</string>
     <string name="woke_early">%1$d min antes da hora-alvo · %2$s</string>
     <string name="woke_on_time">À hora-alvo · %1$s</string>
     <string name="no_snooze">sem soneca</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Acorda-me até</string>
     <string name="editor_latest">No máximo</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
-    <string name="editor_sleep_hint">A contagem começa quando adormeces. Toca em “Boa noite” no relógio.</string>
+    <string name="editor_sleep_hint">Conta a partir de quando adormeces. O relógio deteta-o automaticamente; toca em “Boa noite” no relógio para começar já.</string>
     <string name="editor_window">Janela: %1$d min</string>
     <string name="editor_window_hint">Acorda-te entre as %1$s e as %2$s</string>
+    <string name="editor_window_exact">Exato</string>
+    <string name="editor_window_exact_hint">Toca exatamente à hora-alvo, nunca antes. O relógio continua a medir para o teu histórico.</string>
+    <string name="window_exact_line">Exatamente às %1$s</string>
     <string name="editor_days">Repetir</string>
     <string name="editor_weekdays">Dias úteis</string>
     <string name="editor_weekend">Fim de semana</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">Continuar a editar</string>
     <string name="editor_delete_title">Eliminar este alarme?</string>
     <string name="home_window_running">Janela em curso – a medir agora</string>
+    <string name="home_auto_onset">O relógio deteta automaticamente quando adormeces a partir das %1$s.</string>
     <string name="check_volume">Volume do alarme</string>
     <string name="check_volume_problem">O volume do alarme está a 0 – o telemóvel tocaria em silêncio.</string>
     <string name="health_update">Atualizar o Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Gravação ativa. É melhor ligares o telemóvel ao carregador durante a noite.</string>
     <string name="sound_rec_default">Ativar para novas noites</string>
     <string name="sound_rec_default_hint">Começa quando abres o Phase Wake a partir da tua hora de deitar (sem alarme, desde as 21:00). Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias.</string>
-    <string name="sound_type_snore">Ressonar</string>
+    <string name="sound_type_snore">Possível ressonar</string>
     <string name="sound_type_talk">Falar</string>
     <string name="sound_type_other">Outro som</string>
     <plurals name="sound_summary">
-        <item quantity="one">Ressonar: %1$s (%2$d excerto)</item>
-        <item quantity="many">Ressonar: %1$s (%2$d excertos)</item>
-        <item quantity="other">Ressonar: %1$s (%2$d excertos)</item>
+        <item quantity="one">Possível ressonar: %1$s (%2$d excerto)</item>
+        <item quantity="many">Possível ressonar: %1$s (%2$d excertos)</item>
+        <item quantity="other">Possível ressonar: %1$s (%2$d excertos)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Falar: %1$d excerto</item>
@@ -521,14 +528,7 @@
     <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
     <string name="stages_typical_below">Habitual abaixo de %1$d %%</string>
     <string name="stages_not_medical">Não é uma avaliação médica.</string>
-    <string name="stages_verdict_awake_above">Mais tempo acordado do que o habitual</string>
-    <string name="stages_verdict_deep_below">Menos sono profundo do que o habitual</string>
-    <string name="stages_verdict_deep_above">Mais sono profundo do que o habitual</string>
-    <string name="stages_verdict_rem_below">Pouco REM – muitas vezes após uma noite curta ou tardia</string>
-    <string name="stages_verdict_rem_above">Mais REM do que o habitual</string>
-    <string name="stages_verdict_light_below">Menos sono leve do que o habitual</string>
-    <string name="stages_verdict_light_above">Mais sono leve do que o habitual</string>
-    <string name="stages_verdict_typical">Todas as fases no intervalo habitual</string>
+    <string name="stages_source">Valores de referência para adultos saudáveis (Ohayon et al., Sleep 2004). Os relógios só estimam as fases de forma aproximada.</string>
     <string name="hypno_bubble">%1$s · %2$s · há %3$s</string>
     <string name="hypno_block">%1$s das %2$s às %3$s</string>
     <string name="chart_week_average">Média semanal</string>

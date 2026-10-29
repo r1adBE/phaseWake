@@ -127,21 +127,28 @@ object Codec {
                 )
             }
 
+    /** Weckgründe, die jede Version lesen kann; neuere stehen zusätzlich in Feld 8 ([encodeNight]). */
+    private val legacyReasons = setOf(WakeReason.AWAKE, WakeReason.LIGHT_SLEEP, WakeReason.DEADLINE)
+
     /**
      * Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Kopfdaten (Zeiten in ms seit 1970)
      * und eine Zeile mit allen Epochen «Bewegung;Puls», durch Komma getrennt; fehlende Werte bleiben leer.
+     * Ein Grund, den ältere Versionen nicht kennen ([WakeReason.EXACT], [WakeReason.SHORT_NIGHT]), steht in Feld 5
+     * als [WakeReason.DEADLINE] (so lesen ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8.
      */
     fun encodeNight(night: NightRecord): String = buildString {
         append(NIGHT_HEADER).append('\n')
-        append(listOf(
+        val legacy = night.reason in legacyReasons
+        val fields = listOf(
             escape(night.alarmId),
             night.windowStart.toEpochMilli().toString(),
             night.target.toEpochMilli().toString(),
             night.wokeAt.toEpochMilli().toString(),
-            night.reason.name,
+            if (legacy) night.reason.name else WakeReason.DEADLINE.name,
             night.snoozes.toString(),
             night.feeling?.toString().orEmpty(),
-        ).joinToString(SEP)).append('\n')
+        )
+        append((if (legacy) fields else fields + night.reason.name).joinToString(SEP)).append('\n')
         append(night.epochs.joinToString(",") { e ->
             // toString() liefert die kürzeste exakt rücklesbare Darstellung.
             (e.motion?.toString() ?: "") + ";" + (e.heartRate?.toString() ?: "")
@@ -149,9 +156,10 @@ object Codec {
     }
 
     /**
-     * Liest [encodeNight]. Ältere Stände ohne Befinden (6 Felder) bleiben lesbar, angehängte Felder neuerer
-     * Versionen werden ignoriert. Fremdes Format oder kaputte Werte: [CodecException] (eine Nacht ist
-     * ganz oder gar nicht lesbar).
+     * Liest [encodeNight]. Ältere Stände ohne Befinden (6 Felder) bleiben lesbar, weitere angehängte Felder neuerer
+     * Versionen werden ignoriert. Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer
+     * neueren Version) gilt als [WakeReason.DEADLINE]. Fremdes Format oder kaputte Werte: [CodecException]
+     * (eine Nacht ist ganz oder gar nicht lesbar).
      */
     fun decodeNight(text: String): NightRecord {
         val lines = text.lines()
@@ -166,7 +174,7 @@ object Codec {
                 windowStart = Instant.ofEpochMilli(f[1].toLong()),
                 target = Instant.ofEpochMilli(f[2].toLong()),
                 wokeAt = Instant.ofEpochMilli(f[3].toLong()),
-                reason = WakeReason.valueOf(f[4]),
+                reason = reasonOf(f.getOrNull(7)) ?: reasonOf(f[4]) ?: WakeReason.DEADLINE,
                 snoozes = f[5].toInt(),
                 feeling = f.getOrNull(6)?.ifEmpty { null }?.toInt(),
                 epochs = if (epochLine.isEmpty()) emptyList() else epochLine.split(",").map { pair ->
@@ -177,6 +185,8 @@ object Codec {
             )
         }
     }
+
+    private fun reasonOf(name: String?): WakeReason? = WakeReason.entries.firstOrNull { it.name == name }
 
     private inline fun <T> parse(what: String, block: () -> T): T =
         try {

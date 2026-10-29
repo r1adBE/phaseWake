@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Добро утро</string>
 
     <string name="ring_greeting">Добро утро</string>
-    <string name="ring_reason_light">Откриен е лесен сон</string>
+    <string name="ring_reason_light">Немирно – веројатно лесен сон</string>
     <string name="ring_reason_awake">Веќе беше буден</string>
     <string name="ring_reason_deadline">Целното време е достигнато</string>
+    <string name="ring_reason_exact">Точно во целното време</string>
+    <string name="ring_reason_short_night">Кратка ноќ – дури во целното време</string>
     <string name="ring_hold_to_stop">Држи за стоп</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d мин · уште %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Разбуди ме до</string>
     <string name="editor_latest">Најдоцна</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Ѕвони точно во целното време, никогаш порано. Часовникот сепак мери за твојата историја.</string>
+    <string name="window_exact_line">Точно во %1$s</string>
     <string name="editor_days">Повторувај</string>
     <string name="editor_save">Зачувај</string>
     <string name="editor_delete">Избриши аларм</string>

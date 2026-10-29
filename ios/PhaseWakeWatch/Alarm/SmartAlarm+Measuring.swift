@@ -40,7 +40,7 @@ extension SmartAlarm {
         snoozes = 0
         phase = .measuring(plan)
         publishArmed()
-        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.time(plan.windowStart))–\(Format.time(plan.target)) unmeasured \(unmeasured)")
+        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.time(plan.windowStart))–\(Format.time(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
         let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
@@ -72,7 +72,7 @@ extension SmartAlarm {
         deadline = Timer.scheduledTimer(withTimeInterval: max(0, plan.target.timeIntervalSinceNow), repeats: false) { [weak self] _ in
             Task { @MainActor in
                 guard let self, self.phase.isMeasuring else { return }
-                self.ring(self.detector.finish())
+                self.ring(self.targetReason())
             }
         }
     }
@@ -119,12 +119,22 @@ extension SmartAlarm {
             epochs.append(epoch)
             // Vor dem Start der Sitzung gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung.
             if epochs.count <= unmeasured { continue }
+            // «Genau»: nur für den Verlauf messen, nie vor der Zielzeit wecken – die Erkennung entscheidet nicht.
+            if exactNight { continue }
             if case .wake(let reason) = detector.onEpoch(epoch) {
                 DiagStore.shared.log(.phase, reason.rawValue)
                 ring(reason)
                 return
             }
         }
+    }
+
+    /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.
+    var exactNight: Bool { nightPlan?.exact == true || spec?.isExact == true }
+
+    /// Grund beim Wecken zur Zielzeit (Zeitgeber oder Ende der Sitzung): «Genau» oder, was die Erkennung meldet.
+    func targetReason() -> WakeReason {
+        exactNight ? .exact : detector.finish()
     }
 
     func stopSensors() {

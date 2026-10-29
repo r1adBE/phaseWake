@@ -9,9 +9,11 @@
     <string name="notification_ring_title">早上好</string>
 
     <string name="ring_greeting">早上好</string>
-    <string name="ring_reason_light">检测到浅睡</string>
+    <string name="ring_reason_light">睡得不安稳 – 可能是浅睡</string>
     <string name="ring_reason_awake">你已经醒了</string>
     <string name="ring_reason_deadline">已到目标时间</string>
+    <string name="ring_reason_exact">准时在目标时间</string>
+    <string name="ring_reason_short_night">睡眠较短 – 到目标时间才叫醒</string>
     <string name="ring_hold_to_stop">长按停止</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d 分钟 · 剩余 %2$d 次</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">最迟叫醒我</string>
     <string name="editor_latest">最晚</string>
     <string name="editor_window">时间窗：%1$d 分钟</string>
+    <string name="editor_window_exact">准时</string>
+    <string name="editor_window_exact_hint">准时在目标时间响铃，绝不提前。手表仍会为你的记录进行测量。</string>
+    <string name="window_exact_line">准时 %1$s</string>
     <string name="editor_days">重复</string>
     <string name="editor_save">保存</string>
     <string name="editor_delete">删除闹钟</string>

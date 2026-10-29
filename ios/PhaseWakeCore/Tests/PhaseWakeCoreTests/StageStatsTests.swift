@@ -38,7 +38,6 @@ final class StageStatsTests: XCTestCase {
     func testPercentsAddUpToHundred() {
         let s = of(span(0, 10, .awake), span(10, 20, .rem), span(20, 30, .light))!
         XCTAssertEqual(percents(s), [34, 33, 33, 0])
-        XCTAssertNil(s.verdict)
     }
 
     func testTypicalNight() {
@@ -47,7 +46,6 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(s.totals.map(\.minutes), [30, 120, 240, 90])
         XCTAssertEqual(percents(s), [6, 25, 50, 19])
         XCTAssertEqual(s.totals.map(\.rating), Array(repeating: StageRating.typical, count: 4))
-        XCTAssertEqual(s.verdict, .typical)
         XCTAssertEqual(s.latencyMinutes, 30)
         XCTAssertEqual(s.awakenings, 0)
         XCTAssertEqual(s.longestDeepMinutes, 90)
@@ -65,20 +63,20 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(s.latencyMinutes, 10)
     }
 
-    func testVerdictFollowsTheFixedOrder() {
+    func testRatingsMarkTheTypicalRange() {
         let deepAbove = of(span(0, 200, .light), span(200, 320, .deep), span(320, 400, .rem))!
         XCTAssertEqual(percents(deepAbove), [0, 20, 50, 30])
-        XCTAssertEqual(deepAbove.verdict, .deepAbove)
+        XCTAssertEqual(deepAbove.total(.deep)?.rating, .above)
         let awakeAndLowDeep = of(span(0, 100, .awake), span(100, 400, .light), span(400, 420, .deep))!
-        XCTAssertEqual(awakeAndLowDeep.verdict, .awakeAbove)
+        XCTAssertEqual(awakeAndLowDeep.total(.awake)?.rating, .above)
+        XCTAssertEqual(awakeAndLowDeep.total(.deep)?.rating, .below)
         let lowRem = of(span(0, 260, .light), span(260, 340, .deep), span(340, 380, .rem), span(380, 400, .awake))!
         XCTAssertEqual(percents(lowRem), [5, 10, 65, 20])
-        XCTAssertEqual(lowRem.verdict, .remBelow)
+        XCTAssertEqual(lowRem.total(.rem)?.rating, .below)
     }
 
-    func testTooLittleDataHasNoVerdict() {
+    func testSingleStageIsTheWholeNight() {
         let s = of(span(0, 100, .light))!
-        XCTAssertNil(s.verdict)
         XCTAssertEqual(percents(s), [0, 0, 100, 0])
     }
 

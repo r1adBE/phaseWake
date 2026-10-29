@@ -20,15 +20,18 @@
     <string name="home_next_today">Днес</string>
     <string name="home_next_tomorrow">Утре</string>
     <string name="home_next_in">Събужда те в лек сън · след %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Събужда те точно в целевия час · след %1$s</string>
     <string name="home_no_alarm_title">Събуди се в точния момент</string>
     <string name="home_no_alarm_text">Задай час и прозорец. Часовникът ще те събуди, когато спиш леко.</string>
     <string name="home_add_alarm">Нов будилник</string>
     <string name="home_last_night">Миналата нощ</string>
     <string name="home_alarms">Твоите будилници</string>
 
-    <string name="reason_light">Лек сън</string>
+    <string name="reason_light">Неспокойно – вероятно лек сън</string>
     <string name="reason_awake">Вече на крак</string>
     <string name="reason_deadline">Не е открит лек сън</string>
+    <string name="reason_exact">Точно в целевия час</string>
+    <string name="reason_short_night">Кратка нощ – чак в целевия час</string>
     <string name="woke_early">%1$d мин преди целевия час · %2$s</string>
     <string name="woke_on_time">В целевия час · %1$s</string>
     <string name="no_snooze">без отлагане</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Събуди ме до</string>
     <string name="editor_latest">Най-късно</string>
     <string name="editor_sleep_duration">Сън: %1$s</string>
-    <string name="editor_sleep_hint">Отброява се от заспиването. Докосни „Лека нощ“ на часовника.</string>
+    <string name="editor_sleep_hint">Отброява се от заспиването. Часовникът го разпознава автоматично; докосни „Лека нощ“ на часовника, за да започне веднага.</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
     <string name="editor_window_hint">Събужда те между %1$s и %2$s</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Звъни точно в целевия час, никога по-рано. Часовникът ти пак мери за историята.</string>
+    <string name="window_exact_line">Точно в %1$s</string>
     <string name="editor_days">Повтаряне</string>
     <string name="editor_weekdays">Делнични дни</string>
     <string name="editor_weekend">Уикенд</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">Продължи редакцията</string>
     <string name="editor_delete_title">Изтриване на този будилник?</string>
     <string name="home_window_running">Прозорецът за събуждане тече – измерва се</string>
+    <string name="home_auto_onset">Часовникът ти автоматично разпознава от %1$s кога заспиваш.</string>
     <string name="check_volume">Сила на будилника</string>
     <string name="check_volume_problem">Силата на будилника е 0 – телефонът ще звъни беззвучно.</string>
     <string name="health_update">Актуализирай Health Connect</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">Записът е включен. Най-добре включи телефона на зарядно за през нощта.</string>
     <string name="sound_rec_default">Включено за нови нощи</string>
     <string name="sound_rec_default_hint">Стартира, когато отвориш Phase Wake след часа си за лягане (без будилник – след 21:00). Само кратки записи; остават на телефона и се изтриват след 7 дни.</string>
-    <string name="sound_type_snore">Хъркане</string>
+    <string name="sound_type_snore">Възможно хъркане</string>
     <string name="sound_type_talk">Говорене</string>
     <string name="sound_type_other">Друг звук</string>
     <plurals name="sound_summary">
-        <item quantity="one">Хъркане: %1$s (%2$d запис)</item>
-        <item quantity="other">Хъркане: %1$s (%2$d записа)</item>
+        <item quantity="one">Възможно хъркане: %1$s (%2$d запис)</item>
+        <item quantity="other">Възможно хъркане: %1$s (%2$d записа)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Говорене: %1$d запис</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">Обичайно %1$d–%2$d %%</string>
     <string name="stages_typical_below">Обичайно под %1$d %%</string>
     <string name="stages_not_medical">Не е медицинска оценка.</string>
-    <string name="stages_verdict_awake_above">Повече време буден от обичайното</string>
-    <string name="stages_verdict_deep_below">По-малко дълбок сън от обичайното</string>
-    <string name="stages_verdict_deep_above">Повече дълбок сън от обичайното</string>
-    <string name="stages_verdict_rem_below">Малко REM – често след кратка или късна нощ</string>
-    <string name="stages_verdict_rem_above">Повече REM от обичайното</string>
-    <string name="stages_verdict_light_below">По-малко лек сън от обичайното</string>
-    <string name="stages_verdict_light_above">Повече лек сън от обичайното</string>
-    <string name="stages_verdict_typical">Всички фази са в обичайния диапазон</string>
+    <string name="stages_source">Ориентировъчни стойности за здрави възрастни (Ohayon и др., Sleep 2004). Часовниците оценяват фазите само приблизително.</string>
     <string name="hypno_bubble">%1$s · %2$s · от %3$s</string>
     <string name="hypno_block">%1$s от %2$s до %3$s</string>
     <string name="chart_week_average">Средно за седмицата</string>

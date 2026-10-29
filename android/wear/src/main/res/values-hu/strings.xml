@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Jó reggelt</string>
 
     <string name="ring_greeting">Jó reggelt</string>
-    <string name="ring_reason_light">Könnyű alvás észlelve</string>
+    <string name="ring_reason_light">Nyugtalan – valószínűleg könnyű alvás</string>
     <string name="ring_reason_awake">Már ébren voltál</string>
     <string name="ring_reason_deadline">Célidő elérve</string>
+    <string name="ring_reason_exact">Pontosan célidőben</string>
+    <string name="ring_reason_short_night">Rövid éjszaka – csak célidőben</string>
     <string name="ring_hold_to_stop">Tartsd a leállításhoz</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d p · még %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Ébressz eddig</string>
     <string name="editor_latest">Legkésőbb</string>
     <string name="editor_window">Időablak: %1$d p</string>
+    <string name="editor_window_exact">Pontos</string>
+    <string name="editor_window_exact_hint">Pontosan célidőben szól, sosem korábban. Az órád ettől még mér az előzményeidhez.</string>
+    <string name="window_exact_line">Pontosan ekkor: %1$s</string>
     <string name="editor_days">Ismétlés</string>
     <string name="editor_save">Mentés</string>
     <string name="editor_delete">Ébresztő törlése</string>

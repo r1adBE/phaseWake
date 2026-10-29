@@ -44,10 +44,14 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 56.0)), .wake(.lightSleep))
     }
 
-    func testMissingCurrentHeartRateLetsMotionDecide() {
+    func testMissingCurrentHeartRateBlocksLightSleep() {
         let detector = WakeDetector()
         _ = feed(detector, still, still, Epoch(motion: 0.003, heartRate: nil))
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: nil)), .wake(.lightSleep))
+        // Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: nil)), .wait)
+        // Die Wach-Regel braucht keinen Puls.
+        _ = detector.onEpoch(Epoch(motion: 0.5, heartRate: nil))
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: nil)), .wake(.awake))
     }
 
     func testAwakeTakesPrecedenceOverLightSleep() {
@@ -77,10 +81,13 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 1.0, heartRate: 90.0)), .wake(.deadline))
     }
 
-    func testZeroWarmupHasNoBaselineAndDecidesImmediately() throws {
+    func testZeroWarmupHasNoBaselineSoNoLightSleep() throws {
         let detector = WakeDetector(config: try DetectorConfig(warmupEpochs: 0))
         _ = detector.onEpoch(Epoch(motion: 0.003, heartRate: 52.0))
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 52.0)), .wake(.lightSleep))
+        // Ohne Basispuls ist die Pulsbedingung nicht erfüllt.
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 60.0)), .wait)
+        _ = detector.onEpoch(Epoch(motion: 0.5, heartRate: 60.0))
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 60.0)), .wake(.awake))
     }
 
     func testInvalidConfigIsRejected() {

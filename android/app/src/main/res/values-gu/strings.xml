@@ -21,15 +21,18 @@
     <string name="home_next_today">આજે</string>
     <string name="home_next_tomorrow">આવતીકાલે</string>
     <string name="home_next_in">હળવી ઊંઘમાં જગાડશે · %1$s પછી</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">બરાબર લક્ષ્ય સમયે જગાડશે · %1$s પછી</string>
     <string name="home_no_alarm_title">યોગ્ય ક્ષણે જાગો</string>
     <string name="home_no_alarm_text">સમય અને સમયગાળો પસંદ કરો. તમારી ઊંઘ હળવી હોય ત્યારે ઘડિયાળ તમને જગાડશે.</string>
     <string name="home_add_alarm">નવો એલાર્મ</string>
     <string name="home_last_night">ગઈ રાત</string>
     <string name="home_alarms">તમારા એલાર્મ</string>
 
-    <string name="reason_light">હળવી ઊંઘ</string>
+    <string name="reason_light">બેચેન – કદાચ હળવી ઊંઘ</string>
     <string name="reason_awake">પહેલેથી જાગતા</string>
     <string name="reason_deadline">હળવી ઊંઘ મળી નહીં</string>
+    <string name="reason_exact">બરાબર લક્ષ્ય સમયે</string>
+    <string name="reason_short_night">ટૂંકી રાત – ફક્ત લક્ષ્ય સમયે</string>
     <string name="woke_early">લક્ષ્યથી %1$d મિ. પહેલાં · %2$s</string>
     <string name="woke_on_time">લક્ષ્ય સમયે · %1$s</string>
     <string name="no_snooze">સ્નૂઝ નહીં</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">આટલા સમય સુધીમાં જગાડો</string>
     <string name="editor_latest">વધુમાં વધુ</string>
     <string name="editor_sleep_duration">%1$s ઊંઘ</string>
-    <string name="editor_sleep_hint">તમે ઊંઘી જાઓ ત્યારથી ગણતરી શરૂ થાય છે. ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કરો.</string>
+    <string name="editor_sleep_hint">તમે ઊંઘી જાઓ ત્યારથી ગણે છે. ઘડિયાળ તે આપમેળે ઓળખે છે; તરત શરૂ કરવા ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કરો.</string>
     <string name="editor_window">સમયગાળો: %1$d મિ.</string>
     <string name="editor_window_hint">%1$s અને %2$s વચ્ચે જગાડશે</string>
+    <string name="editor_window_exact">ચોક્કસ</string>
+    <string name="editor_window_exact_hint">બરાબર લક્ષ્ય સમયે વાગશે, ક્યારેય વહેલું નહીં. તમારી ઘડિયાળ તેમ છતાં તમારા ઇતિહાસ માટે માપે છે.</string>
+    <string name="window_exact_line">બરાબર %1$s વાગ્યે</string>
     <string name="editor_days">પુનરાવર્તન</string>
     <string name="editor_weekdays">અઠવાડિયાના દિવસો</string>
     <string name="editor_weekend">સપ્તાહાંત</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">ફેરફાર ચાલુ રાખો</string>
     <string name="editor_delete_title">આ એલાર્મ કાઢી નાખવો છે?</string>
     <string name="home_window_running">જગાડવાનો સમયગાળો ચાલુ – હવે માપી રહ્યા છીએ</string>
+    <string name="home_auto_onset">તમારી ઘડિયાળ %1$s થી આપમેળે ઓળખે છે કે તમે ક્યારે ઊંઘી જાઓ છો.</string>
     <string name="check_volume">એલાર્મનું વૉલ્યૂમ</string>
     <string name="check_volume_problem">એલાર્મનું વૉલ્યૂમ 0 પર છે – તમારો ફોન અવાજ વગર વાગશે.</string>
     <string name="health_update">Health Connect અપડેટ કરો</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">રેકોર્ડિંગ ચાલુ છે. રાત માટે ફોનને ચાર્જરમાં લગાવવો સારો.</string>
     <string name="sound_rec_default">નવી રાતો માટે ચાલુ</string>
     <string name="sound_rec_default_hint">તમારા સૂવાના સમયથી Phase Wake ખોલો ત્યારે શરૂ થાય છે (એલાર્મ ન હોય તો રાત્રે 9 વાગ્યાથી). ફક્ત ટૂંકી ક્લિપ; તે તમારા ફોન પર જ રહે છે અને 7 દિવસ પછી કાઢી નખાય છે.</string>
-    <string name="sound_type_snore">નસકોરાં</string>
+    <string name="sound_type_snore">કદાચ નસકોરાં</string>
     <string name="sound_type_talk">બોલવું</string>
     <string name="sound_type_other">બીજો અવાજ</string>
     <plurals name="sound_summary">
-        <item quantity="one">નસકોરાં: %1$s (%2$d ક્લિપ)</item>
-        <item quantity="other">નસકોરાં: %1$s (%2$d ક્લિપ)</item>
+        <item quantity="one">કદાચ નસકોરાં: %1$s (%2$d ક્લિપ)</item>
+        <item quantity="other">કદાચ નસકોરાં: %1$s (%2$d ક્લિપ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">બોલવું: %1$d ક્લિપ</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">સામાન્ય %1$d–%2$d %%</string>
     <string name="stages_typical_below">સામાન્ય %1$d %%થી ઓછું</string>
     <string name="stages_not_medical">આ તબીબી મૂલ્યાંકન નથી.</string>
-    <string name="stages_verdict_awake_above">સામાન્ય કરતાં વધુ જાગવાનો સમય</string>
-    <string name="stages_verdict_deep_below">સામાન્ય કરતાં ઓછી ગાઢ ઊંઘ</string>
-    <string name="stages_verdict_deep_above">સામાન્ય કરતાં વધુ ગાઢ ઊંઘ</string>
-    <string name="stages_verdict_rem_below">ઓછી REM – ઘણીવાર ટૂંકી કે મોડી રાત પછી</string>
-    <string name="stages_verdict_rem_above">સામાન્ય કરતાં વધુ REM</string>
-    <string name="stages_verdict_light_below">સામાન્ય કરતાં ઓછી હળવી ઊંઘ</string>
-    <string name="stages_verdict_light_above">સામાન્ય કરતાં વધુ હળવી ઊંઘ</string>
-    <string name="stages_verdict_typical">બધા તબક્કા સામાન્ય શ્રેણીમાં</string>
+    <string name="stages_source">સ્વસ્થ પુખ્ત વયના લોકો માટે સંદર્ભ મૂલ્યો (Ohayon વગેરે, Sleep 2004). ઘડિયાળો તબક્કાઓનો માત્ર અંદાજ લગાવે છે.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$sથી</string>
     <string name="hypno_block">%1$s %2$s થી %3$s</string>
     <string name="chart_week_average">સાપ્તાહિક સરેરાશ</string>

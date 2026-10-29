@@ -24,6 +24,22 @@ class AlarmSpecTest {
     }
 
     @Test
+    fun exactWindowIsZeroAndMeasuresThirtyMinutes() {
+        val exact = alarm().copy(windowMinutes = AlarmSpec.EXACT_WINDOW)
+        assertTrue(exact.isExact)
+        assertEquals(AlarmSpec.MEASURE_MINUTES, exact.measureWindowMinutes)
+        assertFalse(alarm().isExact)
+        assertEquals(30, alarm().measureWindowMinutes)
+        assertEquals(10, alarm().copy(windowMinutes = 10).measureWindowMinutes)
+        // Zwischen 0 und 10 gibt es nichts.
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 5) }
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = -1) }
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 31) }
+        // Der Codec schreibt 0 wie jede andere Zahl.
+        assertEquals(listOf(exact), Codec.decodeAlarms(Codec.encodeAlarms(listOf(exact))))
+    }
+
+    @Test
     fun phoneBackupFollowsPhoneAlert() {
         assertFalse(alarm().copy(phone = PhoneAlert.OFF).phoneBackup)
         assertTrue(alarm().copy(phone = PhoneAlert.VIBRATE).phoneBackup)

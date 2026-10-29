@@ -20,15 +20,18 @@
     <string name="home_next_today">היום</string>
     <string name="home_next_tomorrow">מחר</string>
     <string name="home_next_in">מעיר בשינה קלה · בעוד %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">מעיר בדיוק בשעת היעד · בעוד %1$s</string>
     <string name="home_no_alarm_title">להתעורר ברגע הנכון</string>
     <string name="home_no_alarm_text">קבעו שעה וחלון זמן. השעון יעיר אתכם כשהשינה קלה.</string>
     <string name="home_add_alarm">מעורר חדש</string>
     <string name="home_last_night">הלילה האחרון</string>
     <string name="home_alarms">המעוררים שלכם</string>
 
-    <string name="reason_light">שינה קלה</string>
+    <string name="reason_light">חוסר שקט – כנראה שינה קלה</string>
     <string name="reason_awake">כבר ערים</string>
     <string name="reason_deadline">לא זוהתה שינה קלה</string>
+    <string name="reason_exact">בדיוק בשעת היעד</string>
+    <string name="reason_short_night">לילה קצר – רק בשעת היעד</string>
     <string name="woke_early">%1$d דק׳ לפני היעד · %2$s</string>
     <string name="woke_on_time">בשעת היעד · %1$s</string>
     <string name="no_snooze">בלי נודניק</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">להעיר אותי עד</string>
     <string name="editor_latest">לכל המאוחר</string>
     <string name="editor_sleep_duration">לישון %1$s</string>
-    <string name="editor_sleep_hint">הספירה מתחילה בהירדמות. הקישו על “לילה טוב” בשעון.</string>
+    <string name="editor_sleep_hint">הספירה מתחילה מההירדמות. השעון מזהה זאת אוטומטית; הקישו על “לילה טוב” בשעון כדי להתחיל מיד.</string>
     <string name="editor_window">חלון: %1$d דק׳</string>
     <string name="editor_window_hint">יעיר אתכם בין %1$s ל-%2$s</string>
+    <string name="editor_window_exact">בדיוק</string>
+    <string name="editor_window_exact_hint">מצלצל בדיוק בשעת היעד, אף פעם לא מוקדם יותר. השעון עדיין מודד עבור ההיסטוריה שלכם.</string>
+    <string name="window_exact_line">בדיוק ב־%1$s</string>
     <string name="editor_days">חזרה</string>
     <string name="editor_weekdays">ימי חול</string>
     <string name="editor_weekend">סוף שבוע</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">המשך עריכה</string>
     <string name="editor_delete_title">למחוק את המעורר הזה?</string>
     <string name="home_window_running">החלון פועל – מודדים עכשיו</string>
+    <string name="home_auto_onset">השעון מזהה אוטומטית מתי נרדמתם, החל מ־%1$s.</string>
     <string name="check_volume">עוצמת המעורר</string>
     <string name="check_volume_problem">עוצמת המעורר מוגדרת ל-0 – הטלפון יצלצל בלי קול.</string>
     <string name="health_update">עדכון Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">ההקלטה פועלת. עדיף לחבר את הטלפון למטען בלילה.</string>
     <string name="sound_rec_default">מופעל ללילות חדשים</string>
     <string name="sound_rec_default_hint">מתחיל כשפותחים את Phase Wake משעת השינה (בלי שעון מעורר – מ־21:00). רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
-    <string name="sound_type_snore">נחירות</string>
+    <string name="sound_type_snore">נחירות אפשריות</string>
     <string name="sound_type_talk">דיבור</string>
     <string name="sound_type_other">קול אחר</string>
     <plurals name="sound_summary">
-        <item quantity="one">נחירות: %1$s (קטע %2$d)</item>
-        <item quantity="two">נחירות: %1$s (%2$d קטעים)</item>
-        <item quantity="other">נחירות: %1$s (%2$d קטעים)</item>
+        <item quantity="one">נחירות אפשריות: %1$s (קטע %2$d)</item>
+        <item quantity="two">נחירות אפשריות: %1$s (%2$d קטעים)</item>
+        <item quantity="other">נחירות אפשריות: %1$s (%2$d קטעים)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">דיבור: קטע %1$d</item>
@@ -521,14 +528,7 @@
     <string name="stages_typical_range">בדרך כלל %1$d–%2$d %%</string>
     <string name="stages_typical_below">בדרך כלל פחות מ־%1$d %%</string>
     <string name="stages_not_medical">זו אינה הערכה רפואית.</string>
-    <string name="stages_verdict_awake_above">יותר זמן ער מהרגיל</string>
-    <string name="stages_verdict_deep_below">פחות שינה עמוקה מהרגיל</string>
-    <string name="stages_verdict_deep_above">יותר שינה עמוקה מהרגיל</string>
-    <string name="stages_verdict_rem_below">מעט REM – לרוב אחרי לילה קצר או מאוחר</string>
-    <string name="stages_verdict_rem_above">יותר REM מהרגיל</string>
-    <string name="stages_verdict_light_below">פחות שינה קלה מהרגיל</string>
-    <string name="stages_verdict_light_above">יותר שינה קלה מהרגיל</string>
-    <string name="stages_verdict_typical">כל השלבים בטווח הרגיל</string>
+    <string name="stages_source">ערכי ייחוס למבוגרים בריאים (Ohayon ועמיתים, Sleep 2004). שעונים מעריכים שלבי שינה רק בקירוב.</string>
     <string name="hypno_bubble">%1$s · %2$s · כבר %3$s</string>
     <string name="hypno_block">%1$s מ־%2$s עד %3$s</string>
     <string name="chart_week_average">ממוצע שבועי</string>

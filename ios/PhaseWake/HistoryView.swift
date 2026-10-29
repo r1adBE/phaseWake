@@ -188,10 +188,13 @@ struct HistoryView: View {
 
     private var stats: some View {
         let average = model.nights.map(\.minutesBeforeTarget).reduce(0, +) / max(1, model.nights.count)
-        let light = 100 * model.nights.filter { $0.reason == .lightSleep }.count / max(1, model.nights.count)
+        // Nur Nächte, in denen früher wecken erlaubt war (ohne «Genau» und kurze Nächte); ohne solche keine Angabe.
+        let light = NightHistory.lightShare(model.nights)
         return HStack(spacing: 12) {
             Text(L("history_average", average)).frame(maxWidth: .infinity, alignment: .leading)
-            Text(L("history_light_share", light)).frame(maxWidth: .infinity, alignment: .leading)
+            if let light {
+                Text(L("history_light_share", light)).frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
         .card()

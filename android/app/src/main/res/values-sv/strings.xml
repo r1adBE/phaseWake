@@ -19,17 +19,20 @@
     <string name="home_next_today">Idag</string>
     <string name="home_next_tomorrow">I morgon</string>
     <string name="home_next_in">Väcker dig i lätt sömn · om %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Väcker dig precis på önskad tid · om %1$s</string>
     <string name="home_no_alarm_title">Vakna i rätt ögonblick</string>
     <string name="home_no_alarm_text">Ställ in en tid och ett intervall. Klockan väcker dig när du sover lätt.</string>
     <string name="home_add_alarm">Nytt larm</string>
     <string name="home_last_night">Senaste natten</string>
     <string name="home_alarms">Dina larm</string>
 
-    <string name="reason_light">Lätt sömn</string>
+    <string name="reason_light">Orolig – troligen lätt sömn</string>
     <string name="reason_awake">Redan vaken</string>
     <string name="reason_deadline">Ingen lätt sömn upptäckt</string>
-    <string name="woke_early">%1$d min före måltid · %2$s</string>
-    <string name="woke_on_time">Vid måltid · %1$s</string>
+    <string name="reason_exact">Precis på önskad tid</string>
+    <string name="reason_short_night">Kort natt – först vid önskad tid</string>
+    <string name="woke_early">%1$d min före önskad tid · %2$s</string>
+    <string name="woke_on_time">Vid önskad tid · %1$s</string>
     <string name="no_snooze">ingen snooze</string>
     <string name="snoozed_times">snooze %1$d×</string>
 
@@ -47,9 +50,12 @@
     <string name="editor_target">Väck mig senast</string>
     <string name="editor_latest">Senast</string>
     <string name="editor_sleep_duration">Sov i %1$s</string>
-    <string name="editor_sleep_hint">Räknas från att du somnar. Tryck på ”Godnatt” på klockan.</string>
+    <string name="editor_sleep_hint">Räknas från att du somnar. Klockan känner av det automatiskt; tryck på ”Godnatt” på klockan för att starta direkt.</string>
     <string name="editor_window">Fönster: %1$d min</string>
     <string name="editor_window_hint">Väcker dig mellan %1$s och %2$s</string>
+    <string name="editor_window_exact">Exakt</string>
+    <string name="editor_window_exact_hint">Ringer precis vid önskad tid, aldrig tidigare. Klockan mäter ändå för din historik.</string>
+    <string name="window_exact_line">Exakt kl. %1$s</string>
     <string name="editor_days">Upprepa</string>
     <string name="editor_weekdays">Vardagar</string>
     <string name="editor_weekend">Helg</string>
@@ -149,7 +155,7 @@
         <item quantity="one">Börjar när du väcks och är helt ljus efter %1$d minut.</item>
         <item quantity="other">Börjar när du väcks och är helt ljus efter %1$d minuter.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid måltiden.</string>
+    <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid önskad tid.</string>
     <string name="sunrise_device_title">Var</string>
     <string name="sunrise_device_phone">Mobil</string>
     <string name="sunrise_device_watch">Klocka</string>
@@ -208,7 +214,7 @@
     </plurals>
     <string name="hint_gaps">Mätningen hade luckor. Laddades klockan eller var den av under natten?</string>
     <string name="hint_heart">Pulsen saknades. Bär klockan lite tightare på natten.</string>
-    <string name="hint_calm">Mätningen var komplett – du sov helt enkelt lugnt. Då väcker Phase Wake dig pålitligt vid måltid.</string>
+    <string name="hint_calm">Mätningen var komplett – du sov helt enkelt lugnt. Då väcker Phase Wake dig pålitligt vid önskad tid.</string>
     <string name="check_dnd_blocked">Stör ej blockerar alarm</string>
     <string name="check_dnd_unknown">Stör ej är på</string>
     <string name="check_dnd_unknown_problem">Android talar inte om för appar om alarm släpps igenom. Kontrollera att alarm är tillåtna i Stör ej.</string>
@@ -224,12 +230,13 @@
     <string name="editor_keep_editing">Fortsätt redigera</string>
     <string name="editor_delete_title">Ta bort det här larmet?</string>
     <string name="home_window_running">Fönstret pågår – mäter nu</string>
+    <string name="home_auto_onset">Klockan känner automatiskt av när du somnar från kl. %1$s.</string>
     <string name="check_volume">Larmvolym</string>
     <string name="check_volume_problem">Larmvolymen är satt till 0 – mobilen skulle ringa ljudlöst.</string>
     <string name="health_update">Uppdatera Health Connect</string>
     <plurals name="woke_late">
-        <item quantity="one">%1$d min efter måltid · %2$s</item>
-        <item quantity="other">%1$d min efter måltid · %2$s</item>
+        <item quantity="one">%1$d min efter önskad tid · %2$s</item>
+        <item quantity="other">%1$d min efter önskad tid · %2$s</item>
     </plurals>
     <string name="check_watch_battery">Klockans batteri</string>
     <string name="check_watch_battery_problem">Under %1$d %% – ladda klockan så att den räcker hela natten och kan väcka dig.</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Inspelning pågår. Anslut gärna telefonen till laddaren över natten.</string>
     <string name="sound_rec_default">På för nya nätter</string>
     <string name="sound_rec_default_hint">Startar när du öppnar Phase Wake från din läggtid (utan alarm från kl. 21). Bara korta klipp; de stannar på telefonen och raderas efter 7 dagar.</string>
-    <string name="sound_type_snore">Snarkning</string>
+    <string name="sound_type_snore">Möjlig snarkning</string>
     <string name="sound_type_talk">Prat</string>
     <string name="sound_type_other">Annat ljud</string>
     <plurals name="sound_summary">
-        <item quantity="one">Snarkning: %1$s (%2$d klipp)</item>
-        <item quantity="other">Snarkning: %1$s (%2$d klipp)</item>
+        <item quantity="one">Möjlig snarkning: %1$s (%2$d klipp)</item>
+        <item quantity="other">Möjlig snarkning: %1$s (%2$d klipp)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Prat: %1$d klipp</item>
@@ -356,8 +363,8 @@
     <string name="chart_nights_14">14 nätter</string>
     <string name="chart_bedtime">Läggdags %1$s</string>
     <string name="chart_goal">Mål %1$s</string>
-    <string name="chart_wake_target">Vid måltid</string>
-    <string name="chart_wake_late">Efter måltid</string>
+    <string name="chart_wake_target">Vid önskad tid</string>
+    <string name="chart_wake_late">Efter önskad tid</string>
     <string name="chart_stage_awake">Vaken</string>
     <string name="chart_stage_rem">REM</string>
     <string name="chart_stage_light">Lätt</string>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Vanligtvis %1$d–%2$d %%</string>
     <string name="stages_typical_below">Vanligtvis under %1$d %%</string>
     <string name="stages_not_medical">Ingen medicinsk bedömning.</string>
-    <string name="stages_verdict_awake_above">Mer tid vaken än vanligt</string>
-    <string name="stages_verdict_deep_below">Mindre djupsömn än vanligt</string>
-    <string name="stages_verdict_deep_above">Mer djupsömn än vanligt</string>
-    <string name="stages_verdict_rem_below">Lite REM – ofta efter en kort eller sen natt</string>
-    <string name="stages_verdict_rem_above">Mer REM än vanligt</string>
-    <string name="stages_verdict_light_below">Mindre lätt sömn än vanligt</string>
-    <string name="stages_verdict_light_above">Mer lätt sömn än vanligt</string>
-    <string name="stages_verdict_typical">Alla faser inom det vanliga intervallet</string>
+    <string name="stages_source">Riktvärden för friska vuxna (Ohayon m.fl., Sleep 2004). Klockor uppskattar faserna bara ungefärligt.</string>
     <string name="hypno_bubble">%1$s · %2$s · i %3$s</string>
     <string name="hypno_block">%1$s från %2$s till %3$s</string>
     <string name="chart_week_average">Veckosnitt</string>

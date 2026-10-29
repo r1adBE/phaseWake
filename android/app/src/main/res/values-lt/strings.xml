@@ -23,15 +23,18 @@
     <string name="home_next_today">Šiandien</string>
     <string name="home_next_tomorrow">Rytoj</string>
     <string name="home_next_in">Pažadins lengvo miego metu · po %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Pažadins tiksliai tiksliniu laiku · po %1$s</string>
     <string name="home_no_alarm_title">Pabusk tinkamu metu</string>
     <string name="home_no_alarm_text">Nustatyk laiką ir žadinimo langą. Laikrodis pažadins tave lengvo miego metu.</string>
     <string name="home_add_alarm">Naujas žadintuvas</string>
     <string name="home_last_night">Praėjusi naktis</string>
     <string name="home_alarms">Tavo žadintuvai</string>
 
-    <string name="reason_light">Lengvas miegas</string>
+    <string name="reason_light">Neramus – tikriausiai lengvas miegas</string>
     <string name="reason_awake">Jau nemiegojai</string>
     <string name="reason_deadline">Lengvo miego neaptikta</string>
+    <string name="reason_exact">Tiksliai tiksliniu laiku</string>
+    <string name="reason_short_night">Trumpa naktis – tik tiksliniu laiku</string>
     <string name="woke_early">%1$d min prieš tikslinį laiką · %2$s</string>
     <string name="woke_on_time">Tiksliniu laiku · %1$s</string>
     <string name="no_snooze">be atidėjimo</string>
@@ -51,9 +54,12 @@
     <string name="editor_target">Pažadink mane iki</string>
     <string name="editor_latest">Vėliausiai</string>
     <string name="editor_sleep_duration">Miegoti %1$s</string>
-    <string name="editor_sleep_hint">Skaičiuojama nuo užmigimo. Laikrodyje bakstelėk „Labanakt“.</string>
+    <string name="editor_sleep_hint">Skaičiuojama nuo užmigimo. Laikrodis tai atpažįsta automatiškai; bakstelėk laikrodyje „Labanakt“, kad pradėtum iškart.</string>
     <string name="editor_window">Langas: %1$d min</string>
     <string name="editor_window_hint">Pažadins nuo %1$s iki %2$s</string>
+    <string name="editor_window_exact">Tiksliai</string>
+    <string name="editor_window_exact_hint">Skamba tiksliai tiksliniu laiku, niekada anksčiau. Laikrodis vis tiek matuoja tavo istorijai.</string>
+    <string name="window_exact_line">Tiksliai %1$s</string>
     <string name="editor_days">Kartoti</string>
     <string name="editor_weekdays">Darbo dienos</string>
     <string name="editor_weekend">Savaitgalis</string>
@@ -234,6 +240,7 @@
     <string name="editor_keep_editing">Toliau redaguoti</string>
     <string name="editor_delete_title">Ištrinti šį žadintuvą?</string>
     <string name="home_window_running">Žadinimo langas vyksta – matuojama</string>
+    <string name="home_auto_onset">Laikrodis nuo %1$s automatiškai atpažįsta, kada užmiegi.</string>
     <string name="check_volume">Žadintuvo garsumas</string>
     <string name="check_volume_problem">Žadintuvo garsumas nustatytas į 0 – telefonas skambėtų be garso.</string>
     <string name="health_update">Atnaujinti Health Connect</string>
@@ -315,14 +322,14 @@
     <string name="sound_rec_plug_in">Įrašymas įjungtas. Geriausia nakčiai prijunk telefoną prie įkroviklio.</string>
     <string name="sound_rec_default">Įjungta naujoms naktims</string>
     <string name="sound_rec_default_hint">Pradeda, kai atidarai Phase Wake nuo miego laiko (be žadintuvo – nuo 21:00). Tik trumpi įrašai; jie lieka tavo telefone ir ištrinami po 7 dienų.</string>
-    <string name="sound_type_snore">Knarkimas</string>
+    <string name="sound_type_snore">Galimas knarkimas</string>
     <string name="sound_type_talk">Kalbėjimas</string>
     <string name="sound_type_other">Kitas garsas</string>
     <plurals name="sound_summary">
-        <item quantity="one">Knarkimas: %1$s (%2$d įrašas)</item>
-        <item quantity="few">Knarkimas: %1$s (%2$d įrašai)</item>
-        <item quantity="many">Knarkimas: %1$s (%2$d įrašo)</item>
-        <item quantity="other">Knarkimas: %1$s (%2$d įrašų)</item>
+        <item quantity="one">Galimas knarkimas: %1$s (%2$d įrašas)</item>
+        <item quantity="few">Galimas knarkimas: %1$s (%2$d įrašai)</item>
+        <item quantity="many">Galimas knarkimas: %1$s (%2$d įrašo)</item>
+        <item quantity="other">Galimas knarkimas: %1$s (%2$d įrašų)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Kalbėjimas: %1$d įrašas</item>
@@ -538,14 +545,7 @@
     <string name="stages_typical_range">Įprastai %1$d–%2$d %%</string>
     <string name="stages_typical_below">Įprastai mažiau nei %1$d %%</string>
     <string name="stages_not_medical">Tai ne medicininis vertinimas.</string>
-    <string name="stages_verdict_awake_above">Daugiau budrumo nei įprastai</string>
-    <string name="stages_verdict_deep_below">Mažiau gilaus miego nei įprastai</string>
-    <string name="stages_verdict_deep_above">Daugiau gilaus miego nei įprastai</string>
-    <string name="stages_verdict_rem_below">Mažai REM – dažnai po trumpos ar vėlyvos nakties</string>
-    <string name="stages_verdict_rem_above">Daugiau REM nei įprastai</string>
-    <string name="stages_verdict_light_below">Mažiau lengvo miego nei įprastai</string>
-    <string name="stages_verdict_light_above">Daugiau lengvo miego nei įprastai</string>
-    <string name="stages_verdict_typical">Visos fazės įprastame intervale</string>
+    <string name="stages_source">Orientacinės vertės sveikiems suaugusiesiems (Ohayon ir kt., Sleep 2004). Laikrodžiai fazes įvertina tik apytiksliai.</string>
     <string name="hypno_bubble">%1$s · %2$s · jau %3$s</string>
     <string name="hypno_block">%1$s nuo %2$s iki %3$s</string>
     <string name="chart_week_average">Savaitės vidurkis</string>

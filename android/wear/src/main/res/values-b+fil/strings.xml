@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Magandang umaga</string>
 
     <string name="ring_greeting">Magandang umaga</string>
-    <string name="ring_reason_light">May nakitang mababaw na tulog</string>
+    <string name="ring_reason_light">Balisa – malamang mababaw na tulog</string>
     <string name="ring_reason_awake">Gising ka na</string>
     <string name="ring_reason_deadline">Naabot ang target na oras</string>
+    <string name="ring_reason_exact">Eksakto sa target na oras</string>
+    <string name="ring_reason_short_night">Maikling gabi – sa target na oras lang</string>
     <string name="ring_hold_to_stop">Pindutin nang matagal para ihinto</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d pa</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Gisingin ako bago mag</string>
     <string name="editor_latest">Pinakahuli</string>
     <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_window_exact">Eksakto</string>
+    <string name="editor_window_exact_hint">Tutunog eksakto sa target na oras, hindi kailanman mas maaga. Sumusukat pa rin ang relo mo para sa iyong history.</string>
+    <string name="window_exact_line">Eksakto nang %1$s</string>
     <string name="editor_days">Ulitin</string>
     <string name="editor_save">I-save</string>
     <string name="editor_delete">I-delete ang alarm</string>

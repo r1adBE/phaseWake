@@ -19,11 +19,12 @@ object WindowAdvice {
 
     /**
      * Vorschlag für [spec], wenn von seinen letzten [NIGHTS] Nächten (mindestens [MIN_NIGHTS]) mehr als
-     * die Hälfte erst zur Zielzeit endete; `null`, wenn das Fenster schon am grössten ist oder zu wenig Nächte da sind.
+     * die Hälfte erst zur Zielzeit endete; `null`, wenn das Fenster schon am grössten ist, der Wecker «Genau» weckt
+     * ([AlarmSpec.isExact], bewusst ohne Fenster) oder zu wenig Nächte da sind.
      */
     fun suggest(spec: AlarmSpec, history: List<NightRecord>): Suggestion? {
-        if (spec.windowMinutes >= AlarmSpec.MAX_WINDOW_MINUTES) return null
-        val recent = history.filter { it.alarmId == spec.id }.sortedBy { it.windowStart }.takeLast(NIGHTS)
+        if (spec.isExact || spec.windowMinutes >= AlarmSpec.MAX_WINDOW_MINUTES) return null
+        val recent = history.filter { it.alarmId == spec.id && it.reason.earlyAllowed }.sortedBy { it.windowStart }.takeLast(NIGHTS)
         if (recent.size < MIN_NIGHTS) return null
         val deadline = recent.count { it.reason == WakeReason.DEADLINE }
         // Mehr als die Hälfte der Nächte ohne passenden Moment.

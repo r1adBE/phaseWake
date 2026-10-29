@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Dobro jutro</string>
 
     <string name="ring_greeting">Dobro jutro</string>
-    <string name="ring_reason_light">Zaznan lahek spanec</string>
+    <string name="ring_reason_light">Nemirno – verjetno lahek spanec</string>
     <string name="ring_reason_awake">Že pokonci</string>
     <string name="ring_reason_deadline">Ciljni čas dosežen</string>
+    <string name="ring_reason_exact">Natanko ob ciljnem času</string>
+    <string name="ring_reason_short_night">Kratka noč – šele ob ciljnem času</string>
     <string name="ring_hold_to_stop">Pridrži za ustavitev</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · še %2$d</item>
@@ -57,6 +59,9 @@
     <string name="editor_target">Zbudi me do</string>
     <string name="editor_latest">Najpozneje</string>
     <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_window_exact">Natanko</string>
+    <string name="editor_window_exact_hint">Zazvoni natanko ob ciljnem času, nikoli prej. Ura vseeno meri za tvojo zgodovino.</string>
+    <string name="window_exact_line">Natanko ob %1$s</string>
     <string name="editor_days">Ponovi</string>
     <string name="editor_save">Shrani</string>
     <string name="editor_delete">Izbriši budilko</string>

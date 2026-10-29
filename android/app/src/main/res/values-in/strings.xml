@@ -18,15 +18,18 @@
     <string name="home_next_today">Hari ini</string>
     <string name="home_next_tomorrow">Besok</string>
     <string name="home_next_in">Membangunkan saat tidur ringan · dalam %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Membangunkan tepat pada waktu target · dalam %1$s</string>
     <string name="home_no_alarm_title">Bangun di saat yang tepat</string>
     <string name="home_no_alarm_text">Atur waktu dan rentang. Jam tanganmu membangunkanmu saat tidurmu ringan.</string>
     <string name="home_add_alarm">Alarm baru</string>
     <string name="home_last_night">Semalam</string>
     <string name="home_alarms">Alarm kamu</string>
 
-    <string name="reason_light">Tidur ringan</string>
+    <string name="reason_light">Gelisah – kemungkinan tidur ringan</string>
     <string name="reason_awake">Sudah bangun</string>
     <string name="reason_deadline">Tidur ringan tidak terdeteksi</string>
+    <string name="reason_exact">Tepat pada waktu target</string>
+    <string name="reason_short_night">Malam pendek – baru pada waktu target</string>
     <string name="woke_early">%1$d mnt sebelum target · %2$s</string>
     <string name="woke_on_time">Tepat waktu target · %1$s</string>
     <string name="no_snooze">tanpa tunda</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">Bangunkan aku sebelum</string>
     <string name="editor_latest">Paling lambat</string>
     <string name="editor_sleep_duration">Tidur %1$s</string>
-    <string name="editor_sleep_hint">Mulai dihitung saat kamu tertidur. Ketuk “Selamat tidur” di jam tanganmu.</string>
+    <string name="editor_sleep_hint">Dihitung sejak kamu tertidur. Jam tanganmu mendeteksinya otomatis; ketuk “Selamat tidur” di jam untuk langsung mulai.</string>
     <string name="editor_window">Rentang: %1$d mnt</string>
     <string name="editor_window_hint">Membangunkanmu antara %1$s dan %2$s</string>
+    <string name="editor_window_exact">Tepat</string>
+    <string name="editor_window_exact_hint">Berbunyi tepat pada waktu target, tidak pernah lebih awal. Jam tanganmu tetap mengukur untuk riwayatmu.</string>
+    <string name="window_exact_line">Tepat pukul %1$s</string>
     <string name="editor_days">Ulangi</string>
     <string name="editor_weekdays">Hari kerja</string>
     <string name="editor_weekend">Akhir pekan</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">Lanjut mengedit</string>
     <string name="editor_delete_title">Hapus alarm ini?</string>
     <string name="home_window_running">Rentang berjalan – sedang mengukur</string>
+    <string name="home_auto_onset">Jam tanganmu otomatis mendeteksi kapan kamu tertidur mulai pukul %1$s.</string>
     <string name="check_volume">Volume alarm</string>
     <string name="check_volume_problem">Volume alarm diatur ke 0 – ponselmu akan berdering tanpa suara.</string>
     <string name="health_update">Perbarui Health Connect</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">Perekaman berjalan. Sebaiknya isi daya ponsel semalaman.</string>
     <string name="sound_rec_default">Aktif untuk malam baru</string>
     <string name="sound_rec_default_hint">Mulai saat kamu membuka Phase Wake sejak jam tidurmu (tanpa alarm mulai pukul 21.00). Hanya potongan pendek; tetap di ponselmu dan dihapus setelah 7 hari.</string>
-    <string name="sound_type_snore">Mendengkur</string>
+    <string name="sound_type_snore">Kemungkinan mendengkur</string>
     <string name="sound_type_talk">Bicara</string>
     <string name="sound_type_other">Suara lain</string>
     <plurals name="sound_summary">
-        <item quantity="other">Mendengkur: %1$s (%2$d potongan)</item>
+        <item quantity="other">Kemungkinan mendengkur: %1$s (%2$d potongan)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">Bicara: %1$d potongan</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">Biasanya %1$d–%2$d %%</string>
     <string name="stages_typical_below">Biasanya di bawah %1$d %%</string>
     <string name="stages_not_medical">Bukan penilaian medis.</string>
-    <string name="stages_verdict_awake_above">Lebih lama terjaga dari biasanya</string>
-    <string name="stages_verdict_deep_below">Tidur nyenyak lebih sedikit dari biasanya</string>
-    <string name="stages_verdict_deep_above">Tidur nyenyak lebih banyak dari biasanya</string>
-    <string name="stages_verdict_rem_below">Sedikit REM – sering setelah malam yang singkat atau larut</string>
-    <string name="stages_verdict_rem_above">REM lebih banyak dari biasanya</string>
-    <string name="stages_verdict_light_below">Tidur ringan lebih sedikit dari biasanya</string>
-    <string name="stages_verdict_light_above">Tidur ringan lebih banyak dari biasanya</string>
-    <string name="stages_verdict_typical">Semua tahap dalam rentang biasa</string>
+    <string name="stages_source">Nilai acuan untuk orang dewasa sehat (Ohayon dkk., Sleep 2004). Jam tangan hanya memperkirakan tahap tidur secara kasar.</string>
     <string name="hypno_bubble">%1$s · %2$s · selama %3$s</string>
     <string name="hypno_block">%1$s dari %2$s sampai %3$s</string>
     <string name="chart_week_average">Rata-rata mingguan</string>

@@ -44,11 +44,8 @@ struct WakeCard: View {
 
     /// «12 Min vor der Zielzeit · Leichter Schlaf» wie im Verlauf.
     private func timing(_ p: WakeMoment) -> String {
-        let reason: String = switch p.kind {
-        case .light: L("reason_light")
-        case .awake: L("reason_awake")
-        case .target, .late: L("reason_deadline")
-        }
+        // Gespeicherter Grund statt Art: «Genau» und «Kurze Nacht» sind auch Zielzeit, aber mit eigenem Text.
+        let reason = reasonText(p.reason)
         if p.minutesBefore > 0 { return L("woke_early", p.minutesBefore, reason) }
         if p.minutesAfter > 0 { return LP("woke_late", p.minutesAfter, Int64(p.minutesAfter), reason) }
         return L("woke_on_time", reason)

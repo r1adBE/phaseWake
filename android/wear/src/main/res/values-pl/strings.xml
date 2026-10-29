@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Dzień dobry</string>
 
     <string name="ring_greeting">Dzień dobry</string>
-    <string name="ring_reason_light">Wykryto lekki sen</string>
+    <string name="ring_reason_light">Niespokojnie – pewnie lekki sen</string>
     <string name="ring_reason_awake">Już nie śpisz</string>
     <string name="ring_reason_deadline">Osiągnięto czas docelowy</string>
+    <string name="ring_reason_exact">Dokładnie o czasie docelowym</string>
+    <string name="ring_reason_short_night">Krótka noc – dopiero o czasie docelowym</string>
     <string name="ring_hold_to_stop">Przytrzymaj, by zatrzymać</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · zostało: %2$d</item>
@@ -57,6 +59,9 @@
     <string name="editor_target">Obudź mnie do</string>
     <string name="editor_latest">Najpóźniej</string>
     <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_window_exact">Dokładnie</string>
+    <string name="editor_window_exact_hint">Dzwoni dokładnie o czasie docelowym, nigdy wcześniej. Zegarek i tak mierzy na potrzeby twojej historii.</string>
+    <string name="window_exact_line">Dokładnie o %1$s</string>
     <string name="editor_days">Powtarzaj</string>
     <string name="editor_save">Zapisz</string>
     <string name="editor_delete">Usuń budzik</string>

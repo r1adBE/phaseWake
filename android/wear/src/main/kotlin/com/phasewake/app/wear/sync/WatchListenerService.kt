@@ -46,10 +46,9 @@ class WatchListenerService : WearableListenerService() {
             cancelled.forEach { TransientInbox.cancelled(app, it) }
             val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
             if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
-            // Nur Anzeige (Einschlafpunkt): kein Neuplanen nötig.
-            if (sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)) {
-                app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal.first}")
-            }
+            // Einschlafpunkt und Beginn der automatischen Einschlaf-Messung: neu planen.
+            val newGoal = sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)
+            if (newGoal) app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal?.first}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {
@@ -59,7 +58,7 @@ class WatchListenerService : WearableListenerService() {
             }
             val newAlarms = remote != null && app.alarms.applyRemote(remote)
             if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
-            if (newAlarms || newHolidays) app.scheduler.reschedule()
+            if (newAlarms || newHolidays || newGoal) app.scheduler.reschedule()
         }
     }
 

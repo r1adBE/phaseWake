@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
@@ -66,7 +67,16 @@ class WakeService : LifecycleService() {
         var taskOnPhone: Boolean = false,
         /** Bis hierhin (elapsedRealtime) schaltet eine erste Bestätigung auf «Aufgabe am Handy». */
         var taskAcceptUntil: Long = 0L,
-    )
+        /** Einschlafzeit dieser Nacht ([com.phasewake.app.wear.schedule.OnsetStore]); `null` = unbekannt, keine Untergrenze. */
+        var asleepAt: Instant? = null,
+        /** Schlafziel für die Untergrenze: Schlafdauer im Einschlaf-Modus, sonst das Schlafziel. */
+        var goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+        /** Kurze Nacht: ein früher Moment wurde übergangen, geweckt wird zur Zielzeit ([WakeReason.SHORT_NIGHT]). */
+        var earlyBlocked: Boolean = false,
+    ) {
+        /** «Genau»: nur messen, zur Zielzeit wecken; aus dem Plan oder (ältere Alarme ohne Angabe) dem Wecker. */
+        val exact: Boolean get() = plan.exact || spec?.isExact == true
+    }
 
     internal val app by lazy { wearApp }
     internal val handler = Handler(Looper.getMainLooper())
@@ -87,6 +97,12 @@ class WakeService : LifecycleService() {
 
     /** Zählt die Starts von «Gute Nacht»; ein überholter Start bricht ab. */
     internal var goodNightRun = 0
+
+    /** Wecker und eingestellte Weckzeit, für die «Gute Nacht» bzw. die automatische Messung gerade wartet. */
+    internal var onsetNight: Pair<String, Instant>? = null
+
+    /** Ob [onsetNight] von der automatischen Einschlaf-Messung stammt (für das Protokoll). */
+    internal var onsetAuto = false
     internal val onsetTimeout = Runnable { stopGoodNight() }
 
     internal val deadline = Runnable { onDeadline() }
@@ -116,6 +132,7 @@ class WakeService : LifecycleService() {
             ACTION_DISMISS -> if (isForThisNight(intent)) dismiss(notifyPhone = true)
             ACTION_CANCEL -> cancelMeasuring()
             ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it) }
+            ACTION_AUTO_ONSET -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it, auto = true) }
             ACTION_GOOD_NIGHT_RESUME -> startGoodNight(null)
             ACTION_GOOD_NIGHT_CANCEL -> stopGoodNight()
             ACTION_TASK_SHOWN -> if (isForThisNight(intent)) onTaskShown(remoteTarget(intent))
@@ -125,7 +142,7 @@ class WakeService : LifecycleService() {
             null -> if (intent == null && DirectBoot.isUnlocked(this)) AlarmScheduler.armGoodNightCheck(this, Instant.now().plusSeconds(1))
         }
         // Jeder Start über startForegroundService verlangt eine Vordergrund-Meldung, auch wenn schon eine steht.
-        if (plan != null || intent?.action == ACTION_GOOD_NIGHT || intent?.action == ACTION_GOOD_NIGHT_RESUME) {
+        if (plan != null || intent?.action?.let { it in FOREGROUND_ACTIONS } == true) {
             val measuring = night?.let { it.phase == Phase.MEASURING && !it.locked } ?: false
             notification?.let { goForeground(it, measuring = measuring || onset != null || goodNightPending, id = notificationId) }
         }
@@ -219,13 +236,7 @@ class WakeService : LifecycleService() {
         wakeLock = null
     }
 
-    internal fun reasonText(reason: WakeReason) = getString(
-        when (reason) {
-            WakeReason.LIGHT_SLEEP -> R.string.ring_reason_light
-            WakeReason.AWAKE -> R.string.ring_reason_awake
-            WakeReason.DEADLINE -> R.string.ring_reason_deadline
-        },
-    )
+    internal fun reasonText(reason: WakeReason) = getString(ringReasonRes(reason))
 
     internal fun formatTime(instant: Instant): String =
         DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(instant.atZone(ZoneId.systemDefault()))
@@ -247,6 +258,10 @@ class WakeService : LifecycleService() {
         const val ACTION_TASK_SHOWN = "com.phasewake.app.wake.TASK_SHOWN"
         const val ACTION_TASK_GONE = "com.phasewake.app.wake.TASK_GONE"
         private const val ACTION_GOOD_NIGHT_RESUME = "com.phasewake.app.wake.GOOD_NIGHT_RESUME"
+        private const val ACTION_AUTO_ONSET = "com.phasewake.app.wake.AUTO_ONSET"
+
+        /** Starts über startForegroundService ohne Plan; sie verlangen sofort eine Vordergrund-Meldung. */
+        private val FOREGROUND_ACTIONS = setOf(ACTION_GOOD_NIGHT, ACTION_GOOD_NIGHT_RESUME, ACTION_AUTO_ONSET)
         private const val EXTRA_ALARM_ID = "goodNightAlarmId"
         private const val EXTRA_REMOTE_ALARM_ID = "remoteAlarmId"
         private const val EXTRA_REMOTE_TARGET = "remoteTarget"
@@ -296,6 +311,14 @@ class WakeService : LifecycleService() {
             ContextCompat.startForegroundService(
                 context,
                 Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId),
+            )
+        }
+
+        /** Startet die automatische Einschlaf-Messung für den Wecker [alarmId] (aus [com.phasewake.app.wear.schedule.AutoOnset]). */
+        fun autoOnset(context: Context, alarmId: String) {
+            ContextCompat.startForegroundService(
+                context,
+                Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId),
             )
         }
 

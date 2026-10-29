@@ -9,9 +9,11 @@
     <string name="notification_ring_title">မင်္ဂလာနံနက်ခင်းပါ</string>
 
     <string name="ring_greeting">မင်္ဂလာနံနက်ခင်းပါ</string>
-    <string name="ring_reason_light">အိပ်ရေးပေါ့ တွေ့ရှိ</string>
+    <string name="ring_reason_light">မငြိမ်မသက် – အိပ်ရေးပေါ့ ဖြစ်နိုင်</string>
     <string name="ring_reason_awake">နိုးနေပြီးသား</string>
     <string name="ring_reason_deadline">ပစ်မှတ်အချိန် ရောက်ပြီ</string>
+    <string name="ring_reason_exact">ပစ်မှတ်အချိန်တိတိတွင်</string>
+    <string name="ring_reason_short_night">ညတို – ပစ်မှတ်အချိန်မှသာ</string>
     <string name="ring_hold_to_stop">ရပ်ရန် ဖိထားပါ</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d မိနစ် · %2$d ကြိမ် ကျန်</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">ဤအချိန်မတိုင်မီ နှိုးပါ</string>
     <string name="editor_latest">အနောက်ကျဆုံး</string>
     <string name="editor_window">အချိန်အပိုင်း- %1$d မိနစ်</string>
+    <string name="editor_window_exact">တိတိ</string>
+    <string name="editor_window_exact_hint">ပစ်မှတ်အချိန်တိတိတွင် မြည်မည်၊ ဘယ်တော့မှ စောမည်မဟုတ်။ သင့်နာရီသည် မှတ်တမ်းအတွက် ဆက်လက်တိုင်းတာမည်။</string>
+    <string name="window_exact_line">%1$s တိတိတွင်</string>
     <string name="editor_days">ထပ်ခါထပ်ခါ</string>
     <string name="editor_save">သိမ်းရန်</string>
     <string name="editor_delete">နှိုးစက် ဖျက်ရန်</string>

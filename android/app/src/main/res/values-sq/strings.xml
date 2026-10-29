@@ -21,15 +21,18 @@
     <string name="home_next_today">Sot</string>
     <string name="home_next_tomorrow">Nesër</string>
     <string name="home_next_in">Të zgjon në gjumë të lehtë · pas %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Të zgjon saktësisht në orën e synuar · pas %1$s</string>
     <string name="home_no_alarm_title">Zgjohu në momentin e duhur</string>
     <string name="home_no_alarm_text">Cakto kohën dhe intervalin. Ora jote të zgjon kur fle lehtë.</string>
     <string name="home_add_alarm">Alarm i ri</string>
     <string name="home_last_night">Nata e kaluar</string>
     <string name="home_alarms">Alarmet e tua</string>
 
-    <string name="reason_light">Gjumë i lehtë</string>
+    <string name="reason_light">I shqetësuar – ndoshta gjumë i lehtë</string>
     <string name="reason_awake">Ishe zgjuar</string>
     <string name="reason_deadline">Nuk u dallua gjumë i lehtë</string>
+    <string name="reason_exact">Saktësisht në orën e synuar</string>
+    <string name="reason_short_night">Natë e shkurtër – vetëm në orën e synuar</string>
     <string name="woke_early">%1$d min para orës së synuar · %2$s</string>
     <string name="woke_on_time">Në orën e synuar · %1$s</string>
     <string name="no_snooze">pa shtyrje</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Më zgjo deri në</string>
     <string name="editor_latest">Së voni</string>
     <string name="editor_sleep_duration">Fli %1$s</string>
-    <string name="editor_sleep_hint">Numërimi nis kur të zë gjumi. Prek „Natën e mirë“ në orë.</string>
+    <string name="editor_sleep_hint">Numëron që kur të zë gjumi. Ora e dallon automatikisht; prek „Natën e mirë“ në orë për të nisur menjëherë.</string>
     <string name="editor_window">Intervali: %1$d min</string>
     <string name="editor_window_hint">Të zgjon mes %1$s dhe %2$s</string>
+    <string name="editor_window_exact">Saktë</string>
+    <string name="editor_window_exact_hint">Bie saktësisht në orën e synuar, kurrë më herët. Ora jote vazhdon të masë për historikun tënd.</string>
+    <string name="window_exact_line">Saktësisht në %1$s</string>
     <string name="editor_days">Përsërit</string>
     <string name="editor_weekdays">Ditët e punës</string>
     <string name="editor_weekend">Fundjava</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Vazhdo redaktimin</string>
     <string name="editor_delete_title">Të fshihet ky alarm?</string>
     <string name="home_window_running">Intervali i zgjimit po vazhdon – po matet tani</string>
+    <string name="home_auto_onset">Ora jote dallon automatikisht kur të zë gjumi, duke filluar nga %1$s.</string>
     <string name="check_volume">Volumi i alarmit</string>
     <string name="check_volume_problem">Volumi i alarmit është në 0 – telefoni do të binte pa zë.</string>
     <string name="health_update">Përditëso Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Regjistrimi është aktiv. Më mirë vendose telefonin në karikim për natën.</string>
     <string name="sound_rec_default">Aktiv për netët e reja</string>
     <string name="sound_rec_default_hint">Nis kur hap Phase Wake nga ora e gjumit e tutje (pa alarm, nga ora 21:00). Vetëm fragmente të shkurtra; mbeten në telefon dhe fshihen pas 7 ditësh.</string>
-    <string name="sound_type_snore">Gërhitje</string>
+    <string name="sound_type_snore">Gërhitje e mundshme</string>
     <string name="sound_type_talk">Të folur</string>
     <string name="sound_type_other">Tingull tjetër</string>
     <plurals name="sound_summary">
-        <item quantity="one">Gërhitje: %1$s (%2$d fragment)</item>
-        <item quantity="other">Gërhitje: %1$s (%2$d fragmente)</item>
+        <item quantity="one">Gërhitje e mundshme: %1$s (%2$d fragment)</item>
+        <item quantity="other">Gërhitje e mundshme: %1$s (%2$d fragmente)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Të folur: %1$d fragment</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Zakonisht %1$d–%2$d %%</string>
     <string name="stages_typical_below">Zakonisht nën %1$d %%</string>
     <string name="stages_not_medical">Nuk është vlerësim mjekësor.</string>
-    <string name="stages_verdict_awake_above">Më shumë kohë zgjuar se zakonisht</string>
-    <string name="stages_verdict_deep_below">Më pak gjumë i thellë se zakonisht</string>
-    <string name="stages_verdict_deep_above">Më shumë gjumë i thellë se zakonisht</string>
-    <string name="stages_verdict_rem_below">Pak REM – shpesh pas një nate të shkurtër ose të vonë</string>
-    <string name="stages_verdict_rem_above">Më shumë REM se zakonisht</string>
-    <string name="stages_verdict_light_below">Më pak gjumë i lehtë se zakonisht</string>
-    <string name="stages_verdict_light_above">Më shumë gjumë i lehtë se zakonisht</string>
-    <string name="stages_verdict_typical">Të gjitha fazat brenda diapazonit të zakonshëm</string>
+    <string name="stages_source">Vlera referuese për të rritur të shëndetshëm (Ohayon et al., Sleep 2004). Orët i vlerësojnë fazat vetëm përafërsisht.</string>
     <string name="hypno_bubble">%1$s · %2$s · prej %3$s</string>
     <string name="hypno_block">%1$s nga %2$s deri %3$s</string>
     <string name="chart_week_average">Mesatarja javore</string>

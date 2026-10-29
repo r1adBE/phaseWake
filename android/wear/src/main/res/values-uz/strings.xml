@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Xayrli tong</string>
 
     <string name="ring_greeting">Xayrli tong</string>
-    <string name="ring_reason_light">Yengil uyqu aniqlandi</string>
+    <string name="ring_reason_light">Bezovta – ehtimol yengil uyqu</string>
     <string name="ring_reason_awake">Allaqachon uygʻoq eding</string>
     <string name="ring_reason_deadline">Belgilangan vaqt keldi</string>
+    <string name="ring_reason_exact">Aynan belgilangan vaqtda</string>
+    <string name="ring_reason_short_night">Qisqa tun – faqat belgilangan vaqtda</string>
     <string name="ring_hold_to_stop">Toʻxtatish uchun bosib tur</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d daq · %2$d ta qoldi</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Meni uygʻot</string>
     <string name="editor_latest">Eng kechi</string>
     <string name="editor_window">Oraliq: %1$d daq</string>
+    <string name="editor_window_exact">Aniq</string>
+    <string name="editor_window_exact_hint">Aynan belgilangan vaqtda jiringlaydi, hech qachon erta emas. Soating baribir tarixing uchun oʻlchaydi.</string>
+    <string name="window_exact_line">Aynan soat %1$s da</string>
     <string name="editor_days">Takrorlash</string>
     <string name="editor_save">Saqlash</string>
     <string name="editor_delete">Budilnikni oʻchirish</string>

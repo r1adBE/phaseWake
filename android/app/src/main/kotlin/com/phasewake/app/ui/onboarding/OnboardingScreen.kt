@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -20,14 +21,15 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Slider
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,8 +52,10 @@ import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.NavActions
 import com.phasewake.app.ui.NavState
 import com.phasewake.app.ui.components.LogoMark
+import com.phasewake.app.ui.editor.ChoiceLabel
 import com.phasewake.app.ui.editor.TIME_PICKER_SCALE
 import com.phasewake.app.ui.editor.WEEKDAYS
+import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.MAX_ALARMS
@@ -60,7 +64,6 @@ import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.startTest
 import java.time.Instant
 import java.util.UUID
-import kotlin.math.roundToInt
 
 /** Schritte der Ersteinrichtung; danach «Fertig». */
 private const val STEPS = 5
@@ -204,18 +207,28 @@ private fun WatchStep(model: OnboardingModel) {
 private fun AlarmStep(model: OnboardingModel) {
     val context = LocalContext.current
     val time = rememberTimePickerState(7, 0, is24Hour = DateFormat.is24HourFormat(context))
-    var window by rememberSaveable { mutableFloatStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES.toFloat()) }
+    var window by rememberSaveable { mutableIntStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES) }
     var created by rememberSaveable { mutableStateOf<String?>(null) }
     Page(R.string.onb_alarm_title) {
         Body(R.string.onb_alarm_text)
         TimePicker(time, modifier = Modifier.align(Alignment.CenterHorizontally).scaled(TIME_PICKER_SCALE))
-        Text(stringResource(R.string.editor_window, window.roundToInt()), style = MaterialTheme.typography.titleSmall)
-        Slider(
-            value = window,
-            onValueChange = { window = it },
-            valueRange = AlarmSpec.MIN_WINDOW_MINUTES.toFloat()..AlarmSpec.MAX_WINDOW_MINUTES.toFloat(),
-            steps = (AlarmSpec.MAX_WINDOW_MINUTES - AlarmSpec.MIN_WINDOW_MINUTES) / WINDOW_STEP - 1,
-        )
+        // Wie im Editor: «Genau · 10 · 20 · 30».
+        val exact = window == AlarmSpec.EXACT_WINDOW
+        val exactLabel = stringResource(R.string.editor_window_exact)
+        Text(if (exact) exactLabel else stringResource(R.string.editor_window, window), style = MaterialTheme.typography.titleSmall)
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+            WINDOW_OPTIONS.forEachIndexed { index, value ->
+                SegmentedButton(
+                    selected = value == window,
+                    onClick = { window = value },
+                    shape = SegmentedButtonDefaults.itemShape(index, WINDOW_OPTIONS.size),
+                    modifier = Modifier.heightIn(min = 48.dp),
+                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else value.toString()) }
+            }
+        }
+        if (exact) {
+            Text(stringResource(R.string.editor_window_exact_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
         val label = created
         if (label != null) {
             Text(stringResource(R.string.onb_alarm_done, label), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
@@ -223,17 +236,14 @@ private fun AlarmStep(model: OnboardingModel) {
             Button(onClick = {
                 val spec = AlarmSpec(
                     id = UUID.randomUUID().toString(), hour = time.hour, minute = time.minute, days = WEEKDAYS,
-                    windowMinutes = window.roundToInt(), sound = WakeTones.DEFAULT,
+                    windowMinutes = window, sound = WakeTones.DEFAULT,
                 )
                 model.onCreateAlarm(spec)
-                created = Format.window(spec)
+                created = Format.window(context, spec)
             }) { Text(stringResource(R.string.onb_alarm_create)) }
         }
     }
 }
-
-/** Schritt des Weckfensters in Minuten (wie im Editor). */
-private const val WINDOW_STEP = 5
 
 @Composable
 private fun TestPage(model: OnboardingModel) {

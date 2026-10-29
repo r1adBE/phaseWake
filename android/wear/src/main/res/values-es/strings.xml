@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Buenos días</string>
 
     <string name="ring_greeting">Buenos días</string>
-    <string name="ring_reason_light">Sueño ligero detectado</string>
+    <string name="ring_reason_light">Inquieto – probablemente sueño ligero</string>
     <string name="ring_reason_awake">Ya estabas despierto</string>
     <string name="ring_reason_deadline">Hora objetivo alcanzada</string>
+    <string name="ring_reason_exact">Justo a la hora objetivo</string>
+    <string name="ring_reason_short_night">Noche corta – solo a la hora objetivo</string>
     <string name="ring_hold_to_stop">Mantén para parar</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · queda %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Despiértame antes de</string>
     <string name="editor_latest">Como tarde</string>
     <string name="editor_window">Ventana: %1$d min</string>
+    <string name="editor_window_exact">Exacto</string>
+    <string name="editor_window_exact_hint">Suena justo a la hora objetivo, nunca antes. Tu reloj sigue midiendo para tu historial.</string>
+    <string name="window_exact_line">Justo a las %1$s</string>
     <string name="editor_days">Repetir</string>
     <string name="editor_save">Guardar</string>
     <string name="editor_delete">Eliminar alarma</string>

@@ -19,15 +19,18 @@
     <string name="home_next_today">ယနေ့</string>
     <string name="home_next_tomorrow">မနက်ဖြန်</string>
     <string name="home_next_in">အိပ်ရေးပေါ့ချိန်တွင် နှိုးမည် · နောက် %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ပစ်မှတ်အချိန်တိတိတွင် နှိုးမည် · နောက် %1$s</string>
     <string name="home_no_alarm_title">သင့်တော်သည့်အချိန်တွင် နိုးထပါ</string>
     <string name="home_no_alarm_text">အချိန်နှင့် အချိန်အပိုင်းကို သတ်မှတ်ပါ။ အိပ်ရေးပေါ့နေချိန်တွင် နာရီက နှိုးပေးမည်။</string>
     <string name="home_add_alarm">နှိုးစက်အသစ်</string>
     <string name="home_last_night">မနေ့ညက</string>
     <string name="home_alarms">သင့်နှိုးစက်များ</string>
 
-    <string name="reason_light">အိပ်ရေးပေါ့</string>
+    <string name="reason_light">မငြိမ်မသက် – အိပ်ရေးပေါ့ ဖြစ်နိုင်</string>
     <string name="reason_awake">နိုးနေပြီ</string>
     <string name="reason_deadline">အိပ်ရေးပေါ့ မတွေ့ပါ</string>
+    <string name="reason_exact">ပစ်မှတ်အချိန်တိတိတွင်</string>
+    <string name="reason_short_night">ညတို – ပစ်မှတ်အချိန်မှသာ</string>
     <string name="woke_early">ပစ်မှတ်ထက် %1$d မိနစ် စော · %2$s</string>
     <string name="woke_on_time">ပစ်မှတ်အချိန်တွင် · %1$s</string>
     <string name="no_snooze">ခဏဆိုင်းခြင်း မရှိ</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">ဤအချိန်မတိုင်မီ နှိုးပါ</string>
     <string name="editor_latest">အနောက်ကျဆုံး</string>
     <string name="editor_sleep_duration">%1$s အိပ်မည်</string>
-    <string name="editor_sleep_hint">အိပ်ပျော်ချိန်မှစ၍ ရေတွက်သည်။ နာရီပေါ်တွင် “ကောင်းသောညပါ” ကို တို့ပါ။</string>
+    <string name="editor_sleep_hint">အိပ်ပျော်ချိန်မှစ၍ ရေတွက်သည်။ နာရီက အလိုအလျောက် သိရှိသည်၊ ချက်ချင်းစရန် နာရီပေါ်တွင် “ကောင်းသောညပါ” ကို တို့ပါ။</string>
     <string name="editor_window">အချိန်အပိုင်း- %1$d မိနစ်</string>
     <string name="editor_window_hint">%1$s နှင့် %2$s ကြားတွင် နှိုးမည်</string>
+    <string name="editor_window_exact">တိတိ</string>
+    <string name="editor_window_exact_hint">ပစ်မှတ်အချိန်တိတိတွင် မြည်မည်၊ ဘယ်တော့မှ စောမည်မဟုတ်။ သင့်နာရီသည် မှတ်တမ်းအတွက် ဆက်လက်တိုင်းတာမည်။</string>
+    <string name="window_exact_line">%1$s တိတိတွင်</string>
     <string name="editor_days">ထပ်ခါထပ်ခါ</string>
     <string name="editor_weekdays">ကြားရက်များ</string>
     <string name="editor_weekend">စနေ၊ တနင်္ဂနွေ</string>
@@ -221,6 +227,7 @@
     <string name="editor_keep_editing">ဆက်ပြင်ရန်</string>
     <string name="editor_delete_title">ဤနှိုးစက်ကို ဖျက်မလား။</string>
     <string name="home_window_running">နှိုးချိန်အပိုင်း လည်ပတ်နေ – ယခု တိုင်းတာနေသည်</string>
+    <string name="home_auto_onset">%1$s မှစ၍ သင်အိပ်ပျော်ချိန်ကို နာရီက အလိုအလျောက် သိရှိမည်။</string>
     <string name="check_volume">နှိုးစက်အသံ</string>
     <string name="check_volume_problem">နှိုးစက်အသံ 0 ဖြစ်နေသည် – ဖုန်း အသံမထွက်ဘဲ မြည်မည်။</string>
     <string name="health_update">Health Connect အပ်ဒိတ်လုပ်ရန်</string>
@@ -293,11 +300,11 @@
     <string name="sound_rec_plug_in">အသံသွင်းခြင်း ဖွင့်ထားသည်။ ညဘက် ဖုန်းကို အားသွင်းကြိုးတပ်ထားခြင်းက အကောင်းဆုံး။</string>
     <string name="sound_rec_default">ညအသစ်များအတွက် ဖွင့်ရန်</string>
     <string name="sound_rec_default_hint">အိပ်ချိန်မှစ၍ (နှိုးစက်မရှိလျှင် ည 9 နာရီမှစ၍) Phase Wake ကို ဖွင့်သည့်အခါ စတင်သည်။ အတိုလေးများသာ၊ ဖုန်းပေါ်တွင်သာ ရှိပြီး 7 ရက်အကြာတွင် ဖျက်သည်။</string>
-    <string name="sound_type_snore">ဟောက်ခြင်း</string>
+    <string name="sound_type_snore">ဟောက်နိုင်ခြေ</string>
     <string name="sound_type_talk">စကားပြောခြင်း</string>
     <string name="sound_type_other">အခြားအသံ</string>
     <plurals name="sound_summary">
-        <item quantity="other">ဟောက်ခြင်း- %1$s (အသံဖိုင် %2$d ခု)</item>
+        <item quantity="other">ဟောက်နိုင်ခြေ- %1$s (အသံဖိုင် %2$d ခု)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">စကားပြောခြင်း- အသံဖိုင် %1$d ခု</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">ပုံမှန် %1$d–%2$d %%</string>
     <string name="stages_typical_below">ပုံမှန် %1$d %% အောက်</string>
     <string name="stages_not_medical">ဆေးပညာဆိုင်ရာ အကဲဖြတ်ချက် မဟုတ်ပါ။</string>
-    <string name="stages_verdict_awake_above">ပုံမှန်ထက် ပိုနိုးနေခဲ့သည်</string>
-    <string name="stages_verdict_deep_below">ပုံမှန်ထက် အိပ်ရေးနက် နည်းသည်</string>
-    <string name="stages_verdict_deep_above">ပုံမှန်ထက် အိပ်ရေးနက် များသည်</string>
-    <string name="stages_verdict_rem_below">REM နည်းသည် – တိုတောင်းသော သို့မဟုတ် နောက်ကျသော ညနောက်တွင် မကြာခဏ</string>
-    <string name="stages_verdict_rem_above">ပုံမှန်ထက် REM များသည်</string>
-    <string name="stages_verdict_light_below">ပုံမှန်ထက် အိပ်ရေးပေါ့ နည်းသည်</string>
-    <string name="stages_verdict_light_above">ပုံမှန်ထက် အိပ်ရေးပေါ့ များသည်</string>
-    <string name="stages_verdict_typical">အဆင့်အားလုံး ပုံမှန်အပိုင်းအခြားအတွင်း</string>
+    <string name="stages_source">ကျန်းမာသော လူကြီးများအတွက် ကိုးကားတန်ဖိုးများ (Ohayon နှင့်အဖွဲ့, Sleep 2004)။ နာရီများသည် အဆင့်များကို အကြမ်းဖျင်းသာ ခန့်မှန်းနိုင်သည်။</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ကြာပြီ</string>
     <string name="hypno_block">%1$s %2$s မှ %3$s</string>
     <string name="chart_week_average">အပတ်စဉ် ပျမ်းမျှ</string>

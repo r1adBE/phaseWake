@@ -28,7 +28,7 @@ struct NightDetailData {
             let stages = StageStats.forNight(allStages, night: night)
             timeline = h.map { h in
                 StageTimeline(start: h.start, totalMinutes: h.totalMinutes, steps: h.steps,
-                              window: h.windowFrom <= h.windowTo ? h.windowFrom...h.windowTo : nil,
+                              window: stageWindow(h, exact: night.wasExact),
                               wokeAt: h.wokeAt, stageAtWake: h.stageAtWake)
             }
             self.stages = stages

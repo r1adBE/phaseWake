@@ -21,15 +21,18 @@
     <string name="home_next_today">Vandag</string>
     <string name="home_next_tomorrow">Môre</string>
     <string name="home_next_in">Maak jou in ligte slaap wakker · oor %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Maak jou presies op teikentyd wakker · oor %1$s</string>
     <string name="home_no_alarm_title">Word op die regte oomblik wakker</string>
     <string name="home_no_alarm_text">Stel ’n tyd en ’n venster. Jou horlosie maak jou wakker wanneer jy lig slaap.</string>
     <string name="home_add_alarm">Nuwe wekker</string>
     <string name="home_last_night">Gisteraand</string>
     <string name="home_alarms">Jou wekkers</string>
 
-    <string name="reason_light">Ligte slaap</string>
+    <string name="reason_light">Onrustig – waarskynlik ligte slaap</string>
     <string name="reason_awake">Reeds wakker</string>
     <string name="reason_deadline">Geen ligte slaap bespeur nie</string>
+    <string name="reason_exact">Presies op teikentyd</string>
+    <string name="reason_short_night">Kort nag – eers op teikentyd</string>
     <string name="woke_early">%1$d min voor teikentyd · %2$s</string>
     <string name="woke_on_time">Op teikentyd · %1$s</string>
     <string name="no_snooze">nie gesluimer nie</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Maak my wakker teen</string>
     <string name="editor_latest">Uiterlik</string>
     <string name="editor_sleep_duration">Slaap vir %1$s</string>
-    <string name="editor_sleep_hint">Begin tel wanneer jy aan die slaap raak. Tik “Goeienag” op jou horlosie.</string>
+    <string name="editor_sleep_hint">Tel vanaf wanneer jy aan die slaap raak. Jou horlosie bespeur dit outomaties; tik “Goeienag” op die horlosie om dadelik te begin.</string>
     <string name="editor_window">Venster: %1$d min</string>
     <string name="editor_window_hint">Maak jou tussen %1$s en %2$s wakker</string>
+    <string name="editor_window_exact">Presies</string>
+    <string name="editor_window_exact_hint">Lui presies op teikentyd, nooit vroeër nie. Jou horlosie meet steeds vir jou geskiedenis.</string>
+    <string name="window_exact_line">Presies om %1$s</string>
     <string name="editor_days">Herhaal</string>
     <string name="editor_weekdays">Weeksdae</string>
     <string name="editor_weekend">Naweek</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Hou aan wysig</string>
     <string name="editor_delete_title">Vee hierdie wekker uit?</string>
     <string name="home_window_running">Wekvenster loop – meet nou</string>
+    <string name="home_auto_onset">Jou horlosie bespeur vanaf %1$s outomaties wanneer jy aan die slaap raak.</string>
     <string name="check_volume">Wekkervolume</string>
     <string name="check_volume_problem">Wekkervolume is op 0 – jou foon sou stil lui.</string>
     <string name="health_update">Dateer Health Connect op</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Opname is aan. Prop jou foon liefs vir die nag in.</string>
     <string name="sound_rec_default">Aan vir nuwe nagte</string>
     <string name="sound_rec_default_hint">Begin wanneer jy Phase Wake vanaf jou slaaptyd oopmaak (sonder wekker vanaf 21:00). Net kort snitte; hulle bly op jou foon en word ná 7 dae uitgevee.</string>
-    <string name="sound_type_snore">Snork</string>
+    <string name="sound_type_snore">Moontlik snork</string>
     <string name="sound_type_talk">Praat</string>
     <string name="sound_type_other">Ander klank</string>
     <plurals name="sound_summary">
-        <item quantity="one">Snork: %1$s (%2$d snit)</item>
-        <item quantity="other">Snork: %1$s (%2$d snitte)</item>
+        <item quantity="one">Moontlik snork: %1$s (%2$d snit)</item>
+        <item quantity="other">Moontlik snork: %1$s (%2$d snitte)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Praat: %1$d snit</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Gewoonlik %1$d–%2$d %%</string>
     <string name="stages_typical_below">Gewoonlik onder %1$d %%</string>
     <string name="stages_not_medical">Nie ’n mediese beoordeling nie.</string>
-    <string name="stages_verdict_awake_above">Meer tyd wakker as gewoonlik</string>
-    <string name="stages_verdict_deep_below">Minder diep slaap as gewoonlik</string>
-    <string name="stages_verdict_deep_above">Meer diep slaap as gewoonlik</string>
-    <string name="stages_verdict_rem_below">Min REM – dikwels ná ’n kort of laat nag</string>
-    <string name="stages_verdict_rem_above">Meer REM as gewoonlik</string>
-    <string name="stages_verdict_light_below">Minder ligte slaap as gewoonlik</string>
-    <string name="stages_verdict_light_above">Meer ligte slaap as gewoonlik</string>
-    <string name="stages_verdict_typical">Alle fases binne die gewone omvang</string>
+    <string name="stages_source">Riglyne vir gesonde volwassenes (Ohayon e.a., Sleep 2004). Horlosies skat fases net rofweg.</string>
     <string name="hypno_bubble">%1$s · %2$s · al %3$s</string>
     <string name="hypno_block">%1$s van %2$s tot %3$s</string>
     <string name="chart_week_average">Weekgemiddeld</string>

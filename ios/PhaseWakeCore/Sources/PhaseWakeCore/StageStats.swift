@@ -63,26 +63,6 @@ public struct StageTotal: Equatable, Sendable {
     public let rating: StageRating
 }
 
-/// Ein Satz Einordnung je Nacht nach fester Regel (kein Medizin-Ton). Identisch zu `StageVerdict` (Kotlin).
-public enum StageVerdict: String, Sendable {
-    /// Mehr Wachzeit als üblich.
-    case awakeAbove = "AWAKE_ABOVE"
-    /// Weniger Tiefschlaf als üblich.
-    case deepBelow = "DEEP_BELOW"
-    /// Mehr Tiefschlaf als üblich.
-    case deepAbove = "DEEP_ABOVE"
-    /// Wenig REM.
-    case remBelow = "REM_BELOW"
-    /// Mehr REM als üblich.
-    case remAbove = "REM_ABOVE"
-    /// Weniger leichter Schlaf als üblich.
-    case lightBelow = "LIGHT_BELOW"
-    /// Mehr leichter Schlaf als üblich.
-    case lightAbove = "LIGHT_ABOVE"
-    /// Alle Phasen im üblichen Bereich.
-    case typical = "TYPICAL"
-}
-
 /// Auswertung der Schlafphasen einer Nacht für die Detailseite. Identisch zu `NightStages` (Kotlin).
 public struct NightStages: Equatable, Sendable {
     /// Beginn des ausgewerteten Bereichs.
@@ -93,8 +73,6 @@ public struct NightStages: Equatable, Sendable {
     public let blocks: [StageBlock]
     /// Immer vier Einträge: wach, REM, leicht, tief.
     public let totals: [StageTotal]
-    /// Einordnung; `nil`, wenn die vier Phasen zusammen unter ``StageStats/minVerdictMinutes`` liegen.
-    public let verdict: StageVerdict?
     /// Einschlafdauer in Minuten (abgerundet): nur wenn der erste Block «wach» ist und ein weiterer folgt, sonst `nil`.
     public let latencyMinutes: Int?
     /// Schlaf (alles ausser «wach», «unbekannt» zählt als Schlaf) im Verhältnis zum Bereich, kaufmännisch gerundet, höchstens 100.
@@ -113,11 +91,8 @@ public struct NightStages: Equatable, Sendable {
     public func blockAt(_ at: Date) -> StageBlock? { blocks.last { $0.start <= at && at < $0.end } }
 }
 
-/// Phasen-Summen, Anteile, Einordnung und Kennzahlen einer Nacht: reine Rechnung. Identisch zu `StageStats` (Kotlin).
+/// Phasen-Summen, Anteile mit üblichem Bereich und Kennzahlen einer Nacht: reine Rechnung. Identisch zu `StageStats` (Kotlin).
 public enum StageStats {
-    /// Unter 120 Minuten (2 Std.) Phasen sagen die Anteile wenig: keine Einordnung.
-    public static let minVerdictMinutes = 120
-
     /// Übliche Anteile für Erwachsene in Prozent (Richtwerte laut Auftrag r1AD vom 29.10.2026): wach «unter 10 %».
     public static let typical: [SleepStage: StageRange] = [
         .awake: StageRange(low: 0, high: 9),
@@ -138,7 +113,6 @@ public enum StageStats {
         guard !known.isEmpty else { return nil }
         let blocks = merge(known)
         let totals = totalsOf(known)
-        let knownMs = order.reduce(Int64(0)) { sum, stage in sum + known.filter { $0.stage == stage }.reduce(0) { $0 + millis($1.start, $1.end) } }
         let sleepMs = clipped.filter { $0.stage != .awake }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) }
         let rangeMs = millis(from, to)
         let latency: Int? = blocks.count > 1 && blocks[0].stage == .awake ? minutes(millis(blocks[0].start, blocks[1].start)) : nil
@@ -147,7 +121,6 @@ public enum StageStats {
             end: to,
             blocks: blocks,
             totals: totals,
-            verdict: knownMs < Int64(minVerdictMinutes) * 60_000 ? nil : verdictOf(totals),
             latencyMinutes: latency,
             efficiencyPercent: rangeMs > 0 ? Int(min(100, (sleepMs * 100 + rangeMs / 2) / rangeMs)) : 0,
             awakenings: awakenings(blocks),
@@ -198,17 +171,6 @@ public enum StageStats {
             let range = typical[order[i]] ?? StageRange(low: 0, high: 100)
             return StageTotal(stage: order[i], minutes: minutes(ms[i]), percent: percent[i], range: range, rating: range.rate(percent[i]))
         }
-    }
-
-    /// Erste Abweichung in fester Reihenfolge: wach darüber, tief darunter, tief darüber, REM darunter, REM darüber,
-    /// leicht darunter, leicht darüber; keine: `typical`.
-    public static func verdictOf(_ totals: [StageTotal]) -> StageVerdict {
-        func rating(_ stage: SleepStage) -> StageRating { totals.first { $0.stage == stage }?.rating ?? .typical }
-        let rules: [(SleepStage, StageRating, StageVerdict)] = [
-            (.awake, .above, .awakeAbove), (.deep, .below, .deepBelow), (.deep, .above, .deepAbove),
-            (.rem, .below, .remBelow), (.rem, .above, .remAbove), (.light, .below, .lightBelow), (.light, .above, .lightAbove),
-        ]
-        return rules.first { rating($0.0) == $0.1 }?.2 ?? .typical
     }
 
     /// Blöcke «wach» mit einem Schlafblock irgendwo davor und danach.

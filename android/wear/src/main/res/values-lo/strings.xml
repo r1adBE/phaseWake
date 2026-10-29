@@ -9,9 +9,11 @@
     <string name="notification_ring_title">ສະບາຍດີຕອນເຊົ້າ</string>
 
     <string name="ring_greeting">ສະບາຍດີຕອນເຊົ້າ</string>
-    <string name="ring_reason_light">ພົບການຫຼັບຕື້ນ</string>
+    <string name="ring_reason_light">ບໍ່ສະຫງົບ – ອາດເປັນການຫຼັບຕື້ນ</string>
     <string name="ring_reason_awake">ເຈົ້າຕື່ນແລ້ວ</string>
     <string name="ring_reason_deadline">ຮອດເວລາເປົ້າໝາຍ</string>
+    <string name="ring_reason_exact">ຕົງເວລາເປົ້າໝາຍພໍດີ</string>
+    <string name="ring_reason_short_night">ຄືນສັ້ນ – ສະເພາະເວລາເປົ້າໝາຍ</string>
     <string name="ring_hold_to_stop">ກົດຄ້າງໄວ້ເພື່ອຢຸດ</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d ນາທີ · ເຫຼືອ %2$d ເທື່ອ</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">ປຸກຂ້ອຍພາຍໃນ</string>
     <string name="editor_latest">ຊ້າສຸດ</string>
     <string name="editor_window">ຊ່ວງເວລາ: %1$d ນາທີ</string>
+    <string name="editor_window_exact">ພໍດີ</string>
+    <string name="editor_window_exact_hint">ດັງຕົງເວລາເປົ້າໝາຍພໍດີ ບໍ່ເຄີຍກ່ອນ. ໂມງຂອງເຈົ້າຍັງວັດແທກເພື່ອປະຫວັດຂອງເຈົ້າ.</string>
+    <string name="window_exact_line">ພໍດີ %1$s</string>
     <string name="editor_days">ເຮັດຊ້ຳ</string>
     <string name="editor_save">ບັນທຶກ</string>
     <string name="editor_delete">ລຶບໂມງປຸກ</string>

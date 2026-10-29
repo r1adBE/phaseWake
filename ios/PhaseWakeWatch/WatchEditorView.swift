@@ -25,7 +25,7 @@ extension AlarmSpec {
     }
 }
 
-/// Einfacher Wecker-Editor auf der Uhr: Uhrzeit, Weckfenster, Wochentage, Ein/Aus, Löschen.
+/// Einfacher Wecker-Editor auf der Uhr: Uhrzeit, Weckfenster (oder «Genau»), Wochentage, Ein/Aus, Löschen.
 /// Abbrechen (oben links) verwirft die Änderungen.
 struct WatchEditorView: View {
     @Environment(WatchModel.self) private var model
@@ -68,9 +68,19 @@ struct WatchEditorView: View {
                     .listRowBackground(Color.clear)
                 }
                 Section {
-                    Stepper(value: $window, in: AlarmSpec.minWindowMinutes...AlarmSpec.maxWindowMinutes, step: 5) {
-                        Text(L("editor_window", Int64(window)))
-                            .font(Fonts.manrope(14, .semibold, relativeTo: .body))
+                    // «Genau · 10 · 20 · 30» wie auf dem iPhone; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
+                    Picker(selection: $window) {
+                        ForEach(windowChoices, id: \.self) { minutes in
+                            Text(windowName(minutes)).tag(minutes)
+                        }
+                    } label: {
+                        Text(L("chart_window")).font(Fonts.manrope(14, .semibold, relativeTo: .body))
+                    }
+                    if window == AlarmSpec.exactWindow {
+                        Text(L("editor_window_exact_hint"))
+                            .font(Fonts.manrope(12, relativeTo: .footnote))
+                            .foregroundStyle(Brand.muted)
+                            .listRowBackground(Color.clear)
                     }
                 }
                 Section(L("editor_days")) {
@@ -160,6 +170,17 @@ struct WatchEditorView: View {
     private func save() {
         if let draft { model.save(draft, skip: skipRequest) }
         dismiss()
+    }
+
+    /// «Genau» (0), 10, 20, 30 und ein gespeicherter Wert dazwischen, damit er beim Öffnen nicht still ändert.
+    private var windowChoices: [Int] {
+        let base = [AlarmSpec.exactWindow, 10, 20, AlarmSpec.maxWindowMinutes]
+        return base.contains(start.windowMinutes) ? base : (base + [start.windowMinutes]).sorted()
+    }
+
+    /// «Genau» bzw. «20 Min».
+    private func windowName(_ minutes: Int) -> String {
+        minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes))
     }
 
     /// Wochentage ab dem Wochenbeginn der Region (z. B. Sonntag in den USA).

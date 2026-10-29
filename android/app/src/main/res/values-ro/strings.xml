@@ -20,15 +20,18 @@
     <string name="home_next_today">Azi</string>
     <string name="home_next_tomorrow">Mâine</string>
     <string name="home_next_in">Te trezește din somn ușor · peste %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Te trezește exact la ora țintă · peste %1$s</string>
     <string name="home_no_alarm_title">Trezește-te la momentul potrivit</string>
     <string name="home_no_alarm_text">Alege o oră și un interval. Ceasul te trezește când dormi ușor.</string>
     <string name="home_add_alarm">Alarmă nouă</string>
     <string name="home_last_night">Noaptea trecută</string>
     <string name="home_alarms">Alarmele tale</string>
 
-    <string name="reason_light">Somn ușor</string>
+    <string name="reason_light">Agitat – probabil somn ușor</string>
     <string name="reason_awake">Deja treaz</string>
     <string name="reason_deadline">Nu s-a detectat somn ușor</string>
+    <string name="reason_exact">Exact la ora țintă</string>
+    <string name="reason_short_night">Noapte scurtă – abia la ora țintă</string>
     <string name="woke_early">%1$d min înainte de ora țintă · %2$s</string>
     <string name="woke_on_time">La ora țintă · %1$s</string>
     <string name="no_snooze">fără amânare</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Trezește-mă până la</string>
     <string name="editor_latest">Cel târziu</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
-    <string name="editor_sleep_hint">Numărătoarea începe când adormi. Atinge „Noapte bună” pe ceas.</string>
+    <string name="editor_sleep_hint">Numără de când adormi. Ceasul detectează automat; atinge „Noapte bună” pe ceas ca să înceapă imediat.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Te trezește între %1$s și %2$s</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Sună exact la ora țintă, niciodată mai devreme. Ceasul măsoară totuși pentru istoricul tău.</string>
+    <string name="window_exact_line">Exact la %1$s</string>
     <string name="editor_days">Repetă</string>
     <string name="editor_weekdays">Zile lucrătoare</string>
     <string name="editor_weekend">Weekend</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">Continuă editarea</string>
     <string name="editor_delete_title">Ștergi această alarmă?</string>
     <string name="home_window_running">Intervalul este în desfășurare – se măsoară acum</string>
+    <string name="home_auto_onset">Ceasul detectează automat când adormi, începând de la %1$s.</string>
     <string name="check_volume">Volumul alarmei</string>
     <string name="check_volume_problem">Volumul alarmei este setat la 0 – telefonul ar suna fără sunet.</string>
     <string name="health_update">Actualizează Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Înregistrarea e pornită. Cel mai bine pune telefonul la încărcat peste noapte.</string>
     <string name="sound_rec_default">Pornit pentru nopțile noi</string>
     <string name="sound_rec_default_hint">Pornește când deschizi Phase Wake de la ora ta de culcare (fără alarmă, de la 21:00). Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile.</string>
-    <string name="sound_type_snore">Sforăit</string>
+    <string name="sound_type_snore">Posibil sforăit</string>
     <string name="sound_type_talk">Vorbit</string>
     <string name="sound_type_other">Alt sunet</string>
     <plurals name="sound_summary">
-        <item quantity="one">Sforăit: %1$s (%2$d fragment)</item>
-        <item quantity="few">Sforăit: %1$s (%2$d fragmente)</item>
-        <item quantity="other">Sforăit: %1$s (%2$d de fragmente)</item>
+        <item quantity="one">Posibil sforăit: %1$s (%2$d fragment)</item>
+        <item quantity="few">Posibil sforăit: %1$s (%2$d fragmente)</item>
+        <item quantity="other">Posibil sforăit: %1$s (%2$d de fragmente)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Vorbit: %1$d fragment</item>
@@ -521,14 +528,7 @@
     <string name="stages_typical_range">De obicei %1$d–%2$d %%</string>
     <string name="stages_typical_below">De obicei sub %1$d %%</string>
     <string name="stages_not_medical">Nu este o evaluare medicală.</string>
-    <string name="stages_verdict_awake_above">Mai mult timp treaz decât de obicei</string>
-    <string name="stages_verdict_deep_below">Mai puțin somn profund decât de obicei</string>
-    <string name="stages_verdict_deep_above">Mai mult somn profund decât de obicei</string>
-    <string name="stages_verdict_rem_below">Puțin REM – adesea după o noapte scurtă sau târzie</string>
-    <string name="stages_verdict_rem_above">Mai mult REM decât de obicei</string>
-    <string name="stages_verdict_light_below">Mai puțin somn ușor decât de obicei</string>
-    <string name="stages_verdict_light_above">Mai mult somn ușor decât de obicei</string>
-    <string name="stages_verdict_typical">Toate fazele în intervalul obișnuit</string>
+    <string name="stages_source">Valori de referință pentru adulți sănătoși (Ohayon et al., Sleep 2004). Ceasurile estimează fazele doar aproximativ.</string>
     <string name="hypno_bubble">%1$s · %2$s · de %3$s</string>
     <string name="hypno_block">%1$s de la %2$s la %3$s</string>
     <string name="chart_week_average">Medie săptămânală</string>

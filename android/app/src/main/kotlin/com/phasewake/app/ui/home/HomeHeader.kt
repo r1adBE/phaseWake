@@ -70,6 +70,8 @@ internal fun Header(
     onEdit: (String) -> Unit,
     /** Datum eines Feiertags, an dem ein Wecker nicht weckt (schon formatiert); `null` = keiner. */
     holidayNote: String? = null,
+    /** Beginn der automatischen Einschlaf-Messung der Uhr (schon formatiert); `null` = keine Zeile. */
+    autoOnset: String? = null,
 ) {
     val context = LocalContext.current
     // In Vorschau und Bildschirmfotos gibt es keinen zweiten Frame: dort gleich sichtbar.
@@ -101,8 +103,12 @@ internal fun Header(
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
                         Text(
-                            Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone),
-                            style = MaterialTheme.typography.displayMedium,
+                            if (plan.exact) {
+                                stringResource(R.string.window_exact_line, Format.time(plan.target, zone))
+                            } else {
+                                Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone)
+                            },
+                            style = if (plan.exact) MaterialTheme.typography.displaySmall else MaterialTheme.typography.displayMedium,
                             color = Night.Text,
                             modifier = Modifier.padding(top = 2.dp),
                         )
@@ -112,15 +118,21 @@ internal fun Header(
                             style = MaterialTheme.typography.bodyMedium,
                             color = Night.Muted,
                         )
-                        Text(
-                            if (now.isBefore(plan.windowStart)) {
-                                stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
-                            } else {
-                                stringResource(R.string.home_window_running)
-                            },
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = Night.Muted,
-                        )
+                        // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben sagt schon alles.
+                        if (!plan.exact) {
+                            Text(
+                                if (now.isBefore(plan.windowStart)) {
+                                    stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
+                                } else {
+                                    stringResource(R.string.home_window_running)
+                                },
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Night.Muted,
+                            )
+                        }
+                        autoOnset?.let {
+                            Text(stringResource(R.string.home_auto_onset, it), style = MaterialTheme.typography.bodySmall, color = Night.Muted)
+                        }
                         holidayNote?.let { HolidayNote(it) }
                         HeroWave(Modifier.fillMaxWidth().height(76.dp).padding(top = 18.dp), windowFraction = 0.32f, onNight = true)
                     } else {

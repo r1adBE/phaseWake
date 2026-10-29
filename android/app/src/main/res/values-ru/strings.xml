@@ -21,15 +21,18 @@
     <string name="home_next_today">Сегодня</string>
     <string name="home_next_tomorrow">Завтра</string>
     <string name="home_next_in">Разбудит в лёгком сне · через %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Разбудит точно в целевое время · через %1$s</string>
     <string name="home_no_alarm_title">Просыпайся в нужный момент</string>
     <string name="home_no_alarm_text">Задай время и окно. Часы разбудят тебя, когда сон будет лёгким.</string>
     <string name="home_add_alarm">Новый будильник</string>
     <string name="home_last_night">Прошлая ночь</string>
     <string name="home_alarms">Твои будильники</string>
 
-    <string name="reason_light">Лёгкий сон</string>
+    <string name="reason_light">Беспокойно – вероятно, лёгкий сон</string>
     <string name="reason_awake">Уже не спишь</string>
     <string name="reason_deadline">Лёгкий сон не обнаружен</string>
+    <string name="reason_exact">Точно в целевое время</string>
+    <string name="reason_short_night">Короткая ночь – только в целевое время</string>
     <string name="woke_early">за %1$d мин до цели · %2$s</string>
     <string name="woke_on_time">В целевое время · %1$s</string>
     <string name="no_snooze">без откладывания</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Разбуди меня к</string>
     <string name="editor_latest">Не позже</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
-    <string name="editor_sleep_hint">Отсчёт начинается, когда ты заснёшь. Нажми «Спокойной ночи» на часах.</string>
+    <string name="editor_sleep_hint">Отсчёт идёт с момента засыпания. Часы определяют его автоматически; нажми «Спокойной ночи» на часах, чтобы начать сразу.</string>
     <string name="editor_window">Окно: %1$d мин</string>
     <string name="editor_window_hint">Разбудит между %1$s и %2$s</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Звонит точно в целевое время, никогда раньше. Часы всё равно измеряют для твоей истории.</string>
+    <string name="window_exact_line">Ровно в %1$s</string>
     <string name="editor_days">Повтор</string>
     <string name="editor_weekdays">Будни</string>
     <string name="editor_weekend">Выходные</string>
@@ -232,6 +238,7 @@
     <string name="editor_keep_editing">Продолжить</string>
     <string name="editor_delete_title">Удалить этот будильник?</string>
     <string name="home_window_running">Окно идёт – сейчас идёт измерение</string>
+    <string name="home_auto_onset">Часы автоматически определяют, когда ты засыпаешь, начиная с %1$s.</string>
     <string name="check_volume">Громкость будильника</string>
     <string name="check_volume_problem">Громкость будильника равна 0 – телефон зазвонит без звука.</string>
     <string name="health_update">Обновить Health Connect</string>
@@ -315,14 +322,14 @@
     <string name="sound_rec_plug_in">Запись идёт. Лучше поставь телефон на зарядку на ночь.</string>
     <string name="sound_rec_default">Включать для новых ночей</string>
     <string name="sound_rec_default_hint">Запускается, когда ты открываешь Phase Wake начиная со времени отхода ко сну (без будильника — с 21:00). Только короткие фрагменты; они остаются на телефоне и удаляются через 7 дней.</string>
-    <string name="sound_type_snore">Храп</string>
+    <string name="sound_type_snore">Возможно, храп</string>
     <string name="sound_type_talk">Разговор</string>
     <string name="sound_type_other">Другой звук</string>
     <plurals name="sound_summary">
-        <item quantity="one">Храп: %1$s (%2$d фрагмент)</item>
-        <item quantity="few">Храп: %1$s (%2$d фрагмента)</item>
-        <item quantity="many">Храп: %1$s (%2$d фрагментов)</item>
-        <item quantity="other">Храп: %1$s (%2$d фрагмента)</item>
+        <item quantity="one">Возможно, храп: %1$s (%2$d фрагмент)</item>
+        <item quantity="few">Возможно, храп: %1$s (%2$d фрагмента)</item>
+        <item quantity="many">Возможно, храп: %1$s (%2$d фрагментов)</item>
+        <item quantity="other">Возможно, храп: %1$s (%2$d фрагмента)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Разговор: %1$d фрагмент</item>
@@ -535,14 +542,7 @@
     <string name="stages_typical_range">Обычно %1$d–%2$d %%</string>
     <string name="stages_typical_below">Обычно меньше %1$d %%</string>
     <string name="stages_not_medical">Это не медицинская оценка.</string>
-    <string name="stages_verdict_awake_above">Больше бодрствования, чем обычно</string>
-    <string name="stages_verdict_deep_below">Меньше глубокого сна, чем обычно</string>
-    <string name="stages_verdict_deep_above">Больше глубокого сна, чем обычно</string>
-    <string name="stages_verdict_rem_below">Мало REM – часто после короткой или поздней ночи</string>
-    <string name="stages_verdict_rem_above">Больше REM, чем обычно</string>
-    <string name="stages_verdict_light_below">Меньше лёгкого сна, чем обычно</string>
-    <string name="stages_verdict_light_above">Больше лёгкого сна, чем обычно</string>
-    <string name="stages_verdict_typical">Все фазы в обычном диапазоне</string>
+    <string name="stages_source">Ориентировочные значения для здоровых взрослых (Ohayon и др., Sleep 2004). Часы оценивают фазы лишь приблизительно.</string>
     <string name="hypno_bubble">%1$s · %2$s · уже %3$s</string>
     <string name="hypno_block">%1$s с %2$s до %3$s</string>
     <string name="chart_week_average">Среднее за неделю</string>

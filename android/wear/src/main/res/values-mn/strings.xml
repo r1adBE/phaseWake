@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Өглөөний мэнд</string>
 
     <string name="ring_greeting">Өглөөний мэнд</string>
-    <string name="ring_reason_light">Хөнгөн нойр илэрсэн</string>
+    <string name="ring_reason_light">Тайван бус – магадгүй хөнгөн нойр</string>
     <string name="ring_reason_awake">Чи аль хэдийн сэрүүн байсан</string>
     <string name="ring_reason_deadline">Зорилтот цаг болсон</string>
+    <string name="ring_reason_exact">Яг зорилтот цагт</string>
+    <string name="ring_reason_short_night">Богино шөнө – зөвхөн зорилтот цагт</string>
     <string name="ring_hold_to_stop">Зогсоохын тулд дарж барь</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d мин · %2$d үлдсэн</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Намайг сэрээх цаг</string>
     <string name="editor_latest">Хамгийн оройдоо</string>
     <string name="editor_window">Хугацаа: %1$d мин</string>
+    <string name="editor_window_exact">Яг</string>
+    <string name="editor_window_exact_hint">Яг зорилтот цагт дуугарна, хэзээ ч эрт биш. Цаг чинь түүхэнд чинь зориулж хэмжсээр байна.</string>
+    <string name="window_exact_line">Яг %1$s-д</string>
     <string name="editor_days">Давтах</string>
     <string name="editor_save">Хадгалах</string>
     <string name="editor_delete">Сэрүүлэг устгах</string>

@@ -9,9 +9,11 @@
     <string name="notification_ring_title">காலை வணக்கம்</string>
 
     <string name="ring_greeting">காலை வணக்கம்</string>
-    <string name="ring_reason_light">லேசான தூக்கம் கண்டறியப்பட்டது</string>
+    <string name="ring_reason_light">அமைதியின்மை – பெரும்பாலும் லேசான தூக்கம்</string>
     <string name="ring_reason_awake">ஏற்கெனவே விழித்திருந்தீர்கள்</string>
     <string name="ring_reason_deadline">இலக்கு நேரம் வந்தது</string>
+    <string name="ring_reason_exact">சரியாக இலக்கு நேரத்தில்</string>
+    <string name="ring_reason_short_night">குறுகிய இரவு – இலக்கு நேரத்தில் மட்டும்</string>
     <string name="ring_hold_to_stop">நிறுத்த அழுத்திப் பிடியுங்கள்</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d நிமி. · மீதம் %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">இதற்குள் எழுப்பு</string>
     <string name="editor_latest">அதிகபட்சம்</string>
     <string name="editor_window">வரம்பு: %1$d நிமி.</string>
+    <string name="editor_window_exact">சரியாக</string>
+    <string name="editor_window_exact_hint">சரியாக இலக்கு நேரத்தில் ஒலிக்கும், ஒருபோதும் முன்பு அல்ல. உங்கள் வாட்ச் இருந்தாலும் உங்கள் வரலாற்றுக்காக அளவிடும்.</string>
+    <string name="window_exact_line">சரியாக %1$s-க்கு</string>
     <string name="editor_days">மீண்டும்</string>
     <string name="editor_save">சேமி</string>
     <string name="editor_delete">அலாரத்தை நீக்கு</string>

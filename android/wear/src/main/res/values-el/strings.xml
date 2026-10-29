@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Καλημέρα</string>
 
     <string name="ring_greeting">Καλημέρα</string>
-    <string name="ring_reason_light">Εντοπίστηκε ελαφρύς ύπνος</string>
+    <string name="ring_reason_light">Ανησυχία – μάλλον ελαφρύς ύπνος</string>
     <string name="ring_reason_awake">Είσαι ήδη σε εγρήγορση</string>
     <string name="ring_reason_deadline">Έφτασε η ώρα στόχου</string>
+    <string name="ring_reason_exact">Ακριβώς στην ώρα στόχου</string>
+    <string name="ring_reason_short_night">Σύντομη νύχτα – μόνο στην ώρα στόχου</string>
     <string name="ring_hold_to_stop">Κράτα για διακοπή</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d λ. · απομένουν: %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Ξύπνα με μέχρι</string>
     <string name="editor_latest">Το αργότερο</string>
     <string name="editor_window">Παράθυρο: %1$d λ.</string>
+    <string name="editor_window_exact">Ακριβώς</string>
+    <string name="editor_window_exact_hint">Χτυπά ακριβώς στην ώρα στόχου, ποτέ νωρίτερα. Το ρολόι σου μετρά ακόμη για το ιστορικό σου.</string>
+    <string name="window_exact_line">Ακριβώς στις %1$s</string>
     <string name="editor_days">Επανάληψη</string>
     <string name="editor_save">Αποθήκευση</string>
     <string name="editor_delete">Διαγραφή ξυπνητηριού</string>

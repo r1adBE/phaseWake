@@ -25,7 +25,7 @@ object PhoneCatchUp {
     /** Zeitpunkt (ms) des zuletzt angewendeten «Verlauf löschen» vom Handy. */
     private val CLEAR_APPLIED_AT = longPreferencesKey("clear_history_applied_at")
 
-    /** @return ob sich Wecker oder Feiertage geändert haben (dann neu planen). Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
+    /** @return ob sich Wecker, Feiertage oder Schlafziel geändert haben (dann neu planen). Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
     suspend fun run(app: PhaseWakeWear): Boolean = withTimeoutOrNull(TIMEOUT_MS) { catchUp(app) } ?: false
 
     private const val TIMEOUT_MS = 5_000L
@@ -46,8 +46,8 @@ object PhoneCatchUp {
             Log.w(TAG, "Feiertage nachholen fehlgeschlagen", e)
         }
         try {
-            // Schlafziel: nur Anzeige, ändert also nichts am Plan.
-            app.sync.fetchSleepGoal()?.let { (minutes, at) -> app.sleepGoal.setIfNewer(minutes, at) }
+            // Schlafziel: bestimmt den Beginn der automatischen Einschlaf-Messung, darum neu planen.
+            app.sync.fetchSleepGoal()?.let { (minutes, at) -> if (app.sleepGoal.setIfNewer(minutes, at)) changed = true }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Schlafziel nachholen fehlgeschlagen", e)

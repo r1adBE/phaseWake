@@ -19,15 +19,18 @@
     <string name="home_next_today">ມື້ນີ້</string>
     <string name="home_next_tomorrow">ມື້ອື່ນ</string>
     <string name="home_next_in">ປຸກຕອນຫຼັບຕື້ນ · ອີກ %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ປຸກຕົງເວລາເປົ້າໝາຍພໍດີ · ອີກ %1$s</string>
     <string name="home_no_alarm_title">ຕື່ນໃນເວລາທີ່ເໝາະສົມ</string>
     <string name="home_no_alarm_text">ຕັ້ງເວລາ ແລະ ຊ່ວງເວລາ ໂມງຈະປຸກເຈົ້າຕອນທີ່ເຈົ້າຫຼັບຕື້ນ</string>
     <string name="home_add_alarm">ໂມງປຸກໃໝ່</string>
     <string name="home_last_night">ຄືນຜ່ານມາ</string>
     <string name="home_alarms">ໂມງປຸກຂອງເຈົ້າ</string>
 
-    <string name="reason_light">ຫຼັບຕື້ນ</string>
+    <string name="reason_light">ບໍ່ສະຫງົບ – ອາດເປັນການຫຼັບຕື້ນ</string>
     <string name="reason_awake">ຕື່ນແລ້ວ</string>
     <string name="reason_deadline">ບໍ່ພົບການຫຼັບຕື້ນ</string>
+    <string name="reason_exact">ຕົງເວລາເປົ້າໝາຍພໍດີ</string>
+    <string name="reason_short_night">ຄືນສັ້ນ – ສະເພາະເວລາເປົ້າໝາຍ</string>
     <string name="woke_early">ກ່ອນເວລາເປົ້າໝາຍ %1$d ນາທີ · %2$s</string>
     <string name="woke_on_time">ຕົງເວລາເປົ້າໝາຍ · %1$s</string>
     <string name="no_snooze">ບໍ່ໄດ້ເລື່ອນປຸກ</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">ປຸກຂ້ອຍພາຍໃນ</string>
     <string name="editor_latest">ຊ້າສຸດ</string>
     <string name="editor_sleep_duration">ນອນ %1$s</string>
-    <string name="editor_sleep_hint">ເລີ່ມນັບເມື່ອເຈົ້າຫຼັບ ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງ</string>
+    <string name="editor_sleep_hint">ນັບຕັ້ງແຕ່ເຈົ້າຫຼັບ ໂມງກວດພົບໄດ້ເອງ; ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງເພື່ອເລີ່ມທັນທີ</string>
     <string name="editor_window">ຊ່ວງເວລາ: %1$d ນາທີ</string>
     <string name="editor_window_hint">ປຸກເຈົ້າລະຫວ່າງ %1$s ຫາ %2$s</string>
+    <string name="editor_window_exact">ພໍດີ</string>
+    <string name="editor_window_exact_hint">ດັງຕົງເວລາເປົ້າໝາຍພໍດີ ບໍ່ເຄີຍກ່ອນ. ໂມງຂອງເຈົ້າຍັງວັດແທກເພື່ອປະຫວັດຂອງເຈົ້າ.</string>
+    <string name="window_exact_line">ພໍດີ %1$s</string>
     <string name="editor_days">ເຮັດຊ້ຳ</string>
     <string name="editor_weekdays">ວັນເຮັດວຽກ</string>
     <string name="editor_weekend">ທ້າຍອາທິດ</string>
@@ -221,6 +227,7 @@
     <string name="editor_keep_editing">ແກ້ໄຂຕໍ່</string>
     <string name="editor_delete_title">ລຶບໂມງປຸກນີ້ບໍ?</string>
     <string name="home_window_running">ຊ່ວງເວລາປຸກກຳລັງດຳເນີນ – ກຳລັງວັດແທກ</string>
+    <string name="home_auto_onset">ໂມງຂອງເຈົ້າກວດຫາອັດຕະໂນມັດວ່າເຈົ້າຫຼັບເມື່ອໃດ ຕັ້ງແຕ່ %1$s.</string>
     <string name="check_volume">ລະດັບສຽງໂມງປຸກ</string>
     <string name="check_volume_problem">ລະດັບສຽງໂມງປຸກເປັນ 0 – ໂທລະສັບຈະດັງແບບງຽບ</string>
     <string name="health_update">ອັບເດດ Health Connect</string>
@@ -293,11 +300,11 @@
     <string name="sound_rec_plug_in">ການບັນທຶກເປີດຢູ່ ຄວນສຽບສາກໂທລະສັບໄວ້ຕະຫຼອດຄືນ</string>
     <string name="sound_rec_default">ເປີດສຳລັບຄືນໃໝ່</string>
     <string name="sound_rec_default_hint">ເລີ່ມເມື່ອເຈົ້າເປີດ Phase Wake ຕັ້ງແຕ່ເວລາເຂົ້ານອນ (ຖ້າບໍ່ມີໂມງປຸກ ຕັ້ງແຕ່ 21:00) ສະເພາະຄລິບສັ້ນ ຢູ່ໃນໂທລະສັບ ແລະ ຖືກລຶບຫຼັງ 7 ມື້</string>
-    <string name="sound_type_snore">ກົນ</string>
+    <string name="sound_type_snore">ອາດກົນ</string>
     <string name="sound_type_talk">ລະເມີ</string>
     <string name="sound_type_other">ສຽງອື່ນ</string>
     <plurals name="sound_summary">
-        <item quantity="other">ກົນ: %1$s (%2$d ຄລິບ)</item>
+        <item quantity="other">ອາດກົນ: %1$s (%2$d ຄລິບ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">ລະເມີ: %1$d ຄລິບ</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">ປົກກະຕິ %1$d–%2$d %%</string>
     <string name="stages_typical_below">ປົກກະຕິຕ່ຳກວ່າ %1$d %%</string>
     <string name="stages_not_medical">ບໍ່ແມ່ນການປະເມີນທາງການແພດ.</string>
-    <string name="stages_verdict_awake_above">ຕື່ນດົນກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_deep_below">ນອນເລິກໜ້ອຍກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_deep_above">ນອນເລິກຫຼາຍກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_rem_below">REM ໜ້ອຍ – ມັກເກີດຫຼັງຄືນທີ່ສັ້ນ ຫຼື ນອນດຶກ</string>
-    <string name="stages_verdict_rem_above">REM ຫຼາຍກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_light_below">ນອນຕື້ນໜ້ອຍກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_light_above">ນອນຕື້ນຫຼາຍກວ່າປົກກະຕິ</string>
-    <string name="stages_verdict_typical">ທຸກໄລຍະຢູ່ໃນຊ່ວງປົກກະຕິ</string>
+    <string name="stages_source">ຄ່າອ້າງອີງສຳລັບຜູ້ໃຫຍ່ທີ່ມີສຸຂະພາບດີ (Ohayon ແລະ ຄະນະ, Sleep 2004). ໂມງປະເມີນໄລຍະການນອນແບບປະມານເທົ່ານັ້ນ.</string>
     <string name="hypno_bubble">%1$s · %2$s · ມາແລ້ວ %3$s</string>
     <string name="hypno_block">%1$s ຈາກ %2$s ຫາ %3$s</string>
     <string name="chart_week_average">ສະເລ່ຍລາຍອາທິດ</string>

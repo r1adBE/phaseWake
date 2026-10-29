@@ -8,9 +8,11 @@
     <string name="notification_window_text">გაგაღვიძებს არაუგვიანეს %1$s</string>
     <string name="notification_ring_title">დილა მშვიდობისა</string>
     <string name="ring_greeting">დილა მშვიდობისა</string>
-    <string name="ring_reason_light">დაფიქსირდა მსუბუქი ძილი</string>
+    <string name="ring_reason_light">მოუსვენარი – ალბათ მსუბუქი ძილი</string>
     <string name="ring_reason_awake">უკვე ფხიზლად იყავი</string>
     <string name="ring_reason_deadline">სამიზნე დრო დადგა</string>
+    <string name="ring_reason_exact">ზუსტად სამიზნე დროს</string>
+    <string name="ring_reason_short_night">მოკლე ღამე – მხოლოდ სამიზნე დროს</string>
     <string name="ring_hold_to_stop">გააჩერე დაჭერით</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d წთ · დარჩა: %2$d</item>
@@ -51,6 +53,9 @@
     <string name="editor_target">გამაღვიძე</string>
     <string name="editor_latest">არაუგვიანეს</string>
     <string name="editor_window">ფანჯარა: %1$d წთ</string>
+    <string name="editor_window_exact">ზუსტად</string>
+    <string name="editor_window_exact_hint">რეკავს ზუსტად სამიზნე დროს, არასდროს ადრე. საათი მაინც ზომავს შენი ისტორიისთვის.</string>
+    <string name="window_exact_line">ზუსტად %1$s-ზე</string>
     <string name="editor_days">გამეორება</string>
     <string name="editor_save">შენახვა</string>
     <string name="editor_delete">მაღვიძარის წაშლა</string>

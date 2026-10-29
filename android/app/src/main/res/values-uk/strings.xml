@@ -21,15 +21,18 @@
     <string name="home_next_today">Сьогодні</string>
     <string name="home_next_tomorrow">Завтра</string>
     <string name="home_next_in">Розбудить у легкому сні · через %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Розбудить точно в цільовий час · через %1$s</string>
     <string name="home_no_alarm_title">Прокидайся у слушний момент</string>
     <string name="home_no_alarm_text">Задай час і вікно. Годинник розбудить тебе, коли сон буде легким.</string>
     <string name="home_add_alarm">Новий будильник</string>
     <string name="home_last_night">Минула ніч</string>
     <string name="home_alarms">Твої будильники</string>
 
-    <string name="reason_light">Легкий сон</string>
+    <string name="reason_light">Неспокійно – імовірно, легкий сон</string>
     <string name="reason_awake">Уже не спиш</string>
     <string name="reason_deadline">Легкий сон не виявлено</string>
+    <string name="reason_exact">Точно в цільовий час</string>
+    <string name="reason_short_night">Коротка ніч – лише в цільовий час</string>
     <string name="woke_early">за %1$d хв до цілі · %2$s</string>
     <string name="woke_on_time">У цільовий час · %1$s</string>
     <string name="no_snooze">без відкладання</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Розбуди мене до</string>
     <string name="editor_latest">Не пізніше</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
-    <string name="editor_sleep_hint">Відлік починається, коли ти заснеш. Натисни «На добраніч» на годиннику.</string>
+    <string name="editor_sleep_hint">Відлік іде від моменту засинання. Годинник визначає його автоматично; натисни «На добраніч» на годиннику, щоб почати одразу.</string>
     <string name="editor_window">Вікно: %1$d хв</string>
     <string name="editor_window_hint">Розбудить між %1$s і %2$s</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Дзвонить точно в цільовий час, ніколи раніше. Годинник однаково вимірює для твоєї історії.</string>
+    <string name="window_exact_line">Рівно о %1$s</string>
     <string name="editor_days">Повтор</string>
     <string name="editor_weekdays">Будні</string>
     <string name="editor_weekend">Вихідні</string>
@@ -232,6 +238,7 @@
     <string name="editor_keep_editing">Продовжити редагування</string>
     <string name="editor_delete_title">Видалити цей будильник?</string>
     <string name="home_window_running">Вікно триває – зараз іде вимірювання</string>
+    <string name="home_auto_onset">Годинник автоматично визначає, коли ти засинаєш, починаючи з %1$s.</string>
     <string name="check_volume">Гучність будильника</string>
     <string name="check_volume_problem">Гучність будильника дорівнює 0 – телефон дзвонитиме без звуку.</string>
     <string name="health_update">Оновити Health Connect</string>
@@ -315,14 +322,14 @@
     <string name="sound_rec_plug_in">Запис триває. Краще постав телефон на ніч заряджатися.</string>
     <string name="sound_rec_default">Вмикати для нових ночей</string>
     <string name="sound_rec_default_hint">Запускається, коли ти відкриваєш Phase Wake від часу сну (без будильника — з 21:00). Лише короткі фрагменти; вони залишаються на телефоні й видаляються через 7 днів.</string>
-    <string name="sound_type_snore">Хропіння</string>
+    <string name="sound_type_snore">Можливе хропіння</string>
     <string name="sound_type_talk">Розмова</string>
     <string name="sound_type_other">Інший звук</string>
     <plurals name="sound_summary">
-        <item quantity="one">Хропіння: %1$s (%2$d фрагмент)</item>
-        <item quantity="few">Хропіння: %1$s (%2$d фрагменти)</item>
-        <item quantity="many">Хропіння: %1$s (%2$d фрагментів)</item>
-        <item quantity="other">Хропіння: %1$s (%2$d фрагмента)</item>
+        <item quantity="one">Можливе хропіння: %1$s (%2$d фрагмент)</item>
+        <item quantity="few">Можливе хропіння: %1$s (%2$d фрагменти)</item>
+        <item quantity="many">Можливе хропіння: %1$s (%2$d фрагментів)</item>
+        <item quantity="other">Можливе хропіння: %1$s (%2$d фрагмента)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Розмова: %1$d фрагмент</item>
@@ -535,14 +542,7 @@
     <string name="stages_typical_range">Зазвичай %1$d–%2$d %%</string>
     <string name="stages_typical_below">Зазвичай менше %1$d %%</string>
     <string name="stages_not_medical">Це не медична оцінка.</string>
-    <string name="stages_verdict_awake_above">Більше неспання, ніж зазвичай</string>
-    <string name="stages_verdict_deep_below">Менше глибокого сну, ніж зазвичай</string>
-    <string name="stages_verdict_deep_above">Більше глибокого сну, ніж зазвичай</string>
-    <string name="stages_verdict_rem_below">Мало REM – часто після короткої або пізньої ночі</string>
-    <string name="stages_verdict_rem_above">Більше REM, ніж зазвичай</string>
-    <string name="stages_verdict_light_below">Менше легкого сну, ніж зазвичай</string>
-    <string name="stages_verdict_light_above">Більше легкого сну, ніж зазвичай</string>
-    <string name="stages_verdict_typical">Усі фази у звичайному діапазоні</string>
+    <string name="stages_source">Орієнтовні значення для здорових дорослих (Ohayon та ін., Sleep 2004). Годинники оцінюють фази лише приблизно.</string>
     <string name="hypno_bubble">%1$s · %2$s · уже %3$s</string>
     <string name="hypno_block">%1$s з %2$s до %3$s</string>
     <string name="chart_week_average">Середнє за тиждень</string>

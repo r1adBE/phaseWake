@@ -51,6 +51,17 @@ object NightHistory {
     fun trim(nights: List<NightRecord>): List<NightRecord> =
         nights.sortedBy { it.windowStart }.takeLast(MAX_NIGHTS)
 
+    /**
+     * Anteil der Nächte in Prozent (gerundet), in denen im leichten Schlaf geweckt wurde. Es zählen nur
+     * Nächte, in denen früher wecken erlaubt war: «Genau» ([WakeReason.EXACT]) und kurze Nächte
+     * ([WakeReason.SHORT_NIGHT]) fehlen auch im Nenner. `null`, wenn keine solche Nacht da ist.
+     */
+    fun lightShare(nights: List<NightRecord>): Int? {
+        val counted = nights.filter { it.reason != WakeReason.EXACT && it.reason != WakeReason.SHORT_NIGHT }
+        if (counted.isEmpty()) return null
+        return Math.round(100.0 * counted.count { it.reason == WakeReason.LIGHT_SLEEP } / counted.size).toInt()
+    }
+
     /** Bewegungen je Nacht für [Calibration.calibrate], älteste zuerst. */
     fun motionsForCalibration(nights: List<NightRecord>): List<List<Double?>> =
         trim(nights).map { night -> night.epochs.map { it.motion } }

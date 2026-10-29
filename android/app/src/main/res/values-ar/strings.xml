@@ -23,15 +23,18 @@
     <string name="home_next_today">اليوم</string>
     <string name="home_next_tomorrow">غدًا</string>
     <string name="home_next_in">يوقظك في النوم الخفيف · بعد %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">يوقظك في الموعد المحدد تمامًا · بعد %1$s</string>
     <string name="home_no_alarm_title">الاستيقاظ في اللحظة المناسبة</string>
     <string name="home_no_alarm_text">اضبطوا وقتًا ونافذة زمنية. تُوقظك ساعتك عندما يكون نومك خفيفًا.</string>
     <string name="home_add_alarm">منبّه جديد</string>
     <string name="home_last_night">الليلة الماضية</string>
     <string name="home_alarms">منبّهاتك</string>
 
-    <string name="reason_light">نوم خفيف</string>
+    <string name="reason_light">قلِق – غالبًا نوم خفيف</string>
     <string name="reason_awake">مستيقظ بالفعل</string>
     <string name="reason_deadline">لم يُرصد نوم خفيف</string>
+    <string name="reason_exact">في الموعد المحدد تمامًا</string>
+    <string name="reason_short_night">ليلة قصيرة – في الموعد المحدد فقط</string>
     <string name="woke_early">قبل الموعد بـ %1$d د · %2$s</string>
     <string name="woke_on_time">في الموعد · %1$s</string>
     <string name="no_snooze">بلا غفوة</string>
@@ -51,9 +54,12 @@
     <string name="editor_target">أيقظني قبل</string>
     <string name="editor_latest">بحدّ أقصى</string>
     <string name="editor_sleep_duration">النوم لمدة %1$s</string>
-    <string name="editor_sleep_hint">يبدأ العدّ عند النوم. اضغطوا على “ليلة سعيدة” في ساعتكم.</string>
+    <string name="editor_sleep_hint">يبدأ العدّ من لحظة نومكم. تكتشف ساعتكم ذلك تلقائيًا؛ اضغطوا على “ليلة سعيدة” في الساعة للبدء فورًا.</string>
     <string name="editor_window">النافذة: %1$d د</string>
     <string name="editor_window_hint">يوقظك بين %1$s و%2$s</string>
+    <string name="editor_window_exact">بالضبط</string>
+    <string name="editor_window_exact_hint">يرنّ في الموعد المحدد تمامًا، لا قبله أبدًا. ومع ذلك تقيس ساعتك من أجل سجلّك.</string>
+    <string name="window_exact_line">بالضبط في %1$s</string>
     <string name="editor_days">التكرار</string>
     <string name="editor_weekdays">أيام العمل</string>
     <string name="editor_weekend">نهاية الأسبوع</string>
@@ -240,6 +246,7 @@
     <string name="editor_keep_editing">متابعة التحرير</string>
     <string name="editor_delete_title">حذف هذا المنبّه؟</string>
     <string name="home_window_running">النافذة قيد التشغيل – جارٍ القياس الآن</string>
+    <string name="home_auto_onset">تكتشف ساعتك تلقائيًا وقت نومك بدءًا من %1$s.</string>
     <string name="check_volume">مستوى صوت المنبّه</string>
     <string name="check_volume_problem">مستوى صوت المنبّه 0 – سيرنّ الهاتف بصمت.</string>
     <string name="health_update">تحديث Health Connect</string>
@@ -329,16 +336,16 @@
     <string name="sound_rec_plug_in">التسجيل يعمل. الأفضل أن تشحن هاتفك طوال الليل.</string>
     <string name="sound_rec_default">تشغيل للليالي الجديدة</string>
     <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake بدءًا من موعد نومك (بدون منبّه من الساعة 9 مساءً). مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
-    <string name="sound_type_snore">شخير</string>
+    <string name="sound_type_snore">شخير محتمل</string>
     <string name="sound_type_talk">كلام</string>
     <string name="sound_type_other">صوت آخر</string>
     <plurals name="sound_summary">
-        <item quantity="zero">شخير: %1$s (%2$d مقطع)</item>
-        <item quantity="one">شخير: %1$s (%2$d مقطع)</item>
-        <item quantity="two">شخير: %1$s (%2$d مقطعان)</item>
-        <item quantity="few">شخير: %1$s (%2$d مقاطع)</item>
-        <item quantity="many">شخير: %1$s (%2$d مقطعًا)</item>
-        <item quantity="other">شخير: %1$s (%2$d مقطع)</item>
+        <item quantity="zero">شخير محتمل: %1$s (%2$d مقطع)</item>
+        <item quantity="one">شخير محتمل: %1$s (%2$d مقطع)</item>
+        <item quantity="two">شخير محتمل: %1$s (%2$d مقطعان)</item>
+        <item quantity="few">شخير محتمل: %1$s (%2$d مقاطع)</item>
+        <item quantity="many">شخير محتمل: %1$s (%2$d مقطعًا)</item>
+        <item quantity="other">شخير محتمل: %1$s (%2$d مقطع)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="zero">كلام: %1$d مقطع</item>
@@ -563,14 +570,7 @@
     <string name="stages_typical_range">المعتاد %1$d–%2$d %%</string>
     <string name="stages_typical_below">المعتاد أقل من %1$d %%</string>
     <string name="stages_not_medical">ليس تقييمًا طبيًا.</string>
-    <string name="stages_verdict_awake_above">وقت يقظة أكثر من المعتاد</string>
-    <string name="stages_verdict_deep_below">نوم عميق أقل من المعتاد</string>
-    <string name="stages_verdict_deep_above">نوم عميق أكثر من المعتاد</string>
-    <string name="stages_verdict_rem_below">قليل من REM – غالبًا بعد ليلة قصيرة أو متأخرة</string>
-    <string name="stages_verdict_rem_above">REM أكثر من المعتاد</string>
-    <string name="stages_verdict_light_below">نوم خفيف أقل من المعتاد</string>
-    <string name="stages_verdict_light_above">نوم خفيف أكثر من المعتاد</string>
-    <string name="stages_verdict_typical">كل المراحل ضمن النطاق المعتاد</string>
+    <string name="stages_source">قيم مرجعية للبالغين الأصحاء (Ohayon وآخرون، Sleep 2004). الساعات تقدّر المراحل تقديرًا تقريبيًا فقط.</string>
     <string name="hypno_bubble">%1$s · %2$s · منذ %3$s</string>
     <string name="hypno_block">%1$s من %2$s إلى %3$s</string>
     <string name="chart_week_average">المتوسط الأسبوعي</string>

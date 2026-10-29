@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Huomenta</string>
 
     <string name="ring_greeting">Huomenta</string>
-    <string name="ring_reason_light">Kevyt uni havaittu</string>
+    <string name="ring_reason_light">Levoton – luultavasti kevyttä unta</string>
     <string name="ring_reason_awake">Olit jo hereillä</string>
     <string name="ring_reason_deadline">Tavoiteaika saavutettu</string>
+    <string name="ring_reason_exact">Täsmälleen tavoiteaikana</string>
+    <string name="ring_reason_short_night">Lyhyt yö – vasta tavoiteaikana</string>
     <string name="ring_hold_to_stop">Pysäytä pitämällä</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d jäljellä</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Herätä viimeistään</string>
     <string name="editor_latest">Viimeistään</string>
     <string name="editor_window">Aikaikkuna: %1$d min</string>
+    <string name="editor_window_exact">Tarkka</string>
+    <string name="editor_window_exact_hint">Soi täsmälleen tavoiteaikana, ei koskaan aiemmin. Kello mittaa silti historiaasi varten.</string>
+    <string name="window_exact_line">Täsmälleen klo %1$s</string>
     <string name="editor_days">Toista</string>
     <string name="editor_save">Tallenna</string>
     <string name="editor_delete">Poista herätys</string>

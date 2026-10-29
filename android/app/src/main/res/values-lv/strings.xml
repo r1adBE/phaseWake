@@ -22,15 +22,18 @@
     <string name="home_next_today">Šodien</string>
     <string name="home_next_tomorrow">Rīt</string>
     <string name="home_next_in">Modina vieglā miegā · pēc %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Modina tieši mērķa laikā · pēc %1$s</string>
     <string name="home_no_alarm_title">Mosties īstajā brīdī</string>
     <string name="home_no_alarm_text">Iestati laiku un modināšanas logu. Pulkstenis tevi pamodina, kad tavs miegs ir viegls.</string>
     <string name="home_add_alarm">Jauns modinātājs</string>
     <string name="home_last_night">Pagājusī nakts</string>
     <string name="home_alarms">Tavi modinātāji</string>
 
-    <string name="reason_light">Viegls miegs</string>
+    <string name="reason_light">Nemierīgs – droši vien viegls miegs</string>
     <string name="reason_awake">Jau nomodā</string>
     <string name="reason_deadline">Viegls miegs netika konstatēts</string>
+    <string name="reason_exact">Tieši mērķa laikā</string>
+    <string name="reason_short_night">Īsa nakts – tikai mērķa laikā</string>
     <string name="woke_early">%1$d min pirms mērķa laika · %2$s</string>
     <string name="woke_on_time">Mērķa laikā · %1$s</string>
     <string name="no_snooze">bez atlikšanas</string>
@@ -50,9 +53,12 @@
     <string name="editor_target">Pamodini mani līdz</string>
     <string name="editor_latest">Vēlākais</string>
     <string name="editor_sleep_duration">Gulēt %1$s</string>
-    <string name="editor_sleep_hint">Skaitīšana sākas, kad aizmiedz. Pulkstenī pieskaries „Ar labu nakti“.</string>
+    <string name="editor_sleep_hint">Skaita no aizmigšanas brīža. Pulkstenis to nosaka automātiski; pieskaries pulkstenī „Ar labu nakti“, lai sāktu uzreiz.</string>
     <string name="editor_window">Logs: %1$d min</string>
     <string name="editor_window_hint">Modina no %1$s līdz %2$s</string>
+    <string name="editor_window_exact">Precīzi</string>
+    <string name="editor_window_exact_hint">Zvana tieši mērķa laikā, nekad agrāk. Pulkstenis tik un tā mēra tavai vēsturei.</string>
+    <string name="window_exact_line">Tieši %1$s</string>
     <string name="editor_days">Atkārtot</string>
     <string name="editor_weekdays">Darbdienas</string>
     <string name="editor_weekend">Nedēļas nogale</string>
@@ -230,6 +236,7 @@
     <string name="editor_keep_editing">Turpināt rediģēt</string>
     <string name="editor_delete_title">Dzēst šo modinātāju?</string>
     <string name="home_window_running">Modināšanas logs aktīvs – notiek mērīšana</string>
+    <string name="home_auto_onset">Pulkstenis no %1$s automātiski nosaka, kad tu aizmiedz.</string>
     <string name="check_volume">Modinātāja skaļums</string>
     <string name="check_volume_problem">Modinātāja skaļums ir 0 – tālrunis zvanītu bez skaņas.</string>
     <string name="health_update">Atjaunināt Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Ierakstīšana ir ieslēgta. Labāk pieslēdz tālruni lādētājam uz nakti.</string>
     <string name="sound_rec_default">Ieslēgts jaunām naktīm</string>
     <string name="sound_rec_default_hint">Sākas, kad atver Phase Wake no gulētiešanas laika (bez modinātāja – no 21:00). Tikai īsi fragmenti; tie paliek tavā tālrunī un tiek dzēsti pēc 7 dienām.</string>
-    <string name="sound_type_snore">Krākšana</string>
+    <string name="sound_type_snore">Iespējama krākšana</string>
     <string name="sound_type_talk">Runāšana</string>
     <string name="sound_type_other">Cita skaņa</string>
     <plurals name="sound_summary">
-        <item quantity="zero">Krākšana: %1$s (%2$d fragmenti)</item>
-        <item quantity="one">Krākšana: %1$s (%2$d fragments)</item>
-        <item quantity="other">Krākšana: %1$s (%2$d fragmenti)</item>
+        <item quantity="zero">Iespējama krākšana: %1$s (%2$d fragmenti)</item>
+        <item quantity="one">Iespējama krākšana: %1$s (%2$d fragments)</item>
+        <item quantity="other">Iespējama krākšana: %1$s (%2$d fragmenti)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="zero">Runāšana: %1$d fragmenti</item>
@@ -524,14 +531,7 @@
     <string name="stages_typical_range">Parasti %1$d–%2$d %%</string>
     <string name="stages_typical_below">Parasti zem %1$d %%</string>
     <string name="stages_not_medical">Tas nav medicīnisks vērtējums.</string>
-    <string name="stages_verdict_awake_above">Vairāk nomoda nekā parasti</string>
-    <string name="stages_verdict_deep_below">Mazāk dziļā miega nekā parasti</string>
-    <string name="stages_verdict_deep_above">Vairāk dziļā miega nekā parasti</string>
-    <string name="stages_verdict_rem_below">Maz REM – bieži pēc īsas vai vēlas nakts</string>
-    <string name="stages_verdict_rem_above">Vairāk REM nekā parasti</string>
-    <string name="stages_verdict_light_below">Mazāk viegla miega nekā parasti</string>
-    <string name="stages_verdict_light_above">Vairāk viegla miega nekā parasti</string>
-    <string name="stages_verdict_typical">Visas fāzes ierastajā diapazonā</string>
+    <string name="stages_source">Atsauces vērtības veseliem pieaugušajiem (Ohayon u. c., Sleep 2004). Pulksteņi fāzes novērtē tikai aptuveni.</string>
     <string name="hypno_bubble">%1$s · %2$s · jau %3$s</string>
     <string name="hypno_block">%1$s no %2$s līdz %3$s</string>
     <string name="chart_week_average">Nedēļas vidējais</string>

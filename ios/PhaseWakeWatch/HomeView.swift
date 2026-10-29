@@ -28,7 +28,7 @@ struct HomeView: View {
                     VStack(spacing: 1) {
                         Text(L("home_last_night")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
                         Text(Format.time(night.wokeAt)).font(Fonts.manrope(17, .bold, relativeTo: .headline))
-                        Text(L(night.reason == .lightSleep ? "ring_reason_light" : night.reason == .awake ? "ring_reason_awake" : "ring_reason_deadline"))
+                        Text(L(ringReasonKey(night.reason)))
                             .font(Fonts.manrope(11, relativeTo: .caption2))
                             .foregroundStyle(Brand.muted)
                             .multilineTextAlignment(.center)
@@ -121,8 +121,9 @@ private struct NextWindow: View {
             if let plan {
                 // Zeiger «jetzt», einmal pro Minute neu.
                 TimelineView(.everyMinute) { context in
+                    // «Genau»: kein Bogen, nur der Weckpunkt (die Uhr misst davor nur für den Verlauf).
                     WindowRing(start: dial(plan.windowStart), end: dial(plan.target), now: dial(context.date),
-                               bedtime: bedtime.map { dial($0) })
+                               bedtime: bedtime.map { dial($0) }, exact: plan.exact)
                 }
             }
             VStack(spacing: 2) {
@@ -130,13 +131,15 @@ private struct NextWindow: View {
                     Text(Format.day(plan.target, todayKey: "home_today", tomorrowKey: "home_tomorrow"))
                         .font(Fonts.manrope(12, relativeTo: .caption))
                         .foregroundStyle(Brand.muted)
-                    Text(Format.time(plan.windowStart) + "–" + Format.time(plan.target))
+                    Text(Format.window(start: plan.windowStart, target: plan.target, exact: plan.exact, separator: "–"))
                         .font(Fonts.manrope(20, .bold, relativeTo: .title3))
                         .minimumScaleFactor(0.7)
                         .lineLimit(1)
-                    Text(L("home_window_length", Int64(alarm?.windowMinutes ?? AlarmSpec.defaultWindowMinutes)))
-                        .font(Fonts.manrope(11, relativeTo: .caption2))
-                        .foregroundStyle(Brand.muted)
+                    if !plan.exact {
+                        Text(L("home_window_length", Int64(alarm?.windowMinutes ?? AlarmSpec.defaultWindowMinutes)))
+                            .font(Fonts.manrope(11, relativeTo: .caption2))
+                            .foregroundStyle(Brand.muted)
+                    }
                 } else {
                     Text(L("home_no_alarm")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     Text(L("home_no_alarm_hint"))
@@ -164,12 +167,13 @@ private struct NextWindow: View {
 /// Ring als 12-Stunden-Zifferblatt: feine Marken für 12, 3, 6 und 9 Uhr, das Weckfenster als Bogen mit dem
 /// Weckpunkt (runder Punkt) am Ende, ein kurzer Zeiger für «jetzt» (Strich quer zur Spur) und der Einschlafpunkt
 /// (Weckzeit minus Schlafziel) als feiner hohler Kreis. Drei Formen, damit nicht die Farbe allein unterscheidet.
-/// Positionen 0–1, 0 = 12 Uhr; ohne `bedtime` kein Einschlafpunkt.
+/// Positionen 0–1, 0 = 12 Uhr; ohne `bedtime` kein Einschlafpunkt; bei `exact` («Genau») kein Bogen, nur der Weckpunkt.
 private struct WindowRing: View {
     let start: Double
     let end: Double
     let now: Double
     let bedtime: Double?
+    var exact = false
 
     var body: some View {
         let sweep = max(0.01, (end - start + 1).truncatingRemainder(dividingBy: 1))
@@ -184,10 +188,12 @@ private struct WindowRing: View {
                         .offset(y: -(r - 4.5 - (k == 0 ? 4 : 2.5)))
                         .rotationEffect(.degrees(Double(k) * 90))
                 }
-                Circle()
-                    .trim(from: 0, to: sweep)
-                    .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
-                    .rotationEffect(.degrees(start * 360 - 90))
+                if !exact {
+                    Circle()
+                        .trim(from: 0, to: sweep)
+                        .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                        .rotationEffect(.degrees(start * 360 - 90))
+                }
                 if let bedtime {
                     // Hohl, damit die Spur durchscheint; `muted` hat auf Spur und Nachthimmel über 8 : 1 Kontrast.
                     Circle()

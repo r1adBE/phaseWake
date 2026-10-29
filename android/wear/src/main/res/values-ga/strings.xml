@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Maidin mhaith</string>
 
     <string name="ring_greeting">Maidin mhaith</string>
-    <string name="ring_reason_light">Braitheadh codladh éadrom</string>
+    <string name="ring_reason_light">Corrach – codladh éadrom is dócha</string>
     <string name="ring_reason_awake">Bhí tú i do dhúiseacht cheana</string>
     <string name="ring_reason_deadline">Spriocam bainte amach</string>
+    <string name="ring_reason_exact">Díreach ag an spriocam</string>
+    <string name="ring_reason_short_night">Oíche ghearr – ag an spriocam amháin</string>
     <string name="ring_hold_to_stop">Coinnigh síos chun stopadh</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d nóim · %2$d fágtha</item>
@@ -59,6 +61,9 @@
     <string name="editor_target">Dúisigh mé faoi</string>
     <string name="editor_latest">Ar a dhéanaí</string>
     <string name="editor_window">Fuinneog: %1$d nóim</string>
+    <string name="editor_window_exact">Beacht</string>
+    <string name="editor_window_exact_hint">Buailfidh sé díreach ag an spriocam, riamh níos luaithe. Tomhaiseann d’uaireadóir fós do do stair.</string>
+    <string name="window_exact_line">Díreach ag %1$s</string>
     <string name="editor_days">Athdhéan</string>
     <string name="editor_save">Sábháil</string>
     <string name="editor_delete">Scrios aláram</string>

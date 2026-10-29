@@ -21,15 +21,18 @@
     <string name="home_next_today">Namuhla</string>
     <string name="home_next_tomorrow">Kusasa</string>
     <string name="home_next_in">Ikuvusa ebuthongweni obulula · ngemva kuka-%1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Ikuvusa ngqo ngesikhathi esihlosiwe · ngemva kuka-%1$s</string>
     <string name="home_no_alarm_title">Vuka ngesikhathi esifanele</string>
     <string name="home_no_alarm_text">Setha isikhathi nesikhala sokuvuka. Iwashi lakho likuvusa lapho ulele kancane.</string>
     <string name="home_add_alarm">I-alamu entsha</string>
     <string name="home_last_night">Izolo ebusuku</string>
     <string name="home_alarms">Ama-alamu akho</string>
 
-    <string name="reason_light">Ubuthongo obulula</string>
+    <string name="reason_light">Ukungaphumuli – mhlawumbe ubuthongo obulula</string>
     <string name="reason_awake">Ubusuvukile</string>
     <string name="reason_deadline">Abukho ubuthongo obulula obutholakele</string>
+    <string name="reason_exact">Ngqo ngesikhathi esihlosiwe</string>
+    <string name="reason_short_night">Ubusuku obufushane – ngesikhathi esihlosiwe kuphela</string>
     <string name="woke_early">%1$d min ngaphambi kwesikhathi · %2$s</string>
     <string name="woke_on_time">Ngesikhathi esihlosiwe · %1$s</string>
     <string name="no_snooze">akusnuziwe</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Ngivuse ngo</string>
     <string name="editor_latest">Kamuva kakhulu</string>
     <string name="editor_sleep_duration">Lala %1$s</string>
-    <string name="editor_sleep_hint">Iqala ukubala lapho ulala. Thepha “Ulale kahle” ewashini lakho.</string>
+    <string name="editor_sleep_hint">Ibala kusukela lapho ulala. Iwashi lakho likubona ngokuzenzakalelayo; thepha “Ulale kahle” ewashini ukuze uqale ngokushesha.</string>
     <string name="editor_window">Isikhala: %1$d min</string>
     <string name="editor_window_hint">Ikuvusa phakathi kuka-%1$s no-%2$s</string>
+    <string name="editor_window_exact">Ngqo</string>
+    <string name="editor_window_exact_hint">Ikhala ngqo ngesikhathi esihlosiwe, ingalokothi ngaphambili. Iwashi lakho lisalinganisa umlando wakho.</string>
+    <string name="window_exact_line">Ngqo ngo-%1$s</string>
     <string name="editor_days">Phinda</string>
     <string name="editor_weekdays">Izinsuku zomsebenzi</string>
     <string name="editor_weekend">Impelasonto</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Qhubeka uhlela</string>
     <string name="editor_delete_title">Susa le alamu?</string>
     <string name="home_window_running">Isikhala sokuvuka siyaqhubeka – kuyalinganiswa manje</string>
+    <string name="home_auto_onset">Iwashi lakho lithola ngokuzenzakalelayo ukuthi ulala nini, kusukela ngo-%1$s.</string>
     <string name="check_volume">Ivolumu ye-alamu</string>
     <string name="check_volume_problem">Ivolumu ye-alamu isethwe ku-0 – ifoni yakho ingakhala ithule.</string>
     <string name="health_update">Buyekeza i-Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Ukuqopha kuvuliwe. Kungcono uxhume ifoni yakho kushaja ebusuku.</string>
     <string name="sound_rec_default">Kuvuliwe ebusuku obusha</string>
     <string name="sound_rec_default_hint">Kuqala lapho uvula i-Phase Wake kusukela esikhathini sakho sokulala (ngaphandle kwe-alamu kusukela ngo-21:00). Iziqeshana ezimfushane kuphela; zihlala efonini yakho futhi zisuswa ngemva kwezinsuku ezi-7.</string>
-    <string name="sound_type_snore">Ukuhona</string>
+    <string name="sound_type_snore">Mhlawumbe ukuhona</string>
     <string name="sound_type_talk">Ukukhuluma</string>
     <string name="sound_type_other">Omunye umsindo</string>
     <plurals name="sound_summary">
-        <item quantity="one">Ukuhona: %1$s (isiqeshana esingu-%2$d)</item>
-        <item quantity="other">Ukuhona: %1$s (iziqeshana ezingu-%2$d)</item>
+        <item quantity="one">Mhlawumbe ukuhona: %1$s (isiqeshana esingu-%2$d)</item>
+        <item quantity="other">Mhlawumbe ukuhona: %1$s (iziqeshana ezingu-%2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Ukukhuluma: isiqeshana esingu-%1$d</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Ngokujwayelekile %1$d–%2$d %%</string>
     <string name="stages_typical_below">Ngokujwayelekile ngaphansi kuka-%1$d %%</string>
     <string name="stages_not_medical">Akukona ukuhlola kwezokwelapha.</string>
-    <string name="stages_verdict_awake_above">Isikhathi esiningi uvukile kunokujwayelekile</string>
-    <string name="stages_verdict_deep_below">Ubuthongo obujulile obuncane kunokujwayelekile</string>
-    <string name="stages_verdict_deep_above">Ubuthongo obujulile obuningi kunokujwayelekile</string>
-    <string name="stages_verdict_rem_below">I-REM encane – kaningi ngemuva kobusuku obufushane noma obubambezelekile</string>
-    <string name="stages_verdict_rem_above">I-REM eningi kunokujwayelekile</string>
-    <string name="stages_verdict_light_below">Ubuthongo obulula obuncane kunokujwayelekile</string>
-    <string name="stages_verdict_light_above">Ubuthongo obulula obuningi kunokujwayelekile</string>
-    <string name="stages_verdict_typical">Zonke izigaba zisebangeni elijwayelekile</string>
+    <string name="stages_source">Amanani okubhekisela abantu abadala abaphilile (Ohayon et al., Sleep 2004). Amawashi alinganisela izigaba cishe kuphela.</string>
     <string name="hypno_bubble">%1$s · %2$s · isikhathi esingu-%3$s</string>
     <string name="hypno_block">%1$s kusuka ku-%2$s kuya ku-%3$s</string>
     <string name="chart_week_average">Isilinganiso samasonto onke</string>

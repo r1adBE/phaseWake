@@ -175,3 +175,20 @@ struct NightstandView: View {
         }
     }
 }
+
+/// Karte «Nachttisch-Modus starten» auf der Startseite.
+struct NightstandButton: View {
+    let action: () -> Void
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 4) {
+                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
+            }
+        }
+        .buttonStyle(.plain)
+        .card()
+    }
+}

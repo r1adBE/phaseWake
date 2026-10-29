@@ -18,15 +18,18 @@
     <string name="home_next_today">Hôm nay</string>
     <string name="home_next_tomorrow">Ngày mai</string>
     <string name="home_next_in">Đánh thức khi ngủ nông · sau %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Đánh thức đúng giờ mục tiêu · sau %1$s</string>
     <string name="home_no_alarm_title">Thức dậy đúng lúc</string>
     <string name="home_no_alarm_text">Đặt giờ và khoảng thời gian. Đồng hồ sẽ đánh thức bạn khi bạn ngủ nông.</string>
     <string name="home_add_alarm">Báo thức mới</string>
     <string name="home_last_night">Đêm qua</string>
     <string name="home_alarms">Báo thức của bạn</string>
 
-    <string name="reason_light">Ngủ nông</string>
+    <string name="reason_light">Trằn trọc – có lẽ là ngủ nông</string>
     <string name="reason_awake">Đã thức sẵn</string>
     <string name="reason_deadline">Không phát hiện giấc ngủ nông</string>
+    <string name="reason_exact">Đúng giờ mục tiêu</string>
+    <string name="reason_short_night">Đêm ngắn – chỉ vào giờ mục tiêu</string>
     <string name="woke_early">Sớm %1$d phút so với mục tiêu · %2$s</string>
     <string name="woke_on_time">Đúng giờ mục tiêu · %1$s</string>
     <string name="no_snooze">không báo lại</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">Đánh thức tôi trước</string>
     <string name="editor_latest">Muộn nhất</string>
     <string name="editor_sleep_duration">Ngủ %1$s</string>
-    <string name="editor_sleep_hint">Bắt đầu tính khi bạn ngủ. Hãy chạm vào “Chúc ngủ ngon” trên đồng hồ.</string>
+    <string name="editor_sleep_hint">Tính từ lúc bạn ngủ. Đồng hồ tự động nhận biết; chạm vào “Ngủ ngon” trên đồng hồ để bắt đầu ngay.</string>
     <string name="editor_window">Khoảng thời gian: %1$d phút</string>
     <string name="editor_window_hint">Đánh thức bạn trong khoảng %1$s đến %2$s</string>
+    <string name="editor_window_exact">Đúng giờ</string>
+    <string name="editor_window_exact_hint">Reo đúng giờ mục tiêu, không bao giờ sớm hơn. Đồng hồ vẫn đo để lưu vào lịch sử của bạn.</string>
+    <string name="window_exact_line">Đúng %1$s</string>
     <string name="editor_days">Lặp lại</string>
     <string name="editor_weekdays">Ngày thường</string>
     <string name="editor_weekend">Cuối tuần</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">Tiếp tục chỉnh sửa</string>
     <string name="editor_delete_title">Xóa báo thức này?</string>
     <string name="home_window_running">Khoảng thời gian đang chạy – đang đo</string>
+    <string name="home_auto_onset">Đồng hồ tự động nhận biết khi bạn ngủ thiếp đi, bắt đầu từ %1$s.</string>
     <string name="check_volume">Âm lượng báo thức</string>
     <string name="check_volume_problem">Âm lượng báo thức đang là 0 – điện thoại của bạn sẽ đổ chuông không có tiếng.</string>
     <string name="health_update">Cập nhật Health Connect</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">Đang ghi âm. Tốt nhất là cắm sạc điện thoại qua đêm.</string>
     <string name="sound_rec_default">Bật cho các đêm mới</string>
     <string name="sound_rec_default_hint">Bắt đầu khi bạn mở Phase Wake từ giờ đi ngủ (không đặt báo thức thì từ 21:00). Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
-    <string name="sound_type_snore">Ngáy</string>
+    <string name="sound_type_snore">Có thể là ngáy</string>
     <string name="sound_type_talk">Nói mớ</string>
     <string name="sound_type_other">Âm thanh khác</string>
     <plurals name="sound_summary">
-        <item quantity="other">Ngáy: %1$s (%2$d đoạn)</item>
+        <item quantity="other">Có thể là ngáy: %1$s (%2$d đoạn)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">Nói mớ: %1$d đoạn</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">Thông thường %1$d–%2$d %%</string>
     <string name="stages_typical_below">Thông thường dưới %1$d %%</string>
     <string name="stages_not_medical">Không phải đánh giá y khoa.</string>
-    <string name="stages_verdict_awake_above">Thức nhiều hơn bình thường</string>
-    <string name="stages_verdict_deep_below">Ngủ sâu ít hơn bình thường</string>
-    <string name="stages_verdict_deep_above">Ngủ sâu nhiều hơn bình thường</string>
-    <string name="stages_verdict_rem_below">Ít REM – thường sau một đêm ngắn hoặc muộn</string>
-    <string name="stages_verdict_rem_above">REM nhiều hơn bình thường</string>
-    <string name="stages_verdict_light_below">Ngủ nông ít hơn bình thường</string>
-    <string name="stages_verdict_light_above">Ngủ nông nhiều hơn bình thường</string>
-    <string name="stages_verdict_typical">Mọi giai đoạn đều trong khoảng thông thường</string>
+    <string name="stages_source">Giá trị tham chiếu cho người trưởng thành khỏe mạnh (Ohayon và cộng sự, Sleep 2004). Đồng hồ chỉ ước tính các giai đoạn một cách tương đối.</string>
     <string name="hypno_bubble">%1$s · %2$s · đã %3$s</string>
     <string name="hypno_block">%1$s từ %2$s đến %3$s</string>
     <string name="chart_week_average">Trung bình tuần</string>

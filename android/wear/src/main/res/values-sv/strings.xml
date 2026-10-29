@@ -9,9 +9,11 @@
     <string name="notification_ring_title">God morgon</string>
 
     <string name="ring_greeting">God morgon</string>
-    <string name="ring_reason_light">Lätt sömn upptäckt</string>
+    <string name="ring_reason_light">Orolig – troligen lätt sömn</string>
     <string name="ring_reason_awake">Du var redan vaken</string>
     <string name="ring_reason_deadline">Måltiden nådd</string>
+    <string name="ring_reason_exact">Precis på önskad tid</string>
+    <string name="ring_reason_short_night">Kort natt – först vid önskad tid</string>
     <string name="ring_hold_to_stop">Håll för att stoppa</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d kvar</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Väck mig senast</string>
     <string name="editor_latest">Senast</string>
     <string name="editor_window">Fönster: %1$d min</string>
+    <string name="editor_window_exact">Exakt</string>
+    <string name="editor_window_exact_hint">Ringer precis vid önskad tid, aldrig tidigare. Klockan mäter ändå för din historik.</string>
+    <string name="window_exact_line">Exakt kl. %1$s</string>
     <string name="editor_days">Upprepa</string>
     <string name="editor_save">Spara</string>
     <string name="editor_delete">Ta bort larm</string>

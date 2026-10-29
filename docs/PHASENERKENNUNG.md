@@ -43,12 +43,12 @@ Für jede Epoche mit Index *i*, in dieser Reihenfolge:
 3. **Wach**: Unter den letzten 3 entscheidbaren Epochen (inkl. *i*) haben mindestens 2 eine Bewegung ≥ Wach-Schwelle → wecken, Grund `AWAKE`.
 4. **Leichtschlaf**: Unter den letzten 4 entscheidbaren Epochen (inkl. *i*) haben mindestens 2 eine Bewegung ≥ Leicht-Schwelle **und** die Pulsbedingung ist erfüllt → wecken, Grund `LIGHT_SLEEP`.
    - **Aktueller Puls** = Mittelwert der vorhandenen Pulse der Epochen *i* und *i−1* (nur entscheidbare).
-   - **Pulsbedingung**: Sind Basispuls und aktueller Puls vorhanden, muss gelten: aktueller Puls ≥ Basispuls × 1.05. Fehlt einer der beiden, gilt die Bedingung als erfüllt (dann entscheidet die Bewegung allein).
+   - **Pulsbedingung**: Basispuls und aktueller Puls müssen vorhanden sein, und es muss gelten: aktueller Puls ≥ Basispuls × 1.05. Fehlt einer der beiden, ist die Bedingung **nicht** erfüllt: Bewegung allein reicht nicht, um leichten Schlaf zu behaupten (dann weckt die Uhr zur Zielzeit, ausser die Wach-Regel greift).
 5. Sonst → warten.
 
 Leere Bewegung zählt nie als Treffer.
 
-**Zielzeit erreicht**, ohne dass geweckt wurde → wecken, Grund `DEADLINE`. Das löst der Weck-Dienst über einen eigenen Alarm aus, nicht die Epochen-Regel.
+**Zielzeit erreicht**, ohne dass geweckt wurde → wecken, Grund `DEADLINE`. Das löst der Weck-Dienst über einen eigenen Alarm aus, nicht die Epochen-Regel. Wecker «Genau» und kurze Nächte: siehe 8.
 
 ## 4. Kalibrierung
 
@@ -72,7 +72,7 @@ motion,hr
 ,56
 ```
 
-- `@expect <index> <AWAKE|LIGHT_SLEEP>` – erste Epoche, die weckt, mit Grund. `@expect none` – keine Epoche weckt (Wecken erst zur Zielzeit).
+- `@expect <index> <AWAKE|LIGHT_SLEEP>` – erste Epoche, die weckt, mit Grund (nur die Epochen-Regel aus 3; `EXACT` und `SHORT_NIGHT` aus 8 entstehen erst im Weck-Dienst). `@expect none` – keine Epoche weckt (Wecken erst zur Zielzeit).
 - Danach die Kopfzeile `motion,hr` und eine Zeile pro Epoche; leeres Feld = leer.
 - Die Nächte gelten mit den Startwerten.
 
@@ -98,3 +98,13 @@ Sensorwerte werden über ihren eigenen Zeitstempel (monotone Uhr) einer Epoche z
 - Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende länger als die Bündelungs-Verzögerung plus 2 s zurückliegt.
 - Galaxy Watch: Die Bewegung kommt gebündelt bis 10 s verspätet, der Puls sofort. Die Uhr hält deshalb jeden Pulswert zurück, bis Bewegungswerte mit gleichem oder späterem Zeitstempel da sind (höchstens Bündelungs-Verzögerung plus 2 s). Sonst schlösse ein früher Pulswert die Epoche, bevor ihre Bewegung da ist. Die Regel oben bleibt gleich.
 - Apple Watch: Die Smart-Alarm-Sitzung (höchstens 30 Min) beginnt bei max(Fensterbeginn, Zielzeit − 25 Min). Epochen davor bleiben leer und zählen nicht für die Erkennung.
+
+## 8. «Genau» und kurze Nächte
+
+Leitsatz: Pünktlich ist das Produkt, früher ist Bonus.
+
+- **«Genau»** (Weckfenster 0, `AlarmSpec.isExact`): Die Uhr misst trotzdem die letzten 30 Min (`MEASURE_MINUTES`) für den Verlauf, weckt aber nie früher. Entscheidungen der Epochen-Regel werden übergangen; geweckt wird zur Zielzeit mit Grund `EXACT`.
+- **Kurze Nacht** (`ShortNight.blocksEarly`): Ist die Einschlafzeit bekannt und seit ihr weniger als Schlafziel − 60 Min vergangen (Ziel 7½ Std. → unter 6½ Std.), wird ein früher Moment (`AWAKE` oder `LIGHT_SLEEP`) übergangen. Die Uhr weckt dann zur Zielzeit mit Grund `SHORT_NIGHT`, auch wenn die Sperre im Fenster später endet (ein übergangener Moment wird nicht nachgeholt). Ohne bekannte Einschlafzeit gilt keine Sperre.
+- **Einschlafzeit** (nur Galaxy Watch): aus «Gute Nacht» oder aus der automatischen Messung. Für den nächsten gespeicherten Wecker (kein Powernap, kein Probewecker), dessen Zielzeit höchstens 16 Std. entfernt ist, beginnt sie 60 Min vor der Bettzeit (`ShortNight.autoOnsetStart`: Zielzeit − Schlafziel, im Einschlaf-Modus Zielzeit − Schlafdauer) mit derselben stromsparenden Messung wie in 6 und endet beim erkannten Einschlafen oder 15 Min vor der Zielzeit. Im Einschlaf-Modus legt sie wie «Gute Nacht» die Zielzeit fest; sonst wird nur die Einschlafzeit gemerkt. Ohne Sensorrechte oder vor dem ersten Entsperren misst die Uhr nichts, und der Wecker weckt wie bisher.
+- **Apple Watch**: Sie misst nur in der 30-Min-Sitzung; die Einschlafzeit ist dort unbekannt, die Untergrenze gilt nicht.
+- **Speicherformat**: `EXACT` und `SHORT_NIGHT` stehen in der Nacht zusätzlich als `DEADLINE` (Feld 5) und im angehängten Feld 8, damit ältere Versionen die Nacht weiter lesen; ein unbekannter Grund gilt als `DEADLINE`.

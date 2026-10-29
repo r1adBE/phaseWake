@@ -63,4 +63,15 @@ class NightHistoryTest {
         val motions = NightHistory.motionsForCalibration(listOf(night(2, listOf(Epoch(0.3, null))), night(1)))
         assertEquals(listOf(listOf<Double?>(0.0), listOf<Double?>(0.3)), motions)
     }
+
+    @Test
+    fun lightShareSkipsNightsWithoutEarlyWake() {
+        val reasons = listOf(WakeReason.LIGHT_SLEEP, WakeReason.DEADLINE, WakeReason.AWAKE, WakeReason.EXACT, WakeReason.SHORT_NIGHT)
+        val nights = reasons.mapIndexed { i, reason -> night(i.toLong()).copy(reason = reason) }
+        // 1 von 3 (ohne Genau und kurze Nacht) = 33 %, nicht 1 von 5.
+        assertEquals(33, NightHistory.lightShare(nights))
+        assertEquals(60, NightHistory.lightShare(nights + night(9) + night(10)))
+        assertEquals(null, NightHistory.lightShare(nights.filter { it.reason == WakeReason.EXACT || it.reason == WakeReason.SHORT_NIGHT }))
+        assertEquals(null, NightHistory.lightShare(emptyList()))
+    }
 }

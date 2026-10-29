@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.ShortNight
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.ui.notes.TonightNotesCard
@@ -108,6 +110,30 @@ fun HomeScreen(
         AlarmSchedule.holidayNote(alarms, now, zone, extras.holidays, done)?.let { Format.shortDay(it, locale) }
     }
 
+    // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die Uhr bereit ist.
+    val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
+    val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && now.isBefore(it.windowStart) }?.let { p ->
+        alarms.firstOrNull { it.id == p.alarmId }?.let { a -> Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone) }
+    }
+    // Morgenbericht zuerst: vom Wecken heute bis 12 Uhr steht die letzte Nacht direkt unter dem Kopf.
+    val morningFirst = lastNight != null && isMorningOf(lastNight, now, zone)
+    val nightCard = @Composable {
+        if (lastNight != null) {
+            val date = SleepNotes.nightDate(lastNight, zone)
+            LastNightCard(
+                lastNight, now, missHint,
+                onFeeling = { onFeeling(lastNight, it) },
+                notes = notes[date].orEmpty(),
+                customNotes = customNotes,
+                onToggleNote = { onToggleNote(date, it) },
+                clips = SoundEvents.forNight(soundClips, date),
+                soundFile = soundFile,
+                onDeleteClip = onDeleteClip,
+                onDeleteClips = { onDeleteNightClips(date) },
+            )
+        }
+    }
+
     // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
     val dark = PhaseWakeTheme.isDark
     val list = @Composable {
@@ -123,9 +149,10 @@ fun HomeScreen(
         item(key = "hero") {
             Header(
                 plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark,
-                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote,
+                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote, autoOnset = autoOnset,
             )
         }
+        if (morningFirst) item(key = "night") { nightCard() }
         // Nacht-Check nur, wenn ein Wecker ansteht – sonst gibt es nichts abzusichern.
         if (check != null && plan != null) {
             item(key = "check") { NightCheckCard(check, cardColor(), onFix, extras.onTest, extras.testAt) }
@@ -153,22 +180,7 @@ fun HomeScreen(
         extras.onNap?.let { onNap ->
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
-        if (lastNight != null) {
-            val date = SleepNotes.nightDate(lastNight, zone)
-            item(key = "night") {
-                LastNightCard(
-                    lastNight, now, missHint,
-                    onFeeling = { onFeeling(lastNight, it) },
-                    notes = notes[date].orEmpty(),
-                    customNotes = customNotes,
-                    onToggleNote = { onToggleNote(date, it) },
-                    clips = SoundEvents.forNight(soundClips, date),
-                    soundFile = soundFile,
-                    onDeleteClip = onDeleteClip,
-                    onDeleteClips = { onDeleteNightClips(date) },
-                )
-            }
-        }
+        if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->
             item(key = "soundsMorning") { SoundsMorningCard(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip) { onDeleteNightClips(night) } }
@@ -213,7 +225,24 @@ class HomeExtras(
     val onTest: (() -> Unit)? = null,
     /** Zielzeit eines laufenden Probeweckers; `null` = keiner. */
     val testAt: Instant? = null,
+    /** Die Uhr misst das Einschlafen automatisch (Galaxy Watch): Zeile «ab 22:30» im Kopf. */
+    val autoOnset: Boolean = false,
+    /** Schlafziel in Minuten, für den Beginn der automatischen Messung. */
+    val sleepGoal: Int = SleepGoal.DEFAULT_MINUTES,
 )
+
+/** Nacht-Check-Punkte, bei denen die Uhr nicht messen kann (dann keine Zeile zur automatischen Messung). */
+private val WATCH_PROBLEMS = setOf(Check.WATCH, Check.WATCH_APP, Check.WATCH_SETUP)
+
+/** Morgen nach [night]: geweckt heute (in [zone]), jetzt danach und vor 12 Uhr. */
+internal fun isMorningOf(night: NightRecord, now: Instant, zone: ZoneId): Boolean {
+    val woke = night.wokeAt.atZone(zone)
+    val local = now.atZone(zone)
+    return !now.isBefore(night.wokeAt) && woke.toLocalDate() == local.toLocalDate() && local.hour < MORNING_FIRST_UNTIL_HOUR
+}
+
+/** Bis zu dieser Stunde (Ortszeit) steht der Morgenbericht zuerst. */
+private const val MORNING_FIRST_UNTIL_HOUR = 12
 
 /** Höchstens so viele Wecker: Die Uhr führt ohnehin nur eine Nacht zugleich, und die Liste bleibt übersichtlich. */
 internal const val MAX_ALARMS = 8

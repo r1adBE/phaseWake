@@ -19,15 +19,18 @@
     <string name="home_next_today">Bugün</string>
     <string name="home_next_tomorrow">Yarın</string>
     <string name="home_next_in">Hafif uykuda uyandırır · %1$s sonra</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Tam hedef saatte uyandırır · %1$s sonra</string>
     <string name="home_no_alarm_title">Tam zamanında uyan</string>
     <string name="home_no_alarm_text">Bir saat ve bir aralık belirle. Saatin, hafif uyuduğunda seni uyandırır.</string>
     <string name="home_add_alarm">Yeni alarm</string>
     <string name="home_last_night">Dün gece</string>
     <string name="home_alarms">Alarmların</string>
 
-    <string name="reason_light">Hafif uyku</string>
+    <string name="reason_light">Huzursuz – muhtemelen hafif uyku</string>
     <string name="reason_awake">Zaten uyanık</string>
     <string name="reason_deadline">Hafif uyku algılanmadı</string>
+    <string name="reason_exact">Tam hedef saatte</string>
+    <string name="reason_short_night">Kısa gece – ancak hedef saatte</string>
     <string name="woke_early">Hedeften %1$d dk önce · %2$s</string>
     <string name="woke_on_time">Hedef saatte · %1$s</string>
     <string name="no_snooze">erteleme yok</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Şu saate kadar uyandır</string>
     <string name="editor_latest">En geç</string>
     <string name="editor_sleep_duration">Uyku: %1$s</string>
-    <string name="editor_sleep_hint">Uykuya daldığında saymaya başlar. Saatinde “İyi geceler”e dokun.</string>
+    <string name="editor_sleep_hint">Uykuya daldığın andan itibaren sayar. Saatin bunu otomatik algılar; hemen başlatmak için saatte “İyi geceler”e dokun.</string>
     <string name="editor_window">Aralık: %1$d dk</string>
     <string name="editor_window_hint">%1$s ile %2$s arasında uyandırır</string>
+    <string name="editor_window_exact">Tam</string>
+    <string name="editor_window_exact_hint">Tam hedef saatte çalar, asla daha erken değil. Saatin yine de geçmişin için ölçer.</string>
+    <string name="window_exact_line">Tam saat %1$s</string>
     <string name="editor_days">Tekrar</string>
     <string name="editor_weekdays">Hafta içi</string>
     <string name="editor_weekend">Hafta sonu</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Düzenlemeye devam et</string>
     <string name="editor_delete_title">Bu alarm silinsin mi?</string>
     <string name="home_window_running">Aralık sürüyor – şu an ölçülüyor</string>
+    <string name="home_auto_onset">Saatin, uykuya daldığın anı otomatik olarak algılar (başlangıç: %1$s).</string>
     <string name="check_volume">Alarm ses düzeyi</string>
     <string name="check_volume_problem">Alarm ses düzeyi 0 olarak ayarlı – telefonun sessiz çalar.</string>
     <string name="health_update">Health Connect\'i güncelle</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Kayıt sürüyor. Telefonu gece şarja takman en iyisi.</string>
     <string name="sound_rec_default">Yeni geceler için açık</string>
     <string name="sound_rec_default_hint">Yatma saatinden itibaren Phase Wake’i açtığında başlar (alarm yoksa 21:00’den itibaren). Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir.</string>
-    <string name="sound_type_snore">Horlama</string>
+    <string name="sound_type_snore">Olası horlama</string>
     <string name="sound_type_talk">Konuşma</string>
     <string name="sound_type_other">Başka ses</string>
     <plurals name="sound_summary">
-        <item quantity="one">Horlama: %1$s (%2$d parça)</item>
-        <item quantity="other">Horlama: %1$s (%2$d parça)</item>
+        <item quantity="one">Olası horlama: %1$s (%2$d parça)</item>
+        <item quantity="other">Olası horlama: %1$s (%2$d parça)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Konuşma: %1$d parça</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Olağan %%%1$d–%2$d</string>
     <string name="stages_typical_below">Olağan %%%1$d altı</string>
     <string name="stages_not_medical">Tıbbi bir değerlendirme değildir.</string>
-    <string name="stages_verdict_awake_above">Her zamankinden fazla uyanık kalma</string>
-    <string name="stages_verdict_deep_below">Her zamankinden az derin uyku</string>
-    <string name="stages_verdict_deep_above">Her zamankinden fazla derin uyku</string>
-    <string name="stages_verdict_rem_below">Az REM – çoğunlukla kısa ya da geç bir gecenin ardından</string>
-    <string name="stages_verdict_rem_above">Her zamankinden fazla REM</string>
-    <string name="stages_verdict_light_below">Her zamankinden az hafif uyku</string>
-    <string name="stages_verdict_light_above">Her zamankinden fazla hafif uyku</string>
-    <string name="stages_verdict_typical">Tüm evreler olağan aralıkta</string>
+    <string name="stages_source">Sağlıklı yetişkinler için referans değerler (Ohayon ve ark., Sleep 2004). Saatler evreleri yalnızca kabaca tahmin eder.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s süredir</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Haftalık ortalama</string>

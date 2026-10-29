@@ -46,7 +46,9 @@ struct EditorView: View {
                     }
                 }
 
-                if let existing, let advice = WindowAdvice.suggest(existing, history: model.nights), Int(window) < advice.windowMinutes {
+                // «Genau» ist bewusst gewählt: dann kein Vorschlag für ein grösseres Fenster.
+                if let existing, Int(window) != AlarmSpec.exactWindow,
+                   let advice = WindowAdvice.suggest(existing, history: model.nights), Int(window) < advice.windowMinutes {
                     Section {
                         Text(L("editor_advice_title")).font(.headline)
                         Text(LP("editor_advice_text", advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes)).font(.footnote)
@@ -55,12 +57,24 @@ struct EditorView: View {
                 }
 
                 Section {
-                    Text(L("editor_window", Int(window)))
-                    Slider(value: $window, in: Double(AlarmSpec.minWindowMinutes)...Double(AlarmSpec.maxWindowMinutes), step: 5)
-                    if !sleepMode {
+                    // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
+                    Picker(L("chart_window"), selection: $window) {
+                        ForEach(windowChoices(keeping: Int(window)), id: \.self) { minutes in
+                            Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
+                                .tag(Double(minutes))
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    // Grosse Segmente: Tippziel nahe 44 pt.
+                    .controlSize(.large)
+                    if Int(window) == AlarmSpec.exactWindow {
+                        Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
+                    } else if !sleepMode {
                         Text(L("editor_window_hint", Format.time(time.addingTimeInterval(-window * 60)), Format.time(time)))
                             .font(.footnote).foregroundStyle(.secondary)
                     }
+                } header: {
+                    Text(L("chart_window"))
                 }
 
                 Section(L("editor_days")) {
@@ -73,9 +87,11 @@ struct EditorView: View {
                                     // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
                                     Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
                                 }
+                                // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der Buchstabe).
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .contentShape(Capsule())
                             }
                                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
-                                .frame(maxWidth: .infinity, minHeight: 36)
                                 .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
                                 .foregroundStyle(on ? .white : .primary)
                                 .buttonStyle(.plain)
@@ -83,9 +99,9 @@ struct EditorView: View {
                         }
                     }
                     HStack {
-                        Button(L("editor_weekdays")) { days = [.monday, .tuesday, .wednesday, .thursday, .friday] }
-                        Button(L("editor_weekend")) { days = [.saturday, .sunday] }
-                        Button(L("alarm_every_day")) { days = Set(Weekday.allCases) }
+                        quickDays("editor_weekdays", [.monday, .tuesday, .wednesday, .thursday, .friday])
+                        quickDays("editor_weekend", [.saturday, .sunday])
+                        quickDays("alarm_every_day", Set(Weekday.allCases))
                     }
                     .buttonStyle(.borderless)
                     .font(.footnote)
@@ -120,6 +136,7 @@ struct EditorView: View {
                             Text(L("sunrise_window")).tag(Sunrise.window)
                         }
                         .pickerStyle(.segmented)
+                        .controlSize(.large)
                         if sunrise != .off {
                             Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
                                 .font(.footnote).foregroundStyle(.secondary)
@@ -187,6 +204,19 @@ struct EditorView: View {
     }
 
     private var dirty: Bool { original != nil && current() != original }
+
+    /// Wahl des Fensters: «Genau» (0), 10, 20, 30 und ein gespeicherter Wert dazwischen, damit er nicht still ändert.
+    private func windowChoices(keeping current: Int) -> [Int] {
+        let base = [AlarmSpec.exactWindow, 10, 20, AlarmSpec.maxWindowMinutes]
+        return base.contains(current) ? base : (base + [current]).sorted()
+    }
+
+    /// Knopf für eine Tagesgruppe (Werktage, Wochenende, täglich) mit Tippziel von mindestens 44 pt Höhe.
+    private func quickDays(_ key: String, _ set: Set<Weekday>) -> some View {
+        Button { days = set } label: {
+            Text(L(key)).frame(minHeight: 44).contentShape(Rectangle())
+        }
+    }
 
     /// Wochentage ab dem Wochenbeginn der Region (z. B. Sonntag in den USA).
     private var weekOrder: [Weekday] {

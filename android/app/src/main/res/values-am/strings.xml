@@ -21,15 +21,18 @@
     <string name="home_next_today">ዛሬ</string>
     <string name="home_next_tomorrow">ነገ</string>
     <string name="home_next_in">በቀላል እንቅልፍ ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">በትክክል በታለመው ሰዓት ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
     <string name="home_no_alarm_title">በትክክለኛው ቅጽበት መንቃት</string>
     <string name="home_no_alarm_text">ሰዓትና የጊዜ ክልል ያዘጋጁ። ቀላል እንቅልፍ ላይ ሲሆኑ ሰዓትዎ ይቀሰቅስዎታል።</string>
     <string name="home_add_alarm">አዲስ ማንቂያ</string>
     <string name="home_last_night">ትናንት ማታ</string>
     <string name="home_alarms">የእርስዎ ማንቂያዎች</string>
 
-    <string name="reason_light">ቀላል እንቅልፍ</string>
+    <string name="reason_light">እረፍት የለሽ – ምናልባት ቀላል እንቅልፍ</string>
     <string name="reason_awake">ቀድሞውኑ ነቅተው ነበር</string>
     <string name="reason_deadline">ቀላል እንቅልፍ አልተገኘም</string>
+    <string name="reason_exact">በትክክል በታለመው ሰዓት</string>
+    <string name="reason_short_night">አጭር ሌሊት – በታለመው ሰዓት ብቻ</string>
     <string name="woke_early">ከታለመው ሰዓት %1$d ደቂቃ በፊት · %2$s</string>
     <string name="woke_on_time">በታለመው ሰዓት · %1$s</string>
     <string name="no_snooze">ያለ ማሸለብ</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">እስከዚህ ቀስቅሰኝ</string>
     <string name="editor_latest">ቢዘገይ</string>
     <string name="editor_sleep_duration">ለ%1$s ይተኙ</string>
-    <string name="editor_sleep_hint">ሲተኙ መቁጠር ይጀምራል። በሰዓትዎ ላይ «ደህና እደሩ»ን ይንኩ።</string>
+    <string name="editor_sleep_hint">ከተኙበት ጊዜ ጀምሮ ይቆጥራል። ሰዓትዎ በራስ-ሰር ይለየዋል፤ ወዲያውኑ ለመጀመር በሰዓቱ ላይ «ደህና እደሩ»ን ይንኩ።</string>
     <string name="editor_window">ክልል: %1$d ደቂቃ</string>
     <string name="editor_window_hint">በ%1$s እና በ%2$s መካከል ይቀሰቅስዎታል</string>
+    <string name="editor_window_exact">በትክክል</string>
+    <string name="editor_window_exact_hint">በትክክል በታለመው ሰዓት ይደውላል፣ ፈጽሞ ቀደም ብሎ አይደለም። ሰዓትዎ ለታሪክዎ አሁንም ይለካል።</string>
+    <string name="window_exact_line">በትክክል %1$s ላይ</string>
     <string name="editor_days">ድገም</string>
     <string name="editor_weekdays">የሥራ ቀናት</string>
     <string name="editor_weekend">ቅዳሜና እሁድ</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">ማርትዕ ቀጥል</string>
     <string name="editor_delete_title">ይህ ማንቂያ ይሰረዝ?</string>
     <string name="home_window_running">የመቀስቀሻ ክልል እየሄደ ነው – አሁን እየለካ ነው</string>
+    <string name="home_auto_onset">ሰዓትዎ ከ%1$s ጀምሮ መተኛትዎን በራስ-ሰር ይለያል።</string>
     <string name="check_volume">የማንቂያ ድምፅ መጠን</string>
     <string name="check_volume_problem">የማንቂያ ድምፅ መጠን 0 ላይ ነው – ስልክዎ ያለ ድምፅ ይደውላል።</string>
     <string name="health_update">Health Connectን አዘምን</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">መቅዳት በርቷል። ለሌሊቱ ስልክዎን ኃይል መሙያ ላይ ቢሰኩት ይሻላል።</string>
     <string name="sound_rec_default">ለአዲስ ሌሊቶች በርቷል</string>
     <string name="sound_rec_default_hint">ከመኝታ ሰዓትዎ ጀምሮ Phase Wakeን ሲከፍቱ ይጀምራል (ማንቂያ ከሌለ ከ21:00 ጀምሮ)። አጫጭር ቅንጥቦች ብቻ፤ በስልክዎ ላይ ይቆያሉ እና ከ7 ቀናት በኋላ ይሰረዛሉ።</string>
-    <string name="sound_type_snore">ማንኮራፋት</string>
+    <string name="sound_type_snore">ምናልባት ማንኮራፋት</string>
     <string name="sound_type_talk">ማውራት</string>
     <string name="sound_type_other">ሌላ ድምፅ</string>
     <plurals name="sound_summary">
-        <item quantity="one">ማንኮራፋት: %1$s (%2$d ቅንጥብ)</item>
-        <item quantity="other">ማንኮራፋት: %1$s (%2$d ቅንጥቦች)</item>
+        <item quantity="one">ምናልባት ማንኮራፋት: %1$s (%2$d ቅንጥብ)</item>
+        <item quantity="other">ምናልባት ማንኮራፋት: %1$s (%2$d ቅንጥቦች)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">ማውራት: %1$d ቅንጥብ</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">የተለመደ %1$d–%2$d %%</string>
     <string name="stages_typical_below">የተለመደ ከ%1$d %% በታች</string>
     <string name="stages_not_medical">የሕክምና ግምገማ አይደለም።</string>
-    <string name="stages_verdict_awake_above">ከተለመደው በላይ የንቃት ጊዜ</string>
-    <string name="stages_verdict_deep_below">ከተለመደው ያነሰ ጥልቅ እንቅልፍ</string>
-    <string name="stages_verdict_deep_above">ከተለመደው የበለጠ ጥልቅ እንቅልፍ</string>
-    <string name="stages_verdict_rem_below">ትንሽ REM – ብዙ ጊዜ ከአጭር ወይም ከዘገየ ሌሊት በኋላ</string>
-    <string name="stages_verdict_rem_above">ከተለመደው የበለጠ REM</string>
-    <string name="stages_verdict_light_below">ከተለመደው ያነሰ ቀላል እንቅልፍ</string>
-    <string name="stages_verdict_light_above">ከተለመደው የበለጠ ቀላል እንቅልፍ</string>
-    <string name="stages_verdict_typical">ሁሉም ደረጃዎች በተለመደው ክልል ውስጥ</string>
+    <string name="stages_source">ለጤናማ አዋቂዎች የማጣቀሻ ክልሎች (Ohayon እና ሌሎች፣ Sleep 2004)። ሰዓቶች ደረጃዎችን በግምት ብቻ ይገምታሉ።</string>
     <string name="hypno_bubble">%1$s · %2$s · ለ%3$s</string>
     <string name="hypno_block">%1$s ከ%2$s እስከ %3$s</string>
     <string name="chart_week_average">ሳምንታዊ አማካይ</string>

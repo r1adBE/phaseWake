@@ -9,9 +9,11 @@
     <string name="notification_ring_title">おはようございます</string>
 
     <string name="ring_greeting">おはようございます</string>
-    <string name="ring_reason_light">浅い眠りを検出</string>
+    <string name="ring_reason_light">落ち着かない眠り – 浅い眠りの可能性</string>
     <string name="ring_reason_awake">すでに起きていました</string>
     <string name="ring_reason_deadline">目標時刻になりました</string>
+    <string name="ring_reason_exact">目標時刻ちょうど</string>
+    <string name="ring_reason_short_night">短い夜 – 目標時刻まで待機</string>
     <string name="ring_hold_to_stop">長押しで停止</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d分 · 残り%2$d回</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">起きたい時刻</string>
     <string name="editor_latest">最も遅い時刻</string>
     <string name="editor_window">時間幅: %1$d分</string>
+    <string name="editor_window_exact">ちょうど</string>
+    <string name="editor_window_exact_hint">目標時刻ちょうどに鳴り、早まることはありません。記録のための計測はウォッチが続けます。</string>
+    <string name="window_exact_line">%1$sちょうど</string>
     <string name="editor_days">繰り返し</string>
     <string name="editor_save">保存</string>
     <string name="editor_delete">アラームを削除</string>

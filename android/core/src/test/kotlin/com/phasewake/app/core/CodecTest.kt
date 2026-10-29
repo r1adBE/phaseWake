@@ -126,7 +126,21 @@ class CodecTest {
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"))
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
         assertEquals(listOf("b"), Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map { it.id })
-        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-alarms 1\n") }
+    }
+
+    @Test
+    fun newReasonsStayReadableForOlderVersions() {
+        val night = NightRecord("a", Instant.ofEpochMilli(0), Instant.ofEpochMilli(1_800_000), Instant.ofEpochMilli(1_800_000), WakeReason.EXACT, 0, emptyList())
+        // Byte-gleich mit Apple (CodecTests.testNewReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue Grund.
+        assertEquals("phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n", Codec.encodeNight(night))
+        assertEquals(night, Codec.decodeNight(Codec.encodeNight(night)))
+        val short = night.copy(reason = WakeReason.SHORT_NIGHT, feeling = 3)
+        assertEquals(short, Codec.decodeNight(Codec.encodeNight(short)))
+        // Bekannte Gründe ohne Feld 8, wie bisher.
+        assertEquals("phasewake-night 1\na|0|1800000|1800000|DEADLINE|0|\n\n", Codec.encodeNight(night.copy(reason = WakeReason.DEADLINE)))
+        // Unbekannter Grund aus einer neueren Version: Zielzeit.
+        assertEquals(WakeReason.DEADLINE, Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n").reason)
+        assertEquals(WakeReason.AWAKE, Codec.decodeNight("phasewake-night 1\na|1|2|3|AWAKE|0||LATER\n").reason)
     }
 }

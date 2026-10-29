@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Labas rytas</string>
 
     <string name="ring_greeting">Labas rytas</string>
-    <string name="ring_reason_light">Aptiktas lengvas miegas</string>
+    <string name="ring_reason_light">Neramus – tikriausiai lengvas miegas</string>
     <string name="ring_reason_awake">Jau nemiegojai</string>
     <string name="ring_reason_deadline">Pasiektas tikslinis laikas</string>
+    <string name="ring_reason_exact">Tiksliai tiksliniu laiku</string>
+    <string name="ring_reason_short_night">Trumpa naktis – tik tiksliniu laiku</string>
     <string name="ring_hold_to_stop">Laikyk, kad sustabdytum</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · liko %2$d</item>
@@ -58,6 +60,9 @@
     <string name="editor_target">Pažadink mane iki</string>
     <string name="editor_latest">Vėliausiai</string>
     <string name="editor_window">Langas: %1$d min</string>
+    <string name="editor_window_exact">Tiksliai</string>
+    <string name="editor_window_exact_hint">Skamba tiksliai tiksliniu laiku, niekada anksčiau. Laikrodis vis tiek matuoja tavo istorijai.</string>
+    <string name="window_exact_line">Tiksliai %1$s</string>
     <string name="editor_days">Kartoti</string>
     <string name="editor_save">Išsaugoti</string>
     <string name="editor_delete">Ištrinti žadintuvą</string>

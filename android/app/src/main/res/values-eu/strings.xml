@@ -21,15 +21,18 @@
     <string name="home_next_today">Gaur</string>
     <string name="home_next_tomorrow">Bihar</string>
     <string name="home_next_in">Lo arinean esnatuko zaitu · %1$s barru</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Helburuko orduan bertan esnatuko zaitu · %1$s barru</string>
     <string name="home_no_alarm_title">Esnatu une egokian</string>
     <string name="home_no_alarm_text">Ezarri ordu bat eta leiho bat. Erlojuak lo arinean zaudenean esnatuko zaitu.</string>
     <string name="home_add_alarm">Alarma berria</string>
     <string name="home_last_night">Bart</string>
     <string name="home_alarms">Zure alarmak</string>
 
-    <string name="reason_light">Lo arina</string>
+    <string name="reason_light">Urduri – seguru asko lo arina</string>
     <string name="reason_awake">Esna zeunden</string>
     <string name="reason_deadline">Ez da lo arinik hauteman</string>
+    <string name="reason_exact">Helburuko orduan bertan</string>
+    <string name="reason_short_night">Gau laburra – helburuko orduan bakarrik</string>
     <string name="woke_early">Helburua baino %1$d min lehenago · %2$s</string>
     <string name="woke_on_time">Helburuko orduan · %1$s</string>
     <string name="no_snooze">atzeratu gabe</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Esnatze-ordua</string>
     <string name="editor_latest">Beranduenez</string>
     <string name="editor_sleep_duration">Lo egin: %1$s</string>
-    <string name="editor_sleep_hint">Lokartzen zarenean hasten da kontatzen. Sakatu «Gabon» erlojuan.</string>
+    <string name="editor_sleep_hint">Lokartzen zarenetik kontatzen du. Erlojuak automatikoki hautematen du; sakatu «Gabon» erlojuan berehala hasteko.</string>
     <string name="editor_window">Leihoa: %1$d min</string>
     <string name="editor_window_hint">%1$s eta %2$s artean esnatuko zaitu</string>
+    <string name="editor_window_exact">Zehatz</string>
+    <string name="editor_window_exact_hint">Helburuko orduan bertan joko du, inoiz ez lehenago. Erlojuak zure historialerako neurtzen jarraitzen du.</string>
+    <string name="window_exact_line">Zehazki %1$s-etan</string>
     <string name="editor_days">Errepikatu</string>
     <string name="editor_weekdays">Lanegunak</string>
     <string name="editor_weekend">Asteburua</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Jarraitu editatzen</string>
     <string name="editor_delete_title">Alarma hau ezabatu?</string>
     <string name="home_window_running">Esnatze-leihoa martxan – neurtzen</string>
+    <string name="home_auto_onset">Erlojuak automatikoki hautemango du noiz hartzen duzun loa, %1$s-etatik aurrera.</string>
     <string name="check_volume">Alarmaren bolumena</string>
     <string name="check_volume_problem">Alarmaren bolumena 0 da – telefonoak isilik joko luke.</string>
     <string name="health_update">Eguneratu Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Grabazioa aktibatuta dago. Hobe duzu telefonoa gau osoan kargatzen uztea.</string>
     <string name="sound_rec_default">Aktibatuta gau berrietarako</string>
     <string name="sound_rec_default_hint">Oheratzeko ordutik aurrera Phase Wake irekitzen duzunean hasten da (alarmarik gabe, 21:00etatik aurrera). Klip laburrak soilik; telefonoan geratzen dira eta 7 egunen ondoren ezabatzen dira.</string>
-    <string name="sound_type_snore">Zurrunga</string>
+    <string name="sound_type_snore">Zurrunga posiblea</string>
     <string name="sound_type_talk">Hitz egitea</string>
     <string name="sound_type_other">Beste soinu bat</string>
     <plurals name="sound_summary">
-        <item quantity="one">Zurrunga: %1$s (klip %2$d)</item>
-        <item quantity="other">Zurrunga: %1$s (%2$d klip)</item>
+        <item quantity="one">Zurrunga posiblea: %1$s (klip %2$d)</item>
+        <item quantity="other">Zurrunga posiblea: %1$s (%2$d klip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Hitz egitea: klip %1$d</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Ohikoa %%%1$d–%2$d</string>
     <string name="stages_typical_below">Ohikoa %%%1$d baino gutxiago</string>
     <string name="stages_not_medical">Ez da ebaluazio medikoa.</string>
-    <string name="stages_verdict_awake_above">Ohi baino esna denbora gehiago</string>
-    <string name="stages_verdict_deep_below">Ohi baino lo sakon gutxiago</string>
-    <string name="stages_verdict_deep_above">Ohi baino lo sakon gehiago</string>
-    <string name="stages_verdict_rem_below">REM gutxi – askotan gau labur edo berandu baten ondoren</string>
-    <string name="stages_verdict_rem_above">Ohi baino REM gehiago</string>
-    <string name="stages_verdict_light_below">Ohi baino lo arin gutxiago</string>
-    <string name="stages_verdict_light_above">Ohi baino lo arin gehiago</string>
-    <string name="stages_verdict_typical">Fase guztiak ohiko tartean</string>
+    <string name="stages_source">Erreferentziazko balioak heldu osasuntsuentzat (Ohayon et al., Sleep 2004). Erlojuek faseak gutxi gorabehera baino ez dituzte kalkulatzen.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s daramatza</string>
     <string name="hypno_block">%1$s %2$s–%3$s</string>
     <string name="chart_week_average">Asteko batez bestekoa</string>

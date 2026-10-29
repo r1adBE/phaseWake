@@ -23,6 +23,8 @@ struct HistoryChartsSection: View {
                     Text(L("chart_nights_30")).tag(ChartData.monthNights)
                 }
                 .pickerStyle(.segmented)
+                // Grosse Segmente: Tippziel nahe 44 pt.
+                .controlSize(.large)
                 .padding(.horizontal, 16)
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: 12) {

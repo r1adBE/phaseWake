@@ -1,6 +1,6 @@
-# Aufwärmphase ohne Puls: kein Basispuls, also entscheidet die Bewegung allein.
-# Epoche 31: Treffer in 30 und 31 (0.002 zählt, Schwelle ist >=).
-@expect 31 LIGHT_SLEEP
+# Aufwärmphase ohne Puls: kein Basispuls, also ist die Pulsbedingung nie erfüllt.
+# Leichte Bewegung in Epoche 30 und 31 reicht darum nicht; Wecken erst zur Zielzeit.
+@expect none
 motion,hr
 0.000,
 0.000,

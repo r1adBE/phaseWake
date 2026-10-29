@@ -3,6 +3,7 @@ package com.phasewake.app.ui.history
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -210,6 +211,7 @@ private fun PeriodSwitch(selected: Int, onSelect: (Int) -> Unit) {
                 selected = selected == value,
                 onClick = { onSelect(value) },
                 shape = SegmentedButtonDefaults.itemShape(i, ChartData.PERIODS.size),
+                modifier = Modifier.heightIn(min = 48.dp),
                 icon = {},
             ) { Text(stringResource(periodLabel(value)), style = MaterialTheme.typography.labelMedium) }
         }

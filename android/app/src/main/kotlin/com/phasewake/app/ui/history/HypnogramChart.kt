@@ -15,6 +15,7 @@ import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.core.SleepStage
+import com.phasewake.app.core.WakeReason
 import java.time.ZoneId
 
 // --- 4. Schlafphasen der Nacht ---
@@ -40,7 +41,7 @@ internal fun HypnogramCard(h: Hypnogram, stats: NightStages, night: NightRecord,
     val context = LocalContext.current
     val zone = ZoneId.systemDefault()
     val date = morning(SleepNotes.nightDate(night, zone))
-    val model = HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt))
+    val model = HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT))
     val trailing = @Composable { Text(date, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
     ChartCard(stringResource(R.string.chart_stages_title), hypnogramTakeaway(context, h), modifier, trailing = trailing) {
         StageHypnogram(model, height = CHART_HEIGHT + CARD_BUBBLE, bubbleSpace = CARD_BUBBLE, onOpen = onOpen)

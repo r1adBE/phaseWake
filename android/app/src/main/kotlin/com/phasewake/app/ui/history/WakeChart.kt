@@ -28,21 +28,8 @@ import java.time.LocalDate
 
 fun wakeTakeaway(context: Context, w: WakeMoments): String = context.getString(R.string.history_average, w.averageBefore)
 
-/** «12 Min vor der Zielzeit · Leichter Schlaf» für einen Weckmoment. */
-private fun wakeTiming(context: Context, p: WakeMoment): String {
-    val reason = context.getString(
-        when (p.kind) {
-            WakeKind.LIGHT -> R.string.reason_light
-            WakeKind.AWAKE -> R.string.reason_awake
-            WakeKind.TARGET, WakeKind.LATE -> R.string.reason_deadline
-        },
-    )
-    return when {
-        p.minutesBefore > 0 -> context.getString(R.string.woke_early, p.minutesBefore, reason)
-        p.minutesAfter > 0 -> context.resources.getQuantityString(R.plurals.woke_late, p.minutesAfter, p.minutesAfter, reason)
-        else -> context.getString(R.string.woke_on_time, reason)
-    }
-}
+/** «12 Min vor der Zielzeit · Unruhig – wohl leichter Schlaf» für einen Weckmoment ([wakeTimingText]). */
+private fun wakeTiming(context: Context, p: WakeMoment): String = wakeTimingText(context, p.minutesBefore, p.minutesAfter, p.reason)
 
 private fun wakeDescription(context: Context, w: WakeMoments): String = buildList {
     add(context.getString(R.string.chart_wake_title))

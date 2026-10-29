@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Habari za asubuhi</string>
 
     <string name="ring_greeting">Habari za asubuhi</string>
-    <string name="ring_reason_light">Usingizi mwepesi umegunduliwa</string>
+    <string name="ring_reason_light">Kutotulia – huenda usingizi mwepesi</string>
     <string name="ring_reason_awake">Ulikuwa macho tayari</string>
     <string name="ring_reason_deadline">Muda lengwa umefika</string>
+    <string name="ring_reason_exact">Hasa kwa muda lengwa</string>
+    <string name="ring_reason_short_night">Usiku mfupi – kwa muda lengwa tu</string>
     <string name="ring_hold_to_stop">Shikilia ili kuzima</string>
     <plurals name="ring_snooze">
         <item quantity="one">Dak %1$d · zimebaki %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Niamshe kabla ya</string>
     <string name="editor_latest">Muda wa mwisho</string>
     <string name="editor_window">Kipindi: dak %1$d</string>
+    <string name="editor_window_exact">Hasa</string>
+    <string name="editor_window_exact_hint">Inalia hasa kwa muda lengwa, kamwe mapema. Saa yako bado inapima kwa ajili ya historia yako.</string>
+    <string name="window_exact_line">Hasa saa %1$s</string>
     <string name="editor_days">Rudia</string>
     <string name="editor_save">Hifadhi</string>
     <string name="editor_delete">Futa kengele</string>

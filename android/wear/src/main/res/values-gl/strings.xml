@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Bos días</string>
 
     <string name="ring_greeting">Bos días</string>
-    <string name="ring_reason_light">Sono lixeiro detectado</string>
+    <string name="ring_reason_light">Inquedo – probablemente sono lixeiro</string>
     <string name="ring_reason_awake">Xa estabas esperto</string>
     <string name="ring_reason_deadline">Chegou a hora prevista</string>
+    <string name="ring_reason_exact">Xusto á hora prevista</string>
+    <string name="ring_reason_short_night">Noite curta – só á hora prevista</string>
     <string name="ring_hold_to_stop">Mantén premido para parar</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · queda %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Espértame ata</string>
     <string name="editor_latest">Como moi tarde</string>
     <string name="editor_window">Xanela: %1$d min</string>
+    <string name="editor_window_exact">Exacto</string>
+    <string name="editor_window_exact_hint">Soa xusto á hora prevista, nunca antes. O reloxo segue medindo para o teu historial.</string>
+    <string name="window_exact_line">Xusto ás %1$s</string>
     <string name="editor_days">Repetir</string>
     <string name="editor_save">Gardar</string>
     <string name="editor_delete">Eliminar alarma</string>

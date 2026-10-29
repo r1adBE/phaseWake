@@ -1,6 +1,5 @@
 package com.phasewake.app.ui.history
 
-import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,6 +42,7 @@ import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.StageStats
+import com.phasewake.app.core.WakeReason
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
 import java.io.File
@@ -68,7 +68,7 @@ internal fun nightView(item: HistoryItem, stages: List<StageSpan>): NightView {
     if (night != null) {
         val stats = StageStats.forNight(stages, night)
         val h = ChartData.hypnogram(stages, night)
-        val model = if (h != null && stats != null) HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt)) else null
+        val model = if (h != null && stats != null) HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT)) else null
         return NightView(item, stats, model, h)
     }
     val session = item.session ?: return NightView(item, null, null)
@@ -215,7 +215,9 @@ private fun HypnogramSection(view: NightView) {
     val night = view.item.night
     if (model == null) {
         if (night == null) return
-        ChartCard(stringResource(R.string.chart_window), stringResource(R.string.night_no_stages), Modifier.fillMaxWidth()) {
+        // «Genau»: die Messzeit ist kein Weckfenster, darum dann der Titel der Phasen (wie iPhone).
+        val title = if (night.reason == WakeReason.EXACT) R.string.chart_stages_title else R.string.chart_window
+        ChartCard(stringResource(title), stringResource(R.string.night_no_stages), Modifier.fillMaxWidth()) {
             NightBars(night.epochs, Modifier.fillMaxWidth().height(56.dp), totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt())
         }
         return
@@ -235,6 +237,3 @@ private fun HypnogramSection(view: NightView) {
 
 /** Höhe des grossen Hypnogramms samt Platz für die Blase und die Zeitachse. */
 private val HYPNO_HEIGHT = 240.dp
-
-/** Einordnung der Nacht in einem Satz ([StageStats]); zu wenig Daten: keiner. */
-internal fun verdictText(context: Context, stats: NightStages): String? = stats.verdict?.let { context.getString(verdictRes(it)) }

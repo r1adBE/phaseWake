@@ -19,15 +19,18 @@
     <string name="home_next_today">Tänään</string>
     <string name="home_next_tomorrow">Huomenna</string>
     <string name="home_next_in">Herättää kevyessä unessa · %1$s päästä</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Herättää täsmälleen tavoiteaikana · %1$s päästä</string>
     <string name="home_no_alarm_title">Herää oikealla hetkellä</string>
     <string name="home_no_alarm_text">Aseta aika ja aikaikkuna. Kellosi herättää sinut, kun nukut kevyesti.</string>
     <string name="home_add_alarm">Uusi herätys</string>
     <string name="home_last_night">Viime yö</string>
     <string name="home_alarms">Herätyksesi</string>
 
-    <string name="reason_light">Kevyt uni</string>
+    <string name="reason_light">Levoton – luultavasti kevyttä unta</string>
     <string name="reason_awake">Jo hereillä</string>
     <string name="reason_deadline">Kevyttä unta ei havaittu</string>
+    <string name="reason_exact">Täsmälleen tavoiteaikana</string>
+    <string name="reason_short_night">Lyhyt yö – vasta tavoiteaikana</string>
     <string name="woke_early">%1$d min ennen tavoiteaikaa · %2$s</string>
     <string name="woke_on_time">Tavoiteaikana · %1$s</string>
     <string name="no_snooze">ei torkkua</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Herätä viimeistään</string>
     <string name="editor_latest">Viimeistään</string>
     <string name="editor_sleep_duration">Nuku %1$s</string>
-    <string name="editor_sleep_hint">Laskenta alkaa, kun nukahdat. Napauta kellossa ”Hyvää yötä”.</string>
+    <string name="editor_sleep_hint">Laskee nukahtamisesta alkaen. Kello tunnistaa sen automaattisesti; napauta kellossa ”Hyvää yötä”, niin se alkaa heti.</string>
     <string name="editor_window">Aikaikkuna: %1$d min</string>
     <string name="editor_window_hint">Herättää aikavälillä %1$s – %2$s</string>
+    <string name="editor_window_exact">Tarkka</string>
+    <string name="editor_window_exact_hint">Soi täsmälleen tavoiteaikana, ei koskaan aiemmin. Kello mittaa silti historiaasi varten.</string>
+    <string name="window_exact_line">Täsmälleen klo %1$s</string>
     <string name="editor_days">Toista</string>
     <string name="editor_weekdays">Arkisin</string>
     <string name="editor_weekend">Viikonloppu</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Jatka muokkausta</string>
     <string name="editor_delete_title">Poistetaanko tämä herätys?</string>
     <string name="home_window_running">Aikaikkuna käynnissä – mitataan nyt</string>
+    <string name="home_auto_onset">Kellosi tunnistaa nukahtamisesi automaattisesti klo %1$s alkaen.</string>
     <string name="check_volume">Herätyksen äänenvoimakkuus</string>
     <string name="check_volume_problem">Herätyksen äänenvoimakkuus on 0 – puhelimesi soisi äänettömästi.</string>
     <string name="health_update">Päivitä Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Tallennus käynnissä. Laita puhelin mieluiten lataukseen yöksi.</string>
     <string name="sound_rec_default">Päällä uusille öille</string>
     <string name="sound_rec_default_hint">Käynnistyy, kun avaat Phase Waken nukkumaanmenoajastasi alkaen (ilman herätystä klo 21 alkaen). Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
-    <string name="sound_type_snore">Kuorsaus</string>
+    <string name="sound_type_snore">Mahdollista kuorsausta</string>
     <string name="sound_type_talk">Puhe</string>
     <string name="sound_type_other">Muu ääni</string>
     <plurals name="sound_summary">
-        <item quantity="one">Kuorsaus: %1$s (%2$d pätkä)</item>
-        <item quantity="other">Kuorsaus: %1$s (%2$d pätkää)</item>
+        <item quantity="one">Mahdollista kuorsausta: %1$s (%2$d pätkä)</item>
+        <item quantity="other">Mahdollista kuorsausta: %1$s (%2$d pätkää)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Puhe: %1$d pätkä</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Tavallisesti %1$d–%2$d %%</string>
     <string name="stages_typical_below">Tavallisesti alle %1$d %%</string>
     <string name="stages_not_medical">Ei lääketieteellinen arvio.</string>
-    <string name="stages_verdict_awake_above">Tavallista enemmän valveilla</string>
-    <string name="stages_verdict_deep_below">Tavallista vähemmän syvää unta</string>
-    <string name="stages_verdict_deep_above">Tavallista enemmän syvää unta</string>
-    <string name="stages_verdict_rem_below">Vähän REM-unta – usein lyhyen tai myöhäisen yön jälkeen</string>
-    <string name="stages_verdict_rem_above">Tavallista enemmän REM-unta</string>
-    <string name="stages_verdict_light_below">Tavallista vähemmän kevyttä unta</string>
-    <string name="stages_verdict_light_above">Tavallista enemmän kevyttä unta</string>
-    <string name="stages_verdict_typical">Kaikki vaiheet tavallisella välillä</string>
+    <string name="stages_source">Viitearvot terveille aikuisille (Ohayon ym., Sleep 2004). Kellot arvioivat univaiheet vain karkeasti.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s jo</string>
     <string name="hypno_block">%1$s klo %2$s–%3$s</string>
     <string name="chart_week_average">Viikon keskiarvo</string>

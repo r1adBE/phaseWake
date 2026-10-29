@@ -293,7 +293,7 @@ public enum ChartData {
                 switch night.reason {
                 case .lightSleep: kind = .light
                 case .awake: kind = .awake
-                case .deadline: kind = .target
+                case .deadline, .exact, .shortNight: kind = .target
                 }
             }
             return WakeMoment(date: SleepNotes.nightDate(of: night, calendar: calendar), wokeAt: night.wokeAt,
@@ -301,7 +301,9 @@ public enum ChartData {
                               windowMinutes: window, kind: kind, reason: night.reason)
         }
         // Wie `Math.round` in Kotlin (nur positive Werte).
-        let average = Int((Double(points.reduce(0) { $0 + $1.minutesBefore }) / Double(points.count)).rounded())
+        // «Genau» und kurze Nächte durften nicht früher wecken: nicht im Durchschnitt.
+        let counted = points.filter { $0.reason.earlyAllowed }
+        let average = counted.isEmpty ? 0 : Int((Double(counted.reduce(0) { $0 + $1.minutesBefore }) / Double(counted.count)).rounded())
         return WakeMoments(points: points, scaleMinutes: max(1, points.map(\.windowMinutes).max() ?? 1), averageBefore: average)
     }
 

@@ -9,9 +9,11 @@
     <string name="notification_ring_title">អរុណសួស្តី</string>
 
     <string name="ring_greeting">អរុណសួស្តី</string>
-    <string name="ring_reason_light">រកឃើញដំណេកស្រាល</string>
+    <string name="ring_reason_light">មិនស្ងប់ – ប្រហែលជាដំណេកស្រាល</string>
     <string name="ring_reason_awake">អ្នកបានភ្ញាក់រួចហើយ</string>
     <string name="ring_reason_deadline">ដល់ម៉ោងគោលដៅ</string>
+    <string name="ring_reason_exact">ត្រូវម៉ោងគោលដៅពិតប្រាកដ</string>
+    <string name="ring_reason_short_night">យប់ខ្លី – ត្រឹមម៉ោងគោលដៅប៉ុណ្ណោះ</string>
     <string name="ring_hold_to_stop">ចុចឲ្យជាប់ដើម្បីបញ្ឈប់</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d នាទី · នៅសល់ %2$d</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">ដាស់ខ្ញុំត្រឹម</string>
     <string name="editor_latest">យឺតបំផុត</string>
     <string name="editor_window">ចន្លោះពេល៖ %1$d នាទី</string>
+    <string name="editor_window_exact">ពិតប្រាកដ</string>
+    <string name="editor_window_exact_hint">រោទ៍ត្រូវម៉ោងគោលដៅពិតប្រាកដ មិនដែលមុនទេ។ នាឡិការបស់អ្នកនៅតែវាស់សម្រាប់ប្រវត្តិរបស់អ្នក។</string>
+    <string name="window_exact_line">ត្រូវម៉ោង %1$s</string>
     <string name="editor_days">ធ្វើម្ដងទៀត</string>
     <string name="editor_save">រក្សាទុក</string>
     <string name="editor_delete">លុបម៉ោងរោទ៍</string>

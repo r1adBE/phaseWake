@@ -82,6 +82,8 @@ internal fun homeExtras(app: PhaseWakeApp, data: AppData, skipAllowed: Boolean =
         onUndoSkip = { alarm -> app.afterAlarmsChanged { app.alarms.update(alarm.id, AlarmSchedule::undoSkip) } },
         onTest = { startTest(app) },
         testAt = data.testRun?.takeIf { transient?.kind == TransientKind.TEST && !TestRuns.isFinished(it, now) }?.target,
+        autoOnset = true,
+        sleepGoal = data.sleepGoal,
     )
 }
 

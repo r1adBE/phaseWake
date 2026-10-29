@@ -8,9 +8,11 @@
     <string name="notification_window_text">Կարթնացնի ամենաուշը %1$s</string>
     <string name="notification_ring_title">Բարի լույս</string>
     <string name="ring_greeting">Բարի լույս</string>
-    <string name="ring_reason_light">Թեթև քուն է հայտնաբերվել</string>
+    <string name="ring_reason_light">Անհանգիստ – հավանաբար թեթև քուն</string>
     <string name="ring_reason_awake">Արդեն արթուն էիր</string>
     <string name="ring_reason_deadline">Նպատակային ժամը եկավ</string>
+    <string name="ring_reason_exact">Ճիշտ նպատակային ժամին</string>
+    <string name="ring_reason_short_night">Կարճ գիշեր – միայն նպատակային ժամին</string>
     <string name="ring_hold_to_stop">Պահիր՝ կանգնեցնելու համար</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d ր · մնաց՝ %2$d</item>
@@ -51,6 +53,9 @@
     <string name="editor_target">Արթնացնել մինչև</string>
     <string name="editor_latest">Ամենաուշը</string>
     <string name="editor_window">Պատուհան՝ %1$d ր</string>
+    <string name="editor_window_exact">Ճշգրիտ</string>
+    <string name="editor_window_exact_hint">Զանգում է ճիշտ նպատակային ժամին, երբեք ավելի շուտ։ Ժամացույցդ միևնույն է չափում է պատմությանդ համար։</string>
+    <string name="window_exact_line">Ճիշտ %1$s-ին</string>
     <string name="editor_days">Կրկնել</string>
     <string name="editor_save">Պահել</string>
     <string name="editor_delete">Ջնջել զարթուցիչը</string>

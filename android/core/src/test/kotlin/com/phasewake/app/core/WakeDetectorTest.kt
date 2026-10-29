@@ -51,10 +51,14 @@ class WakeDetectorTest {
     }
 
     @Test
-    fun missingCurrentHeartRateLetsMotionDecide() {
+    fun missingCurrentHeartRateBlocksLightSleep() {
         val detector = WakeDetector()
         detector.feed(still, still, Epoch(0.003, null))
-        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.003, null)))
+        // Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, null)))
+        // Die Wach-Regel braucht keinen Puls.
+        detector.onEpoch(Epoch(0.5, null))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, null)))
     }
 
     @Test
@@ -90,10 +94,13 @@ class WakeDetectorTest {
     }
 
     @Test
-    fun zeroWarmupHasNoBaselineAndDecidesImmediately() {
+    fun zeroWarmupHasNoBaselineSoNoLightSleep() {
         val detector = WakeDetector(DetectorConfig(warmupEpochs = 0))
         detector.onEpoch(Epoch(0.003, 52.0))
-        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.003, 52.0)))
+        // Ohne Basispuls ist die Pulsbedingung nicht erfüllt.
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, 60.0)))
+        detector.onEpoch(Epoch(0.5, 60.0))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, 60.0)))
     }
 
     @Test

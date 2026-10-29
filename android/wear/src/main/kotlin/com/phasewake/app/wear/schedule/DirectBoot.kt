@@ -23,6 +23,7 @@ object DirectBoot {
     private const val KEY_ID = "alarmId"
     private const val KEY_WINDOW_START = "windowStart"
     private const val KEY_TARGET = "target"
+    private const val KEY_EXACT = "exact"
     private const val KEY_AT = "at"
     private const val KEY_SOUND = "watchSound"
     private const val KEY_LABEL = "label"
@@ -31,6 +32,7 @@ object DirectBoot {
     private const val KEY_NEXT_ID = "nextAlarmId"
     private const val KEY_NEXT_WINDOW_START = "nextWindowStart"
     private const val KEY_NEXT_TARGET = "nextTarget"
+    private const val KEY_NEXT_EXACT = "nextExact"
     private const val KEY_NEXT_SOUND = "nextWatchSound"
     private const val KEY_NEXT_LABEL = "nextLabel"
 
@@ -52,6 +54,7 @@ object DirectBoot {
             putString(KEY_ID, plan.alarmId)
             putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
             putLong(KEY_TARGET, plan.target.toEpochMilli())
+            putBoolean(KEY_EXACT, plan.exact)
             putLong(KEY_AT, plan.target.toEpochMilli())
             putBoolean(KEY_SOUND, spec?.watchSound == true)
             putString(KEY_LABEL, spec?.label.orEmpty())
@@ -68,6 +71,7 @@ object DirectBoot {
                 putString(KEY_NEXT_ID, next.alarmId)
                 putLong(KEY_NEXT_WINDOW_START, next.windowStart.toEpochMilli())
                 putLong(KEY_NEXT_TARGET, next.target.toEpochMilli())
+                putBoolean(KEY_NEXT_EXACT, next.exact)
                 putBoolean(KEY_NEXT_SOUND, nextSpec?.watchSound == true)
                 putString(KEY_NEXT_LABEL, nextSpec?.label.orEmpty())
             }
@@ -78,6 +82,7 @@ object DirectBoot {
         remove(KEY_NEXT_ID)
         remove(KEY_NEXT_WINDOW_START)
         remove(KEY_NEXT_TARGET)
+        remove(KEY_NEXT_EXACT)
         remove(KEY_NEXT_SOUND)
         remove(KEY_NEXT_LABEL)
     }
@@ -97,10 +102,12 @@ object DirectBoot {
         val windowStart = prefs.getLong(KEY_NEXT_WINDOW_START, 0L).takeIf { it > 0L } ?: target
         val sound = prefs.getBoolean(KEY_NEXT_SOUND, false)
         val label = prefs.getString(KEY_NEXT_LABEL, null).orEmpty()
+        val exact = prefs.getBoolean(KEY_NEXT_EXACT, false)
         prefs.edit {
             putString(KEY_ID, id)
             putLong(KEY_WINDOW_START, windowStart)
             putLong(KEY_TARGET, target)
+            putBoolean(KEY_EXACT, exact)
             putLong(KEY_AT, target)
             putBoolean(KEY_SOUND, sound)
             putString(KEY_LABEL, label)
@@ -116,6 +123,7 @@ object DirectBoot {
             putString(KEY_ID, plan.alarmId)
             putLong(KEY_WINDOW_START, plan.windowStart.toEpochMilli())
             putLong(KEY_TARGET, plan.target.toEpochMilli())
+            putBoolean(KEY_EXACT, plan.exact)
             putLong(KEY_AT, at.toEpochMilli())
         }
     }
@@ -125,6 +133,7 @@ object DirectBoot {
             remove(KEY_ID)
             remove(KEY_WINDOW_START)
             remove(KEY_TARGET)
+            remove(KEY_EXACT)
             remove(KEY_AT)
             remove(KEY_SOUND)
             remove(KEY_LABEL)
@@ -138,7 +147,8 @@ object DirectBoot {
         val target = prefs.getLong(KEY_TARGET, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli) ?: return null
         val windowStart = prefs.getLong(KEY_WINDOW_START, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli) ?: target
         val at = prefs.getLong(KEY_AT, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli) ?: target
-        return Saved(WakePlan(id, windowStart, target), at, prefs.getBoolean(KEY_SOUND, false), prefs.getString(KEY_LABEL, null).orEmpty())
+        val plan = WakePlan(id, windowStart, target, exact = prefs.getBoolean(KEY_EXACT, false))
+        return Saved(plan, at, prefs.getBoolean(KEY_SOUND, false), prefs.getString(KEY_LABEL, null).orEmpty())
     }
 
     /**

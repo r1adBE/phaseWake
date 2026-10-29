@@ -15,7 +15,7 @@
     <string name="watch_not_armed">Öppna Phase Wake innan du somnar så att klockan kan aktivera alarmet.</string>
     <string name="check_watch_arm">Alarmet är aktiverat på klockan</string>
     <string name="check_watch_arm_problem">Öppna Phase Wake på Apple Watch innan du somnar. watchOS aktiverar bara alarmet medan appen är öppen.</string>
-    <string name="night_unmeasured_apple">Första %1$d min inte uppmätta – Apple Watch mäter bara de sista %2$d min före måltiden.</string>
+    <string name="night_unmeasured_apple">Första %1$d min inte uppmätta – Apple Watch mäter bara de sista %2$d min före önskad tid.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: SoundAnalysis från Apple, inbyggt i iOS.\nLjud: fria inspelningar (CC0) från opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
     <string name="health_apple">Apple Health</string>

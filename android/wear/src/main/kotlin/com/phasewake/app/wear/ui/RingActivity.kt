@@ -56,7 +56,6 @@ import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
-import com.phasewake.app.core.WakeReason
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.components.PulsingDot
 import com.phasewake.app.wear.ui.components.SunriseSky
@@ -66,6 +65,7 @@ import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.RingUi
 import com.phasewake.app.wear.wake.WakeService
+import com.phasewake.app.wear.wake.ringReasonRes
 import com.phasewake.app.wear.wearApp
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -258,13 +258,7 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
         overflow = TextOverflow.Ellipsis,
     )
     Text(
-        stringResource(
-            when (ui.reason) {
-                WakeReason.LIGHT_SLEEP -> R.string.ring_reason_light
-                WakeReason.AWAKE -> R.string.ring_reason_awake
-                WakeReason.DEADLINE -> R.string.ring_reason_deadline
-            },
-        ),
+        stringResource(ringReasonRes(ui.reason)),
         style = MaterialTheme.typography.bodySmall,
         color = muted ?: Brand.Mist,
         textAlign = TextAlign.Center,

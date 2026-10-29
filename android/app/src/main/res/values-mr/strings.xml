@@ -21,15 +21,18 @@
     <string name="home_next_today">आज</string>
     <string name="home_next_tomorrow">उद्या</string>
     <string name="home_next_in">हलक्या झोपेत उठवेल · %1$s नंतर</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">अगदी लक्ष्य वेळेवर उठवेल · %1$s नंतर</string>
     <string name="home_no_alarm_title">योग्य क्षणी जागे व्हा</string>
     <string name="home_no_alarm_text">वेळ आणि कालावधी निवडा. तुमची झोप हलकी असताना घड्याळ तुम्हाला उठवेल.</string>
     <string name="home_add_alarm">नवीन अलार्म</string>
     <string name="home_last_night">काल रात्री</string>
     <string name="home_alarms">तुमचे अलार्म</string>
 
-    <string name="reason_light">हलकी झोप</string>
+    <string name="reason_light">अस्वस्थ – बहुधा हलकी झोप</string>
     <string name="reason_awake">आधीच जागे</string>
     <string name="reason_deadline">हलकी झोप आढळली नाही</string>
+    <string name="reason_exact">अगदी लक्ष्य वेळेवर</string>
+    <string name="reason_short_night">लहान रात्र – फक्त लक्ष्य वेळेवर</string>
     <string name="woke_early">लक्ष्यापूर्वी %1$d मि. · %2$s</string>
     <string name="woke_on_time">लक्ष्य वेळेवर · %1$s</string>
     <string name="no_snooze">स्नूझ नाही</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">इतक्या वेळेपर्यंत उठवा</string>
     <string name="editor_latest">जास्तीत जास्त</string>
     <string name="editor_sleep_duration">%1$s झोप</string>
-    <string name="editor_sleep_hint">तुम्हाला झोप लागल्यावर मोजणी सुरू होते. घड्याळावर “शुभ रात्री” वर टॅप करा.</string>
+    <string name="editor_sleep_hint">तुम्हाला झोप लागल्यापासून मोजते. घड्याळ ते आपोआप ओळखते; लगेच सुरू करण्यासाठी घड्याळावर “शुभ रात्री” वर टॅप करा.</string>
     <string name="editor_window">कालावधी: %1$d मि.</string>
     <string name="editor_window_hint">%1$s ते %2$s दरम्यान उठवेल</string>
+    <string name="editor_window_exact">अचूक</string>
+    <string name="editor_window_exact_hint">अगदी लक्ष्य वेळेवर वाजेल, कधीही आधी नाही. तुमचे घड्याळ तरीही तुमच्या इतिहासासाठी मोजते.</string>
+    <string name="window_exact_line">अगदी %1$s ला</string>
     <string name="editor_days">पुनरावृत्ती</string>
     <string name="editor_weekdays">आठवड्याचे दिवस</string>
     <string name="editor_weekend">आठवड्याचा शेवट</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">संपादन सुरू ठेवा</string>
     <string name="editor_delete_title">हा अलार्म हटवायचा?</string>
     <string name="home_window_running">उठवण्याचा कालावधी सुरू – आता मोजत आहे</string>
+    <string name="home_auto_onset">तुमचे घड्याळ %1$s पासून तुम्ही कधी झोपता हे आपोआप ओळखते.</string>
     <string name="check_volume">अलार्मचा आवाज</string>
     <string name="check_volume_problem">अलार्मचा आवाज ० वर आहे – तुमचा फोन आवाजाशिवाय वाजेल.</string>
     <string name="health_update">Health Connect अपडेट करा</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">रेकॉर्डिंग चालू आहे. रात्रीसाठी फोन चार्जरला लावणं उत्तम.</string>
     <string name="sound_rec_default">नवीन रात्रींसाठी चालू</string>
     <string name="sound_rec_default_hint">झोपण्याच्या वेळेपासून Phase Wake उघडल्यावर सुरू होते (अलार्म नसल्यास रात्री ९ पासून). फक्त छोट्या क्लिप; त्या तुमच्या फोनवरच राहतात आणि ७ दिवसांनी हटवल्या जातात.</string>
-    <string name="sound_type_snore">घोरणे</string>
+    <string name="sound_type_snore">कदाचित घोरणे</string>
     <string name="sound_type_talk">बोलणे</string>
     <string name="sound_type_other">इतर आवाज</string>
     <plurals name="sound_summary">
-        <item quantity="one">घोरणे: %1$s (%2$d क्लिप)</item>
-        <item quantity="other">घोरणे: %1$s (%2$d क्लिप)</item>
+        <item quantity="one">कदाचित घोरणे: %1$s (%2$d क्लिप)</item>
+        <item quantity="other">कदाचित घोरणे: %1$s (%2$d क्लिप)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">बोलणे: %1$d क्लिप</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">साधारणपणे %1$d–%2$d %%</string>
     <string name="stages_typical_below">साधारणपणे %1$d %% पेक्षा कमी</string>
     <string name="stages_not_medical">हे वैद्यकीय मूल्यमापन नाही.</string>
-    <string name="stages_verdict_awake_above">नेहमीपेक्षा जास्त जागे</string>
-    <string name="stages_verdict_deep_below">नेहमीपेक्षा कमी गाढ झोप</string>
-    <string name="stages_verdict_deep_above">नेहमीपेक्षा जास्त गाढ झोप</string>
-    <string name="stages_verdict_rem_below">कमी REM – बहुधा लहान किंवा उशिराच्या रात्रीनंतर</string>
-    <string name="stages_verdict_rem_above">नेहमीपेक्षा जास्त REM</string>
-    <string name="stages_verdict_light_below">नेहमीपेक्षा कमी हलकी झोप</string>
-    <string name="stages_verdict_light_above">नेहमीपेक्षा जास्त हलकी झोप</string>
-    <string name="stages_verdict_typical">सर्व टप्पे नेहमीच्या श्रेणीत</string>
+    <string name="stages_source">निरोगी प्रौढांसाठी संदर्भ मूल्ये (Ohayon आणि इतर, Sleep 2004). घड्याळे टप्प्यांचा फक्त ढोबळ अंदाज लावतात.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s पासून</string>
     <string name="hypno_block">%1$s %2$s ते %3$s</string>
     <string name="chart_week_average">साप्ताहिक सरासरी</string>

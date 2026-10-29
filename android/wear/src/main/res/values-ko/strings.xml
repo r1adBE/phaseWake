@@ -9,9 +9,11 @@
     <string name="notification_ring_title">좋은 아침이에요</string>
 
     <string name="ring_greeting">좋은 아침이에요</string>
-    <string name="ring_reason_light">얕은 잠 감지됨</string>
+    <string name="ring_reason_light">뒤척임 – 얕은 잠일 가능성</string>
     <string name="ring_reason_awake">이미 깨어 있었어요</string>
     <string name="ring_reason_deadline">목표 시간이 됐어요</string>
+    <string name="ring_reason_exact">목표 시간에 정확히</string>
+    <string name="ring_reason_short_night">짧은 밤 – 목표 시간에만</string>
     <string name="ring_hold_to_stop">길게 눌러 중지</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d분 · %2$d회 남음</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">일어날 시간</string>
     <string name="editor_latest">늦어도</string>
     <string name="editor_window">범위: %1$d분</string>
+    <string name="editor_window_exact">정확히</string>
+    <string name="editor_window_exact_hint">목표 시간에 정확히 울리고, 더 일찍 울리지 않아요. 워치는 기록을 위해 계속 측정해요.</string>
+    <string name="window_exact_line">%1$s 정각</string>
     <string name="editor_days">반복</string>
     <string name="editor_save">저장</string>
     <string name="editor_delete">알람 삭제</string>

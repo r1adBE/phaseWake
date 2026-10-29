@@ -2,6 +2,7 @@ package com.phasewake.app.ui.settings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
@@ -103,6 +104,7 @@ fun SettingsScreen(
                         selected = themeMode == mode,
                         onClick = { onThemeMode(mode) },
                         shape = SegmentedButtonDefaults.itemShape(index, modes.size),
+                        modifier = Modifier.heightIn(min = 48.dp),
                     ) { Text(stringResource(label)) }
                 }
             }

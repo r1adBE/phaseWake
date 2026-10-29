@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Bonjour</string>
 
     <string name="ring_greeting">Bonjour</string>
-    <string name="ring_reason_light">Sommeil léger détecté</string>
+    <string name="ring_reason_light">Agité – sans doute sommeil léger</string>
     <string name="ring_reason_awake">Tu étais déjà éveillé</string>
     <string name="ring_reason_deadline">Heure cible atteinte</string>
+    <string name="ring_reason_exact">Pile à l’heure cible</string>
+    <string name="ring_reason_short_night">Nuit courte – seulement à l’heure cible</string>
     <string name="ring_hold_to_stop">Maintiens pour arrêter</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d restant</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Réveille-moi avant</string>
     <string name="editor_latest">Au plus tard</string>
     <string name="editor_window">Plage : %1$d min</string>
+    <string name="editor_window_exact">Exact</string>
+    <string name="editor_window_exact_hint">Sonne pile à l’heure cible, jamais avant. Ta montre mesure quand même pour ton historique.</string>
+    <string name="window_exact_line">Pile à %1$s</string>
     <string name="editor_days">Répéter</string>
     <string name="editor_save">Enregistrer</string>
     <string name="editor_delete">Supprimer le réveil</string>

@@ -2,8 +2,9 @@ import PhaseWakeCore
 import SwiftUI
 
 /// Phasen-Summen der Detailseite: je Phase Name, Anteil, Dauer und Balken; dahinter heller, gestrichelt umrandeter
-/// «üblicher Bereich für Erwachsene» mit Legende. Darunter ein Satz Einordnung nach fester Regel und klein «Keine
-/// medizinische Bewertung.». Ohne Farbe lesbar: Prozent, Dauer und Bereich stehen als Text. Wie `StageTotals` (Android).
+/// «üblicher Bereich für Erwachsene» mit Legende. Darunter klein und einmal die Quelle der Richtwerte samt «Keine
+/// medizinische Bewertung.» – bewusst ohne Urteil über die Nacht, denn Uhren schätzen Phasen nur ungefähr.
+/// Ohne Farbe lesbar: Prozent, Dauer und Bereich stehen als Text. Wie `StageTotals` (Android).
 struct StageTotalsView: View {
     let stages: NightStages
     @Environment(\.colorScheme) private var scheme
@@ -20,29 +21,10 @@ struct StageTotalsView: View {
             .font(Fonts.manrope(11, .semibold, relativeTo: .caption2))
             .foregroundStyle(Brand.secondaryText(scheme))
             .accessibilityHidden(true)
-            if let verdict = stages.verdict {
-                Text(verdictText(verdict))
-                    .font(Fonts.manrope(15, .semibold, relativeTo: .body))
-                    .padding(.top, 4)
-            }
-            Text(L("stages_not_medical"))
+            Text(L("stages_source") + " " + L("stages_not_medical"))
                 .font(Fonts.manrope(11, relativeTo: .caption2))
                 .foregroundStyle(Brand.tertiaryText(scheme))
         }
-    }
-}
-
-/// Satz zur Einordnung einer Nacht.
-func verdictText(_ verdict: StageVerdict) -> String {
-    switch verdict {
-    case .awakeAbove: L("stages_verdict_awake_above")
-    case .deepBelow: L("stages_verdict_deep_below")
-    case .deepAbove: L("stages_verdict_deep_above")
-    case .remBelow: L("stages_verdict_rem_below")
-    case .remAbove: L("stages_verdict_rem_above")
-    case .lightBelow: L("stages_verdict_light_below")
-    case .lightAbove: L("stages_verdict_light_above")
-    case .typical: L("stages_verdict_typical")
     }
 }
 

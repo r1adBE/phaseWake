@@ -42,9 +42,10 @@ object Format {
     fun shortDay(date: LocalDate, locale: Locale): String =
         DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(date)
 
-    /** «06:30 – 07:00» */
-    fun window(alarm: AlarmSpec): String {
+    /** «06:30 – 07:00»; bei «Genau» ([AlarmSpec.isExact]) «Genau um 07:00». */
+    fun window(context: Context, alarm: AlarmSpec): String {
         val target = LocalTime.of(alarm.hour, alarm.minute)
+        if (alarm.isExact) return context.getString(R.string.window_exact_line, time(target))
         return time(target.minusMinutes(alarm.windowMinutes.toLong())) + " – " + time(target)
     }
 

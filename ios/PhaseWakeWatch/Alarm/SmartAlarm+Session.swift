@@ -23,7 +23,7 @@ extension SmartAlarm {
 
     nonisolated func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         // Kurz vor Ablauf (spätestens nach 30 Min): jetzt wecken, sonst verwirft das System den Alarm.
-        Task { @MainActor in if self.phase.isMeasuring { self.ring(self.detector.finish()) } }
+        Task { @MainActor in if self.phase.isMeasuring { self.ring(self.targetReason()) } }
     }
 
     nonisolated func extendedRuntimeSession(

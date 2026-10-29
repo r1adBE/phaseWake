@@ -32,6 +32,7 @@ import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HealthHistory
 import com.phasewake.app.core.HistoryItem
 import com.phasewake.app.core.HistoryKind
+import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepNotes
@@ -59,22 +60,33 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlin.math.roundToInt
 
-/** «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern» */
-fun nightSummary(context: Context, night: NightRecord): String {
-    val reason = context.getString(
-        when (night.reason) {
-            WakeReason.LIGHT_SLEEP -> R.string.reason_light
-            WakeReason.AWAKE -> R.string.reason_awake
-            WakeReason.DEADLINE -> R.string.reason_deadline
-        },
-    )
-    val late = night.minutesAfterTarget.toInt()
-    val timing = when {
-        night.minutesBeforeTarget > 0 -> context.getString(R.string.woke_early, night.minutesBeforeTarget.toInt(), reason)
+/** Text zum Weckgrund, gleich in Verlauf, Startseite und Diagrammen. */
+fun reasonRes(reason: WakeReason): Int = when (reason) {
+    WakeReason.LIGHT_SLEEP -> R.string.reason_light
+    WakeReason.AWAKE -> R.string.reason_awake
+    WakeReason.DEADLINE -> R.string.reason_deadline
+    WakeReason.EXACT -> R.string.reason_exact
+    WakeReason.SHORT_NIGHT -> R.string.reason_short_night
+}
+
+/**
+ * «12 Min vor der Zielzeit · Grund», «Zur Zielzeit · Grund» oder «N Min nach der Zielzeit · Grund». Bei «Genau» und
+ * kurzer Nacht zur Zielzeit nur der Grund: Er nennt die Zielzeit schon.
+ */
+fun wakeTimingText(context: Context, minutesBefore: Int, minutesAfter: Int, reason: WakeReason): String {
+    val text = context.getString(reasonRes(reason))
+    return when {
+        minutesBefore > 0 -> context.getString(R.string.woke_early, minutesBefore, text)
         // Nach Schlummern über die Zielzeit hinaus: ehrlich als Verspätung, nicht als «zur Zielzeit».
-        late > 0 -> context.resources.getQuantityString(R.plurals.woke_late, late, late, reason)
-        else -> context.getString(R.string.woke_on_time, reason)
+        minutesAfter > 0 -> context.resources.getQuantityString(R.plurals.woke_late, minutesAfter, minutesAfter, text)
+        reason == WakeReason.EXACT || reason == WakeReason.SHORT_NIGHT -> text
+        else -> context.getString(R.string.woke_on_time, text)
     }
+}
+
+/** «12 Min vor der Zielzeit · Unruhig – wohl leichter Schlaf · ohne Schlummern» */
+fun nightSummary(context: Context, night: NightRecord): String {
+    val timing = wakeTimingText(context, night.minutesBeforeTarget.toInt(), night.minutesAfterTarget.toInt(), night.reason)
     val snooze = if (night.snoozes == 0) context.getString(R.string.no_snooze) else context.getString(R.string.snoozed_times, night.snoozes)
     return "$timing · $snooze"
 }
@@ -197,10 +209,11 @@ fun HistoryScreen(
 @Composable
 private fun Stats(nights: List<NightRecord>) {
     val average = nights.map { it.minutesBeforeTarget }.average().roundToInt()
-    val lightShare = (100.0 * nights.count { it.reason == WakeReason.LIGHT_SLEEP } / nights.size).roundToInt()
+    // Nur Nächte, in denen früher wecken erlaubt war (ohne «Genau» und kurze Nächte); ohne solche keine Kachel.
+    val lightShare = NightHistory.lightShare(nights)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
         StatTile(stringResource(R.string.history_average, average), Modifier.weight(1f))
-        StatTile(stringResource(R.string.history_light_share, lightShare), Modifier.weight(1f))
+        lightShare?.let { StatTile(stringResource(R.string.history_light_share, it), Modifier.weight(1f)) }
     }
 }
 

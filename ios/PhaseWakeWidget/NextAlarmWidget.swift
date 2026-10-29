@@ -58,7 +58,7 @@ struct NextAlarmView: View {
 
     private var window: String {
         guard let plan = entry.plan else { return "–" }
-        return Format.time(plan.windowStart) + "–" + Format.time(plan.target)
+        return Format.window(start: plan.windowStart, target: plan.target, exact: plan.exact, separator: "–")
     }
 
     var body: some View {
@@ -81,7 +81,8 @@ struct NextAlarmView: View {
                 Text(entry.plan == nil ? L("home_no_alarm") : window)
                     .font(.system(size: 17, weight: .bold, design: .rounded))
                     .minimumScaleFactor(0.7)
-                if entry.plan != nil {
+                // «Genau» weckt nicht im leichten Schlaf: dann ohne diese Zeile (die Zeile darüber sagt «Genau um …»).
+                if let plan = entry.plan, !plan.exact {
                     Text(L("tile_light_sleep")).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
                 }
             }

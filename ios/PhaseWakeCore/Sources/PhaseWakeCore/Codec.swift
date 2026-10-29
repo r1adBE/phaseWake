@@ -83,22 +83,31 @@ public enum Codec {
         }
     }
 
+    /// Weckgründe, die jede Version lesen kann; neuere stehen zusätzlich in Feld 8 (`encodeNight`).
+    private static let legacyReasons: Set<WakeReason> = [.awake, .lightSleep, .deadline]
+
     /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer).
+    /// Ein Grund, den ältere Versionen nicht kennen (`exact`, `shortNight`), steht in Feld 5 als `deadline` (so lesen
+    /// ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8. Identisch zu Kotlin.
     public static func encodeNight(_ night: NightRecord) -> String {
         var out = nightHeader + "\n"
-        out += [
+        let legacy = legacyReasons.contains(night.reason)
+        var fields = [
             escape(night.alarmId), String(millis(night.windowStart)), String(millis(night.target)),
-            String(millis(night.wokeAt)), night.reason.rawValue, String(night.snoozes),
+            String(millis(night.wokeAt)), legacy ? night.reason.rawValue : WakeReason.deadline.rawValue, String(night.snoozes),
             night.feeling.map(String.init) ?? "",
-        ].joined(separator: "|") + "\n"
+        ]
+        if !legacy { fields.append(night.reason.rawValue) }
+        out += fields.joined(separator: "|") + "\n"
         out += night.epochs.map { e in
             (e.motion.map(number) ?? "") + ";" + (e.heartRate.map(number) ?? "")
         }.joined(separator: ",") + "\n"
         return out
     }
 
-    /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, neuere Felder ignoriert.
-    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, unbekanntem Grund, Befinden ausserhalb 1–5 oder unlesbaren Zahlen.
+    /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, weitere neuere Felder ignoriert.
+    /// Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer neueren Version) gilt als `deadline`.
+    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, Befinden ausserhalb 1–5 oder unlesbaren Zahlen.
     public static func decodeNight(_ text: String) throws -> NightRecord {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
@@ -107,7 +116,7 @@ public enum Codec {
         guard f.count >= 6 else { throw CodecError(description: "Nacht: 7 Felder erwartet") }
         let feeling: Int? = try f.count >= 7 && !f[6].isEmpty ? int(f[6]) : nil
         if let feeling, !NightRecord.feelingRange.contains(feeling) { throw CodecError(description: "Nacht: Befinden '\(feeling)'") }
-        guard let reason = WakeReason(rawValue: f[4]) else { throw CodecError(description: "Nacht: Grund '\(f[4])'") }
+        let reason = (f.count > 7 ? WakeReason(rawValue: f[7]) : nil) ?? WakeReason(rawValue: f[4]) ?? .deadline
         let epochLine = lines.count > 2 ? lines[2] : ""
         let epochs: [Epoch] = try epochLine.isEmpty ? [] : epochLine.components(separatedBy: ",").map { pair in
             let p = pair.components(separatedBy: ";")

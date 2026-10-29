@@ -9,9 +9,11 @@
     <string name="notification_ring_title">صباح الخير</string>
 
     <string name="ring_greeting">صباح الخير</string>
-    <string name="ring_reason_light">رُصد نوم خفيف</string>
+    <string name="ring_reason_light">قلِق – غالبًا نوم خفيف</string>
     <string name="ring_reason_awake">كنت قد استيقظت بالفعل</string>
     <string name="ring_reason_deadline">حان الوقت المحدد</string>
+    <string name="ring_reason_exact">في الموعد المحدد تمامًا</string>
+    <string name="ring_reason_short_night">ليلة قصيرة – في الموعد المحدد فقط</string>
     <string name="ring_hold_to_stop">ضغط مطوّل للإيقاف</string>
     <plurals name="ring_snooze">
         <item quantity="zero">%1$d د · المتبقي %2$d</item>
@@ -59,6 +61,9 @@
     <string name="editor_target">أيقظني قبل</string>
     <string name="editor_latest">بحدّ أقصى</string>
     <string name="editor_window">النافذة: %1$d د</string>
+    <string name="editor_window_exact">بالضبط</string>
+    <string name="editor_window_exact_hint">يرنّ في الموعد المحدد تمامًا، لا قبله أبدًا. ومع ذلك تقيس ساعتك من أجل سجلّك.</string>
+    <string name="window_exact_line">بالضبط في %1$s</string>
     <string name="editor_days">التكرار</string>
     <string name="editor_save">حفظ</string>
     <string name="editor_delete">حذف المنبّه</string>

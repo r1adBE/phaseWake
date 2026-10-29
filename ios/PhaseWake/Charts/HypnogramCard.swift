@@ -26,8 +26,19 @@ struct HypnogramCard: View {
 
     private var timeline: StageTimeline {
         StageTimeline(start: h.start, totalMinutes: h.totalMinutes, steps: h.steps,
-                      window: h.windowFrom <= h.windowTo ? h.windowFrom...h.windowTo : nil,
+                      window: stageWindow(h, exact: night.wasExact),
                       wokeAt: h.wokeAt, stageAtWake: h.stageAtWake)
+    }
+
+    /// Weckfenster und Weckpunkt; «Genau» hat kein Weckfenster, dann ohne dessen Zeichen.
+    private var legendItems: [(symbol: AnyView, text: String)] {
+        var items: [(symbol: AnyView, text: String)] = []
+        if !night.wasExact {
+            items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)),
+                          text: L("chart_window")))
+        }
+        items.append((symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)), text: Format.time(night.wokeAt)))
+        return items
     }
 
     var body: some View {
@@ -35,10 +46,7 @@ struct HypnogramCard: View {
             Text(longDate(nightDate)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
         }) {
             StageChart(timeline: timeline, height: chartHeight)
-            ChartLegend(items: [
-                (symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)), text: L("chart_window")),
-                (symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)), text: Format.time(night.wokeAt)),
-            ])
+            ChartLegend(items: legendItems)
             Text(totals).font(Fonts.manrope(11, .semibold, relativeTo: .caption2)).foregroundStyle(.secondary)
             Button { onOpen(nightDate) } label: { DetailsRow(hiddenForVoiceOver: false) }
                 .buttonStyle(.plain)

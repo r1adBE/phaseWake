@@ -9,9 +9,11 @@
     <string name="notification_ring_title">ಶುಭೋದಯ</string>
 
     <string name="ring_greeting">ಶುಭೋದಯ</string>
-    <string name="ring_reason_light">ಹಗುರ ನಿದ್ರೆ ಪತ್ತೆಯಾಗಿದೆ</string>
+    <string name="ring_reason_light">ಅಶಾಂತ – ಬಹುಶಃ ಹಗುರ ನಿದ್ರೆ</string>
     <string name="ring_reason_awake">ನೀವು ಈಗಾಗಲೇ ಎಚ್ಚರವಾಗಿದ್ದಿರಿ</string>
     <string name="ring_reason_deadline">ಗುರಿ ಸಮಯ ತಲುಪಿದೆ</string>
+    <string name="ring_reason_exact">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ</string>
+    <string name="ring_reason_short_night">ಕಡಿಮೆ ರಾತ್ರಿ – ಗುರಿ ಸಮಯದಲ್ಲಿ ಮಾತ್ರ</string>
     <string name="ring_hold_to_stop">ನಿಲ್ಲಿಸಲು ಒತ್ತಿ ಹಿಡಿಯಿರಿ</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d ನಿಮಿ. · %2$d ಬಾಕಿ</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">ಇಷ್ಟರೊಳಗೆ ಎಬ್ಬಿಸಿ</string>
     <string name="editor_latest">ತಡವೆಂದರೆ</string>
     <string name="editor_window">ಅವಧಿ: %1$d ನಿಮಿ.</string>
+    <string name="editor_window_exact">ನಿಖರ</string>
+    <string name="editor_window_exact_hint">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ ಬಾರಿಸುತ್ತದೆ, ಎಂದಿಗೂ ಮುಂಚೆ ಅಲ್ಲ. ನಿಮ್ಮ ವಾಚ್ ಆದರೂ ನಿಮ್ಮ ಇತಿಹಾಸಕ್ಕಾಗಿ ಅಳೆಯುತ್ತದೆ.</string>
+    <string name="window_exact_line">ಸರಿಯಾಗಿ %1$s ಕ್ಕೆ</string>
     <string name="editor_days">ಪುನರಾವರ್ತನೆ</string>
     <string name="editor_save">ಉಳಿಸಿ</string>
     <string name="editor_delete">ಅಲಾರಾಂ ಅಳಿಸಿ</string>

@@ -11,7 +11,9 @@ import WatchKit
 /// darf im Hintergrund Bewegung und Puls lesen und dauert höchstens 30 Minuten. Damit die Zielzeit
 /// sicher in der Sitzung liegt, beginnt sie höchstens 25 Minuten davor (`sessionStart`); bei einem
 /// 30-Minuten-Fenster bleiben die ersten 5 Minuten ungemessen (leere Epochen).
-/// Gemessen wird wie auf Android (Regel in docs/PHASENERKENNUNG.md).
+/// Gemessen wird wie auf Android (Regel in docs/PHASENERKENNUNG.md). Bei «Genau» misst die Uhr gleich lang
+/// (`AlarmSpec.measureMinutes`), weckt aber nie vor der Zielzeit (Grund `exact`). Die Untergrenze «Kurze Nacht»
+/// gilt hier nicht: Ausserhalb der Sitzung kann die Apple Watch das Einschlafen nicht messen.
 ///
 /// Grenzen von watchOS, die hier abgefangen werden:
 /// - Planen geht nur bei aktiver App und höchstens 36 Stunden im Voraus. Sonst wartet der Plan

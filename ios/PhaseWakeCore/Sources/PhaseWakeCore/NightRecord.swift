@@ -56,6 +56,17 @@ public enum NightHistory {
         Array(nights.sorted { $0.windowStart < $1.windowStart }.suffix(maxNights))
     }
 
+    /// Anteil der Nächte in Prozent (gerundet), in denen im leichten Schlaf geweckt wurde. Es zählen nur
+    /// Nächte, in denen früher wecken erlaubt war: «Genau» (``WakeReason/exact``) und kurze Nächte
+    /// (``WakeReason/shortNight``) fehlen auch im Nenner. `nil`, wenn keine solche Nacht da ist.
+    public static func lightShare(_ nights: [NightRecord]) -> Int? {
+        let counted = nights.filter { $0.reason != .exact && $0.reason != .shortNight }
+        guard !counted.isEmpty else { return nil }
+        let light = counted.filter { $0.reason == .lightSleep }.count
+        // Wie `Math.round` in Kotlin (nur positive Werte).
+        return Int((100 * Double(light) / Double(counted.count)).rounded())
+    }
+
     /// Bewegung je Epoche der gespeicherten Nächte, älteste zuerst, als Eingabe für ``Calibration``.
     public static func motionsForCalibration(_ nights: [NightRecord]) -> [[Double?]] {
         trim(nights).map { $0.epochs.map(\.motion) }

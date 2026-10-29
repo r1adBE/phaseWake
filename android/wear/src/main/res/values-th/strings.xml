@@ -9,9 +9,11 @@
     <string name="notification_ring_title">อรุณสวัสดิ์</string>
 
     <string name="ring_greeting">อรุณสวัสดิ์</string>
-    <string name="ring_reason_light">ตรวจพบการหลับตื้น</string>
+    <string name="ring_reason_light">กระสับกระส่าย – น่าจะหลับตื้น</string>
     <string name="ring_reason_awake">คุณตื่นอยู่แล้ว</string>
     <string name="ring_reason_deadline">ถึงเวลาเป้าหมายแล้ว</string>
+    <string name="ring_reason_exact">ตรงเวลาเป้าหมายพอดี</string>
+    <string name="ring_reason_short_night">คืนสั้น – ปลุกตอนเวลาเป้าหมายเท่านั้น</string>
     <string name="ring_hold_to_stop">กดค้างเพื่อหยุด</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d นาที · เหลือ %2$d ครั้ง</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">ปลุกฉันภายใน</string>
     <string name="editor_latest">ช้าที่สุด</string>
     <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
+    <string name="editor_window_exact">ตรงเวลา</string>
+    <string name="editor_window_exact_hint">ดังตรงเวลาเป้าหมายพอดี ไม่ก่อนเวลาเลย นาฬิกายังคงวัดเพื่อประวัติของคุณ</string>
+    <string name="window_exact_line">ตรง %1$s</string>
     <string name="editor_days">ทำซ้ำ</string>
     <string name="editor_save">บันทึก</string>
     <string name="editor_delete">ลบนาฬิกาปลุก</string>

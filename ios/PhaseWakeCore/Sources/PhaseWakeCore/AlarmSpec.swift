@@ -74,7 +74,11 @@ public enum WakeTask: String, CaseIterable, Sendable {
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
     /// Standard-Weckfenster in Minuten (zugleich das Höchste, siehe `maxWindowMinutes`).
     public static let defaultWindowMinutes = 30
-    /// Kürzestes Weckfenster in Minuten; darunter bleibt nach der Aufwärmphase kaum Zeit zum Erkennen.
+    /// Fensterwert für «Genau» (`isExact`): kein frühes Wecken.
+    public static let exactWindow = 0
+    /// Bei «Genau» misst die Uhr so viele Minuten vor der Zielzeit, nur für den Verlauf.
+    public static let measureMinutes = 30
+    /// Kürzestes Weckfenster in Minuten (ausser `exactWindow`); darunter bleibt nach der Aufwärmphase kaum Zeit zum Erkennen.
     public static let minWindowMinutes = 10
     /// Grenze der Smart-Alarm-Sitzung von watchOS, auf beiden Plattformen gleich.
     public static let maxWindowMinutes = 30
@@ -91,7 +95,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let minute: Int
     /// Wochentage, an denen der Wecker klingelt; leer = einmalig.
     public let days: Set<Weekday>
-    /// Länge des Weckfensters vor der Zielzeit in Minuten (10–30).
+    /// Länge des Weckfensters vor der Zielzeit in Minuten (10–30), oder `exactWindow` (0) für «Genau».
     public let windowMinutes: Int
     /// Ob der Wecker aktiv ist.
     public let enabled: Bool
@@ -140,8 +144,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
         guard (0...59).contains(minute) else { throw DetectorConfigError(message: "minute muss zwischen 0 und 59 liegen") }
-        guard (Self.minWindowMinutes...Self.maxWindowMinutes).contains(windowMinutes) else {
-            throw DetectorConfigError(message: "windowMinutes ausserhalb 10–30")
+        guard windowMinutes == Self.exactWindow || (Self.minWindowMinutes...Self.maxWindowMinutes).contains(windowMinutes) else {
+            throw DetectorConfigError(message: "windowMinutes muss 0 oder zwischen 10 und 30 liegen")
         }
         if let sleep = sleepDurationMinutes, !(Self.minSleepMinutes...Self.maxSleepMinutes).contains(sleep) {
             throw DetectorConfigError(message: "sleepDurationMinutes ausserhalb 60–720")
@@ -163,6 +167,12 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.skipUntil = skipUntil
         self.skipHolidays = skipHolidays
     }
+
+    /// «Genau»: weckt zur Zielzeit, nie früher; die Uhr misst trotzdem `measureMinutes` Minuten für den Verlauf.
+    public var isExact: Bool { windowMinutes == Self.exactWindow }
+
+    /// So viele Minuten vor der Zielzeit misst die Uhr: das Weckfenster, bei «Genau» `measureMinutes`.
+    public var measureWindowMinutes: Int { isExact ? Self.measureMinutes : windowMinutes }
 
     /// Ob das iPhone als Zweitwecker mitweckt.
     public var phoneBackup: Bool { phone != .off }

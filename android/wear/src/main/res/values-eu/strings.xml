@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Egun on</string>
 
     <string name="ring_greeting">Egun on</string>
-    <string name="ring_reason_light">Lo arina hauteman da</string>
+    <string name="ring_reason_light">Urduri – seguru asko lo arina</string>
     <string name="ring_reason_awake">Esna zeunden jada</string>
     <string name="ring_reason_deadline">Helburuko ordua iritsi da</string>
+    <string name="ring_reason_exact">Helburuko orduan bertan</string>
+    <string name="ring_reason_short_night">Gau laburra – helburuko orduan bakarrik</string>
     <string name="ring_hold_to_stop">Eutsi sakatuta gelditzeko</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d falta</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Esnatze-ordua</string>
     <string name="editor_latest">Beranduenez</string>
     <string name="editor_window">Leihoa: %1$d min</string>
+    <string name="editor_window_exact">Zehatz</string>
+    <string name="editor_window_exact_hint">Helburuko orduan bertan joko du, inoiz ez lehenago. Erlojuak zure historialerako neurtzen jarraitzen du.</string>
+    <string name="window_exact_line">Zehazki %1$s-etan</string>
     <string name="editor_days">Errepikatu</string>
     <string name="editor_save">Gorde</string>
     <string name="editor_delete">Ezabatu alarma</string>

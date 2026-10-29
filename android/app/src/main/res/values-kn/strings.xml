@@ -20,15 +20,18 @@
     <string name="home_next_today">ಇಂದು</string>
     <string name="home_next_tomorrow">ನಾಳೆ</string>
     <string name="home_next_in">ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ · %1$s ನಂತರ</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ · %1$s ನಂತರ</string>
     <string name="home_no_alarm_title">ಸರಿಯಾದ ಕ್ಷಣದಲ್ಲಿ ಎದ್ದೇಳಿ</string>
     <string name="home_no_alarm_text">ಸಮಯ ಮತ್ತು ಅವಧಿಯನ್ನು ಹೊಂದಿಸಿ. ನೀವು ಹಗುರವಾಗಿ ನಿದ್ರಿಸುತ್ತಿರುವಾಗ ವಾಚ್ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="home_add_alarm">ಹೊಸ ಅಲಾರಾಂ</string>
     <string name="home_last_night">ಕಳೆದ ರಾತ್ರಿ</string>
     <string name="home_alarms">ನಿಮ್ಮ ಅಲಾರಾಂಗಳು</string>
 
-    <string name="reason_light">ಹಗುರ ನಿದ್ರೆ</string>
+    <string name="reason_light">ಅಶಾಂತ – ಬಹುಶಃ ಹಗುರ ನಿದ್ರೆ</string>
     <string name="reason_awake">ಈಗಾಗಲೇ ಎಚ್ಚರ</string>
     <string name="reason_deadline">ಹಗುರ ನಿದ್ರೆ ಪತ್ತೆಯಾಗಲಿಲ್ಲ</string>
+    <string name="reason_exact">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ</string>
+    <string name="reason_short_night">ಕಡಿಮೆ ರಾತ್ರಿ – ಗುರಿ ಸಮಯದಲ್ಲಿ ಮಾತ್ರ</string>
     <string name="woke_early">ಗುರಿಗಿಂತ %1$d ನಿಮಿ. ಮೊದಲು · %2$s</string>
     <string name="woke_on_time">ಗುರಿ ಸಮಯದಲ್ಲಿ · %1$s</string>
     <string name="no_snooze">ಸ್ನೂಜ್ ಇಲ್ಲ</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">ಇಷ್ಟರೊಳಗೆ ಎಬ್ಬಿಸಿ</string>
     <string name="editor_latest">ತಡವೆಂದರೆ</string>
     <string name="editor_sleep_duration">%1$s ನಿದ್ರೆ</string>
-    <string name="editor_sleep_hint">ನೀವು ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಕೆ ಶುರು. ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="editor_sleep_hint">ನೀವು ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸುತ್ತದೆ. ವಾಚ್ ಅದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಗುರುತಿಸುತ್ತದೆ; ಕೂಡಲೇ ಶುರು ಮಾಡಲು ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="editor_window">ಅವಧಿ: %1$d ನಿಮಿ.</string>
     <string name="editor_window_hint">%1$s ಮತ್ತು %2$s ನಡುವೆ ಎಬ್ಬಿಸುತ್ತದೆ</string>
+    <string name="editor_window_exact">ನಿಖರ</string>
+    <string name="editor_window_exact_hint">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ ಬಾರಿಸುತ್ತದೆ, ಎಂದಿಗೂ ಮುಂಚೆ ಅಲ್ಲ. ನಿಮ್ಮ ವಾಚ್ ಆದರೂ ನಿಮ್ಮ ಇತಿಹಾಸಕ್ಕಾಗಿ ಅಳೆಯುತ್ತದೆ.</string>
+    <string name="window_exact_line">ಸರಿಯಾಗಿ %1$s ಕ್ಕೆ</string>
     <string name="editor_days">ಪುನರಾವರ್ತನೆ</string>
     <string name="editor_weekdays">ವಾರದ ದಿನಗಳು</string>
     <string name="editor_weekend">ವಾರಾಂತ್ಯ</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">ಸಂಪಾದನೆ ಮುಂದುವರಿಸಿ</string>
     <string name="editor_delete_title">ಈ ಅಲಾರಾಂ ಅಳಿಸಬೇಕೇ?</string>
     <string name="home_window_running">ಎಚ್ಚರಿಸುವ ಅವಧಿ ನಡೆಯುತ್ತಿದೆ – ಈಗ ಅಳೆಯಲಾಗುತ್ತಿದೆ</string>
+    <string name="home_auto_onset">ನಿಮ್ಮ ವಾಚ್ %1$s ರಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರುತ್ತೀರಿ ಎಂಬುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಗುರುತಿಸುತ್ತದೆ.</string>
     <string name="check_volume">ಅಲಾರಾಂ ವಾಲ್ಯೂಮ್</string>
     <string name="check_volume_problem">ಅಲಾರಾಂ ವಾಲ್ಯೂಮ್ 0 ಆಗಿದೆ – ಫೋನ್ ಶಬ್ದವಿಲ್ಲದೆ ರಿಂಗ್ ಆಗುತ್ತದೆ.</string>
     <string name="health_update">Health Connect ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">ರೆಕಾರ್ಡಿಂಗ್ ಆನ್ ಆಗಿದೆ. ರಾತ್ರಿಗೆ ಫೋನ್ ಅನ್ನು ಚಾರ್ಜರ್‌ಗೆ ಹಾಕುವುದು ಒಳ್ಳೆಯದು.</string>
     <string name="sound_rec_default">ಹೊಸ ರಾತ್ರಿಗಳಿಗೆ ಆನ್</string>
     <string name="sound_rec_default_hint">ನಿಮ್ಮ ಮಲಗುವ ಸಮಯದಿಂದ (ಅಲಾರಾಂ ಇಲ್ಲದಿದ್ದರೆ ರಾತ್ರಿ 9 ರಿಂದ) Phase Wake ತೆರೆದಾಗ ಶುರುವಾಗುತ್ತದೆ. ಚಿಕ್ಕ ಕ್ಲಿಪ್‌ಗಳು ಮಾತ್ರ; ಅವು ಫೋನ್‌ನಲ್ಲೇ ಇದ್ದು 7 ದಿನಗಳ ನಂತರ ಅಳಿಸಲಾಗುತ್ತವೆ.</string>
-    <string name="sound_type_snore">ಗೊರಕೆ</string>
+    <string name="sound_type_snore">ಬಹುಶಃ ಗೊರಕೆ</string>
     <string name="sound_type_talk">ಮಾತು</string>
     <string name="sound_type_other">ಇತರ ಶಬ್ದ</string>
     <plurals name="sound_summary">
-        <item quantity="one">ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್)</item>
-        <item quantity="other">ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್‌ಗಳು)</item>
+        <item quantity="one">ಬಹುಶಃ ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್)</item>
+        <item quantity="other">ಬಹುಶಃ ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್‌ಗಳು)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">ಮಾತು: %1$d ಕ್ಲಿಪ್</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">ಸಾಮಾನ್ಯವಾಗಿ %1$d–%2$d %%</string>
     <string name="stages_typical_below">ಸಾಮಾನ್ಯವಾಗಿ %1$d %% ಕ್ಕಿಂತ ಕಡಿಮೆ</string>
     <string name="stages_not_medical">ಇದು ವೈದ್ಯಕೀಯ ಮೌಲ್ಯಮಾಪನವಲ್ಲ.</string>
-    <string name="stages_verdict_awake_above">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು ಎಚ್ಚರ</string>
-    <string name="stages_verdict_deep_below">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಕಡಿಮೆ ಗಾಢ ನಿದ್ರೆ</string>
-    <string name="stages_verdict_deep_above">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು ಗಾಢ ನಿದ್ರೆ</string>
-    <string name="stages_verdict_rem_below">ಕಡಿಮೆ REM – ಹೆಚ್ಚಾಗಿ ಚಿಕ್ಕ ಅಥವಾ ತಡ ರಾತ್ರಿಯ ನಂತರ</string>
-    <string name="stages_verdict_rem_above">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು REM</string>
-    <string name="stages_verdict_light_below">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಕಡಿಮೆ ಹಗುರ ನಿದ್ರೆ</string>
-    <string name="stages_verdict_light_above">ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಹೆಚ್ಚು ಹಗುರ ನಿದ್ರೆ</string>
-    <string name="stages_verdict_typical">ಎಲ್ಲಾ ಹಂತಗಳು ಸಾಮಾನ್ಯ ವ್ಯಾಪ್ತಿಯಲ್ಲಿವೆ</string>
+    <string name="stages_source">ಆರೋಗ್ಯವಂತ ವಯಸ್ಕರಿಗೆ ಉಲ್ಲೇಖ ಮೌಲ್ಯಗಳು (Ohayon ಮತ್ತು ಇತರರು, Sleep 2004). ವಾಚ್‌ಗಳು ಹಂತಗಳನ್ನು ಸ್ಥೂಲವಾಗಿ ಮಾತ್ರ ಅಂದಾಜಿಸುತ್ತವೆ.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ಇಂದ</string>
     <string name="hypno_block">%1$s %2$s ರಿಂದ %3$s</string>
     <string name="chart_week_average">ವಾರದ ಸರಾಸರಿ</string>

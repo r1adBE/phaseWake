@@ -18,15 +18,18 @@
     <string name="home_next_today">วันนี้</string>
     <string name="home_next_tomorrow">พรุ่งนี้</string>
     <string name="home_next_in">ปลุกตอนหลับตื้น · อีก %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ปลุกตรงเวลาเป้าหมายพอดี · อีก %1$s</string>
     <string name="home_no_alarm_title">ตื่นในจังหวะที่ใช่</string>
     <string name="home_no_alarm_text">ตั้งเวลาและช่วงเวลาปลุก นาฬิกาจะปลุกคุณเมื่อคุณหลับตื้น</string>
     <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
     <string name="home_last_night">เมื่อคืน</string>
     <string name="home_alarms">นาฬิกาปลุกของคุณ</string>
 
-    <string name="reason_light">หลับตื้น</string>
+    <string name="reason_light">กระสับกระส่าย – น่าจะหลับตื้น</string>
     <string name="reason_awake">ตื่นอยู่แล้ว</string>
     <string name="reason_deadline">ไม่พบช่วงหลับตื้น</string>
+    <string name="reason_exact">ตรงเวลาเป้าหมายพอดี</string>
+    <string name="reason_short_night">คืนสั้น – ปลุกตอนเวลาเป้าหมายเท่านั้น</string>
     <string name="woke_early">ก่อนเป้าหมาย %1$d นาที · %2$s</string>
     <string name="woke_on_time">ตรงเวลาเป้าหมาย · %1$s</string>
     <string name="no_snooze">ไม่ปลุกซ้ำ</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">ปลุกฉันภายใน</string>
     <string name="editor_latest">ช้าที่สุด</string>
     <string name="editor_sleep_duration">นอน %1$s</string>
-    <string name="editor_sleep_hint">เริ่มนับเมื่อคุณหลับ แตะ “ราตรีสวัสดิ์” บนนาฬิกา</string>
+    <string name="editor_sleep_hint">นับตั้งแต่คุณหลับ นาฬิกาตรวจจับได้เอง แตะ “ราตรีสวัสดิ์” บนนาฬิกาเพื่อเริ่มทันที</string>
     <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
     <string name="editor_window_hint">ปลุกคุณระหว่าง %1$s ถึง %2$s</string>
+    <string name="editor_window_exact">ตรงเวลา</string>
+    <string name="editor_window_exact_hint">ดังตรงเวลาเป้าหมายพอดี ไม่ก่อนเวลาเลย นาฬิกายังคงวัดเพื่อประวัติของคุณ</string>
+    <string name="window_exact_line">ตรง %1$s</string>
     <string name="editor_days">ทำซ้ำ</string>
     <string name="editor_weekdays">วันธรรมดา</string>
     <string name="editor_weekend">สุดสัปดาห์</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">แก้ไขต่อ</string>
     <string name="editor_delete_title">ลบนาฬิกาปลุกนี้ไหม</string>
     <string name="home_window_running">ช่วงเวลาปลุกกำลังทำงาน – กำลังวัดอยู่</string>
+    <string name="home_auto_onset">นาฬิกาจะตรวจจับเวลาที่คุณหลับโดยอัตโนมัติตั้งแต่ %1$s</string>
     <string name="check_volume">ระดับเสียงนาฬิกาปลุก</string>
     <string name="check_volume_problem">ระดับเสียงนาฬิกาปลุกตั้งไว้ที่ 0 – โทรศัพท์ของคุณจะดังแบบไม่มีเสียง</string>
     <string name="health_update">อัปเดต Health Connect</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">กำลังบันทึก ควรเสียบชาร์จโทรศัพท์ไว้ตลอดคืน</string>
     <string name="sound_rec_default">เปิดสำหรับคืนใหม่</string>
     <string name="sound_rec_default_hint">เริ่มเมื่อคุณเปิด Phase Wake ตั้งแต่เวลาเข้านอน (ถ้าไม่ตั้งปลุก เริ่มตั้งแต่ 21:00 น.) เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
-    <string name="sound_type_snore">กรน</string>
+    <string name="sound_type_snore">อาจกรน</string>
     <string name="sound_type_talk">ละเมอพูด</string>
     <string name="sound_type_other">เสียงอื่น</string>
     <plurals name="sound_summary">
-        <item quantity="other">กรน: %1$s (%2$d ช่วง)</item>
+        <item quantity="other">อาจกรน: %1$s (%2$d ช่วง)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">ละเมอพูด: %1$d ช่วง</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">ปกติ %1$d–%2$d %%</string>
     <string name="stages_typical_below">ปกติต่ำกว่า %1$d %%</string>
     <string name="stages_not_medical">ไม่ใช่การประเมินทางการแพทย์</string>
-    <string name="stages_verdict_awake_above">ตื่นนานกว่าปกติ</string>
-    <string name="stages_verdict_deep_below">หลับลึกน้อยกว่าปกติ</string>
-    <string name="stages_verdict_deep_above">หลับลึกมากกว่าปกติ</string>
-    <string name="stages_verdict_rem_below">REM น้อย – มักเกิดหลังคืนที่สั้นหรือนอนดึก</string>
-    <string name="stages_verdict_rem_above">REM มากกว่าปกติ</string>
-    <string name="stages_verdict_light_below">หลับตื้นน้อยกว่าปกติ</string>
-    <string name="stages_verdict_light_above">หลับตื้นมากกว่าปกติ</string>
-    <string name="stages_verdict_typical">ทุกระยะอยู่ในช่วงปกติ</string>
+    <string name="stages_source">ค่าอ้างอิงสำหรับผู้ใหญ่ที่สุขภาพดี (Ohayon และคณะ, Sleep 2004) นาฬิกาประเมินระยะการนอนได้เพียงคร่าว ๆ</string>
     <string name="hypno_bubble">%1$s · %2$s · มาแล้ว %3$s</string>
     <string name="hypno_block">%1$s ตั้งแต่ %2$s ถึง %3$s</string>
     <string name="chart_week_average">ค่าเฉลี่ยรายสัปดาห์</string>

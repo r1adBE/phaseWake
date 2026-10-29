@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Selamat pagi</string>
 
     <string name="ring_greeting">Selamat pagi</string>
-    <string name="ring_reason_light">Tidur ringan terdeteksi</string>
+    <string name="ring_reason_light">Gelisah – kemungkinan tidur ringan</string>
     <string name="ring_reason_awake">Kamu sudah bangun</string>
     <string name="ring_reason_deadline">Waktu target tercapai</string>
+    <string name="ring_reason_exact">Tepat pada waktu target</string>
+    <string name="ring_reason_short_night">Malam pendek – baru pada waktu target</string>
     <string name="ring_hold_to_stop">Tahan untuk berhenti</string>
     <plurals name="ring_snooze">
         <item quantity="other">%1$d mnt · sisa %2$d</item>
@@ -54,6 +56,9 @@
     <string name="editor_target">Bangunkan aku sebelum</string>
     <string name="editor_latest">Paling lambat</string>
     <string name="editor_window">Rentang: %1$d mnt</string>
+    <string name="editor_window_exact">Tepat</string>
+    <string name="editor_window_exact_hint">Berbunyi tepat pada waktu target, tidak pernah lebih awal. Jam tanganmu tetap mengukur untuk riwayatmu.</string>
+    <string name="window_exact_line">Tepat pukul %1$s</string>
     <string name="editor_days">Ulangi</string>
     <string name="editor_save">Simpan</string>
     <string name="editor_delete">Hapus alarm</string>

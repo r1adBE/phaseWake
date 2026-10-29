@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.map
 
 /**
  * Schlafziel auf der Uhr, vom Handy ([DataLayer.PATH_SLEEP_GOAL]); die Uhr übernimmt nur einen neueren Stand.
- * Eine Uhr ohne Handy zeigt [SleepGoal.DEFAULT_MINUTES]. Es dient nur der Anzeige (Einschlafpunkt), nie dem Wecken.
+ * Eine Uhr ohne Handy zeigt [SleepGoal.DEFAULT_MINUTES]. Es dient dem Einschlafpunkt, dem Beginn der automatischen
+ * Einschlaf-Messung und der Untergrenze kurzer Nächte ([com.phasewake.app.core.ShortNight]); die Zielzeit ändert es nie.
  */
 class SleepGoalStore(private val store: DataStore<Preferences>) {
 

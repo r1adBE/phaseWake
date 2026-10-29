@@ -69,14 +69,26 @@ struct NightBars: View {
     }
 }
 
-/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern»;
-/// zu spät geweckt: «3 Min nach der Zielzeit · …».
-func nightSummary(_ night: NightRecord) -> String {
-    let reason: String = switch night.reason {
+/// Weckgrund als Text, wie Android («reason_…»).
+func reasonText(_ reason: WakeReason) -> String {
+    switch reason {
     case .lightSleep: L("reason_light")
     case .awake: L("reason_awake")
     case .deadline: L("reason_deadline")
+    case .exact: L("reason_exact")
+    case .shortNight: L("reason_short_night")
     }
+}
+
+extension NightRecord {
+    /// Nacht eines Weckers «Genau»: Es gab kein Weckfenster, nur Messen für den Verlauf (Anzeige ohne Fensterband).
+    var wasExact: Bool { reason == .exact }
+}
+
+/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern»;
+/// zu spät geweckt: «3 Min nach der Zielzeit · …».
+func nightSummary(_ night: NightRecord) -> String {
+    let reason = reasonText(night.reason)
     let timing: String = if night.minutesBeforeTarget > 0 {
         L("woke_early", night.minutesBeforeTarget, reason)
     } else if night.minutesAfterTarget > 0 {

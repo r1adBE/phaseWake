@@ -9,9 +9,11 @@
     <string name="notification_ring_title">সুপ্রভাত</string>
 
     <string name="ring_greeting">সুপ্রভাত</string>
-    <string name="ring_reason_light">হালকা ঘুম ধরা পড়েছে</string>
+    <string name="ring_reason_light">অস্থির – সম্ভবত হালকা ঘুম</string>
     <string name="ring_reason_awake">তুমি আগেই জেগে ছিলে</string>
     <string name="ring_reason_deadline">লক্ষ্য সময় হয়ে গেছে</string>
+    <string name="ring_reason_exact">ঠিক লক্ষ্য সময়ে</string>
+    <string name="ring_reason_short_night">ছোট রাত – কেবল লক্ষ্য সময়ে</string>
     <string name="ring_hold_to_stop">থামাতে চেপে ধরো</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d মি. · বাকি %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">জাগার লক্ষ্য সময়</string>
     <string name="editor_latest">সর্বশেষ</string>
     <string name="editor_window">সময়সীমা: %1$d মি.</string>
+    <string name="editor_window_exact">ঠিক সময়ে</string>
+    <string name="editor_window_exact_hint">ঠিক লক্ষ্য সময়ে বাজবে, কখনো আগে নয়। তোমার ঘড়ি তবুও তোমার ইতিহাসের জন্য মাপবে।</string>
+    <string name="window_exact_line">ঠিক %1$s-এ</string>
     <string name="editor_days">পুনরাবৃত্তি</string>
     <string name="editor_save">সেভ করো</string>
     <string name="editor_delete">অ্যালার্ম মুছে ফেলো</string>

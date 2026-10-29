@@ -20,6 +20,7 @@ import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.schedule.OnsetOverride
+import com.phasewake.app.wear.schedule.OnsetStore
 import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wake.GoodNightState
 import com.phasewake.app.wear.wake.NightProgress
@@ -65,7 +66,7 @@ class PhaseWakeWear : Application() {
     /** Feiertage vom Handy für Wecker mit «An Feiertagen nicht wecken». */
     val holidays by lazy { HolidayStore(phaseWakeStore) }
 
-    /** Schlafziel vom Handy, nur für den Einschlafpunkt auf dem Ring; ohne Handy der Standard. */
+    /** Schlafziel vom Handy: Einschlafpunkt auf dem Ring, automatische Einschlaf-Messung; ohne Handy der Standard. */
     val sleepGoal by lazy { SleepGoalStore(phaseWakeStore) }
 
     /** Probewecker oder Powernap, der gerade gilt. */
@@ -74,6 +75,9 @@ class PhaseWakeWear : Application() {
     /** Weckart zu einer Kennung: gespeicherter Wecker oder vorübergehender Plan. */
     suspend fun specFor(alarmId: String?): AlarmSpec? =
         alarms.current().alarms.firstOrNull { it.id == alarmId } ?: transient.specFor(alarmId)
+
+    /** Einschlafzeit der kommenden Nacht (automatische Messung oder «Gute Nacht») für die Untergrenze kurzer Nächte. */
+    val onsets by lazy { OnsetStore(phaseWakeStore) }
 
     /** «Gute Nacht» (gespeichert, überlebt das Ende des Prozesses). */
     val goodNight by lazy { GoodNightState(phaseWakeStore) }

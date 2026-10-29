@@ -21,15 +21,18 @@
     <string name="home_next_today">Avui</string>
     <string name="home_next_tomorrow">Demà</string>
     <string name="home_next_in">Et desperta en son lleuger · d’aquí a %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Et desperta just a l’hora objectiu · d’aquí a %1$s</string>
     <string name="home_no_alarm_title">Desperta’t en el moment just</string>
     <string name="home_no_alarm_text">Tria una hora i una finestra. El rellotge et desperta quan dorms lleuger.</string>
     <string name="home_add_alarm">Alarma nova</string>
     <string name="home_last_night">Ahir a la nit</string>
     <string name="home_alarms">Les teves alarmes</string>
 
-    <string name="reason_light">Son lleuger</string>
+    <string name="reason_light">Inquiet – probablement son lleuger</string>
     <string name="reason_awake">Ja no dormies</string>
     <string name="reason_deadline">No s’ha detectat son lleuger</string>
+    <string name="reason_exact">Just a l’hora objectiu</string>
+    <string name="reason_short_night">Nit curta – només a l’hora objectiu</string>
     <string name="woke_early">%1$d min abans de l’hora objectiu · %2$s</string>
     <string name="woke_on_time">A l’hora objectiu · %1$s</string>
     <string name="no_snooze">sense posposar</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Desperta’m abans de</string>
     <string name="editor_latest">Com a tard</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
-    <string name="editor_sleep_hint">Compta des que t’adorms. Toca «Bona nit» al rellotge.</string>
+    <string name="editor_sleep_hint">Compta des que t’adorms. El rellotge ho detecta automàticament; toca «Bona nit» al rellotge per començar ara mateix.</string>
     <string name="editor_window">Finestra: %1$d min</string>
     <string name="editor_window_hint">Et desperta entre les %1$s i les %2$s</string>
+    <string name="editor_window_exact">Exacte</string>
+    <string name="editor_window_exact_hint">Sona just a l’hora objectiu, mai abans. El rellotge continua mesurant per al teu historial.</string>
+    <string name="window_exact_line">Exactament a les %1$s</string>
     <string name="editor_days">Repeteix</string>
     <string name="editor_weekdays">Feiners</string>
     <string name="editor_weekend">Cap de setmana</string>
@@ -229,6 +235,7 @@
     <string name="editor_keep_editing">Continua editant</string>
     <string name="editor_delete_title">Vols suprimir aquesta alarma?</string>
     <string name="home_window_running">Finestra de despertar en curs – s’està mesurant</string>
+    <string name="home_auto_onset">El rellotge detecta automàticament quan t’adorms a partir de les %1$s.</string>
     <string name="check_volume">Volum de l’alarma</string>
     <string name="check_volume_problem">El volum de l’alarma és 0 – el telèfon sonaria en silenci.</string>
     <string name="health_update">Actualitza Health Connect</string>
@@ -307,13 +314,13 @@
     <string name="sound_rec_plug_in">L’enregistrament està activat. Millor que endollis el telèfon per a la nit.</string>
     <string name="sound_rec_default">Activat per a les nits noves</string>
     <string name="sound_rec_default_hint">Comença quan obres Phase Wake a partir de la teva hora d’anar a dormir (sense alarma, a partir de les 21 h). Només fragments curts; es queden al telèfon i se suprimeixen al cap de 7 dies.</string>
-    <string name="sound_type_snore">Roncs</string>
+    <string name="sound_type_snore">Possibles roncs</string>
     <string name="sound_type_talk">Parlar</string>
     <string name="sound_type_other">Altres sons</string>
     <plurals name="sound_summary">
-        <item quantity="one">Roncs: %1$s (%2$d fragment)</item>
-        <item quantity="many">Roncs: %1$s (%2$d fragments)</item>
-        <item quantity="other">Roncs: %1$s (%2$d fragments)</item>
+        <item quantity="one">Possibles roncs: %1$s (%2$d fragment)</item>
+        <item quantity="many">Possibles roncs: %1$s (%2$d fragments)</item>
+        <item quantity="other">Possibles roncs: %1$s (%2$d fragments)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Parlar: %1$d fragment</item>
@@ -523,14 +530,7 @@
     <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
     <string name="stages_typical_below">Habitual per sota del %1$d %%</string>
     <string name="stages_not_medical">No és una valoració mèdica.</string>
-    <string name="stages_verdict_awake_above">Més temps despert que de costum</string>
-    <string name="stages_verdict_deep_below">Menys son profund que de costum</string>
-    <string name="stages_verdict_deep_above">Més son profund que de costum</string>
-    <string name="stages_verdict_rem_below">Poc REM – sovint després d’una nit curta o tardana</string>
-    <string name="stages_verdict_rem_above">Més REM que de costum</string>
-    <string name="stages_verdict_light_below">Menys son lleuger que de costum</string>
-    <string name="stages_verdict_light_above">Més son lleuger que de costum</string>
-    <string name="stages_verdict_typical">Totes les fases dins de l’interval habitual</string>
+    <string name="stages_source">Valors de referència per a adults sans (Ohayon et al., Sleep 2004). Els rellotges només estimen les fases de manera aproximada.</string>
     <string name="hypno_bubble">%1$s · %2$s · des de fa %3$s</string>
     <string name="hypno_block">%1$s de %2$s a %3$s</string>
     <string name="chart_week_average">Mitjana setmanal</string>

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -119,16 +120,28 @@ fun EditorScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                SegmentedButton(selected = !state.sleepMode, onClick = { state.sleepMode = false }, shape = SegmentedButtonDefaults.itemShape(0, 2)) {
+                SegmentedButton(
+                    selected = !state.sleepMode,
+                    onClick = { state.sleepMode = false },
+                    shape = SegmentedButtonDefaults.itemShape(0, 2),
+                    modifier = Modifier.heightIn(min = 48.dp),
+                ) {
                     Text(stringResource(R.string.editor_mode_clock))
                 }
-                SegmentedButton(selected = state.sleepMode, onClick = { state.sleepMode = true }, shape = SegmentedButtonDefaults.itemShape(1, 2)) {
+                SegmentedButton(
+                    selected = state.sleepMode,
+                    onClick = { state.sleepMode = true },
+                    shape = SegmentedButtonDefaults.itemShape(1, 2),
+                    modifier = Modifier.heightIn(min = 48.dp),
+                ) {
                     Text(stringResource(R.string.editor_mode_sleep))
                 }
             }
             TimeSection(state, time)
             AnimatedVisibility(state.sleepMode) { SleepSection(state) }
-            if (advice != null && state.window.roundToInt() < advice.windowMinutes) AdviceCard(state, advice)
+            // «Genau» ist bewusst ohne Fenster: dann kein Vorschlag.
+            val chosen = state.window.roundToInt()
+            if (advice != null && chosen != AlarmSpec.EXACT_WINDOW && chosen < advice.windowMinutes) AdviceCard(state, advice)
             WindowSection(state, time)
             DaysSection(state, holidaysAllowed)
             AlertSection(state)

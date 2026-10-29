@@ -34,5 +34,15 @@ class WindowAdviceTest {
         val deadlines = List(3) { night(it.toLong(), WakeReason.DEADLINE) }
         assertEquals(30, WindowAdvice.suggest(spec.copy(windowMinutes = 25), deadlines)?.windowMinutes)
         assertNull(WindowAdvice.suggest(spec.copy(windowMinutes = 30), deadlines))
+        // «Genau» hat bewusst kein Fenster: kein Vorschlag.
+        assertNull(WindowAdvice.suggest(spec.copy(windowMinutes = AlarmSpec.EXACT_WINDOW), deadlines))
+    }
+
+    @Test
+    fun exactAndShortNightsDoNotCount() {
+        // Nur zwei zählbare Nächte: zu wenig für einen Vorschlag, auch wenn «Genau» und kurze Nächte zur Zielzeit endeten.
+        val history = listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.EXACT), night(2, WakeReason.SHORT_NIGHT), night(3, WakeReason.DEADLINE))
+        assertNull(WindowAdvice.suggest(spec, history))
+        assertEquals(3, WindowAdvice.suggest(spec, history + night(4, WakeReason.LIGHT_SLEEP))?.nights)
     }
 }

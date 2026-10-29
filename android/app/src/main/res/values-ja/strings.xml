@@ -18,15 +18,18 @@
     <string name="home_next_today">今日</string>
     <string name="home_next_tomorrow">明日</string>
     <string name="home_next_in">浅い眠りで起こします · %1$s後</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">目標時刻ちょうどに起こします · %1$s後</string>
     <string name="home_no_alarm_title">ちょうどいいタイミングで目覚めよう</string>
     <string name="home_no_alarm_text">時刻と時間幅を設定してください。眠りが浅いときにウォッチが起こします。</string>
     <string name="home_add_alarm">新規アラーム</string>
     <string name="home_last_night">昨夜</string>
     <string name="home_alarms">アラーム一覧</string>
 
-    <string name="reason_light">浅い眠り</string>
+    <string name="reason_light">落ち着かない眠り – 浅い眠りの可能性</string>
     <string name="reason_awake">すでに起床</string>
     <string name="reason_deadline">浅い眠りは検出されず</string>
+    <string name="reason_exact">目標時刻ちょうど</string>
+    <string name="reason_short_night">短い夜 – 目標時刻まで待機</string>
     <string name="woke_early">目標の%1$d分前 · %2$s</string>
     <string name="woke_on_time">目標時刻ちょうど · %1$s</string>
     <string name="no_snooze">スヌーズなし</string>
@@ -46,9 +49,12 @@
     <string name="editor_target">起きたい時刻</string>
     <string name="editor_latest">最も遅い時刻</string>
     <string name="editor_sleep_duration">%1$s眠る</string>
-    <string name="editor_sleep_hint">眠りについた時点から計測します。ウォッチで「おやすみ」をタップしてください。</string>
+    <string name="editor_sleep_hint">眠りについた時点から数えます。ウォッチが自動で検出します。すぐに始めるにはウォッチで「おやすみ」をタップしてください。</string>
     <string name="editor_window">時間幅: %1$d分</string>
     <string name="editor_window_hint">%1$sから%2$sの間に起こします</string>
+    <string name="editor_window_exact">ちょうど</string>
+    <string name="editor_window_exact_hint">目標時刻ちょうどに鳴り、早まることはありません。記録のための計測はウォッチが続けます。</string>
+    <string name="window_exact_line">%1$sちょうど</string>
     <string name="editor_days">繰り返し</string>
     <string name="editor_weekdays">平日</string>
     <string name="editor_weekend">週末</string>
@@ -220,6 +226,7 @@
     <string name="editor_keep_editing">編集を続ける</string>
     <string name="editor_delete_title">このアラームを削除しますか?</string>
     <string name="home_window_running">時間幅の計測中です</string>
+    <string name="home_auto_onset">ウォッチが%1$sから入眠を自動で検出します。</string>
     <string name="check_volume">アラームの音量</string>
     <string name="check_volume_problem">アラームの音量が0になっています。スマートフォンが無音で鳴ります。</string>
     <string name="health_update">Health Connectを更新</string>
@@ -294,11 +301,11 @@
     <string name="sound_rec_plug_in">録音中。夜はスマホを充電器につないでおくのがおすすめです。</string>
     <string name="sound_rec_default">新しい夜はオン</string>
     <string name="sound_rec_default_hint">就寝時刻以降に Phase Wake を開くと始まります（アラームなしの場合は21時から）。短い断片だけ。スマホに残り、7日後に削除されます。</string>
-    <string name="sound_type_snore">いびき</string>
+    <string name="sound_type_snore">いびきの可能性</string>
     <string name="sound_type_talk">寝言</string>
     <string name="sound_type_other">その他の音</string>
     <plurals name="sound_summary">
-        <item quantity="other">いびき: %1$s（%2$d件）</item>
+        <item quantity="other">いびきの可能性: %1$s（%2$d件）</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">寝言: %1$d件</item>
@@ -493,14 +500,7 @@
     <string name="stages_typical_range">一般的に %1$d–%2$d %%</string>
     <string name="stages_typical_below">一般的に %1$d %% 未満</string>
     <string name="stages_not_medical">医学的な評価ではありません。</string>
-    <string name="stages_verdict_awake_above">いつもより覚醒が多い</string>
-    <string name="stages_verdict_deep_below">いつもより深い睡眠が少ない</string>
-    <string name="stages_verdict_deep_above">いつもより深い睡眠が多い</string>
-    <string name="stages_verdict_rem_below">REM が少なめ – 短い夜や遅い夜の後によくあります</string>
-    <string name="stages_verdict_rem_above">いつもより REM が多い</string>
-    <string name="stages_verdict_light_below">いつもより浅い睡眠が少ない</string>
-    <string name="stages_verdict_light_above">いつもより浅い睡眠が多い</string>
-    <string name="stages_verdict_typical">すべてのステージが一般的な範囲内</string>
+    <string name="stages_source">健康な成人の目安（Ohayon ほか、Sleep 2004）。ウォッチは睡眠段階をおおまかに推定するだけです。</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s 継続</string>
     <string name="hypno_block">%1$s %2$s〜%3$s</string>
     <string name="chart_week_average">週平均</string>

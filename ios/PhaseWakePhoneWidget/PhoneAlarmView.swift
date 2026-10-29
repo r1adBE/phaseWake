@@ -9,7 +9,7 @@ struct PhoneAlarmView: View {
 
     private var window: String {
         guard let plan = entry.plan else { return L("widget_no_alarm") }
-        return Format.time(plan.windowStart) + " – " + Format.time(plan.target)
+        return Format.window(start: plan.windowStart, target: plan.target, exact: plan.exact == true)
     }
 
     /// «Morgen · Arbeit»

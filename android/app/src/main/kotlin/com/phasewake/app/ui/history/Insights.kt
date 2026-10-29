@@ -2,6 +2,7 @@ package com.phasewake.app.ui.history
 
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -69,7 +70,8 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
                     onClick = { onPick(value) },
                     shape = CircleShape,
                     contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier.weight(1f).aspectRatio(1f).semantics { contentDescription = label },
+                    // Mindestens 48 dp: gut zu treffen, auch auf schmalen Bildschirmen.
+                    modifier = Modifier.weight(1f).heightIn(min = 48.dp).aspectRatio(1f).semantics { contentDescription = label },
                 ) { Text(value.toString(), style = MaterialTheme.typography.titleMedium) }
             }
         }

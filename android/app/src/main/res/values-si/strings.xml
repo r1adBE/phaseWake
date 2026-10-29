@@ -21,15 +21,18 @@
     <string name="home_next_today">අද</string>
     <string name="home_next_tomorrow">හෙට</string>
     <string name="home_next_in">සැහැල්ලු නින්දේදී අවදි කරයි · තව %1$s කින්</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">හරියටම ඉලක්ක වේලාවට අවදි කරයි · තව %1$s කින්</string>
     <string name="home_no_alarm_title">හරියටම නිසි මොහොතේ අවදි වන්න</string>
     <string name="home_no_alarm_text">වේලාවක් සහ පරාසයක් සකසන්න. ඔබ සැහැල්ලුවෙන් නිදන විට ඔරලෝසුව ඔබව අවදි කරයි.</string>
     <string name="home_add_alarm">නව එලාමය</string>
     <string name="home_last_night">ඊයේ රාත්‍රිය</string>
     <string name="home_alarms">ඔබේ එලාම</string>
 
-    <string name="reason_light">සැහැල්ලු නින්ද</string>
+    <string name="reason_light">නොසන්සුන් – බොහෝවිට සැහැල්ලු නින්ද</string>
     <string name="reason_awake">දැනටමත් අවදියි</string>
     <string name="reason_deadline">සැහැල්ලු නින්දක් හමු නොවීය</string>
+    <string name="reason_exact">හරියටම ඉලක්ක වේලාවට</string>
+    <string name="reason_short_night">කෙටි රාත්‍රිය – ඉලක්ක වේලාවට පමණයි</string>
     <string name="woke_early">ඉලක්ක වේලාවට මිනි. %1$d කට පෙර · %2$s</string>
     <string name="woke_on_time">ඉලක්ක වේලාවට · %1$s</string>
     <string name="no_snooze">ස්නූස් නැත</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">මාව අවදි කරන්න</string>
     <string name="editor_latest">උපරිම</string>
     <string name="editor_sleep_duration">නින්ද %1$s</string>
-    <string name="editor_sleep_hint">ඔබ නින්දට ගිය විට ගණන් කිරීම ආරම්භ වේ. ඔරලෝසුවේ “සුබ රාත්‍රියක්” තට්ටු කරන්න.</string>
+    <string name="editor_sleep_hint">ඔබ නින්දට ගිය මොහොතේ සිට ගණන් කරයි. ඔරලෝසුව එය ස්වයංක්‍රීයව හඳුනා ගනී; වහාම ආරම්භ කිරීමට ඔරලෝසුවේ “සුබ රාත්‍රියක්” තට්ටු කරන්න.</string>
     <string name="editor_window">පරාසය: මිනි. %1$d</string>
     <string name="editor_window_hint">%1$s සහ %2$s අතර ඔබව අවදි කරයි</string>
+    <string name="editor_window_exact">හරියටම</string>
+    <string name="editor_window_exact_hint">හරියටම ඉලක්ක වේලාවට නාද වේ, කිසිදා කලින් නොවේ. ඔබේ ඔරලෝසුව තවමත් ඔබේ ඉතිහාසය සඳහා මනිනවා.</string>
+    <string name="window_exact_line">හරියටම %1$s ට</string>
     <string name="editor_days">නැවත කරන්න</string>
     <string name="editor_weekdays">සතියේ දින</string>
     <string name="editor_weekend">සති අන්තය</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">දිගටම සංස්කරණය</string>
     <string name="editor_delete_title">මෙම එලාමය මකන්නද?</string>
     <string name="home_window_running">අවදි පරාසය ක්‍රියාත්මකයි – දැන් මනිමින්</string>
+    <string name="home_auto_onset">ඔබ නින්දට යන වේලාව %1$s සිට ඔරලෝසුව ස්වයංක්‍රීයව හඳුනා ගනී.</string>
     <string name="check_volume">එලාම් ශබ්ද මට්ටම</string>
     <string name="check_volume_problem">එලාම් ශබ්ද මට්ටම 0 යි – ඔබේ දුරකථනය නිහඬව නාද වනු ඇත.</string>
     <string name="health_update">Health Connect යාවත්කාලීන කරන්න</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">පටිගත කිරීම සක්‍රියයි. රාත්‍රියට දුරකථනය ආරෝපකයට සම්බන්ධ කිරීම හොඳයි.</string>
     <string name="sound_rec_default">නව රාත්‍රි සඳහා සක්‍රියයි</string>
     <string name="sound_rec_default_hint">නින්දට යන වේලාවේ සිට Phase Wake විවෘත කළ විට ආරම්භ වේ (එලාමයක් නැතිනම් රාත්‍රී 9 සිට). කෙටි කොටස් පමණි; ඒවා ඔබේ දුරකථනයේම පවතින අතර දින 7 කට පසු මැකේ.</string>
-    <string name="sound_type_snore">ගොරවීම</string>
+    <string name="sound_type_snore">ගොරවීමක් විය හැක</string>
     <string name="sound_type_talk">කතා කිරීම</string>
     <string name="sound_type_other">වෙනත් ශබ්දය</string>
     <plurals name="sound_summary">
-        <item quantity="one">ගොරවීම: %1$s (කොටස් %2$d)</item>
-        <item quantity="other">ගොරවීම: %1$s (කොටස් %2$d)</item>
+        <item quantity="one">ගොරවීමක් විය හැක: %1$s (කොටස් %2$d)</item>
+        <item quantity="other">ගොරවීමක් විය හැක: %1$s (කොටස් %2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">කතා කිරීම: කොටස් %1$d</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">සාමාන්‍යයෙන් %1$d–%2$d %%</string>
     <string name="stages_typical_below">සාමාන්‍යයෙන් %1$d %% ට අඩු</string>
     <string name="stages_not_medical">මෙය වෛද්‍ය තක්සේරුවක් නොවේ.</string>
-    <string name="stages_verdict_awake_above">සාමාන්‍යයට වඩා වැඩි අවදි කාලය</string>
-    <string name="stages_verdict_deep_below">සාමාන්‍යයට වඩා අඩු ගැඹුරු නින්ද</string>
-    <string name="stages_verdict_deep_above">සාමාන්‍යයට වඩා වැඩි ගැඹුරු නින්ද</string>
-    <string name="stages_verdict_rem_below">REM අඩුයි – බොහෝ විට කෙටි හෝ ප්‍රමාද රාත්‍රියකට පසු</string>
-    <string name="stages_verdict_rem_above">සාමාන්‍යයට වඩා වැඩි REM</string>
-    <string name="stages_verdict_light_below">සාමාන්‍යයට වඩා අඩු සැහැල්ලු නින්ද</string>
-    <string name="stages_verdict_light_above">සාමාන්‍යයට වඩා වැඩි සැහැල්ලු නින්ද</string>
-    <string name="stages_verdict_typical">සියලු අදියර සාමාන්‍ය පරාසයේ</string>
+    <string name="stages_source">නිරෝගී වැඩිහිටියන් සඳහා යොමු අගයන් (Ohayon සහ අන්අය, Sleep 2004). ඔරලෝසු අදියර දළ වශයෙන් පමණක් ඇස්තමේන්තු කරයි.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s සිට</string>
     <string name="hypno_block">%1$s %2$s සිට %3$s දක්වා</string>
     <string name="chart_week_average">සතිපතා සාමාන්‍යය</string>

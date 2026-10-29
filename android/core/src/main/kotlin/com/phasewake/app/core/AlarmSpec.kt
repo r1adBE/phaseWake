@@ -12,7 +12,10 @@ data class AlarmSpec(
     val minute: Int,
     /** Wochentage, an denen der Wecker gilt; leer = einmalig (siehe [isOneShot]). */
     val days: Set<DayOfWeek> = emptySet(),
-    /** Weckfenster vor der Zielzeit in Minuten, [MIN_WINDOW_MINUTES]–[MAX_WINDOW_MINUTES]. */
+    /**
+     * Weckfenster vor der Zielzeit in Minuten, [MIN_WINDOW_MINUTES]–[MAX_WINDOW_MINUTES], oder [EXACT_WINDOW] (0) für
+     * «Genau»: weckt zur Zielzeit, nie früher (siehe [isExact]).
+     */
     val windowMinutes: Int = DEFAULT_WINDOW_MINUTES,
     /** Ob der Wecker aktiv ist; aus = [AlarmSchedule] plant nichts. */
     val enabled: Boolean = true,
@@ -49,13 +52,19 @@ data class AlarmSpec(
         require(id.isNotBlank()) { "id darf nicht leer sein" }
         require(hour in 0..23) { "hour muss zwischen 0 und 23 liegen" }
         require(minute in 0..59) { "minute muss zwischen 0 und 59 liegen" }
-        require(windowMinutes in MIN_WINDOW_MINUTES..MAX_WINDOW_MINUTES) {
-            "windowMinutes muss zwischen $MIN_WINDOW_MINUTES und $MAX_WINDOW_MINUTES liegen"
+        require(windowMinutes == EXACT_WINDOW || windowMinutes in MIN_WINDOW_MINUTES..MAX_WINDOW_MINUTES) {
+            "windowMinutes muss $EXACT_WINDOW oder zwischen $MIN_WINDOW_MINUTES und $MAX_WINDOW_MINUTES liegen"
         }
         require(sleepDurationMinutes == null || sleepDurationMinutes in MIN_SLEEP_MINUTES..MAX_SLEEP_MINUTES) {
             "sleepDurationMinutes muss zwischen $MIN_SLEEP_MINUTES und $MAX_SLEEP_MINUTES liegen"
         }
     }
+
+    /** «Genau»: weckt zur Zielzeit, nie früher; die Uhr misst trotzdem [MEASURE_MINUTES] Minuten für den Verlauf. */
+    val isExact: Boolean get() = windowMinutes == EXACT_WINDOW
+
+    /** So viele Minuten vor der Zielzeit misst die Uhr: das Weckfenster, bei «Genau» [MEASURE_MINUTES]. */
+    val measureWindowMinutes: Int get() = if (isExact) MEASURE_MINUTES else windowMinutes
 
     /** Ob das Handy als Zweitwecker mitweckt. */
     val phoneBackup: Boolean get() = phone != PhoneAlert.OFF
@@ -73,7 +82,13 @@ data class AlarmSpec(
         /** Standard-Weckfenster in Minuten, gleich [MAX_WINDOW_MINUTES]. */
         const val DEFAULT_WINDOW_MINUTES: Int = 30
 
-        /** Kleinstes Weckfenster in Minuten. */
+        /** Fensterwert für «Genau» ([isExact]): kein frühes Wecken. */
+        const val EXACT_WINDOW: Int = 0
+
+        /** Bei «Genau» misst die Uhr so viele Minuten vor der Zielzeit, nur für den Verlauf. */
+        const val MEASURE_MINUTES: Int = 30
+
+        /** Kleinstes Weckfenster in Minuten (ausser [EXACT_WINDOW]). */
         const val MIN_WINDOW_MINUTES: Int = 10
 
         /** Grenze von watchOS (Smart-Alarm-Sitzung höchstens 30 Min), auf beiden Plattformen gleich. */

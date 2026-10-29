@@ -13,8 +13,9 @@ enum PhoneWidgetSync {
         var plans: [PhoneWidgetSnapshot.Plan] = []
         var from = now
         while plans.count < planCount, let plan = model.nextPlan(now: from) {
-            let label = model.alarms.first { $0.id == plan.alarmId }?.label ?? ""
-            plans.append(.init(windowStart: plan.windowStart, target: plan.target, label: label))
+            let alarm = model.alarms.first { $0.id == plan.alarmId }
+            plans.append(.init(windowStart: plan.windowStart, target: plan.target, label: alarm?.label ?? "",
+                               exact: alarm?.isExact == true))
             from = plan.target.addingTimeInterval(1)
         }
         let snapshot = PhoneWidgetSnapshot(plans: plans, issue: failed.first?.title ?? "")

@@ -21,15 +21,18 @@
     <string name="home_next_today">Í dag</string>
     <string name="home_next_tomorrow">Á morgun</string>
     <string name="home_next_in">Vekur þig í léttum svefni · eftir %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Vekur þig nákvæmlega á markmiðstíma · eftir %1$s</string>
     <string name="home_no_alarm_title">Vaknaðu á réttu augnabliki</string>
     <string name="home_no_alarm_text">Veldu tíma og glugga. Úrið vekur þig þegar þú sefur létt.</string>
     <string name="home_add_alarm">Nýr vekjari</string>
     <string name="home_last_night">Síðasta nótt</string>
     <string name="home_alarms">Vekjararnir þínir</string>
 
-    <string name="reason_light">Léttur svefn</string>
+    <string name="reason_light">Órólegur – líklega léttur svefn</string>
     <string name="reason_awake">Þegar vakandi</string>
     <string name="reason_deadline">Enginn léttur svefn greindist</string>
+    <string name="reason_exact">Nákvæmlega á markmiðstíma</string>
+    <string name="reason_short_night">Stutt nótt – aðeins á markmiðstíma</string>
     <string name="woke_early">%1$d mín fyrir markmið · %2$s</string>
     <string name="woke_on_time">Á markmiðstíma · %1$s</string>
     <string name="no_snooze">enginn blundur</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Vektu mig fyrir</string>
     <string name="editor_latest">Í síðasta lagi</string>
     <string name="editor_sleep_duration">Sofa í %1$s</string>
-    <string name="editor_sleep_hint">Talning hefst þegar þú sofnar. Ýttu á „Góða nótt“ á úrinu.</string>
+    <string name="editor_sleep_hint">Telur frá því að þú sofnar. Úrið greinir það sjálfkrafa; ýttu á „Góða nótt“ á úrinu til að byrja strax.</string>
     <string name="editor_window">Gluggi: %1$d mín</string>
     <string name="editor_window_hint">Vekur þig milli %1$s og %2$s</string>
+    <string name="editor_window_exact">Nákvæmt</string>
+    <string name="editor_window_exact_hint">Hringir nákvæmlega á markmiðstíma, aldrei fyrr. Úrið mælir samt fyrir ferilinn þinn.</string>
+    <string name="window_exact_line">Nákvæmlega kl. %1$s</string>
     <string name="editor_days">Endurtaka</string>
     <string name="editor_weekdays">Virkir dagar</string>
     <string name="editor_weekend">Helgi</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Halda áfram að breyta</string>
     <string name="editor_delete_title">Eyða þessum vekjara?</string>
     <string name="home_window_running">Vakningargluggi í gangi – mælir núna</string>
+    <string name="home_auto_onset">Úrið greinir sjálfkrafa frá kl. %1$s hvenær þú sofnar.</string>
     <string name="check_volume">Hljóðstyrkur vekjara</string>
     <string name="check_volume_problem">Hljóðstyrkur vekjara er 0 – síminn myndi hringja hljóðlaust.</string>
     <string name="health_update">Uppfæra Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Upptaka er á. Best er að hafa símann í hleðslu yfir nóttina.</string>
     <string name="sound_rec_default">Á fyrir nýjar nætur</string>
     <string name="sound_rec_default_hint">Byrjar þegar þú opnar Phase Wake frá háttatíma (án vekjara frá kl. 21). Aðeins stuttar upptökur; þær verða eftir í símanum og er eytt eftir 7 daga.</string>
-    <string name="sound_type_snore">Hrotur</string>
+    <string name="sound_type_snore">Hugsanlegar hrotur</string>
     <string name="sound_type_talk">Tal</string>
     <string name="sound_type_other">Annað hljóð</string>
     <plurals name="sound_summary">
-        <item quantity="one">Hrotur: %1$s (%2$d upptaka)</item>
-        <item quantity="other">Hrotur: %1$s (%2$d upptökur)</item>
+        <item quantity="one">Hugsanlegar hrotur: %1$s (%2$d upptaka)</item>
+        <item quantity="other">Hugsanlegar hrotur: %1$s (%2$d upptökur)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Tal: %1$d upptaka</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Venjulega %1$d–%2$d %%</string>
     <string name="stages_typical_below">Venjulega undir %1$d %%</string>
     <string name="stages_not_medical">Ekki læknisfræðilegt mat.</string>
-    <string name="stages_verdict_awake_above">Lengri tími vakandi en venjulega</string>
-    <string name="stages_verdict_deep_below">Minni djúpsvefn en venjulega</string>
-    <string name="stages_verdict_deep_above">Meiri djúpsvefn en venjulega</string>
-    <string name="stages_verdict_rem_below">Lítill REM – oft eftir stutta eða seina nótt</string>
-    <string name="stages_verdict_rem_above">Meiri REM en venjulega</string>
-    <string name="stages_verdict_light_below">Minni léttur svefn en venjulega</string>
-    <string name="stages_verdict_light_above">Meiri léttur svefn en venjulega</string>
-    <string name="stages_verdict_typical">Öll stig innan venjulegs bils</string>
+    <string name="stages_source">Viðmiðunargildi fyrir heilbrigða fullorðna (Ohayon o.fl., Sleep 2004). Úr áætla svefnstig aðeins gróflega.</string>
     <string name="hypno_bubble">%1$s · %2$s · í %3$s</string>
     <string name="hypno_block">%1$s frá %2$s til %3$s</string>
     <string name="chart_week_average">Vikumeðaltal</string>

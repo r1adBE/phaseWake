@@ -19,15 +19,18 @@
     <string name="home_next_today">ថ្ងៃនេះ</string>
     <string name="home_next_tomorrow">ថ្ងៃស្អែក</string>
     <string name="home_next_in">ដាស់ពេលដេកស្រាល · ក្នុងរយៈពេល %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ដាស់ត្រូវម៉ោងគោលដៅពិតប្រាកដ · ក្នុងរយៈពេល %1$s</string>
     <string name="home_no_alarm_title">ភ្ញាក់នៅពេលត្រឹមត្រូវ</string>
     <string name="home_no_alarm_text">កំណត់ម៉ោង និងចន្លោះពេល។ នាឡិកានឹងដាស់អ្នក នៅពេលអ្នកដេកស្រាល។</string>
     <string name="home_add_alarm">ម៉ោងរោទ៍ថ្មី</string>
     <string name="home_last_night">យប់មិញ</string>
     <string name="home_alarms">ម៉ោងរោទ៍របស់អ្នក</string>
 
-    <string name="reason_light">ដំណេកស្រាល</string>
+    <string name="reason_light">មិនស្ងប់ – ប្រហែលជាដំណេកស្រាល</string>
     <string name="reason_awake">ភ្ញាក់រួចហើយ</string>
     <string name="reason_deadline">រកមិនឃើញដំណេកស្រាល</string>
+    <string name="reason_exact">ត្រូវម៉ោងគោលដៅពិតប្រាកដ</string>
+    <string name="reason_short_night">យប់ខ្លី – ត្រឹមម៉ោងគោលដៅប៉ុណ្ណោះ</string>
     <string name="woke_early">%1$d នាទីមុនម៉ោងគោលដៅ · %2$s</string>
     <string name="woke_on_time">ត្រូវម៉ោងគោលដៅ · %1$s</string>
     <string name="no_snooze">គ្មានការផ្អាក</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">ដាស់ខ្ញុំត្រឹម</string>
     <string name="editor_latest">យឺតបំផុត</string>
     <string name="editor_sleep_duration">ដេក %1$s</string>
-    <string name="editor_sleep_hint">ចាប់ផ្ដើមរាប់ពេលអ្នកលង់លក់។ ចុច «រាត្រីសួស្តី» លើនាឡិកា។</string>
+    <string name="editor_sleep_hint">រាប់ចាប់ពីពេលអ្នកលង់លក់។ នាឡិការកឃើញដោយស្វ័យប្រវត្តិ ចុច «រាត្រីសួស្តី» លើនាឡិកាដើម្បីចាប់ផ្ដើមភ្លាម។</string>
     <string name="editor_window">ចន្លោះពេល៖ %1$d នាទី</string>
     <string name="editor_window_hint">ដាស់ចន្លោះ %1$s ដល់ %2$s</string>
+    <string name="editor_window_exact">ពិតប្រាកដ</string>
+    <string name="editor_window_exact_hint">រោទ៍ត្រូវម៉ោងគោលដៅពិតប្រាកដ មិនដែលមុនទេ។ នាឡិការបស់អ្នកនៅតែវាស់សម្រាប់ប្រវត្តិរបស់អ្នក។</string>
+    <string name="window_exact_line">ត្រូវម៉ោង %1$s</string>
     <string name="editor_days">ធ្វើម្ដងទៀត</string>
     <string name="editor_weekdays">ថ្ងៃធ្វើការ</string>
     <string name="editor_weekend">ចុងសប្ដាហ៍</string>
@@ -221,6 +227,7 @@
     <string name="editor_keep_editing">បន្តកែ</string>
     <string name="editor_delete_title">លុបម៉ោងរោទ៍នេះ?</string>
     <string name="home_window_running">ចន្លោះពេលដាស់កំពុងដំណើរការ – កំពុងវាស់</string>
+    <string name="home_auto_onset">នាឡិការបស់អ្នករកឃើញដោយស្វ័យប្រវត្តិនូវពេលដែលអ្នកលង់លក់ ចាប់ពី %1$s។</string>
     <string name="check_volume">កម្រិតសំឡេងរោទ៍</string>
     <string name="check_volume_problem">កម្រិតសំឡេងរោទ៍នៅ 0 – ទូរសព្ទនឹងរោទ៍ស្ងាត់។</string>
     <string name="health_update">ធ្វើបច្ចុប្បន្នភាព Health Connect</string>
@@ -293,11 +300,11 @@
     <string name="sound_rec_plug_in">ការថតកំពុងបើក។ គួរដោតសាកទូរសព្ទពេញមួយយប់។</string>
     <string name="sound_rec_default">បើកសម្រាប់យប់ថ្មីៗ</string>
     <string name="sound_rec_default_hint">ចាប់ផ្ដើមពេលអ្នកបើក Phase Wake ចាប់ពីម៉ោងចូលដេក (បើគ្មានម៉ោងរោទ៍ ចាប់ពីម៉ោង 9 យប់)។ តែឃ្លីបខ្លីៗ វានៅលើទូរសព្ទ ហើយត្រូវលុបក្រោយ 7 ថ្ងៃ។</string>
-    <string name="sound_type_snore">ស្រមុក</string>
+    <string name="sound_type_snore">ប្រហែលជាស្រមុក</string>
     <string name="sound_type_talk">និយាយ</string>
     <string name="sound_type_other">សំឡេងផ្សេងទៀត</string>
     <plurals name="sound_summary">
-        <item quantity="other">ស្រមុក៖ %1$s (%2$d ឃ្លីប)</item>
+        <item quantity="other">ប្រហែលជាស្រមុក៖ %1$s (%2$d ឃ្លីប)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="other">និយាយ៖ %1$d ឃ្លីប</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">ធម្មតា %1$d–%2$d %%</string>
     <string name="stages_typical_below">ធម្មតាក្រោម %1$d %%</string>
     <string name="stages_not_medical">មិនមែនជាការវាយតម្លៃវេជ្ជសាស្ត្រទេ។</string>
-    <string name="stages_verdict_awake_above">ភ្ញាក់យូរជាងធម្មតា</string>
-    <string name="stages_verdict_deep_below">ដំណេកជ្រៅតិចជាងធម្មតា</string>
-    <string name="stages_verdict_deep_above">ដំណេកជ្រៅច្រើនជាងធម្មតា</string>
-    <string name="stages_verdict_rem_below">REM តិច – ច្រើនតែក្រោយយប់ខ្លី ឬយប់យឺត</string>
-    <string name="stages_verdict_rem_above">REM ច្រើនជាងធម្មតា</string>
-    <string name="stages_verdict_light_below">ដំណេកស្រាលតិចជាងធម្មតា</string>
-    <string name="stages_verdict_light_above">ដំណេកស្រាលច្រើនជាងធម្មតា</string>
-    <string name="stages_verdict_typical">ដំណាក់កាលទាំងអស់ស្ថិតក្នុងចន្លោះធម្មតា</string>
+    <string name="stages_source">តម្លៃយោងសម្រាប់មនុស្សពេញវ័យដែលមានសុខភាពល្អ (Ohayon និងអ្នកដទៃ, Sleep 2004)។ នាឡិកាគ្រាន់តែប៉ាន់ស្មានដំណាក់កាលប្រហាក់ប្រហែល។</string>
     <string name="hypno_bubble">%1$s · %2$s · រយៈពេល %3$s</string>
     <string name="hypno_block">%1$s ពី %2$s ដល់ %3$s</string>
     <string name="chart_week_average">មធ្យមប្រចាំសប្ដាហ៍</string>

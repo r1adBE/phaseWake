@@ -82,7 +82,7 @@ private fun BackupAlarm.inGrace(
     val valid = !target.isAfter(current) && target.plus(grace).isAfter(current) &&
         AlarmSchedule.nextTarget(spec, target.minusMillis(1), zone, holidays) == target &&
         (suppressed[spec.id] ?: Instant.EPOCH) < target
-    return if (valid) WakePlan(spec.id, AlarmSchedule.windowStart(target, spec.windowMinutes), target) else null
+    return if (valid) AlarmSchedule.planAt(spec, target) else null
 }
 
 /** Geplante Zielzeit des Zweitweckers (für die Diagnose); `null`, wenn keiner geplant ist. */

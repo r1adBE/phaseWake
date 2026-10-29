@@ -24,7 +24,7 @@ import kotlin.math.roundToInt
  */
 @Stable
 internal class EditorState(val base: AlarmSpec) {
-    /** Weckfenster in Minuten (Schieber, auf 5 Minuten gerundet). */
+    /** Weckfenster in Minuten ([AlarmSpec.EXACT_WINDOW] = «Genau»). */
     var window by mutableFloatStateOf(base.windowMinutes.toFloat())
     var days by mutableStateOf(base.days)
 

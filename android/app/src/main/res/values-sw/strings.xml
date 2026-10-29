@@ -20,15 +20,18 @@
     <string name="home_next_today">Leo</string>
     <string name="home_next_tomorrow">Kesho</string>
     <string name="home_next_in">Inakuamsha katika usingizi mwepesi · baada ya %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Inakuamsha hasa kwa muda lengwa · baada ya %1$s</string>
     <string name="home_no_alarm_title">Amka wakati unaofaa</string>
     <string name="home_no_alarm_text">Weka muda na kipindi. Saa yako inakuamsha ukiwa katika usingizi mwepesi.</string>
     <string name="home_add_alarm">Kengele mpya</string>
     <string name="home_last_night">Usiku uliopita</string>
     <string name="home_alarms">Kengele zako</string>
 
-    <string name="reason_light">Usingizi mwepesi</string>
+    <string name="reason_light">Kutotulia – huenda usingizi mwepesi</string>
     <string name="reason_awake">Ulikuwa macho tayari</string>
     <string name="reason_deadline">Hakuna usingizi mwepesi uliogunduliwa</string>
+    <string name="reason_exact">Hasa kwa muda lengwa</string>
+    <string name="reason_short_night">Usiku mfupi – kwa muda lengwa tu</string>
     <string name="woke_early">Dak %1$d kabla ya muda lengwa · %2$s</string>
     <string name="woke_on_time">Kwa muda lengwa · %1$s</string>
     <string name="no_snooze">bila kuahirisha</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Niamshe kabla ya</string>
     <string name="editor_latest">Muda wa mwisho</string>
     <string name="editor_sleep_duration">Lala kwa %1$s</string>
-    <string name="editor_sleep_hint">Inaanza kuhesabu unapolala. Gusa “Usiku mwema” kwenye saa yako.</string>
+    <string name="editor_sleep_hint">Huhesabu tangu unapolala. Saa yako hulitambua kiotomatiki; gusa “Usiku mwema” kwenye saa ili kuanza mara moja.</string>
     <string name="editor_window">Kipindi: dak %1$d</string>
     <string name="editor_window_hint">Inakuamsha kati ya %1$s na %2$s</string>
+    <string name="editor_window_exact">Hasa</string>
+    <string name="editor_window_exact_hint">Inalia hasa kwa muda lengwa, kamwe mapema. Saa yako bado inapima kwa ajili ya historia yako.</string>
+    <string name="window_exact_line">Hasa saa %1$s</string>
     <string name="editor_days">Rudia</string>
     <string name="editor_weekdays">Siku za kazi</string>
     <string name="editor_weekend">Wikendi</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">Endelea kuhariri</string>
     <string name="editor_delete_title">Futa kengele hii?</string>
     <string name="home_window_running">Kipindi cha kuamka kinaendelea – inapima sasa</string>
+    <string name="home_auto_onset">Saa yako hutambua kiotomatiki unapolala, kuanzia %1$s.</string>
     <string name="check_volume">Sauti ya kengele</string>
     <string name="check_volume_problem">Sauti ya kengele iko 0 – simu yako ingelia kimya.</string>
     <string name="health_update">Sasisha Health Connect</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">Kurekodi kumewashwa. Ni bora uchomeke simu yako kwenye chaja usiku.</string>
     <string name="sound_rec_default">Washa kwa usiku mpya</string>
     <string name="sound_rec_default_hint">Inaanza unapofungua Phase Wake kuanzia muda wako wa kulala (bila kengele kuanzia saa 3 usiku). Vipande vifupi tu; vinabaki kwenye simu yako na hufutwa baada ya siku 7.</string>
-    <string name="sound_type_snore">Kukoroma</string>
+    <string name="sound_type_snore">Huenda ni kukoroma</string>
     <string name="sound_type_talk">Kuongea</string>
     <string name="sound_type_other">Sauti nyingine</string>
     <plurals name="sound_summary">
-        <item quantity="one">Kukoroma: %1$s (kipande %2$d)</item>
-        <item quantity="other">Kukoroma: %1$s (vipande %2$d)</item>
+        <item quantity="one">Huenda ni kukoroma: %1$s (kipande %2$d)</item>
+        <item quantity="other">Huenda ni kukoroma: %1$s (vipande %2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Kuongea: kipande %1$d</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">Kawaida %1$d–%2$d %%</string>
     <string name="stages_typical_below">Kawaida chini ya %1$d %%</string>
     <string name="stages_not_medical">Si tathmini ya kitabibu.</string>
-    <string name="stages_verdict_awake_above">Muda mwingi wa kuwa macho kuliko kawaida</string>
-    <string name="stages_verdict_deep_below">Usingizi mzito mdogo kuliko kawaida</string>
-    <string name="stages_verdict_deep_above">Usingizi mzito mwingi kuliko kawaida</string>
-    <string name="stages_verdict_rem_below">REM kidogo – mara nyingi baada ya usiku mfupi au wa kuchelewa</string>
-    <string name="stages_verdict_rem_above">REM nyingi kuliko kawaida</string>
-    <string name="stages_verdict_light_below">Usingizi mwepesi mdogo kuliko kawaida</string>
-    <string name="stages_verdict_light_above">Usingizi mwepesi mwingi kuliko kawaida</string>
-    <string name="stages_verdict_typical">Hatua zote ziko katika kiwango cha kawaida</string>
+    <string name="stages_source">Viwango vya marejeleo kwa watu wazima wenye afya (Ohayon na wenzake, Sleep 2004). Saa hukadiria hatua za usingizi kwa takriban tu.</string>
     <string name="hypno_bubble">%1$s · %2$s · kwa %3$s</string>
     <string name="hypno_block">%1$s kuanzia %2$s hadi %3$s</string>
     <string name="chart_week_average">Wastani wa wiki</string>

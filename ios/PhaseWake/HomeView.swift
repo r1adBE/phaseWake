@@ -27,7 +27,10 @@ struct HomeView: View {
                         TimelineView(.everyMinute) { context in
                             // Eine früh geweckte Nacht zählt nicht mehr (wie Nacht-Check und Widget).
                             let plan = model.nextPlan(now: context.date)
+                            // Am Morgen (nach dem Wecken bis 12 Uhr) steht die letzte Nacht zuoberst.
+                            let morningFirst = model.nights.last.map { LastNightCard.isMorningFirst($0, now: context.date) } ?? false
                             VStack(spacing: 16) {
+                                if morningFirst { lastNight(now: context.date, morningFirst: true) }
                                 // Nacht-Check nur, wenn ein Wecker ansteht.
                                 if plan != nil {
                                     NightCheckCard(failed: failedChecks) { check in
@@ -52,14 +55,7 @@ struct HomeView: View {
                                     SoundRecordingCard(night: tonight)
                                 }
                                 SoundsButton { sounds = true }
-                                if let night = model.nights.last {
-                                    LastNightCard(
-                                        night: night,
-                                        now: context.date,
-                                        // Ungemessene erste Minuten der Apple Watch zählen nicht als Lücke.
-                                        hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights.map(measuredPart))
-                                    ) { model.setFeeling($0, for: night) }
-                                }
+                                if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
                                 // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
                                 let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .current)] } ?? [])
@@ -125,6 +121,19 @@ struct HomeView: View {
         }
     }
 
+    /// Karte der letzten Nacht; `morningFirst` = am Morgen zuoberst mit «Geweckt um 6:42» gross.
+    @ViewBuilder private func lastNight(now: Date, morningFirst: Bool) -> some View {
+        if let night = model.nights.last {
+            LastNightCard(
+                night: night,
+                now: now,
+                // Ungemessene erste Minuten der Apple Watch zählen nicht als Lücke.
+                hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights.map(measuredPart)),
+                morningFirst: morningFirst
+            ) { model.setFeeling($0, for: night) }
+        }
+    }
+
     /// «Neuer Wecker»: ganz oben ausgeschrieben, beim Scrollen nur das Plus.
     private var addButton: some View {
         Button { creating = true } label: {
@@ -157,23 +166,26 @@ struct HomeView: View {
             .padding(.bottom, 26)
             Text(L(greetingKey(now))).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
             if let plan, let alarm = model.alarms.first(where: { $0.id == plan.alarmId }) {
-                Text(Format.time(plan.windowStart) + " – " + Format.time(plan.target))
+                Text(Format.window(start: plan.windowStart, target: plan.target, exact: plan.exact))
                     .font(Fonts.manrope(44, .heavy, relativeTo: .largeTitle))
                     .minimumScaleFactor(0.6)
                     .lineLimit(1)
                 let day = Format.day(plan.target, todayKey: "home_next_today", tomorrowKey: "home_next_tomorrow")
-                let minutes = Int(plan.windowStart.timeIntervalSince(now) / 60)
+                // «Genau»: bis zur Zielzeit zählen; das Messen davor ist kein Weckfenster und weckt nie früher.
+                let minutes = Int((plan.exact ? plan.target : plan.windowStart).timeIntervalSince(now) / 60)
                 // Zwei Zeilen: wann und welcher – dann wie lange noch (oder: Fenster läuft).
                 Text([day, alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.muted)
-                Text(minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
+                Text(plan.exact ? L("home_next_in_exact", Format.duration(minutes: max(0, minutes)))
+                     : minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.muted)
                 if let holiday = skippedHoliday(now: now) {
                     Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
                 }
-                HeroWave().frame(height: 72).padding(.top, 14)
+                // «Genau»: ohne hellen Fensterbereich, die Welle endet nur im Weckpunkt.
+                HeroWave(windowFraction: plan.exact ? 0 : 0.32).frame(height: 72).padding(.top, 14)
             } else {
                 Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
                 Text(L("home_no_alarm_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
@@ -235,31 +247,25 @@ extension View {
     func card() -> some View { modifier(CardBackground()) }
 }
 
-private struct NightstandButton: View {
-    let action: () -> Void
-    @Environment(\.colorScheme) private var scheme
-
-    var body: some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: 4) {
-                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
-            }
-        }
-        .buttonStyle(.plain)
-        .card()
-    }
-}
-
 private struct LastNightCard: View {
     let night: NightRecord
     let now: Date
     let hint: MissHint?
+    /// Am Morgen zuoberst (`isMorningFirst`): unter dem Titel «Geweckt um 6:42» gross statt nur der Uhrzeit.
+    var morningFirst = false
     let onFeeling: (Int) -> Void
     @Environment(\.colorScheme) private var scheme
 
     /// So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen».
     private static let morning: TimeInterval = 12 * 3600
+    /// Bis zu dieser Stunde (Ortszeit) steht die Karte am Weckmorgen zuoberst.
+    private static let morningEndHour = 12
+
+    /// Ob die Nacht heute geweckt hat und es noch vor 12 Uhr ist: Dann steht die Karte zuoberst (wie Android).
+    static func isMorningFirst(_ night: NightRecord, now: Date, calendar: Calendar = .current) -> Bool {
+        now >= night.wokeAt && calendar.isDate(night.wokeAt, inSameDayAs: now)
+            && calendar.component(.hour, from: now) < morningEndHour
+    }
 
     var body: some View {
         let isMorning = now.timeIntervalSince(night.wokeAt) < Self.morning
@@ -267,7 +273,15 @@ private struct LastNightCard: View {
             HStack {
                 Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
-                Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
+                if !morningFirst {
+                    Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
+                }
+            }
+            // Wie Android: nur «Geweckt um 6:42» gross; der Grund steht einmal, in der Erklärung darunter.
+            if morningFirst {
+                Text(L("night_woke", Format.time(night.wokeAt)))
+                    .font(Fonts.manrope(22, .bold, relativeTo: .title2))
+                    .foregroundStyle(.tint)
             }
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 46)
             // Erklärung (14, leise), darunter die Zusatzinfos (12, noch leiser).

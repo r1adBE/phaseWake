@@ -22,15 +22,18 @@
     <string name="home_next_today">Danas</string>
     <string name="home_next_tomorrow">Sutra</string>
     <string name="home_next_in">Budi te u laganom snu · za %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Budi te točno u ciljno vrijeme · za %1$s</string>
     <string name="home_no_alarm_title">Probudi se u pravom trenutku</string>
     <string name="home_no_alarm_text">Postavi vrijeme i interval. Sat te budi kad lagano spavaš.</string>
     <string name="home_add_alarm">Novi alarm</string>
     <string name="home_last_night">Prošla noć</string>
     <string name="home_alarms">Tvoji alarmi</string>
 
-    <string name="reason_light">Lagani san</string>
+    <string name="reason_light">Nemirno – vjerojatno lagani san</string>
     <string name="reason_awake">Već ne spavaš</string>
     <string name="reason_deadline">Lagani san nije prepoznat</string>
+    <string name="reason_exact">Točno u ciljno vrijeme</string>
+    <string name="reason_short_night">Kratka noć – tek u ciljno vrijeme</string>
     <string name="woke_early">%1$d min prije ciljnog vremena · %2$s</string>
     <string name="woke_on_time">U ciljno vrijeme · %1$s</string>
     <string name="no_snooze">bez odgode</string>
@@ -50,9 +53,12 @@
     <string name="editor_target">Probudi me do</string>
     <string name="editor_latest">Najkasnije</string>
     <string name="editor_sleep_duration">Spavaj %1$s</string>
-    <string name="editor_sleep_hint">Brojanje počinje kad zaspiš. Dodirni „Laku noć“ na satu.</string>
+    <string name="editor_sleep_hint">Broji od trenutka kad zaspiš. Sat to prepoznaje automatski; dodirni „Laku noć“ na satu da odmah počne.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Budi te između %1$s i %2$s</string>
+    <string name="editor_window_exact">Točno</string>
+    <string name="editor_window_exact_hint">Zvoni točno u ciljno vrijeme, nikad ranije. Sat i dalje mjeri za tvoju povijest.</string>
+    <string name="window_exact_line">Točno u %1$s</string>
     <string name="editor_days">Ponavljanje</string>
     <string name="editor_weekdays">Radni dani</string>
     <string name="editor_weekend">Vikend</string>
@@ -230,6 +236,7 @@
     <string name="editor_keep_editing">Nastavi uređivati</string>
     <string name="editor_delete_title">Izbrisati ovaj alarm?</string>
     <string name="home_window_running">Interval buđenja traje – mjerenje je u tijeku</string>
+    <string name="home_auto_onset">Tvoj sat od %1$s automatski prepoznaje kada zaspiš.</string>
     <string name="check_volume">Glasnoća alarma</string>
     <string name="check_volume_problem">Glasnoća alarma je na 0 – telefon bi zvonio bez zvuka.</string>
     <string name="health_update">Ažuriraj Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Snimanje je uključeno. Najbolje je za noć priključiti telefon na punjač.</string>
     <string name="sound_rec_default">Uključeno za nove noći</string>
     <string name="sound_rec_default_hint">Pokreće se kad otvoriš Phase Wake od svog vremena za spavanje (bez alarma od 21:00). Samo kratki isječci; ostaju na tvom telefonu i brišu se nakon 7 dana.</string>
-    <string name="sound_type_snore">Hrkanje</string>
+    <string name="sound_type_snore">Moguće hrkanje</string>
     <string name="sound_type_talk">Govor</string>
     <string name="sound_type_other">Drugi zvuk</string>
     <plurals name="sound_summary">
-        <item quantity="one">Hrkanje: %1$s (%2$d isječak)</item>
-        <item quantity="few">Hrkanje: %1$s (%2$d isječka)</item>
-        <item quantity="other">Hrkanje: %1$s (%2$d isječaka)</item>
+        <item quantity="one">Moguće hrkanje: %1$s (%2$d isječak)</item>
+        <item quantity="few">Moguće hrkanje: %1$s (%2$d isječka)</item>
+        <item quantity="other">Moguće hrkanje: %1$s (%2$d isječaka)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Govor: %1$d isječak</item>
@@ -524,14 +531,7 @@
     <string name="stages_typical_range">Uobičajeno %1$d–%2$d %%</string>
     <string name="stages_typical_below">Uobičajeno ispod %1$d %%</string>
     <string name="stages_not_medical">Nije medicinska procjena.</string>
-    <string name="stages_verdict_awake_above">Više budnog vremena nego obično</string>
-    <string name="stages_verdict_deep_below">Manje dubokog sna nego obično</string>
-    <string name="stages_verdict_deep_above">Više dubokog sna nego obično</string>
-    <string name="stages_verdict_rem_below">Malo REM-a – često nakon kratke ili kasne noći</string>
-    <string name="stages_verdict_rem_above">Više REM-a nego obično</string>
-    <string name="stages_verdict_light_below">Manje laganog sna nego obično</string>
-    <string name="stages_verdict_light_above">Više laganog sna nego obično</string>
-    <string name="stages_verdict_typical">Sve faze u uobičajenom rasponu</string>
+    <string name="stages_source">Referentne vrijednosti za zdrave odrasle (Ohayon i sur., Sleep 2004). Satovi faze procjenjuju samo okvirno.</string>
     <string name="hypno_bubble">%1$s · %2$s · već %3$s</string>
     <string name="hypno_block">%1$s od %2$s do %3$s</string>
     <string name="chart_week_average">Tjedni prosjek</string>

@@ -20,15 +20,18 @@
     <string name="home_next_today">ഇന്ന്</string>
     <string name="home_next_tomorrow">നാളെ</string>
     <string name="home_next_in">നേരിയ ഉറക്കത്തിൽ ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">കൃത്യമായി ലക്ഷ്യസമയത്ത് ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
     <string name="home_no_alarm_title">ശരിയായ നിമിഷത്തിൽ ഉണരൂ</string>
     <string name="home_no_alarm_text">ഒരു സമയവും സമയപരിധിയും സജ്ജമാക്കുക. നിങ്ങൾ നേരിയ ഉറക്കത്തിലാകുമ്പോൾ വാച്ച് ഉണർത്തും.</string>
     <string name="home_add_alarm">പുതിയ അലാറം</string>
     <string name="home_last_night">കഴിഞ്ഞ രാത്രി</string>
     <string name="home_alarms">നിങ്ങളുടെ അലാറങ്ങൾ</string>
 
-    <string name="reason_light">നേരിയ ഉറക്കം</string>
+    <string name="reason_light">അസ്വസ്ഥം – മിക്കവാറും നേരിയ ഉറക്കം</string>
     <string name="reason_awake">നേരത്തേ ഉണർന്നിരുന്നു</string>
     <string name="reason_deadline">നേരിയ ഉറക്കം കണ്ടെത്തിയില്ല</string>
+    <string name="reason_exact">കൃത്യമായി ലക്ഷ്യസമയത്ത്</string>
+    <string name="reason_short_night">ചെറിയ രാത്രി – ലക്ഷ്യസമയത്ത് മാത്രം</string>
     <string name="woke_early">ലക്ഷ്യത്തിന് %1$d മി. മുമ്പ് · %2$s</string>
     <string name="woke_on_time">ലക്ഷ്യസമയത്ത് · %1$s</string>
     <string name="no_snooze">സ്‌നൂസ് ഇല്ല</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">ഉണർത്തേണ്ട സമയം</string>
     <string name="editor_latest">പരമാവധി</string>
     <string name="editor_sleep_duration">%1$s ഉറക്കം</string>
-    <string name="editor_sleep_hint">ഉറങ്ങിത്തുടങ്ങുമ്പോൾ മുതൽ എണ്ണും. വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക.</string>
+    <string name="editor_sleep_hint">ഉറങ്ങിത്തുടങ്ങുമ്പോൾ മുതൽ എണ്ണുന്നു. വാച്ച് അത് സ്വയം തിരിച്ചറിയും; ഉടൻ തുടങ്ങാൻ വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക.</string>
     <string name="editor_window">സമയപരിധി: %1$d മി.</string>
     <string name="editor_window_hint">%1$s മുതൽ %2$s വരെയുള്ള സമയത്ത് ഉണർത്തും</string>
+    <string name="editor_window_exact">കൃത്യം</string>
+    <string name="editor_window_exact_hint">കൃത്യമായി ലക്ഷ്യസമയത്ത് മുഴങ്ങും, ഒരിക്കലും നേരത്തേയല്ല. നിങ്ങളുടെ വാച്ച് എന്നിട്ടും ചരിത്രത്തിനായി അളക്കും.</string>
+    <string name="window_exact_line">കൃത്യം %1$s-ന്</string>
     <string name="editor_days">ആവർത്തിക്കുക</string>
     <string name="editor_weekdays">പ്രവൃത്തിദിനങ്ങൾ</string>
     <string name="editor_weekend">വാരാന്ത്യം</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">എഡിറ്റിങ് തുടരുക</string>
     <string name="editor_delete_title">ഈ അലാറം ഇല്ലാതാക്കണോ?</string>
     <string name="home_window_running">ഉണർത്തൽ സമയപരിധി നടക്കുന്നു – ഇപ്പോൾ അളക്കുന്നു</string>
+    <string name="home_auto_onset">%1$s മുതൽ നിങ്ങൾ എപ്പോൾ ഉറങ്ങുന്നുവെന്ന് വാച്ച് സ്വയം കണ്ടെത്തും.</string>
     <string name="check_volume">അലാറം ശബ്ദനില</string>
     <string name="check_volume_problem">അലാറം ശബ്ദനില 0 ആണ് – ഫോൺ നിശബ്ദമായി റിങ് ചെയ്യും.</string>
     <string name="health_update">Health Connect അപ്‌ഡേറ്റ് ചെയ്യുക</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">റെക്കോർഡിങ് ഓണാണ്. രാത്രി ഫോൺ ചാർജറിൽ കുത്തിയിടുന്നതാണ് നല്ലത്.</string>
     <string name="sound_rec_default">പുതിയ രാത്രികൾക്ക് ഓൺ</string>
     <string name="sound_rec_default_hint">ഉറക്കസമയം മുതൽ (അലാറം ഇല്ലെങ്കിൽ രാത്രി 9 മുതൽ) Phase Wake തുറക്കുമ്പോൾ തുടങ്ങും. ചെറിയ ക്ലിപ്പുകൾ മാത്രം; അവ ഫോണിൽ തന്നെ ഇരിക്കും, 7 ദിവസത്തിനു ശേഷം ഇല്ലാതാകും.</string>
-    <string name="sound_type_snore">കൂർക്കംവലി</string>
+    <string name="sound_type_snore">കൂർക്കംവലി ആകാം</string>
     <string name="sound_type_talk">സംസാരം</string>
     <string name="sound_type_other">മറ്റ് ശബ്ദം</string>
     <plurals name="sound_summary">
-        <item quantity="one">കൂർക്കംവലി: %1$s (%2$d ക്ലിപ്പ്)</item>
-        <item quantity="other">കൂർക്കംവലി: %1$s (%2$d ക്ലിപ്പുകൾ)</item>
+        <item quantity="one">കൂർക്കംവലി ആകാം: %1$s (%2$d ക്ലിപ്പ്)</item>
+        <item quantity="other">കൂർക്കംവലി ആകാം: %1$s (%2$d ക്ലിപ്പുകൾ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">സംസാരം: %1$d ക്ലിപ്പ്</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">സാധാരണ %1$d–%2$d %%</string>
     <string name="stages_typical_below">സാധാരണ %1$d %%-ൽ താഴെ</string>
     <string name="stages_not_medical">ഇതൊരു വൈദ്യ വിലയിരുത്തലല്ല.</string>
-    <string name="stages_verdict_awake_above">സാധാരണയേക്കാൾ കൂടുതൽ ഉണർന്നിരുന്നു</string>
-    <string name="stages_verdict_deep_below">സാധാരണയേക്കാൾ കുറവ് ഗാഢനിദ്ര</string>
-    <string name="stages_verdict_deep_above">സാധാരണയേക്കാൾ കൂടുതൽ ഗാഢനിദ്ര</string>
-    <string name="stages_verdict_rem_below">REM കുറവ് – പലപ്പോഴും ചെറിയതോ വൈകിയതോ ആയ രാത്രിക്ക് ശേഷം</string>
-    <string name="stages_verdict_rem_above">സാധാരണയേക്കാൾ കൂടുതൽ REM</string>
-    <string name="stages_verdict_light_below">സാധാരണയേക്കാൾ കുറവ് നേരിയ ഉറക്കം</string>
-    <string name="stages_verdict_light_above">സാധാരണയേക്കാൾ കൂടുതൽ നേരിയ ഉറക്കം</string>
-    <string name="stages_verdict_typical">എല്ലാ ഘട്ടങ്ങളും സാധാരണ പരിധിയിൽ</string>
+    <string name="stages_source">ആരോഗ്യമുള്ള മുതിർന്നവർക്കുള്ള സൂചക മൂല്യങ്ങൾ (Ohayon തുടങ്ങിയവർ, Sleep 2004). വാച്ചുകൾ ഘട്ടങ്ങൾ ഏകദേശം മാത്രമേ കണക്കാക്കൂ.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ആയി</string>
     <string name="hypno_block">%1$s %2$s മുതൽ %3$s വരെ</string>
     <string name="chart_week_average">ആഴ്ചയിലെ ശരാശരി</string>

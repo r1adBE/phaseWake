@@ -81,14 +81,18 @@ struct NightDetailPage: View {
         }
     }
 
+    /// Legende des Profils; «Genau» hat kein Weckfenster, dann ohne dessen Zeichen.
     private var legend: some View {
-        ChartLegend(items: [
-            (symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)),
-             text: L("chart_window")),
-            (symbol: AnyView(DashSymbol(color: StageColors.marker(scheme))), text: data.item.night.map { L("night_target", Format.time($0.target)) } ?? ""),
-            (symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)),
-             text: data.item.night.map { L("night_woke", Format.time($0.wokeAt)) } ?? ""),
-        ])
+        var items: [(symbol: AnyView, text: String)] = []
+        if data.item.night?.wasExact != true {
+            items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)),
+                          text: L("chart_window")))
+        }
+        items.append((symbol: AnyView(DashSymbol(color: StageColors.marker(scheme))),
+                      text: data.item.night.map { L("night_target", Format.time($0.target)) } ?? ""))
+        items.append((symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)),
+                      text: data.item.night.map { L("night_woke", Format.time($0.wokeAt)) } ?? ""))
+        return ChartLegend(items: items)
     }
 
     // MARK: Befinden, Notizen, Geräusche

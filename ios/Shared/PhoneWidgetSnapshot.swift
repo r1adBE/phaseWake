@@ -13,6 +13,9 @@ struct PhoneWidgetSnapshot: Codable, Equatable {
         let target: Date
         /// Name des Weckers, leer ohne Namen.
         let label: String
+        /// «Genau»: klingelt zur Zielzeit, ohne Weckfenster. Optional, damit ein Stand älterer Versionen
+        /// (ohne das Feld) weiter lesbar bleibt; `nil` = kein genauer Wecker.
+        var exact: Bool?
     }
 
     /// Kommende Fenster, nach Zielzeit sortiert.

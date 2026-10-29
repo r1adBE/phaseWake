@@ -9,9 +9,11 @@
     <string name="notification_ring_title">صبح بخیر</string>
 
     <string name="ring_greeting">صبح بخیر</string>
-    <string name="ring_reason_light">ہلکی نیند ملی</string>
+    <string name="ring_reason_light">بے چین – شاید ہلکی نیند</string>
     <string name="ring_reason_awake">تم پہلے سے جاگ رہے تھے</string>
     <string name="ring_reason_deadline">ہدف کا وقت ہو گیا</string>
+    <string name="ring_reason_exact">عین ہدف کے وقت پر</string>
+    <string name="ring_reason_short_night">مختصر رات – صرف ہدف کے وقت پر</string>
     <string name="ring_hold_to_stop">روکنے کے لیے دبائے رکھو</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d منٹ · %2$d باقی</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">مجھے اس وقت تک جگاؤ</string>
     <string name="editor_latest">زیادہ سے زیادہ</string>
     <string name="editor_window">ونڈو: %1$d منٹ</string>
+    <string name="editor_window_exact">عین وقت</string>
+    <string name="editor_window_exact_hint">عین ہدف کے وقت پر بجے گا، کبھی پہلے نہیں۔ تمہاری گھڑی پھر بھی تمہاری ہسٹری کے لیے پیمائش کرتی ہے۔</string>
+    <string name="window_exact_line">عین %1$s پر</string>
     <string name="editor_days">تکرار</string>
     <string name="editor_save">محفوظ کرو</string>
     <string name="editor_delete">الارم حذف کرو</string>

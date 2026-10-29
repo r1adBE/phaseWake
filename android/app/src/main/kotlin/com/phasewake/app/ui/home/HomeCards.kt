@@ -83,7 +83,16 @@ internal fun LastNightCard(
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(if (morning) R.string.home_morning else R.string.home_last_night), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                Text(Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                if (!morning) Text(Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            }
+            // Morgenbericht: «Geweckt 6:42» gross, der Grund steht gleich darunter in der Erklärung.
+            if (morning) {
+                Text(
+                    stringResource(R.string.night_woke, Format.time(night.wokeAt)),
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
             }
             NightBars(
                 night.epochs,
@@ -197,7 +206,7 @@ internal fun AlarmRow(
     val res = LocalResources.current
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
     // Schalter, Menü und «Rückgängig» nennen den Wecker, für den sie gelten (Bildschirmleser).
-    val switchLabel = Format.window(alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
+    val switchLabel = Format.window(context, alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
@@ -210,7 +219,7 @@ internal fun AlarmRow(
             Column(Modifier.weight(1f)) {
                 val title = alarm.sleepDurationMinutes?.let {
                     stringResource(R.string.alarm_after_sleep, Format.duration(context, Duration.ofMinutes(it.toLong())))
-                } ?: Format.window(alarm)
+                } ?: Format.window(context, alarm)
                 Text(
                     title,
                     style = MaterialTheme.typography.titleLarge,

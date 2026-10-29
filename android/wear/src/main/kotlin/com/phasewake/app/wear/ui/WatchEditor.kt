@@ -11,6 +11,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
@@ -142,19 +144,32 @@ internal fun EditorContent(
             }
             item {
                 Text(
-                    stringResource(R.string.editor_window, draft.windowMinutes),
+                    windowLabel(draft),
                     style = MaterialTheme.typography.labelMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 )
             }
             item {
+                // «Genau · 10 · 20 · 30»; ältere Werte (15, 25) bleiben stehen, bis der Nutzer schiebt.
+                val label = windowLabel(draft)
                 Slider(
                     value = draft.windowMinutes,
                     onValueChange = { onChange(draft.copy(windowMinutes = it)) },
-                    valueProgression = AlarmSpec.MIN_WINDOW_MINUTES..AlarmSpec.MAX_WINDOW_MINUTES step WINDOW_STEP,
-                    modifier = Modifier.fillMaxWidth(),
+                    valueProgression = AlarmSpec.EXACT_WINDOW..AlarmSpec.MAX_WINDOW_MINUTES step WINDOW_STEP,
+                    modifier = Modifier.fillMaxWidth().semantics { stateDescription = label },
                 )
+            }
+            if (draft.isExact) {
+                item {
+                    Text(
+                        stringResource(R.string.editor_window_exact_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Brand.Muted,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
             }
             item { ListHeader { Text(stringResource(R.string.editor_days)) } }
             item {
@@ -234,4 +249,10 @@ internal fun EditorTime(draft: AlarmSpec, onPicked: (LocalTime) -> Unit) {
     TimePicker(initialTime = LocalTime.of(draft.hour, draft.minute), onTimePicked = onPicked)
 }
 
-private const val WINDOW_STEP = 5
+/** Schritt der Fensterwahl: Genau (0), 10, 20, 30 Minuten. */
+private const val WINDOW_STEP = 10
+
+/** «Fenster: 20 Min» bzw. «Genau» bei [AlarmSpec.isExact]. */
+@Composable
+private fun windowLabel(draft: AlarmSpec): String =
+    if (draft.isExact) stringResource(R.string.editor_window_exact) else stringResource(R.string.editor_window, draft.windowMinutes)

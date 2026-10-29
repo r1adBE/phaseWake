@@ -19,6 +19,11 @@ class AlarmReceiver : BroadcastReceiver() {
             if (WakeService.goodNightActive) AlarmScheduler.armGoodNightCheck(context) else WakeService.resumeGoodNight(context)
             return
         }
+        if (intent.action == AutoOnset.ACTION) {
+            // Vor dem Entsperren nicht lesbar: dann keine Messung, der Wecker weckt wie bisher.
+            if (DirectBoot.isUnlocked(context)) AutoOnset.alarmIdFrom(intent)?.let { WakeService.autoOnset(context, it) }
+            return
+        }
         val plan = planFrom(intent) ?: return
         when (intent.action) {
             ACTION_WINDOW_START -> WakeService.start(context, plan)
@@ -36,6 +41,7 @@ class AlarmReceiver : BroadcastReceiver() {
         private const val EXTRA_ALARM_ID = "alarmId"
         private const val EXTRA_WINDOW_START = "windowStart"
         private const val EXTRA_TARGET = "target"
+        private const val EXTRA_EXACT = "exact"
 
         /** PendingIntent für [action]; mit `plan = null` nur zum Abbrechen (gleiche Identität). */
         fun pending(context: Context, action: String, plan: WakePlan?, requestCode: Int): PendingIntent {
@@ -51,6 +57,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .putExtra(EXTRA_ALARM_ID, plan.alarmId)
             .putExtra(EXTRA_WINDOW_START, plan.windowStart.toEpochMilli())
             .putExtra(EXTRA_TARGET, plan.target.toEpochMilli())
+            .putExtra(EXTRA_EXACT, plan.exact)
 
         fun planFrom(intent: Intent): WakePlan? {
             val id = intent.getStringExtra(EXTRA_ALARM_ID) ?: return null
@@ -58,6 +65,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 alarmId = id,
                 windowStart = Instant.ofEpochMilli(intent.getLongExtra(EXTRA_WINDOW_START, 0)),
                 target = Instant.ofEpochMilli(intent.getLongExtra(EXTRA_TARGET, 0)),
+                exact = intent.getBooleanExtra(EXTRA_EXACT, false),
             )
         }
     }

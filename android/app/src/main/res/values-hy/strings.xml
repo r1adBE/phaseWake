@@ -17,14 +17,17 @@
     <string name="home_next_today">Այսօր</string>
     <string name="home_next_tomorrow">Վաղը</string>
     <string name="home_next_in">Արթնացնում է թեթև քնում · %1$s հետո</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Արթնացնում է ճիշտ նպատակային ժամին · %1$s հետո</string>
     <string name="home_no_alarm_title">Արթնացիր ճիշտ պահին</string>
     <string name="home_no_alarm_text">Սահմանիր ժամը և պատուհանը։ Ժամացույցդ քեզ կարթնացնի, երբ թեթև քնած լինես։</string>
     <string name="home_add_alarm">Նոր զարթուցիչ</string>
     <string name="home_last_night">Անցած գիշեր</string>
     <string name="home_alarms">Քո զարթուցիչները</string>
-    <string name="reason_light">Թեթև քուն</string>
+    <string name="reason_light">Անհանգիստ – հավանաբար թեթև քուն</string>
     <string name="reason_awake">Արդեն արթուն</string>
     <string name="reason_deadline">Թեթև քուն չի հայտնաբերվել</string>
+    <string name="reason_exact">Ճիշտ նպատակային ժամին</string>
+    <string name="reason_short_night">Կարճ գիշեր – միայն նպատակային ժամին</string>
     <string name="woke_early">Նպատակային ժամից %1$d ր առաջ · %2$s</string>
     <string name="woke_on_time">Նպատակային ժամին · %1$s</string>
     <string name="no_snooze">առանց հետաձգման</string>
@@ -42,9 +45,12 @@
     <string name="editor_target">Արթնացնել մինչև</string>
     <string name="editor_latest">Ամենաուշը</string>
     <string name="editor_sleep_duration">Քուն՝ %1$s</string>
-    <string name="editor_sleep_hint">Հաշվում է քնելու պահից։ Ժամացույցում հպիր «Բարի գիշեր»։</string>
+    <string name="editor_sleep_hint">Հաշվում է քնելու պահից։ Ժամացույցն այն ինքնաշխատ է ճանաչում. անմիջապես սկսելու համար ժամացույցում հպիր «Բարի գիշեր»։</string>
     <string name="editor_window">Պատուհան՝ %1$d ր</string>
     <string name="editor_window_hint">Արթնացնում է %1$s-ից մինչև %2$s</string>
+    <string name="editor_window_exact">Ճշգրիտ</string>
+    <string name="editor_window_exact_hint">Զանգում է ճիշտ նպատակային ժամին, երբեք ավելի շուտ։ Ժամացույցդ միևնույն է չափում է պատմությանդ համար։</string>
+    <string name="window_exact_line">Ճիշտ %1$s-ին</string>
     <string name="editor_days">Կրկնել</string>
     <string name="editor_weekdays">Աշխատանքային օրեր</string>
     <string name="editor_weekend">Հանգստյան օրեր</string>
@@ -216,6 +222,7 @@
     <string name="editor_keep_editing">Շարունակել խմբագրումը</string>
     <string name="editor_delete_title">Ջնջե՞լ այս զարթուցիչը</string>
     <string name="home_window_running">Արթնացման պատուհանն ընթացքում է – չափում է</string>
+    <string name="home_auto_onset">Ժամացույցդ %1$s-ից ավտոմատ հայտնաբերում է, թե երբ ես քնում։</string>
     <string name="check_volume">Զարթուցիչի ձայնի ուժգնություն</string>
     <string name="check_volume_problem">Զարթուցիչի ձայնը 0 է – հեռախոսդ լուռ կզանգի։</string>
     <string name="health_update">Թարմացնել Health Connect-ը</string>
@@ -288,12 +295,12 @@
     <string name="sound_rec_plug_in">Ձայնագրումը միացված է։ Լավ կլինի գիշերը հեռախոսդ լիցքավորման դնել։</string>
     <string name="sound_rec_default">Միացված նոր գիշերների համար</string>
     <string name="sound_rec_default_hint">Սկսվում է, երբ բացում ես Phase Wake-ը քնելու ժամիցդ սկսած (առանց զարթուցիչի՝ 21:00-ից)։ Միայն կարճ հատվածներ, որոնք մնում են հեռախոսիդ վրա և ջնջվում են 7 օր հետո։</string>
-    <string name="sound_type_snore">Խռմփոց</string>
+    <string name="sound_type_snore">Հնարավոր խռմփոց</string>
     <string name="sound_type_talk">Խոսք</string>
     <string name="sound_type_other">Այլ ձայն</string>
     <plurals name="sound_summary">
-        <item quantity="one">Խռմփոց՝ %1$s (%2$d հատված)</item>
-        <item quantity="other">Խռմփոց՝ %1$s (%2$d հատված)</item>
+        <item quantity="one">Հնարավոր խռմփոց՝ %1$s (%2$d հատված)</item>
+        <item quantity="other">Հնարավոր խռմփոց՝ %1$s (%2$d հատված)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Խոսք՝ %1$d հատված</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">Սովորաբար %1$d–%2$d %%</string>
     <string name="stages_typical_below">Սովորաբար %1$d %%-ից պակաս</string>
     <string name="stages_not_medical">Բժշկական գնահատական չէ։</string>
-    <string name="stages_verdict_awake_above">Սովորականից ավելի արթուն ժամանակ</string>
-    <string name="stages_verdict_deep_below">Սովորականից քիչ խոր քուն</string>
-    <string name="stages_verdict_deep_above">Սովորականից շատ խոր քուն</string>
-    <string name="stages_verdict_rem_below">Քիչ REM – հաճախ կարճ կամ ուշ գիշերից հետո</string>
-    <string name="stages_verdict_rem_above">Սովորականից շատ REM</string>
-    <string name="stages_verdict_light_below">Սովորականից քիչ թեթև քուն</string>
-    <string name="stages_verdict_light_above">Սովորականից շատ թեթև քուն</string>
-    <string name="stages_verdict_typical">Բոլոր փուլերը սովորական միջակայքում են</string>
+    <string name="stages_source">Ուղենիշային արժեքներ առողջ մեծահասակների համար (Ohayon և ուրիշներ, Sleep 2004)։ Ժամացույցները փուլերը գնահատում են միայն մոտավորապես։</string>
     <string name="hypno_bubble">%1$s · %2$s · արդեն %3$s</string>
     <string name="hypno_block">%1$s %2$s-ից %3$s</string>
     <string name="chart_week_average">Շաբաթական միջին</string>

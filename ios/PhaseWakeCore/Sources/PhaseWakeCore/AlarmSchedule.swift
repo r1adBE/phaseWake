@@ -8,12 +8,16 @@ public struct WakePlan: Equatable, Sendable {
     public let windowStart: Date
     /// Zielzeit: spätester Weckmoment.
     public let target: Date
+    /// «Genau» (``AlarmSpec/isExact``): ab `windowStart` wird nur für den Verlauf gemessen; geweckt wird erst zur
+    /// Zielzeit, nie früher (Grund ``WakeReason/exact``).
+    public let exact: Bool
 
     /// Erzeugt einen Plan; `windowStart` liegt vor `target`.
-    public init(alarmId: String, windowStart: Date, target: Date) {
+    public init(alarmId: String, windowStart: Date, target: Date, exact: Bool = false) {
         self.alarmId = alarmId
         self.windowStart = windowStart
         self.target = target
+        self.exact = exact
     }
 }
 
@@ -52,7 +56,13 @@ public enum AlarmSchedule {
     /// Plan für die nächste Nacht des Weckers (Zielzeit echt nach `now`), oder `nil`, wenn er aus ist.
     public static func nextPlan(_ spec: AlarmSpec, now: Date, calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
         guard let target = nextTarget(spec, now: now, calendar: calendar, holidays: holidays) else { return nil }
-        return WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.windowMinutes), target: target)
+        return plan(spec, target: target)
+    }
+
+    /// Plan des Weckers `spec` für die Zielzeit `target`: Messbeginn `measureWindowMinutes` davor; bei «Genau» mit `exact`.
+    public static func plan(_ spec: AlarmSpec, target: Date) -> WakePlan {
+        WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.measureWindowMinutes), target: target,
+                 exact: spec.isExact)
     }
 
     /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die kleinere Kennung, damit beide Plattformen denselben Wecker wählen.

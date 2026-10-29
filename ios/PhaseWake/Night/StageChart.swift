@@ -32,6 +32,12 @@ struct StageTimeline: Equatable {
     }
 }
 
+/// Weckfenster eines Schlafprofils in Minuten; bei «Genau» nur die Zielzeit (kein Band, nur die Linie), ohne Fenster `nil`.
+func stageWindow(_ h: Hypnogram, exact: Bool) -> ClosedRange<Double>? {
+    guard h.windowFrom <= h.windowTo else { return nil }
+    return exact ? h.windowTo...h.windowTo : h.windowFrom...h.windowTo
+}
+
 /// Reihenfolge der Zeilen von oben nach unten, wie `ChartData.level`.
 let stageRows: [SleepStage] = [.awake, .rem, .light, .deep]
 
@@ -154,9 +160,10 @@ struct StageChart: View {
         }
     }
 
-    /// «Weckfenster 06:30 – 07:00» für VoiceOver beim Weckpunkt; leer ohne Fenster.
+    /// «Weckfenster 06:30 – 07:00» für VoiceOver beim Weckpunkt; «Genau um 07:00» ohne Fenster («Genau»); leer ohne Wecker.
     private var windowText: String {
         guard let window = timeline.window else { return "" }
+        if window.lowerBound == window.upperBound { return L("window_exact_line", Format.time(timeline.time(window.upperBound))) }
         return L("chart_window") + " " + Format.time(timeline.time(window.lowerBound)) + " – " + Format.time(timeline.time(window.upperBound))
     }
 

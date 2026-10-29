@@ -6,10 +6,10 @@ final class NightHistoryTests: XCTestCase {
     /// 2026-10-01T04:30:00Z.
     private let start = Date(timeIntervalSince1970: 1_790_829_000)
 
-    private func night(_ day: Int, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)], wokeMinutes: Double = 18) -> NightRecord {
+    private func night(_ day: Int, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)], wokeMinutes: Double = 18, reason: WakeReason = .lightSleep) -> NightRecord {
         let ws = start.addingTimeInterval(Double(day) * 86_400)
         return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(wokeMinutes * 60),
-                           reason: .lightSleep, snoozes: 1, epochs: epochs)
+                           reason: reason, snoozes: 1, epochs: epochs)
     }
 
     func testKeepsNewestNinety() {
@@ -56,5 +56,15 @@ final class NightHistoryTests: XCTestCase {
         XCTAssertNil(night(0).with(feeling: 6).feeling)
         XCTAssertEqual(night(0).with(feeling: 5).feeling, 5)
         XCTAssertNil(night(0).with(feeling: 5).with(feeling: nil).feeling)
+    }
+
+    func testLightShareSkipsNightsWithoutEarlyWake() {
+        let reasons: [WakeReason] = [.lightSleep, .deadline, .awake, .exact, .shortNight]
+        let nights = reasons.enumerated().map { night($0.offset, reason: $0.element) }
+        // 1 von 3 (ohne Genau und kurze Nacht) = 33 %, nicht 1 von 5.
+        XCTAssertEqual(NightHistory.lightShare(nights), 33)
+        XCTAssertEqual(NightHistory.lightShare(nights + [night(9), night(10)]), 60)
+        XCTAssertNil(NightHistory.lightShare(nights.filter { $0.reason == .exact || $0.reason == .shortNight }))
+        XCTAssertNil(NightHistory.lightShare([]))
     }
 }

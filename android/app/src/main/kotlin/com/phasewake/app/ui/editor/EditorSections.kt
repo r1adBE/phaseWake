@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.toggleable
@@ -21,6 +22,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -132,26 +136,38 @@ internal fun AdviceCard(state: EditorState, advice: WindowAdvice.Suggestion) {
     }
 }
 
-/** Weckfenster in Schritten von 5 Minuten; bei fester Zielzeit mit «von – bis». */
+/** Wahl des Weckfensters: «Genau · 10 · 20 · 30»; ein älterer Wert (15, 25) bleibt als eigenes Feld wählbar. */
+internal val WINDOW_OPTIONS = listOf(AlarmSpec.EXACT_WINDOW, 10, 20, AlarmSpec.MAX_WINDOW_MINUTES)
+
+/** Weckfenster «Genau · 10 · 20 · 30»; bei fester Zielzeit mit «von – bis», bei «Genau» mit Erklärung. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun WindowSection(state: EditorState, time: TimePickerState) {
     Section {
         val minutes = state.window.roundToInt()
-        Text(stringResource(R.string.editor_window, minutes), style = MaterialTheme.typography.titleMedium)
-        Slider(
-            value = state.window,
-            onValueChange = { state.window = (it / 5f).roundToInt() * 5f },
-            valueRange = AlarmSpec.MIN_WINDOW_MINUTES.toFloat()..AlarmSpec.MAX_WINDOW_MINUTES.toFloat(),
-            steps = (AlarmSpec.MAX_WINDOW_MINUTES - AlarmSpec.MIN_WINDOW_MINUTES) / 5 - 1,
-        )
-        if (!state.sleepMode) {
-            val target = LocalTime.of(time.hour, time.minute)
-            Text(
-                stringResource(R.string.editor_window_hint, Format.time(target.minusMinutes(minutes.toLong())), Format.time(target)),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+        val exact = minutes == AlarmSpec.EXACT_WINDOW
+        val exactLabel = stringResource(R.string.editor_window_exact)
+        Text(if (exact) exactLabel else stringResource(R.string.editor_window, minutes), style = MaterialTheme.typography.titleMedium)
+        val options = (WINDOW_OPTIONS + minutes).distinct().sorted()
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(top = 8.dp)) {
+            options.forEachIndexed { index, value ->
+                SegmentedButton(
+                    selected = value == minutes,
+                    onClick = { state.window = value.toFloat() },
+                    shape = SegmentedButtonDefaults.itemShape(index, options.size),
+                    modifier = Modifier.heightIn(min = 48.dp),
+                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else value.toString()) }
+            }
+        }
+        val hint = when {
+            exact -> stringResource(R.string.editor_window_exact_hint)
+            state.sleepMode -> null
+            else -> LocalTime.of(time.hour, time.minute).let { target ->
+                stringResource(R.string.editor_window_hint, Format.time(target.minusMinutes(minutes.toLong())), Format.time(target))
+            }
+        }
+        hint?.let {
+            Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
         }
     }
 }

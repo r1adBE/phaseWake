@@ -20,15 +20,18 @@
     <string name="home_next_today">இன்று</string>
     <string name="home_next_tomorrow">நாளை</string>
     <string name="home_next_in">லேசான தூக்கத்தில் எழுப்பும் · %1$s இல்</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">சரியாக இலக்கு நேரத்தில் எழுப்பும் · %1$s இல்</string>
     <string name="home_no_alarm_title">சரியான தருணத்தில் எழுங்கள்</string>
     <string name="home_no_alarm_text">ஒரு நேரத்தையும் வரம்பையும் அமையுங்கள். நீங்கள் லேசாகத் தூங்கும்போது வாட்ச் உங்களை எழுப்பும்.</string>
     <string name="home_add_alarm">புதிய அலாரம்</string>
     <string name="home_last_night">நேற்றிரவு</string>
     <string name="home_alarms">உங்கள் அலாரங்கள்</string>
 
-    <string name="reason_light">லேசான தூக்கம்</string>
+    <string name="reason_light">அமைதியின்மை – பெரும்பாலும் லேசான தூக்கம்</string>
     <string name="reason_awake">ஏற்கெனவே விழித்திருந்தீர்கள்</string>
     <string name="reason_deadline">லேசான தூக்கம் கண்டறியப்படவில்லை</string>
+    <string name="reason_exact">சரியாக இலக்கு நேரத்தில்</string>
+    <string name="reason_short_night">குறுகிய இரவு – இலக்கு நேரத்தில் மட்டும்</string>
     <string name="woke_early">இலக்குக்கு %1$d நிமி. முன் · %2$s</string>
     <string name="woke_on_time">இலக்கு நேரத்தில் · %1$s</string>
     <string name="no_snooze">ஸ்னூஸ் இல்லை</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">இதற்குள் எழுப்பு</string>
     <string name="editor_latest">அதிகபட்சம்</string>
     <string name="editor_sleep_duration">%1$s தூக்கம்</string>
-    <string name="editor_sleep_hint">நீங்கள் தூங்கியதும் கணக்கிடத் தொடங்கும். வாட்ச்சில் “இனிய இரவு” என்பதைத் தட்டுங்கள்.</string>
+    <string name="editor_sleep_hint">நீங்கள் தூங்கியதிலிருந்து கணக்கிடும். வாட்ச் அதைத் தானாகக் கண்டறியும்; உடனே தொடங்க வாட்ச்சில் “இனிய இரவு” என்பதைத் தட்டுங்கள்.</string>
     <string name="editor_window">வரம்பு: %1$d நிமி.</string>
     <string name="editor_window_hint">%1$s முதல் %2$s வரை எழுப்பும்</string>
+    <string name="editor_window_exact">சரியாக</string>
+    <string name="editor_window_exact_hint">சரியாக இலக்கு நேரத்தில் ஒலிக்கும், ஒருபோதும் முன்பு அல்ல. உங்கள் வாட்ச் இருந்தாலும் உங்கள் வரலாற்றுக்காக அளவிடும்.</string>
+    <string name="window_exact_line">சரியாக %1$s-க்கு</string>
     <string name="editor_days">மீண்டும்</string>
     <string name="editor_weekdays">வார நாட்கள்</string>
     <string name="editor_weekend">வார இறுதி</string>
@@ -225,6 +231,7 @@
     <string name="editor_keep_editing">தொடர்ந்து திருத்து</string>
     <string name="editor_delete_title">இந்த அலாரத்தை நீக்கவா?</string>
     <string name="home_window_running">எழுப்பும் வரம்பு நடக்கிறது – இப்போது அளவிடுகிறது</string>
+    <string name="home_auto_onset">%1$s முதல் நீங்கள் எப்போது தூங்குகிறீர்கள் என்பதை வாட்ச் தானாகக் கண்டறியும்.</string>
     <string name="check_volume">அலாரம் ஒலியளவு</string>
     <string name="check_volume_problem">அலாரம் ஒலியளவு 0 இல் உள்ளது – ஃபோன் சத்தமின்றி ஒலிக்கும்.</string>
     <string name="health_update">Health Connect ஐப் புதுப்பி</string>
@@ -300,12 +307,12 @@
     <string name="sound_rec_plug_in">பதிவு ஆனில் உள்ளது. இரவுக்கு ஃபோனைச் சார்ஜரில் இணைப்பது நல்லது.</string>
     <string name="sound_rec_default">புதிய இரவுகளுக்கு ஆன்</string>
     <string name="sound_rec_default_hint">உறங்கும் நேரத்திலிருந்து Phase Wake ஐத் திறக்கும்போது தொடங்கும் (அலாரம் இல்லையெனில் இரவு 9 மணியிலிருந்து). சிறு கிளிப்புகள் மட்டும்; அவை உங்கள் ஃபோனிலேயே இருக்கும், 7 நாட்களுக்குப் பிறகு நீக்கப்படும்.</string>
-    <string name="sound_type_snore">குறட்டை</string>
+    <string name="sound_type_snore">குறட்டையாக இருக்கலாம்</string>
     <string name="sound_type_talk">பேச்சு</string>
     <string name="sound_type_other">வேறு ஒலி</string>
     <plurals name="sound_summary">
-        <item quantity="one">குறட்டை: %1$s (%2$d கிளிப்)</item>
-        <item quantity="other">குறட்டை: %1$s (%2$d கிளிப்புகள்)</item>
+        <item quantity="one">குறட்டையாக இருக்கலாம்: %1$s (%2$d கிளிப்)</item>
+        <item quantity="other">குறட்டையாக இருக்கலாம்: %1$s (%2$d கிளிப்புகள்)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">பேச்சு: %1$d கிளிப்</item>
@@ -509,14 +516,7 @@
     <string name="stages_typical_range">வழக்கமாக %1$d–%2$d %%</string>
     <string name="stages_typical_below">வழக்கமாக %1$d %%-க்குக் கீழ்</string>
     <string name="stages_not_medical">இது மருத்துவ மதிப்பீடு அல்ல.</string>
-    <string name="stages_verdict_awake_above">வழக்கத்தை விட அதிக விழிப்பு</string>
-    <string name="stages_verdict_deep_below">வழக்கத்தை விட குறைவான ஆழ்ந்த தூக்கம்</string>
-    <string name="stages_verdict_deep_above">வழக்கத்தை விட அதிக ஆழ்ந்த தூக்கம்</string>
-    <string name="stages_verdict_rem_below">குறைவான REM – பெரும்பாலும் குறுகிய அல்லது தாமதமான இரவுக்குப் பின்</string>
-    <string name="stages_verdict_rem_above">வழக்கத்தை விட அதிக REM</string>
-    <string name="stages_verdict_light_below">வழக்கத்தை விட குறைவான லேசான தூக்கம்</string>
-    <string name="stages_verdict_light_above">வழக்கத்தை விட அதிக லேசான தூக்கம்</string>
-    <string name="stages_verdict_typical">எல்லா நிலைகளும் வழக்கமான வரம்பில்</string>
+    <string name="stages_source">ஆரோக்கியமான பெரியவர்களுக்கான குறிப்பு மதிப்புகள் (Ohayon மற்றும் பலர், Sleep 2004). வாட்சுகள் நிலைகளைத் தோராயமாக மட்டுமே மதிப்பிடுகின்றன.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s ஆக</string>
     <string name="hypno_block">%1$s %2$s முதல் %3$s வரை</string>
     <string name="chart_week_average">வாராந்திர சராசரி</string>

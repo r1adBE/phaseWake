@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Tere hommikust</string>
 
     <string name="ring_greeting">Tere hommikust</string>
-    <string name="ring_reason_light">Tuvastati kerge uni</string>
+    <string name="ring_reason_light">Rahutu – tõenäoliselt kerge uni</string>
     <string name="ring_reason_awake">Olid juba ärkvel</string>
     <string name="ring_reason_deadline">Sihtaeg käes</string>
+    <string name="ring_reason_exact">Täpselt sihtajal</string>
+    <string name="ring_reason_short_night">Lühike öö – alles sihtajal</string>
     <string name="ring_hold_to_stop">Peatamiseks hoia all</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · jäänud %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Ärata mind kell</string>
     <string name="editor_latest">Hiljemalt</string>
     <string name="editor_window">Aken: %1$d min</string>
+    <string name="editor_window_exact">Täpselt</string>
+    <string name="editor_window_exact_hint">Heliseb täpselt sihtajal, mitte kunagi varem. Kell mõõdab ikkagi sinu ajaloo jaoks.</string>
+    <string name="window_exact_line">Täpselt kell %1$s</string>
     <string name="editor_days">Korda</string>
     <string name="editor_save">Salvesta</string>
     <string name="editor_delete">Kustuta äratus</string>

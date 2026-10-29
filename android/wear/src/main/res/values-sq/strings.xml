@@ -10,9 +10,11 @@
     <string name="notification_ring_title">Mirëmëngjes</string>
 
     <string name="ring_greeting">Mirëmëngjes</string>
-    <string name="ring_reason_light">U dallua gjumë i lehtë</string>
+    <string name="ring_reason_light">I shqetësuar – ndoshta gjumë i lehtë</string>
     <string name="ring_reason_awake">Ishe zgjuar tashmë</string>
     <string name="ring_reason_deadline">U arrit ora e synuar</string>
+    <string name="ring_reason_exact">Saktësisht në orën e synuar</string>
+    <string name="ring_reason_short_night">Natë e shkurtër – vetëm në orën e synuar</string>
     <string name="ring_hold_to_stop">Mbaj për ta ndalur</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · mbetet %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Më zgjo deri në</string>
     <string name="editor_latest">Së voni</string>
     <string name="editor_window">Intervali: %1$d min</string>
+    <string name="editor_window_exact">Saktë</string>
+    <string name="editor_window_exact_hint">Bie saktësisht në orën e synuar, kurrë më herët. Ora jote vazhdon të masë për historikun tënd.</string>
+    <string name="window_exact_line">Saktësisht në %1$s</string>
     <string name="editor_days">Përsërit</string>
     <string name="editor_save">Ruaj</string>
     <string name="editor_delete">Fshi alarmin</string>

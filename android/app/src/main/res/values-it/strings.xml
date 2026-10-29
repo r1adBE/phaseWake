@@ -20,15 +20,18 @@
     <string name="home_next_today">Oggi</string>
     <string name="home_next_tomorrow">Domani</string>
     <string name="home_next_in">Ti sveglia nel sonno leggero · tra %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Ti sveglia esattamente all’orario obiettivo · tra %1$s</string>
     <string name="home_no_alarm_title">Svegliati al momento giusto</string>
     <string name="home_no_alarm_text">Scegli un orario e una finestra. Il tuo smartwatch ti sveglia quando dormi leggero.</string>
     <string name="home_add_alarm">Nuova sveglia</string>
     <string name="home_last_night">Ultima notte</string>
     <string name="home_alarms">Le tue sveglie</string>
 
-    <string name="reason_light">Sonno leggero</string>
+    <string name="reason_light">Agitato – probabilmente sonno leggero</string>
     <string name="reason_awake">Già sveglio</string>
     <string name="reason_deadline">Nessun sonno leggero rilevato</string>
+    <string name="reason_exact">Esattamente all’orario obiettivo</string>
+    <string name="reason_short_night">Notte breve – solo all’orario obiettivo</string>
     <string name="woke_early">%1$d min prima dell\'orario obiettivo · %2$s</string>
     <string name="woke_on_time">All\'orario obiettivo · %1$s</string>
     <string name="no_snooze">senza posticipo</string>
@@ -48,9 +51,12 @@
     <string name="editor_target">Svegliami entro</string>
     <string name="editor_latest">Al più tardi</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
-    <string name="editor_sleep_hint">Il conto parte da quando ti addormenti. Tocca «Buonanotte» sullo smartwatch.</string>
+    <string name="editor_sleep_hint">Conta da quando ti addormenti. Lo smartwatch lo rileva in automatico; tocca «Buonanotte» sullo smartwatch per iniziare subito.</string>
     <string name="editor_window">Finestra: %1$d min</string>
     <string name="editor_window_hint">Ti sveglia tra le %1$s e le %2$s</string>
+    <string name="editor_window_exact">Esatto</string>
+    <string name="editor_window_exact_hint">Suona esattamente all’orario obiettivo, mai prima. L’orologio misura comunque per la tua cronologia.</string>
+    <string name="window_exact_line">Esattamente alle %1$s</string>
     <string name="editor_days">Ripeti</string>
     <string name="editor_weekdays">Giorni feriali</string>
     <string name="editor_weekend">Weekend</string>
@@ -228,6 +234,7 @@
     <string name="editor_keep_editing">Continua a modificare</string>
     <string name="editor_delete_title">Eliminare questa sveglia?</string>
     <string name="home_window_running">Finestra in corso – misurazione in corso</string>
+    <string name="home_auto_onset">L’orologio rileva automaticamente quando ti addormenti a partire dalle %1$s.</string>
     <string name="check_volume">Volume della sveglia</string>
     <string name="check_volume_problem">Il volume della sveglia è a 0: il tuo telefono suonerebbe in silenzio.</string>
     <string name="health_update">Aggiorna Health Connect</string>
@@ -308,13 +315,13 @@
     <string name="sound_rec_plug_in">Registrazione attiva. Meglio collegare il telefono al caricatore per la notte.</string>
     <string name="sound_rec_default">Attiva per le nuove notti</string>
     <string name="sound_rec_default_hint">Parte quando apri Phase Wake dalla tua ora di andare a letto (senza sveglia dalle 21:00). Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni.</string>
-    <string name="sound_type_snore">Russare</string>
+    <string name="sound_type_snore">Possibile russare</string>
     <string name="sound_type_talk">Parlare</string>
     <string name="sound_type_other">Altro rumore</string>
     <plurals name="sound_summary">
-        <item quantity="one">Russare: %1$s (%2$d estratto)</item>
-        <item quantity="many">Russare: %1$s (%2$d estratti)</item>
-        <item quantity="other">Russare: %1$s (%2$d estratti)</item>
+        <item quantity="one">Possibile russare: %1$s (%2$d estratto)</item>
+        <item quantity="many">Possibile russare: %1$s (%2$d estratti)</item>
+        <item quantity="other">Possibile russare: %1$s (%2$d estratti)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Parlare: %1$d estratto</item>
@@ -521,14 +528,7 @@
     <string name="stages_typical_range">Di solito %1$d–%2$d %%</string>
     <string name="stages_typical_below">Di solito sotto il %1$d %%</string>
     <string name="stages_not_medical">Non è una valutazione medica.</string>
-    <string name="stages_verdict_awake_above">Più tempo sveglio del solito</string>
-    <string name="stages_verdict_deep_below">Meno sonno profondo del solito</string>
-    <string name="stages_verdict_deep_above">Più sonno profondo del solito</string>
-    <string name="stages_verdict_rem_below">Poco REM – spesso dopo una notte breve o tarda</string>
-    <string name="stages_verdict_rem_above">Più REM del solito</string>
-    <string name="stages_verdict_light_below">Meno sonno leggero del solito</string>
-    <string name="stages_verdict_light_above">Più sonno leggero del solito</string>
-    <string name="stages_verdict_typical">Tutte le fasi nell’intervallo abituale</string>
+    <string name="stages_source">Valori di riferimento per adulti sani (Ohayon et al., Sleep 2004). Gli orologi stimano le fasi solo in modo approssimativo.</string>
     <string name="hypno_bubble">%1$s · %2$s · da %3$s</string>
     <string name="hypno_block">%1$s dalle %2$s alle %3$s</string>
     <string name="chart_week_average">Media settimanale</string>

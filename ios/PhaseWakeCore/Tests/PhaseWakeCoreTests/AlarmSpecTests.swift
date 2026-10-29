@@ -17,6 +17,21 @@ final class AlarmSpecTests: XCTestCase {
         XCTAssertEqual(alarm().windowMinutes, AlarmSpec.maxWindowMinutes)
     }
 
+    func testExactWindowIsZeroAndMeasuresThirtyMinutes() throws {
+        let exact = try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: AlarmSpec.exactWindow)
+        XCTAssertTrue(exact.isExact)
+        XCTAssertEqual(exact.measureWindowMinutes, AlarmSpec.measureMinutes)
+        XCTAssertFalse(alarm().isExact)
+        XCTAssertEqual(alarm().measureWindowMinutes, 30)
+        XCTAssertEqual(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 10).measureWindowMinutes, 10)
+        // Zwischen 0 und 10 gibt es nichts.
+        XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 5))
+        XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: -1))
+        XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 31))
+        // Der Codec schreibt 0 wie jede andere Zahl.
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([exact])), [exact])
+    }
+
     func testPhoneBackupFollowsPhoneAlert() throws {
         XCTAssertFalse(try AlarmSpec(id: "a", hour: 7, minute: 0, phone: .off).phoneBackup)
         XCTAssertTrue(try AlarmSpec(id: "a", hour: 7, minute: 0, phone: .vibrate).phoneBackup)

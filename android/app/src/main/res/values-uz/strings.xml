@@ -21,15 +21,18 @@
     <string name="home_next_today">Bugun</string>
     <string name="home_next_tomorrow">Ertaga</string>
     <string name="home_next_in">Yengil uyquda uygʻotadi · %1$s dan keyin</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Aynan belgilangan vaqtda uygʻotadi · %1$s dan keyin</string>
     <string name="home_no_alarm_title">Ayni vaqtida uygʻon</string>
     <string name="home_no_alarm_text">Vaqt va oraliqni belgila. Uyquing yengil boʻlganda soating seni uygʻotadi.</string>
     <string name="home_add_alarm">Yangi budilnik</string>
     <string name="home_last_night">Oʻtgan tun</string>
     <string name="home_alarms">Budilniklaring</string>
 
-    <string name="reason_light">Yengil uyqu</string>
+    <string name="reason_light">Bezovta – ehtimol yengil uyqu</string>
     <string name="reason_awake">Allaqachon uygʻoq</string>
     <string name="reason_deadline">Yengil uyqu aniqlanmadi</string>
+    <string name="reason_exact">Aynan belgilangan vaqtda</string>
+    <string name="reason_short_night">Qisqa tun – faqat belgilangan vaqtda</string>
     <string name="woke_early">Belgilangan vaqtdan %1$d daq oldin · %2$s</string>
     <string name="woke_on_time">Belgilangan vaqtda · %1$s</string>
     <string name="no_snooze">kechiktirishsiz</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Meni uygʻot</string>
     <string name="editor_latest">Eng kechi</string>
     <string name="editor_sleep_duration">Uyqu: %1$s</string>
-    <string name="editor_sleep_hint">Uxlab qolganingdan keyin hisoblay boshlaydi. Soatingda «Xayrli tun» tugmasini bos.</string>
+    <string name="editor_sleep_hint">Uxlab qolganingdan boshlab hisoblaydi. Soat buni avtomatik aniqlaydi; darhol boshlash uchun soatda «Xayrli tun» tugmasini bos.</string>
     <string name="editor_window">Oraliq: %1$d daq</string>
     <string name="editor_window_hint">Seni %1$s va %2$s oraligʻida uygʻotadi</string>
+    <string name="editor_window_exact">Aniq</string>
+    <string name="editor_window_exact_hint">Aynan belgilangan vaqtda jiringlaydi, hech qachon erta emas. Soating baribir tarixing uchun oʻlchaydi.</string>
+    <string name="window_exact_line">Aynan soat %1$s da</string>
     <string name="editor_days">Takrorlash</string>
     <string name="editor_weekdays">Ish kunlari</string>
     <string name="editor_weekend">Dam olish kunlari</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Tahrirlashni davom ettirish</string>
     <string name="editor_delete_title">Bu budilnik oʻchirilsinmi?</string>
     <string name="home_window_running">Uygʻotish oraligʻi boshlandi – oʻlchanmoqda</string>
+    <string name="home_auto_onset">Soating %1$s dan boshlab qachon uxlab qolganingni avtomatik aniqlaydi.</string>
     <string name="check_volume">Budilnik ovozi</string>
     <string name="check_volume_problem">Budilnik ovozi 0 da – telefoning ovozsiz jiringlaydi.</string>
     <string name="health_update">Health Connectʼni yangilash</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Yozish yoqilgan. Telefonni tunga quvvatga ulab qoʻy.</string>
     <string name="sound_rec_default">Yangi tunlar uchun yoqiq</string>
     <string name="sound_rec_default_hint">Phase Wakeʼni uxlash vaqtingdan boshlab ochganingda ishga tushadi (budilniksiz – 21:00 dan). Faqat qisqa parchalar; ular telefoningda qoladi va 7 kundan keyin oʻchiriladi.</string>
-    <string name="sound_type_snore">Xurrak</string>
+    <string name="sound_type_snore">Ehtimoliy xurrak</string>
     <string name="sound_type_talk">Gapirish</string>
     <string name="sound_type_other">Boshqa tovush</string>
     <plurals name="sound_summary">
-        <item quantity="one">Xurrak: %1$s (%2$d ta parcha)</item>
-        <item quantity="other">Xurrak: %1$s (%2$d ta parcha)</item>
+        <item quantity="one">Ehtimoliy xurrak: %1$s (%2$d ta parcha)</item>
+        <item quantity="other">Ehtimoliy xurrak: %1$s (%2$d ta parcha)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Gapirish: %1$d ta parcha</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Odatda %1$d–%2$d %%</string>
     <string name="stages_typical_below">Odatda %1$d %% dan kam</string>
     <string name="stages_not_medical">Bu tibbiy baho emas.</string>
-    <string name="stages_verdict_awake_above">Odatdagidan koʻp uygʻoqlik</string>
-    <string name="stages_verdict_deep_below">Odatdagidan kam chuqur uyqu</string>
-    <string name="stages_verdict_deep_above">Odatdagidan koʻp chuqur uyqu</string>
-    <string name="stages_verdict_rem_below">Kam REM – koʻpincha qisqa yoki kech tundan keyin</string>
-    <string name="stages_verdict_rem_above">Odatdagidan koʻp REM</string>
-    <string name="stages_verdict_light_below">Odatdagidan kam yengil uyqu</string>
-    <string name="stages_verdict_light_above">Odatdagidan koʻp yengil uyqu</string>
-    <string name="stages_verdict_typical">Barcha bosqichlar odatiy oraliqda</string>
+    <string name="stages_source">Sogʻlom kattalar uchun moʻljal qiymatlari (Ohayon va boshq., Sleep 2004). Soatlar bosqichlarni faqat taxminan baholaydi.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s davomida</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Haftalik oʻrtacha</string>

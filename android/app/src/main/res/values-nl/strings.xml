@@ -19,15 +19,18 @@
     <string name="home_next_today">Vandaag</string>
     <string name="home_next_tomorrow">Morgen</string>
     <string name="home_next_in">Wekt je in lichte slaap · over %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Wekt je precies op de doeltijd · over %1$s</string>
     <string name="home_no_alarm_title">Word wakker op het juiste moment</string>
     <string name="home_no_alarm_text">Stel een tijd en een venster in. Je horloge wekt je als je licht slaapt.</string>
     <string name="home_add_alarm">Nieuwe wekker</string>
     <string name="home_last_night">Afgelopen nacht</string>
     <string name="home_alarms">Je wekkers</string>
 
-    <string name="reason_light">Lichte slaap</string>
+    <string name="reason_light">Onrustig – waarschijnlijk lichte slaap</string>
     <string name="reason_awake">Al wakker</string>
     <string name="reason_deadline">Geen lichte slaap gedetecteerd</string>
+    <string name="reason_exact">Precies op de doeltijd</string>
+    <string name="reason_short_night">Korte nacht – pas op de doeltijd</string>
     <string name="woke_early">%1$d min voor de doeltijd · %2$s</string>
     <string name="woke_on_time">Op de doeltijd · %1$s</string>
     <string name="no_snooze">zonder snooze</string>
@@ -47,9 +50,12 @@
     <string name="editor_target">Wek me om</string>
     <string name="editor_latest">Uiterlijk</string>
     <string name="editor_sleep_duration">%1$s slapen</string>
-    <string name="editor_sleep_hint">Telt vanaf het moment dat je in slaap valt. Tik op je horloge op “Welterusten”.</string>
+    <string name="editor_sleep_hint">Telt vanaf het moment dat je in slaap valt. Je horloge herkent het automatisch; tik op het horloge op “Welterusten” om meteen te starten.</string>
     <string name="editor_window">Venster: %1$d min</string>
     <string name="editor_window_hint">Wekt je tussen %1$s en %2$s</string>
+    <string name="editor_window_exact">Precies</string>
+    <string name="editor_window_exact_hint">Gaat precies op de doeltijd af, nooit eerder. Je horloge meet toch voor je geschiedenis.</string>
+    <string name="window_exact_line">Precies om %1$s</string>
     <string name="editor_days">Herhalen</string>
     <string name="editor_weekdays">Werkdagen</string>
     <string name="editor_weekend">Weekend</string>
@@ -224,6 +230,7 @@
     <string name="editor_keep_editing">Verder bewerken</string>
     <string name="editor_delete_title">Deze wekker verwijderen?</string>
     <string name="home_window_running">Venster loopt – er wordt nu gemeten</string>
+    <string name="home_auto_onset">Je horloge herkent vanaf %1$s automatisch wanneer je in slaap valt.</string>
     <string name="check_volume">Wekkervolume</string>
     <string name="check_volume_problem">Het wekkervolume staat op 0 – je telefoon zou geluidloos overgaan.</string>
     <string name="health_update">Health Connect updaten</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Opname loopt. Sluit je telefoon voor de nacht het best aan op de lader.</string>
     <string name="sound_rec_default">Aan voor nieuwe nachten</string>
     <string name="sound_rec_default_hint">Start wanneer je Phase Wake vanaf je bedtijd opent (zonder wekker vanaf 21:00). Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist.</string>
-    <string name="sound_type_snore">Snurken</string>
+    <string name="sound_type_snore">Mogelijk snurken</string>
     <string name="sound_type_talk">Praten</string>
     <string name="sound_type_other">Ander geluid</string>
     <plurals name="sound_summary">
-        <item quantity="one">Snurken: %1$s (%2$d fragment)</item>
-        <item quantity="other">Snurken: %1$s (%2$d fragmenten)</item>
+        <item quantity="one">Mogelijk snurken: %1$s (%2$d fragment)</item>
+        <item quantity="other">Mogelijk snurken: %1$s (%2$d fragmenten)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Praten: %1$d fragment</item>
@@ -507,14 +514,7 @@
     <string name="stages_typical_range">Gebruikelijk %1$d–%2$d %%</string>
     <string name="stages_typical_below">Gebruikelijk onder %1$d %%</string>
     <string name="stages_not_medical">Geen medisch oordeel.</string>
-    <string name="stages_verdict_awake_above">Meer tijd wakker dan gewoonlijk</string>
-    <string name="stages_verdict_deep_below">Minder diepe slaap dan gewoonlijk</string>
-    <string name="stages_verdict_deep_above">Meer diepe slaap dan gewoonlijk</string>
-    <string name="stages_verdict_rem_below">Weinig REM – vaak na een korte of late nacht</string>
-    <string name="stages_verdict_rem_above">Meer REM dan gewoonlijk</string>
-    <string name="stages_verdict_light_below">Minder lichte slaap dan gewoonlijk</string>
-    <string name="stages_verdict_light_above">Meer lichte slaap dan gewoonlijk</string>
-    <string name="stages_verdict_typical">Alle fasen binnen het gebruikelijke bereik</string>
+    <string name="stages_source">Richtwaarden voor gezonde volwassenen (Ohayon e.a., Sleep 2004). Horloges schatten fasen maar ruwweg in.</string>
     <string name="hypno_bubble">%1$s · %2$s · al %3$s</string>
     <string name="hypno_block">%1$s van %2$s tot %3$s</string>
     <string name="chart_week_average">Weekgemiddelde</string>

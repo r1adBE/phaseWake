@@ -54,15 +54,17 @@ object Notifications {
     }
 
     /** Daueranzeige während der Messung, mit laufender Aktivität auf dem Zifferblatt. */
-    fun window(context: Context, targetText: String): Notification {
+    fun window(context: Context, targetText: String, exact: Boolean = false): Notification {
         val open = PendingIntent.getActivity(
             context, 0, Intent(context, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        val text = context.getString(R.string.notification_window_text, targetText)
+        // «Genau»: kein Versprechen zum leichten Schlaf, nur die Zielzeit.
+        val text = if (exact) context.getString(R.string.editor_window_exact_hint) else context.getString(R.string.notification_window_text, targetText)
+        val title = if (exact) context.getString(R.string.window_exact_line, targetText) else context.getString(R.string.notification_window_title)
         val builder = NotificationCompat.Builder(context, CHANNEL_WINDOW)
             .setSmallIcon(R.drawable.ic_moon)
-            .setContentTitle(context.getString(R.string.notification_window_title))
+            .setContentTitle(title)
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setOngoing(true)

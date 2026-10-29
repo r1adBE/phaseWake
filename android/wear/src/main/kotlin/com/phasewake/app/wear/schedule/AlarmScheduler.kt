@@ -124,7 +124,7 @@ class AlarmScheduler(
         if (busy == null || spec.id !in busy.alarmIds) return null
         val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone, days) ?: return null
         if (target.isAfter(busy.until) || target.isAfter(now)) return null
-        return WakePlan(spec.id, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
+        return AlarmSchedule.planAt(spec, target)
     }
 
     /** Zeitraum der zuletzt beendeten Nacht(en), solange er für das Nachholen gilt. */
@@ -190,6 +190,7 @@ class AlarmScheduler(
 
         refreshSurfaces()
         publishStatus()
+        AutoOnset.update(context, nextAlarmPlan(), now)
 
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme (Schlummer-Ende) nicht anfassen und
         // keinen anderen Wecker starten, der sie ablösen würde. Ihr Ende plant neu und holt nach.

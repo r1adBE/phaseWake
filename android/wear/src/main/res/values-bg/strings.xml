@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Добро утро</string>
 
     <string name="ring_greeting">Добро утро</string>
-    <string name="ring_reason_light">Открит лек сън</string>
+    <string name="ring_reason_light">Неспокойно – вероятно лек сън</string>
     <string name="ring_reason_awake">Вече беше на крак</string>
     <string name="ring_reason_deadline">Целевият час настъпи</string>
+    <string name="ring_reason_exact">Точно в целевия час</string>
+    <string name="ring_reason_short_night">Кратка нощ – чак в целевия час</string>
     <string name="ring_hold_to_stop">Задръж, за да спреш</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d мин · остават %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Събуди ме до</string>
     <string name="editor_latest">Най-късно</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Звъни точно в целевия час, никога по-рано. Часовникът ти пак мери за историята.</string>
+    <string name="window_exact_line">Точно в %1$s</string>
     <string name="editor_days">Повтаряне</string>
     <string name="editor_save">Запази</string>
     <string name="editor_delete">Изтрий будилника</string>

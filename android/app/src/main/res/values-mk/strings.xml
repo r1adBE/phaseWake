@@ -21,15 +21,18 @@
     <string name="home_next_today">Денес</string>
     <string name="home_next_tomorrow">Утре</string>
     <string name="home_next_in">Те буди во лесен сон · за %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Те буди точно во целното време · за %1$s</string>
     <string name="home_no_alarm_title">Разбуди се во вистинскиот миг</string>
     <string name="home_no_alarm_text">Постави време и прозорец. Часовникот те буди кога спиеш лесно.</string>
     <string name="home_add_alarm">Нов аларм</string>
     <string name="home_last_night">Минатата ноќ</string>
     <string name="home_alarms">Твоите аларми</string>
 
-    <string name="reason_light">Лесен сон</string>
+    <string name="reason_light">Немирно – веројатно лесен сон</string>
     <string name="reason_awake">Веќе буден</string>
     <string name="reason_deadline">Не е откриен лесен сон</string>
+    <string name="reason_exact">Точно во целното време</string>
+    <string name="reason_short_night">Кратка ноќ – дури во целното време</string>
     <string name="woke_early">%1$d мин пред целта · %2$s</string>
     <string name="woke_on_time">Во целното време · %1$s</string>
     <string name="no_snooze">без одложување</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Разбуди ме до</string>
     <string name="editor_latest">Најдоцна</string>
     <string name="editor_sleep_duration">Спиј %1$s</string>
-    <string name="editor_sleep_hint">Броењето почнува кога ќе заспиеш. Допри „Добра ноќ“ на часовникот.</string>
+    <string name="editor_sleep_hint">Брои од моментот кога ќе заспиеш. Часовникот го препознава автоматски; допри „Добра ноќ“ на часовникот за да почне веднаш.</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
     <string name="editor_window_hint">Те буди меѓу %1$s и %2$s</string>
+    <string name="editor_window_exact">Точно</string>
+    <string name="editor_window_exact_hint">Ѕвони точно во целното време, никогаш порано. Часовникот сепак мери за твојата историја.</string>
+    <string name="window_exact_line">Точно во %1$s</string>
     <string name="editor_days">Повторувај</string>
     <string name="editor_weekdays">Работни денови</string>
     <string name="editor_weekend">Викенд</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Продолжи со уредување</string>
     <string name="editor_delete_title">Да се избрише алармот?</string>
     <string name="home_window_running">Прозорецот за будење тече – се мери</string>
+    <string name="home_auto_onset">Часовникот од %1$s автоматски препознава кога ќе заспиеш.</string>
     <string name="check_volume">Јачина на алармот</string>
     <string name="check_volume_problem">Јачината на алармот е 0 – телефонот би ѕвонел безгласно.</string>
     <string name="health_update">Ажурирај Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">Снимањето е вклучено. Најдобро приклучи го телефонот на полнач преку ноќта.</string>
     <string name="sound_rec_default">Вклучено за нови ноќи</string>
     <string name="sound_rec_default_hint">Почнува кога ќе го отвориш Phase Wake од времето за спиење (без аларм од 21 ч). Само кратки снимки; остануваат на телефонот и се бришат по 7 дена.</string>
-    <string name="sound_type_snore">Хркање</string>
+    <string name="sound_type_snore">Можно хркање</string>
     <string name="sound_type_talk">Зборување</string>
     <string name="sound_type_other">Друг звук</string>
     <plurals name="sound_summary">
-        <item quantity="one">Хркање: %1$s (%2$d снимка)</item>
-        <item quantity="other">Хркање: %1$s (%2$d снимки)</item>
+        <item quantity="one">Можно хркање: %1$s (%2$d снимка)</item>
+        <item quantity="other">Можно хркање: %1$s (%2$d снимки)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Зборување: %1$d снимка</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Вообичаено %1$d–%2$d %%</string>
     <string name="stages_typical_below">Вообичаено под %1$d %%</string>
     <string name="stages_not_medical">Не е медицинска проценка.</string>
-    <string name="stages_verdict_awake_above">Повеќе будно време од вообичаено</string>
-    <string name="stages_verdict_deep_below">Помалку длабок сон од вообичаено</string>
-    <string name="stages_verdict_deep_above">Повеќе длабок сон од вообичаено</string>
-    <string name="stages_verdict_rem_below">Малку REM – често по кратка или доцна ноќ</string>
-    <string name="stages_verdict_rem_above">Повеќе REM од вообичаено</string>
-    <string name="stages_verdict_light_below">Помалку лесен сон од вообичаено</string>
-    <string name="stages_verdict_light_above">Повеќе лесен сон од вообичаено</string>
-    <string name="stages_verdict_typical">Сите фази во вообичаениот опсег</string>
+    <string name="stages_source">Референтни вредности за здрави возрасни (Ohayon и др., Sleep 2004). Часовниците фазите ги проценуваат само приближно.</string>
     <string name="hypno_bubble">%1$s · %2$s · веќе %3$s</string>
     <string name="hypno_block">%1$s од %2$s до %3$s</string>
     <string name="chart_week_average">Неделен просек</string>

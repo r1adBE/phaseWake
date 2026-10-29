@@ -32,7 +32,6 @@ import androidx.wear.compose.material3.SplitSwitchButton
 import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Bedtime
-import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.DayFormat
 import com.phasewake.app.core.WakePlan
@@ -41,6 +40,7 @@ import com.phasewake.app.wear.ui.components.FlowingWave
 import com.phasewake.app.wear.ui.components.WindowRing
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.nightGlow
+import com.phasewake.app.wear.wake.ringReasonRes
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
@@ -166,6 +166,8 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
                 Modifier.size(156.dp),
                 nowFraction = extras.now?.let { dialFraction(it, zone) },
                 bedtimeFraction = bedtime?.let { dialFraction(it, zone) },
+                // «Genau»: kein Bogen, nur der Weckpunkt.
+                showArc = !plan.exact,
             )
         }
         // Der Ring ist für Bildschirmleser verborgen: die Bettzeit kommt darum nur in die Beschreibung des Textblocks,
@@ -178,7 +180,7 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
             modifier = if (texts == null) {
                 Modifier.semantics(mergeDescendants = true) { }
             } else {
-                Modifier.clearAndSetSemantics { contentDescription = (texts + listOfNotNull(bedtimeText)).joinToString(", ") }
+                Modifier.clearAndSetSemantics { contentDescription = (texts.filter { it.isNotEmpty() } + listOfNotNull(bedtimeText)).joinToString(", ") }
             },
         ) {
             if (texts == null) {
@@ -193,15 +195,18 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
             } else {
                 val (day, window, length) = texts
                 Text(day, style = MaterialTheme.typography.labelSmall, color = Brand.Mist)
-                Text(window, style = MaterialTheme.typography.titleLarge)
-                Text(length, style = MaterialTheme.typography.labelSmall, color = Brand.Muted)
+                Text(window, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
+                if (length.isNotEmpty()) Text(length, style = MaterialTheme.typography.labelSmall, color = Brand.Muted)
                 FlowingWave(Modifier.padding(top = 6.dp).width(96.dp).height(18.dp))
             }
         }
     }
 }
 
-/** Tag, Fenster und Fensterlänge des Plans als Texte; «heute» und «morgen» bezogen auf [now] (`null` = jetzt). */
+/**
+ * Tag, Fenster und Fensterlänge des Plans als Texte; «heute» und «morgen» bezogen auf [now] (`null` = jetzt).
+ * Bei «Genau» ([WakePlan.exact]) «Genau um 7:00» und keine Fensterlänge (leerer Text).
+ */
 @Composable
 private fun windowTexts(plan: WakePlan, alarm: AlarmSpec?, zone: ZoneId, now: Instant?): List<String> {
     val day = plan.target.atZone(zone).toLocalDate()
@@ -213,21 +218,19 @@ private fun windowTexts(plan: WakePlan, alarm: AlarmSpec?, zone: ZoneId, now: In
             today.plusDays(1) -> stringResource(R.string.home_tomorrow)
             else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
         },
-        stringResource(R.string.home_window, formatTime(plan.windowStart, zone), formatTime(plan.target, zone)),
-        stringResource(R.string.home_window_length, alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES),
+        if (plan.exact) {
+            stringResource(R.string.window_exact_line, formatTime(plan.target, zone))
+        } else {
+            stringResource(R.string.home_window, formatTime(plan.windowStart, zone), formatTime(plan.target, zone))
+        },
+        if (plan.exact) "" else stringResource(R.string.home_window_length, alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES),
     )
 }
 
 /** Letzte Nacht in einer Zeile: wann und warum geweckt wurde. */
 @Composable
 private fun LastNight(night: NightRecord, zone: ZoneId) {
-    val reason = stringResource(
-        when (night.reason) {
-            WakeReason.LIGHT_SLEEP -> R.string.ring_reason_light
-            WakeReason.AWAKE -> R.string.ring_reason_awake
-            WakeReason.DEADLINE -> R.string.ring_reason_deadline
-        },
-    )
+    val reason = stringResource(ringReasonRes(night.reason))
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).semantics(mergeDescendants = true) { },
@@ -279,7 +282,11 @@ private fun AlarmSwitch(alarm: AlarmSpec, skipped: String?, onEdit: () -> Unit, 
         alarm.days, LocalConfiguration.current.locales[0],
         stringResource(R.string.alarm_once), stringResource(R.string.alarm_every_day),
     )
-    val window = stringResource(R.string.home_window, formatTime(start), formatTime(time))
+    val window = if (alarm.isExact) {
+        stringResource(R.string.window_exact_line, formatTime(time))
+    } else {
+        stringResource(R.string.home_window, formatTime(start), formatTime(time))
+    }
     SplitSwitchButton(
         checked = alarm.enabled,
         onCheckedChange = onToggle,

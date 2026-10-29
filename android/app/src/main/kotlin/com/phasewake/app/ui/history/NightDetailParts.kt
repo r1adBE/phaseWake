@@ -34,7 +34,6 @@ import com.phasewake.app.core.HistoryItem
 import com.phasewake.app.core.NightStages
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.StageTotal
-import com.phasewake.app.core.StageVerdict
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.notes.NightNotes
 import com.phasewake.app.ui.sounds.SoundClipsSection
@@ -44,19 +43,7 @@ import java.time.ZoneId
 
 // Bausteine der Detailseite: Legende zum Hypnogramm, Phasen-Summen mit üblichem Bereich, Kennzahlen, Befinden und Notizen.
 
-/** Textschlüssel des Satzes zur Einordnung. */
-internal fun verdictRes(verdict: StageVerdict): Int = when (verdict) {
-    StageVerdict.AWAKE_ABOVE -> R.string.stages_verdict_awake_above
-    StageVerdict.DEEP_BELOW -> R.string.stages_verdict_deep_below
-    StageVerdict.DEEP_ABOVE -> R.string.stages_verdict_deep_above
-    StageVerdict.REM_BELOW -> R.string.stages_verdict_rem_below
-    StageVerdict.REM_ABOVE -> R.string.stages_verdict_rem_above
-    StageVerdict.LIGHT_BELOW -> R.string.stages_verdict_light_below
-    StageVerdict.LIGHT_ABOVE -> R.string.stages_verdict_light_above
-    StageVerdict.TYPICAL -> R.string.stages_verdict_typical
-}
-
-/** Legende: Phasen mit ihrer Farbe, bei eigener Nacht Weckfenster, Weckpunkt und Zielzeit. */
+/** Legende: Phasen mit ihrer Farbe, bei eigener Nacht Weckfenster (nicht bei «Genau»), Weckpunkt und Zielzeit. */
 @Composable
 internal fun HypnoLegend(model: HypnoModel) {
     val context = LocalContext.current
@@ -65,7 +52,7 @@ internal fun HypnoLegend(model: HypnoModel) {
     val zone = ZoneId.systemDefault()
     val items = stageOrder.map { LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it)) } +
         listOfNotNull(
-            model.window?.let { LegendItem(stringResource(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f)) },
+            model.window?.takeUnless { it.exact }?.let { LegendItem(stringResource(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f)) },
             model.window?.let { LegendItem(stringResource(R.string.night_woke, Format.time(it.wokeAt, zone)), LegendMark.DOT, scheme.primary) },
             model.window?.let { LegendItem(stringResource(R.string.night_target, Format.time(it.target, zone)), LegendMark.DASH, scheme.primary) },
         )
@@ -79,21 +66,20 @@ private fun typicalText(context: Context, total: StageTotal): String =
 
 /**
  * Phasen-Summen: je Phase Name, Anteil, Dauer und Balken über einem hellen, gestrichelt umrandeten «üblichen
- * Bereich»; darüber der Satz zur Einordnung, darunter die Legende und «Keine medizinische Bewertung.».
+ * Bereich»; darunter die Legende und einmal Quelle samt «Keine medizinische Bewertung.». Bewusst ohne wertenden Satz
+ * zur Nacht: Uhren schätzen Phasen nur ungefähr.
  */
 @Composable
 internal fun StageTotalsCard(stats: NightStages) {
-    val context = LocalContext.current
     val scheme = MaterialTheme.colorScheme
-    // Titel ist der Satz zur Einordnung (zu wenig Daten: der Titel der Phasen), damit nichts doppelt steht.
-    ChartCard(verdictText(context, stats) ?: stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth()) {
+    ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth()) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { stats.totals.forEach { StageTotalRow(it) } }
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 10.dp).clearAndSetSemantics { }) {
             Canvas(Modifier.size(width = 22.dp, height = 10.dp)) { typicalBand(scheme.onSurfaceVariant, Offset.Zero, size) }
             Text(stringResource(R.string.stages_typical), style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp))
         }
         Text(
-            stringResource(R.string.stages_not_medical),
+            stringResource(R.string.stages_source) + " " + stringResource(R.string.stages_not_medical),
             style = MaterialTheme.typography.labelSmall,
             color = scheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 4.dp),

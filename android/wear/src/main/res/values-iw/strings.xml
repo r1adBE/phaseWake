@@ -9,9 +9,11 @@
     <string name="notification_ring_title">בוקר טוב</string>
 
     <string name="ring_greeting">בוקר טוב</string>
-    <string name="ring_reason_light">זוהתה שינה קלה</string>
+    <string name="ring_reason_light">חוסר שקט – כנראה שינה קלה</string>
     <string name="ring_reason_awake">כבר הייתם ערים</string>
     <string name="ring_reason_deadline">שעת היעד הגיעה</string>
+    <string name="ring_reason_exact">בדיוק בשעת היעד</string>
+    <string name="ring_reason_short_night">לילה קצר – רק בשעת היעד</string>
     <string name="ring_hold_to_stop">לחיצה ארוכה לעצירה</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d דק׳ · נותר %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">להעיר אותי עד</string>
     <string name="editor_latest">לכל המאוחר</string>
     <string name="editor_window">חלון: %1$d דק׳</string>
+    <string name="editor_window_exact">בדיוק</string>
+    <string name="editor_window_exact_hint">מצלצל בדיוק בשעת היעד, אף פעם לא מוקדם יותר. השעון עדיין מודד עבור ההיסטוריה שלכם.</string>
+    <string name="window_exact_line">בדיוק ב־%1$s</string>
     <string name="editor_days">חזרה</string>
     <string name="editor_save">שמירה</string>
     <string name="editor_delete">מחיקת מעורר</string>

@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Bon dia</string>
 
     <string name="ring_greeting">Bon dia</string>
-    <string name="ring_reason_light">Son lleuger detectat</string>
+    <string name="ring_reason_light">Inquiet – probablement son lleuger</string>
     <string name="ring_reason_awake">Ja no dormies</string>
     <string name="ring_reason_deadline">Hora objectiu assolida</string>
+    <string name="ring_reason_exact">Just a l’hora objectiu</string>
+    <string name="ring_reason_short_night">Nit curta – només a l’hora objectiu</string>
     <string name="ring_hold_to_stop">Mantén premut per aturar</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · en queden %2$d</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Desperta’m abans de</string>
     <string name="editor_latest">Com a tard</string>
     <string name="editor_window">Finestra: %1$d min</string>
+    <string name="editor_window_exact">Exacte</string>
+    <string name="editor_window_exact_hint">Sona just a l’hora objectiu, mai abans. El rellotge continua mesurant per al teu historial.</string>
+    <string name="window_exact_line">Exactament a les %1$s</string>
     <string name="editor_days">Repeteix</string>
     <string name="editor_save">Desa</string>
     <string name="editor_delete">Suprimeix l’alarma</string>

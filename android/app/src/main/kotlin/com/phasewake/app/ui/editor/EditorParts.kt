@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
@@ -65,6 +66,8 @@ internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) 
                 selected = value == selected,
                 onClick = { onSelect(value) },
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
+                // Mindestens 48 dp hoch: gut zu treffen, auch mit Bildschirmleser.
+                modifier = Modifier.heightIn(min = 48.dp),
             ) { ChoiceLabel(stringResource(label)) }
         }
     }
@@ -75,7 +78,7 @@ internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) 
  * schrittweise bis 10 sp verkleinert, statt abzuschneiden.
  */
 @Composable
-private fun ChoiceLabel(text: String) {
+internal fun ChoiceLabel(text: String) {
     val style = LocalTextStyle.current.copy(color = LocalContentColor.current, textAlign = TextAlign.Center)
     BasicText(
         text,

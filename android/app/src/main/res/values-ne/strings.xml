@@ -21,15 +21,18 @@
     <string name="home_next_today">आज</string>
     <string name="home_next_tomorrow">भोलि</string>
     <string name="home_next_in">हल्का निद्रामा ब्युँझाउँछ · %1$s पछि</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">ठ्याक्कै लक्षित समयमा ब्युँझाउँछ · %1$s पछि</string>
     <string name="home_no_alarm_title">ठीक समयमा ब्युँझ</string>
     <string name="home_no_alarm_text">समय र अवधि सेट गर। निद्रा हल्का हुँदा तिम्रो घडीले तिमीलाई ब्युँझाउँछ।</string>
     <string name="home_add_alarm">नयाँ अलार्म</string>
     <string name="home_last_night">हिजो राति</string>
     <string name="home_alarms">तिम्रा अलार्म</string>
 
-    <string name="reason_light">हल्का निद्रा</string>
+    <string name="reason_light">बेचैन – सम्भवतः हल्का निद्रा</string>
     <string name="reason_awake">पहिल्यै ब्युँझिसकेको</string>
     <string name="reason_deadline">हल्का निद्रा भेटिएन</string>
+    <string name="reason_exact">ठ्याक्कै लक्षित समयमा</string>
+    <string name="reason_short_night">छोटो रात – लक्षित समयमा मात्र</string>
     <string name="woke_early">लक्षित समयभन्दा %1$d मि. अघि · %2$s</string>
     <string name="woke_on_time">लक्षित समयमा · %1$s</string>
     <string name="no_snooze">स्नुज बिना</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">मलाई ब्युँझाउने समय</string>
     <string name="editor_latest">बढीमा</string>
     <string name="editor_sleep_duration">%1$s सुत</string>
-    <string name="editor_sleep_hint">तिमी निदाएपछि गन्न सुरु हुन्छ। घडीमा “शुभ रात्रि” थिच।</string>
+    <string name="editor_sleep_hint">तिमी निदाएदेखि गनिन्छ। घडीले यो आफैँ पत्ता लगाउँछ; तुरुन्तै सुरु गर्न घडीमा “शुभ रात्रि” थिच।</string>
     <string name="editor_window">अवधि: %1$d मि.</string>
     <string name="editor_window_hint">%1$s र %2$s बीच ब्युँझाउँछ</string>
+    <string name="editor_window_exact">ठ्याक्कै</string>
+    <string name="editor_window_exact_hint">ठ्याक्कै लक्षित समयमा बज्छ, कहिल्यै अघि होइन। तिम्रो घडीले तैपनि तिम्रो इतिहासका लागि नाप्छ।</string>
+    <string name="window_exact_line">ठ्याक्कै %1$s मा</string>
     <string name="editor_days">दोहोर्‍याऊ</string>
     <string name="editor_weekdays">कामका दिन</string>
     <string name="editor_weekend">सप्ताहान्त</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">सम्पादन जारी राख</string>
     <string name="editor_delete_title">यो अलार्म मेटाउने?</string>
     <string name="home_window_running">ब्युँझाउने अवधि चलिरहेको छ – अहिले मापन हुँदैछ</string>
+    <string name="home_auto_onset">तिम्रो घडीले %1$s देखि तिमी कहिले निदाउँछौ भनेर आफैँ पत्ता लगाउँछ।</string>
     <string name="check_volume">अलार्मको भोल्युम</string>
     <string name="check_volume_problem">अलार्मको भोल्युम ० मा छ – तिम्रो फोन चुपचाप बज्नेछ।</string>
     <string name="health_update">Health Connect अपडेट गर</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">रेकर्डिङ अन छ। रातभरका लागि फोन चार्जमा लगाउनु राम्रो।</string>
     <string name="sound_rec_default">नयाँ रातहरूका लागि अन</string>
     <string name="sound_rec_default_hint">सुत्ने समयदेखि Phase Wake खोल्दा सुरु हुन्छ (अलार्म नभए राति ९ बजेदेखि)। छोटा क्लिप मात्र; यी तिम्रो फोनमै रहन्छन् र ७ दिनपछि मेटिन्छन्।</string>
-    <string name="sound_type_snore">घुर्ने</string>
+    <string name="sound_type_snore">सम्भवतः घुर्ने</string>
     <string name="sound_type_talk">बोल्ने</string>
     <string name="sound_type_other">अन्य आवाज</string>
     <plurals name="sound_summary">
-        <item quantity="one">घुर्ने: %1$s (%2$d क्लिप)</item>
-        <item quantity="other">घुर्ने: %1$s (%2$d क्लिप)</item>
+        <item quantity="one">सम्भवतः घुर्ने: %1$s (%2$d क्लिप)</item>
+        <item quantity="other">सम्भवतः घुर्ने: %1$s (%2$d क्लिप)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">बोल्ने: %1$d क्लिप</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">सामान्यतया %1$d–%2$d %%</string>
     <string name="stages_typical_below">सामान्यतया %1$d %% भन्दा कम</string>
     <string name="stages_not_medical">यो चिकित्सकीय मूल्याङ्कन होइन।</string>
-    <string name="stages_verdict_awake_above">सामान्यभन्दा बढी ब्युँझेको समय</string>
-    <string name="stages_verdict_deep_below">सामान्यभन्दा कम गहिरो निद्रा</string>
-    <string name="stages_verdict_deep_above">सामान्यभन्दा बढी गहिरो निद्रा</string>
-    <string name="stages_verdict_rem_below">कम REM – प्रायः छोटो वा ढिलो रातपछि</string>
-    <string name="stages_verdict_rem_above">सामान्यभन्दा बढी REM</string>
-    <string name="stages_verdict_light_below">सामान्यभन्दा कम हल्का निद्रा</string>
-    <string name="stages_verdict_light_above">सामान्यभन्दा बढी हल्का निद्रा</string>
-    <string name="stages_verdict_typical">सबै चरण सामान्य दायरामा</string>
+    <string name="stages_source">स्वस्थ वयस्कहरूका लागि सन्दर्भ मानहरू (Ohayon र अन्य, Sleep 2004)। घडीहरूले चरणहरू मोटामोटी मात्र अनुमान गर्छन्।</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s देखि</string>
     <string name="hypno_block">%1$s %2$s देखि %3$s सम्म</string>
     <string name="chart_week_average">साप्ताहिक औसत</string>

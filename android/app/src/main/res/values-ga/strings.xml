@@ -24,15 +24,18 @@
     <string name="home_next_today">Inniu</string>
     <string name="home_next_tomorrow">Amárach</string>
     <string name="home_next_in">Dúiseoidh sé thú i gcodladh éadrom · i %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Dúiseoidh sé thú díreach ag an spriocam · i %1$s</string>
     <string name="home_no_alarm_title">Dúisigh ag an nóiméad ceart</string>
     <string name="home_no_alarm_text">Socraigh am agus fuinneog. Dúiseoidh an t-uaireadóir thú nuair atá tú i gcodladh éadrom.</string>
     <string name="home_add_alarm">Aláram nua</string>
     <string name="home_last_night">Aréir</string>
     <string name="home_alarms">Do chuid aláram</string>
 
-    <string name="reason_light">Codladh éadrom</string>
+    <string name="reason_light">Corrach – codladh éadrom is dócha</string>
     <string name="reason_awake">I do dhúiseacht cheana</string>
     <string name="reason_deadline">Níor braitheadh codladh éadrom</string>
+    <string name="reason_exact">Díreach ag an spriocam</string>
+    <string name="reason_short_night">Oíche ghearr – ag an spriocam amháin</string>
     <string name="woke_early">%1$d nóim roimh an sprioc · %2$s</string>
     <string name="woke_on_time">Ag an spriocam · %1$s</string>
     <string name="no_snooze">gan cur siar</string>
@@ -52,9 +55,12 @@
     <string name="editor_target">Dúisigh mé faoi</string>
     <string name="editor_latest">Ar a dhéanaí</string>
     <string name="editor_sleep_duration">Codladh %1$s</string>
-    <string name="editor_sleep_hint">Tosaíonn an comhaireamh nuair a thiteann tú i do chodladh. Tapáil “Oíche mhaith” ar an uaireadóir.</string>
+    <string name="editor_sleep_hint">Áirítear ón am a thiteann tú i do chodladh. Aithníonn an t-uaireadóir é go huathoibríoch; tapáil “Oíche mhaith” ar an uaireadóir chun tosú láithreach.</string>
     <string name="editor_window">Fuinneog: %1$d nóim</string>
     <string name="editor_window_hint">Dúiseoidh sé thú idir %1$s agus %2$s</string>
+    <string name="editor_window_exact">Beacht</string>
+    <string name="editor_window_exact_hint">Buailfidh sé díreach ag an spriocam, riamh níos luaithe. Tomhaiseann d’uaireadóir fós do do stair.</string>
+    <string name="window_exact_line">Díreach ag %1$s</string>
     <string name="editor_days">Athdhéan</string>
     <string name="editor_weekdays">Laethanta oibre</string>
     <string name="editor_weekend">Deireadh seachtaine</string>
@@ -238,6 +244,7 @@
     <string name="editor_keep_editing">Lean ar aghaidh ag eagarthóireacht</string>
     <string name="editor_delete_title">An t-aláram seo a scriosadh?</string>
     <string name="home_window_running">Fuinneog dhúisithe ar siúl – ag tomhas anois</string>
+    <string name="home_auto_onset">Aithníonn d’uaireadóir go huathoibríoch ó %1$s cathain a thiteann tú i do chodladh.</string>
     <string name="check_volume">Airde an aláraim</string>
     <string name="check_volume_problem">Tá airde an aláraim socraithe ar 0 – bhuailfeadh do fhón gan fuaim.</string>
     <string name="health_update">Nuashonraigh Health Connect</string>
@@ -322,15 +329,15 @@
     <string name="sound_rec_plug_in">Tá an taifeadadh ar siúl. Is fearr do fhón a phlugáil isteach don oíche.</string>
     <string name="sound_rec_default">Ar siúl d’oícheanta nua</string>
     <string name="sound_rec_default_hint">Tosaíonn sé nuair a osclaíonn tú Phase Wake ó d’am codlata ar aghaidh (gan aláram ó 21:00). Gearrthóga gearra amháin; fanann siad ar do fhón agus scriostar iad tar éis 7 lá.</string>
-    <string name="sound_type_snore">Srannadh</string>
+    <string name="sound_type_snore">Srannadh féideartha</string>
     <string name="sound_type_talk">Caint</string>
     <string name="sound_type_other">Fuaim eile</string>
     <plurals name="sound_summary">
-        <item quantity="one">Srannadh: %1$s (%2$d ghearrthóg)</item>
-        <item quantity="two">Srannadh: %1$s (%2$d ghearrthóg)</item>
-        <item quantity="few">Srannadh: %1$s (%2$d ghearrthóg)</item>
-        <item quantity="many">Srannadh: %1$s (%2$d ngearrthóg)</item>
-        <item quantity="other">Srannadh: %1$s (%2$d gearrthóg)</item>
+        <item quantity="one">Srannadh féideartha: %1$s (%2$d ghearrthóg)</item>
+        <item quantity="two">Srannadh féideartha: %1$s (%2$d ghearrthóg)</item>
+        <item quantity="few">Srannadh féideartha: %1$s (%2$d ghearrthóg)</item>
+        <item quantity="many">Srannadh féideartha: %1$s (%2$d ngearrthóg)</item>
+        <item quantity="other">Srannadh féideartha: %1$s (%2$d gearrthóg)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Caint: %1$d ghearrthóg</item>
@@ -552,14 +559,7 @@
     <string name="stages_typical_range">Gnáth %1$d–%2$d %%</string>
     <string name="stages_typical_below">Gnáth faoi %1$d %%</string>
     <string name="stages_not_medical">Ní measúnú leighis é.</string>
-    <string name="stages_verdict_awake_above">Níos mó ama i do dhúiseacht ná mar is gnách</string>
-    <string name="stages_verdict_deep_below">Níos lú codladh trom ná mar is gnách</string>
-    <string name="stages_verdict_deep_above">Níos mó codladh trom ná mar is gnách</string>
-    <string name="stages_verdict_rem_below">Beagán REM – go minic tar éis oíche ghearr nó dhéanach</string>
-    <string name="stages_verdict_rem_above">Níos mó REM ná mar is gnách</string>
-    <string name="stages_verdict_light_below">Níos lú codladh éadrom ná mar is gnách</string>
-    <string name="stages_verdict_light_above">Níos mó codladh éadrom ná mar is gnách</string>
-    <string name="stages_verdict_typical">Gach céim sa raon gnáth</string>
+    <string name="stages_source">Luachanna tagartha do dhaoine fásta sláintiúla (Ohayon et al., Sleep 2004). Ní dhéanann uaireadóirí ach meastachán garbh ar na céimeanna.</string>
     <string name="hypno_bubble">%1$s · %2$s · le %3$s</string>
     <string name="hypno_block">%1$s ó %2$s go %3$s</string>
     <string name="chart_week_average">Meán seachtainiúil</string>

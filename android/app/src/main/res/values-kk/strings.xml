@@ -17,14 +17,17 @@
     <string name="home_next_today">Бүгін</string>
     <string name="home_next_tomorrow">Ертең</string>
     <string name="home_next_in">Жеңіл ұйқыда оятады · %1$s кейін</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Дәл мақсатты уақытта оятады · %1$s кейін</string>
     <string name="home_no_alarm_title">Дәл кезінде ояну</string>
     <string name="home_no_alarm_text">Уақыт пен терезені орнат. Жеңіл ұйықтап жатқанда сағатың сені оятады.</string>
     <string name="home_add_alarm">Жаңа оятқыш</string>
     <string name="home_last_night">Өткен түн</string>
     <string name="home_alarms">Оятқыштарың</string>
-    <string name="reason_light">Жеңіл ұйқы</string>
+    <string name="reason_light">Мазасыз – мүмкін жеңіл ұйқы</string>
     <string name="reason_awake">Онсыз да ояу</string>
     <string name="reason_deadline">Жеңіл ұйқы анықталмады</string>
+    <string name="reason_exact">Дәл мақсатты уақытта</string>
+    <string name="reason_short_night">Қысқа түн – тек мақсатты уақытта</string>
     <string name="woke_early">Мақсатты уақыттан %1$d мин бұрын · %2$s</string>
     <string name="woke_on_time">Мақсатты уақытта · %1$s</string>
     <string name="no_snooze">кейінге қалдырусыз</string>
@@ -42,9 +45,12 @@
     <string name="editor_target">Оятатын уақыт</string>
     <string name="editor_latest">Ең кеші</string>
     <string name="editor_sleep_duration">Ұйқы: %1$s</string>
-    <string name="editor_sleep_hint">Ұйықтап кеткен сәттен бастап санайды. Сағаттағы «Қайырлы түн» түймесін түрт.</string>
+    <string name="editor_sleep_hint">Ұйықтап кеткен сәттен бастап санайды. Сағат оны автоматты түрде анықтайды; бірден бастау үшін сағаттағы «Қайырлы түн» түймесін түрт.</string>
     <string name="editor_window">Терезе: %1$d мин</string>
     <string name="editor_window_hint">%1$s мен %2$s аралығында оятады</string>
+    <string name="editor_window_exact">Дәл</string>
+    <string name="editor_window_exact_hint">Дәл мақсатты уақытта шырылдайды, ешқашан ертерек емес. Сағат бәрібір тарихың үшін өлшейді.</string>
+    <string name="window_exact_line">Дәл %1$s</string>
     <string name="editor_days">Қайталау</string>
     <string name="editor_weekdays">Жұмыс күндері</string>
     <string name="editor_weekend">Демалыс күндері</string>
@@ -216,6 +222,7 @@
     <string name="editor_keep_editing">Өңдеуді жалғастыру</string>
     <string name="editor_delete_title">Бұл оятқышты жою керек пе?</string>
     <string name="home_window_running">Ояту терезесі жүріп жатыр – өлшеу үстінде</string>
+    <string name="home_auto_onset">Сағат %1$s бастап қашан ұйықтап кеткеніңді автоматты түрде анықтайды.</string>
     <string name="check_volume">Оятқыш дыбысы</string>
     <string name="check_volume_problem">Оятқыш дыбысы 0 – телефон үнсіз шырылдайды.</string>
     <string name="health_update">Health Connect-ті жаңарту</string>
@@ -288,12 +295,12 @@
     <string name="sound_rec_plug_in">Жазу қосулы. Түнге телефонды зарядқа қосқаның дұрыс.</string>
     <string name="sound_rec_default">Жаңа түндер үшін қосулы</string>
     <string name="sound_rec_default_hint">Phase Wake-ті ұйқыға жату уақытыңнан бастап ашқанда басталады (оятқыш болмаса, 21:00-ден). Тек қысқа үзінділер; олар телефоныңда қалады және 7 күннен кейін жойылады.</string>
-    <string name="sound_type_snore">Қорылдау</string>
+    <string name="sound_type_snore">Мүмкін қорылдау</string>
     <string name="sound_type_talk">Сөйлеу</string>
     <string name="sound_type_other">Басқа дыбыс</string>
     <plurals name="sound_summary">
-        <item quantity="one">Қорылдау: %1$s (%2$d үзінді)</item>
-        <item quantity="other">Қорылдау: %1$s (%2$d үзінді)</item>
+        <item quantity="one">Мүмкін қорылдау: %1$s (%2$d үзінді)</item>
+        <item quantity="other">Мүмкін қорылдау: %1$s (%2$d үзінді)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Сөйлеу: %1$d үзінді</item>
@@ -495,14 +502,7 @@
     <string name="stages_typical_range">Әдетте %1$d–%2$d %%</string>
     <string name="stages_typical_below">Әдетте %1$d %%-дан төмен</string>
     <string name="stages_not_medical">Медициналық баға емес.</string>
-    <string name="stages_verdict_awake_above">Әдеттегіден көп ояу уақыт</string>
-    <string name="stages_verdict_deep_below">Әдеттегіден аз терең ұйқы</string>
-    <string name="stages_verdict_deep_above">Әдеттегіден көп терең ұйқы</string>
-    <string name="stages_verdict_rem_below">REM аз – көбіне қысқа немесе кеш түннен кейін</string>
-    <string name="stages_verdict_rem_above">Әдеттегіден көп REM</string>
-    <string name="stages_verdict_light_below">Әдеттегіден аз жеңіл ұйқы</string>
-    <string name="stages_verdict_light_above">Әдеттегіден көп жеңіл ұйқы</string>
-    <string name="stages_verdict_typical">Барлық кезең әдеттегі ауқымда</string>
+    <string name="stages_source">Сау ересектерге арналған бағдарлы мәндер (Ohayon және т.б., Sleep 2004). Сағаттар кезеңдерді тек шамамен бағалайды.</string>
     <string name="hypno_bubble">%1$s · %2$s · %3$s бойы</string>
     <string name="hypno_block">%1$s %2$s – %3$s</string>
     <string name="chart_week_average">Апталық орташа</string>

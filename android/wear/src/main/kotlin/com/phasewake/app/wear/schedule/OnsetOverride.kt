@@ -2,6 +2,7 @@ package com.phasewake.app.wear.schedule
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -18,7 +19,8 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
     suspend fun get(): WakePlan? {
         val prefs = store.data.first()
         val id = prefs[ALARM] ?: return null
-        return WakePlan(id, Instant.ofEpochMilli(prefs[WINDOW_START] ?: return null), Instant.ofEpochMilli(prefs[TARGET] ?: return null))
+        val windowStart = Instant.ofEpochMilli(prefs[WINDOW_START] ?: return null)
+        return WakePlan(id, windowStart, Instant.ofEpochMilli(prefs[TARGET] ?: return null), exact = prefs[EXACT] == true)
     }
 
     suspend fun set(plan: WakePlan) {
@@ -26,6 +28,7 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
             it[ALARM] = plan.alarmId
             it[WINDOW_START] = plan.windowStart.toEpochMilli()
             it[TARGET] = plan.target.toEpochMilli()
+            it[EXACT] = plan.exact
         }
     }
 
@@ -34,6 +37,7 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
             it.remove(ALARM)
             it.remove(WINDOW_START)
             it.remove(TARGET)
+            it.remove(EXACT)
         }
     }
 
@@ -51,5 +55,6 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
         val ALARM = stringPreferencesKey("onset_alarm")
         val WINDOW_START = longPreferencesKey("onset_window_start")
         val TARGET = longPreferencesKey("onset_target")
+        val EXACT = booleanPreferencesKey("onset_exact")
     }
 }

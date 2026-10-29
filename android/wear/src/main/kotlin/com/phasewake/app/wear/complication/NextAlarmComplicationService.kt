@@ -15,7 +15,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-/** Komplikation fürs Zifferblatt: Mond plus Beginn des nächsten Weckfensters. */
+/** Komplikation fürs Zifferblatt: Mond plus Beginn des nächsten Weckfensters (bei «Genau» die Zielzeit). */
 class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
 
     override fun getPreviewData(type: ComplicationType): ComplicationData? =
@@ -26,7 +26,8 @@ class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
         val zone = ZoneId.systemDefault()
         val plan = wearApp.scheduler.nextPlan()
             ?: return NoDataComplicationData()
-        return data(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(plan.windowStart.atZone(zone)))
+        val shown = if (plan.exact) plan.target else plan.windowStart
+        return data(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(shown.atZone(zone)))
     }
 
     private fun data(text: String) = ShortTextComplicationData.Builder(

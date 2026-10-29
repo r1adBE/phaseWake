@@ -21,15 +21,18 @@
     <string name="home_next_today">Hoxe</string>
     <string name="home_next_tomorrow">Mañá</string>
     <string name="home_next_in">Espértate no sono lixeiro · en %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Espértate xusto á hora prevista · en %1$s</string>
     <string name="home_no_alarm_title">Esperta no momento xusto</string>
     <string name="home_no_alarm_text">Escolle unha hora e unha xanela. O reloxo espértate cando durmes lixeiro.</string>
     <string name="home_add_alarm">Nova alarma</string>
     <string name="home_last_night">Onte á noite</string>
     <string name="home_alarms">As túas alarmas</string>
 
-    <string name="reason_light">Sono lixeiro</string>
+    <string name="reason_light">Inquedo – probablemente sono lixeiro</string>
     <string name="reason_awake">Xa esperto</string>
     <string name="reason_deadline">Non se detectou sono lixeiro</string>
+    <string name="reason_exact">Xusto á hora prevista</string>
+    <string name="reason_short_night">Noite curta – só á hora prevista</string>
     <string name="woke_early">%1$d min antes da hora · %2$s</string>
     <string name="woke_on_time">Á hora prevista · %1$s</string>
     <string name="no_snooze">sen adiar</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Espértame ata</string>
     <string name="editor_latest">Como moi tarde</string>
     <string name="editor_sleep_duration">Durmir %1$s</string>
-    <string name="editor_sleep_hint">Empeza a contar cando adormeces. Toca «Boas noites» no reloxo.</string>
+    <string name="editor_sleep_hint">Conta desde que adormeces. O reloxo detéctao automaticamente; toca «Boas noites» no reloxo para comezar xa.</string>
     <string name="editor_window">Xanela: %1$d min</string>
     <string name="editor_window_hint">Espértate entre as %1$s e as %2$s</string>
+    <string name="editor_window_exact">Exacto</string>
+    <string name="editor_window_exact_hint">Soa xusto á hora prevista, nunca antes. O reloxo segue medindo para o teu historial.</string>
+    <string name="window_exact_line">Xusto ás %1$s</string>
     <string name="editor_days">Repetir</string>
     <string name="editor_weekdays">Días laborables</string>
     <string name="editor_weekend">Fin de semana</string>
@@ -226,6 +232,7 @@
     <string name="editor_keep_editing">Seguir editando</string>
     <string name="editor_delete_title">Eliminar esta alarma?</string>
     <string name="home_window_running">Xanela de espertar en curso – medindo</string>
+    <string name="home_auto_onset">O reloxo detecta automaticamente cando adormeces a partir das %1$s.</string>
     <string name="check_volume">Volume da alarma</string>
     <string name="check_volume_problem">O volume da alarma está en 0 – o teléfono soaría en silencio.</string>
     <string name="health_update">Actualizar Health Connect</string>
@@ -301,12 +308,12 @@
     <string name="sound_rec_plug_in">A gravación está activada. Mellor deixa o teléfono cargando durante a noite.</string>
     <string name="sound_rec_default">Activado para novas noites</string>
     <string name="sound_rec_default_hint">Comeza cando abres Phase Wake a partir da túa hora de deitarte (sen alarma, desde as 21:00). Só fragmentos curtos; quedan no teléfono e elimínanse despois de 7 días.</string>
-    <string name="sound_type_snore">Roncos</string>
+    <string name="sound_type_snore">Posibles roncos</string>
     <string name="sound_type_talk">Falar</string>
     <string name="sound_type_other">Outro son</string>
     <plurals name="sound_summary">
-        <item quantity="one">Roncos: %1$s (%2$d fragmento)</item>
-        <item quantity="other">Roncos: %1$s (%2$d fragmentos)</item>
+        <item quantity="one">Posibles roncos: %1$s (%2$d fragmento)</item>
+        <item quantity="other">Posibles roncos: %1$s (%2$d fragmentos)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Falar: %1$d fragmento</item>
@@ -510,14 +517,7 @@
     <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
     <string name="stages_typical_below">Habitual por baixo do %1$d %%</string>
     <string name="stages_not_medical">Non é unha valoración médica.</string>
-    <string name="stages_verdict_awake_above">Máis tempo esperto do habitual</string>
-    <string name="stages_verdict_deep_below">Menos sono profundo do habitual</string>
-    <string name="stages_verdict_deep_above">Máis sono profundo do habitual</string>
-    <string name="stages_verdict_rem_below">Pouco REM – a miúdo tras unha noite curta ou tardía</string>
-    <string name="stages_verdict_rem_above">Máis REM do habitual</string>
-    <string name="stages_verdict_light_below">Menos sono lixeiro do habitual</string>
-    <string name="stages_verdict_light_above">Máis sono lixeiro do habitual</string>
-    <string name="stages_verdict_typical">Todas as fases no intervalo habitual</string>
+    <string name="stages_source">Valores de referencia para adultos sans (Ohayon et al., Sleep 2004). Os reloxos só estiman as fases de xeito aproximado.</string>
     <string name="hypno_bubble">%1$s · %2$s · desde hai %3$s</string>
     <string name="hypno_block">%1$s de %2$s a %3$s</string>
     <string name="chart_week_average">Media semanal</string>

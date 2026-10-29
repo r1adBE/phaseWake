@@ -70,6 +70,8 @@ struct SoundsSheet: View {
                             }
                         }
                         .pickerStyle(.segmented)
+                        // Grosse Segmente: Tippziel nahe 44 pt.
+                        .controlSize(.large)
                         .onChange(of: timer) { _, _ in
                             // Läuft schon etwas: mit dem neuen Timer neu starten.
                             if let playing = player.playing { start(playing) }

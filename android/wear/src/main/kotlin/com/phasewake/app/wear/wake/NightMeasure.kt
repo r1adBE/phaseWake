@@ -8,9 +8,11 @@ import com.phasewake.app.core.Decision
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.ShortNight
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.core.WakeReason
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.NIGHT_HARD_LIMIT
@@ -23,6 +25,7 @@ import com.phasewake.app.wear.wake.WakeService.Night
 import com.phasewake.app.wear.wake.WakeService.Phase
 import java.time.Duration
 import java.time.Instant
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 // Messen im Weckfenster: Nacht übernehmen, Sensoren, Epochen, Zielzeit erreicht.
@@ -50,6 +53,7 @@ private fun WakeService.begin(plan: WakePlan) {
     handler.removeCallbacks(onsetTimeout)
     onset?.stop()
     onset = null
+    onsetNight = null
     goodNightActive = false
     forgetGoodNight()
     night?.let { old ->
@@ -61,7 +65,7 @@ private fun WakeService.begin(plan: WakePlan) {
     // Vor dem ersten Entsperren sind Wecker, Nächte und Stand nicht lesbar: ohne Messung bis zur
     // Zielzeit warten und dort sicher wecken. Ebenso ohne Sensorrechte (dann nicht als «health»).
     val locked = !DirectBoot.isUnlocked(this)
-    val canMeasure = goForeground(Notifications.window(this, formatTime(plan.target)), measuring = !locked)
+    val canMeasure = goForeground(Notifications.window(this, formatTime(plan.target), exact = plan.exact), measuring = !locked)
     holdWakeLock(Duration.between(Instant.now(), plan.target).toMillis().coerceAtLeast(0) + WAKE_LOCK_MARGIN_MS)
 
     val current = Night(plan, spec = null, detector = WakeDetector(), locked = locked)
@@ -96,8 +100,13 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
         val config = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load()))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
+        // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel.
+        val asleepAt = app.onsets.onsetFor(plan)
+        val goal = spec?.sleepDurationMinutes ?: app.sleepGoal.minutes.first()
         if (night !== current) return@launch
         current.spec = spec
+        current.asleepAt = asleepAt
+        current.goalMinutes = goal
         if (saved != null) {
             saved.firstRing?.let { first -> if (current.firstRing?.isAfter(first) != false) current.firstRing = first }
             saved.reason?.let { current.reason = it }
@@ -105,7 +114,8 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
         }
         when (current.phase) {
             Phase.MEASURING -> {
-                app.diag.log(DiagKind.MEASURE_START, if (canMeasure) "window ${plan.windowStart}" else "no sensors, wake at target")
+                val mode = if (current.exact) ", exact" else asleepAt?.let { ", asleep $it" }.orEmpty()
+                app.diag.log(DiagKind.MEASURE_START, if (canMeasure) "window ${plan.windowStart}$mode" else "no sensors, wake at target")
                 current.detector = WakeDetector(config)
                 if (canMeasure) startSensors(current)
                 // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
@@ -167,8 +177,15 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     if (night !== n || n.phase != Phase.MEASURING) return
     for (epoch in epochs) {
         n.epochs += epoch
+        // «Genau» oder schon übergangene kurze Nacht: nur noch für den Verlauf messen, geweckt wird zur Zielzeit.
+        if (n.exact || n.earlyBlocked) continue
         val decision = n.detector.onEpoch(epoch)
         if (decision is Decision.Wake) {
+            if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes)) {
+                n.earlyBlocked = true
+                app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, short night")
+                continue
+            }
             n.reason = decision.reason
             app.diag.log(DiagKind.PHASE, decision.reason.name)
             ring()
@@ -180,7 +197,11 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 internal fun WakeService.onDeadline() {
     val n = night ?: return
     if (n.phase == Phase.MEASURING) {
-        n.reason = n.detector.finish().reason
+        n.reason = when {
+            n.exact -> WakeReason.EXACT
+            n.earlyBlocked -> WakeReason.SHORT_NIGHT
+            else -> n.detector.finish().reason
+        }
         ring()
     }
 }

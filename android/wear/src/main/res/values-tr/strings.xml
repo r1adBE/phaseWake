@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Günaydın</string>
 
     <string name="ring_greeting">Günaydın</string>
-    <string name="ring_reason_light">Hafif uyku algılandı</string>
+    <string name="ring_reason_light">Huzursuz – muhtemelen hafif uyku</string>
     <string name="ring_reason_awake">Zaten uyanıktın</string>
     <string name="ring_reason_deadline">Hedef saate ulaşıldı</string>
+    <string name="ring_reason_exact">Tam hedef saatte</string>
+    <string name="ring_reason_short_night">Kısa gece – ancak hedef saatte</string>
     <string name="ring_hold_to_stop">Durdurmak için basılı tut</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d dk · kalan: %2$d</item>
@@ -55,6 +57,9 @@
     <string name="editor_target">Şu saate kadar uyandır</string>
     <string name="editor_latest">En geç</string>
     <string name="editor_window">Aralık: %1$d dk</string>
+    <string name="editor_window_exact">Tam</string>
+    <string name="editor_window_exact_hint">Tam hedef saatte çalar, asla daha erken değil. Saatin yine de geçmişin için ölçer.</string>
+    <string name="window_exact_line">Tam saat %1$s</string>
     <string name="editor_days">Tekrar</string>
     <string name="editor_save">Kaydet</string>
     <string name="editor_delete">Alarmı sil</string>

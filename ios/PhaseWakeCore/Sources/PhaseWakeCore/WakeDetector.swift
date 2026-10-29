@@ -76,9 +76,10 @@ public final class WakeDetector {
     }
 
     /// Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
-    /// `heartRateRise` über dem Basispuls. Fehlt einer der beiden Werte, ist sie erfüllt.
+    /// `heartRateRise` über dem Basispuls. Fehlt einer der beiden Werte, ist sie nicht erfüllt:
+    /// Bewegung allein reicht für ``WakeReason/lightSleep`` nicht («Phase nicht behaupten»).
     private func heartRateRisen() -> Bool {
-        guard let baseline = baselineHeartRate else { return true }
+        guard let baseline = baselineHeartRate else { return false }
         var sum = 0.0
         var count = 0
         for epoch in recent.suffix(Self.currentHeartRateEpochs) {
@@ -87,7 +88,7 @@ public final class WakeDetector {
                 count += 1
             }
         }
-        if count == 0 { return true }
+        if count == 0 { return false }
         return sum / Double(count) >= baseline * (1.0 + config.heartRateRise)
     }
 

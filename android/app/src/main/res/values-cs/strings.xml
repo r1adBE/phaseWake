@@ -21,15 +21,18 @@
     <string name="home_next_today">Dnes</string>
     <string name="home_next_tomorrow">Zítra</string>
     <string name="home_next_in">Budí tě v lehkém spánku · za %1$s</string>
+    <string name="home_next_in_exact" tools:ignore="UnusedResources">Budí tě přesně v cílový čas · za %1$s</string>
     <string name="home_no_alarm_title">Probuď se v tu pravou chvíli</string>
     <string name="home_no_alarm_text">Nastav čas a okno. Hodinky tě probudí, když budeš spát lehce.</string>
     <string name="home_add_alarm">Nový budík</string>
     <string name="home_last_night">Minulá noc</string>
     <string name="home_alarms">Tvoje budíky</string>
 
-    <string name="reason_light">Lehký spánek</string>
+    <string name="reason_light">Neklid – nejspíš lehký spánek</string>
     <string name="reason_awake">Už vzhůru</string>
     <string name="reason_deadline">Lehký spánek nezjištěn</string>
+    <string name="reason_exact">Přesně v cílový čas</string>
+    <string name="reason_short_night">Krátká noc – až v cílový čas</string>
     <string name="woke_early">%1$d min před cílovým časem · %2$s</string>
     <string name="woke_on_time">V cílový čas · %1$s</string>
     <string name="no_snooze">bez odložení</string>
@@ -49,9 +52,12 @@
     <string name="editor_target">Vzbuď mě do</string>
     <string name="editor_latest">Nejpozději</string>
     <string name="editor_sleep_duration">Spánek: %1$s</string>
-    <string name="editor_sleep_hint">Počítá se od usnutí. Klepni na hodinkách na „Dobrou noc“.</string>
+    <string name="editor_sleep_hint">Počítá se od usnutí. Hodinky ho poznají automaticky; klepnutím na „Dobrou noc“ na hodinkách začneš hned.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Probudí tě mezi %1$s a %2$s</string>
+    <string name="editor_window_exact">Přesně</string>
+    <string name="editor_window_exact_hint">Zazvoní přesně v cílový čas, nikdy dřív. Hodinky přesto měří pro tvou historii.</string>
+    <string name="window_exact_line">Přesně v %1$s</string>
     <string name="editor_days">Opakovat</string>
     <string name="editor_weekdays">Pracovní dny</string>
     <string name="editor_weekend">Víkend</string>
@@ -232,6 +238,7 @@
     <string name="editor_keep_editing">Pokračovat v úpravách</string>
     <string name="editor_delete_title">Smazat tento budík?</string>
     <string name="home_window_running">Okno běží – právě se měří</string>
+    <string name="home_auto_onset">Hodinky od %1$s automaticky poznají, kdy usneš.</string>
     <string name="check_volume">Hlasitost budíku</string>
     <string name="check_volume_problem">Hlasitost budíku je nastavená na 0 – telefon by zvonil bez zvuku.</string>
     <string name="health_update">Aktualizovat Health Connect</string>
@@ -315,14 +322,14 @@
     <string name="sound_rec_plug_in">Nahrávání běží. Telefon dej na noc nejlépe nabíjet.</string>
     <string name="sound_rec_default">Zapnout pro nové noci</string>
     <string name="sound_rec_default_hint">Spustí se, když otevřeš Phase Wake od své doby spánku (bez budíku od 21:00). Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou.</string>
-    <string name="sound_type_snore">Chrápání</string>
+    <string name="sound_type_snore">Možné chrápání</string>
     <string name="sound_type_talk">Mluvení</string>
     <string name="sound_type_other">Jiný zvuk</string>
     <plurals name="sound_summary">
-        <item quantity="one">Chrápání: %1$s (%2$d úryvek)</item>
-        <item quantity="few">Chrápání: %1$s (%2$d úryvky)</item>
-        <item quantity="many">Chrápání: %1$s (%2$d úryvku)</item>
-        <item quantity="other">Chrápání: %1$s (%2$d úryvků)</item>
+        <item quantity="one">Možné chrápání: %1$s (%2$d úryvek)</item>
+        <item quantity="few">Možné chrápání: %1$s (%2$d úryvky)</item>
+        <item quantity="many">Možné chrápání: %1$s (%2$d úryvku)</item>
+        <item quantity="other">Možné chrápání: %1$s (%2$d úryvků)</item>
     </plurals>
     <plurals name="sound_summary_talk">
         <item quantity="one">Mluvení: %1$d úryvek</item>
@@ -535,14 +542,7 @@
     <string name="stages_typical_range">Obvykle %1$d–%2$d %%</string>
     <string name="stages_typical_below">Obvykle pod %1$d %%</string>
     <string name="stages_not_medical">Nejde o lékařské hodnocení.</string>
-    <string name="stages_verdict_awake_above">Více času v bdění než obvykle</string>
-    <string name="stages_verdict_deep_below">Méně hlubokého spánku než obvykle</string>
-    <string name="stages_verdict_deep_above">Více hlubokého spánku než obvykle</string>
-    <string name="stages_verdict_rem_below">Málo REM – často po krátké nebo pozdní noci</string>
-    <string name="stages_verdict_rem_above">Více REM než obvykle</string>
-    <string name="stages_verdict_light_below">Méně lehkého spánku než obvykle</string>
-    <string name="stages_verdict_light_above">Více lehkého spánku než obvykle</string>
-    <string name="stages_verdict_typical">Všechny fáze v obvyklém rozmezí</string>
+    <string name="stages_source">Orientační hodnoty pro zdravé dospělé (Ohayon a kol., Sleep 2004). Hodinky fáze odhadují jen přibližně.</string>
     <string name="hypno_bubble">%1$s · %2$s · už %3$s</string>
     <string name="hypno_block">%1$s od %2$s do %3$s</string>
     <string name="chart_week_average">Týdenní průměr</string>

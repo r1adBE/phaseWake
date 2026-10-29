@@ -9,9 +9,11 @@
     <string name="notification_ring_title">Buongiorno</string>
 
     <string name="ring_greeting">Buongiorno</string>
-    <string name="ring_reason_light">Sonno leggero rilevato</string>
+    <string name="ring_reason_light">Agitato – probabilmente sonno leggero</string>
     <string name="ring_reason_awake">Eri già sveglio</string>
     <string name="ring_reason_deadline">Orario obiettivo raggiunto</string>
+    <string name="ring_reason_exact">Esattamente all’orario obiettivo</string>
+    <string name="ring_reason_short_night">Notte breve – solo all’orario obiettivo</string>
     <string name="ring_hold_to_stop">Tieni premuto per fermare</string>
     <plurals name="ring_snooze">
         <item quantity="one">%1$d min · %2$d rimasta</item>
@@ -56,6 +58,9 @@
     <string name="editor_target">Svegliami entro</string>
     <string name="editor_latest">Al più tardi</string>
     <string name="editor_window">Finestra: %1$d min</string>
+    <string name="editor_window_exact">Esatto</string>
+    <string name="editor_window_exact_hint">Suona esattamente all’orario obiettivo, mai prima. L’orologio misura comunque per la tua cronologia.</string>
+    <string name="window_exact_line">Esattamente alle %1$s</string>
     <string name="editor_days">Ripeti</string>
     <string name="editor_save">Salva</string>
     <string name="editor_delete">Elimina sveglia</string>
