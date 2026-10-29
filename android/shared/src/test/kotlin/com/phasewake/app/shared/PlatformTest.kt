@@ -10,6 +10,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.DiagLog
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import java.io.File
@@ -106,6 +107,13 @@ class PlatformTest {
         }
         assertEquals(list to 7L, WearSync.readHolidays(holidays))
         assertEquals(HolidayList("", emptySet()) to 0L, WearSync.readHolidays(DataMap()))
+        // Schlafziel: ohne Angabe der Standard, sonst auf Bereich und Raster gebracht.
+        assertEquals(SleepGoal.DEFAULT_MINUTES to 0L, WearSync.readSleepGoal(DataMap()))
+        val tooShort = DataMap().apply {
+            putInt(DataLayer.KEY_SLEEP_GOAL, 60)
+            putLong(DataLayer.KEY_UPDATED_AT, 3L)
+        }
+        assertEquals(SleepGoal.MIN_MINUTES to 3L, WearSync.readSleepGoal(tooShort))
     }
 
     @Test
@@ -137,6 +145,10 @@ class PlatformTest {
 
         val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
         assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))
+        val goal = WearSync.sleepGoalRequest(495, 8L)
+        assertEquals(DataLayer.PATH_SLEEP_GOAL, goal.uri.path)
+        assertTrue(goal.isUrgent)
+        assertEquals(495 to 8L, WearSync.readSleepGoal(DataMap.fromByteArray(goal.data!!)))
         val cancel = WearSync.transientCancelRequest("nap-1", 5L)
         assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)
         assertTrue(cancel.isUrgent)

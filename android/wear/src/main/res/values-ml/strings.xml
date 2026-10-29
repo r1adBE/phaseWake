@@ -25,6 +25,7 @@
     <string name="home_today">ഇന്ന്</string>
     <string name="home_tomorrow">നാളെ</string>
     <string name="home_window_length">%1$d മി. സമയപരിധി</string>
+    <string name="chart_bedtime">ഉറക്കസമയം %1$s</string>
     <string name="home_alarms">അലാറങ്ങൾ</string>
     <string name="home_permissions">അനുമതികൾ നൽകുക</string>
     <string name="home_permissions_hint">അളക്കാനും അലാറം സ്‌ക്രീനിനും ആവശ്യം.</string>

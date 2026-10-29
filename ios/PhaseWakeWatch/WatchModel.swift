@@ -12,12 +12,15 @@ final class WatchModel {
     let storage = PhaseWakeStorage.watchShared
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
+    /// Schlafziel vom iPhone in Minuten, nur für den Einschlafpunkt auf dem Ring; ohne iPhone der Standard.
+    private(set) var sleepGoal = SleepGoal.defaultMinutes
     /// Probewecker oder Powernap, der statt des nächsten Weckers gilt; nie im Verlauf (`Transient`).
     private(set) var transient: TransientPlan?
     private static let transientKey = "transientPlan"
 
     private init() {
         alarms = storage.snapshot().alarms
+        sleepGoal = storage.sleepGoal
         transient = UserDefaults.standard.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
@@ -124,6 +127,12 @@ final class WatchModel {
         guard storage.holidays != list else { return }
         storage.holidays = list
         reschedule()
+    }
+
+    /// Schlafziel vom iPhone übernehmen (nur Anzeige, kein Neuplanen).
+    func applySleepGoal(_ minutes: Int) {
+        storage.sleepGoal = minutes
+        sleepGoal = storage.sleepGoal
     }
 
     /// Ein/Aus auf der Uhr; Änderung geht ans iPhone und plant neu.

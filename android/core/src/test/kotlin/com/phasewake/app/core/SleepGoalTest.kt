@@ -49,6 +49,16 @@ class SleepGoalTest {
     }
 
     @Test
+    fun bedtimeOnDialOnlyWithinTwelveHours() {
+        val target = at("2026-10-28T06:00")
+        assertEquals(at("2026-10-27T22:30"), Bedtime.onDial(target, 450))
+        assertEquals(at("2026-10-27T20:00"), Bedtime.onDial(target, SleepGoal.MAX_MINUTES))
+        assertEquals(at("2026-10-27T18:01"), Bedtime.onDial(target, 719))
+        assertNull(Bedtime.onDial(target, Bedtime.DIAL_MINUTES))
+        assertNull(Bedtime.onDial(target, 0))
+    }
+
+    @Test
     fun nextReminderSkipsPastNightsAndSecondAlarms() {
         val alarms = listOf(alarm("a", 6, 0), alarm("b", 6, 30))
         // Vor der Erinnerung: die für 06:00.

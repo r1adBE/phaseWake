@@ -23,6 +23,7 @@
     <string name="home_today">Bu gün</string>
     <string name="home_tomorrow">Sabah</string>
     <string name="home_window_length">%1$d dəq pəncərə</string>
+    <string name="chart_bedtime">Yatma vaxtı %1$s</string>
     <string name="home_alarms">Siqnallar</string>
     <string name="home_permissions">İcazə ver</string>
     <string name="home_permissions_hint">Ölçmə və siqnal ekranı üçün lazımdır.</string>

@@ -88,10 +88,17 @@ class PhaseWakeApp : Application() {
             backup.reschedule()
             // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
             if (holidays.refresh()) backup.reschedule()
+            // Schlafziel für den Einschlafpunkt auf der Uhr (unverändert: gleiches Paket, die Uhr merkt nichts).
+            publishSleepGoal()
         }
         // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
         appScope.launch { sounds.cleanup() }
         com.phasewake.app.sounds.SoundStore.scheduleCleanup(this)
+    }
+
+    /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
+    suspend fun publishSleepGoal() {
+        sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp())
     }
 
     /** Speichert eine Änderung an den Weckern, schickt sie an die Uhr und plant den Zweitwecker neu. */

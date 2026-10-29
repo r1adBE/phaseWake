@@ -10,6 +10,7 @@ import androidx.wear.compose.material3.AppScaffold
 import com.phasewake.app.wear.ui.EditorContent
 import com.phasewake.app.wear.ui.HomeContent
 import com.phasewake.app.wear.ui.RingScreen
+import com.phasewake.app.wear.ui.WatchHomeExtras
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.wake.RingUi
 import java.time.DayOfWeek
@@ -44,6 +45,8 @@ private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = Swiss {
             onRequestPermissions = {},
             onOpenDnd = {},
             onToggle = { _, _ -> },
+            // Fester Zeiger «jetzt» (22:15) und Standard-Schlafziel: Einschlafpunkt 23:30, Bild bleibt gleich.
+            extras = WatchHomeExtras(now = now),
         )
     }
 }

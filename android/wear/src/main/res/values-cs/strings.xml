@@ -27,6 +27,7 @@
     <string name="home_today">Dnes</string>
     <string name="home_tomorrow">Zítra</string>
     <string name="home_window_length">Okno %1$d min</string>
+    <string name="chart_bedtime">Čas jít spát %1$s</string>
     <string name="home_alarms">Budíky</string>
     <string name="home_permissions">Povolit oprávnění</string>
     <string name="home_permissions_hint">Potřebné pro měření a obrazovku budíku.</string>

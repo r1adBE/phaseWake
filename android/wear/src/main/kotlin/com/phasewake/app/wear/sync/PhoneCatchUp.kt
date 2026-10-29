@@ -16,8 +16,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Holt nach, was das Handy schon abgelegt hat, falls die Uhr eine Änderung verpasst hat (Prozess neu,
- * Neustart, Update): den neuesten Weckerstand, die Feiertage und ein «Verlauf löschen». Nur nach dem ersten Entsperren
- * aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann allein weiter.
+ * Neustart, Update): den neuesten Weckerstand, die Feiertage, das Schlafziel und ein «Verlauf löschen». Nur nach dem
+ * ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann allein weiter.
  */
 object PhoneCatchUp {
     private const val TAG = "PhoneCatchUp"
@@ -44,6 +44,13 @@ object PhoneCatchUp {
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Feiertage nachholen fehlgeschlagen", e)
+        }
+        try {
+            // Schlafziel: nur Anzeige, ändert also nichts am Plan.
+            app.sync.fetchSleepGoal()?.let { (minutes, at) -> app.sleepGoal.setIfNewer(minutes, at) }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Schlafziel nachholen fehlgeschlagen", e)
         }
         try {
             latestClear(app)?.let { applyClear(app, it) }

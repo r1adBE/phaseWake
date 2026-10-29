@@ -266,6 +266,23 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         }
     }
 
+    // MARK: Schlafziel (Uhr: vom iPhone, nur für die Anzeige)
+
+    private static let sleepGoalKey = "sleepGoalMinutes"
+
+    /// Schlafziel in Minuten (mit `SleepGoal.clamp`); `SleepGoal.defaultMinutes`, wenn nie empfangen.
+    public var sleepGoal: Int {
+        get {
+            lock.lock(); defer { lock.unlock() }
+            let stored = defaults.integer(forKey: Self.sleepGoalKey)
+            return stored == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(stored)
+        }
+        set {
+            lock.lock(); defer { lock.unlock() }
+            defaults.set(SleepGoal.clamp(newValue), forKey: Self.sleepGoalKey)
+        }
+    }
+
     private static func log(_ message: String) {
         #if canImport(os)
         logger.error("\(message, privacy: .public)")

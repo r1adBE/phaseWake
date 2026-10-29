@@ -199,6 +199,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
         onGoal = { minutes ->
             app.appScope.launch {
                 app.settings.setSleepGoal(minutes)
+                app.publishSleepGoal()
                 app.bedtime.reschedule()
             }
         },

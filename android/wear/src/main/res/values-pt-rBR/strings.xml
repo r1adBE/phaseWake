@@ -26,6 +26,7 @@
     <string name="home_today">Hoje</string>
     <string name="home_tomorrow">Amanhã</string>
     <string name="home_window_length">Janela de %1$d min</string>
+    <string name="chart_bedtime">Hora de dormir %1$s</string>
     <string name="home_alarms">Alarmes</string>
     <string name="home_permissions">Conceder permissões</string>
     <string name="home_permissions_hint">Necessárias para a medição e a tela de alarme.</string>

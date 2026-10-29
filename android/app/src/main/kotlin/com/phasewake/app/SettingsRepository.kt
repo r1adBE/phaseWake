@@ -36,7 +36,20 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
     suspend fun sleepGoalNow(): Int = sleepGoal.first()
 
     suspend fun setSleepGoal(minutes: Int) {
-        store.edit { it[SLEEP_GOAL] = SleepGoal.clamp(minutes) }
+        store.edit {
+            it[SLEEP_GOAL] = SleepGoal.clamp(minutes)
+            it[SLEEP_GOAL_AT] = Instant.now().toEpochMilli()
+        }
+    }
+
+    /**
+     * Zeitpunkt der letzten Änderung des Schlafziels (ms), für den Abgleich mit der Uhr. Fehlt er (Ziel vor dieser
+     * Version gesetzt oder nie geändert), wird jetzt einer gesetzt: So übernimmt die Uhr auch ein älteres Ziel einmal.
+     */
+    suspend fun sleepGoalStamp(): Long {
+        var stamp = 0L
+        store.edit { prefs -> stamp = prefs[SLEEP_GOAL_AT] ?: Instant.now().toEpochMilli().also { prefs[SLEEP_GOAL_AT] = it } }
+        return stamp
     }
 
     /** Bettzeit-Erinnerung an oder aus (Standard aus). */
@@ -191,6 +204,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
     suspend fun restore(settings: BackupSettings) {
         store.edit {
             it[SLEEP_GOAL] = SleepGoal.clamp(settings.sleepGoal)
+            it[SLEEP_GOAL_AT] = Instant.now().toEpochMilli()
             it[BEDTIME_REMINDER] = settings.bedtimeReminder
             it[WEEKLY_REVIEW] = settings.weeklyReview
             it[SOUND_REC_DEFAULT] = settings.soundRecDefault
@@ -215,6 +229,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val WEEKLY_PREPARED = stringPreferencesKey("weekly_prepared")
         val THEME = stringPreferencesKey("theme_mode")
         val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
+        val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
         val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")
         val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
         val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")

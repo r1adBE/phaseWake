@@ -5,7 +5,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
-/** Schlafziel: wie viel Schlaf der Nutzer pro Nacht möchte (nur Handy). */
+/** Schlafziel: wie viel Schlaf der Nutzer pro Nacht möchte (eingestellt am Handy; die Uhr zeigt damit den Einschlafpunkt). */
 object SleepGoal {
     /** Standard-Schlafziel in Minuten (7 h 30 min). */
     const val DEFAULT_MINUTES: Int = 450
@@ -66,6 +66,17 @@ object Bedtime {
      */
     fun bedtime(nextAlarmTarget: Instant, goalMinutes: Int): Instant =
         nextAlarmTarget.minus(Duration.ofMinutes(goalMinutes.toLong()))
+
+    /** Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig. */
+    const val DIAL_MINUTES: Int = 720
+
+    /**
+     * Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: [bedtime], oder `null`, wenn [goalMinutes]
+     * nicht zwischen 1 und [DIAL_MINUTES] (ausschliesslich) liegt – der Punkt fiele sonst auf oder hinter den
+     * Weckpunkt. Mit einem Ziel aus [SleepGoal.clamp] (höchstens 10 Std.) nie `null`.
+     */
+    fun onDial(nextAlarmTarget: Instant, goalMinutes: Int): Instant? =
+        if (goalMinutes in 1 until DIAL_MINUTES) bedtime(nextAlarmTarget, goalMinutes) else null
 
     /** Zeitpunkt der Erinnerung: [bedtime] minus [leadMinutes]. */
     fun reminderAt(nextAlarmTarget: Instant, goalMinutes: Int, leadMinutes: Int = LEAD_MINUTES): Instant =

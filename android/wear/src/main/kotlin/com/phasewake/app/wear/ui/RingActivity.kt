@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -52,6 +53,7 @@ import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeReason
@@ -124,6 +126,39 @@ class RingActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    // singleInstance: Ein weiterer Start (Vollbild, Alarm, Erinnerung) kommt hier an, ohne zweiten Bildschirm;
+    // Ton und Vibration steuert der Dienst, sie beginnen dabei nicht neu.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        shown = true
+        // Für die Diagnose: auf welchem Weg der Weckbildschirm zu sehen ist.
+        wearApp.diag.log(DiagKind.RING_SCREEN, "watch shown via ${intent?.getStringExtra(EXTRA_VIA) ?: "unknown"}")
+    }
+
+    override fun onStop() {
+        shown = false
+        super.onStop()
+    }
+
+    companion object {
+        /** Weg, auf dem der Bildschirm geöffnet wurde (nur für die Diagnose). */
+        const val EXTRA_VIA = "via"
+        const val VIA_FULL_SCREEN = "fullscreen"
+        const val VIA_TAP = "tap"
+        const val VIA_ALARM = "alarm"
+        const val VIA_DIRECT = "direct"
+
+        /** Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert der Dienst ([com.phasewake.app.wear.wake.onRealert]). */
+        @Volatile
+        var shown: Boolean = false
+            private set
     }
 }
 

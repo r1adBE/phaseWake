@@ -25,6 +25,7 @@
     <string name="home_today">Ma</string>
     <string name="home_tomorrow">Holnap</string>
     <string name="home_window_length">%1$d p ablak</string>
+    <string name="chart_bedtime">Lefekvés %1$s</string>
     <string name="home_alarms">Ébresztők</string>
     <string name="home_permissions">Engedélyek megadása</string>
     <string name="home_permissions_hint">A méréshez és az ébresztőképernyőhöz kell.</string>

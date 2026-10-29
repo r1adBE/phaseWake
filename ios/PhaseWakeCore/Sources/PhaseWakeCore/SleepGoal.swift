@@ -71,6 +71,16 @@ public enum Bedtime {
         nextAlarmTarget.addingTimeInterval(-TimeInterval(goalMinutes * 60))
     }
 
+    /// Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig.
+    public static let dialMinutes = 720
+
+    /// Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: `bedtime`, oder `nil`, wenn `goalMinutes`
+    /// nicht zwischen 1 und `dialMinutes` (ausschliesslich) liegt – der Punkt fiele sonst auf oder hinter den
+    /// Weckpunkt. Mit einem Ziel aus `SleepGoal.clamp` (höchstens 10 Std.) nie `nil`. Identisch zu Kotlin.
+    public static func onDial(nextAlarmTarget: Date, goalMinutes: Int) -> Date? {
+        (1..<dialMinutes).contains(goalMinutes) ? bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes) : nil
+    }
+
     /// Zeitpunkt der Bettzeit-Erinnerung: `leadMinutes` Minuten vor der Bettzeit.
     public static func reminderAt(nextAlarmTarget: Date, goalMinutes: Int, leadMinutes: Int = Bedtime.leadMinutes) -> Date {
         bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes).addingTimeInterval(-TimeInterval(leadMinutes * 60))

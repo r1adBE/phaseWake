@@ -26,6 +26,7 @@
     <string name="home_today">Gaur</string>
     <string name="home_tomorrow">Bihar</string>
     <string name="home_window_length">%1$d min-ko leihoa</string>
+    <string name="chart_bedtime">Oheratzea: %1$s</string>
     <string name="home_alarms">Alarmak</string>
     <string name="home_permissions">Eman baimenak</string>
     <string name="home_permissions_hint">Neurtzeko eta alarma-pantailarako behar dira.</string>

@@ -27,6 +27,7 @@
     <string name="home_today">Šodien</string>
     <string name="home_tomorrow">Rīt</string>
     <string name="home_window_length">%1$d min logs</string>
+    <string name="chart_bedtime">Gulētiešana %1$s</string>
     <string name="home_alarms">Modinātāji</string>
     <string name="home_permissions">Piešķirt atļaujas</string>
     <string name="home_permissions_hint">Vajadzīgas mērīšanai un modinātāja ekrānam.</string>

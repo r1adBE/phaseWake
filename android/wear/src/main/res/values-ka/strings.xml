@@ -23,6 +23,7 @@
     <string name="home_today">დღეს</string>
     <string name="home_tomorrow">ხვალ</string>
     <string name="home_window_length">%1$d წთ ფანჯარა</string>
+    <string name="chart_bedtime">დაძინება %1$s</string>
     <string name="home_alarms">მაღვიძარები</string>
     <string name="home_permissions">ნებართვების მიცემა</string>
     <string name="home_permissions_hint">საჭიროა გაზომვისა და მაღვიძარის ეკრანისთვის.</string>

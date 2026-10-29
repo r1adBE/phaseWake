@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import com.phasewake.app.core.DiagUnlock
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.wear.R
@@ -183,6 +184,7 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
     val transient by app.transient.stored.collectAsStateWithLifecycle(initialValue = null)
     val diagFlow = remember { WatchDiag.shown(context) }
     val diagnostics by diagFlow.collectAsStateWithLifecycle(initialValue = false)
+    val sleepGoal by app.sleepGoal.minutes.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
     var taps by remember { mutableIntStateOf(0) }
     val locale = LocalConfiguration.current.locales[0]
     return WatchHomeExtras(
@@ -203,6 +205,8 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
         },
         diagnostics = diagnostics,
         onDiagnostics = onDiagnostics,
+        now = now,
+        sleepGoalMinutes = sleepGoal,
     )
 }
 

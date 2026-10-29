@@ -26,6 +26,7 @@
     <string name="home_today">Bugun</string>
     <string name="home_tomorrow">Ertaga</string>
     <string name="home_window_length">%1$d daq oraliq</string>
+    <string name="chart_bedtime">Uxlash vaqti %1$s</string>
     <string name="home_alarms">Budilniklar</string>
     <string name="home_permissions">Ruxsat berish</string>
     <string name="home_permissions_hint">Oʻlchash va budilnik ekrani uchun kerak.</string>

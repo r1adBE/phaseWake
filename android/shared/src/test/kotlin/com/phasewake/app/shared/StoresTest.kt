@@ -4,6 +4,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.HolidayList
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.TestRun
 import com.phasewake.app.core.TestStep
@@ -83,6 +84,24 @@ class StoresTest {
         assertEquals(11L, store.updatedAt())
         assertTrue(store.set(HolidayList("DE", emptySet()), 12L))
         assertEquals(emptySet(), store.current())
+    }
+
+    @Test
+    fun sleepGoalStoreDefaultsAndOnlyTakesNewer() = runTest {
+        val store = SleepGoalStore(MemoryStore())
+        // Uhr ohne Handy: Standard 7½ Std.
+        assertEquals(SleepGoal.DEFAULT_MINUTES, store.minutes.first())
+        assertEquals(0L, store.updatedAt())
+        assertTrue(store.setIfNewer(480, 10L))
+        assertEquals(480, store.minutes.first())
+        assertFalse(store.setIfNewer(360, 5L))
+        assertFalse(store.setIfNewer(360, 10L))
+        assertEquals(480, store.minutes.first())
+        assertFalse(store.setIfNewer(480, 11L))
+        assertEquals(11L, store.updatedAt())
+        // Ausserhalb des Bereichs: auf 10 Std. begrenzt.
+        assertTrue(store.setIfNewer(2_000, 12L))
+        assertEquals(SleepGoal.MAX_MINUTES, store.minutes.first())
     }
 
     @Test

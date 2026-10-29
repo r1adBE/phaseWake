@@ -27,6 +27,7 @@
     <string name="home_today">Danas</string>
     <string name="home_tomorrow">Sutra</string>
     <string name="home_window_length">Interval %1$d min</string>
+    <string name="chart_bedtime">Na spavanje %1$s</string>
     <string name="home_alarms">Alarmi</string>
     <string name="home_permissions">Dodijeli dozvole</string>
     <string name="home_permissions_hint">Potrebno za mjerenje i ekran alarma.</string>

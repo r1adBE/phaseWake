@@ -12,6 +12,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
@@ -63,6 +64,9 @@ class PhaseWakeWear : Application() {
 
     /** Feiertage vom Handy für Wecker mit «An Feiertagen nicht wecken». */
     val holidays by lazy { HolidayStore(phaseWakeStore) }
+
+    /** Schlafziel vom Handy, nur für den Einschlafpunkt auf dem Ring; ohne Handy der Standard. */
+    val sleepGoal by lazy { SleepGoalStore(phaseWakeStore) }
 
     /** Probewecker oder Powernap, der gerade gilt. */
     val transient by lazy { TransientStore(phaseWakeStore) }

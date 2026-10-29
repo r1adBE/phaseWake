@@ -24,6 +24,7 @@
     <string name="home_today">วันนี้</string>
     <string name="home_tomorrow">พรุ่งนี้</string>
     <string name="home_window_length">ช่วง %1$d นาที</string>
+    <string name="chart_bedtime">เวลาเข้านอน %1$s</string>
     <string name="home_alarms">นาฬิกาปลุก</string>
     <string name="home_permissions">อนุญาตสิทธิ์</string>
     <string name="home_permissions_hint">จำเป็นต่อการวัดและหน้าจอปลุก</string>

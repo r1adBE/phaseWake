@@ -40,12 +40,12 @@ private fun NapHome(extras: WatchHomeExtras) = Swiss {
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
-fun WatchNap() = NapHome(WatchHomeExtras(onNap = {}))
+fun WatchNap() = NapHome(WatchHomeExtras(onNap = {}, now = now))
 
 /** Powernap vor 5 Minuten gestartet, 20 Minuten lang: Chip «Beenden» mit der Weckzeit. */
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap läuft", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchNapRunning() = NapHome(
-    WatchHomeExtras(nap = Transient.nap(alarms.first(), now.minus(Duration.ofMinutes(5)), zone, 20, "preview"), onNap = {}),
+    WatchHomeExtras(nap = Transient.nap(alarms.first(), now.minus(Duration.ofMinutes(5)), zone, 20, "preview"), onNap = {}, now = now),
 )
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap Dauer", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable

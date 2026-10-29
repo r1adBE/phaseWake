@@ -27,6 +27,7 @@
     <string name="home_today">Dziś</string>
     <string name="home_tomorrow">Jutro</string>
     <string name="home_window_length">Okno %1$d min</string>
+    <string name="chart_bedtime">Pora snu %1$s</string>
     <string name="home_alarms">Budziki</string>
     <string name="home_permissions">Przyznaj uprawnienia</string>
     <string name="home_permissions_hint">Potrzebne do pomiaru i ekranu budzika.</string>

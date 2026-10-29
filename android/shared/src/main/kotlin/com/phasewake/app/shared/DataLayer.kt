@@ -95,6 +95,13 @@ object DataLayer {
      */
     const val PATH_HOLIDAYS = "/phasewake/holidays"
 
+    /**
+     * Datenpaket Handy → Uhr: Schlafziel für den Einschlafpunkt auf dem Ring der Uhr; Schlüssel [KEY_SLEEP_GOAL]
+     * (Minuten) und [KEY_UPDATED_AT] (Zeitpunkt der Änderung am Handy). Ohne Paket gilt auf der Uhr der Standard.
+     */
+    const val PATH_SLEEP_GOAL = "/phasewake/sleep-goal"
+    const val KEY_SLEEP_GOAL = "sleepGoalMinutes"
+
     /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
     const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
 

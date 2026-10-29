@@ -29,6 +29,7 @@
     <string name="home_today">Inniu</string>
     <string name="home_tomorrow">Amárach</string>
     <string name="home_window_length">Fuinneog %1$d nóim</string>
+    <string name="chart_bedtime">Am codlata %1$s</string>
     <string name="home_alarms">Aláraim</string>
     <string name="home_permissions">Ceadaigh ceadanna</string>
     <string name="home_permissions_hint">Ag teastáil le haghaidh tomhais agus scáileán an aláraim.</string>

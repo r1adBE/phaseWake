@@ -24,6 +24,7 @@
     <string name="home_today">ယနေ့</string>
     <string name="home_tomorrow">မနက်ဖြန်</string>
     <string name="home_window_length">%1$d မိနစ် အပိုင်း</string>
+    <string name="chart_bedtime">အိပ်ချိန် %1$s</string>
     <string name="home_alarms">နှိုးစက်များ</string>
     <string name="home_permissions">ခွင့်ပြုချက်များ ပေးရန်</string>
     <string name="home_permissions_hint">တိုင်းတာရန်နှင့် နှိုးစက်မျက်နှာပြင်အတွက် လိုအပ်သည်။</string>

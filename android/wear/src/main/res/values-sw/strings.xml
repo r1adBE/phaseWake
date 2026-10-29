@@ -25,6 +25,7 @@
     <string name="home_today">Leo</string>
     <string name="home_tomorrow">Kesho</string>
     <string name="home_window_length">Kipindi cha dak %1$d</string>
+    <string name="chart_bedtime">Kulala %1$s</string>
     <string name="home_alarms">Kengele</string>
     <string name="home_permissions">Toa ruhusa</string>
     <string name="home_permissions_hint">Zinahitajika kwa kupima na skrini ya kengele.</string>

@@ -25,6 +25,7 @@
     <string name="home_today">আজ</string>
     <string name="home_tomorrow">আগামীকাল</string>
     <string name="home_window_length">%1$d মি. সময়সীমা</string>
+    <string name="chart_bedtime">ঘুমানোর সময় %1$s</string>
     <string name="home_alarms">অ্যালার্ম</string>
     <string name="home_permissions">অনুমতি দাও</string>
     <string name="home_permissions_hint">মাপা আর অ্যালার্ম স্ক্রিনের জন্য দরকার।</string>

@@ -3,7 +3,7 @@ import PhaseWakeCore
 import WatchConnectivity
 import WatchKit
 
-/// Verbindung zum iPhone: Wecker kommen als Anwendungskontext, Nächte gehen als Benutzerdaten,
+/// Verbindung zum iPhone: Wecker, Feiertage und Schlafziel kommen als Anwendungskontext, Nächte gehen als Benutzerdaten,
 /// Weck-Ereignisse als Nachricht, ohne Verbindung als Benutzerdaten nachgereicht.
 final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchConnectivityBridge()
@@ -171,6 +171,10 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         if let text = context[SyncKeys.holidays] as? String {
             let list = Holidays.decode(text)
             Task { @MainActor in WatchModel.shared.applyHolidays(list) }
+        }
+        // Schlafziel nur für den Einschlafpunkt; fehlt es (älteres iPhone), bleibt der gespeicherte Stand.
+        if let goal = context[SyncKeys.sleepGoal] as? Int64 {
+            Task { @MainActor in WatchModel.shared.applySleepGoal(Int(goal)) }
         }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,

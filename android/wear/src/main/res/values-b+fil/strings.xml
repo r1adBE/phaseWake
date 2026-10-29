@@ -26,6 +26,7 @@
     <string name="home_today">Ngayon</string>
     <string name="home_tomorrow">Bukas</string>
     <string name="home_window_length">%1$d min na window</string>
+    <string name="chart_bedtime">Pagtulog %1$s</string>
     <string name="home_alarms">Mga alarm</string>
     <string name="home_permissions">Payagan ang mga pahintulot</string>
     <string name="home_permissions_hint">Kailangan para sa pagsukat at sa alarm screen.</string>

@@ -25,6 +25,7 @@
     <string name="home_today">I dag</string>
     <string name="home_tomorrow">I morgen</string>
     <string name="home_window_length">%1$d min vindu</string>
+    <string name="chart_bedtime">Leggetid %1$s</string>
     <string name="home_alarms">Alarmer</string>
     <string name="home_permissions">Gi tillatelser</string>
     <string name="home_permissions_hint">Trengs for måling og alarmskjermen.</string>

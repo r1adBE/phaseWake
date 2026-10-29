@@ -1,7 +1,6 @@
 package com.phasewake.app.wear.wake
 
 import android.util.Log
-import androidx.core.app.NotificationManagerCompat
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
@@ -37,7 +36,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     n.sensors?.stop()
     AlarmScheduler.cancelDeadlineAndSnooze(this)
     app.ringState.publish(RingUi.Idle)
-    NotificationManagerCompat.from(this).cancel(Notifications.ID_SERVICE)
+    cancelRingScreenAlarm(this)
+    Notifications.cancelService(this)
     releaseWakeLock()
 
     // Probewecker und Powernap: kein Eintrag im Verlauf, nichts «erledigt», kein Einmal-Wecker.

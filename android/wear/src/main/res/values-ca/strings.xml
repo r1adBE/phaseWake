@@ -26,6 +26,7 @@
     <string name="home_today">Avui</string>
     <string name="home_tomorrow">Demà</string>
     <string name="home_window_length">Finestra de %1$d min</string>
+    <string name="chart_bedtime">A dormir %1$s</string>
     <string name="home_alarms">Alarmes</string>
     <string name="home_permissions">Dona permisos</string>
     <string name="home_permissions_hint">Calen per mesurar i per a la pantalla d’alarma.</string>

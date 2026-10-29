@@ -27,6 +27,7 @@
     <string name="home_today">Today</string>
     <string name="home_tomorrow">Tomorrow</string>
     <string name="home_window_length">%1$d min window</string>
+    <string name="chart_bedtime">Bedtime %1$s</string>
     <string name="home_alarms">Alarms</string>
     <string name="home_permissions">Allow permissions</string>
     <string name="home_permissions_hint">Needed for measuring and the alarm screen.</string>

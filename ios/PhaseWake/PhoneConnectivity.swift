@@ -12,14 +12,15 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         WCSession.default.activate()
     }
 
-    /// Wecker und Feiertage als Anwendungskontext (ersetzt jeweils den ganzen Stand, darum immer beides).
-    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList) {
+    /// Wecker, Feiertage und Schlafziel (Minuten) als Anwendungskontext (ersetzt jeweils den ganzen Stand, darum immer alles).
+    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int) {
         guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
         do {
             try WCSession.default.updateApplicationContext([
                 SyncKeys.alarms: Codec.encodeAlarms(snapshot.alarms),
                 SyncKeys.updatedAt: snapshot.updatedAt,
                 SyncKeys.holidays: Holidays.encode(holidays),
+                SyncKeys.sleepGoal: Int64(sleepGoal),
             ])
             DiagStore.shared.log(.sync, "sent \(snapshot.alarms.count) alarms, \(holidays.dates.count) holidays")
         } catch {
@@ -60,7 +61,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         guard state == .activated else { return }
         receive(context: session.receivedApplicationContext)
         Task { @MainActor in
-            self.publish(PhoneModel.shared.storage.snapshot(), holidays: PhoneModel.shared.holidays.list)
+            PhoneModel.shared.publishToWatch()
             let queued = self.pending
             self.pending = []
             queued.forEach(self.deliver)

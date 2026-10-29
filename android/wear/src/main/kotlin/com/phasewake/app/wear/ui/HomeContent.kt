@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
@@ -30,6 +31,7 @@ import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.SplitSwitchButton
 import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Bedtime
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.DayFormat
@@ -72,7 +74,7 @@ internal fun HomeContent(
     val listState = rememberScalingLazyListState()
     ScreenScaffold(scrollState = listState) {
         ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
-            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading, extras.onWindowTap) }
+            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading, extras) }
             if (sleepAlarm != null) {
                 item {
                     GoodNightButton(
@@ -146,23 +148,40 @@ internal fun HomeContent(
 }
 
 @Composable
-private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean = false, onTap: () -> Unit = {}) {
+private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean, extras: WatchHomeExtras) {
     // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist.
     // Tippen zählt nur für das Freischalten der Diagnose (7×), ohne Rolle für Bildschirmleser.
+    val onTap = extras.onWindowTap
     Box(
         Modifier.size(width = 164.dp, height = 164.dp).pointerInput(Unit) { detectTapGestures { onTap() } },
         contentAlignment = Alignment.Center,
     ) {
         if (loading) return@Box
+        // Einschlafpunkt nur zu einem gespeicherten Wecker, nicht zu Powernap oder Probewecker.
+        val bedtime = plan?.takeIf { alarm != null }?.let { Bedtime.onDial(it.target, extras.sleepGoalMinutes) }
         if (plan != null) {
-            WindowRing(dialFraction(plan.windowStart, zone), dialFraction(plan.target, zone), Modifier.size(156.dp))
+            WindowRing(
+                dialFraction(plan.windowStart, zone),
+                dialFraction(plan.target, zone),
+                Modifier.size(156.dp),
+                nowFraction = extras.now?.let { dialFraction(it, zone) },
+                bedtimeFraction = bedtime?.let { dialFraction(it, zone) },
+            )
         }
+        // Der Ring ist für Bildschirmleser verborgen: die Bettzeit kommt darum nur in die Beschreibung des Textblocks,
+        // sichtbar bleibt sie allein als feiner Punkt.
+        val texts = plan?.let { windowTexts(it, alarm, zone, extras.now) }
+        val bedtimeText = bedtime?.let { stringResource(R.string.chart_bedtime, formatTime(it, zone)) }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.semantics(mergeDescendants = true) { },
+            modifier = if (texts == null) {
+                Modifier.semantics(mergeDescendants = true) { }
+            } else {
+                Modifier.clearAndSetSemantics { contentDescription = (texts + listOfNotNull(bedtimeText)).joinToString(", ") }
+            },
         ) {
-            if (plan == null) {
+            if (texts == null) {
                 Text(stringResource(R.string.home_no_alarm), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
                 Text(
                     stringResource(R.string.home_no_alarm_hint),
@@ -172,31 +191,31 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
                     modifier = Modifier.width(130.dp),
                 )
             } else {
-                val day = plan.target.atZone(zone).toLocalDate()
-                val today = LocalDate.now(zone)
-                val locale = LocalConfiguration.current.locales[0]
-                Text(
-                    when (day) {
-                        today -> stringResource(R.string.home_today)
-                        today.plusDays(1) -> stringResource(R.string.home_tomorrow)
-                        else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
-                    },
-                    style = MaterialTheme.typography.labelSmall,
-                    color = Brand.Mist,
-                )
-                Text(
-                    stringResource(R.string.home_window, formatTime(plan.windowStart, zone), formatTime(plan.target, zone)),
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Text(
-                    stringResource(R.string.home_window_length, alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = Brand.Muted,
-                )
+                val (day, window, length) = texts
+                Text(day, style = MaterialTheme.typography.labelSmall, color = Brand.Mist)
+                Text(window, style = MaterialTheme.typography.titleLarge)
+                Text(length, style = MaterialTheme.typography.labelSmall, color = Brand.Muted)
                 FlowingWave(Modifier.padding(top = 6.dp).width(96.dp).height(18.dp))
             }
         }
     }
+}
+
+/** Tag, Fenster und Fensterlänge des Plans als Texte; «heute» und «morgen» bezogen auf [now] (`null` = jetzt). */
+@Composable
+private fun windowTexts(plan: WakePlan, alarm: AlarmSpec?, zone: ZoneId, now: Instant?): List<String> {
+    val day = plan.target.atZone(zone).toLocalDate()
+    val today = (now ?: Instant.now()).atZone(zone).toLocalDate()
+    val locale = LocalConfiguration.current.locales[0]
+    return listOf(
+        when (day) {
+            today -> stringResource(R.string.home_today)
+            today.plusDays(1) -> stringResource(R.string.home_tomorrow)
+            else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
+        },
+        stringResource(R.string.home_window, formatTime(plan.windowStart, zone), formatTime(plan.target, zone)),
+        stringResource(R.string.home_window_length, alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES),
+    )
 }
 
 /** Letzte Nacht in einer Zeile: wann und warum geweckt wurde. */

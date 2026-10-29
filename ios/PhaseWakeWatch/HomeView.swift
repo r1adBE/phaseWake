@@ -13,7 +13,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             List {
-                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId })
+                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId }, sleepGoal: model.sleepGoal)
                     .listRowBackground(Color.clear)
                 if case .waiting = SmartAlarm.shared.phase {
                     // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus.
@@ -107,11 +107,23 @@ struct HomeView: View {
 private struct NextWindow: View {
     let plan: WakePlan?
     let alarm: AlarmSpec?
+    /// Schlafziel in Minuten für den Einschlafpunkt.
+    let sleepGoal: Int
+
+    /// Einschlafpunkt nur zu einem gespeicherten Wecker, nicht zu Powernap oder Probewecker.
+    private var bedtime: Date? {
+        guard let plan, alarm != nil else { return nil }
+        return Bedtime.onDial(nextAlarmTarget: plan.target, goalMinutes: sleepGoal)
+    }
 
     var body: some View {
         ZStack {
             if let plan {
-                WindowRing(start: dial(plan.windowStart), end: dial(plan.target))
+                // Zeiger «jetzt», einmal pro Minute neu.
+                TimelineView(.everyMinute) { context in
+                    WindowRing(start: dial(plan.windowStart), end: dial(plan.target), now: dial(context.date),
+                               bedtime: bedtime.map { dial($0) })
+                }
             }
             VStack(spacing: 2) {
                 if let plan {
@@ -135,6 +147,8 @@ private struct NextWindow: View {
             }
             .padding(.horizontal, 18)
             .accessibilityElement(children: .combine)
+            // Der Ring ist für VoiceOver verborgen: die Bettzeit nur hier, sichtbar bleibt sie allein als feiner Kreis.
+            .accessibilityValue(bedtime.map { L("chart_bedtime", Format.time($0)) } ?? "")
         }
         .frame(height: 160)
         .frame(maxWidth: .infinity)
@@ -147,19 +161,53 @@ private struct NextWindow: View {
     }
 }
 
-/// Ring mit dem Weckfenster als Bogen und dem Weckpunkt am Ende.
+/// Ring als 12-Stunden-Zifferblatt: feine Marken für 12, 3, 6 und 9 Uhr, das Weckfenster als Bogen mit dem
+/// Weckpunkt (runder Punkt) am Ende, ein kurzer Zeiger für «jetzt» (Strich quer zur Spur) und der Einschlafpunkt
+/// (Weckzeit minus Schlafziel) als feiner hohler Kreis. Drei Formen, damit nicht die Farbe allein unterscheidet.
+/// Positionen 0–1, 0 = 12 Uhr; ohne `bedtime` kein Einschlafpunkt.
 private struct WindowRing: View {
     let start: Double
     let end: Double
+    let now: Double
+    let bedtime: Double?
 
     var body: some View {
         let sweep = max(0.01, (end - start + 1).truncatingRemainder(dividingBy: 1))
-        ZStack {
-            Circle().stroke(Brand.track, lineWidth: 5)
-            Circle()
-                .trim(from: 0, to: sweep)
-                .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
-                .rotationEffect(.degrees(start * 360 - 90))
+        GeometryReader { geo in
+            let r = min(geo.size.width, geo.size.height) / 2
+            ZStack {
+                Circle().stroke(Brand.track, lineWidth: 5)
+                ForEach(0..<4, id: \.self) { k in
+                    Capsule()
+                        .fill(Brand.muted)
+                        .frame(width: 1.5, height: k == 0 ? 8 : 5)
+                        .offset(y: -(r - 4.5 - (k == 0 ? 4 : 2.5)))
+                        .rotationEffect(.degrees(Double(k) * 90))
+                }
+                Circle()
+                    .trim(from: 0, to: sweep)
+                    .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                    .rotationEffect(.degrees(start * 360 - 90))
+                if let bedtime {
+                    // Hohl, damit die Spur durchscheint; `muted` hat auf Spur und Nachthimmel über 8 : 1 Kontrast.
+                    Circle()
+                        .stroke(Brand.muted, lineWidth: 1.5)
+                        .frame(width: 8, height: 8)
+                        .offset(y: -r)
+                        .rotationEffect(.degrees(bedtime * 360))
+                }
+                Capsule()
+                    .fill(Brand.moon)
+                    .frame(width: 2.5, height: 13)
+                    .offset(y: -r)
+                    .rotationEffect(.degrees(now * 360))
+                Circle()
+                    .fill(Brand.moon)
+                    .frame(width: 8, height: 8)
+                    .offset(y: -r)
+                    .rotationEffect(.degrees(end * 360))
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
         }
         .padding(4)
         .accessibilityHidden(true)

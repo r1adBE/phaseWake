@@ -1,5 +1,6 @@
 package com.phasewake.app.ring
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -41,10 +42,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.R
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.MathChallenge
 import com.phasewake.app.core.WakeTask
+import com.phasewake.app.phoneApp
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.Night as NightColors
@@ -112,6 +115,39 @@ class PhoneRingActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    // singleInstance: Ein weiterer Start (Vollbild, Alarm, Erinnerung) kommt hier an, ohne zweiten Bildschirm;
+    // Ton und Vibration steuert der Dienst, sie beginnen dabei nicht neu.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        shown = true
+        // Für die Diagnose: auf welchem Weg der Weckbildschirm zu sehen ist.
+        phoneApp.diag.log(DiagKind.RING_SCREEN, "phone shown via ${intent?.getStringExtra(EXTRA_VIA) ?: "unknown"}")
+    }
+
+    override fun onStop() {
+        shown = false
+        super.onStop()
+    }
+
+    companion object {
+        /** Weg, auf dem der Bildschirm geöffnet wurde (nur für die Diagnose). */
+        const val EXTRA_VIA = "via"
+        const val VIA_FULL_SCREEN = "fullscreen"
+        const val VIA_TAP = "tap"
+        const val VIA_ALARM = "alarm"
+        const val VIA_DIRECT = "direct"
+
+        /** Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert [PhoneRingAlert]. */
+        @Volatile
+        var shown: Boolean = false
+            private set
     }
 }
 

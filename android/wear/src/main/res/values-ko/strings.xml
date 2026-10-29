@@ -24,6 +24,7 @@
     <string name="home_today">오늘</string>
     <string name="home_tomorrow">내일</string>
     <string name="home_window_length">범위 %1$d분</string>
+    <string name="chart_bedtime">취침 %1$s</string>
     <string name="home_alarms">알람</string>
     <string name="home_permissions">권한 허용</string>
     <string name="home_permissions_hint">측정과 알람 화면에 필요해요.</string>

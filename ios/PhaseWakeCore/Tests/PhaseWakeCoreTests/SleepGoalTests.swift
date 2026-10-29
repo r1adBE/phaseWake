@@ -56,6 +56,15 @@ final class SleepGoalTests: XCTestCase {
         XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, leadMinutes: 10), at("2026-10-27T22:20"))
     }
 
+    func testBedtimeOnDialOnlyWithinTwelveHours() {
+        let target = at("2026-10-28T06:00")
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-27T22:30"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: SleepGoal.maxMinutes), at("2026-10-27T20:00"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 719), at("2026-10-27T18:01"))
+        XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: Bedtime.dialMinutes))
+        XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 0))
+    }
+
     func testNextReminderSkipsPastNightsAndSecondAlarms() throws {
         let alarms = [alarm("a", 6, 0), alarm("b", 6, 30)]
         // Vor der Erinnerung: die für 06:00.

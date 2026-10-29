@@ -26,10 +26,12 @@ import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagLog
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.theme.Brand
+import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -50,6 +52,10 @@ internal class WatchHomeExtras(
     /** Diagnose freigeschaltet: Knopf unten. */
     val diagnostics: Boolean = false,
     val onDiagnostics: () -> Unit = {},
+    /** Jetzt, für den Zeiger auf dem Ring; `null` = ohne Zeiger. In Bildschirmfotos fest, damit sie gleich bleiben. */
+    val now: Instant? = null,
+    /** Schlafziel vom Handy in Minuten (ohne Handy der Standard); setzt den Einschlafpunkt auf dem Ring. */
+    val sleepGoalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
 )
 
 /** Chip «Powernap»: öffnet die Dauerwahl; läuft einer, «Bis 14:20» und antippen beendet ihn. */

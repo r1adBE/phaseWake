@@ -25,6 +25,7 @@
     <string name="home_today">Tänään</string>
     <string name="home_tomorrow">Huomenna</string>
     <string name="home_window_length">Ikkuna %1$d min</string>
+    <string name="chart_bedtime">Nukkumaanmeno %1$s</string>
     <string name="home_alarms">Herätykset</string>
     <string name="home_permissions">Salli käyttöoikeudet</string>
     <string name="home_permissions_hint">Tarvitaan mittaukseen ja herätysnäyttöön.</string>

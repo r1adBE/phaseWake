@@ -6,6 +6,7 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.SleepGoal
 import com.google.android.gms.common.api.ApiException
 import android.net.Uri
 import com.google.android.gms.wearable.CapabilityClient
@@ -110,6 +111,24 @@ class WearSync(context: Context) {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_HOLIDAYS).build()).await()
         try {
             items.map { readHolidays(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.second }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, als Paket wie die Feiertage. */
+    suspend fun publishSleepGoal(minutes: Int, updatedAt: Long) = guarded("Schlafziel senden") {
+        dataClient.putDataItem(sleepGoalRequest(minutes, updatedAt)).await()
+    }
+
+    /** Uhr: zuletzt abgelegtes Schlafziel mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    suspend fun fetchSleepGoal(): Pair<Int, Long>? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_SLEEP_GOAL).build()).await()
+        try {
+            items.map { readSleepGoal(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.second }
         } finally {
             items.release()
         }
@@ -245,6 +264,16 @@ class WearSync(context: Context) {
             dataMap.putString(DataLayer.KEY_TEXT, Holidays.encode(list))
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
         }.asPutDataRequest().setUrgent()
+
+        /** Schlafziel-Paket für die Uhren (dringend wie die Feiertage: ändert sich selten, soll aber gleich ankommen). */
+        fun sleepGoalRequest(minutes: Int, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_SLEEP_GOAL).apply {
+            dataMap.putInt(DataLayer.KEY_SLEEP_GOAL, minutes)
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
+        }.asPutDataRequest().setUrgent()
+
+        /** Liest ein Schlafziel-Paket: Minuten (mit [SleepGoal.clamp]; ohne Angabe der Standard) und Zeitpunkt. */
+        fun readSleepGoal(map: DataMap): Pair<Int, Long> =
+            SleepGoal.clamp(map.getInt(DataLayer.KEY_SLEEP_GOAL, SleepGoal.DEFAULT_MINUTES)) to map.getLong(DataLayer.KEY_UPDATED_AT)
 
         /** Paket «Verlauf löschen» mit Zeitpunkt. */
         fun clearRequest(nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {

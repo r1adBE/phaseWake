@@ -3,7 +3,6 @@ package com.phasewake.app.ring
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
@@ -16,7 +15,6 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
-import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.PhoneAlert
@@ -63,6 +61,7 @@ class PhoneRingService : Service() {
     }
 
     private val timeout = Runnable { onTimeout() }
+    private val alert by lazy { PhoneRingAlert(this, handler) }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -106,10 +105,7 @@ class PhoneRingService : Service() {
         phoneApp.backup.cancelSnooze()
         // Einschlafklänge überdecken nie das Wecken (enden sonst schon zu Beginn des Weckfensters).
         com.phasewake.app.sounds.SleepSoundService.stop(this)
-        ServiceCompat.startForeground(
-            this, RingNotifications.ID_RING, RingNotifications.ringing(this),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
-        )
+        alert.post(newRound = state.value !is State.Ringing)
         val ringing = state.value as? State.Ringing
         if (ringing != null) {
             // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
@@ -130,7 +126,7 @@ class PhoneRingService : Service() {
             else -> Snooze.MAX_COUNT - snoozesDone
         }
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
-        startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        alert.show(if (fromWatch) "with watch" else "backup")
         handler.postDelayed(timeout, TIMEOUT_MS)
         // Nach dem Schlummern am Handy kommt keine Zielzeit mit: die der ersten Runde behalten.
         lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
@@ -302,6 +298,7 @@ class PhoneRingService : Service() {
 
     private fun release() {
         handler.removeCallbacksAndMessages(null)
+        alert.stop()
         duck = 1f
         player?.run {
             runCatching { stop() }

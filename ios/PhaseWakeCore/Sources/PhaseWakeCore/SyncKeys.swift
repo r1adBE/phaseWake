@@ -41,6 +41,9 @@ public enum SyncKeys {
 
     /// Anwendungskontext iPhone → Uhr: Feiertage im Format von `Holidays.encode`.
     public static let holidays = "holidays"
+    /// Anwendungskontext iPhone → Uhr: Schlafziel in Minuten, nur für den Einschlafpunkt auf dem Ring der Uhr.
+    /// Fehlt bei älteren iPhone-Versionen; die Uhr zeigt dann `SleepGoal.defaultMinutes`.
+    public static let sleepGoal = "sleepGoalMinutes"
     /// Befehl iPhone → Uhr: Probewecker, mit `payload` = `Transient.encode`.
     public static let test = "test"
     /// Befehl Uhr → iPhone: Probewecker empfangen, mit `id` = Kennung des Plans.

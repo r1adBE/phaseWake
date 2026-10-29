@@ -26,6 +26,7 @@
     <string name="home_today">Денес</string>
     <string name="home_tomorrow">Утре</string>
     <string name="home_window_length">Прозорец %1$d мин</string>
+    <string name="chart_bedtime">Спиење %1$s</string>
     <string name="home_alarms">Аларми</string>
     <string name="home_permissions">Дозволи пристап</string>
     <string name="home_permissions_hint">Потребно за мерење и екранот за аларм.</string>

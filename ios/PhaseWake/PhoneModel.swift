@@ -217,7 +217,7 @@ final class PhoneModel {
     private func change(_ edit: ([AlarmSpec]) -> [AlarmSpec]) {
         let snapshot = storage.mutate(edit)
         alarms = snapshot.alarms
-        PhoneConnectivity.shared.publish(snapshot, holidays: holidays.list)
+        publishToWatch(snapshot)
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
     }
@@ -266,6 +266,7 @@ final class PhoneModel {
     func setSleepGoal(_ minutes: Int) {
         sleepGoal = SleepGoal.clamp(minutes)
         UserDefaults.standard.set(sleepGoal, forKey: Self.sleepGoalKey)
+        publishToWatch()
         Task { await replanBedtime() }
     }
 

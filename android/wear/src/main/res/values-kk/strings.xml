@@ -23,6 +23,7 @@
     <string name="home_today">Бүгін</string>
     <string name="home_tomorrow">Ертең</string>
     <string name="home_window_length">Терезе %1$d мин</string>
+    <string name="chart_bedtime">Ұйқыға жату %1$s</string>
     <string name="home_alarms">Оятқыштар</string>
     <string name="home_permissions">Рұқсат беру</string>
     <string name="home_permissions_hint">Өлшеу және оятқыш экраны үшін керек.</string>

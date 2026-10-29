@@ -26,6 +26,7 @@
     <string name="home_today">අද</string>
     <string name="home_tomorrow">හෙට</string>
     <string name="home_window_length">මිනි. %1$d පරාසය</string>
+    <string name="chart_bedtime">නින්දට යන වේලාව %1$s</string>
     <string name="home_alarms">එලාම</string>
     <string name="home_permissions">අවසර දෙන්න</string>
     <string name="home_permissions_hint">මැනීමට සහ එලාම් තිරයට අවශ්‍යයි.</string>

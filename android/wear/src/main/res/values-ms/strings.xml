@@ -24,6 +24,7 @@
     <string name="home_today">Hari ini</string>
     <string name="home_tomorrow">Esok</string>
     <string name="home_window_length">Tetingkap %1$d min</string>
+    <string name="chart_bedtime">Waktu tidur %1$s</string>
     <string name="home_alarms">Penggera</string>
     <string name="home_permissions">Beri kebenaran</string>
     <string name="home_permissions_hint">Diperlukan untuk pengukuran dan skrin penggera.</string>

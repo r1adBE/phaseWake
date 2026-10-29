@@ -2,7 +2,6 @@ package com.phasewake.app.wear.wake
 
 import android.os.SystemClock
 import android.util.Log
-import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.lifecycleScope
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.Decision
@@ -117,7 +116,7 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
             Phase.RINGING -> {
                 checkTaskOnPhone(current)
                 publishRinging(current)
-                if (saved != null) goForeground(ringingNotification(current), measuring = false)
+                if (saved != null) postRinging(current, "restart")
                 // Nach einem Neustart ging «klingeln» mit 0 Runden ans Handy: korrigierte Restzahl nachschicken.
                 if (saved != null && saved.snoozes > 0) sendRing(current)
                 if (spec?.watchSound == true) escalation.start(withSound = true)
@@ -158,7 +157,7 @@ internal fun WakeService.cancelMeasuring() {
     handler.removeCallbacksAndMessages(null)
     n.sensors?.stop()
     AlarmScheduler.cancelDeadlineAndSnooze(this)
-    NotificationManagerCompat.from(this).cancel(Notifications.ID_SERVICE)
+    Notifications.cancelService(this)
     releaseWakeLock()
     app.appScope.launch { app.scheduler.reschedule() }
     stopIfIdle()

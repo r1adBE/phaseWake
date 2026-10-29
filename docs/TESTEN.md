@@ -57,6 +57,21 @@ Für spätere Testversionen genügen Schritt 6 (`adb connect …`) und Schritt 3
 
 Schneller: In den Einstellungen oder auf dem Nacht-Check **«In 2 Minuten testen»**. Die Uhr klingelt nach 2 Minuten (ohne Schlummern, beenden durch Halten), danach zeigt das Handy, was geklappt hat. Der Test erscheint nicht im Verlauf.
 
+### Wecker bei eingeschaltetem und bei gesperrtem Bildschirm, Uhr und Handy
+
+Je einmal «In 2 Minuten testen» (Handy-Wecker eingeschaltet), Weckbildschirm nur durch Halten beenden:
+
+| Fall | Uhr | Handy | Erwartet |
+|---|---|---|---|
+| A | Display aus (Arm unten, auch mit Always-on) | gesperrt, Display aus | Beide zeigen den Weckbildschirm von selbst als Vollbild. |
+| B | Display an, Zifferblatt oder andere App | entsperrt, eine andere App offen | Mitteilung oben mit «Öffnen». Wird nichts angetippt: Display aus­gehen lassen bzw. Handy sperren – spätestens nach 20 s kommt der Weckbildschirm als Vollbild. |
+| C | Phase Wake offen | Phase Wake offen | Der Weckbildschirm erscheint sofort. |
+| D | nach «Schlummern» (echter Wecker, Display aus) | nach «Schlummern» am Handy-Zweitwecker | Nach 5 Min wieder Vollbild wie in A. |
+
+Danach im Diagnose-Protokoll je Gerät: `RING_SCREEN … FULL_SCREEN|HEADS_UP|DIRECT screen=… locked=… fsi=…` und
+`RING_SCREEN … shown via fullscreen|alarm|direct|tap`. Fehlt «shown via», kam der Weckbildschirm nicht; `fsi=false`
+heisst: Erlaubnis für den Weckbildschirm fehlt (Nacht-Check bzw. Hinweis auf der Uhr).
+
 Bei einem Fehler: In den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose» → «Uhr-Protokoll holen» → «Protokoll teilen» und den Text mitschicken.
 
 ## Was zurückmelden

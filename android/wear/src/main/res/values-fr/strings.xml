@@ -26,6 +26,7 @@
     <string name="home_today">Aujourd\'hui</string>
     <string name="home_tomorrow">Demain</string>
     <string name="home_window_length">Plage de %1$d min</string>
+    <string name="chart_bedtime">Coucher %1$s</string>
     <string name="home_alarms">Réveils</string>
     <string name="home_permissions">Accorder les autorisations</string>
     <string name="home_permissions_hint">Nécessaires pour la mesure et l\'écran de réveil.</string>

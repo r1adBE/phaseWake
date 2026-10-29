@@ -26,6 +26,7 @@
     <string name="home_today">ዛሬ</string>
     <string name="home_tomorrow">ነገ</string>
     <string name="home_window_length">%1$d ደቂቃ ክልል</string>
+    <string name="chart_bedtime">የመኝታ ሰዓት %1$s</string>
     <string name="home_alarms">ማንቂያዎች</string>
     <string name="home_permissions">ፈቃዶችን ፍቀድ</string>
     <string name="home_permissions_hint">ለመለካትና ለማንቂያ ማያ ገጹ ያስፈልጋል።</string>

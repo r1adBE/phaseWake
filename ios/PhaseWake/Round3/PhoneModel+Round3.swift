@@ -13,9 +13,14 @@ extension PhoneModel {
     /// Feiertage geändert (Wahl, neuer Tag): merken, an die Uhr, Sicherung und Erinnerung neu planen.
     func holidaysChanged() {
         storage.holidays = holidays.list
-        PhoneConnectivity.shared.publish(storage.snapshot(), holidays: holidays.list)
+        publishToWatch()
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
+    }
+
+    /// Wecker, Feiertage und Schlafziel an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
+    func publishToWatch(_ snapshot: AlarmSnapshot? = nil) {
+        PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list, sleepGoal: sleepGoal)
     }
 
     /// «Nächstes Mal überspringen» bzw. rückgängig; geht an die Uhr wie jede Änderung. Nach früh geweckter Nacht

@@ -25,6 +25,7 @@
     <string name="home_today">آج</string>
     <string name="home_tomorrow">کل</string>
     <string name="home_window_length">%1$d منٹ کی ونڈو</string>
+    <string name="chart_bedtime">سونے کا وقت %1$s</string>
     <string name="home_alarms">الارم</string>
     <string name="home_permissions">اجازتیں دو</string>
     <string name="home_permissions_hint">پیمائش اور الارم اسکرین کے لیے ضروری۔</string>

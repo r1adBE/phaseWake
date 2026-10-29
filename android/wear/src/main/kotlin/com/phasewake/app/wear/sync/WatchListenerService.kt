@@ -16,7 +16,7 @@ import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt Wecker vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, und die Meldungen zur Weckaufgabe. */
+/** Empfängt Wecker, Feiertage und Schlafziel vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, und die Meldungen zur Weckaufgabe. */
 class WatchListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -32,6 +32,10 @@ class WatchListenerService : WearableListenerService() {
             .filter { it.uri.path == DataLayer.PATH_HOLIDAYS }
             .map { WearSync.readHolidays(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.second }
+        val sleepGoal = changed
+            .filter { it.uri.path == DataLayer.PATH_SLEEP_GOAL }
+            .map { WearSync.readSleepGoal(DataMapItem.fromDataItem(it).dataMap) }
+            .maxByOrNull { it.second }
         // Abbruch am Handy, während die Uhr nicht erreichbar war: nachgeliefert als Paket.
         val cancelled = changed
             .filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
@@ -42,6 +46,10 @@ class WatchListenerService : WearableListenerService() {
             cancelled.forEach { TransientInbox.cancelled(app, it) }
             val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
             if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
+            // Nur Anzeige (Einschlafpunkt): kein Neuplanen nötig.
+            if (sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)) {
+                app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal.first}")
+            }
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {

@@ -26,6 +26,7 @@
     <string name="home_today">Vandag</string>
     <string name="home_tomorrow">Môre</string>
     <string name="home_window_length">%1$d min venster</string>
+    <string name="chart_bedtime">Slaaptyd %1$s</string>
     <string name="home_alarms">Wekkers</string>
     <string name="home_permissions">Laat toestemmings toe</string>
     <string name="home_permissions_hint">Nodig vir meting en die wekkerskerm.</string>

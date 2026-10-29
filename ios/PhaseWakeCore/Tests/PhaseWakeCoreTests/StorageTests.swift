@@ -138,4 +138,14 @@ final class StorageTests: XCTestCase {
         s.holidays = HolidayList(region: "CH-BE", dates: ["2026-12-25"])
         XCTAssertEqual(s.holidays, HolidayList(region: "CH-BE", dates: ["2026-12-25"]))
     }
+
+    /// Die Uhr merkt sich das Schlafziel vom iPhone; ohne iPhone gilt der Standard (wie `SleepGoalStore` auf Android).
+    func testSleepGoalDefaultsAndClamps() {
+        let s = storage()
+        XCTAssertEqual(s.sleepGoal, SleepGoal.defaultMinutes)
+        s.sleepGoal = 480
+        XCTAssertEqual(s.sleepGoal, 480)
+        s.sleepGoal = 2_000
+        XCTAssertEqual(s.sleepGoal, SleepGoal.maxMinutes)
+    }
 }

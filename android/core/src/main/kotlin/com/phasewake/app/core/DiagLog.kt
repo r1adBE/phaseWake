@@ -43,6 +43,9 @@ enum class DiagKind {
     /** Klingeln (wer und warum im Text). */
     RING,
 
+    /** Weckbildschirm: erwarteter Weg ([RingRoute]), Startversuch und ob er zu sehen ist (Weg im Text). */
+    RING_SCREEN,
+
     /** Schlummern. */
     SNOOZE,
 

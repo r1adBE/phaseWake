@@ -25,6 +25,7 @@
     <string name="home_today">Σήμερα</string>
     <string name="home_tomorrow">Αύριο</string>
     <string name="home_window_length">Παράθυρο %1$d λ.</string>
+    <string name="chart_bedtime">Ώρα ύπνου %1$s</string>
     <string name="home_alarms">Ξυπνητήρια</string>
     <string name="home_permissions">Επίτρεψε δικαιώματα</string>
     <string name="home_permissions_hint">Απαραίτητα για τη μέτρηση και την οθόνη ξυπνητηριού.</string>

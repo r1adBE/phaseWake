@@ -26,6 +26,7 @@
     <string name="home_today">Namuhla</string>
     <string name="home_tomorrow">Kusasa</string>
     <string name="home_window_length">Isikhala sika-%1$d min</string>
+    <string name="chart_bedtime">Isikhathi sokulala %1$s</string>
     <string name="home_alarms">Ama-alamu</string>
     <string name="home_permissions">Vumela izimvume</string>
     <string name="home_permissions_hint">Kudingeka ekulinganiseni nasesikrinini se-alamu.</string>

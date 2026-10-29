@@ -1,6 +1,5 @@
 package com.phasewake.app.wear.wake
 
-import android.content.Intent
 import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +15,6 @@ import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
-import com.phasewake.app.wear.ui.RingActivity
 import com.phasewake.app.wear.wake.WakeService.Companion.RING_TIMEOUT_MS
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
 import com.phasewake.app.wear.wake.WakeService.Companion.WAKE_LOCK_MARGIN_MS
@@ -45,10 +43,8 @@ internal fun WakeService.ring() {
 
     checkTaskOnPhone(n)
     publishRinging(n)
-    goForeground(ringingNotification(n), measuring = false)
-    // Aus dem Dienst nur mit neuer Aufgabe möglich (Lint «WearRecents» trifft hier nicht zu).
-    @Suppress("WearRecents")
-    startActivity(Intent(this, RingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    // Neue Weck-Mitteilung mit Vollbild, Wecker-Alarm für den Weckbildschirm, Erinnerungen (RingScreenAlert.kt).
+    postRinging(n, "ring")
     escalation.start(withSound = watchSound(n))
     handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
     saveProgress(n)
@@ -207,5 +203,6 @@ internal fun WakeService.onHardLimit() {
 
 private fun WakeService.stopRinging() {
     handler.removeCallbacks(ringTimeout)
+    stopRingScreenAlert()
     escalation.stop()
 }

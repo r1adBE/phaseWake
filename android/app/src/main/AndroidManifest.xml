@@ -89,7 +89,9 @@
             android:exported="false"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
-            android:taskAffinity="com.phasewake.app.ring" />
+            android:showWhenLocked="true"
+            android:taskAffinity="com.phasewake.app.ring"
+            android:turnScreenOn="true" />
 
         <activity
             android:name=".ring.SunriseActivity"

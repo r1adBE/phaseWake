@@ -25,6 +25,7 @@
     <string name="home_today">Bugün</string>
     <string name="home_tomorrow">Yarın</string>
     <string name="home_window_length">%1$d dk aralık</string>
+    <string name="chart_bedtime">Yatma saati %1$s</string>
     <string name="home_alarms">Alarmlar</string>
     <string name="home_permissions">İzinleri ver</string>
     <string name="home_permissions_hint">Ölçüm ve alarm ekranı için gerekli.</string>

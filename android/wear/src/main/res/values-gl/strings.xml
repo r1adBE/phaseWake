@@ -26,6 +26,7 @@
     <string name="home_today">Hoxe</string>
     <string name="home_tomorrow">Mañá</string>
     <string name="home_window_length">Xanela de %1$d min</string>
+    <string name="chart_bedtime">Deitarse %1$s</string>
     <string name="home_alarms">Alarmas</string>
     <string name="home_permissions">Permitir permisos</string>
     <string name="home_permissions_hint">Necesarios para medir e para a pantalla de alarma.</string>

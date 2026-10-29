@@ -26,6 +26,7 @@
     <string name="home_today">היום</string>
     <string name="home_tomorrow">מחר</string>
     <string name="home_window_length">חלון של %1$d דק׳</string>
+    <string name="chart_bedtime">שעת שינה %1$s</string>
     <string name="home_alarms">מעוררים</string>
     <string name="home_permissions">אישור הרשאות</string>
     <string name="home_permissions_hint">נדרשות למדידה ולמסך המעורר.</string>

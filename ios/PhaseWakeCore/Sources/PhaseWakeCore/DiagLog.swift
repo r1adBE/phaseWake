@@ -29,6 +29,8 @@ public enum DiagKind: String, CaseIterable, Sendable {
     case phase = "PHASE"
     /// Klingeln (wer und warum im Text).
     case ring = "RING"
+    /// Weckbildschirm: erwarteter Weg (`RingRoute`), Startversuch und ob er zu sehen ist (nur Android).
+    case ringScreen = "RING_SCREEN"
     /// Schlummern.
     case snooze = "SNOOZE"
     /// Stopp.

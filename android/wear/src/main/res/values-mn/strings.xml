@@ -26,6 +26,7 @@
     <string name="home_today">Өнөөдөр</string>
     <string name="home_tomorrow">Маргааш</string>
     <string name="home_window_length">%1$d мин хугацаа</string>
+    <string name="chart_bedtime">Унтах цаг %1$s</string>
     <string name="home_alarms">Сэрүүлэг</string>
     <string name="home_permissions">Зөвшөөрөл олгох</string>
     <string name="home_permissions_hint">Хэмжилт ба сэрүүлгийн дэлгэцэд хэрэгтэй.</string>

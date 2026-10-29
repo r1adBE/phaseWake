@@ -26,6 +26,7 @@
     <string name="home_today">Í dag</string>
     <string name="home_tomorrow">Á morgun</string>
     <string name="home_window_length">%1$d mín gluggi</string>
+    <string name="chart_bedtime">Háttatími %1$s</string>
     <string name="home_alarms">Vekjarar</string>
     <string name="home_permissions">Leyfa heimildir</string>
     <string name="home_permissions_hint">Þarf fyrir mælingar og vekjaraskjáinn.</string>

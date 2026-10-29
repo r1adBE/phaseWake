@@ -29,6 +29,7 @@
     <string name="home_today">اليوم</string>
     <string name="home_tomorrow">غدًا</string>
     <string name="home_window_length">نافذة %1$d د</string>
+    <string name="chart_bedtime">وقت النوم %1$s</string>
     <string name="home_alarms">المنبّهات</string>
     <string name="home_permissions">السماح بالأذونات</string>
     <string name="home_permissions_hint">مطلوبة للقياس وشاشة المنبّه.</string>

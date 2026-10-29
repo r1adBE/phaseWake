@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.wear.ongoing.OngoingActivity
 import androidx.wear.ongoing.Status
 import com.phasewake.app.core.Snooze
@@ -23,6 +24,18 @@ object Notifications {
 
     /** Sonnenaufgang ab Weckfenster ([WatchSunrise]), neben der Daueranzeige der Messung. */
     const val ID_SUNRISE = 2
+
+    /**
+     * Weck-Mitteilung, abwechselnd unter zwei Kennungen ([com.phasewake.app.core.RingAlert.nextId]): Android
+     * startet das Vollbild nur bei einer neuen Mitteilung, nie bei der Aktualisierung von [ID_SERVICE].
+     */
+    const val ID_RING = 3
+    const val ID_RING_ALT = 4
+
+    /** Request-Codes der Absichten für den Weckbildschirm (je Weg eine, damit die Diagnose den Weg kennt). */
+    private const val REQUEST_RING_TAP = 1
+    private const val REQUEST_RING_FULL_SCREEN = 5
+    private const val REQUEST_RING_ALARM = 6
 
     fun createChannels(context: Context) {
         val manager = context.getSystemService(NotificationManager::class.java)
@@ -111,6 +124,7 @@ object Notifications {
      */
     fun ringing(context: Context, text: String, snoozesLeft: Int): Notification {
         val ring = ringScreen(context)
+        val fullScreen = ringScreen(context, RingActivity.VIA_FULL_SCREEN, REQUEST_RING_FULL_SCREEN)
         val builder = NotificationCompat.Builder(context, CHANNEL_ALARM)
             .setSmallIcon(R.drawable.ic_moon)
             .setContentTitle(context.getString(R.string.notification_ring_title))
@@ -118,7 +132,8 @@ object Notifications {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setOngoing(true)
-            .setFullScreenIntent(ring, true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setFullScreenIntent(fullScreen, true)
             .setContentIntent(ring)
             .addAction(R.drawable.ic_moon, context.getString(R.string.notification_open), ring)
         if (snoozesLeft > 0) {
@@ -154,8 +169,18 @@ object Notifications {
             .build()
     }
 
-    private fun ringScreen(context: Context): PendingIntent = PendingIntent.getActivity(
-        context, 1, Intent(context, RingActivity::class.java),
-        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-    )
+    /** Weckbildschirm über einen Wecker-Alarm des Systems (siehe `RingScreenAlert.kt`); gleiche Identität zum Abbrechen. */
+    fun ringScreenByAlarm(context: Context): PendingIntent = ringScreen(context, RingActivity.VIA_ALARM, REQUEST_RING_ALARM)
+
+    /** Entfernt alle Mitteilungen des Weckdienstes (Daueranzeige und beide Weck-Kennungen). */
+    fun cancelService(context: Context) {
+        val manager = NotificationManagerCompat.from(context)
+        listOf(ID_SERVICE, ID_RING, ID_RING_ALT).forEach(manager::cancel)
+    }
+
+    private fun ringScreen(context: Context, via: String = RingActivity.VIA_TAP, requestCode: Int = REQUEST_RING_TAP): PendingIntent =
+        PendingIntent.getActivity(
+            context, requestCode, Intent(context, RingActivity::class.java).putExtra(RingActivity.EXTRA_VIA, via),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
 }

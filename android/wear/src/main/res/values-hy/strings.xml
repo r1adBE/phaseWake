@@ -23,6 +23,7 @@
     <string name="home_today">Այսօր</string>
     <string name="home_tomorrow">Վաղը</string>
     <string name="home_window_length">%1$d ր պատուհան</string>
+    <string name="chart_bedtime">Քնելու ժամ %1$s</string>
     <string name="home_alarms">Զարթուցիչներ</string>
     <string name="home_permissions">Թույլատրել</string>
     <string name="home_permissions_hint">Անհրաժեշտ է չափման և զարթուցիչի էկրանի համար։</string>

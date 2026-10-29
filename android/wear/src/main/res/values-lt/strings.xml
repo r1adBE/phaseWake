@@ -28,6 +28,7 @@
     <string name="home_today">Šiandien</string>
     <string name="home_tomorrow">Rytoj</string>
     <string name="home_window_length">Langas %1$d min</string>
+    <string name="chart_bedtime">Miego laikas %1$s</string>
     <string name="home_alarms">Žadintuvai</string>
     <string name="home_permissions">Suteikti leidimus</string>
     <string name="home_permissions_hint">Reikia matavimui ir žadintuvo ekranui.</string>

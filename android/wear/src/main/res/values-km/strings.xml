@@ -24,6 +24,7 @@
     <string name="home_today">ថ្ងៃនេះ</string>
     <string name="home_tomorrow">ថ្ងៃស្អែក</string>
     <string name="home_window_length">ចន្លោះពេល %1$d នាទី</string>
+    <string name="chart_bedtime">ម៉ោងចូលដេក %1$s</string>
     <string name="home_alarms">ម៉ោងរោទ៍</string>
     <string name="home_permissions">អនុញ្ញាតសិទ្ធិ</string>
     <string name="home_permissions_hint">ត្រូវការសម្រាប់ការវាស់ និងអេក្រង់ម៉ោងរោទ៍។</string>

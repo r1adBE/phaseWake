@@ -136,6 +136,7 @@ object BackupManager {
         app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
         app.sync.publishAlarms(snapshot)
         app.holidays.refresh(force = true)
+        app.publishSleepGoal()
         // Plant auch Bettzeit-Erinnerung und Wochenrückblick nach den neuen Einstellungen.
         app.backup.reschedule()
     }
