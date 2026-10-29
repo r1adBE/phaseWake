@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
 
@@ -46,6 +47,9 @@ import com.phasewake.app.shared.DoNotDisturb
  */
 enum class Check(val title: Int, val problem: Int, val action: Int?, val problemTitle: Int = title, val inReadyList: Boolean = true) {
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
+
+    /** Uhr verbunden, aber Phase Wake fehlt dort: Knopf öffnet den Play Store auf der Uhr. */
+    WATCH_APP(R.string.check_watch_app, R.string.check_watch_app_problem, R.string.check_watch_app_action, inReadyList = false),
     WATCH_SETUP(R.string.check_watch_setup, R.string.check_watch_setup_problem, null),
 
     /**
@@ -53,6 +57,12 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
      * Nicht in der Bereit-Liste: Ältere Uhren melden keinen Akkustand, ein Häkchen wäre dann geraten.
      */
     WATCH_BATTERY(R.string.check_watch_battery, R.string.check_watch_battery_problem, null, inReadyList = false),
+
+    /**
+     * Phase Wake auf der Uhr ist älter und kennt «Überspringen» und «Feiertage» nicht (`Codec.watchKnowsSkip`): Die Uhr
+     * weckt dann trotzdem. Nicht in der Bereit-Liste; das Handy blendet beides aus, bis die Uhr aktualisiert ist.
+     */
+    WATCH_UPDATE(R.string.check_watch_update, R.string.check_watch_update_problem, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
@@ -80,13 +90,25 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         const val LOW_BATTERY_PERCENT = 20
 
         /**
-         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady] und
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt).
+         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchKnowsSkip] (Version der Uhr).
          */
-        fun collect(context: Context, watchReachable: Boolean, watchReady: Boolean?, watchBattery: Int? = null): NightCheckState = NightCheckState(
+        fun collect(
+            context: Context,
+            watchReachable: Boolean,
+            watchReady: Boolean?,
+            watchBattery: Int? = null,
+            watchAppMissing: Boolean = false,
+            watchKnowsSkip: Boolean = true,
+        ): NightCheckState = NightCheckState(
             buildList {
-                if (!watchReachable) add(Check.WATCH) else if (watchReady == false) add(Check.WATCH_SETUP)
+                when {
+                    watchAppMissing && !watchReachable -> add(Check.WATCH_APP)
+                    !watchReachable -> add(Check.WATCH)
+                    watchReady == false -> add(Check.WATCH_SETUP)
+                }
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
+                if (!watchKnowsSkip) add(Check.WATCH_UPDATE)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
@@ -119,7 +141,15 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
 /** Karte auf der Startseite: grün und knapp, wenn alles stimmt; sonst jede offene Prüfung mit Knopf. */
 @Composable
-internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.compose.ui.graphics.Color, onFix: (Check) -> Unit) {
+internal fun NightCheckCard(
+    state: NightCheckState,
+    containerColor: androidx.compose.ui.graphics.Color,
+    onFix: (Check) -> Unit,
+    /** «In 2 Minuten testen»; `null` = kein Knopf. */
+    onTest: (() -> Unit)? = null,
+    /** Zielzeit eines laufenden Probeweckers. */
+    testAt: java.time.Instant? = null,
+) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val ready = state.ready
     val readyText = stringResource(R.string.check_ready)
@@ -147,10 +177,10 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 Column(Modifier.padding(start = 12.dp).weight(1f)) {
                     Text(
                         stringResource(if (ready) R.string.check_ready else R.string.check_not_ready),
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.titleMedium,
                     )
                     if (ready) {
-                        Text(stringResource(R.string.check_ready_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.check_ready_text), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             }
@@ -159,21 +189,22 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                     Check.entries.filter { it.inReadyList }.forEach { check ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(painterResource(R.drawable.ic_check), contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
-                            Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(start = 8.dp))
+                            Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, color = PhaseWakeTheme.brand.mutedSoft, modifier = Modifier.padding(start = 8.dp))
                         }
                     }
                 }
             }
+            TestButton(onTest, testAt)
             state.failed.forEach { check ->
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
-                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.labelLarge)
+                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.titleSmall)
                     val problem = if (check == Check.BATTERY || check == Check.WATCH_BATTERY) {
                         stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
                     } else {
                         stringResource(check.problem)
                     }
-                    Text(problem, style = MaterialTheme.typography.bodySmall)
+                    Text(problem, style = MaterialTheme.typography.bodyMedium)
                     check.action?.let { action ->
                         FilledTonalButton(onClick = { onFix(check) }, modifier = Modifier.align(Alignment.End).padding(top = 6.dp)) {
                             Text(stringResource(action))
@@ -182,5 +213,18 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 }
             }
         }
+    }
+}
+
+/** Probewecker: Knopf, oder während er läuft seine Zeit. */
+@Composable
+private fun TestButton(onTest: (() -> Unit)?, testAt: java.time.Instant?) {
+    when {
+        testAt != null -> Text(
+            stringResource(R.string.test_running, com.phasewake.app.ui.Format.time(testAt)),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        onTest != null -> androidx.compose.material3.OutlinedButton(onClick = onTest) { Text(stringResource(R.string.test_button)) }
     }
 }

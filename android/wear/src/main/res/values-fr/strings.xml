@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">Rappel à %1$s</string>
 
     <string name="home_no_alarm">Aucun réveil</string>
-    <string name="home_no_alarm_hint">Programme tes réveils dans Phase Wake sur ton téléphone.</string>
+    <string name="home_no_alarm_hint">Crée un réveil – ici ou dans Phase Wake sur ton téléphone.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Aujourd\'hui</string>
     <string name="home_tomorrow">Demain</string>
@@ -46,4 +46,44 @@
     <string name="home_last_night">Nuit dernière</string>
     <string name="notification_open">Ouvrir</string>
     <string name="home_good_night_too_far">Disponible dès 16 h avant le réveil</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Résous le calcul sur ton téléphone ou maintiens 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nouveau réveil</string>
+    <string name="editor_new">Nouveau réveil</string>
+    <string name="editor_edit">Modifier le réveil</string>
+    <string name="editor_target">Réveille-moi avant</string>
+    <string name="editor_latest">Au plus tard</string>
+    <string name="editor_window">Plage : %1$d min</string>
+    <string name="editor_days">Répéter</string>
+    <string name="editor_save">Enregistrer</string>
+    <string name="editor_delete">Supprimer le réveil</string>
+    <string name="editor_delete_title">Supprimer ce réveil ?</string>
+    <string name="home_max_alarms">%1$d réveils au maximum – supprime-en un pour en ajouter un nouveau.</string>
+    <string name="editor_enabled">Réveil activé</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Sauter la prochaine fois</string>
+    <string name="alarm_skipped">Sauté : %1$s</string>
+    <string name="nap_title">Sieste</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="many">%1$d minutes</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="nap_start">Démarrer</string>
+    <string name="nap_running">Jusqu’à %1$s</string>
+    <string name="nap_stop">Terminer la sieste</string>
+    <string name="diag_title">Diagnostic</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Encore %1$d fois</item>
+        <item quantity="many">Encore %1$d fois</item>
+        <item quantity="other">Encore %1$d fois</item>
+    </plurals>
+    <string name="diag_clear">Vider</string>
+    <string name="diag_hide">Masquer le diagnostic</string>
+    <string name="diag_empty">Aucun événement pour l’instant.</string>
+    <string name="diag_next">Prochain réveil : %1$s</string>
+    <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Ton réveil est en cours en ce moment.</string>
+    <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
 </resources>

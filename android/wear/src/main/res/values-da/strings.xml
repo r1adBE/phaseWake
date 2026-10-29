@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Slumrer til %1$s</string>
 
     <string name="home_no_alarm">Ingen alarm sat</string>
-    <string name="home_no_alarm_hint">Indstil alarmer i Phase Wake på telefonen.</string>
+    <string name="home_no_alarm_hint">Opret en alarm – her eller i Phase Wake på telefonen.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">I dag</string>
     <string name="home_tomorrow">I morgen</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">I nat</string>
     <string name="notification_open">Åbn</string>
     <string name="home_good_night_too_far">Tilgængelig fra 16 t før alarmen</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Løs opgaven på telefonen eller hold 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Ny alarm</string>
+    <string name="editor_new">Ny alarm</string>
+    <string name="editor_edit">Rediger alarm</string>
+    <string name="editor_target">Væk mig senest</string>
+    <string name="editor_latest">Senest</string>
+    <string name="editor_window">Vindue: %1$d min</string>
+    <string name="editor_days">Gentag</string>
+    <string name="editor_save">Gem</string>
+    <string name="editor_delete">Slet alarm</string>
+    <string name="editor_delete_title">Slet dette alarm?</string>
+    <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
+    <string name="editor_enabled">Alarm til</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Spring over næste gang</string>
+    <string name="alarm_skipped">Sprunget over: %1$s</string>
+    <string name="nap_title">Lur</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="other">%1$d minutter</item>
+    </plurals>
+    <string name="nap_start">Start</string>
+    <string name="nap_running">Til %1$s</string>
+    <string name="nap_stop">Afslut lur</string>
+    <string name="diag_title">Diagnose</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d gang mere</item>
+        <item quantity="other">%1$d gange mere</item>
+    </plurals>
+    <string name="diag_clear">Ryd</string>
+    <string name="diag_hide">Skjul diagnose</string>
+    <string name="diag_empty">Ingen hændelser endnu.</string>
+    <string name="diag_next">Næste alarm: %1$s</string>
+    <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Din alarm er i gang lige nu.</string>
+    <string name="transient_alarm_soon">Dit vækkevindue starter allerede før.</string>
 </resources>

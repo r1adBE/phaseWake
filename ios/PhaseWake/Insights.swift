@@ -50,6 +50,7 @@ func unmeasuredText(_ night: NightRecord) -> String? {
 /// Fünf runde Knöpfe von «erschöpft» bis «erholt»; ein Tipp genügt.
 struct FeelingPicker: View {
     let onPick: (Int) -> Void
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -61,7 +62,7 @@ struct FeelingPicker: View {
                             .font(Fonts.manrope(18, .bold, relativeTo: .title3))
                             .frame(maxWidth: .infinity)
                             .aspectRatio(1, contentMode: .fit)
-                            .overlay(Circle().stroke(Color.secondary.opacity(0.5), lineWidth: 1))
+                            .overlay(Circle().stroke(Brand.outline(scheme), lineWidth: 1))
                             .contentShape(Circle())
                     }
                     .buttonStyle(.plain)
@@ -88,6 +89,10 @@ struct TrendsCard: View {
     let goalWeek: (reached: Int, total: Int)?
     let healthConnected: Bool
     let onConnectHealth: () -> Void
+    /// Gewohnheiten (Regelmässigkeit, Serien, Abendroutine), fertig formuliert.
+    var habits: [String] = []
+    /// Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen.
+    var covered: Set<TrendLine> = []
 
     /// Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten.
     private static let irregularMinutes = 45
@@ -95,28 +100,34 @@ struct TrendsCard: View {
     private var lines: [String] {
         var out: [String] = []
         if let asleep = trends.asleepThisWeek {
-            out.append(L("trends_asleep", Format.duration(minutes: asleep)))
+            if !covered.contains(.asleep) { out.append(L("trends_asleep", Format.duration(minutes: asleep))) }
             if let change = trends.asleepChange {
                 if abs(change) < 5 { out.append(L("trends_asleep_change_same")) }
                 else if change > 0 { out.append(L("trends_asleep_change_more", Format.duration(minutes: change))) }
                 else { out.append(L("trends_asleep_change_less", Format.duration(minutes: -change))) }
             }
         }
-        if let goalWeek {
+        if let goalWeek, !covered.contains(.goal) {
             out.append(LP("goal_week", goalWeek.total, goalWeek.reached, goalWeek.total))
         }
         if let spread = trends.bedtimeSpreadMinutes {
             out.append(L("trends_bedtime", Format.duration(minutes: spread)))
             if spread > Self.irregularMinutes { out.append(L("trends_bedtime_hint")) }
         }
-        if let feeling = trends.feelingThisWeek {
+        if let feeling = trends.feelingThisWeek, !covered.contains(.feeling) {
             let last = trends.feelingLastWeek.map { " · " + L("trends_feeling_change", decimal($0)) } ?? ""
             out.append(L("trends_feeling", decimal(feeling)) + last)
         }
+        out += habits
         return out
     }
 
     var body: some View {
+        // Alles steht schon in den Diagrammen: keine leere Karte.
+        if !(lines.isEmpty && !covered.isEmpty && healthConnected) { card }
+    }
+
+    private var card: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(L("trends_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             if lines.isEmpty {

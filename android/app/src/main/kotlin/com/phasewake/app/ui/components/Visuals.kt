@@ -40,7 +40,7 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
     val themed = PhaseWakeTheme.brand
     // Auf dem Nachthimmel immer die hellen Nachtfarben, unabhängig vom Hell/Dunkel-Modus.
     val brand = if (onNight) {
-        themed.copy(heroWindow = Color.White.copy(alpha = 0.08f), wave = Night.Wave, echo = Night.WaveEcho, dot = Color.White)
+        themed.copy(heroWindow = Color.White.copy(alpha = 0.08f), wave = Night.Wave, echo = Night.WaveEcho, dot = Night.Moon)
     } else {
         themed
     }

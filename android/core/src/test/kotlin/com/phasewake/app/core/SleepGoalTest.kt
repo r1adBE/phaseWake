@@ -74,4 +74,11 @@ class SleepGoalTest {
         val once = alarm("o", 23, 0, days = emptySet())
         assertNull(Bedtime.next(listOf(once), at("2026-10-27T20:00"), zone, 450))
     }
+
+    @Test
+    fun nightsOfHealthAppMapByEndAndEmptyWeek() {
+        val sleep = SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:30"), 420)
+        assertEquals(listOf(day to 420L), SleepGoal.nightsOf(listOf(sleep), zone))
+        assertEquals(0 to 0, SleepGoal.weekStatus(emptyList(), 450))
+    }
 }

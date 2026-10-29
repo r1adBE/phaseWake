@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Wekker geactiveerd op het horloge</string>
     <string name="check_watch_arm_problem">Open Phase Wake op je Apple Watch voordat je gaat slapen. watchOS activeert de wekker alleen zolang de app geopend is.</string>
     <string name="night_unmeasured_apple">Eerste %1$d min niet gemeten – de Apple Watch meet alleen de laatste %2$d min voor de doeltijd.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS.\nGeluiden: vrije opnamen (CC0) van opengameart.org</string>
 </resources>

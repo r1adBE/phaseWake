@@ -131,7 +131,7 @@ struct NightstandView: View {
 
     private func updatePlan() {
         let next = model.alarms.filter { $0.sunrise != .off }
-        plan = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .current)
+        plan = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .current, holidays: model.holidays.dates)
         sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
     }
 

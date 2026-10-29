@@ -102,8 +102,8 @@ class NextAlarmTileService : TileService() {
 
     private companion object {
         const val RESOURCES_VERSION = "1"
-        const val WHITE = 0xFFFFFFFF.toInt()
-        const val MIST = 0xFF9FB8FF.toInt()
-        const val MUTED = 0xFF8FA3CC.toInt()
+        const val WHITE = 0xFFFBF7F0.toInt()
+        const val MIST = 0xFFC9C3E6.toInt()
+        const val MUTED = 0xFFA9A3CF.toInt()
     }
 }

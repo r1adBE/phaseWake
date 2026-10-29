@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Schlummern bis %1$s</string>
 
     <string name="home_no_alarm">Kein Wecker gestellt</string>
-    <string name="home_no_alarm_hint">Stelle Wecker in Phase Wake auf dem Handy.</string>
+    <string name="home_no_alarm_hint">Lege einen Wecker an – hier oder in Phase Wake auf dem Handy.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Heute</string>
     <string name="home_tomorrow">Morgen</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">Letzte Nacht</string>
     <string name="notification_open">Öffnen</string>
     <string name="home_good_night_too_far">Ab 16 Std. vor dem Wecker möglich</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Aufgabe am Handy lösen oder 5 s halten</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Neuer Wecker</string>
+    <string name="editor_new">Neuer Wecker</string>
+    <string name="editor_edit">Wecker bearbeiten</string>
+    <string name="editor_target">Weck mich bis</string>
+    <string name="editor_latest">Spätestens</string>
+    <string name="editor_window">Fenster: %1$d Min</string>
+    <string name="editor_days">Wiederholen</string>
+    <string name="editor_save">Speichern</string>
+    <string name="editor_delete">Wecker löschen</string>
+    <string name="editor_delete_title">Diesen Wecker löschen?</string>
+    <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
+    <string name="editor_enabled">Wecker an</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Nächstes Mal überspringen</string>
+    <string name="alarm_skipped">Übersprungen: %1$s</string>
+    <string name="nap_title">Powernap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d Minute</item>
+        <item quantity="other">%1$d Minuten</item>
+    </plurals>
+    <string name="nap_start">Starten</string>
+    <string name="nap_running">Bis %1$s</string>
+    <string name="nap_stop">Powernap beenden</string>
+    <string name="diag_title">Diagnose</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Noch %1$d Mal</item>
+        <item quantity="other">Noch %1$d Mal</item>
+    </plurals>
+    <string name="diag_clear">Leeren</string>
+    <string name="diag_hide">Diagnose ausblenden</string>
+    <string name="diag_empty">Noch keine Ereignisse.</string>
+    <string name="diag_next">Nächster Wecker: %1$s</string>
+    <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Gerade läuft dein Wecker.</string>
+    <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
 </resources>

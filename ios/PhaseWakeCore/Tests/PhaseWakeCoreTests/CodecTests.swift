@@ -9,11 +9,40 @@ final class CodecTests: XCTestCase {
             try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([])), [])
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n"
         )
+    }
+
+    func testWakeTaskField() throws {
+        let math = try AlarmSpec(id: "m", hour: 6, minute: 0, wakeTask: .math)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([math])), [math])
+        // Byte-gleich mit Android: 13. Feld am Ende.
+        XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n")
+        // Ältere Stände ohne 13. Feld und unbekannte Werte → Halten.
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF\n").first?.wakeTask, WakeTask.none)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|PUZZLE|extra\n").first?.wakeTask, WakeTask.none)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|MATH|extra\n").first?.wakeTask, .math)
+        // Ein-/Ausschalten behält die Aufgabe.
+        XCTAssertEqual(math.with(enabled: false).wakeTask, .math)
+    }
+
+    func testSunriseDeviceField() throws {
+        let watch = try AlarmSpec(id: "d", hour: 6, minute: 15, windowMinutes: 20, phone: .off, sunrise: .ring, sunriseDevice: .watch)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([watch])), [watch])
+        // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable): 14. Feld am Ende.
+        XCTAssertEqual(Codec.encodeAlarms([watch]), "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n")
+        // Ältere Stände ohne 14. Feld und unbekannte Werte → Handy (wie CodecTest.sunriseDeviceIsTolerant).
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").first?.sunriseDevice, .both)
+        // Pro Gerät (wie CodecTest.sunrisePerDevice); Ein-/Ausschalten behält das Gerät.
+        XCTAssertEqual(watch.phoneSunrise, .off)
+        XCTAssertEqual(watch.watchSunrise, .ring)
+        XCTAssertEqual(watch.with(enabled: false).sunriseDevice, .watch)
     }
 
     func testOlderFormatWithoutSunrise() throws {
@@ -53,6 +82,9 @@ final class CodecTests: XCTestCase {
             epochs: [Epoch(motion: 0, heartRate: 52), Epoch(motion: 0.000213456789123, heartRate: nil), Epoch(motion: nil, heartRate: 55.583333333333336), Epoch(motion: nil, heartRate: nil)]
         )
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
+        let empty = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                                reason: night.reason, snoozes: night.snoozes, epochs: [])
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(empty)), empty)
         XCTAssertEqual(night.minutesBeforeTarget, 12)
     }
 
@@ -71,6 +103,7 @@ final class CodecTests: XCTestCase {
         let newer = try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0||||MOON|extra\n")
         XCTAssertEqual(newer.first?.phone, .sound)
         XCTAssertEqual(newer.first?.sunrise, .off)
+        XCTAssertEqual(newer.first?.wakeTask, WakeTask.none)
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
     }
@@ -90,42 +123,11 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday]), "Mo–Fr")
         XCTAssertEqual(f([.sunday, .saturday]), "Sa, So")
         XCTAssertEqual(f([.monday, .wednesday, .friday]), "Mo, Mi, Fr")
+        XCTAssertEqual(f([.monday, .tuesday, .wednesday, .saturday]), "Mo–Mi, Sa")
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday], Locale(identifier: "en_US")), "Mon–Fri")
         // Wie Kotlin: Spanne über das Wochenende bleibt zusammen.
         XCTAssertEqual(f([.saturday, .sunday, .monday]), "Sa–Mo")
         XCTAssertEqual(f([.friday, .saturday, .sunday, .monday, .wednesday]), "Fr–Mo, Mi")
         XCTAssertEqual(f([.sunday, .monday, .tuesday, .wednesday], Locale(identifier: "en_US")), "Sun–Wed")
-    }
-
-    func testHistoryCsv() {
-        let start = Date(timeIntervalSince1970: 1_790_829_000)
-        func night(_ day: Double, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)]) -> NightRecord {
-            let ws = start.addingTimeInterval(day * 86_400)
-            return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1080), reason: .lightSleep, snoozes: 1, epochs: epochs)
-        }
-        let csv = NightHistory.exportCsv([night(1, [Epoch(motion: 0.0021, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)]).with(feeling: 4), night(0)])
-        let lines = csv.split(separator: "\n").map(String.init)
-        XCTAssertEqual(lines[0], "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes")
-        XCTAssertEqual(lines[1], "1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0,")
-        XCTAssertEqual(lines[2], "2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3,")
-        XCTAssertEqual(lines[3], "2,30,LIGHT_SLEEP,12,1,4,1,,,")
-        XCTAssertFalse(csv.contains("geheim"))
-        XCTAssertEqual(NightHistory.trim((0..<100).map { night(Double($0)) }).count, 90)
-    }
-
-    func testEpochAssembler() {
-        let s: Int64 = 1_000_000_000
-        let start = 500 * s
-        let a = EpochAssembler(startNanos: start)
-        for i in 0..<750 { _ = a.addMotion(timestampNanos: start + Int64(i) * 40_000_000, x: i % 2 == 0 ? 0 : 0.25, y: 0, z: 9.81) }
-        _ = a.addHeartRate(timestampNanos: start + 10 * s, bpm: 50)
-        _ = a.addHeartRate(timestampNanos: start + 20 * s, bpm: 54)
-        let closed = a.addMotion(timestampNanos: start + 30 * s, x: 0, y: 0, z: 9.81)
-        XCTAssertEqual(closed.count, 1)
-        XCTAssertEqual(closed[0].motion!, 0.20, accuracy: 1e-12)
-        XCTAssertEqual(closed[0].heartRate, 52)
-        XCTAssertTrue(a.addHeartRate(timestampNanos: start + 5 * s, bpm: 60).isEmpty)
-        XCTAssertTrue(a.advance(nowNanos: start + 41 * s, graceNanos: 12 * s).isEmpty)
-        XCTAssertEqual(a.advance(nowNanos: start + 73 * s, graceNanos: 12 * s).count, 1)
     }
 }

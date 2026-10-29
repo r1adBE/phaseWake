@@ -13,18 +13,21 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Typography
 import com.phasewake.app.shared.R as SharedR
 
-/** Markenfarben aus dem Logo. */
+/** Markenfarben aus dem Logo, Farbwelt «Mitternacht & Lavendel» wie auf dem Handy. */
 object Brand {
-    val Night = Color(0xFF0B1A4A)
-    val NightRaised = Color(0xFF122466)
-    val Deep = Color(0xFF1E3A8A)
-    val Echo = Color(0xFF2F4FB8)
-    val Wave = Color(0xFF7DB3FF)
-    val Star = Color(0xFFBFDBFE)
-    val Mist = Color(0xFF9FB8FF)
-    val Muted = Color(0xFF8FA3CC)
-    val Moon = Color.White
-    val Track = Color(0xFF15213D)
+    val Night = Color(0xFF141A3D)
+    val NightBottom = Color(0xFF070914)
+    val NightRaised = Color(0xFF1E2550)
+    val Deep = Color(0xFF3B3486)
+    val Echo = Color(0xFF4F45B8)
+    val Glow = Color(0xFF7B6CF6)
+    val Wave = Color(0xFFB9AEFF)
+    val Star = Color(0xFFE4DFFF)
+    val Mist = Color(0xFFC9C3E6)
+    // Auf Schwarz und auf den Knöpfen ≥ 4.5:1 (WCAG AA).
+    val Muted = Color(0xFFA9A3CF)
+    val Moon = Color(0xFFFBF7F0)
+    val Track = Color(0xFF1E2347)
 }
 
 private fun manrope(weight: Int) = Font(
@@ -85,7 +88,7 @@ fun PhaseWakeTheme(content: @Composable () -> Unit) {
 }
 
 /**
- * Nachthimmel wie auf dem Handy: Tiefblau mit Lichtschein oben rechts. [strength] 0–1: auf dem
+ * Nachthimmel wie auf dem Handy: Mitternachts-Indigo mit Lavendel-Schein oben rechts. [strength] 0–1: auf dem
  * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll.
  */
 fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compose.ui.Modifier =
@@ -93,12 +96,12 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compo
         androidx.compose.ui.Modifier.drawBehind {
             drawRect(
                 androidx.compose.ui.graphics.Brush.verticalGradient(
-                    listOf(Color(0xFF0B2170).copy(alpha = strength), Color(0xFF050D2B).copy(alpha = strength), Color.Black),
+                    listOf(Brand.Night.copy(alpha = strength), Brand.NightBottom.copy(alpha = strength), Color.Black),
                 ),
             )
             drawRect(
                 androidx.compose.ui.graphics.Brush.radialGradient(
-                    listOf(Color(0xFF3A74FF).copy(alpha = 0.5f * strength), Color.Transparent),
+                    listOf(Brand.Glow.copy(alpha = 0.5f * strength), Color.Transparent),
                     center = androidx.compose.ui.geometry.Offset(size.width * 0.8f, size.height * 0.12f),
                     radius = size.maxDimension * 0.65f,
                 ),

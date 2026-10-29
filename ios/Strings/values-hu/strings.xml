@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Ébresztő élesítve az órán</string>
     <string name="check_watch_arm_problem">Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van.</string>
     <string name="night_unmeasured_apple">Az első %1$d p nincs mérve – az Apple Watch csak a célidő előtti utolsó %2$d percet méri.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról</string>
 </resources>

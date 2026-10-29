@@ -6,23 +6,56 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.tanh
 
-/** Einschlafklänge, im Code erzeugt (keine Audiodateien). Kennung = Name (Speicher). */
-enum class SleepSound { WHITE, PINK, BROWN, RAIN, OCEAN }
+/**
+ * Einschlafklänge in der Reihenfolge der Anzeige. Kennung = Name (Speicher; ältere Werte bleiben gültig).
+ *
+ * @property recorded `true` = Aufnahme (CC0), nahtlos in Schleife gespielt; Datei «sound_<name>» (klein
+ *   geschrieben, Android `res/raw`, Apple im App-Bundle). `false` = im Code erzeugt ([NoiseGenerator]).
+ * @property gainDb Verstärkung beim Abspielen in dB: Die Aufnahmen klingen rund 5–8 dB leiser als die
+ *   erzeugten Klänge, darum +6 dB. Ihre Spitzen liegen bei höchstens −6 dBFS (make-sound-loops.py);
+ *   [SleepSounds.amplify] begrenzt danach trotzdem.
+ */
+enum class SleepSound(val recorded: Boolean, val gainDb: Double = 0.0) {
+    WHITE(false), PINK(false), BROWN(false), FAN(false), BINAURAL(false),
+    RAIN(true, SleepSounds.RECORDING_GAIN_DB),
+    OCEAN(true, SleepSounds.RECORDING_GAIN_DB),
+    FOREST(true, SleepSounds.RECORDING_GAIN_DB),
+    FIRE(true, SleepSounds.RECORDING_GAIN_DB),
+    BROOK(true, SleepSounds.RECORDING_GAIN_DB);
+
+    /** [gainDb] als Faktor für die Abtastwerte. */
+    val gain: Float get() = 10.0.pow(gainDb / 20.0).toFloat()
+}
 
 /** Timer, Ausblenden und spätestes Ende der Einschlafklänge. */
 object SleepSounds {
     /** Timer-Auswahl in Minuten; `null` = ohne Timer. */
     val TIMER_CHOICES: List<Int?> = listOf(15, 30, 60, null)
+
+    /** Vorgewählter Timer in Minuten. */
     const val DEFAULT_TIMER_MINUTES: Int = 30
 
+    /** Einblenden in ms: sanfter Beginn ohne Knacken. */
     const val FADE_IN_MS: Long = 3_000
+
+    /** Ausblenden in ms vor dem Ende: langsam genug, dass das Verstummen nicht weckt. */
     const val FADE_OUT_MS: Long = 30_000
 
     /** Höchster Ausschlag: −12 dBFS. */
     const val PEAK: Float = 0.2511886f
+
+    /** Verstärkung der Aufnahmen beim Abspielen ([SleepSound.gainDb]). */
+    const val RECORDING_GAIN_DB: Double = 6.0
+
+    /** Obergrenze nach der Verstärkung: −0,5 dBFS, damit nichts übersteuert. */
+    const val CEILING: Float = 0.9440609f
+
+    /** Abtastwert mal [gain], auf ±[CEILING] begrenzt (gegen Übersteuern bei lauten Stellen). */
+    fun amplify(sample: Float, gain: Float): Float = (sample * gain).coerceIn(-CEILING, CEILING)
 
     /**
      * Wann die Klänge enden: nach dem Timer, spätestens bei Beginn des nächsten Weckfensters (nie das
@@ -54,13 +87,22 @@ object SleepSounds {
 
 /**
  * Erzeugt einen Klang fortlaufend und nahtlos (Zustand bleibt zwischen den Aufrufen erhalten).
- * Deterministisch mit [seed]. Ausgabe mono, gleichspannungsfrei, höchstens [SleepSounds.PEAK].
+ * Deterministisch mit [seed]. Ausgabe mit [channels] Kanälen (verschachtelt: links, rechts, links …),
+ * gleichspannungsfrei, höchstens [SleepSounds.PEAK]. Nur für erzeugte Klänge ([SleepSound.recorded] = `false`).
  */
 class NoiseGenerator(
+    /** Der erzeugte Klang; nie eine Aufnahme ([SleepSound.recorded] `false`, sonst Ausnahme). */
     val sound: SleepSound,
     private val sampleRate: Int = 48_000,
     seed: Long = 1L,
 ) {
+    init {
+        require(!sound.recorded) { "$sound ist eine Aufnahme" }
+    }
+
+    /** Kanäle: 2 für die Einschlaf-Wellen (je Ohr ein anderer Ton), sonst 1. */
+    val channels: Int = if (sound == SleepSound.BINAURAL) 2 else 1
+
     // xorshift64*: schnell und reproduzierbar.
     private var state: Long = if (seed == 0L) 0x2545F4914F6CDD1DL else seed
 
@@ -76,35 +118,64 @@ class NoiseGenerator(
     private var dcOut = 0.0
     private val dcPole = exp(-2.0 * PI * 5.0 / sampleRate)
 
-    // Regen: wenige weiche Tropfen gleichzeitig (gedämpfte Sinusschwingungen).
-    private val dropPhase = DoubleArray(MAX_DROPS)
-    private val dropStep = DoubleArray(MAX_DROPS)
-    private val dropAmp = DoubleArray(MAX_DROPS)
-    private val dropDecay = DoubleArray(MAX_DROPS)
+    // Ventilator: braunes Rauschen durch einen Tiefpass (~300 Hz), dazu leises Brummen (50 und 100 Hz).
+    private var fanLow = 0.0
+    private val fanPole = exp(-2.0 * PI * FAN_CUTOFF_HZ / sampleRate)
+    private var humPhase = 0.0
 
-    // Meer: langsame Welle, jede Periode 8–12 s, Phase durchgehend.
-    private var swellPhase = 0.0
-    private var swellPeriod = 10.0
+    // Einschlaf-Wellen: je Ohr ein Sinus (links 200 Hz, rechts 202 Hz), dazu sehr leises rosa Rauschen.
+    private var leftPhase = 0.0
+    private var rightPhase = 0.0
+    private var rightPending = false
+    private var right = 0f
 
     /** Füllt [out] ab [offset] mit [count] Werten. */
     fun fill(out: FloatArray, offset: Int = 0, count: Int = out.size - offset) {
         for (i in offset until offset + count) out[i] = next()
     }
 
+    /**
+     * Nächster Abtastwert im Bereich ±[SleepSounds.PEAK]. Bei zwei Kanälen abwechselnd links und
+     * rechts; ein Aufrufer liest darum immer ganze Paare.
+     */
     fun next(): Float {
+        if (sound == SleepSound.BINAURAL) return nextBinaural()
         val raw = when (sound) {
             // Pegel grob angeglichen (weisses Rauschen klingt bei gleicher Leistung lauter).
             SleepSound.WHITE -> white() * 0.14
             SleepSound.PINK -> pink() * 0.36
             SleepSound.BROWN -> brown() * 0.55
-            SleepSound.RAIN -> pink() * 0.30 + drops()
-            SleepSound.OCEAN -> brown() * 0.62 * swell()
+            SleepSound.FAN -> fan()
+            // Einschlaf-Wellen: oben (zwei Kanäle). Aufnahmen werden nicht erzeugt (siehe init).
+            SleepSound.BINAURAL, SleepSound.RAIN, SleepSound.OCEAN, SleepSound.FOREST, SleepSound.FIRE, SleepSound.BROOK -> 0.0
         }
         // Gleichspannung entfernen, dann weich begrenzen: nie über PEAK, ohne harte Kanten.
         val y = raw - dcIn + dcPole * dcOut
         dcIn = raw
         dcOut = y
-        return (SleepSounds.PEAK * tanh(y / SleepSounds.PEAK)).toFloat()
+        return limit(y)
+    }
+
+    /** Weich begrenzen: nie über PEAK, ohne harte Kanten. */
+    private fun limit(y: Double): Float = (SleepSounds.PEAK * tanh(y / SleepSounds.PEAK)).toFloat()
+
+    /**
+     * Abwechselnd links und rechts. Sinus je ≈ −30 dBFS RMS, Rauschen ≈ −40 dBFS; ohne Gleichanteil
+     * (darum kein Filter, der sonst beide Kanäle vermischen würde).
+     */
+    private fun nextBinaural(): Float {
+        if (rightPending) {
+            rightPending = false
+            return right
+        }
+        val bed = pink() * 0.052
+        leftPhase += BINAURAL_LEFT_HZ / sampleRate
+        if (leftPhase >= 1.0) leftPhase -= 1.0
+        rightPhase += BINAURAL_RIGHT_HZ / sampleRate
+        if (rightPhase >= 1.0) rightPhase -= 1.0
+        right = limit(BINAURAL_AMP * sin(2.0 * PI * rightPhase) + bed)
+        rightPending = true
+        return limit(BINAURAL_AMP * sin(2.0 * PI * leftPhase) + bed)
     }
 
     /** Gleichverteilt in [−1, 1). */
@@ -136,45 +207,22 @@ class NoiseGenerator(
         return brown * 3.5
     }
 
-    private fun drops(): Double {
-        // Im Schnitt [DROPS_PER_SECOND] neue Tropfen; ein freier Platz wird belegt.
-        if ((white() + 1.0) / 2.0 < DROPS_PER_SECOND / sampleRate) {
-            val slot = dropAmp.indices.minBy { dropAmp[it] }
-            val freq = 1_800.0 + (white() + 1.0) * 1_600.0
-            dropStep[slot] = 2.0 * PI * freq / sampleRate
-            dropPhase[slot] = 0.0
-            dropAmp[slot] = 0.02 + (white() + 1.0) * 0.02
-            // Abklingzeit 4–12 ms.
-            val decayMs = 4.0 + (white() + 1.0) * 4.0
-            dropDecay[slot] = exp(-1000.0 / (decayMs * sampleRate))
-        }
-        var sum = 0.0
-        for (k in 0 until MAX_DROPS) {
-            if (dropAmp[k] < 1e-5) {
-                dropAmp[k] = 0.0
-                continue
-            }
-            // Weicher Einsatz: Sinus beginnt bei 0, kein Sprung.
-            sum += dropAmp[k] * sin(dropPhase[k])
-            dropPhase[k] += dropStep[k]
-            dropAmp[k] *= dropDecay[k]
-        }
-        return sum
-    }
-
-    private fun swell(): Double {
-        swellPhase += 1.0 / (swellPeriod * sampleRate)
-        if (swellPhase >= 1.0) {
-            swellPhase -= 1.0
-            swellPeriod = 8.0 + (white() + 1.0) * 2.0
-        }
-        // 0.3 bis 1: die Brandung wird nie ganz still.
-        return 0.3 + 0.7 * (0.5 - 0.5 * cos(2.0 * PI * swellPhase))
+    /** Gleichmässig und sanft: gedämpftes tiefes Rauschen, das Brummen knapp hörbar (Phase durchgehend). */
+    private fun fan(): Double {
+        fanLow = fanPole * fanLow + (1.0 - fanPole) * brown()
+        humPhase += 50.0 / sampleRate
+        if (humPhase >= 1.0) humPhase -= 1.0
+        val hum = 0.010 * sin(2.0 * PI * humPhase) + 0.005 * sin(4.0 * PI * humPhase)
+        return fanLow * 0.6 + hum
     }
 
     private companion object {
-        const val MAX_DROPS = 8
-        const val DROPS_PER_SECOND = 7.0
+        const val FAN_CUTOFF_HZ = 300.0
+        const val BINAURAL_LEFT_HZ = 200.0
+        const val BINAURAL_RIGHT_HZ = 202.0
+
+        /** Spitze des Sinus: RMS = 0,0447 / √2 ≈ 0,032 (−30 dBFS). */
+        const val BINAURAL_AMP = 0.0447
     }
 }
 

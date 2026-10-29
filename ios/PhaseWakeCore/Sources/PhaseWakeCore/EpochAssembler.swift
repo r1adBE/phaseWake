@@ -14,6 +14,10 @@ public final class EpochAssembler: @unchecked Sendable {
     /// Index der Epoche, in die gerade Werte fliessen.
     public private(set) var currentIndex: Int64 = 0
 
+    /// Erzeugt einen Zuordner für ein Weckfenster.
+    /// - Parameters:
+    ///   - startNanos: Beginn der ersten Epoche (Fensterbeginn) in Nanosekunden der Sensoruhr.
+    ///   - epochNanos: Länge einer Epoche in Nanosekunden (Standard 30 s); muss positiv sein.
     public init(
         startNanos: Int64,
         epochNanos: Int64 = Int64(DetectorConfig.epochSeconds) * 1_000_000_000,
@@ -27,6 +31,8 @@ public final class EpochAssembler: @unchecked Sendable {
         self.heartRate = heartRate
     }
 
+    /// Nimmt einen Beschleunigungswert (m/s²) auf. Werte vor Fensterbeginn, in schon abgeschlossenen Epochen oder nach einem Zeitsprung fallen weg.
+    /// - Returns: Die Epochen, die dieser Wert abschliesst (meist leer, nach einer Lücke mehrere).
     public func addMotion(timestampNanos: Int64, x: Double, y: Double, z: Double) -> [Epoch] {
         guard let index = indexOf(timestampNanos), index >= currentIndex else { return [] }
         let closed = closeUntil(index)
@@ -34,6 +40,8 @@ public final class EpochAssembler: @unchecked Sendable {
         return closed
     }
 
+    /// Nimmt einen Pulswert (Schläge pro Minute) auf; gleiche Regeln wie ``addMotion(timestampNanos:x:y:z:)``.
+    /// - Returns: Die Epochen, die dieser Wert abschliesst.
     public func addHeartRate(timestampNanos: Int64, bpm: Double) -> [Epoch] {
         guard let index = indexOf(timestampNanos), index >= currentIndex else { return [] }
         let closed = closeUntil(index)
@@ -41,6 +49,7 @@ public final class EpochAssembler: @unchecked Sendable {
         return closed
     }
 
+    /// Schliesst alle Epochen ab, die vor `nowNanos` − `graceNanos` enden. Für den Fall, dass der Sensor länger nichts liefert; die Nachfrist deckt die Bündelungs-Verzögerung ab.
     public func advance(nowNanos: Int64, graceNanos: Int64) -> [Epoch] {
         guard let index = indexOf(nowNanos - graceNanos) else { return [] }
         return closeUntil(index)

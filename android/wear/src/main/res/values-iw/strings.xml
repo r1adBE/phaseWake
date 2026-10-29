@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">נודניק עד %1$s</string>
 
     <string name="home_no_alarm">אין מעורר מוגדר</string>
-    <string name="home_no_alarm_hint">הגדירו מעוררים ב-Phase Wake בטלפון.</string>
+    <string name="home_no_alarm_hint">צרו השכמה – כאן או ב-Phase Wake בטלפון.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">היום</string>
     <string name="home_tomorrow">מחר</string>
@@ -46,4 +46,44 @@
     <string name="home_last_night">אמש</string>
     <string name="notification_open">פתיחה</string>
     <string name="home_good_night_too_far">זמין מ-16 שעות לפני המעורר</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">לפתור את התרגיל בטלפון או ללחוץ 5 שנ׳</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">מעורר חדש</string>
+    <string name="editor_new">מעורר חדש</string>
+    <string name="editor_edit">עריכת מעורר</string>
+    <string name="editor_target">להעיר אותי עד</string>
+    <string name="editor_latest">לכל המאוחר</string>
+    <string name="editor_window">חלון: %1$d דק׳</string>
+    <string name="editor_days">חזרה</string>
+    <string name="editor_save">שמירה</string>
+    <string name="editor_delete">מחיקת מעורר</string>
+    <string name="editor_delete_title">למחוק את המעורר הזה?</string>
+    <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
+    <string name="editor_enabled">המעורר פעיל</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">דילוג בפעם הבאה</string>
+    <string name="alarm_skipped">דולג: %1$s</string>
+    <string name="nap_title">תנומה</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">דקה אחת</item>
+        <item quantity="two">שתי דקות</item>
+        <item quantity="other">%1$d דקות</item>
+    </plurals>
+    <string name="nap_start">התחלה</string>
+    <string name="nap_running">עד %1$s</string>
+    <string name="nap_stop">סיום התנומה</string>
+    <string name="diag_title">אבחון</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">עוד הקשה אחת</item>
+        <item quantity="two">עוד שתי הקשות</item>
+        <item quantity="other">עוד %1$d הקשות</item>
+    </plurals>
+    <string name="diag_clear">ניקוי</string>
+    <string name="diag_hide">הסתרת אבחון</string>
+    <string name="diag_empty">עדיין אין אירועים.</string>
+    <string name="diag_next">ההשכמה הבאה: %1$s</string>
+    <string name="diag_version">גרסה %1$s</string>
+    <string name="transient_alarm_running">ההשכמה שלכם פועלת עכשיו.</string>
+    <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
 </resources>

@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">Amânat până la %1$s</string>
 
     <string name="home_no_alarm">Nicio alarmă setată</string>
-    <string name="home_no_alarm_hint">Setează alarmele în Phase Wake pe telefon.</string>
+    <string name="home_no_alarm_hint">Creează o alarmă – aici sau în Phase Wake pe telefon.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Azi</string>
     <string name="home_tomorrow">Mâine</string>
@@ -46,4 +46,44 @@
     <string name="home_last_night">Noaptea trecută</string>
     <string name="notification_open">Deschide</string>
     <string name="home_good_night_too_far">Disponibil cu 16 h înainte de alarmă</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Rezolvă calculul pe telefon sau ține apăsat 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarmă nouă</string>
+    <string name="editor_new">Alarmă nouă</string>
+    <string name="editor_edit">Editează alarma</string>
+    <string name="editor_target">Trezește-mă până la</string>
+    <string name="editor_latest">Cel târziu</string>
+    <string name="editor_window">Interval: %1$d min</string>
+    <string name="editor_days">Repetă</string>
+    <string name="editor_save">Salvează</string>
+    <string name="editor_delete">Șterge alarma</string>
+    <string name="editor_delete_title">Ștergi această alarmă?</string>
+    <string name="home_max_alarms">Maximum %1$d alarme – șterge una ca să adaugi una nouă.</string>
+    <string name="editor_enabled">Alarmă activată</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Sari data viitoare</string>
+    <string name="alarm_skipped">Sărit: %1$s</string>
+    <string name="nap_title">Pui de somn</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="few">%1$d minute</item>
+        <item quantity="other">%1$d de minute</item>
+    </plurals>
+    <string name="nap_start">Începe</string>
+    <string name="nap_running">Până la %1$s</string>
+    <string name="nap_stop">Încheie puiul de somn</string>
+    <string name="diag_title">Diagnoză</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Încă %1$d dată</item>
+        <item quantity="few">Încă de %1$d ori</item>
+        <item quantity="other">Încă de %1$d de ori</item>
+    </plurals>
+    <string name="diag_clear">Golește</string>
+    <string name="diag_hide">Ascunde diagnoza</string>
+    <string name="diag_empty">Încă niciun eveniment.</string>
+    <string name="diag_next">Următoarea alarmă: %1$s</string>
+    <string name="diag_version">Versiunea %1$s</string>
+    <string name="transient_alarm_running">Alarma ta rulează chiar acum.</string>
+    <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
 </resources>

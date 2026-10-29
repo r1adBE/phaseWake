@@ -20,8 +20,27 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
-    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang */
-    private const val FIELDS = 12
+    /**
+     * id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|Sonnenaufgang-Gerät|
+     * Überspringen-bis|Feiertage
+     */
+    private const val FIELDS = 16
+
+    /**
+     * So viele Felder je Weckerzeile kennt diese Version ([FIELDS]); die Uhr meldet die Zahl im Status, damit das
+     * Handy eine ältere Uhr erkennt ([watchKnowsSkip]).
+     */
+    const val ALARM_FIELDS: Int = FIELDS
+
+    /** Ab so vielen Feldern kennt eine Version Überspringen (Feld 15) und Feiertage (Feld 16). */
+    const val SKIP_FIELDS: Int = 16
+
+    /**
+     * Ob eine Uhr, die [watchFields] Felder je Weckerzeile kennt, Überspringen und Feiertage beachtet. `null` = keine
+     * Uhr bekannt (nie ein Status): `true`, das Handy weckt dann allein und beachtet beides. Ein Status ohne Angabe
+     * stammt von einer älteren Uhr und zählt als 0.
+     */
+    fun watchKnowsSkip(watchFields: Int?): Boolean = watchFields == null || watchFields >= SKIP_FIELDS
 
     /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
     private const val FIELDS_V1 = 11
@@ -32,6 +51,11 @@ object Codec {
     )
     private val daysByCode = dayCodes.entries.associate { (day, code) -> code to day }
 
+    /**
+     * Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit
+     * [FIELDS] durch «|» getrennten Feldern. Texte (Kennung, Ton, Name) sind URL-kodiert, damit «|» und
+     * Zeilenumbrüche darin nichts zerbrechen. Leere Liste = nur die Kopfzeile.
+     */
     fun encodeAlarms(alarms: List<AlarmSpec>): String = buildString {
         append(ALARMS_HEADER).append('\n')
         for (a in alarms) {
@@ -48,6 +72,10 @@ object Codec {
                 escape(a.sound),
                 escape(a.label),
                 a.sunrise.name,
+                a.wakeTask.name,
+                a.sunriseDevice.name,
+                a.skipUntil.toString(),
+                if (a.skipHolidays) "1" else "0",
             ).joinToString(SEP)).append('\n')
         }
     }
@@ -89,9 +117,20 @@ object Codec {
                     sound = unescape(f[9]),
                     label = unescape(f[10]),
                     sunrise = if (f.size > FIELDS_V1) Sunrise.entries.firstOrNull { it.name == f[11] } ?: Sunrise.OFF else Sunrise.OFF,
+                    // Feld 13 fehlt bei älteren Ständen, unbekannt aus neueren: Halten.
+                    wakeTask = f.getOrNull(12)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
+                    // Feld 14 fehlt bei älteren Ständen, unbekannt aus neueren: Handy.
+                    sunriseDevice = f.getOrNull(13)?.let { v -> SunriseDevice.entries.firstOrNull { it.name == v } } ?: SunriseDevice.PHONE,
+                    // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen.
+                    skipUntil = f.getOrNull(14)?.toLongOrNull()?.coerceAtLeast(0L) ?: 0L,
+                    skipHolidays = f.getOrNull(15) == "1",
                 )
             }
 
+    /**
+     * Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Kopfdaten (Zeiten in ms seit 1970)
+     * und eine Zeile mit allen Epochen «Bewegung;Puls», durch Komma getrennt; fehlende Werte bleiben leer.
+     */
     fun encodeNight(night: NightRecord): String = buildString {
         append(NIGHT_HEADER).append('\n')
         append(listOf(
@@ -109,6 +148,11 @@ object Codec {
         }).append('\n')
     }
 
+    /**
+     * Liest [encodeNight]. Ältere Stände ohne Befinden (6 Felder) bleiben lesbar, angehängte Felder neuerer
+     * Versionen werden ignoriert. Fremdes Format oder kaputte Werte: [CodecException] (eine Nacht ist
+     * ganz oder gar nicht lesbar).
+     */
     fun decodeNight(text: String): NightRecord {
         val lines = text.lines()
         if (lines.firstOrNull() != NIGHT_HEADER) throw CodecException("Unbekanntes Nachtformat")

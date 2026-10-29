@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Báo thức đã được kích hoạt trên đồng hồ</string>
     <string name="check_watch_arm_problem">Hãy mở Phase Wake trên Apple Watch trước khi đi ngủ. watchOS chỉ kích hoạt báo thức khi ứng dụng đang mở.</string>
     <string name="night_unmeasured_apple">%1$d phút đầu không được đo – Apple Watch chỉ đo %2$d phút cuối trước giờ mục tiêu.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: SoundAnalysis của Apple, tích hợp sẵn trong iOS.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org</string>
 </resources>

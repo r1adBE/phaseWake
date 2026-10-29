@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Phase Wake</string>
 
     <string name="channel_window">Wake window</string>
@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Snoozing until %1$s</string>
 
     <string name="home_no_alarm">No alarm set</string>
-    <string name="home_no_alarm_hint">Set alarms in Phase Wake on your phone.</string>
+    <string name="home_no_alarm_hint">Add an alarm – here or in Phase Wake on your phone.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Today</string>
     <string name="home_tomorrow">Tomorrow</string>
@@ -47,4 +47,42 @@
     <string name="home_last_night">Last night</string>
     <string name="notification_open">Open</string>
     <string name="home_good_night_too_far">Available from 16 h before the alarm</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Solve the task on your phone or hold 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">New alarm</string>
+    <string name="editor_new">New alarm</string>
+    <string name="editor_edit">Edit alarm</string>
+    <string name="editor_target">Wake me by</string>
+    <string name="editor_latest">At the latest</string>
+    <string name="editor_window">Window: %1$d min</string>
+    <string name="editor_days">Repeat</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_delete">Delete alarm</string>
+    <string name="editor_delete_title">Delete this alarm?</string>
+    <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
+    <string name="editor_enabled">Alarm on</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Skip next time</string>
+    <string name="alarm_skipped">Skipped: %1$s</string>
+    <string name="nap_title">Power nap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="nap_start">Start</string>
+    <string name="nap_running">Until %1$s</string>
+    <string name="nap_stop">End power nap</string>
+    <string name="diag_title">Diagnostics</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d more tap</item>
+        <item quantity="other">%1$d more taps</item>
+    </plurals>
+    <string name="diag_clear">Clear</string>
+    <string name="diag_hide">Hide diagnostics</string>
+    <string name="diag_empty">No events yet.</string>
+    <string name="diag_next">Next alarm: %1$s</string>
+    <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Your alarm is running right now.</string>
+    <string name="transient_alarm_soon">Your alarm window starts before that.</string>
 </resources>

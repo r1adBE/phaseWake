@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">Ditangguh hingga %1$s</string>
 
     <string name="home_no_alarm">Tiada penggera ditetapkan</string>
-    <string name="home_no_alarm_hint">Tetapkan penggera dalam Phase Wake pada telefon.</string>
+    <string name="home_no_alarm_hint">Cipta penggera – di sini atau dalam Phase Wake pada telefon.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hari ini</string>
     <string name="home_tomorrow">Esok</string>
@@ -44,4 +44,40 @@
     <string name="home_last_night">Semalam</string>
     <string name="notification_open">Buka</string>
     <string name="home_good_night_too_far">Tersedia dari 16 jam sebelum penggera</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Selesaikan soalan di telefon atau tahan 5 saat</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Penggera baharu</string>
+    <string name="editor_new">Penggera baharu</string>
+    <string name="editor_edit">Edit penggera</string>
+    <string name="editor_target">Bangunkan saya sebelum</string>
+    <string name="editor_latest">Selewat-lewatnya</string>
+    <string name="editor_window">Tetingkap: %1$d min</string>
+    <string name="editor_days">Ulang</string>
+    <string name="editor_save">Simpan</string>
+    <string name="editor_delete">Padam penggera</string>
+    <string name="editor_delete_title">Padam penggera ini?</string>
+    <string name="home_max_alarms">Maksimum %1$d penggera – padam satu untuk menambah yang baharu.</string>
+    <string name="editor_enabled">Penggera hidup</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Langkau kali seterusnya</string>
+    <string name="alarm_skipped">Dilangkau: %1$s</string>
+    <string name="nap_title">Tidur sekejap</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d minit</item>
+    </plurals>
+    <string name="nap_start">Mula</string>
+    <string name="nap_running">Hingga %1$s</string>
+    <string name="nap_stop">Tamatkan tidur sekejap</string>
+    <string name="diag_title">Diagnostik</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">%1$d kali lagi</item>
+    </plurals>
+    <string name="diag_clear">Kosongkan</string>
+    <string name="diag_hide">Sembunyikan diagnostik</string>
+    <string name="diag_empty">Belum ada peristiwa.</string>
+    <string name="diag_next">Penggera seterusnya: %1$s</string>
+    <string name="diag_version">Versi %1$s</string>
+    <string name="transient_alarm_running">Penggera awak sedang berjalan sekarang.</string>
+    <string name="transient_alarm_soon">Tetingkap penggera awak bermula lebih awal.</string>
 </resources>

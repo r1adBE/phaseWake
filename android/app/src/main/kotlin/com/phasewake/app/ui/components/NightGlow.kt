@@ -40,21 +40,27 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-/** Farben des Nachthimmels: tiefes Blau mit einem Lichtschein von oben rechts. */
+/** Farben des Nachthimmels «Mitternacht & Lavendel»: Indigo mit einem Lavendel-Schein von oben rechts. */
 object Night {
-    val Top = Color(0xFF0B2170)
-    val Bottom = Color(0xFF050D2B)
-    val Glow = Color(0xFF3A74FF)
-    val Beam = Color(0xFF5B8DFF)
-    val Moon = Color.White
-    val Wave = Color(0xFF8CBBFF)
-    val WaveEcho = Color(0xFF3557C8)
-    // Hell genug für Kontrast ≥ 4.5:1 auch im Lichtschein (WCAG AA).
-    val Muted = Color(0xFFCFDBFF)
+    val Top = Color(0xFF141A3D)
+    val Bottom = Color(0xFF070914)
+    val Glow = Color(0xFF7B6CF6)
+    val Beam = Color(0xFFB9AEFF)
+    /** Mond, Weckpunkt und Text: warmes Weiss. */
+    val Moon = Color(0xFFFBF7F0)
+    val Text = Color(0xFFFBF7F0)
+    val Wave = Color(0xFFB9AEFF)
+    val WaveEcho = Color(0xFF7B6CF6)
+    // Kontrast ≥ 4.5:1 auch im Kern des Lichtscheins (WCAG AA).
+    val Muted = Color(0xFFC9C3E6)
+    /** Stufe für Zusatzinfos: Muted mit 80 % (≥ 6:1 auf dem Verlauf). */
+    val MutedSoft = Color(0xFFC9C3E6).copy(alpha = 0.8f)
+    /** Navigationsleiste auf dem Nachthimmel: untere Verlaufsfarbe mit 93 %. */
+    val Bar = Color(0xFF070914).copy(alpha = 0.93f)
 }
 
 /**
- * Hintergrund wie ein Nachthimmel kurz vor der Dämmerung: Verlauf von Tiefblau nach Fast-Schwarz,
+ * Hintergrund wie ein Nachthimmel kurz vor der Dämmerung: Verlauf von Mitternachts-Indigo nach Fast-Schwarz,
  * darüber ein weicher Lichtschein, der langsam wandert ([drift] 0–1).
  */
 fun Modifier.nightGlow(drift: Float = 0f): Modifier = drawBehind { drawNight(drift) }
@@ -156,7 +162,7 @@ fun Intro(onFinished: () -> Unit) {
             Text(
                 "Phase Wake",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color.White,
+                color = Night.Text,
                 modifier = Modifier.graphicsLayer {
                     alpha = name.value
                     translationY = (1f - name.value) * 24f

@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">%1$s तक स्नूज़</string>
 
     <string name="home_no_alarm">कोई अलार्म नहीं</string>
-    <string name="home_no_alarm_hint">फ़ोन पर Phase Wake में अलार्म लगाओ।</string>
+    <string name="home_no_alarm_hint">अलार्म बनाएं – यहां या फ़ोन पर Phase Wake में।</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">आज</string>
     <string name="home_tomorrow">कल</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">बीती रात</string>
     <string name="notification_open">खोलें</string>
     <string name="home_good_night_too_far">अलार्म से 16 घंटे पहले से उपलब्ध</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">फ़ोन पर सवाल हल करो या 5 सेकंड दबाए रखो</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">नया अलार्म</string>
+    <string name="editor_new">नया अलार्म</string>
+    <string name="editor_edit">अलार्म बदलो</string>
+    <string name="editor_target">मुझे इतने तक जगाओ</string>
+    <string name="editor_latest">अधिकतम</string>
+    <string name="editor_window">विंडो: %1$d मि.</string>
+    <string name="editor_days">दोहराव</string>
+    <string name="editor_save">सेव करो</string>
+    <string name="editor_delete">अलार्म हटाओ</string>
+    <string name="editor_delete_title">यह अलार्म हटाएँ?</string>
+    <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>
+    <string name="editor_enabled">अलार्म चालू</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">अगली बार छोड़ें</string>
+    <string name="alarm_skipped">छोड़ा गया: %1$s</string>
+    <string name="nap_title">झपकी</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d मिनट</item>
+        <item quantity="other">%1$d मिनट</item>
+    </plurals>
+    <string name="nap_start">शुरू</string>
+    <string name="nap_running">%1$s तक</string>
+    <string name="nap_stop">झपकी खत्म करें</string>
+    <string name="diag_title">जांच-जानकारी</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d बार और</item>
+        <item quantity="other">%1$d बार और</item>
+    </plurals>
+    <string name="diag_clear">खाली करें</string>
+    <string name="diag_hide">जांच-जानकारी छिपाएं</string>
+    <string name="diag_empty">अभी कोई घटना नहीं।</string>
+    <string name="diag_next">अगला अलार्म: %1$s</string>
+    <string name="diag_version">वर्शन %1$s</string>
+    <string name="transient_alarm_running">आपका अलार्म अभी चल रहा है।</string>
+    <string name="transient_alarm_soon">आपके अलार्म की विंडो उससे पहले शुरू होती है।</string>
 </resources>

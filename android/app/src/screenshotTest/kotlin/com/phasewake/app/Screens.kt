@@ -1,8 +1,10 @@
 package com.phasewake.app
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.tools.screenshot.PreviewTest
@@ -19,6 +21,8 @@ import com.phasewake.app.ring.RingScreen
 import com.phasewake.app.ring.SunriseScreen
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ui.editor.EditorScreen
+import com.phasewake.app.ui.history.HistoryCharts
+import com.phasewake.app.ui.history.HistoryChartsStacked
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
@@ -106,11 +110,73 @@ fun HomeCheck() = Home(ThemeMode.LIGHT, alarms, NightCheckState(listOf(Check.WAT
 
 private val trends = Trends(asleepThisWeek = 432, asleepLastWeek = 401, bedtimeSpreadMinutes = 18, feelingThisWeek = 3.8, feelingLastWeek = 3.2)
 
+/** Diagramme: 14 Nächte mit Weckfenster 06:30–07:00, Schlaf aus der Gesundheits-App, Befinden und Notizen. */
+private val chartZone = java.time.ZoneId.systemDefault()
+private val chartMorning = java.time.LocalDate.of(2026, 10, 28)
+private fun chartAt(daysAgo: Long, hour: Int, minute: Int): Instant =
+    chartMorning.minusDays(daysAgo).atTime(hour, minute).atZone(chartZone).toInstant()
+
+/** Je Nacht (0 = heute Morgen): Minuten vor der Zielzeit, Grund, Befinden, Einschlafen (Minuten nach 22:00), Schlaf in Minuten. */
+private val chartPlan = listOf(
+    Triple(12, WakeReason.LIGHT_SLEEP, 4) to (70 to 448), Triple(0, WakeReason.DEADLINE, 3) to (95 to 405),
+    Triple(18, WakeReason.LIGHT_SLEEP, 5) to (55 to 470), Triple(6, WakeReason.AWAKE, 4) to (80 to 452),
+    Triple(-4, WakeReason.DEADLINE, 2) to (140 to 372), Triple(9, WakeReason.LIGHT_SLEEP, 4) to (60 to 462),
+    Triple(21, WakeReason.LIGHT_SLEEP, 4) to (75 to 455), Triple(3, WakeReason.AWAKE, 3) to (100 to 420),
+    Triple(0, WakeReason.DEADLINE, 3) to (85 to 430), Triple(14, WakeReason.LIGHT_SLEEP, 4) to (65 to 458),
+    Triple(11, WakeReason.LIGHT_SLEEP, 3) to (110 to 398), Triple(0, WakeReason.DEADLINE, 2) to (125 to 380),
+    Triple(16, WakeReason.LIGHT_SLEEP, 4) to (70 to 451), Triple(8, WakeReason.LIGHT_SLEEP, 3) to (90 to 428),
+)
+
+private val chartNights = chartPlan.mapIndexed { i, (wake, _) ->
+    val start = chartAt(i.toLong(), 6, 30)
+    val target = start.plus(Duration.ofMinutes(30))
+    NightRecord("work", start, target, target.minus(Duration.ofMinutes(wake.first.toLong())), wake.second, if (wake.first < 0) 1 else 0, emptyList(), wake.third)
+}.reversed()
+
+private val chartSleeps = chartPlan.mapIndexedNotNull { i, (_, sleep) ->
+    // Zwei Nächte ohne Daten (Uhr nicht getragen).
+    if (i == 5 || i == 9) return@mapIndexedNotNull null
+    val start = chartAt(i + 1L, 22, 0).plus(Duration.ofMinutes(sleep.first.toLong()))
+    com.phasewake.app.core.SleepSummary(start, chartAt(i.toLong(), 6, 50), sleep.second.toLong())
+}.reversed()
+
+/** Schlafphasen der jüngsten Nacht: Zyklen von Leicht, Tief, Leicht und REM, am Morgen leicht. */
+private val chartStages = buildList {
+    var t = chartAt(1, 23, 10)
+    val cycle = listOf(SleepStage.AWAKE to 10, SleepStage.LIGHT to 25, SleepStage.DEEP to 45, SleepStage.LIGHT to 20, SleepStage.REM to 20)
+    val end = chartAt(0, 6, 50)
+    var k = 0
+    while (t.isBefore(end)) {
+        val (stage, minutes) = cycle[k % cycle.size]
+        // Gegen Morgen weniger Tiefschlaf, mehr REM und leichter Schlaf.
+        val length = if (stage == SleepStage.DEEP) maxOf(10, minutes - k * 4) else minutes + (if (stage == SleepStage.REM) k * 2 else 0)
+        val next = minOf(t.plus(Duration.ofMinutes(length.toLong())), end)
+        // Wach nur beim Einschlafen und einmal kurz um 03 Uhr (fünfter Zyklus).
+        add(StageSpan(t, next, if (stage == SleepStage.AWAKE && k != 0 && k != 20) SleepStage.LIGHT else stage))
+        t = next
+        k++
+    }
+}
+
+private val chartNotes = mapOf(
+    chartMorning.minusDays(2) to listOf(com.phasewake.app.core.SleepNotes.CAFFEINE),
+    chartMorning.minusDays(5) to listOf(com.phasewake.app.core.SleepNotes.ALCOHOL, com.phasewake.app.core.SleepNotes.LATE_MEAL),
+    chartMorning.minusDays(9) to listOf(com.phasewake.app.core.SleepNotes.EXERCISE),
+)
+
+private val charts = HistoryCharts.of(chartNights, chartSleeps, chartStages, chartNotes, alarms, 450, FIXED_NOW, chartZone)
+
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE_TALL) @Composable
-fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = true) }
+fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = true, charts = charts) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE_TALL) @Composable
-fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = false) }
+fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = false, charts = charts) }
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme hell", device = PHONE_TALL) @Composable
+fun HistoryChartsLight() = Themed(ThemeMode.LIGHT) { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) }
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme dunkel", device = PHONE_TALL) @Composable
+fun HistoryChartsDark() = Themed(ThemeMode.DARK) { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {

@@ -13,12 +13,16 @@ import com.phasewake.app.core.Snooze
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.RingActivity
+import com.phasewake.app.wear.ui.SunriseActivity
 
 /** Mitteilungen der Uhr: ruhige Daueranzeige während des Fensters, Weck-Mitteilung mit Vollbild beim Wecken (Vibration steuert der Dienst). */
 object Notifications {
     const val CHANNEL_WINDOW = "window"
     const val CHANNEL_ALARM = "alarm"
     const val ID_SERVICE = 1
+
+    /** Sonnenaufgang ab Weckfenster ([WatchSunrise]), neben der Daueranzeige der Messung. */
+    const val ID_SUNRISE = 2
 
     fun createChannels(context: Context) {
         val manager = context.getSystemService(NotificationManager::class.java)
@@ -126,6 +130,28 @@ object Notifications {
             builder.addAction(R.drawable.ic_moon, label, snooze)
         }
         return builder.build()
+    }
+
+    /**
+     * Sonnenaufgang ab Weckfenster: Vollbild-Absicht öffnet [SunriseActivity] auch bei dunklem Display.
+     * Kanal «Wecker» (ohne Ton und Vibration), sonst ignoriert das System die Vollbild-Absicht; ohne
+     * `setSilent` aus demselben Grund wie bei [ringing]. Texte wie die Daueranzeige der Messung.
+     */
+    fun sunrise(context: Context, targetText: String): Notification {
+        val open = PendingIntent.getActivity(
+            context, 4, Intent(context, SunriseActivity::class.java),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        return NotificationCompat.Builder(context, CHANNEL_ALARM)
+            .setSmallIcon(R.drawable.ic_moon)
+            .setContentTitle(context.getString(R.string.notification_window_title))
+            .setContentText(context.getString(R.string.notification_window_text, targetText))
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setOngoing(true)
+            .setFullScreenIntent(open, true)
+            .setContentIntent(open)
+            .build()
     }
 
     private fun ringScreen(context: Context): PendingIntent = PendingIntent.getActivity(

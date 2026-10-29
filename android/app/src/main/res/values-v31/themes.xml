@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Startbildschirm: Logo auf Nachtblau. -->
+    <!-- Startbildschirm: Logo auf Mitternachts-Indigo. -->
     <style name="Theme.PhaseWake" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/window_background</item>
-        <item name="android:windowSplashScreenBackground">#0B1A4A</item>
+        <item name="android:windowSplashScreenBackground">#141A3D</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
     </style>
 </resources>

@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Torkku %1$s asti</string>
 
     <string name="home_no_alarm">Ei herätystä</string>
-    <string name="home_no_alarm_hint">Aseta herätykset puhelimen Phase Wake -sovelluksessa.</string>
+    <string name="home_no_alarm_hint">Luo herätys – tässä tai puhelimen Phase Wakessa.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Tänään</string>
     <string name="home_tomorrow">Huomenna</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">Viime yö</string>
     <string name="notification_open">Avaa</string>
     <string name="home_good_night_too_far">Käytettävissä 16 h ennen herätystä</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Ratkaise tehtävä puhelimessa tai pidä 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Uusi herätys</string>
+    <string name="editor_new">Uusi herätys</string>
+    <string name="editor_edit">Muokkaa herätystä</string>
+    <string name="editor_target">Herätä viimeistään</string>
+    <string name="editor_latest">Viimeistään</string>
+    <string name="editor_window">Aikaikkuna: %1$d min</string>
+    <string name="editor_days">Toista</string>
+    <string name="editor_save">Tallenna</string>
+    <string name="editor_delete">Poista herätys</string>
+    <string name="editor_delete_title">Poistetaanko tämä herätys?</string>
+    <string name="home_max_alarms">Enintään %1$d herätystä – poista yksi lisätäksesi uuden.</string>
+    <string name="editor_enabled">Herätys päällä</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Ohita seuraava kerta</string>
+    <string name="alarm_skipped">Ohitettu: %1$s</string>
+    <string name="nap_title">Päiväunet</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuutti</item>
+        <item quantity="other">%1$d minuuttia</item>
+    </plurals>
+    <string name="nap_start">Aloita</string>
+    <string name="nap_running">Klo %1$s asti</string>
+    <string name="nap_stop">Lopeta päiväunet</string>
+    <string name="diag_title">Diagnostiikka</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Vielä %1$d kerta</item>
+        <item quantity="other">Vielä %1$d kertaa</item>
+    </plurals>
+    <string name="diag_clear">Tyhjennä</string>
+    <string name="diag_hide">Piilota diagnostiikka</string>
+    <string name="diag_empty">Ei vielä tapahtumia.</string>
+    <string name="diag_next">Seuraava herätys: %1$s</string>
+    <string name="diag_version">Versio %1$s</string>
+    <string name="transient_alarm_running">Herätyksesi on juuri käynnissä.</string>
+    <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
 </resources>

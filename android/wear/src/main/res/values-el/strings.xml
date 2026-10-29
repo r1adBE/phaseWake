@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Αναβολή έως %1$s</string>
 
     <string name="home_no_alarm">Κανένα ξυπνητήρι</string>
-    <string name="home_no_alarm_hint">Όρισε ξυπνητήρια στο Phase Wake στο κινητό σου.</string>
+    <string name="home_no_alarm_hint">Δημιούργησε αφύπνιση – εδώ ή στο Phase Wake στο κινητό.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Σήμερα</string>
     <string name="home_tomorrow">Αύριο</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">Χθες το βράδυ</string>
     <string name="notification_open">Άνοιγμα</string>
     <string name="home_good_night_too_far">Διαθέσιμο από 16 ώρες πριν το ξυπνητήρι</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Λύσε την πράξη στο τηλέφωνο ή κράτα 5 δ</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Νέο ξυπνητήρι</string>
+    <string name="editor_new">Νέο ξυπνητήρι</string>
+    <string name="editor_edit">Επεξεργασία ξυπνητηριού</string>
+    <string name="editor_target">Ξύπνα με μέχρι</string>
+    <string name="editor_latest">Το αργότερο</string>
+    <string name="editor_window">Παράθυρο: %1$d λ.</string>
+    <string name="editor_days">Επανάληψη</string>
+    <string name="editor_save">Αποθήκευση</string>
+    <string name="editor_delete">Διαγραφή ξυπνητηριού</string>
+    <string name="editor_delete_title">Διαγραφή αυτού του ξυπνητηριού;</string>
+    <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>
+    <string name="editor_enabled">Ξυπνητήρι ενεργό</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Παράλειψη την επόμενη φορά</string>
+    <string name="alarm_skipped">Παραλείφθηκε: %1$s</string>
+    <string name="nap_title">Υπνάκος</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d λεπτό</item>
+        <item quantity="other">%1$d λεπτά</item>
+    </plurals>
+    <string name="nap_start">Έναρξη</string>
+    <string name="nap_running">Έως τις %1$s</string>
+    <string name="nap_stop">Τέλος υπνάκου</string>
+    <string name="diag_title">Διαγνωστικά</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ακόμη %1$d πάτημα</item>
+        <item quantity="other">Ακόμη %1$d πατήματα</item>
+    </plurals>
+    <string name="diag_clear">Εκκαθάριση</string>
+    <string name="diag_hide">Απόκρυψη διαγνωστικών</string>
+    <string name="diag_empty">Κανένα συμβάν ακόμη.</string>
+    <string name="diag_next">Επόμενη αφύπνιση: %1$s</string>
+    <string name="diag_version">Έκδοση %1$s</string>
+    <string name="transient_alarm_running">Η αφύπνισή σου είναι σε εξέλιξη αυτή τη στιγμή.</string>
+    <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
 </resources>

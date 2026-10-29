@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Hintergrund des App-Icons: Nachthimmel-Verlauf mit Lichtschein oben rechts, wie in der App. -->
+<!-- Hintergrund des App-Icons: Nachthimmel-Verlauf (Mitternacht) mit Lavendel-Schein oben rechts, wie in der App. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp" android:height="108dp"
@@ -7,13 +7,13 @@
     <path android:pathData="M0,0H108V108H0Z">
         <aapt:attr name="android:fillColor">
             <gradient android:type="linear" android:startX="54" android:startY="0" android:endX="54" android:endY="108"
-                android:startColor="#FF0B2170" android:endColor="#FF050D2B" />
+                android:startColor="#FF141A3D" android:endColor="#FF070914" />
         </aapt:attr>
     </path>
     <path android:pathData="M0,0H108V108H0Z">
         <aapt:attr name="android:fillColor">
             <gradient android:type="radial" android:centerX="86" android:centerY="11" android:gradientRadius="86"
-                android:startColor="#993A74FF" android:endColor="#003A74FF" />
+                android:startColor="#997B6CF6" android:endColor="#007B6CF6" />
         </aapt:attr>
     </path>
 </vector>

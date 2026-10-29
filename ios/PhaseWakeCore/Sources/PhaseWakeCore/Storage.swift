@@ -5,9 +5,12 @@ import os
 
 /// Wecker samt Zeitpunkt der letzten Änderung (für den Abgleich iPhone ↔ Uhr; letzte Änderung gewinnt).
 public struct AlarmSnapshot: Equatable, Sendable {
+    /// Wecker, sortiert nach Uhrzeit und Kennung.
     public let alarms: [AlarmSpec]
+    /// Zeitpunkt der letzten Änderung in Millisekunden seit 1970; 0 = nie geändert.
     public let updatedAt: Int64
 
+    /// Erzeugt einen Stand.
     public init(alarms: [AlarmSpec], updatedAt: Int64) {
         self.alarms = alarms
         self.updatedAt = updatedAt
@@ -30,6 +33,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Speicher der Uhr: Wecker in der App-Gruppe, damit die Komplikation sie lesen kann.
     public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? .standard)
 
+    /// Erzeugt einen Speicher. `directory` = Ordner für die Nächte (Standard: Application Support); Tests geben einen eigenen.
     public init(defaults: UserDefaults = .standard, directory: URL? = nil) {
         self.defaults = defaults
         let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -39,6 +43,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     // MARK: Wecker
 
+    /// Aktueller Stand der Wecker; leer, wenn nie gespeichert oder unlesbar.
     public func snapshot() -> AlarmSnapshot {
         lock.lock(); defer { lock.unlock() }
         return snapshotLocked()
@@ -102,6 +107,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     // MARK: Nächte
 
+    /// Alle gespeicherten Nächte, älteste zuerst; unlesbare fallen weg.
     public func nights() -> [NightRecord] {
         lock.lock(); defer { lock.unlock() }
         return nightsLocked()
@@ -147,6 +153,15 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         }
     }
 
+    /// Ersetzt alle Nächte (Wiederherstellen einer Sicherung); gleiche Nächte zählen einmal, höchstens 90.
+    public func replaceNights(_ nights: [NightRecord]) {
+        lock.lock(); defer { lock.unlock() }
+        var unique: [NightRecord] = []
+        for night in nights where !unique.contains(where: { Self.sameNight($0, night) }) { unique.append(night) }
+        writeNightsLocked(NightHistory.trim(unique))
+    }
+
+    /// Löscht alle Nächte (Datei weg); fehlt sie schon, ist das kein Fehler.
     public func clearNights() {
         lock.lock(); defer { lock.unlock() }
         do {
@@ -186,6 +201,16 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         defaults.removeObject(forKey: Self.notesKey)
     }
 
+    /// Ersetzt die Notizen aller Nächte (Wiederherstellen einer Sicherung). - Returns: neuer Stand.
+    @discardableResult
+    public func replaceNotes(_ notes: [String: [String]]) -> [String: [String]] {
+        lock.lock(); defer { lock.unlock() }
+        let text = SleepNotes.encode(notes)
+        defaults.set(text, forKey: Self.notesKey)
+        return SleepNotes.decode(text)
+    }
+
+    /// Die eigenen Notizen in gespeicherter Reihenfolge, höchstens 5.
     public func customNotes() -> [CustomNote] {
         lock.lock(); defer { lock.unlock() }
         return SleepNotes.decodeCustom(defaults.string(forKey: Self.customNotesKey) ?? "")
@@ -197,6 +222,22 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         defaults.set(SleepNotes.encodeCustom(notes.filter { !$0.name.isEmpty }), forKey: Self.customNotesKey)
     }
 
+    // MARK: Feiertage (Uhr: vom iPhone; iPhone: zuletzt gesendet)
+
+    private static let holidaysKey = "holidays"
+
+    /// Feiertage im Format von `Holidays.encode`; leer, wenn nie empfangen.
+    public var holidays: HolidayList {
+        get {
+            lock.lock(); defer { lock.unlock() }
+            return Holidays.decode(defaults.string(forKey: Self.holidaysKey))
+        }
+        set {
+            lock.lock(); defer { lock.unlock() }
+            defaults.set(Holidays.encode(newValue), forKey: Self.holidaysKey)
+        }
+    }
+
     private static func log(_ message: String) {
         #if canImport(os)
         logger.error("\(message, privacy: .public)")
@@ -206,31 +247,4 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     #if canImport(os)
     private static let logger = Logger(subsystem: "com.phasewake.app", category: "Storage")
     #endif
-}
-
-/// Schlüssel der Verbindung iPhone ↔ Uhr (WatchConnectivity).
-public enum SyncKeys {
-    public static let alarms = "alarms"
-    public static let updatedAt = "updatedAt"
-    public static let night = "night"
-    public static let command = "command"
-    public static let ring = "ring"
-    public static let stop = "stop"
-    public static let snooze = "snooze"
-    public static let clearHistory = "clearHistory"
-    /// Uhr → iPhone bei «ring» und «stop»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
-    /// auch die verbleibenden Schlummer-Runden. iPhone → Uhr: nur die Sendezeit. Ältere Versionen schicken nichts davon.
-    public static let target = "target"
-    public static let sentAt = "sentAt"
-    public static let snoozesLeft = "snoozesLeft"
-    /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
-    public static let maxRingAgeMs: Int64 = 2 * 60_000
-    /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
-    public static let armedTarget = "armedTarget"
-    /// Uhr → iPhone im Anwendungskontext: Akkustand der Uhr in Prozent und Zeitpunkt der Messung (ms).
-    /// Ältere Uhr-Versionen schicken beides nicht.
-    public static let battery = "battery"
-    public static let batteryAt = "batteryAt"
-    /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
-    public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 }

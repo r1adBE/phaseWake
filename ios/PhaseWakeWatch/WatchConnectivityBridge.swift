@@ -39,6 +39,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// (Nacht-Check auf dem iPhone).
     private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
+        // Formatfähigkeit: Das iPhone erkennt so eine ältere Uhr ohne Überspringen und Feiertage.
+        context[SyncKeys.alarmFields] = Int64(Codec.alarmFields)
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
         if device.batteryState == .unplugged, device.batteryLevel >= 0 {
@@ -81,6 +83,17 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         }
     }
 
+    /// Befehl mit Inhalt (Powernap, Abbruch, Bestätigung des Probeweckers); sofort oder nachgereicht.
+    func send(command: String, extra: [String: String]) {
+        var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
+        for (key, value) in extra { payload[key] = value }
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
+        } else {
+            WCSession.default.transferUserInfo(payload)
+        }
+    }
+
     // MARK: WCSessionDelegate
 
     func session(_ session: WCSession, activationDidCompleteWith state: WCSessionActivationState, error: Error?) {
@@ -98,8 +111,20 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         self.session(session, didReceiveMessage: userInfo)
     }
 
+    /// Anfrage mit Antwort: nur der Diagnose-Bericht. Alles andere wie eine Nachricht ohne Antwort.
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
+        guard message[SyncKeys.command] as? String == SyncKeys.diagRequest else {
+            self.session(session, didReceiveMessage: message)
+            replyHandler([:])
+            return
+        }
+        // Aus Quellen, die von jedem Thread lesbar sind; die Antwort geht sofort zurück.
+        replyHandler([SyncKeys.payload: DiagReports.encode(DiagReport(status: WatchDiagStatus.shared.current, entries: DiagStore.shared.entries()))])
+    }
+
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let command = message[SyncKeys.command] as? String else { return }
+        if receiveTransient(command, message) { return }
         // Verspätet zugestelltes Stopp oder Schlummern vom iPhone träfe sonst eine spätere Nacht.
         if command != SyncKeys.clearHistory, let sentAt = message[SyncKeys.sentAt] as? Int64,
            Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs { return }
@@ -113,7 +138,40 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         }
     }
 
+    /// Probewecker, Powernap und Abbruch vom iPhone. Nicht nach Alter verworfen: Kommt ein Plan spät an
+    /// (Uhr-App war zu), gilt er nur, solange seine Zielzeit noch vorn liegt. - Returns: ob behandelt.
+    private func receiveTransient(_ command: String, _ message: [String: Any]) -> Bool {
+        switch command {
+        case SyncKeys.test, SyncKeys.nap:
+            guard let text = message[SyncKeys.payload] as? String, let plan = try? Transient.decode(text) else { return true }
+            guard plan.plan.target > Date() else {
+                DiagStore.shared.log(plan.kind == .test ? .test : .nap, "too late")
+                return true
+            }
+            // Kollidiert er mit einem Wecker (Fenster läuft, klingelt, überdeckt das Fenster): verwerfen, ohne
+            // Bestätigung – das iPhone zeigt dann «Uhr hat den Test empfangen» als nicht erfüllt.
+            Task { @MainActor in
+                guard WatchModel.shared.accept(plan), plan.kind == .test else { return }
+                self.send(command: SyncKeys.testAck, extra: [SyncKeys.id: plan.plan.alarmId])
+            }
+            return true
+        case SyncKeys.transientCancel:
+            let id = message[SyncKeys.id] as? String
+            Task { @MainActor in
+                WatchModel.shared.endTransient(id)
+                WatchModel.shared.transientEnded()
+            }
+            return true
+        default:
+            return false
+        }
+    }
+
     private func receive(_ context: [String: Any]) {
+        if let text = context[SyncKeys.holidays] as? String {
+            let list = Holidays.decode(text)
+            Task { @MainActor in WatchModel.shared.applyHolidays(list) }
+        }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,
               let alarms = try? Codec.decodeAlarms(text) else { return }

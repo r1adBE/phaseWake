@@ -6,6 +6,7 @@ import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DayFormat
 import java.time.Duration
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -36,6 +37,10 @@ object Format {
     fun time(t: LocalTime): String = time.format(t)
 
     fun time(instant: Instant, zone: ZoneId = ZoneId.systemDefault()): String = time.format(instant.atZone(zone))
+
+    /** Kurzes Datum mit Wochentag nach Sprache und Region, z. B. «Do., 30.10.». */
+    fun shortDay(date: LocalDate, locale: Locale): String =
+        DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(date)
 
     /** «06:30 – 07:00» */
     fun window(alarm: AlarmSpec): String {

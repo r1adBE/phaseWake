@@ -2,6 +2,7 @@ import Foundation
 
 /// Fehler beim Lesen gespeicherter oder empfangener Daten.
 public struct CodecError: Error, Equatable, CustomStringConvertible, Sendable {
+    /// Lesbare Beschreibung des Fehlers (nur für Logs, nicht für die Oberfläche).
     public let description: String
 }
 
@@ -16,6 +17,21 @@ public enum Codec {
     ]
     private static let daysByCode = Dictionary(uniqueKeysWithValues: dayCodes.map { ($1, $0) })
 
+    /// So viele Felder je Weckerzeile kennt diese Version; die Uhr meldet die Zahl im Status (`SyncKeys.alarmFields`),
+    /// damit das iPhone eine ältere Uhr erkennt (`watchKnowsSkip`).
+    public static let alarmFields = 16
+    /// Ab so vielen Feldern kennt eine Version Überspringen (Feld 15) und Feiertage (Feld 16).
+    public static let skipFields = 16
+
+    /// Ob eine Uhr, die `watchFields` Felder je Weckerzeile kennt, Überspringen und Feiertage beachtet. `nil` = keine
+    /// Uhr bekannt (nie ein Status): `true`, das iPhone weckt dann allein und beachtet beides. Ein Status ohne Angabe
+    /// stammt von einer älteren Uhr und zählt als 0.
+    public static func watchKnowsSkip(_ watchFields: Int?) -> Bool {
+        guard let watchFields else { return true }
+        return watchFields >= skipFields
+    }
+
+    /// Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit 16 Feldern, getrennt durch «|». Texte URL-kodiert wie in Kotlin, damit beide Seiten byte-gleich schreiben.
     public static func encodeAlarms(_ alarms: [AlarmSpec]) -> String {
         var out = alarmsHeader + "\n"
         for a in alarms {
@@ -24,6 +40,7 @@ public enum Codec {
                 a.days.sorted().map { dayCodes[$0]! }.joined(separator: ","),
                 String(a.windowMinutes), a.enabled ? "1" : "0", a.phone.rawValue, a.watchSound ? "1" : "0",
                 a.sleepDurationMinutes.map(String.init) ?? "", escape(a.sound), escape(a.label), a.sunrise.rawValue,
+                a.wakeTask.rawValue, a.sunriseDevice.rawValue, String(a.skipUntil), a.skipHolidays ? "1" : "0",
             ].joined(separator: "|") + "\n"
         }
         return out
@@ -40,8 +57,15 @@ public enum Codec {
     private static func decodeAlarm(_ index: Int, _ line: String) throws -> AlarmSpec {
         let f = line.components(separatedBy: "|")
         // Neuere Versionen dürfen Felder anhängen; gelesen wird, was diese Version kennt.
-        guard f.count >= 11 else { throw CodecError(description: "Wecker \(index + 1): 12 Felder erwartet") }
+        guard f.count >= 11 else { throw CodecError(description: "Wecker \(index + 1): 16 Felder erwartet") }
         let sunrise = f.count >= 12 ? Sunrise(rawValue: f[11]) ?? .off : .off
+        // 13. Feld (Weckaufgabe): fehlt bei älteren Ständen, unbekannt bei neueren → Halten.
+        let wakeTask: WakeTask = f.count >= 13 ? WakeTask(rawValue: f[12]) ?? WakeTask.none : WakeTask.none
+        // 14. Feld (Sonnenaufgang-Gerät): fehlt bei älteren Ständen, unbekannt bei neueren → Handy.
+        let sunriseDevice: SunriseDevice = f.count >= 14 ? SunriseDevice(rawValue: f[13]) ?? .phone : .phone
+        // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen; unlesbar oder negativ → 0.
+        let skipUntil = f.count >= 15 ? max(0, Int64(f[14]) ?? 0) : 0
+        let skipHolidays = f.count >= 16 && f[15] == "1"
         let phone = PhoneAlert(rawValue: f[6]) ?? .sound
         let days: Set<Weekday> = try f[3].isEmpty ? [] : Set(f[3].components(separatedBy: ",").map {
             guard let day = daysByCode[$0] else { throw CodecError(description: "Wochentag '\($0)'") }
@@ -51,13 +75,15 @@ public enum Codec {
             return try AlarmSpec(
                 id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
                 enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
-                sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]), sunrise: sunrise
+                sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]), sunrise: sunrise,
+                wakeTask: wakeTask, sunriseDevice: sunriseDevice, skipUntil: skipUntil, skipHolidays: skipHolidays
             )
         } catch let error as DetectorConfigError {
             throw CodecError(description: "Wecker \(index + 1): \(error.message)")
         }
     }
 
+    /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer).
     public static func encodeNight(_ night: NightRecord) -> String {
         var out = nightHeader + "\n"
         out += [
@@ -71,6 +97,8 @@ public enum Codec {
         return out
     }
 
+    /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, neuere Felder ignoriert.
+    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, unbekanntem Grund, Befinden ausserhalb 1–5 oder unlesbaren Zahlen.
     public static func decodeNight(_ text: String) throws -> NightRecord {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
@@ -142,6 +170,10 @@ public enum Codec {
 
 /// Kurzschreibweise der Wochentage, z. B. «Mo–Fr». Identisch zu `DayFormat` (Kotlin).
 public enum DayFormat {
+    /// Formatiert Wochentage kurz in der Sprache von `locale`, ab dem Wochenbeginn der Region; drei und mehr Tage in Folge als Spanne («Mo–Fr»), eine Spanne über das Wochenende bleibt zusammen («Sa–Mo»).
+    /// - Parameters:
+    ///   - once: Text für einen einmaligen Wecker (keine Tage).
+    ///   - daily: Text für alle sieben Tage.
     public static func format(_ days: Set<Weekday>, locale: Locale, once: String, daily: String) -> String {
         if days.isEmpty { return once }
         if days.count == 7 { return daily }

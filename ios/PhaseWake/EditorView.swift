@@ -15,12 +15,16 @@ struct EditorView: View {
     @State private var phone = PhoneAlert.sound
     @State private var watchSound = false
     @State private var label = ""
+    /// Weckton: «raw:wake_…» (eigener Ton) oder leer bzw. anderer Wert = Standardton des Systems.
+    @State private var sound = ""
+    @State private var preview = WakeTonePreview()
     @State private var sunrise = Sunrise.off
     @State private var original: AlarmSpec?
     @State private var confirmDiscard = false
     @State private var confirmDelete = false
     @State private var newId = UUID().uuidString
     @State private var showMore = false
+    @State private var skipHolidays = false
 
     var body: some View {
         NavigationStack {
@@ -63,7 +67,13 @@ struct EditorView: View {
                     HStack {
                         ForEach(weekOrder, id: \.self) { day in
                             let on = days.contains(day)
-                            Button(dayName(day)) { if on { days.remove(day) } else { days.insert(day) } }
+                            Button { if on { days.remove(day) } else { days.insert(day) } } label: {
+                                VStack(spacing: 2) {
+                                    Text(dayName(day))
+                                    // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
+                                    Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
+                                }
+                            }
                                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                                 .frame(maxWidth: .infinity, minHeight: 36)
                                 .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
@@ -81,6 +91,10 @@ struct EditorView: View {
                     .font(.footnote)
                 }
 
+                // Nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
+                // Eine ältere Uhr kennt die Feiertagsregel nicht: dann nicht anbieten (Nacht-Check meldet es).
+                if !days.isEmpty && model.watchKnowsSkip { HolidaySkipSection(skipHolidays: $skipHolidays) }
+
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
                     // Auf Apple nur, was wirkt: Die Apple Watch weckt per Haptik (ohne Ton), das iPhone
@@ -93,23 +107,43 @@ struct EditorView: View {
                     Text(L("editor_alert"))
                 }
 
-                // Selten gebraucht: Sonnenaufgang und Name zugeklappt unter «Mehr».
+                // Sonnenaufgang im Haupteditor. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in
+                // der Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(L("sunrise_title")).font(.headline)
+                        // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
+                        Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Picker(L("sunrise_title"), selection: $sunrise) {
+                            Text(L("alert_off")).tag(Sunrise.off)
+                            Text(L("sunrise_ring")).tag(Sunrise.ring)
+                            Text(L("sunrise_window")).tag(Sunrise.window)
+                        }
+                        .pickerStyle(.segmented)
+                        if sunrise != .off {
+                            Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
+                                .font(.footnote).foregroundStyle(.secondary)
+                            // Auf dem iPhone nur mit offener App möglich.
+                            Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                        }
+                    }
+                }
+
+                // Selten gebraucht: Weckton und Name zugeklappt unter «Mehr».
                 Section {
                     DisclosureGroup(isExpanded: $showMore) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(L("editor_sunrise")).font(.headline)
-                            Text(L("editor_sunrise_hint")).font(.footnote).foregroundStyle(.secondary)
-                            Picker(L("editor_sunrise"), selection: $sunrise) {
-                                Text(L("alert_off")).tag(Sunrise.off)
-                                Text(L("sunrise_ring")).tag(Sunrise.ring)
-                                Text(L("sunrise_window")).tag(Sunrise.window)
-                            }
-                            .pickerStyle(.segmented)
-                            if sunrise != .off {
-                                Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
-                                    .font(.footnote).foregroundStyle(.secondary)
-                                // Auf dem iPhone nur mit offener App möglich.
-                                Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                        if phone != .off {
+                            // Eigene Töne oder der Standardton des Systems; eine Auswahl spielt kurz an.
+                            let choice = Binding(get: { sound }, set: { value in
+                                sound = value
+                                if let tone = WakeTone(rawValue: value) { preview.play(tone) } else { preview.stop() }
+                            })
+                            Picker(L("editor_sound"), selection: choice) {
+                                ForEach(WakeTone.allCases, id: \.self) { tone in
+                                    Text(L(tone.textKey)).tag(tone.rawValue)
+                                }
+                                // Standardton: leer, oder ein vorhandener fremder Wert bleibt unverändert.
+                                Text(L("editor_sound_default")).tag(WakeTone(rawValue: sound) == nil ? sound : "")
                             }
                         }
                         VStack(alignment: .leading, spacing: 8) {
@@ -147,6 +181,7 @@ struct EditorView: View {
                 ToolbarItem(placement: .confirmationAction) { Button(L("editor_save")) { save() }.bold() }
             }
             .onAppear(perform: load)
+            .onDisappear { preview.stop() }
             .interactiveDismissDisabled(dirty)
         }
     }
@@ -176,9 +211,11 @@ struct EditorView: View {
         phone = existing.phone == .off ? .off : .sound
         watchSound = existing.watchSound
         label = existing.label
+        sound = existing.sound
         sunrise = existing.sunrise
+        skipHolidays = existing.skipHolidays
         // Schon gesetzte Optionen nicht verstecken.
-        showMore = existing.sunrise != .off || !existing.label.isEmpty
+        showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil
     }
 
     private func current() -> AlarmSpec? {
@@ -193,14 +230,35 @@ struct EditorView: View {
             phone: phone,
             watchSound: watchSound,
             sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
-            sound: existing?.sound ?? "",
+            sound: sound,
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
-            sunrise: sunrise
+            sunrise: sunrise,
+            // Weckaufgabe gibt es auf Apple nicht (AlarmKit-Stopp lässt sich nicht ersetzen): nicht
+            // anbieten, einen vorhandenen Wert aber unverändert behalten.
+            wakeTask: existing?.wakeTask ?? WakeTask.none,
+            // Gerätewahl gibt es auf Apple nicht (nur iPhone): vorhandenen Wert behalten, neu = Handy.
+            sunriseDevice: existing?.sunriseDevice ?? .phone,
+            // «Nächstes Mal überspringen» bleibt nur bei gleicher Zeit und gleichen Tagen (`save`, `keepSkip`).
+            skipUntil: existing?.skipUntil ?? 0,
+            skipHolidays: skipHolidays
         )
     }
 
     private func save() {
-        if let spec = current() { model.upsert(spec) }
+        // Geänderte Zeit oder Tage heben das Überspringen auf (wie Android und die Uhren).
+        if let spec = current() { model.upsert(existing.map { spec.with(skipUntil: AlarmSchedule.keepSkip(old: $0, edited: spec)) } ?? spec) }
         dismiss()
+    }
+}
+
+/// «An Feiertagen nicht wecken» mit Hinweis auf die Einstellungen.
+private struct HolidaySkipSection: View {
+    @Binding var skipHolidays: Bool
+
+    var body: some View {
+        Section {
+            Toggle(L("editor_skip_holidays"), isOn: $skipHolidays)
+            Text(L("editor_skip_holidays_hint")).font(.footnote).foregroundStyle(.secondary)
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
@@ -10,11 +11,22 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <!-- Einschlafklänge: Wiedergabe als Vordergrund-Dienst (Medien-Kanal). -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- Optional, nur auf Wunsch: Geräusche in der Nacht (Schnarchen, Sprechen). Ausschnitte bleiben auf dem Handy. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <!-- Wecker-App: exakte Alarme ohne Rückfrage (ab Android 13), davor über SCHEDULE_EXACT_ALARM. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
     <!-- Optional: Schlafphasen aus Health Connect nachträglich lesen (nur Lesen). -->
     <uses-permission android:name="android.permission.health.READ_SLEEP" />
+    <!-- Gerätesperre (Fingerabdruck, Gesicht oder PIN) vor «Verlauf löschen» und «Wiederherstellen». -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!--
+        Kein Internet: Bibliotheken (z. B. MediaPipe für das Geräusch-Modell) können diese Rechte beim
+        Zusammenführen der Manifeste einbringen. Hier ausdrücklich entfernt, wie in DATENSCHUTZ.md zugesagt.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
 
     <queries>
         <package android:name="com.google.android.apps.healthdata" />
@@ -87,6 +99,11 @@
             android:foregroundServiceType="mediaPlayback" />
 
         <service
+            android:name=".sounds.SoundRecorderService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <service
             android:name=".sync.PhoneListenerService"
             android:exported="true">
             <intent-filter>
@@ -99,6 +116,19 @@
             </intent-filter>
         </service>
 
+        <!-- Widget «Nächster Wecker»: Updates kommen vom System (AppWidgetService), nicht von anderen Apps. -->
+        <receiver
+            android:name=".widget.NextAlarmWidget"
+            android:exported="false"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/next_alarm_widget" />
+        </receiver>
+
         <!-- Eigene Alarme (Zweitwecker, Sonnenaufgang, Schlummern): nicht von aussen auslösbar. -->
         <receiver
             android:name=".ring.BackupAlarm$Receiver"
@@ -108,6 +138,15 @@
         <!-- Bettzeit-Erinnerung (eigener, ungenauer Alarm): nicht von aussen auslösbar. -->
         <receiver
             android:name=".reminder.BedtimeReminder$Receiver"
+            android:exported="false" />
+
+        <!-- Wochenrückblick und tägliches Löschen alter Geräusche (eigene, ungenaue Alarme): nicht von aussen auslösbar. -->
+        <receiver
+            android:name=".reminder.WeeklyReminder$Receiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".sounds.SoundStore$CleanupReceiver"
             android:exported="false" />
 
         <receiver

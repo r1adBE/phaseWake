@@ -24,6 +24,28 @@ object DataLayer {
     const val PATH_SNOOZE = "/phasewake/snooze"
 
     /**
+     * Nachricht Handy → Uhr: Die Weckaufgabe ist auf dem Handy wirklich zu sehen; Inhalt = [RingMessage]
+     * (Kennung, Zielzeit). Kommt sofort und dann alle [TASK_SHOWN_REFRESH_MS], solange sie sichtbar ist.
+     * Erst damit schaltet die Uhr das Halten ab; bleibt die Meldung aus, gilt dort wieder Halten.
+     */
+    const val PATH_TASK_SHOWN = "/phasewake/task-shown"
+
+    /**
+     * Nachricht Handy → Uhr: Das Handy-Klingeln mit Weckaufgabe endete, ohne dass sie gelöst wurde
+     * (Zeitgrenze, Dienst beendet). Die Uhr erlaubt sofort wieder Halten. Inhalt = [RingMessage].
+     */
+    const val PATH_TASK_GONE = "/phasewake/task-gone"
+
+    /** So oft wiederholt das Handy [PATH_TASK_SHOWN]. */
+    const val TASK_SHOWN_REFRESH_MS = 30_000L
+
+    /** So lange gilt eine Meldung [PATH_TASK_SHOWN] auf der Uhr; danach wieder Halten. */
+    const val TASK_SHOWN_VALID_MS = 60_000L
+
+    /** Nur so lange nach dem Klingeln schaltet eine erste Meldung [PATH_TASK_SHOWN] auf «Aufgabe am Handy». */
+    const val TASK_CONFIRM_MS = 10_000L
+
+    /**
      * Datenpaket Handy → Uhr: Verlauf auf Wunsch des Nutzers löschen; Schlüssel [KEY_UPDATED_AT].
      * Ein Paket statt einer Nachricht, damit es auch eine gerade nicht erreichbare Uhr erreicht.
      */
@@ -39,8 +61,51 @@ object DataLayer {
     /** Akkustand der Uhr in Prozent (0–100), im selben Paket wie [KEY_READY]; fehlt bei älteren Versionen. */
     const val KEY_BATTERY = "battery"
 
+    /**
+     * Felder je Weckerzeile, die die Uhr kennt (`Codec.ALARM_FIELDS`), im selben Paket wie [KEY_READY]. Fehlt bei
+     * Uhren vor «Überspringen» und «Feiertage»; das Handy blendet beides dann aus (`Codec.watchKnowsSkip`).
+     */
+    const val KEY_ALARM_FIELDS = "alarmFields"
+
+    /**
+     * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
+     * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
+     */
+    const val PATH_TEST = "/phasewake/test"
+
+    /** Nachricht Uhr → Handy: Probewecker empfangen; Inhalt = seine Kennung (UTF-8). */
+    const val PATH_TEST_ACK = "/phasewake/test-ack"
+
+    /** Nachricht in beide Richtungen: Powernap gestartet; Inhalt = `Transient.encode` (Art NAP). */
+    const val PATH_NAP = "/phasewake/nap"
+
+    /** Nachricht in beide Richtungen: Probewecker oder Powernap abgebrochen; Inhalt = Kennung (UTF-8). */
+    const val PATH_TRANSIENT_CANCEL = "/phasewake/transient-cancel"
+
+    /**
+     * Datenpaket in beide Richtungen, zusätzlich zu [PATH_TRANSIENT_CANCEL]: derselbe Abbruch, damit ihn auch ein
+     * gerade nicht erreichbares Gerät nachholt (Nachrichten werden nicht nachgeliefert). Schlüssel [KEY_TEXT] =
+     * Kennung, [KEY_UPDATED_AT].
+     */
+    const val PATH_TRANSIENT_CANCELLED = "/phasewake/transient-cancelled"
+
+    /**
+     * Datenpaket Handy → Uhr: Feiertage der nächsten 400 Tage für «An Feiertagen nicht wecken»;
+     * Schlüssel [KEY_TEXT] (`Holidays.encode`, z. B. «CH-BE|2026-12-25,2026-12-26») und [KEY_UPDATED_AT].
+     */
+    const val PATH_HOLIDAYS = "/phasewake/holidays"
+
+    /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
+    const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
+
+    /** Nachricht Uhr → Handy: Diagnose-Bericht; Inhalt = `DiagReports.encode`. */
+    const val PATH_DIAG_LOG = "/phasewake/diag-log"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
+
+    /** Inhalt einer Nachricht als Text (UTF-8); ohne Inhalt leer. */
+    fun text(data: ByteArray?): String = data?.decodeToString().orEmpty()
 
     /** Fähigkeiten, über die sich die Apps gegenseitig finden (res/values/wear.xml). */
     const val CAPABILITY_PHONE = "phasewake_phone"

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <title>phaseWake</title>
-  <rect width="200" height="200" rx="46" fill="#0B1A4A"/>
-  <circle cx="100" cy="100" r="86" fill="#122466"/>
-  <g fill="#BFDBFE">
+  <rect width="200" height="200" rx="46" fill="#141A3D"/>
+  <circle cx="100" cy="100" r="86" fill="#1E2550"/>
+  <g fill="#E4DFFF">
     <circle cx="27" cy="33" r="1.2" opacity="0.6"/>
     <circle cx="49" cy="19" r="2.2"/>
     <circle cx="122" cy="14" r="1.4" opacity="0.7"/>
@@ -15,11 +15,11 @@
     <circle cx="186" cy="94" r="1" opacity="0.5"/>
     <circle cx="138" cy="50" r="1" opacity="0.4"/>
   </g>
-  <circle cx="74" cy="72" r="40" fill="#FFFFFF"/>
-  <circle cx="91" cy="59" r="38" fill="#122466"/>
-  <path d="M22 166 C36 166 36 130 50 130 C64 130 64 166 78 166 C92 166 92 126 106 126 C120 126 120 160 134 160 C146 160 152 142 164 130" fill="none" stroke="#2F4FB8" stroke-width="6" stroke-linecap="round"/>
-  <path d="M16 158 C30 158 30 122 44 122 C58 122 58 158 72 158 C86 158 86 118 100 118 C114 118 114 152 128 152 C140 152 146 134 158 122" fill="none" stroke="#7DB3FF" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="164" cy="116" r="19" fill="none" stroke="#7DB3FF" stroke-width="1.5" opacity="0.45"/>
-  <circle cx="164" cy="116" r="13" fill="none" stroke="#7DB3FF" stroke-width="1.5" opacity="0.8"/>
-  <circle cx="164" cy="116" r="7" fill="#FFFFFF"/>
+  <circle cx="74" cy="72" r="40" fill="#FBF7F0"/>
+  <circle cx="91" cy="59" r="38" fill="#1E2550"/>
+  <path d="M22 166 C36 166 36 130 50 130 C64 130 64 166 78 166 C92 166 92 126 106 126 C120 126 120 160 134 160 C146 160 152 142 164 130" fill="none" stroke="#7B6CF6" stroke-width="6" stroke-linecap="round"/>
+  <path d="M16 158 C30 158 30 122 44 122 C58 122 58 158 72 158 C86 158 86 118 100 118 C114 118 114 152 128 152 C140 152 146 134 158 122" fill="none" stroke="#B9AEFF" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="164" cy="116" r="19" fill="none" stroke="#B9AEFF" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="164" cy="116" r="13" fill="none" stroke="#B9AEFF" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="164" cy="116" r="7" fill="#FBF7F0"/>
 </svg>

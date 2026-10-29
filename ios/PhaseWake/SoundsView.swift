@@ -10,8 +10,13 @@ extension SleepSound {
         case .white: "waveform"
         case .pink: "waveform.path"
         case .brown: "waveform.path.ecg"
+        case .fan: "fan"
+        case .binaural: "headphones"
         case .rain: "cloud.rain"
         case .ocean: "water.waves"
+        case .forest: "leaf"
+        case .fire: "flame"
+        case .brook: "drop"
         }
     }
 }
@@ -24,7 +29,7 @@ struct SoundsButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Label(L("sounds_title"), systemImage: "moon.zzz").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Label(L("sounds_title"), systemImage: "moon.zzz").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
                 if let playing = model.sounds.playing {
                     Text(L(playing.textKey)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
@@ -36,7 +41,7 @@ struct SoundsButton: View {
     }
 }
 
-/// Einschlafklänge: fünf Klänge, Timer, Start/Stopp, Restzeit.
+/// Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Start/Stopp, Restzeit.
 struct SoundsSheet: View {
     @Environment(PhoneModel.self) private var model
     @AppStorage("soundChoice") private var choice = SleepSound.pink.rawValue
@@ -52,6 +57,10 @@ struct SoundsSheet: View {
                         ForEach(SleepSound.allCases, id: \.self) { sound in
                             tile(sound, selected: sound.rawValue == choice, playing: player.playing == sound)
                         }
+                    }
+                    // Einschlaf-Wellen: links und rechts ein anderer Ton, darum mit Kopfhörern hören.
+                    if (player.playing ?? SleepSound(rawValue: choice)) == .binaural {
+                        Text(L("sound_binaural_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(.secondary)
                     }
                     VStack(alignment: .leading, spacing: 8) {
                         Text(L("sounds_timer")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
@@ -110,6 +119,12 @@ struct SoundsSheet: View {
             .frame(maxWidth: .infinity, minHeight: 88)
             .background(selected ? Color.accentColor.opacity(0.22) : Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(playing ? Color.accentColor : .clear, lineWidth: 2))
+            // Gewählt: Haken oben rechts, damit die Wahl nicht nur an der Farbe hängt (WCAG 1.4.1).
+            .overlay(alignment: .topTrailing) {
+                if selected {
+                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.accentColor).padding(8).accessibilityHidden(true)
+                }
+            }
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])
@@ -117,7 +132,7 @@ struct SoundsSheet: View {
 
     /// Beginn des nächsten Weckfensters: Dort enden die Klänge spätestens.
     private func windowStart(now: Date) -> Date? {
-        AlarmSchedule.earliestPlan(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current)?.windowStart
+        model.nextPlan(now: now)?.windowStart
     }
 
     private func start(_ sound: SleepSound) {

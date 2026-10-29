@@ -4,6 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
+import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlin.coroutines.cancellation.CancellationException
@@ -26,7 +29,11 @@ class SystemEventReceiver : BroadcastReceiver() {
             try {
                 // Vor dem Entsperren geweckt: Nacht als erledigt merken und einen Einmal-Wecker ausschalten.
                 // Ein Fehler hier darf das Neuplanen nicht verhindern.
-                DirectBoot.takeRang(context)?.let { (alarmId, target) ->
+                // Probewecker und Powernap zählen nie als Nacht; ihr Plan ist mit dem Wecken vorbei (sonst klingelte
+                // er nach dem Entsperren noch einmal).
+                val rang = DirectBoot.takeRang(context)
+                rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) -> app.transient.clear(alarmId) }
+                rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                     try {
                         app.scheduler.markDone(alarmId, target)
                         app.scheduler.saveDone()
@@ -37,6 +44,9 @@ class SystemEventReceiver : BroadcastReceiver() {
                         Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
                     }
                 }
+                // Was das Handy in der Zwischenzeit abgelegt hat (Wecker, «Verlauf löschen»), vor dem Neuplanen.
+                app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}")
+                PhoneCatchUp.run(app)
                 app.scheduler.reschedule()
                 // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).
                 if (app.goodNight.load() != null) AlarmScheduler.armGoodNightCheck(context, Instant.now().plusSeconds(5))

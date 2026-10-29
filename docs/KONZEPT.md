@@ -28,7 +28,7 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 | | Handy-App | Uhr-App |
 |---|---|---|
-| Wecker anlegen/ändern | ja | nur Ein/Aus |
+| Wecker anlegen/ändern | ja | Uhrzeit, Weckfenster, Wochentage, Ein/Aus, Nächstes Mal überspringen, Löschen |
 | Überwachung im Fenster | nein | ja (Sensorik liegt hier) |
 | Wecken | Ton + Vibration als Zweitwecker, standardmässig an, abschaltbar | Vibration, Pflicht |
 | Verlauf anzeigen | ja | letzte Nacht |
@@ -36,10 +36,12 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; das Handy zeigt dann nur den Verlauf nach.
 
+Uhr-App eigenständig (29.10.2026): Auf der Uhr lassen sich Wecker anlegen («+ Neuer Wecker», höchstens 8), ändern (Zeile antippen; der Schalter schaltet weiterhin nur ein/aus) und löschen (mit Rückfrage). Der Editor der Uhr zeigt Uhrzeit, Weckfenster (10–30 Min in 5er-Schritten), Wochentage (ohne Tag: einmal), Ein/Aus und «Nächstes Mal überspringen» (wiederholte Wecker); Krone bzw. Drehrahmen blättern und verstellen. Alles Übrige (Sonnenaufgang, Weckton, Handy-Wecker, Weckaufgabe, Schlafdauer, Name) bleibt beim Ändern unverändert; neue Wecker bekommen dieselben Vorgaben wie am Handy (Android: 7:00, Werktage, Morgenvögel; iPhone: jetzige Uhrzeit, Werktage). Gespeichert wird lokal, neu geplant und ans Handy geschickt; es gilt wie überall die zuletzt gespeicherte Liste. Die Wear-OS-App ist im Play Store als eigenständig markiert (`com.google.android.wearable.standalone`): Messen und Wecken gehen ohne Handy, das Handy bleibt optionaler Begleiter. Sonnenaufgang, Weckton, Notizen und Auswertungen gibt es nur am Handy.
+
 ## Ablauf einer Nacht
 
-1. Nutzer stellt am Handy Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–30 Min).
-2. Der Wecker wird per Data Layer an die Uhr übertragen. Die Uhr setzt einen exakten Alarm (`AlarmManager`, `setAlarmClock`) auf *Zielzeit − Fenster*.
+1. Nutzer stellt am Handy oder an der Uhr Zielzeit und Weckfenster ein (Standard 30 Min, Bereich 10–30 Min).
+2. Der Wecker wird per Data Layer an die Gegenseite übertragen. Die Uhr setzt einen exakten Alarm (`AlarmManager`, `setAlarmClock`) auf *Zielzeit − Fenster*.
 3. Fensterbeginn: Ein Foreground-Service (Typ `health`) startet, hält einen Partial-Wakelock und liest Sensoren.
 4. Alle 30 s wird eine Epoche bewertet. Erkennt die Bewertung Leichtschlaf oder Aufwachen, löst die Uhr den Weckvorgang aus.
 5. Ist die Zielzeit erreicht, ohne dass die Bewertung angeschlagen hat, weckt die Uhr trotzdem (Rückfall).
@@ -78,7 +80,8 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Alles bleibt auf Uhr und Handy. Kein Konto, kein Server, keine Analytik, kein Internet-Recht im Manifest.
 - Gespeichert werden Weckereinstellungen und pro Nacht: Zielzeit, Fenster, tatsächliche Weckzeit, Weckgrund, Bewegungskurve des Fensters (30-s-Werte). Verlauf nach 90 Nächten automatisch gekürzt, jederzeit löschbar.
 - Apple: HealthKit-Lesezugriff Herzfrequenz, Bewegung über CoreMotion.
-- Android-Berechtigungen Uhr: `BODY_SENSORS` bzw. `health.READ_HEART_RATE` (Puls), `BODY_SENSORS_BACKGROUND` bzw. `health.READ_HEALTH_DATA_IN_BACKGROUND` (Puls bei dunklem Display), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_HEALTH`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `USE_EXACT_ALARM` (ab Android 13) bzw. `SCHEDULE_EXACT_ALARM` (Android 12), `USE_FULL_SCREEN_INTENT`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `USE_EXACT_ALARM` bzw. `SCHEDULE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `POST_NOTIFICATIONS`, `VIBRATE`, `health.READ_SLEEP` (optional). Keine Internet-Berechtigung.
+- Android-Berechtigungen Uhr: `BODY_SENSORS` bzw. `health.READ_HEART_RATE` (Puls), `BODY_SENSORS_BACKGROUND` bzw. `health.READ_HEALTH_DATA_IN_BACKGROUND` (Puls bei dunklem Display), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_HEALTH`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `USE_EXACT_ALARM` (ab Android 13) bzw. `SCHEDULE_EXACT_ALARM` (Android 12), `USE_FULL_SCREEN_INTENT`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `USE_EXACT_ALARM` bzw. `SCHEDULE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `POST_NOTIFICATIONS`, `VIBRATE`, `health.READ_SLEEP` (optional), `FOREGROUND_SERVICE_MEDIA_PLAYBACK` (Einschlafklänge), `RECORD_AUDIO` und `FOREGROUND_SERVICE_MICROPHONE` (nur für «Geräusche aufnehmen», erst beim Einschalten erfragt). Keine Internet-Berechtigung.
+- Geräusche in der Nacht (optional, standardmässig aus): nur kurze Ausschnitte (höchstens 10 s, höchstens 40 pro Nacht) im App-Ordner des Handys, nach 7 Tagen gelöscht; nicht in Sicherungen, nicht im Export, nie übertragen.
 - Datenschutzerklärung: Verantwortlicher Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf; Kontakt riad.work@outlook.com.
 
 ## Technik
@@ -87,7 +90,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Apple: Swift, SwiftUI, iOS 17+ und watchOS 10+.
 - Puls im Smart-Alarm-Fenster auf der Apple Watch: Wie dicht HealthKit dort Werte liefert, wird am Gerät geprüft. Kommen zu wenige, entscheidet wie auf Android bei fehlendem Puls die Bewegung allein.
 - Sync Handy ↔ Uhr: Android über Wearable Data Layer (`DataClient` für Wecker, `MessageClient` für Ereignisse; einzige Google-Play-Services-Abhängigkeit, auf Galaxy Watches ohnehin vorhanden), Apple über WatchConnectivity.
-- Keine weiteren Fremdabhängigkeiten.
+- Weitere Fremdabhängigkeit nur für «Geräusche aufnehmen» auf Android: MediaPipe Tasks Audio (`com.google.mediapipe:tasks-audio`) mit dem Modell YAMNet (`yamnet.tflite` in den Assets), beide Apache-2.0, laufen ganz auf dem Gerät. Fehlt das Modell, gelten alle Ausschnitte als «anderes Geräusch». Auf dem iPhone die eingebaute SoundAnalysis.
 - Tests: Phasenerkennung als reine Kotlin-Logik ohne Android-Abhängigkeit, mit aufgezeichneten Nächten als Testdaten. Abdeckung: Logik ≥ 90 %, Oberfläche ≥ 50 %.
 - Sprachen: 32, Du-Form (Deutsch in Schweizer Schreibung). Android-Texte sind die Quelle, die Apple-Kataloge werden daraus erzeugt.
 
@@ -104,18 +107,30 @@ Alles in v1, nichts auf später verschoben:
 - Morgenbericht: Weckgrund, Datenqualität (Bewegung und Puls / nur Bewegung / Lücken) und Befinden 1–5 mit einem Tipp; Befinden im Verlauf, im Export und in den Trends
 - Hinweis nach 3 Nächten in Folge ohne leichten Schlaf trotz 30-Min-Fenster: wahrscheinliche Ursache aus der Datenqualität (Lücken → Uhr abgelegt/am Laden, Puls fehlte → enger tragen, vollständig → ruhiger Schlaf, Wecken zur Zielzeit ist richtig). Das Fenster bleibt höchstens 30 Min.
 - Trends im Verlauf: Ø Schlaf der letzten 7 Tage gegenüber der Vorwoche und Schwankung der Einschlafzeit (aus Health Connect bzw. Apple Health, je mind. 3 bzw. 5 Nächte), Ø Befinden; ohne genug Daten keine Aussage
-- Sonnenaufgang auf dem Handy (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android; auf dem iPhone im Nachttisch-Modus (App bleibt nachts offen, Bildschirm schwarz bis zum Licht), weil iOS bei gesperrtem Bildschirm keinen eigenen Vollbildschirm erlaubt
+- Sonnenaufgang (Option pro Wecker, standardmässig aus): aus, beim Wecken (in 2 Min voll hell) oder ab Weckfenster (zur Zielzeit voll hell; weckt die Uhr früher, in 1 Min). Bildschirm von schwachem Dunkelorange zu warmem Weiss, Helligkeit von 1 % bis 100 %. Android: wählbar auf Handy (Standard), Galaxy Watch oder beiden; auf der Uhr ab Fenster als Vollbild (Tippen schliesst, die Messung läuft weiter), beim Wecken als Hintergrund des Weckbildschirms. Apple: nur iPhone, im Nachttisch-Modus (App bleibt nachts offen, Bildschirm schwarz bis zum Licht), weil iOS bei gesperrtem Bildschirm keinen eigenen Vollbildschirm erlaubt und die Apple Watch ihr Display in der Weck-Sitzung nicht zuverlässig anhält
 - anonymer Export des Verlaufs (CSV)
 - Schlafnotizen (28.10.2026): 8 feste und bis zu 5 eigene Notizen pro Abend; im Verlauf «Was deinen Schlaf beeinflusst» (ab je 3 Nächten mit und ohne, Unterschied im Befinden ab 0,5)
 - Schlafziel (Standard 7½ Std.) mit Wochenstand aus Health Connect bzw. Apple Health, Bettzeit-Erinnerung 30 Min vorher (standardmässig aus)
-- Einschlafklänge, in der App erzeugt (weisses, rosa, braunes Rauschen, Regen, Meer), Timer 15/30/60 Min, enden spätestens zum Weckfenster
+- Einschlafklänge, Timer 15/30/60 Min, enden spätestens zum Weckfenster (3 s Einblenden, 30 s Ausblenden). In der App erzeugt: weisses, rosa, braunes Rauschen, Ventilator (braunes Rauschen durch einen Tiefpass, dazu leises Brummen 50/100 Hz) und Einschlaf-Wellen (Stereo: links 200 Hz, rechts 202 Hz, je etwa −30 dBFS, mit sehr leisem rosa Rauschen; Hinweis «Mit Kopfhörern hören.», keine Gesundheitsversprechen). Aufnahmen (CC0, nahtlose Schleifen, 44,1 kHz Stereo, etwa −26 dBFS RMS), einmal dekodiert und ohne Lücke wiederholt (Android MediaCodec → AudioTrack, iPhone AVAudioFile → derselbe Quellknoten):
+  - Regen: «Rain (loopable)» von Ylmir, https://opengameart.org/content/rain-loopable
+  - Meer: «Sea and river wave sounds» (Vistula) von RandomMind, https://opengameart.org/content/sea-and-river-wave-sounds
+  - Wald bei Nacht (Grillen): «Crickets ambient noise» von Wolfgang_, https://opengameart.org/content/crickets-ambient-noise-loopable
+  - Kaminfeuer: «Fireplace sound loop» von PagDev, https://opengameart.org/content/fireplace-sound-loop
+  - Bach: «30 CC0 SFX loops» (water_flowing) von rubberduck, https://opengameart.org/content/30-cc0-sfx-loops
+- Wecktöne am Handy (je 28 s, 8 s Einblenden, in Schleife, Wecker-Kanal mit dem sanften Lauterwerden): Morgenvögel (aus «Ambient bird sounds» von isaiah658, CC0, https://opengameart.org/content/ambient-bird-sounds), Glockenspiel, Sanfter Gong, Harfe (synthetisch) oder ein Klingelton des Systems. Neue Wecker: Morgenvögel; bestehende behalten ihren Ton. Gespeichert im Feld `sound` als «raw:wake_birds» usw., sonst die URI des Systemtons (leer = Standard). Antippen spielt kurz an. iPhone: dieselben vier Töne über AlarmKit (`AlertConfiguration.AlertSound.named("wake_birds.caf")`, Datei im App-Bundle, unter 30 s) bzw. als Ton der Mitteilung; ohne Wahl der Standardton
+- Geräusche in der Nacht (28.10.2026, Handy, Option pro Nacht, standardmässig aus): Schnarchen und Sprechen erkennen (Pegel über Grundrauschen + 12 dB, mind. 0,5 s), kurze Ausschnitte (2 s Vorlauf, höchstens 10 s, höchstens einer je 30 s und 40 pro Nacht, bei mehr die lautesten), Einordnung auf dem Gerät (Android YAMNet, iPhone SoundAnalysis). Läuft bis 30 Min nach der Zielzeit oder bis zum Stoppen; im Morgenbericht und im Verlauf «Schnarchen: 12 Min (8 Ausschnitte) · Sprechen: 2 Ausschnitte» mit Abspielen und Löschen. Nach 7 Tagen gelöscht
+- Gewohnheiten (28.10.2026): «Regelmässig ins Bett: N von 7 Abenden» (± 30 Min um den Median von 14 Nächten, nur mit Gesundheitsdaten), Serien «N Nächte in Folge Schlafziel erreicht» und längste Serie in 90 Tagen (keine Punkte, keine Abzeichen), Wochenrückblick am Sonntag um 18:00 (Mitteilung, standardmässig aus; als Karte im Verlauf am Sonntag und Montag), Abendroutine als eigene Checkliste (höchstens 8 Punkte, Vorschläge «Handy weg», «Licht dimmen», «Wasser bereit») mit «Abendroutine: Ø 2,5 von 3» in den Trends ab 3 Abenden
+- Weckaufgabe (28.10.2026, Option pro Wecker, Standard Halten): «Rechenaufgabe» – 3 Additionen zweistelliger Zahlen am Handy, falsche Antwort gibt eine neue Aufgabe; Schlummern geht ohne Aufgabe, der Ton wird beim Tippen auf 50 % gesenkt (nach 10 s ohne Eingabe wieder voll). Die Galaxy Watch zeigt «Aufgabe am Handy lösen oder 5 s halten» erst, wenn das Handy bestätigt, dass es die Aufgabe zeigt; sonst, beim Schlummern und sobald die Bestätigung ausbleibt, gilt auf der Uhr Halten (nie ein Wecker, der sich nicht beenden lässt; Einzelheiten in ENTSCHEIDE.md). iPhone: nicht wählbar (der Stopp-Knopf von AlarmKit lässt sich nicht ersetzen), Apple Watch wie Halten
 - Einschlaf-Erkennung: Wecker wahlweise relativ zur Einschlafzeit (z. B. «nach 7½ Std.») statt zur Uhrzeit, «Gute Nacht» ab 16 Std. vor der Weckzeit – nur Galaxy Watch; die Smart-Alarm-Sitzung der Apple Watch dauert höchstens 30 Min und kann nicht die ganze Nacht messen
+- Runde 3 (29.10.2026): Probewecker «In 2 Minuten testen» (Einstellungen und Nacht-Check; Uhr führt den echten Ablauf ohne Schlummern, Ergebnis mit ✓/✗ und passender Lösung; nie im Verlauf); Ersteinrichtung in 5 Schritten (überspringbar, «Einrichtung wiederholen»); «Nächstes Mal überspringen» pro Wecker (Handy-Menü, Uhr-Editor); «An Feiertagen nicht wecken» mit Land und Region (Daten «holidays», MIT; Gemeinde-Feiertage fehlen); Powernap 10–90 Min (letzte 5 bzw. 3 Min als Fenster, nicht gespeichert); Widget «Nächster Wecker» (Android und iPhone); verschlüsselte Sicherung `.pwbak` mit Passwort; Gerätesperre vor «Verlauf löschen» und «Wiederherstellen»; versteckte Diagnose (7× Versionszeile) mit Protokoll von Handy und Uhr
 
 ## Entscheide (28.10.2026)
 
-- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends und ein freiwilliger Spenden-Link (GitHub Sponsors). Kein Abo, keine Werbung, kein Mikrofon, kein «KI-Coach».
+- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends und ein freiwilliger Spenden-Link (GitHub Sponsors). Kein Abo, keine Werbung, kein «KI-Coach». Mikrofon nur optional für «Geräusche aufnehmen» (28.10.2026): standardmässig aus, alles bleibt auf dem Handy.
 
 - Sonnenaufgang (28.10.2026): Option pro Wecker, standardmässig aus; wählbar «beim Wecken» oder «ab Weckfenster».
+
+- Ultraschall-Schlafmessung (28.10.2026): nicht umgesetzt.
 
 - Weckfenster Standard 30 Min, einstellbar 10–30 Min. Morgens überwiegt Leicht- und REM-Schlaf, Tiefschlaf ist selten; 30 Min reichen fast immer für einen guten Moment. Ein längeres Fenster würde nur unnötig früh wecken.
 - Handy-Zweitwecker standardmässig an.

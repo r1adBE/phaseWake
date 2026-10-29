@@ -55,6 +55,10 @@ Für spätere Testversionen genügen Schritt 6 (`adb connect …`) und Schritt 3
 3. Nach 5 Minuten beginnt die Uhr zu messen (Symbol in der Statusleiste der Uhr). Spätestens zur Zielzeit vibriert sie.
 4. Danach auf dem Handy unter «Dein Morgen» das Befinden antippen; im Verlauf steht die Nacht.
 
+Schneller: In den Einstellungen oder auf dem Nacht-Check **«In 2 Minuten testen»**. Die Uhr klingelt nach 2 Minuten (ohne Schlummern, beenden durch Halten), danach zeigt das Handy, was geklappt hat. Der Test erscheint nicht im Verlauf.
+
+Bei einem Fehler: In den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose» → «Uhr-Protokoll holen» → «Protokoll teilen» und den Text mitschicken.
+
 ## Was zurückmelden
 
 - Hat die Uhr geweckt – und wann (früher oder zur Zielzeit)?

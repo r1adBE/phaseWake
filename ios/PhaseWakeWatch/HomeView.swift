@@ -5,6 +5,10 @@ import SwiftUI
 struct HomeView: View {
     @Environment(WatchModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
+    /// Wecker im Editor: ein bestehender oder ein neuer (dann noch nicht in der Liste).
+    @State private var editing: AlarmSpec?
+    @State private var choosingNap = false
+    @State private var diagUnlocked = DiagStore.shared.unlocked
 
     var body: some View {
         NavigationStack {
@@ -18,6 +22,7 @@ struct HomeView: View {
                         .foregroundStyle(Brand.muted)
                         .listRowBackground(Color.clear)
                 }
+                WatchNapRow(choosing: $choosingNap)
                 if let night = model.storage.nights().last {
                     // Letzte Nacht: wann und warum geweckt wurde.
                     VStack(spacing: 1) {
@@ -35,21 +40,53 @@ struct HomeView: View {
                 if !model.alarms.isEmpty {
                     Section(L("home_alarms")) {
                         ForEach(model.alarms) { alarm in
-                            Toggle(isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) })) {
-                                VStack(alignment: .leading) {
-                                    Text(Format.window(alarm)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                                    Text([Format.days(alarm), alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
-                                        .font(Fonts.manrope(12, relativeTo: .footnote))
-                                        .foregroundStyle(Brand.muted)
+                            // Zeile antippen öffnet den Editor, der Schalter schaltet ein/aus.
+                            HStack {
+                                Button { editing = alarm } label: {
+                                    VStack(alignment: .leading) {
+                                        Text(Format.window(alarm)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                                        Text([Format.days(alarm), alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
+                                            .font(Fonts.manrope(12, relativeTo: .footnote))
+                                            .foregroundStyle(Brand.muted)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .contentShape(Rectangle())
                                 }
+                                .buttonStyle(.plain)
+                                .accessibilityHint(L("editor_edit"))
+                                Toggle(Format.window(alarm), isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
+                                    .labelsHidden()
+                                    .tint(Brand.echo)
+                                    .fixedSize()
                             }
-                            .tint(Brand.echo)
                         }
                     }
                 }
+                if model.canAddAlarm {
+                    Button { editing = AlarmSpec.newOnWatch() } label: {
+                        Label(L("home_add_alarm"), systemImage: "plus")
+                            .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                    }
+                } else {
+                    Text(L("home_max_alarms", Int64(WatchModel.maxAlarms)))
+                        .font(Fonts.manrope(12, relativeTo: .footnote))
+                        .foregroundStyle(Brand.muted)
+                        .listRowBackground(Color.clear)
+                }
+                if diagUnlocked {
+                    NavigationLink(L("diag_title")) { WatchDiagView(unlocked: $diagUnlocked) }
+                }
+                WatchVersionRow(unlocked: $diagUnlocked).listRowBackground(Color.clear)
             }
             .background(NightSky(strength: 0.55))
             .scrollContentBackground(.hidden)
+        }
+        .sheet(isPresented: $choosingNap) {
+            NavigationStack { WatchNapView() }.environment(model)
+        }
+        .sheet(item: $editing) { alarm in
+            WatchEditorView(start: alarm, isNew: !model.alarms.contains { $0.id == alarm.id })
+                .environment(model)
         }
         .onChange(of: scenePhase) { _, phase in
             // Nur bei aktiver App lässt sich die Smart-Alarm-Sitzung planen.

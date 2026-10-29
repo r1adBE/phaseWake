@@ -13,6 +13,8 @@ struct PhaseWakeWatchApp: App {
         WindowGroup {
             RootView()
                 .environment(WatchModel.shared)
+                // Lavendel wie auf dem Handy und der Galaxy Watch.
+                .tint(Brand.wave)
         }
     }
 }

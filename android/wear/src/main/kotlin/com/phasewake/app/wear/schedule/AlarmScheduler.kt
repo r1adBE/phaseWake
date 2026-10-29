@@ -1,22 +1,14 @@
 package com.phasewake.app.wear.schedule
 
-import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.BatteryManager
-import android.os.Build
 import android.util.Log
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
@@ -24,17 +16,22 @@ import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.AlarmRepository
+import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.tile.NextAlarmTileService
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.wake.WakeService
+import com.phasewake.app.wear.wearApp
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
-import kotlin.math.abs
+import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -61,24 +58,34 @@ class AlarmScheduler(
     private val onsetOverride: OnsetOverride,
     private val store: DataStore<Preferences>,
     private val sync: WearSync,
+    /** Feiertage vom Handy für Wecker mit «An Feiertagen nicht wecken». */
+    private val holidays: HolidayStore,
+    /** Probewecker oder Powernap: planen wie einen Wecker, aber nie als Nacht im Verlauf. */
+    private val transient: TransientStore,
     /** Uhrzeit; die Zeitzone wird bei jedem Aufruf neu gelesen, nie beim Erzeugen festgehalten (Reisen). */
     private val clock: () -> Clock = { Clock.system(java.time.ZoneId.systemDefault()) },
 ) {
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
     private val rescheduleLock = Mutex()
 
-    /** Hält das Senden des Uhr-Status ([publishStatus]) auseinander. */
-    private val statusLock = Mutex()
+    private val status = WatchStatus(context, store, sync, clock)
 
     /** Pro Wecker erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
     @Volatile
     private var doneInMemory: Map<String, Instant> = emptyMap()
 
     /**
-     * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht.
-     * Startseite, Kachel und Komplikation zeigen genau diesen.
+     * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht; ein
+     * Probewecker oder Powernap nur nach [Transient.choose] (nie nach seiner Zielzeit + 60 s, nie vor einem früheren
+     * Wecker). Startseite, Kachel und Komplikation zeigen genau diesen.
      */
     suspend fun nextPlan(): WakePlan? {
+        val now = clock().instant()
+        return onsetOverride.apply(Transient.choose(nextAlarmPlan(), transient.active(), now), now)
+    }
+
+    /** Der nächste echte Wecker ohne Probewecker und Powernap; erledigte Nächte und Nachholen wie in [nextPlan]. */
+    suspend fun nextAlarmPlan(): WakePlan? {
         val now = clock().instant()
         val zone = clock().zone
         val prefs = store.data.first()
@@ -86,14 +93,15 @@ class AlarmScheduler(
         // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
         val done = doneUntil(prefs)
         val busy = busyRange(prefs, now)
-        val plan = alarms.current().alarms
-            .mapNotNull { spec ->
-                val doneAt = done[spec.id] ?: Instant.EPOCH
-                missedPlan(spec, busy, doneAt, now, zone) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone)
-            }
-            .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
-        return onsetOverride.apply(plan, now)
+        val days = holidays.current()
+        return alarms.current().alarms.mapNotNull { spec ->
+            val doneAt = done[spec.id] ?: Instant.EPOCH
+            missedPlan(spec, busy, doneAt, now, zone, days) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone, days)
+        }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
+
+    /** Pro Wecker erledigt bis (für «Nächstes Mal überspringen» nach frühem Wecken). */
+    suspend fun doneUntil(): Map<String, Instant> = doneUntil(store.data.first())
 
     /** Pro Wecker erledigt bis: gespeichert und aus [markDone], der spätere Wert gilt. */
     private fun doneUntil(prefs: Preferences): Map<String, Instant> {
@@ -112,9 +120,9 @@ class AlarmScheduler(
      * ([CatchUp.alarmIds]); ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich.
      * Sonst `null`.
      */
-    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId): WakePlan? {
+    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId, days: Set<LocalDate>): WakePlan? {
         if (busy == null || spec.id !in busy.alarmIds) return null
-        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone) ?: return null
+        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone, days) ?: return null
         if (target.isAfter(busy.until) || target.isAfter(now)) return null
         return WakePlan(spec.id, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
     }
@@ -134,6 +142,7 @@ class AlarmScheduler(
     suspend fun noteNightEnded(windowStart: Instant, until: Instant) {
         val zone = clock().zone
         val specs = alarms.current().alarms
+        val days = holidays.current()
         store.edit { prefs ->
             val oldFrom = prefs[CATCH_UP_FROM]
             val oldUntil = prefs[CATCH_UP_UNTIL]
@@ -145,7 +154,7 @@ class AlarmScheduler(
             prefs[CATCH_UP_FROM] = from
             prefs[CATCH_UP_UNTIL] = to
             val due = specs.filter { spec ->
-                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
+                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone, days)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
             }.map { it.id }.toSet()
             prefs[CATCH_UP_IDS] = if (extend) prefs[CATCH_UP_IDS].orEmpty() + due else due
         }
@@ -205,7 +214,8 @@ class AlarmScheduler(
             return@withLock null
         }
         val specs = alarms.current().alarms
-        val spec = specs.firstOrNull { it.id == plan.alarmId }
+        val spec = specs.firstOrNull { it.id == plan.alarmId } ?: transient.specFor(plan.alarmId)
+        logScheduled(plan)
         if (pendingRing == null) {
             // Dazu der Plan danach: Endet eine Nacht vor dem ersten Entsperren, gilt dieser (DirectBoot.promoteNext).
             val after = followingPlan(plan, specs, now)
@@ -225,16 +235,16 @@ class AlarmScheduler(
 
     /**
      * Abgelegtes Wecken aus [DirectBoot], das noch aussteht: geschlummert (Schlummer-Ende nach der
-     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und nicht älter
-     * als [DirectBoot.MISSED_DURING_BOOT]. Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
+     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und noch nachzuholen
+     * ([DirectBoot.catchesUp]: Probewecker und Powernap nur 60 s). Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
      */
     private suspend fun pendingRing(now: Instant): DirectBoot.Saved? {
         val saved = DirectBoot.load(context) ?: return null
         val late = saved.at.isAfter(saved.plan.target) || !saved.plan.target.isAfter(now)
-        if (!late || saved.at.isBefore(now.minus(DirectBoot.MISSED_DURING_BOOT))) return null
+        if (!late || !DirectBoot.catchesUp(saved, now)) return null
         val done = doneUntil(store.data.first())[saved.plan.alarmId]
         if (done != null && !done.isBefore(saved.plan.target)) return null
-        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled }) return null
+        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled } && transient.specFor(saved.plan.alarmId) == null) return null
         return saved
     }
 
@@ -242,36 +252,25 @@ class AlarmScheduler(
     private suspend fun followingPlan(plan: WakePlan, specs: List<AlarmSpec>, now: Instant): WakePlan? {
         val zone = clock().zone
         val done = doneUntil(store.data.first())
+        val days = holidays.current()
         return specs.mapNotNull { spec ->
             val from = if (spec.id == plan.alarmId) maxOf(now, plan.target) else now
-            AlarmSchedule.nextPlan(spec, maxOf(from, done[spec.id] ?: Instant.EPOCH), zone)
+            AlarmSchedule.nextPlan(spec, maxOf(from, done[spec.id] ?: Instant.EPOCH), zone, days)
         }.filter { it != plan }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
 
-    /**
-     * Uhr-Status ans Handy (bereit, Akkustand), aber nur bei Bedarf: Bereitschaft geändert, Akkustand
-     * um mindestens [STATUS_BATTERY_STEP] Punkte geändert oder letzte Meldung älter als [STATUS_MAX_AGE].
-     * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
-     */
-    suspend fun publishStatus(): Unit = statusLock.withLock {
-        val ready = isReady()
-        val battery = batteryPercent()
-        val now = clock().instant().toEpochMilli()
-        val prefs = store.data.first()
-        val lastAt = prefs[STATUS_AT]
-        val lastBattery = prefs[STATUS_BATTERY]
-        val due = prefs[STATUS_READY] != ready ||
-            (battery != null && (lastBattery == null || abs(battery - lastBattery) >= STATUS_BATTERY_STEP)) ||
-            lastAt == null || now - lastAt >= STATUS_MAX_AGE.toMillis() || now < lastAt
-        if (!due) return@withLock
-        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist.
-        if (!sync.publishWatchReady(ready, battery)) return@withLock
-        store.edit {
-            it[STATUS_READY] = ready
-            it[STATUS_AT] = now
-            if (battery != null) it[STATUS_BATTERY] = battery else it.remove(STATUS_BATTERY)
-        }
+    /** Zuletzt protokollierter Plan; ein Eintrag nur bei einer Änderung (neu geplant wird oft). */
+    @Volatile
+    private var loggedPlan: WakePlan? = null
+
+    private fun logScheduled(plan: WakePlan) {
+        if (plan == loggedPlan) return
+        loggedPlan = plan
+        context.wearApp.diag.log(DiagKind.SCHEDULED, "watch ${plan.windowStart} – ${plan.target}")
     }
+
+    /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */
+    suspend fun publishStatus() = status.publish()
 
     /**
      * Merkt sofort, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch
@@ -302,21 +301,6 @@ class AlarmScheduler(
         line.substring(i + 1).toLongOrNull()?.let { line.substring(0, i) to Instant.ofEpochMilli(it) }
     }.toMap()
 
-    /** Sind die Rechte erteilt, die Messen und Wecken brauchen? Fürs Handy und die Startseite. */
-    fun isReady(): Boolean {
-        val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
-        val notifications = NotificationManagerCompat.from(context)
-        // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst. Das Hintergrundrecht
-        // für den Puls ist nicht nötig: Ohne Puls entscheidet die Bewegung allein.
-        return sensors && notifications.areNotificationsEnabled() && notifications.canUseFullScreenIntent()
-    }
-
-    /** Akkustand der Uhr in Prozent; `null`, wenn das System ihn nicht nennt. */
-    private fun batteryPercent(): Int? =
-        context.getSystemService(BatteryManager::class.java)
-            ?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-            ?.takeIf { it in 0..100 }
-
     /** Kachel und Komplikation sofort aktualisieren, nicht erst beim nächsten Abruf des Systems. */
     private fun refreshSurfaces() {
         runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
@@ -346,13 +330,6 @@ class AlarmScheduler(
         private val CATCH_UP_FROM = longPreferencesKey("catch_up_from")
         private val CATCH_UP_UNTIL = longPreferencesKey("catch_up_until")
         private val CATCH_UP_IDS = stringSetPreferencesKey("catch_up_ids")
-
-        /** Zuletzt gesendeter Uhr-Status, siehe [publishStatus]. */
-        private val STATUS_READY = booleanPreferencesKey("status_sent_ready")
-        private val STATUS_BATTERY = intPreferencesKey("status_sent_battery")
-        private val STATUS_AT = longPreferencesKey("status_sent_at")
-        private const val STATUS_BATTERY_STEP = 5
-        private val STATUS_MAX_AGE: Duration = Duration.ofHours(1)
 
         /** Am Handy beendet ohne Zielzeit: so weit zurück wird die Nacht gesucht (Fenster, Klingeln, Schlummern). */
         private val PHONE_STOP_LOOKBACK: Duration = Duration.ofHours(2)
@@ -417,13 +394,6 @@ class AlarmScheduler(
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
             context.getSystemService(AlarmManager::class.java).setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
-        }
-
-        /** Eine davon genügt für den Messdienst (Typ «health»). */
-        val SENSOR_PERMISSIONS: List<String> = buildList {
-            if (Build.VERSION.SDK_INT >= 36) add("android.permission.health.READ_HEART_RATE")
-            add(Manifest.permission.BODY_SENSORS)
-            add(Manifest.permission.ACTIVITY_RECOGNITION)
         }
     }
 }

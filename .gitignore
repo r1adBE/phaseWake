@@ -16,3 +16,5 @@ captures/
 xcuserdata/
 DerivedData/
 __pycache__/
+android/app/src/main/assets/yamnet.tflite
+android/app/src/main/assets/yamnet.tflite.part

@@ -1,7 +1,10 @@
 /// Passt die Schwellen an den Nutzer an. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 4.
 public enum Calibration {
+    /// Mindestens so viele gemessene Nächte, bevor angepasst wird (Abschnitt 4).
     public static let minNights = 3
+    /// Höchstens so viele jüngste Nächte fliessen ein, damit alte Gewohnheiten auslaufen.
     public static let maxNights = 14
+    /// Mindestens so viele Bewegungswerte insgesamt, damit das 80. Perzentil belastbar ist.
     public static let minValues = 30
 
     /// Verhältnis Wach- zu Leicht-Schwelle, aus den Startwerten (0.100 / 0.002).

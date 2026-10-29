@@ -5,6 +5,7 @@ public struct Epoch: Equatable, Sendable {
     /// Mittlerer Puls in Schlägen pro Minute aus ``HeartRateAccumulator``; `nil`, wenn keiner gemessen wurde.
     public let heartRate: Double?
 
+    /// Erzeugt eine Epoche; fehlende Werte als `nil`.
     public init(motion: Double?, heartRate: Double?) {
         self.motion = motion
         self.heartRate = heartRate

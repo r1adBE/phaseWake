@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">貪睡至 %1$s</string>
 
     <string name="home_no_alarm">未設定鬧鐘</string>
-    <string name="home_no_alarm_hint">請在手機上的 Phase Wake 設定鬧鐘。</string>
+    <string name="home_no_alarm_hint">建立鬧鐘 – 在這裡或在手機上的 Phase Wake 中。</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">今天</string>
     <string name="home_tomorrow">明天</string>
@@ -44,4 +44,40 @@
     <string name="home_last_night">昨晚</string>
     <string name="notification_open">開啟</string>
     <string name="home_good_night_too_far">鬧鐘前 16 小時內可用</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">在手機上解題，或長按 5 秒</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">新增鬧鐘</string>
+    <string name="editor_new">新增鬧鐘</string>
+    <string name="editor_edit">編輯鬧鐘</string>
+    <string name="editor_target">最晚叫醒我</string>
+    <string name="editor_latest">最晚</string>
+    <string name="editor_window">時間範圍：%1$d 分鐘</string>
+    <string name="editor_days">重複</string>
+    <string name="editor_save">儲存</string>
+    <string name="editor_delete">刪除鬧鐘</string>
+    <string name="editor_delete_title">刪除這個鬧鐘？</string>
+    <string name="home_max_alarms">最多 %1$d 個鬧鐘 – 刪除一個後才能新增。</string>
+    <string name="editor_enabled">鬧鐘開啟</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">略過下一次</string>
+    <string name="alarm_skipped">已略過：%1$s</string>
+    <string name="nap_title">小睡</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d 分鐘</item>
+    </plurals>
+    <string name="nap_start">開始</string>
+    <string name="nap_running">至 %1$s</string>
+    <string name="nap_stop">結束小睡</string>
+    <string name="diag_title">診斷</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">還需 %1$d 次</item>
+    </plurals>
+    <string name="diag_clear">清除</string>
+    <string name="diag_hide">隱藏診斷</string>
+    <string name="diag_empty">還沒有事件。</string>
+    <string name="diag_next">下一個鬧鐘：%1$s</string>
+    <string name="diag_version">版本 %1$s</string>
+    <string name="transient_alarm_running">你的鬧鐘正在進行中。</string>
+    <string name="transient_alarm_soon">你的喚醒時間範圍在那之前就開始了。</string>
 </resources>

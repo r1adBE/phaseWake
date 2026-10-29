@@ -22,6 +22,8 @@ class CodecTest {
             label = "Arbeit | früh, 100 %",
         ),
         AlarmSpec(id = "b", hour = 9, minute = 30, enabled = false, phone = PhoneAlert.OFF, sleepDurationMinutes = 450, sunrise = Sunrise.WINDOW),
+        AlarmSpec(id = "c", hour = 7, minute = 0, wakeTask = WakeTask.MATH),
+        AlarmSpec(id = "d", hour = 6, minute = 15, windowMinutes = 20, phone = PhoneAlert.OFF, sunrise = Sunrise.RING, sunriseDevice = SunriseDevice.WATCH),
     )
 
     @Test
@@ -33,7 +35,39 @@ class CodecTest {
     @Test
     fun alarmsFormatIsStable() {
         val text = Codec.encodeAlarms(alarms.take(1))
-        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF\n", text)
+        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n", text)
+        assertEquals("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n", Codec.encodeAlarms(alarms.drop(2).take(1)))
+        assertEquals("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n", Codec.encodeAlarms(alarms.drop(3)))
+    }
+
+    @Test
+    fun olderFormatWithoutWakeTaskIsRead() {
+        // 12 Felder (vor der Weckaufgabe): Halten.
+        val old = Codec.decodeAlarms("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF\n").single()
+        assertEquals(WakeTask.NONE, old.wakeTask)
+        assertEquals(alarms[2].copy(wakeTask = WakeTask.NONE), old)
+        // Neuere Version mit weiteren Feldern: gelesen, was diese kennt.
+        assertEquals(WakeTask.MATH, Codec.decodeAlarms("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|neu\n").single().wakeTask)
+    }
+
+    @Test
+    fun sunriseDeviceIsTolerant() {
+        // 13 Felder (vor der Gerätewahl): Handy.
+        val old = Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").single()
+        assertEquals(alarms[3].copy(sunriseDevice = SunriseDevice.PHONE), old)
+        // Unbekannter Wert aus einer neueren Version: Handy; weitere Felder werden ignoriert.
+        assertEquals(SunriseDevice.PHONE, Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").single().sunriseDevice)
+        assertEquals(SunriseDevice.BOTH, Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").single().sunriseDevice)
+    }
+
+    @Test
+    fun sunrisePerDevice() {
+        val spec = alarms[3]
+        assertEquals(Sunrise.OFF, spec.phoneSunrise)
+        assertEquals(Sunrise.RING, spec.watchSunrise)
+        assertEquals(Sunrise.RING, spec.copy(sunriseDevice = SunriseDevice.BOTH).phoneSunrise)
+        assertEquals(Sunrise.RING, spec.copy(sunriseDevice = SunriseDevice.BOTH).watchSunrise)
+        assertEquals(Sunrise.OFF, spec.copy(sunriseDevice = SunriseDevice.PHONE).watchSunrise)
     }
 
     @Test
@@ -47,6 +81,7 @@ class CodecTest {
         val read = Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0||||MOON|extra\n").single()
         assertEquals(PhoneAlert.SOUND, read.phone)
         assertEquals(Sunrise.OFF, read.sunrise)
+        assertEquals(WakeTask.NONE, read.wakeTask)
     }
 
     @Test

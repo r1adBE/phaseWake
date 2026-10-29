@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Erteleme sonu: %1$s</string>
 
     <string name="home_no_alarm">Alarm yok</string>
-    <string name="home_no_alarm_hint">Alarmları telefonundaki Phase Wake uygulamasından kur.</string>
+    <string name="home_no_alarm_hint">Alarm oluştur – burada veya telefondaki Phase Wake’te.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Bugün</string>
     <string name="home_tomorrow">Yarın</string>
@@ -45,4 +45,42 @@
     <string name="home_last_night">Dün gece</string>
     <string name="notification_open">Aç</string>
     <string name="home_good_night_too_far">Alarmdan 16 saat önce kullanılabilir</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">İşlemi telefonda çöz veya 5 sn basılı tut</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Yeni alarm</string>
+    <string name="editor_new">Yeni alarm</string>
+    <string name="editor_edit">Alarmı düzenle</string>
+    <string name="editor_target">Şu saate kadar uyandır</string>
+    <string name="editor_latest">En geç</string>
+    <string name="editor_window">Aralık: %1$d dk</string>
+    <string name="editor_days">Tekrar</string>
+    <string name="editor_save">Kaydet</string>
+    <string name="editor_delete">Alarmı sil</string>
+    <string name="editor_delete_title">Bu alarm silinsin mi?</string>
+    <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
+    <string name="editor_enabled">Alarm açık</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Bir sonrakini atla</string>
+    <string name="alarm_skipped">Atlandı: %1$s</string>
+    <string name="nap_title">Şekerleme</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d dakika</item>
+        <item quantity="other">%1$d dakika</item>
+    </plurals>
+    <string name="nap_start">Başlat</string>
+    <string name="nap_running">%1$s saatine kadar</string>
+    <string name="nap_stop">Şekerlemeyi bitir</string>
+    <string name="diag_title">Tanılama</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d kez daha</item>
+        <item quantity="other">%1$d kez daha</item>
+    </plurals>
+    <string name="diag_clear">Temizle</string>
+    <string name="diag_hide">Tanılamayı gizle</string>
+    <string name="diag_empty">Henüz olay yok.</string>
+    <string name="diag_next">Sonraki alarm: %1$s</string>
+    <string name="diag_version">Sürüm %1$s</string>
+    <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
+    <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
 </resources>

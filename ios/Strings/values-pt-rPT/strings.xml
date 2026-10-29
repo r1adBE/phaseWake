@@ -16,4 +16,5 @@
     <string name="check_watch_arm">Alarme ativado no relógio</string>
     <string name="check_watch_arm_problem">Abre o Phase Wake no teu Apple Watch antes de dormires. O watchOS só ativa o alarme enquanto a app estiver aberta.</string>
     <string name="night_unmeasured_apple">Primeiros %1$d min sem medição – o Apple Watch só mede os últimos %2$d min antes da hora-alvo.</string>
+    <string name="settings_licenses_text_apple">Phase Wake: licença MIT, © r1adBE.\nTipo de letra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteção de sons: SoundAnalysis da Apple, integrado no iOS.\nSons: gravações livres (CC0) do opengameart.org</string>
 </resources>

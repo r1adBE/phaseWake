@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Відкладено до %1$s</string>
 
     <string name="home_no_alarm">Будильник не задано</string>
-    <string name="home_no_alarm_hint">Задай будильники в Phase Wake на телефоні.</string>
+    <string name="home_no_alarm_hint">Створи будильник – тут або в Phase Wake на телефоні.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Сьогодні</string>
     <string name="home_tomorrow">Завтра</string>
@@ -47,4 +47,46 @@
     <string name="home_last_night">Минула ніч</string>
     <string name="notification_open">Відкрити</string>
     <string name="home_good_night_too_far">Доступно за 16 год до будильника</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Розв’яжи приклад на телефоні або утримуй 5 с</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Новий будильник</string>
+    <string name="editor_new">Новий будильник</string>
+    <string name="editor_edit">Змінити будильник</string>
+    <string name="editor_target">Розбуди мене до</string>
+    <string name="editor_latest">Не пізніше</string>
+    <string name="editor_window">Вікно: %1$d хв</string>
+    <string name="editor_days">Повтор</string>
+    <string name="editor_save">Зберегти</string>
+    <string name="editor_delete">Видалити будильник</string>
+    <string name="editor_delete_title">Видалити цей будильник?</string>
+    <string name="home_max_alarms">Не більше %1$d будильників – видали один, щоб додати новий.</string>
+    <string name="editor_enabled">Будильник увімкнено</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Пропустити наступного разу</string>
+    <string name="alarm_skipped">Пропущено: %1$s</string>
+    <string name="nap_title">Короткий сон</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d хвилина</item>
+        <item quantity="few">%1$d хвилини</item>
+        <item quantity="many">%1$d хвилин</item>
+        <item quantity="other">%1$d хвилини</item>
+    </plurals>
+    <string name="nap_start">Почати</string>
+    <string name="nap_running">До %1$s</string>
+    <string name="nap_stop">Завершити короткий сон</string>
+    <string name="diag_title">Діагностика</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ще %1$d раз</item>
+        <item quantity="few">Ще %1$d рази</item>
+        <item quantity="many">Ще %1$d разів</item>
+        <item quantity="other">Ще %1$d рази</item>
+    </plurals>
+    <string name="diag_clear">Очистити</string>
+    <string name="diag_hide">Сховати діагностику</string>
+    <string name="diag_empty">Подій ще немає.</string>
+    <string name="diag_next">Наступний будильник: %1$s</string>
+    <string name="diag_version">Версія %1$s</string>
+    <string name="transient_alarm_running">Зараз працює твій будильник.</string>
+    <string name="transient_alarm_soon">Вікно твого будильника починається раніше.</string>
 </resources>

@@ -13,23 +13,41 @@ struct HistoryView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 12) {
+                    // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus Apple Health).
+                    HistoryChartsSection(data: charts)
                     if model.nights.isEmpty {
                         VStack(alignment: .leading, spacing: 6) {
                             Text(L("history_empty_title")).font(Fonts.manrope(17, .semibold, relativeTo: .headline))
                             Text(L("history_empty_text")).font(Fonts.manrope(14, relativeTo: .body)).foregroundStyle(.secondary)
                         }
                         .card()
+                        // Ohne Nächte: nur Karten mit Geräuschen.
+                        ForEach(entries) { entry in
+                            if case .sounds(let night, let last) = entry {
+                                SoundsOnlyCard(night: night, last: last)
+                            }
+                        }
                     } else {
+                        if let weekly {
+                            WeeklyCard(summary: weekly)
+                        }
                         stats
                         TrendsCard(
                             trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
-                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } }
+                            onConnectHealth: { Task { healthRequested = await model.health.requestAccess(); sleeps = await model.health.recentSleep(days: Self.sleepDays) } },
+                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested, regularShown: charts.covered.contains(.regular)),
+                            covered: charts.covered
                         )
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight, calendar: .current))
-                        ForEach(model.nights.reversed(), id: \.listId) { night in
-                            NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
+                        ForEach(entries) { entry in
+                            switch entry {
+                            case .night(let night):
+                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
+                            case .sounds(let night, let last):
+                                SoundsOnlyCard(night: night, last: last)
+                            }
                         }
                         ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
                             Label(L("history_export"), systemImage: "square.and.arrow.up")
@@ -56,6 +74,37 @@ struct HistoryView: View {
         }
     }
 
+    /// Diagramme: Schlaf aus Apple Health, Weckmomente und Befinden aus dem Verlauf.
+    private var charts: HistoryChartsData {
+        let now = Date()
+        return HistoryChartsData.of(
+            nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
+            nextTarget: model.nextPlan(now: now)?.target,
+            goalMinutes: model.sleepGoal, now: now, calendar: .current
+        )
+    }
+
+    /// Geräusche ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): eigene Karte. Neueste zuerst.
+    private var soundsOnly: [(night: String, last: Date)] {
+        let recorded = Set(model.nights.map { SleepNotes.nightDate(of: $0, calendar: .current) })
+        return SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded)
+    }
+
+    /// Nächte (neueste zuerst) und dazwischen nach Zeit die Karten nur mit Geräuschen.
+    private var entries: [HistoryEntry] {
+        var pending = soundsOnly[...]
+        var out: [HistoryEntry] = []
+        for night in model.nights.reversed() {
+            while let first = pending.first, first.last > night.wokeAt {
+                out.append(.sounds(night: first.night, last: first.last))
+                pending = pending.dropFirst()
+            }
+            out.append(.night(night))
+        }
+        out += pending.map { HistoryEntry.sounds(night: $0.night, last: $0.last) }
+        return out
+    }
+
     /// Schlafdauer für Trends und für die Wirkung der Notizen (90 Nächte).
     private static let sleepDays: Double = Double(NightHistory.maxNights + 2)
 
@@ -67,10 +116,20 @@ struct HistoryView: View {
         }
     }
 
+    /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
+    private var weekly: WeeklySummary? {
+        let today = NightDate.today(Date(), calendar: .current)
+        guard WeeklySummary.cardVisible(today: today) else { return nil }
+        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .current,
+                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today))
+        return summary.hasData ? summary : nil
+    }
+
     /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
     private var goalWeek: (reached: Int, total: Int)? {
         let weekAgo = Date().addingTimeInterval(-7 * 86_400)
-        let recent = sleeps.filter { $0.end > weekAgo }.map { (date: SleepNotes.nightDate($0.start, calendar: .current), asleepMinutes: $0.asleepMinutes) }
+        // Nachtdatum nach dem Ende der Nacht, wie Android (`SleepGoal.nightsOf`).
+        let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .current)
         let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
         return status.total > 0 ? status : nil
     }
@@ -83,6 +142,35 @@ struct HistoryView: View {
             Text(L("history_light_share", light)).frame(maxWidth: .infinity, alignment: .leading)
         }
         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+        .card()
+    }
+}
+
+/// Eintrag im Verlauf: eine aufgezeichnete Nacht oder nur Geräusche eines Nachtdatums.
+private enum HistoryEntry: Identifiable {
+    case night(NightRecord)
+    /// `last` = Beginn des jüngsten Ausschnitts.
+    case sounds(night: String, last: Date)
+
+    var id: String {
+        switch self {
+        case .night(let night): night.listId
+        case .sounds(let night, _): "sounds|\(night)"
+        }
+    }
+}
+
+/// Geräusche einer Nacht ohne aufgezeichnete Nacht: Datum (des jüngsten Ausschnitts, wie bei den Nächten
+/// das Weckdatum) und die Bilanz, die die Ausschnitte öffnet.
+private struct SoundsOnlyCard: View {
+    let night: String
+    let last: Date
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(last.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+            NightSoundsButton(night: night, title: last.formatted(date: .abbreviated, time: .omitted))
+        }
         .card()
     }
 }
@@ -115,6 +203,8 @@ private struct NightCard: View {
             }
             NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
+            NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
         .card()
         .accessibilityElement(children: .combine)

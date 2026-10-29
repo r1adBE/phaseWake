@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Drzemka do %1$s</string>
 
     <string name="home_no_alarm">Brak budzika</string>
-    <string name="home_no_alarm_hint">Ustaw budziki w Phase Wake na telefonie.</string>
+    <string name="home_no_alarm_hint">Utwórz budzik – tutaj lub w Phase Wake na telefonie.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Dziś</string>
     <string name="home_tomorrow">Jutro</string>
@@ -47,4 +47,46 @@
     <string name="home_last_night">Ostatnia noc</string>
     <string name="notification_open">Otwórz</string>
     <string name="home_good_night_too_far">Dostępne od 16 godz. przed budzikiem</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Rozwiąż zadanie na telefonie lub przytrzymaj 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Nowy budzik</string>
+    <string name="editor_new">Nowy budzik</string>
+    <string name="editor_edit">Edytuj budzik</string>
+    <string name="editor_target">Obudź mnie do</string>
+    <string name="editor_latest">Najpóźniej</string>
+    <string name="editor_window">Okno: %1$d min</string>
+    <string name="editor_days">Powtarzaj</string>
+    <string name="editor_save">Zapisz</string>
+    <string name="editor_delete">Usuń budzik</string>
+    <string name="editor_delete_title">Usunąć ten budzik?</string>
+    <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
+    <string name="editor_enabled">Budzik włączony</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Pomiń następnym razem</string>
+    <string name="alarm_skipped">Pominięto: %1$s</string>
+    <string name="nap_title">Drzemka</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minuty</item>
+        <item quantity="many">%1$d minut</item>
+        <item quantity="other">%1$d minuty</item>
+    </plurals>
+    <string name="nap_start">Start</string>
+    <string name="nap_running">Do %1$s</string>
+    <string name="nap_stop">Zakończ drzemkę</string>
+    <string name="diag_title">Diagnostyka</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Jeszcze %1$d raz</item>
+        <item quantity="few">Jeszcze %1$d razy</item>
+        <item quantity="many">Jeszcze %1$d razy</item>
+        <item quantity="other">Jeszcze %1$d razy</item>
+    </plurals>
+    <string name="diag_clear">Wyczyść</string>
+    <string name="diag_hide">Ukryj diagnostykę</string>
+    <string name="diag_empty">Brak zdarzeń.</string>
+    <string name="diag_next">Następny budzik: %1$s</string>
+    <string name="diag_version">Wersja %1$s</string>
+    <string name="transient_alarm_running">Twój budzik właśnie działa.</string>
+    <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
 </resources>

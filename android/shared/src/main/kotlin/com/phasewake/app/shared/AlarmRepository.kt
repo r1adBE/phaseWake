@@ -45,6 +45,27 @@ class AlarmRepository(
         list.map { if (it.id == id) it.copy(enabled = enabled) else it }
     }
 
+    /** Ändert den Wecker [id] mit [change] (z. B. «Nächstes Mal überspringen»); fehlt er, bleibt alles. */
+    suspend fun update(id: String, change: (AlarmSpec) -> AlarmSpec): AlarmSnapshot = mutate { list ->
+        list.map { if (it.id == id) change(it) else it }
+    }
+
+    /**
+     * Ersetzt alle Wecker (Wiederherstellen einer Sicherung), auch einen unlesbaren Stand. Der Zeitpunkt ist
+     * neuer als alles Bisherige, damit die Uhr den Stand übernimmt.
+     */
+    suspend fun replaceAll(alarms: List<AlarmSpec>): AlarmSnapshot {
+        lateinit var result: AlarmSnapshot
+        store.edit { prefs ->
+            val sorted = alarms.distinctBy { it.id }.sortedWith(ORDER)
+            val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
+            prefs[ALARMS] = Codec.encodeAlarms(sorted)
+            prefs[UPDATED_AT] = stamp
+            result = AlarmSnapshot(sorted, stamp)
+        }
+        return result
+    }
+
     /** Übernimmt den Stand der Gegenseite, falls er neuer ist. @return ob übernommen wurde. */
     suspend fun applyRemote(remote: AlarmSnapshot): Boolean {
         var applied = false

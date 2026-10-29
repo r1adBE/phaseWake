@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,7 +48,7 @@ import java.time.Instant
 import kotlinx.coroutines.delay
 
 /**
- * Einschlafklänge: fünf Klänge, Timer, Abspielen/Stoppen und Restzeit.
+ * Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Abspielen/Stoppen und Restzeit.
  *
  * @param canPlay `false`, solange ein Weckfenster läuft (Klänge überdecken nie das Wecken).
  */
@@ -73,7 +74,7 @@ fun SoundsScreen(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            // Zwei Kacheln je Zeile; die fünfte steht allein.
+            // Zwei Kacheln je Zeile; bei ungerader Zahl steht die letzte allein.
             SleepSound.entries.chunked(2).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
                     row.forEach { sound ->
@@ -81,6 +82,14 @@ fun SoundsScreen(
                     }
                     if (row.size == 1) Spacer(Modifier.weight(1f))
                 }
+            }
+            // Einschlaf-Wellen: links und rechts ein anderer Ton, darum mit Kopfhörern hören.
+            if ((playing?.sound ?: selected) == SleepSound.BINAURAL) {
+                Text(
+                    stringResource(R.string.sound_binaural_hint),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
 
             Text(stringResource(R.string.sounds_timer), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
@@ -142,7 +151,12 @@ private fun SoundTile(sound: SleepSound, active: Boolean, modifier: Modifier, on
         modifier = modifier.selectable(selected = active, role = Role.RadioButton, onClick = onClick),
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp)) {
-            Icon(painterResource(R.drawable.ic_sound), contentDescription = null)
+            // Gewählt: zusätzlich ein Haken, nicht nur die Farbe (WCAG 1.4.1).
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(painterResource(R.drawable.ic_sound), contentDescription = null)
+                Spacer(Modifier.weight(1f))
+                if (active) Icon(painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(20.dp))
+            }
             Text(stringResource(SleepSoundService.soundName(sound)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 10.dp))
         }
     }

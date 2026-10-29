@@ -32,12 +32,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
+import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.R
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.MathChallenge
+import com.phasewake.app.core.WakeTask
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.Night as NightColors
@@ -49,7 +56,7 @@ import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
 import kotlinx.coroutines.delay
 
-/** Weckbildschirm des Handys: Nachtblau oder – wenn gewählt – Sonnenaufgang, unabhängig vom gewählten Design. */
+/** Weckbildschirm des Handys: Nachthimmel oder – wenn gewählt – Sonnenaufgang, unabhängig vom gewählten Design. */
 class PhoneRingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +68,19 @@ class PhoneRingActivity : ComponentActivity() {
                 val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
                 // Bildschirm bleibt auch beim Schlummern bewusst an: Das Aufstehen soll nicht verzögert werden.
                 LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
+                // Weckaufgabe einer Nacht der Uhr: Solange dieser Bildschirm sichtbar ist und die Aufgabe zeigt,
+                // der Uhr bestätigen (sofort, dann regelmässig). Ohne Bestätigung gilt auf der Uhr wieder Halten.
+                val lifecycle = LocalLifecycleOwner.current.lifecycle
+                val showsWatchTask = (state as? PhoneRingService.State.Ringing)?.let { it.fromWatch && it.wakeTask == WakeTask.MATH } == true
+                LaunchedEffect(showsWatchTask) {
+                    if (!showsWatchTask) return@LaunchedEffect
+                    lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        while (true) {
+                            PhoneRingService.command(this@PhoneRingActivity, PhoneRingService.ACTION_TASK_SHOWN)
+                            delay(DataLayer.TASK_SHOWN_REFRESH_MS)
+                        }
+                    }
+                }
                 val sunrise = when (val s = state) {
                     is PhoneRingService.State.Ringing -> s.sunrise
                     is PhoneRingService.State.Snoozed -> s.sunrise
@@ -88,6 +108,7 @@ class PhoneRingActivity : ComponentActivity() {
                     light = if (sunrise == Sunrise.OFF) null else light.value,
                     onStop = { PhoneRingService.command(this, PhoneRingService.ACTION_STOP) },
                     onSnooze = { PhoneRingService.command(this, PhoneRingService.ACTION_SNOOZE) },
+                    onTyping = { PhoneRingService.command(this, PhoneRingService.ACTION_TYPING) },
                 )
             }
         }
@@ -103,6 +124,7 @@ internal fun RingScreen(
     onSnooze: () -> Unit,
     light: Float? = null,
     clock: () -> Instant = Instant::now,
+    onTyping: () -> Unit = {},
 ) {
     var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
@@ -113,28 +135,41 @@ internal fun RingScreen(
     }
     // Mit Sonnenaufgang: Licht statt Nachthimmel, Farben passen sich der Helligkeit an.
     val sky = light?.let { SunriseSky.colors(it) }
-    val content = sky?.content ?: Color.White
+    val content = sky?.content ?: NightColors.Moon
+    // Schrift auf dem Halte-Knopf (Knopf in der Inhaltsfarbe): dunkel auf hellem Knopf, sonst weiss.
+    val onContent = if (content.luminance() > 0.5f) Night else Color.White
     val muted = sky?.contentMuted ?: NightColors.Muted
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
         if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize()) { inner() }
     }
+    val task = when (state) {
+        is PhoneRingService.State.Ringing -> state.wakeTask
+        is PhoneRingService.State.Snoozed -> state.wakeTask
+        PhoneRingService.State.Idle -> WakeTask.NONE
+    }
+    // Über Schlummern hinweg dieselbe Aufgabe: gelöste Schritte bleiben gelöst.
+    val challenge = remember { MathChallenge() }
+    val math = task == WakeTask.MATH
     background {
     Column(
         Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        PulsingDot(Modifier.size(180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
-        Spacer(Modifier.height(24.dp))
-        Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = content)
+        // Mit Aufgabe braucht die Tastatur den Platz: kleiner Punkt, knappere Abstände.
+        PulsingDot(Modifier.size(if (math) 72.dp else 180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
+        Spacer(Modifier.height(if (math) 8.dp else 24.dp))
+        Text(Format.time(now), style = if (math) MaterialTheme.typography.displayMedium else MaterialTheme.typography.displayLarge, color = content)
         Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = muted)
-        Spacer(Modifier.height(48.dp))
+        Spacer(Modifier.height(if (math) 16.dp else 48.dp))
         when (state) {
             is PhoneRingService.State.Ringing -> {
-                HoldToStopButton(
+                if (math) {
+                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
+                } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
                     container = content,
-                    content = if (content == Color.White) Night else Color.White,
+                    content = onContent,
                     onStop = onStop,
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                 )
@@ -147,12 +182,14 @@ internal fun RingScreen(
             }
             is PhoneRingService.State.Snoozed -> {
                 Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = content)
-                // Auch beim Schlummern lässt sich der Wecker durch Halten ganz beenden.
+                // Auch beim Schlummern lässt sich der Wecker ganz beenden: durch Halten oder mit der Aufgabe.
                 Spacer(Modifier.height(24.dp))
-                HoldToStopButton(
+                if (math) {
+                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
+                } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
                     container = content,
-                    content = if (content == Color.White) Night else Color.White,
+                    content = onContent,
                     onStop = onStop,
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                 )

@@ -7,6 +7,7 @@ public final class HeartRateAccumulator {
     private var sum = 0.0
     private var count = 0
 
+    /// Erzeugt einen leeren Zähler.
     public init() {}
 
     /// Nimmt einen Pulswert auf. Unplausible Werte (≤ 0 oder > 250) werden ignoriert.

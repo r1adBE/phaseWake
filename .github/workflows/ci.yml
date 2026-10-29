@@ -27,6 +27,11 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
+      - name: Regeln (Dateigrösse, Build-Nummern, TODO)
+        run: |
+          python3 ../.github/scripts/line_limit.py --ci
+          python3 ../.github/scripts/no_build_numbers.py --ci
+          python3 ../.github/scripts/doc_check.py --ci
       - name: Übersetzungen prüfen
         run: |
           python3 ../.github/scripts/check-translations.py app/src/main/res wear/src/main/res ../ios/Strings
@@ -35,7 +40,12 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :shared:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+      - name: Abdeckung
+        shell: bash
+        run: |
+          python3 ../.github/scripts/coverage_check.py "Kotlin-Kern" 90 core/build/reports/jacoco/test/jacocoTestReport.xml
+          python3 ../.github/scripts/coverage_check.py "Android shared" 70 $(find shared/build/reports/coverage -name "*.xml" | head -1)
       - name: Fehler als Annotation
         if: failure()
         shell: bash
@@ -84,7 +94,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          swift test 2>&1 | tee test.log
+          swift test --enable-code-coverage 2>&1 | tee test.log
+      - name: Abdeckung
+        shell: bash
+        run: python3 ../../.github/scripts/coverage_check.py "Swift-Kern" 90 "$(swift test --show-codecov-path)"
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash

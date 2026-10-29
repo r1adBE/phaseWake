@@ -80,7 +80,7 @@
     <string name="settings_about">About</string>
     <string name="settings_open_source">Open source on GitHub</string>
     <string name="settings_licenses">Licenses</string>
-    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.</string>
+    <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.\nSounds: free recordings (CC0) from opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
     <string name="duration_minutes">%1$d min</string>
@@ -106,9 +106,14 @@
     <string name="alert_vibrate_sound">Vibration + sound</string>
     <string name="alert_off">Off</string>
     <string name="alert_vibrate">Vibration</string>
-    <string name="alert_sound">Sound</string>
+    <string name="alert_sound">Vibration + sound</string>
     <string name="editor_sound">Alarm sound</string>
     <string name="editor_sound_default">Default</string>
+    <string name="wake_tone_birds">Morning birds</string>
+    <string name="wake_tone_glockenspiel">Glockenspiel</string>
+    <string name="wake_tone_gong">Gentle gong</string>
+    <string name="wake_tone_harp">Harp</string>
+    <string name="wake_tone_system">System sound…</string>
     <string name="dnd_text">Allow alarms in Do Not Disturb, otherwise your phone stays silent.</string>
     <string name="dnd_action">Open settings</string>
     <string name="greeting_morning">Good morning</string>
@@ -130,8 +135,8 @@
     <string name="sunrise_title">Sunrise</string>
     <string name="sunrise_text">Your screen slowly gets brighter until you wake up.</string>
     <string name="sunrise_off">Turn off light</string>
-    <string name="editor_sunrise">Sunrise on your phone</string>
-    <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness. Place your phone screen up.</string>
+    <string name="editor_sunrise_hint">The screen starts with a faint orange glow and turns into bright, warm light at full brightness.</string>
+    <string name="editor_sunrise_phone_hint">Place your phone screen up.</string>
     <string name="sunrise_ring">On waking</string>
     <string name="sunrise_window">From window</string>
     <plurals name="editor_sunrise_ring_hint">
@@ -139,6 +144,10 @@
         <item quantity="other">Starts when you’re woken and is fully bright after %1$d minutes.</item>
     </plurals>
     <string name="editor_sunrise_window_hint">Starts with the wake window and is fully bright at the target time.</string>
+    <string name="sunrise_device_title">Where</string>
+    <string name="sunrise_device_phone">Phone</string>
+    <string name="sunrise_device_watch">Watch</string>
+    <string name="sunrise_device_both">Both</string>
     <string name="check_ready">Ready for tonight</string>
     <string name="check_ready_text">Watch connected, alarms allowed. Tap for details.</string>
     <string name="check_not_ready">Check before you sleep</string>
@@ -193,6 +202,9 @@
     <string name="check_dnd_unknown_problem">Android doesn’t tell apps whether alarms get through. Check that alarms are allowed in Do Not Disturb.</string>
     <string name="check_watch_setup">Phase Wake on the watch</string>
     <string name="check_watch_setup_problem">Open Phase Wake on the watch once and allow sensors, notifications and the alarm screen.</string>
+    <string name="check_watch_app">Phase Wake on the watch</string>
+    <string name="check_watch_app_problem">Your watch is connected, but Phase Wake isn\'t installed on it yet.</string>
+    <string name="check_watch_app_action">Install on watch</string>
     <string name="ring_hold_to_stop">Hold to stop</string>
     <string name="settings_privacy">Privacy policy</string>
     <string name="editor_discard_title">Discard changes?</string>
@@ -254,13 +266,213 @@
     <string name="sound_brown">Brown noise</string>
     <string name="sound_rain">Rain</string>
     <string name="sound_ocean">Ocean</string>
+    <string name="sound_fan">Fan</string>
+    <string name="sound_binaural">Sleep waves</string>
+    <string name="sound_forest">Forest at night</string>
+    <string name="sound_fire">Fireplace</string>
+    <string name="sound_brook">Brook</string>
+    <string name="sound_binaural_hint">Use headphones.</string>
     <string name="sounds_timer">Timer</string>
     <string name="sounds_timer_off">None</string>
     <string name="sounds_play">Play</string>
     <string name="sounds_stop">Stop</string>
     <string name="sounds_remaining">%1$s left</string>
     <string name="sounds_hint">Plays at media volume and stops at the latest when your wake window begins.</string>
+    <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
+    <string name="sound_rec_title">Record sounds</string>
+    <string name="sound_rec_hint">Only short clips. They stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_rec_permission">To record, Phase Wake needs the microphone. It only listens while recording is on.</string>
+    <string name="sound_rec_running">Recording sounds</string>
+    <string name="sound_rec_stop">Stop</string>
+    <string name="sound_rec_plug_in">Recording is on. Best plug in your phone for the night.</string>
+    <string name="sound_rec_default">On for new nights</string>
+    <string name="sound_rec_default_hint">Starts when you open Phase Wake from your bedtime on (without an alarm from 9 pm). Only short clips; they stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_type_snore">Snoring</string>
+    <string name="sound_type_talk">Talking</string>
+    <string name="sound_type_other">Other sound</string>
+    <plurals name="sound_summary">
+        <item quantity="one">Snoring: %1$s (%2$d clip)</item>
+        <item quantity="other">Snoring: %1$s (%2$d clips)</item>
+    </plurals>
+    <plurals name="sound_summary_talk">
+        <item quantity="one">Talking: %1$d clip</item>
+        <item quantity="other">Talking: %1$d clips</item>
+    </plurals>
+    <string name="sound_clips_title">Sounds</string>
+    <string name="sound_clip_delete">Delete clip from %1$s</string>
+    <string name="sound_clips_delete_all">Delete all clips</string>
+    <plurals name="habit_regular">
+        <item quantity="one">Regular bedtime: %1$d of %2$d evening</item>
+        <item quantity="other">Regular bedtime: %1$d of %2$d evenings</item>
+    </plurals>
+    <plurals name="habit_streak">
+        <item quantity="one">%1$d night in a row with your sleep goal</item>
+        <item quantity="other">%1$d nights in a row with your sleep goal</item>
+    </plurals>
+    <plurals name="habit_streak_best">
+        <item quantity="one">Longest streak in 90 days: %1$d night</item>
+        <item quantity="other">Longest streak in 90 days: %1$d nights</item>
+    </plurals>
+    <string name="weekly_title">Weekly review</string>
+    <string name="weekly_toggle">On Sundays at 6 pm, a notification about your week.</string>
+    <string name="weekly_notification_title">Your week</string>
+    <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s sleep · sleep goal %2$d/7 · regular bedtime %3$d/7 · feeling %4$s</string>
+    <string name="weekly_notification_feeling">Ø feeling this week: %1$s</string>
+    <string name="routine_title">Evening routine</string>
+    <string name="routine_add">Add item</string>
+    <string name="routine_item_phone">Phone away</string>
+    <string name="routine_item_light">Dim the lights</string>
+    <string name="routine_item_water">Water ready</string>
+    <string name="routine_avg" tools:ignore="PluralsCandidate">Evening routine: Ø %1$s of %2$d</string>
+    <string name="wake_task_title">To stop</string>
+    <string name="wake_task_hold">Hold</string>
+    <string name="wake_task_math">Math task</string>
+    <string name="wake_task_hint">Solve 3 sums before the alarm goes quiet. Snoozing works without a task.</string>
+    <string name="wake_task_solve" tools:ignore="PluralsCandidate">Task %1$d of %2$d</string>
+    <string name="wake_task_wrong">Not quite – here’s a new one.</string>
+    <string name="wake_task_delete">Delete digit</string>
+    <string name="wake_task_check">OK</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
-    <string name="m3c_time_picker_am" tools:override="true">AM</string>
-    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
+    <string name="m3c_time_picker_am" tools:override="true" tools:ignore="UnusedResources">AM</string>
+    <string name="m3c_time_picker_pm" tools:override="true" tools:ignore="UnusedResources">PM</string>
+    <string name="charts_title">Charts</string>
+    <string name="chart_bars_title">Sleep times</string>
+    <string name="chart_durations_title">Sleep per night</string>
+    <string name="chart_wake_title">Wake moment in the window</string>
+    <string name="chart_stages_title">Sleep stages of the night</string>
+    <string name="chart_feeling_title">Feeling</string>
+    <string name="chart_nights_7">7 nights</string>
+    <string name="chart_nights_14">14 nights</string>
+    <string name="chart_bedtime">Bedtime %1$s</string>
+    <string name="chart_goal">Goal %1$s</string>
+    <string name="chart_wake_target">At target time</string>
+    <string name="chart_wake_late">After target time</string>
+    <string name="chart_stage_awake">Awake</string>
+    <string name="chart_stage_rem">REM</string>
+    <string name="chart_stage_light">Light</string>
+    <string name="chart_stage_deep">Deep</string>
+    <string name="chart_window">Wake window</string>
+    <string name="chart_no_data">no data</string>
+    <string name="chart_feeling_hint">Tap a dot to see that night’s notes.</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="test_title">Test alarm</string>
+    <string name="test_button">Test in 2 minutes</string>
+    <string name="test_hint">Rings in 2 minutes with the settings of your next alarm, without snoozing. Doesn’t count as a night.</string>
+    <string name="test_running">Test alarm at %1$s</string>
+    <string name="test_result_title">Test result</string>
+    <string name="test_step_received">Watch received the test</string>
+    <string name="test_step_watch_rang">Watch woke you</string>
+    <string name="test_step_phone_rang">Phone rang too</string>
+    <string name="test_step_stop">Stop arrived</string>
+    <string name="test_step_passed">passed</string>
+    <string name="test_step_failed">failed</string>
+    <string name="test_step_skipped">not checked – phone alarm is off</string>
+    <string name="test_all_ok">Everything works.</string>
+    <string name="test_close">Close</string>
+    <string name="watch_open_app" tools:ignore="UnusedResources">Open Phase Wake on your watch</string>
+    <string name="onb_step" tools:ignore="PluralsCandidate">Step %1$d of %2$d</string>
+    <string name="onb_welcome_title">Welcome to Phase Wake</string>
+    <string name="onb_welcome_text">Phase Wake wakes you within your window when you sleep lightly. Your watch measures, your phone rings too.</string>
+    <string name="onb_privacy">Your data stays on your devices.</string>
+    <string name="onb_watch_title">Connect your watch</string>
+    <string name="onb_watch_ok">Your watch is connected.</string>
+    <string name="onb_rights_title">Permissions</string>
+    <string name="onb_optional">%1$s (optional)</string>
+    <string name="onb_granted">Allowed</string>
+    <string name="onb_alarm_title">First alarm</string>
+    <string name="onb_alarm_text">When do you want to be awake at the latest? Your watch wakes you earlier within the window if you sleep lightly.</string>
+    <string name="onb_alarm_create">Create alarm</string>
+    <string name="onb_alarm_done">Alarm created: %1$s</string>
+    <string name="onb_done_title">All set</string>
+    <string name="onb_done_text">You can change everything later in the settings. Good night!</string>
+    <string name="onb_next">Next</string>
+    <string name="onb_back">Back</string>
+    <string name="onb_skip">Skip</string>
+    <string name="onb_finish">Let’s go</string>
+    <string name="settings_onboarding">Repeat setup</string>
+    <string name="alarm_skip">Skip next time</string>
+    <string name="alarm_skipped">Skipped: %1$s</string>
+    <string name="alarm_skip_undo">Undo</string>
+    <string name="alarm_actions">More for %1$s</string>
+    <string name="settings_holidays">Holidays</string>
+    <string name="holidays_country">Country</string>
+    <string name="holidays_region">Region</string>
+    <string name="holidays_whole_country">Whole country</string>
+    <string name="holidays_off">No holidays</string>
+    <string name="holidays_hint">Local holidays of single towns are not included.</string>
+    <string name="holidays_next">Next holiday: %1$s</string>
+    <string name="editor_skip_holidays">Don’t wake on holidays</string>
+    <string name="editor_skip_holidays_hint">Choose country and region in the settings.</string>
+    <string name="home_holiday_skipped">%1$s: holiday – no alarm</string>
+    <string name="settings_license_holidays">Holidays: Python package “holidays”, MIT License.</string>
+    <string name="nap_title">Power nap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="nap_start">Start power nap</string>
+    <string name="nap_hint">Wakes you after this time, in the last minutes already in light sleep. Doesn’t count as a night.</string>
+    <string name="nap_running">Power nap until %1$s</string>
+    <string name="nap_stop">End power nap</string>
+    <string name="widget_name">Next alarm</string>
+    <string name="widget_description">Your next alarm and the night check.</string>
+    <string name="widget_no_alarm">No alarm</string>
+    <string name="settings_backup">Back up</string>
+    <string name="settings_backup_hint">Encrypted file with alarms, history, notes and settings. Without sound clips and health data.</string>
+    <string name="settings_restore">Restore</string>
+    <string name="backup_password">Password</string>
+    <string name="backup_password_repeat">Repeat password</string>
+    <string name="backup_password_short">At least 8 characters.</string>
+    <string name="backup_password_mismatch">The passwords don’t match.</string>
+    <string name="backup_password_hint">Without this password, nobody can open the backup – not even you.</string>
+    <string name="backup_create">Save backup</string>
+    <string name="backup_done">Backup saved.</string>
+    <string name="backup_failed">Couldn’t save the backup.</string>
+    <string name="backup_file_name">PhaseWake-Backup-%1$s.pwbak</string>
+    <string name="backup_busy">One moment …</string>
+    <string name="restore_open">Open</string>
+    <string name="restore_wrong_password">Wrong password or not a Phase Wake backup. Nothing was changed.</string>
+    <string name="restore_unreadable">Couldn’t read the file. Nothing was changed.</string>
+    <string name="restore_preview" tools:ignore="PluralsCandidate">Alarms: %1$d · Nights: %2$d · Days with notes: %3$d</string>
+    <string name="restore_confirm_title">Replace data?</string>
+    <string name="restore_confirm_text">Alarms, history, notes and settings on this phone will be replaced by the backup.</string>
+    <string name="restore_confirm">Replace</string>
+    <string name="restore_done">Restored.</string>
+    <string name="auth_title">Confirm it’s you</string>
+    <string name="auth_clear_history">To delete the history</string>
+    <string name="auth_restore">To replace your data</string>
+    <string name="diag_title">Diagnostics</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d more tap</item>
+        <item quantity="other">%1$d more taps</item>
+    </plurals>
+    <string name="diag_unlocked">Diagnostics are now shown in the settings.</string>
+    <string name="diag_show">Show diagnostics</string>
+    <string name="diag_hint">Only on this device, nothing is sent. Contains times of alarms and events, no health data.</string>
+    <string name="diag_events">Events</string>
+    <string name="diag_empty">No events yet.</string>
+    <string name="diag_status">Status</string>
+    <string name="diag_share">Share log</string>
+    <string name="diag_fetch_watch">Get watch log</string>
+    <string name="diag_watch_no_answer">No answer from the watch.</string>
+    <string name="diag_clear">Clear</string>
+    <string name="diag_next_phone">Next alarm (phone)</string>
+    <string name="diag_next_watch">Next alarm (watch)</string>
+    <string name="diag_battery_opt">Battery optimization</string>
+    <string name="diag_watch_battery">Watch battery</string>
+    <string name="diag_watch_seen">Watch last seen</string>
+    <string name="diag_versions">Versions</string>
+    <string name="diag_phone">Phone</string>
+    <string name="diag_watch">Watch</string>
+    <string name="diag_yes">yes</string>
+    <string name="diag_no">no</string>
+    <string name="diag_unknown">unknown</string>
+    <string name="diag_none">none</string>
+    <string name="chart_goal_met">✓ Goal reached</string>
+    <string name="alarm_skip_on">Skip %1$s</string>
+    <string name="alarm_skip_undo_for">Undo skip: %1$s</string>
+    <string name="transient_alarm_running">Your alarm is running right now.</string>
+    <string name="transient_alarm_soon">Your alarm window starts before that.</string>
+    <string name="check_watch_update">Update Phase Wake on your watch</string>
+    <string name="check_watch_update_problem">Until then, your watch won’t skip alarms and will also wake you on holidays.</string>
 </resources>

@@ -68,6 +68,8 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.wear.compose.material3)
     implementation(libs.wear.compose.foundation)
+    // Bildschirme der Uhr (Start, Editor, Uhrzeit) mit Wischen zurück.
+    implementation(libs.wear.compose.navigation)
     implementation(libs.wear.ongoing)
     implementation(libs.wear.tiles)
     implementation(libs.wear.protolayout)

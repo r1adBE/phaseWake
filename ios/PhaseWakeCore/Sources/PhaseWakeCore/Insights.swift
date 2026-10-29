@@ -7,9 +7,12 @@ public enum DataQuality: String, Sendable {
 
 /// Identisch zu `NightQuality` (Kotlin).
 public enum NightQuality {
+    /// Mindestanteil der Epochen mit Bewegung (80 %), damit eine Nacht nicht als lückenhaft gilt.
     public static let completeShare = 0.8
+    /// Mindestanteil der Epochen mit Puls (50 %), damit eine Nacht als vollständig gemessen gilt.
     public static let heartShare = 0.5
 
+    /// Bewertet die Messung einer Nacht ohne die Aufwärm-Epochen: `none` ohne Epochen oder ohne jede Bewegung, `partial` unter 80 % Bewegung, sonst `full` mit Puls in mindestens der Hälfte, sonst `motionOnly`.
     public static func of(_ night: NightRecord, warmupEpochs: Int = DetectorConfig.defaultWarmupEpochs) -> DataQuality {
         let epochs = night.epochs.dropFirst(warmupEpochs)
         guard !epochs.isEmpty else { return .none }
@@ -23,17 +26,23 @@ public enum NightQuality {
 
 /// Eine ganze Nacht laut Gesundheits-App. Identisch zu `SleepSummary` (Kotlin).
 public struct SleepSummary: Equatable, Sendable {
+    /// Einschlafbeginn: Beginn der ersten Phase, die nicht «wach» ist.
     public let start: Date
+    /// Ende der letzten Phase der Nacht (auch «wach»).
     public let end: Date
+    /// Geschlafene Minuten (alle Phasen ausser «wach», je Phase ganze Minuten abgerundet).
     public let asleepMinutes: Int
 
+    /// Erzeugt eine Nacht; `start` liegt vor `end`.
     public init(start: Date, end: Date, asleepMinutes: Int) {
         self.start = start
         self.end = end
         self.asleepMinutes = asleepMinutes
     }
 
+    /// Ab 3 Stunden Lücke zwischen Phasen beginnt eine neue Nacht (ein Mittagsschlaf gehört nicht zur Nacht).
     public static let newNightGap: TimeInterval = 3 * 3600
+    /// Nächte mit weniger als 180 geschlafenen Minuten zählen nicht (Nickerchen, Messfehler).
     public static let minAsleepMinutes = 180
 
     /// Fasst Phasen zu Nächten zusammen, älteste zuerst.
@@ -58,20 +67,29 @@ public struct SleepSummary: Equatable, Sendable {
 
 /// Wochenvergleich für den Verlauf. Identisch zu `Trends` (Kotlin).
 public struct Trends: Equatable, Sendable {
+    /// Durchschnittlicher Schlaf der letzten 7 Tage in Minuten; `nil` unter 3 Nächten.
     public let asleepThisWeek: Int?
+    /// Durchschnittlicher Schlaf der 7 Tage davor in Minuten; `nil` unter 3 Nächten.
     public let asleepLastWeek: Int?
+    /// Mittlere Abweichung der Einschlafzeit vom Mittel der letzten 14 Tage in Minuten; `nil` unter 5 Nächten.
     public let bedtimeSpreadMinutes: Int?
+    /// Durchschnittliches Befinden (1–5) der letzten 7 Tage; `nil` unter 3 Angaben.
     public let feelingThisWeek: Double?
+    /// Durchschnittliches Befinden (1–5) der 7 Tage davor; `nil` unter 3 Angaben.
     public let feelingLastWeek: Double?
 
+    /// Schlaf dieser minus letzter Woche in Minuten; `nil`, wenn eine Woche fehlt.
     public var asleepChange: Int? {
         guard let a = asleepThisWeek, let b = asleepLastWeek else { return nil }
         return a - b
     }
 
+    /// Mindestens so viele Nächte je Woche für einen Durchschnitt; weniger wäre Zufall.
     public static let minNightsPerWeek = 3
+    /// Mindestens so viele Nächte für die Streuung der Einschlafzeit.
     public static let minNightsForSpread = 5
 
+    /// Rechnet den Wochenvergleich: Woche = 7 × 24 Stunden vor `now`, die Woche davor die 7 × 24 Stunden davor. Schlaf zählt nach dem Ende der Nacht, Befinden nach dem Weckmoment.
     public static func compute(nights: [NightRecord], sleeps: [SleepSummary], now: Date, calendar: Calendar) -> Trends {
         let weekAgo = now.addingTimeInterval(-7 * 86_400)
         let twoWeeksAgo = now.addingTimeInterval(-14 * 86_400)
@@ -110,8 +128,10 @@ public struct Trends: Equatable, Sendable {
 public enum MissHint: String, Sendable {
     case gaps = "GAPS", heartMissing = "HEART_MISSING", calm = "CALM"
 
+    /// So viele jüngste Nächte eines Weckers müssen alle zur Zielzeit geweckt haben.
     public static let nights = 3
 
+    /// Hinweis für den Wecker `spec`, oder `nil`: Nur bei vollem Fenster (30 Min) und wenn die letzten 3 Nächte alle zur Zielzeit weckten. Die Mehrheit entscheidet über den Grund: Lücken, fehlender Puls, sonst ruhiger Schlaf.
     public static func of(_ spec: AlarmSpec?, nights: [NightRecord]) -> MissHint? {
         guard let spec, spec.windowMinutes >= AlarmSpec.maxWindowMinutes else { return nil }
         let recent = Array(nights.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }.suffix(Self.nights))

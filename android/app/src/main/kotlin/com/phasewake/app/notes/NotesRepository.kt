@@ -62,6 +62,17 @@ class NotesRepository(private val store: DataStore<Preferences>) {
         }
     }
 
+    /** Gespeicherte Texte (Notizen, eigene Notizen) für die Sicherung. */
+    suspend fun raw(): Pair<String, String> = store.data.first().let { it[NOTES].orEmpty() to it[CUSTOM].orEmpty() }
+
+    /** Ersetzt Notizen und eigene Notizen (Wiederherstellen); unlesbare Zeilen fallen beim Lesen weg. */
+    suspend fun restore(notes: String, custom: String) {
+        store.edit {
+            it[NOTES] = SleepNotes.encode(SleepNotes.decode(notes))
+            it[CUSTOM] = SleepNotes.encodeCustom(SleepNotes.decodeCustom(custom))
+        }
+    }
+
     private companion object {
         val NOTES = stringPreferencesKey("sleep_notes")
         val CUSTOM = stringPreferencesKey("sleep_notes_custom")

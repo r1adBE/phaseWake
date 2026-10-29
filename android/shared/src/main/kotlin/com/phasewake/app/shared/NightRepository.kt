@@ -51,6 +51,13 @@ class NightRepository(
         state.value = updated
     }
 
+    /** Ersetzt den ganzen Verlauf (Wiederherstellen einer Sicherung); mehr als [NightHistory.MAX_NIGHTS] werden gekürzt. */
+    suspend fun replaceAll(nights: List<NightRecord>) = mutex.withLock {
+        val trimmed = NightHistory.trim(nights)
+        write(trimmed)
+        state.value = trimmed
+    }
+
     suspend fun clear() = mutex.withLock {
         write(emptyList())
         state.value = emptyList()

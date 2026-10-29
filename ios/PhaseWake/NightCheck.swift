@@ -9,7 +9,7 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
-    case watch, watchApp, watchArm, watchBattery, alarms, notifications, battery
+    case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
 
     var title: String {
         switch self {
@@ -17,6 +17,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchApp: L("check_watch_app")
         case .watchArm: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
+        case .watchUpdate: L("check_watch_update")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -29,6 +30,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchApp: L("check_watch_app_problem")
         case .watchArm: L("check_watch_arm_problem")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
+        case .watchUpdate: L("check_watch_update_problem")
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -49,7 +51,7 @@ enum NightCheck {
         let session = WCSession.isSupported() ? WCSession.default : nil
         let model = PhoneModel.shared
         // Wie auf der Uhr: Eine heute schon abgeschlossene Nacht zählt nicht mehr.
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: Date(), doneUntil: model.doneUntil, calendar: .current)
+        let plan = model.nextPlan()
         if session?.activationState != .activated || session?.isPaired != true {
             failed.append(.watch)
         } else if session?.isWatchAppInstalled != true {
@@ -64,6 +66,8 @@ enum NightCheck {
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
             }
+            // Ältere Uhr-App: überspringt keine Termine und weckt an Feiertagen.
+            if !model.watchKnowsSkip { failed.append(.watchUpdate) }
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
@@ -111,7 +115,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .battery:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery:
             break
         }
     }
@@ -133,12 +137,12 @@ struct NightCheckCard: View {
             Button { if failed.isEmpty { withAnimation { expanded.toggle() } } } label: {
                 HStack(spacing: 12) {
                     Image(systemName: failed.isEmpty ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
-                        .foregroundStyle(failed.isEmpty ? Color.accentColor : .red)
+                        .foregroundStyle(failed.isEmpty ? Brand.accent(scheme) : .red)
                         .font(.title3)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(L(failed.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                        Text(L(failed.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                         if failed.isEmpty {
-                            Text(L("check_ready_text")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                            Text(L("check_ready_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
                         }
                     }
                     Spacer()
@@ -148,14 +152,16 @@ struct NightCheckCard: View {
             .disabled(!failed.isEmpty)
             if failed.isEmpty && expanded {
                 ForEach([PhoneCheck.watch, .watchApp, .alarms, .battery], id: \.self) { check in
-                    Label(check.title, systemImage: "checkmark").font(Fonts.manrope(13, relativeTo: .footnote))
+                    Label(check.title, systemImage: "checkmark").font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                 }
             }
             ForEach(failed, id: \.self) { check in
                 HStack(alignment: .center) {
+                    // Zeichen statt nur Farbe (WCAG 1.4.1): ✗ = offen, wie Android.
+                    Image(systemName: "xmark.circle").foregroundStyle(.red).accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(check.title).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
-                        Text(check.problem).font(Fonts.manrope(12, relativeTo: .caption))
+                        Text(check.problem).font(Fonts.manrope(14, relativeTo: .subheadline))
                     }
                     Spacer()
                     if check.canFix {
@@ -165,10 +171,12 @@ struct NightCheckCard: View {
                     }
                 }
             }
+            // Probewecker: prüft Uhr, iPhone und Verbindung in 2 Minuten.
+            TestAlarmButton().font(Fonts.manrope(14, relativeTo: .subheadline)).padding(.top, 4)
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(failed.isEmpty ? (scheme == .dark ? Color.white.opacity(0.07) : Color.white) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: 20))
+        .background(failed.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
         .padding(.horizontal, 16)
     }
 }

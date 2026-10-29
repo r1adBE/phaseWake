@@ -11,6 +11,8 @@ struct HomeView: View {
     @State private var failedChecks: [PhoneCheck] = []
     @State private var nightstand = false
     @State private var sounds = false
+    /// Gescrollt: «Neuer Wecker» nur noch als runder Knopf, damit er ruhiger über den Karten liegt.
+    @State private var fabCompact = false
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -18,26 +20,36 @@ struct HomeView: View {
             ZStack {
                 if scheme == .dark { NightSky() }
                 ScrollView {
-                    VStack(spacing: 12) {
+                    VStack(spacing: 16) {
                         TimelineView(.everyMinute) { context in
                             header(now: context.date)
                         }
                         TimelineView(.everyMinute) { context in
-                            let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current)
-                            VStack(spacing: 12) {
+                            // Eine früh geweckte Nacht zählt nicht mehr (wie Nacht-Check und Widget).
+                            let plan = model.nextPlan(now: context.date)
+                            VStack(spacing: 16) {
                                 // Nacht-Check nur, wenn ein Wecker ansteht.
                                 if plan != nil {
                                     NightCheckCard(failed: failedChecks) { check in
                                         Task { await NightCheck.fix(check); failedChecks = await NightCheck.collect() }
                                     }
                                 }
+                                TransientStatusCard()
+                                if model.transient.nap == nil { NapCard() }
                                 if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
                                     NightstandButton { nightstand = true }
                                 }
                                 // Abends bis zum Weckfenster: Notizen für die kommende Nacht.
-                                let next = AlarmSchedule.earliestPlan(model.alarms, now: context.date, doneUntil: model.doneUntil, calendar: .current)
-                                if SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current) {
-                                    TonightNotesCard(nightDate: SleepNotes.nightDate(context.date, calendar: .current))
+                                let next = model.nextPlan(now: context.date)
+                                let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current)
+                                let tonight = SleepNotes.nightDate(context.date, calendar: .current)
+                                if evening {
+                                    TonightNotesCard(nightDate: tonight)
+                                    RoutineCard(night: tonight)
+                                }
+                                // Geräusche: abends zum Einschalten, und solange die Aufnahme läuft.
+                                if evening || model.recorder.running {
+                                    SoundRecordingCard(night: tonight)
                                 }
                                 SoundsButton { sounds = true }
                                 if let night = model.nights.last {
@@ -48,12 +60,23 @@ struct HomeView: View {
                                         hint: MissHint.of(model.alarms.first { $0.id == night.alarmId }, nights: model.nights.map(measuredPart))
                                     ) { model.setFeeling($0, for: night) }
                                 }
+                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
+                                // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
+                                let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .current)] } ?? [])
+                                if let sounds = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded).first,
+                                   context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,
+                                   !(evening && tonight == sounds.night) {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text(L("home_morning")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                                        NightSoundsButton(night: sounds.night, title: sounds.last.formatted(date: .abbreviated, time: .omitted))
+                                    }
+                                    .card()
+                                }
                             }
                         }
                         if !model.alarms.isEmpty {
                             Text(L("home_alarms"))
-                                .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
-                                .foregroundStyle(.secondary)
+                                .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 20)
                                 .padding(.top, 8)
@@ -63,49 +86,69 @@ struct HomeView: View {
                             if !model.canAddAlarm {
                                 Text(L("home_max_alarms", PhoneModel.maxAlarms))
                                     .font(Fonts.manrope(12, relativeTo: .caption))
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Brand.tertiaryText(scheme))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.horizontal, 20)
                             }
                         }
-                        Spacer(minLength: 80)
                     }
+                    .padding(.bottom, 16)
                 }
                 .ignoresSafeArea(edges: .top)
-            }
-            .background(scheme == .dark ? Color.clear : Color(hex: 0xF4F6FB))
-            .overlay(alignment: .bottomTrailing) {
-                if !model.alarms.isEmpty {
-                    Button { creating = true } label: {
-                        Label(L("home_add_alarm"), systemImage: "plus")
-                            .font(Fonts.manrope(15, .bold, relativeTo: .headline))
-                            .padding(.horizontal, 20).padding(.vertical, 16)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(scheme == .dark ? Brand.echo : Color(hex: 0xDCE4FF))
-                    .foregroundStyle(scheme == .dark ? .white : Brand.nightTop)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(16)
-                    // Höchstens acht Wecker; der Hinweis steht unter der Liste.
-                    .disabled(!model.canAddAlarm)
+                .onScrolledPast(8) { scrolled in
+                    withAnimation(.snappy) { fabCompact = scrolled }
+                }
+                // Der Knopf als Einschub unten: Die Liste endet über ihm, die letzte Karte bleibt ganz sichtbar.
+                .safeAreaInset(edge: .bottom, alignment: .trailing) {
+                    if !model.alarms.isEmpty { addButton }
                 }
             }
+            .background(scheme == .dark ? Color.clear : Brand.paper)
             .task(id: scenePhase) {
                 // Bei jedem Öffnen und danach jede halbe Minute prüfen.
                 while scenePhase == .active, !Task.isCancelled {
                     failedChecks = await NightCheck.collect()
+                    PhoneWidgetSync.publish(model, failed: failedChecks)
+                    // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst starten.
+                    await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))
                 }
             }
             .fullScreenCover(isPresented: $nightstand) { NightstandView() }
             .sheet(isPresented: $sounds) { SoundsSheet().environment(model) }
             .sheet(item: $editing) { EditorView(existing: $0) }
+            .sheet(isPresented: Binding(get: { model.transient.showResult }, set: { model.transient.showResult = $0 }),
+                   onDismiss: { model.transient.closeResult() }) {
+                if let run = model.transient.run { TestResultSheet(run: run).environment(model) }
+            }
             .sheet(isPresented: $creating) { EditorView(existing: nil) }
         }
     }
 
+    /// «Neuer Wecker»: ganz oben ausgeschrieben, beim Scrollen nur das Plus.
+    private var addButton: some View {
+        Button { creating = true } label: {
+            Group {
+                if fabCompact {
+                    Image(systemName: "plus").frame(width: 24, height: 24).padding(16)
+                } else {
+                    Label(L("home_add_alarm"), systemImage: "plus").padding(.horizontal, 20).padding(.vertical, 16)
+                }
+            }
+            .font(Fonts.manrope(15, .bold, relativeTo: .headline))
+        }
+        .accessibilityLabel(L("home_add_alarm"))
+        .buttonStyle(.borderedProminent)
+        .tint(Brand.accent(scheme))
+        .foregroundStyle(Brand.onAccent(scheme))
+        .clipShape(RoundedRectangle(cornerRadius: Brand.cardRadius))
+        .padding(16)
+        // Höchstens acht Wecker; der Hinweis steht unter der Liste.
+        .disabled(!model.canAddAlarm)
+    }
+
     private func header(now: Date) -> some View {
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current)
+        let plan = model.nextPlan(now: now)
         return VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 10) {
                 LogoMark().frame(width: 48, height: 48)
@@ -127,6 +170,9 @@ struct HomeView: View {
                 Text(minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.muted)
+                if let holiday = skippedHoliday(now: now) {
+                    Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+                }
                 HeroWave().frame(height: 72).padding(.top, 14)
             } else {
                 Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
@@ -136,13 +182,13 @@ struct HomeView: View {
                     Label(L("home_add_alarm"), systemImage: "plus").font(Fonts.manrope(15, .bold, relativeTo: .headline))
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.white)
-                .foregroundStyle(Brand.nightBottom)
+                .tint(Brand.wave)
+                .foregroundStyle(Brand.nightTop)
             }
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)
-        .foregroundStyle(.white)
+        .foregroundStyle(Brand.moon)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 22)
         .padding(.top, 70)
@@ -158,6 +204,11 @@ struct HomeView: View {
         .accessibilityAction { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
     }
 
+    /// Feiertag, an dem ein Wecker sonst geweckt hätte, bis zum nächsten Wecken («Do 30.10.: Feiertag – nicht geweckt»).
+    private func skippedHoliday(now: Date) -> String? {
+        AlarmSchedule.holidayNote(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current, holidays: model.holidays.dates)
+    }
+
     private func greetingKey(_ now: Date) -> String {
         switch Calendar.current.component(.hour, from: now) {
         case 5...10: "greeting_morning"
@@ -168,14 +219,14 @@ struct HomeView: View {
     }
 }
 
-/// Karte auf dem Hintergrund: dunkel durchscheinend, hell weiss.
+/// Karte auf dem Hintergrund: dunkel Weiss mit 6 %, hell weiss; Radius 22 wie auf Android.
 struct CardBackground: ViewModifier {
     @Environment(\.colorScheme) private var scheme
     func body(content: Content) -> some View {
         content
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(scheme == .dark ? Color.white.opacity(0.07) : Color.white, in: RoundedRectangle(cornerRadius: 20))
+            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
             .padding(.horizontal, 16)
     }
 }
@@ -186,12 +237,13 @@ extension View {
 
 private struct NightstandButton: View {
     let action: () -> Void
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 4) {
-                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                Text(L("nightstand_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
             }
         }
         .buttonStyle(.plain)
@@ -204,6 +256,7 @@ private struct LastNightCard: View {
     let now: Date
     let hint: MissHint?
     let onFeeling: (Int) -> Void
+    @Environment(\.colorScheme) private var scheme
 
     /// So lange nach dem Wecken gilt die letzte Nacht als «Dein Morgen».
     private static let morning: TimeInterval = 12 * 3600
@@ -212,15 +265,16 @@ private struct LastNightCard: View {
         let isMorning = now.timeIntervalSince(night.wokeAt) < Self.morning
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Text(L(isMorning ? "home_morning" : "home_last_night")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(15, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
             NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 46)
-            Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            // Erklärung (14, leise), darunter die Zusatzinfos (12, noch leiser).
+            Text(nightSummary(night)).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
+            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
             if let unmeasured = unmeasuredText(night) {
-                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
             }
             if let hint {
                 VStack(alignment: .leading, spacing: 2) {
@@ -240,6 +294,8 @@ private struct LastNightCard: View {
                 NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
                                  title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
                     .padding(.top, 4)
+                NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+                                  title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
             }
         }
         .card()
@@ -258,6 +314,15 @@ private struct AlarmRow: View {
                     .font(Fonts.manrope(22, .bold, relativeTo: .title2))
                     .foregroundStyle(alarm.enabled ? .primary : .secondary)
                 Text(details).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                if let skipped {
+                    HStack(spacing: 8) {
+                        Text(L("alarm_skipped", Format.shortDay(skipped))).font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                        Button(L("alarm_skip_undo")) { model.setSkipped(alarm, false) }
+                            .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                            .buttonStyle(.borderless)
+                            .accessibilityLabel(undoLabel(skipped))
+                    }
+                }
             }
             Spacer()
             Toggle("", isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
@@ -265,9 +330,39 @@ private struct AlarmRow: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(perform: onTap)
+        .contextMenu {
+            Button(L("editor_edit"), systemImage: "pencil", action: onTap)
+            if skipped != nil {
+                Button(L("alarm_skip_undo"), systemImage: "arrow.uturn.backward") { model.setSkipped(alarm, false) }
+            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+                Button(skipTitle, systemImage: "forward.end") { model.setSkipped(alarm, true) }
+            }
+        }
         .accessibilityAction(named: L("editor_edit"), onTap)
+        .accessibilityActions {
+            if let skipped {
+                Button(undoLabel(skipped)) { model.setSkipped(alarm, false) }
+            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+                Button(skipTitle) { model.setSkipped(alarm, true) }
+            }
+        }
         .card()
         .accessibilityElement(children: .combine)
+    }
+
+    /// Übersprungener Termin «yyyy-MM-dd», solange er bevorsteht.
+    private var skipped: String? { AlarmSchedule.skippedDate(alarm, now: Date(), calendar: .current) }
+
+    /// «Do 30.10. überspringen»: der Tag, den der Menüpunkt trifft (nach früh geweckter Nacht der nächste).
+    private var skipTitle: String {
+        AlarmSchedule.nextSkipDate(alarm, now: Date(), doneUntil: model.doneUntil[alarm.id], calendar: .current,
+                                   holidays: model.holidays.dates)
+            .map { L("alarm_skip_on", Format.shortDay($0)) } ?? L("alarm_skip")
+    }
+
+    /// Für Bildschirmleser: «Überspringen rückgängig: Übersprungen: Do 30.10. (6:30–7:00)».
+    private func undoLabel(_ skipped: String) -> String {
+        L("alarm_skip_undo_for", L("alarm_skipped", Format.shortDay(skipped)) + " (" + Format.window(alarm) + ")")
     }
 
     private var details: String {

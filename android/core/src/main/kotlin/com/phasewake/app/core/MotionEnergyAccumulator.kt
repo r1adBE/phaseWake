@@ -72,9 +72,16 @@ class MotionEnergyAccumulator(
     }
 
     companion object {
+        /** Mindestabstand übernommener Werte in ns (35 ms ≈ 28 Hz, `docs/PHASENERKENNUNG.md` Schritt 1). */
         const val DEFAULT_MIN_INTERVAL_NANOS: Long = 35_000_000L
+
+        /** Grössere Lücke in ns (1 s) gilt als Sensorlücke; die Differenz darüber wird verworfen (Schritt 2). */
         const val DEFAULT_MAX_GAP_NANOS: Long = 1_000_000_000L
+
+        /** Sensorrauschen in m/s², das von jeder Differenz abgezogen wird (Schritt 3). */
         const val DEFAULT_NOISE_FLOOR: Double = 0.05
+
+        /** Mindestanzahl Differenzen je Epoche; darunter bleibt die Bewegung leer (Schritt 5). */
         const val DEFAULT_MIN_DIFFS: Int = 300
     }
 }

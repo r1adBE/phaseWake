@@ -1,5 +1,6 @@
 /// Fehler bei ungültigen Parametern der Phasenerkennung.
 public struct DetectorConfigError: Error, Equatable, Sendable {
+    /// Beschreibung des ungültigen Werts (nur für Logs und Tests).
     public let message: String
 }
 
@@ -11,9 +12,13 @@ public struct DetectorConfig: Equatable, Sendable {
     /// Länge einer Epoche in Sekunden.
     public static let epochSeconds = 30
 
+    /// Startwert der Leicht-Schwelle in m/s² (Abschnitt 3).
     public static let defaultLightThreshold = 0.002
+    /// Startwert der Wach-Schwelle in m/s² (Abschnitt 3).
     public static let defaultWakeThreshold = 0.100
+    /// Startwert des nötigen Pulsanstiegs als Anteil (5 %).
     public static let defaultHeartRateRise = 0.05
+    /// Aufwärm-Epochen zu Fensterbeginn (2 = 1 Minute); sie liefern den Basispuls.
     public static let defaultWarmupEpochs = 2
 
     /// Startwerte.

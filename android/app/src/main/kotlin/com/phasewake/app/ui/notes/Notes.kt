@@ -9,9 +9,12 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -30,6 +34,7 @@ import com.phasewake.app.R
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.util.Locale
 
 /** Anzeigename einer Notiz; `null` für eine gelöschte eigene Notiz (vergangene Nächte zeigen sie nicht). */
@@ -51,10 +56,34 @@ fun noteName(context: Context, id: String, custom: List<CustomNote>): String? = 
 fun NoteChips(selected: List<String>, custom: List<CustomNote>, onToggle: (String) -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val ids = SleepNotes.FIXED + custom.map { it.id }
+    val brand = PhaseWakeTheme.brand
     FlowRow(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         ids.forEach { id ->
             val name = noteName(context, id, custom) ?: return@forEach
-            FilterChip(selected = id in selected, onClick = { onToggle(id) }, label = { Text(name) })
+            val on = id in selected
+            // Farbwelt B: Rand Lavendel, gewählt gefüllt statt umrandet.
+            FilterChip(
+                selected = on,
+                onClick = { onToggle(id) },
+                label = { Text(name) },
+                // Gewählt zusätzlich mit Haken, nicht nur mit Fläche und Farbe (WCAG 1.4.1).
+                leadingIcon = if (on) {
+                    { Icon(painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(FilterChipDefaults.IconSize)) }
+                } else {
+                    null
+                },
+                colors = FilterChipDefaults.filterChipColors(
+                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    selectedContainerColor = brand.chipSelected,
+                    selectedLabelColor = MaterialTheme.colorScheme.onSurface,
+                ),
+                border = FilterChipDefaults.filterChipBorder(
+                    enabled = true,
+                    selected = on,
+                    borderColor = brand.chipBorder,
+                    selectedBorderColor = Color.Transparent,
+                ),
+            )
         }
     }
 }
@@ -68,8 +97,8 @@ fun TonightNotesCard(selected: List<String>, custom: List<CustomNote>, container
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
-            Text(stringResource(R.string.notes_title), style = MaterialTheme.typography.titleSmall)
-            NoteChips(selected, custom, onToggle, Modifier.padding(top = 6.dp))
+            Text(stringResource(R.string.notes_title), style = MaterialTheme.typography.titleMedium)
+            NoteChips(selected, custom, onToggle, Modifier.padding(top = 8.dp))
         }
     }
 }
@@ -130,3 +159,9 @@ fun NoteEffectsCard(effects: List<NoteEffect>, custom: List<CustomNote>) {
 /** «+0,5» bzw. «−0,8» (echtes Minuszeichen), eine Nachkommastelle nach Sprache. */
 private fun signed(value: Double): String =
     String.format(Locale.getDefault(), "%+.1f", value).replace('-', '−')
+
+/** Eine Zeile «Nach ‹Alkohol› Befinden −0,8 (3 vs. 7 Nächte)»; `null` für eine gelöschte eigene Notiz. */
+fun noteEffectLine(context: Context, effect: NoteEffect, custom: List<CustomNote>): String? {
+    val name = noteName(context, effect.noteId, custom) ?: return null
+    return context.resources.getQuantityString(R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith, effect.nightsWithout)
+}

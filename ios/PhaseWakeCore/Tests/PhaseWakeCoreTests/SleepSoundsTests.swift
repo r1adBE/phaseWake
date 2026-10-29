@@ -15,7 +15,7 @@ final class SleepSoundsTests: XCTestCase {
     }
 
     func testOutputStaysBelowPeakWithoutDcOffset() {
-        for sound in SleepSound.allCases {
+        for sound in SleepSound.allCases where !sound.recorded {
             let out = samples(sound, seconds: 10)
             let peak = out.map { abs(Double($0)) }.max() ?? 0
             let mean = out.reduce(0) { $0 + Double($1) } / Double(out.count)
@@ -29,17 +29,65 @@ final class SleepSoundsTests: XCTestCase {
     }
 
     func testDeterministicPerSeed() {
-        for sound in SleepSound.allCases {
+        for sound in SleepSound.allCases where !sound.recorded {
             XCTAssertEqual(samples(sound, seconds: 0.05, seed: 3), samples(sound, seconds: 0.05, seed: 3))
             XCTAssertNotEqual(samples(sound, seconds: 0.05, seed: 3), samples(sound, seconds: 0.05, seed: 4))
         }
     }
 
-    /// Meer: Die Welle (8–12 s) hebt und senkt die Lautstärke deutlich.
-    func testOceanSwells() {
-        let out = samples(.ocean, seconds: 24)
-        let blocks = stride(from: 0, to: out.count, by: Int(rate)).map { rms(out[$0..<min(out.count, $0 + Int(rate))]) }
-        XCTAssertGreaterThan(blocks.max()! / blocks.min()!, 1.5)
+    /// Ältere gespeicherte Werte bleiben gültig; die Aufnahmen sind genau diese fünf.
+    func testSoundsAndStoredNames() {
+        for name in ["WHITE", "PINK", "BROWN", "RAIN", "OCEAN"] { XCTAssertNotNil(SleepSound(rawValue: name), name) }
+        XCTAssertEqual(SleepSound.allCases.filter(\.recorded), [.rain, .ocean, .forest, .fire, .brook])
+    }
+
+    /// Einschlaf-Wellen: zwei Kanäle, je Ohr etwa −30 dBFS, links und rechts verschieden (200 gegen 202 Hz).
+    func testBinauralIsStereoAndSoft() {
+        XCTAssertEqual(NoiseGenerator(sound: .binaural).channels, 2)
+        XCTAssertEqual(NoiseGenerator(sound: .pink).channels, 1)
+        let out = samples(.binaural, seconds: 8)
+        let left = stride(from: 0, to: out.count, by: 2).map { out[$0] }
+        let right = stride(from: 1, to: out.count, by: 2).map { out[$0] }
+        for channel in [left, right] {
+            let level = rms(channel[...])
+            XCTAssertGreaterThan(level, 0.025)
+            XCTAssertLessThan(level, 0.045)
+        }
+        XCTAssertTrue(zip(left, right).contains { abs($0 - $1) > 0.01 })
+    }
+
+    /// Ventilator: tieffrequent, Sprünge von Wert zu Wert deutlich kleiner als beim weissen Rauschen.
+    /// Wie `darkNoisesHaveNoClicks` (Kotlin): Braun und Ventilator sind tieffrequent, Sprünge bleiben klein.
+    func testDarkNoisesHaveNoClicks() {
+        func maxStep(_ v: [Float]) -> Float { zip(v.dropFirst(), v).map { abs($0 - $1) }.max() ?? 0 }
+        let white = maxStep(samples(.white, seconds: 5))
+        XCTAssertLessThan(maxStep(samples(.brown, seconds: 5)), white / 4)
+        XCTAssertLessThan(maxStep(samples(.fan, seconds: 5)), white / 4)
+    }
+
+    /// `fill` liefert dieselbe Folge wie einzelne `next`-Aufrufe (nahtlos über Puffergrenzen).
+    func testFillMatchesNext() {
+        var generator = NoiseGenerator(sound: .pink, sampleRate: rate, seed: 7)
+        var buffer = [Float](repeating: 0, count: 480)
+        buffer.withUnsafeMutableBufferPointer { generator.fill($0.baseAddress!, count: 240) }
+        buffer.withUnsafeMutableBufferPointer { generator.fill($0.baseAddress! + 240, count: 240) }
+        var single = NoiseGenerator(sound: .pink, sampleRate: rate, seed: 7)
+        XCTAssertEqual(buffer, (0..<480).map { _ in single.next() })
+        XCTAssertEqual(generator.sampleRate, rate)
+        XCTAssertEqual(generator.sound, .pink)
+    }
+
+    /// Wie `recordingsPlayLouderWithoutClipping` (Kotlin).
+    func testRecordingsPlayLouderWithoutClipping() {
+        for sound in SleepSound.allCases {
+            XCTAssertEqual(sound.gainDb, sound.recorded ? 6 : 0, sound.rawValue)
+            XCTAssertEqual(sound.gain, sound.recorded ? 1.9952623 : 1, accuracy: 1e-6, sound.rawValue)
+        }
+        XCTAssertEqual(SleepSounds.amplify(0.2, gain: 2), 0.4, accuracy: 1e-7)
+        XCTAssertEqual(SleepSounds.amplify(-0.2, gain: 2), -0.4, accuracy: 1e-7)
+        XCTAssertEqual(SleepSounds.amplify(0.9, gain: SleepSound.rain.gain), SleepSounds.ceiling)
+        XCTAssertEqual(SleepSounds.amplify(-1, gain: SleepSound.rain.gain), -SleepSounds.ceiling)
+        XCTAssertEqual(SleepSounds.amplify(0.3, gain: SleepSound.pink.gain), 0.3)
     }
 
     func testFadeAndStop() {
@@ -57,5 +105,16 @@ final class SleepSoundsTests: XCTestCase {
         XCTAssertNil(SleepSounds.stopAt(start: start, timerMinutes: nil, nextWindowStart: nil))
         XCTAssertEqual(SleepSounds.timerOptions, [15, 30, 60, nil])
         XCTAssertEqual(SleepSounds.defaultTimerMinutes, 30)
+    }
+
+    /// Wie `SleepSoundsTest.recordingsAreNotGeneratedAndSeedZoneIsValid` (Kotlin). Ohne die Prüfung auf
+    /// Aufnahmen: Der Swift-Generator wirft nicht, die iPhone-App spielt Aufnahmen über AVAudioPlayer.
+    func testSeedZoneIsValidAndChannels() {
+        // Startwert 0 wäre für xorshift ein Fixpunkt (nur Nullen); er wird versetzt.
+        var generator = NoiseGenerator(sound: .white, sampleRate: rate, seed: 0)
+        XCTAssertTrue((0..<4_800).map { _ in generator.next() }.contains { $0 != 0 })
+        XCTAssertEqual(NoiseGenerator(sound: .pink).channels, 1)
+        XCTAssertEqual(NoiseGenerator(sound: .binaural).channels, 2)
+        XCTAssertNil(SleepSounds.stopAt(start: Date(timeIntervalSince1970: 0), timerMinutes: nil, nextWindowStart: nil))
     }
 }

@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">Ditunda sampai %1$s</string>
 
     <string name="home_no_alarm">Belum ada alarm</string>
-    <string name="home_no_alarm_hint">Atur alarm di Phase Wake pada ponselmu.</string>
+    <string name="home_no_alarm_hint">Buat alarm – di sini atau di Phase Wake pada ponsel.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hari ini</string>
     <string name="home_tomorrow">Besok</string>
@@ -44,4 +44,40 @@
     <string name="home_last_night">Semalam</string>
     <string name="notification_open">Buka</string>
     <string name="home_good_night_too_far">Tersedia mulai 16 jam sebelum alarm</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Selesaikan soal di ponsel atau tahan 5 dtk</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Alarm baru</string>
+    <string name="editor_new">Alarm baru</string>
+    <string name="editor_edit">Ubah alarm</string>
+    <string name="editor_target">Bangunkan aku sebelum</string>
+    <string name="editor_latest">Paling lambat</string>
+    <string name="editor_window">Rentang: %1$d mnt</string>
+    <string name="editor_days">Ulangi</string>
+    <string name="editor_save">Simpan</string>
+    <string name="editor_delete">Hapus alarm</string>
+    <string name="editor_delete_title">Hapus alarm ini?</string>
+    <string name="home_max_alarms">Maksimal %1$d alarm – hapus satu untuk menambahkan yang baru.</string>
+    <string name="editor_enabled">Alarm aktif</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Lewati kali berikutnya</string>
+    <string name="alarm_skipped">Dilewati: %1$s</string>
+    <string name="nap_title">Tidur siang</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d menit</item>
+    </plurals>
+    <string name="nap_start">Mulai</string>
+    <string name="nap_running">Sampai %1$s</string>
+    <string name="nap_stop">Akhiri tidur siang</string>
+    <string name="diag_title">Diagnostik</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">%1$d kali lagi</item>
+    </plurals>
+    <string name="diag_clear">Kosongkan</string>
+    <string name="diag_hide">Sembunyikan diagnostik</string>
+    <string name="diag_empty">Belum ada peristiwa.</string>
+    <string name="diag_next">Alarm berikutnya: %1$s</string>
+    <string name="diag_version">Versi %1$s</string>
+    <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
+    <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
 </resources>

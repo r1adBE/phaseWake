@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">Soneca até às %1$s</string>
 
     <string name="home_no_alarm">Sem alarme</string>
-    <string name="home_no_alarm_hint">Define alarmes no Phase Wake do telemóvel.</string>
+    <string name="home_no_alarm_hint">Cria um alarme – aqui ou no Phase Wake no telemóvel.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hoje</string>
     <string name="home_tomorrow">Amanhã</string>
@@ -46,4 +46,44 @@
     <string name="home_last_night">Ontem à noite</string>
     <string name="notification_open">Abrir</string>
     <string name="home_good_night_too_far">Disponível a partir de 16 h antes do alarme</string>
+    <!-- Weckaufgabe am Handy -->
+    <string name="wake_task_on_phone">Resolve a conta no telemóvel ou mantém 5 s</string>
+    <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
+    <string name="home_add_alarm">Novo alarme</string>
+    <string name="editor_new">Novo alarme</string>
+    <string name="editor_edit">Editar alarme</string>
+    <string name="editor_target">Acorda-me até</string>
+    <string name="editor_latest">No máximo</string>
+    <string name="editor_window">Janela: %1$d min</string>
+    <string name="editor_days">Repetir</string>
+    <string name="editor_save">Guardar</string>
+    <string name="editor_delete">Eliminar alarme</string>
+    <string name="editor_delete_title">Eliminar este alarme?</string>
+    <string name="home_max_alarms">No máximo %1$d alarmes – elimina um para adicionar outro.</string>
+    <string name="editor_enabled">Alarme ativado</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Saltar na próxima vez</string>
+    <string name="alarm_skipped">Saltado: %1$s</string>
+    <string name="nap_title">Sesta</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="many">%1$d minutos</item>
+        <item quantity="other">%1$d minutos</item>
+    </plurals>
+    <string name="nap_start">Começar</string>
+    <string name="nap_running">Até às %1$s</string>
+    <string name="nap_stop">Terminar a sesta</string>
+    <string name="diag_title">Diagnóstico</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Mais %1$d vez</item>
+        <item quantity="many">Mais %1$d vezes</item>
+        <item quantity="other">Mais %1$d vezes</item>
+    </plurals>
+    <string name="diag_clear">Limpar</string>
+    <string name="diag_hide">Ocultar diagnóstico</string>
+    <string name="diag_empty">Ainda sem eventos.</string>
+    <string name="diag_next">Próximo alarme: %1$s</string>
+    <string name="diag_version">Versão %1$s</string>
+    <string name="transient_alarm_running">O teu alarme está a decorrer neste momento.</string>
+    <string name="transient_alarm_soon">A janela do teu alarme começa antes disso.</string>
 </resources>

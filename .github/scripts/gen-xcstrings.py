@@ -17,6 +17,7 @@ TARGETS = {
     "PhaseWake": ("app", "wear", "apple"),
     "PhaseWakeWatch": ("wear", "app", "apple"),
     "PhaseWakeWidget": ("wear", "app", "apple"),
+    "PhaseWakePhoneWidget": ("app", "apple"),
 }
 
 

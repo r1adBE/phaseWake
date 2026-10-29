@@ -14,9 +14,12 @@ public enum SleepNote: String, CaseIterable, Sendable {
 
 /// Eigene Notiz, vom Nutzer benannt. Kennung «custom:<uuid>».
 public struct CustomNote: Equatable, Sendable, Identifiable {
+    /// Kennung «custom:» plus UUID in Kleinbuchstaben.
     public let id: String
+    /// Bereinigter Name (`SleepNotes.cleanName`), höchstens 30 Zeichen.
     public let name: String
 
+    /// Erzeugt eine eigene Notiz; der Name wird bereinigt und kann dadurch leer werden.
     public init(id: String, name: String) {
         self.id = id
         self.name = SleepNotes.cleanName(name)
@@ -25,16 +28,21 @@ public struct CustomNote: Equatable, Sendable, Identifiable {
 
 /// Notizen je Nacht: Nachtdatum, Speicherformat, Sortierung, Export. Identisch zu Kotlin.
 public enum SleepNotes {
+    /// Vorsatz der Kennung eigener Notizen.
     public static let customPrefix = "custom:"
+    /// Höchstens so viele eigene Notizen, damit die Auswahl übersichtlich bleibt.
     public static let maxCustom = 5
+    /// Höchstlänge eines Namens in Zeichen; passt auf einen Chip.
     public static let maxNameLength = 30
     /// Wie der Verlauf: höchstens so viele Nachtdaten.
     public static let maxNights = NightHistory.maxNights
     /// Ab dieser Stunde (Ortszeit) lassen sich Notizen für die kommende Nacht setzen.
     public static let eveningHour = 17
 
+    /// Ob die Kennung eine eigene Notiz ist.
     public static func isCustom(_ id: String) -> Bool { id.hasPrefix(customPrefix) }
 
+    /// Neue zufällige Kennung für eine eigene Notiz (nur beim Anlegen, nicht in Rechenregeln).
     public static func newCustomId() -> String { customPrefix + UUID().uuidString.lowercased() }
 
     /// Name ohne Zeilenumbrüche und Trenner, höchstens 30 Zeichen.
@@ -56,6 +64,7 @@ public enum SleepNotes {
         nightDate(night.windowStart, calendar: calendar)
     }
 
+    /// Kalenderdatum «yyyy-MM-dd» von `date` im Kalender (Ortszeit) mit vierstelligem Jahr.
     public static func dateString(_ date: Date, calendar: Calendar) -> String {
         let c = calendar.dateComponents([.year, .month, .day], from: date)
         func pad(_ value: Int?, _ width: Int) -> String {
@@ -125,6 +134,7 @@ public enum SleepNotes {
         notes.prefix(maxCustom).map { "\($0.id)|\($0.name)" }.joined(separator: "\n")
     }
 
+    /// Liest `encodeCustom`; Zeilen ohne «custom:»-Kennung, doppelte Kennungen und leere Namen fallen weg, höchstens 5.
     public static func decodeCustom(_ text: String) -> [CustomNote] {
         var out: [CustomNote] = []
         for line in text.split(whereSeparator: \.isNewline) {
@@ -149,17 +159,24 @@ public enum SleepNotes {
 
 /// Wie eine Notiz mit dem Befinden zusammenhängt, über die letzten 90 Nächte. Identisch zu Kotlin.
 public struct NoteEffect: Equatable, Sendable {
+    /// Kennung der Notiz.
     public let noteId: String
+    /// Nächte mit Befinden und dieser Notiz.
     public let nightsWith: Int
+    /// Nächte mit Befinden ohne diese Notiz.
     public let nightsWithout: Int
+    /// Durchschnittliches Befinden (1–5) mit der Notiz.
     public let avgFeelingWith: Double
+    /// Durchschnittliches Befinden (1–5) ohne die Notiz.
     public let avgFeelingWithout: Double
     /// Befinden mit minus ohne Notiz.
     public var delta: Double { avgFeelingWith - avgFeelingWithout }
     /// Durchschnittlich geschlafene Minuten mit/ohne Notiz laut Gesundheits-App; `nil` unter 3 Nächten je Seite.
     public let avgAsleepWith: Double?
+    /// Wie `avgAsleepWith`, für Nächte ohne die Notiz.
     public let avgAsleepWithout: Double?
 
+    /// Erzeugt eine Wirkung; Durchschnitte wie von ``compute(nights:notes:asleepByNight:calendar:)``.
     public init(noteId: String, nightsWith: Int, nightsWithout: Int, avgFeelingWith: Double, avgFeelingWithout: Double,
                 avgAsleepWith: Double?, avgAsleepWithout: Double?) {
         self.noteId = noteId
@@ -180,12 +197,19 @@ public struct NoteEffect: Equatable, Sendable {
     public var isVisible: Bool { abs(delta) >= Self.minVisibleDelta - 1e-9 }
 
     /// Je Notiz mit genug Nächten: nur Nächte mit Befinden (1–5) zählen, je Nacht ihre Notizen
-    /// (nach Nachtdatum). `asleepByNight` = geschlafene Minuten je Nachtdatum, falls bekannt.
+    /// (nach Nachtdatum). Mehrere Nächte mit demselben Nachtdatum zählen einmal (die zuletzt geweckte),
+    /// wie in Kotlin. `asleepByNight` = geschlafene Minuten je Nachtdatum, falls bekannt.
     /// Sortiert nach |delta| absteigend, bei Gleichstand nach Kennung.
     public static func compute(nights: [NightRecord], notes: [String: [String]], asleepByNight: [String: Int] = [:],
                                calendar: Calendar) -> [NoteEffect] {
-        let rated = NightHistory.trim(nights).compactMap { night -> (date: String, feeling: Int)? in
-            night.feeling.map { (date: SleepNotes.nightDate(of: night, calendar: calendar), feeling: $0) }
+        var latest: [String: NightRecord] = [:]
+        for night in NightHistory.trim(nights) where night.feeling != nil {
+            let date = SleepNotes.nightDate(of: night, calendar: calendar)
+            if let known = latest[date], known.wokeAt >= night.wokeAt { continue }
+            latest[date] = night
+        }
+        let rated = latest.keys.sorted().compactMap { date -> (date: String, feeling: Int)? in
+            latest[date]?.feeling.map { (date: date, feeling: $0) }
         }
         let ids = SleepNotes.normalize(rated.flatMap { notes[$0.date] ?? [] })
         func average(_ values: [Int]) -> Double { Double(values.reduce(0, +)) / Double(values.count) }
@@ -203,49 +227,5 @@ public struct NoteEffect: Equatable, Sendable {
             )
         }
         return effects.sorted { abs($0.delta) != abs($1.delta) ? abs($0.delta) > abs($1.delta) : $0.noteId < $1.noteId }
-    }
-}
-
-/// Schlafziel in Minuten. Identisch zu Kotlin.
-public enum SleepGoal {
-    public static let defaultMinutes = 450
-    public static let minMinutes = 360
-    public static let maxMinutes = 600
-    public static let stepMinutes = 15
-    /// So viele Nächte zählt der Wochenstatus.
-    public static let weekNights = 7
-
-    /// Auf den erlaubten Bereich und das 15-Minuten-Raster gebracht.
-    public static func clamp(_ minutes: Int) -> Int {
-        let stepped = Int((Double(minutes) / Double(stepMinutes)).rounded()) * stepMinutes
-        return min(maxMinutes, max(minMinutes, stepped))
-    }
-
-    public static func reached(asleepMinutes: Int, goalMinutes: Int) -> Bool { asleepMinutes >= goalMinutes }
-
-    /// Wie viele der letzten 7 Nächte (die 7 jüngsten Nachtdaten) das Ziel erreicht haben: (erreicht, gezählt).
-    /// Mehrere Einträge zum selben Nachtdatum zählen als eine Nacht mit dem längsten Schlaf.
-    public static func weekStatus(_ nights: [(date: String, asleepMinutes: Int)], goalMinutes: Int) -> (reached: Int, total: Int) {
-        var byDate: [String: Int] = [:]
-        for night in nights { byDate[night.date] = max(byDate[night.date] ?? 0, night.asleepMinutes) }
-        let recent = byDate.keys.sorted().suffix(weekNights)
-        let count = recent.filter { reached(asleepMinutes: byDate[$0] ?? 0, goalMinutes: goalMinutes) }.count
-        return (count, recent.count)
-    }
-}
-
-/// Bettzeit vor dem nächsten Wecker. Identisch zu Kotlin.
-public enum Bedtime {
-    /// Erinnerung so viele Minuten vor der Bettzeit.
-    public static let leadMinutes = 30
-
-    /// Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel. Bei Schlafdauer-Weckern ist die
-    /// Zielzeit ihre späteste Zeit (so plant sie `AlarmSchedule` ohnehin).
-    public static func bedtime(nextAlarmTarget: Date, goalMinutes: Int) -> Date {
-        nextAlarmTarget.addingTimeInterval(-TimeInterval(goalMinutes * 60))
-    }
-
-    public static func reminderAt(nextAlarmTarget: Date, goalMinutes: Int, leadMinutes: Int = Bedtime.leadMinutes) -> Date {
-        bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes).addingTimeInterval(-TimeInterval(leadMinutes * 60))
     }
 }
