@@ -92,7 +92,7 @@ struct HomeView: View {
                     .padding(.bottom, 16)
                 }
                 .ignoresSafeArea(edges: .top)
-                .onScrollGeometryChange(for: Bool.self) { $0.contentOffset.y + $0.contentInsets.top > 8 } action: { _, scrolled in
+                .onScrolledPast(8) { scrolled in
                     withAnimation(.snappy) { fabCompact = scrolled }
                 }
                 // Der Knopf als Einschub unten: Die Liste endet über ihm, die letzte Karte bleibt ganz sichtbar.

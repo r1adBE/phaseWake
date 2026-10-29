@@ -1,6 +1,7 @@
 package com.phasewake.app.ring
 
 import android.content.Context
+import androidx.core.content.edit
 import com.phasewake.app.ring.BackupAlarm.Companion.FORWARD_DELAY
 import com.phasewake.app.ring.BackupAlarm.Companion.MISSED_DURING_BOOT
 import com.phasewake.app.ring.BackupAlarm.Companion.backupPending
@@ -27,16 +28,16 @@ internal object BackupDirectBoot {
         context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
     fun save(context: Context, at: Instant, alarmId: String, target: Instant) {
-        prefs(context).edit().putLong(KEY_AT, at.toEpochMilli()).putString(KEY_ID, alarmId).putLong(KEY_TARGET, target.toEpochMilli()).apply()
+        prefs(context).edit { putLong(KEY_AT, at.toEpochMilli()); putString(KEY_ID, alarmId); putLong(KEY_TARGET, target.toEpochMilli()) }
     }
 
     fun clear(context: Context) {
-        prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_TARGET).apply()
+        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_TARGET) }
     }
 
     /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken. */
     fun markRang(context: Context, alarmId: String, target: Long) {
-        prefs(context).edit().putString(KEY_RANG_ID, alarmId).putLong(KEY_RANG_TARGET, target).apply()
+        prefs(context).edit { putString(KEY_RANG_ID, alarmId); putLong(KEY_RANG_TARGET, target) }
     }
 
     /** Gemerkten Weckvorgang einmal abholen. */
@@ -44,7 +45,7 @@ internal object BackupDirectBoot {
         val prefs = prefs(context)
         val id = prefs.getString(KEY_RANG_ID, null) ?: return null
         val target = Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L))
-        prefs.edit().remove(KEY_RANG_ID).remove(KEY_RANG_TARGET).apply()
+        prefs.edit { remove(KEY_RANG_ID); remove(KEY_RANG_TARGET) }
         return id to target
     }
 
@@ -75,8 +76,7 @@ internal object SnoozeSafety {
         context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
     fun save(context: Context, saved: Saved) {
-        prefs(context).edit().putLong(KEY_AT, saved.at.toEpochMilli()).putString(KEY_ID, saved.alarmId)
-            .putInt(KEY_DONE, saved.snoozesDone).apply()
+        prefs(context).edit { putLong(KEY_AT, saved.at.toEpochMilli()); putString(KEY_ID, saved.alarmId); putInt(KEY_DONE, saved.snoozesDone) }
     }
 
     fun load(context: Context): Saved? {
@@ -86,7 +86,7 @@ internal object SnoozeSafety {
     }
 
     fun clear(context: Context) {
-        prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_DONE).apply()
+        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE) }
     }
 
     /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. */

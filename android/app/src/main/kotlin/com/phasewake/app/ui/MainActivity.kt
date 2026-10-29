@@ -146,7 +146,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         onFix = { item ->
             when {
                 item != Check.NOTIFICATIONS -> fixCheck(context, item, nightCheck.missingOn)
-                canAskNotifications(context, askedNotifications) -> {
+                // Die Versionsprüfung steht hier sichtbar für Lint; canAskNotifications prüft sie ebenfalls.
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && canAskNotifications(context, askedNotifications) -> {
                     askedNotifications = true
                     notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                 }
