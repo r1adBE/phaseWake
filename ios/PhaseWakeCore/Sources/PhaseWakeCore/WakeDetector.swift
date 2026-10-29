@@ -22,6 +22,7 @@ public final class WakeDetector {
     /// Weckgrund, sobald entschieden; sonst `nil`.
     public private(set) var result: WakeReason?
 
+    /// Erzeugt einen Detektor für genau ein Weckfenster.
     public init(config: DetectorConfig = .standard) {
         self.config = config
         recent.reserveCapacity(config.maxWindow)

@@ -11,6 +11,7 @@ public struct SoundClip: Equatable, Sendable, Identifiable {
     public let night: String
     /// Beginn des Geräuschs.
     public let at: Date
+    /// Art des Geräuschs.
     public let type: SoundType
     /// Dauer des Geräuschs (kann länger sein als der Ausschnitt, z. B. minutenlanges Schnarchen).
     public let durationMs: Int64
@@ -19,8 +20,10 @@ public struct SoundClip: Equatable, Sendable, Identifiable {
     /// Dateiname des Ausschnitts im App-Ordner (ohne Pfad).
     public let file: String
 
+    /// Der Dateiname ist eindeutig und dient als Kennung.
     public var id: String { file }
 
+    /// Erzeugt einen Ausschnitt; Dauer in Millisekunden, Pegel in dBFS.
     public init(night: String, at: Date, type: SoundType, durationMs: Int64, peakDb: Int, file: String) {
         self.night = night
         self.at = at
@@ -33,11 +36,16 @@ public struct SoundClip: Equatable, Sendable, Identifiable {
 
 /// Bilanz einer Nacht: «Schnarchen: 12 Min (8 Ausschnitte) · Sprechen: 2 Ausschnitte».
 public struct SoundSummary: Equatable, Sendable {
+    /// Gesamtdauer des Schnarchens in Millisekunden.
     public let snoreMs: Int64
+    /// Ausschnitte mit Schnarchen.
     public let snoreClips: Int
+    /// Ausschnitte mit Sprechen.
     public let talkClips: Int
+    /// Ausschnitte mit anderen Geräuschen.
     public let otherClips: Int
 
+    /// Erzeugt eine Bilanz; Dauer in Millisekunden.
     public init(snoreMs: Int64, snoreClips: Int, talkClips: Int, otherClips: Int) {
         self.snoreMs = snoreMs
         self.snoreClips = snoreClips
@@ -48,6 +56,7 @@ public struct SoundSummary: Equatable, Sendable {
     /// Schnarch-Minuten, gerundet; kurzes Schnarchen zählt als 1 Min statt 0.
     public var snoreMinutes: Int { snoreMs <= 0 ? 0 : max(1, Int((Double(snoreMs) / 60_000).rounded())) }
 
+    /// Alle Ausschnitte der Nacht.
     public var clips: Int { snoreClips + talkClips + otherClips }
 }
 
@@ -57,7 +66,9 @@ public struct SoundSummary: Equatable, Sendable {
 /// Speicherformat: je Ausschnitt eine Zeile «yyyy-MM-dd|Beginn ms|Art|Dauer ms|Spitze dB|Datei».
 /// Identisch zu `SoundEvents` (Kotlin).
 public enum SoundEvents {
+    /// Ausschnitte werden nach so vielen Tagen gelöscht: Aufnahmen sind privat und sollen nicht liegen bleiben.
     public static let retentionDays = 7
+    /// Höchstens so viele Ausschnitte je Nacht (begrenzt den Speicher); die leisesten fallen weg.
     public static let maxClipsPerNight = 40
     /// Die Aufnahme endet so lange nach der Zielzeit des nächsten Weckers.
     public static let afterTarget: TimeInterval = 30 * 60
@@ -69,6 +80,7 @@ public enum SoundEvents {
     public static let autoStartLookahead: TimeInterval = 24 * 3600
     /// Abtastrate der gespeicherten Ausschnitte.
     public static let sampleRate = 16_000
+    /// Pegel für Stille in dBFS (Untergrenze statt minus unendlich).
     public static let silenceDb = -140.0
 
     /// Ende der Aufnahme: Zielzeit des nächsten Weckers + 30 Min, wenn er innerhalb von 24 Std. liegt
@@ -184,6 +196,7 @@ public enum SoundEvents {
     /// Nachtdatum eines Geräuschs (wie bei den Notizen).
     public static func nightDate(_ at: Date, calendar: Calendar) -> String { SleepNotes.nightDate(at, calendar: calendar) }
 
+    /// Schreibt je Ausschnitt eine Zeile (Format siehe oben), nach Beginn sortiert.
     public static func encode(_ clips: [SoundClip]) -> String {
         sorted(clips).map {
             [$0.night, String(millis($0.at)), $0.type.rawValue, String($0.durationMs), String($0.peakDb), $0.file].joined(separator: "|")
@@ -239,6 +252,7 @@ public enum SoundEvents {
 ///
 /// `atMs` = Beginn des Blocks in ms (beliebiger, gleichmässig steigender Bezug, z. B. ab Aufnahmebeginn).
 public struct SoundEventDetector: Sendable {
+    /// Was der Aufrufer nach einem Block tun soll; Zeiten in ms im Bezug von `atMs`.
     public enum Action: Equatable, Sendable {
         /// Ausschnitt beginnt bei `clipStartMs` (Vorlauf ab dort übernehmen); das Geräusch bei `onsetMs`.
         case clipStart(clipStartMs: Int64, onsetMs: Int64)
@@ -248,17 +262,27 @@ public struct SoundEventDetector: Sendable {
         case eventEnd(onsetMs: Int64, durationMs: Int64, peakDb: Double)
     }
 
+    /// Länge eines Blocks in ms.
     public static let frameMs: Int64 = 100
+    /// Sekunden, über die das Grundrauschen gebildet wird.
     public static let floorSeconds = 60
+    /// Vorlauf in Sekunden, bevor erkannt wird.
     public static let minFloorSeconds = 10
+    /// Abstand in dB über dem Grundrauschen, ab dem ein Block laut ist.
     public static let thresholdDb = 12.0
     /// Absolute Untergrenze für einen lauten Block in dBFS (leiser zählt nie als Geräusch).
     public static let minEventDb = -50.0
+    /// So lange (ms) muss es am Stück laut sein, damit ein Geräusch beginnt.
     public static let minLoudMs: Int64 = 500
+    /// Vorlauf des Ausschnitts vor dem Beginn in ms.
     public static let preRollMs: Int64 = 2_000
+    /// Höchstlänge eines Ausschnitts in ms.
     public static let maxClipMs: Int64 = 10_000
+    /// Ausschnitt endet früher nach so viel Stille (ms).
     public static let clipTailMs: Int64 = 2_000
+    /// Geräusch endet nach so viel Stille (ms).
     public static let eventGapMs: Int64 = 30_000
+    /// Höchstdauer eines Geräuschs in ms (10 Min).
     public static let maxEventMs: Int64 = 10 * 60_000
 
     private var seconds: [Double] = []
@@ -276,11 +300,13 @@ public struct SoundEventDetector: Sendable {
     private var peak = -Double.infinity
     private var clipStartMs: Int64?
 
+    /// Erzeugt einen Detektor ohne Vorlauf.
     public init() {}
 
     /// Aktuelle Schwelle in dBFS; `nil` während des Vorlaufs.
     public var threshold: Double? { floor.map { $0 + Self.thresholdDb } }
 
+    /// Wertet einen Block aus. `atMs` = Beginn des Blocks, `levelDb` = Pegel in dBFS (`SoundEvents.levelDb`). Liefert die Aktionen dieses Blocks, meist keine.
     public mutating func onFrame(atMs: Int64, levelDb: Double) -> [Action] {
         var actions: [Action] = []
         let loud = (threshold.map { levelDb > $0 } ?? false) && levelDb >= Self.minEventDb
@@ -359,6 +385,7 @@ public struct SoundEventDetector: Sendable {
         floor = seconds.count >= Self.minFloorSeconds ? Self.median(seconds) : nil
     }
 
+    /// Median der Werte (bei gerader Anzahl Mittel der beiden mittleren); 0 bei leerer Liste.
     public static func median(_ values: [Double]) -> Double {
         let sorted = values.sorted()
         guard !sorted.isEmpty else { return 0 }

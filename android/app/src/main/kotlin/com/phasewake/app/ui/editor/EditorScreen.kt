@@ -1,102 +1,62 @@
 package com.phasewake.app.ui.editor
 
 import android.app.Activity
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.Role
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.background
-import java.time.temporal.WeekFields
-import androidx.compose.material3.TimePickerLayoutType
-import androidx.compose.material3.AlertDialog
-import androidx.activity.compose.BackHandler
-import android.content.Context
-import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
 import android.text.format.DateFormat
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.clickable
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
-import androidx.core.content.IntentCompat
-import com.phasewake.app.core.PhoneAlert
-import com.phasewake.app.core.Sunrise
-import com.phasewake.app.core.SunriseDevice
-import com.phasewake.app.core.WakeTask
-import com.phasewake.app.core.WindowAdvice
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.layout.layout
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
+import androidx.core.content.IntentCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.ring.WakeTonePreview
 import com.phasewake.app.ring.WakeTones
-import com.phasewake.app.ui.Format
-import java.time.DayOfWeek
-import java.time.Duration
-import java.time.LocalTime
-import java.time.format.TextStyle
 import java.util.UUID
 import kotlin.math.roundToInt
-
-private val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
-private val WEEKEND = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY)
 
 /** Wecker anlegen oder bearbeiten. [existing] = `null` für einen neuen Wecker. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,76 +69,35 @@ fun EditorScreen(
     onDelete: (AlarmSpec) -> Unit,
 ) {
     val context = LocalContext.current
-    val res = LocalResources.current
     // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
     val newId = rememberSaveable { UUID.randomUUID().toString() }
     // Neue Wecker wecken mit «Morgenvögel»; bestehende behalten ihren Ton (leer = Standard des Systems).
     val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS, sound = WakeTones.DEFAULT)
     val time = rememberTimePickerState(base.hour, base.minute, is24Hour = DateFormat.is24HourFormat(context))
-    var window by rememberSaveable { mutableFloatStateOf(base.windowMinutes.toFloat()) }
-    var days by rememberSaveable(stateSaver = DaysSaver) { mutableStateOf(base.days) }
-    var sleepMode by rememberSaveable { mutableStateOf(base.sleepDurationMinutes != null) }
-    var sleepMinutes by rememberSaveable { mutableFloatStateOf((base.sleepDurationMinutes ?: 450).toFloat()) }
-    var phone by rememberSaveable { mutableStateOf(base.phone) }
-    var watchSound by rememberSaveable { mutableStateOf(base.watchSound) }
-    var sound by rememberSaveable { mutableStateOf(base.sound) }
-    var sunrise by rememberSaveable { mutableStateOf(base.sunrise) }
-    var sunriseDevice by rememberSaveable { mutableStateOf(base.sunriseDevice) }
-    var wakeTask by rememberSaveable { mutableStateOf(base.wakeTask) }
+    val state = rememberSaveable(saver = EditorState.saver(base)) { EditorState(base) }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
-        if (result.resultCode == Activity.RESULT_OK) sound = uri?.toString().orEmpty()
+        if (result.resultCode == Activity.RESULT_OK) state.sound = uri?.toString().orEmpty()
     }
     // Probehören der eigenen Wecktöne; endet beim Verlassen des Editors und wenn die App in den Hintergrund geht.
     val preview = remember { WakeTonePreview(context) }
     DisposableEffect(preview) { onDispose { preview.stop() } }
     LifecycleEventEffect(Lifecycle.Event.ON_STOP) { preview.stop() }
-    var label by rememberSaveable { mutableStateOf(base.label) }
-    // «Mehr» aufgeklappt: übersteht Drehen und Neuaufbau.
-    var more by rememberSaveable { mutableStateOf(false) }
-
-    fun result() = base.copy(
-        hour = time.hour,
-        minute = time.minute,
-        days = days,
-        windowMinutes = window.roundToInt(),
-        sleepDurationMinutes = if (sleepMode) sleepMinutes.roundToInt() else null,
-        phone = phone,
-        watchSound = watchSound,
-        sound = sound,
-        label = label.trim(),
-        sunrise = sunrise,
-        sunriseDevice = sunriseDevice,
-        wakeTask = wakeTask,
-        enabled = true,
-    )
 
     // Zurück ohne Speichern: bei Änderungen zuerst fragen, auch bei der System-Zurück-Geste.
     var confirmDiscard by remember { mutableStateOf(false) }
     var confirmDelete by remember { mutableStateOf(false) }
-    val dirty = result() != base.copy(enabled = true)
+    val dirty = state.result(time) != base.copy(enabled = true)
     val back = { if (dirty) confirmDiscard = true else onBack() }
     BackHandler(enabled = dirty) { confirmDiscard = true }
-    if (confirmDiscard) {
-        AlertDialog(
-            onDismissRequest = { confirmDiscard = false },
-            title = { Text(stringResource(R.string.editor_discard_title)) },
-            confirmButton = { TextButton(onClick = { confirmDiscard = false; onBack() }) { Text(stringResource(R.string.editor_discard)) } },
-            dismissButton = { TextButton(onClick = { confirmDiscard = false }) { Text(stringResource(R.string.editor_keep_editing)) } },
-        )
-    }
-    if (confirmDelete && existing != null) {
-        AlertDialog(
-            onDismissRequest = { confirmDelete = false },
-            title = { Text(stringResource(R.string.editor_delete_title)) },
-            confirmButton = {
-                TextButton(onClick = { confirmDelete = false; onDelete(existing) }) {
-                    Text(stringResource(R.string.editor_delete), color = MaterialTheme.colorScheme.error)
-                }
-            },
-            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text(stringResource(R.string.action_cancel)) } },
-        )
-    }
+    EditorDialogs(
+        confirmDiscard = confirmDiscard,
+        onDiscard = { confirmDiscard = false; onBack() },
+        onKeepEditing = { confirmDiscard = false },
+        deleting = existing.takeIf { confirmDelete },
+        onDelete = { confirmDelete = false; onDelete(it) },
+        onKeep = { confirmDelete = false },
+    )
 
     // Randlos: Statusleiste oben, Navigationsleiste unten und Tastatur freihalten.
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
@@ -189,7 +108,7 @@ fun EditorScreen(
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.weight(1f),
             )
-            Button(onClick = { onSave(result()) }, modifier = Modifier.padding(end = 12.dp)) {
+            Button(onClick = { onSave(state.result(time)) }, modifier = Modifier.padding(end = 12.dp)) {
                 Text(stringResource(R.string.editor_save))
             }
         }
@@ -198,251 +117,21 @@ fun EditorScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                SegmentedButton(selected = !sleepMode, onClick = { sleepMode = false }, shape = SegmentedButtonDefaults.itemShape(0, 2)) {
+                SegmentedButton(selected = !state.sleepMode, onClick = { state.sleepMode = false }, shape = SegmentedButtonDefaults.itemShape(0, 2)) {
                     Text(stringResource(R.string.editor_mode_clock))
                 }
-                SegmentedButton(selected = sleepMode, onClick = { sleepMode = true }, shape = SegmentedButtonDefaults.itemShape(1, 2)) {
+                SegmentedButton(selected = state.sleepMode, onClick = { state.sleepMode = true }, shape = SegmentedButtonDefaults.itemShape(1, 2)) {
                     Text(stringResource(R.string.editor_mode_sleep))
                 }
             }
-
-            Section {
-                // Beschriftung bündig mit dem Stundenfeld: Im 24-h-Format ist die Anzeige (2 × 96 dp + 24 dp)
-                // schmaler als das Zifferblatt (256 dp) und steht 20 dp eingerückt; im 12-h-Format nicht.
-                Column(Modifier.align(Alignment.CenterHorizontally)) {
-                    Text(
-                        stringResource(if (sleepMode) R.string.editor_latest else R.string.editor_target),
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(start = if (time.is24hour) 20.dp * TIME_PICKER_SCALE else 0.dp),
-                    )
-                    TimePicker(
-                        state = time,
-                        // Senkrecht: Im 12-h-Format bricht so «vorm./nachm.» in langen Sprachen nicht um.
-                        layoutType = TimePickerLayoutType.Vertical,
-                        colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
-                        modifier = Modifier.padding(top = 8.dp).scaled(TIME_PICKER_SCALE),
-                    )
-                }
-            }
-
-            AnimatedVisibility(sleepMode) {
-                Section {
-                    Text(
-                        stringResource(R.string.editor_sleep_duration, Format.duration(context, Duration.ofMinutes(sleepMinutes.roundToInt().toLong()))),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Slider(
-                        value = sleepMinutes,
-                        onValueChange = { sleepMinutes = (it / 15f).roundToInt() * 15f },
-                        valueRange = SLEEP_MIN..SLEEP_MAX,
-                        steps = ((SLEEP_MAX - SLEEP_MIN) / 15f).roundToInt() - 1,
-                    )
-                    Text(stringResource(R.string.editor_sleep_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
-
-            if (advice != null && window.roundToInt() < advice.windowMinutes) {
-                Card(
-                    shape = MaterialTheme.shapes.medium,
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Column(Modifier.padding(16.dp)) {
-                        Text(stringResource(R.string.editor_advice_title), style = MaterialTheme.typography.titleSmall)
-                        Text(
-                            res.getQuantityString(R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes),
-                            style = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.padding(top = 4.dp),
-                        )
-                        TextButton(onClick = { window = advice.windowMinutes.toFloat() }) {
-                            Text(stringResource(R.string.editor_advice_apply, advice.windowMinutes))
-                        }
-                    }
-                }
-            }
-
-            Section {
-                val minutes = window.roundToInt()
-                Text(stringResource(R.string.editor_window, minutes), style = MaterialTheme.typography.titleMedium)
-                Slider(
-                    value = window,
-                    onValueChange = { window = (it / 5f).roundToInt() * 5f },
-                    valueRange = AlarmSpec.MIN_WINDOW_MINUTES.toFloat()..AlarmSpec.MAX_WINDOW_MINUTES.toFloat(),
-                    steps = (AlarmSpec.MAX_WINDOW_MINUTES - AlarmSpec.MIN_WINDOW_MINUTES) / 5 - 1,
-                )
-                if (!sleepMode) {
-                    val target = LocalTime.of(time.hour, time.minute)
-                    Text(
-                        stringResource(R.string.editor_window_hint, Format.time(target.minusMinutes(minutes.toLong())), Format.time(target)),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-
-            Section {
-                Text(stringResource(R.string.editor_days), style = MaterialTheme.typography.titleMedium)
-                // Sieben Tage in einer Zeile, Wochenbeginn nach Sprache und Region (z. B. Sonntag in den USA).
-                val locale = LocalConfiguration.current.locales[0]
-                val firstDay = WeekFields.of(locale).firstDayOfWeek
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
-                    (0L until 7L).map { firstDay.plus(it) }.forEach { day ->
-                        DayToggle(
-                            label = day.getDisplayName(TextStyle.SHORT, locale).trimEnd('.'),
-                            description = day.getDisplayName(TextStyle.FULL, locale),
-                            selected = day in days,
-                            onToggle = { days = if (day in days) days - day else days + day },
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
-                }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TextButton(onClick = { days = WEEKDAYS }) { Text(stringResource(R.string.editor_weekdays)) }
-                    TextButton(onClick = { days = WEEKEND }) { Text(stringResource(R.string.editor_weekend)) }
-                    TextButton(onClick = { days = DayOfWeek.entries.toSet() }) { Text(stringResource(R.string.alarm_every_day)) }
-                }
-            }
-
-            Section {
-                Text(stringResource(R.string.editor_alert), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(R.string.editor_alert_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-
-                AlertLabel(R.drawable.ic_watch, R.string.editor_alert_watch)
-                Choice(
-                    options = listOf(false to R.string.alert_vibrate_only, true to R.string.alert_vibrate_sound),
-                    selected = watchSound,
-                    onSelect = { watchSound = it },
-                )
-
-                AlertLabel(R.drawable.ic_phone, R.string.editor_alert_phone)
-                Choice(
-                    options = listOf(PhoneAlert.OFF to R.string.alert_off, PhoneAlert.VIBRATE to R.string.alert_vibrate, PhoneAlert.SOUND to R.string.alert_sound),
-                    selected = phone,
-                    onSelect = { phone = it },
-                )
-                if (phone != PhoneAlert.OFF) {
-                    Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
-                    // Weckaufgabe: nur mit Handy-Wecker (gelöst wird am Handy; ohne ihn gilt Halten).
-                    Text(stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
-                    Choice(
-                        options = listOf(WakeTask.NONE to R.string.wake_task_hold, WakeTask.MATH to R.string.wake_task_math),
-                        selected = wakeTask,
-                        onSelect = { wakeTask = it },
-                    )
-                    AnimatedVisibility(wakeTask == WakeTask.MATH) {
-                        Text(
-                            stringResource(R.string.wake_task_hint),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
-                    }
-                }
-            }
-
-            // Sonnenaufgang im Haupteditor, mit Gerätewahl (Handy, Uhr oder beide).
-            Section {
-                Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
-                Choice(
-                    options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
-                    selected = sunrise,
-                    onSelect = { sunrise = it },
-                )
-                AnimatedVisibility(sunrise != Sunrise.OFF) {
-                    Column {
-                        Text(
-                            if (sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                            else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
-                        Text(stringResource(R.string.sunrise_device_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
-                        Choice(
-                            options = listOf(
-                                SunriseDevice.PHONE to R.string.sunrise_device_phone,
-                                SunriseDevice.WATCH to R.string.sunrise_device_watch,
-                                SunriseDevice.BOTH to R.string.sunrise_device_both,
-                            ),
-                            selected = sunriseDevice,
-                            onSelect = { sunriseDevice = it },
-                        )
-                        // Nur wenn das Handy leuchtet: wie es hingelegt wird.
-                        AnimatedVisibility(sunriseDevice != SunriseDevice.WATCH) {
-                            Text(
-                                stringResource(R.string.editor_sunrise_phone_hint),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 6.dp),
-                            )
-                        }
-                    }
-                }
-            }
-
-            // Selten gebrauchte Optionen (Weckton, Name) zugeklappt unter «Mehr»: kürzerer Editor auf kleinen Handys.
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .clip(MaterialTheme.shapes.small)
-                    .clickable(role = Role.Button) { more = !more }
-                    .padding(horizontal = 4.dp, vertical = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(stringResource(R.string.editor_more), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                Icon(
-                    painterResource(R.drawable.ic_expand),
-                    contentDescription = null,
-                    modifier = Modifier.size(20.dp).rotate(if (more) 180f else 0f),
-                )
-            }
-
-            AnimatedVisibility(more) {
-                Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                    AnimatedVisibility(phone == PhoneAlert.SOUND) {
-                        Section {
-                            // Zugeklappt oder ausgeblendet: Probehören endet.
-                            DisposableEffect(Unit) { onDispose { preview.stop() } }
-                            Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(bottom = 4.dp))
-                            // Eigene Töne: Antippen wählt und spielt kurz an.
-                            WakeTones.ALL.forEach { tone ->
-                                ToneRow(stringResource(tone.label), selected = sound == tone.key) {
-                                    sound = tone.key
-                                    preview.play(tone)
-                                }
-                            }
-                            // Systemton: leer (Standard) oder eine URI aus der Auswahl des Systems.
-                            val system = WakeTones.find(sound) == null
-                            ToneRow(
-                                stringResource(R.string.wake_tone_system),
-                                selected = system,
-                                detail = if (system) soundTitle(context, sound) else null,
-                            ) {
-                                preview.stop()
-                                soundPicker.launch(
-                                    Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                                        .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, sound.takeIf { system }?.ifEmpty { null }?.let(Uri::parse)),
-                                )
-                            }
-                        }
-                    }
-
-                    OutlinedTextField(
-                        value = label,
-                        onValueChange = { label = it.take(40) },
-                        label = { Text(stringResource(R.string.editor_label)) },
-                        placeholder = { Text(stringResource(R.string.editor_label_hint)) },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            }
-
+            TimeSection(state, time)
+            AnimatedVisibility(state.sleepMode) { SleepSection(state) }
+            if (advice != null && state.window.roundToInt() < advice.windowMinutes) AdviceCard(state, advice)
+            WindowSection(state, time)
+            DaysSection(state)
+            AlertSection(state)
+            SunriseSection(state)
+            MoreSection(state, preview, soundPicker)
             if (existing != null) {
                 TextButton(onClick = { confirmDelete = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
                     Icon(painterResource(R.drawable.ic_delete), contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp))
@@ -454,119 +143,34 @@ fun EditorScreen(
     }
 }
 
+/** Rückfragen des Editors: Änderungen verwerfen und Wecker löschen ([deleting] `null`: keine Rückfrage). */
 @Composable
-private fun AlertLabel(icon: Int, label: Int) {
-    Row(Modifier.padding(top = 14.dp, bottom = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-        Icon(painterResource(icon), contentDescription = null, modifier = Modifier.size(18.dp))
-        Text(stringResource(label), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp))
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) -> Unit) {
-    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-        options.forEachIndexed { index, (value, label) ->
-            SegmentedButton(
-                selected = value == selected,
-                onClick = { onSelect(value) },
-                shape = SegmentedButtonDefaults.itemShape(index, options.size),
-            ) { Text(stringResource(label), maxLines = 1) }
-        }
-    }
-}
-
-/** Eine Zeile der Weckton-Auswahl (Optionsfeld, Name, rechts optional der gewählte Systemton). */
-@Composable
-private fun ToneRow(label: String, selected: Boolean, detail: String? = null, onClick: () -> Unit) {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .clip(MaterialTheme.shapes.small)
-            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
-            .padding(vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        RadioButton(selected = selected, onClick = null)
-        Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = 12.dp).weight(1f))
-        if (detail != null) {
-            Text(detail, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, maxLines = 1, modifier = Modifier.padding(start = 8.dp))
-        }
-    }
-}
-
-/** Anzeigename des gewählten Systemtons; leer = Standard-Weckton. */
-private fun soundTitle(context: Context, sound: String): String {
-    if (sound.isEmpty()) return context.getString(R.string.editor_sound_default)
-    return runCatching { RingtoneManager.getRingtone(context, sound.toUri())?.getTitle(context) }.getOrNull()
-        ?: context.getString(R.string.editor_sound_default)
-}
-
-@Composable
-private fun Section(content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit) {
-    Card(
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(Modifier.fillMaxWidth().padding(16.dp), content = content)
-    }
-}
-
-/** Wochentage als Zahlen speichern (1 = Montag), damit sie Drehen und Neuaufbau überstehen. */
-private val DaysSaver = androidx.compose.runtime.saveable.Saver<Set<DayOfWeek>, ArrayList<Int>>(
-    save = { days -> ArrayList(days.map { it.value }) },
-    restore = { values -> values.map(DayOfWeek::of).toSet() },
-)
-
-/** Kleinster und grösster Wert des Schlafdauer-Schiebers (Minuten); AlarmSpec erlaubt 1–12 h. */
-private const val SLEEP_MIN = 180f
-private const val SLEEP_MAX = 720f
-
-/** Runder Tag-Schalter; alle sieben passen in eine Zeile. */
-@Composable
-private fun DayToggle(label: String, description: String, selected: Boolean, onToggle: () -> Unit, modifier: Modifier) {
-    val colors = MaterialTheme.colorScheme
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-            .aspectRatio(1f)
-            .clip(CircleShape)
-            .background(if (selected) colors.primary else colors.surfaceContainerHighest)
-            .toggleable(value = selected, role = Role.Checkbox, onValueChange = { onToggle() })
-            .semantics { contentDescription = description },
-    ) {
-        Text(
-            label,
-            style = MaterialTheme.typography.labelMedium,
-            color = if (selected) colors.onPrimary else colors.onSurface,
-            maxLines = 1,
-            softWrap = false,
+private fun EditorDialogs(
+    confirmDiscard: Boolean,
+    onDiscard: () -> Unit,
+    onKeepEditing: () -> Unit,
+    deleting: AlarmSpec?,
+    onDelete: (AlarmSpec) -> Unit,
+    onKeep: () -> Unit,
+) {
+    if (confirmDiscard) {
+        AlertDialog(
+            onDismissRequest = onKeepEditing,
+            title = { Text(stringResource(R.string.editor_discard_title)) },
+            confirmButton = { TextButton(onClick = onDiscard) { Text(stringResource(R.string.editor_discard)) } },
+            dismissButton = { TextButton(onClick = onKeepEditing) { Text(stringResource(R.string.editor_keep_editing)) } },
         )
     }
-}
-
-/** Uhrzeit-Wähler etwas kleiner als die Vorgabe von Material: Er soll die Seite nicht beherrschen. */
-private const val TIME_PICKER_SCALE = 0.82f
-
-/**
- * Verkleinert den Inhalt samt Platzbedarf (anders als `scale`, das nur zeichnet). Antippen und
- * Ziehen bleiben richtig, weil die Ebene die Eingaben mit umrechnet.
- */
-private fun Modifier.scaled(factor: Float): Modifier = layout { measurable, constraints ->
-    val inner = constraints.copy(
-        minWidth = 0,
-        minHeight = 0,
-        maxWidth = if (constraints.hasBoundedWidth) (constraints.maxWidth / factor).toInt() else constraints.maxWidth,
-        maxHeight = if (constraints.hasBoundedHeight) (constraints.maxHeight / factor).toInt() else constraints.maxHeight,
-    )
-    val placeable = measurable.measure(inner)
-    val width = (placeable.width * factor).roundToInt()
-    val height = (placeable.height * factor).roundToInt()
-    layout(width, height) {
-        placeable.placeWithLayer((width - placeable.width) / 2, (height - placeable.height) / 2) {
-            scaleX = factor
-            scaleY = factor
-        }
+    if (deleting != null) {
+        AlertDialog(
+            onDismissRequest = onKeep,
+            title = { Text(stringResource(R.string.editor_delete_title)) },
+            confirmButton = {
+                TextButton(onClick = { onDelete(deleting) }) {
+                    Text(stringResource(R.string.editor_delete), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = { TextButton(onClick = onKeep) { Text(stringResource(R.string.action_cancel)) } },
+        )
     }
 }

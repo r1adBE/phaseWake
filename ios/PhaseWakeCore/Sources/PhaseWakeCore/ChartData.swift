@@ -4,16 +4,21 @@ import Foundation
 /// `Regularity.minutesFromNoon`; `endMinute` liegt über 1440, wenn bis nach Mittag geschlafen wurde).
 /// Ohne Daten beides `nil`. Identisch zu `SleepBar` (Kotlin).
 public struct SleepBar: Equatable, Sendable {
+    /// Nachtdatum «yyyy-MM-dd» (`SleepNotes.nightDate`).
     public let date: String
+    /// Einschlafen in Minuten ab Mittag (0–1439); `nil` ohne Nacht an diesem Datum.
     public let startMinute: Int?
+    /// Aufwachen in Minuten ab Mittag; bei Schlaf über Mittag hinaus über 1440, damit der Balken nach rechts weiterläuft.
     public let endMinute: Int?
 
+    /// Erzeugt einen Balken; ohne Daten beide Minuten `nil`.
     public init(date: String, startMinute: Int?, endMinute: Int?) {
         self.date = date
         self.startMinute = startMinute
         self.endMinute = endMinute
     }
 
+    /// Ob der Balken gezeichnet wird: nur mit Beginn und Ende.
     public var hasData: Bool { startMinute != nil && endMinute != nil }
 }
 
@@ -21,20 +26,30 @@ public struct SleepBar: Equatable, Sendable {
 /// Stunden); `bedtimeMinute` = Bettzeit vor dem nächsten Wecker (`Bedtime.bedtime`), `nil` ohne Wecker;
 /// `regular` von `regularCounted` laut `Regularity.count`.
 public struct SleepBars: Equatable, Sendable {
+    /// Ein Balken je Nachtdatum, älteste zuerst, auch für Nächte ohne Daten (Lücke im Streifen).
     public let bars: [SleepBar]
+    /// Linker Achsenrand in Minuten ab Mittag, auf ganze Stunden abgerundet (höchstens 21:00).
     public let axisStart: Int
+    /// Rechter Achsenrand in Minuten ab Mittag, auf ganze Stunden aufgerundet (mindestens 11:00, höchstens 24 Stunden nach `axisStart`).
     public let axisEnd: Int
+    /// Bettzeit vor dem nächsten Wecker in Minuten ab Mittag; `nil` ohne aktiven Wecker.
     public let bedtimeMinute: Int?
+    /// Regelmässige Abende der jüngsten Woche (siehe `Regularity.count`).
     public let regular: Int
+    /// Gezählte Abende der jüngsten Woche; 0 ohne Gesundheitsdaten.
     public let regularCounted: Int
 }
 
 /// Schlafdauer eines Nachtdatums; `nil` ohne Daten.
 public struct DurationBar: Equatable, Sendable {
+    /// Nachtdatum «yyyy-MM-dd».
     public let date: String
+    /// Geschlafene Minuten der längsten Nacht dieses Datums; `nil` ohne Daten.
     public let asleepMinutes: Int?
+    /// Ob das Schlafziel erreicht ist (`SleepGoal.reached`); ohne Daten `false`.
     public let reached: Bool
 
+    /// Erzeugt einen Balken; ohne Daten `asleepMinutes` `nil` und `reached` `false`.
     public init(date: String, asleepMinutes: Int?, reached: Bool) {
         self.date = date
         self.asleepMinutes = asleepMinutes
@@ -45,11 +60,17 @@ public struct DurationBar: Equatable, Sendable {
 /// Schlafdauer pro Nacht, älteste zuerst. `averageMinutes` = Durchschnitt der Nächte mit Daten (ganze
 /// Minuten, abgerundet); `reached` von `counted`; `scaleMinutes` = das Grössere von Ziel und längster Nacht.
 public struct Durations: Equatable, Sendable {
+    /// Ein Balken je Nachtdatum, älteste zuerst, auch ohne Daten.
     public let bars: [DurationBar]
+    /// Schlafziel in Minuten, für die Ziellinie.
     public let goalMinutes: Int
+    /// Durchschnitt der Nächte mit Daten in ganzen Minuten, abgerundet (ganzzahlig wie Kotlin).
     public let averageMinutes: Int
+    /// Nächte mit erreichtem Ziel.
     public let reached: Int
+    /// Nächte mit Daten; Nenner zu `reached`.
     public let counted: Int
+    /// Höhe der Skala in Minuten: das Grössere von Ziel und längster Nacht, damit beide Platz haben.
     public let scaleMinutes: Int
 }
 
@@ -61,29 +82,43 @@ public enum WakeKind: String, Sendable {
 /// Weckmoment einer Uhr-Nacht: `minutesBefore` höchstens `windowMinutes` (0 = zur Zielzeit oder später),
 /// `minutesAfter` nach Schlummern.
 public struct WakeMoment: Equatable, Sendable {
+    /// Nachtdatum der Uhr-Nacht (`SleepNotes.nightDate(of:)`).
     public let date: String
+    /// Zeitpunkt des Weckens.
     public let wokeAt: Date
+    /// Minuten vor der Zielzeit, auf `windowMinutes` begrenzt; 0 zur Zielzeit oder später.
     public let minutesBefore: Int
+    /// Minuten nach der Zielzeit (nach Schlummern); sonst 0.
     public let minutesAfter: Int
+    /// Länge des Weckfensters dieser Nacht in Minuten (nie negativ).
     public let windowMinutes: Int
+    /// Art des Punkts; `late` hat Vorrang vor dem Weckgrund.
     public let kind: WakeKind
+    /// Gespeicherter Weckgrund der Nacht.
     public let reason: WakeReason
 }
 
 /// Weckmomente der letzten Uhr-Nächte, älteste zuerst. `scaleMinutes` = längstes Weckfenster,
 /// `averageBefore` = Durchschnitt von `minutesBefore`, gerundet.
 public struct WakeMoments: Equatable, Sendable {
+    /// Weckmomente, älteste zuerst.
     public let points: [WakeMoment]
+    /// Längstes Weckfenster in Minuten, mindestens 1, damit die Skala nie durch 0 teilt.
     public let scaleMinutes: Int
+    /// Durchschnitt von `minutesBefore` in Minuten, kaufmännisch gerundet.
     public let averageBefore: Int
 }
 
 /// Eine Stufe im Schlafprofil, in Minuten ab `Hypnogram.start`.
 public struct HypnoStep: Equatable, Sendable {
+    /// Beginn in Minuten ab `Hypnogram.start`.
     public let fromMinute: Double
+    /// Ende in Minuten ab `Hypnogram.start`.
     public let toMinute: Double
+    /// Schlafphase der Stufe; nie `.unknown` (unbekannte Abschnitte fallen weg).
     public let stage: SleepStage
 
+    /// Erzeugt eine Stufe; Minuten ab `Hypnogram.start`.
     public init(fromMinute: Double, toMinute: Double, stage: SleepStage) {
         self.fromMinute = fromMinute
         self.toMinute = toMinute
@@ -94,14 +129,22 @@ public struct HypnoStep: Equatable, Sendable {
 /// Schlafprofil einer Nacht aus der Gesundheits-App mit Weckfenster und Weckmoment (alles in Minuten ab
 /// `start`). `stageAtWake` = Phase beim Wecken (`StageCheck.stageAtWake`). Identisch zu Kotlin.
 public struct Hypnogram: Equatable, Sendable {
+    /// Beginn des gezeigten Bereichs (früheste Phase oder Fensterbeginn).
     public let start: Date
+    /// Ende des gezeigten Bereichs (späteste Phase oder Weckmoment bzw. Zielzeit).
     public let end: Date
+    /// Bekannte Phasen in zeitlicher Reihenfolge.
     public let steps: [HypnoStep]
+    /// Beginn des Weckfensters in Minuten ab `start`.
     public let windowFrom: Double
+    /// Zielzeit (Ende des Weckfensters) in Minuten ab `start`.
     public let windowTo: Double
+    /// Weckmoment in Minuten ab `start`.
     public let wokeAt: Double
+    /// Phase beim Wecken; `nil`, wenn die Gesundheits-App für diesen Moment keine Phase kennt.
     public let stageAtWake: SleepStage?
 
+    /// Länge des gezeigten Bereichs in Minuten.
     public var totalMinutes: Double { end.timeIntervalSince(start) / 60 }
 
     /// Minuten je Phase, ganze Minuten abgerundet.
@@ -112,10 +155,14 @@ public struct Hypnogram: Equatable, Sendable {
 
 /// Befinden eines Nachtdatums (1–5 oder `nil`) und die Notizen dieser Nacht (Kennungen).
 public struct FeelingPoint: Equatable, Sendable {
+    /// Nachtdatum «yyyy-MM-dd».
     public let date: String
+    /// Befinden 1–5 der zuletzt geweckten Nacht dieses Datums; `nil` ohne Angabe.
     public let feeling: Int?
+    /// Kennungen der Notizen dieser Nacht; leer ohne Notizen.
     public let notes: [String]
 
+    /// Erzeugt einen Punkt; ohne Angabe `feeling` `nil`.
     public init(date: String, feeling: Int?, notes: [String]) {
         self.date = date
         self.feeling = feeling
@@ -126,8 +173,11 @@ public struct FeelingPoint: Equatable, Sendable {
 /// Befinden über `ChartData.nights` Nachtdaten, älteste zuerst; `thisWeek` = Durchschnitt der jüngsten 7,
 /// `lastWeek` der 7 davor (`nil` ohne Angabe).
 public struct FeelingSeries: Equatable, Sendable {
+    /// Ein Punkt je Nachtdatum, älteste zuerst, auch ohne Befinden.
     public let points: [FeelingPoint]
+    /// Durchschnitt der jüngsten 7 Nachtdaten (1–5); `nil` ohne Angabe.
     public let thisWeek: Double?
+    /// Durchschnitt der 7 Nachtdaten davor (1–5); `nil` ohne Angabe.
     public let lastWeek: Double?
 }
 
@@ -135,10 +185,13 @@ public struct FeelingSeries: Equatable, Sendable {
 /// `nil` zurück, wenn es nichts zu zeigen gibt (das Diagramm bleibt dann verborgen). Nachtdaten wie bei
 /// den Notizen (`SleepNotes.nightDate`). Identisch zu `ChartData` (Kotlin).
 public enum ChartData {
+    /// Nachtdaten im Schlaf-Streifen, bei den Weckmomenten und beim Befinden: zwei Wochen.
     public static let nights = 14
+    /// Nachtdaten bei der Schlafdauer und für einen Wochendurchschnitt: eine Woche.
     public static let shortNights = 7
     /// Standard-Zeitachse 21:00–11:00 als Minuten ab Mittag.
     public static let axisStart = 9 * 60
+    /// Ende der Standard-Zeitachse (11:00) als Minuten ab Mittag.
     public static let axisEnd = 23 * 60
 
     /// Stufe im Schlafprofil von oben nach unten: Wach 0, REM 1, Leicht 2, Tief 3; unbekannt `nil`.

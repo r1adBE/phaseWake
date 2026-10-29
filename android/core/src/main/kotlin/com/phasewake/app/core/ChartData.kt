@@ -11,61 +11,63 @@ import java.time.ZoneId
  * Ohne Daten beides `null`.
  */
 data class SleepBar(val date: LocalDate, val startMinute: Int?, val endMinute: Int?) {
+    /** Ob für diesen Abend Einschlafen und Aufwachen bekannt sind. */
     val hasData: Boolean get() = startMinute != null && endMinute != null
 }
 
-/**
- * Schlaf-Streifen über [ChartData.NIGHTS] Nachtdaten, älteste zuerst.
- *
- * @property axisStart Anfang der Zeitachse in Minuten ab Mittag, ganze Stunde.
- * @property axisEnd Ende der Zeitachse in Minuten ab Mittag, ganze Stunde.
- * @property bedtimeMinute Bettzeit vor dem nächsten Wecker ([Bedtime.bedtime]); `null` ohne Wecker.
- * @property regular Regelmässige Abende (von [regularCounted]) laut [Regularity.count].
- */
+/** Schlaf-Streifen über [ChartData.NIGHTS] Nachtdaten, älteste zuerst. */
 data class SleepBars(
+    /** Je Nachtdatum ein Balken, älteste zuerst; Nachtdaten ohne Schlaf mit [SleepBar.hasData] `false`. */
     val bars: List<SleepBar>,
+    /** Anfang der Zeitachse in Minuten ab Mittag, ganze Stunde. */
     val axisStart: Int,
+    /** Ende der Zeitachse in Minuten ab Mittag, ganze Stunde. */
     val axisEnd: Int,
+    /** Bettzeit vor dem nächsten Wecker ([Bedtime.bedtime]); `null` ohne Wecker. */
     val bedtimeMinute: Int?,
+    /** Regelmässige Abende (von [regularCounted]) laut [Regularity.count]. */
     val regular: Int,
+    /** Abende mit Bettzeit in der betrachteten Woche (Nenner zu [regular]). */
     val regularCounted: Int,
 )
 
 /** Schlafdauer eines Nachtdatums; `null` ohne Daten. */
 data class DurationBar(val date: LocalDate, val asleepMinutes: Long?, val reached: Boolean)
 
-/**
- * Schlafdauer pro Nacht, älteste zuerst.
- *
- * @property averageMinutes Durchschnitt der Nächte mit Daten (ganze Minuten, abgerundet).
- * @property reached Nächte mit erreichtem Schlafziel (von [counted] Nächten mit Daten).
- * @property scaleMinutes Höhe der Skala: das Grössere von Ziel und längster Nacht.
- */
+/** Schlafdauer pro Nacht, älteste zuerst. */
 data class Durations(
+    /** Je Nachtdatum ein Balken, älteste zuerst. */
     val bars: List<DurationBar>,
+    /** Schlafziel in Minuten ([SleepGoal]), für die Ziellinie. */
     val goalMinutes: Int,
+    /** Durchschnitt der Nächte mit Daten (ganze Minuten, abgerundet). */
     val averageMinutes: Long,
+    /** Nächte mit erreichtem Schlafziel (von [counted] Nächten mit Daten). */
     val reached: Int,
+    /** Nächte mit Daten (Nenner zu [reached]). */
     val counted: Int,
+    /** Höhe der Skala: das Grössere von Ziel und längster Nacht. */
     val scaleMinutes: Long,
 )
 
 /** Wodurch geweckt wurde, für Farbe und Form des Punkts. */
 enum class WakeKind { LIGHT, AWAKE, TARGET, LATE }
 
-/**
- * Weckmoment einer Uhr-Nacht.
- *
- * @property minutesBefore Minuten vor der Zielzeit (0 = zur Zielzeit oder später), höchstens [windowMinutes].
- * @property minutesAfter Minuten nach der Zielzeit (nach Schlummern).
- */
+/** Weckmoment einer Uhr-Nacht. */
 data class WakeMoment(
+    /** Nachtdatum ([SleepNotes.nightDate]). */
     val date: LocalDate,
+    /** Zeitpunkt des Weckens. */
     val wokeAt: Instant,
+    /** Minuten vor der Zielzeit (0 = zur Zielzeit oder später), höchstens [windowMinutes]. */
     val minutesBefore: Int,
+    /** Minuten nach der Zielzeit (nach Schlummern). */
     val minutesAfter: Int,
+    /** Länge des Weckfensters dieser Nacht in Minuten (nie negativ). */
     val windowMinutes: Int,
+    /** Wodurch geweckt wurde; [WakeKind.LATE], sobald nach der Zielzeit geweckt wurde. */
     val kind: WakeKind,
+    /** Weckgrund laut Uhr ([NightRecord.reason]). */
     val reason: WakeReason,
 )
 
@@ -83,18 +85,24 @@ data class HypnoStep(val fromMinute: Double, val toMinute: Double, val stage: Sl
 /**
  * Schlafprofil einer Nacht aus der Gesundheits-App mit Weckfenster und Weckmoment (alles in
  * Minuten ab [start]).
- *
- * @property stageAtWake Phase beim Wecken ([StageCheck.stageAtWake]); `null` ohne Daten.
  */
 data class Hypnogram(
+    /** Beginn des Profils: früheste Phase oder Fensterbeginn. */
     val start: Instant,
+    /** Ende des Profils: letzte Phase, mindestens Zielzeit bzw. Weckmoment. */
     val end: Instant,
+    /** Bekannte Phasen in zeitlicher Reihenfolge (ohne [SleepStage.UNKNOWN]). */
     val steps: List<HypnoStep>,
+    /** Beginn des Weckfensters in Minuten ab [start]. */
     val windowFrom: Double,
+    /** Zielzeit in Minuten ab [start]. */
     val windowTo: Double,
+    /** Weckmoment in Minuten ab [start]. */
     val wokeAt: Double,
+    /** Phase beim Wecken ([StageCheck.stageAtWake]); `null` ohne Daten. */
     val stageAtWake: SleepStage?,
 ) {
+    /** Länge des Profils in Minuten ([start] bis [end]), mit Nachkommastellen. */
     val totalMinutes: Double get() = Duration.between(start, end).toMillis() / 60_000.0
 
     /** Minuten je Phase (ohne [SleepStage.UNKNOWN]), ganze Minuten abgerundet. */
@@ -118,11 +126,16 @@ data class FeelingSeries(val points: List<FeelingPoint>, val thisWeek: Double?, 
  * Nachtdaten wie bei den Notizen ([SleepNotes.nightDate]). Identisch zu `ChartData` (Swift).
  */
 object ChartData {
+    /** Nachtdaten der langen Diagramme (zwei Wochen). */
     const val NIGHTS: Int = 14
+
+    /** Nachtdaten der kurzen Diagramme und eines Wochenvergleichs (eine Woche). */
     const val SHORT_NIGHTS: Int = 7
 
-    /** Standard-Zeitachse 21:00–11:00 als Minuten ab Mittag. */
+    /** Anfang der Standard-Zeitachse 21:00–11:00 als Minuten ab Mittag. */
     const val AXIS_START: Int = 9 * 60
+
+    /** Ende der Standard-Zeitachse (11:00) als Minuten ab Mittag. */
     const val AXIS_END: Int = 23 * 60
 
     /** Stufe im Schlafprofil von oben nach unten: Wach 0, REM 1, Leicht 2, Tief 3; unbekannt `null`. */

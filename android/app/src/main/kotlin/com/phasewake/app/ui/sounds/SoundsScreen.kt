@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -150,7 +151,12 @@ private fun SoundTile(sound: SleepSound, active: Boolean, modifier: Modifier, on
         modifier = modifier.selectable(selected = active, role = Role.RadioButton, onClick = onClick),
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp)) {
-            Icon(painterResource(R.drawable.ic_sound), contentDescription = null)
+            // Gewählt: zusätzlich ein Haken, nicht nur die Farbe (WCAG 1.4.1).
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(painterResource(R.drawable.ic_sound), contentDescription = null)
+                Spacer(Modifier.weight(1f))
+                if (active) Icon(painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(20.dp))
+            }
             Text(stringResource(SleepSoundService.soundName(sound)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 10.dp))
         }
     }

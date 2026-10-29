@@ -6,9 +6,13 @@
 /// Nicht threadsicher; die Smart-Alarm-Sitzung ruft ``add(timestampNanos:x:y:z:)`` und
 /// ``closeEpoch()`` aus derselben Warteschlange auf.
 public final class MotionEnergyAccumulator {
+    /// 35 ms Mindestabstand zwischen übernommenen Werten: begrenzt auf rund 28 Hz, damit beide Plattformen gleich messen (Abschnitt 1).
     public static let defaultMinIntervalNanos: Int64 = 35_000_000
+    /// Mehr als 1 s zwischen zwei Werten gilt als Sensorlücke; diese Differenz zählt nicht.
     public static let defaultMaxGapNanos: Int64 = 1_000_000_000
+    /// Sensorrauschen in m/s², das von jeder Differenz abgezogen wird.
     public static let defaultNoiseFloor = 0.05
+    /// Mindestens so viele Differenzen je Epoche, sonst ist die Bewegung leer (zu wenig Daten).
     public static let defaultMinDiffs = 300
 
     private let minIntervalNanos: Int64
@@ -25,6 +29,7 @@ public final class MotionEnergyAccumulator {
     private var sum = 0.0
     private var count = 0
 
+    /// Erzeugt einen Zähler; die Standardwerte sind die Regel. Andere Werte nur in Tests.
     public init(
         minIntervalNanos: Int64 = MotionEnergyAccumulator.defaultMinIntervalNanos,
         maxGapNanos: Int64 = MotionEnergyAccumulator.defaultMaxGapNanos,

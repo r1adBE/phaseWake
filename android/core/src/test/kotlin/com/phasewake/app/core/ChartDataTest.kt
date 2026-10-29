@@ -195,4 +195,24 @@ class ChartDataTest {
         assertNull(ChartData.feelingSeries(nights.filter { it.feeling == null }, notes, zone, date("2026-10-27")))
         assertNull(ChartData.feelingSeries(emptyList(), notes, zone, date("2026-10-27")))
     }
+
+    @Test
+    fun emptyInputsGiveNoChart() {
+        assertNull(ChartData.sleepBars(emptyList(), zone, date("2026-10-27"), null, 450))
+        assertNull(ChartData.durations(emptyList(), zone, date("2026-10-27"), 450))
+        assertNull(ChartData.wakeMoments(emptyList(), zone))
+        val night = watchNight("2026-10-27", 10, WakeReason.LIGHT_SLEEP)
+        assertNull(ChartData.hypnogram(emptyList(), night))
+        // Nur unbekannte Phasen: nichts zu zeigen.
+        val unknown = StageSpan(night.windowStart.minusSeconds(3600), night.target, SleepStage.UNKNOWN)
+        assertNull(ChartData.hypnogram(listOf(unknown), night))
+    }
+
+    @Test
+    fun levelsAndLastDate() {
+        assertEquals(listOf(0, 2, 3, 1, null), SleepStage.entries.map { ChartData.level(it) })
+        val today = date("2026-10-28")
+        assertEquals(today, ChartData.lastDate(setOf(today), today))
+        assertEquals(date("2026-10-27"), ChartData.lastDate(emptySet(), today))
+    }
 }

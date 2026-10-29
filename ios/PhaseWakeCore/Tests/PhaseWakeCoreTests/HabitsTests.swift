@@ -164,4 +164,26 @@ final class HabitsTests: XCTestCase {
         // Gelöschter Punkt zählt nicht mehr.
         XCTAssertNil(Routine.average(ticks, items: [RoutineItem(id: Routine.water)], today: today))
     }
+
+    /// Hilfen der Abendroutine und der Regelmässigkeit (Randfälle).
+    func testRoutineHelpersAndMinutesFromNoon() {
+        XCTAssertTrue(Routine.isBuiltIn(Routine.water))
+        XCTAssertFalse(Routine.isBuiltIn("custom:1"))
+        XCTAssertEqual(Routine.cleanText("  Buch\nlesen|jetzt  "), "Buch lesen jetzt")
+        XCTAssertEqual(Routine.cleanText(String(repeating: "a", count: 50)).count, Routine.maxTextLength)
+        var ticks: [String: [String]] = [:]
+        for day in 0..<100 { ticks[minus(day, today)] = [Routine.phone] }
+        ticks["2026-10-29"] = []
+        let kept = Routine.trim(ticks)
+        XCTAssertEqual(kept.count, Routine.maxDates)
+        XCTAssertNotNil(kept[today])
+        XCTAssertNil(kept[minus(90, today)])
+        XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T12:00"), calendar: zurich), 0)
+        XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T23:30"), calendar: zurich), 690)
+        XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-29T00:30"), calendar: zurich), 750)
+        XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-29T11:59"), calendar: zurich), 1439)
+        XCTAssertEqual(NightDate.today(at("2026-10-29T00:30"), calendar: zurich), "2026-10-29")
+        XCTAssertFalse(NightDate.isValid("2026-02-30"))
+        XCTAssertNil(NightDate.weekday("kaputt"))
+    }
 }

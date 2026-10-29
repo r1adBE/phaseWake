@@ -124,36 +124,4 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(f([.friday, .saturday, .sunday, .monday, .wednesday]), "Fr–Mo, Mi")
         XCTAssertEqual(f([.sunday, .monday, .tuesday, .wednesday], Locale(identifier: "en_US")), "Sun–Wed")
     }
-
-    func testHistoryCsv() {
-        let start = Date(timeIntervalSince1970: 1_790_829_000)
-        func night(_ day: Double, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)]) -> NightRecord {
-            let ws = start.addingTimeInterval(day * 86_400)
-            return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1080), reason: .lightSleep, snoozes: 1, epochs: epochs)
-        }
-        let csv = NightHistory.exportCsv([night(1, [Epoch(motion: 0.0021, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)]).with(feeling: 4), night(0)])
-        let lines = csv.split(separator: "\n").map(String.init)
-        XCTAssertEqual(lines[0], "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes")
-        XCTAssertEqual(lines[1], "1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0,")
-        XCTAssertEqual(lines[2], "2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3,")
-        XCTAssertEqual(lines[3], "2,30,LIGHT_SLEEP,12,1,4,1,,,")
-        XCTAssertFalse(csv.contains("geheim"))
-        XCTAssertEqual(NightHistory.trim((0..<100).map { night(Double($0)) }).count, 90)
-    }
-
-    func testEpochAssembler() {
-        let s: Int64 = 1_000_000_000
-        let start = 500 * s
-        let a = EpochAssembler(startNanos: start)
-        for i in 0..<750 { _ = a.addMotion(timestampNanos: start + Int64(i) * 40_000_000, x: i % 2 == 0 ? 0 : 0.25, y: 0, z: 9.81) }
-        _ = a.addHeartRate(timestampNanos: start + 10 * s, bpm: 50)
-        _ = a.addHeartRate(timestampNanos: start + 20 * s, bpm: 54)
-        let closed = a.addMotion(timestampNanos: start + 30 * s, x: 0, y: 0, z: 9.81)
-        XCTAssertEqual(closed.count, 1)
-        XCTAssertEqual(closed[0].motion!, 0.20, accuracy: 1e-12)
-        XCTAssertEqual(closed[0].heartRate, 52)
-        XCTAssertTrue(a.addHeartRate(timestampNanos: start + 5 * s, bpm: 60).isEmpty)
-        XCTAssertTrue(a.advance(nowNanos: start + 41 * s, graceNanos: 12 * s).isEmpty)
-        XCTAssertEqual(a.advance(nowNanos: start + 73 * s, graceNanos: 12 * s).count, 1)
-    }
 }

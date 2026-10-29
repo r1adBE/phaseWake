@@ -1,22 +1,14 @@
 package com.phasewake.app.wear.schedule
 
-import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.BatteryManager
-import android.os.Build
 import android.util.Log
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
@@ -34,7 +26,6 @@ import com.phasewake.app.wear.wake.WakeService
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
-import kotlin.math.abs
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -67,8 +58,7 @@ class AlarmScheduler(
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
     private val rescheduleLock = Mutex()
 
-    /** Hält das Senden des Uhr-Status ([publishStatus]) auseinander. */
-    private val statusLock = Mutex()
+    private val status = WatchStatus(context, store, sync, clock)
 
     /** Pro Wecker erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
     @Volatile
@@ -248,30 +238,8 @@ class AlarmScheduler(
         }.filter { it != plan }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
 
-    /**
-     * Uhr-Status ans Handy (bereit, Akkustand), aber nur bei Bedarf: Bereitschaft geändert, Akkustand
-     * um mindestens [STATUS_BATTERY_STEP] Punkte geändert oder letzte Meldung älter als [STATUS_MAX_AGE].
-     * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
-     */
-    suspend fun publishStatus(): Unit = statusLock.withLock {
-        val ready = isReady()
-        val battery = batteryPercent()
-        val now = clock().instant().toEpochMilli()
-        val prefs = store.data.first()
-        val lastAt = prefs[STATUS_AT]
-        val lastBattery = prefs[STATUS_BATTERY]
-        val due = prefs[STATUS_READY] != ready ||
-            (battery != null && (lastBattery == null || abs(battery - lastBattery) >= STATUS_BATTERY_STEP)) ||
-            lastAt == null || now - lastAt >= STATUS_MAX_AGE.toMillis() || now < lastAt
-        if (!due) return@withLock
-        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist.
-        if (!sync.publishWatchReady(ready, battery)) return@withLock
-        store.edit {
-            it[STATUS_READY] = ready
-            it[STATUS_AT] = now
-            if (battery != null) it[STATUS_BATTERY] = battery else it.remove(STATUS_BATTERY)
-        }
-    }
+    /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */
+    suspend fun publishStatus() = status.publish()
 
     /**
      * Merkt sofort, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch
@@ -302,21 +270,6 @@ class AlarmScheduler(
         line.substring(i + 1).toLongOrNull()?.let { line.substring(0, i) to Instant.ofEpochMilli(it) }
     }.toMap()
 
-    /** Sind die Rechte erteilt, die Messen und Wecken brauchen? Fürs Handy und die Startseite. */
-    fun isReady(): Boolean {
-        val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
-        val notifications = NotificationManagerCompat.from(context)
-        // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst. Das Hintergrundrecht
-        // für den Puls ist nicht nötig: Ohne Puls entscheidet die Bewegung allein.
-        return sensors && notifications.areNotificationsEnabled() && notifications.canUseFullScreenIntent()
-    }
-
-    /** Akkustand der Uhr in Prozent; `null`, wenn das System ihn nicht nennt. */
-    private fun batteryPercent(): Int? =
-        context.getSystemService(BatteryManager::class.java)
-            ?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-            ?.takeIf { it in 0..100 }
-
     /** Kachel und Komplikation sofort aktualisieren, nicht erst beim nächsten Abruf des Systems. */
     private fun refreshSurfaces() {
         runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
@@ -346,13 +299,6 @@ class AlarmScheduler(
         private val CATCH_UP_FROM = longPreferencesKey("catch_up_from")
         private val CATCH_UP_UNTIL = longPreferencesKey("catch_up_until")
         private val CATCH_UP_IDS = stringSetPreferencesKey("catch_up_ids")
-
-        /** Zuletzt gesendeter Uhr-Status, siehe [publishStatus]. */
-        private val STATUS_READY = booleanPreferencesKey("status_sent_ready")
-        private val STATUS_BATTERY = intPreferencesKey("status_sent_battery")
-        private val STATUS_AT = longPreferencesKey("status_sent_at")
-        private const val STATUS_BATTERY_STEP = 5
-        private val STATUS_MAX_AGE: Duration = Duration.ofHours(1)
 
         /** Am Handy beendet ohne Zielzeit: so weit zurück wird die Nacht gesucht (Fenster, Klingeln, Schlummern). */
         private val PHONE_STOP_LOOKBACK: Duration = Duration.ofHours(2)
@@ -417,13 +363,6 @@ class AlarmScheduler(
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
             context.getSystemService(AlarmManager::class.java).setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
-        }
-
-        /** Eine davon genügt für den Messdienst (Typ «health»). */
-        val SENSOR_PERMISSIONS: List<String> = buildList {
-            if (Build.VERSION.SDK_INT >= 36) add("android.permission.health.READ_HEART_RATE")
-            add(Manifest.permission.BODY_SENSORS)
-            add(Manifest.permission.ACTIVITY_RECOGNITION)
         }
     }
 }

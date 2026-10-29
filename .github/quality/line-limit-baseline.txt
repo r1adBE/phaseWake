@@ -1,13 +1,1 @@
 # Altlasten: Datei Zeilen (darf nur schrumpfen, siehe docs/ENTWICKLUNG.md)
-android/app/src/main/kotlin/com/phasewake/app/ring/BackupAlarm.kt 618
-android/app/src/main/kotlin/com/phasewake/app/sounds/SleepSoundService.kt 406
-android/app/src/main/kotlin/com/phasewake/app/ui/MainActivity.kt 665
-android/app/src/main/kotlin/com/phasewake/app/ui/editor/EditorScreen.kt 572
-android/app/src/main/kotlin/com/phasewake/app/ui/history/Charts.kt 727
-android/app/src/main/kotlin/com/phasewake/app/ui/home/HomeScreen.kt 529
-android/wear/src/main/kotlin/com/phasewake/app/wear/schedule/AlarmScheduler.kt 429
-android/wear/src/main/kotlin/com/phasewake/app/wear/ui/MainActivity.kt 544
-android/wear/src/main/kotlin/com/phasewake/app/wear/wake/WakeService.kt 837
-ios/PhaseWake/HistoryCharts.swift 627
-ios/PhaseWake/SoundRecorder.swift 444
-ios/PhaseWakeWatch/SmartAlarm.swift 548

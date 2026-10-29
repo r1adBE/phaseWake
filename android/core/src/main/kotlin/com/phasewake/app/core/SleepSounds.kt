@@ -35,9 +35,14 @@ enum class SleepSound(val recorded: Boolean, val gainDb: Double = 0.0) {
 object SleepSounds {
     /** Timer-Auswahl in Minuten; `null` = ohne Timer. */
     val TIMER_CHOICES: List<Int?> = listOf(15, 30, 60, null)
+
+    /** Vorgewählter Timer in Minuten. */
     const val DEFAULT_TIMER_MINUTES: Int = 30
 
+    /** Einblenden in ms: sanfter Beginn ohne Knacken. */
     const val FADE_IN_MS: Long = 3_000
+
+    /** Ausblenden in ms vor dem Ende: langsam genug, dass das Verstummen nicht weckt. */
     const val FADE_OUT_MS: Long = 30_000
 
     /** Höchster Ausschlag: −12 dBFS. */
@@ -86,6 +91,7 @@ object SleepSounds {
  * gleichspannungsfrei, höchstens [SleepSounds.PEAK]. Nur für erzeugte Klänge ([SleepSound.recorded] = `false`).
  */
 class NoiseGenerator(
+    /** Der erzeugte Klang; nie eine Aufnahme ([SleepSound.recorded] `false`, sonst Ausnahme). */
     val sound: SleepSound,
     private val sampleRate: Int = 48_000,
     seed: Long = 1L,
@@ -128,6 +134,10 @@ class NoiseGenerator(
         for (i in offset until offset + count) out[i] = next()
     }
 
+    /**
+     * Nächster Abtastwert im Bereich ±[SleepSounds.PEAK]. Bei zwei Kanälen abwechselnd links und
+     * rechts; ein Aufrufer liest darum immer ganze Paare.
+     */
     fun next(): Float {
         if (sound == SleepSound.BINAURAL) return nextBinaural()
         val raw = when (sound) {

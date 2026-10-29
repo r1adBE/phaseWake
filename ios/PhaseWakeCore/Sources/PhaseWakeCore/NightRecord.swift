@@ -2,16 +2,24 @@ import Foundation
 
 /// Eine aufgezeichnete Weck-Nacht. Identisch zu `NightRecord` (Kotlin).
 public struct NightRecord: Equatable, Sendable {
+    /// Kennung des Weckers dieser Nacht.
     public let alarmId: String
+    /// Beginn des Weckfensters.
     public let windowStart: Date
+    /// Zielzeit (spätester Weckmoment).
     public let target: Date
+    /// Zeitpunkt des ersten Weckens (vor dem Schlummern).
     public let wokeAt: Date
+    /// Warum geweckt wurde.
     public let reason: WakeReason
+    /// Wie oft geschlummert wurde (0 bis `Snooze.maxCount`).
     public let snoozes: Int
+    /// Gemessene Epochen ab Fensterbeginn (30 s je Epoche), einschliesslich Aufwärmphase.
     public let epochs: [Epoch]
     /// Befinden am Morgen, 1 (müde) bis 5 (erholt); `nil` = nicht angegeben.
     public let feeling: Int?
 
+    /// Erlaubte Werte des Befindens.
     public static let feelingRange = 1...5
 
     /// Ein Befinden ausserhalb 1–5 wird verworfen (Kotlin lehnt es ab; der Codec prüft vorher).
@@ -40,12 +48,15 @@ public struct NightRecord: Equatable, Sendable {
 
 /// Aufbewahrung und anonymer Export. Identisch zu `NightHistory` (Kotlin).
 public enum NightHistory {
+    /// Höchstens so viele Nächte bleiben gespeichert (rund drei Monate); ältere fallen weg.
     public static let maxNights = 90
 
+    /// Die jüngsten 90 Nächte nach Fensterbeginn, älteste zuerst.
     public static func trim(_ nights: [NightRecord]) -> [NightRecord] {
         Array(nights.sorted { $0.windowStart < $1.windowStart }.suffix(maxNights))
     }
 
+    /// Bewegung je Epoche der gespeicherten Nächte, älteste zuerst, als Eingabe für ``Calibration``.
     public static func motionsForCalibration(_ nights: [NightRecord]) -> [[Double?]] {
         trim(nights).map { $0.epochs.map(\.motion) }
     }

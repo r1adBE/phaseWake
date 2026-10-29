@@ -172,4 +172,11 @@ final class ChartDataTests: XCTestCase {
         XCTAssertNil(ChartData.feelingSeries(nights.filter { $0.feeling == nil }, notes: notes, calendar: zurich, today: "2026-10-27"))
         XCTAssertNil(ChartData.feelingSeries([], notes: notes, calendar: zurich, today: "2026-10-27"))
     }
+
+    /// Am Abend ist die kommende Nacht noch leer: dann gilt die Nacht davor.
+    func testLastDateAndLevels() {
+        XCTAssertEqual(ChartData.lastDate(["2026-10-27", "2026-10-28"], today: "2026-10-28"), "2026-10-28")
+        XCTAssertEqual(ChartData.lastDate(["2026-10-26"], today: "2026-10-28"), "2026-10-27")
+        XCTAssertEqual([SleepStage.awake, .rem, .light, .deep, .unknown].map(ChartData.level), [0, 1, 2, 3, nil])
+    }
 }

@@ -119,6 +119,12 @@ struct SoundsSheet: View {
             .frame(maxWidth: .infinity, minHeight: 88)
             .background(selected ? Color.accentColor.opacity(0.22) : Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(playing ? Color.accentColor : .clear, lineWidth: 2))
+            // Gewählt: Haken oben rechts, damit die Wahl nicht nur an der Farbe hängt (WCAG 1.4.1).
+            .overlay(alignment: .topTrailing) {
+                if selected {
+                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.accentColor).padding(8).accessibilityHidden(true)
+                }
+            }
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])

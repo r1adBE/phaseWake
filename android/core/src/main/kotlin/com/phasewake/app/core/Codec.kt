@@ -32,6 +32,11 @@ object Codec {
     )
     private val daysByCode = dayCodes.entries.associate { (day, code) -> code to day }
 
+    /**
+     * Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit
+     * [FIELDS] durch «|» getrennten Feldern. Texte (Kennung, Ton, Name) sind URL-kodiert, damit «|» und
+     * Zeilenumbrüche darin nichts zerbrechen. Leere Liste = nur die Kopfzeile.
+     */
     fun encodeAlarms(alarms: List<AlarmSpec>): String = buildString {
         append(ALARMS_HEADER).append('\n')
         for (a in alarms) {
@@ -98,6 +103,10 @@ object Codec {
                 )
             }
 
+    /**
+     * Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Kopfdaten (Zeiten in ms seit 1970)
+     * und eine Zeile mit allen Epochen «Bewegung;Puls», durch Komma getrennt; fehlende Werte bleiben leer.
+     */
     fun encodeNight(night: NightRecord): String = buildString {
         append(NIGHT_HEADER).append('\n')
         append(listOf(
@@ -115,6 +124,11 @@ object Codec {
         }).append('\n')
     }
 
+    /**
+     * Liest [encodeNight]. Ältere Stände ohne Befinden (6 Felder) bleiben lesbar, angehängte Felder neuerer
+     * Versionen werden ignoriert. Fremdes Format oder kaputte Werte: [CodecException] (eine Nacht ist
+     * ganz oder gar nicht lesbar).
+     */
     fun decodeNight(text: String): NightRecord {
         val lines = text.lines()
         if (lines.firstOrNull() != NIGHT_HEADER) throw CodecException("Unbekanntes Nachtformat")

@@ -55,7 +55,7 @@ data class BrandColors(
     val chartTrack: Color,
     /** Karten der Startseite: dunkel durchscheinend auf dem Nachthimmel, hell eine weisse Fläche. */
     val card: Color,
-    /** Rand eines nicht gewählten Chips. */
+    /** Rand eines nicht gewählten Chips: mindestens 3:1 zur Karte (WCAG 1.4.11, Nicht-Text-Kontrast). */
     val chipBorder: Color,
     /** Fläche eines gewählten Chips. */
     val chipSelected: Color,
@@ -77,7 +77,8 @@ private val DarkBrand = BrandColors(
     chartActive = Lavender,
     chartTrack = Color(0xFF2A2D55),
     card = Color.White.copy(alpha = 0.06f),
-    chipBorder = Lavender.copy(alpha = 0.25f),
+    // 75 % (wie auf Apple): 5.2:1 auf der Karte (Weiss 6 % über #0C1027), ≥ 3:1 verlangt.
+    chipBorder = Lavender.copy(alpha = 0.75f),
     chipSelected = Lavender.copy(alpha = 0.25f),
     // 80 % von #C9C3E6: auf dem Nachthimmel und den Karten ≥ 6:1.
     mutedSoft = Color(0xFFC9C3E6).copy(alpha = 0.8f),
@@ -95,7 +96,8 @@ private val LightBrand = BrandColors(
     chartActive = Color(0xFF7B6CF6),
     chartTrack = Color(0xFFECE8F5),
     card = Color.White,
-    chipBorder = Color(0xFF7B6CF6).copy(alpha = 0.35f),
+    // 90 %: 3.4:1 auf der weissen Karte, 3.2:1 auf dem Hintergrund #FBF7F0.
+    chipBorder = Color(0xFF7B6CF6).copy(alpha = 0.9f),
     chipSelected = Color(0xFFE4DFFB),
     // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester, etwas hellerer Ton.
     mutedSoft = Color(0xFF6A6684),

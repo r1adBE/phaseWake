@@ -2,38 +2,38 @@ package com.phasewake.app.core
 
 import java.time.DayOfWeek
 
-/**
- * Ein Wecker, wie ihn der Nutzer einstellt. Gilt auf Handy und Uhr gleich.
- *
- * @property id Feste Kennung (UUID als Text), über Handy und Uhr hinweg gleich.
- * @property hour Zielzeit, Stunde 0–23. Bei [sleepDurationMinutes] ist das die späteste Weckzeit.
- * @property minute Zielzeit, Minute 0–59.
- * @property days Wochentage, an denen der Wecker gilt; leer = einmalig.
- * @property windowMinutes Weckfenster vor der Zielzeit, 10–30 Minuten.
- * @property enabled Ob der Wecker aktiv ist.
- * @property phone Wie das Handy als Zweitwecker weckt (aus, nur Vibration, Ton und Vibration).
- * @property watchSound Ob die Uhr zusätzlich zur Vibration einen Ton spielt.
- * @property sound Weckton des Handys als Uri-Text; leer = Standard-Weckton des Systems.
- * @property sleepDurationMinutes Optional: Zielzeit = Einschlafzeit + Dauer, höchstens [hour]:[minute].
- * @property label Freier Name, z. B. «Arbeit».
- * @property sunrise Sonnenaufgang auf dem Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters.
- * @property sunriseDevice Wo der Sonnenaufgang leuchtet: Handy (Standard), Uhr oder beide. Auf Apple nur Handy.
- * @property wakeTask Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy.
- */
+/** Ein Wecker, wie ihn der Nutzer einstellt. Gilt auf Handy und Uhr gleich. */
 data class AlarmSpec(
+    /** Feste Kennung (UUID als Text), über Handy und Uhr hinweg gleich; nie leer. */
     val id: String,
+    /** Zielzeit, Stunde 0–23 (Ortszeit). Bei [sleepDurationMinutes] ist das die späteste Weckzeit. */
     val hour: Int,
+    /** Zielzeit, Minute 0–59. */
     val minute: Int,
+    /** Wochentage, an denen der Wecker gilt; leer = einmalig (siehe [isOneShot]). */
     val days: Set<DayOfWeek> = emptySet(),
+    /** Weckfenster vor der Zielzeit in Minuten, [MIN_WINDOW_MINUTES]–[MAX_WINDOW_MINUTES]. */
     val windowMinutes: Int = DEFAULT_WINDOW_MINUTES,
+    /** Ob der Wecker aktiv ist; aus = [AlarmSchedule] plant nichts. */
     val enabled: Boolean = true,
+    /** Wie das Handy als Zweitwecker weckt (aus, nur Vibration, Ton und Vibration). */
     val phone: PhoneAlert = PhoneAlert.SOUND,
+    /** Ob die Uhr zusätzlich zur Vibration einen Ton spielt. */
     val watchSound: Boolean = false,
+    /** Weckton des Handys als Uri-Text; leer = Standard-Weckton des Systems. */
     val sound: String = "",
+    /**
+     * Einschlaf-Modus: Zielzeit = Einschlafzeit + Dauer in Minuten ([MIN_SLEEP_MINUTES]–[MAX_SLEEP_MINUTES]),
+     * höchstens [hour]:[minute]. `null` = feste Zielzeit.
+     */
     val sleepDurationMinutes: Int? = null,
+    /** Freier Name, z. B. «Arbeit»; leer = ohne Namen. */
     val label: String = "",
+    /** Sonnenaufgang auf dem Bildschirm: aus, beim Wecken oder ab Beginn des Weckfensters. */
     val sunrise: Sunrise = Sunrise.OFF,
+    /** Wo der Sonnenaufgang leuchtet: Handy (Standard), Uhr oder beide. Auf Apple nur Handy. */
     val sunriseDevice: SunriseDevice = SunriseDevice.PHONE,
+    /** Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy. */
     val wakeTask: WakeTask = WakeTask.NONE,
 ) {
     init {
@@ -61,13 +61,19 @@ data class AlarmSpec(
     val watchSunrise: Sunrise get() = if (sunriseDevice.onWatch) sunrise else Sunrise.OFF
 
     companion object {
+        /** Standard-Weckfenster in Minuten, gleich [MAX_WINDOW_MINUTES]. */
         const val DEFAULT_WINDOW_MINUTES: Int = 30
+
+        /** Kleinstes Weckfenster in Minuten. */
         const val MIN_WINDOW_MINUTES: Int = 10
 
         /** Grenze von watchOS (Smart-Alarm-Sitzung höchstens 30 Min), auf beiden Plattformen gleich. */
         const val MAX_WINDOW_MINUTES: Int = 30
 
+        /** Kürzeste Schlafdauer im Einschlaf-Modus in Minuten (1 h). */
         const val MIN_SLEEP_MINUTES: Int = 60
+
+        /** Längste Schlafdauer im Einschlaf-Modus in Minuten (12 h). */
         const val MAX_SLEEP_MINUTES: Int = 12 * 60
     }
 }
@@ -111,7 +117,10 @@ enum class Sunrise {
     WINDOW;
 
     companion object {
+        /** Dauer des Sonnenaufgangs bei [RING] in Sekunden, bis er voll hell ist. */
         const val RING_SECONDS: Int = 120
+
+        /** Bei [WINDOW]: so schnell (Sekunden) wird nachgeholt, wenn die Uhr vor der Zielzeit weckt. */
         const val CATCH_UP_SECONDS: Int = 60
 
         /** Fortschritt 0–1 eines Lichts von [start] bis [end] zum Zeitpunkt [now]. */
@@ -144,6 +153,9 @@ enum class SunriseDevice {
     /** Auf Handy und Uhr. */
     BOTH;
 
+    /** Ob das Handy leuchtet ([PHONE] oder [BOTH]). */
     val onPhone: Boolean get() = this != WATCH
+
+    /** Ob die Uhr leuchtet ([WATCH] oder [BOTH]). */
     val onWatch: Boolean get() = this != PHONE
 }

@@ -4,6 +4,7 @@ import Foundation
 public enum Weekday: Int, CaseIterable, Comparable, Sendable {
     case monday = 1, tuesday, wednesday, thursday, friday, saturday, sunday
 
+    /// Ordnet nach ISO-Reihenfolge, damit Montag vor Sonntag steht (für Format und Anzeige).
     public static func < (lhs: Weekday, rhs: Weekday) -> Bool { lhs.rawValue < rhs.rawValue }
 
     /// Wochentag eines Datums im gegebenen Kalender.
@@ -23,7 +24,9 @@ public enum PhoneAlert: String, CaseIterable, Sendable {
 public enum Sunrise: String, CaseIterable, Sendable {
     case off = "OFF", ring = "RING", window = "WINDOW"
 
+    /// Dauer des Sonnenaufgangs beim Modus `ring` in Sekunden.
     public static let ringSeconds = 120
+    /// Aufholzeit in Sekunden, wenn die Uhr beim Modus `window` vor der Zielzeit weckt: das Licht wird dann in dieser Zeit voll hell.
     public static let catchUpSeconds = 60
 
     /// Fortschritt 0–1 eines Lichts von `start` bis `end`.
@@ -51,7 +54,9 @@ public enum SunriseDevice: String, CaseIterable, Sendable {
     /// Auf Handy und Uhr (nur Android).
     case both = "BOTH"
 
+    /// Ob das Handy leuchtet (alles ausser `watch`).
     public var onPhone: Bool { self != .watch }
+    /// Ob die Uhr leuchtet (alles ausser `phone`).
     public var onWatch: Bool { self != .phone }
 }
 
@@ -67,24 +72,38 @@ public enum WakeTask: String, CaseIterable, Sendable {
 
 /// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
+    /// Standard-Weckfenster in Minuten (zugleich das Höchste, siehe `maxWindowMinutes`).
     public static let defaultWindowMinutes = 30
+    /// Kürzestes Weckfenster in Minuten; darunter bleibt nach der Aufwärmphase kaum Zeit zum Erkennen.
     public static let minWindowMinutes = 10
     /// Grenze der Smart-Alarm-Sitzung von watchOS, auf beiden Plattformen gleich.
     public static let maxWindowMinutes = 30
+    /// Kürzeste Schlafdauer im Einschlaf-Modus in Minuten (1 Stunde).
     public static let minSleepMinutes = 60
+    /// Längste Schlafdauer im Einschlaf-Modus in Minuten (12 Stunden).
     public static let maxSleepMinutes = 12 * 60
 
+    /// Eindeutige Kennung; nie leer, verknüpft Wecker, Nächte und Abgleich mit der Uhr.
     public let id: String
+    /// Stunde der Zielzeit (0–23), Ortszeit.
     public let hour: Int
+    /// Minute der Zielzeit (0–59).
     public let minute: Int
+    /// Wochentage, an denen der Wecker klingelt; leer = einmalig.
     public let days: Set<Weekday>
+    /// Länge des Weckfensters vor der Zielzeit in Minuten (10–30).
     public let windowMinutes: Int
+    /// Ob der Wecker aktiv ist.
     public let enabled: Bool
+    /// Weckart des iPhones als Zweitwecker.
     public let phone: PhoneAlert
+    /// Ob die Uhr zusätzlich zur Vibration einen Ton spielt.
     public let watchSound: Bool
     /// Weckton des iPhones; leer = Standard.
     public let sound: String
+    /// Gewünschte Schlafdauer ab Einschlafen in Minuten (60–720); `nil` = feste Zielzeit ohne Einschlaf-Modus.
     public let sleepDurationMinutes: Int?
+    /// Eigene Bezeichnung; leer = keine.
     public let label: String
     /// Sonnenaufgang auf dem Handy-Bildschirm.
     public let sunrise: Sunrise
@@ -160,10 +179,14 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
 
 /// Zeitplan einer Weck-Nacht.
 public struct WakePlan: Equatable, Sendable {
+    /// Kennung des Weckers, zu dem der Plan gehört.
     public let alarmId: String
+    /// Beginn des Weckfensters.
     public let windowStart: Date
+    /// Zielzeit: spätester Weckmoment.
     public let target: Date
 
+    /// Erzeugt einen Plan; `windowStart` liegt vor `target`.
     public init(alarmId: String, windowStart: Date, target: Date) {
         self.alarmId = alarmId
         self.windowStart = windowStart
@@ -192,11 +215,13 @@ public enum AlarmSchedule {
         return nil
     }
 
+    /// Plan für die nächste Nacht des Weckers (Zielzeit echt nach `now`), oder `nil`, wenn er aus ist.
     public static func nextPlan(_ spec: AlarmSpec, now: Date, calendar: Calendar) -> WakePlan? {
         guard let target = nextTarget(spec, now: now, calendar: calendar) else { return nil }
         return WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.windowMinutes), target: target)
     }
 
+    /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die kleinere Kennung, damit beide Plattformen denselben Wecker wählen.
     public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar) -> WakePlan? {
         earliestPlan(specs, now: now, doneUntil: [:], calendar: calendar)
     }
@@ -213,6 +238,7 @@ public enum AlarmSchedule {
         min(onset.addingTimeInterval(TimeInterval(sleepDurationMinutes * 60)), latest)
     }
 
+    /// Beginn des Weckfensters: `windowMinutes` Minuten vor `target`.
     public static func windowStart(_ target: Date, windowMinutes: Int) -> Date {
         target.addingTimeInterval(-TimeInterval(windowMinutes * 60))
     }
@@ -226,18 +252,28 @@ public enum AlarmSchedule {
 
 /// Schlummern: 5 Minuten, höchstens 3-mal.
 public enum Snooze {
+    /// Schlummerdauer in Minuten.
     public static let minutes = 5
+    /// Höchstzahl Schlummern pro Weckvorgang; danach nur noch Stoppen, damit niemand den Morgen verschlummert.
     public static let maxCount = 3
 
+    /// Ob nach `count` bisherigen Schlummern noch einmal geschlummert werden darf.
     public static func canSnooze(_ count: Int) -> Bool { count < maxCount }
 
+    /// Zeitpunkt des nächsten Klingelns: `now` plus 5 Minuten.
     public static func nextRing(_ now: Date) -> Date { now.addingTimeInterval(TimeInterval(minutes * 60)) }
 }
 
 /// Einschlaf-Erkennung (Regel, Abschnitt 6).
 public enum SleepOnset {
+    /// 30 Epochen = 15 Minuten durchgehende Ruhe.
     public static let stillEpochs = 30
 
+    /// Sucht die erste ruhige Strecke von `stillEpochs` Epochen.
+    /// - Parameters:
+    ///   - motions: Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge; `nil` (leere Epoche) unterbricht die Strecke.
+    ///   - threshold: Leicht-Schwelle in m/s²; ruhig heisst Bewegung vorhanden und darunter.
+    /// - Returns: Index der ersten Epoche der ersten ruhigen Strecke, oder `nil`, solange es keine gibt.
     public static func find(_ motions: [Double?], threshold: Double = DetectorConfig.defaultLightThreshold) -> Int? {
         var runStart = 0
         var runLength = 0

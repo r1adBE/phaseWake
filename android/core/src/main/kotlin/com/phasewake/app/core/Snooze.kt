@@ -5,7 +5,10 @@ import java.time.Instant
 
 /** Schlummern: 5 Minuten, höchstens 3-mal pro Weckvorgang. */
 object Snooze {
+    /** Dauer einer Schlummer-Runde in Minuten. */
     const val MINUTES: Int = 5
+
+    /** Höchstzahl Schlummer-Runden je Weckvorgang; danach nur noch Stoppen. */
     const val MAX_COUNT: Int = 3
 
     /** Ob nach [count] bisherigen Schlummer-Runden noch einmal geschlummert werden darf. */

@@ -153,6 +153,8 @@ struct NightCheckCard: View {
             }
             ForEach(failed, id: \.self) { check in
                 HStack(alignment: .center) {
+                    // Zeichen statt nur Farbe (WCAG 1.4.1): ✗ = offen, wie Android.
+                    Image(systemName: "xmark.circle").foregroundStyle(.red).accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(check.title).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
                         Text(check.problem).font(Fonts.manrope(14, relativeTo: .subheadline))

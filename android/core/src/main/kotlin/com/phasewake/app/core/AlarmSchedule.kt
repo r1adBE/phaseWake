@@ -8,8 +8,11 @@ import java.time.ZonedDateTime
 
 /** Zeitplan einer Weck-Nacht: wann das Fenster beginnt und wann spätestens geweckt wird. */
 data class WakePlan(
+    /** Kennung des Weckers ([AlarmSpec.id]), zu dem die Nacht gehört. */
     val alarmId: String,
+    /** Beginn des Weckfensters: ab hier misst die Uhr und darf wecken. */
     val windowStart: Instant,
+    /** Zielzeit: spätester Weckzeitpunkt, an dem in jedem Fall geklingelt wird. */
     val target: Instant,
 )
 
@@ -62,6 +65,10 @@ object AlarmSchedule {
         return if (wanted.isBefore(latest)) wanted else latest
     }
 
+    /**
+     * Beginn des Weckfensters: [target] minus [windowMinutes] Minuten. Als feste Dauer gerechnet, damit
+     * eine Zeitumstellung im Fenster dessen Länge nicht verändert.
+     */
     fun windowStart(target: Instant, windowMinutes: Int): Instant =
         target.minus(Duration.ofMinutes(windowMinutes.toLong()))
 }

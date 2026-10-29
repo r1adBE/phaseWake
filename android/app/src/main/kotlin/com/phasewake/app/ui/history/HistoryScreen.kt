@@ -32,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NoteEffect
@@ -257,7 +258,7 @@ private fun NightCard(
                 StageStrip(
                     StageCheck.clip(stages, night.windowStart, night.target),
                     night.windowStart, night.target,
-                    Modifier.fillMaxWidth().height(8.dp).padding(top = 2.dp),
+                    Modifier.fillMaxWidth().height(16.dp).padding(top = 2.dp),
                 )
                 verdict(context, stages, night)?.let { (text, good) ->
                     Text(
@@ -328,24 +329,22 @@ private fun verdict(context: Context, stages: List<StageSpan>, night: NightRecor
         SleepStage.UNKNOWN, null -> null
     }
 
-/** Schlafphasen im Weckfenster als farbiges Band: Tief dunkel, Leicht hell, REM mittel, Wach weiss. */
+/** Schlafphasen im Weckfenster als Band mit vier Höhen (oben wach, dann REM, leicht, unten tief) und je eigener Farbe. */
 @Composable
 private fun StageStrip(spans: List<StageSpan>, from: java.time.Instant, to: java.time.Instant, modifier: Modifier) {
     val brand = PhaseWakeTheme.brand
+    val colors = stageColors()
     val total = Duration.between(from, to).toMillis().toFloat().coerceAtLeast(1f)
     Canvas(modifier.padding(top = 6.dp)) {
         drawRoundRect(brand.chartTrack, cornerRadius = CornerRadius(size.height / 2))
         spans.forEach { span ->
             val x0 = size.width * Duration.between(from, span.start).toMillis() / total
             val x1 = size.width * Duration.between(from, span.end).toMillis() / total
-            val color = when (span.stage) {
-                SleepStage.DEEP -> brand.echo
-                SleepStage.REM -> brand.chartQuiet
-                SleepStage.LIGHT -> brand.wave
-                SleepStage.AWAKE -> brand.dot
-                SleepStage.UNKNOWN -> brand.chartTrack
-            }
-            drawRect(color, Offset(x0, 0f), Size((x1 - x0).coerceAtLeast(1f), size.height))
+            // Höhe nach Phase (wie im Schlafprofil: oben wach, unten tief), damit nicht nur die Farbe unterscheidet.
+            val level = ChartData.level(span.stage) ?: return@forEach
+            val color = colors.getValue(span.stage)
+            val lane = size.height / 4
+            drawRect(color, Offset(x0, lane * level), Size((x1 - x0).coerceAtLeast(1f), lane))
         }
     }
 }

@@ -2,6 +2,7 @@ import Foundation
 
 /// Fehler beim Lesen gespeicherter oder empfangener Daten.
 public struct CodecError: Error, Equatable, CustomStringConvertible, Sendable {
+    /// Lesbare Beschreibung des Fehlers (nur für Logs, nicht für die Oberfläche).
     public let description: String
 }
 
@@ -16,6 +17,7 @@ public enum Codec {
     ]
     private static let daysByCode = Dictionary(uniqueKeysWithValues: dayCodes.map { ($1, $0) })
 
+    /// Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit 14 Feldern, getrennt durch «|». Texte URL-kodiert wie in Kotlin, damit beide Seiten byte-gleich schreiben.
     public static func encodeAlarms(_ alarms: [AlarmSpec]) -> String {
         var out = alarmsHeader + "\n"
         for a in alarms {
@@ -64,6 +66,7 @@ public enum Codec {
         }
     }
 
+    /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer).
     public static func encodeNight(_ night: NightRecord) -> String {
         var out = nightHeader + "\n"
         out += [
@@ -77,6 +80,8 @@ public enum Codec {
         return out
     }
 
+    /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, neuere Felder ignoriert.
+    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, unbekanntem Grund, Befinden ausserhalb 1–5 oder unlesbaren Zahlen.
     public static func decodeNight(_ text: String) throws -> NightRecord {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
@@ -148,6 +153,10 @@ public enum Codec {
 
 /// Kurzschreibweise der Wochentage, z. B. «Mo–Fr». Identisch zu `DayFormat` (Kotlin).
 public enum DayFormat {
+    /// Formatiert Wochentage kurz in der Sprache von `locale`, ab dem Wochenbeginn der Region; drei und mehr Tage in Folge als Spanne («Mo–Fr»), eine Spanne über das Wochenende bleibt zusammen («Sa–Mo»).
+    /// - Parameters:
+    ///   - once: Text für einen einmaligen Wecker (keine Tage).
+    ///   - daily: Text für alle sieben Tage.
     public static func format(_ days: Set<Weekday>, locale: Locale, once: String, daily: String) -> String {
         if days.isEmpty { return once }
         if days.count == 7 { return daily }

@@ -57,9 +57,24 @@ final class SleepSoundsTests: XCTestCase {
     }
 
     /// Ventilator: tieffrequent, Sprünge von Wert zu Wert deutlich kleiner als beim weissen Rauschen.
-    func testFanIsDark() {
+    /// Wie `darkNoisesHaveNoClicks` (Kotlin): Braun und Ventilator sind tieffrequent, Sprünge bleiben klein.
+    func testDarkNoisesHaveNoClicks() {
         func maxStep(_ v: [Float]) -> Float { zip(v.dropFirst(), v).map { abs($0 - $1) }.max() ?? 0 }
-        XCTAssertLessThan(maxStep(samples(.fan, seconds: 5)), maxStep(samples(.white, seconds: 5)) / 4)
+        let white = maxStep(samples(.white, seconds: 5))
+        XCTAssertLessThan(maxStep(samples(.brown, seconds: 5)), white / 4)
+        XCTAssertLessThan(maxStep(samples(.fan, seconds: 5)), white / 4)
+    }
+
+    /// `fill` liefert dieselbe Folge wie einzelne `next`-Aufrufe (nahtlos über Puffergrenzen).
+    func testFillMatchesNext() {
+        var generator = NoiseGenerator(sound: .pink, sampleRate: rate, seed: 7)
+        var buffer = [Float](repeating: 0, count: 480)
+        buffer.withUnsafeMutableBufferPointer { generator.fill($0.baseAddress!, count: 240) }
+        buffer.withUnsafeMutableBufferPointer { generator.fill($0.baseAddress! + 240, count: 240) }
+        var single = NoiseGenerator(sound: .pink, sampleRate: rate, seed: 7)
+        XCTAssertEqual(buffer, (0..<480).map { _ in single.next() })
+        XCTAssertEqual(generator.sampleRate, rate)
+        XCTAssertEqual(generator.sound, .pink)
     }
 
     /// Wie `recordingsPlayLouderWithoutClipping` (Kotlin).

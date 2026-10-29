@@ -15,21 +15,19 @@ enum class SoundType {
     OTHER,
 }
 
-/**
- * Ein aufgenommener Ausschnitt eines Geräuschs.
- *
- * @property night Nachtdatum (wie bei den Notizen: Abend, an dem die Nacht beginnt).
- * @property at Beginn des Geräuschs.
- * @property durationMs Dauer des Geräuschs (kann länger sein als der Ausschnitt, z. B. minutenlanges Schnarchen).
- * @property peakDb Lautester Pegel in dBFS (gerundet); bei zu vielen Ausschnitten bleiben die lautesten.
- * @property file Dateiname des Ausschnitts im App-Ordner (ohne Pfad).
- */
+/** Ein aufgenommener Ausschnitt eines Geräuschs. */
 data class SoundClip(
+    /** Nachtdatum (wie bei den Notizen: Abend, an dem die Nacht beginnt). */
     val night: LocalDate,
+    /** Beginn des Geräuschs. */
     val at: Instant,
+    /** Art des Geräuschs (aus [SoundEvents.classify]). */
     val type: SoundType,
+    /** Dauer des Geräuschs (kann länger sein als der Ausschnitt, z. B. minutenlanges Schnarchen). */
     val durationMs: Long,
+    /** Lautester Pegel in dBFS (gerundet); bei zu vielen Ausschnitten bleiben die lautesten. */
     val peakDb: Int,
+    /** Dateiname des Ausschnitts im App-Ordner (ohne Pfad). */
     val file: String,
 )
 
@@ -38,6 +36,7 @@ data class SoundSummary(val snoreMs: Long, val snoreClips: Int, val talkClips: I
     /** Schnarch-Minuten, gerundet; kurzes Schnarchen zählt als 1 Min statt 0. */
     val snoreMinutes: Int get() = if (snoreMs <= 0) 0 else maxOf(1, (snoreMs / 60_000.0).roundToInt())
 
+    /** Alle Ausschnitte der Nacht zusammen. */
     val clips: Int get() = snoreClips + talkClips + otherClips
 }
 
@@ -49,7 +48,10 @@ data class SoundSummary(val snoreMs: Long, val snoreClips: Int, val talkClips: I
  * Speicherformat: je Ausschnitt eine Zeile «yyyy-MM-dd|Beginn ms|Art|Dauer ms|Spitze dB|Datei».
  */
 object SoundEvents {
+    /** Aufbewahrung der Ausschnitte in Tagen; danach löscht [expire] sie (Datenschutz). */
     const val RETENTION_DAYS: Long = 7
+
+    /** Höchstzahl Ausschnitte je Nacht; darüber fallen die leisesten weg ([add]). */
     const val MAX_CLIPS_PER_NIGHT: Int = 40
 
     /** Die Aufnahme endet so lange nach der Zielzeit des nächsten Weckers. */
@@ -152,6 +154,7 @@ object SoundEvents {
         return if (rms <= 1e-7) SILENCE_DB else (20 * log10(rms)).coerceAtLeast(SILENCE_DB)
     }
 
+    /** Pegel für digitale Stille in dBFS (statt −∞, damit gerechnet werden kann). */
     const val SILENCE_DB: Double = -140.0
 
     /** Bilanz der Ausschnitte (einer Nacht). */
@@ -201,6 +204,7 @@ object SoundEvents {
     /** Nachtdatum eines Geräuschs (wie bei den Notizen). */
     fun nightDate(at: Instant, zone: ZoneId): LocalDate = SleepNotes.nightDate(at, zone)
 
+    /** Je Ausschnitt eine Zeile im Speicherformat, nach Beginn und Dateiname sortiert. */
     fun encode(clips: List<SoundClip>): String = sorted(clips).joinToString("\n") {
         listOf(it.night.toString(), it.at.toEpochMilli().toString(), it.type.name, it.durationMs.toString(), it.peakDb.toString(), it.file)
             .joinToString("|")
@@ -228,157 +232,4 @@ object SoundEvents {
     fun isSafeFile(name: String): Boolean = SAFE_FILE.matches(name) && name != "." && name != ".."
 
     private fun sorted(clips: List<SoundClip>) = clips.sortedWith(compareBy<SoundClip> { it.at }.thenBy { it.file })
-}
-
-/**
- * Findet Geräusche in einem Strom von Pegeln. Rein rechnerisch, ohne Audio: Der Aufrufer misst den
- * Pegel je Block von [FRAME_MS] ms und führt die Aktionen aus (Ausschnitt beginnen, beenden, speichern).
- *
- * Regeln:
- * - Grundrauschen = Median der Sekundenpegel der letzten [FLOOR_SECONDS] s (Sekundenpegel = Mittel der
- *   Blockpegel einer Sekunde); erst ab [MIN_FLOOR_SECONDS] s Vorlauf wird erkannt.
- * - Ein Geräusch beginnt, wenn der Pegel mindestens [MIN_LOUD_MS] ms am Stück über Grundrauschen +
- *   [THRESHOLD_DB] liegt. Beginn = erster dieser Blöcke.
- * - Laut ist ein Block nur, wenn er zudem mindestens [MIN_EVENT_DB] dBFS erreicht: In einem sehr
- *   stillen Zimmer zählen leise Geräusche (Rascheln, Lüfter) nicht, auch wenn sie 12 dB über dem
- *   Grundrauschen liegen.
- * - Ausschnitt: [PRE_ROLL_MS] ms vor dem Beginn bis höchstens [MAX_CLIP_MS] ms insgesamt; früher zu
- *   Ende, wenn es [CLIP_TAIL_MS] ms lang leise ist.
- * - Das Geräusch dauert, bis es [EVENT_GAP_MS] ms lang leise ist (Dauer = Beginn bis Ende des letzten
- *   lauten Blocks), höchstens [MAX_EVENT_MS] ms. So gibt es höchstens einen Ausschnitt je 30 s, und
- *   langes Schnarchen zählt als ein Geräusch mit seiner ganzen Dauer.
- *
- * @param atMs Beginn des Blocks in ms (beliebiger, gleichmässig steigender Bezug, z. B. ab Aufnahmebeginn).
- */
-class SoundEventDetector {
-
-    sealed interface Action {
-        /** Ausschnitt beginnt bei [clipStartMs] (Vorlauf ab dort übernehmen); das Geräusch bei [onsetMs]. */
-        data class ClipStart(val clipStartMs: Long, val onsetMs: Long) : Action
-
-        /** Ausschnitt endet bei [clipEndMs] (exklusiv): speichern und einordnen. */
-        data class ClipEnd(val onsetMs: Long, val clipEndMs: Long) : Action
-
-        /** Geräusch zu Ende. */
-        data class EventEnd(val onsetMs: Long, val durationMs: Long, val peakDb: Double) : Action
-    }
-
-    private val seconds = ArrayDeque<Double>()
-    private var secondSum = 0.0
-    private var secondFrames = 0
-    private var floor: Double? = null
-
-    private var loudRun = 0
-    private var runStartMs = 0L
-    private var runPeak = Double.NEGATIVE_INFINITY
-
-    // Laufendes Geräusch.
-    private var onsetMs: Long? = null
-    private var lastLoudEndMs = 0L
-    private var peak = Double.NEGATIVE_INFINITY
-    private var clipStartMs: Long? = null
-
-    /** Aktuelle Schwelle in dBFS; `null` während des Vorlaufs. */
-    val threshold: Double? get() = floor?.plus(THRESHOLD_DB)
-
-    fun onFrame(atMs: Long, levelDb: Double): List<Action> {
-        val actions = mutableListOf<Action>()
-        val limit = threshold
-        val loud = limit != null && levelDb > limit && levelDb >= MIN_EVENT_DB
-        val frameEnd = atMs + FRAME_MS
-
-        val onset = onsetMs
-        if (onset == null) {
-            if (loud) {
-                if (loudRun == 0) {
-                    runStartMs = atMs
-                    runPeak = Double.NEGATIVE_INFINITY
-                }
-                loudRun++
-                runPeak = maxOf(runPeak, levelDb)
-                if (loudRun * FRAME_MS >= MIN_LOUD_MS) {
-                    onsetMs = runStartMs
-                    lastLoudEndMs = frameEnd
-                    peak = runPeak
-                    val start = runStartMs - PRE_ROLL_MS
-                    clipStartMs = start
-                    loudRun = 0
-                    actions += Action.ClipStart(start, runStartMs)
-                }
-            } else {
-                loudRun = 0
-            }
-        } else {
-            if (loud) {
-                lastLoudEndMs = frameEnd
-                peak = maxOf(peak, levelDb)
-            }
-            val clip = clipStartMs
-            if (clip != null && (frameEnd - clip >= MAX_CLIP_MS || frameEnd - lastLoudEndMs >= CLIP_TAIL_MS)) {
-                actions += Action.ClipEnd(onset, minOf(frameEnd, clip + MAX_CLIP_MS))
-                clipStartMs = null
-            }
-            if (frameEnd - lastLoudEndMs >= EVENT_GAP_MS || frameEnd - onset >= MAX_EVENT_MS) {
-                actions += endEvent()
-            }
-        }
-
-        addToFloor(levelDb)
-        return actions
-    }
-
-    /** Aufnahme endet: offenen Ausschnitt und offenes Geräusch abschliessen. */
-    fun finish(atMs: Long): List<Action> {
-        val onset = onsetMs ?: return emptyList()
-        val actions = mutableListOf<Action>()
-        clipStartMs?.let { clip -> actions += Action.ClipEnd(onset, minOf(atMs, clip + MAX_CLIP_MS).coerceAtLeast(onset)) }
-        clipStartMs = null
-        actions += endEvent()
-        return actions
-    }
-
-    private fun endEvent(): List<Action> {
-        val onset = onsetMs ?: return emptyList()
-        val result = mutableListOf<Action>()
-        clipStartMs?.let { clip -> result += Action.ClipEnd(onset, minOf(lastLoudEndMs, clip + MAX_CLIP_MS)) }
-        result += Action.EventEnd(onset, (lastLoudEndMs - onset).coerceAtLeast(0), peak)
-        onsetMs = null
-        clipStartMs = null
-        peak = Double.NEGATIVE_INFINITY
-        loudRun = 0
-        return result
-    }
-
-    private fun addToFloor(levelDb: Double) {
-        secondSum += levelDb
-        secondFrames++
-        if (secondFrames * FRAME_MS < 1000) return
-        seconds.addLast(secondSum / secondFrames)
-        secondSum = 0.0
-        secondFrames = 0
-        while (seconds.size > FLOOR_SECONDS) seconds.removeFirst()
-        floor = if (seconds.size >= MIN_FLOOR_SECONDS) median(seconds) else null
-    }
-
-    companion object {
-        const val FRAME_MS: Long = 100
-        const val FLOOR_SECONDS: Int = 60
-        const val MIN_FLOOR_SECONDS: Int = 10
-        const val THRESHOLD_DB: Double = 12.0
-
-        /** Absolute Untergrenze für einen lauten Block in dBFS (leiser zählt nie als Geräusch). */
-        const val MIN_EVENT_DB: Double = -50.0
-        const val MIN_LOUD_MS: Long = 500
-        const val PRE_ROLL_MS: Long = 2_000
-        const val MAX_CLIP_MS: Long = 10_000
-        const val CLIP_TAIL_MS: Long = 2_000
-        const val EVENT_GAP_MS: Long = 30_000
-        const val MAX_EVENT_MS: Long = 10 * 60_000
-
-        fun median(values: Collection<Double>): Double {
-            val sorted = values.sorted()
-            val mid = sorted.size / 2
-            return if (sorted.size % 2 == 1) sorted[mid] else (sorted[mid - 1] + sorted[mid]) / 2
-        }
-    }
 }

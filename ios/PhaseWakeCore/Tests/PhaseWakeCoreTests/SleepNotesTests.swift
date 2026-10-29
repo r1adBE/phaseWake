@@ -190,4 +190,13 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-28T22:00"))
         XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 480, leadMinutes: 15), at("2026-10-28T21:45"))
     }
+
+    /// Kennungen und Namen eigener Notizen.
+    func testCustomIdAndCleanName() {
+        XCTAssertTrue(SleepNotes.isCustom("custom:abc"))
+        XCTAssertFalse(SleepNotes.isCustom("CAFFEINE"))
+        XCTAssertEqual(SleepNotes.cleanName(" Tee\nspät\r|x "), "Tee spät  x")
+        XCTAssertEqual(CustomNote(id: "custom:a", name: "\n|").name, "")
+        XCTAssertEqual(SleepNotes.trim(["2026-10-27": ["SICK", "SICK", "ALCOHOL"], "2026-10-26": []]), ["2026-10-27": ["ALCOHOL", "SICK"]])
+    }
 }

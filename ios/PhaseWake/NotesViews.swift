@@ -59,6 +59,7 @@ private struct NoteOption: Identifiable {
 struct NoteChips: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var withoutColor
     let nightDate: String
 
     var body: some View {
@@ -69,7 +70,11 @@ struct NoteChips: View {
             ForEach(options) { option in
                 let on = selected.contains(option.id)
                 Button { model.toggleNote(option.id, nightDate: nightDate) } label: {
-                    Text(option.name)
+                    HStack(spacing: 4) {
+                        // «Differenzieren ohne Farbe»: gewählt zusätzlich mit Haken.
+                        if on && withoutColor { Image(systemName: "checkmark").font(.caption.bold()).accessibilityHidden(true) }
+                        Text(option.name)
+                    }
                         .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                         .lineLimit(1)
                         .padding(.horizontal, 12).padding(.vertical, 7)

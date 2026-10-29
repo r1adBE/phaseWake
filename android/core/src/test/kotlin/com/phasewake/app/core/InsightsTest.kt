@@ -94,6 +94,15 @@ class InsightsTest {
         // 23:50 und 00:10 abwechselnd: Abweichung um 10 Min, nicht um 12 Stunden.
         assertEquals(9, Trends.compute(emptyList(), sleeps, now, zone).bedtimeSpreadMinutes)
     }
+
+    @Test
+    fun emptyNightHasNoQualityAndChangeNeedsBothWeeks() {
+        assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(2, { 0.01 }, { 60.0 }))))
+        assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(10, { null }, { 60.0 }))))
+        assertNull(Trends(420, null, null, null, null).asleepChange)
+        assertNull(Trends(null, 400, null, null, null).asleepChange)
+        assertEquals(20L, Trends(420, 400, null, null, null).asleepChange)
+    }
 }
 
 class MissHintTest {

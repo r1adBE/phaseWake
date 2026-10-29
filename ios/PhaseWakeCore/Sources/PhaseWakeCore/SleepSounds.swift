@@ -36,8 +36,11 @@ public enum SleepSound: String, CaseIterable, Sendable {
 public enum SleepSounds {
     /// Timer-Auswahl in Minuten; `nil` = ohne Timer.
     public static let timerOptions: [Int?] = [15, 30, 60, nil]
+    /// Vorgewählter Timer in Minuten.
     public static let defaultTimerMinutes = 30
+    /// Einblenden in Sekunden: kurz, damit der Klang nicht schlagartig einsetzt.
     public static let fadeInSeconds = 3.0
+    /// Ausblenden in Sekunden vor dem Ende, damit das Aufhören nicht weckt.
     public static let fadeOutSeconds = 30.0
     /// Verstärkung der Aufnahmen beim Abspielen (`SleepSound.gainDb`).
     public static let recordingGainDb = 6.0
@@ -82,7 +85,9 @@ public struct NoiseGenerator: Sendable {
     /// −12 dBFS.
     public static let peak = 0.251
 
+    /// Klang, den dieser Generator erzeugt; Aufnahmen ergeben Stille.
     public let sound: SleepSound
+    /// Abtastrate in Hz.
     public let sampleRate: Double
 
     private var rng: UInt64
@@ -107,6 +112,10 @@ public struct NoiseGenerator: Sendable {
     /// Kanäle: 2 für die Einschlaf-Wellen (je Ohr ein anderer Ton), sonst 1.
     public var channels: Int { sound == .binaural ? 2 : 1 }
 
+    /// Erzeugt einen Generator; gleicher `seed` ergibt dieselbe Folge (für Tests und gleichen Klang).
+    /// - Parameters:
+    ///   - sampleRate: Abtastrate in Hz (Standard 48 kHz).
+    ///   - seed: Startwert des Zufalls.
     public init(sound: SleepSound, sampleRate: Double = 48_000, seed: UInt64 = 1) {
         self.sound = sound
         self.sampleRate = sampleRate

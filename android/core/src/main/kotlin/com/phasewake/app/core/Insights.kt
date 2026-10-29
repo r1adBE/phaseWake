@@ -19,6 +19,7 @@ enum class DataQuality {
     NONE,
 }
 
+/** Bewertet die Messqualität einer Uhr-Nacht ([DataQuality]); die Aufwärm-Epochen zählen nicht mit. */
 object NightQuality {
     /** Ab diesem Anteil gilt ein Signal als durchgehend vorhanden. */
     const val COMPLETE_SHARE: Double = 0.8
@@ -26,6 +27,10 @@ object NightQuality {
     /** Ab diesem Anteil zählt der Puls als mitentscheidend. */
     const val HEART_SHARE: Double = 0.5
 
+    /**
+     * Qualität der Nacht aus dem Anteil der Epochen mit Bewegung bzw. Puls nach [warmupEpochs].
+     * Ohne Epochen oder ohne jede Bewegung: [DataQuality.NONE].
+     */
     fun of(night: NightRecord, warmupEpochs: Int = DetectorConfig.DEFAULT_WARMUP_EPOCHS): DataQuality {
         val epochs = night.epochs.drop(warmupEpochs)
         if (epochs.isEmpty()) return DataQuality.NONE
@@ -76,27 +81,33 @@ data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes:
 /**
  * Wochenvergleich für den Verlauf. Werte sind `null`, wenn zu wenige Nächte vorliegen – lieber
  * nichts sagen als etwas Falsches.
- *
- * @property asleepThisWeek Durchschnittlicher Schlaf der letzten 7 Tage in Minuten.
- * @property asleepLastWeek Dasselbe für die 7 Tage davor.
- * @property bedtimeSpreadMinutes Wie stark die Einschlafzeit der letzten 14 Tage schwankt (mittlere Abweichung).
- * @property feelingThisWeek Durchschnittliches Befinden der letzten 7 Tage (1–5).
- * @property feelingLastWeek Dasselbe für die 7 Tage davor.
  */
 data class Trends(
+    /** Durchschnittlicher Schlaf der letzten 7 Tage in Minuten. */
     val asleepThisWeek: Long?,
+    /** Dasselbe für die 7 Tage davor. */
     val asleepLastWeek: Long?,
+    /** Wie stark die Einschlafzeit der letzten 14 Tage schwankt (mittlere Abweichung). */
     val bedtimeSpreadMinutes: Long?,
+    /** Durchschnittliches Befinden der letzten 7 Tage (1–5). */
     val feelingThisWeek: Double?,
+    /** Dasselbe für die 7 Tage davor. */
     val feelingLastWeek: Double?,
 ) {
     /** Differenz des Schlafs zur Vorwoche in Minuten; `null` ohne beide Wochen. */
     val asleepChange: Long? get() = if (asleepThisWeek != null && asleepLastWeek != null) asleepThisWeek - asleepLastWeek else null
 
     companion object {
+        /** Mindestanzahl Nächte je Woche für einen Durchschnitt; darunter `null`. */
         const val MIN_NIGHTS_PER_WEEK: Int = 3
+
+        /** Mindestanzahl Nächte in zwei Wochen für die Schwankung der Einschlafzeit. */
         const val MIN_NIGHTS_FOR_SPREAD: Int = 5
 
+        /**
+         * Wochenvergleich bis [now]: «diese Woche» = die 7 Tage bis [now], «Vorwoche» = die 7 Tage davor
+         * (feste 24-h-Tage). Schlaf nach Ende der Nacht, Befinden nach Weckzeit eingeordnet.
+         */
         fun compute(nights: List<NightRecord>, sleeps: List<SleepSummary>, now: Instant, zone: ZoneId): Trends {
             val weekAgo = now.minus(Duration.ofDays(7))
             val twoWeeksAgo = now.minus(Duration.ofDays(14))
@@ -145,8 +156,13 @@ enum class MissHint {
     CALM;
 
     companion object {
+        /** So viele jüngste Nächte des Weckers müssen alle zur Zielzeit geendet haben. */
         const val NIGHTS: Int = 3
 
+        /**
+         * Hinweis für [spec], wenn dessen Fenster schon am grössten ist und die letzten [NIGHTS] Nächte
+         * alle zur Zielzeit endeten; Ursache nach der Mehrheit der Datenqualität. Sonst `null`.
+         */
         fun of(spec: AlarmSpec?, nights: List<NightRecord>): MissHint? {
             if (spec == null || spec.windowMinutes < AlarmSpec.MAX_WINDOW_MINUTES) return null
             val recent = nights.filter { it.alarmId == spec.id }.sortedBy { it.windowStart }.takeLast(NIGHTS)

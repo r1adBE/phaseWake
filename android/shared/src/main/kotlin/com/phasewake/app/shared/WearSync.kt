@@ -155,7 +155,6 @@ class WearSync(context: Context) {
         for (node in nodes) messageClient.sendMessage(node.id, path, payload).await()
     }
 
-    /** Ob gerade ein Gerät mit [capability] erreichbar ist; `false` auch ohne Wear-Dienste. */
     /**
      * Gekoppelte Uhren, auf denen Phase Wake fehlt: verbunden, melden die Fähigkeit aber nicht.
      * Leer, wenn keine Uhr verbunden ist oder überall die App läuft.
@@ -169,6 +168,7 @@ class WearSync(context: Context) {
         emptyList()
     }
 
+    /** Ob gerade ein Gerät mit [capability] erreichbar ist; `false` auch ohne Wear-Dienste. */
     suspend fun isReachable(capability: String): Boolean = try {
         capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.isNotEmpty()
     } catch (e: Exception) {

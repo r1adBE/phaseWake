@@ -2,6 +2,7 @@ package com.phasewake.app.core
 
 import java.time.Instant
 import kotlin.math.abs
+import kotlin.test.assertFailsWith
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -113,5 +114,18 @@ class SleepSoundsTest {
         assertNull(SleepSounds.stopAt(start, null, null))
         // Läuft das Weckfenster schon, enden die Klänge sofort.
         assertEquals(start, SleepSounds.stopAt(start, 15, start.minusSeconds(60)))
+    }
+
+    @Test
+    fun recordingsAreNotGeneratedAndSeedZoneIsValid() {
+        for (sound in SleepSound.entries.filter { it.recorded }) {
+            assertFailsWith<IllegalArgumentException> { NoiseGenerator(sound) }
+        }
+        // Startwert 0 wäre für xorshift ein Fixpunkt (nur Nullen); er wird ersetzt.
+        val samples = FloatArray(4_800).also { NoiseGenerator(SleepSound.WHITE, rate, seed = 0L).fill(it) }
+        assertTrue(samples.any { it != 0f })
+        assertEquals(1, NoiseGenerator(SleepSound.PINK).channels)
+        assertEquals(2, NoiseGenerator(SleepSound.BINAURAL).channels)
+        assertNull(SleepSounds.stopAt(Instant.EPOCH, null, null))
     }
 }

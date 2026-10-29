@@ -29,8 +29,9 @@ enum Brand {
     static func onAccent(_ scheme: ColorScheme) -> Color { scheme == .dark ? nightTop : .white }
     /// Karten: dunkel Weiss mit 6 % auf dem Nachthimmel, hell weiss.
     static func card(_ scheme: ColorScheme) -> Color { scheme == .dark ? .white.opacity(0.06) : .white }
-    /// Rand eines nicht gewählten Chips.
-    static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : glow.opacity(0.35) }
+    /// Rand eines nicht gewählten Chips, ≥ 3:1 zur Karte (WCAG 1.4.11): hell 90 % ≈ 3.4:1 auf Weiss,
+    /// dunkel 75 % ≈ 4.7:1 auf der Karte über dem Nachthimmel (≈ 3.2:1 im Lavendel-Schein oben rechts).
+    static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.75) : glow.opacity(0.9) }
     /// Fläche eines gewählten Chips.
     static func chipSelected(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : Color(hex: 0xE4DFFB) }
     /// Leiser Nebentext (Erklärung), ≥ 4.5:1.

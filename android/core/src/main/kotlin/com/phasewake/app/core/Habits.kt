@@ -13,8 +13,13 @@ import kotlin.math.abs
  * Ohne Gesundheitsdaten gibt es nichts zu zählen (die Zeile bleibt verborgen).
  */
 object Regularity {
+    /** Höchste Abweichung vom Median in Minuten, die noch als regelmässig gilt. */
     const val TOLERANCE_MINUTES: Int = 30
+
+    /** Gezählte Nachtdaten (eine Woche). */
     const val WEEK_NIGHTS: Int = 7
+
+    /** Nachtdaten, aus denen der Median der Bettzeit kommt (zwei Wochen). */
     const val MEDIAN_NIGHTS: Int = 14
 
     /** Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App. */
@@ -50,6 +55,7 @@ object Regularity {
 
 /** Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. */
 object Streak {
+    /** Zeitraum der längsten Serie in Nachtdaten, gleich lang wie der Verlauf ([NightHistory.MAX_NIGHTS]). */
     const val LONGEST_DAYS: Int = 90
 
     /** Schlafziel erreicht je Nachtdatum (aus der Gesundheits-App; mehrere Nächte am selben Datum → die längste). */
@@ -92,22 +98,25 @@ object Streak {
 /**
  * Wochenrückblick über die Nachtdaten [from] bis [to] (Sonntag bis Samstag; am Sonntag ist die
  * Samstagnacht die letzte abgeschlossene).
- *
- * @property asleepAverage Durchschnittlicher Schlaf in Minuten; `null` ohne Gesundheitsdaten.
- * @property goalReached Nächte mit erreichtem Schlafziel (von [nightsWithSleep]).
- * @property regular Regelmässige Abende (von [regularCounted]).
- * @property feelingAverage Durchschnittliches Befinden; `null` ohne Angaben.
- * @property strongestNote Notiz mit der deutlichsten Wirkung (über die letzten 90 Nächte), falls eine.
  */
 data class WeeklySummary(
+    /** Erstes Nachtdatum der Woche (Sonntag). */
     val from: LocalDate,
+    /** Letztes Nachtdatum der Woche (Samstag). */
     val to: LocalDate,
+    /** Durchschnittlicher Schlaf in Minuten; `null` ohne Gesundheitsdaten. */
     val asleepAverage: Long?,
+    /** Nächte mit erreichtem Schlafziel (von [nightsWithSleep]). */
     val goalReached: Int,
+    /** Nächte mit Schlafdaten der Gesundheits-App in dieser Woche. */
     val nightsWithSleep: Int,
+    /** Regelmässige Abende (von [regularCounted]). */
     val regular: Int,
+    /** Abende mit Bettzeit (Nenner zu [regular]). */
     val regularCounted: Int,
+    /** Durchschnittliches Befinden; `null` ohne Angaben. */
     val feelingAverage: Double?,
+    /** Notiz mit der deutlichsten Wirkung (über die letzten 90 Nächte), falls eine. */
     val strongestNote: NoteEffect?,
 ) {
     /** Gesundheitsdaten in dieser Woche. */
@@ -119,6 +128,8 @@ data class WeeklySummary(
     companion object {
         /** Mitteilung am Sonntag um 18:00. */
         val NOTIFY_DAY: DayOfWeek = DayOfWeek.SUNDAY
+
+        /** Stunde der Mitteilung (Ortszeit). */
         const val NOTIFY_HOUR: Int = 18
 
         /** Letztes Nachtdatum der zuletzt abgeschlossenen Woche: der Samstag vor [today] (Kalenderdatum). */
@@ -137,6 +148,10 @@ data class WeeklySummary(
             }
         }
 
+        /**
+         * Rückblick für die Woche, die am Samstag [weekEnd] endet. Schlaf aus der
+         * Gesundheits-App, Befinden aus den Uhr-Nächten; Wochen ohne beides ergeben [hasData] `false`.
+         */
         fun of(
             nights: List<NightRecord>,
             sleeps: List<SleepSummary>,
@@ -180,15 +195,25 @@ data class RoutineItem(val id: String, val text: String = "")
  * Speicherformat: Punkte je Zeile «id|Text»; abgehakte Punkte je Nachtdatum «yyyy-MM-dd|id,id».
  */
 object Routine {
+    /** Vorschlag «Handy weg» (feste Kennung im Speicher). */
     const val PHONE = "PHONE"
+
+    /** Vorschlag «Licht dimmen» (feste Kennung im Speicher). */
     const val LIGHT = "LIGHT"
+
+    /** Vorschlag «Wasser bereit» (feste Kennung im Speicher). */
     const val WATER = "WATER"
 
     /** Die drei Vorschläge für den Anfang. */
     val DEFAULTS: List<RoutineItem> = listOf(RoutineItem(PHONE), RoutineItem(LIGHT), RoutineItem(WATER))
 
+    /** Höchstzahl der Punkte der Abendroutine. */
     const val MAX_ITEMS: Int = 8
+
+    /** Höchstlänge eines eigenen Punkts in Zeichen. */
     const val MAX_TEXT_LENGTH: Int = 40
+
+    /** Vorsatz der Kennung eigener Punkte («custom:<uuid>»). */
     const val CUSTOM_PREFIX: String = "custom:"
 
     /** Durchschnitt erst ab so vielen Abenden. */
@@ -197,12 +222,16 @@ object Routine {
     /** Der Durchschnitt betrachtet so viele Nachtdaten bis heute. */
     const val AVERAGE_NIGHTS: Int = 30
 
+    /** Ob [id] einer der drei Vorschläge ist (Text kommt dann aus der Übersetzung). */
     fun isBuiltIn(id: String): Boolean = id == PHONE || id == LIGHT || id == WATER
 
+    /** Neue Kennung für einen eigenen Punkt aus einer UUID (als Text). */
     fun customId(uuid: String): String = CUSTOM_PREFIX + uuid
 
+    /** Bereinigt einen Text: ohne Zeilenumbrüche und «|» (Trennzeichen im Speicher), getrimmt, höchstens [MAX_TEXT_LENGTH] Zeichen. */
     fun cleanText(text: String): String = text.replace('\n', ' ').replace('\r', ' ').replace('|', ' ').trim().take(MAX_TEXT_LENGTH).trim()
 
+    /** Punkte je Zeile «id|Text», höchstens [MAX_ITEMS]; Vorschläge mit leerem Text. */
     fun encodeItems(items: List<RoutineItem>): String =
         items.take(MAX_ITEMS).joinToString("\n") { "${it.id}|${cleanText(it.text)}" }
 
@@ -225,8 +254,10 @@ object Routine {
     fun toggle(ticks: Map<LocalDate, List<String>>, date: LocalDate, id: String): Map<LocalDate, List<String>> =
         SleepNotes.toggle(ticks, date, id)
 
+    /** Abgehakte Punkte im Format der Schlafnotizen ([SleepNotes.encode]). */
     fun encodeTicks(ticks: Map<LocalDate, List<String>>): String = SleepNotes.encode(ticks)
 
+    /** Liest [encodeTicks]; unlesbare Zeilen werden übersprungen, `null` ergibt eine leere Zuordnung. */
     fun decodeTicks(text: String?): Map<LocalDate, List<String>> = SleepNotes.decode(text)
 
     /**

@@ -4,8 +4,13 @@ package com.phasewake.app.core
  * Passt die Schwellen an den Nutzer an. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 4.
  */
 object Calibration {
+    /** Erst ab so vielen gemessenen Nächten wird angepasst; vorher gelten die Startwerte. */
     const val MIN_NIGHTS: Int = 3
+
+    /** Höchstens so viele jüngste Nächte fliessen ein, damit sich die Schwellen an Veränderungen anpassen. */
     const val MAX_NIGHTS: Int = 14
+
+    /** Mindestanzahl entscheidbarer Epochen über alle Nächte; darunter wäre das 80. Perzentil zu zufällig. */
     const val MIN_VALUES: Int = 30
 
     /** Verhältnis Wach- zu Leicht-Schwelle, aus den Startwerten (0.100 / 0.002). */

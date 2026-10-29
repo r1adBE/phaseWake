@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.core.net.toUri
 import com.phasewake.app.R
 
 /**
@@ -32,11 +33,11 @@ object WakeTones {
     fun find(sound: String): Tone? = ALL.firstOrNull { it.key == sound }
 
     fun uri(context: Context, tone: Tone): Uri =
-        Uri.parse("${ContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/${tone.raw}")
+        "${ContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/${tone.raw}".toUri()
 
     /** Abspielbare Adresse zu [sound]: eigener Ton, Systemton oder `null` (= Standard-Weckton). */
     fun resolve(context: Context, sound: String): Uri? =
-        find(sound)?.let { uri(context, it) } ?: sound.ifEmpty { null }?.let(Uri::parse)
+        find(sound)?.let { uri(context, it) } ?: sound.ifEmpty { null }?.toUri()
 }
 
 /**

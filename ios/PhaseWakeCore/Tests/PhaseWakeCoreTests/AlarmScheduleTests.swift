@@ -69,13 +69,38 @@ final class AlarmScheduleTests: XCTestCase {
         XCTAssertThrowsError(try AlarmSpec(id: " ", hour: 7, minute: 0))
     }
 
+    /// Wie `SnoozeAndOnsetTest` (Kotlin).
     func testSnoozeAndOnset() {
+        XCTAssertTrue(Snooze.canSnooze(0))
         XCTAssertTrue(Snooze.canSnooze(2))
         XCTAssertFalse(Snooze.canSnooze(3))
+        let six = Date(timeIntervalSince1970: 1_793_167_200)
+        XCTAssertEqual(Snooze.nextRing(six), six.addingTimeInterval(300))
+        XCTAssertNil(SleepOnset.find([Double?](repeating: 0.0, count: 29)))
         let restless = [Double?](repeating: 0.05, count: 10)
         let shortRest = [Double?](repeating: 0.0, count: 20)
         let still = [Double?](repeating: 0.0, count: 30)
         XCTAssertEqual(SleepOnset.find(restless + shortRest + [nil] + still), 31)
         XCTAssertNil(SleepOnset.find([Double?](repeating: 0.002, count: 60)))
+    }
+
+    /// Abgeleitete Eigenschaften des Weckers (wie `AlarmSpec` in Kotlin).
+    func testAlarmFlags() throws {
+        XCTAssertTrue(alarm().isOneShot)
+        XCTAssertFalse(alarm(days: [.monday]).isOneShot)
+        XCTAssertTrue(alarm().phoneBackup)
+        XCTAssertFalse(try AlarmSpec(id: "a", hour: 7, minute: 0, phone: .off).phoneBackup)
+        XCTAssertTrue(try AlarmSpec(id: "a", hour: 7, minute: 0, phone: .vibrate).phoneBackup)
+        XCTAssertEqual(SunriseDevice.allCases.map(\.onPhone), [true, false, true])
+        XCTAssertEqual(SunriseDevice.allCases.map(\.onWatch), [false, true, true])
+        let both = try AlarmSpec(id: "a", hour: 7, minute: 0, sunrise: .window, sunriseDevice: .both)
+        XCTAssertEqual(both.phoneSunrise, .window)
+        XCTAssertEqual(both.watchSunrise, .window)
+        XCTAssertEqual(try AlarmSpec(id: "a", hour: 7, minute: 0, sunrise: .ring).watchSunrise, .off)
+        // Mittwoch, 28.10.2026; Sonntag, 1.11.2026.
+        XCTAssertEqual(Weekday(date: at(2026, 10, 28, 7, 0), calendar: zurich), .wednesday)
+        XCTAssertEqual(Weekday(date: at(2026, 11, 1, 23, 59), calendar: zurich), .sunday)
+        XCTAssertLessThan(Weekday.monday, Weekday.sunday)
+        XCTAssertEqual(AlarmSchedule.windowStart(at(2026, 10, 28, 7, 0), windowMinutes: 20), at(2026, 10, 28, 6, 40))
     }
 }

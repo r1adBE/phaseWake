@@ -18,6 +18,7 @@ public enum NightDate {
         return date
     }
 
+    /// Ob der Text ein gültiges Datum «yyyy-MM-dd» ist (auch Monatslänge und Schaltjahr).
     public static func isValid(_ text: String) -> Bool { date(text) != nil }
 
     /// Datum plus `days` Tage; ungültiger Text bleibt unverändert.
@@ -50,8 +51,11 @@ extension NoteEffect {
 /// 30 Minuten vom Median der letzten 14 Nächte abweicht. Ohne Gesundheitsdaten gibt es nichts zu zählen.
 /// Identisch zu `Regularity` (Kotlin).
 public enum Regularity {
+    /// Höchste Abweichung vom Median in Minuten, die noch als regelmässig zählt.
     public static let toleranceMinutes = 30
+    /// Abende einer Woche.
     public static let weekNights = 7
+    /// Nachtdaten, über die der Median gebildet wird.
     public static let medianNights = 14
 
     /// Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App.
@@ -87,6 +91,7 @@ public enum Regularity {
 
 /// Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. Identisch zu Kotlin.
 public enum Streak {
+    /// Zeitraum für die längste Serie in Nachtdaten (wie die gespeicherten Notizen).
     public static let longestDays = 90
 
     /// Schlafziel erreicht je Nachtdatum (aus der Gesundheits-App; mehrere Nächte am selben Datum → die längste).
@@ -128,15 +133,19 @@ public enum Streak {
 /// Wochenrückblick über die Nachtdaten `from` bis `to` (Sonntag bis Samstag; am Sonntag ist die
 /// Samstagnacht die letzte abgeschlossene). Identisch zu `WeeklySummary` (Kotlin).
 public struct WeeklySummary: Equatable, Sendable {
+    /// Erstes Nachtdatum der Woche (Sonntag).
     public let from: String
+    /// Letztes Nachtdatum der Woche (Samstag).
     public let to: String
     /// Durchschnittlicher Schlaf in Minuten; `nil` ohne Gesundheitsdaten.
     public let asleepAverage: Int?
     /// Nächte mit erreichtem Schlafziel (von `nightsWithSleep`).
     public let goalReached: Int
+    /// Nächte mit Gesundheitsdaten in dieser Woche.
     public let nightsWithSleep: Int
     /// Regelmässige Abende (von `regularCounted`).
     public let regular: Int
+    /// Gezählte Abende (Nenner zu `regular`).
     public let regularCounted: Int
     /// Durchschnittliches Befinden; `nil` ohne Angaben.
     public let feelingAverage: Double?
@@ -150,6 +159,7 @@ public struct WeeklySummary: Equatable, Sendable {
 
     /// Mitteilung am Sonntag um 18:00.
     public static let notifyWeekday = Weekday.sunday
+    /// Stunde der Mitteilung (Ortszeit).
     public static let notifyHour = 18
 
     /// Letztes Nachtdatum der zuletzt abgeschlossenen Woche: der Samstag vor `today` (Kalenderdatum).
@@ -176,6 +186,12 @@ public struct WeeklySummary: Equatable, Sendable {
                           matchingPolicy: .nextTime)
     }
 
+    /// Rechnet den Rückblick der Woche, die mit `weekEnd` endet.
+    /// - Parameters:
+    ///   - nights: Uhr-Nächte für das Befinden (je Nachtdatum die zuletzt geweckte).
+    ///   - sleeps: Nächte der Gesundheits-App für Schlaf, Ziel und Regelmässigkeit.
+    ///   - notes: Notizen je Nachtdatum für die stärkste Wirkung.
+    ///   - goalMinutes: Schlafziel in Minuten.
     public static func of(nights: [NightRecord], sleeps: [SleepSummary], notes: [String: [String]], calendar: Calendar,
                           goalMinutes: Int, weekEnd: String) -> WeeklySummary {
         let from = NightDate.adding(-(Regularity.weekNights - 1), to: weekEnd)
@@ -208,9 +224,12 @@ public struct WeeklySummary: Equatable, Sendable {
 
 /// Ein Punkt der Abendroutine. Vorgeschlagene Punkte haben einen leeren `text` (Anzeige übersetzt).
 public struct RoutineItem: Equatable, Sendable, Identifiable {
+    /// Kennung: `PHONE`, `LIGHT`, `WATER` oder «custom:» plus UUID.
     public let id: String
+    /// Eigener Text; leer bei den Vorschlägen.
     public let text: String
 
+    /// Erzeugt einen Punkt; Vorschläge ohne Text.
     public init(id: String, text: String = "") {
         self.id = id
         self.text = text
@@ -222,15 +241,21 @@ public struct RoutineItem: Equatable, Sendable, Identifiable {
 /// Speicherformat: Punkte je Zeile «id|Text»; abgehakte Punkte je Nachtdatum «yyyy-MM-dd|id,id».
 /// Identisch zu `Routine` (Kotlin).
 public enum Routine {
+    /// Vorschlag «Handy weg».
     public static let phone = "PHONE"
+    /// Vorschlag «Licht dimmen».
     public static let light = "LIGHT"
+    /// Vorschlag «Wasser bereit».
     public static let water = "WATER"
 
     /// Die drei Vorschläge für den Anfang.
     public static let defaults: [RoutineItem] = [RoutineItem(id: phone), RoutineItem(id: light), RoutineItem(id: water)]
 
+    /// Höchstzahl Punkte; mehr wäre keine Routine mehr.
     public static let maxItems = 8
+    /// Höchstlänge eines eigenen Texts in Zeichen; passt auf eine Zeile.
     public static let maxTextLength = 40
+    /// Vorsatz der Kennung eigener Punkte.
     public static let customPrefix = "custom:"
     /// Durchschnitt erst ab so vielen Abenden …
     public static let minEvenings = 3
@@ -239,15 +264,19 @@ public enum Routine {
     /// Abgehakt bleibt so viele Nachtdaten (wie die Notizen).
     public static let maxDates = NightHistory.maxNights
 
+    /// Ob die Kennung einer der drei Vorschläge ist.
     public static func isBuiltIn(_ id: String) -> Bool { id == phone || id == light || id == water }
 
+    /// Kennung für einen eigenen Punkt aus einer UUID.
     public static func customId(_ uuid: String) -> String { customPrefix + uuid }
 
+    /// Text ohne Zeilenumbrüche und «|» (Trennzeichen des Formats), ohne Rand-Leerzeichen, höchstens 40 Zeichen.
     public static func cleanText(_ text: String) -> String {
         let flat = text.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\r", with: " ").replacingOccurrences(of: "|", with: " ")
         return String(flat.trimmingCharacters(in: .whitespaces).prefix(maxTextLength)).trimmingCharacters(in: .whitespaces)
     }
 
+    /// Schreibt die Punkte je Zeile «id|Text», höchstens 8.
     public static func encodeItems(_ items: [RoutineItem]) -> String {
         items.prefix(maxItems).map { "\($0.id)|\(cleanText($0.text))" }.joined(separator: "\n")
     }

@@ -27,7 +27,6 @@ import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -37,19 +36,19 @@ import kotlinx.coroutines.sync.withLock
  * klingelt das Handy selbst. Gilt nur für Wecker mit eingeschaltetem Zweitwecker.
  */
 class BackupAlarm(
-    private val context: Context,
-    private val alarms: AlarmRepository,
-    private val store: DataStore<Preferences>,
+    internal val context: Context,
+    internal val alarms: AlarmRepository,
+    internal val store: DataStore<Preferences>,
     private val sync: com.phasewake.app.shared.WearSync,
-    private val now: () -> Instant = Instant::now,
+    internal val now: () -> Instant = Instant::now,
 ) {
-    private val alarmManager = context.getSystemService(AlarmManager::class.java)
+    internal val alarmManager = context.getSystemService(AlarmManager::class.java)
 
     /** Mehrere Stellen planen gleichzeitig neu (Editor, Data Layer, Receiver): nie verschränkt. */
     private val mutex = Mutex()
 
     /** Bei jedem Aufruf die aktuelle Zeitzone (Reisen): nie beim Erzeugen festhalten. */
-    private val zone: ZoneId get() = ZoneId.systemDefault()
+    internal val zone: ZoneId get() = ZoneId.systemDefault()
 
     /**
      * Plant Zweitwecker und Sonnenaufgang neu, danach Bettzeit-Erinnerung und Wochenrückblick (hängen an denselben
@@ -104,7 +103,7 @@ class BackupAlarm(
         val plan = (upcoming + listOfNotNull(inGrace)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
         if (plan == null) {
             if (prefs[PLANNED_ID] != null) store.edit { it.remove(PLANNED_ID); it.remove(PLANNED_TARGET) }
-            DirectBoot.clear(context)
+            BackupDirectBoot.clear(context)
             return@withLock
         }
         if (prefs[PLANNED_ID] != plan.alarmId || prefs[PLANNED_TARGET] != plan.target.toEpochMilli()) {
@@ -116,43 +115,7 @@ class BackupAlarm(
         val at = plan.target.plus(grace)
         setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
         // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen.
-        DirectBoot.save(context, at, plan.alarmId, plan.target)
-    }
-
-    /** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn auf dem Handy will. */
-    private suspend fun rescheduleSunrise() {
-        alarmManager.cancel(sunrisePending())
-        val wanted = alarms.current().alarms.filter { it.phoneSunrise == Sunrise.WINDOW }
-        // Ein bereits gezeigtes Licht nicht noch einmal starten.
-        val shown = Instant.ofEpochMilli(store.data.first()[SUNRISE_SHOWN_UNTIL] ?: 0L)
-        val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone) ?: return
-        val at = maxOf(plan.windowStart, now())
-        // Kein Wecker-Alarm: sonst zeigten Sperrbildschirm und andere Apps den Fensterbeginn als Weckzeit.
-        setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, plan.windowStart, plan.target))
-    }
-
-    private fun sunrisePending(alarmId: String? = null, start: Instant? = null, end: Instant? = null): PendingIntent {
-        val intent = Intent(context, Receiver::class.java).setAction(ACTION_SUNRISE)
-        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-        if (start != null) intent.putExtra(SunriseLight.EXTRA_START, start.toEpochMilli())
-        if (end != null) intent.putExtra(SunriseLight.EXTRA_END, end.toEpochMilli())
-        return PendingIntent.getBroadcast(context, 2, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
-    /** Licht starten und merken, damit es nach dem Neuplanen nicht erneut beginnt. */
-    internal suspend fun startSunrise(intent: Intent) {
-        val end = Instant.ofEpochMilli(intent.getLongExtra(SunriseLight.EXTRA_END, 0L))
-        store.edit { it[SUNRISE_SHOWN_UNTIL] = end.toEpochMilli() }
-        if (end.isAfter(now())) {
-            SunriseLight.start(
-                context,
-                SunriseLight.Active(
-                    alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID),
-                    start = Instant.ofEpochMilli(intent.getLongExtra(SunriseLight.EXTRA_START, 0L)),
-                    end = end,
-                ),
-            )
-        }
+        BackupDirectBoot.save(context, at, plan.alarmId, plan.target)
     }
 
     /**
@@ -233,24 +196,6 @@ class BackupAlarm(
             message.snoozeUntil == null -> cancelSnoozeSafety(message.alarmId)
         }
         watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
-    }
-
-    /**
-     * Sicherung nach dem Schlummern einer Nacht, die die Uhr führt: klingelt um [at] als Zweitwecker
-     * dieses Weckers (mit dessen Weckart und Weckton), wenn bis dahin kein neues «klingeln» der Uhr kam.
-     * Liegt neben dem Zweitwecker: Dessen Aussetzen über [watchHandled] berührt sie nicht. Mit Handy
-     * «Aus» keine Sicherung (wie beim Zweitwecker). [snoozesDone]: bisherige Schlummer-Runden.
-     */
-    suspend fun snoozeSafety(alarmId: String?, at: Instant, snoozesDone: Int) {
-        val spec = alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
-        if (spec != null && !spec.phoneBackup) {
-            cancelSnoozeSafety(alarmId)
-            return
-        }
-        val done = snoozesDone.coerceIn(0, Snooze.MAX_COUNT)
-        // Zuerst ablegen (auch vor dem ersten Entsperren lesbar), dann planen.
-        SnoozeSafety.save(context, SnoozeSafety.Saved(at, alarmId, done))
-        setAlarm(at, showIntent(), safetyPending(context, alarmId, done))
     }
 
     /** Hebt die Sicherung nach dem Schlummern auf; mit [alarmId] nur, wenn sie diesem Wecker gilt. */
@@ -335,22 +280,7 @@ class BackupAlarm(
         }
     }
 
-    /** Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. [snoozes]: bisherige Runden. */
-    fun snoozeUntil(at: Instant, alarmId: String?, snoozes: Int) {
-        val intent = Intent(context, Receiver::class.java).setAction(ACTION)
-            .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozes)
-        if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-        setAlarm(at, showIntent(), PendingIntent.getBroadcast(context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
-    }
-
-    fun cancelSnooze() = alarmManager.cancel(
-        PendingIntent.getBroadcast(
-            context, 3, Intent(context, Receiver::class.java).setAction(ACTION),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        ),
-    )
-
-    private fun showIntent(): PendingIntent = showPending(context)
+    internal fun showIntent(): PendingIntent = showPending(context)
 
     private fun pending(alarmId: String? = null, target: Instant? = null): PendingIntent = backupPending(context, alarmId, target)
 
@@ -358,54 +288,11 @@ class BackupAlarm(
      * Exakt planen; mit [show] als Wecker (Sperrbildschirm zeigt ihn), sonst still. Ohne Recht für
      * exakte Alarme (Android 12/12L, entziehbar) ungenau statt gar nicht.
      */
-    private fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) = setExact(context, at, show, operation)
+    internal fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) = setExact(context, at, show, operation)
 
     /** Löst den Zweitwecker aus und plant den nächsten. Nicht exportiert: nur eigene Alarme. */
     class Receiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID)
-            val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
-            when (intent.action) {
-                // Mit Zielzeit (nur der Zweitwecker selbst): Beim Beenden am Handy erfährt die Uhr, welche Nacht.
-                ACTION -> PhoneRingService.ring(context, alarmId, target = target, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
-                // Die Uhr hat sich nach dem Schlummern nicht mehr gemeldet: das Handy klingelt selbst.
-                ACTION_SNOOZE_SAFETY -> {
-                    SnoozeSafety.clear(context)
-                    PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
-                    // Vor dem ersten Entsperren: der abgelegte Zweitwecker bleibt, wie er ist.
-                    if (!isUnlocked(context)) return
-                }
-                ACTION_WATCH_RING -> {
-                    val left = if (intent.hasExtra(PhoneRingService.EXTRA_SNOOZES_LEFT)) intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 0) else null
-                    PhoneRingService.ring(context, alarmId, fromWatch = true, target = target, snoozesLeft = left)
-                    return
-                }
-                ACTION_SUNRISE -> Unit // unten, nach dem Merken
-                else -> return
-            }
-            // Vor dem ersten Entsperren (Neustart in der Nacht) sind Wecker und Einstellungen nicht lesbar.
-            if (!isUnlocked(context)) {
-                DirectBoot.clear(context)
-                // Nach dem Entsperren nachholen: Nacht aussetzen, Einmal-Wecker ausschalten.
-                if (intent.action == ACTION && alarmId != null && target != null) DirectBoot.markRang(context, alarmId, target)
-                return
-            }
-            val pending = goAsync()
-            val app = context.phoneApp
-            app.appScope.launch {
-                try {
-                    DirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
-                    if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
-                    // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns.
-                    if (intent.action == ACTION && target != null) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
-                    // Die Uhr hat diese Nacht nicht beendet: einen Einmal-Wecker schaltet dann das Handy aus.
-                    if (intent.action == ACTION_SNOOZE_SAFETY) app.backup.disableOneShot(alarmId)
-                    app.backup.reschedule()
-                } finally {
-                    pending.finish()
-                }
-            }
-        }
+        override fun onReceive(context: Context, intent: Intent) = onBackupAlarm(context, intent)
     }
 
     /**
@@ -413,126 +300,19 @@ class BackupAlarm(
      * sind weg oder verschoben, neu planen. Vor dem ersten Entsperren nur den abgelegten Zweitwecker.
      */
     class SystemReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            if (intent.action !in SYSTEM_ACTIONS) return
-            if (!isUnlocked(context)) {
-                DirectBoot.restore(context)
-                SnoozeSafety.restore(context)
-                return
-            }
-            val pending = goAsync()
-            val app = context.phoneApp
-            app.appScope.launch {
-                try {
-                    DirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
-                    app.backup.reschedule()
-                } finally {
-                    pending.finish()
-                }
-            }
-        }
-    }
-
-    /**
-     * Nächster Zweitwecker im geräteverschlüsselten Speicher: Startet das Handy nachts neu, ist bis
-     * zum ersten Entsperren nur dieser lesbar. Beim Entsperren plant [SystemReceiver] alles neu.
-     */
-    private object DirectBoot {
-        private const val FILE = "backup_direct_boot"
-        private const val KEY_AT = "at"
-        private const val KEY_ID = "alarmId"
-        private const val KEY_TARGET = "target"
-        private const val KEY_RANG_ID = "rangId"
-        private const val KEY_RANG_TARGET = "rangTarget"
-
-        private fun prefs(context: Context) =
-            context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
-
-        fun save(context: Context, at: Instant, alarmId: String, target: Instant) {
-            prefs(context).edit().putLong(KEY_AT, at.toEpochMilli()).putString(KEY_ID, alarmId).putLong(KEY_TARGET, target.toEpochMilli()).apply()
-        }
-
-        fun clear(context: Context) {
-            prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_TARGET).apply()
-        }
-
-        /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken. */
-        fun markRang(context: Context, alarmId: String, target: Long) {
-            prefs(context).edit().putString(KEY_RANG_ID, alarmId).putLong(KEY_RANG_TARGET, target).apply()
-        }
-
-        /** Gemerkten Weckvorgang einmal abholen. */
-        fun takeRang(context: Context): Pair<String, Instant>? {
-            val prefs = prefs(context)
-            val id = prefs.getString(KEY_RANG_ID, null) ?: return null
-            val target = Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L))
-            prefs.edit().remove(KEY_RANG_ID).remove(KEY_RANG_TARGET).apply()
-            return id to target
-        }
-
-        fun restore(context: Context) {
-            val prefs = prefs(context)
-            val at = Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L))
-            val current = Instant.now()
-            // Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später.
-            if (at.isBefore(current.minus(MISSED_DURING_BOOT))) return
-            val target = prefs.getLong(KEY_TARGET, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli)
-            setExact(context, maxOf(at, current.plus(FORWARD_DELAY)), showPending(context), backupPending(context, prefs.getString(KEY_ID, null), target))
-        }
-    }
-
-    /**
-     * Sicherung nach dem Schlummern im geräteverschlüsselten Speicher: übersteht Prozessende und
-     * Neustart und ist auch vor dem ersten Entsperren lesbar.
-     */
-    private object SnoozeSafety {
-        private const val FILE = "backup_snooze_safety"
-        private const val KEY_AT = "at"
-        private const val KEY_ID = "alarmId"
-        private const val KEY_DONE = "snoozesDone"
-
-        data class Saved(val at: Instant, val alarmId: String?, val snoozesDone: Int)
-
-        private fun prefs(context: Context) =
-            context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
-
-        fun save(context: Context, saved: Saved) {
-            prefs(context).edit().putLong(KEY_AT, saved.at.toEpochMilli()).putString(KEY_ID, saved.alarmId)
-                .putInt(KEY_DONE, saved.snoozesDone).apply()
-        }
-
-        fun load(context: Context): Saved? {
-            val prefs = prefs(context)
-            if (!prefs.contains(KEY_AT)) return null
-            return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0))
-        }
-
-        fun clear(context: Context) {
-            prefs(context).edit().remove(KEY_AT).remove(KEY_ID).remove(KEY_DONE).apply()
-        }
-
-        /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. */
-        fun restore(context: Context) {
-            val saved = load(context) ?: return
-            val current = Instant.now()
-            if (saved.at.isBefore(current.minus(MISSED_DURING_BOOT))) {
-                clear(context)
-                return
-            }
-            setExact(context, maxOf(saved.at, current.plus(FORWARD_DELAY)), showPending(context), safetyPending(context, saved.alarmId, saved.snoozesDone))
-        }
+        override fun onReceive(context: Context, intent: Intent) = onBackupSystemEvent(context, intent)
     }
 
     companion object {
-        private const val TAG = "BackupAlarm"
-        private const val ACTION = "com.phasewake.app.action.BACKUP_RING"
-        private const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
-        private const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
-        private const val ACTION_SNOOZE_SAFETY = "com.phasewake.app.action.SNOOZE_SAFETY"
+        internal const val TAG = "BackupAlarm"
+        internal const val ACTION = "com.phasewake.app.action.BACKUP_RING"
+        internal const val ACTION_SUNRISE = "com.phasewake.app.action.SUNRISE"
+        internal const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
+        internal const val ACTION_SNOOZE_SAFETY = "com.phasewake.app.action.SNOOZE_SAFETY"
 
         /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest); nur Text, auf jeder Version unbedenklich. */
         @android.annotation.SuppressLint("InlinedApi")
-        private val SYSTEM_ACTIONS = setOf(
+        internal val SYSTEM_ACTIONS = setOf(
             Intent.ACTION_LOCKED_BOOT_COMPLETED,
             Intent.ACTION_BOOT_COMPLETED,
             Intent.ACTION_MY_PACKAGE_REPLACED,
@@ -547,18 +327,18 @@ class BackupAlarm(
         private val LEGACY_SUPPRESSED_UNTIL = longPreferencesKey("backup_suppressed_until")
         private val PLANNED_ID = stringPreferencesKey("backup_planned_id")
         private val PLANNED_TARGET = longPreferencesKey("backup_planned_target")
-        private val SUNRISE_SHOWN_UNTIL = longPreferencesKey("sunrise_shown_until")
+        internal val SUNRISE_SHOWN_UNTIL = longPreferencesKey("sunrise_shown_until")
 
         /** So lange nach der Zielzeit wartet das Handy auf die Uhr. */
         private val GRACE: Duration = Duration.ofMinutes(2)
 
         /** Weiterleitung der Weckmeldung der Uhr über einen Wecker-Alarm. */
-        private val FORWARD_DELAY: Duration = Duration.ofSeconds(1)
+        internal val FORWARD_DELAY: Duration = Duration.ofSeconds(1)
 
         /** Ohne Zielzeit (ältere Uhr): so weit zurück kann die Nacht begonnen haben (Fenster, Schlummern, Klingeln). */
         private val LOOKBACK: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
 
-        private val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
+        internal val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
 
         /** Ob exakte Alarme erlaubt sind; entziehbar nur auf Android 12/12L (ab 13 gilt USE_EXACT_ALARM). */
         fun canScheduleExact(context: Context): Boolean =
@@ -568,12 +348,12 @@ class BackupAlarm(
         fun isUnlocked(context: Context): Boolean = context.getSystemService(UserManager::class.java).isUserUnlocked
 
         /** Antippen der Weckzeit im System öffnet die App. */
-        private fun showPending(context: Context): PendingIntent = PendingIntent.getActivity(
+        internal fun showPending(context: Context): PendingIntent = PendingIntent.getActivity(
             context, 1, Intent(context, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
 
-        private fun backupPending(context: Context, alarmId: String?, target: Instant?): PendingIntent {
+        internal fun backupPending(context: Context, alarmId: String?, target: Instant?): PendingIntent {
             val intent = Intent(context, Receiver::class.java).setAction(ACTION)
             if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
             if (target != null) intent.putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
@@ -581,14 +361,14 @@ class BackupAlarm(
         }
 
         /** Sicherung nach dem Schlummern: eigener Alarm neben dem Zweitwecker (eigener Request-Code, eigene Aktion). */
-        private fun safetyPending(context: Context, alarmId: String?, snoozesDone: Int): PendingIntent {
+        internal fun safetyPending(context: Context, alarmId: String?, snoozesDone: Int): PendingIntent {
             val intent = Intent(context, Receiver::class.java).setAction(ACTION_SNOOZE_SAFETY)
                 .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozesDone)
             if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
             return PendingIntent.getBroadcast(context, 5, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
-        private fun setExact(context: Context, at: Instant, show: PendingIntent?, operation: PendingIntent) {
+        internal fun setExact(context: Context, at: Instant, show: PendingIntent?, operation: PendingIntent) {
             val alarmManager = context.getSystemService(AlarmManager::class.java)
             if (canScheduleExact(context)) {
                 try {

@@ -4,6 +4,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import kotlin.test.assertFalse
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -259,5 +260,20 @@ class SoundEventsTest {
         val clips = listOf(clip("2026-10-28T01:00", SoundType.TALK, 1, -1, "b.m4a"), clip("2026-10-26T23:00", SoundType.SNORE, 1, -1, "a.m4a"))
         assertEquals(listOf("b.m4a"), SoundEvents.forNight(clips, night).map { it.file })
         assertNull(SoundEvents.forNight(clips, night.plusDays(5)).firstOrNull())
+    }
+
+    @Test
+    fun medianSafeFilesAndShortSnoring() {
+        assertEquals(2.0, SoundEventDetector.median(listOf(3.0, 1.0, 2.0)), 1e-9)
+        assertEquals(2.5, SoundEventDetector.median(listOf(4.0, 1.0, 2.0, 3.0)), 1e-9)
+        assertTrue(SoundEvents.isSafeFile("a-1_b.m4a"))
+        assertFalse(SoundEvents.isSafeFile("."))
+        assertFalse(SoundEvents.isSafeFile(".."))
+        assertFalse(SoundEvents.isSafeFile("../x.m4a"))
+        assertFalse(SoundEvents.isSafeFile(""))
+        assertEquals(0, SoundSummary(0, 0, 0, 0).snoreMinutes)
+        assertEquals(1, SoundSummary(10_000, 1, 0, 0).snoreMinutes)
+        assertEquals(6, SoundSummary(0, 1, 2, 3).clips)
+        assertEquals(SoundEvents.SILENCE_DB, SoundEvents.levelDb(ShortArray(4), from = 2, to = 2))
     }
 }

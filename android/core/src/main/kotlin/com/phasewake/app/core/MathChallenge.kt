@@ -13,6 +13,7 @@ class MathChallenge(private val random: Random = Random.Default, val steps: Int 
 
     /** Eine Aufgabe «[a] + [b]». */
     data class Problem(val a: Int, val b: Int) {
+        /** Richtige Antwort, höchstens 198 (siehe [MAX_DIGITS]). */
         val answer: Int get() = a + b
     }
 
@@ -20,6 +21,7 @@ class MathChallenge(private val random: Random = Random.Default, val steps: Int 
     var solved: Int = 0
         private set
 
+    /** Die aktuelle Aufgabe; nach einer Antwort immer eine neue (nie gleich wie die vorige). */
     var problem: Problem = newProblem(null)
         private set
 
@@ -52,8 +54,13 @@ class MathChallenge(private val random: Random = Random.Default, val steps: Int 
     }
 
     companion object {
+        /** Aufgaben je Weckvorgang. */
         const val STEPS: Int = 3
+
+        /** Kleinster Summand (zweistellig). */
         const val MIN_OPERAND: Int = 10
+
+        /** Grösster Summand (zweistellig). */
         const val MAX_OPERAND: Int = 99
 
         /** Höchstens so viele Ziffern hat eine Antwort (99 + 99 = 198). */

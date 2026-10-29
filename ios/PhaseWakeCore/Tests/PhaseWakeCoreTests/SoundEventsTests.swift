@@ -251,4 +251,15 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertEqual(SoundEvents.forNight(clips, night: night).map(\.file), ["b.m4a"])
         XCTAssertNil(SoundEvents.forNight(clips, night: NightDate.adding(5, to: night)).first)
     }
+
+    /// Median und Zählung der Bilanz (Randfälle).
+    func testMedianAndClipCount() {
+        XCTAssertEqual(SoundEventDetector.median([]), 0)
+        XCTAssertEqual(SoundEventDetector.median([3, 1, 2]), 2)
+        XCTAssertEqual(SoundEventDetector.median([4, 1, 3, 2]), 2.5)
+        let summary = SoundSummary(snoreMs: 0, snoreClips: 0, talkClips: 2, otherClips: 1)
+        XCTAssertEqual(summary.clips, 3)
+        XCTAssertEqual(summary.snoreMinutes, 0)
+        XCTAssertNil(SoundEventDetector().threshold)
+    }
 }

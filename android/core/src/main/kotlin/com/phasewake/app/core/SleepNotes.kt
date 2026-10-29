@@ -19,20 +19,40 @@ data class CustomNote(val id: String, val name: String)
  * «custom:<uuid>|Name».
  */
 object SleepNotes {
+    /** Feste Notiz «Kaffee am Nachmittag» (Kennung im Speicher, nie ändern). */
     const val CAFFEINE = "CAFFEINE"
+
+    /** Feste Notiz «Alkohol». */
     const val ALCOHOL = "ALCOHOL"
+
+    /** Feste Notiz «Sport». */
     const val EXERCISE = "EXERCISE"
+
+    /** Feste Notiz «Stress». */
     const val STRESS = "STRESS"
+
+    /** Feste Notiz «spät gegessen». */
     const val LATE_MEAL = "LATE_MEAL"
+
+    /** Feste Notiz «Bildschirm im Bett». */
     const val SCREEN = "SCREEN"
+
+    /** Feste Notiz «Mittagsschlaf». */
     const val NAP = "NAP"
+
+    /** Feste Notiz «krank». */
     const val SICK = "SICK"
 
     /** Die festen Notizen in Anzeigereihenfolge; die Kennungen sind fest (Speicher). */
     val FIXED: List<String> = listOf(CAFFEINE, ALCOHOL, EXERCISE, STRESS, LATE_MEAL, SCREEN, NAP, SICK)
 
+    /** Vorsatz der Kennung eigener Notizen («custom:<uuid>»). */
     const val CUSTOM_PREFIX = "custom:"
+
+    /** Höchstzahl eigener Notizen. */
     const val MAX_CUSTOM = 5
+
+    /** Höchstlänge des Namens einer eigenen Notiz in Zeichen. */
     const val MAX_NAME_LENGTH = 30
 
     /** Höchstens so viele Nachtdaten bleiben gespeichert (wie der Verlauf). */
@@ -44,6 +64,7 @@ object SleepNotes {
     /** Verschiebung, mit der ein Zeitpunkt seinem Nachtdatum zugeordnet wird. */
     private val NIGHT_SHIFT: Duration = Duration.ofHours(12)
 
+    /** Ob [id] eine eigene Notiz ist (Name in [CustomNote], im Export nur «custom»). */
     fun isCustom(id: String): Boolean = id.startsWith(CUSTOM_PREFIX)
 
     /** Neue Kennung für eine eigene Notiz aus einer UUID (als Text). */
@@ -56,6 +77,7 @@ object SleepNotes {
      */
     fun nightDate(at: Instant, zone: ZoneId): LocalDate = at.minus(NIGHT_SHIFT).atZone(zone).toLocalDate()
 
+    /** Nachtdatum einer Uhr-Nacht: über ihren Fensterbeginn. */
     fun nightDate(night: NightRecord, zone: ZoneId): LocalDate = nightDate(night.windowStart, zone)
 
     /**
@@ -110,6 +132,10 @@ object SleepNotes {
     fun encodeCustom(notes: List<CustomNote>): String =
         notes.take(MAX_CUSTOM).joinToString("\n") { "${it.id}|${cleanName(it.name)}" }
 
+    /**
+     * Liest [encodeCustom]; Zeilen ohne gültige Kennung oder mit leerem Namen fallen weg, doppelte
+     * Kennungen zählen einmal, höchstens [MAX_CUSTOM].
+     */
     fun decodeCustom(text: String?): List<CustomNote> =
         text.orEmpty().lines().mapNotNull { line ->
             val id = line.substringBefore('|')
@@ -124,26 +150,34 @@ object SleepNotes {
 /**
  * Wie eine Notiz mit dem Befinden am Morgen zusammenhängt, über die letzten [NightHistory.MAX_NIGHTS]
  * Nächte mit Befinden. Kein Beweis, nur ein Hinweis – darum erst ab [MIN_NIGHTS] Nächten je Seite.
- *
- * @property delta Befinden mit minus ohne Notiz.
- * @property asleepWith Durchschnittlicher Schlaf in Minuten mit Notiz; `null` ohne genug Nächte mit Schlafdauer.
  */
 data class NoteEffect(
+    /** Kennung der Notiz. */
     val noteId: String,
+    /** Nächte mit Befinden und dieser Notiz. */
     val nightsWith: Int,
+    /** Nächte mit Befinden ohne diese Notiz. */
     val nightsWithout: Int,
+    /** Durchschnittliches Befinden (1–5) mit Notiz. */
     val avgFeelingWith: Double,
+    /** Durchschnittliches Befinden (1–5) ohne Notiz. */
     val avgFeelingWithout: Double,
+    /** Durchschnittlicher Schlaf in Minuten mit Notiz; `null` ohne genug Nächte mit Schlafdauer. */
     val asleepWith: Double?,
+    /** Durchschnittlicher Schlaf in Minuten ohne Notiz; `null` wie bei [asleepWith]. */
     val asleepWithout: Double?,
 ) {
+    /** Befinden mit minus ohne Notiz. */
     val delta: Double get() = avgFeelingWith - avgFeelingWithout
 
     /** Ob der Unterschied gross genug für die Anzeige ist. */
     val isNotable: Boolean get() = abs(delta) >= NOTABLE_DELTA - 1e-9
 
     companion object {
+        /** Mindestanzahl Nächte mit und ohne Notiz, damit eine Wirkung berechnet wird. */
         const val MIN_NIGHTS: Int = 3
+
+        /** Ab diesem Unterschied im Befinden (Punkte auf der Skala 1–5) wird die Wirkung gezeigt. */
         const val NOTABLE_DELTA: Double = 0.5
 
         /**
