@@ -53,6 +53,7 @@ import com.phasewake.app.ui.editor.WEEKDAYS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.MAX_ALARMS
+import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.startTest
 import java.time.Instant
@@ -72,6 +73,37 @@ internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavAc
     // System-Zurück: einen Schritt zurück; auf der ersten Seite wie «Überspringen» (sonst erschiene die Einrichtung
     // beim nächsten Start wieder, ohne angelegten Wecker).
     BackHandler { if (page > 0) page-- else onDone() }
+    val model = OnboardingModel(
+        check = state.nightCheck.check,
+        health = state.insights.health,
+        canCreateAlarm = state.data.alarms.size < MAX_ALARMS,
+        testTarget = state.data.transient?.takeIf { it.spec.id.startsWith(Transient.TEST_PREFIX) }?.plan?.target,
+        onFix = actions.onFix,
+        onConnectHealth = actions.connectHealth,
+        onCreateAlarm = { spec -> app.afterAlarmsChanged { app.alarms.upsert(spec) } },
+        onStartTest = { startTest(app) },
+    )
+    OnboardingContent(page, onPage = { page = it }, model, onDone)
+}
+
+/** Was die Schritte zeigen und auslösen: aus dem App-Zustand oder aus Beispieldaten (Bildschirmfotos). */
+internal class OnboardingModel(
+    /** Ergebnis des Nacht-Checks (Uhr und Rechte); `null`, solange er noch läuft. */
+    val check: NightCheckState?,
+    val health: HealthState,
+    /** Ob noch ein Wecker angelegt werden darf ([MAX_ALARMS]). */
+    val canCreateAlarm: Boolean,
+    /** Zielzeit eines laufenden Probeweckers; `null` = keiner. */
+    val testTarget: Instant?,
+    val onFix: (Check) -> Unit,
+    val onConnectHealth: () -> Unit,
+    val onCreateAlarm: (AlarmSpec) -> Unit,
+    val onStartTest: () -> Unit,
+)
+
+/** Einrichtung ohne eigenen Seitenzustand: Seite [page] (0–[STEPS]; [STEPS] = «Fertig»), Wechsel über [onPage]. */
+@Composable
+internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: OnboardingModel, onDone: () -> Unit) {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 20.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -88,18 +120,18 @@ internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavAc
         ) {
             when (page) {
                 0 -> Welcome()
-                1 -> WatchStep(state, actions)
-                2 -> RightsStep(state, actions)
-                3 -> AlarmStep(app, state)
-                4 -> TestPage(app, state)
+                1 -> WatchStep(model)
+                2 -> RightsStep(model)
+                3 -> AlarmStep(model)
+                4 -> TestPage(model)
                 else -> Page(R.string.onb_done_title) { Body(R.string.onb_done_text) }
             }
         }
         Row(Modifier.fillMaxWidth().padding(bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            if (page > 0) OutlinedButton(onClick = { page-- }) { Text(stringResource(R.string.onb_back)) }
+            if (page > 0) OutlinedButton(onClick = { onPage(page - 1) }) { Text(stringResource(R.string.onb_back)) }
             Spacer(Modifier.weight(1f))
             if (page < STEPS) {
-                Button(onClick = { page++ }) { Text(stringResource(R.string.onb_next)) }
+                Button(onClick = { onPage(page + 1) }) { Text(stringResource(R.string.onb_next)) }
             } else {
                 Button(onClick = onDone) { Text(stringResource(R.string.onb_finish)) }
             }
@@ -132,16 +164,16 @@ private fun Welcome() {
 
 /** Uhr verbunden, Phase Wake fehlt dort (Knopf zum Installieren) oder keine Uhr gekoppelt. */
 @Composable
-private fun WatchStep(state: NavState, actions: NavActions) {
-    val failed = state.nightCheck.check?.failed.orEmpty()
+private fun WatchStep(model: OnboardingModel) {
+    val failed = model.check?.failed.orEmpty()
     Page(R.string.onb_watch_title) {
         when {
             Check.WATCH_APP in failed -> {
                 Body(R.string.check_watch_app_problem)
-                FilledTonalButton(onClick = { actions.onFix(Check.WATCH_APP) }) { Text(stringResource(R.string.check_watch_app_action)) }
+                FilledTonalButton(onClick = { model.onFix(Check.WATCH_APP) }) { Text(stringResource(R.string.check_watch_app_action)) }
             }
             Check.WATCH in failed -> Body(R.string.check_watch_problem)
-            state.nightCheck.check != null -> Body(R.string.onb_watch_ok)
+            model.check != null -> Body(R.string.onb_watch_ok)
         }
     }
 }
@@ -149,7 +181,7 @@ private fun WatchStep(state: NavState, actions: NavActions) {
 /** Erster Wecker: Zielzeit und Fenster, Werktage; alles Weitere später im Editor. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AlarmStep(app: PhaseWakeApp, state: NavState) {
+private fun AlarmStep(model: OnboardingModel) {
     val context = LocalContext.current
     val time = rememberTimePickerState(7, 0, is24Hour = DateFormat.is24HourFormat(context))
     var window by rememberSaveable { mutableFloatStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES.toFloat()) }
@@ -167,13 +199,13 @@ private fun AlarmStep(app: PhaseWakeApp, state: NavState) {
         val label = created
         if (label != null) {
             Text(stringResource(R.string.onb_alarm_done, label), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
-        } else if (state.data.alarms.size < MAX_ALARMS) {
+        } else if (model.canCreateAlarm) {
             Button(onClick = {
                 val spec = AlarmSpec(
                     id = UUID.randomUUID().toString(), hour = time.hour, minute = time.minute, days = WEEKDAYS,
                     windowMinutes = window.roundToInt(), sound = WakeTones.DEFAULT,
                 )
-                app.afterAlarmsChanged { app.alarms.upsert(spec) }
+                model.onCreateAlarm(spec)
                 created = Format.window(spec)
             }) { Text(stringResource(R.string.onb_alarm_create)) }
         }
@@ -184,36 +216,36 @@ private fun AlarmStep(app: PhaseWakeApp, state: NavState) {
 private const val WINDOW_STEP = 5
 
 @Composable
-private fun TestPage(app: PhaseWakeApp, state: NavState) {
-    val running = state.data.transient?.takeIf { it.spec.id.startsWith(Transient.TEST_PREFIX) }?.plan?.target
+private fun TestPage(model: OnboardingModel) {
+    val running = model.testTarget
     Page(R.string.test_title) {
         Body(R.string.test_hint)
         if (running != null && running.isAfter(Instant.now())) {
             Text(stringResource(R.string.test_running, Format.time(running)), style = MaterialTheme.typography.titleSmall)
         } else {
-            FilledTonalButton(onClick = { startTest(app) }) { Text(stringResource(R.string.test_button)) }
+            FilledTonalButton(onClick = model.onStartTest) { Text(stringResource(R.string.test_button)) }
         }
     }
 }
 
 /** Rechte: Mitteilungen, Vollbild und exakte Alarme (wo nötig) mit Knopf; Gesundheitsdaten freiwillig. */
 @Composable
-private fun RightsStep(state: NavState, actions: NavActions) {
-    val failed = state.nightCheck.check?.failed.orEmpty()
+private fun RightsStep(model: OnboardingModel) {
+    val failed = model.check?.failed.orEmpty()
     Page(R.string.onb_rights_title) {
         listOf(
             Check.NOTIFICATIONS,
             Check.FULL_SCREEN,
             Check.EXACT_ALARMS,
         ).filter { it.inReadyList || it in failed }.forEach { check ->
-            RightRow(stringResource(check.title), granted = check !in failed) { actions.onFix(check) }
+            RightRow(stringResource(check.title), granted = check !in failed) { model.onFix(check) }
         }
-        val health = state.insights.health
+        val health = model.health
         if (health != HealthState.UNAVAILABLE) {
             RightRow(
                 stringResource(R.string.onb_optional, stringResource(R.string.health_connect)),
                 granted = health == HealthState.CONNECTED,
-                onAllow = actions.connectHealth,
+                onAllow = model.onConnectHealth,
             )
         }
     }

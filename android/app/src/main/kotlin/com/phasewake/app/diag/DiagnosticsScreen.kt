@@ -63,16 +63,45 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
         phoneEntries = withContext(Dispatchers.IO) { app.diag.entries() }
     }
     val entries = (phoneEntries + report?.entries.orEmpty()).sortedByDescending { it.at }
+    DiagnosticsContent(
+        status = status,
+        entries = entries,
+        noAnswer = noAnswer,
+        actions = DiagnosticsActions(
+            onBack = onBack,
+            onHide = onHide,
+            onShare = { share(context, status, entries) },
+            onFetchWatch = { scope.launch { noAnswer = WatchReport.fetch(app) == null } },
+            onClear = { scope.launch(Dispatchers.IO) { app.diag.clear() } },
+        ),
+    )
+}
+
+/** Knöpfe der Diagnose-Seite. */
+internal class DiagnosticsActions(
+    val onBack: () -> Unit,
+    val onHide: () -> Unit,
+    val onShare: () -> Unit,
+    val onFetchWatch: () -> Unit,
+    val onClear: () -> Unit,
+)
+
+/**
+ * Diagnose-Seite ohne eigenen Zustand (auch für Bildschirmfotos): [status] als «Bezeichnung: Wert», [entries]
+ * neueste zuerst; [noAnswer]: Die Uhr hat auf «Von der Uhr holen» nicht geantwortet.
+ */
+@Composable
+internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntry>, noAnswer: Boolean, actions: DiagnosticsActions) {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
         Row(Modifier.fillMaxWidth().padding(4.dp)) {
-            IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+            IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
             Text(stringResource(R.string.diag_title), style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(top = 10.dp))
         }
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             item { Text(stringResource(R.string.diag_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             item {
                 Row(
-                    Modifier.fillMaxWidth().toggleable(value = true, role = Role.Switch, onValueChange = { onHide() }).padding(vertical = 8.dp),
+                    Modifier.fillMaxWidth().toggleable(value = true, role = Role.Switch, onValueChange = { actions.onHide() }).padding(vertical = 8.dp),
                 ) {
                     Text(stringResource(R.string.diag_show), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                     Switch(checked = true, onCheckedChange = null)
@@ -80,11 +109,9 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
             }
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    FilledTonalButton(onClick = { share(context, status, entries) }) { Text(stringResource(R.string.diag_share)) }
-                    OutlinedButton(onClick = {
-                        scope.launch { noAnswer = WatchReport.fetch(app) == null }
-                    }) { Text(stringResource(R.string.diag_fetch_watch)) }
-                    OutlinedButton(onClick = { scope.launch(Dispatchers.IO) { app.diag.clear() } }) { Text(stringResource(R.string.diag_clear)) }
+                    FilledTonalButton(onClick = actions.onShare) { Text(stringResource(R.string.diag_share)) }
+                    OutlinedButton(onClick = actions.onFetchWatch) { Text(stringResource(R.string.diag_fetch_watch)) }
+                    OutlinedButton(onClick = actions.onClear) { Text(stringResource(R.string.diag_clear)) }
                 }
             }
             if (noAnswer) {

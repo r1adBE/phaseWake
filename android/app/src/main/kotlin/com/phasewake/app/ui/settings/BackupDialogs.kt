@@ -130,29 +130,41 @@ internal fun ColumnScope.BackupRows() {
         )
     }
     preview?.let { found ->
-        AlertDialog(
-            onDismissRequest = { preview = null },
-            title = { Text(stringResource(R.string.restore_confirm_title)) },
-            text = {
-                Column {
-                    Text(stringResource(R.string.restore_preview, found.alarms, found.nights, found.noteDays), style = MaterialTheme.typography.titleSmall)
-                    Text(stringResource(R.string.restore_confirm_text), modifier = Modifier.padding(top = 8.dp))
+        RestoreConfirmDialog(
+            alarms = found.alarms,
+            nights = found.nights,
+            noteDays = found.noteDays,
+            onConfirm = {
+                preview = null
+                DeviceAuth.confirm(context, res.getString(R.string.auth_restore)) {
+                    app.appScope.launch {
+                        BackupManager.restore(app, found.payload)
+                        scope.launch { toast(R.string.restore_done) }
+                    }
                 }
             },
-            confirmButton = {
-                TextButton(onClick = {
-                    preview = null
-                    DeviceAuth.confirm(context, res.getString(R.string.auth_restore)) {
-                        app.appScope.launch {
-                            BackupManager.restore(app, found.payload)
-                            scope.launch { toast(R.string.restore_done) }
-                        }
-                    }
-                }) { Text(stringResource(R.string.restore_confirm), color = MaterialTheme.colorScheme.error) }
-            },
-            dismissButton = { TextButton(onClick = { preview = null }) { Text(stringResource(R.string.action_cancel)) } },
+            onDismiss = { preview = null },
         )
     }
+}
+
+/** Rückfrage vor dem Ersetzen mit der Vorschau: Anzahl Wecker, Nächte und Tage mit Notizen der Sicherung. */
+@Composable
+internal fun RestoreConfirmDialog(alarms: Int, nights: Int, noteDays: Int, onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.restore_confirm_title)) },
+        text = {
+            Column {
+                Text(stringResource(R.string.restore_preview, alarms, nights, noteDays), style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.restore_confirm_text), modifier = Modifier.padding(top = 8.dp))
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onConfirm) { Text(stringResource(R.string.restore_confirm), color = MaterialTheme.colorScheme.error) }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
+    )
 }
 
 /** Eine Zeile der Gruppe «Daten» (wie «Verlauf teilen»). */
@@ -166,9 +178,10 @@ private fun DataRow(title: Int, hint: Int?, onClick: () -> Unit) {
 
 /** Passwort zweimal; mindestens [BackupFile.MIN_PASSWORD] Zeichen ([BackupFile.passwordOk]). */
 @Composable
-private fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit) {
-    var first by remember { mutableStateOf("") }
-    var second by remember { mutableStateOf("") }
+internal fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit, initial: String = "", initialRepeat: String = "") {
+    // [initial] und [initialRepeat]: nur für Bildschirmfotos; in der App beginnt der Dialog leer.
+    var first by remember { mutableStateOf(initial) }
+    var second by remember { mutableStateOf(initialRepeat) }
     val tooShort = !BackupFile.passwordOk(first)
     val mismatch = second.isNotEmpty() && second != first
     AlertDialog(

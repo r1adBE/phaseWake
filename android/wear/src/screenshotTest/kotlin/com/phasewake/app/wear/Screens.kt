@@ -16,11 +16,14 @@ import java.time.DayOfWeek
 import java.time.Instant
 import java.time.ZoneId
 
-/** Bildschirmfotos der Uhr-Bildschirme. Beispieldaten, keine echten. */
+/**
+ * Bildschirmfotos der Uhr-Bildschirme. Beispieldaten, keine echten. Powernap, Diagnose und «Überspringen» stehen in
+ * `ExtrasShots.kt`; die gemeinsamen Helfer hier sind darum `internal`.
+ */
 
-private val zone = ZoneId.of("Europe/Zurich")
-private val now = Instant.parse("2026-10-27T21:15:00Z")
-private val alarms = listOf(
+internal val zone: ZoneId = ZoneId.of("Europe/Zurich")
+internal val now: Instant = Instant.parse("2026-10-27T21:15:00Z")
+internal val alarms = listOf(
     AlarmSpec(id = "work", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), label = "Arbeit"),
     AlarmSpec(id = "weekend", hour = 9, minute = 30, days = setOf(DayOfWeek.SATURDAY), enabled = false),
 )
@@ -73,9 +76,9 @@ fun WatchSnoozed() = Swiss {
 
 /** Auf dem Gerät folgt die Standard-Sprache der App-Sprache; im Renderer muss man sie setzen. */
 @Composable
-private fun Swiss(content: @Composable () -> Unit) {
+internal fun Swiss(content: @Composable () -> Unit) {
     java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
     PhaseWakeTheme(content)
 }
 
-private const val WATCH = "id:wearos_large_round"
+internal const val WATCH = "id:wearos_large_round"

@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.ScalingLazyListState
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AlertDialog
 import androidx.wear.compose.material3.AlertDialogDefaults
@@ -114,8 +115,9 @@ internal fun EditorContent(
     skipped: String? = null,
     /** «Nächstes Mal überspringen» ein/aus; `null` = kein Schalter (neuer oder einmaliger Wecker). */
     onSkip: ((Boolean) -> Unit)? = null,
+    /** Scrollstand; Bildschirmfotos setzen ihn, um weiter unten liegende Schalter zu zeigen. */
+    listState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
-    val listState = rememberScalingLazyListState()
     val locale = LocalConfiguration.current.locales[0]
     var confirmDelete by rememberSaveable { mutableStateOf(false) }
     val time = LocalTime.of(draft.hour, draft.minute)

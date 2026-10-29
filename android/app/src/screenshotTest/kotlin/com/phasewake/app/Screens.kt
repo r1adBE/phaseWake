@@ -36,12 +36,15 @@ import java.time.DayOfWeek
 import java.time.Duration
 import java.time.Instant
 
-/** Bildschirmfotos aller Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. */
+/**
+ * Bildschirmfotos der Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. Die Bildschirme aus Runde 3
+ * stehen in `OnboardingShots.kt`, `DataShots.kt` und `HomeExtrasShots.kt`; die gemeinsamen Helfer hier sind darum `internal`.
+ */
 
 /** Feste Testzeit: Mittwoch 28.10.2026, 07:20 in Zürich. Bilder hängen so nicht vom Tag des Laufs ab. */
-private val FIXED_NOW: Instant = java.time.ZonedDateTime.of(2026, 10, 28, 7, 20, 0, 0, java.time.ZoneId.of("Europe/Zurich")).toInstant()
+internal val FIXED_NOW: Instant = java.time.ZonedDateTime.of(2026, 10, 28, 7, 20, 0, 0, java.time.ZoneId.of("Europe/Zurich")).toInstant()
 
-private val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+internal val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
 private val alarms = listOf(
     AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit", sunrise = Sunrise.WINDOW),
@@ -63,7 +66,7 @@ private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRec
     return NightRecord("work", start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(wokeMinute)), reason, if (daysAgo == 2L) 1 else 0, epochs, feeling)
 }
 
-private val nights = listOf(night(2, 30, WakeReason.DEADLINE), night(1, 22, WakeReason.AWAKE), night(0, 11, WakeReason.LIGHT_SLEEP))
+internal val nights = listOf(night(2, 30, WakeReason.DEADLINE), night(1, 22, WakeReason.AWAKE), night(0, 11, WakeReason.LIGHT_SLEEP))
 
 private val stages = nights.last().let { n ->
     listOf(
@@ -76,7 +79,7 @@ private val stages = nights.last().let { n ->
 private val padding = PaddingValues(top = 24.dp, bottom = 96.dp)
 
 @Composable
-private fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
+internal fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
     // Auf dem Gerät folgt die Standard-Sprache der App-Sprache; im Renderer muss man sie setzen.
     java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
     PhaseWakeTheme(mode) { Surface { content() } }
@@ -208,5 +211,5 @@ fun RingSunrise() = Themed(ThemeMode.DARK) {
     RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {}, onSnooze = {}, light = 0.92f, clock = { FIXED_NOW })
 }
 
-private const val PHONE = "spec:width=411dp,height=891dp"
-private const val PHONE_TALL = "spec:width=411dp,height=1600dp"
+internal const val PHONE = "spec:width=411dp,height=891dp"
+internal const val PHONE_TALL = "spec:width=411dp,height=1600dp"
