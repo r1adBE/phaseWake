@@ -18,6 +18,19 @@ def jacoco(path):
     return 0, 0
 
 
+def jacoco_files(path):
+    """(Datei, abgedeckt, gesamt) je Quelldatei, für die Liste bei zu wenig Abdeckung."""
+    root = ET.parse(path).getroot()
+    out = []
+    for pkg in root.findall("package"):
+        for sf in pkg.findall("sourcefile"):
+            for c in sf.findall("counter"):
+                if c.get("type") == "LINE":
+                    cov, miss = int(c.get("covered")), int(c.get("missed"))
+                    out.append((pkg.get("name") + "/" + sf.get("name"), cov, cov + miss))
+    return out
+
+
 def llvm(path):
     data = json.load(open(path))
     cov = tot = 0
@@ -40,6 +53,11 @@ def main():
     msg = f"{name}: {pct:.1f} % Zeilen abgedeckt ({cov}/{tot}), Mindestwert {minimum:.0f} %"
     ok = pct >= minimum
     print(("::notice title=Abdeckung::" if ok else "::error title=Abdeckung::") + msg)
+    if not ok:
+        # Die Dateien mit den meisten nicht abgedeckten Zeilen, damit klar ist, wo Tests fehlen.
+        rows = [r for f in files if not f.endswith(".json") for r in jacoco_files(f)]
+        for name_, c, t in sorted(rows, key=lambda r: r[1] - r[2])[:8]:
+            print(f"  {name_}: {c}/{t} Zeilen")
     return 0 if ok else 1
 
 
