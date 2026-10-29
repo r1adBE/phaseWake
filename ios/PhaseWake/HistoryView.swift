@@ -15,6 +15,8 @@ struct HistoryView: View {
     @State private var allStages: [StageSpan] = []
     /// Ob Apple Health schon gelesen wurde (sonst zeigt der leere Verlauf zu früh «keine Daten»).
     @State private var loaded = false
+    /// Geöffnete Detailseite: Schlüssel der Nacht (``HistoryItem/key``).
+    @State private var path: [String] = []
 
     var body: some View {
         let items = self.items
@@ -22,11 +24,13 @@ struct HistoryView: View {
         // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
         let feelings = HealthFeelings.of(items, feelings: model.healthFeelings)
         let charts = self.charts(feelings)
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 VStack(spacing: 12) {
                     // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus Apple Health).
-                    HistoryChartsSection(data: charts)
+                    HistoryChartsSection(data: charts, onOpen: { date in
+                        if let item = HealthHistory.itemFor(items, date: date) { path.append(item.key) }
+                    })
                     if entries.allSatisfy(\.isSoundsOnly) {
                         HistoryEmptyCard(healthConnected: healthRequested, loaded: loaded, onConnect: { connectHealth() })
                         // Ohne Nächte: nur Karten mit Geräuschen.
@@ -53,11 +57,12 @@ struct HistoryView: View {
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
-                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
-                            case .health(let session, let date):
-                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date]) {
-                                    model.setHealthFeeling($0, nightDate: date)
+                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) }) {
+                                    path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .current), night: night).key)
                                 }
+                            case .health(let session, let date):
+                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date],
+                                                onOpen: { path.append(HistoryItem(kind: .health, date: date, session: session).key) })
                             case .sounds(let night, let last):
                                 SoundsOnlyCard(night: night, last: last)
                             }
@@ -68,6 +73,9 @@ struct HistoryView: View {
                 .padding(.vertical)
             }
             .navigationTitle(L("history_title"))
+            .navigationDestination(for: String.self) { key in
+                NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName)
+            }
             // Neu lesen beim Öffnen, nach dem Freigeben und nach «Verlauf löschen».
             .task(id: "\(healthRequested)|\(model.historyClearedAt?.timeIntervalSince1970 ?? 0)") { await reload() }
             .onChange(of: scenePhase) { _, phase in
@@ -233,43 +241,57 @@ private extension NightRecord {
     var listId: String { "\(alarmId)|\(windowStart.timeIntervalSince1970)" }
 }
 
+/// Nachtkarte einer Phase-Wake-Nacht: Datum und Weckzeit, kleines Schlafprofil (ohne Phasen die Bewegungskurve),
+/// Summen, Weckgrund, Datenqualität und der Abgleich mit der Phase beim Wecken; ein Tipp öffnet die Detailseite.
+/// Notizen und Geräusche bleiben eigene Knöpfe.
 private struct NightCard: View {
-    @Environment(PhoneModel.self) private var model
     let night: NightRecord
     let stages: [StageSpan]
+    /// Öffnet die Detailseite dieser Nacht.
+    let onOpen: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                Spacer()
-                Text(Format.time(night.wokeAt)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
-            }
-            NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 44)
-            Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            if let unmeasured = unmeasuredText(night) {
-                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            }
-            if let verdict {
-                Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
-            }
+            Button(action: onOpen) { summary }
+                .buttonStyle(.plain)
+                .accessibilityHint(L("night_open"))
             NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
             NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
                               title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
         .card()
-        .accessibilityElement(children: .combine)
     }
 
-    private var verdict: (text: String, good: Bool)? {
-        switch StageCheck.stageAtWake(stages, wokeAt: night.wokeAt) {
-        case .light: (L("verdict_good", L("stage_light")), true)
-        case .rem: (L("verdict_good", L("stage_rem")), true)
-        case .awake: (L("verdict_good", L("stage_awake")), true)
-        case .deep: (L("verdict_deep"), false)
-        case .unknown, nil: nil
+    /// Alles ausser den Knöpfen: der Teil, der die Detailseite öffnet.
+    private var summary: some View {
+        let hypnogram = ChartData.hypnogram(stages, night: night)
+        let totals = StageStats.forNight(stages, night: night).map(stageTotalsLine)
+        return VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Spacer()
+                Text(Format.time(night.wokeAt)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
+            }
+            if let hypnogram {
+                MiniHypnogram(steps: hypnogram.steps, totalMinutes: hypnogram.totalMinutes, wokeAt: hypnogram.wokeAt)
+                    .frame(height: miniHypnogramHeight)
+            } else {
+                NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 44)
+            }
+            if let totals, !totals.isEmpty {
+                Text(totals).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
+            Text(nightSummary(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            Text(nightDetails(night)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if let unmeasured = unmeasuredText(night) {
+                Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
+            if let verdict = wakeVerdict(StageCheck.stageAtWake(stages, wokeAt: night.wokeAt)) {
+                Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
+            }
+            DetailsRow()
         }
+        .contentShape(Rectangle())
     }
 }

@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">그때까지 워치는 알람을 건너뛰지 않고 공휴일에도 깨워요.</string>
     <string name="watch_store_opened">워치에서 Play Store를 열었어요 – 워치를 확인해 주세요.</string>
     <string name="watch_store_failed">워치에서 Play Store를 열 수 없어요. 워치가 연결되어 있나요?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">이전 밤</string>
+    <string name="night_next">다음 밤</string>
+    <string name="night_in_bed">침대에서 %1$s – %2$s</string>
+    <string name="night_asleep">수면</string>
+    <string name="night_woke">%1$s에 기상</string>
+    <string name="night_target">목표 시간 %1$s</string>
+    <string name="night_no_stages">이 밤의 건강 데이터에는 수면 단계가 없어요.</string>
+    <string name="night_details">자세히</string>
+    <string name="night_open">자세히 보기</string>
+    <string name="night_latency">잠드는 데 걸린 시간</string>
+    <string name="night_efficiency">수면 효율</string>
+    <string name="night_awakenings">깬 횟수</string>
+    <string name="night_longest_deep">가장 긴 깊은 잠</string>
+    <string name="stages_typical">일반적인 범위</string>
+    <string name="stages_typical_range">일반적으로 %1$d–%2$d %%</string>
+    <string name="stages_typical_below">일반적으로 %1$d %% 미만</string>
+    <string name="stages_not_medical">의학적 평가가 아니에요.</string>
+    <string name="stages_verdict_awake_above">평소보다 깨어 있던 시간이 많아요</string>
+    <string name="stages_verdict_deep_below">평소보다 깊은 잠이 적어요</string>
+    <string name="stages_verdict_deep_above">평소보다 깊은 잠이 많아요</string>
+    <string name="stages_verdict_rem_below">REM이 적어요 – 짧거나 늦은 밤 뒤에 흔해요</string>
+    <string name="stages_verdict_rem_above">평소보다 REM이 많아요</string>
+    <string name="stages_verdict_light_below">평소보다 얕은 잠이 적어요</string>
+    <string name="stages_verdict_light_above">평소보다 얕은 잠이 많아요</string>
+    <string name="stages_verdict_typical">모든 단계가 일반적인 범위 안에 있어요</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s째</string>
+    <string name="hypno_block">%1$s %2$s~%3$s</string>
+    <string name="chart_week_average">주간 평균</string>
+    <string name="chart_touch_hint">그래프를 탭하거나 드래그하면 값이 보여요.</string>
+    <string name="chart_nights_30">30일 밤</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

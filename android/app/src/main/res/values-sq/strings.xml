@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Deri atëherë, ora nuk i kapërcen alarmet dhe të zgjon edhe në festa.</string>
     <string name="watch_store_opened">Play Store u hap në orë – hidhi një sy.</string>
     <string name="watch_store_failed">Play Store nuk u hap dot në orë. A është e lidhur?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Nata e mëparshme</string>
+    <string name="night_next">Nata tjetër</string>
+    <string name="night_in_bed">Në shtrat %1$s – %2$s</string>
+    <string name="night_asleep">Gjumë</string>
+    <string name="night_woke">U zgjove në %1$s</string>
+    <string name="night_target">Ora e synuar %1$s</string>
+    <string name="night_no_stages">Të dhënat e tua të shëndetit nuk kanë faza gjumi për këtë natë.</string>
+    <string name="night_details">Detaje</string>
+    <string name="night_open">Shfaq detajet</string>
+    <string name="night_latency">Koha për të fjetur</string>
+    <string name="night_efficiency">Efikasiteti i gjumit</string>
+    <string name="night_awakenings">Herë zgjuar</string>
+    <string name="night_longest_deep">Gjumi i thellë më i gjatë</string>
+    <string name="stages_typical">Diapazoni i zakonshëm</string>
+    <string name="stages_typical_range">Zakonisht %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Zakonisht nën %1$d %%</string>
+    <string name="stages_not_medical">Nuk është vlerësim mjekësor.</string>
+    <string name="stages_verdict_awake_above">Më shumë kohë zgjuar se zakonisht</string>
+    <string name="stages_verdict_deep_below">Më pak gjumë i thellë se zakonisht</string>
+    <string name="stages_verdict_deep_above">Më shumë gjumë i thellë se zakonisht</string>
+    <string name="stages_verdict_rem_below">Pak REM – shpesh pas një nate të shkurtër ose të vonë</string>
+    <string name="stages_verdict_rem_above">Më shumë REM se zakonisht</string>
+    <string name="stages_verdict_light_below">Më pak gjumë i lehtë se zakonisht</string>
+    <string name="stages_verdict_light_above">Më shumë gjumë i lehtë se zakonisht</string>
+    <string name="stages_verdict_typical">Të gjitha fazat brenda diapazonit të zakonshëm</string>
+    <string name="hypno_bubble">%1$s · %2$s · prej %3$s</string>
+    <string name="hypno_block">%1$s nga %2$s deri %3$s</string>
+    <string name="chart_week_average">Mesatarja javore</string>
+    <string name="chart_touch_hint">Prek ose tërhiq mbi grafik për të parë vlerat.</string>
+    <string name="chart_nights_30">30 net</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

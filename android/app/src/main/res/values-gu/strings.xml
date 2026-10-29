@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">ત્યાં સુધી તમારી ઘડિયાળ એલાર્મ છોડશે નહીં અને રજાના દિવસે પણ તમને જગાડશે.</string>
     <string name="watch_store_opened">તમારી ઘડિયાળ પર Play Store ખોલ્યો – એક નજર કરો.</string>
     <string name="watch_store_failed">તમારી ઘડિયાળ પર Play Store ખોલી શકાયો નહીં. શું તે કનેક્ટ છે?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">પાછલી રાત</string>
+    <string name="night_next">આગલી રાત</string>
+    <string name="night_in_bed">પથારીમાં %1$s – %2$s</string>
+    <string name="night_asleep">ઊંઘ</string>
+    <string name="night_woke">%1$s વાગ્યે જગાડ્યા</string>
+    <string name="night_target">લક્ષ્ય સમય %1$s</string>
+    <string name="night_no_stages">તમારા આરોગ્ય ડેટામાં આ રાત માટે ઊંઘના તબક્કા નથી.</string>
+    <string name="night_details">વિગતો</string>
+    <string name="night_open">વિગતો બતાવો</string>
+    <string name="night_latency">ઊંઘ આવવાનો સમય</string>
+    <string name="night_efficiency">ઊંઘની કાર્યક્ષમતા</string>
+    <string name="night_awakenings">જાગ્યાની સંખ્યા</string>
+    <string name="night_longest_deep">સૌથી લાંબી ગાઢ ઊંઘ</string>
+    <string name="stages_typical">સામાન્ય શ્રેણી</string>
+    <string name="stages_typical_range">સામાન્ય %1$d–%2$d %%</string>
+    <string name="stages_typical_below">સામાન્ય %1$d %%થી ઓછું</string>
+    <string name="stages_not_medical">આ તબીબી મૂલ્યાંકન નથી.</string>
+    <string name="stages_verdict_awake_above">સામાન્ય કરતાં વધુ જાગવાનો સમય</string>
+    <string name="stages_verdict_deep_below">સામાન્ય કરતાં ઓછી ગાઢ ઊંઘ</string>
+    <string name="stages_verdict_deep_above">સામાન્ય કરતાં વધુ ગાઢ ઊંઘ</string>
+    <string name="stages_verdict_rem_below">ઓછી REM – ઘણીવાર ટૂંકી કે મોડી રાત પછી</string>
+    <string name="stages_verdict_rem_above">સામાન્ય કરતાં વધુ REM</string>
+    <string name="stages_verdict_light_below">સામાન્ય કરતાં ઓછી હળવી ઊંઘ</string>
+    <string name="stages_verdict_light_above">સામાન્ય કરતાં વધુ હળવી ઊંઘ</string>
+    <string name="stages_verdict_typical">બધા તબક્કા સામાન્ય શ્રેણીમાં</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$sથી</string>
+    <string name="hypno_block">%1$s %2$s થી %3$s</string>
+    <string name="chart_week_average">સાપ્તાહિક સરેરાશ</string>
+    <string name="chart_touch_hint">મૂલ્યો જોવા માટે ચાર્ટને સ્પર્શ કરો અથવા તેના પર ખેંચો.</string>
+    <string name="chart_nights_30">30 રાતો</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

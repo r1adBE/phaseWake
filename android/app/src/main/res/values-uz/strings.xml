@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Shungacha soating budilniklarni oʻtkazib yubormaydi va bayramlarda ham uygʻotadi.</string>
     <string name="watch_store_opened">Play Store soatingda ochildi – unga qarab chiq.</string>
     <string name="watch_store_failed">Play Store soatingda ochilmadi. Soat ulanganmi?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Oldingi tun</string>
+    <string name="night_next">Keyingi tun</string>
+    <string name="night_in_bed">Toʻshakda %1$s – %2$s</string>
+    <string name="night_asleep">Uyqu</string>
+    <string name="night_woke">Uygʻotildi %1$s</string>
+    <string name="night_target">Maqsad vaqti %1$s</string>
+    <string name="night_no_stages">Sogʻliq maʼlumotlaringda bu tun uchun uyqu bosqichlari yoʻq.</string>
+    <string name="night_details">Batafsil</string>
+    <string name="night_open">Batafsil koʻrsatish</string>
+    <string name="night_latency">Uxlab qolish vaqti</string>
+    <string name="night_efficiency">Uyqu samaradorligi</string>
+    <string name="night_awakenings">Uygʻongan marta</string>
+    <string name="night_longest_deep">Eng uzun chuqur uyqu</string>
+    <string name="stages_typical">Odatiy oraliq</string>
+    <string name="stages_typical_range">Odatda %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Odatda %1$d %% dan kam</string>
+    <string name="stages_not_medical">Bu tibbiy baho emas.</string>
+    <string name="stages_verdict_awake_above">Odatdagidan koʻp uygʻoqlik</string>
+    <string name="stages_verdict_deep_below">Odatdagidan kam chuqur uyqu</string>
+    <string name="stages_verdict_deep_above">Odatdagidan koʻp chuqur uyqu</string>
+    <string name="stages_verdict_rem_below">Kam REM – koʻpincha qisqa yoki kech tundan keyin</string>
+    <string name="stages_verdict_rem_above">Odatdagidan koʻp REM</string>
+    <string name="stages_verdict_light_below">Odatdagidan kam yengil uyqu</string>
+    <string name="stages_verdict_light_above">Odatdagidan koʻp yengil uyqu</string>
+    <string name="stages_verdict_typical">Barcha bosqichlar odatiy oraliqda</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s davomida</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Haftalik oʻrtacha</string>
+    <string name="chart_touch_hint">Qiymatlarni koʻrish uchun grafikka teg yoki ustidan surib oʻt.</string>
+    <string name="chart_nights_30">30 tun</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

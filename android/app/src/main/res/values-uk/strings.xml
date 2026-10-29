@@ -517,4 +517,36 @@
     <string name="check_watch_update_problem">До того часу годинник не пропускає будильники й будить тебе навіть у свята.</string>
     <string name="watch_store_opened">Play Store відкрито на годиннику – поглянь на нього.</string>
     <string name="watch_store_failed">Не вдалося відкрити Play Store на годиннику. Він підключений?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Попередня ніч</string>
+    <string name="night_next">Наступна ніч</string>
+    <string name="night_in_bed">У ліжку %1$s – %2$s</string>
+    <string name="night_asleep">Сон</string>
+    <string name="night_woke">Розбуджено о %1$s</string>
+    <string name="night_target">Цільовий час %1$s</string>
+    <string name="night_no_stages">У твоїх даних про здоров’я немає фаз сну для цієї ночі.</string>
+    <string name="night_details">Докладніше</string>
+    <string name="night_open">Показати докладніше</string>
+    <string name="night_latency">Засинання</string>
+    <string name="night_efficiency">Ефективність сну</string>
+    <string name="night_awakenings">Пробудження</string>
+    <string name="night_longest_deep">Найдовший глибокий сон</string>
+    <string name="stages_typical">Звичайний діапазон</string>
+    <string name="stages_typical_range">Зазвичай %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Зазвичай менше %1$d %%</string>
+    <string name="stages_not_medical">Це не медична оцінка.</string>
+    <string name="stages_verdict_awake_above">Більше неспання, ніж зазвичай</string>
+    <string name="stages_verdict_deep_below">Менше глибокого сну, ніж зазвичай</string>
+    <string name="stages_verdict_deep_above">Більше глибокого сну, ніж зазвичай</string>
+    <string name="stages_verdict_rem_below">Мало REM – часто після короткої або пізньої ночі</string>
+    <string name="stages_verdict_rem_above">Більше REM, ніж зазвичай</string>
+    <string name="stages_verdict_light_below">Менше легкого сну, ніж зазвичай</string>
+    <string name="stages_verdict_light_above">Більше легкого сну, ніж зазвичай</string>
+    <string name="stages_verdict_typical">Усі фази у звичайному діапазоні</string>
+    <string name="hypno_bubble">%1$s · %2$s · уже %3$s</string>
+    <string name="hypno_block">%1$s з %2$s до %3$s</string>
+    <string name="chart_week_average">Середнє за тиждень</string>
+    <string name="chart_touch_hint">Торкнись графіка або проведи по ньому, щоб побачити значення.</string>
+    <string name="chart_nights_30">30 ночей</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

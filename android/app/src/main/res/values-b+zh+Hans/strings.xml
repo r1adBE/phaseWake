@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">在此之前，手表不会跳过任何闹钟，节假日也会叫醒你。</string>
     <string name="watch_store_opened">已在手表上打开 Play Store – 请看一下手表。</string>
     <string name="watch_store_failed">无法在手表上打开 Play Store。手表已连接吗？</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">前一晚</string>
+    <string name="night_next">后一晚</string>
+    <string name="night_in_bed">在床 %1$s – %2$s</string>
+    <string name="night_asleep">睡眠</string>
+    <string name="night_woke">唤醒于 %1$s</string>
+    <string name="night_target">目标时间 %1$s</string>
+    <string name="night_no_stages">你的健康数据中没有这一晚的睡眠阶段。</string>
+    <string name="night_details">详情</string>
+    <string name="night_open">显示详情</string>
+    <string name="night_latency">入睡时长</string>
+    <string name="night_efficiency">睡眠效率</string>
+    <string name="night_awakenings">醒来次数</string>
+    <string name="night_longest_deep">最长深睡</string>
+    <string name="stages_typical">常见范围</string>
+    <string name="stages_typical_range">常见 %1$d–%2$d %%</string>
+    <string name="stages_typical_below">常见低于 %1$d %%</string>
+    <string name="stages_not_medical">并非医学评估。</string>
+    <string name="stages_verdict_awake_above">清醒时间比平常多</string>
+    <string name="stages_verdict_deep_below">深睡比平常少</string>
+    <string name="stages_verdict_deep_above">深睡比平常多</string>
+    <string name="stages_verdict_rem_below">REM 较少——常见于睡得短或睡得晚的夜晚</string>
+    <string name="stages_verdict_rem_above">REM 比平常多</string>
+    <string name="stages_verdict_light_below">浅睡比平常少</string>
+    <string name="stages_verdict_light_above">浅睡比平常多</string>
+    <string name="stages_verdict_typical">所有阶段都在常见范围内</string>
+    <string name="hypno_bubble">%1$s · %2$s · 已持续 %3$s</string>
+    <string name="hypno_block">%1$s，%2$s 至 %3$s</string>
+    <string name="chart_week_average">每周平均</string>
+    <string name="chart_touch_hint">轻触或在图表上拖动以查看数值。</string>
+    <string name="chart_nights_30">30 晚</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

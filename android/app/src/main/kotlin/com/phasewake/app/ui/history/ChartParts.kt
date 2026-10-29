@@ -98,13 +98,29 @@ internal fun morning(date: LocalDate, skeleton: String = "dMMM"): String {
 /** Minuten ab Mittag als Uhrzeit. */
 internal fun clock(minutesFromNoon: Int): String = Format.time(LocalTime.of(12, 0).plusMinutes(minutesFromNoon.toLong()))
 
+/**
+ * Wochendurchschnitt als durchgezogene Linie durch die Mitte der Felder ([ChartData.weekAverage]); `null`-Stellen
+ * unterbrechen sie. [x] und [y] rechnen Stelle und Wert in Pixel um.
+ */
+internal fun DrawScope.averageLine(values: List<Double?>, color: Color, x: (Int) -> Float, y: (Double) -> Float) {
+    for (i in 1 until values.size) {
+        val a = values[i - 1] ?: continue
+        val b = values[i] ?: continue
+        drawLine(color, Offset(x(i - 1), y(a)), Offset(x(i), y(b)), strokeWidth = 2.dp.toPx(), cap = StrokeCap.Round)
+    }
+}
+
+/** Hervorhebung der gewählten Stelle: helle Fläche über die ganze Höhe. */
+internal fun DrawScope.highlight(color: Color, x0: Float, width: Float, bottom: Float) =
+    drawRoundRect(color.copy(alpha = 0.14f), Offset(x0, 0f), Size(width, bottom), CornerRadius(4.dp.toPx()))
+
 internal fun DrawScope.dashed(color: Color, from: Offset, to: Offset) =
     drawLine(color, from, to, strokeWidth = 1.5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx())))
 
 @Composable
 internal fun labelStyle(): TextStyle = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, SHADE, NONE }
+internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, LINE, SHADE, NONE }
 
 internal data class LegendItem(val text: String, val mark: LegendMark, val color: Color)
 
@@ -137,6 +153,7 @@ internal fun DrawScope.mark(mark: LegendMark, color: Color, center: Offset, r: F
             style = Stroke(r * 0.45f, cap = StrokeCap.Round),
         )
         LegendMark.DASH -> dashed(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y))
+        LegendMark.LINE -> drawLine(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y), strokeWidth = r * 0.55f, cap = StrokeCap.Round)
         LegendMark.SHADE -> drawRoundRect(color, Offset(center.x - r * 2, center.y - r), Size(r * 4, r * 2), CornerRadius(r / 2))
         // Ohne Marke: Das Zeichen steht schon im Text (z. B. «✓ Ziel erreicht»).
         LegendMark.NONE -> Unit
@@ -162,18 +179,16 @@ internal fun Legend(items: List<LegendItem>) {
 }
 
 /**
- * Farbe je Schlafphase für Schlafprofil und Phasen-Band; jede mindestens 3:1 zur Karte (WCAG 1.4.11).
- * Unterschieden wird zusätzlich über die Höhe (Zeile), nicht nur über die Farbe.
+ * Farbe je Schlafphase aus dem Theme ([com.phasewake.app.ui.theme.BrandColors.stageAwake] usw.), in allen Diagrammen gleich;
+ * jede mindestens 3:1 zur Karte (WCAG 1.4.11). Unterschieden wird zusätzlich über die Höhe (Zeile) und die Beschriftung.
  */
 @Composable
 internal fun stageColors(): Map<SleepStage, Color> {
     val brand = PhaseWakeTheme.brand
-    val scheme = MaterialTheme.colorScheme
     return mapOf(
-        SleepStage.AWAKE to brand.dot,
-        SleepStage.REM to scheme.onSurfaceVariant,
-        SleepStage.LIGHT to brand.wave,
-        // Hell wäre «echo» zu blass (2.1:1); dort das kräftige Primär.
-        SleepStage.DEEP to if (PhaseWakeTheme.isDark) brand.echo else scheme.primary,
+        SleepStage.AWAKE to brand.stageAwake,
+        SleepStage.REM to brand.stageRem,
+        SleepStage.LIGHT to brand.stageLight,
+        SleepStage.DEEP to brand.stageDeep,
     )
 }

@@ -534,4 +534,36 @@
     <string name="check_watch_update_problem">Go dtí sin, ní scipeálfaidh d’uaireadóir aláraim agus dúiseoidh sé thú ar laethanta saoire freisin.</string>
     <string name="watch_store_opened">Osclaíodh an Play Store ar d’uaireadóir – féach air.</string>
     <string name="watch_store_failed">Níorbh fhéidir an Play Store a oscailt ar d’uaireadóir. An bhfuil sé ceangailte?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">An oíche roimhe</string>
+    <string name="night_next">An chéad oíche eile</string>
+    <string name="night_in_bed">Sa leaba %1$s – %2$s</string>
+    <string name="night_asleep">Codladh</string>
+    <string name="night_woke">Dúisithe ag %1$s</string>
+    <string name="night_target">Am sprice %1$s</string>
+    <string name="night_no_stages">Níl céimeanna codlata do shonraí sláinte don oíche seo.</string>
+    <string name="night_details">Sonraí</string>
+    <string name="night_open">Taispeáin sonraí</string>
+    <string name="night_latency">Ag titim i do chodladh</string>
+    <string name="night_efficiency">Éifeachtúlacht codlata</string>
+    <string name="night_awakenings">Uaireanta i do dhúiseacht</string>
+    <string name="night_longest_deep">An codladh trom is faide</string>
+    <string name="stages_typical">Raon gnáth</string>
+    <string name="stages_typical_range">Gnáth %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Gnáth faoi %1$d %%</string>
+    <string name="stages_not_medical">Ní measúnú leighis é.</string>
+    <string name="stages_verdict_awake_above">Níos mó ama i do dhúiseacht ná mar is gnách</string>
+    <string name="stages_verdict_deep_below">Níos lú codladh trom ná mar is gnách</string>
+    <string name="stages_verdict_deep_above">Níos mó codladh trom ná mar is gnách</string>
+    <string name="stages_verdict_rem_below">Beagán REM – go minic tar éis oíche ghearr nó dhéanach</string>
+    <string name="stages_verdict_rem_above">Níos mó REM ná mar is gnách</string>
+    <string name="stages_verdict_light_below">Níos lú codladh éadrom ná mar is gnách</string>
+    <string name="stages_verdict_light_above">Níos mó codladh éadrom ná mar is gnách</string>
+    <string name="stages_verdict_typical">Gach céim sa raon gnáth</string>
+    <string name="hypno_bubble">%1$s · %2$s · le %3$s</string>
+    <string name="hypno_block">%1$s ó %2$s go %3$s</string>
+    <string name="chart_week_average">Meán seachtainiúil</string>
+    <string name="chart_touch_hint">Tadhaill nó tarraing trasna na cairte chun luachanna a fheiceáil.</string>
+    <string name="chart_nights_30">30 oíche</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

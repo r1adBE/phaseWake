@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">त्यतिन्जेल तिम्रो घडीले अलार्म छोड्दैन र बिदामा पनि ब्युँझाउँछ।</string>
     <string name="watch_store_opened">घडीमा Play Store खोलियो – एक पटक हेर।</string>
     <string name="watch_store_failed">घडीमा Play Store खोल्न सकिएन। के घडी जोडिएको छ?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">अघिल्लो रात</string>
+    <string name="night_next">अर्को रात</string>
+    <string name="night_in_bed">ओछ्यानमा %1$s – %2$s</string>
+    <string name="night_asleep">निद्रा</string>
+    <string name="night_woke">%1$s मा उठाइयो</string>
+    <string name="night_target">लक्ष्य समय %1$s</string>
+    <string name="night_no_stages">तिम्रो स्वास्थ्य डेटामा यो रातको निद्रा चरण छैन।</string>
+    <string name="night_details">विवरण</string>
+    <string name="night_open">विवरण देखाऊ</string>
+    <string name="night_latency">निदाउन लागेको समय</string>
+    <string name="night_efficiency">निद्राको दक्षता</string>
+    <string name="night_awakenings">ब्युँझिएका पटक</string>
+    <string name="night_longest_deep">सबैभन्दा लामो गहिरो निद्रा</string>
+    <string name="stages_typical">सामान्य दायरा</string>
+    <string name="stages_typical_range">सामान्यतया %1$d–%2$d %%</string>
+    <string name="stages_typical_below">सामान्यतया %1$d %% भन्दा कम</string>
+    <string name="stages_not_medical">यो चिकित्सकीय मूल्याङ्कन होइन।</string>
+    <string name="stages_verdict_awake_above">सामान्यभन्दा बढी ब्युँझेको समय</string>
+    <string name="stages_verdict_deep_below">सामान्यभन्दा कम गहिरो निद्रा</string>
+    <string name="stages_verdict_deep_above">सामान्यभन्दा बढी गहिरो निद्रा</string>
+    <string name="stages_verdict_rem_below">कम REM – प्रायः छोटो वा ढिलो रातपछि</string>
+    <string name="stages_verdict_rem_above">सामान्यभन्दा बढी REM</string>
+    <string name="stages_verdict_light_below">सामान्यभन्दा कम हल्का निद्रा</string>
+    <string name="stages_verdict_light_above">सामान्यभन्दा बढी हल्का निद्रा</string>
+    <string name="stages_verdict_typical">सबै चरण सामान्य दायरामा</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s देखि</string>
+    <string name="hypno_block">%1$s %2$s देखि %3$s सम्म</string>
+    <string name="chart_week_average">साप्ताहिक औसत</string>
+    <string name="chart_touch_hint">मान हेर्न चार्टमा छोऊ वा त्यसमाथि तान।</string>
+    <string name="chart_nights_30">३० रात</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

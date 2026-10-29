@@ -106,6 +106,15 @@ public struct HistoryItem: Equatable, Sendable {
         self.session = session
     }
 
+    /// Eindeutiger Schlüssel des Eintrags, z. B. für die Detailseite: eigene Nacht «n:» + Wecker-Kennung + «:» +
+    /// Fensterbeginn in Millisekunden seit 1970, Nacht aus der Gesundheits-App «h:» + Nachtdatum.
+    public var key: String {
+        if let night {
+            return "n:\(night.alarmId):\(Int64((night.windowStart.timeIntervalSince1970 * 1000).rounded()))"
+        }
+        return "h:" + date
+    }
+
     /// Zeitpunkt für die Sortierung: Weckmoment der Nacht bzw. Ende der Sitzung; ohne beides 1970-01-01 (wie `Instant.EPOCH`).
     public var at: Date { night?.wokeAt ?? session?.end ?? Date(timeIntervalSince1970: 0) }
 }
@@ -150,6 +159,12 @@ public enum HealthHistory {
         let items = nights.map { HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: $0, calendar: calendar), night: $0) }
             + best.map { HistoryItem(kind: .health, date: $0.key, session: $0.value) }
         return items.sorted(by: newerFirst)
+    }
+
+    /// Eintrag zum Nachtdatum `date` («yyyy-MM-dd»), z. B. für «Blase antippen → Detailseite»: der erste in `items`
+    /// (neueste zuerst) mit diesem Datum; `nil` ohne Eintrag.
+    public static func itemFor(_ items: [HistoryItem], date: String) -> HistoryItem? {
+        items.first { $0.date == date }
     }
 
     /// Ohne doppelte Nächte: Von Sitzungen, die sich zeitlich überschneiden (Beginn vor dem Ende der anderen und

@@ -503,4 +503,36 @@
     <string name="check_watch_update_problem">Până atunci, ceasul nu sare peste nicio alarmă și te trezește și în sărbători.</string>
     <string name="watch_store_opened">Play Store s-a deschis pe ceas – aruncă o privire.</string>
     <string name="watch_store_failed">Play Store nu s-a putut deschide pe ceas. Este conectat?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Noaptea anterioară</string>
+    <string name="night_next">Noaptea următoare</string>
+    <string name="night_in_bed">În pat %1$s – %2$s</string>
+    <string name="night_asleep">Somn</string>
+    <string name="night_woke">Trezit la %1$s</string>
+    <string name="night_target">Ora țintă %1$s</string>
+    <string name="night_no_stages">Datele tale de sănătate nu au faze de somn pentru această noapte.</string>
+    <string name="night_details">Detalii</string>
+    <string name="night_open">Afișează detaliile</string>
+    <string name="night_latency">Adormire</string>
+    <string name="night_efficiency">Eficiența somnului</string>
+    <string name="night_awakenings">Treziri</string>
+    <string name="night_longest_deep">Cel mai lung somn profund</string>
+    <string name="stages_typical">Interval obișnuit</string>
+    <string name="stages_typical_range">De obicei %1$d–%2$d %%</string>
+    <string name="stages_typical_below">De obicei sub %1$d %%</string>
+    <string name="stages_not_medical">Nu este o evaluare medicală.</string>
+    <string name="stages_verdict_awake_above">Mai mult timp treaz decât de obicei</string>
+    <string name="stages_verdict_deep_below">Mai puțin somn profund decât de obicei</string>
+    <string name="stages_verdict_deep_above">Mai mult somn profund decât de obicei</string>
+    <string name="stages_verdict_rem_below">Puțin REM – adesea după o noapte scurtă sau târzie</string>
+    <string name="stages_verdict_rem_above">Mai mult REM decât de obicei</string>
+    <string name="stages_verdict_light_below">Mai puțin somn ușor decât de obicei</string>
+    <string name="stages_verdict_light_above">Mai mult somn ușor decât de obicei</string>
+    <string name="stages_verdict_typical">Toate fazele în intervalul obișnuit</string>
+    <string name="hypno_bubble">%1$s · %2$s · de %3$s</string>
+    <string name="hypno_block">%1$s de la %2$s la %3$s</string>
+    <string name="chart_week_average">Medie săptămânală</string>
+    <string name="chart_touch_hint">Atinge sau trage peste grafic pentru a vedea valorile.</string>
+    <string name="chart_nights_30">30 nopți</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

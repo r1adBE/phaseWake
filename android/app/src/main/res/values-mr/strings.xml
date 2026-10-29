@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">तोपर्यंत तुमचे घड्याळ अलार्म वगळणार नाही आणि सुट्टीच्या दिवशीही तुम्हाला उठवेल.</string>
     <string name="watch_store_opened">तुमच्या घड्याळावर Play Store उघडले – एकदा पाहा.</string>
     <string name="watch_store_failed">तुमच्या घड्याळावर Play Store उघडता आले नाही. ते कनेक्ट आहे का?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">मागील रात्र</string>
+    <string name="night_next">पुढील रात्र</string>
+    <string name="night_in_bed">बिछान्यात %1$s – %2$s</string>
+    <string name="night_asleep">झोप</string>
+    <string name="night_woke">%1$s ला उठवले</string>
+    <string name="night_target">लक्ष्य वेळ %1$s</string>
+    <string name="night_no_stages">तुमच्या हेल्थ डेटामध्ये या रात्रीचे झोपेचे टप्पे नाहीत.</string>
+    <string name="night_details">तपशील</string>
+    <string name="night_open">तपशील दाखवा</string>
+    <string name="night_latency">झोप लागण्यास वेळ</string>
+    <string name="night_efficiency">झोपेची कार्यक्षमता</string>
+    <string name="night_awakenings">जाग आल्याच्या वेळा</string>
+    <string name="night_longest_deep">सर्वात लांब गाढ झोप</string>
+    <string name="stages_typical">नेहमीची श्रेणी</string>
+    <string name="stages_typical_range">साधारणपणे %1$d–%2$d %%</string>
+    <string name="stages_typical_below">साधारणपणे %1$d %% पेक्षा कमी</string>
+    <string name="stages_not_medical">हे वैद्यकीय मूल्यमापन नाही.</string>
+    <string name="stages_verdict_awake_above">नेहमीपेक्षा जास्त जागे</string>
+    <string name="stages_verdict_deep_below">नेहमीपेक्षा कमी गाढ झोप</string>
+    <string name="stages_verdict_deep_above">नेहमीपेक्षा जास्त गाढ झोप</string>
+    <string name="stages_verdict_rem_below">कमी REM – बहुधा लहान किंवा उशिराच्या रात्रीनंतर</string>
+    <string name="stages_verdict_rem_above">नेहमीपेक्षा जास्त REM</string>
+    <string name="stages_verdict_light_below">नेहमीपेक्षा कमी हलकी झोप</string>
+    <string name="stages_verdict_light_above">नेहमीपेक्षा जास्त हलकी झोप</string>
+    <string name="stages_verdict_typical">सर्व टप्पे नेहमीच्या श्रेणीत</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s पासून</string>
+    <string name="hypno_block">%1$s %2$s ते %3$s</string>
+    <string name="chart_week_average">साप्ताहिक सरासरी</string>
+    <string name="chart_touch_hint">मूल्ये पाहण्यासाठी चार्टला स्पर्श करा किंवा त्यावर ओढा.</string>
+    <string name="chart_nights_30">३० रात्री</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

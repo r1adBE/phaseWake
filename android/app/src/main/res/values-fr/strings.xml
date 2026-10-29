@@ -503,4 +503,36 @@
     <string name="check_watch_update_problem">D\'ici là, ta montre ne saute aucun réveil et te réveille aussi les jours fériés.</string>
     <string name="watch_store_opened">Play Store ouvert sur ta montre – jette un œil.</string>
     <string name="watch_store_failed">Impossible d\'ouvrir le Play Store sur ta montre. Est-elle connectée ?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Nuit précédente</string>
+    <string name="night_next">Nuit suivante</string>
+    <string name="night_in_bed">Au lit %1$s – %2$s</string>
+    <string name="night_asleep">Sommeil</string>
+    <string name="night_woke">Réveillé à %1$s</string>
+    <string name="night_target">Heure cible %1$s</string>
+    <string name="night_no_stages">Tes données de santé n’ont pas de phases de sommeil pour cette nuit.</string>
+    <string name="night_details">Détails</string>
+    <string name="night_open">Afficher les détails</string>
+    <string name="night_latency">Endormissement</string>
+    <string name="night_efficiency">Efficacité du sommeil</string>
+    <string name="night_awakenings">Réveils</string>
+    <string name="night_longest_deep">Plus long sommeil profond</string>
+    <string name="stages_typical">Plage habituelle</string>
+    <string name="stages_typical_range">Habituel %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Habituel moins de %1$d %%</string>
+    <string name="stages_not_medical">Pas une évaluation médicale.</string>
+    <string name="stages_verdict_awake_above">Plus de temps éveillé que d’habitude</string>
+    <string name="stages_verdict_deep_below">Moins de sommeil profond que d’habitude</string>
+    <string name="stages_verdict_deep_above">Plus de sommeil profond que d’habitude</string>
+    <string name="stages_verdict_rem_below">Peu de REM – souvent après une nuit courte ou tardive</string>
+    <string name="stages_verdict_rem_above">Plus de REM que d’habitude</string>
+    <string name="stages_verdict_light_below">Moins de sommeil léger que d’habitude</string>
+    <string name="stages_verdict_light_above">Plus de sommeil léger que d’habitude</string>
+    <string name="stages_verdict_typical">Toutes les phases dans la plage habituelle</string>
+    <string name="hypno_bubble">%1$s · %2$s · depuis %3$s</string>
+    <string name="hypno_block">%1$s de %2$s à %3$s</string>
+    <string name="chart_week_average">Moyenne hebdomadaire</string>
+    <string name="chart_touch_hint">Touche ou fais glisser sur le graphique pour voir les valeurs.</string>
+    <string name="chart_nights_30">30 nuits</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

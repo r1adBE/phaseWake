@@ -506,4 +506,36 @@
     <string name="check_watch_update_problem">Дотле сат неће прескакати аларме и будиће те и празницима.</string>
     <string name="watch_store_opened">Play Store је отворен на сату – погледај га.</string>
     <string name="watch_store_failed">Play Store није могао да се отвори на сату. Да ли је сат повезан?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Претходна ноћ</string>
+    <string name="night_next">Следећа ноћ</string>
+    <string name="night_in_bed">У кревету %1$s – %2$s</string>
+    <string name="night_asleep">Спавање</string>
+    <string name="night_woke">Пробуђен у %1$s</string>
+    <string name="night_target">Циљно време %1$s</string>
+    <string name="night_no_stages">Твоји здравствени подаци немају фазе сна за ову ноћ.</string>
+    <string name="night_details">Детаљи</string>
+    <string name="night_open">Прикажи детаље</string>
+    <string name="night_latency">Успављивање</string>
+    <string name="night_efficiency">Ефикасност сна</string>
+    <string name="night_awakenings">Буђења</string>
+    <string name="night_longest_deep">Најдужи дубоки сан</string>
+    <string name="stages_typical">Уобичајени опсег</string>
+    <string name="stages_typical_range">Уобичајено %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Уобичајено испод %1$d %%</string>
+    <string name="stages_not_medical">Није медицинска процена.</string>
+    <string name="stages_verdict_awake_above">Више будног времена него обично</string>
+    <string name="stages_verdict_deep_below">Мање дубоког сна него обично</string>
+    <string name="stages_verdict_deep_above">Више дубоког сна него обично</string>
+    <string name="stages_verdict_rem_below">Мало REM-а – често после кратке или касне ноћи</string>
+    <string name="stages_verdict_rem_above">Више REM-а него обично</string>
+    <string name="stages_verdict_light_below">Мање лаганог сна него обично</string>
+    <string name="stages_verdict_light_above">Више лаганог сна него обично</string>
+    <string name="stages_verdict_typical">Све фазе у уобичајеном опсегу</string>
+    <string name="hypno_bubble">%1$s · %2$s · већ %3$s</string>
+    <string name="hypno_block">%1$s од %2$s до %3$s</string>
+    <string name="chart_week_average">Недељни просек</string>
+    <string name="chart_touch_hint">Додирни или превуци преко графикона за вредности.</string>
+    <string name="chart_nights_30">30 ноћи</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

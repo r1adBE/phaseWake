@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">تا آن موقع ساعت هیچ زنگی را رد نمی‌کند و روزهای تعطیل هم بیدارت می‌کند.</string>
     <string name="watch_store_opened">Play Store روی ساعت باز شد – نگاهی به آن بینداز.</string>
     <string name="watch_store_failed">باز کردن Play Store روی ساعت ممکن نشد. آیا ساعت وصل است؟</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">شب قبل</string>
+    <string name="night_next">شب بعد</string>
+    <string name="night_in_bed">در رختخواب %1$s – %2$s</string>
+    <string name="night_asleep">خواب</string>
+    <string name="night_woke">بیدار شده در %1$s</string>
+    <string name="night_target">زمان هدف %1$s</string>
+    <string name="night_no_stages">داده‌های سلامت تو برای این شب مراحل خواب ندارد.</string>
+    <string name="night_details">جزئیات</string>
+    <string name="night_open">نمایش جزئیات</string>
+    <string name="night_latency">زمان به خواب رفتن</string>
+    <string name="night_efficiency">بازده خواب</string>
+    <string name="night_awakenings">دفعات بیداری</string>
+    <string name="night_longest_deep">طولانی‌ترین خواب عمیق</string>
+    <string name="stages_typical">محدوده معمول</string>
+    <string name="stages_typical_range">معمول %1$d–%2$d %%</string>
+    <string name="stages_typical_below">معمول کمتر از %1$d %%</string>
+    <string name="stages_not_medical">ارزیابی پزشکی نیست.</string>
+    <string name="stages_verdict_awake_above">بیداری بیشتر از معمول</string>
+    <string name="stages_verdict_deep_below">خواب عمیق کمتر از معمول</string>
+    <string name="stages_verdict_deep_above">خواب عمیق بیشتر از معمول</string>
+    <string name="stages_verdict_rem_below">REM کم – اغلب پس از شبی کوتاه یا دیروقت</string>
+    <string name="stages_verdict_rem_above">REM بیشتر از معمول</string>
+    <string name="stages_verdict_light_below">خواب سبک کمتر از معمول</string>
+    <string name="stages_verdict_light_above">خواب سبک بیشتر از معمول</string>
+    <string name="stages_verdict_typical">همه مراحل در محدوده معمول</string>
+    <string name="hypno_bubble">%1$s · %2$s · از %3$s پیش</string>
+    <string name="hypno_block">%1$s از %2$s تا %3$s</string>
+    <string name="chart_week_average">میانگین هفتگی</string>
+    <string name="chart_touch_hint">برای دیدن مقادیر، نمودار را لمس کن یا روی آن بکش.</string>
+    <string name="chart_nights_30">۳۰ شب</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

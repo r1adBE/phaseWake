@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">ਉਦੋਂ ਤੱਕ ਤੁਹਾਡੀ ਘੜੀ ਅਲਾਰਮ ਨਹੀਂ ਛੱਡੇਗੀ ਅਤੇ ਛੁੱਟੀਆਂ ’ਤੇ ਵੀ ਤੁਹਾਨੂੰ ਜਗਾਏਗੀ।</string>
     <string name="watch_store_opened">ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਖੋਲ੍ਹਿਆ ਗਿਆ – ਇੱਕ ਵਾਰ ਦੇਖੋ।</string>
     <string name="watch_store_failed">ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ। ਕੀ ਇਹ ਕਨੈਕਟ ਹੈ?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">ਪਿਛਲੀ ਰਾਤ</string>
+    <string name="night_next">ਅਗਲੀ ਰਾਤ</string>
+    <string name="night_in_bed">ਬਿਸਤਰੇ ਵਿੱਚ %1$s – %2$s</string>
+    <string name="night_asleep">ਨੀਂਦ</string>
+    <string name="night_woke">%1$s ਵਜੇ ਜਗਾਇਆ</string>
+    <string name="night_target">ਟੀਚਾ ਸਮਾਂ %1$s</string>
+    <string name="night_no_stages">ਤੁਹਾਡੇ ਸਿਹਤ ਡਾਟੇ ਵਿੱਚ ਇਸ ਰਾਤ ਦੇ ਨੀਂਦ ਦੇ ਪੜਾਅ ਨਹੀਂ ਹਨ।</string>
+    <string name="night_details">ਵੇਰਵੇ</string>
+    <string name="night_open">ਵੇਰਵੇ ਦਿਖਾਓ</string>
+    <string name="night_latency">ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ</string>
+    <string name="night_efficiency">ਨੀਂਦ ਦੀ ਕੁਸ਼ਲਤਾ</string>
+    <string name="night_awakenings">ਜਾਗਣ ਦੀ ਗਿਣਤੀ</string>
+    <string name="night_longest_deep">ਸਭ ਤੋਂ ਲੰਬੀ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
+    <string name="stages_typical">ਆਮ ਦਾਇਰਾ</string>
+    <string name="stages_typical_range">ਆਮ ਤੌਰ ’ਤੇ %1$d–%2$d %%</string>
+    <string name="stages_typical_below">ਆਮ ਤੌਰ ’ਤੇ %1$d %% ਤੋਂ ਘੱਟ</string>
+    <string name="stages_not_medical">ਇਹ ਡਾਕਟਰੀ ਮੁਲਾਂਕਣ ਨਹੀਂ ਹੈ।</string>
+    <string name="stages_verdict_awake_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਜਾਗਣਾ</string>
+    <string name="stages_verdict_deep_below">ਆਮ ਨਾਲੋਂ ਘੱਟ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
+    <string name="stages_verdict_deep_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
+    <string name="stages_verdict_rem_below">ਘੱਟ REM – ਅਕਸਰ ਛੋਟੀ ਜਾਂ ਦੇਰ ਵਾਲੀ ਰਾਤ ਤੋਂ ਬਾਅਦ</string>
+    <string name="stages_verdict_rem_above">ਆਮ ਨਾਲੋਂ ਵੱਧ REM</string>
+    <string name="stages_verdict_light_below">ਆਮ ਨਾਲੋਂ ਘੱਟ ਹਲਕੀ ਨੀਂਦ</string>
+    <string name="stages_verdict_light_above">ਆਮ ਨਾਲੋਂ ਵੱਧ ਹਲਕੀ ਨੀਂਦ</string>
+    <string name="stages_verdict_typical">ਸਾਰੇ ਪੜਾਅ ਆਮ ਦਾਇਰੇ ਵਿੱਚ</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s ਤੋਂ</string>
+    <string name="hypno_block">%1$s %2$s ਤੋਂ %3$s ਤੱਕ</string>
+    <string name="chart_week_average">ਹਫ਼ਤਾਵਾਰੀ ਔਸਤ</string>
+    <string name="chart_touch_hint">ਮੁੱਲ ਦੇਖਣ ਲਈ ਚਾਰਟ ਨੂੰ ਛੂਹੋ ਜਾਂ ਉਸ ’ਤੇ ਖਿੱਚੋ।</string>
+    <string name="chart_nights_30">30 ਰਾਤਾਂ</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

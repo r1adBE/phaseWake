@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">Μέχρι τότε το ρολόι δεν παραλείπει καμία αφύπνιση και σε ξυπνά και τις αργίες.</string>
     <string name="watch_store_opened">Το Play Store άνοιξε στο ρολόι – ρίξε μια ματιά.</string>
     <string name="watch_store_failed">Δεν ήταν δυνατό να ανοίξει το Play Store στο ρολόι. Είναι συνδεδεμένο;</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Προηγούμενη νύχτα</string>
+    <string name="night_next">Επόμενη νύχτα</string>
+    <string name="night_in_bed">Στο κρεβάτι %1$s – %2$s</string>
+    <string name="night_asleep">Ύπνος</string>
+    <string name="night_woke">Αφύπνιση στις %1$s</string>
+    <string name="night_target">Ώρα-στόχος %1$s</string>
+    <string name="night_no_stages">Τα δεδομένα υγείας σου δεν έχουν φάσεις ύπνου για αυτή τη νύχτα.</string>
+    <string name="night_details">Λεπτομέρειες</string>
+    <string name="night_open">Εμφάνιση λεπτομερειών</string>
+    <string name="night_latency">Χρόνος αποκοίμισης</string>
+    <string name="night_efficiency">Αποδοτικότητα ύπνου</string>
+    <string name="night_awakenings">Φορές ξύπνιος</string>
+    <string name="night_longest_deep">Μεγαλύτερος βαθύς ύπνος</string>
+    <string name="stages_typical">Συνήθες εύρος</string>
+    <string name="stages_typical_range">Συνήθως %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Συνήθως κάτω από %1$d %%</string>
+    <string name="stages_not_medical">Δεν είναι ιατρική αξιολόγηση.</string>
+    <string name="stages_verdict_awake_above">Περισσότερος χρόνος ξύπνιος από το συνηθισμένο</string>
+    <string name="stages_verdict_deep_below">Λιγότερος βαθύς ύπνος από το συνηθισμένο</string>
+    <string name="stages_verdict_deep_above">Περισσότερος βαθύς ύπνος από το συνηθισμένο</string>
+    <string name="stages_verdict_rem_below">Λίγος REM – συχνά μετά από σύντομη ή αργή νύχτα</string>
+    <string name="stages_verdict_rem_above">Περισσότερος REM από το συνηθισμένο</string>
+    <string name="stages_verdict_light_below">Λιγότερος ελαφρύς ύπνος από το συνηθισμένο</string>
+    <string name="stages_verdict_light_above">Περισσότερος ελαφρύς ύπνος από το συνηθισμένο</string>
+    <string name="stages_verdict_typical">Όλες οι φάσεις στο συνήθες εύρος</string>
+    <string name="hypno_bubble">%1$s · %2$s · εδώ και %3$s</string>
+    <string name="hypno_block">%1$s από %2$s έως %3$s</string>
+    <string name="chart_week_average">Εβδομαδιαίος μέσος όρος</string>
+    <string name="chart_touch_hint">Άγγιξε ή σύρε πάνω στο γράφημα για να δεις τιμές.</string>
+    <string name="chart_nights_30">30 νύχτες</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

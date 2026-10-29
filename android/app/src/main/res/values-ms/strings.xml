@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">Sehingga itu, jam tangan tidak akan melangkau penggera dan tetap mengejutkan awak pada cuti umum.</string>
     <string name="watch_store_opened">Play Store dibuka pada jam tangan – sila lihat.</string>
     <string name="watch_store_failed">Tidak dapat membuka Play Store pada jam tangan. Adakah ia disambungkan?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Malam sebelumnya</string>
+    <string name="night_next">Malam seterusnya</string>
+    <string name="night_in_bed">Di katil %1$s – %2$s</string>
+    <string name="night_asleep">Tidur</string>
+    <string name="night_woke">Dikejutkan pada %1$s</string>
+    <string name="night_target">Masa sasaran %1$s</string>
+    <string name="night_no_stages">Data kesihatan awak tiada peringkat tidur untuk malam ini.</string>
+    <string name="night_details">Butiran</string>
+    <string name="night_open">Tunjukkan butiran</string>
+    <string name="night_latency">Masa untuk tertidur</string>
+    <string name="night_efficiency">Kecekapan tidur</string>
+    <string name="night_awakenings">Kali berjaga</string>
+    <string name="night_longest_deep">Tidur lena paling lama</string>
+    <string name="stages_typical">Julat biasa</string>
+    <string name="stages_typical_range">Biasanya %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Biasanya di bawah %1$d %%</string>
+    <string name="stages_not_medical">Bukan penilaian perubatan.</string>
+    <string name="stages_verdict_awake_above">Lebih lama berjaga daripada biasa</string>
+    <string name="stages_verdict_deep_below">Kurang tidur lena daripada biasa</string>
+    <string name="stages_verdict_deep_above">Lebih banyak tidur lena daripada biasa</string>
+    <string name="stages_verdict_rem_below">Sedikit REM – selalunya selepas malam yang singkat atau lewat</string>
+    <string name="stages_verdict_rem_above">Lebih banyak REM daripada biasa</string>
+    <string name="stages_verdict_light_below">Kurang tidur ringan daripada biasa</string>
+    <string name="stages_verdict_light_above">Lebih banyak tidur ringan daripada biasa</string>
+    <string name="stages_verdict_typical">Semua peringkat dalam julat biasa</string>
+    <string name="hypno_bubble">%1$s · %2$s · selama %3$s</string>
+    <string name="hypno_block">%1$s dari %2$s hingga %3$s</string>
+    <string name="chart_week_average">Purata mingguan</string>
+    <string name="chart_touch_hint">Sentuh atau seret pada carta untuk melihat nilai.</string>
+    <string name="chart_nights_30">30 malam</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

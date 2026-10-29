@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">එතෙක් ඔබේ ඔරලෝසුව එලාම මඟ නොහරින අතර නිවාඩු දිනවලදීත් අවදි කරයි.</string>
     <string name="watch_store_opened">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළා – එය බලන්න.</string>
     <string name="watch_store_failed">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළ නොහැකි විය. එය සම්බන්ධ කර තිබේද?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">පෙර රාත්‍රිය</string>
+    <string name="night_next">ඊළඟ රාත්‍රිය</string>
+    <string name="night_in_bed">ඇඳේ %1$s – %2$s</string>
+    <string name="night_asleep">නින්ද</string>
+    <string name="night_woke">%1$s ට අවදි කළා</string>
+    <string name="night_target">ඉලක්ක වේලාව %1$s</string>
+    <string name="night_no_stages">ඔබේ සෞඛ්‍ය දත්තවල මෙම රාත්‍රියට නින්දේ අදියර නැත.</string>
+    <string name="night_details">විස්තර</string>
+    <string name="night_open">විස්තර පෙන්වන්න</string>
+    <string name="night_latency">නින්දට යාමට ගතවූ කාලය</string>
+    <string name="night_efficiency">නින්දේ කාර්යක්ෂමතාව</string>
+    <string name="night_awakenings">අවදි වූ වාර</string>
+    <string name="night_longest_deep">දිගම ගැඹුරු නින්ද</string>
+    <string name="stages_typical">සාමාන්‍ය පරාසය</string>
+    <string name="stages_typical_range">සාමාන්‍යයෙන් %1$d–%2$d %%</string>
+    <string name="stages_typical_below">සාමාන්‍යයෙන් %1$d %% ට අඩු</string>
+    <string name="stages_not_medical">මෙය වෛද්‍ය තක්සේරුවක් නොවේ.</string>
+    <string name="stages_verdict_awake_above">සාමාන්‍යයට වඩා වැඩි අවදි කාලය</string>
+    <string name="stages_verdict_deep_below">සාමාන්‍යයට වඩා අඩු ගැඹුරු නින්ද</string>
+    <string name="stages_verdict_deep_above">සාමාන්‍යයට වඩා වැඩි ගැඹුරු නින්ද</string>
+    <string name="stages_verdict_rem_below">REM අඩුයි – බොහෝ විට කෙටි හෝ ප්‍රමාද රාත්‍රියකට පසු</string>
+    <string name="stages_verdict_rem_above">සාමාන්‍යයට වඩා වැඩි REM</string>
+    <string name="stages_verdict_light_below">සාමාන්‍යයට වඩා අඩු සැහැල්ලු නින්ද</string>
+    <string name="stages_verdict_light_above">සාමාන්‍යයට වඩා වැඩි සැහැල්ලු නින්ද</string>
+    <string name="stages_verdict_typical">සියලු අදියර සාමාන්‍ය පරාසයේ</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s සිට</string>
+    <string name="hypno_block">%1$s %2$s සිට %3$s දක්වා</string>
+    <string name="chart_week_average">සතිපතා සාමාන්‍යය</string>
+    <string name="chart_touch_hint">අගයන් බැලීමට ප්‍රස්ථාරය ස්පර්ශ කරන්න හෝ ඇදගෙන යන්න.</string>
+    <string name="chart_nights_30">රාත්‍රි 30</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

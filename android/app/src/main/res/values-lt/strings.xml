@@ -520,4 +520,36 @@
     <string name="check_watch_update_problem">Iki tol laikrodis nepraleis žadintuvų ir žadins tave net per šventes.</string>
     <string name="watch_store_opened">Play Store atidaryta laikrodyje – pažiūrėk į jį.</string>
     <string name="watch_store_failed">Nepavyko atidaryti Play Store laikrodyje. Ar jis prijungtas?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Ankstesnė naktis</string>
+    <string name="night_next">Kita naktis</string>
+    <string name="night_in_bed">Lovoje %1$s – %2$s</string>
+    <string name="night_asleep">Miegas</string>
+    <string name="night_woke">Pažadinta %1$s</string>
+    <string name="night_target">Tikslinis laikas %1$s</string>
+    <string name="night_no_stages">Tavo sveikatos duomenyse nėra šios nakties miego fazių.</string>
+    <string name="night_details">Išsamiau</string>
+    <string name="night_open">Rodyti išsamiau</string>
+    <string name="night_latency">Užmigimas</string>
+    <string name="night_efficiency">Miego efektyvumas</string>
+    <string name="night_awakenings">Pabudimai</string>
+    <string name="night_longest_deep">Ilgiausias gilus miegas</string>
+    <string name="stages_typical">Įprastas intervalas</string>
+    <string name="stages_typical_range">Įprastai %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Įprastai mažiau nei %1$d %%</string>
+    <string name="stages_not_medical">Tai ne medicininis vertinimas.</string>
+    <string name="stages_verdict_awake_above">Daugiau budrumo nei įprastai</string>
+    <string name="stages_verdict_deep_below">Mažiau gilaus miego nei įprastai</string>
+    <string name="stages_verdict_deep_above">Daugiau gilaus miego nei įprastai</string>
+    <string name="stages_verdict_rem_below">Mažai REM – dažnai po trumpos ar vėlyvos nakties</string>
+    <string name="stages_verdict_rem_above">Daugiau REM nei įprastai</string>
+    <string name="stages_verdict_light_below">Mažiau lengvo miego nei įprastai</string>
+    <string name="stages_verdict_light_above">Daugiau lengvo miego nei įprastai</string>
+    <string name="stages_verdict_typical">Visos fazės įprastame intervale</string>
+    <string name="hypno_bubble">%1$s · %2$s · jau %3$s</string>
+    <string name="hypno_block">%1$s nuo %2$s iki %3$s</string>
+    <string name="chart_week_average">Savaitės vidurkis</string>
+    <string name="chart_touch_hint">Paliesk arba perbrauk per diagramą, kad matytum reikšmes.</string>
+    <string name="chart_nights_30">30 naktų</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

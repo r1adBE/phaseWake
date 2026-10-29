@@ -477,4 +477,36 @@
     <string name="check_watch_update_problem">រហូតដល់ពេលនោះ នាឡិកានឹងមិនរំលងម៉ោងរោទ៍ ហើយក៏នឹងដាស់អ្នកនៅថ្ងៃឈប់សម្រាកដែរ។</string>
     <string name="watch_store_opened">បានបើក Play Store លើនាឡិការបស់អ្នក – សូមមើលវា។</string>
     <string name="watch_store_failed">មិនអាចបើក Play Store លើនាឡិការបស់អ្នកបានទេ។ តើវាបានភ្ជាប់ទេ?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">យប់មុន</string>
+    <string name="night_next">យប់បន្ទាប់</string>
+    <string name="night_in_bed">នៅលើគ្រែ %1$s – %2$s</string>
+    <string name="night_asleep">ដំណេក</string>
+    <string name="night_woke">ដាស់នៅម៉ោង %1$s</string>
+    <string name="night_target">ម៉ោងគោលដៅ %1$s</string>
+    <string name="night_no_stages">ទិន្នន័យសុខភាពរបស់អ្នកមិនមានដំណាក់កាលដំណេកសម្រាប់យប់នេះទេ។</string>
+    <string name="night_details">ព័ត៌មានលម្អិត</string>
+    <string name="night_open">បង្ហាញព័ត៌មានលម្អិត</string>
+    <string name="night_latency">រយៈពេលលង់លក់</string>
+    <string name="night_efficiency">ប្រសិទ្ធភាពដំណេក</string>
+    <string name="night_awakenings">ចំនួនដងភ្ញាក់</string>
+    <string name="night_longest_deep">ដំណេកជ្រៅយូរបំផុត</string>
+    <string name="stages_typical">ចន្លោះធម្មតា</string>
+    <string name="stages_typical_range">ធម្មតា %1$d–%2$d %%</string>
+    <string name="stages_typical_below">ធម្មតាក្រោម %1$d %%</string>
+    <string name="stages_not_medical">មិនមែនជាការវាយតម្លៃវេជ្ជសាស្ត្រទេ។</string>
+    <string name="stages_verdict_awake_above">ភ្ញាក់យូរជាងធម្មតា</string>
+    <string name="stages_verdict_deep_below">ដំណេកជ្រៅតិចជាងធម្មតា</string>
+    <string name="stages_verdict_deep_above">ដំណេកជ្រៅច្រើនជាងធម្មតា</string>
+    <string name="stages_verdict_rem_below">REM តិច – ច្រើនតែក្រោយយប់ខ្លី ឬយប់យឺត</string>
+    <string name="stages_verdict_rem_above">REM ច្រើនជាងធម្មតា</string>
+    <string name="stages_verdict_light_below">ដំណេកស្រាលតិចជាងធម្មតា</string>
+    <string name="stages_verdict_light_above">ដំណេកស្រាលច្រើនជាងធម្មតា</string>
+    <string name="stages_verdict_typical">ដំណាក់កាលទាំងអស់ស្ថិតក្នុងចន្លោះធម្មតា</string>
+    <string name="hypno_bubble">%1$s · %2$s · រយៈពេល %3$s</string>
+    <string name="hypno_block">%1$s ពី %2$s ដល់ %3$s</string>
+    <string name="chart_week_average">មធ្យមប្រចាំសប្ដាហ៍</string>
+    <string name="chart_touch_hint">ប៉ះ ឬអូសលើតារាងដើម្បីមើលតម្លៃ។</string>
+    <string name="chart_nights_30">30 យប់</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

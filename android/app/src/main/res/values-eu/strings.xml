@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Bitartean, erlojuak ez ditu alarmak saltatuko eta jaiegunetan ere esnatuko zaitu.</string>
     <string name="watch_store_opened">Play Store erlojuan ireki da – begiratu erlojuari.</string>
     <string name="watch_store_failed">Ezin izan da Play Store erlojuan ireki. Konektatuta dago?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Aurreko gaua</string>
+    <string name="night_next">Hurrengo gaua</string>
+    <string name="night_in_bed">Ohean %1$s – %2$s</string>
+    <string name="night_asleep">Loa</string>
+    <string name="night_woke">Esnatua %1$s-etan</string>
+    <string name="night_target">Helburu-ordua %1$s</string>
+    <string name="night_no_stages">Zure osasun-datuek ez dute gau honetako lo-faserik.</string>
+    <string name="night_details">Xehetasunak</string>
+    <string name="night_open">Erakutsi xehetasunak</string>
+    <string name="night_latency">Lokartzeko denbora</string>
+    <string name="night_efficiency">Loaren eraginkortasuna</string>
+    <string name="night_awakenings">Esnatze kopurua</string>
+    <string name="night_longest_deep">Lo sakon luzeena</string>
+    <string name="stages_typical">Ohiko tartea</string>
+    <string name="stages_typical_range">Ohikoa %%%1$d–%2$d</string>
+    <string name="stages_typical_below">Ohikoa %%%1$d baino gutxiago</string>
+    <string name="stages_not_medical">Ez da ebaluazio medikoa.</string>
+    <string name="stages_verdict_awake_above">Ohi baino esna denbora gehiago</string>
+    <string name="stages_verdict_deep_below">Ohi baino lo sakon gutxiago</string>
+    <string name="stages_verdict_deep_above">Ohi baino lo sakon gehiago</string>
+    <string name="stages_verdict_rem_below">REM gutxi – askotan gau labur edo berandu baten ondoren</string>
+    <string name="stages_verdict_rem_above">Ohi baino REM gehiago</string>
+    <string name="stages_verdict_light_below">Ohi baino lo arin gutxiago</string>
+    <string name="stages_verdict_light_above">Ohi baino lo arin gehiago</string>
+    <string name="stages_verdict_typical">Fase guztiak ohiko tartean</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s daramatza</string>
+    <string name="hypno_block">%1$s %2$s–%3$s</string>
+    <string name="chart_week_average">Asteko batez bestekoa</string>
+    <string name="chart_touch_hint">Ukitu edo arrastatu grafikoan balioak ikusteko.</string>
+    <string name="chart_nights_30">30 gau</string>
+    <string name="stages_share">%%%1$d</string>
 </resources>

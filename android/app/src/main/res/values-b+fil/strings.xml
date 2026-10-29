@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Hanggang doon, hindi lalaktawan ng relo mo ang mga alarm at gigisingin ka rin nito tuwing holiday.</string>
     <string name="watch_store_opened">Nabuksan ang Play Store sa relo mo – tingnan mo ito.</string>
     <string name="watch_store_failed">Hindi mabuksan ang Play Store sa relo mo. Nakakonekta ba ito?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Nakaraang gabi</string>
+    <string name="night_next">Susunod na gabi</string>
+    <string name="night_in_bed">Sa kama %1$s – %2$s</string>
+    <string name="night_asleep">Tulog</string>
+    <string name="night_woke">Ginising nang %1$s</string>
+    <string name="night_target">Target na oras %1$s</string>
+    <string name="night_no_stages">Walang yugto ng tulog ang iyong health data para sa gabing ito.</string>
+    <string name="night_details">Mga detalye</string>
+    <string name="night_open">Ipakita ang mga detalye</string>
+    <string name="night_latency">Pagkakatulog</string>
+    <string name="night_efficiency">Episyensiya ng tulog</string>
+    <string name="night_awakenings">Ilang beses nagising</string>
+    <string name="night_longest_deep">Pinakamahabang malalim na tulog</string>
+    <string name="stages_typical">Karaniwang saklaw</string>
+    <string name="stages_typical_range">Karaniwan %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Karaniwan ay mas mababa sa %1$d %%</string>
+    <string name="stages_not_medical">Hindi ito medikal na pagsusuri.</string>
+    <string name="stages_verdict_awake_above">Mas matagal na gising kaysa karaniwan</string>
+    <string name="stages_verdict_deep_below">Mas kaunting malalim na tulog kaysa karaniwan</string>
+    <string name="stages_verdict_deep_above">Mas maraming malalim na tulog kaysa karaniwan</string>
+    <string name="stages_verdict_rem_below">Kaunting REM – madalas pagkatapos ng maikli o huling gabi</string>
+    <string name="stages_verdict_rem_above">Mas maraming REM kaysa karaniwan</string>
+    <string name="stages_verdict_light_below">Mas kaunting mababaw na tulog kaysa karaniwan</string>
+    <string name="stages_verdict_light_above">Mas maraming mababaw na tulog kaysa karaniwan</string>
+    <string name="stages_verdict_typical">Lahat ng yugto ay nasa karaniwang saklaw</string>
+    <string name="hypno_bubble">%1$s · %2$s · sa loob ng %3$s</string>
+    <string name="hypno_block">%1$s mula %2$s hanggang %3$s</string>
+    <string name="chart_week_average">Lingguhang average</string>
+    <string name="chart_touch_hint">Pindutin o i-drag sa chart para makita ang mga value.</string>
+    <string name="chart_nights_30">30 gabi</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

@@ -491,4 +491,36 @@
     <string name="check_watch_update_problem">அதுவரை உங்கள் வாட்ச் அலாரங்களைத் தவிர்க்காது, விடுமுறை நாட்களிலும் எழுப்பும்.</string>
     <string name="watch_store_opened">உங்கள் வாட்ச்சில் Play Store திறக்கப்பட்டது – ஒருமுறை பாருங்கள்.</string>
     <string name="watch_store_failed">உங்கள் வாட்ச்சில் Play Store ஐத் திறக்க முடியவில்லை. அது இணைக்கப்பட்டுள்ளதா?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">முந்தைய இரவு</string>
+    <string name="night_next">அடுத்த இரவு</string>
+    <string name="night_in_bed">படுக்கையில் %1$s – %2$s</string>
+    <string name="night_asleep">தூக்கம்</string>
+    <string name="night_woke">%1$s-க்கு எழுப்பப்பட்டது</string>
+    <string name="night_target">இலக்கு நேரம் %1$s</string>
+    <string name="night_no_stages">உங்கள் ஆரோக்கியத் தரவில் இந்த இரவுக்கான தூக்க நிலைகள் இல்லை.</string>
+    <string name="night_details">விவரங்கள்</string>
+    <string name="night_open">விவரங்களைக் காட்டவும்</string>
+    <string name="night_latency">தூங்க ஆன நேரம்</string>
+    <string name="night_efficiency">தூக்கத் திறன்</string>
+    <string name="night_awakenings">விழித்த முறைகள்</string>
+    <string name="night_longest_deep">மிக நீண்ட ஆழ்ந்த தூக்கம்</string>
+    <string name="stages_typical">வழக்கமான வரம்பு</string>
+    <string name="stages_typical_range">வழக்கமாக %1$d–%2$d %%</string>
+    <string name="stages_typical_below">வழக்கமாக %1$d %%-க்குக் கீழ்</string>
+    <string name="stages_not_medical">இது மருத்துவ மதிப்பீடு அல்ல.</string>
+    <string name="stages_verdict_awake_above">வழக்கத்தை விட அதிக விழிப்பு</string>
+    <string name="stages_verdict_deep_below">வழக்கத்தை விட குறைவான ஆழ்ந்த தூக்கம்</string>
+    <string name="stages_verdict_deep_above">வழக்கத்தை விட அதிக ஆழ்ந்த தூக்கம்</string>
+    <string name="stages_verdict_rem_below">குறைவான REM – பெரும்பாலும் குறுகிய அல்லது தாமதமான இரவுக்குப் பின்</string>
+    <string name="stages_verdict_rem_above">வழக்கத்தை விட அதிக REM</string>
+    <string name="stages_verdict_light_below">வழக்கத்தை விட குறைவான லேசான தூக்கம்</string>
+    <string name="stages_verdict_light_above">வழக்கத்தை விட அதிக லேசான தூக்கம்</string>
+    <string name="stages_verdict_typical">எல்லா நிலைகளும் வழக்கமான வரம்பில்</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s ஆக</string>
+    <string name="hypno_block">%1$s %2$s முதல் %3$s வரை</string>
+    <string name="chart_week_average">வாராந்திர சராசரி</string>
+    <string name="chart_touch_hint">மதிப்புகளைப் பார்க்க வரைபடத்தைத் தொடவும் அல்லது இழுக்கவும்.</string>
+    <string name="chart_nights_30">30 இரவுகள்</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

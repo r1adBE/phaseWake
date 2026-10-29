@@ -491,4 +491,36 @@
     <string name="check_watch_update_problem">അതുവരെ വാച്ച് അലാറങ്ങൾ ഒഴിവാക്കില്ല, അവധിദിനങ്ങളിലും ഉണർത്തും.</string>
     <string name="watch_store_opened">വാച്ചിൽ Play Store തുറന്നു – ഒന്ന് നോക്കൂ.</string>
     <string name="watch_store_failed">വാച്ചിൽ Play Store തുറക്കാനായില്ല. വാച്ച് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">മുമ്പത്തെ രാത്രി</string>
+    <string name="night_next">അടുത്ത രാത്രി</string>
+    <string name="night_in_bed">കിടക്കയിൽ %1$s – %2$s</string>
+    <string name="night_asleep">ഉറക്കം</string>
+    <string name="night_woke">%1$s-ന് ഉണർത്തി</string>
+    <string name="night_target">ലക്ഷ്യ സമയം %1$s</string>
+    <string name="night_no_stages">നിങ്ങളുടെ ആരോഗ്യ ഡാറ്റയിൽ ഈ രാത്രിയുടെ ഉറക്ക ഘട്ടങ്ങളില്ല.</string>
+    <string name="night_details">വിശദാംശങ്ങൾ</string>
+    <string name="night_open">വിശദാംശങ്ങൾ കാണിക്കുക</string>
+    <string name="night_latency">ഉറങ്ങാനെടുത്ത സമയം</string>
+    <string name="night_efficiency">ഉറക്കത്തിന്റെ കാര്യക്ഷമത</string>
+    <string name="night_awakenings">ഉണർന്ന തവണകൾ</string>
+    <string name="night_longest_deep">ഏറ്റവും നീണ്ട ഗാഢനിദ്ര</string>
+    <string name="stages_typical">സാധാരണ പരിധി</string>
+    <string name="stages_typical_range">സാധാരണ %1$d–%2$d %%</string>
+    <string name="stages_typical_below">സാധാരണ %1$d %%-ൽ താഴെ</string>
+    <string name="stages_not_medical">ഇതൊരു വൈദ്യ വിലയിരുത്തലല്ല.</string>
+    <string name="stages_verdict_awake_above">സാധാരണയേക്കാൾ കൂടുതൽ ഉണർന്നിരുന്നു</string>
+    <string name="stages_verdict_deep_below">സാധാരണയേക്കാൾ കുറവ് ഗാഢനിദ്ര</string>
+    <string name="stages_verdict_deep_above">സാധാരണയേക്കാൾ കൂടുതൽ ഗാഢനിദ്ര</string>
+    <string name="stages_verdict_rem_below">REM കുറവ് – പലപ്പോഴും ചെറിയതോ വൈകിയതോ ആയ രാത്രിക്ക് ശേഷം</string>
+    <string name="stages_verdict_rem_above">സാധാരണയേക്കാൾ കൂടുതൽ REM</string>
+    <string name="stages_verdict_light_below">സാധാരണയേക്കാൾ കുറവ് നേരിയ ഉറക്കം</string>
+    <string name="stages_verdict_light_above">സാധാരണയേക്കാൾ കൂടുതൽ നേരിയ ഉറക്കം</string>
+    <string name="stages_verdict_typical">എല്ലാ ഘട്ടങ്ങളും സാധാരണ പരിധിയിൽ</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s ആയി</string>
+    <string name="hypno_block">%1$s %2$s മുതൽ %3$s വരെ</string>
+    <string name="chart_week_average">ആഴ്ചയിലെ ശരാശരി</string>
+    <string name="chart_touch_hint">മൂല്യങ്ങൾ കാണാൻ ചാർട്ടിൽ സ്പർശിക്കുക അല്ലെങ്കിൽ വലിക്കുക.</string>
+    <string name="chart_nights_30">30 രാത്രി</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

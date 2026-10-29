@@ -61,6 +61,17 @@ data class BrandColors(
     val chipSelected: Color,
     /** Zusatzinfo (bodySmall): eine Stufe leiser als onSurfaceVariant, Kontrast ≥ 4.5:1. */
     val mutedSoft: Color,
+    /**
+     * Schlafphasen in allen Diagrammen (Hypnogramm, Nachtkarte, Detailseite, Legenden): verschiedene Farbtöne und
+     * Helligkeiten, je ≥ 3:1 zur Diagrammkarte, auch unter Deuteranopie, Protanopie und Tritanopie (cvd.py). Gleich auf Apple.
+     */
+    val stageAwake: Color,
+    /** REM: helles Cyan/Türkis, klar anders als die Lila-Töne von leicht und tief. */
+    val stageRem: Color,
+    /** Leichter Schlaf: Lavendel der Marke. */
+    val stageLight: Color,
+    /** Tiefschlaf: tiefes Indigo/Violett. */
+    val stageDeep: Color,
 )
 
 private val Lavender = Color(0xFFB9AEFF)
@@ -82,6 +93,11 @@ private val DarkBrand = BrandColors(
     chipSelected = Lavender.copy(alpha = 0.25f),
     // 80 % von #C9C3E6: auf dem Nachthimmel und den Karten ≥ 6:1.
     mutedSoft = Color(0xFFC9C3E6).copy(alpha = 0.8f),
+    // Auf der Diagrammkarte #161B3A: 7.6, 12.4, 8.4 und 3.6 : 1.
+    stageAwake = Color(0xFFFF8F85),
+    stageRem = Color(0xFF6FF2E6),
+    stageLight = Lavender,
+    stageDeep = Color(0xFF6F5CF0),
 )
 
 private val LightBrand = BrandColors(
@@ -101,6 +117,11 @@ private val LightBrand = BrandColors(
     chipSelected = Color(0xFFE4DFFB),
     // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester, etwas hellerer Ton.
     mutedSoft = Color(0xFF6A6684),
+    // Auf der weissen Diagrammkarte: 4.4, 4.0, 4.0 und 11.7 : 1.
+    stageAwake = Color(0xFFCF4F3A),
+    stageRem = Color(0xFF0E8C9E),
+    stageLight = Color(0xFF7B6CF6),
+    stageDeep = Color(0xFF2F2A85),
 )
 
 private val DarkScheme = darkColorScheme(

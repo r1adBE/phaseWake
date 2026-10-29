@@ -505,4 +505,36 @@
     <string name="check_watch_update_problem">Fins aleshores, el rellotge no ometrà alarmes i també et despertarà els festius.</string>
     <string name="watch_store_opened">S’ha obert la Play Store al rellotge – fes-hi un cop d’ull.</string>
     <string name="watch_store_failed">No s’ha pogut obrir la Play Store al rellotge. Està connectat?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Nit anterior</string>
+    <string name="night_next">Nit següent</string>
+    <string name="night_in_bed">Al llit %1$s – %2$s</string>
+    <string name="night_asleep">Son</string>
+    <string name="night_woke">Despertat a les %1$s</string>
+    <string name="night_target">Hora objectiu %1$s</string>
+    <string name="night_no_stages">Les teves dades de salut no tenen fases de son per a aquesta nit.</string>
+    <string name="night_details">Detalls</string>
+    <string name="night_open">Mostra els detalls</string>
+    <string name="night_latency">Temps per adormir-se</string>
+    <string name="night_efficiency">Eficiència del son</string>
+    <string name="night_awakenings">Vegades despert</string>
+    <string name="night_longest_deep">Son profund més llarg</string>
+    <string name="stages_typical">Interval habitual</string>
+    <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Habitual per sota del %1$d %%</string>
+    <string name="stages_not_medical">No és una valoració mèdica.</string>
+    <string name="stages_verdict_awake_above">Més temps despert que de costum</string>
+    <string name="stages_verdict_deep_below">Menys son profund que de costum</string>
+    <string name="stages_verdict_deep_above">Més son profund que de costum</string>
+    <string name="stages_verdict_rem_below">Poc REM – sovint després d’una nit curta o tardana</string>
+    <string name="stages_verdict_rem_above">Més REM que de costum</string>
+    <string name="stages_verdict_light_below">Menys son lleuger que de costum</string>
+    <string name="stages_verdict_light_above">Més son lleuger que de costum</string>
+    <string name="stages_verdict_typical">Totes les fases dins de l’interval habitual</string>
+    <string name="hypno_bubble">%1$s · %2$s · des de fa %3$s</string>
+    <string name="hypno_block">%1$s de %2$s a %3$s</string>
+    <string name="chart_week_average">Mitjana setmanal</string>
+    <string name="chart_touch_hint">Toca o arrossega pel gràfic per veure els valors.</string>
+    <string name="chart_nights_30">30 nits</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

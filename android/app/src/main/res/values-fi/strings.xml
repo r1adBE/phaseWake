@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">Siihen asti kello ei ohita herätyksiä ja herättää myös juhlapäivinä.</string>
     <string name="watch_store_opened">Play Store avattiin kellossa – katso kelloa.</string>
     <string name="watch_store_failed">Play Storea ei voitu avata kellossa. Onko kello yhdistetty?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Edellinen yö</string>
+    <string name="night_next">Seuraava yö</string>
+    <string name="night_in_bed">Sängyssä %1$s – %2$s</string>
+    <string name="night_asleep">Uni</string>
+    <string name="night_woke">Herätetty klo %1$s</string>
+    <string name="night_target">Tavoiteaika %1$s</string>
+    <string name="night_no_stages">Terveystiedoissasi ei ole tämän yön univaiheita.</string>
+    <string name="night_details">Tiedot</string>
+    <string name="night_open">Näytä tiedot</string>
+    <string name="night_latency">Nukahtamisaika</string>
+    <string name="night_efficiency">Unen tehokkuus</string>
+    <string name="night_awakenings">Heräämiset</string>
+    <string name="night_longest_deep">Pisin syvä uni</string>
+    <string name="stages_typical">Tavallinen vaihteluväli</string>
+    <string name="stages_typical_range">Tavallisesti %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Tavallisesti alle %1$d %%</string>
+    <string name="stages_not_medical">Ei lääketieteellinen arvio.</string>
+    <string name="stages_verdict_awake_above">Tavallista enemmän valveilla</string>
+    <string name="stages_verdict_deep_below">Tavallista vähemmän syvää unta</string>
+    <string name="stages_verdict_deep_above">Tavallista enemmän syvää unta</string>
+    <string name="stages_verdict_rem_below">Vähän REM-unta – usein lyhyen tai myöhäisen yön jälkeen</string>
+    <string name="stages_verdict_rem_above">Tavallista enemmän REM-unta</string>
+    <string name="stages_verdict_light_below">Tavallista vähemmän kevyttä unta</string>
+    <string name="stages_verdict_light_above">Tavallista enemmän kevyttä unta</string>
+    <string name="stages_verdict_typical">Kaikki vaiheet tavallisella välillä</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s jo</string>
+    <string name="hypno_block">%1$s klo %2$s–%3$s</string>
+    <string name="chart_week_average">Viikon keskiarvo</string>
+    <string name="chart_touch_hint">Kosketa tai vedä kaavion yli nähdäksesi arvot.</string>
+    <string name="chart_nights_30">30 yötä</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

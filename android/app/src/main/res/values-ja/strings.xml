@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">それまでウォッチはアラームをスキップせず、祝日にも起こします。</string>
     <string name="watch_store_opened">ウォッチでPlay Storeを開きました – ウォッチを確認してください。</string>
     <string name="watch_store_failed">ウォッチでPlay Storeを開けませんでした。ウォッチは接続されていますか？</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">前の夜</string>
+    <string name="night_next">次の夜</string>
+    <string name="night_in_bed">ベッド %1$s – %2$s</string>
+    <string name="night_asleep">睡眠</string>
+    <string name="night_woke">%1$s に起床</string>
+    <string name="night_target">目標時刻 %1$s</string>
+    <string name="night_no_stages">この夜のヘルスデータには睡眠ステージがありません。</string>
+    <string name="night_details">詳細</string>
+    <string name="night_open">詳細を表示</string>
+    <string name="night_latency">入眠までの時間</string>
+    <string name="night_efficiency">睡眠効率</string>
+    <string name="night_awakenings">覚醒回数</string>
+    <string name="night_longest_deep">最長の深い睡眠</string>
+    <string name="stages_typical">一般的な範囲</string>
+    <string name="stages_typical_range">一般的に %1$d–%2$d %%</string>
+    <string name="stages_typical_below">一般的に %1$d %% 未満</string>
+    <string name="stages_not_medical">医学的な評価ではありません。</string>
+    <string name="stages_verdict_awake_above">いつもより覚醒が多い</string>
+    <string name="stages_verdict_deep_below">いつもより深い睡眠が少ない</string>
+    <string name="stages_verdict_deep_above">いつもより深い睡眠が多い</string>
+    <string name="stages_verdict_rem_below">REM が少なめ – 短い夜や遅い夜の後によくあります</string>
+    <string name="stages_verdict_rem_above">いつもより REM が多い</string>
+    <string name="stages_verdict_light_below">いつもより浅い睡眠が少ない</string>
+    <string name="stages_verdict_light_above">いつもより浅い睡眠が多い</string>
+    <string name="stages_verdict_typical">すべてのステージが一般的な範囲内</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s 継続</string>
+    <string name="hypno_block">%1$s %2$s〜%3$s</string>
+    <string name="chart_week_average">週平均</string>
+    <string name="chart_touch_hint">グラフをタップまたはなぞると値が表示されます。</string>
+    <string name="chart_nights_30">30泊</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

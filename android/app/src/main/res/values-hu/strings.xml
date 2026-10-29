@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">Addig az óra nem hagy ki ébresztést, és ünnepnapokon is felébreszt.</string>
     <string name="watch_store_opened">A Play Store megnyílt az órán – nézz rá.</string>
     <string name="watch_store_failed">Nem sikerült megnyitni a Play Store-t az órán. Csatlakoztatva van?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Előző éjszaka</string>
+    <string name="night_next">Következő éjszaka</string>
+    <string name="night_in_bed">Ágyban %1$s – %2$s</string>
+    <string name="night_asleep">Alvás</string>
+    <string name="night_woke">Ébresztve: %1$s</string>
+    <string name="night_target">Célidő: %1$s</string>
+    <string name="night_no_stages">Az egészségügyi adataid között nincsenek alvási fázisok erre az éjszakára.</string>
+    <string name="night_details">Részletek</string>
+    <string name="night_open">Részletek megjelenítése</string>
+    <string name="night_latency">Elalvás</string>
+    <string name="night_efficiency">Alváshatékonyság</string>
+    <string name="night_awakenings">Ébredések</string>
+    <string name="night_longest_deep">Leghosszabb mélyalvás</string>
+    <string name="stages_typical">Szokásos tartomány</string>
+    <string name="stages_typical_range">Szokásos %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Szokásos %1$d %% alatt</string>
+    <string name="stages_not_medical">Nem orvosi értékelés.</string>
+    <string name="stages_verdict_awake_above">A szokásosnál több ébrenlét</string>
+    <string name="stages_verdict_deep_below">A szokásosnál kevesebb mélyalvás</string>
+    <string name="stages_verdict_deep_above">A szokásosnál több mélyalvás</string>
+    <string name="stages_verdict_rem_below">Kevés REM – gyakran rövid vagy késői éjszaka után</string>
+    <string name="stages_verdict_rem_above">A szokásosnál több REM</string>
+    <string name="stages_verdict_light_below">A szokásosnál kevesebb könnyű alvás</string>
+    <string name="stages_verdict_light_above">A szokásosnál több könnyű alvás</string>
+    <string name="stages_verdict_typical">Minden fázis a szokásos tartományban</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s óta</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Heti átlag</string>
+    <string name="chart_touch_hint">Érintsd meg vagy húzd végig az ujjad a diagramon az értékekért.</string>
+    <string name="chart_nights_30">30 éjszaka</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

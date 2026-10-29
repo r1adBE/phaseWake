@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Тэр болтол цаг чинь сэрүүлгийг алгасахгүй бөгөөд баярын өдөр ч сэрээнэ.</string>
     <string name="watch_store_opened">Play Store цаган дээр нээгдлээ – түүн рүү хар.</string>
     <string name="watch_store_failed">Play Store-ийг цаган дээр нээж чадсангүй. Цаг холбогдсон уу?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Өмнөх шөнө</string>
+    <string name="night_next">Дараагийн шөнө</string>
+    <string name="night_in_bed">Орондоо %1$s – %2$s</string>
+    <string name="night_asleep">Нойр</string>
+    <string name="night_woke">Сэрээсэн %1$s</string>
+    <string name="night_target">Зорилтот цаг %1$s</string>
+    <string name="night_no_stages">Чиний эрүүл мэндийн өгөгдөлд энэ шөнийн нойрны үе шат алга.</string>
+    <string name="night_details">Дэлгэрэнгүй</string>
+    <string name="night_open">Дэлгэрэнгүйг харуулах</string>
+    <string name="night_latency">Унтах хүртэлх хугацаа</string>
+    <string name="night_efficiency">Нойрны үр ашиг</string>
+    <string name="night_awakenings">Сэрсэн удаа</string>
+    <string name="night_longest_deep">Хамгийн урт гүн нойр</string>
+    <string name="stages_typical">Ердийн хүрээ</string>
+    <string name="stages_typical_range">Ердийн %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Ердийн %1$d %%-иас бага</string>
+    <string name="stages_not_medical">Эмнэлгийн үнэлгээ биш.</string>
+    <string name="stages_verdict_awake_above">Ердийнхөөс их сэрүүн байсан</string>
+    <string name="stages_verdict_deep_below">Ердийнхөөс бага гүн нойр</string>
+    <string name="stages_verdict_deep_above">Ердийнхөөс их гүн нойр</string>
+    <string name="stages_verdict_rem_below">REM бага – ихэвчлэн богино эсвэл оройтсон шөнийн дараа</string>
+    <string name="stages_verdict_rem_above">Ердийнхөөс их REM</string>
+    <string name="stages_verdict_light_below">Ердийнхөөс бага хөнгөн нойр</string>
+    <string name="stages_verdict_light_above">Ердийнхөөс их хөнгөн нойр</string>
+    <string name="stages_verdict_typical">Бүх үе шат ердийн хүрээнд</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s үргэлжилж байна</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Долоо хоногийн дундаж</string>
+    <string name="chart_touch_hint">Утгыг харахын тулд графикт хүр эсвэл дээгүүр нь чирээрэй.</string>
+    <string name="chart_nights_30">30 шөнө</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

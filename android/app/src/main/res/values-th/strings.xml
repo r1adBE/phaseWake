@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">จนกว่าจะอัปเดต นาฬิกาจะไม่ข้ามการปลุกใดและจะปลุกคุณในวันหยุดด้วย</string>
     <string name="watch_store_opened">เปิด Play Store บนนาฬิกาแล้ว – ลองดูที่นาฬิกา</string>
     <string name="watch_store_failed">ไม่สามารถเปิด Play Store บนนาฬิกาได้ นาฬิกาเชื่อมต่ออยู่หรือไม่</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">คืนก่อนหน้า</string>
+    <string name="night_next">คืนถัดไป</string>
+    <string name="night_in_bed">บนเตียง %1$s – %2$s</string>
+    <string name="night_asleep">การนอน</string>
+    <string name="night_woke">ปลุกเวลา %1$s</string>
+    <string name="night_target">เวลาเป้าหมาย %1$s</string>
+    <string name="night_no_stages">ข้อมูลสุขภาพของคุณไม่มีระยะการนอนสำหรับคืนนี้</string>
+    <string name="night_details">รายละเอียด</string>
+    <string name="night_open">แสดงรายละเอียด</string>
+    <string name="night_latency">เวลาจนหลับ</string>
+    <string name="night_efficiency">ประสิทธิภาพการนอน</string>
+    <string name="night_awakenings">จำนวนครั้งที่ตื่น</string>
+    <string name="night_longest_deep">หลับลึกนานที่สุด</string>
+    <string name="stages_typical">ช่วงปกติ</string>
+    <string name="stages_typical_range">ปกติ %1$d–%2$d %%</string>
+    <string name="stages_typical_below">ปกติต่ำกว่า %1$d %%</string>
+    <string name="stages_not_medical">ไม่ใช่การประเมินทางการแพทย์</string>
+    <string name="stages_verdict_awake_above">ตื่นนานกว่าปกติ</string>
+    <string name="stages_verdict_deep_below">หลับลึกน้อยกว่าปกติ</string>
+    <string name="stages_verdict_deep_above">หลับลึกมากกว่าปกติ</string>
+    <string name="stages_verdict_rem_below">REM น้อย – มักเกิดหลังคืนที่สั้นหรือนอนดึก</string>
+    <string name="stages_verdict_rem_above">REM มากกว่าปกติ</string>
+    <string name="stages_verdict_light_below">หลับตื้นน้อยกว่าปกติ</string>
+    <string name="stages_verdict_light_above">หลับตื้นมากกว่าปกติ</string>
+    <string name="stages_verdict_typical">ทุกระยะอยู่ในช่วงปกติ</string>
+    <string name="hypno_bubble">%1$s · %2$s · มาแล้ว %3$s</string>
+    <string name="hypno_block">%1$s ตั้งแต่ %2$s ถึง %3$s</string>
+    <string name="chart_week_average">ค่าเฉลี่ยรายสัปดาห์</string>
+    <string name="chart_touch_hint">แตะหรือลากบนแผนภูมิเพื่อดูค่า</string>
+    <string name="chart_nights_30">30 คืน</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

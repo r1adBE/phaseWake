@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">Indtil da springer uret ingen alarmer over og vækker dig også på helligdage.</string>
     <string name="watch_store_opened">Play Store er åbnet på uret – tag et kig på det.</string>
     <string name="watch_store_failed">Play Store kunne ikke åbnes på uret. Er det forbundet?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Forrige nat</string>
+    <string name="night_next">Næste nat</string>
+    <string name="night_in_bed">I seng %1$s – %2$s</string>
+    <string name="night_asleep">Søvn</string>
+    <string name="night_woke">Vækket kl. %1$s</string>
+    <string name="night_target">Måltid %1$s</string>
+    <string name="night_no_stages">Dine helbredsdata har ingen søvnfaser for denne nat.</string>
+    <string name="night_details">Detaljer</string>
+    <string name="night_open">Vis detaljer</string>
+    <string name="night_latency">Indsovning</string>
+    <string name="night_efficiency">Søvneffektivitet</string>
+    <string name="night_awakenings">Gange vågen</string>
+    <string name="night_longest_deep">Længste dybe søvn</string>
+    <string name="stages_typical">Typisk interval</string>
+    <string name="stages_typical_range">Typisk %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Typisk under %1$d %%</string>
+    <string name="stages_not_medical">Ikke en medicinsk vurdering.</string>
+    <string name="stages_verdict_awake_above">Mere tid vågen end normalt</string>
+    <string name="stages_verdict_deep_below">Mindre dyb søvn end normalt</string>
+    <string name="stages_verdict_deep_above">Mere dyb søvn end normalt</string>
+    <string name="stages_verdict_rem_below">Lidt REM – ofte efter en kort eller sen nat</string>
+    <string name="stages_verdict_rem_above">Mere REM end normalt</string>
+    <string name="stages_verdict_light_below">Mindre let søvn end normalt</string>
+    <string name="stages_verdict_light_above">Mere let søvn end normalt</string>
+    <string name="stages_verdict_typical">Alle faser inden for det typiske interval</string>
+    <string name="hypno_bubble">%1$s · %2$s · i %3$s</string>
+    <string name="hypno_block">%1$s fra %2$s til %3$s</string>
+    <string name="chart_week_average">Ugegennemsnit</string>
+    <string name="chart_touch_hint">Tryk eller træk hen over diagrammet for at se værdier.</string>
+    <string name="chart_nights_30">30 nætter</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

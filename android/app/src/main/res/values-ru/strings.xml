@@ -517,4 +517,36 @@
     <string name="check_watch_update_problem">До этого часы не пропускают будильники и будят тебя и в праздники.</string>
     <string name="watch_store_opened">Play Store открыт на часах – взгляни на них.</string>
     <string name="watch_store_failed">Не удалось открыть Play Store на часах. Они подключены?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Предыдущая ночь</string>
+    <string name="night_next">Следующая ночь</string>
+    <string name="night_in_bed">В постели %1$s – %2$s</string>
+    <string name="night_asleep">Сон</string>
+    <string name="night_woke">Разбужен в %1$s</string>
+    <string name="night_target">Целевое время %1$s</string>
+    <string name="night_no_stages">В твоих данных о здоровье нет фаз сна для этой ночи.</string>
+    <string name="night_details">Подробнее</string>
+    <string name="night_open">Показать подробности</string>
+    <string name="night_latency">Засыпание</string>
+    <string name="night_efficiency">Эффективность сна</string>
+    <string name="night_awakenings">Пробуждения</string>
+    <string name="night_longest_deep">Самый долгий глубокий сон</string>
+    <string name="stages_typical">Обычный диапазон</string>
+    <string name="stages_typical_range">Обычно %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Обычно меньше %1$d %%</string>
+    <string name="stages_not_medical">Это не медицинская оценка.</string>
+    <string name="stages_verdict_awake_above">Больше бодрствования, чем обычно</string>
+    <string name="stages_verdict_deep_below">Меньше глубокого сна, чем обычно</string>
+    <string name="stages_verdict_deep_above">Больше глубокого сна, чем обычно</string>
+    <string name="stages_verdict_rem_below">Мало REM – часто после короткой или поздней ночи</string>
+    <string name="stages_verdict_rem_above">Больше REM, чем обычно</string>
+    <string name="stages_verdict_light_below">Меньше лёгкого сна, чем обычно</string>
+    <string name="stages_verdict_light_above">Больше лёгкого сна, чем обычно</string>
+    <string name="stages_verdict_typical">Все фазы в обычном диапазоне</string>
+    <string name="hypno_bubble">%1$s · %2$s · уже %3$s</string>
+    <string name="hypno_block">%1$s с %2$s до %3$s</string>
+    <string name="chart_week_average">Среднее за неделю</string>
+    <string name="chart_touch_hint">Коснись графика или проведи по нему, чтобы увидеть значения.</string>
+    <string name="chart_nights_30">30 ночей</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

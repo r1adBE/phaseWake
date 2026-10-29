@@ -475,4 +475,36 @@
     <string name="check_watch_update_problem">Cho đến lúc đó, đồng hồ sẽ không bỏ qua báo thức nào và vẫn đánh thức bạn vào ngày lễ.</string>
     <string name="watch_store_opened">Đã mở Play Store trên đồng hồ – hãy xem đồng hồ của bạn.</string>
     <string name="watch_store_failed">Không thể mở Play Store trên đồng hồ. Đồng hồ đã được kết nối chưa?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Đêm trước</string>
+    <string name="night_next">Đêm sau</string>
+    <string name="night_in_bed">Trên giường %1$s – %2$s</string>
+    <string name="night_asleep">Giấc ngủ</string>
+    <string name="night_woke">Được đánh thức lúc %1$s</string>
+    <string name="night_target">Giờ mục tiêu %1$s</string>
+    <string name="night_no_stages">Dữ liệu sức khỏe của bạn không có giai đoạn ngủ cho đêm này.</string>
+    <string name="night_details">Chi tiết</string>
+    <string name="night_open">Hiện chi tiết</string>
+    <string name="night_latency">Thời gian vào giấc</string>
+    <string name="night_efficiency">Hiệu quả giấc ngủ</string>
+    <string name="night_awakenings">Số lần thức giấc</string>
+    <string name="night_longest_deep">Ngủ sâu dài nhất</string>
+    <string name="stages_typical">Khoảng thông thường</string>
+    <string name="stages_typical_range">Thông thường %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Thông thường dưới %1$d %%</string>
+    <string name="stages_not_medical">Không phải đánh giá y khoa.</string>
+    <string name="stages_verdict_awake_above">Thức nhiều hơn bình thường</string>
+    <string name="stages_verdict_deep_below">Ngủ sâu ít hơn bình thường</string>
+    <string name="stages_verdict_deep_above">Ngủ sâu nhiều hơn bình thường</string>
+    <string name="stages_verdict_rem_below">Ít REM – thường sau một đêm ngắn hoặc muộn</string>
+    <string name="stages_verdict_rem_above">REM nhiều hơn bình thường</string>
+    <string name="stages_verdict_light_below">Ngủ nông ít hơn bình thường</string>
+    <string name="stages_verdict_light_above">Ngủ nông nhiều hơn bình thường</string>
+    <string name="stages_verdict_typical">Mọi giai đoạn đều trong khoảng thông thường</string>
+    <string name="hypno_bubble">%1$s · %2$s · đã %3$s</string>
+    <string name="hypno_block">%1$s từ %2$s đến %3$s</string>
+    <string name="chart_week_average">Trung bình tuần</string>
+    <string name="chart_touch_hint">Chạm hoặc kéo trên biểu đồ để xem giá trị.</string>
+    <string name="chart_nights_30">30 đêm</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

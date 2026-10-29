@@ -280,7 +280,7 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
 }
 
 /** Bildschirme ohne untere Navigationsleiste. */
-private val FULL_SCREEN_ROUTES = setOf(Routes.EDITOR, Routes.SOUNDS, ExtraRoutes.DIAGNOSTICS, ExtraRoutes.ONBOARDING)
+private val FULL_SCREEN_ROUTES = setOf(Routes.EDITOR, Routes.SOUNDS, ExtraRoutes.DIAGNOSTICS, ExtraRoutes.ONBOARDING, ExtraRoutes.NIGHT)
 
 /** So oft wird geprüft, ob das Ergebnis des Probeweckers feststeht. */
 private const val TEST_TICK_MS = 5_000L

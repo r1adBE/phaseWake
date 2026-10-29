@@ -348,6 +348,38 @@
     <string name="wake_task_wrong">Not quite – here’s a new one.</string>
     <string name="wake_task_delete">Delete digit</string>
     <string name="wake_task_check">OK</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Previous night</string>
+    <string name="night_next">Next night</string>
+    <string name="night_in_bed">In bed %1$s – %2$s</string>
+    <string name="night_asleep">Asleep</string>
+    <string name="night_woke">Woken at %1$s</string>
+    <string name="night_target">Target time %1$s</string>
+    <string name="night_no_stages">Your health data has no sleep stages for this night.</string>
+    <string name="night_details">Details</string>
+    <string name="night_open">Show details</string>
+    <string name="night_latency">Falling asleep</string>
+    <string name="night_efficiency">Sleep efficiency</string>
+    <string name="night_awakenings">Times awake</string>
+    <string name="night_longest_deep">Longest deep sleep</string>
+    <string name="stages_typical">Typical range</string>
+    <string name="stages_typical_range" tools:ignore="PluralsCandidate">Typical %1$d–%2$d %%</string>
+    <string name="stages_typical_below" tools:ignore="PluralsCandidate">Typical under %1$d %%</string>
+    <string name="stages_not_medical">Not a medical assessment.</string>
+    <string name="stages_verdict_awake_above">More time awake than usual</string>
+    <string name="stages_verdict_deep_below">Less deep sleep than usual</string>
+    <string name="stages_verdict_deep_above">More deep sleep than usual</string>
+    <string name="stages_verdict_rem_below">Little REM – often after a short or late night</string>
+    <string name="stages_verdict_rem_above">More REM than usual</string>
+    <string name="stages_verdict_light_below">Less light sleep than usual</string>
+    <string name="stages_verdict_light_above">More light sleep than usual</string>
+    <string name="stages_verdict_typical">All stages within the typical range</string>
+    <string name="hypno_bubble">%1$s · %2$s · for %3$s</string>
+    <string name="hypno_block">%1$s from %2$s to %3$s</string>
+    <string name="chart_week_average">Weekly average</string>
+    <string name="chart_touch_hint">Touch or drag across the chart to see values.</string>
+    <string name="chart_nights_30">30 nights</string>
+    <string name="stages_share" tools:ignore="PluralsCandidate">%1$d %%</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am" tools:override="true" tools:ignore="UnusedResources">AM</string>
     <string name="m3c_time_picker_pm" tools:override="true" tools:ignore="UnusedResources">PM</string>

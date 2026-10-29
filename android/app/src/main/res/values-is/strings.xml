@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Þangað til sleppir úrið ekki vekjurum og vekur þig líka á frídögum.</string>
     <string name="watch_store_opened">Play Store var opnað á úrinu – kíktu á það.</string>
     <string name="watch_store_failed">Ekki tókst að opna Play Store á úrinu. Er það tengt?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Fyrri nótt</string>
+    <string name="night_next">Næsta nótt</string>
+    <string name="night_in_bed">Í rúminu %1$s – %2$s</string>
+    <string name="night_asleep">Svefn</string>
+    <string name="night_woke">Vakin(n) kl. %1$s</string>
+    <string name="night_target">Markmiðstími %1$s</string>
+    <string name="night_no_stages">Heilsugögnin þín eru ekki með svefnstig fyrir þessa nótt.</string>
+    <string name="night_details">Nánar</string>
+    <string name="night_open">Sýna nánar</string>
+    <string name="night_latency">Að sofna</string>
+    <string name="night_efficiency">Svefnnýtni</string>
+    <string name="night_awakenings">Skipti vakandi</string>
+    <string name="night_longest_deep">Lengsti djúpsvefn</string>
+    <string name="stages_typical">Venjulegt bil</string>
+    <string name="stages_typical_range">Venjulega %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Venjulega undir %1$d %%</string>
+    <string name="stages_not_medical">Ekki læknisfræðilegt mat.</string>
+    <string name="stages_verdict_awake_above">Lengri tími vakandi en venjulega</string>
+    <string name="stages_verdict_deep_below">Minni djúpsvefn en venjulega</string>
+    <string name="stages_verdict_deep_above">Meiri djúpsvefn en venjulega</string>
+    <string name="stages_verdict_rem_below">Lítill REM – oft eftir stutta eða seina nótt</string>
+    <string name="stages_verdict_rem_above">Meiri REM en venjulega</string>
+    <string name="stages_verdict_light_below">Minni léttur svefn en venjulega</string>
+    <string name="stages_verdict_light_above">Meiri léttur svefn en venjulega</string>
+    <string name="stages_verdict_typical">Öll stig innan venjulegs bils</string>
+    <string name="hypno_bubble">%1$s · %2$s · í %3$s</string>
+    <string name="hypno_block">%1$s frá %2$s til %3$s</string>
+    <string name="chart_week_average">Vikumeðaltal</string>
+    <string name="chart_touch_hint">Snertu eða dragðu yfir grafið til að sjá gildi.</string>
+    <string name="chart_nights_30">30 nætur</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

@@ -491,4 +491,36 @@
     <string name="check_watch_update_problem">ততদিন তোমার ঘড়ি অ্যালার্ম এড়াবে না আর ছুটির দিনেও জাগাবে।</string>
     <string name="watch_store_opened">তোমার ঘড়িতে Play Store খোলা হয়েছে – একবার দেখে নাও।</string>
     <string name="watch_store_failed">তোমার ঘড়িতে Play Store খোলা যায়নি। ঘড়িটি কি সংযুক্ত?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">আগের রাত</string>
+    <string name="night_next">পরের রাত</string>
+    <string name="night_in_bed">বিছানায় %1$s – %2$s</string>
+    <string name="night_asleep">ঘুম</string>
+    <string name="night_woke">জাগানো হয়েছে %1$s-এ</string>
+    <string name="night_target">লক্ষ্য সময় %1$s</string>
+    <string name="night_no_stages">তোমার স্বাস্থ্য ডেটায় এই রাতের ঘুমের পর্যায় নেই।</string>
+    <string name="night_details">বিস্তারিত</string>
+    <string name="night_open">বিস্তারিত দেখাও</string>
+    <string name="night_latency">ঘুমিয়ে পড়তে সময়</string>
+    <string name="night_efficiency">ঘুমের দক্ষতা</string>
+    <string name="night_awakenings">জেগে ওঠার সংখ্যা</string>
+    <string name="night_longest_deep">দীর্ঘতম গভীর ঘুম</string>
+    <string name="stages_typical">সাধারণ পরিসর</string>
+    <string name="stages_typical_range">সাধারণত %1$d–%2$d %%</string>
+    <string name="stages_typical_below">সাধারণত %1$d %%-এর কম</string>
+    <string name="stages_not_medical">এটি কোনো চিকিৎসা মূল্যায়ন নয়।</string>
+    <string name="stages_verdict_awake_above">স্বাভাবিকের চেয়ে বেশি জেগে থাকা</string>
+    <string name="stages_verdict_deep_below">স্বাভাবিকের চেয়ে কম গভীর ঘুম</string>
+    <string name="stages_verdict_deep_above">স্বাভাবিকের চেয়ে বেশি গভীর ঘুম</string>
+    <string name="stages_verdict_rem_below">কম REM – প্রায়ই ছোট বা দেরির রাতের পরে</string>
+    <string name="stages_verdict_rem_above">স্বাভাবিকের চেয়ে বেশি REM</string>
+    <string name="stages_verdict_light_below">স্বাভাবিকের চেয়ে কম হালকা ঘুম</string>
+    <string name="stages_verdict_light_above">স্বাভাবিকের চেয়ে বেশি হালকা ঘুম</string>
+    <string name="stages_verdict_typical">সব পর্যায় সাধারণ পরিসরে</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s ধরে</string>
+    <string name="hypno_block">%1$s %2$s থেকে %3$s</string>
+    <string name="chart_week_average">সাপ্তাহিক গড়</string>
+    <string name="chart_touch_hint">মান দেখতে চার্টে স্পর্শ করো বা টেনে নাও।</string>
+    <string name="chart_nights_30">৩০ রাত</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

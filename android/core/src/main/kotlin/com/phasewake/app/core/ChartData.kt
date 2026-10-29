@@ -132,6 +132,12 @@ object ChartData {
     /** Nachtdaten der kurzen Diagramme und eines Wochenvergleichs (eine Woche). */
     const val SHORT_NIGHTS: Int = 7
 
+    /** Nachtdaten des längsten Zeitraums der Diagramme (rund ein Monat). */
+    const val MONTH_NIGHTS: Int = 30
+
+    /** Wählbare Zeiträume der Diagramme in Nächten: 7, 14, 30. */
+    val PERIODS: List<Int> = listOf(SHORT_NIGHTS, NIGHTS, MONTH_NIGHTS)
+
     /** Anfang der Standard-Zeitachse 21:00–11:00 als Minuten ab Mittag. */
     const val AXIS_START: Int = 9 * 60
 
@@ -152,6 +158,14 @@ object ChartData {
      * schon Daten gibt, sonst die Nacht davor (am Abend ist die kommende Nacht noch leer).
      */
     fun lastDate(dates: Set<LocalDate>, today: LocalDate): LocalDate = if (today in dates) today else today.minusDays(1)
+
+    /**
+     * Gleitender Wochendurchschnitt für die Linie in den Diagrammen: an Stelle i das Mittel der Werte ungleich `null`
+     * in den [SHORT_NIGHTS] Stellen bis i (i − 6 bis i); keiner davon: `null`. Gleich lang wie [values].
+     */
+    fun weekAverage(values: List<Double?>): List<Double?> = values.indices.map { i ->
+        values.subList(maxOf(0, i - SHORT_NIGHTS + 1), i + 1).filterNotNull().takeIf { it.isNotEmpty() }?.average()
+    }
 
     private fun range(last: LocalDate, nights: Int): List<LocalDate> = (nights - 1 downTo 0).map { last.minusDays(it.toLong()) }
 

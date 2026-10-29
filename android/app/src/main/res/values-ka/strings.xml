@@ -477,4 +477,36 @@
     <string name="check_watch_update_problem">მანამდე საათი მაღვიძარებს არ გამოტოვებს და დღესასწაულებზეც გაგაღვიძებს.</string>
     <string name="watch_store_opened">Play Store გაიხსნა საათზე – შეხედე მას.</string>
     <string name="watch_store_failed">Play Store-ის გახსნა საათზე ვერ მოხერხდა. დაკავშირებულია?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">წინა ღამე</string>
+    <string name="night_next">შემდეგი ღამე</string>
+    <string name="night_in_bed">საწოლში %1$s – %2$s</string>
+    <string name="night_asleep">ძილი</string>
+    <string name="night_woke">გაღვიძება %1$s-ზე</string>
+    <string name="night_target">სამიზნე დრო %1$s</string>
+    <string name="night_no_stages">შენს ჯანმრთელობის მონაცემებში ამ ღამის ძილის ფაზები არ არის.</string>
+    <string name="night_details">დეტალები</string>
+    <string name="night_open">დეტალების ჩვენება</string>
+    <string name="night_latency">ჩაძინების დრო</string>
+    <string name="night_efficiency">ძილის ეფექტიანობა</string>
+    <string name="night_awakenings">გაღვიძებები</string>
+    <string name="night_longest_deep">ყველაზე გრძელი ღრმა ძილი</string>
+    <string name="stages_typical">ჩვეული დიაპაზონი</string>
+    <string name="stages_typical_range">ჩვეულებრივ %1$d–%2$d %%</string>
+    <string name="stages_typical_below">ჩვეულებრივ %1$d %%-ზე ნაკლები</string>
+    <string name="stages_not_medical">ეს არ არის სამედიცინო შეფასება.</string>
+    <string name="stages_verdict_awake_above">ჩვეულებრივზე მეტი ფხიზლად ყოფნა</string>
+    <string name="stages_verdict_deep_below">ჩვეულებრივზე ნაკლები ღრმა ძილი</string>
+    <string name="stages_verdict_deep_above">ჩვეულებრივზე მეტი ღრმა ძილი</string>
+    <string name="stages_verdict_rem_below">ცოტა REM – ხშირად მოკლე ან გვიანი ღამის შემდეგ</string>
+    <string name="stages_verdict_rem_above">ჩვეულებრივზე მეტი REM</string>
+    <string name="stages_verdict_light_below">ჩვეულებრივზე ნაკლები მსუბუქი ძილი</string>
+    <string name="stages_verdict_light_above">ჩვეულებრივზე მეტი მსუბუქი ძილი</string>
+    <string name="stages_verdict_typical">ყველა ფაზა ჩვეულ დიაპაზონშია</string>
+    <string name="hypno_bubble">%1$s · %2$s · უკვე %3$s</string>
+    <string name="hypno_block">%1$s %2$s-დან %3$s-მდე</string>
+    <string name="chart_week_average">კვირის საშუალო</string>
+    <string name="chart_touch_hint">შეეხე ან გადაატარე თითი დიაგრამას მნიშვნელობების სანახავად.</string>
+    <string name="chart_nights_30">30 ღამე</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

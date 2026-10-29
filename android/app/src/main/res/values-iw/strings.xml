@@ -503,4 +503,36 @@
     <string name="check_watch_update_problem">עד אז השעון לא ידלג על אף השכמה ויעיר אתכם גם בחגים.</string>
     <string name="watch_store_opened">Play Store נפתח בשעון – הציצו בו.</string>
     <string name="watch_store_failed">לא ניתן היה לפתוח את Play Store בשעון. האם הוא מחובר?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">הלילה הקודם</string>
+    <string name="night_next">הלילה הבא</string>
+    <string name="night_in_bed">במיטה %1$s – %2$s</string>
+    <string name="night_asleep">שינה</string>
+    <string name="night_woke">התעוררות ב־%1$s</string>
+    <string name="night_target">שעת יעד %1$s</string>
+    <string name="night_no_stages">בנתוני הבריאות שלכם אין שלבי שינה ללילה הזה.</string>
+    <string name="night_details">פרטים</string>
+    <string name="night_open">הצגת פרטים</string>
+    <string name="night_latency">זמן הירדמות</string>
+    <string name="night_efficiency">יעילות שינה</string>
+    <string name="night_awakenings">פעמים ערים</string>
+    <string name="night_longest_deep">השינה העמוקה הארוכה ביותר</string>
+    <string name="stages_typical">טווח רגיל</string>
+    <string name="stages_typical_range">בדרך כלל %1$d–%2$d %%</string>
+    <string name="stages_typical_below">בדרך כלל פחות מ־%1$d %%</string>
+    <string name="stages_not_medical">זו אינה הערכה רפואית.</string>
+    <string name="stages_verdict_awake_above">יותר זמן ער מהרגיל</string>
+    <string name="stages_verdict_deep_below">פחות שינה עמוקה מהרגיל</string>
+    <string name="stages_verdict_deep_above">יותר שינה עמוקה מהרגיל</string>
+    <string name="stages_verdict_rem_below">מעט REM – לרוב אחרי לילה קצר או מאוחר</string>
+    <string name="stages_verdict_rem_above">יותר REM מהרגיל</string>
+    <string name="stages_verdict_light_below">פחות שינה קלה מהרגיל</string>
+    <string name="stages_verdict_light_above">יותר שינה קלה מהרגיל</string>
+    <string name="stages_verdict_typical">כל השלבים בטווח הרגיל</string>
+    <string name="hypno_bubble">%1$s · %2$s · כבר %3$s</string>
+    <string name="hypno_block">%1$s מ־%2$s עד %3$s</string>
+    <string name="chart_week_average">ממוצע שבועי</string>
+    <string name="chart_touch_hint">אפשר לגעת בתרשים או לגרור עליו כדי לראות ערכים.</string>
+    <string name="chart_nights_30">30 לילות</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

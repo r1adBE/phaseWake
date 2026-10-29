@@ -477,4 +477,36 @@
     <string name="check_watch_update_problem">Оған дейін сағатың оятқыштарды өткізіп жібермейді және мерекелерде де оятады.</string>
     <string name="watch_store_opened">Play Store сағатта ашылды – оған қарап шық.</string>
     <string name="watch_store_failed">Play Store сағатта ашылмады. Сағат қосылған ба?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Алдыңғы түн</string>
+    <string name="night_next">Келесі түн</string>
+    <string name="night_in_bed">Төсекте %1$s – %2$s</string>
+    <string name="night_asleep">Ұйқы</string>
+    <string name="night_woke">Оятылды %1$s</string>
+    <string name="night_target">Мақсатты уақыт %1$s</string>
+    <string name="night_no_stages">Денсаулық деректеріңде бұл түннің ұйқы кезеңдері жоқ.</string>
+    <string name="night_details">Толығырақ</string>
+    <string name="night_open">Толығырақ көрсету</string>
+    <string name="night_latency">Ұйықтап кету уақыты</string>
+    <string name="night_efficiency">Ұйқы тиімділігі</string>
+    <string name="night_awakenings">Оянған рет</string>
+    <string name="night_longest_deep">Ең ұзақ терең ұйқы</string>
+    <string name="stages_typical">Әдеттегі ауқым</string>
+    <string name="stages_typical_range">Әдетте %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Әдетте %1$d %%-дан төмен</string>
+    <string name="stages_not_medical">Медициналық баға емес.</string>
+    <string name="stages_verdict_awake_above">Әдеттегіден көп ояу уақыт</string>
+    <string name="stages_verdict_deep_below">Әдеттегіден аз терең ұйқы</string>
+    <string name="stages_verdict_deep_above">Әдеттегіден көп терең ұйқы</string>
+    <string name="stages_verdict_rem_below">REM аз – көбіне қысқа немесе кеш түннен кейін</string>
+    <string name="stages_verdict_rem_above">Әдеттегіден көп REM</string>
+    <string name="stages_verdict_light_below">Әдеттегіден аз жеңіл ұйқы</string>
+    <string name="stages_verdict_light_above">Әдеттегіден көп жеңіл ұйқы</string>
+    <string name="stages_verdict_typical">Барлық кезең әдеттегі ауқымда</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s бойы</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Апталық орташа</string>
+    <string name="chart_touch_hint">Мәндерді көру үшін диаграмманы түрт немесе үстінен сырғыт.</string>
+    <string name="chart_nights_30">30 түн</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

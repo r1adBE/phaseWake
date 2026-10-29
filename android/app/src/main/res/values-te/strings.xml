@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">అప్పటి వరకు మీ వాచ్ అలారాలను దాటవేయదు, సెలవు రోజుల్లోనూ మిమ్మల్ని లేపుతుంది.</string>
     <string name="watch_store_opened">మీ వాచ్‌లో Play Store తెరవబడింది – ఒకసారి చూడండి.</string>
     <string name="watch_store_failed">మీ వాచ్‌లో Play Store తెరవలేకపోయాము. అది కనెక్ట్ అయి ఉందా?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">మునుపటి రాత్రి</string>
+    <string name="night_next">తదుపరి రాత్రి</string>
+    <string name="night_in_bed">పడకపై %1$s – %2$s</string>
+    <string name="night_asleep">నిద్ర</string>
+    <string name="night_woke">%1$sకి లేపబడ్డారు</string>
+    <string name="night_target">లక్ష్య సమయం %1$s</string>
+    <string name="night_no_stages">మీ హెల్త్ డేటాలో ఈ రాత్రికి నిద్ర దశలు లేవు.</string>
+    <string name="night_details">వివరాలు</string>
+    <string name="night_open">వివరాలు చూపించండి</string>
+    <string name="night_latency">నిద్రపట్టడానికి పట్టిన సమయం</string>
+    <string name="night_efficiency">నిద్ర సామర్థ్యం</string>
+    <string name="night_awakenings">మేల్కొన్న సార్లు</string>
+    <string name="night_longest_deep">అత్యంత పొడవైన గాఢ నిద్ర</string>
+    <string name="stages_typical">సాధారణ పరిధి</string>
+    <string name="stages_typical_range">సాధారణంగా %1$d–%2$d %%</string>
+    <string name="stages_typical_below">సాధారణంగా %1$d %% కంటే తక్కువ</string>
+    <string name="stages_not_medical">ఇది వైద్య అంచనా కాదు.</string>
+    <string name="stages_verdict_awake_above">సాధారణం కంటే ఎక్కువ మేల్కొని ఉన్నారు</string>
+    <string name="stages_verdict_deep_below">సాధారణం కంటే తక్కువ గాఢ నిద్ర</string>
+    <string name="stages_verdict_deep_above">సాధారణం కంటే ఎక్కువ గాఢ నిద్ర</string>
+    <string name="stages_verdict_rem_below">తక్కువ REM – తరచుగా చిన్న లేదా ఆలస్యమైన రాత్రి తర్వాత</string>
+    <string name="stages_verdict_rem_above">సాధారణం కంటే ఎక్కువ REM</string>
+    <string name="stages_verdict_light_below">సాధారణం కంటే తక్కువ తేలికపాటి నిద్ర</string>
+    <string name="stages_verdict_light_above">సాధారణం కంటే ఎక్కువ తేలికపాటి నిద్ర</string>
+    <string name="stages_verdict_typical">అన్ని దశలు సాధారణ పరిధిలో</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s నుండి</string>
+    <string name="hypno_block">%1$s %2$s నుండి %3$s వరకు</string>
+    <string name="chart_week_average">వారపు సగటు</string>
+    <string name="chart_touch_hint">విలువలు చూడటానికి చార్ట్‌ను తాకండి లేదా లాగండి.</string>
+    <string name="chart_nights_30">30 రాత్రులు</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

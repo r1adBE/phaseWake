@@ -519,4 +519,36 @@
     <string name="check_watch_update_problem">Do takrat ura ne bo preskakovala budilk in te bo budila tudi ob praznikih.</string>
     <string name="watch_store_opened">Play Store je odprt na uri – poglej nanjo.</string>
     <string name="watch_store_failed">Play Store ni bilo mogoče odpreti na uri. Je ura povezana?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Prejšnja noč</string>
+    <string name="night_next">Naslednja noč</string>
+    <string name="night_in_bed">V postelji %1$s – %2$s</string>
+    <string name="night_asleep">Spanje</string>
+    <string name="night_woke">Prebujen ob %1$s</string>
+    <string name="night_target">Ciljni čas %1$s</string>
+    <string name="night_no_stages">Tvoji zdravstveni podatki nimajo faz spanja za to noč.</string>
+    <string name="night_details">Podrobnosti</string>
+    <string name="night_open">Prikaži podrobnosti</string>
+    <string name="night_latency">Uspavanje</string>
+    <string name="night_efficiency">Učinkovitost spanja</string>
+    <string name="night_awakenings">Prebujanja</string>
+    <string name="night_longest_deep">Najdaljši globok spanec</string>
+    <string name="stages_typical">Običajen razpon</string>
+    <string name="stages_typical_range">Običajno %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Običajno pod %1$d %%</string>
+    <string name="stages_not_medical">To ni zdravniška ocena.</string>
+    <string name="stages_verdict_awake_above">Več budnosti kot običajno</string>
+    <string name="stages_verdict_deep_below">Manj globokega spanca kot običajno</string>
+    <string name="stages_verdict_deep_above">Več globokega spanca kot običajno</string>
+    <string name="stages_verdict_rem_below">Malo REM – pogosto po kratki ali pozni noči</string>
+    <string name="stages_verdict_rem_above">Več REM kot običajno</string>
+    <string name="stages_verdict_light_below">Manj lahkega spanca kot običajno</string>
+    <string name="stages_verdict_light_above">Več lahkega spanca kot običajno</string>
+    <string name="stages_verdict_typical">Vse faze v običajnem razponu</string>
+    <string name="hypno_bubble">%1$s · %2$s · že %3$s</string>
+    <string name="hypno_block">%1$s od %2$s do %3$s</string>
+    <string name="chart_week_average">Tedensko povprečje</string>
+    <string name="chart_touch_hint">Dotakni se grafa ali povleci čezenj za vrednosti.</string>
+    <string name="chart_nights_30">30 noči</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

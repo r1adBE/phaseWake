@@ -28,6 +28,9 @@ import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.history.NightDetailActions
+import com.phasewake.app.ui.history.NightDetailData
+import com.phasewake.app.ui.history.NightDetailScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
 import com.phasewake.app.ui.home.MAX_ALARMS
@@ -92,6 +95,10 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
                 if (!actions.nav.popBackStack(ExtraRoutes.ONBOARDING, inclusive = true)) actions.nav.switchTab(Routes.ALARMS)
             })
         }
+        composable(
+            ExtraRoutes.NIGHT,
+            arguments = listOf(navArgument("key") { type = NavType.StringType; nullable = true; defaultValue = null }),
+        ) { entry -> NightRoute(app, state, entry.arguments?.getString("key"), actions) }
         composable(
             Routes.EDITOR,
             arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
@@ -164,7 +171,32 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         items = insights.history,
         canConnectHealth = insights.health == HealthState.AVAILABLE,
         healthFeelings = data.healthFeelings,
-        onHealthFeeling = { date, feeling -> app.appScope.launch { app.notes.setHealthFeeling(date, feeling) } },
+        onOpenNight = { key -> actions.nav.navigate(ExtraRoutes.night(key)) },
+    )
+}
+
+/** Detailseite einer Nacht mit Wischen zu den Nächten davor und danach (Verlauf, Phasen, Notizen, Geräusche). */
+@Composable
+private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, actions: NavActions) {
+    val data = state.data
+    NightDetailScreen(
+        NightDetailData(
+            items = state.insights.history,
+            stages = state.insights.stages,
+            notes = data.notes,
+            customNotes = data.customNotes,
+            healthFeelings = data.healthFeelings,
+            soundClips = data.soundClips.orEmpty(),
+        ),
+        startKey = key,
+        actions = NightDetailActions(
+            onBack = { actions.nav.popBackStack() },
+            onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
+            onHealthFeeling = { date, feeling -> app.appScope.launch { app.notes.setHealthFeeling(date, feeling) } },
+            soundFile = { app.sounds.file(it) },
+            onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
+            onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
+        ),
     )
 }
 

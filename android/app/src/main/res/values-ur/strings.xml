@@ -491,4 +491,36 @@
     <string name="check_watch_update_problem">تب تک تمہاری گھڑی الارم نہیں چھوڑے گی اور تعطیلات پر بھی جگائے گی۔</string>
     <string name="watch_store_opened">تمہاری گھڑی پر Play Store کھل گیا – ایک نظر دیکھ لو۔</string>
     <string name="watch_store_failed">تمہاری گھڑی پر Play Store نہیں کھل سکا۔ کیا گھڑی جڑی ہوئی ہے؟</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">پچھلی رات</string>
+    <string name="night_next">اگلی رات</string>
+    <string name="night_in_bed">بستر میں %1$s – %2$s</string>
+    <string name="night_asleep">نیند</string>
+    <string name="night_woke">%1$s پر جگایا</string>
+    <string name="night_target">ہدف وقت %1$s</string>
+    <string name="night_no_stages">تمہارے صحت کے ڈیٹا میں اس رات کے نیند کے مراحل نہیں ہیں۔</string>
+    <string name="night_details">تفصیلات</string>
+    <string name="night_open">تفصیلات دکھاؤ</string>
+    <string name="night_latency">نیند آنے کا وقت</string>
+    <string name="night_efficiency">نیند کی کارکردگی</string>
+    <string name="night_awakenings">جاگنے کی بار</string>
+    <string name="night_longest_deep">سب سے لمبی گہری نیند</string>
+    <string name="stages_typical">معمول کی حد</string>
+    <string name="stages_typical_range">عموماً %1$d–%2$d %%</string>
+    <string name="stages_typical_below">عموماً %1$d %% سے کم</string>
+    <string name="stages_not_medical">یہ طبی جائزہ نہیں ہے۔</string>
+    <string name="stages_verdict_awake_above">معمول سے زیادہ جاگنا</string>
+    <string name="stages_verdict_deep_below">معمول سے کم گہری نیند</string>
+    <string name="stages_verdict_deep_above">معمول سے زیادہ گہری نیند</string>
+    <string name="stages_verdict_rem_below">کم REM – اکثر چھوٹی یا دیر والی رات کے بعد</string>
+    <string name="stages_verdict_rem_above">معمول سے زیادہ REM</string>
+    <string name="stages_verdict_light_below">معمول سے کم ہلکی نیند</string>
+    <string name="stages_verdict_light_above">معمول سے زیادہ ہلکی نیند</string>
+    <string name="stages_verdict_typical">سب مراحل معمول کی حد میں</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s سے</string>
+    <string name="hypno_block">%1$s %2$s سے %3$s تک</string>
+    <string name="chart_week_average">ہفتہ وار اوسط</string>
+    <string name="chart_touch_hint">قدریں دیکھنے کے لیے چارٹ کو چھوؤ یا اس پر کھینچو۔</string>
+    <string name="chart_nights_30">30 راتیں</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

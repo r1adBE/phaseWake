@@ -489,4 +489,36 @@
     <string name="check_watch_update_problem">O zamana kadar saat hiçbir alarmı atlamaz ve tatillerde de seni uyandırır.</string>
     <string name="watch_store_opened">Play Store saatte açıldı – bir göz at.</string>
     <string name="watch_store_failed">Play Store saatte açılamadı. Saat bağlı mı?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Önceki gece</string>
+    <string name="night_next">Sonraki gece</string>
+    <string name="night_in_bed">Yatakta %1$s – %2$s</string>
+    <string name="night_asleep">Uyku</string>
+    <string name="night_woke">Uyandırma %1$s</string>
+    <string name="night_target">Hedef saat %1$s</string>
+    <string name="night_no_stages">Sağlık verilerinde bu gece için uyku evresi yok.</string>
+    <string name="night_details">Ayrıntılar</string>
+    <string name="night_open">Ayrıntıları göster</string>
+    <string name="night_latency">Uykuya dalma süresi</string>
+    <string name="night_efficiency">Uyku verimliliği</string>
+    <string name="night_awakenings">Uyanma sayısı</string>
+    <string name="night_longest_deep">En uzun derin uyku</string>
+    <string name="stages_typical">Olağan aralık</string>
+    <string name="stages_typical_range">Olağan %%%1$d–%2$d</string>
+    <string name="stages_typical_below">Olağan %%%1$d altı</string>
+    <string name="stages_not_medical">Tıbbi bir değerlendirme değildir.</string>
+    <string name="stages_verdict_awake_above">Her zamankinden fazla uyanık kalma</string>
+    <string name="stages_verdict_deep_below">Her zamankinden az derin uyku</string>
+    <string name="stages_verdict_deep_above">Her zamankinden fazla derin uyku</string>
+    <string name="stages_verdict_rem_below">Az REM – çoğunlukla kısa ya da geç bir gecenin ardından</string>
+    <string name="stages_verdict_rem_above">Her zamankinden fazla REM</string>
+    <string name="stages_verdict_light_below">Her zamankinden az hafif uyku</string>
+    <string name="stages_verdict_light_above">Her zamankinden fazla hafif uyku</string>
+    <string name="stages_verdict_typical">Tüm evreler olağan aralıkta</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s süredir</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Haftalık ortalama</string>
+    <string name="chart_touch_hint">Değerleri görmek için grafiğe dokun veya üzerinde sürükle.</string>
+    <string name="chart_nights_30">30 gece</string>
+    <string name="stages_share">%%%1$d</string>
 </resources>

@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Tot dan sal jou horlosie nie wekkers oorslaan nie en jou ook op vakansiedae wakker maak.</string>
     <string name="watch_store_opened">Play Store op jou horlosie oopgemaak – kyk gerus daarna.</string>
     <string name="watch_store_failed">Kon nie die Play Store op jou horlosie oopmaak nie. Is dit gekoppel?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Vorige nag</string>
+    <string name="night_next">Volgende nag</string>
+    <string name="night_in_bed">In die bed %1$s – %2$s</string>
+    <string name="night_asleep">Geslaap</string>
+    <string name="night_woke">Gewek om %1$s</string>
+    <string name="night_target">Teikentyd %1$s</string>
+    <string name="night_no_stages">Jou gesondheidsdata het geen slaapfases vir hierdie nag nie.</string>
+    <string name="night_details">Besonderhede</string>
+    <string name="night_open">Wys besonderhede</string>
+    <string name="night_latency">Insluimer</string>
+    <string name="night_efficiency">Slaapdoeltreffendheid</string>
+    <string name="night_awakenings">Kere wakker</string>
+    <string name="night_longest_deep">Langste diep slaap</string>
+    <string name="stages_typical">Gewone omvang</string>
+    <string name="stages_typical_range">Gewoonlik %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Gewoonlik onder %1$d %%</string>
+    <string name="stages_not_medical">Nie ’n mediese beoordeling nie.</string>
+    <string name="stages_verdict_awake_above">Meer tyd wakker as gewoonlik</string>
+    <string name="stages_verdict_deep_below">Minder diep slaap as gewoonlik</string>
+    <string name="stages_verdict_deep_above">Meer diep slaap as gewoonlik</string>
+    <string name="stages_verdict_rem_below">Min REM – dikwels ná ’n kort of laat nag</string>
+    <string name="stages_verdict_rem_above">Meer REM as gewoonlik</string>
+    <string name="stages_verdict_light_below">Minder ligte slaap as gewoonlik</string>
+    <string name="stages_verdict_light_above">Meer ligte slaap as gewoonlik</string>
+    <string name="stages_verdict_typical">Alle fases binne die gewone omvang</string>
+    <string name="hypno_bubble">%1$s · %2$s · al %3$s</string>
+    <string name="hypno_block">%1$s van %2$s tot %3$s</string>
+    <string name="chart_week_average">Weekgemiddeld</string>
+    <string name="chart_touch_hint">Raak of sleep oor die grafiek om waardes te sien.</string>
+    <string name="chart_nights_30">30 nagte</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

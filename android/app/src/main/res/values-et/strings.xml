@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Seni ei jäta kell äratusi vahele ja äratab sind ka pühadel.</string>
     <string name="watch_store_opened">Play Store avati kellas – vaata kella.</string>
     <string name="watch_store_failed">Play Store’i ei õnnestunud kellas avada. Kas kell on ühendatud?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Eelmine öö</string>
+    <string name="night_next">Järgmine öö</string>
+    <string name="night_in_bed">Voodis %1$s – %2$s</string>
+    <string name="night_asleep">Uni</string>
+    <string name="night_woke">Äratatud kell %1$s</string>
+    <string name="night_target">Sihtaeg %1$s</string>
+    <string name="night_no_stages">Sinu terviseandmetes pole selle öö unefaase.</string>
+    <string name="night_details">Üksikasjad</string>
+    <string name="night_open">Näita üksikasju</string>
+    <string name="night_latency">Uinumisaeg</string>
+    <string name="night_efficiency">Une tõhusus</string>
+    <string name="night_awakenings">Ärkamisi</string>
+    <string name="night_longest_deep">Pikim sügav uni</string>
+    <string name="stages_typical">Tavaline vahemik</string>
+    <string name="stages_typical_range">Tavaliselt %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Tavaliselt alla %1$d %%</string>
+    <string name="stages_not_medical">See pole meditsiiniline hinnang.</string>
+    <string name="stages_verdict_awake_above">Tavalisest rohkem ärkvel</string>
+    <string name="stages_verdict_deep_below">Tavalisest vähem sügavat und</string>
+    <string name="stages_verdict_deep_above">Tavalisest rohkem sügavat und</string>
+    <string name="stages_verdict_rem_below">Vähe REM-i – sageli pärast lühikest või hilist ööd</string>
+    <string name="stages_verdict_rem_above">Tavalisest rohkem REM-i</string>
+    <string name="stages_verdict_light_below">Tavalisest vähem kerget und</string>
+    <string name="stages_verdict_light_above">Tavalisest rohkem kerget und</string>
+    <string name="stages_verdict_typical">Kõik faasid on tavalises vahemikus</string>
+    <string name="hypno_bubble">%1$s · %2$s · juba %3$s</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Nädala keskmine</string>
+    <string name="chart_touch_hint">Väärtuste nägemiseks puuduta graafikut või libista üle selle.</string>
+    <string name="chart_nights_30">30 ööd</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

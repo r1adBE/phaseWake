@@ -519,4 +519,36 @@
     <string name="check_watch_update_problem">Dovtedy hodinky nebudú budíky preskakovať a zobudia ťa aj počas sviatkov.</string>
     <string name="watch_store_opened">Play Store sa otvoril v hodinkách – pozri sa na ne.</string>
     <string name="watch_store_failed">Play Store sa v hodinkách nepodarilo otvoriť. Sú pripojené?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Predchádzajúca noc</string>
+    <string name="night_next">Ďalšia noc</string>
+    <string name="night_in_bed">V posteli %1$s – %2$s</string>
+    <string name="night_asleep">Spánok</string>
+    <string name="night_woke">Zobudenie o %1$s</string>
+    <string name="night_target">Cieľový čas %1$s</string>
+    <string name="night_no_stages">Tvoje zdravotné údaje nemajú pre túto noc fázy spánku.</string>
+    <string name="night_details">Podrobnosti</string>
+    <string name="night_open">Zobraziť podrobnosti</string>
+    <string name="night_latency">Zaspávanie</string>
+    <string name="night_efficiency">Efektivita spánku</string>
+    <string name="night_awakenings">Prebudenia</string>
+    <string name="night_longest_deep">Najdlhší hlboký spánok</string>
+    <string name="stages_typical">Obvyklý rozsah</string>
+    <string name="stages_typical_range">Obvykle %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Obvykle pod %1$d %%</string>
+    <string name="stages_not_medical">Nejde o lekárske hodnotenie.</string>
+    <string name="stages_verdict_awake_above">Viac času v bdení ako zvyčajne</string>
+    <string name="stages_verdict_deep_below">Menej hlbokého spánku ako zvyčajne</string>
+    <string name="stages_verdict_deep_above">Viac hlbokého spánku ako zvyčajne</string>
+    <string name="stages_verdict_rem_below">Málo REM – často po krátkej alebo neskorej noci</string>
+    <string name="stages_verdict_rem_above">Viac REM ako zvyčajne</string>
+    <string name="stages_verdict_light_below">Menej ľahkého spánku ako zvyčajne</string>
+    <string name="stages_verdict_light_above">Viac ľahkého spánku ako zvyčajne</string>
+    <string name="stages_verdict_typical">Všetky fázy v obvyklom rozsahu</string>
+    <string name="hypno_bubble">%1$s · %2$s · už %3$s</string>
+    <string name="hypno_block">%1$s od %2$s do %3$s</string>
+    <string name="chart_week_average">Týždenný priemer</string>
+    <string name="chart_touch_hint">Ťukni alebo ťahaj po grafe a uvidíš hodnoty.</string>
+    <string name="chart_nights_30">30 nocí</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

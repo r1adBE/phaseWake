@@ -189,6 +189,10 @@ public enum ChartData {
     public static let nights = 14
     /// Nachtdaten bei der Schlafdauer und für einen Wochendurchschnitt: eine Woche.
     public static let shortNights = 7
+    /// Dritter Zeitraum der Diagramme: ein Monat.
+    public static let monthNights = 30
+    /// Wählbare Zeiträume der Diagramme in Nächten: 7, 14, 30.
+    public static let periods = [shortNights, nights, monthNights]
     /// Standard-Zeitachse 21:00–11:00 als Minuten ab Mittag.
     public static let axisStart = 9 * 60
     /// Ende der Standard-Zeitachse (11:00) als Minuten ab Mittag.
@@ -202,6 +206,15 @@ public enum ChartData {
         case .light: 2
         case .deep: 3
         case .unknown: nil
+        }
+    }
+
+    /// Gleitender Wochendurchschnitt: Stelle `i` = Mittel der Werte ungleich `nil` in `i − 6` bis `i`; ohne Wert `nil`.
+    /// Gleich lang wie `values`.
+    public static func weekAverage(_ values: [Double?]) -> [Double?] {
+        values.indices.map { i in
+            let window = values[max(0, i - (shortNights - 1))...i].compactMap { $0 }
+            return window.isEmpty ? nil : window.reduce(0, +) / Double(window.count)
         }
     }
 

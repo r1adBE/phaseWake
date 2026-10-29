@@ -545,4 +545,36 @@
     <string name="check_watch_update_problem">حتى ذلك الحين لن تتخطى الساعة أي منبّه وستوقظك أيضًا في العطل.</string>
     <string name="watch_store_opened">تم فتح Play Store على الساعة – ألقِ نظرة عليها.</string>
     <string name="watch_store_failed">تعذّر فتح Play Store على الساعة. هل هي متصلة؟</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">الليلة السابقة</string>
+    <string name="night_next">الليلة التالية</string>
+    <string name="night_in_bed">في السرير %1$s – %2$s</string>
+    <string name="night_asleep">مدة النوم</string>
+    <string name="night_woke">الاستيقاظ في %1$s</string>
+    <string name="night_target">الوقت المستهدف %1$s</string>
+    <string name="night_no_stages">لا تتضمن بياناتك الصحية مراحل نوم لهذه الليلة.</string>
+    <string name="night_details">التفاصيل</string>
+    <string name="night_open">عرض التفاصيل</string>
+    <string name="night_latency">مدة الخلود إلى النوم</string>
+    <string name="night_efficiency">كفاءة النوم</string>
+    <string name="night_awakenings">مرات الاستيقاظ</string>
+    <string name="night_longest_deep">أطول نوم عميق</string>
+    <string name="stages_typical">النطاق المعتاد</string>
+    <string name="stages_typical_range">المعتاد %1$d–%2$d %%</string>
+    <string name="stages_typical_below">المعتاد أقل من %1$d %%</string>
+    <string name="stages_not_medical">ليس تقييمًا طبيًا.</string>
+    <string name="stages_verdict_awake_above">وقت يقظة أكثر من المعتاد</string>
+    <string name="stages_verdict_deep_below">نوم عميق أقل من المعتاد</string>
+    <string name="stages_verdict_deep_above">نوم عميق أكثر من المعتاد</string>
+    <string name="stages_verdict_rem_below">قليل من REM – غالبًا بعد ليلة قصيرة أو متأخرة</string>
+    <string name="stages_verdict_rem_above">REM أكثر من المعتاد</string>
+    <string name="stages_verdict_light_below">نوم خفيف أقل من المعتاد</string>
+    <string name="stages_verdict_light_above">نوم خفيف أكثر من المعتاد</string>
+    <string name="stages_verdict_typical">كل المراحل ضمن النطاق المعتاد</string>
+    <string name="hypno_bubble">%1$s · %2$s · منذ %3$s</string>
+    <string name="hypno_block">%1$s من %2$s إلى %3$s</string>
+    <string name="chart_week_average">المتوسط الأسبوعي</string>
+    <string name="chart_touch_hint">المس الرسم أو اسحب عليه لرؤية القيم.</string>
+    <string name="chart_nights_30">30 ليلة</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

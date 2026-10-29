@@ -91,6 +91,12 @@ data class HistoryItem(
 ) {
     /** Zeitpunkt zum Sortieren: Wecken bzw. Ende der Sitzung. */
     val at: Instant get() = night?.wokeAt ?: session?.end ?: Instant.EPOCH
+
+    /**
+     * Feste Kennung für Navigation und Listen: eigene Nacht «n:‹Wecker›:‹Fensterbeginn in ms›» (zwei Wecker können
+     * gleich beginnen), fremde Nacht «h:‹Nachtdatum›» (höchstens eine je Nachtdatum).
+     */
+    val key: String get() = night?.let { "n:${it.alarmId}:${it.windowStart.toEpochMilli()}" } ?: "h:$date"
 }
 
 /**
@@ -155,6 +161,12 @@ object HealthHistory {
     /** Die Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen in [zone], ohne Doppel ([distinct]). */
     private fun nights(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HealthSession> =
         distinct(visible(sessions, clearedAt).filter { it.end.isAfter(it.start) && !it.isNap(zone) })
+
+    /**
+     * Eintrag zu einem Nachtdatum, z. B. beim Antippen eines Diagrammwerts: der erste in [items] (neueste zuerst,
+     * also bei mehreren eigenen Nächten die zuletzt geweckte) mit diesem [date]; keiner: `null`.
+     */
+    fun itemFor(items: List<HistoryItem>, date: LocalDate): HistoryItem? = items.firstOrNull { it.date == date }
 
     /** Phasen der Sitzungen, die als Nacht zählen (ohne Doppel), nach Beginn: zum Anreichern der eigenen Nächte. */
     fun stages(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<StageSpan> =

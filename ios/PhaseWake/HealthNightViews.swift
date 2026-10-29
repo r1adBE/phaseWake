@@ -4,21 +4,18 @@ import SwiftUI
 private let stageOrder: [SleepStage] = [.awake, .rem, .light, .deep]
 private let stageKeys = ["chart_stage_awake", "chart_stage_rem", "chart_stage_light", "chart_stage_deep"]
 
-/// Farbe einer Schlafphase in Band und Schlafprofil; nie allein – Namen und Summen stehen als Text daneben.
-func stageColor(_ stage: SleepStage, _ palette: ChartPalette) -> Color {
-    switch stage {
-    case .deep: palette.echo
-    case .rem: palette.quiet
-    case .light: palette.wave
-    default: palette.dot
-    }
-}
-
 /// «Wach 20 Min · REM 1 Std. 20 Min · Leicht 3 Std. · Tief 1 Std.» (nur Phasen mit Zeit). Wie Android.
 func sessionStageTotals(_ session: HealthSession) -> String {
     stageOrder.indices.compactMap { i in
         let minutes = session.minutesOf(stageOrder[i])
         return minutes > 0 ? L(stageKeys[i]) + " " + Format.duration(minutes: minutes) : nil
+    }.joined(separator: " · ")
+}
+
+/// Dasselbe aus der Auswertung einer Nacht (``NightStages``), für die Karte einer Phase-Wake-Nacht.
+func stageTotalsLine(_ stages: NightStages) -> String {
+    stages.totals.compactMap { total in
+        total.minutes > 0 ? stageName(total.stage) + " " + Format.duration(minutes: total.minutes) : nil
     }.joined(separator: " · ")
 }
 
@@ -29,18 +26,19 @@ func healthLive(sourceName: String?) -> String {
 }
 
 /// Nacht aus Apple Health ohne Phase-Wake-Wecker: Datum und Aufwachzeit, Vermerk mit Herz-Symbol (nicht nur
-/// Farbe), Quelle nur einmal im Hinweis, Zeiten, Dauern, Hinweis auf den Spiegel der Quelle, Phasen-Band mit Summen,
-/// Befinden, Notizen und Geräusche. Kein Weckmoment. Wie Android.
+/// Farbe), Quelle nur einmal im Hinweis, Zeiten, Dauern, Hinweis auf den Spiegel der Quelle, kleines Schlafprofil
+/// mit Summen, Befinden (falls gewählt), Notizen und Geräusche kompakt. Kein Weckmoment. Antippen öffnet die
+/// Detailseite; dort wird das Befinden gewählt. Wie Android.
 struct HealthNightCard: View {
     let session: HealthSession
     /// Nachtdatum für Befinden, Notizen und Geräusche (`HistoryItem.date`).
     let nightDate: String
     /// Anzeigename der Quelle; `nil` = unbekannt.
     let sourceName: String?
-    /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: die Auswahl zeigen.
+    /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: keine Zeile (gewählt wird auf der Detailseite).
     let feeling: Int?
-    /// Speichert das gewählte Befinden.
-    let onFeeling: (Int) -> Void
+    /// Öffnet die Detailseite dieser Nacht.
+    let onOpen: () -> Void
 
     private var title: String { session.end.formatted(date: .abbreviated, time: .omitted) }
 
@@ -57,8 +55,23 @@ struct HealthNightCard: View {
     }
 
     var body: some View {
-        let lines = self.lines
         VStack(alignment: .leading, spacing: 8) {
+            Button(action: onOpen) { summary }
+                .buttonStyle(.plain)
+                .accessibilityHint(L("night_open"))
+            if let feeling {
+                Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
+            NightNotesButton(nightDate: nightDate, title: title)
+            NightSoundsButton(night: nightDate, title: title)
+        }
+        .card()
+    }
+
+    /// Kopf, Zeiten, Quelle und Schlafprofil: der Teil, der die Detailseite öffnet.
+    private var summary: some View {
+        let lines = self.lines
+        return VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(title).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
@@ -75,42 +88,34 @@ struct HealthNightCard: View {
             .foregroundStyle(.secondary)
             Text(healthLive(sourceName: sourceName)).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(.secondary)
             if session.hasStages {
-                let totals = sessionStageTotals(session)
-                StageStrip(session: session)
-                    .frame(height: 16)
-                    .accessibilityElement()
-                    .accessibilityLabel(L("chart_stages_title") + ". " + totals)
-                Text(totals).font(Fonts.manrope(11, .semibold, relativeTo: .caption2)).foregroundStyle(.secondary).accessibilityHidden(true)
+                MiniHypnogram(steps: session.steps, totalMinutes: session.end.timeIntervalSince(session.start) / 60)
+                    .frame(height: miniHypnogramHeight)
+                Text(sessionStageTotals(session)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
             }
-            if let feeling {
-                Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
-            } else {
-                FeelingPicker(onPick: onFeeling, showsHint: false).padding(.top, 4)
-            }
-            NightNotesButton(nightDate: nightDate, title: title)
-            NightSoundsButton(night: nightDate, title: title)
+            DetailsRow()
         }
-        .card()
+        .contentShape(Rectangle())
     }
 }
 
-/// Phasen einer Sitzung als schmales Band über die ganze Sitzung (bekannte Phasen, auf die Sitzung zugeschnitten).
-private struct StageStrip: View {
-    let session: HealthSession
-    @Environment(\.colorScheme) private var scheme
+/// Höhe des kleinen Schlafprofils auf den Nachtkarten in Punkten (Auftrag: ≈ 64).
+let miniHypnogramHeight: CGFloat = 64
+
+/// «Details ›» unten rechts auf einer Nachtkarte: zeigt, dass ein Tipp die Detailseite öffnet.
+struct DetailsRow: View {
+    /// In einer Karte, die als Ganzes öffnet, trägt der Hinweis der Karte den Text; als eigener Knopf `false`.
+    var hiddenForVoiceOver = true
 
     var body: some View {
-        let palette = ChartPalette(scheme)
-        let total = max(1, session.end.timeIntervalSince(session.start) / 60)
-        Canvas { context, size in
-            context.fill(Path(roundedRect: CGRect(origin: .zero, size: size), cornerRadius: 3), with: .color(palette.track))
-            for step in session.steps {
-                let x = size.width * step.fromMinute / total
-                let w = max(1, size.width * (step.toMinute - step.fromMinute) / total)
-                context.fill(Path(CGRect(x: x, y: 0, width: w, height: size.height)), with: .color(stageColor(step.stage, palette)))
-            }
+        HStack(spacing: 4) {
+            Spacer()
+            Text(L("night_details"))
+            Image(systemName: "chevron.right")
         }
-        .clipShape(RoundedRectangle(cornerRadius: 3))
+        .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+        .foregroundStyle(.tint)
+        .frame(minHeight: 44)
+        .accessibilityHidden(hiddenForVoiceOver)
     }
 }
 

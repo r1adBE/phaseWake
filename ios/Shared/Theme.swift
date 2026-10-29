@@ -45,6 +45,37 @@ enum Brand {
     static let cardRadius: CGFloat = 22
 }
 
+/// Farben der Schlafphasen in allen Diagrammen (Schlafprofil, Nachtkarte, Detailseite, Legenden), identisch zu Android.
+/// Klar verschiedene Farbtöne und Helligkeiten, für Deuteranopie, Protanopie und Tritanopie simuliert (ΔE76 ≥ 24),
+/// je ≥ 3:1 zur Karte (WCAG 1.4.11). Nie allein: Stufenhöhe und Beschriftung tragen die Information.
+enum StageColors {
+    /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf Weiss: CF4F3A 4.35:1,
+    /// 0E8C9E 3.99:1, 7B6CF6 3.95:1, 2F2A85 11.7:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF 8.4:1, 6F5CF0 3.6:1.
+    static func color(_ stage: SleepStage, _ scheme: ColorScheme) -> Color {
+        let dark = scheme == .dark
+        switch stage {
+        case .awake: return Color(hex: dark ? 0xFF8F85 : 0xCF4F3A)
+        case .rem: return Color(hex: dark ? 0x6FF2E6 : 0x0E8C9E)
+        case .light: return Color(hex: dark ? 0xB9AEFF : 0x7B6CF6)
+        case .deep: return Color(hex: dark ? 0x6F5CF0 : 0x2F2A85)
+        case .unknown: return track(scheme)
+        }
+    }
+
+    /// Hintergrund der Zeilen im Schlafprofil (wie `chartTrack` auf Android).
+    static func track(_ scheme: ColorScheme) -> Color { Color(hex: scheme == .dark ? 0x2A2D55 : 0xECE8F5) }
+    /// Senkrechte Stufen zwischen den Phasen: Nebentext mit 60 %.
+    static func link(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme).opacity(0.6) }
+    /// Weckpunkt und Zielzeit-Linie: die Hauptfarbe.
+    static func marker(_ scheme: ColorScheme) -> Color { Brand.accent(scheme) }
+    /// Weckfenster als Band: Hauptfarbe mit 12 %.
+    static func window(_ scheme: ColorScheme) -> Color { Brand.accent(scheme).opacity(0.12) }
+    /// «Üblicher Bereich» hinter den Summen: Nebentext mit 18 %, Rand gestrichelt in `typicalEdge`.
+    static func typical(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme).opacity(0.18) }
+    /// Gestrichelter Rand des üblichen Bereichs.
+    static func typicalEdge(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme) }
+}
+
 extension Color {
     init(hex: UInt32, opacity: Double = 1) {
         self.init(

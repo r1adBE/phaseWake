@@ -1,7 +1,6 @@
 package com.phasewake.app.ui.history
 
 import android.content.Context
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,15 +23,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
-import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HealthHistory
 import com.phasewake.app.core.HistoryItem
@@ -46,6 +41,7 @@ import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.ui.sounds.SoundClipsSection
+import com.phasewake.app.ui.sounds.soundSummary
 import androidx.compose.runtime.remember
 import java.io.File
 import java.time.LocalDate
@@ -56,7 +52,6 @@ import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
-import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
@@ -118,7 +113,8 @@ fun HistoryScreen(
     canConnectHealth: Boolean = false,
     /** Befinden zu Nächten aus anderen Apps je Nachtdatum und wie es gesetzt wird (nur bei Phase Wake gespeichert). */
     healthFeelings: Map<LocalDate, Int> = emptyMap(),
-    onHealthFeeling: (LocalDate, Int) -> Unit = { _, _ -> },
+    /** Detailseite einer Nacht öffnen ([HistoryItem.key]); auch aus den Blasen der Diagramme. */
+    onOpenNight: (String) -> Unit = {},
 ) {
     val history = remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
     val latestByDate = remember(nights) {
@@ -132,7 +128,7 @@ fun HistoryScreen(
             val pending = ArrayDeque(soundsOnly.map { HistoryEntry.Sounds(it.first, it.second) })
             for (item in history) {
                 while (pending.isNotEmpty() && pending.first().last.isAfter(item.at)) add(pending.removeFirst())
-                add(item.night?.let { HistoryEntry.Night(it) } ?: HistoryEntry.Health(item))
+                add(if (item.night != null) HistoryEntry.Night(item) else HistoryEntry.Health(item))
             }
             addAll(pending)
         }
@@ -146,7 +142,9 @@ fun HistoryScreen(
             Text(stringResource(R.string.history_title), style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(start = 4.dp, bottom = 4.dp))
         }
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
-        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes) } }
+        // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
+        val opener: (LocalDate) -> (() -> Unit)? = { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
+        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener) } }
         if (history.isEmpty()) {
             item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
             soundsOnly.forEach { (night, last) ->
@@ -159,36 +157,33 @@ fun HistoryScreen(
         trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty()) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         items(entries, key = { it.key }) { entry ->
-            val night = when (entry) {
-                is HistoryEntry.Night -> entry.night
-                is HistoryEntry.Sounds -> {
-                    SoundsOnlyCard(entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem())
-                    return@items
-                }
+            when (entry) {
+                is HistoryEntry.Sounds -> SoundsOnlyCard(entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem())
                 is HistoryEntry.Health -> {
                     val date = entry.item.date
                     HealthNightCard(
                         entry.item.session ?: return@items,
-                        feeling = NightFeeling(healthFeelings[date]) { onHealthFeeling(date, it) },
+                        feeling = healthFeelings[date],
                         notes = notes[date].orEmpty(),
                         customNotes = customNotes,
                         onToggleNote = { onToggleNote(date, it) },
-                        sounds = NightSounds(SoundEvents.forNight(soundClips, date), soundFile, onDeleteClip) { onDeleteNightClips(date) },
+                        clips = SoundEvents.forNight(soundClips, date),
+                        onOpen = { onOpenNight(entry.item.key) },
                         modifier = Modifier.animateItem(),
                     )
-                    return@items
+                }
+                is HistoryEntry.Night -> {
+                    val night = entry.item.night ?: return@items
+                    val date = entry.item.date
+                    NightCard(
+                        night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
+                        onToggleNote = { onToggleNote(date, it) },
+                        // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
+                        clips = if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
+                        onOpen = { onOpenNight(entry.item.key) },
+                    )
                 }
             }
-            val date = SleepNotes.nightDate(night, ZoneId.systemDefault())
-            NightCard(
-                night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
-                onToggleNote = { onToggleNote(date, it) },
-                // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
-                clips = if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
-                soundFile = soundFile,
-                onDeleteClip = onDeleteClip,
-                onDeleteClips = { onDeleteNightClips(date) },
-            )
         }
         if (nights.isNotEmpty()) item(key = "export") {
             OutlinedButton(onClick = onExport, modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
@@ -220,6 +215,10 @@ private fun StatTile(text: String, modifier: Modifier) {
     }
 }
 
+/**
+ * Eigene Nacht im Verlauf, kompakt: Datum und Weckzeit, mit Schlafphasen das Mini-Hypnogramm samt Summen, sonst die
+ * Bewegung im Weckfenster; Weckmoment, Abgleich, Notizen und Geräusche je eine Zeile. Antippen öffnet die Detailseite.
+ */
 @Composable
 private fun NightCard(
     night: NightRecord,
@@ -228,47 +227,43 @@ private fun NightCard(
     notes: List<String>,
     customNotes: List<CustomNote>,
     onToggleNote: (String) -> Unit,
-    clips: List<SoundClip> = emptyList(),
-    soundFile: (SoundClip) -> File? = { null },
-    onDeleteClip: (SoundClip) -> Unit = {},
-    onDeleteClips: () -> Unit = {},
+    clips: List<SoundClip>,
+    onOpen: () -> Unit,
 ) {
     val context = LocalContext.current
     val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
     val zone = ZoneId.systemDefault()
     val date = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(night.wokeAt.atZone(zone))
+    val view = remember(night, stages) { nightView(HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(night, zone), night = night), stages) }
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(date, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                 Text(Format.time(night.wokeAt, zone), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
             }
-            NightBars(
-                night.epochs,
-                Modifier.fillMaxWidth().height(44.dp).padding(top = 10.dp),
-                totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt(),
-            )
+            val model = view.hypno
+            val stats = view.stats
+            if (model != null && stats != null) {
+                MiniStages(model, stats)
+            } else {
+                NightBars(
+                    night.epochs,
+                    Modifier.fillMaxWidth().height(44.dp).padding(top = 10.dp),
+                    totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt(),
+                )
+            }
             Text(
                 nightSummary(context, night),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
             )
-            Text(
-                nightDetails(context, night),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            Text(nightDetails(context, night), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             if (stages.isNotEmpty()) {
-                StageStrip(
-                    StageCheck.clip(stages, night.windowStart, night.target),
-                    night.windowStart, night.target,
-                    Modifier.fillMaxWidth().height(16.dp).padding(top = 2.dp),
-                )
                 verdict(context, stages, night)?.let { (text, good) ->
                     Text(
                         text,
@@ -279,7 +274,8 @@ private fun NightCard(
                 }
             }
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
-            SoundClipsSection(clips, soundFile, onDeleteClip, onDeleteClips)
+            soundSummary(context, clips)?.let { CompactLine(it) }
+            DetailsLink()
         }
     }
 }
@@ -289,8 +285,8 @@ private sealed interface HistoryEntry {
     val key: String
 
     // Schlüssel wie bisher: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
-    data class Night(val night: NightRecord) : HistoryEntry {
-        override val key: String get() = "${night.alarmId}@${night.windowStart.toEpochMilli()}"
+    data class Night(val item: HistoryItem) : HistoryEntry {
+        override val key: String get() = item.night?.let { "${it.alarmId}@${it.windowStart.toEpochMilli()}" } ?: item.key
     }
 
     /** Nacht aus Health Connect ohne Phase-Wake-Wecker; höchstens eine je Nachtdatum. */
@@ -342,23 +338,3 @@ private fun verdict(context: Context, stages: List<StageSpan>, night: NightRecor
         SleepStage.DEEP -> context.getString(R.string.verdict_deep) to false
         SleepStage.UNKNOWN, null -> null
     }
-
-/** Schlafphasen im Weckfenster als Band mit vier Höhen (oben wach, dann REM, leicht, unten tief) und je eigener Farbe. */
-@Composable
-internal fun StageStrip(spans: List<StageSpan>, from: java.time.Instant, to: java.time.Instant, modifier: Modifier) {
-    val brand = PhaseWakeTheme.brand
-    val colors = stageColors()
-    val total = Duration.between(from, to).toMillis().toFloat().coerceAtLeast(1f)
-    Canvas(modifier.padding(top = 6.dp)) {
-        drawRoundRect(brand.chartTrack, cornerRadius = CornerRadius(size.height / 2))
-        spans.forEach { span ->
-            val x0 = size.width * Duration.between(from, span.start).toMillis() / total
-            val x1 = size.width * Duration.between(from, span.end).toMillis() / total
-            // Höhe nach Phase (wie im Schlafprofil: oben wach, unten tief), damit nicht nur die Farbe unterscheidet.
-            val level = ChartData.level(span.stage) ?: return@forEach
-            val color = colors.getValue(span.stage)
-            val lane = size.height / 4
-            drawRect(color, Offset(x0, lane * level), Size((x1 - x0).coerceAtLeast(1f), lane))
-        }
-    }
-}

@@ -517,4 +517,36 @@
     <string name="check_watch_update_problem">Do tego czasu zegarek nie pominie żadnego budzika i obudzi cię także w święta.</string>
     <string name="watch_store_opened">Otwarto Play Store na zegarku – zerknij na niego.</string>
     <string name="watch_store_failed">Nie udało się otworzyć Play Store na zegarku. Czy jest połączony?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Poprzednia noc</string>
+    <string name="night_next">Następna noc</string>
+    <string name="night_in_bed">W łóżku %1$s – %2$s</string>
+    <string name="night_asleep">Sen</string>
+    <string name="night_woke">Obudzenie o %1$s</string>
+    <string name="night_target">Godzina docelowa %1$s</string>
+    <string name="night_no_stages">Twoje dane zdrowotne nie mają faz snu dla tej nocy.</string>
+    <string name="night_details">Szczegóły</string>
+    <string name="night_open">Pokaż szczegóły</string>
+    <string name="night_latency">Zasypianie</string>
+    <string name="night_efficiency">Wydajność snu</string>
+    <string name="night_awakenings">Wybudzenia</string>
+    <string name="night_longest_deep">Najdłuższy sen głęboki</string>
+    <string name="stages_typical">Typowy zakres</string>
+    <string name="stages_typical_range">Typowo %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Typowo poniżej %1$d %%</string>
+    <string name="stages_not_medical">To nie jest ocena medyczna.</string>
+    <string name="stages_verdict_awake_above">Więcej czuwania niż zwykle</string>
+    <string name="stages_verdict_deep_below">Mniej snu głębokiego niż zwykle</string>
+    <string name="stages_verdict_deep_above">Więcej snu głębokiego niż zwykle</string>
+    <string name="stages_verdict_rem_below">Mało REM – często po krótkiej lub późnej nocy</string>
+    <string name="stages_verdict_rem_above">Więcej REM niż zwykle</string>
+    <string name="stages_verdict_light_below">Mniej snu płytkiego niż zwykle</string>
+    <string name="stages_verdict_light_above">Więcej snu płytkiego niż zwykle</string>
+    <string name="stages_verdict_typical">Wszystkie fazy w typowym zakresie</string>
+    <string name="hypno_bubble">%1$s · %2$s · od %3$s</string>
+    <string name="hypno_block">%1$s od %2$s do %3$s</string>
+    <string name="chart_week_average">Średnia tygodniowa</string>
+    <string name="chart_touch_hint">Dotknij wykresu lub przeciągnij po nim, aby zobaczyć wartości.</string>
+    <string name="chart_nights_30">30 nocy</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

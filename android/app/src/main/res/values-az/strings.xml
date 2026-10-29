@@ -477,4 +477,36 @@
     <string name="check_watch_update_problem">O vaxta qədər saatın siqnalları ötürməyəcək və bayramlarda da səni oyadacaq.</string>
     <string name="watch_store_opened">Play Store saatında açıldı – ona bir bax.</string>
     <string name="watch_store_failed">Play Store saatında açılmadı. Saat qoşuludurmu?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Əvvəlki gecə</string>
+    <string name="night_next">Növbəti gecə</string>
+    <string name="night_in_bed">Yataqda %1$s – %2$s</string>
+    <string name="night_asleep">Yuxu</string>
+    <string name="night_woke">Oyadıldı %1$s</string>
+    <string name="night_target">Hədəf vaxtı %1$s</string>
+    <string name="night_no_stages">Sağlamlıq məlumatlarında bu gecə üçün yuxu mərhələləri yoxdur.</string>
+    <string name="night_details">Təfərrüatlar</string>
+    <string name="night_open">Təfərrüatları göstər</string>
+    <string name="night_latency">Yuxuya getmə müddəti</string>
+    <string name="night_efficiency">Yuxu səmərəliliyi</string>
+    <string name="night_awakenings">Oyanma sayı</string>
+    <string name="night_longest_deep">Ən uzun dərin yuxu</string>
+    <string name="stages_typical">Adi aralıq</string>
+    <string name="stages_typical_range">Adətən %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Adətən %1$d %%-dən az</string>
+    <string name="stages_not_medical">Tibbi qiymətləndirmə deyil.</string>
+    <string name="stages_verdict_awake_above">Adətən olduğundan çox oyaq vaxt</string>
+    <string name="stages_verdict_deep_below">Adətən olduğundan az dərin yuxu</string>
+    <string name="stages_verdict_deep_above">Adətən olduğundan çox dərin yuxu</string>
+    <string name="stages_verdict_rem_below">Az REM – çox vaxt qısa və ya gec gecədən sonra</string>
+    <string name="stages_verdict_rem_above">Adətən olduğundan çox REM</string>
+    <string name="stages_verdict_light_below">Adətən olduğundan az yüngül yuxu</string>
+    <string name="stages_verdict_light_above">Adətən olduğundan çox yüngül yuxu</string>
+    <string name="stages_verdict_typical">Bütün mərhələlər adi aralıqdadır</string>
+    <string name="hypno_bubble">%1$s · %2$s · %3$s-dir</string>
+    <string name="hypno_block">%1$s %2$s – %3$s</string>
+    <string name="chart_week_average">Həftəlik orta</string>
+    <string name="chart_touch_hint">Dəyərləri görmək üçün qrafikə toxun və ya üzərində sürüşdür.</string>
+    <string name="chart_nights_30">30 gecə</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

@@ -33,6 +33,12 @@ import kotlinx.coroutines.withContext
 internal object ExtraRoutes {
     const val DIAGNOSTICS = "diagnostics"
     const val ONBOARDING = "onboarding"
+
+    /** Detailseite einer Nacht; `key` = [com.phasewake.app.core.HistoryItem.key]. */
+    const val NIGHT = "night?key={key}"
+
+    /** Ziel zur Detailseite der Nacht [key] (Doppelpunkte und Zeichen der Wecker-Kennung kodiert). */
+    fun night(key: String): String = "night?key=" + android.net.Uri.encode(key)
 }
 
 /** Startet den Probewecker (im Hintergrund, übersteht das Verlassen des Bildschirms). */

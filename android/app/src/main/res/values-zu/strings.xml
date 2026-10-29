@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">Kuze kube yilapho, iwashi lakho ngeke leqe ama-alamu futhi lizokuvusa nangamaholide.</string>
     <string name="watch_store_opened">I-Play Store ivuliwe ewashini lakho – yibheke.</string>
     <string name="watch_store_failed">Ayikwazanga ukuvula i-Play Store ewashini lakho. Ingabe lixhunyiwe?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Ubusuku obedlule</string>
+    <string name="night_next">Ubusuku obulandelayo</string>
+    <string name="night_in_bed">Embhedeni %1$s – %2$s</string>
+    <string name="night_asleep">Ukulala</string>
+    <string name="night_woke">Uvuswe ngo-%1$s</string>
+    <string name="night_target">Isikhathi okuhloswe ngaso %1$s</string>
+    <string name="night_no_stages">Idatha yakho yezempilo ayinazo izigaba zokulala zalobu busuku.</string>
+    <string name="night_details">Imininingwane</string>
+    <string name="night_open">Bonisa imininingwane</string>
+    <string name="night_latency">Isikhathi sokuzumeka</string>
+    <string name="night_efficiency">Ukusebenza kahle kokulala</string>
+    <string name="night_awakenings">Izikhathi uvukile</string>
+    <string name="night_longest_deep">Ubuthongo obujulile obude kakhulu</string>
+    <string name="stages_typical">Ibanga elijwayelekile</string>
+    <string name="stages_typical_range">Ngokujwayelekile %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Ngokujwayelekile ngaphansi kuka-%1$d %%</string>
+    <string name="stages_not_medical">Akukona ukuhlola kwezokwelapha.</string>
+    <string name="stages_verdict_awake_above">Isikhathi esiningi uvukile kunokujwayelekile</string>
+    <string name="stages_verdict_deep_below">Ubuthongo obujulile obuncane kunokujwayelekile</string>
+    <string name="stages_verdict_deep_above">Ubuthongo obujulile obuningi kunokujwayelekile</string>
+    <string name="stages_verdict_rem_below">I-REM encane – kaningi ngemuva kobusuku obufushane noma obubambezelekile</string>
+    <string name="stages_verdict_rem_above">I-REM eningi kunokujwayelekile</string>
+    <string name="stages_verdict_light_below">Ubuthongo obulula obuncane kunokujwayelekile</string>
+    <string name="stages_verdict_light_above">Ubuthongo obulula obuningi kunokujwayelekile</string>
+    <string name="stages_verdict_typical">Zonke izigaba zisebangeni elijwayelekile</string>
+    <string name="hypno_bubble">%1$s · %2$s · isikhathi esingu-%3$s</string>
+    <string name="hypno_block">%1$s kusuka ku-%2$s kuya ku-%3$s</string>
+    <string name="chart_week_average">Isilinganiso samasonto onke</string>
+    <string name="chart_touch_hint">Thinta noma uhudule ishadi ukuze ubone amanani.</string>
+    <string name="chart_nights_30">Ubusuku obu-30</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

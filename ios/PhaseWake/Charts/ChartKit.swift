@@ -43,11 +43,6 @@ func clock(_ minutesFromNoon: Int) -> String {
 extension View {
     /// Kurz einblenden; mit «Bewegung reduzieren» sofort sichtbar.
     func chartFadeIn() -> some View { modifier(ChartFadeIn()) }
-
-    /// Für VoiceOver eine Textfassung statt der einzelnen Marken.
-    func chartSummary(_ text: String) -> some View {
-        accessibilityElement(children: .ignore).accessibilityLabel(text)
-    }
 }
 
 struct ChartFadeIn: ViewModifier {

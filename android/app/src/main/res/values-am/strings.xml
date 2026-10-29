@@ -492,4 +492,36 @@
     <string name="check_watch_update_problem">እስከዚያ ድረስ ሰዓትዎ ማንቂያዎችን አይዘልም፣ በበዓላትም ይቀሰቅስዎታል።</string>
     <string name="watch_store_opened">Play Store በሰዓትዎ ላይ ተከፍቷል – እባክዎ ይመልከቱት።</string>
     <string name="watch_store_failed">Play Storeን በሰዓትዎ ላይ መክፈት አልተቻለም። ሰዓቱ ተገናኝቷል?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">ያለፈው ሌሊት</string>
+    <string name="night_next">ቀጣዩ ሌሊት</string>
+    <string name="night_in_bed">በአልጋ %1$s – %2$s</string>
+    <string name="night_asleep">የተኙበት</string>
+    <string name="night_woke">የነቁበት %1$s</string>
+    <string name="night_target">የታለመ ሰዓት %1$s</string>
+    <string name="night_no_stages">የጤና ውሂብዎ ለዚህ ሌሊት የእንቅልፍ ደረጃዎች የሉትም።</string>
+    <string name="night_details">ዝርዝሮች</string>
+    <string name="night_open">ዝርዝሮችን አሳይ</string>
+    <string name="night_latency">ለመተኛት የወሰደ ጊዜ</string>
+    <string name="night_efficiency">የእንቅልፍ ብቃት</string>
+    <string name="night_awakenings">የነቁባቸው ጊዜያት</string>
+    <string name="night_longest_deep">ረጅሙ ጥልቅ እንቅልፍ</string>
+    <string name="stages_typical">የተለመደ ክልል</string>
+    <string name="stages_typical_range">የተለመደ %1$d–%2$d %%</string>
+    <string name="stages_typical_below">የተለመደ ከ%1$d %% በታች</string>
+    <string name="stages_not_medical">የሕክምና ግምገማ አይደለም።</string>
+    <string name="stages_verdict_awake_above">ከተለመደው በላይ የንቃት ጊዜ</string>
+    <string name="stages_verdict_deep_below">ከተለመደው ያነሰ ጥልቅ እንቅልፍ</string>
+    <string name="stages_verdict_deep_above">ከተለመደው የበለጠ ጥልቅ እንቅልፍ</string>
+    <string name="stages_verdict_rem_below">ትንሽ REM – ብዙ ጊዜ ከአጭር ወይም ከዘገየ ሌሊት በኋላ</string>
+    <string name="stages_verdict_rem_above">ከተለመደው የበለጠ REM</string>
+    <string name="stages_verdict_light_below">ከተለመደው ያነሰ ቀላል እንቅልፍ</string>
+    <string name="stages_verdict_light_above">ከተለመደው የበለጠ ቀላል እንቅልፍ</string>
+    <string name="stages_verdict_typical">ሁሉም ደረጃዎች በተለመደው ክልል ውስጥ</string>
+    <string name="hypno_bubble">%1$s · %2$s · ለ%3$s</string>
+    <string name="hypno_block">%1$s ከ%2$s እስከ %3$s</string>
+    <string name="chart_week_average">ሳምንታዊ አማካይ</string>
+    <string name="chart_touch_hint">እሴቶችን ለማየት ገበታውን ይንኩ ወይም ይጎትቱ።</string>
+    <string name="chart_nights_30">30 ሌሊቶች</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>

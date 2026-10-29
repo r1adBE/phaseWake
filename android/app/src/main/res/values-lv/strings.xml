@@ -506,4 +506,36 @@
     <string name="check_watch_update_problem">Līdz tam pulkstenis neizlaidīs modinātājus un modinās tevi arī svētku dienās.</string>
     <string name="watch_store_opened">Play Store atvērts pulkstenī – ieskaties tajā.</string>
     <string name="watch_store_failed">Neizdevās atvērt Play Store pulkstenī. Vai tas ir savienots?</string>
+    <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->
+    <string name="night_prev">Iepriekšējā nakts</string>
+    <string name="night_next">Nākamā nakts</string>
+    <string name="night_in_bed">Gultā %1$s – %2$s</string>
+    <string name="night_asleep">Miegs</string>
+    <string name="night_woke">Pamodināts %1$s</string>
+    <string name="night_target">Mērķa laiks %1$s</string>
+    <string name="night_no_stages">Taviem veselības datiem nav miega fāžu šai naktij.</string>
+    <string name="night_details">Sīkāk</string>
+    <string name="night_open">Rādīt sīkāk</string>
+    <string name="night_latency">Iemigšana</string>
+    <string name="night_efficiency">Miega efektivitāte</string>
+    <string name="night_awakenings">Pamošanās reizes</string>
+    <string name="night_longest_deep">Garākais dziļais miegs</string>
+    <string name="stages_typical">Ierastais diapazons</string>
+    <string name="stages_typical_range">Parasti %1$d–%2$d %%</string>
+    <string name="stages_typical_below">Parasti zem %1$d %%</string>
+    <string name="stages_not_medical">Tas nav medicīnisks vērtējums.</string>
+    <string name="stages_verdict_awake_above">Vairāk nomoda nekā parasti</string>
+    <string name="stages_verdict_deep_below">Mazāk dziļā miega nekā parasti</string>
+    <string name="stages_verdict_deep_above">Vairāk dziļā miega nekā parasti</string>
+    <string name="stages_verdict_rem_below">Maz REM – bieži pēc īsas vai vēlas nakts</string>
+    <string name="stages_verdict_rem_above">Vairāk REM nekā parasti</string>
+    <string name="stages_verdict_light_below">Mazāk viegla miega nekā parasti</string>
+    <string name="stages_verdict_light_above">Vairāk viegla miega nekā parasti</string>
+    <string name="stages_verdict_typical">Visas fāzes ierastajā diapazonā</string>
+    <string name="hypno_bubble">%1$s · %2$s · jau %3$s</string>
+    <string name="hypno_block">%1$s no %2$s līdz %3$s</string>
+    <string name="chart_week_average">Nedēļas vidējais</string>
+    <string name="chart_touch_hint">Pieskaries vai velc pār diagrammu, lai redzētu vērtības.</string>
+    <string name="chart_nights_30">30 naktis</string>
+    <string name="stages_share">%1$d %%</string>
 </resources>
