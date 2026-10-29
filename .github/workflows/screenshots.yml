@@ -34,7 +34,14 @@ jobs:
         if: failure()
         shell: bash
         working-directory: android
-        run: ../.github/scripts/annotate-errors.sh build.log
+        run: |
+          ../.github/scripts/annotate-errors.sh build.log
+          # Ursache gescheiterter Vorschauen (steht nur in den Testberichten, nicht im Log).
+          causes=$(find . -path '*test-results*' -name '*.xml' -exec grep -h -A25 '<failure' {} + 2>/dev/null \
+            | grep -E 'failure message|Exception|Caused by|at com\.phasewake' | head -40 || true)
+          if [ -n "$causes" ]; then
+            echo "::error title=Vorschau-Fehler::$(printf '%s' "$causes" | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')"
+          fi
       - name: In den Zweig «screenshots» legen
         shell: bash
         run: |

@@ -47,7 +47,7 @@ private val samsung = run {
 }
 
 /** Unbekannte App ohne Phasen, Nacht der Zeitumstellung (24./25.10.). */
-private val unknown = HealthSession(at(LocalDate.of(2026, 10, 24), 23, 40), at(LocalDate.of(2026, 10, 25), 8, 10), source = "com.example.sleep")
+private val unknown = HealthSession(at(LocalDate.of(2026, 10, 24), 23, 40), at(LocalDate.of(2026, 10, 25), 8, 10), source = null)
 
 /** Nickerchen am Nachmittag (kurz und ganz zwischen 09:00 und 19:00): zählt nicht. */
 private val nap = HealthSession(at(LocalDate.of(2026, 10, 25), 14, 0), at(LocalDate.of(2026, 10, 25), 14, 40), source = HealthSource.SAMSUNG_HEALTH)

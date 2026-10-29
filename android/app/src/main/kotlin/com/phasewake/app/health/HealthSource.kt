@@ -22,6 +22,9 @@ object HealthSource {
         } catch (_: PackageManager.NameNotFoundException) {
             // Bewusst still: App deinstalliert oder nicht sichtbar; die allgemeine Angabe genügt.
             null
+        } catch (_: RuntimeException) {
+            // Paketverwaltung nicht verfügbar (z. B. Vorschau) oder verweigert: ebenfalls die allgemeine Angabe.
+            null
         }
     }
 }
