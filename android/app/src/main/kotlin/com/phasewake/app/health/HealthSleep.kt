@@ -35,6 +35,10 @@ class HealthSleep(private val context: Context) {
 
     private val client by lazy { HealthConnectClient.getOrCreate(context) }
 
+    private fun diag(text: String) =
+        com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE)
+            .log(com.phasewake.app.core.DiagKind.SYNC, text)
+
     suspend fun isGranted(): Boolean =
         isAvailable && runCatching { client.permissionController.getGrantedPermissions().containsAll(permissions) }.getOrDefault(false)
 
@@ -54,6 +58,9 @@ class HealthSleep(private val context: Context) {
                 records += response.records
                 pageToken = response.pageToken
             } while (pageToken != null)
+            // Für die Diagnose: wie viele Sitzungen aus welchen Apps (ohne Zeiten oder Werte).
+            val origins = records.groupingBy { it.metadata.dataOrigin.packageName }.eachCount()
+            diag("health read ${records.size} sessions $origins")
             records.map { session ->
                 HealthSession(
                     start = session.startTime,
@@ -65,6 +72,7 @@ class HealthSleep(private val context: Context) {
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Schlafsitzungen nicht lesbar", e)
+            diag("health read failed ${e.javaClass.simpleName}")
             emptyList()
         }
     }
