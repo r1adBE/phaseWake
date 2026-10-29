@@ -36,7 +36,7 @@ class WatchListenerService : WearableListenerService() {
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
             val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
-            if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays?.first?.region} ${holidays?.first?.dates?.size}")
+            if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {
@@ -45,7 +45,7 @@ class WatchListenerService : WearableListenerService() {
                 else -> app.nights.clear()
             }
             val newAlarms = remote != null && app.alarms.applyRemote(remote)
-            if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote?.alarms?.size}")
+            if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
             if (newAlarms || newHolidays) app.scheduler.reschedule()
         }
     }
