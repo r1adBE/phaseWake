@@ -300,11 +300,8 @@ class BackupAlarm(
      * sind weg oder verschoben, neu planen. Vor dem ersten Entsperren nur den abgelegten Zweitwecker.
      */
     class SystemReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            // Prüfung hier (nicht nur in der Hilfsfunktion), damit Lint die Liste der erlaubten Aktionen sieht.
-            if (intent.action !in SYSTEM_ACTIONS) return
-            onBackupSystemEvent(context, intent)
-        }
+        // Aktionsprüfung hier, damit Lint die erlaubte Liste sieht.
+        override fun onReceive(context: Context, intent: Intent) { if (intent.action in SYSTEM_ACTIONS) onBackupSystemEvent(context, intent) }
     }
 
     companion object {
