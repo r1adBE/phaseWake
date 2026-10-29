@@ -25,7 +25,7 @@ data class BackupPreview(val payload: BackupPayload, val alarms: Int, val nights
 /**
  * Sichern und Wiederherstellen am Handy: Inhalt sammeln ([BackupPayload]), verschlüsseln ([BackupFile]) und
  * über das System speichern; beim Wiederherstellen alles ersetzen und die Wecker an die Uhr schicken.
- * Ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten.
+ * Ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten; das Befinden zu Nächten aus anderen Apps ist dabei.
  */
 object BackupManager {
     private const val TAG = "BackupManager"
@@ -44,6 +44,7 @@ object BackupManager {
             routineItems = items,
             routineTicks = ticks,
             settings = app.settings.backupSettings(),
+            healthFeelings = app.notes.rawHealthFeelings(),
         )
         val sealed = withContext(Dispatchers.Default) {
             val salt = ByteArray(BackupFile.SALT_BYTES).also(random::nextBytes)
@@ -128,7 +129,7 @@ object BackupManager {
             }
         }
         app.nights.replaceAll(nights)
-        app.notes.restore(payload.notes, payload.customNotes)
+        app.notes.restore(payload.notes, payload.customNotes, payload.healthFeelings)
         app.routine.restore(payload.routineItems, payload.routineTicks)
         app.settings.restore(payload.settings)
         val snapshot = app.alarms.replaceAll(Codec.decodeAlarms(payload.alarms))

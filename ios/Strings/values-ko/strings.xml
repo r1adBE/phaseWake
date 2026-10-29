@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Apple Health와 다른 앱의 밤도 여기에 표시될 수 있어요. 보려면 건강 데이터와 비교하세요.</string>
     <string name="history_empty_no_data_apple">아직 Apple Health에 수면 데이터가 없어요. 수면이 그곳에 기록되어야 하고(예: Apple Watch로), 건강 앱에서 Phase Wake가 읽을 수 있도록 허용해야 해요.</string>
     <string name="backup_health_hint_apple">다른 앱(예: Apple Health)의 밤은 백업되지 않아요. 그 앱에 그대로 남아 있고, 권한을 허용하면 다시 표시돼요.</string>
+    <string name="health_rationale_apple">Phase Wake는 건강 앱(예: Apple Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되고 깨운 시점을 확인하는 데 사용돼요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
 </resources>

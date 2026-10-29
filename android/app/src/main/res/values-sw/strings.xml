@@ -95,7 +95,7 @@
     <string name="duration_hours_half">saa %1$d½</string>
     <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
     <string name="health_title">Hatua za usingizi kutoka Health Connect</string>
-    <string name="health_rationale">Phase Wake inaweza kusoma hatua za usingizi ambazo programu yako ya afya (kwa mfano Samsung Health) huhifadhi baada ya kuamka. Zinatumika tu kuangalia kama uliamshwa katika usingizi mwepesi na kukuboreshea utambuzi. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
+    <string name="health_rationale">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako na kutumika kuangalia wakati ulipoamshwa. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
     <string name="health_connect">Linganisha na data ya afya</string>
     <string name="health_connect_hint">Husoma hatua za usingizi kutoka Health Connect baada ya kuamka, ili kukagua na kuboresha utambuzi.</string>
     <string name="health_connected">Imeunganishwa</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">Habari za jioni</string>
     <string name="greeting_night">Usiku mwema</string>
     <string name="settings_clear_history">Futa historia</string>
-    <string name="settings_clear_history_text">Inafuta usiku wote uliorekodiwa kwenye simu na saa yako. Kengele zako zinabaki.</string>
+    <string name="settings_clear_history_text">Inafuta usiku wote uliorekodiwa kwenye simu na saa yako. Kengele zako zinabaki. Usiku kutoka programu nyingine unafichwa hapa tu na unabaki kwenye programu hizo.</string>
     <string name="settings_clear_history_confirm">Futa</string>
     <string name="action_cancel">Ghairi</string>
     <string name="editor_advice_title">Kidokezo: kipindi kirefu zaidi</string>

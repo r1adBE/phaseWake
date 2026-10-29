@@ -19,7 +19,7 @@ E-Mail: riad.work@outlook.com
 | Bewegung (Beschleunigungssensor) im Weckfenster | leichten Schlaf erkennen | Uhr, Verlauf auch Handy | 90 Nächte |
 | Puls im Weckfenster | leichten Schlaf erkennen | Uhr, Verlauf auch Handy | 90 Nächte |
 | Bewegung nach «Gute Nacht» | Einschlafzeit erkennen | nur Uhr | bis zur nächsten Nacht |
-| Schlafnotizen (z. B. «Kaffee», «Sport», eigene Notizen) und Befinden | Auswertung, was deinen Schlaf beeinflusst | nur Handy | 90 Nächte; «Verlauf löschen» entfernt sie |
+| Schlafnotizen (z. B. «Kaffee», «Sport», eigene Notizen) und Befinden (auch zu Nächten aus anderen Apps; nie in Health Connect bzw. Apple Health geschrieben) | Auswertung, was deinen Schlaf beeinflusst | nur Handy | 90 Nächte; «Verlauf löschen» entfernt sie |
 | Schlafziel und Einstellungen der Bettzeit-Erinnerung | Erinnerung, Wochenstand | nur Handy | bis du sie änderst |
 | Schlafsitzungen und -phasen aus Health Connect bzw. Apple Health samt Name der Quell-App (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern, Nächte ohne Phase-Wake-Wecker im Verlauf zeigen, Regelmässigkeit und Serien | nur Handy, nur gelesen, bei jedem Öffnen neu (Änderungen und Löschungen in der Quell-App gelten sofort) | werden nicht gespeichert und nicht gesichert |
 | Kurze Tonausschnitte nächtlicher Geräusche über das Mikrofon (nur wenn du «Geräusche aufnehmen» einschaltest) | Schnarchen und Sprechen erkennen und dir zum Anhören zeigen | nur Handy, im App-Ordner | 7 Tage; einzeln oder alle löschbar, auch mit «Verlauf löschen» |

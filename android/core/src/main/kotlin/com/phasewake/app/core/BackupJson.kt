@@ -22,7 +22,8 @@ object BackupJson {
         )
         val root = linkedMapOf<String, Any?>(
             "format" to FORMAT, "version" to VERSION, "createdAt" to payload.createdAt, "alarms" to payload.alarms,
-            "nights" to payload.nights, "notes" to payload.notes, "customNotes" to payload.customNotes,
+            "nights" to payload.nights, "notes" to payload.notes, "healthFeelings" to payload.healthFeelings,
+            "customNotes" to payload.customNotes,
             "routineItems" to payload.routineItems, "routineTicks" to payload.routineTicks, "settings" to settings,
         )
         return buildString { value(root) }
@@ -39,6 +40,7 @@ object BackupJson {
             alarms = root["alarms"] as? String ?: throw CodecException("Wecker fehlen"),
             nights = (root["nights"] as? List<*>).orEmpty().filterIsInstance<String>(),
             notes = root["notes"] as? String ?: "",
+            healthFeelings = root["healthFeelings"] as? String ?: "",
             customNotes = root["customNotes"] as? String ?: "",
             routineItems = root["routineItems"] as? String,
             routineTicks = root["routineTicks"] as? String ?: "",

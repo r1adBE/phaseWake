@@ -161,6 +161,8 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         charts = insights.charts,
         items = insights.history,
         canConnectHealth = insights.health == HealthState.AVAILABLE,
+        healthFeelings = data.healthFeelings,
+        onHealthFeeling = { date, feeling -> app.appScope.launch { app.notes.setHealthFeeling(date, feeling) } },
     )
 }
 

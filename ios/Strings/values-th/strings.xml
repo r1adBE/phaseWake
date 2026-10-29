@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">คืนจาก Apple Health และแอปอื่นก็แสดงที่นี่ได้ หากต้องการดู ให้เปรียบเทียบกับข้อมูลสุขภาพ</string>
     <string name="history_empty_no_data_apple">ยังไม่มีข้อมูลการนอนจาก Apple Health ต้องมีการบันทึกการนอนไว้ที่นั่น เช่น ด้วย Apple Watch ของคุณ และต้องอนุญาตให้ Phase Wake อ่านข้อมูลนั้นในแอปสุขภาพ</string>
     <string name="backup_health_hint_apple">คืนจากแอปอื่น (เช่น Apple Health) จะไม่ถูกสำรองข้อมูล โดยยังอยู่ที่นั่นและจะแสดงอีกครั้งเมื่ออนุญาตการเข้าถึง</string>
+    <string name="health_rationale_apple">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Apple Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณและใช้ตรวจสอบช่วงเวลาที่ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
 </resources>

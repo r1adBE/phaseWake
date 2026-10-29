@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Lo-faseak Health Connect-etik</string>
-    <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) esnatu ondoren gordetzen dituen lo-faseak irakur ditzake. Lo arinean esnatu zaituen egiaztatzeko eta zuretzako hautematea hobetzeko soilik erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
+    <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, eta esnatu zaituen unea egiaztatzeko erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
     <string name="health_connect">Alderatu osasun-datuekin</string>
     <string name="health_connect_hint">Esnatu ondoren, lo-faseak irakurtzen ditu Health Connect-etik, hautematea egiaztatu eta hobetzeko.</string>
     <string name="health_connected">Konektatuta</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Arratsalde on</string>
     <string name="greeting_night">Gabon</string>
     <string name="settings_clear_history">Ezabatu historia</string>
-    <string name="settings_clear_history_text">Telefonoan eta erlojuan erregistratutako gau guztiak ezabatzen ditu. Alarmak mantendu egiten dira.</string>
+    <string name="settings_clear_history_text">Telefonoan eta erlojuan erregistratutako gau guztiak ezabatzen ditu. Alarmak mantendu egiten dira. Beste aplikazio batzuetako gauak hemen ezkutatu baino ez dira egiten, eta aplikazio horietan geratzen dira.</string>
     <string name="settings_clear_history_confirm">Ezabatu</string>
     <string name="action_cancel">Utzi</string>
     <string name="editor_advice_title">Aholkua: leiho handiagoa</string>

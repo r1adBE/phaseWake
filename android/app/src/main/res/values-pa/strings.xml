@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ਘੰ.</string>
     <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="health_title">Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ</string>
-    <string name="health_rationale">ਤੁਹਾਡੇ ਜਾਗਣ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦੇ ਜੋ ਪੜਾਅ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਸਿਰਫ਼ ਇਹ ਜਾਂਚਣ ਲਈ ਵਰਤੇ ਜਾਂਦੇ ਹਨ ਕਿ ਤੁਹਾਨੂੰ ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਇਆ ਗਿਆ ਜਾਂ ਨਹੀਂ, ਅਤੇ ਤੁਹਾਡੇ ਲਈ ਪਛਾਣ ਸੁਧਾਰਨ ਲਈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
+    <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦਾ ਪਲ ਜਾਂਚਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
     <string name="health_connect">ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
     <string name="health_connect_hint">ਜਾਗਣ ਤੋਂ ਬਾਅਦ Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ, ਪਛਾਣ ਜਾਂਚਣ ਅਤੇ ਸੁਧਾਰਨ ਲਈ।</string>
     <string name="health_connected">ਕਨੈਕਟ ਹੈ</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">ਸ਼ੁਭ ਸ਼ਾਮ</string>
     <string name="greeting_night">ਸ਼ੁਭ ਰਾਤ</string>
     <string name="settings_clear_history">ਇਤਿਹਾਸ ਮਿਟਾਓ</string>
-    <string name="settings_clear_history_text">ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਦਰਜ ਸਾਰੀਆਂ ਰਾਤਾਂ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ।</string>
+    <string name="settings_clear_history_text">ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਦਰਜ ਸਾਰੀਆਂ ਰਾਤਾਂ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ। ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਇੱਥੇ ਸਿਰਫ਼ ਲੁਕਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਉਨ੍ਹਾਂ ਐਪਾਂ ਵਿੱਚ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ।</string>
     <string name="settings_clear_history_confirm">ਮਿਟਾਓ</string>
     <string name="action_cancel">ਰੱਦ ਕਰੋ</string>
     <string name="editor_advice_title">ਸੁਝਾਅ: ਲੰਮੀ ਮਿਆਦ</string>

@@ -4,7 +4,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 /// Inhalt der Sicherung aus dem Stand des iPhones bilden und wieder einspielen. Formate wie Android
-/// (`BackupPayload`); ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten.
+/// (`BackupPayload`); ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten, mit dem Befinden zu Nächten aus anderen Apps.
 @MainActor
 enum BackupIO {
     private static let themeKey = "themeMode"
@@ -27,7 +27,8 @@ enum BackupIO {
                 soundRecDefault: model.soundRecDefault, theme: theme.rawValue.uppercased(),
                 holidayCountry: model.holidays.country, holidayRegion: model.holidays.region,
                 historyClearedAt: model.historyClearedAt.map { Int64($0.timeIntervalSince1970 * 1000) }
-            )
+            ),
+            healthFeelings: HealthFeelings.encode(model.healthFeelings)
         )
     }
 
@@ -63,7 +64,8 @@ enum BackupIO {
          SleepNotes.decode(payload.notes).count)
     }
 
-    /// Ersetzt Wecker, Verlauf, Notizen, Abendroutine und Einstellungen; danach geht alles an die Uhr.
+    /// Ersetzt Wecker, Verlauf, Notizen (samt Befinden zu Nächten aus anderen Apps), Abendroutine und Einstellungen;
+    /// danach geht alles an die Uhr.
     static func apply(_ payload: BackupPayload, to model: PhoneModel) {
         let storage = model.storage
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
@@ -71,6 +73,7 @@ enum BackupIO {
         storage.replaceNights(payload.nights.compactMap { try? Codec.decodeNight($0) })
         storage.replaceNotes(SleepNotes.decode(payload.notes))
         storage.setCustomNotes(SleepNotes.decodeCustom(payload.customNotes))
+        storage.replaceHealthFeelings(HealthFeelings.decode(payload.healthFeelings))
         let defaults = UserDefaults.standard
         defaults.set(payload.routineItems, forKey: PhoneModel.routineItemsKey)
         defaults.set(payload.routineTicks, forKey: PhoneModel.routineTicksKey)

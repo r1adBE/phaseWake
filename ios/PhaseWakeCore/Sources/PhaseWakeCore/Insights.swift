@@ -42,10 +42,8 @@ public struct SleepSummary: Equatable, Sendable {
 
     /// Ab 3 Stunden Lücke zwischen Phasen beginnt eine neue Nacht (ein Mittagsschlaf gehört nicht zur Nacht).
     public static let newNightGap: TimeInterval = 3 * 3600
-    /// Nächte mit weniger als 180 geschlafenen Minuten zählen nicht (Nickerchen, Messfehler).
-    public static let minAsleepMinutes = 180
-
-    /// Fasst Phasen zu Nächten zusammen, älteste zuerst.
+    /// Fasst Phasen zu Nächten zusammen, älteste zuerst; Strecken ganz ohne Schlaf fallen weg. Ohne Mindestdauer:
+    /// Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher `HealthHistory` – wie im Verlauf.
     public static func group(_ spans: [StageSpan]) -> [SleepSummary] {
         var groups: [[StageSpan]] = []
         for span in spans.sorted(by: { $0.start < $1.start }) {
@@ -60,7 +58,7 @@ public struct SleepSummary: Equatable, Sendable {
             guard let start = asleep.map(\.start).min(), let end = group.map(\.end).max() else { return nil }
             // Ganze Minuten je Phase, wie `Duration.toMinutes()`.
             let minutes = asleep.reduce(0) { $0 + Int($1.end.timeIntervalSince($1.start) / 60) }
-            return minutes < minAsleepMinutes ? nil : SleepSummary(start: start, end: end, asleepMinutes: minutes)
+            return SleepSummary(start: start, end: end, asleepMinutes: minutes)
         }
     }
 }
@@ -89,8 +87,10 @@ public struct Trends: Equatable, Sendable {
     /// Mindestens so viele Nächte für die Streuung der Einschlafzeit.
     public static let minNightsForSpread = 5
 
-    /// Rechnet den Wochenvergleich: Woche = 7 × 24 Stunden vor `now`, die Woche davor die 7 × 24 Stunden davor. Schlaf zählt nach dem Ende der Nacht, Befinden nach dem Weckmoment.
-    public static func compute(nights: [NightRecord], sleeps: [SleepSummary], now: Date, calendar: Calendar) -> Trends {
+    /// Rechnet den Wochenvergleich: Woche = 7 × 24 Stunden vor `now`, die Woche davor die 7 × 24 Stunden davor. Schlaf zählt nach dem Ende der Nacht, Befinden nach dem Weckmoment,
+    /// Befinden zu Nächten aus anderen Apps (`health`) nach dem Ende ihrer Sitzung.
+    public static func compute(nights: [NightRecord], sleeps: [SleepSummary], now: Date, calendar: Calendar,
+                               health: [HealthFeeling] = []) -> Trends {
         let weekAgo = now.addingTimeInterval(-7 * 86_400)
         let twoWeeksAgo = now.addingTimeInterval(-14 * 86_400)
         func asleep(_ from: Date, _ to: Date) -> Int? {
@@ -99,7 +99,8 @@ public struct Trends: Equatable, Sendable {
             return list.reduce(0) { $0 + $1.asleepMinutes } / list.count
         }
         func feeling(_ from: Date, _ to: Date) -> Double? {
-            let list = nights.filter { $0.wokeAt > from && $0.wokeAt <= to }.compactMap(\.feeling)
+            let own: [Int] = nights.filter { $0.wokeAt > from && $0.wokeAt <= to }.compactMap(\.feeling)
+            let list = own + health.filter { $0.at > from && $0.at <= to }.map(\.feeling)
             guard list.count >= minNightsPerWeek else { return nil }
             return Double(list.reduce(0, +)) / Double(list.count)
         }

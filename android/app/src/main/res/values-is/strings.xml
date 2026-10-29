@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ klst</string>
     <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
     <string name="health_title">Svefnstig úr Health Connect</string>
-    <string name="health_rationale">Phase Wake getur lesið svefnstigin sem heilsuforritið þitt (til dæmis Samsung Health) vistar eftir að þú vaknar. Þau eru aðeins notuð til að athuga hvort þú hafir verið vakin(n) í léttum svefni og til að bæta greininguna fyrir þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
+    <string name="health_rationale">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum og eru notuð til að athuga vakningarstundina. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
     <string name="health_connect">Bera saman við heilsugögn</string>
     <string name="health_connect_hint">Les svefnstig úr Health Connect eftir að þú vaknar, til að athuga og bæta greininguna.</string>
     <string name="health_connected">Tengt</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Gott kvöld</string>
     <string name="greeting_night">Góða nótt</string>
     <string name="settings_clear_history">Eyða ferli</string>
-    <string name="settings_clear_history_text">Eyðir öllum skráðum nóttum í símanum og úrinu. Vekjararnir haldast.</string>
+    <string name="settings_clear_history_text">Eyðir öllum skráðum nóttum í símanum og úrinu. Vekjararnir haldast. Nætur úr öðrum forritum eru aðeins faldar hér og haldast í þeim forritum.</string>
     <string name="settings_clear_history_confirm">Eyða</string>
     <string name="action_cancel">Hætta við</string>
     <string name="editor_advice_title">Ábending: stærri gluggi</string>

@@ -37,12 +37,14 @@ final class InsightsTests: XCTestCase {
             span("2026-10-26T23:10", "2026-10-27T03:00", .light),
             span("2026-10-27T03:00", "2026-10-27T03:20", .awake),
             span("2026-10-27T03:20", "2026-10-27T06:40", .deep),
+            // Kurz, aber eigene Strecke: ohne Mindestdauer (Nickerchen filtert vorher HealthHistory).
             span("2026-10-27T14:00", "2026-10-27T14:40", .light),
             span("2026-10-28T00:30", "2026-10-28T06:30", .rem),
         ])
-        XCTAssertEqual(nights.count, 2)
+        XCTAssertEqual(nights.count, 3)
         XCTAssertEqual(nights[0], SleepSummary(start: at("2026-10-26T23:10"), end: at("2026-10-27T06:40"), asleepMinutes: 430))
-        XCTAssertEqual(nights[1].asleepMinutes, 360)
+        XCTAssertEqual(nights[1].asleepMinutes, 40)
+        XCTAssertEqual(nights[2].asleepMinutes, 360)
         XCTAssertEqual(SleepSummary.group([span("2026-10-27T01:00", "2026-10-27T07:00", .awake)]), [])
     }
 

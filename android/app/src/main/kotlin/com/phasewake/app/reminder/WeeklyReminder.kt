@@ -9,6 +9,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.phasewake.app.R
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.HealthFeeling
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.SleepSummary
@@ -59,7 +60,8 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
 
     /**
      * Text der nächsten Mitteilung vorberechnen und ablegen; nur aus der sichtbaren App aufrufen
-     * (dort sind die Schlafdaten aus Health Connect lesbar). Ohne Rückblick nichts.
+     * (dort sind die Schlafdaten aus Health Connect lesbar). Ohne Rückblick nichts. [health]: Befinden zu Nächten
+     * aus anderen Apps im Verlauf.
      */
     suspend fun prepare(
         nights: List<NightRecord>,
@@ -67,13 +69,14 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
         notes: Map<LocalDate, List<String>>,
         goalMinutes: Int,
         custom: List<CustomNote>,
+        health: List<HealthFeeling> = emptyList(),
     ) {
         val app = context.phoneApp
         if (!app.settings.weeklyReview.first()) return
         val zone = ZoneId.systemDefault()
         val at = WeeklySummary.nextNotification(maxOf(now(), Instant.ofEpochMilli(app.settings.weeklyShownAt())), zone)
         val weekEnd = WeeklySummary.weekEnd(at.atZone(zone).toLocalDate())
-        val summary = WeeklySummary.of(nights, sleeps, notes, zone, goalMinutes, weekEnd)
+        val summary = WeeklySummary.of(nights, sleeps, notes, zone, goalMinutes, weekEnd, health)
         app.settings.setWeeklyPrepared(weekEnd, textOf(summary, custom).orEmpty())
     }
 

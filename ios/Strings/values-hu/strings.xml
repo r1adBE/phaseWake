@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">A Apple Health és más alkalmazások éjszakái is megjelenhetnek itt. Ha látni szeretnéd őket, vesd össze az egészségügyi adatokkal.</string>
     <string name="history_empty_no_data_apple">Még nincsenek alvásadatok az Apple Health-ből. Az alvást ott kell rögzíteni, például az Apple Watch-oddal, és a Phase Wake-nek engedélyt kell kapnia az olvasásukra az Egészség appban.</string>
     <string name="backup_health_hint_apple">Más alkalmazások éjszakái (pl. Apple Health) nem kerülnek a biztonsági mentésbe – ott maradnak, és a hozzáférés megadása után újra megjelennek.</string>
+    <string name="health_rationale_apple">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például az Apple Health) eltárol. Ezek megjelennek az előzményeidben, és az ébresztés pillanatának ellenőrzésére szolgálnak. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
 </resources>

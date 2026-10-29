@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ နာရီ</string>
     <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="health_title">Health Connect မှ အိပ်စက်မှုအဆင့်များ</string>
-    <string name="health_rationale">နိုးပြီးနောက် သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုအဆင့်များကို Phase Wake ဖတ်နိုင်သည်။ အိပ်ရေးပေါ့ချိန်တွင် နှိုးခဲ့သလား စစ်ဆေးရန်နှင့် သင့်အတွက် ရှာဖွေမှု ပိုကောင်းစေရန်သာ အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
+    <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး သင့်ကို နှိုးခဲ့သည့်အချိန်ကို စစ်ဆေးရန် အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
     <string name="health_connect">ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ရန်</string>
     <string name="health_connect_hint">ရှာဖွေမှုကို စစ်ဆေးပြီး ပိုကောင်းစေရန် နိုးပြီးနောက် Health Connect မှ အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။</string>
     <string name="health_connected">ချိတ်ဆက်ထားသည်</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">မင်္ဂလာညနေခင်းပါ</string>
     <string name="greeting_night">ကောင်းသောညပါ</string>
     <string name="settings_clear_history">မှတ်တမ်း ဖျက်ရန်</string>
-    <string name="settings_clear_history_text">ဖုန်းနှင့် နာရီပေါ်ရှိ မှတ်တမ်းတင်ထားသော ညအားလုံးကို ဖျက်သည်။ နှိုးစက်များ ကျန်ရှိမည်။</string>
+    <string name="settings_clear_history_text">ဖုန်းနှင့် နာရီပေါ်ရှိ မှတ်တမ်းတင်ထားသော ညအားလုံးကို ဖျက်သည်။ နှိုးစက်များ ကျန်ရှိမည်။ အခြားအက်ပ်များမှ ညများကို ဤနေရာတွင် ဖျောက်ထားရုံသာဖြစ်ပြီး ထိုအက်ပ်များတွင် ဆက်ရှိနေမည်။</string>
     <string name="settings_clear_history_confirm">ဖျက်ရန်</string>
     <string name="action_cancel">မလုပ်တော့ပါ</string>
     <string name="editor_advice_title">အကြံ- ပိုကြီးသော အချိန်အပိုင်း</string>

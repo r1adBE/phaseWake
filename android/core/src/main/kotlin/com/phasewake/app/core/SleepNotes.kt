@@ -187,16 +187,16 @@ data class NoteEffect(
          * geweckte). «Ohne» = jede dieser Nächte, an der die Notiz nicht gesetzt ist.
          *
          * @param asleep Schlafdauer in Minuten je Nachtdatum (aus der Gesundheits-App), falls vorhanden.
+         * @param health Befinden zu Nächten aus anderen Apps; zählt an Nachtdaten ohne eigenes ([HealthFeelings.byDate]).
          */
         fun compute(
             nights: List<NightRecord>,
             notes: Map<LocalDate, List<String>>,
             zone: ZoneId,
             asleep: Map<LocalDate, Long> = emptyMap(),
+            health: List<HealthFeeling> = emptyList(),
         ): List<NoteEffect> {
-            val rated = NightHistory.trim(nights).filter { it.feeling != null }
-                .groupBy { SleepNotes.nightDate(it, zone) }
-                .mapValues { (_, list) -> list.maxBy { it.wokeAt }.feeling!! }
+            val rated = HealthFeelings.byDate(NightHistory.trim(nights), health, zone)
             val ids = rated.keys.flatMap { notes[it].orEmpty() }.distinct()
             return ids.mapNotNull { id ->
                 val (with, without) = rated.entries.partition { id in notes[it.key].orEmpty() }

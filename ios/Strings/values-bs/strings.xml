@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Ovdje se mogu prikazati i noći iz aplikacije Apple Health i drugih aplikacija. Da ih vidiš, uporedi sa zdravstvenim podacima.</string>
     <string name="history_empty_no_data_apple">Još nema podataka o spavanju iz Apple Healtha. Spavanje se mora tamo bilježiti, npr. tvojim Apple Watchom, a Phase Wake mora imati dozvolu da ga čita u aplikaciji Health.</string>
     <string name="backup_health_hint_apple">Noći iz drugih aplikacija (npr. Apple Health) se ne spremaju u sigurnosnu kopiju – ostaju tamo i ponovo se pojave čim se odobri pristup.</string>
+    <string name="health_rationale_apple">Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Apple Health) pohranjuje. Prikazuju se u tvojoj historiji i koriste se za provjeru trenutka tvog buđenja. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon.</string>
 </resources>

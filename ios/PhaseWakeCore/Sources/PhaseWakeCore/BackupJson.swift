@@ -36,7 +36,8 @@ public struct BackupSettings: Equatable, Sendable {
 }
 
 /// Inhalt einer Sicherung: die gespeicherten Texte in ihren eigenen Formaten (Wecker, Nächte, Notizen,
-/// Abendroutine) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten. Identisch zu Kotlin.
+/// Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne
+/// Gesundheitsdaten (die Nächte aus anderen Apps selbst bleiben dort). Identisch zu Kotlin.
 public struct BackupPayload: Equatable, Sendable {
     /// Wert von «format».
     public static let format = "phasewake-backup"
@@ -59,10 +60,12 @@ public struct BackupPayload: Equatable, Sendable {
     public var routineTicks: String
     /// Einstellungen.
     public var settings: BackupSettings
+    /// Befinden zu Nächten aus anderen Apps (`HealthFeelings.encode`); fehlt in älteren Sicherungen (leer).
+    public var healthFeelings: String
 
     /// Erzeugt einen Inhalt.
     public init(createdAt: Int64, alarms: String, nights: [String], notes: String, customNotes: String,
-                routineItems: String?, routineTicks: String, settings: BackupSettings) {
+                routineItems: String?, routineTicks: String, settings: BackupSettings, healthFeelings: String = "") {
         self.createdAt = createdAt
         self.alarms = alarms
         self.nights = nights
@@ -71,6 +74,7 @@ public struct BackupPayload: Equatable, Sendable {
         self.routineItems = routineItems
         self.routineTicks = routineTicks
         self.settings = settings
+        self.healthFeelings = healthFeelings
     }
 
     /// Als JSON-Objekt (UTF-8); Schlüssel wie Kotlin, Reihenfolge ohne Bedeutung.
@@ -78,7 +82,8 @@ public struct BackupPayload: Equatable, Sendable {
         let s = settings
         let root: [String: Any] = [
             "format": Self.format, "version": Self.version, "createdAt": NSNumber(value: createdAt), "alarms": alarms,
-            "nights": nights, "notes": notes, "customNotes": customNotes, "routineItems": routineItems.map { $0 as Any } ?? NSNull(),
+            "nights": nights, "notes": notes, "healthFeelings": healthFeelings, "customNotes": customNotes,
+            "routineItems": routineItems.map { $0 as Any } ?? NSNull(),
             "routineTicks": routineTicks,
             "settings": [
                 "sleepGoal": s.sleepGoal, "bedtimeReminder": s.bedtimeReminder, "weeklyReview": s.weeklyReview,
@@ -123,7 +128,8 @@ public struct BackupPayload: Equatable, Sendable {
                 holidayCountry: s["holidayCountry"] as? String ?? d.holidayCountry,
                 holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion,
                 historyClearedAt: integer(s["historyClearedAt"])
-            )
+            ),
+            healthFeelings: root["healthFeelings"] as? String ?? ""
         )
     }
 

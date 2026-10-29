@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health మరియు ఇతర యాప్‌ల రాత్రులు కూడా ఇక్కడ కనిపించవచ్చు. వాటిని చూడటానికి, హెల్త్ డేటాతో పోల్చండి.</string>
     <string name="history_empty_no_data_apple">Apple Health నుండి ఇంకా నిద్ర డేటా లేదు. నిద్ర అక్కడ నమోదు కావాలి, ఉదాహరణకు మీ Apple Watch ద్వారా, మరియు Health యాప్‌లో Phase Wake కి దాన్ని చదవడానికి అనుమతి ఉండాలి.</string>
     <string name="backup_health_hint_apple">ఇతర యాప్‌ల రాత్రులు (ఉదా. Apple Health) బ్యాకప్ కావు – అవి అక్కడే ఉంటాయి, అనుమతి ఇచ్చిన వెంటనే మళ్లీ కనిపిస్తాయి.</string>
+    <string name="health_rationale_apple">మీ హెల్త్ యాప్ (ఉదా. Apple Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, మిమ్మల్ని లేపిన క్షణాన్ని తనిఖీ చేయడానికి వాడబడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
 </resources>

@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Is féidir le hoícheanta ó Apple Health agus ó aipeanna eile a bheith le feiceáil anseo freisin. Le hiad a fheiceáil, cuir i gcomparáid le sonraí sláinte.</string>
     <string name="history_empty_no_data_apple">Níl aon sonraí codlata ó Apple Health fós. Caithfear an codladh a thaifeadadh ansin, mar shampla le d’Apple Watch, agus caithfear cead a thabhairt do Phase Wake é a léamh san aip Health.</string>
     <string name="backup_health_hint_apple">Ní dhéantar cúltaca d’oícheanta ó aipeanna eile (m.sh. Apple Health) – fanann siad ansin agus feicfear arís iad nuair a thugtar rochtain.</string>
+    <string name="health_rationale_apple">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Apple Health) a léamh. Taispeántar iad i do stair agus úsáidtear iad chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
 </resources>

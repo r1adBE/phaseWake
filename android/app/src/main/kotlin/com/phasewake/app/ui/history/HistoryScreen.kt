@@ -116,6 +116,9 @@ fun HistoryScreen(
     items: List<HistoryItem>? = null,
     /** Health Connect ist nutzbar, die Freigabe fehlt noch (Knopf im leeren Verlauf). */
     canConnectHealth: Boolean = false,
+    /** Befinden zu Nächten aus anderen Apps je Nachtdatum und wie es gesetzt wird (nur bei Phase Wake gespeichert). */
+    healthFeelings: Map<LocalDate, Int> = emptyMap(),
+    onHealthFeeling: (LocalDate, Int) -> Unit = { _, _ -> },
 ) {
     val history = remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
     val latestByDate = remember(nights) {
@@ -165,7 +168,10 @@ fun HistoryScreen(
                 is HistoryEntry.Health -> {
                     val date = entry.item.date
                     HealthNightCard(
-                        entry.item.session ?: return@items, notes[date].orEmpty(), customNotes,
+                        entry.item.session ?: return@items,
+                        feeling = NightFeeling(healthFeelings[date]) { onHealthFeeling(date, it) },
+                        notes = notes[date].orEmpty(),
+                        customNotes = customNotes,
                         onToggleNote = { onToggleNote(date, it) },
                         sounds = NightSounds(SoundEvents.forNight(soundClips, date), soundFile, onDeleteClip) { onDeleteNightClips(date) },
                         modifier = Modifier.animateItem(),

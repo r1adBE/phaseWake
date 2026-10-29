@@ -82,11 +82,13 @@ private fun sessionLines(context: Context, session: HealthSession, zone: ZoneId)
 /**
  * Nacht aus Health Connect ohne Phase-Wake-Wecker: Datum und Aufwachzeit, kurzer Vermerk mit Herz-Symbol und Quelle
  * (nicht nur Farbe), Zeiten, Dauern, Phasen-Band mit Summen, ausführlicher Hinweis zum Spiegel der Quelle,
- * Notizen und Geräusche. Kein Weckmoment.
+ * Befinden, Notizen und Geräusche. Kein Weckmoment.
+ *
  */
 @Composable
 internal fun HealthNightCard(
     session: HealthSession,
+    feeling: NightFeeling,
     notes: List<String>,
     customNotes: List<CustomNote>,
     onToggleNote: (String) -> Unit,
@@ -133,9 +135,33 @@ internal fun HealthNightCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 6.dp),
             )
+            SessionFeeling(feeling)
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
             SoundClipsSection(sounds.clips, sounds.fileOf, sounds.onDelete, sounds.onDeleteAll)
         }
+    }
+}
+
+/**
+ * Befinden einer Nacht aus einer anderen App: [value] 1–5 (nur bei Phase Wake gespeichert, nie in Health Connect)
+ * oder `null`; [onPick] speichert die Wahl.
+ */
+internal data class NightFeeling(val value: Int? = null, val onPick: (Int) -> Unit = {})
+
+/** Befinden der Nacht als Text («Befinden: Gut»); noch keines: die fünf Knöpfe ([FeelingPicker]). */
+@Composable
+private fun SessionFeeling(feeling: NightFeeling) {
+    val value = feeling.value
+    if (value == null) {
+        FeelingPicker(onPick = feeling.onPick, modifier = Modifier.padding(top = 10.dp))
+    } else {
+        val context = LocalContext.current
+        Text(
+            context.getString(R.string.feeling_value, feelingName(context, value)),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 6.dp),
+        )
     }
 }
 

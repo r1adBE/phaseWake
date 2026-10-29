@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Auch Nächte aus Apple Health und anderen Apps können hier erscheinen. Dafür mit Gesundheitsdaten abgleichen.</string>
     <string name="history_empty_no_data_apple">Noch keine Schlafdaten aus Apple Health. Der Schlaf muss dort aufgezeichnet werden, zum Beispiel von deiner Apple Watch, und Phase Wake muss ihn in der Health-App lesen dürfen.</string>
     <string name="backup_health_hint_apple">Nächte aus anderen Apps (z. B. Apple Health) werden nicht gesichert – sie bleiben dort und erscheinen wieder, sobald die Freigabe erteilt ist.</string>
+    <string name="health_rationale_apple">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Apple Health) ablegt. Sie erscheinen in deinem Verlauf und dienen dazu, den Weckmoment zu prüfen. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
 </resources>

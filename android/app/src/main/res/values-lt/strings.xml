@@ -98,7 +98,7 @@
     <string name="duration_hours_half">%1$d½ val.</string>
     <string name="duration_hours_minutes">%1$d val. %2$d min</string>
     <string name="health_title">Miego fazės iš Health Connect</string>
-    <string name="health_rationale">Phase Wake gali nuskaityti miego fazes, kurias tavo sveikatos programėlė (pvz., Samsung Health) išsaugo po pabudimo. Jos naudojamos tik patikrinti, ar tave pažadino lengvo miego metu, ir patobulinti aptikimą tau. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
+    <string name="health_rationale">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Samsung Health). Jie rodomi tavo istorijoje ir naudojami patikrinti, kuriuo momentu tave pažadino. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
     <string name="health_connect">Palyginti su sveikatos duomenimis</string>
     <string name="health_connect_hint">Po pabudimo nuskaito miego fazes iš Health Connect, kad patikrintų ir patobulintų aptikimą.</string>
     <string name="health_connected">Prijungta</string>
@@ -131,7 +131,7 @@
     <string name="greeting_evening">Labas vakaras</string>
     <string name="greeting_night">Labanakt</string>
     <string name="settings_clear_history">Ištrinti istoriją</string>
-    <string name="settings_clear_history_text">Ištrina visas įrašytas naktis telefone ir laikrodyje. Žadintuvai lieka.</string>
+    <string name="settings_clear_history_text">Ištrina visas įrašytas naktis telefone ir laikrodyje. Žadintuvai lieka. Naktys iš kitų programų čia tik paslepiamos ir lieka tose programose.</string>
     <string name="settings_clear_history_confirm">Ištrinti</string>
     <string name="action_cancel">Atšaukti</string>
     <string name="editor_advice_title">Patarimas: didesnis langas</string>

@@ -99,6 +99,17 @@ class BackupTest {
     }
 
     @Test
+    fun backupKeepsHealthFeelings() {
+        val rated = payload.copy(healthFeelings = "2026-10-01|4\n2026-10-02|2")
+        assertTrue("\"healthFeelings\":\"2026-10-01|4\\n2026-10-02|2\"" in rated.toJson())
+        assertEquals(rated, BackupPayload.fromJson(rated.toJson()))
+        // Ältere Sicherungen (auch der Testvektor) ohne den Schlüssel: leer.
+        val plain = File(testdata, "backup-v1.json").readText().trim()
+        assertEquals("", BackupPayload.fromJson(plain).healthFeelings)
+        assertEquals("", payload.healthFeelings)
+    }
+
+    @Test
     fun wrongPasswordOrChangedFile() {
         val sealed = BackupFile.encrypt("{}".encodeToByteArray(), "richtig1", salt, nonce)
         assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(sealed, "falsch12") }.reason)

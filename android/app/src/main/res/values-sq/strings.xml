@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ orë</string>
     <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="health_title">Fazat e gjumit nga Health Connect</string>
-    <string name="health_rationale">Phase Wake mund të lexojë fazat e gjumit që aplikacioni yt i shëndetit (për shembull Samsung Health) ruan pasi zgjohesh. Ato përdoren vetëm për të kontrolluar nëse u zgjove në gjumë të lehtë dhe për të përmirësuar dallimin për ty. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
+    <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd dhe përdoren për të kontrolluar momentin e zgjimit. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
     <string name="health_connect">Krahaso me të dhënat e shëndetit</string>
     <string name="health_connect_hint">Pas zgjimit lexon fazat e gjumit nga Health Connect, për të kontrolluar dhe përmirësuar dallimin.</string>
     <string name="health_connected">E lidhur</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Mirëmbrëma</string>
     <string name="greeting_night">Natën e mirë</string>
     <string name="settings_clear_history">Fshi historikun</string>
-    <string name="settings_clear_history_text">Fshin të gjitha netët e regjistruara në telefon dhe në orë. Alarmet e tua mbeten.</string>
+    <string name="settings_clear_history_text">Fshin të gjitha netët e regjistruara në telefon dhe në orë. Alarmet e tua mbeten. Netët nga aplikacione të tjera këtu vetëm fshihen nga pamja dhe mbeten në ato aplikacione.</string>
     <string name="settings_clear_history_confirm">Fshi</string>
     <string name="action_cancel">Anulo</string>
     <string name="editor_advice_title">Këshillë: një interval më i gjatë</string>

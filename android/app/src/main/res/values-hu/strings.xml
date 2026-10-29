@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ ó</string>
     <string name="duration_hours_minutes">%1$d ó %2$d p</string>
     <string name="health_title">Alvási fázisok a Health Connectből</string>
-    <string name="health_rationale">A Phase Wake el tudja olvasni az alvási fázisokat, amelyeket az egészségügyi appod (például a Samsung Health) ébredés után eltárol. Ezeket csak annak ellenőrzésére használja, hogy könnyű alvásban ébresztettek-e, és hogy javítsa az észlelést számodra. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
+    <string name="health_rationale">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például a Samsung Health) eltárol. Ezek megjelennek az előzményeidben, és az ébresztés pillanatának ellenőrzésére szolgálnak. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
     <string name="health_connect">Összevetés egészségügyi adatokkal</string>
     <string name="health_connect_hint">Ébredés után beolvassa az alvási fázisokat a Health Connectből, hogy ellenőrizze és javítsa az észlelést.</string>
     <string name="health_connected">Csatlakoztatva</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Jó estét</string>
     <string name="greeting_night">Jó éjszakát</string>
     <string name="settings_clear_history">Előzmények törlése</string>
-    <string name="settings_clear_history_text">Törli az összes rögzített éjszakát a telefonodon és az órádon. Az ébresztőid megmaradnak.</string>
+    <string name="settings_clear_history_text">Törli az összes rögzített éjszakát a telefonodon és az órádon. Az ébresztőid megmaradnak. A más alkalmazásokból származó éjszakák itt csak el lesznek rejtve, és megmaradnak azokban az alkalmazásokban.</string>
     <string name="settings_clear_history_confirm">Törlés</string>
     <string name="action_cancel">Mégse</string>
     <string name="editor_advice_title">Tipp: nagyobb ablak</string>

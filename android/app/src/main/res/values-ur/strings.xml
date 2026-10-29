@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ گھنٹے</string>
     <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
     <string name="health_title">Health Connect سے نیند کے مراحل</string>
-    <string name="health_rationale">Phase Wake نیند کے وہ مراحل پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) تمہارے جاگنے کے بعد محفوظ کرتی ہے۔ ان سے صرف یہ دیکھا جاتا ہے کہ تمہیں ہلکی نیند میں جگایا گیا یا نہیں، اور تمہارے لیے پہچان بہتر بنائی جاتی ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
+    <string name="health_rationale">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے اور تمہیں جگانے کا لمحہ جانچنے کے لیے استعمال ہوتا ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
     <string name="health_connect">صحت کے ڈیٹا سے موازنہ کرو</string>
     <string name="health_connect_hint">جاگنے کے بعد Health Connect سے نیند کے مراحل پڑھتا ہے، تاکہ پہچان کو جانچا اور بہتر بنایا جا سکے۔</string>
     <string name="health_connected">منسلک</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">شام بخیر</string>
     <string name="greeting_night">شب بخیر</string>
     <string name="settings_clear_history">تاریخچہ حذف کرو</string>
-    <string name="settings_clear_history_text">فون اور گھڑی پر ریکارڈ کی گئی تمام راتیں حذف ہو جائیں گی۔ تمہارے الارم باقی رہیں گے۔</string>
+    <string name="settings_clear_history_text">فون اور گھڑی پر ریکارڈ کی گئی تمام راتیں حذف ہو جائیں گی۔ تمہارے الارم باقی رہیں گے۔ دوسری ایپس کی راتیں یہاں صرف چھپائی جاتی ہیں اور انہی ایپس میں رہتی ہیں۔</string>
     <string name="settings_clear_history_confirm">حذف کرو</string>
     <string name="action_cancel">منسوخ</string>
     <string name="editor_advice_title">مشورہ: بڑی ونڈو</string>

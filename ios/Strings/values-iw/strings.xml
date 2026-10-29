@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">גם לילות מ־Apple Health ומאפליקציות אחרות יכולים להופיע כאן. כדי לראות אותם, השוו לנתוני בריאות.</string>
     <string name="history_empty_no_data_apple">עדיין אין נתוני שינה מ-Apple Health. השינה צריכה להירשם שם, למשל על ידי ה-Apple Watch, ו-Phase Wake צריכה הרשאה לקרוא אותה באפליקציית Health.</string>
     <string name="backup_health_hint_apple">לילות מאפליקציות אחרות (למשל Apple Health) לא נכללים בגיבוי – הם נשארים שם ומופיעים שוב ברגע שניתנת הרשאה.</string>
+    <string name="health_rationale_apple">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Apple Health) שומרת. הם מוצגים בהיסטוריה שלכם ומשמשים לבדיקת רגע ההשכמה. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
 </resources>

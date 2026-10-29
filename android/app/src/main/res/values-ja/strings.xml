@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d時間半</string>
     <string name="duration_hours_minutes">%1$d時間%2$d分</string>
     <string name="health_title">Health Connectの睡眠ステージ</string>
-    <string name="health_rationale">Phase Wakeは、起床後にヘルスケアアプリ(Samsung Healthなど)が保存した睡眠ステージを読み取れます。浅い眠りで起こせたかの確認と、検出精度の向上にのみ使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。</string>
+    <string name="health_rationale">Phase Wakeは、ヘルスケアアプリ(Samsung Healthなど)が保存した睡眠データを読み取れます。データは履歴に表示され、起こしたタイミングの確認に使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。</string>
     <string name="health_connect">ヘルスデータと照合</string>
     <string name="health_connect_hint">起床後にHealth Connectから睡眠ステージを読み取り、検出の確認と改善に使います。</string>
     <string name="health_connected">接続済み</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">こんばんは</string>
     <string name="greeting_night">おやすみなさい</string>
     <string name="settings_clear_history">履歴を削除</string>
-    <string name="settings_clear_history_text">スマホとウォッチに記録されたすべての夜のデータを削除します。アラームはそのまま残ります。</string>
+    <string name="settings_clear_history_text">スマホとウォッチに記録されたすべての夜のデータを削除します。アラームはそのまま残ります。ほかのアプリの夜はここで非表示になるだけで、元のアプリに残ります。</string>
     <string name="settings_clear_history_confirm">削除</string>
     <string name="action_cancel">キャンセル</string>
     <string name="editor_advice_title">ヒント：ウィンドウを広げよう</string>

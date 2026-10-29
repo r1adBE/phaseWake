@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ j</string>
     <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
     <string name="health_title">Fase tidur dari Health Connect</string>
-    <string name="health_rationale">Phase Wake dapat membaca fase tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health) setelah kamu bangun. Data ini hanya dipakai untuk memeriksa apakah kamu dibangunkan saat tidur ringan dan untuk meningkatkan deteksi bagimu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
+    <string name="health_rationale">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu dan dipakai untuk memeriksa saat kamu dibangunkan. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
     <string name="health_connect">Cocokkan dengan data kesehatan</string>
     <string name="health_connect_hint">Membaca fase tidur dari Health Connect setelah bangun, untuk memeriksa dan meningkatkan deteksi.</string>
     <string name="health_connected">Terhubung</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">Selamat malam</string>
     <string name="greeting_night">Selamat tidur</string>
     <string name="settings_clear_history">Hapus riwayat</string>
-    <string name="settings_clear_history_text">Menghapus semua malam yang tercatat di ponsel dan jam tanganmu. Alarmmu tetap ada.</string>
+    <string name="settings_clear_history_text">Menghapus semua malam yang tercatat di ponsel dan jam tanganmu. Alarmmu tetap ada. Malam dari aplikasi lain hanya disembunyikan di sini dan tetap ada di aplikasi tersebut.</string>
     <string name="settings_clear_history_confirm">Hapus</string>
     <string name="action_cancel">Batal</string>
     <string name="editor_advice_title">Tips: jendela lebih lebar</string>

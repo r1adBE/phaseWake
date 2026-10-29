@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Puwede ring lumabas dito ang mga gabi mula sa Apple Health at ibang app. Para makita ang mga ito, ikumpara sa health data.</string>
     <string name="history_empty_no_data_apple">Wala pang datos ng tulog mula sa Apple Health. Kailangang maitala roon ang tulog, halimbawa ng iyong Apple Watch, at dapat payagan ang Phase Wake na basahin ito sa Health app.</string>
     <string name="backup_health_hint_apple">Hindi naba-back up ang mga gabi mula sa ibang app (hal. Apple Health) – nananatili sila roon at lalabas ulit kapag naibigay na ang access.</string>
+    <string name="health_rationale_apple">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Apple Health). Ipinapakita ito sa kasaysayan mo at ginagamit para tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
 </resources>

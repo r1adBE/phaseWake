@@ -81,6 +81,16 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings.historyClearedAt, 1_790_000_000_000)
     }
 
+    func testBackupKeepsHealthFeelings() throws {
+        var rated = payload
+        rated.healthFeelings = "2026-10-01|4\n2026-10-02|2"
+        XCTAssertTrue(rated.toJson().contains(#""healthFeelings":"2026-10-01|4\n2026-10-02|2""#))
+        XCTAssertEqual(try BackupPayload.fromJson(rated.toJson()), rated)
+        // Ältere Sicherungen (auch der Testvektor) ohne den Schlüssel: leer.
+        XCTAssertEqual(try BackupPayload.fromJson(try testdata("backup-v1.json")).healthFeelings, "")
+        XCTAssertEqual(payload.healthFeelings, "")
+    }
+
     func testWrongPasswordOrChangedFile() throws {
         let sealed = try BackupFile.encrypt(Data("{}".utf8), password: "richtig1", salt: salt, nonce: nonce)
         XCTAssertThrowsError(try BackupFile.decrypt(sealed, password: "falsch12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }

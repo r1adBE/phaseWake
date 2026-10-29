@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ ঘ.</string>
     <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
     <string name="health_title">Health Connect থেকে ঘুমের পর্যায়</string>
-    <string name="health_rationale">তুমি জেগে ওঠার পর তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের পর্যায়গুলো সংরক্ষণ করে, Phase Wake সেগুলো পড়তে পারে। এগুলো শুধু দেখার জন্য যে তোমাকে হালকা ঘুমে জাগানো হয়েছিল কি না, আর তোমার জন্য শনাক্তকরণ উন্নত করতে। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
+    <string name="health_rationale">তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয় এবং তোমাকে জাগানোর মুহূর্তটি যাচাই করতে ব্যবহার হয়। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
     <string name="health_connect">স্বাস্থ্য ডেটার সঙ্গে মেলাও</string>
     <string name="health_connect_hint">জাগার পর Health Connect থেকে ঘুমের পর্যায় পড়ে, শনাক্তকরণ যাচাই ও উন্নত করতে।</string>
     <string name="health_connected">সংযুক্ত</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">শুভ সন্ধ্যা</string>
     <string name="greeting_night">শুভরাত্রি</string>
     <string name="settings_clear_history">ইতিহাস মুছে ফেলো</string>
-    <string name="settings_clear_history_text">ফোন আর ঘড়িতে রেকর্ড করা সব রাত মুছে যাবে। তোমার অ্যালার্মগুলো থাকবে।</string>
+    <string name="settings_clear_history_text">ফোন আর ঘড়িতে রেকর্ড করা সব রাত মুছে যাবে। তোমার অ্যালার্মগুলো থাকবে। অন্য অ্যাপের রাতগুলো এখানে শুধু লুকানো হয় এবং সেই অ্যাপগুলোতেই থেকে যায়।</string>
     <string name="settings_clear_history_confirm">মুছে ফেলো</string>
     <string name="action_cancel">বাতিল</string>
     <string name="editor_advice_title">পরামর্শ: বড় সময়সীমা</string>

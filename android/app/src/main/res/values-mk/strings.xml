@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фази на сон од Health Connect</string>
-    <string name="health_rationale">Phase Wake може да ги чита фазите на сон што твојата апликација за здравје (на пример Samsung Health) ги зачувува откако ќе се разбудиш. Се користат само за да се провери дали си разбуден во лесен сон и за да се подобри препознавањето за тебе. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот.</string>
+    <string name="health_rationale">Phase Wake може да ги чита податоците за сон што ги зачувува твојата апликација за здравје (на пример Samsung Health). Се прикажуваат во твојата историја и се користат за да се провери мигот на будењето. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот.</string>
     <string name="health_connect">Спореди со здравствени податоци</string>
     <string name="health_connect_hint">По будењето ги чита фазите на сон од Health Connect за да го провери и подобри препознавањето.</string>
     <string name="health_connected">Поврзано</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Добра вечер</string>
     <string name="greeting_night">Добра ноќ</string>
     <string name="settings_clear_history">Избриши историја</string>
-    <string name="settings_clear_history_text">Ги брише сите снимени ноќи на телефонот и часовникот. Алармите остануваат.</string>
+    <string name="settings_clear_history_text">Ги брише сите снимени ноќи на телефонот и часовникот. Алармите остануваат. Ноќите од други апликации тука само се скриваат и остануваат во тие апликации.</string>
     <string name="settings_clear_history_confirm">Избриши</string>
     <string name="action_cancel">Откажи</string>
     <string name="editor_advice_title">Совет: поголем прозорец</string>

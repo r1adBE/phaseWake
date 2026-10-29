@@ -98,7 +98,7 @@
     <string name="duration_hours_half">%1$d½ س</string>
     <string name="duration_hours_minutes">%1$d س %2$d د</string>
     <string name="health_title">مراحل النوم من Health Connect</string>
-    <string name="health_rationale">يمكن لـ Phase Wake قراءة مراحل النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health) بعد الاستيقاظ. تُستخدم فقط للتحقق من أنك أُيقظت في نوم خفيف ولتحسين الرصد لك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
+    <string name="health_rationale">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك وتُستخدم للتحقق من لحظة إيقاظك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
     <string name="health_connect">المقارنة ببيانات الصحة</string>
     <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
     <string name="health_connected">متصل</string>
@@ -131,7 +131,7 @@
     <string name="greeting_evening">مساء الخير</string>
     <string name="greeting_night">ليلة سعيدة</string>
     <string name="settings_clear_history">حذف السجل</string>
-    <string name="settings_clear_history_text">يحذف كل الليالي المسجّلة على هاتفك وساعتك. تبقى منبّهاتك كما هي.</string>
+    <string name="settings_clear_history_text">يحذف كل الليالي المسجّلة على هاتفك وساعتك. تبقى منبّهاتك كما هي. الليالي من التطبيقات الأخرى تُخفى هنا فقط وتبقى في تلك التطبيقات.</string>
     <string name="settings_clear_history_confirm">حذف</string>
     <string name="action_cancel">إلغاء</string>
     <string name="editor_advice_title">نصيحة: نافذة أوسع</string>

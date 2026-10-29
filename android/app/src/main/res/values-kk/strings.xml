@@ -86,7 +86,7 @@
     <string name="duration_hours_half">%1$d½ сағ</string>
     <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
     <string name="health_title">Health Connect-тен ұйқы фазалары</string>
-    <string name="health_rationale">Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) оянғаннан кейін сақтайтын ұйқы фазаларын оқи алады. Олар тек сені жеңіл ұйқыда оятқанын тексеру және анықтауды өзіңе бейімдеп жақсарту үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
+    <string name="health_rationale">Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі және сені ояту сәтін тексеру үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
     <string name="health_connect">Денсаулық деректерімен салыстыру</string>
     <string name="health_connect_hint">Оянғаннан кейін Health Connect-тен ұйқы фазаларын оқып, анықтауды тексереді және жақсартады.</string>
     <string name="health_connected">Қосылған</string>
@@ -119,7 +119,7 @@
     <string name="greeting_evening">Қайырлы кеш</string>
     <string name="greeting_night">Қайырлы түн</string>
     <string name="settings_clear_history">Тарихты жою</string>
-    <string name="settings_clear_history_text">Телефон мен сағаттағы барлық жазылған түндерді жояды. Оятқыштарың сақталады.</string>
+    <string name="settings_clear_history_text">Телефон мен сағаттағы барлық жазылған түндерді жояды. Оятқыштарың сақталады. Басқа қолданбалардың түндері мұнда тек жасырылады және сол қолданбаларда қалады.</string>
     <string name="settings_clear_history_confirm">Жою</string>
     <string name="action_cancel">Бас тарту</string>
     <string name="editor_advice_title">Кеңес: терезені үлкейт</string>

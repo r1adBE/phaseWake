@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fasi del sonno da Health Connect</string>
-    <string name="health_rationale">Phase Wake può leggere le fasi del sonno che la tua app di salute (ad esempio Samsung Health) salva dopo il risveglio. Servono solo a verificare se sei stato svegliato nel sonno leggero e a migliorare il rilevamento per te. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
+    <string name="health_rationale">Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia e servono a verificare il momento del risveglio. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
     <string name="health_connect">Confronta con i dati di salute</string>
     <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
     <string name="health_connected">Connesso</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">Buonasera</string>
     <string name="greeting_night">Buonanotte</string>
     <string name="settings_clear_history">Elimina cronologia</string>
-    <string name="settings_clear_history_text">Elimina tutte le notti registrate su telefono e orologio. Le tue sveglie restano.</string>
+    <string name="settings_clear_history_text">Elimina tutte le notti registrate su telefono e orologio. Le tue sveglie restano. Le notti di altre app vengono solo nascoste qui e restano in quelle app.</string>
     <string name="settings_clear_history_confirm">Elimina</string>
     <string name="action_cancel">Annulla</string>
     <string name="editor_advice_title">Consiglio: una finestra più ampia</string>

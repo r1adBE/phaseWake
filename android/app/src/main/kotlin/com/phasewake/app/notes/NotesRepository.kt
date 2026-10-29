@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.HealthFeelings
 import com.phasewake.app.core.SleepNotes
 import java.time.LocalDate
 import java.util.UUID
@@ -14,8 +15,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /**
- * Schlafnotizen je Nachtdatum und die eigenen Notizen. Nur auf dem Handy, nicht mit der Uhr
- * abgeglichen. Format siehe [SleepNotes].
+ * Schlafnotizen je Nachtdatum, die eigenen Notizen und das Befinden zu Nächten aus anderen Apps. Nur auf dem
+ * Handy, nicht mit der Uhr abgeglichen, nie in Health Connect geschrieben. Formate siehe [SleepNotes], [HealthFeelings].
  */
 class NotesRepository(private val store: DataStore<Preferences>) {
 
@@ -23,16 +24,32 @@ class NotesRepository(private val store: DataStore<Preferences>) {
 
     val custom: Flow<List<CustomNote>> = store.data.map { SleepNotes.decodeCustom(it[CUSTOM]) }.distinctUntilChanged()
 
+    /** Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps, z. B. Samsung Health ([HealthFeelings]). */
+    val healthFeelings: Flow<Map<LocalDate, Int>> = store.data.map { HealthFeelings.decode(it[HEALTH_FEELINGS]) }.distinctUntilChanged()
+
     suspend fun current(): Map<LocalDate, List<String>> = notes.first()
+
+    /** Befinden zur Nacht aus einer anderen App mit Nachtdatum [date]; sofort gespeichert. */
+    suspend fun setHealthFeeling(date: LocalDate, feeling: Int) {
+        store.edit { prefs ->
+            prefs[HEALTH_FEELINGS] = HealthFeelings.encode(HealthFeelings.set(HealthFeelings.decode(prefs[HEALTH_FEELINGS]), date, feeling))
+        }
+    }
 
     /** Setzt oder entfernt eine Notiz für ein Nachtdatum; sofort gespeichert. */
     suspend fun toggle(date: LocalDate, id: String) {
         store.edit { prefs -> prefs[NOTES] = SleepNotes.encode(SleepNotes.toggle(SleepNotes.decode(prefs[NOTES]), date, id)) }
     }
 
-    /** «Verlauf löschen»: die Notizen aller Nächte; die eigenen Notiz-Namen bleiben (wie auf dem iPhone). */
+    /**
+     * «Verlauf löschen»: die Notizen aller Nächte und das Befinden zu Nächten aus anderen Apps; die eigenen
+     * Notiz-Namen bleiben (wie auf dem iPhone).
+     */
     suspend fun clearNotes() {
-        store.edit { it.remove(NOTES) }
+        store.edit {
+            it.remove(NOTES)
+            it.remove(HEALTH_FEELINGS)
+        }
     }
 
     /** Neue eigene Notiz; leer oder über dem Limit: nichts. */
@@ -65,16 +82,24 @@ class NotesRepository(private val store: DataStore<Preferences>) {
     /** Gespeicherte Texte (Notizen, eigene Notizen) für die Sicherung. */
     suspend fun raw(): Pair<String, String> = store.data.first().let { it[NOTES].orEmpty() to it[CUSTOM].orEmpty() }
 
-    /** Ersetzt Notizen und eigene Notizen (Wiederherstellen); unlesbare Zeilen fallen beim Lesen weg. */
-    suspend fun restore(notes: String, custom: String) {
+    /** Gespeichertes Befinden zu Nächten aus anderen Apps für die Sicherung ([HealthFeelings.encode]). */
+    suspend fun rawHealthFeelings(): String = store.data.first()[HEALTH_FEELINGS].orEmpty()
+
+    /**
+     * Ersetzt Notizen, eigene Notizen und das Befinden zu Nächten aus anderen Apps (Wiederherstellen); unlesbare
+     * Zeilen fallen beim Lesen weg, eine ältere Sicherung ohne Befinden leert es.
+     */
+    suspend fun restore(notes: String, custom: String, healthFeelings: String) {
         store.edit {
             it[NOTES] = SleepNotes.encode(SleepNotes.decode(notes))
             it[CUSTOM] = SleepNotes.encodeCustom(SleepNotes.decodeCustom(custom))
+            it[HEALTH_FEELINGS] = HealthFeelings.encode(HealthFeelings.decode(healthFeelings))
         }
     }
 
     private companion object {
         val NOTES = stringPreferencesKey("sleep_notes")
         val CUSTOM = stringPreferencesKey("sleep_notes_custom")
+        val HEALTH_FEELINGS = stringPreferencesKey("health_feelings")
     }
 }

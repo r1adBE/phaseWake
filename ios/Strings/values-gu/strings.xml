@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health અને અન્ય ઍપની રાતો પણ અહીં દેખાઈ શકે છે. તે જોવા માટે, હેલ્થ ડેટા સાથે સરખાવો.</string>
     <string name="history_empty_no_data_apple">Apple Health માંથી હજુ ઊંઘનો કોઈ ડેટા નથી. ઊંઘ ત્યાં નોંધાવી જોઈએ, ઉદાહરણ તરીકે તમારી Apple Watch દ્વારા, અને Health ઍપમાં Phase Wake ને તે વાંચવાની પરવાનગી હોવી જોઈએ.</string>
     <string name="backup_health_hint_apple">અન્ય ઍપની રાતો (દા.ત. Apple Health) નો બૅકઅપ લેવાતો નથી – તે ત્યાં જ રહે છે અને પરવાનગી મળતાં ફરી દેખાય છે.</string>
+    <string name="health_rationale_apple">તમારી હેલ્થ ઍપ (દા.ત. Apple Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે અને તમને જગાડવાની ક્ષણ તપાસવા માટે વપરાય છે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી.</string>
 </resources>

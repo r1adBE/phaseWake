@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ soat</string>
     <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="health_title">Health Connectʼdagi uyqu bosqichlari</string>
-    <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) uygʻonganingdan keyin saqlaydigan uyqu bosqichlarini oʻqiy oladi. Ular faqat seni yengil uyquda uygʻotilganingni tekshirish va aniqlashni sen uchun yaxshilash uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
+    <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi va seni uygʻotish paytini tekshirish uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
     <string name="health_connect">Sogʻliq maʼlumotlari bilan solishtirish</string>
     <string name="health_connect_hint">Uygʻongandan keyin Health Connectʼdan uyqu bosqichlarini oʻqiydi – aniqlashni tekshirish va yaxshilash uchun.</string>
     <string name="health_connected">Ulangan</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Xayrli kech</string>
     <string name="greeting_night">Xayrli tun</string>
     <string name="settings_clear_history">Tarixni oʻchirish</string>
-    <string name="settings_clear_history_text">Telefon va soatdagi barcha yozilgan tunlarni oʻchiradi. Budilniklaring qoladi.</string>
+    <string name="settings_clear_history_text">Telefon va soatdagi barcha yozilgan tunlarni oʻchiradi. Budilniklaring qoladi. Boshqa ilovalardagi tunlar bu yerda faqat yashiriladi va oʻsha ilovalarda qoladi.</string>
     <string name="settings_clear_history_confirm">Oʻchirish</string>
     <string name="action_cancel">Bekor qilish</string>
     <string name="editor_advice_title">Maslahat: kengroq oraliq</string>

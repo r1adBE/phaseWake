@@ -97,7 +97,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Faze spanca iz Health Connect</string>
-    <string name="health_rationale">Phase Wake lahko prebere faze spanca, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani po prebujenju. Uporabijo se le za preverjanje, ali te je budilka zbudila v lahkem spancu, in za izboljšanje zaznavanja zate. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona.</string>
+    <string name="health_rationale">Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani. Prikazani so v tvoji zgodovini in se uporabljajo za preverjanje trenutka bujenja. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona.</string>
     <string name="health_connect">Primerjaj z zdravstvenimi podatki</string>
     <string name="health_connect_hint">Po prebujenju prebere faze spanca iz Health Connect, da preveri in izboljša zaznavanje.</string>
     <string name="health_connected">Povezano</string>
@@ -130,7 +130,7 @@
     <string name="greeting_evening">Dober večer</string>
     <string name="greeting_night">Lahko noč</string>
     <string name="settings_clear_history">Izbriši zgodovino</string>
-    <string name="settings_clear_history_text">Izbriše vse zabeležene noči na telefonu in uri. Budilke ostanejo.</string>
+    <string name="settings_clear_history_text">Izbriše vse zabeležene noči na telefonu in uri. Budilke ostanejo. Noči iz drugih aplikacij se tukaj samo skrijejo in ostanejo v teh aplikacijah.</string>
     <string name="settings_clear_history_confirm">Izbriši</string>
     <string name="action_cancel">Prekliči</string>
     <string name="editor_advice_title">Nasvet: večje okno</string>

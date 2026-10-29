@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fazele somnului din Health Connect</string>
-    <string name="health_rationale">Phase Wake poate citi fazele somnului pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează după ce te trezești. Sunt folosite doar pentru a verifica dacă ai fost trezit din somn ușor și pentru a îmbunătăți detectarea pentru tine. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
+    <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău și folosite pentru a verifica momentul trezirii. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
     <string name="health_connect">Compară cu datele de sănătate</string>
     <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
     <string name="health_connected">Conectat</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">Bună seara</string>
     <string name="greeting_night">Noapte bună</string>
     <string name="settings_clear_history">Șterge istoricul</string>
-    <string name="settings_clear_history_text">Șterge toate nopțile înregistrate pe telefon și pe ceas. Alarmele tale rămân.</string>
+    <string name="settings_clear_history_text">Șterge toate nopțile înregistrate pe telefon și pe ceas. Alarmele tale rămân. Nopțile din alte aplicații sunt doar ascunse aici și rămân în acele aplicații.</string>
     <string name="settings_clear_history_confirm">Șterge</string>
     <string name="action_cancel">Anulează</string>
     <string name="editor_advice_title">Sfat: o fereastră mai mare</string>

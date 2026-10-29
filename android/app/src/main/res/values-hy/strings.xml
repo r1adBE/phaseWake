@@ -86,7 +86,7 @@
     <string name="duration_hours_half">%1$d½ ժ</string>
     <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="health_title">Քնի փուլերը Health Connect-ից</string>
-    <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի փուլերը, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է արթնանալուց հետո։ Դրանք օգտագործվում են միայն ստուգելու համար, թե արդյոք քեզ արթնացրել են թեթև քնում, և քեզ համար բարելավելու հայտնաբերումը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
+    <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ և օգտագործվում են քեզ արթնացնելու պահը ստուգելու համար։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
     <string name="health_connect">Համեմատել առողջության տվյալների հետ</string>
     <string name="health_connect_hint">Արթնանալուց հետո կարդում է քնի փուլերը Health Connect-ից՝ հայտնաբերումը ստուգելու և բարելավելու համար։</string>
     <string name="health_connected">Միացված է</string>
@@ -119,7 +119,7 @@
     <string name="greeting_evening">Բարի երեկո</string>
     <string name="greeting_night">Բարի գիշեր</string>
     <string name="settings_clear_history">Ջնջել պատմությունը</string>
-    <string name="settings_clear_history_text">Ջնջում է բոլոր գրանցված գիշերները հեռախոսիդ ու ժամացույցիդ վրա։ Զարթուցիչները մնում են։</string>
+    <string name="settings_clear_history_text">Ջնջում է բոլոր գրանցված գիշերները հեռախոսիդ ու ժամացույցիդ վրա։ Զարթուցիչները մնում են։ Այլ հավելվածների գիշերներն այստեղ միայն թաքցվում են և մնում են այդ հավելվածներում։</string>
     <string name="settings_clear_history_confirm">Ջնջել</string>
     <string name="action_cancel">Չեղարկել</string>
     <string name="editor_advice_title">Խորհուրդ՝ ավելի մեծ պատուհան</string>

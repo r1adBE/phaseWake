@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ Std.</string>
     <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="health_title">Schlafphasen aus Health Connect</string>
-    <string name="health_rationale">Phase Wake kann die Schlafphasen lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) nach dem Aufwachen ablegt. Sie dienen nur dazu zu prüfen, ob du im leichten Schlaf geweckt wurdest, und die Erkennung für dich zu verbessern. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
+    <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf und dienen dazu, den Weckmoment zu prüfen. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
     <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>
     <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
     <string name="health_connected">Verbunden</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Guten Abend</string>
     <string name="greeting_night">Gute Nacht</string>
     <string name="settings_clear_history">Verlauf löschen</string>
-    <string name="settings_clear_history_text">Löscht alle aufgezeichneten Nächte auf Handy und Uhr. Deine Wecker bleiben.</string>
+    <string name="settings_clear_history_text">Löscht alle aufgezeichneten Nächte auf Handy und Uhr. Deine Wecker bleiben. Nächte aus anderen Apps werden hier nur ausgeblendet und bleiben in diesen Apps.</string>
     <string name="settings_clear_history_confirm">Löschen</string>
     <string name="action_cancel">Abbrechen</string>
     <string name="editor_advice_title">Tipp: grösseres Fenster</string>

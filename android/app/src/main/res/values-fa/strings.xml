@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ س</string>
     <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="health_title">مراحل خواب از Health Connect</string>
-    <string name="health_rationale">Phase Wake می‌تواند مراحل خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) بعد از بیدار شدن ذخیره می‌کند بخواند. این داده‌ها فقط برای بررسی اینکه در خواب سبک بیدار شده‌ای یا نه و بهتر کردن تشخیص برای خودت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
+    <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند و برای بررسی لحظهٔ بیدار کردنت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
     <string name="health_connect">مقایسه با داده‌های سلامت</string>
     <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
     <string name="health_connected">وصل شد</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">عصر بخیر</string>
     <string name="greeting_night">شب بخیر</string>
     <string name="settings_clear_history">پاک کردن تاریخچه</string>
-    <string name="settings_clear_history_text">همه شب‌های ثبت‌شده در گوشی و ساعتت پاک می‌شود. زنگ‌های هشدارت می‌مانند.</string>
+    <string name="settings_clear_history_text">همه شب‌های ثبت‌شده در گوشی و ساعتت پاک می‌شود. زنگ‌های هشدارت می‌مانند. شب‌های برنامه‌های دیگر اینجا فقط پنهان می‌شوند و در همان برنامه‌ها می‌مانند.</string>
     <string name="settings_clear_history_confirm">پاک کردن</string>
     <string name="action_cancel">لغو</string>
     <string name="editor_advice_title">نکته: بازه‌ی بزرگ‌تر</string>

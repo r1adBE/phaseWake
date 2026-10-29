@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ц</string>
     <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="health_title">Health Connect-ийн нойрны үе шат</string>
-    <string name="health_rationale">Phase Wake нь чамайг сэрсний дараа эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны үе шатыг уншиж чадна. Үүнийг зөвхөн чамайг хөнгөн нойронд сэрээсэн эсэхийг шалгах, илрүүлэлтийг чамд тааруулж сайжруулахад ашиглана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
+    <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд чамайг сэрээсэн мөчийг шалгахад ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
     <string name="health_connect">Эрүүл мэндийн өгөгдөлтэй харьцуулах</string>
     <string name="health_connect_hint">Сэрсний дараа Health Connect-оос нойрны үе шатыг уншиж, илрүүлэлтийг шалгаж сайжруулна.</string>
     <string name="health_connected">Холбогдсон</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Оройн мэнд</string>
     <string name="greeting_night">Сайхан амраарай</string>
     <string name="settings_clear_history">Түүх устгах</string>
-    <string name="settings_clear_history_text">Утас, цаган дээрх бүх бүртгэсэн шөнийг устгана. Сэрүүлгүүд чинь үлдэнэ.</string>
+    <string name="settings_clear_history_text">Утас, цаган дээрх бүх бүртгэсэн шөнийг устгана. Сэрүүлгүүд чинь үлдэнэ. Бусад аппын шөнүүд энд зөвхөн нуугдах бөгөөд тэр аппуудад хэвээр үлдэнэ.</string>
     <string name="settings_clear_history_confirm">Устгах</string>
     <string name="action_cancel">Цуцлах</string>
     <string name="editor_advice_title">Зөвлөгөө: илүү урт хугацаа</string>

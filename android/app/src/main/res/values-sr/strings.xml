@@ -97,7 +97,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазе сна из Health Connect-а</string>
-    <string name="health_rationale">Phase Wake може да чита фазе сна које твоја здравствена апликација (на пример Samsung Health) чува после буђења. Користе се само да би се проверило да ли те је Phase Wake пробудио у лаганом сну и да би се препознавање побољшало за тебе. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
+    <string name="health_rationale">Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Samsung Health) чува. Приказују се у твојој историји и користе се за проверу тренутка твог буђења. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
     <string name="health_connect">Упореди са здравственим подацима</string>
     <string name="health_connect_hint">После буђења чита фазе сна из Health Connect-а да би проверио и побољшао препознавање.</string>
     <string name="health_connected">Повезано</string>
@@ -130,7 +130,7 @@
     <string name="greeting_evening">Добро вече</string>
     <string name="greeting_night">Лаку ноћ</string>
     <string name="settings_clear_history">Избриши историју</string>
-    <string name="settings_clear_history_text">Брише све забележене ноћи на телефону и сату. Твоји аларми остају.</string>
+    <string name="settings_clear_history_text">Брише све забележене ноћи на телефону и сату. Твоји аларми остају. Ноћи из других апликација овде се само скривају и остају у тим апликацијама.</string>
     <string name="settings_clear_history_confirm">Избриши</string>
     <string name="action_cancel">Откажи</string>
     <string name="editor_advice_title">Савет: већи интервал</string>

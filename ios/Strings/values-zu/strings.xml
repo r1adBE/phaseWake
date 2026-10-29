@@ -23,4 +23,5 @@
     <string name="history_empty_connect_apple">Ubusuku obuvela ku-Apple Health nakwamanye ama-app nabo bungavela lapha. Ukuze ububone, qhathanisa nedatha yezempilo.</string>
     <string name="history_empty_no_data_apple">Ayikho idatha yokulala evela ku-Apple Health okwamanje. Ukulala kufanele kurekhodwe lapho, isibonelo nge-Apple Watch yakho, futhi i-Phase Wake kufanele ivunyelwe ukukufunda ku-app ye-Health.</string>
     <string name="backup_health_hint_apple">Ubusuku obuvela kwamanye ama-app (isb. i-Apple Health) abulondolozwa – buhlala lapho futhi buvele futhi uma sekunikezwe imvume.</string>
+    <string name="health_rationale_apple">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Apple Health). Iboniswa emlandweni wakho futhi isetshenziselwa ukuhlola isikhathi owavuswa ngaso. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
 </resources>

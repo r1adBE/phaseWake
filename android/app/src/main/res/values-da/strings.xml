@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ t</string>
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Søvnfaser fra Health Connect</string>
-    <string name="health_rationale">Phase Wake kan læse de søvnfaser, som din sundheds-app (for eksempel Samsung Health) gemmer, efter du er vågnet. De bruges kun til at tjekke, om du blev vækket i let søvn, og til at forbedre registreringen for dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
+    <string name="health_rationale">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik og bruges til at tjekke det øjeblik, du blev vækket. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
     <string name="health_connect">Sammenlign med sundhedsdata</string>
     <string name="health_connect_hint">Læser søvnfaser fra Health Connect efter opvågning for at tjekke og forbedre registreringen.</string>
     <string name="health_connected">Forbundet</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Godaften</string>
     <string name="greeting_night">Godnat</string>
     <string name="settings_clear_history">Slet historik</string>
-    <string name="settings_clear_history_text">Sletter alle optagede nætter på din telefon og dit ur. Dine alarmer bliver.</string>
+    <string name="settings_clear_history_text">Sletter alle optagede nætter på din telefon og dit ur. Dine alarmer bliver. Nætter fra andre apps skjules kun her og bliver i de apps.</string>
     <string name="settings_clear_history_confirm">Slet</string>
     <string name="action_cancel">Annuller</string>
     <string name="editor_advice_title">Tip: et større vindue</string>

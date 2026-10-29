@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">يمكن أن تظهر هنا أيضًا ليالٍ من Apple Health وتطبيقات أخرى. لرؤيتها، قارن ببيانات الصحة.</string>
     <string name="history_empty_no_data_apple">لا توجد بيانات نوم من Apple Health بعد. يجب تسجيل النوم هناك، مثلاً بواسطة Apple Watch، ويجب السماح لـ Phase Wake بقراءته في تطبيق Health.</string>
     <string name="backup_health_hint_apple">لا يتم نسخ الليالي من التطبيقات الأخرى (مثل Apple Health) احتياطيًا – فهي تبقى هناك وتظهر مجددًا بمجرد منح الإذن.</string>
+    <string name="health_rationale_apple">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Apple Health). تُعرض في سجلك وتُستخدم للتحقق من لحظة إيقاظك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
 </resources>

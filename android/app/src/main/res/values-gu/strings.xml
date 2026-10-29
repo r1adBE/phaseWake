@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ક.</string>
     <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
     <string name="health_title">Health Connect પરથી ઊંઘના તબક્કા</string>
-    <string name="health_rationale">તમે જાગો પછી તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘના તબક્કા સાચવે છે, તે Phase Wake વાંચી શકે છે. તેનો ઉપયોગ ફક્ત એ તપાસવા માટે થાય છે કે તમને હળવી ઊંઘમાં જગાડવામાં આવ્યા કે નહીં, અને તમારા માટે ઓળખ સુધારવા માટે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી.</string>
+    <string name="health_rationale">તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે અને તમને જગાડવાની ક્ષણ તપાસવા માટે વપરાય છે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી.</string>
     <string name="health_connect">હેલ્થ ડેટા સાથે સરખાવો</string>
     <string name="health_connect_hint">જાગ્યા પછી Health Connect પરથી ઊંઘના તબક્કા વાંચે છે, ઓળખ તપાસવા અને સુધારવા માટે.</string>
     <string name="health_connected">કનેક્ટ થયેલ</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">શુભ સાંજ</string>
     <string name="greeting_night">શુભ રાત્રિ</string>
     <string name="settings_clear_history">ઇતિહાસ કાઢી નાખો</string>
-    <string name="settings_clear_history_text">ફોન અને ઘડિયાળ પરની બધી નોંધાયેલી રાતો કાઢી નાખે છે. તમારા એલાર્મ રહે છે.</string>
+    <string name="settings_clear_history_text">ફોન અને ઘડિયાળ પરની બધી નોંધાયેલી રાતો કાઢી નાખે છે. તમારા એલાર્મ રહે છે. અન્ય ઍપની રાતો અહીં ફક્ત છુપાવાય છે અને તે ઍપમાં જ રહે છે.</string>
     <string name="settings_clear_history_confirm">કાઢી નાખો</string>
     <string name="action_cancel">રદ કરો</string>
     <string name="editor_advice_title">ટિપ: મોટો સમયગાળો</string>

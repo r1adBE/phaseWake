@@ -22,7 +22,7 @@ struct SettingsView: View {
                     .pickerStyle(.segmented)
                 }
                 Section(L("health_connect")) {
-                    Text(L("health_rationale")).font(.footnote)
+                    Text(L("health_rationale_apple")).font(.footnote)
                     Button(L("health_connect")) { Task { healthRequested = await model.health.requestAccess() } }
                 }
                 Section(L("goal_title")) {

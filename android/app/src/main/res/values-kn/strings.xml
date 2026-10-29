@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ ಗಂ.</string>
     <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
     <string name="health_title">Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳು</string>
-    <string name="health_rationale">ನೀವು ಎದ್ದ ನಂತರ ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು Phase Wake ಓದಬಹುದು. ನಿಮ್ಮನ್ನು ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸಲಾಯಿತೇ ಎಂದು ಪರಿಶೀಲಿಸಲು ಮತ್ತು ನಿಮಗಾಗಿ ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಸುಧಾರಿಸಲು ಮಾತ್ರ ಇವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
+    <string name="health_rationale">ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ಕ್ಷಣವನ್ನು ಪರಿಶೀಲಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
     <string name="health_connect">ಆರೋಗ್ಯ ಡೇಟಾದೊಂದಿಗೆ ಹೋಲಿಸಿ</string>
     <string name="health_connect_hint">ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಸುಧಾರಿಸಲು, ಎದ್ದ ನಂತರ Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು ಓದುತ್ತದೆ.</string>
     <string name="health_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">ಶುಭ ಸಂಜೆ</string>
     <string name="greeting_night">ಶುಭ ರಾತ್ರಿ</string>
     <string name="settings_clear_history">ಇತಿಹಾಸ ಅಳಿಸಿ</string>
-    <string name="settings_clear_history_text">ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ದಾಖಲಾದ ಎಲ್ಲಾ ರಾತ್ರಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ. ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ.</string>
+    <string name="settings_clear_history_text">ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ದಾಖಲಾದ ಎಲ್ಲಾ ರಾತ್ರಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ. ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ. ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು ಇಲ್ಲಿ ಮರೆಮಾಡಲಾಗುತ್ತದೆ ಮಾತ್ರ, ಅವು ಆ ಆ್ಯಪ್‌ಗಳಲ್ಲೇ ಉಳಿಯುತ್ತವೆ.</string>
     <string name="settings_clear_history_confirm">ಅಳಿಸಿ</string>
     <string name="action_cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="editor_advice_title">ಸಲಹೆ: ದೊಡ್ಡ ಅವಧಿ</string>

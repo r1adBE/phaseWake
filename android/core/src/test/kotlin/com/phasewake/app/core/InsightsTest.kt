@@ -46,13 +46,15 @@ class InsightsTest {
             span("2026-10-26T23:10", "2026-10-27T03:00", SleepStage.LIGHT),
             span("2026-10-27T03:00", "2026-10-27T03:20", SleepStage.AWAKE),
             span("2026-10-27T03:20", "2026-10-27T06:40", SleepStage.DEEP),
-            span("2026-10-27T14:00", "2026-10-27T14:40", SleepStage.LIGHT), // Mittagsschlaf, zu kurz
+            // Kurz, aber eigene Strecke: ohne Mindestdauer (Nickerchen filtert vorher HealthHistory).
+            span("2026-10-27T14:00", "2026-10-27T14:40", SleepStage.LIGHT),
             span("2026-10-28T00:30", "2026-10-28T06:30", SleepStage.REM),
         )
         val nights = SleepSummary.group(spans)
-        assertEquals(2, nights.size)
+        assertEquals(3, nights.size)
         assertEquals(SleepSummary(at("2026-10-26T23:10"), at("2026-10-27T06:40"), 230 + 200), nights[0])
-        assertEquals(360, nights[1].asleepMinutes)
+        assertEquals(40, nights[1].asleepMinutes)
+        assertEquals(360, nights[2].asleepMinutes)
         assertEquals(emptyList(), SleepSummary.group(listOf(span("2026-10-27T01:00", "2026-10-27T07:00", SleepStage.AWAKE))))
     }
 

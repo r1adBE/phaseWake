@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Apple Health və digər tətbiqlərdən gecələr də burada görünə bilər. Onları görmək üçün sağlamlıq məlumatları ilə müqayisə et.</string>
     <string name="history_empty_no_data_apple">Apple Health-dən hələ yuxu məlumatı yoxdur. Yuxu orada qeydə alınmalıdır, məsələn Apple Watch ilə, və Phase Wake-ə Health tətbiqində onu oxumağa icazə verilməlidir.</string>
     <string name="backup_health_hint_apple">Digər tətbiqlərdən gecələr (məs. Apple Health) ehtiyat nüsxəyə düşmür – onlar orada qalır və icazə veriləndə yenidən görünür.</string>
+    <string name="health_rationale_apple">Phase Wake sağlamlıq tətbiqinin (məsələn, Apple Health) saxladığı yuxu məlumatlarını oxuya bilər. Onlar tarixçəndə göstərilir və oyadıldığın anı yoxlamaq üçün istifadə olunur. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır.</string>
 </resources>

@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ ώ.</string>
     <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
     <string name="health_title">Φάσεις ύπνου από το Health Connect</string>
-    <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τις φάσεις ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health) αφού ξυπνήσεις. Χρησιμοποιούνται μόνο για να ελέγχεται αν σε ξύπνησε στον ελαφρύ ύπνο και για να βελτιωθεί η ανίχνευση για σένα. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
+    <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health). Εμφανίζονται στο ιστορικό σου και χρησιμοποιούνται για να ελέγχεται η στιγμή που σε ξύπνησε. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
     <string name="health_connect">Σύγκριση με δεδομένα υγείας</string>
     <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
     <string name="health_connected">Συνδέθηκε</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Καλησπέρα</string>
     <string name="greeting_night">Καληνύχτα</string>
     <string name="settings_clear_history">Διαγραφή ιστορικού</string>
-    <string name="settings_clear_history_text">Διαγράφει όλες τις καταγεγραμμένες νύχτες στο κινητό και στο ρολόι σου. Τα ξυπνητήρια σου παραμένουν.</string>
+    <string name="settings_clear_history_text">Διαγράφει όλες τις καταγεγραμμένες νύχτες στο κινητό και στο ρολόι σου. Τα ξυπνητήρια σου παραμένουν. Οι νύχτες από άλλες εφαρμογές απλώς αποκρύπτονται εδώ και παραμένουν σε εκείνες τις εφαρμογές.</string>
     <string name="settings_clear_history_confirm">Διαγραφή</string>
     <string name="action_cancel">Ακύρωση</string>
     <string name="editor_advice_title">Συμβουλή: μεγαλύτερο παράθυρο</string>

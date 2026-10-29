@@ -192,22 +192,18 @@ public struct WeeklySummary: Equatable, Sendable {
     ///   - sleeps: Nächte der Gesundheits-App für Schlaf, Ziel und Regelmässigkeit.
     ///   - notes: Notizen je Nachtdatum für die stärkste Wirkung.
     ///   - goalMinutes: Schlafziel in Minuten.
+    ///   - health: Befinden zu Nächten aus anderen Apps (zählt an Nachtdaten ohne eigenes).
     public static func of(nights: [NightRecord], sleeps: [SleepSummary], notes: [String: [String]], calendar: Calendar,
-                          goalMinutes: Int, weekEnd: String) -> WeeklySummary {
+                          goalMinutes: Int, weekEnd: String, health: [HealthFeeling] = []) -> WeeklySummary {
         let from = NightDate.adding(-(Regularity.weekNights - 1), to: weekEnd)
         func inWeek(_ date: String) -> Bool { date >= from && date <= weekEnd }
         let allAsleep = NoteEffect.asleepByNight(sleeps, calendar: calendar)
         let asleep = Array(allAsleep.filter { inWeek($0.key) }.values)
         let regularity = Regularity.count(Regularity.bedtimes(of: sleeps, calendar: calendar), calendar: calendar, until: weekEnd)
-        // Je Nachtdatum das Befinden der zuletzt geweckten Nacht (wie bei den Notizen).
-        var latest: [String: NightRecord] = [:]
-        for night in nights where night.feeling != nil {
-            let date = SleepNotes.nightDate(of: night, calendar: calendar)
-            if let current = latest[date], current.wokeAt >= night.wokeAt { continue }
-            latest[date] = night
-        }
-        let feelings = latest.filter { inWeek($0.key) }.compactMap { $0.value.feeling }
-        let strongest = NoteEffect.compute(nights: nights, notes: notes, asleepByNight: allAsleep, calendar: calendar).first(where: \.isVisible)
+        // Je Nachtdatum das Befinden der zuletzt geweckten Nacht (wie bei den Notizen), sonst das der Fremd-Nacht.
+        let feelings = Array(HealthFeelings.byDate(nights, health: health, calendar: calendar).filter { inWeek($0.key) }.values)
+        let strongest = NoteEffect.compute(nights: nights, notes: notes, asleepByNight: allAsleep, health: health, calendar: calendar)
+            .first(where: \.isVisible)
         return WeeklySummary(
             from: from,
             to: weekEnd,

@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Čia gali būti rodomos ir naktys iš programos Apple Health bei kitų programų. Kad jas matytum, palygink su sveikatos duomenimis.</string>
     <string name="history_empty_no_data_apple">Iš Apple Health dar nėra miego duomenų. Miegas turi būti ten įrašomas, pavyzdžiui, tavo Apple Watch, o Phase Wake turi turėti leidimą jį skaityti programoje Sveikata.</string>
     <string name="backup_health_hint_apple">Naktys iš kitų programų (pvz., Apple Health) nėra kopijuojamos – jos lieka ten ir vėl atsiranda, kai suteikiama prieiga.</string>
+    <string name="health_rationale_apple">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Apple Health). Jie rodomi tavo istorijoje ir naudojami patikrinti, kuriuo momentu tave pažadino. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
 </resources>

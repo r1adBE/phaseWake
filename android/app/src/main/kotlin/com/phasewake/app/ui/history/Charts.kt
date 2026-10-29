@@ -25,6 +25,7 @@ import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.Durations
 import com.phasewake.app.core.FeelingSeries
+import com.phasewake.app.core.HealthFeeling
 import com.phasewake.app.core.Hypnogram
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.SleepBars
@@ -69,7 +70,7 @@ data class HistoryCharts(
     companion object {
         /**
          * Rechnet alle Diagramme aus Verlauf, Gesundheitsdaten und Notizen. Schlafprofil: die jüngste
-         * der letzten [ChartData.NIGHTS] Uhr-Nächte mit Schlafphasen.
+         * der letzten [ChartData.NIGHTS] Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps ([health]).
          */
         fun of(
             nights: List<NightRecord>,
@@ -80,6 +81,7 @@ data class HistoryCharts(
             goalMinutes: Int,
             now: Instant,
             zone: ZoneId,
+            health: List<HealthFeeling> = emptyList(),
         ): HistoryCharts {
             val today = SleepNotes.nightDate(now, zone)
             val nextTarget = AlarmSchedule.earliestPlan(alarms, now, zone)?.target
@@ -91,7 +93,7 @@ data class HistoryCharts(
                 wake = ChartData.wakeMoments(nights, zone),
                 hypnogram = hypnoNight?.let { ChartData.hypnogram(stages, it) },
                 hypnogramNight = hypnoNight,
-                feeling = ChartData.feelingSeries(nights, notes, zone, today),
+                feeling = ChartData.feelingSeries(nights, notes, zone, today, health = health),
             )
         }
     }

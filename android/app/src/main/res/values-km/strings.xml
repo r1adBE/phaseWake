@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ ម៉ោង</string>
     <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
     <string name="health_title">ដំណាក់កាលដំណេកពី Health Connect</string>
-    <string name="health_rationale">Phase Wake អាចអានដំណាក់កាលដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុកក្រោយអ្នកភ្ញាក់។ វាប្រើតែដើម្បីពិនិត្យថាតើអ្នកត្រូវបានដាស់ក្នុងដំណេកស្រាលឬទេ និងដើម្បីកែលម្អការរកឃើញសម្រាប់អ្នក។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
+    <string name="health_rationale">Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ហើយប្រើដើម្បីពិនិត្យពេលដែលអ្នកត្រូវបានដាស់។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
     <string name="health_connect">ប្រៀបធៀបជាមួយទិន្នន័យសុខភាព</string>
     <string name="health_connect_hint">អានដំណាក់កាលដំណេកពី Health Connect ក្រោយភ្ញាក់ ដើម្បីពិនិត្យ និងកែលម្អការរកឃើញ។</string>
     <string name="health_connected">បានភ្ជាប់</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">សាយណ្ហសួស្តី</string>
     <string name="greeting_night">រាត្រីសួស្តី</string>
     <string name="settings_clear_history">លុបប្រវត្តិ</string>
-    <string name="settings_clear_history_text">លុបយប់ដែលបានកត់ត្រាទាំងអស់លើទូរសព្ទ និងនាឡិកា។ ម៉ោងរោទ៍របស់អ្នកនៅដដែល។</string>
+    <string name="settings_clear_history_text">លុបយប់ដែលបានកត់ត្រាទាំងអស់លើទូរសព្ទ និងនាឡិកា។ ម៉ោងរោទ៍របស់អ្នកនៅដដែល។ យប់ពីកម្មវិធីផ្សេងត្រូវបានលាក់នៅទីនេះប៉ុណ្ណោះ ហើយនៅតែមាននៅក្នុងកម្មវិធីទាំងនោះ។</string>
     <string name="settings_clear_history_confirm">លុប</string>
     <string name="action_cancel">បោះបង់</string>
     <string name="editor_advice_title">គន្លឹះ៖ ចន្លោះពេលធំជាងនេះ</string>

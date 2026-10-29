@@ -46,7 +46,7 @@ class HealthHistoryTest {
         assertEquals(t("2026-10-01T21:15:00Z"), full.asleepAt)
         assertEquals(60, full.minutesOf(SleepStage.DEEP))
         assertTrue(full.hasStages)
-        assertFalse(full.isNap)
+        assertFalse(full.isNap(zone))
         assertEquals(5, full.steps.size)
         assertEquals(HypnoStep(15.0, 240.0, SleepStage.LIGHT), full.steps[1])
     }
@@ -89,11 +89,33 @@ class HealthHistoryTest {
     fun napIsDropped() {
         val nap = HealthSession(t("2026-10-02T12:00:00Z"), t("2026-10-02T14:59:00Z"))
         val three = HealthSession(t("2026-10-03T12:00:00Z"), t("2026-10-03T15:00:00Z"))
-        assertTrue(nap.isNap)
-        assertFalse(three.isNap)
+        assertTrue(nap.isNap(zone))
+        assertFalse(three.isNap(zone))
         assertEquals(listOf(three), HealthHistory.merge(emptyList(), listOf(nap, three), null, zone).map { it.session })
         // Ende nicht nach Beginn: keine Nacht.
         assertTrue(HealthHistory.merge(emptyList(), listOf(HealthSession(three.end, three.start)), null, zone).isEmpty())
+    }
+
+    @Test
+    fun napOnlyInDaytime() {
+        // Europe/Zurich im Oktober: UTC+2. Kurz und ganz zwischen 09:00 und 19:00 Ortszeit: Nickerchen (Grenzen einschliesslich).
+        assertTrue(HealthSession(t("2026-10-02T07:00:00Z"), t("2026-10-02T09:00:00Z")).isNap(zone))
+        assertTrue(HealthSession(t("2026-10-02T15:00:00Z"), t("2026-10-02T17:00:00Z")).isNap(zone))
+        // Beginn 08:59 oder Ende 19:01: Nacht.
+        assertFalse(HealthSession(t("2026-10-02T06:59:00Z"), t("2026-10-02T08:59:00Z")).isNap(zone))
+        assertFalse(HealthSession(t("2026-10-02T15:01:00Z"), t("2026-10-02T17:01:00Z")).isNap(zone))
+        // Über Mitternacht (23:00–01:00) und kurz in der Nacht (01:00–03:00): Nacht, im Verlauf.
+        assertFalse(HealthSession(t("2026-10-01T21:00:00Z"), t("2026-10-01T23:00:00Z")).isNap(zone))
+        val short = HealthSession(t("2026-10-01T23:00:00Z"), t("2026-10-02T01:00:00Z"))
+        assertFalse(short.isNap(zone))
+        val items = HealthHistory.merge(emptyList(), listOf(short), null, zone)
+        assertEquals(listOf(short), items.map { it.session })
+        assertEquals(java.time.LocalDate.of(2026, 10, 1), items.single().date)
+        // Diagramme und Trends nach derselben Regel: kurze Nacht zählt, Nickerchen am Tag nicht.
+        val dayNap = HealthSession(t("2026-10-02T10:00:00Z"), t("2026-10-02T12:00:00Z"))
+        assertEquals(listOf(120L), HealthHistory.summaries(listOf(short, dayNap), null, zone).map { it.asleepMinutes })
+        assertEquals(java.time.LocalTime.of(9, 0), HealthHistory.NAP_EARLIEST)
+        assertEquals(java.time.LocalTime.of(19, 0), HealthHistory.NAP_LATEST)
     }
 
     @Test
@@ -153,12 +175,12 @@ class HealthHistoryTest {
     @Test
     fun summariesRespectCleared() {
         val plain = HealthSession(t("2026-10-03T22:00:00Z"), t("2026-10-04T06:00:00Z"))
-        val all = HealthHistory.summaries(listOf(full, plain), null)
+        val all = HealthHistory.summaries(listOf(full, plain), null, zone)
         assertEquals(listOf(435L, 480L), all.map { it.asleepMinutes })
-        assertEquals(listOf(480L), HealthHistory.summaries(listOf(full, plain), full.end).map { it.asleepMinutes })
-        assertEquals(5, HealthHistory.stages(listOf(plain, full), null).size)
-        assertEquals(full.stages.first(), HealthHistory.stages(listOf(plain, full), null).first())
-        assertTrue(HealthHistory.stages(listOf(full), full.end).isEmpty())
+        assertEquals(listOf(480L), HealthHistory.summaries(listOf(full, plain), full.end, zone).map { it.asleepMinutes })
+        assertEquals(5, HealthHistory.stages(listOf(plain, full), null, zone).size)
+        assertEquals(full.stages.first(), HealthHistory.stages(listOf(plain, full), null, zone).first())
+        assertTrue(HealthHistory.stages(listOf(full), full.end, zone).isEmpty())
     }
 
     @Test
@@ -166,8 +188,8 @@ class HealthHistoryTest {
         // Zwei Apps schreiben dieselbe Nacht: die mit Phasen gewinnt, auch wenn die andere länger ist.
         val fit = HealthSession(t("2026-10-01T20:30:00Z"), t("2026-10-02T06:00:00Z"), source = "com.google.android.apps.fitness")
         assertEquals(listOf(full), HealthHistory.merge(emptyList(), listOf(fit, full), null, zone).map { it.session })
-        assertEquals(listOf(435L), HealthHistory.summaries(listOf(fit, full), null).map { it.asleepMinutes })
-        assertEquals(full.stages, HealthHistory.stages(listOf(fit, full), null))
+        assertEquals(listOf(435L), HealthHistory.summaries(listOf(fit, full), null, zone).map { it.asleepMinutes })
+        assertEquals(full.stages, HealthHistory.stages(listOf(fit, full), null, zone))
         // Beide ohne Phasen: die längere.
         val short = HealthSession(t("2026-10-01T22:00:00Z"), t("2026-10-02T05:00:00Z"))
         assertEquals(listOf(fit), HealthHistory.distinct(listOf(short, fit)))

@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">აქ შეიძლება გამოჩნდეს Apple Health-ისა და სხვა აპების ღამეებიც. მათ სანახავად შეადარე ჯანმრთელობის მონაცემებს.</string>
     <string name="history_empty_no_data_apple">Apple Health-იდან ძილის მონაცემები ჯერ არ არის. ძილი იქ უნდა ჩაიწეროს, მაგალითად შენი Apple Watch-ით, და Phase Wake-ს Health აპში მისი წაკითხვის ნება უნდა ჰქონდეს.</string>
     <string name="backup_health_hint_apple">სხვა აპების ღამეები (მაგ. Apple Health) სარეზერვო ასლში არ ინახება – ისინი იქ რჩება და წვდომის მიცემისთანავე ისევ გამოჩნდება.</string>
+    <string name="health_rationale_apple">Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Apple Health) ინახავს. ისინი ჩანს შენს ისტორიაში და გამოიყენება გაღვიძების მომენტის შესამოწმებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს.</string>
 </resources>

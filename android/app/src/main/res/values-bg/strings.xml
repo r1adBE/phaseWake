@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фази на съня от Health Connect</string>
-    <string name="health_rationale">Phase Wake може да чете фазите на съня, които здравното ти приложение (например Samsung Health) записва след събуждането. Те се използват само за да се провери дали будилникът те е събудил в лек сън, и за да се подобри разпознаването за теб. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти.</string>
+    <string name="health_rationale">Phase Wake може да чете данните за съня, които здравното ти приложение (например Samsung Health) записва. Те се показват в историята ти и се използват, за да се провери моментът на събуждането ти. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти.</string>
     <string name="health_connect">Сравни със здравните данни</string>
     <string name="health_connect_hint">След събуждане чете фазите на съня от Health Connect, за да провери и подобри разпознаването.</string>
     <string name="health_connected">Свързано</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">Добър вечер</string>
     <string name="greeting_night">Лека нощ</string>
     <string name="settings_clear_history">Изтрий историята</string>
-    <string name="settings_clear_history_text">Изтрива всички записани нощи на телефона и часовника. Будилниците остават.</string>
+    <string name="settings_clear_history_text">Изтрива всички записани нощи на телефона и часовника. Будилниците остават. Нощите от други приложения само се скриват тук и остават в тези приложения.</string>
     <string name="settings_clear_history_confirm">Изтрий</string>
     <string name="action_cancel">Отказ</string>
     <string name="editor_advice_title">Съвет: по-голям прозорец</string>

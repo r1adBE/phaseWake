@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">来自 Apple Health 和其他应用的夜晚也可以显示在这里。要查看它们，请与健康数据对比。</string>
     <string name="history_empty_no_data_apple">Apple Health 中还没有睡眠数据。睡眠需要先记录在那里（例如由你的 Apple Watch 记录），并且需要在“健康”App 中允许 Phase Wake 读取。</string>
     <string name="backup_health_hint_apple">来自其他应用（例如 Apple Health）的夜晚不会被备份——它们保留在原处，授权后会再次显示。</string>
+    <string name="health_rationale_apple">Phase Wake 可以读取你的健康应用（例如 Apple Health）保存的睡眠数据。这些数据会显示在你的记录中，并用于检查叫醒你的时刻。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
 </resources>

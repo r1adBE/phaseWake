@@ -168,7 +168,8 @@ data class BackupSettings(
 
 /**
  * Inhalt einer Sicherung: die gespeicherten Texte in ihren eigenen Formaten (Wecker, Nächte, Notizen,
- * Abendroutine) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten.
+ * Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne
+ * Gesundheitsdaten (die Nächte aus anderen Apps selbst bleiben dort).
  */
 data class BackupPayload(
     /** Erstellt (ms seit 1970). */
@@ -187,6 +188,8 @@ data class BackupPayload(
     val routineTicks: String,
     /** Einstellungen. */
     val settings: BackupSettings,
+    /** Befinden zu Nächten aus anderen Apps ([HealthFeelings.encode]); fehlt in älteren Sicherungen (leer). */
+    val healthFeelings: String = "",
 ) {
     /** Als JSON, siehe [BackupJson]. */
     fun toJson(): String = BackupJson.write(this)

@@ -323,17 +323,13 @@ public enum ChartData {
     }
 
     /// Befinden der `days` Nachtdaten bis `lastDate`: je Nachtdatum das der zuletzt geweckten Nacht (wie bei
-    /// den Notizen), dazu die Notizen. `nil`, wenn in dieser Zeit kein Befinden angegeben ist.
+    /// den Notizen), sonst das einer Nacht aus einer anderen App (`health`, ``HealthFeelings/byDate(_:health:calendar:)``),
+    /// dazu die Notizen. `nil`, wenn in dieser Zeit kein Befinden angegeben ist.
     public static func feelingSeries(_ nights: [NightRecord], notes: [String: [String]], calendar: Calendar, today: String,
-                                     days: Int = ChartData.nights) -> FeelingSeries? {
-        var latest: [String: NightRecord] = [:]
-        for night in nights where night.feeling != nil {
-            let date = SleepNotes.nightDate(of: night, calendar: calendar)
-            if let current = latest[date], current.wokeAt >= night.wokeAt { continue }
-            latest[date] = night
-        }
-        let last = lastDate(Set(latest.keys), today: today)
-        let points = range(last, days).map { FeelingPoint(date: $0, feeling: latest[$0]?.feeling, notes: notes[$0] ?? []) }
+                                     days: Int = ChartData.nights, health: [HealthFeeling] = []) -> FeelingSeries? {
+        let feelings = HealthFeelings.byDate(nights, health: health, calendar: calendar)
+        let last = lastDate(Set(feelings.keys), today: today)
+        let points = range(last, days).map { FeelingPoint(date: $0, feeling: feelings[$0], notes: notes[$0] ?? []) }
         guard points.contains(where: { $0.feeling != nil }) else { return nil }
         func average(_ list: ArraySlice<FeelingPoint>) -> Double? {
             let values = list.compactMap(\.feeling)

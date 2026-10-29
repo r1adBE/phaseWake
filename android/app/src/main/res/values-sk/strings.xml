@@ -97,7 +97,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fázy spánku z Health Connect</string>
-    <string name="health_rationale">Phase Wake vie čítať fázy spánku, ktoré tvoja zdravotná aplikácia (napríklad Samsung Health) uloží po prebudení. Slúžia len na kontrolu, či ťa budík zobudil v ľahkom spánku, a na zlepšenie rozpoznávania pre teba. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón.</string>
+    <string name="health_rationale">Phase Wake vie čítať údaje o spánku, ktoré ukladá tvoja zdravotná aplikácia (napríklad Samsung Health). Zobrazujú sa v tvojej histórii a slúžia na kontrolu okamihu, keď ťa budík zobudil. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón.</string>
     <string name="health_connect">Porovnať so zdravotnými údajmi</string>
     <string name="health_connect_hint">Po prebudení načíta fázy spánku z Health Connect, aby rozpoznávanie overil a zlepšil.</string>
     <string name="health_connected">Pripojené</string>
@@ -130,7 +130,7 @@
     <string name="greeting_evening">Dobrý večer</string>
     <string name="greeting_night">Dobrú noc</string>
     <string name="settings_clear_history">Vymazať históriu</string>
-    <string name="settings_clear_history_text">Vymaže všetky zaznamenané noci v telefóne aj v hodinkách. Budíky zostanú.</string>
+    <string name="settings_clear_history_text">Vymaže všetky zaznamenané noci v telefóne aj v hodinkách. Budíky zostanú. Noci z iných aplikácií sa tu iba skryjú a zostanú v týchto aplikáciách.</string>
     <string name="settings_clear_history_confirm">Vymazať</string>
     <string name="action_cancel">Zrušiť</string>
     <string name="editor_advice_title">Tip: väčšie okno</string>

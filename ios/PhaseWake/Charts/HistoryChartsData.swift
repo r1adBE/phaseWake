@@ -25,9 +25,9 @@ struct HistoryChartsData {
         return out
     }
 
-    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen.
+    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps (`health`).
     static func of(nights: [NightRecord], sleeps: [SleepSummary], stages: [StageSpan], notes: [String: [String]],
-                   nextTarget: Date?, goalMinutes: Int, now: Date, calendar: Calendar) -> HistoryChartsData {
+                   nextTarget: Date?, goalMinutes: Int, now: Date, calendar: Calendar, health: [HealthFeeling] = []) -> HistoryChartsData {
         let today = SleepNotes.nightDate(now, calendar: calendar)
         let night = stages.isEmpty ? nil : nights.sorted { $0.wokeAt > $1.wokeAt }.prefix(ChartData.nights)
             .first { ChartData.hypnogram(stages, night: $0) != nil }
@@ -38,7 +38,7 @@ struct HistoryChartsData {
             wake: ChartData.wakeMoments(nights, calendar: calendar),
             hypnogram: night.flatMap { ChartData.hypnogram(stages, night: $0) },
             hypnogramNight: night,
-            feeling: ChartData.feelingSeries(nights, notes: notes, calendar: calendar, today: today)
+            feeling: ChartData.feelingSeries(nights, notes: notes, calendar: calendar, today: today, health: health)
         )
     }
 }

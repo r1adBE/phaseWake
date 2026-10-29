@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health සහ වෙනත් යෙදුම්වල රාත්‍රීද මෙහි පෙන්විය හැක. ඒවා බැලීමට, සෞඛ්‍ය දත්ත සමඟ සසඳන්න.</string>
     <string name="history_empty_no_data_apple">Apple Health වෙතින් තවම නින්දේ දත්ත නැත. නින්ද එහි සටහන් විය යුතුය, උදාහරණයක් ලෙස ඔබේ Apple Watch මගින්, සහ Health යෙදුමේ Phase Wake හට එය කියවීමට අවසර තිබිය යුතුය.</string>
     <string name="backup_health_hint_apple">වෙනත් යෙදුම්වල රාත්‍රී (උදා. Apple Health) උපස්ථ නොවේ – ඒවා එහිම පවතින අතර අවසරය ලබා දුන් විගස නැවත පෙන්වයි.</string>
+    <string name="health_rationale_apple">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Apple Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
 </resources>

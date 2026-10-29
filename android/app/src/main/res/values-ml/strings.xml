@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ മ.</string>
     <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="health_title">Health Connect-ൽ നിന്നുള്ള ഉറക്ക ഘട്ടങ്ങൾ</string>
-    <string name="health_rationale">നിങ്ങൾ ഉണർന്ന ശേഷം ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഘട്ടങ്ങൾ Phase Wake-ന് വായിക്കാം. നേരിയ ഉറക്കത്തിലാണോ ഉണർത്തിയത് എന്ന് പരിശോധിക്കാനും നിങ്ങൾക്കായി കണ്ടെത്തൽ മെച്ചപ്പെടുത്താനും മാത്രമാണ് ഇവ ഉപയോഗിക്കുന്നത്. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
+    <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുകയും നിങ്ങളെ ഉണർത്തിയ നിമിഷം പരിശോധിക്കാൻ ഉപയോഗിക്കുകയും ചെയ്യുന്നു. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="health_connect">ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക</string>
     <string name="health_connect_hint">കണ്ടെത്തൽ പരിശോധിച്ച് മെച്ചപ്പെടുത്താൻ, ഉണർന്ന ശേഷം Health Connect-ൽ നിന്ന് ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും.</string>
     <string name="health_connected">കണക്റ്റ് ചെയ്‌തു</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">ശുഭസായാഹ്നം</string>
     <string name="greeting_night">ശുഭരാത്രി</string>
     <string name="settings_clear_history">ചരിത്രം ഇല്ലാതാക്കുക</string>
-    <string name="settings_clear_history_text">ഫോണിലും വാച്ചിലും രേഖപ്പെടുത്തിയ എല്ലാ രാത്രികളും ഇല്ലാതാക്കും. അലാറങ്ങൾ നിലനിൽക്കും.</string>
+    <string name="settings_clear_history_text">ഫോണിലും വാച്ചിലും രേഖപ്പെടുത്തിയ എല്ലാ രാത്രികളും ഇല്ലാതാക്കും. അലാറങ്ങൾ നിലനിൽക്കും. മറ്റ് ആപ്പുകളിലെ രാത്രികൾ ഇവിടെ മറയ്ക്കുക മാത്രമാണ് ചെയ്യുന്നത്, അവ ആ ആപ്പുകളിൽ തന്നെ തുടരും.</string>
     <string name="settings_clear_history_confirm">ഇല്ലാതാക്കുക</string>
     <string name="action_cancel">റദ്ദാക്കുക</string>
     <string name="editor_advice_title">നുറുങ്ങ്: വലിയ സമയപരിധി</string>

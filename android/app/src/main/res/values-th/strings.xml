@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ ชม.</string>
     <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
     <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
-    <string name="health_rationale">Phase Wake อ่านระยะการนอนหลับที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้หลังคุณตื่นได้ ใช้เพื่อตรวจสอบว่าคุณถูกปลุกตอนหลับตื้นหรือไม่ และพัฒนาการตรวจจับให้เหมาะกับคุณเท่านั้น Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
+    <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณและใช้ตรวจสอบช่วงเวลาที่ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
     <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>
     <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
     <string name="health_connected">เชื่อมต่อแล้ว</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">สวัสดีตอนเย็น</string>
     <string name="greeting_night">ราตรีสวัสดิ์</string>
     <string name="settings_clear_history">ลบประวัติ</string>
-    <string name="settings_clear_history_text">ลบข้อมูลทุกคืนที่บันทึกไว้บนโทรศัพท์และนาฬิกา การปลุกของคุณจะยังอยู่</string>
+    <string name="settings_clear_history_text">ลบข้อมูลทุกคืนที่บันทึกไว้บนโทรศัพท์และนาฬิกา การปลุกของคุณจะยังอยู่ คืนจากแอปอื่นจะถูกซ่อนไว้ที่นี่เท่านั้น และยังคงอยู่ในแอปเหล่านั้น</string>
     <string name="settings_clear_history_confirm">ลบ</string>
     <string name="action_cancel">ยกเลิก</string>
     <string name="editor_advice_title">เคล็ดลับ: ช่วงเวลาที่กว้างขึ้น</string>

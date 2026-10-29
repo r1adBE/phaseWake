@@ -96,7 +96,7 @@
     <string name="duration_hours_half">පැය %1$d½</string>
     <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
     <string name="health_title">Health Connect වෙතින් නින්දේ අදියර</string>
-    <string name="health_rationale">ඔබ අවදි වූ පසු ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ අදියර Phase Wake හට කියවිය හැක. ඒවා භාවිත කරන්නේ ඔබව සැහැල්ලු නින්දේදී අවදි කළාද යන්න පරීක්ෂා කිරීමට සහ ඔබ සඳහා හඳුනාගැනීම වැඩිදියුණු කිරීමට පමණි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
+    <string name="health_rationale">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
     <string name="health_connect">සෞඛ්‍ය දත්ත සමඟ සසඳන්න</string>
     <string name="health_connect_hint">හඳුනාගැනීම පරීක්ෂා කර වැඩිදියුණු කිරීමට, අවදි වූ පසු Health Connect වෙතින් නින්දේ අදියර කියවයි.</string>
     <string name="health_connected">සම්බන්ධයි</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">සුබ සන්ධ්‍යාවක්</string>
     <string name="greeting_night">සුබ රාත්‍රියක්</string>
     <string name="settings_clear_history">ඉතිහාසය මකන්න</string>
-    <string name="settings_clear_history_text">ඔබේ දුරකථනයේ සහ ඔරලෝසුවේ සටහන් වූ සියලු රාත්‍රි මකයි. ඔබේ එලාම ඉතිරි වේ.</string>
+    <string name="settings_clear_history_text">ඔබේ දුරකථනයේ සහ ඔරලෝසුවේ සටහන් වූ සියලු රාත්‍රි මකයි. ඔබේ එලාම ඉතිරි වේ. වෙනත් යෙදුම්වල රාත්‍රී මෙහි සඟවනු ලබන්නේ පමණක් වන අතර ඒවා එම යෙදුම්වල පවතී.</string>
     <string name="settings_clear_history_confirm">මකන්න</string>
     <string name="action_cancel">අවලංගු කරන්න</string>
     <string name="editor_advice_title">ඉඟිය: විශාල පරාසයක්</string>

@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases do sono de Health Connect</string>
-    <string name="health_rationale">Phase Wake pode ler as fases do sono que a túa app de saúde (por exemplo Samsung Health) garda despois de espertares. Só se usan para comprobar se te espertou no sono lixeiro e para mellorar a detección para ti. Phase Wake só le, nunca escribe, e nada sae do teu teléfono.</string>
+    <string name="health_rationale">Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Samsung Health). Móstranse no teu historial e úsanse para comprobar o momento en que te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono.</string>
     <string name="health_connect">Comparar cos datos de saúde</string>
     <string name="health_connect_hint">Le as fases do sono de Health Connect despois de espertar, para comprobar e mellorar a detección.</string>
     <string name="health_connected">Conectado</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Boas tardes</string>
     <string name="greeting_night">Boas noites</string>
     <string name="settings_clear_history">Eliminar historial</string>
-    <string name="settings_clear_history_text">Elimina todas as noites rexistradas no teléfono e no reloxo. As alarmas mantéñense.</string>
+    <string name="settings_clear_history_text">Elimina todas as noites rexistradas no teléfono e no reloxo. As alarmas mantéñense. As noites doutras apps só se ocultan aquí e quedan nesas apps.</string>
     <string name="settings_clear_history_confirm">Eliminar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="editor_advice_title">Consello: unha xanela maior</string>

@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½시간</string>
     <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
     <string name="health_title">Health Connect의 수면 단계</string>
-    <string name="health_rationale">Phase Wake는 일어난 뒤 건강 앱(예: Samsung Health)에 저장된 수면 단계를 읽을 수 있어요. 얕은 잠에서 깨웠는지 확인하고 감지 정확도를 높이는 데만 사용해요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
+    <string name="health_rationale">Phase Wake는 건강 앱(예: Samsung Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되고 깨운 시점을 확인하는 데 사용돼요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
     <string name="health_connect">건강 데이터와 비교</string>
     <string name="health_connect_hint">일어난 뒤 Health Connect에서 수면 단계를 읽어 감지를 확인하고 개선해요.</string>
     <string name="health_connected">연결됨</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">좋은 저녁이에요</string>
     <string name="greeting_night">잘 자요</string>
     <string name="settings_clear_history">기록 삭제</string>
-    <string name="settings_clear_history_text">휴대폰과 워치에 기록된 모든 밤 데이터를 삭제해요. 알람은 그대로 유지돼요.</string>
+    <string name="settings_clear_history_text">휴대폰과 워치에 기록된 모든 밤 데이터를 삭제해요. 알람은 그대로 유지돼요. 다른 앱의 밤은 여기서 숨겨지기만 하고 그 앱에는 그대로 남아 있어요.</string>
     <string name="settings_clear_history_confirm">삭제</string>
     <string name="action_cancel">취소</string>
     <string name="editor_advice_title">팁: 더 넓은 구간</string>

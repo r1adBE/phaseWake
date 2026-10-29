@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del son de Health Connect</string>
-    <string name="health_rationale">Phase Wake pot llegir les fases del son que la teva app de salut (per exemple, Samsung Health) desa després que et despertis. Només serveixen per comprovar si l’alarma t’ha despertat en son lleuger i per millorar la detecció per a tu. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
+    <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial i serveixen per comprovar el moment en què t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
     <string name="health_connect">Compara amb les dades de salut</string>
     <string name="health_connect_hint">Després de despertar-te, llegeix les fases del son de Health Connect per comprovar i millorar la detecció.</string>
     <string name="health_connected">Connectat</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Bona tarda</string>
     <string name="greeting_night">Bona nit</string>
     <string name="settings_clear_history">Suprimeix l’historial</string>
-    <string name="settings_clear_history_text">Suprimeix totes les nits registrades al telèfon i al rellotge. Les alarmes es mantenen.</string>
+    <string name="settings_clear_history_text">Suprimeix totes les nits registrades al telèfon i al rellotge. Les alarmes es mantenen. Les nits d’altres apps només s’amaguen aquí i es queden en aquestes apps.</string>
     <string name="settings_clear_history_confirm">Suprimeix</string>
     <string name="action_cancel">Cancel·la</string>
     <string name="editor_advice_title">Consell: una finestra més gran</string>

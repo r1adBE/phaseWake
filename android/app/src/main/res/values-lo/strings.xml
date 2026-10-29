@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ ຊມ</string>
     <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
     <string name="health_title">ໄລຍະການນອນຈາກ Health Connect</string>
-    <string name="health_rationale">Phase Wake ສາມາດອ່ານໄລຍະການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ຫຼັງເຈົ້າຕື່ນ ຂໍ້ມູນນີ້ໃຊ້ພຽງເພື່ອກວດວ່າເຈົ້າຖືກປຸກຕອນຫຼັບຕື້ນຫຼືບໍ່ ແລະ ເພື່ອປັບປຸງການກວດຈັບໃຫ້ເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
+    <string name="health_rationale">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ແລະ ໃຊ້ເພື່ອກວດເວລາທີ່ເຈົ້າຖືກປຸກ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
     <string name="health_connect">ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ</string>
     <string name="health_connect_hint">ອ່ານໄລຍະການນອນຈາກ Health Connect ຫຼັງຕື່ນ ເພື່ອກວດ ແລະ ປັບປຸງການກວດຈັບ</string>
     <string name="health_connected">ເຊື່ອມຕໍ່ແລ້ວ</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">ສະບາຍດີຕອນແລງ</string>
     <string name="greeting_night">ລາຕີສະຫວັດ</string>
     <string name="settings_clear_history">ລຶບປະຫວັດ</string>
-    <string name="settings_clear_history_text">ລຶບທຸກຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບ ແລະ ໂມງ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່</string>
+    <string name="settings_clear_history_text">ລຶບທຸກຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບ ແລະ ໂມງ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່ ຄືນຈາກແອັບອື່ນຖືກເຊື່ອງໄວ້ຢູ່ນີ້ເທົ່ານັ້ນ ແລະ ຍັງຢູ່ໃນແອັບເຫຼົ່ານັ້ນ</string>
     <string name="settings_clear_history_confirm">ລຶບ</string>
     <string name="action_cancel">ຍົກເລີກ</string>
     <string name="editor_advice_title">ຄຳແນະນຳ: ຊ່ວງເວລາທີ່ກວ້າງຂຶ້ນ</string>

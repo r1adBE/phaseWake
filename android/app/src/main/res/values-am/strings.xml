@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ሰ</string>
     <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
     <string name="health_title">ከHealth Connect የተገኙ የእንቅልፍ ደረጃዎች</string>
-    <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) ከነቁ በኋላ የሚያስቀምጣቸውን የእንቅልፍ ደረጃዎች ማንበብ ይችላል። እነዚህ በቀላል እንቅልፍ ላይ ሳሉ መቀስቀስዎን ለማረጋገጥና ማወቂያውን ለእርስዎ ለማሻሻል ብቻ ያገለግላሉ። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
+    <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ የተቀሰቀሱበትን ቅጽበት ለማረጋገጥም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
     <string name="health_connect">ከጤና ውሂብ ጋር አወዳድር</string>
     <string name="health_connect_hint">ማወቂያውን ለማረጋገጥና ለማሻሻል ከነቁ በኋላ የእንቅልፍ ደረጃዎችን ከHealth Connect ያነባል።</string>
     <string name="health_connected">ተገናኝቷል</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">እንደምን አመሹ</string>
     <string name="greeting_night">ደህና እደሩ</string>
     <string name="settings_clear_history">ታሪክ ሰርዝ</string>
-    <string name="settings_clear_history_text">በስልክዎና በሰዓትዎ ላይ የተመዘገቡ ሁሉንም ሌሊቶች ይሰርዛል። ማንቂያዎችዎ ይቆያሉ።</string>
+    <string name="settings_clear_history_text">በስልክዎና በሰዓትዎ ላይ የተመዘገቡ ሁሉንም ሌሊቶች ይሰርዛል። ማንቂያዎችዎ ይቆያሉ። ከሌሎች መተግበሪያዎች የመጡ ሌሊቶች እዚህ የሚደበቁት ብቻ ነው፣ በእነዚያ መተግበሪያዎች ውስጥም ይቆያሉ።</string>
     <string name="settings_clear_history_confirm">ሰርዝ</string>
     <string name="action_cancel">ይቅር</string>
     <string name="editor_advice_title">ጠቃሚ ምክር: ሰፋ ያለ ክልል</string>

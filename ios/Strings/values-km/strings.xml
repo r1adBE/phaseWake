@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">យប់ពី Apple Health និងកម្មវិធីផ្សេងទៀតក៏អាចបង្ហាញនៅទីនេះដែរ។ ដើម្បីមើលវា សូមប្រៀបធៀបជាមួយទិន្នន័យសុខភាព។</string>
     <string name="history_empty_no_data_apple">មិនទាន់មានទិន្នន័យដំណេកពី Apple Health នៅឡើយទេ។ ដំណេកត្រូវតែកត់ត្រានៅទីនោះ ឧទាហរណ៍ដោយ Apple Watch របស់អ្នក ហើយ Phase Wake ត្រូវតែមានការអនុញ្ញាតឱ្យអានវានៅក្នុងកម្មវិធី Health។</string>
     <string name="backup_health_hint_apple">យប់ពីកម្មវិធីផ្សេង (ឧ. Apple Health) មិនត្រូវបានបម្រុងទុកទេ – វានៅតែនៅទីនោះ ហើយនឹងបង្ហាញម្ដងទៀតភ្លាមៗពេលផ្ដល់សិទ្ធិ។</string>
+    <string name="health_rationale_apple">Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Apple Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ហើយប្រើដើម្បីពិនិត្យពេលដែលអ្នកត្រូវបានដាស់។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
 </resources>

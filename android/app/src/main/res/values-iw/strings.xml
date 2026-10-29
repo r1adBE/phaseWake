@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ ש׳</string>
     <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
     <string name="health_title">שלבי שינה מ-Health Connect</string>
-    <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את שלבי השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת לאחר ההתעוררות. הם משמשים רק כדי לבדוק אם התעוררתם בשינה קלה ולשפר עבורכם את הזיהוי. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
+    <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם ומשמשים לבדיקת רגע ההשכמה. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
     <string name="health_connect">השוואה לנתוני בריאות</string>
     <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
     <string name="health_connected">מחובר</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">ערב טוב</string>
     <string name="greeting_night">לילה טוב</string>
     <string name="settings_clear_history">מחיקת היסטוריה</string>
-    <string name="settings_clear_history_text">מחיקת כל הלילות שהוקלטו בטלפון ובשעון. המעוררים שלך נשארים.</string>
+    <string name="settings_clear_history_text">מחיקת כל הלילות שהוקלטו בטלפון ובשעון. המעוררים שלך נשארים. לילות מאפליקציות אחרות רק מוסתרים כאן ונשארים באפליקציות האלה.</string>
     <string name="settings_clear_history_confirm">מחיקה</string>
     <string name="action_cancel">ביטול</string>
     <string name="editor_advice_title">טיפ: חלון גדול יותר</string>

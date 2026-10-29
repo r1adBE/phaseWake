@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Nachten uit Apple Health en andere apps kunnen hier ook verschijnen. Vergelijk met gezondheidsgegevens om ze te zien.</string>
     <string name="history_empty_no_data_apple">Nog geen slaapgegevens uit Apple Health. Je slaap moet daar worden vastgelegd, bijvoorbeeld door je Apple Watch, en Phase Wake moet hem in de Gezondheid-app mogen lezen.</string>
     <string name="backup_health_hint_apple">Nachten uit andere apps (bijv. Apple Health) worden niet geback-upt – ze blijven daar en verschijnen weer zodra er toegang is gegeven.</string>
+    <string name="health_rationale_apple">Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Apple Health) opslaat. Ze worden in je geschiedenis getoond en gebruikt om het moment te controleren waarop je bent gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
 </resources>

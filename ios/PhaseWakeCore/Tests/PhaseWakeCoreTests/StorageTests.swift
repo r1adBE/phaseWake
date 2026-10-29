@@ -109,6 +109,19 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.customNotes().count, 1)
     }
 
+    /// Befinden zu Nächten aus anderen Apps: je Nachtdatum gespeichert, ersetzt beim Wiederherstellen, weg mit dem Verlauf.
+    func testHealthFeelingsPerNight() {
+        let s = storage()
+        XCTAssertEqual(s.healthFeelings(), [:])
+        s.setHealthFeeling(4, nightDate: "2026-10-27")
+        XCTAssertEqual(s.setHealthFeeling(2, nightDate: "2026-10-27"), ["2026-10-27": 2])
+        XCTAssertEqual(s.setHealthFeeling(9, nightDate: "2026-10-28"), ["2026-10-27": 2])
+        XCTAssertEqual(s.replaceHealthFeelings(["2026-10-26": 5]), ["2026-10-26": 5])
+        XCTAssertEqual(s.healthFeelings(), ["2026-10-26": 5])
+        s.clearNotes()
+        XCTAssertEqual(s.healthFeelings(), [:])
+    }
+
     /// Wiederherstellen ersetzt Nächte und Notizen; die Uhr merkt sich die Feiertage.
     func testReplaceForRestoreAndHolidays() {
         let s = storage()

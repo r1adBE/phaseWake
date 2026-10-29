@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Izigaba zokulala ezivela ku-Health Connect</string>
-    <string name="health_rationale">I-Phase Wake ingafunda izigaba zokulala ezigcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health) ngemva kokuvuka kwakho. Zisetshenziselwa kuphela ukuhlola ukuthi uvuswe yini ebuthongweni obulula nokuthuthukisa ukutholwa kwakho. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
+    <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho futhi isetshenziselwa ukuhlola isikhathi owavuswa ngaso. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
     <string name="health_connect">Qhathanisa nedatha yezempilo</string>
     <string name="health_connect_hint">Ifunda izigaba zokulala ku-Health Connect ngemva kokuvuka, ukuze ihlole futhi ithuthukise ukutholwa.</string>
     <string name="health_connected">Ixhunyiwe</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Sawubona kusihlwa</string>
     <string name="greeting_night">Ulale kahle</string>
     <string name="settings_clear_history">Susa umlando</string>
-    <string name="settings_clear_history_text">Isusa bonke ubusuku obuqoshiwe efonini nasewashini lakho. Ama-alamu akho ayasala.</string>
+    <string name="settings_clear_history_text">Isusa bonke ubusuku obuqoshiwe efonini nasewashini lakho. Ama-alamu akho ayasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app.</string>
     <string name="settings_clear_history_confirm">Susa</string>
     <string name="action_cancel">Khansela</string>
     <string name="editor_advice_title">Ithiphu: isikhala esikhulu</string>

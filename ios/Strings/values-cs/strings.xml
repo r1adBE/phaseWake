@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Zobrazit se tu mohou i noci z aplikace Apple Health a dalších aplikací. Chceš-li je vidět, porovnej se zdravotními daty.</string>
     <string name="history_empty_no_data_apple">Z Apple Health zatím nejsou žádná data o spánku. Spánek se tam musí zaznamenávat, třeba tvými Apple Watch, a Phase Wake musí mít v aplikaci Zdraví povoleno ho číst.</string>
     <string name="backup_health_hint_apple">Noci z jiných aplikací (např. Apple Health) se nezálohují – zůstávají tam a znovu se objeví, jakmile udělíš přístup.</string>
+    <string name="health_rationale_apple">Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Apple Health). Zobrazují se v tvé historii a slouží ke kontrole okamžiku, kdy tě budík vzbudil. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
 </resources>

@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Mga yugto ng tulog mula sa Health Connect</string>
-    <string name="health_rationale">Mababasa ng Phase Wake ang mga yugto ng tulog na sine-save ng health app mo (halimbawa, Samsung Health) pagkagising mo. Ginagamit lang ang mga ito para tingnan kung ginising ka sa mababaw na tulog at para pahusayin ang pag-detect para sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
+    <string name="health_rationale">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo at ginagamit para tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
     <string name="health_connect">Ikumpara sa health data</string>
     <string name="health_connect_hint">Binabasa ang mga yugto ng tulog mula sa Health Connect pagkagising, para tingnan at pahusayin ang pag-detect.</string>
     <string name="health_connected">Nakakonekta</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Magandang gabi</string>
     <string name="greeting_night">Magandang gabi</string>
     <string name="settings_clear_history">I-delete ang kasaysayan</string>
-    <string name="settings_clear_history_text">Dine-delete ang lahat ng naitalang gabi sa telepono at relo mo. Mananatili ang mga alarm mo.</string>
+    <string name="settings_clear_history_text">Dine-delete ang lahat ng naitalang gabi sa telepono at relo mo. Mananatili ang mga alarm mo. Itinatago lang dito ang mga gabi mula sa ibang app at nananatili sila sa mga app na iyon.</string>
     <string name="settings_clear_history_confirm">I-delete</string>
     <string name="action_cancel">Kanselahin</string>
     <string name="editor_advice_title">Tip: mas malaking window</string>

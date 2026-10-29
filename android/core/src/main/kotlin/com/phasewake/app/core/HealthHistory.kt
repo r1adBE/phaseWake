@@ -3,6 +3,7 @@ package com.phasewake.app.core
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZoneId
 
 /**
@@ -37,8 +38,18 @@ data class HealthSession(
     /** Wachzeit in Minuten; `null` ohne bekannte Phasen ([hasStages]). */
     val awakeMinutes: Long? get() = if (hasStages) minutesOf(SleepStage.AWAKE) else null
 
-    /** Nickerchen statt Nacht: kürzer als [HealthHistory.MIN_NIGHT_MINUTES]. */
-    val isNap: Boolean get() = durationMinutes < HealthHistory.MIN_NIGHT_MINUTES
+    /**
+     * Nickerchen statt Nacht: kürzer als [HealthHistory.MIN_NIGHT_MINUTES] und ganz am Tag – Beginn frühestens
+     * [HealthHistory.NAP_EARLIEST], Ende spätestens [HealthHistory.NAP_LATEST], beides Ortszeit in [zone] am selben
+     * Tag. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht.
+     */
+    fun isNap(zone: ZoneId): Boolean {
+        if (durationMinutes >= HealthHistory.MIN_NIGHT_MINUTES) return false
+        val from = start.atZone(zone).toLocalDateTime()
+        val to = end.atZone(zone).toLocalDateTime()
+        return from.toLocalDate() == to.toLocalDate() &&
+            !from.toLocalTime().isBefore(HealthHistory.NAP_EARLIEST) && !to.toLocalTime().isAfter(HealthHistory.NAP_LATEST)
+    }
 
     /** Minuten in [stage]. */
     fun minutesOf(stage: SleepStage): Long = minutes(clipped().filter { it.stage == stage })
@@ -84,14 +95,20 @@ data class HistoryItem(
 
 /**
  * Verlauf mit Nächten aus der Gesundheits-App: reine Rechnung, gleich in Swift (`HealthHistory`).
- * Eigene Nächte haben Vorrang; je Nachtdatum höchstens eine fremde Sitzung; Nickerchen zählen nicht.
+ * Eigene Nächte haben Vorrang; je Nachtdatum höchstens eine fremde Sitzung; Nickerchen am Tag zählen nicht.
  */
 object HealthHistory {
     /**
-     * Sitzungen unter 3 Stunden sind Nickerchen und keine Nacht. Gleiche Grenze wie
-     * [SleepSummary.MIN_ASLEEP_MINUTES] für Diagramme und Trends.
+     * Sitzungen unter 3 Stunden können Nickerchen sein (keine Nacht), wenn sie ganz am Tag liegen
+     * ([HealthSession.isNap]). Dieselbe Regel gilt für Diagramme und Trends ([summaries]).
      */
     const val MIN_NIGHT_MINUTES: Long = 180
+
+    /** Frühester Beginn eines Nickerchens (Ortszeit, einschliesslich): Wer vor 09:00 kurz schläft, hatte eine Nacht. */
+    val NAP_EARLIEST: LocalTime = LocalTime.of(9, 0)
+
+    /** Spätestes Ende eines Nickerchens (Ortszeit, einschliesslich): Wer nach 19:00 aufwacht, hatte eine Nacht. */
+    val NAP_LATEST: LocalTime = LocalTime.of(19, 0)
 
     /** So viele Tage zurück werden die Gesundheitsdaten gelesen: so weit wie der eigene Verlauf. */
     const val DAYS: Long = NightHistory.MAX_NIGHTS.toLong()
@@ -106,7 +123,7 @@ object HealthHistory {
     /**
      * Verlauf aus eigenen Nächten und Sitzungen, neueste zuerst ([HistoryItem.at]).
      *
-     * Eine Sitzung zählt nur, wenn sie sichtbar ist ([visible]), länger als ein Nickerchen ([HealthSession.isNap])
+     * Eine Sitzung zählt nur, wenn sie sichtbar ist ([visible]), kein Nickerchen ist ([HealthSession.isNap] in [zone])
      * und keine eigene Nacht dasselbe Nachtdatum hat oder sich mit ihr überschneidet (Fensterbeginn bis Wecken).
      * Überschneiden sich Sitzungen (mehrere Apps schreiben dieselbe Nacht), bleibt nur eine ([distinct]); danach
      * je Nachtdatum höchstens eine, nach derselben Vorliebe. Eigene Nächte bleiben alle. Gleichstand der Zeit: eigene Nacht zuerst, dann späterer
@@ -114,7 +131,7 @@ object HealthHistory {
      */
     fun merge(nights: List<NightRecord>, sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HistoryItem> {
         val ownDates = nights.map { SleepNotes.nightDate(it, zone) }.toSet()
-        val foreign = nights(sessions, clearedAt)
+        val foreign = nights(sessions, clearedAt, zone)
             .filter { s -> SleepNotes.nightDate(s.end, zone) !in ownDates && nights.none { s.start.isBefore(it.wokeAt) && s.end.isAfter(it.windowStart) } }
             .groupBy { SleepNotes.nightDate(it.end, zone) }
             .map { (date, list) -> HistoryItem(HistoryKind.HEALTH, date, session = list.sortedWith(preferred).first()) }
@@ -135,21 +152,21 @@ object HealthHistory {
         return kept.sortedBy { it.start }
     }
 
-    /** Die Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen, ohne Doppel ([distinct]). */
-    private fun nights(sessions: List<HealthSession>, clearedAt: Instant?): List<HealthSession> =
-        distinct(visible(sessions, clearedAt).filter { it.end.isAfter(it.start) && !it.isNap })
+    /** Die Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen in [zone], ohne Doppel ([distinct]). */
+    private fun nights(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HealthSession> =
+        distinct(visible(sessions, clearedAt).filter { it.end.isAfter(it.start) && !it.isNap(zone) })
 
     /** Phasen der Sitzungen, die als Nacht zählen (ohne Doppel), nach Beginn: zum Anreichern der eigenen Nächte. */
-    fun stages(sessions: List<HealthSession>, clearedAt: Instant?): List<StageSpan> =
-        nights(sessions, clearedAt).flatMap { it.stages }.sortedBy { it.start }
+    fun stages(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<StageSpan> =
+        nights(sessions, clearedAt, zone).flatMap { it.stages }.sortedBy { it.start }
 
     /**
      * Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: [SleepSummary.group] über die
      * Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal).
      * Eine Sitzung ohne Phasen zählt als Schlaf über ihre ganze Dauer.
      */
-    fun summaries(sessions: List<HealthSession>, clearedAt: Instant?): List<SleepSummary> = SleepSummary.group(
-        nights(sessions, clearedAt).flatMap { s -> s.stages.ifEmpty { listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN)) } },
+    fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> = SleepSummary.group(
+        nights(sessions, clearedAt, zone).flatMap { s -> s.stages.ifEmpty { listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN)) } },
     )
 
     private val preferred: Comparator<HealthSession> =

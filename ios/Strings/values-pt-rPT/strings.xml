@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Noites do Apple Health e de outras apps também podem aparecer aqui. Para as veres, compara com dados de saúde.</string>
     <string name="history_empty_no_data_apple">Ainda não há dados de sono do Apple Health. O sono tem de ser registado lá, por exemplo pelo teu Apple Watch, e o Phase Wake tem de ter permissão para o ler na app Saúde.</string>
     <string name="backup_health_hint_apple">As noites de outras apps (p. ex. Apple Health) não entram na cópia de segurança – ficam lá e voltam a aparecer assim que o acesso for concedido.</string>
+    <string name="health_rationale_apple">O Phase Wake pode ler os dados de sono que a tua app de saúde (por exemplo, o Apple Health) guarda. Aparecem no teu histórico e servem para verificar o momento do teu despertar. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel.</string>
 </resources>

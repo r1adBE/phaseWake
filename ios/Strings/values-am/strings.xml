@@ -23,4 +23,5 @@
     <string name="history_empty_connect_apple">ከApple Health እና ከሌሎች መተግበሪያዎች የመጡ ሌሊቶችም እዚህ ሊታዩ ይችላሉ። ለማየት ከጤና ውሂብ ጋር ያወዳድሩ።</string>
     <string name="history_empty_no_data_apple">ከApple Health እስካሁን የእንቅልፍ መረጃ የለም። እንቅልፍ እዚያ መመዝገብ አለበት፣ ለምሳሌ በApple Watchዎ፣ እና Phase Wake በHealth መተግበሪያ ውስጥ እንዲያነበው መፈቀድ አለበት።</string>
     <string name="backup_health_hint_apple">ከሌሎች መተግበሪያዎች (ለምሳሌ Apple Health) የመጡ ሌሊቶች አይቀመጡም – እዚያው ይቆያሉ፣ ፈቃድ እንደተሰጠም እንደገና ይታያሉ።</string>
+    <string name="health_rationale_apple">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Apple Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ የተቀሰቀሱበትን ቅጽበት ለማረጋገጥም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
 </resources>

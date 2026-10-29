@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">ຄືນຈາກ Apple Health ແລະ ແອັບອື່ນກໍສາມາດສະແດງຢູ່ນີ້ໄດ້. ເພື່ອເບິ່ງ ໃຫ້ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ.</string>
     <string name="history_empty_no_data_apple">ຍັງບໍ່ມີຂໍ້ມູນການນອນຈາກ Apple Health. ການນອນຕ້ອງຖືກບັນທຶກຢູ່ທີ່ນັ້ນ ເຊັ່ນ: ໂດຍ Apple Watch ຂອງເຈົ້າ ແລະ Phase Wake ຕ້ອງໄດ້ຮັບອະນຸຍາດໃຫ້ອ່ານມັນໃນແອັບ Health</string>
     <string name="backup_health_hint_apple">ຄືນຈາກແອັບອື່ນ (ເຊັ່ນ Apple Health) ບໍ່ຖືກສຳຮອງ – ມັນຍັງຢູ່ບ່ອນນັ້ນ ແລະ ຈະສະແດງອີກເມື່ອໃຫ້ສິດແລ້ວ.</string>
+    <string name="health_rationale_apple">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Apple Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ແລະ ໃຊ້ເພື່ອກວດເວລາທີ່ເຈົ້າຖືກປຸກ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
 </resources>

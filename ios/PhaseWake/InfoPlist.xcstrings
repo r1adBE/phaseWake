@@ -890,439 +890,439 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lees ná die wakker word jou slaapfases om na te gaan of jy in ligte slaap wakker gemaak is."
+            "value": "Phase Wake lees jou slaapdata om dit in jou geskiedenis te wys en die oomblik na te gaan waarop jy wakker gemaak is. Dit lees net, en die data bly op jou iPhone."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake በቀላል እንቅልፍ ላይ ሳሉ መቀስቀስዎን ለማረጋገጥ ከነቁ በኋላ የእንቅልፍ ደረጃዎችዎን ያነባል።"
+            "value": "Phase Wake የእንቅልፍ ውሂብዎን በታሪክዎ ውስጥ ለማሳየትና የተቀሰቀሱበትን ቅጽበት ለማረጋገጥ ያነባል። ያነባል ብቻ፣ ውሂቡም በiPhoneዎ ላይ ይቆያል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يقرأ Phase Wake مراحل نومك بعد استيقاظك للتحقق مما إذا تم إيقاظك أثناء النوم الخفيف."
+            "value": "يقرأ Phase Wake بيانات نومك لعرضها في سجلك وللتحقق من لحظة إيقاظك. يقرأ فقط، وتبقى البيانات على iPhone الخاص بك."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake oyandıqdan sonra yuxu fazalarını oxuyur ki, səni yüngül yuxuda oyadıb-oyatmadığını yoxlasın."
+            "value": "Phase Wake yuxu məlumatlarını tarixçəndə göstərmək və oyadıldığın anı yoxlamaq üçün oxuyur. Yalnız oxuyur, məlumatlar isə iPhone-unda qalır."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "След събуждане Phase Wake чете фазите на съня ти, за да провери дали те е събудил в лек сън."
+            "value": "Phase Wake чете данните за съня ти, за да ги покаже в историята ти и да провери момента на събуждането ти. Само чете, а данните остават на твоя iPhone."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "তোমাকে হালকা ঘুমে জাগানো হয়েছিল কি না দেখতে, জেগে ওঠার পর Phase Wake তোমার ঘুমের পর্যায় পড়ে।"
+            "value": "তোমার ইতিহাসে দেখাতে এবং তোমাকে জাগানোর মুহূর্তটি যাচাই করতে Phase Wake তোমার ঘুমের ডেটা পড়ে। এটি শুধু পড়ে, আর ডেটা তোমার iPhone-এই থাকে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake nakon buđenja čita tvoje faze sna kako bi provjerio je li te probudio u laganom snu."
+            "value": "Phase Wake čita tvoje podatke o snu da bi ih prikazao u tvojoj historiji i provjerio trenutak tvog buđenja. Samo čita, a podaci ostaju na tvom iPhoneu."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake llegeix les teves fases del son després que et despertis per comprovar si t’ha despertat en son lleuger."
+            "value": "Phase Wake llegeix les teves dades de son per mostrar-les al teu historial i comprovar el moment en què t’ha despertat. Només les llegeix, i les dades es queden al teu iPhone."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake po probuzení načte tvoje fáze spánku, aby zjistil, jestli tě vzbudil v lehkém spánku."
+            "value": "Phase Wake čte tvoje data o spánku, aby je zobrazil v tvé historii a zkontroloval okamžik, kdy tě vzbudil. Data jen čte a zůstávají v tvém iPhonu."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake læser dine søvnfaser, når du er vågnet, for at tjekke, om du blev vækket i let søvn."
+            "value": "Phase Wake læser dine søvndata for at vise dem i din historik og tjekke det øjeblik, du blev vækket. Den læser kun, og dataene bliver på din iPhone."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake liest nach dem Aufwachen deine Schlafphasen, um zu prüfen, ob du im leichten Schlaf geweckt wurdest."
+            "value": "Phase Wake liest deine Schlafdaten, um sie in deinem Verlauf zu zeigen und den Weckmoment zu prüfen. Phase Wake liest nur, und die Daten bleiben auf deinem iPhone."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το Phase Wake διαβάζει τις φάσεις ύπνου σου αφού ξυπνήσεις, για να ελέγξει αν σε ξύπνησε σε ελαφρύ ύπνο."
+            "value": "Το Phase Wake διαβάζει τα δεδομένα ύπνου σου για να τα δείχνει στο ιστορικό σου και να ελέγχει τη στιγμή που σε ξύπνησε. Μόνο διαβάζει, και τα δεδομένα μένουν στο iPhone σου."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lee tus fases de sueño después de despertarte para comprobar si te despertó en sueño ligero."
+            "value": "Phase Wake lee tus datos de sueño para mostrarlos en tu historial y comprobar el momento en que te despertó. Solo los lee, y los datos se quedan en tu iPhone."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake loeb pärast ärkamist sinu unefaase, et kontrollida, kas sind äratati kerges unes."
+            "value": "Phase Wake loeb sinu uneandmeid, et näidata neid sinu ajaloos ja kontrollida äratamise hetke. See ainult loeb ja andmed jäävad sinu iPhone’i."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esnatu ondoren, Phase Wake-k zure lo-faseak irakurtzen ditu, lo arinean esnatu zaituen egiaztatzeko."
+            "value": "Phase Wake-k zure lo-datuak irakurtzen ditu, zure historian erakusteko eta esnatu zaituen unea egiaztatzeko. Irakurri bakarrik egiten du, eta datuak zure iPhonean geratzen dira."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake پس از بیدار شدنت مراحل خوابت را می‌خواند تا بررسی کند در خواب سبک بیدار شده‌ای یا نه."
+            "value": "Phase Wake داده‌های خوابت را می‌خواند تا آن‌ها را در تاریخچه‌ات نشان دهد و لحظهٔ بیدار کردنت را بررسی کند. فقط می‌خواند و داده‌ها روی iPhone تو می‌مانند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lukee unenvaiheesi heräämisen jälkeen tarkistaakseen, herätettiinkö sinut kevyestä unesta."
+            "value": "Phase Wake lukee unitietosi näyttääkseen ne historiassasi ja tarkistaakseen herätyshetken. Se vain lukee, ja tiedot pysyvät iPhonessasi."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Binabasa ng Phase Wake ang mga yugto ng tulog mo pagkagising mo para tingnan kung ginising ka sa mababaw na tulog."
+            "value": "Binabasa ng Phase Wake ang sleep data mo para ipakita ito sa kasaysayan mo at tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ito, at nananatili ang data sa iPhone mo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lit tes phases de sommeil après ton réveil pour vérifier si tu as été réveillé(e) pendant un sommeil léger."
+            "value": "Phase Wake lit tes données de sommeil pour les afficher dans ton historique et vérifier le moment de ton réveil. Il les lit seulement, et les données restent sur ton iPhone."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Léann Phase Wake do chéimeanna codlata tar éis duit dúiseacht, chun a sheiceáil ar dúisíodh thú i gcodladh éadrom."
+            "value": "Léann Phase Wake do shonraí codlata chun iad a thaispeáint i do stair agus chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann sé ach léamh, agus fanann na sonraí ar do iPhone."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Despois de espertares, Phase Wake le as túas fases do sono para comprobar se te espertou no sono lixeiro."
+            "value": "Phase Wake le os teus datos de sono para mostralos no teu historial e comprobar o momento en que te espertou. Só os le, e os datos quedan no teu iPhone."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તમને હળવી ઊંઘમાં જગાડ્યા હતા કે નહીં તે તપાસવા Phase Wake જાગ્યા પછી તમારા ઊંઘના તબક્કા વાંચે છે."
+            "value": "તમારા ઇતિહાસમાં બતાવવા અને તમને જગાડવાની ક્ષણ તપાસવા માટે Phase Wake તમારો ઊંઘનો ડેટા વાંચે છે. તે ફક્ત વાંચે છે, અને ડેટા તમારા iPhone પર જ રહે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "‏Phase Wake קורא את שלבי השינה שלך לאחר ההתעוררות כדי לבדוק אם התעוררת בשינה קלה."
+            "value": "‏Phase Wake קורא את נתוני השינה שלך כדי להציג אותם בהיסטוריה שלך ולבדוק את רגע ההשכמה. הוא רק קורא, והנתונים נשארים ב-iPhone שלך."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake जागने के बाद तुम्हारे नींद के चरण पढ़ता है, ताकि यह जाँच सके कि तुम्हें हल्की नींद में जगाया गया या नहीं।"
+            "value": "Phase Wake तुम्हारा नींद का डेटा पढ़ता है, ताकि उसे तुम्हारे इतिहास में दिखा सके और तुम्हें जगाने का पल जाँच सके। यह सिर्फ़ पढ़ता है, और डेटा तुम्हारे iPhone पर ही रहता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake nakon buđenja čita tvoje faze sna kako bi provjerio je li te probudio u laganom snu."
+            "value": "Phase Wake čita tvoje podatke o snu kako bi ih prikazao u tvojoj povijesti i provjerio trenutak tvog buđenja. Samo čita, a podaci ostaju na tvom iPhoneu."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Phase Wake ébredés után beolvassa az alvási szakaszaidat, hogy ellenőrizze, könnyű alvásban ébresztett-e fel."
+            "value": "A Phase Wake beolvassa az alvási adataidat, hogy megjelenítse őket az előzményeidben, és ellenőrizze az ébresztés pillanatát. Csak olvas, az adatok pedig az iPhone-odon maradnak."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Արթնանալուց հետո Phase Wake-ը կարդում է քնի փուլերդ՝ ստուգելու, թե արդյոք քեզ արթնացրել են թեթև քնում։"
+            "value": "Phase Wake-ը կարդում է քնի տվյալներդ՝ դրանք քո պատմության մեջ ցույց տալու և քեզ արթնացնելու պահը ստուգելու համար։ Այն միայն կարդում է, և տվյալները մնում են քո iPhone-ում։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake membaca fase tidurmu setelah kamu bangun untuk memeriksa apakah kamu dibangunkan saat tidur ringan."
+            "value": "Phase Wake membaca data tidurmu untuk menampilkannya di riwayatmu dan memeriksa saat kamu dibangunkan. Phase Wake hanya membaca, dan datanya tetap di iPhone-mu."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake les svefnstigin þín eftir að þú vaknar til að athuga hvort þú hafir verið vakin(n) í léttum svefni."
+            "value": "Phase Wake les svefngögnin þín til að sýna þau í ferlinum þínum og athuga vakningarstundina. Það les bara, og gögnin haldast á iPhone-símanum þínum."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake legge le tue fasi del sonno dopo il risveglio per verificare se sei stato svegliato durante il sonno leggero."
+            "value": "Phase Wake legge i tuoi dati sul sonno per mostrarli nella tua cronologia e verificare il momento del risveglio. Li legge soltanto, e i dati restano sul tuo iPhone."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wakeは、起床後に睡眠ステージを読み取り、浅い眠りで起こせたかを確認します。"
+            "value": "Phase Wakeは、睡眠データを読み取って履歴に表示し、起こしたタイミングを確認します。読み取りのみで、データはiPhoneの中に保存されたままです。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "გაღვიძების შემდეგ Phase Wake კითხულობს შენი ძილის ფაზებს, რათა შეამოწმოს, მსუბუქ ძილში გაგაღვიძა თუ არა."
+            "value": "Phase Wake კითხულობს შენი ძილის მონაცემებს, რათა აჩვენოს ისინი შენს ისტორიაში და შეამოწმოს გაღვიძების მომენტი. ის მხოლოდ კითხულობს და მონაცემები შენს iPhone-ზე რჩება."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Оянғаннан кейін Phase Wake сені жеңіл ұйқыда оятқанын тексеру үшін ұйқы фазаларыңды оқиды."
+            "value": "Phase Wake ұйқы деректеріңді тарихыңда көрсету және сені ояту сәтін тексеру үшін оқиды. Ол тек оқиды, деректер iPhone-ыңда қалады."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake អានដំណាក់កាលដំណេករបស់អ្នកក្រោយអ្នកភ្ញាក់ ដើម្បីពិនិត្យថាតើអ្នកត្រូវបានដាស់ក្នុងដំណេកស្រាលឬទេ។"
+            "value": "Phase Wake អានទិន្នន័យដំណេករបស់អ្នក ដើម្បីបង្ហាញវាក្នុងប្រវត្តិរបស់អ្នក និងពិនិត្យពេលដែលអ្នកត្រូវបានដាស់។ វាគ្រាន់តែអាន ហើយទិន្នន័យនៅតែលើ iPhone របស់អ្នក។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನಿಮ್ಮನ್ನು ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸಲಾಯಿತೇ ಎಂದು ಪರಿಶೀಲಿಸಲು, ನೀವು ಎದ್ದ ನಂತರ Phase Wake ನಿಮ್ಮ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು ಓದುತ್ತದೆ."
+            "value": "ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ತೋರಿಸಲು ಮತ್ತು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ಕ್ಷಣವನ್ನು ಪರಿಶೀಲಿಸಲು Phase Wake ನಿಮ್ಮ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು ಓದುತ್ತದೆ. ಅದು ಓದುತ್ತದೆ ಮಾತ್ರ, ಡೇಟಾ ನಿಮ್ಮ iPhone ನಲ್ಲೇ ಉಳಿಯುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake는 기상 후 수면 단계를 읽어 얕은 잠에서 깼는지 확인합니다."
+            "value": "Phase Wake는 수면 데이터를 읽어 기록에 표시하고 깨운 시점을 확인합니다. 읽기만 하며, 데이터는 iPhone에 그대로 남습니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ອ່ານໄລຍະການນອນຂອງເຈົ້າຫຼັງຕື່ນ ເພື່ອກວດວ່າເຈົ້າຖືກປຸກຕອນຫຼັບຕື້ນຫຼືບໍ່"
+            "value": "Phase Wake ອ່ານຂໍ້ມູນການນອນຂອງເຈົ້າ ເພື່ອສະແດງໃນປະຫວັດຂອງເຈົ້າ ແລະ ກວດເວລາທີ່ເຈົ້າຖືກປຸກ ມັນອ່ານຢ່າງດຽວ ແລະ ຂໍ້ມູນຍັງຢູ່ໃນ iPhone ຂອງເຈົ້າ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake po pabudimo nuskaito tavo miego fazes, kad patikrintų, ar tave pažadino lengvo miego metu."
+            "value": "Phase Wake nuskaito tavo miego duomenis, kad parodytų juos tavo istorijoje ir patikrintų, kuriuo momentu tave pažadino. Jis tik skaito, o duomenys lieka tavo iPhone."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake pēc pamošanās nolasa tavas miega fāzes, lai pārbaudītu, vai tevi pamodināja vieglā miegā."
+            "value": "Phase Wake nolasa tavus miega datus, lai parādītu tos tavā vēsturē un pārbaudītu pamodināšanas brīdi. Tā tikai lasa, un dati paliek tavā iPhone."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "По будењето Phase Wake ги чита твоите фази на сон за да провери дали си разбуден во лесен сон."
+            "value": "Phase Wake ги чита твоите податоци за сон за да ги прикаже во твојата историја и да го провери мигот на будењето. Само чита, а податоците остануваат на твојот iPhone."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കത്തിലാണോ ഉണർത്തിയത് എന്ന് പരിശോധിക്കാൻ, ഉണർന്ന ശേഷം Phase Wake നിങ്ങളുടെ ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും."
+            "value": "നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കാനും നിങ്ങളെ ഉണർത്തിയ നിമിഷം പരിശോധിക്കാനും Phase Wake നിങ്ങളുടെ ഉറക്ക ഡാറ്റ വായിക്കും. അത് വായിക്കുക മാത്രം ചെയ്യും, ഡാറ്റ നിങ്ങളുടെ iPhone-ൽ തന്നെ തുടരും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Чамайг хөнгөн нойронд сэрээсэн эсэхийг шалгахын тулд Phase Wake сэрсний чинь дараа нойрны үе шатыг уншина."
+            "value": "Phase Wake нойрны өгөгдлийг чинь түүхэнд чинь харуулах, чамайг сэрээсэн мөчийг шалгахын тулд уншина. Зөвхөн уншина, өгөгдөл iPhone дээр чинь үлдэнэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुम्हाला हलक्या झोपेत उठवले की नाही हे तपासण्यासाठी Phase Wake उठल्यानंतर तुमचे झोपेचे टप्पे वाचते."
+            "value": "तुमच्या इतिहासात दाखवण्यासाठी आणि तुम्हाला उठवण्याचा क्षण तपासण्यासाठी Phase Wake तुमचा झोपेचा डेटा वाचते. ते फक्त वाचते, आणि डेटा तुमच्या iPhone वरच राहतो."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake membaca peringkat tidurmu selepas kamu bangun untuk menyemak sama ada kamu dikejutkan semasa tidur ringan."
+            "value": "Phase Wake membaca data tidurmu untuk memaparkannya dalam sejarahmu dan menyemak saat kamu dikejutkan. Ia hanya membaca, dan data kekal pada iPhone kamu."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ရေးပေါ့ချိန်တွင် နှိုးခဲ့သလား စစ်ဆေးရန် နိုးပြီးနောက် Phase Wake က သင့်အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။"
+            "value": "သင့်မှတ်တမ်းတွင် ပြရန်နှင့် သင့်ကို နှိုးခဲ့သည့်အချိန်ကို စစ်ဆေးရန် Phase Wake က သင့်အိပ်စက်မှုဒေတာကို ဖတ်သည်။ ဖတ်ရုံသာဖတ်ပြီး ဒေတာသည် သင့် iPhone ပေါ်တွင်သာ ရှိနေမည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake leser søvnfasene dine etter at du har våknet, for å sjekke om du ble vekket i lett søvn."
+            "value": "Phase Wake leser søvndataene dine for å vise dem i historikken din og sjekke øyeblikket du ble vekket. Den leser bare, og dataene blir værende på iPhonen din."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "तिमीलाई हल्का निद्रामा ब्युँझाइयो कि भनेर जाँच्न, ब्युँझेपछि Phase Wake ले तिम्रो निद्राका चरण पढ्छ।"
+            "value": "तिम्रो इतिहासमा देखाउन र तिमीलाई ब्युँझाएको क्षण जाँच्न Phase Wake ले तिम्रो निद्राको डेटा पढ्छ। यसले पढ्छ मात्र, र डेटा तिम्रो iPhone मै रहन्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake leest je slaapfases na het wakker worden om te controleren of je in lichte slaap bent gewekt."
+            "value": "Phase Wake leest je slaapgegevens om ze in je geschiedenis te tonen en het moment te controleren waarop je bent gewekt. Phase Wake leest alleen, en de gegevens blijven op je iPhone."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਤੁਹਾਨੂੰ ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਇਆ ਗਿਆ ਜਾਂ ਨਹੀਂ, ਇਹ ਜਾਂਚਣ ਲਈ Phase Wake ਜਾਗਣ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੇ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ।"
+            "value": "ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਉਣ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦਾ ਪਲ ਜਾਂਚਣ ਲਈ Phase Wake ਤੁਹਾਡਾ ਨੀਂਦ ਦਾ ਡਾਟਾ ਪੜ੍ਹਦਾ ਹੈ। ਇਹ ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਅਤੇ ਡਾਟਾ ਤੁਹਾਡੇ iPhone ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake odczytuje twoje fazy snu po przebudzeniu, aby sprawdzić, czy obudził cię w fazie lekkiego snu."
+            "value": "Phase Wake odczytuje twoje dane o śnie, aby pokazać je w twojej historii i sprawdzić moment, w którym cię obudził. Tylko czyta, a dane zostają na twoim iPhonie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake lê suas fases do sono depois que você acorda para verificar se você foi acordado durante o sono leve."
+            "value": "O Phase Wake lê seus dados de sono para mostrá-los no seu histórico e verificar o momento do seu despertar. Ele só lê, e os dados ficam no seu iPhone."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake lê as tuas fases do sono depois de acordares para verificar se foste acordado durante o sono leve."
+            "value": "O Phase Wake lê os teus dados de sono para os mostrar no teu histórico e verificar o momento do teu despertar. Só lê, e os dados ficam no teu iPhone."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake citește fazele somnului tău după ce te trezești, pentru a verifica dacă ai fost trezit în somn ușor."
+            "value": "Phase Wake citește datele tale de somn pentru a le afișa în istoricul tău și a verifica momentul trezirii. Doar citește, iar datele rămân pe iPhone-ul tău."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake считывает твои фазы сна после пробуждения, чтобы проверить, разбудил ли он тебя в фазе лёгкого сна."
+            "value": "Phase Wake считывает твои данные о сне, чтобы показать их в твоей истории и проверить момент пробуждения. Он только читает, а данные остаются на твоём iPhone."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබව සැහැල්ලු නින්දේදී අවදි කළාද යන්න පරීක්ෂා කිරීමට, ඔබ අවදි වූ පසු Phase Wake ඔබේ නින්දේ අදියර කියවයි."
+            "value": "ඔබේ ඉතිහාසයේ පෙන්වීමට සහ ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට Phase Wake ඔබේ නින්දේ දත්ත කියවයි. එය කියවන්නේ පමණක් වන අතර දත්ත ඔබේ iPhone හි පවතී."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake po prebudení načíta tvoje fázy spánku, aby overil, či ťa zobudil v ľahkom spánku."
+            "value": "Phase Wake číta tvoje údaje o spánku, aby ich zobrazil v tvojej histórii a overil okamih, keď ťa zobudil. Iba číta a údaje zostávajú v tvojom iPhone."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake po prebujenju prebere tvoje faze spanca, da preveri, ali te je zbudil v lahkem spancu."
+            "value": "Phase Wake prebere tvoje podatke o spanju, da jih prikaže v tvoji zgodovini in preveri trenutek bujenja. Samo bere, podatki pa ostanejo na tvojem iPhonu."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lexon fazat e gjumit pasi zgjohesh, për të kontrolluar nëse u zgjove në gjumë të lehtë."
+            "value": "Phase Wake lexon të dhënat e tua të gjumit për t’i shfaqur në historikun tënd dhe për të kontrolluar momentin e zgjimit. Vetëm lexon, dhe të dhënat mbeten në iPhone-in tënd."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake после буђења чита твоје фазе сна да би проверио да ли те је пробудио у лаганом сну."
+            "value": "Phase Wake чита твоје податке о сну да би их приказао у твојој историји и проверио тренутак твог буђења. Само чита, а подаци остају на твом iPhone-у."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake läser dina sömnfaser efter att du vaknat för att kontrollera om du väcktes i lätt sömn."
+            "value": "Phase Wake läser dina sömndata för att visa dem i din historik och kontrollera ögonblicket då du väcktes. Den läser bara, och datan stannar på din iPhone."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake husoma hatua zako za usingizi baada ya kuamka ili kuangalia kama uliamshwa katika usingizi mwepesi."
+            "value": "Phase Wake husoma data yako ya usingizi ili kuionyesha kwenye historia yako na kuangalia wakati ulipoamshwa. Inasoma tu, na data inabaki kwenye iPhone yako."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "நீங்கள் லேசான தூக்கத்தில் எழுப்பப்பட்டீர்களா என்று சரிபார்க்க, எழுந்த பிறகு Phase Wake உங்கள் தூக்க நிலைகளைப் படிக்கும்."
+            "value": "உங்கள் வரலாற்றில் காட்டவும், உங்களை எழுப்பிய தருணத்தைச் சரிபார்க்கவும் Phase Wake உங்கள் தூக்கத் தரவைப் படிக்கும். அது படிக்க மட்டுமே செய்யும், தரவு உங்கள் iPhone-இலேயே இருக்கும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "మిమ్మల్ని తేలికపాటి నిద్రలో లేపారో లేదో చూడటానికి, మీరు మేల్కొన్న తర్వాత Phase Wake మీ నిద్ర దశలను చదువుతుంది."
+            "value": "మీ చరిత్రలో చూపడానికి, మిమ్మల్ని లేపిన క్షణాన్ని తనిఖీ చేయడానికి Phase Wake మీ నిద్ర డేటాను చదువుతుంది. ఇది చదువుతుంది మాత్రమే, డేటా మీ iPhoneలోనే ఉంటుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake อ่านระยะการนอนหลับของคุณหลังตื่น เพื่อตรวจสอบว่าคุณถูกปลุกในช่วงหลับตื้นหรือไม่"
+            "value": "Phase Wake อ่านข้อมูลการนอนของคุณเพื่อแสดงในประวัติของคุณและตรวจสอบช่วงเวลาที่ปลุกคุณ โดยอ่านอย่างเดียว และข้อมูลจะอยู่ใน iPhone ของคุณ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake, uyandıktan sonra uyku evrelerini okuyarak hafif uykuda uyandırılıp uyandırılmadığını kontrol eder."
+            "value": "Phase Wake, uyku verilerini geçmişinde göstermek ve uyandırıldığın anı kontrol etmek için okur. Yalnızca okur ve veriler iPhone’unda kalır."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake зчитує твої фази сну після пробудження, щоб перевірити, чи розбудив він тебе в фазі легкого сну."
+            "value": "Phase Wake зчитує твої дані про сон, щоб показати їх у твоїй історії й перевірити момент пробудження. Він лише читає, а дані залишаються на твоєму iPhone."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake جاگنے کے بعد تمہاری نیند کے مراحل پڑھتا ہے تاکہ دیکھ سکے کہ تمہیں ہلکی نیند میں جگایا گیا یا نہیں۔"
+            "value": "Phase Wake تمہاری نیند کا ڈیٹا پڑھتا ہے تاکہ اسے تمہارے تاریخچے میں دکھا سکے اور تمہیں جگانے کا لمحہ جانچ سکے۔ یہ صرف پڑھتا ہے، اور ڈیٹا تمہارے iPhone پر ہی رہتا ہے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyquda uygʻotilganingni tekshirish uchun Phase Wake uygʻonganingdan keyin uyqu bosqichlaringni oʻqiydi."
+            "value": "Phase Wake uyqu maʼlumotlaringni tarixingda koʻrsatish va seni uygʻotish paytini tekshirish uchun oʻqiydi. U faqat oʻqiydi, maʼlumotlar esa iPhone’ingda qoladi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake đọc các giai đoạn giấc ngủ của bạn sau khi thức dậy để kiểm tra xem bạn có được đánh thức lúc ngủ nông hay không."
+            "value": "Phase Wake đọc dữ liệu giấc ngủ của bạn để hiển thị trong lịch sử và kiểm tra thời điểm bạn được đánh thức. Ứng dụng chỉ đọc, và dữ liệu vẫn nằm trên iPhone của bạn."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 會在你醒來後讀取睡眠階段，以檢查你是否在淺睡時被叫醒。"
+            "value": "Phase Wake 會讀取你的睡眠數據，以便在記錄中顯示，並檢查叫醒你的時刻。Phase Wake 只會讀取，數據會留在你的 iPhone 上。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake会在你醒来后读取睡眠阶段，以检查你是否在浅睡时被唤醒。"
+            "value": "Phase Wake会读取你的睡眠数据，以便在记录中显示，并检查叫醒你的时刻。Phase Wake只读取，数据会留在你的iPhone上。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake會在你醒來後讀取睡眠階段，以檢查你是否在淺眠時被喚醒。"
+            "value": "Phase Wake會讀取你的睡眠資料，以便在紀錄中顯示，並檢查叫醒你的時刻。Phase Wake只讀取，資料會留在你的iPhone上。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-Phase Wake ifunda izigaba zakho zokulala ngemva kokuvuka ukuze ihlole ukuthi uvuswe yini ebuthongweni obulula."
+            "value": "I-Phase Wake ifunda idatha yakho yokulala ukuze iyibonise emlandweni wakho futhi ihlole isikhathi owavuswa ngaso. Iyafunda kuphela, futhi idatha ihlala ku-iPhone yakho."
           }
         }
       }

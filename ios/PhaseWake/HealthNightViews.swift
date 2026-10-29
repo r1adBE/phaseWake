@@ -29,14 +29,18 @@ func healthLive(sourceName: String?) -> String {
 }
 
 /// Nacht aus Apple Health ohne Phase-Wake-Wecker: Datum und Aufwachzeit, Vermerk mit Herz-Symbol (nicht nur
-/// Farbe), Quelle nur einmal im Hinweis, Zeiten, Dauern, Hinweis auf den Spiegel der Quelle, Phasen-Band mit Summen, Notizen und
-/// Geräusche. Kein Weckmoment. Wie Android.
+/// Farbe), Quelle nur einmal im Hinweis, Zeiten, Dauern, Hinweis auf den Spiegel der Quelle, Phasen-Band mit Summen,
+/// Befinden, Notizen und Geräusche. Kein Weckmoment. Wie Android.
 struct HealthNightCard: View {
     let session: HealthSession
-    /// Nachtdatum für Notizen und Geräusche (`HistoryItem.date`).
+    /// Nachtdatum für Befinden, Notizen und Geräusche (`HistoryItem.date`).
     let nightDate: String
     /// Anzeigename der Quelle; `nil` = unbekannt.
     let sourceName: String?
+    /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: die Auswahl zeigen.
+    let feeling: Int?
+    /// Speichert das gewählte Befinden.
+    let onFeeling: (Int) -> Void
 
     private var title: String { session.end.formatted(date: .abbreviated, time: .omitted) }
 
@@ -77,6 +81,11 @@ struct HealthNightCard: View {
                     .accessibilityElement()
                     .accessibilityLabel(L("chart_stages_title") + ". " + totals)
                 Text(totals).font(Fonts.manrope(11, .semibold, relativeTo: .caption2)).foregroundStyle(.secondary).accessibilityHidden(true)
+            }
+            if let feeling {
+                Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            } else {
+                FeelingPicker(onPick: onFeeling, showsHint: false).padding(.top, 4)
             }
             NightNotesButton(nightDate: nightDate, title: title)
             NightSoundsButton(night: nightDate, title: title)

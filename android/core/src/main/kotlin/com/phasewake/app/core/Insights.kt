@@ -56,10 +56,10 @@ data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes:
         /** Ab dieser Lücke zwischen zwei Phasen beginnt eine neue Nacht. */
         val NEW_NIGHT_GAP: Duration = Duration.ofHours(3)
 
-        /** Mindestschlaf, damit eine Strecke als Nacht zählt (kein Mittagsschlaf). */
-        const val MIN_ASLEEP_MINUTES: Long = 180
-
-        /** Fasst Phasen zu Nächten zusammen, älteste zuerst. */
+        /**
+         * Fasst Phasen zu Nächten zusammen, älteste zuerst; Strecken ganz ohne Schlaf fallen weg. Ohne Mindestdauer:
+         * Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher [HealthHistory] – wie im Verlauf.
+         */
         fun group(spans: List<StageSpan>): List<SleepSummary> {
             val groups = mutableListOf<MutableList<StageSpan>>()
             for (span in spans.sortedBy { it.start }) {
@@ -71,8 +71,7 @@ data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes:
                 val asleep = group.filter { it.stage != SleepStage.AWAKE }
                 if (asleep.isEmpty()) return@mapNotNull null
                 val minutes = asleep.sumOf { Duration.between(it.start, it.end).toMinutes() }
-                if (minutes < MIN_ASLEEP_MINUTES) null
-                else SleepSummary(asleep.minOf { it.start }, group.maxOf { it.end }, minutes)
+                SleepSummary(asleep.minOf { it.start }, group.maxOf { it.end }, minutes)
             }
         }
     }
@@ -106,9 +105,16 @@ data class Trends(
 
         /**
          * Wochenvergleich bis [now]: «diese Woche» = die 7 Tage bis [now], «Vorwoche» = die 7 Tage davor
-         * (feste 24-h-Tage). Schlaf nach Ende der Nacht, Befinden nach Weckzeit eingeordnet.
+         * (feste 24-h-Tage). Schlaf nach Ende der Nacht, Befinden nach Weckzeit eingeordnet; Befinden zu Nächten aus
+         * anderen Apps ([health]) nach dem Ende ihrer Sitzung.
          */
-        fun compute(nights: List<NightRecord>, sleeps: List<SleepSummary>, now: Instant, zone: ZoneId): Trends {
+        fun compute(
+            nights: List<NightRecord>,
+            sleeps: List<SleepSummary>,
+            now: Instant,
+            zone: ZoneId,
+            health: List<HealthFeeling> = emptyList(),
+        ): Trends {
             val weekAgo = now.minus(Duration.ofDays(7))
             val twoWeeksAgo = now.minus(Duration.ofDays(14))
             fun <T> inRange(items: List<T>, at: (T) -> Instant, from: Instant, to: Instant) =
@@ -117,8 +123,11 @@ data class Trends(
             fun asleep(from: Instant, to: Instant): Long? = inRange(sleeps, { it.end }, from, to)
                 .takeIf { it.size >= MIN_NIGHTS_PER_WEEK }?.let { list -> list.sumOf { it.asleepMinutes } / list.size }
 
-            fun feeling(from: Instant, to: Instant): Double? = inRange(nights, { it.wokeAt }, from, to)
-                .mapNotNull { it.feeling }.takeIf { it.size >= MIN_NIGHTS_PER_WEEK }?.average()
+            fun feeling(from: Instant, to: Instant): Double? {
+                val own = inRange(nights, { it.wokeAt }, from, to).mapNotNull { it.feeling }
+                val other = inRange(health, { it.at }, from, to).map { it.feeling }
+                return (own + other).takeIf { it.size >= MIN_NIGHTS_PER_WEEK }?.average()
+            }
 
             // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen.
             val bedtimes = inRange(sleeps, { it.end }, twoWeeksAgo, now).map {

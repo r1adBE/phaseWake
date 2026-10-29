@@ -22,6 +22,8 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.HealthFeeling
+import com.phasewake.app.core.HealthFeelings
 import com.phasewake.app.core.HealthHistory
 import com.phasewake.app.core.HealthSession
 import com.phasewake.app.core.HistoryItem
@@ -96,6 +98,8 @@ internal class AppData(
     val diagnostics: Boolean = false,
     /** Pro Wecker erledigt bis (Uhr hat die Nacht übernommen, Zweitwecker hat geweckt); siehe `BackupAlarm.doneUntilFlow`. */
     val doneUntil: Map<String, Instant> = emptyMap(),
+    /** Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps; nur bei Phase Wake gespeichert. */
+    val healthFeelings: Map<LocalDate, Int> = emptyMap(),
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -125,10 +129,11 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val onboardingDone by onboardingFlow.collectAsStateWithLifecycle(initialValue = null)
     val diagnostics by app.settings.diagnostics.collectAsStateWithLifecycle(initialValue = false)
     val doneUntil by app.backup.doneUntilFlow.collectAsStateWithLifecycle(initialValue = emptyMap())
+    val healthFeelings by app.notes.healthFeelings.collectAsStateWithLifecycle(initialValue = emptyMap())
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
-        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil,
+        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings,
     )
 }
 
@@ -176,33 +181,38 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
         ).min()
         value = if (health == HealthState.CONNECTED) app.health.sessions(from, now) else emptyList()
     }
-    val sleeps = remember(sessions, clearedAt) { HealthHistory.summaries(sessions, clearedAt) }
-    val stages = remember(sessions, clearedAt) { HealthHistory.stages(sessions, clearedAt) }
-    val history = remember(nights, sessions, clearedAt) { HealthHistory.merge(nights.orEmpty(), sessions, clearedAt, ZoneId.systemDefault()) }
-    val trends = remember(nights, sleeps) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), ZoneId.systemDefault()) }
-    val goalWeek = remember(sleeps, data.sleepGoal) { SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, ZoneId.systemDefault()), data.sleepGoal) }
-    val noteEffects = remember(nights, data.notes, sleeps) {
-        val zone = ZoneId.systemDefault()
-        NoteEffect.compute(nights.orEmpty(), data.notes, zone, NoteEffect.asleepByNight(sleeps, zone))
+    val zone = ZoneId.systemDefault()
+    val sleeps = remember(sessions, clearedAt) { HealthHistory.summaries(sessions, clearedAt, zone) }
+    val stages = remember(sessions, clearedAt) { HealthHistory.stages(sessions, clearedAt, zone) }
+    val history = remember(nights, sessions, clearedAt) { HealthHistory.merge(nights.orEmpty(), sessions, clearedAt, zone) }
+    // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
+    val feelings = remember(history, data.healthFeelings) { HealthFeelings.of(history, data.healthFeelings) }
+    val trends = remember(nights, sleeps, feelings) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), zone, feelings) }
+    val goalWeek = remember(sleeps, data.sleepGoal) { SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, zone), data.sleepGoal) }
+    val noteEffects = remember(nights, data.notes, sleeps, feelings) {
+        NoteEffect.compute(nights.orEmpty(), data.notes, zone, NoteEffect.asleepByNight(sleeps, zone), feelings)
     }
     val habits = remember(sleeps, data.sleepGoal, data.routineItems, data.routineTicks) { habitLines(sleeps, data) }
     // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
-    val charts = remember(nights, sleeps, stages, data.notes, data.alarms, data.sleepGoal) {
-        HistoryCharts.of(nights.orEmpty(), sleeps, stages, data.notes, data.alarms, data.sleepGoal, Instant.now(), ZoneId.systemDefault())
+    val charts = remember(nights, sleeps, stages, data.notes, data.alarms, data.sleepGoal, feelings) {
+        HistoryCharts.of(nights.orEmpty(), sleeps, stages, data.notes, data.alarms, data.sleepGoal, Instant.now(), zone, feelings)
     }
-    val weekly = remember(nights, sleeps, data.notes, data.sleepGoal) {
-        val zone = ZoneId.systemDefault()
-        val today = LocalDate.now(zone)
-        if (!WeeklySummary.cardVisible(today)) null
-        else WeeklySummary.of(nights.orEmpty(), sleeps, data.notes, zone, data.sleepGoal, WeeklySummary.weekEnd(today)).takeIf { it.hasData }
-    }
+    val weekly = remember(nights, sleeps, data.notes, data.sleepGoal, feelings) { weeklyCard(nights.orEmpty(), sleeps, data, feelings) }
     // Text der nächsten Wochenrückblick-Mitteilung hier vorberechnen (App offen, neue Nacht, Befinden,
     // Notizen): Im Hintergrund liest Health Connect ohne eigene Berechtigung keine Schlafdaten.
-    LaunchedEffect(data.weeklyReview, nights, sleeps, data.notes, data.sleepGoal, data.customNotes) {
+    LaunchedEffect(data.weeklyReview, nights, sleeps, data.notes, data.sleepGoal, data.customNotes, feelings) {
         val list = nights ?: return@LaunchedEffect
-        if (data.weeklyReview) app.weekly.prepare(list, sleeps, data.notes, data.sleepGoal, data.customNotes)
+        if (data.weeklyReview) app.weekly.prepare(list, sleeps, data.notes, data.sleepGoal, data.customNotes, feelings)
     }
     return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly, history)
+}
+
+/** Wochenrückblick als Karte am Sonntag und Montag; an anderen Tagen oder ohne Daten `null`. */
+private fun weeklyCard(nights: List<NightRecord>, sleeps: List<SleepSummary>, data: AppData, feelings: List<HealthFeeling>): WeeklySummary? {
+    val zone = ZoneId.systemDefault()
+    val today = LocalDate.now(zone)
+    if (!WeeklySummary.cardVisible(today)) return null
+    return WeeklySummary.of(nights, sleeps, data.notes, zone, data.sleepGoal, WeeklySummary.weekEnd(today), feelings).takeIf { it.hasData }
 }
 
 /** Gewohnheiten: Regelmässigkeit und Serien aus der Gesundheits-App, Abendroutine aus den Haken. */

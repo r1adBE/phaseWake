@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Nætur úr Apple Health og öðrum forritum geta líka birst hér. Berðu saman við heilsugögn til að sjá þær.</string>
     <string name="history_empty_no_data_apple">Engin svefngögn frá Apple Health enn. Svefninn þarf að skrá þar, til dæmis með Apple Watch, og Phase Wake þarf að fá að lesa hann í Health-forritinu.</string>
     <string name="backup_health_hint_apple">Nætur úr öðrum forritum (t.d. Apple Health) eru ekki afritaðar – þær haldast þar og birtast aftur um leið og aðgangur er veittur.</string>
+    <string name="health_rationale_apple">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Apple Health) vistar. Þau birtast í ferlinum þínum og eru notuð til að athuga vakningarstundina. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
 </resources>

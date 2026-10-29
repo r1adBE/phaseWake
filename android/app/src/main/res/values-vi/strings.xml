@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ giờ</string>
     <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
     <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
-    <string name="health_rationale">Phase Wake có thể đọc các giai đoạn ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu sau khi bạn thức dậy. Dữ liệu chỉ dùng để kiểm tra xem bạn có được đánh thức khi ngủ nông hay không và để cải thiện khả năng nhận diện cho bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn và dùng để kiểm tra thời điểm bạn được đánh thức. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
     <string name="health_connect">So sánh với dữ liệu sức khỏe</string>
     <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
     <string name="health_connected">Đã kết nối</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">Chào buổi tối</string>
     <string name="greeting_night">Chúc ngủ ngon</string>
     <string name="settings_clear_history">Xóa lịch sử</string>
-    <string name="settings_clear_history_text">Xóa mọi đêm đã ghi trên điện thoại và đồng hồ của bạn. Báo thức của bạn vẫn được giữ.</string>
+    <string name="settings_clear_history_text">Xóa mọi đêm đã ghi trên điện thoại và đồng hồ của bạn. Báo thức của bạn vẫn được giữ. Các đêm từ ứng dụng khác chỉ bị ẩn ở đây và vẫn nằm trong các ứng dụng đó.</string>
     <string name="settings_clear_history_confirm">Xóa</string>
     <string name="action_cancel">Hủy</string>
     <string name="editor_advice_title">Mẹo: khung giờ rộng hơn</string>

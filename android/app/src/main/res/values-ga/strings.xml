@@ -99,7 +99,7 @@
     <string name="duration_hours_half">%1$d½ u</string>
     <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="health_title">Céimeanna codlata ó Health Connect</string>
-    <string name="health_rationale">Is féidir le Phase Wake na céimeanna codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) tar éis duit dúiseacht a léamh. Ní úsáidtear iad ach chun a sheiceáil ar dúisíodh thú i gcodladh éadrom agus chun an brath a fheabhsú duit. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
+    <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair agus úsáidtear iad chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
     <string name="health_connect">Cuir i gcomparáid le sonraí sláinte</string>
     <string name="health_connect_hint">Léann sé céimeanna codlata ó Health Connect tar éis duit dúiseacht, chun an brath a sheiceáil agus a fheabhsú.</string>
     <string name="health_connected">Ceangailte</string>
@@ -132,7 +132,7 @@
     <string name="greeting_evening">Tráthnóna maith</string>
     <string name="greeting_night">Oíche mhaith</string>
     <string name="settings_clear_history">Scrios an stair</string>
-    <string name="settings_clear_history_text">Scriosann sé gach oíche taifeadta ar do fhón agus ar d’uaireadóir. Fanann na haláraim.</string>
+    <string name="settings_clear_history_text">Scriosann sé gach oíche taifeadta ar do fhón agus ar d’uaireadóir. Fanann na haláraim. Ní dhéantar ach oícheanta ó aipeanna eile a cheilt anseo agus fanann siad sna haipeanna sin.</string>
     <string name="settings_clear_history_confirm">Scrios</string>
     <string name="action_cancel">Cealaigh</string>
     <string name="editor_advice_title">Leid: fuinneog níos mó</string>

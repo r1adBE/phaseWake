@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Unefaasid Health Connectist</string>
-    <string name="health_rationale">Phase Wake saab lugeda unefaase, mille sinu terviserakendus (näiteks Samsung Health) pärast ärkamist salvestab. Neid kasutatakse ainult selleks, et kontrollida, kas sind äratati kerges unes, ja parandada tuvastust just sinu jaoks. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
+    <string name="health_rationale">Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Samsung Health) salvestab. Neid näidatakse sinu ajaloos ja kasutatakse äratamise hetke kontrollimiseks. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
     <string name="health_connect">Võrdle terviseandmetega</string>
     <string name="health_connect_hint">Loeb pärast ärkamist unefaase Health Connectist, et tuvastust kontrollida ja parandada.</string>
     <string name="health_connected">Ühendatud</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Tere õhtust</string>
     <string name="greeting_night">Head ööd</string>
     <string name="settings_clear_history">Kustuta ajalugu</string>
-    <string name="settings_clear_history_text">Kustutab kõik salvestatud ööd telefonist ja kellast. Äratused jäävad alles.</string>
+    <string name="settings_clear_history_text">Kustutab kõik salvestatud ööd telefonist ja kellast. Äratused jäävad alles. Teiste rakenduste ööd peidetakse siin ainult ära ja need jäävad neisse rakendustesse.</string>
     <string name="settings_clear_history_confirm">Kustuta</string>
     <string name="action_cancel">Tühista</string>
     <string name="editor_advice_title">Nõuanne: suurem aken</string>

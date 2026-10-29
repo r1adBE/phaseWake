@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">شب‌های Apple Health و برنامه‌های دیگر هم می‌توانند اینجا نمایش داده شوند. برای دیدنشان، با داده‌های سلامت مقایسه کن.</string>
     <string name="history_empty_no_data_apple">هنوز داده‌ی خوابی از Apple Health نیست. خواب باید آنجا ثبت شود، مثلاً با Apple Watch تو، و Phase Wake باید در اپ Health اجازه‌ی خواندنش را داشته باشد.</string>
     <string name="backup_health_hint_apple">شب‌های برنامه‌های دیگر (مثلاً Apple Health) پشتیبان‌گیری نمی‌شوند – همان‌جا می‌مانند و به‌محض دادن اجازه دوباره نمایش داده می‌شوند.</string>
+    <string name="health_rationale_apple">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Apple Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند و برای بررسی لحظهٔ بیدار کردنت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
 </resources>

@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ 小時</string>
     <string name="duration_hours_minutes">%1$d 小時 %2$d 分鐘</string>
     <string name="health_title">來自 Health Connect 的睡眠階段</string>
-    <string name="health_rationale">Phase Wake 可以讀取你的健康 App（例如 Samsung Health）在你醒來後儲存的睡眠階段。這些數據只會用來檢查你是否在淺睡時被叫醒，並為你改善偵測。Phase Wake 只讀取、從不寫入，而且所有資料都不會離開你的手機。</string>
+    <string name="health_rationale">Phase Wake 可以讀取你的健康 App（例如 Samsung Health）儲存的睡眠數據。這些數據會顯示在你的記錄中，並用來檢查叫醒你的時刻。Phase Wake 只讀取、從不寫入，而且所有資料都不會離開你的手機。</string>
     <string name="health_connect">與健康數據比對</string>
     <string name="health_connect_hint">醒來後從 Health Connect 讀取睡眠階段，用來檢查和改善偵測。</string>
     <string name="health_connected">已連接</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">晚上好</string>
     <string name="greeting_night">晚安</string>
     <string name="settings_clear_history">刪除記錄</string>
-    <string name="settings_clear_history_text">刪除手機和手錶上記錄的所有晚上。你的鬧鐘會保留。</string>
+    <string name="settings_clear_history_text">刪除手機和手錶上記錄的所有晚上。你的鬧鐘會保留。來自其他 App 的晚上只會在這裡隱藏，並會保留在那些 App 中。</string>
     <string name="settings_clear_history_confirm">刪除</string>
     <string name="action_cancel">取消</string>
     <string name="editor_advice_title">提示：加長喚醒時段</string>

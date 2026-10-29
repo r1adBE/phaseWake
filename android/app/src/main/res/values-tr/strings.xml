@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ sa</string>
     <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
     <string name="health_title">Health Connect\'ten uyku evreleri</string>
-    <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) uyandıktan sonra kaydettiği uyku evrelerini okuyabilir. Bunlar yalnızca hafif uykuda uyandırılıp uyandırılmadığını kontrol etmek ve algılamayı senin için geliştirmek amacıyla kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
+    <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir ve uyandırıldığın anı kontrol etmek için kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
     <string name="health_connect">Sağlık verileriyle karşılaştır</string>
     <string name="health_connect_hint">Uyandıktan sonra uyku evrelerini Health Connect\'ten okuyarak algılamayı kontrol eder ve geliştirir.</string>
     <string name="health_connected">Bağlı</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">İyi akşamlar</string>
     <string name="greeting_night">İyi geceler</string>
     <string name="settings_clear_history">Geçmişi sil</string>
-    <string name="settings_clear_history_text">Telefonundaki ve saatindeki tüm kayıtlı geceleri siler. Alarmların kalır.</string>
+    <string name="settings_clear_history_text">Telefonundaki ve saatindeki tüm kayıtlı geceleri siler. Alarmların kalır. Diğer uygulamalardaki geceler burada yalnızca gizlenir ve o uygulamalarda kalır.</string>
     <string name="settings_clear_history_confirm">Sil</string>
     <string name="action_cancel">İptal</string>
     <string name="editor_advice_title">İpucu: daha geniş bir aralık</string>

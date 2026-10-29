@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health болон бусад аппын шөнүүд ч энд харагдаж болно. Тэдгээрийг харахын тулд эрүүл мэндийн өгөгдөлтэй харьцуул.</string>
     <string name="history_empty_no_data_apple">Apple Health-ээс одоогоор нойрны өгөгдөл алга. Нойр тэнд бүртгэгдсэн байх ёстой, жишээ нь чиний Apple Watch-аар, мөн Phase Wake-д Health апп дээр үүнийг унших зөвшөөрөл өгсөн байх ёстой.</string>
     <string name="backup_health_hint_apple">Бусад аппын шөнүүд (жишээ нь Apple Health) нөөцлөгдөхгүй – тэнд хэвээр үлдэж, зөвшөөрөл өгмөгц дахин харагдана.</string>
+    <string name="health_rationale_apple">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Apple Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд чамайг сэрээсэн мөчийг шалгахад ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
 </resources>

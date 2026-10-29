@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health eta beste aplikazio batzuetako gauak ere ager daitezke hemen. Ikusteko, alderatu osasun-datuekin.</string>
     <string name="history_empty_no_data_apple">Oraindik ez dago Apple Health-eko lo-daturik. Loa bertan erregistratu behar da, adibidez zure Apple Watch-ekin, eta Phase Wake-k Osasuna aplikazioan irakurtzeko baimena izan behar du.</string>
     <string name="backup_health_hint_apple">Beste aplikazio batzuetako gauak (adib. Apple Health) ez dira babeskopian gordetzen: han geratzen dira eta berriro agertzen dira baimena ematen denean.</string>
+    <string name="health_rationale_apple">Phase Wake-k zure osasun-aplikazioak (adibidez, Apple Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, eta esnatu zaituen unea egiaztatzeko erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
 </resources>

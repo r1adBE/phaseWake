@@ -273,7 +273,8 @@ object ChartData {
 
     /**
      * Befinden der [days] Nachtdaten bis [lastDate]: je Nachtdatum das der zuletzt geweckten Nacht
-     * (wie bei den Notizen), dazu die Notizen. `null`, wenn in dieser Zeit kein Befinden angegeben ist.
+     * (wie bei den Notizen), sonst das einer Nacht aus einer anderen App ([health], [HealthFeelings.byDate]), dazu
+     * die Notizen. `null`, wenn in dieser Zeit kein Befinden angegeben ist.
      */
     fun feelingSeries(
         nights: List<NightRecord>,
@@ -281,10 +282,9 @@ object ChartData {
         zone: ZoneId,
         today: LocalDate,
         days: Int = NIGHTS,
+        health: List<HealthFeeling> = emptyList(),
     ): FeelingSeries? {
-        val feelings = nights.filter { it.feeling != null }
-            .groupBy { SleepNotes.nightDate(it, zone) }
-            .mapValues { (_, list) -> list.maxBy { it.wokeAt }.feeling!! }
+        val feelings = HealthFeelings.byDate(nights, health, zone)
         val last = lastDate(feelings.keys, today)
         val points = range(last, days).map { FeelingPoint(it, feelings[it], notes[it].orEmpty()) }
         if (points.none { it.feeling != null }) return null

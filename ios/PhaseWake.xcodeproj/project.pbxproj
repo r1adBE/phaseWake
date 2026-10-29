@@ -582,7 +582,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake reads your sleep stages after you wake up to check whether you were woken in light sleep.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake reads your sleep data to show it in your history and to check the moment you were woken. It only reads, and the data stays on your iPhone.";
 				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Phase Wake wakes you as a backup alarm on your iPhone.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Phase Wake asks for Face ID before your history is deleted or your data is replaced.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Phase Wake records short clips of snoring and sleep talking at night if you turn it on. They stay on your iPhone and are deleted after 7 days.";
@@ -615,7 +615,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake reads your sleep stages after you wake up to check whether you were woken in light sleep.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake reads your sleep data to show it in your history and to check the moment you were woken. It only reads, and the data stays on your iPhone.";
 				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Phase Wake wakes you as a backup alarm on your iPhone.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Phase Wake asks for Face ID before your history is deleted or your data is replaced.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Phase Wake records short clips of snoring and sleep talking at night if you turn it on. They stay on your iPhone and are deleted after 7 days.";

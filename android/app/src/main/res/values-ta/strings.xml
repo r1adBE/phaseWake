@@ -95,7 +95,7 @@
     <string name="duration_hours_half">%1$d½ மணி</string>
     <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="health_title">Health Connect இலிருந்து தூக்க நிலைகள்</string>
-    <string name="health_rationale">நீங்கள் எழுந்த பிறகு உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்க நிலைகளை Phase Wake படிக்க முடியும். நீங்கள் லேசான தூக்கத்தில் எழுப்பப்பட்டீர்களா என்று சரிபார்க்கவும், உங்களுக்கான கண்டறிதலை மேம்படுத்தவும் மட்டுமே இவை பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
+    <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், உங்களை எழுப்பிய தருணத்தைச் சரிபார்க்கப் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
     <string name="health_connect">ஆரோக்கியத் தரவுடன் ஒப்பிடு</string>
     <string name="health_connect_hint">எழுந்த பிறகு Health Connect இலிருந்து தூக்க நிலைகளைப் படித்து, கண்டறிதலைச் சரிபார்த்து மேம்படுத்தும்.</string>
     <string name="health_connected">இணைக்கப்பட்டது</string>
@@ -128,7 +128,7 @@
     <string name="greeting_evening">மாலை வணக்கம்</string>
     <string name="greeting_night">இனிய இரவு</string>
     <string name="settings_clear_history">வரலாற்றை நீக்கு</string>
-    <string name="settings_clear_history_text">ஃபோனிலும் வாட்ச்சிலும் பதிவான எல்லா இரவுகளும் நீக்கப்படும். உங்கள் அலாரங்கள் அப்படியே இருக்கும்.</string>
+    <string name="settings_clear_history_text">ஃபோனிலும் வாட்ச்சிலும் பதிவான எல்லா இரவுகளும் நீக்கப்படும். உங்கள் அலாரங்கள் அப்படியே இருக்கும். பிற ஆப்களின் இரவுகள் இங்கே மறைக்கப்படும் மட்டுமே, அவை அந்த ஆப்களிலேயே இருக்கும்.</string>
     <string name="settings_clear_history_confirm">நீக்கு</string>
     <string name="action_cancel">ரத்துசெய்</string>
     <string name="editor_advice_title">குறிப்பு: பெரிய வரம்பு</string>

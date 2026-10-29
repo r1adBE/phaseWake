@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health ಮತ್ತು ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳೂ ಇಲ್ಲಿ ಕಾಣಿಸಬಹುದು. ಅವುಗಳನ್ನು ನೋಡಲು, ಆರೋಗ್ಯ ಡೇಟಾದೊಂದಿಗೆ ಹೋಲಿಸಿ.</string>
     <string name="history_empty_no_data_apple">Apple Health ನಿಂದ ಇನ್ನೂ ನಿದ್ರೆಯ ಡೇಟಾ ಇಲ್ಲ. ನಿದ್ರೆ ಅಲ್ಲಿ ದಾಖಲಾಗಬೇಕು, ಉದಾಹರಣೆಗೆ ನಿಮ್ಮ Apple Watch ಮೂಲಕ, ಮತ್ತು Health ಆ್ಯಪ್‌ನಲ್ಲಿ Phase Wake ಗೆ ಅದನ್ನು ಓದಲು ಅನುಮತಿ ಇರಬೇಕು.</string>
     <string name="backup_health_hint_apple">ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು (ಉದಾ. Apple Health) ಬ್ಯಾಕಪ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ – ಅವು ಅಲ್ಲಿಯೇ ಇರುತ್ತವೆ ಮತ್ತು ಅನುಮತಿ ನೀಡಿದ ತಕ್ಷಣ ಮತ್ತೆ ಕಾಣಿಸುತ್ತವೆ.</string>
+    <string name="health_rationale_apple">ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Apple Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ಕ್ಷಣವನ್ನು ಪರಿಶೀಲಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
 </resources>

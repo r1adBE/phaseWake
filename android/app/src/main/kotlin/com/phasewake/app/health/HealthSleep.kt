@@ -15,6 +15,7 @@ import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.StageSpan
 import java.time.Duration
 import java.time.Instant
+import java.time.ZoneId
 
 /**
  * Liest Schlafphasen, die eine Gesundheits-App (z. B. Samsung Health) nach dem Aufwachen in
@@ -94,7 +95,7 @@ class HealthSleep(private val context: Context) {
      */
     suspend fun recentSleep(days: Long, clearedAt: Instant?): List<SleepSummary> {
         val now = Instant.now()
-        return HealthHistory.summaries(sessions(now.minus(Duration.ofDays(days)), now), clearedAt)
+        return HealthHistory.summaries(sessions(now.minus(Duration.ofDays(days)), now), clearedAt, ZoneId.systemDefault())
     }
 
     private fun map(stage: Int): SleepStage = when (stage) {

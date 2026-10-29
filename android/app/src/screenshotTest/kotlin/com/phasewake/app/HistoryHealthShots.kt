@@ -49,14 +49,18 @@ private val samsung = run {
 /** Unbekannte App ohne Phasen, Nacht der Zeitumstellung (24./25.10.). */
 private val unknown = HealthSession(at(LocalDate.of(2026, 10, 24), 23, 40), at(LocalDate.of(2026, 10, 25), 8, 10), source = "com.example.sleep")
 
-/** Nickerchen am Nachmittag: zählt nicht. */
+/** Nickerchen am Nachmittag (kurz und ganz zwischen 09:00 und 19:00): zählt nicht. */
 private val nap = HealthSession(at(LocalDate.of(2026, 10, 25), 14, 0), at(LocalDate.of(2026, 10, 25), 14, 40), source = HealthSource.SAMSUNG_HEALTH)
 
 private val mixed = HealthHistory.merge(ownNights, listOf(samsung, unknown, nap), null, zone)
 
 @Composable
 private fun Mixed(mode: ThemeMode) = Themed(mode) {
-    HistoryScreen(ownNights, padding, loadStages = { emptyList() }, onExport = {}, healthConnected = true, items = mixed)
+    // Samsung-Nacht mit Befinden, die unbekannte App noch ohne (Auswahl sichtbar).
+    HistoryScreen(
+        ownNights, padding, loadStages = { emptyList() }, onExport = {}, healthConnected = true, items = mixed,
+        healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4),
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf gemischt hell", device = PHONE_TALL) @Composable

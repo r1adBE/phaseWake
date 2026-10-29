@@ -23,4 +23,5 @@
     <string name="history_empty_connect_apple">Aquí també poden aparèixer nits de Apple Health i altres apps. Per veure-les, compara amb les dades de salut.</string>
     <string name="history_empty_no_data_apple">Encara no hi ha dades de son d’Apple Health. El son s’hi ha de registrar, per exemple amb el teu Apple Watch, i cal permetre que Phase Wake el llegeixi a l’app Salut.</string>
     <string name="backup_health_hint_apple">Les nits d’altres apps (p. ex. Apple Health) no es desen a la còpia de seguretat: es queden allà i tornen a aparèixer quan s’hi dona accés.</string>
+    <string name="health_rationale_apple">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Apple Health) desa. Es mostren al teu historial i serveixen per comprovar el moment en què t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
 </resources>

@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ godz.</string>
     <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
     <string name="health_title">Fazy snu z Health Connect</string>
-    <string name="health_rationale">Phase Wake może odczytywać fazy snu, które aplikacja zdrowotna (na przykład Samsung Health) zapisuje po twoim przebudzeniu. Służą wyłącznie do sprawdzenia, czy obudzono cię w lekkim śnie, i do ulepszenia wykrywania dla ciebie. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
+    <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii i służą do sprawdzenia momentu, w którym cię obudzono. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
     <string name="health_connect">Porównaj z danymi zdrowotnymi</string>
     <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
     <string name="health_connected">Połączono</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Dobry wieczór</string>
     <string name="greeting_night">Dobranoc</string>
     <string name="settings_clear_history">Usuń historię</string>
-    <string name="settings_clear_history_text">Usuwa wszystkie zapisane noce na telefonie i zegarku. Twoje budziki zostają.</string>
+    <string name="settings_clear_history_text">Usuwa wszystkie zapisane noce na telefonie i zegarku. Twoje budziki zostają. Noce z innych aplikacji są tu tylko ukrywane i zostają w tych aplikacjach.</string>
     <string name="settings_clear_history_confirm">Usuń</string>
     <string name="action_cancel">Anuluj</string>
     <string name="editor_advice_title">Wskazówka: większe okno</string>

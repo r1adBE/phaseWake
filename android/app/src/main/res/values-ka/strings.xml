@@ -86,7 +86,7 @@
     <string name="duration_hours_half">%1$d½ სთ</string>
     <string name="duration_hours_minutes">%1$d სთ %2$d წთ</string>
     <string name="health_title">ძილის ფაზები Health Connect-დან</string>
-    <string name="health_rationale">Phase Wake-ს შეუძლია წაიკითხოს ძილის ფაზები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) გაღვიძების შემდეგ ინახავს. ისინი გამოიყენება მხოლოდ იმის შესამოწმებლად, მსუბუქ ძილში გაგაღვიძა თუ არა, და ამოცნობის შენთვის გასაუმჯობესებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს.</string>
+    <string name="health_rationale">Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) ინახავს. ისინი ჩანს შენს ისტორიაში და გამოიყენება გაღვიძების მომენტის შესამოწმებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს.</string>
     <string name="health_connect">შედარება ჯანმრთელობის მონაცემებთან</string>
     <string name="health_connect_hint">გაღვიძების შემდეგ კითხულობს ძილის ფაზებს Health Connect-დან, რათა შეამოწმოს და გააუმჯობესოს ამოცნობა.</string>
     <string name="health_connected">დაკავშირებულია</string>
@@ -119,7 +119,7 @@
     <string name="greeting_evening">საღამო მშვიდობისა</string>
     <string name="greeting_night">ძილი ნებისა</string>
     <string name="settings_clear_history">ისტორიის წაშლა</string>
-    <string name="settings_clear_history_text">შლის ყველა ჩაწერილ ღამეს ტელეფონსა და საათზე. მაღვიძარები რჩება.</string>
+    <string name="settings_clear_history_text">შლის ყველა ჩაწერილ ღამეს ტელეფონსა და საათზე. მაღვიძარები რჩება. სხვა აპების ღამეები აქ მხოლოდ იმალება და იმ აპებში რჩება.</string>
     <string name="settings_clear_history_confirm">წაშლა</string>
     <string name="action_cancel">გაუქმება</string>
     <string name="editor_advice_title">რჩევა: უფრო დიდი ფანჯარა</string>

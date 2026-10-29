@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Këtu mund të shfaqen edhe net nga Apple Health dhe aplikacione të tjera. Për t’i parë, krahaso me të dhënat e shëndetit.</string>
     <string name="history_empty_no_data_apple">Ende nuk ka të dhëna gjumi nga Apple Health. Gjumi duhet të regjistrohet atje, për shembull nga Apple Watch-i yt, dhe Phase Wake duhet të ketë leje ta lexojë në aplikacionin Health.</string>
     <string name="backup_health_hint_apple">Netët nga aplikacione të tjera (p.sh. Apple Health) nuk ruhen në kopjen rezervë – mbeten atje dhe shfaqen përsëri sapo të jepet qasja.</string>
+    <string name="health_rationale_apple">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Apple Health). Ato shfaqen në historikun tënd dhe përdoren për të kontrolluar momentin e zgjimit. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
 </resources>

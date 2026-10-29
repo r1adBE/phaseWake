@@ -23,4 +23,5 @@
     <string name="history_empty_connect_apple">Usiku kutoka Apple Health na programu nyingine unaweza pia kuonekana hapa. Ili kuuona, linganisha na data ya afya.</string>
     <string name="history_empty_no_data_apple">Bado hakuna data ya usingizi kutoka Apple Health. Usingizi lazima urekodiwe huko, kwa mfano na Apple Watch yako, na Phase Wake lazima iruhusiwe kuusoma katika programu ya Health.</string>
     <string name="backup_health_hint_apple">Usiku kutoka programu nyingine (k.m. Apple Health) hauhifadhiwi nakala – unabaki huko na kuonekana tena mara ruhusa inapotolewa.</string>
+    <string name="health_rationale_apple">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Apple Health) huhifadhi. Inaonyeshwa kwenye historia yako na kutumika kuangalia wakati ulipoamshwa. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
 </resources>

@@ -177,6 +177,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     private static let notesKey = "sleepNotes"
     private static let customNotesKey = "customNotes"
+    private static let healthFeelingsKey = "healthFeelings"
 
     /// Notizen je Nachtdatum «yyyy-MM-dd».
     public func notes() -> [String: [String]] {
@@ -195,10 +196,37 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return SleepNotes.decode(text)
     }
 
-    /// Löscht die Notizen aller Nächte (mit dem Verlauf); die eigenen Notizen bleiben zur Auswahl.
+    /// Löscht die Notizen aller Nächte und das Befinden zu Nächten aus anderen Apps (mit dem Verlauf); die eigenen
+    /// Notizen bleiben zur Auswahl.
     public func clearNotes() {
         lock.lock(); defer { lock.unlock() }
         defaults.removeObject(forKey: Self.notesKey)
+        defaults.removeObject(forKey: Self.healthFeelingsKey)
+    }
+
+    /// Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps, z. B. Apple Health (`HealthFeelings`); nie in HealthKit.
+    public func healthFeelings() -> [String: Int] {
+        lock.lock(); defer { lock.unlock() }
+        return HealthFeelings.decode(defaults.string(forKey: Self.healthFeelingsKey) ?? "")
+    }
+
+    /// Setzt das Befinden zur Nacht aus einer anderen App mit Nachtdatum `nightDate`. - Returns: neuer Stand.
+    @discardableResult
+    public func setHealthFeeling(_ feeling: Int, nightDate: String) -> [String: Int] {
+        lock.lock(); defer { lock.unlock() }
+        let all = HealthFeelings.decode(defaults.string(forKey: Self.healthFeelingsKey) ?? "")
+        let text = HealthFeelings.encode(HealthFeelings.set(all, date: nightDate, feeling: feeling))
+        defaults.set(text, forKey: Self.healthFeelingsKey)
+        return HealthFeelings.decode(text)
+    }
+
+    /// Ersetzt das Befinden zu Nächten aus anderen Apps (Wiederherstellen; ältere Sicherung ohne: leer). - Returns: neuer Stand.
+    @discardableResult
+    public func replaceHealthFeelings(_ feelings: [String: Int]) -> [String: Int] {
+        lock.lock(); defer { lock.unlock() }
+        let text = HealthFeelings.encode(feelings)
+        defaults.set(text, forKey: Self.healthFeelingsKey)
+        return HealthFeelings.decode(text)
     }
 
     /// Ersetzt die Notizen aller Nächte (Wiederherstellen einer Sicherung). - Returns: neuer Stand.

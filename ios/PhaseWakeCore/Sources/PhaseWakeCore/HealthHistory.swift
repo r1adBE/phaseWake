@@ -44,8 +44,15 @@ public struct HealthSession: Equatable, Sendable {
     /// Wache Minuten in der Sitzung; `nil` ohne bekannte Phasen (``hasStages``).
     public var awakeMinutes: Int? { hasStages ? minutesOf(.awake) : nil }
 
-    /// Ob die Sitzung ein Nickerchen ist: kürzer als ``HealthHistory/minNightMinutes``.
-    public var isNap: Bool { durationMinutes < HealthHistory.minNightMinutes }
+    /// Ob die Sitzung ein Nickerchen statt einer Nacht ist: kürzer als ``HealthHistory/minNightMinutes`` und ganz am
+    /// Tag – Beginn frühestens ``HealthHistory/napEarliestHour`` Uhr, Ende spätestens ``HealthHistory/napLatestHour`` Uhr,
+    /// beides Ortszeit in `calendar` am selben Tag. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht.
+    public func isNap(calendar: Calendar) -> Bool {
+        guard durationMinutes < HealthHistory.minNightMinutes, calendar.isDate(start, inSameDayAs: end),
+              let earliest = calendar.date(bySettingHour: HealthHistory.napEarliestHour, minute: 0, second: 0, of: start),
+              let latest = calendar.date(bySettingHour: HealthHistory.napLatestHour, minute: 0, second: 0, of: start) else { return false }
+        return start >= earliest && end <= latest
+    }
 
     /// Minuten der Phase `stage` in der Sitzung.
     public func minutesOf(_ stage: SleepStage) -> Int {
@@ -105,9 +112,13 @@ public struct HistoryItem: Equatable, Sendable {
 
 /// Verlauf aus eigenen Nächten und Sitzungen der Gesundheits-App. Identisch zu `HealthHistory` (Kotlin).
 public enum HealthHistory {
-    /// Sitzungen unter 180 Minuten (3 h) sind Nickerchen und zählen nicht als Nacht – gleiche Grenze wie
-    /// `SleepSummary.minAsleepMinutes`.
+    /// Sitzungen unter 180 Minuten (3 h) können Nickerchen sein (keine Nacht), wenn sie ganz am Tag liegen
+    /// (``HealthSession/isNap(calendar:)``) – dieselbe Regel gilt für Diagramme und Trends (``summaries(_:clearedAt:calendar:)``).
     public static let minNightMinutes = 180
+    /// Frühester Beginn eines Nickerchens (Stunde Ortszeit, 09:00 einschliesslich): Wer vor 09:00 kurz schläft, hatte eine Nacht.
+    public static let napEarliestHour = 9
+    /// Spätestes Ende eines Nickerchens (Stunde Ortszeit, 19:00 einschliesslich): Wer nach 19:00 aufwacht, hatte eine Nacht.
+    public static let napLatestHour = 19
     /// Lesefenster der Gesundheitsdaten in Tagen, so lang wie der eigene Verlauf (`NightHistory.maxNights`).
     public static let days = 90
 
@@ -119,14 +130,14 @@ public enum HealthHistory {
     }
 
     /// Verlauf, neueste zuerst: alle eigenen Nächte (vom Löschzeitpunkt unberührt) und je Nachtdatum höchstens
-    /// eine Fremd-Sitzung. Es zählen nur Sitzungen, die als Nacht gelten (sichtbar, kein Nickerchen, `end` nach `start`,
+    /// eine Fremd-Sitzung. Es zählen nur Sitzungen, die als Nacht gelten (sichtbar, kein Nickerchen in `calendar`, `end` nach `start`,
     /// ohne Doppel – siehe ``distinct(_:)``) und mit keiner eigenen Nacht dasselbe Nachtdatum haben oder sich mit ihr
     /// überschneiden (Sitzungsbeginn vor dem Weckmoment und Sitzungsende nach dem Fensterbeginn). Mehrere am selben
     /// Nachtdatum: nach derselben Vorliebe wie ``distinct(_:)``. Sortierung nach ``HistoryItem/at`` absteigend; gleich:
     /// eigene Nacht vor Sitzung, zwei eigene Nächte nach Fensterbeginn absteigend, dann Wecker-Kennung aufsteigend.
     public static func merge(nights: [NightRecord], sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HistoryItem] {
         let ownDates = Set(nights.map { SleepNotes.nightDate(of: $0, calendar: calendar) })
-        let candidates = countedNights(sessions, clearedAt: clearedAt).filter { session in
+        let candidates = countedNights(sessions, clearedAt: clearedAt, calendar: calendar).filter { session in
             !ownDates.contains(SleepNotes.nightDate(session.end, calendar: calendar))
                 && !nights.contains { session.start < $0.wokeAt && session.end > $0.windowStart }
         }
@@ -153,22 +164,22 @@ public enum HealthHistory {
     }
 
     /// Phasen der Sitzungen, die als Nacht zählen (ohne Doppel), nach Beginn – für das Schlafprofil eigener Nächte.
-    public static func stages(_ sessions: [HealthSession], clearedAt: Date?) -> [StageSpan] {
-        countedNights(sessions, clearedAt: clearedAt).flatMap(\.stages).sorted { $0.start < $1.start }
+    public static func stages(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [StageSpan] {
+        countedNights(sessions, clearedAt: clearedAt, calendar: calendar).flatMap(\.stages).sorted { $0.start < $1.start }
     }
 
     /// Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: `SleepSummary.group` über die
     /// Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal);
     /// eine Sitzung ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer.
-    public static func summaries(_ sessions: [HealthSession], clearedAt: Date?) -> [SleepSummary] {
-        SleepSummary.group(countedNights(sessions, clearedAt: clearedAt).flatMap { session in
+    public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
+        SleepSummary.group(countedNights(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { session in
             session.stages.isEmpty ? [StageSpan(start: session.start, end: session.end, stage: .unknown)] : session.stages
         })
     }
 
-    /// Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen, ohne Doppel (``distinct(_:)``).
-    private static func countedNights(_ sessions: [HealthSession], clearedAt: Date?) -> [HealthSession] {
-        distinct(visible(sessions, clearedAt: clearedAt).filter { $0.end > $0.start && !$0.isNap })
+    /// Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen in `calendar`, ohne Doppel (``distinct(_:)``).
+    private static func countedNights(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HealthSession] {
+        distinct(visible(sessions, clearedAt: clearedAt).filter { $0.end > $0.start && !$0.isNap(calendar: calendar) })
     }
 
     /// Ob `candidate` vor `current` gewählt wird: mit Phasen, länger, früher begonnen, dann Quelle.

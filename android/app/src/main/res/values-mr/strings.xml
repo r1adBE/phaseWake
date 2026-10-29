@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ ता.</string>
     <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
     <string name="health_title">Health Connect मधील झोपेचे टप्पे</string>
-    <string name="health_rationale">तुम्ही उठल्यानंतर तुमचे हेल्थ ॲप (उदा. Samsung Health) जे झोपेचे टप्पे साठवते, ते Phase Wake वाचू शकते. त्यांचा वापर फक्त तुम्हाला हलक्या झोपेत उठवले की नाही हे तपासण्यासाठी आणि तुमच्यासाठी ओळख सुधारण्यासाठी होतो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
+    <string name="health_rationale">तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो आणि तुम्हाला उठवण्याचा क्षण तपासण्यासाठी वापरला जातो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
     <string name="health_connect">हेल्थ डेटाशी तुलना करा</string>
     <string name="health_connect_hint">उठल्यानंतर Health Connect मधून झोपेचे टप्पे वाचते, ओळख तपासण्यासाठी आणि सुधारण्यासाठी.</string>
     <string name="health_connected">जोडलेले</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">शुभ संध्याकाळ</string>
     <string name="greeting_night">शुभ रात्री</string>
     <string name="settings_clear_history">इतिहास हटवा</string>
-    <string name="settings_clear_history_text">फोन आणि घड्याळावरील सर्व नोंदवलेल्या रात्री हटवते. तुमचे अलार्म राहतात.</string>
+    <string name="settings_clear_history_text">फोन आणि घड्याळावरील सर्व नोंदवलेल्या रात्री हटवते. तुमचे अलार्म राहतात. इतर ॲप्समधील रात्री इथे फक्त लपवल्या जातात आणि त्या ॲप्समध्येच राहतात.</string>
     <string name="settings_clear_history_confirm">हटवा</string>
     <string name="action_cancel">रद्द करा</string>
     <string name="editor_advice_title">टीप: मोठा कालावधी</string>

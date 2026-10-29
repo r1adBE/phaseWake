@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ j</string>
     <string name="duration_hours_minutes">%1$d j %2$d min</string>
     <string name="health_title">Peringkat tidur daripada Health Connect</string>
-    <string name="health_rationale">Phase Wake boleh membaca peringkat tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health) selepas awak bangun. Ia hanya digunakan untuk menyemak sama ada awak dikejutkan dalam tidur ringan dan untuk menambah baik pengesanan untuk awak. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak.</string>
+    <string name="health_rationale">Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health). Data ini dipaparkan dalam sejarah awak dan digunakan untuk menyemak saat awak dikejutkan. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak.</string>
     <string name="health_connect">Banding dengan data kesihatan</string>
     <string name="health_connect_hint">Membaca peringkat tidur daripada Health Connect selepas bangun, untuk menyemak dan menambah baik pengesanan.</string>
     <string name="health_connected">Disambungkan</string>
@@ -126,7 +126,7 @@
     <string name="greeting_evening">Selamat petang</string>
     <string name="greeting_night">Selamat malam</string>
     <string name="settings_clear_history">Padam sejarah</string>
-    <string name="settings_clear_history_text">Memadam semua malam yang direkodkan pada telefon dan jam tanganmu. Penggera kekal.</string>
+    <string name="settings_clear_history_text">Memadam semua malam yang direkodkan pada telefon dan jam tanganmu. Penggera kekal. Malam daripada apl lain hanya disembunyikan di sini dan kekal dalam apl tersebut.</string>
     <string name="settings_clear_history_confirm">Padam</string>
     <string name="action_cancel">Batal</string>
     <string name="editor_advice_title">Tip: tetingkap lebih besar</string>

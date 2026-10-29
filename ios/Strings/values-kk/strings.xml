@@ -22,4 +22,5 @@
     <string name="history_empty_connect_apple">Мұнда Apple Health және басқа қолданбалардың түндері де көрсетілуі мүмкін. Оларды көру үшін денсаулық деректерімен салыстыр.</string>
     <string name="history_empty_no_data_apple">Apple Health-тен әзірге ұйқы деректері жоқ. Ұйқы сонда жазылуы керек, мысалы Apple Watch арқылы, және Phase Wake-ке Health қолданбасында оны оқуға рұқсат берілуі керек.</string>
     <string name="backup_health_hint_apple">Басқа қолданбалардың түндері (мысалы, Apple Health) сақтық көшірмеге кірмейді – олар сонда қалады және рұқсат берілгенде қайта көрінеді.</string>
+    <string name="health_rationale_apple">Phase Wake денсаулық қолданбаң (мысалы, Apple Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі және сені ояту сәтін тексеру үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
 </resources>

@@ -50,6 +50,8 @@ func unmeasuredText(_ night: NightRecord) -> String? {
 /// Fünf runde Knöpfe von «erschöpft» bis «erholt»; ein Tipp genügt.
 struct FeelingPicker: View {
     let onPick: (Int) -> Void
+    /// Hinweis zum Wecken im leichten Schlaf darunter; nicht bei Nächten aus anderen Apps (dort weckte Phase Wake nicht).
+    var showsHint = true
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
@@ -77,7 +79,9 @@ struct FeelingPicker: View {
             .font(Fonts.manrope(11, relativeTo: .caption2))
             .foregroundStyle(.secondary)
             .accessibilityHidden(true)
-            Text(L("feeling_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if showsHint {
+                Text(L("feeling_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            }
         }
     }
 }

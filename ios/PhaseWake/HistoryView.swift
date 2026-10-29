@@ -17,7 +17,11 @@ struct HistoryView: View {
     @State private var loaded = false
 
     var body: some View {
-        let entries = self.entries
+        let items = self.items
+        let entries = self.entries(items)
+        // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
+        let feelings = HealthFeelings.of(items, feelings: model.healthFeelings)
+        let charts = self.charts(feelings)
         NavigationStack {
             ScrollView {
                 VStack(spacing: 12) {
@@ -32,25 +36,28 @@ struct HistoryView: View {
                             }
                         }
                     } else {
-                        if let weekly {
-                            WeeklyCard(summary: weekly)
+                        if let summary = weekly(feelings) {
+                            WeeklyCard(summary: summary)
                         }
                         if !model.nights.isEmpty { stats }
                         TrendsCard(
-                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current),
+                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current, health: feelings),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
                             onConnectHealth: { connectHealth() },
                             habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested, regularShown: charts.covered.contains(.regular)),
                             covered: charts.covered
                         )
-                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight, calendar: .current))
+                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight,
+                                                                    health: feelings, calendar: .current))
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
                                 NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) })
                             case .health(let session, let date):
-                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session))
+                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date]) {
+                                    model.setHealthFeeling($0, nightDate: date)
+                                }
                             case .sounds(let night, let last):
                                 SoundsOnlyCard(night: night, last: last)
                             }
@@ -76,8 +83,8 @@ struct HistoryView: View {
             return
         }
         health = await model.health.sessions()
-        sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt)
-        allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt)
+        sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
+        allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
         loaded = true
     }
 
@@ -111,13 +118,13 @@ struct HistoryView: View {
         }
     }
 
-    /// Diagramme: Schlaf aus Apple Health, Weckmomente und Befinden aus dem Verlauf.
-    private var charts: HistoryChartsData {
+    /// Diagramme: Schlaf aus Apple Health, Weckmomente und Befinden aus dem Verlauf (auch zu Nächten aus anderen Apps).
+    private func charts(_ feelings: [HealthFeeling]) -> HistoryChartsData {
         let now = Date()
         return HistoryChartsData.of(
             nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
             nextTarget: model.nextPlan(now: now)?.target,
-            goalMinutes: model.sleepGoal, now: now, calendar: .current
+            goalMinutes: model.sleepGoal, now: now, calendar: .current, health: feelings
         )
     }
 
@@ -127,8 +134,7 @@ struct HistoryView: View {
     }
 
     /// Nächte (neueste zuerst) und dazwischen nach Zeit die Karten nur mit Geräuschen (Nachtdaten ohne Nacht).
-    private var entries: [HistoryEntry] {
-        let items = self.items
+    private func entries(_ items: [HistoryItem]) -> [HistoryEntry] {
         var pending = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: Set(items.map(\.date)))[...]
         var out: [HistoryEntry] = []
         for item in items {
@@ -155,11 +161,11 @@ struct HistoryView: View {
     }
 
     /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
-    private var weekly: WeeklySummary? {
+    private func weekly(_ feelings: [HealthFeeling]) -> WeeklySummary? {
         let today = NightDate.today(Date(), calendar: .current)
         guard WeeklySummary.cardVisible(today: today) else { return nil }
         let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .current,
-                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today))
+                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today), health: feelings)
         return summary.hasData ? summary : nil
     }
 

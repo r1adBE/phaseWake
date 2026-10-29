@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ год</string>
     <string name="duration_hours_minutes">%1$d год %2$d хв</string>
     <string name="health_title">Фази сну з Health Connect</string>
-    <string name="health_rationale">Phase Wake може читати фази сну, які після пробудження зберігає твій застосунок для здоров\'я (наприклад, Samsung Health). Вони потрібні лише для перевірки, чи тебе розбудили в легкому сні, і для покращення розпізнавання саме для тебе. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон.</string>
+    <string name="health_rationale">Phase Wake може читати дані про сон, які зберігає твій застосунок для здоров\'я (наприклад, Samsung Health). Вони показуються в твоїй історії й потрібні, щоб перевірити момент пробудження. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон.</string>
     <string name="health_connect">Звіряти з даними про здоров\'я</string>
     <string name="health_connect_hint">Після пробудження читає фази сну з Health Connect, щоб перевіряти й покращувати розпізнавання.</string>
     <string name="health_connected">Підключено</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">Добрий вечір</string>
     <string name="greeting_night">На добраніч</string>
     <string name="settings_clear_history">Видалити історію</string>
-    <string name="settings_clear_history_text">Видаляє всі записані ночі на телефоні та годиннику. Твої будильники залишаться.</string>
+    <string name="settings_clear_history_text">Видаляє всі записані ночі на телефоні та годиннику. Твої будильники залишаться. Ночі з інших застосунків тут лише приховуються й залишаються в тих застосунках.</string>
     <string name="settings_clear_history_confirm">Видалити</string>
     <string name="action_cancel">Скасувати</string>
     <string name="editor_advice_title">Порада: ширше вікно</string>

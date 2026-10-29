@@ -23,4 +23,5 @@
     <string name="history_empty_connect_apple">Apple Health اور دوسری ایپس کی راتیں بھی یہاں دکھ سکتی ہیں۔ انہیں دیکھنے کے لیے صحت کے ڈیٹا سے موازنہ کرو۔</string>
     <string name="history_empty_no_data_apple">Apple Health سے ابھی نیند کا کوئی ڈیٹا نہیں۔ نیند وہاں ریکارڈ ہونی چاہیے، مثلاً تمہاری Apple Watch سے، اور Health ایپ میں Phase Wake کو اسے پڑھنے کی اجازت ہونی چاہیے۔</string>
     <string name="backup_health_hint_apple">دوسری ایپس کی راتیں (مثلاً Apple Health) بیک اپ نہیں ہوتیں – وہ وہیں رہتی ہیں اور اجازت ملتے ہی دوبارہ دکھتی ہیں۔</string>
+    <string name="health_rationale_apple">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Apple Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے اور تمہیں جگانے کا لمحہ جانچنے کے لیے استعمال ہوتا ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
 </resources>

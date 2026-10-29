@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ घ.</string>
     <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="health_title">Health Connect बाट निद्राका चरण</string>
-    <string name="health_rationale">तिमी ब्युँझेपछि तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राका चरणहरू Phase Wake ले पढ्न सक्छ। यिनलाई तिमीलाई हल्का निद्रामा ब्युँझाइयो कि भनेर जाँच्न र तिम्रो लागि पहिचान सुधार्न मात्र प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
+    <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ र तिमीलाई ब्युँझाएको क्षण जाँच्न प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
     <string name="health_connect">स्वास्थ्य डेटासँग तुलना गर</string>
     <string name="health_connect_hint">पहिचान जाँच्न र सुधार्न, ब्युँझेपछि Health Connect बाट निद्राका चरण पढ्छ।</string>
     <string name="health_connected">जोडिएको</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">शुभ सन्ध्या</string>
     <string name="greeting_night">शुभ रात्रि</string>
     <string name="settings_clear_history">इतिहास मेटाऊ</string>
-    <string name="settings_clear_history_text">तिम्रो फोन र घडीमा रेकर्ड भएका सबै रात मेटाउँछ। तिम्रा अलार्म रहन्छन्।</string>
+    <string name="settings_clear_history_text">तिम्रो फोन र घडीमा रेकर्ड भएका सबै रात मेटाउँछ। तिम्रा अलार्म रहन्छन्। अन्य एपका रातहरू यहाँ लुकाइन्छन् मात्र र ती एपहरूमै रहन्छन्।</string>
     <string name="settings_clear_history_confirm">मेटाऊ</string>
     <string name="action_cancel">रद्द गर</string>
     <string name="editor_advice_title">सुझाव: अलि लामो अवधि</string>

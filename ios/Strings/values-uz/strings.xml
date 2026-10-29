@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Bu yerda Apple Health va boshqa ilovalardagi tunlar ham chiqishi mumkin. Ularni koʻrish uchun sogʻliq maʼlumotlari bilan solishtir.</string>
     <string name="history_empty_no_data_apple">Apple Health’dan hali uyqu maʼlumotlari yoʻq. Uyqu u yerda yozib borilishi kerak, masalan, Apple Watch’ing orqali, va Phase Wake’ga Health ilovasida uni oʻqishga ruxsat berilishi kerak.</string>
     <string name="backup_health_hint_apple">Boshqa ilovalardagi tunlar (masalan, Apple Health) zaxiralanmaydi – ular oʻsha yerda qoladi va ruxsat berilishi bilan yana chiqadi.</string>
+    <string name="health_rationale_apple">Phase Wake sogʻliq ilovang (masalan, Apple Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi va seni uygʻotish paytini tekshirish uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
 </resources>

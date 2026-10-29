@@ -25,4 +25,5 @@
     <string name="history_empty_connect_apple">Apple Health र अन्य एपका रातहरू पनि यहाँ देखिन सक्छन्। तिनलाई हेर्न स्वास्थ्य डेटासँग तुलना गर।</string>
     <string name="history_empty_no_data_apple">Apple Health बाट अझै निद्राको डेटा छैन। निद्रा त्यहाँ रेकर्ड हुनुपर्छ, जस्तै तिम्रो Apple Watch ले, र Health एपमा Phase Wake लाई त्यो पढ्ने अनुमति हुनुपर्छ।</string>
     <string name="backup_health_hint_apple">अन्य एपका रातहरू (जस्तै Apple Health) ब्याकअप हुँदैनन् – ती त्यहीँ रहन्छन् र अनुमति दिनेबित्तिकै फेरि देखिन्छन्।</string>
+    <string name="health_rationale_apple">तिम्रो स्वास्थ्य एप (जस्तै Apple Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ र तिमीलाई ब्युँझाएको क्षण जाँच्न प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
 </resources>

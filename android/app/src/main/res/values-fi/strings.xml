@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ t</string>
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Univaiheet Health Connectista</string>
-    <string name="health_rationale">Phase Wake voi lukea univaiheet, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa heräämisen jälkeen. Niitä käytetään vain tarkistamaan, herätettiinkö sinut kevyessä unessa, ja parantamaan tunnistusta sinulle. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
+    <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, ja niillä tarkistetaan herätyshetki. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
     <string name="health_connect">Vertaa terveystietoihin</string>
     <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
     <string name="health_connected">Yhdistetty</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Hyvää iltaa</string>
     <string name="greeting_night">Hyvää yötä</string>
     <string name="settings_clear_history">Tyhjennä historia</string>
-    <string name="settings_clear_history_text">Poistaa kaikki tallennetut yöt puhelimesta ja kellosta. Herätyksesi säilyvät.</string>
+    <string name="settings_clear_history_text">Poistaa kaikki tallennetut yöt puhelimesta ja kellosta. Herätyksesi säilyvät. Muiden sovellusten yöt vain piilotetaan täällä, ja ne pysyvät niissä sovelluksissa.</string>
     <string name="settings_clear_history_confirm">Poista</string>
     <string name="action_cancel">Peruuta</string>
     <string name="editor_advice_title">Vinkki: isompi ikkuna</string>

@@ -44,6 +44,8 @@ final class PhoneModel {
     /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
     private(set) var notes: [String: [String]] = [:]
     private(set) var customNotes: [CustomNote] = []
+    /// Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps; nur bei Phase Wake gespeichert, nie in HealthKit.
+    private(set) var healthFeelings: [String: Int] = [:]
     /// Schlafziel in Minuten (360–600, Standard 450).
     private(set) var sleepGoal: Int = SleepGoal.defaultMinutes
     /// Bettzeit-Erinnerung, Standard aus.
@@ -89,6 +91,7 @@ final class PhoneModel {
         nights = storage.nights()
         notes = storage.notes()
         customNotes = storage.customNotes()
+        healthFeelings = storage.healthFeelings()
         let defaults = UserDefaults.standard
         let goal = defaults.integer(forKey: Self.sleepGoalKey)
         sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
@@ -146,6 +149,12 @@ final class PhoneModel {
         Task { await replanWeekly() }
     }
 
+    /// Befinden zur Nacht aus einer anderen App (Nachtdatum `nightDate`), nur bei Phase Wake gespeichert.
+    func setHealthFeeling(_ feeling: Int, nightDate: String) {
+        healthFeelings = storage.setHealthFeeling(feeling, nightDate: nightDate)
+        Task { await replanWeekly() }
+    }
+
     /// Die Uhr weckt: Einschlafklänge enden sofort (wie Android), nie das Wecken überdecken.
     func watchRang() {
         lastRing = Date()
@@ -190,9 +199,10 @@ final class PhoneModel {
     func clearHistory() {
         storage.clearNights()
         nights = []
-        // Notizen gehören zum Verlauf und gehen mit.
+        // Notizen und das Befinden zu Nächten aus anderen Apps gehören zum Verlauf und gehen mit.
         storage.clearNotes()
         notes = [:]
+        healthFeelings = [:]
         // Ebenso die Haken der Abendroutine und die Geräusch-Ausschnitte.
         routineTicks = [:]
         UserDefaults.standard.removeObject(forKey: Self.routineTicksKey)

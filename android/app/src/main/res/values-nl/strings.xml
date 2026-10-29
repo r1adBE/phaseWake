@@ -94,7 +94,7 @@
     <string name="duration_hours_half">%1$d½ u</string>
     <string name="duration_hours_minutes">%1$d u %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
-    <string name="health_rationale">Phase Wake kan de slaapfases lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat nadat je wakker bent geworden. Ze worden alleen gebruikt om te controleren of je in lichte slaap bent gewekt en om de herkenning voor jou te verbeteren. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
+    <string name="health_rationale">Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat. Ze worden in je geschiedenis getoond en gebruikt om het moment te controleren waarop je bent gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
     <string name="health_connect">Vergelijken met gezondheidsgegevens</string>
     <string name="health_connect_hint">Leest na het wakker worden de slaapfases uit Health Connect, om de herkenning te controleren en te verbeteren.</string>
     <string name="health_connected">Verbonden</string>
@@ -127,7 +127,7 @@
     <string name="greeting_evening">Goedenavond</string>
     <string name="greeting_night">Welterusten</string>
     <string name="settings_clear_history">Geschiedenis wissen</string>
-    <string name="settings_clear_history_text">Wist alle opgenomen nachten op je telefoon en horloge. Je wekkers blijven.</string>
+    <string name="settings_clear_history_text">Wist alle opgenomen nachten op je telefoon en horloge. Je wekkers blijven. Nachten uit andere apps worden hier alleen verborgen en blijven in die apps.</string>
     <string name="settings_clear_history_confirm">Wissen</string>
     <string name="action_cancel">Annuleren</string>
     <string name="editor_advice_title">Tip: een groter venster</string>

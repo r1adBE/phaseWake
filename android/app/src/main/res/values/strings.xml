@@ -98,7 +98,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Sleep stages from Health Connect</string>
-    <string name="health_rationale">Phase Wake can read the sleep stages that your health app (for example Samsung Health) stores after you wake up. They are used only to check whether you were woken in light sleep and to improve detection for you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
+    <string name="health_rationale">Phase Wake can read the sleep data that your health app (for example Samsung Health) stores. It is shown in your history and used to check the moment you were woken. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
     <string name="health_connect">Compare with health data</string>
     <string name="health_connect_hint">Reads sleep stages from Health Connect after waking, to check and improve detection.</string>
     <string name="health_connected">Connected</string>
@@ -131,7 +131,7 @@
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_night">Good night</string>
     <string name="settings_clear_history">Delete history</string>
-    <string name="settings_clear_history_text">Deletes all recorded nights on your phone and watch. Your alarms stay.</string>
+    <string name="settings_clear_history_text">Deletes all recorded nights on your phone and watch. Your alarms stay. Nights from other apps are only hidden here and stay in those apps.</string>
     <string name="settings_clear_history_confirm">Delete</string>
     <string name="action_cancel">Cancel</string>
     <string name="editor_advice_title">Tip: a larger window</string>

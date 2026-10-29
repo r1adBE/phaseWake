@@ -35,10 +35,13 @@ final class WeeklyReview {
         let calendar = Calendar.current
         guard let at = WeeklySummary.nextNotification(after: Date(), calendar: calendar) else { return }
         let health = await model.health.sessions()
-        let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt)
+        let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
+        // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen.
+        let items = HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
         let summary = WeeklySummary.of(
             nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: calendar,
-            goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar))
+            goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar)),
+            health: HealthFeelings.of(items, feelings: model.healthFeelings)
         )
         center.removePendingNotificationRequests(withIdentifiers: [Self.identifier])
         // Nichts zu berichten: keine Mitteilung.

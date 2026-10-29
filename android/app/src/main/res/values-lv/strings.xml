@@ -97,7 +97,7 @@
     <string name="duration_hours_half">%1$d½ st.</string>
     <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="health_title">Miega fāzes no Health Connect</string>
-    <string name="health_rationale">Phase Wake var nolasīt miega fāzes, ko tava veselības lietotne (piemēram, Samsung Health) saglabā pēc pamošanās. Tās tiek izmantotas tikai, lai pārbaudītu, vai tevi pamodināja vieglā miegā, un uzlabotu noteikšanu tieši tev. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
+    <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē un izmantoti, lai pārbaudītu pamodināšanas brīdi. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
     <string name="health_connect">Salīdzināt ar veselības datiem</string>
     <string name="health_connect_hint">Pēc pamošanās nolasa miega fāzes no Health Connect, lai pārbaudītu un uzlabotu noteikšanu.</string>
     <string name="health_connected">Savienots</string>
@@ -130,7 +130,7 @@
     <string name="greeting_evening">Labvakar</string>
     <string name="greeting_night">Ar labu nakti</string>
     <string name="settings_clear_history">Dzēst vēsturi</string>
-    <string name="settings_clear_history_text">Dzēš visas ierakstītās naktis tālrunī un pulkstenī. Modinātāji paliek.</string>
+    <string name="settings_clear_history_text">Dzēš visas ierakstītās naktis tālrunī un pulkstenī. Modinātāji paliek. Naktis no citām lietotnēm šeit tiek tikai paslēptas un paliek šajās lietotnēs.</string>
     <string name="settings_clear_history_confirm">Dzēst</string>
     <string name="action_cancel">Atcelt</string>
     <string name="editor_advice_title">Padoms: lielāks logs</string>

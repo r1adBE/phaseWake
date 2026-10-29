@@ -87912,445 +87912,893 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kan die slaapfases lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor nadat jy wakker geword het. Dit word net gebruik om na te gaan of jy in ligte slaap wakker gemaak is en om die bespeuring vir jou te verbeter. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie."
+            "value": "Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys en gebruik om die oomblik na te gaan waarop jy wakker gemaak is. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) ከነቁ በኋላ የሚያስቀምጣቸውን የእንቅልፍ ደረጃዎች ማንበብ ይችላል። እነዚህ በቀላል እንቅልፍ ላይ ሳሉ መቀስቀስዎን ለማረጋገጥና ማወቂያውን ለእርስዎ ለማሻሻል ብቻ ያገለግላሉ። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።"
+            "value": "Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ የተቀሰቀሱበትን ቅጽበት ለማረጋገጥም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يمكن لـ Phase Wake قراءة مراحل النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health) بعد الاستيقاظ. تُستخدم فقط للتحقق من أنك أُيقظت في نوم خفيف ولتحسين الرصد لك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك."
+            "value": "يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك وتُستخدم للتحقق من لحظة إيقاظك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake sağlamlıq tətbiqinin (məsələn, Samsung Health) oyandıqdan sonra saxladığı yuxu fazalarını oxuya bilər. Onlar yalnız səni yüngül yuxuda oyadıb-oyatmadığını yoxlamaq və aşkarlamanı sənə uyğun yaxşılaşdırmaq üçün istifadə olunur. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır."
+            "value": "Phase Wake sağlamlıq tətbiqinin (məsələn, Samsung Health) saxladığı yuxu məlumatlarını oxuya bilər. Onlar tarixçəndə göstərilir və oyadıldığın anı yoxlamaq üçün istifadə olunur. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake може да чете фазите на съня, които здравното ти приложение (например Samsung Health) записва след събуждането. Те се използват само за да се провери дали будилникът те е събудил в лек сън, и за да се подобри разпознаването за теб. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти."
+            "value": "Phase Wake може да чете данните за съня, които здравното ти приложение (например Samsung Health) записва. Те се показват в историята ти и се използват, за да се провери моментът на събуждането ти. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "তুমি জেগে ওঠার পর তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের পর্যায়গুলো সংরক্ষণ করে, Phase Wake সেগুলো পড়তে পারে। এগুলো শুধু দেখার জন্য যে তোমাকে হালকা ঘুমে জাগানো হয়েছিল কি না, আর তোমার জন্য শনাক্তকরণ উন্নত করতে। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।"
+            "value": "তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয় এবং তোমাকে জাগানোর মুহূর্তটি যাচাই করতে ব্যবহার হয়। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake može čitati faze sna koje tvoja zdravstvena aplikacija (na primjer Samsung Health) pohranjuje nakon buđenja. Koriste se samo za provjeru je li te Phase Wake probudio u laganom snu i za poboljšanje prepoznavanja za tebe. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
+            "value": "Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Samsung Health) pohranjuje. Prikazuju se u tvojoj historiji i koriste se za provjeru trenutka tvog buđenja. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake pot llegir les fases del son que la teva app de salut (per exemple, Samsung Health) desa després que et despertis. Només serveixen per comprovar si l’alarma t’ha despertat en son lleuger i per millorar la detecció per a tu. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon."
+            "value": "Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial i serveixen per comprovar el moment en què t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake umí číst fáze spánku, které tvoje zdravotní aplikace (třeba Samsung Health) uloží po probuzení. Slouží jen ke kontrole, zda tě budík vzbudil v lehkém spánku, a k vylepšení rozpoznávání pro tebe. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon."
+            "value": "Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Samsung Health). Zobrazují se v tvé historii a slouží ke kontrole okamžiku, kdy tě budík vzbudil. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kan læse de søvnfaser, som din sundheds-app (for eksempel Samsung Health) gemmer, efter du er vågnet. De bruges kun til at tjekke, om du blev vækket i let søvn, og til at forbedre registreringen for dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon."
+            "value": "Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik og bruges til at tjekke det øjeblik, du blev vækket. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kann die Schlafphasen lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) nach dem Aufwachen ablegt. Sie dienen nur dazu zu prüfen, ob du im leichten Schlaf geweckt wurdest, und die Erkennung für dich zu verbessern. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy."
+            "value": "Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf und dienen dazu, den Weckmoment zu prüfen. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το Phase Wake μπορεί να διαβάζει τις φάσεις ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health) αφού ξυπνήσεις. Χρησιμοποιούνται μόνο για να ελέγχεται αν σε ξύπνησε στον ελαφρύ ύπνο και για να βελτιωθεί η ανίχνευση για σένα. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου."
+            "value": "Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health). Εμφανίζονται στο ιστορικό σου και χρησιμοποιούνται για να ελέγχεται η στιγμή που σε ξύπνησε. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake can read the sleep stages that your health app (for example Samsung Health) stores after you wake up. They are used only to check whether you were woken in light sleep and to improve detection for you. Phase Wake only reads, never writes, and nothing leaves your phone."
+            "value": "Phase Wake can read the sleep data that your health app (for example Samsung Health) stores. It is shown in your history and used to check the moment you were woken. Phase Wake only reads, never writes, and nothing leaves your phone."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake puede leer las fases del sueño que tu app de salud (por ejemplo, Samsung Health) guarda al despertar. Se usan solo para comprobar si te despertaron en sueño ligero y para mejorar la detección para ti. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil."
+            "value": "Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Samsung Health). Se muestran en tu historial y se usan para comprobar el momento en que te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake saab lugeda unefaase, mille sinu terviserakendus (näiteks Samsung Health) pärast ärkamist salvestab. Neid kasutatakse ainult selleks, et kontrollida, kas sind äratati kerges unes, ja parandada tuvastust just sinu jaoks. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist."
+            "value": "Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Samsung Health) salvestab. Neid näidatakse sinu ajaloos ja kasutatakse äratamise hetke kontrollimiseks. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) esnatu ondoren gordetzen dituen lo-faseak irakur ditzake. Lo arinean esnatu zaituen egiaztatzeko eta zuretzako hautematea hobetzeko soilik erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen."
+            "value": "Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, eta esnatu zaituen unea egiaztatzeko erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake می‌تواند مراحل خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) بعد از بیدار شدن ذخیره می‌کند بخواند. این داده‌ها فقط برای بررسی اینکه در خواب سبک بیدار شده‌ای یا نه و بهتر کردن تشخیص برای خودت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود."
+            "value": "Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند و برای بررسی لحظهٔ بیدار کردنت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake voi lukea univaiheet, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa heräämisen jälkeen. Niitä käytetään vain tarkistamaan, herätettiinkö sinut kevyessä unessa, ja parantamaan tunnistusta sinulle. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi."
+            "value": "Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, ja niillä tarkistetaan herätyshetki. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mababasa ng Phase Wake ang mga yugto ng tulog na sine-save ng health app mo (halimbawa, Samsung Health) pagkagising mo. Ginagamit lang ang mga ito para tingnan kung ginising ka sa mababaw na tulog at para pahusayin ang pag-detect para sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo."
+            "value": "Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo at ginagamit para tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake peut lire les phases de sommeil que ton application santé (par exemple Samsung Health) enregistre après ton réveil. Elles servent uniquement à vérifier si tu as été réveillé en sommeil léger et à améliorer la détection pour toi. Phase Wake lit seulement, n'écrit jamais, et rien ne quitte ton téléphone."
+            "value": "Phase Wake peut lire les données de sommeil que ton application santé (par exemple Samsung Health) enregistre. Elles s'affichent dans ton historique et servent à vérifier le moment de ton réveil. Phase Wake lit seulement, n'écrit jamais, et rien ne quitte ton téléphone."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Is féidir le Phase Wake na céimeanna codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) tar éis duit dúiseacht a léamh. Ní úsáidtear iad ach chun a sheiceáil ar dúisíodh thú i gcodladh éadrom agus chun an brath a fheabhsú duit. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón."
+            "value": "Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair agus úsáidtear iad chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake pode ler as fases do sono que a túa app de saúde (por exemplo Samsung Health) garda despois de espertares. Só se usan para comprobar se te espertou no sono lixeiro e para mellorar a detección para ti. Phase Wake só le, nunca escribe, e nada sae do teu teléfono."
+            "value": "Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Samsung Health). Móstranse no teu historial e úsanse para comprobar o momento en que te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તમે જાગો પછી તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘના તબક્કા સાચવે છે, તે Phase Wake વાંચી શકે છે. તેનો ઉપયોગ ફક્ત એ તપાસવા માટે થાય છે કે તમને હળવી ઊંઘમાં જગાડવામાં આવ્યા કે નહીં, અને તમારા માટે ઓળખ સુધારવા માટે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી."
+            "value": "તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે અને તમને જગાડવાની ક્ષણ તપાસવા માટે વપરાય છે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ניתן לאפשר ל-Phase Wake לקרוא את שלבי השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת לאחר ההתעוררות. הם משמשים רק כדי לבדוק אם התעוררתם בשינה קלה ולשפר עבורכם את הזיהוי. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון."
+            "value": "ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם ומשמשים לבדיקת רגע ההשכמה. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake वे नींद के चरण पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) जागने के बाद सेव करता है। इनका इस्तेमाल सिर्फ़ यह जाँचने के लिए होता है कि तुम्हें हल्की नींद में जगाया गया या नहीं, और तुम्हारे लिए पहचान बेहतर बनाने के लिए। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।"
+            "value": "Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है और तुम्हें जगाने का पल जाँचने के लिए इस्तेमाल होता है। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake može čitati faze sna koje tvoja zdravstvena aplikacija (na primjer Samsung Health) sprema nakon buđenja. Koriste se samo za provjeru je li te Phase Wake probudio u laganom snu i za poboljšanje prepoznavanja za tebe. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
+            "value": "Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Samsung Health) sprema. Prikazuju se u tvojoj povijesti i koriste se za provjeru trenutka tvog buđenja. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Phase Wake el tudja olvasni az alvási fázisokat, amelyeket az egészségügyi appod (például a Samsung Health) ébredés után eltárol. Ezeket csak annak ellenőrzésére használja, hogy könnyű alvásban ébresztettek-e, és hogy javítsa az észlelést számodra. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat."
+            "value": "A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például a Samsung Health) eltárol. Ezek megjelennek az előzményeidben, és az ébresztés pillanatának ellenőrzésére szolgálnak. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ը կարող է կարդալ քնի փուլերը, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է արթնանալուց հետո։ Դրանք օգտագործվում են միայն ստուգելու համար, թե արդյոք քեզ արթնացրել են թեթև քնում, և քեզ համար բարելավելու հայտնաբերումը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։"
+            "value": "Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ և օգտագործվում են քեզ արթնացնելու պահը ստուգելու համար։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake dapat membaca fase tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health) setelah kamu bangun. Data ini hanya dipakai untuk memeriksa apakah kamu dibangunkan saat tidur ringan dan untuk meningkatkan deteksi bagimu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu."
+            "value": "Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu dan dipakai untuk memeriksa saat kamu dibangunkan. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake getur lesið svefnstigin sem heilsuforritið þitt (til dæmis Samsung Health) vistar eftir að þú vaknar. Þau eru aðeins notuð til að athuga hvort þú hafir verið vakin(n) í léttum svefni og til að bæta greininguna fyrir þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum."
+            "value": "Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum og eru notuð til að athuga vakningarstundina. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake può leggere le fasi del sonno che la tua app di salute (ad esempio Samsung Health) salva dopo il risveglio. Servono solo a verificare se sei stato svegliato nel sonno leggero e a migliorare il rilevamento per te. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono."
+            "value": "Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia e servono a verificare il momento del risveglio. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wakeは、起床後にヘルスケアアプリ(Samsung Healthなど)が保存した睡眠ステージを読み取れます。浅い眠りで起こせたかの確認と、検出精度の向上にのみ使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。"
+            "value": "Phase Wakeは、ヘルスケアアプリ(Samsung Healthなど)が保存した睡眠データを読み取れます。データは履歴に表示され、起こしたタイミングの確認に使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ს შეუძლია წაიკითხოს ძილის ფაზები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) გაღვიძების შემდეგ ინახავს. ისინი გამოიყენება მხოლოდ იმის შესამოწმებლად, მსუბუქ ძილში გაგაღვიძა თუ არა, და ამოცნობის შენთვის გასაუმჯობესებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს."
+            "value": "Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) ინახავს. ისინი ჩანს შენს ისტორიაში და გამოიყენება გაღვიძების მომენტის შესამოწმებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) оянғаннан кейін сақтайтын ұйқы фазаларын оқи алады. Олар тек сені жеңіл ұйқыда оятқанын тексеру және анықтауды өзіңе бейімдеп жақсарту үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды."
+            "value": "Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі және сені ояту сәтін тексеру үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake អាចអានដំណាក់កាលដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុកក្រោយអ្នកភ្ញាក់។ វាប្រើតែដើម្បីពិនិត្យថាតើអ្នកត្រូវបានដាស់ក្នុងដំណេកស្រាលឬទេ និងដើម្បីកែលម្អការរកឃើញសម្រាប់អ្នក។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។"
+            "value": "Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ហើយប្រើដើម្បីពិនិត្យពេលដែលអ្នកត្រូវបានដាស់។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನೀವು ಎದ್ದ ನಂತರ ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು Phase Wake ಓದಬಹುದು. ನಿಮ್ಮನ್ನು ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸಲಾಯಿತೇ ಎಂದು ಪರಿಶೀಲಿಸಲು ಮತ್ತು ನಿಮಗಾಗಿ ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಸುಧಾರಿಸಲು ಮಾತ್ರ ಇವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ."
+            "value": "ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ಕ್ಷಣವನ್ನು ಪರಿಶೀಲಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake는 일어난 뒤 건강 앱(예: Samsung Health)에 저장된 수면 단계를 읽을 수 있어요. 얕은 잠에서 깨웠는지 확인하고 감지 정확도를 높이는 데만 사용해요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요."
+            "value": "Phase Wake는 건강 앱(예: Samsung Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되고 깨운 시점을 확인하는 데 사용돼요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ສາມາດອ່ານໄລຍະການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ຫຼັງເຈົ້າຕື່ນ ຂໍ້ມູນນີ້ໃຊ້ພຽງເພື່ອກວດວ່າເຈົ້າຖືກປຸກຕອນຫຼັບຕື້ນຫຼືບໍ່ ແລະ ເພື່ອປັບປຸງການກວດຈັບໃຫ້ເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ"
+            "value": "Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ແລະ ໃຊ້ເພື່ອກວດເວລາທີ່ເຈົ້າຖືກປຸກ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake gali nuskaityti miego fazes, kurias tavo sveikatos programėlė (pvz., Samsung Health) išsaugo po pabudimo. Jos naudojamos tik patikrinti, ar tave pažadino lengvo miego metu, ir patobulinti aptikimą tau. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono."
+            "value": "Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Samsung Health). Jie rodomi tavo istorijoje ir naudojami patikrinti, kuriuo momentu tave pažadino. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake var nolasīt miega fāzes, ko tava veselības lietotne (piemēram, Samsung Health) saglabā pēc pamošanās. Tās tiek izmantotas tikai, lai pārbaudītu, vai tevi pamodināja vieglā miegā, un uzlabotu noteikšanu tieši tev. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni."
+            "value": "Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē un izmantoti, lai pārbaudītu pamodināšanas brīdi. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake може да ги чита фазите на сон што твојата апликација за здравје (на пример Samsung Health) ги зачувува откако ќе се разбудиш. Се користат само за да се провери дали си разбуден во лесен сон и за да се подобри препознавањето за тебе. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот."
+            "value": "Phase Wake може да ги чита податоците за сон што ги зачувува твојата апликација за здравје (на пример Samsung Health). Се прикажуваат во твојата историја и се користат за да се провери мигот на будењето. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നിങ്ങൾ ഉണർന്ന ശേഷം ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഘട്ടങ്ങൾ Phase Wake-ന് വായിക്കാം. നേരിയ ഉറക്കത്തിലാണോ ഉണർത്തിയത് എന്ന് പരിശോധിക്കാനും നിങ്ങൾക്കായി കണ്ടെത്തൽ മെച്ചപ്പെടുത്താനും മാത്രമാണ് ഇവ ഉപയോഗിക്കുന്നത്. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല."
+            "value": "നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുകയും നിങ്ങളെ ഉണർത്തിയ നിമിഷം പരിശോധിക്കാൻ ഉപയോഗിക്കുകയും ചെയ്യുന്നു. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake нь чамайг сэрсний дараа эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны үе шатыг уншиж чадна. Үүнийг зөвхөн чамайг хөнгөн нойронд сэрээсэн эсэхийг шалгах, илрүүлэлтийг чамд тааруулж сайжруулахад ашиглана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй."
+            "value": "Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд чамайг сэрээсэн мөчийг шалгахад ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुम्ही उठल्यानंतर तुमचे हेल्थ ॲप (उदा. Samsung Health) जे झोपेचे टप्पे साठवते, ते Phase Wake वाचू शकते. त्यांचा वापर फक्त तुम्हाला हलक्या झोपेत उठवले की नाही हे तपासण्यासाठी आणि तुमच्यासाठी ओळख सुधारण्यासाठी होतो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही."
+            "value": "तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो आणि तुम्हाला उठवण्याचा क्षण तपासण्यासाठी वापरला जातो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake boleh membaca peringkat tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health) selepas awak bangun. Ia hanya digunakan untuk menyemak sama ada awak dikejutkan dalam tidur ringan dan untuk menambah baik pengesanan untuk awak. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak."
+            "value": "Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health). Data ini dipaparkan dalam sejarah awak dan digunakan untuk menyemak saat awak dikejutkan. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "နိုးပြီးနောက် သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုအဆင့်များကို Phase Wake ဖတ်နိုင်သည်။ အိပ်ရေးပေါ့ချိန်တွင် နှိုးခဲ့သလား စစ်ဆေးရန်နှင့် သင့်အတွက် ရှာဖွေမှု ပိုကောင်းစေရန်သာ အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။"
+            "value": "သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး သင့်ကို နှိုးခဲ့သည့်အချိန်ကို စစ်ဆေးရန် အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kan lese søvnfasene som helse-appen din (for eksempel Samsung Health) lagrer etter at du har våknet. De brukes bare til å sjekke om du ble vekket i lett søvn, og til å forbedre gjenkjenningen for deg. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din."
+            "value": "Phase Wake kan lese søvndataene som helse-appen din (for eksempel Samsung Health) lagrer. De vises i historikken din og brukes til å sjekke øyeblikket du ble vekket. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "तिमी ब्युँझेपछि तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राका चरणहरू Phase Wake ले पढ्न सक्छ। यिनलाई तिमीलाई हल्का निद्रामा ब्युँझाइयो कि भनेर जाँच्न र तिम्रो लागि पहिचान सुधार्न मात्र प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।"
+            "value": "तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ र तिमीलाई ब्युँझाएको क्षण जाँच्न प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kan de slaapfases lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat nadat je wakker bent geworden. Ze worden alleen gebruikt om te controleren of je in lichte slaap bent gewekt en om de herkenning voor jou te verbeteren. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon."
+            "value": "Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat. Ze worden in je geschiedenis getoond en gebruikt om het moment te controleren waarop je bent gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਤੁਹਾਡੇ ਜਾਗਣ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦੇ ਜੋ ਪੜਾਅ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਸਿਰਫ਼ ਇਹ ਜਾਂਚਣ ਲਈ ਵਰਤੇ ਜਾਂਦੇ ਹਨ ਕਿ ਤੁਹਾਨੂੰ ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਇਆ ਗਿਆ ਜਾਂ ਨਹੀਂ, ਅਤੇ ਤੁਹਾਡੇ ਲਈ ਪਛਾਣ ਸੁਧਾਰਨ ਲਈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।"
+            "value": "ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦਾ ਪਲ ਜਾਂਚਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake może odczytywać fazy snu, które aplikacja zdrowotna (na przykład Samsung Health) zapisuje po twoim przebudzeniu. Służą wyłącznie do sprawdzenia, czy obudzono cię w lekkim śnie, i do ulepszenia wykrywania dla ciebie. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu."
+            "value": "Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii i służą do sprawdzenia momentu, w którym cię obudzono. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake pode ler as fases do sono que seu app de saúde (por exemplo, o Samsung Health) salva depois que você acorda. Elas servem apenas para verificar se você foi acordado no sono leve e para melhorar a detecção para você. O Phase Wake só lê, nunca grava, e nada sai do seu celular."
+            "value": "O Phase Wake pode ler os dados de sono que seu app de saúde (por exemplo, o Samsung Health) salva. Eles aparecem no seu histórico e servem para verificar o momento do seu despertar. O Phase Wake só lê, nunca grava, e nada sai do seu celular."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake pode ler as fases do sono que a tua app de saúde (por exemplo, o Samsung Health) guarda depois de acordares. Servem apenas para verificar se foste acordado em sono leve e para melhorar a deteção para ti. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel."
+            "value": "O Phase Wake pode ler os dados de sono que a tua app de saúde (por exemplo, o Samsung Health) guarda. Aparecem no teu histórico e servem para verificar o momento do teu despertar. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake poate citi fazele somnului pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează după ce te trezești. Sunt folosite doar pentru a verifica dacă ai fost trezit din somn ușor și pentru a îmbunătăți detectarea pentru tine. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău."
+            "value": "Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău și folosite pentru a verifica momentul trezirii. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake может читать фазы сна, которые твоё приложение для здоровья (например, Samsung Health) сохраняет после пробуждения. Они нужны только чтобы проверить, разбудили ли тебя в лёгком сне, и улучшить распознавание для тебя. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон."
+            "value": "Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Samsung Health). Они показываются в твоей истории и нужны, чтобы проверить момент пробуждения. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබ අවදි වූ පසු ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ අදියර Phase Wake හට කියවිය හැක. ඒවා භාවිත කරන්නේ ඔබව සැහැල්ලු නින්දේදී අවදි කළාද යන්න පරීක්ෂා කිරීමට සහ ඔබ සඳහා හඳුනාගැනීම වැඩිදියුණු කිරීමට පමණි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි."
+            "value": "ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake vie čítať fázy spánku, ktoré tvoja zdravotná aplikácia (napríklad Samsung Health) uloží po prebudení. Slúžia len na kontrolu, či ťa budík zobudil v ľahkom spánku, a na zlepšenie rozpoznávania pre teba. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón."
+            "value": "Phase Wake vie čítať údaje o spánku, ktoré ukladá tvoja zdravotná aplikácia (napríklad Samsung Health). Zobrazujú sa v tvojej histórii a slúžia na kontrolu okamihu, keď ťa budík zobudil. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake lahko prebere faze spanca, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani po prebujenju. Uporabijo se le za preverjanje, ali te je budilka zbudila v lahkem spancu, in za izboljšanje zaznavanja zate. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona."
+            "value": "Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani. Prikazani so v tvoji zgodovini in se uporabljajo za preverjanje trenutka bujenja. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mund të lexojë fazat e gjumit që aplikacioni yt i shëndetit (për shembull Samsung Health) ruan pasi zgjohesh. Ato përdoren vetëm për të kontrolluar nëse u zgjove në gjumë të lehtë dhe për të përmirësuar dallimin për ty. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt."
+            "value": "Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd dhe përdoren për të kontrolluar momentin e zgjimit. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake може да чита фазе сна које твоја здравствена апликација (на пример Samsung Health) чува после буђења. Користе се само да би се проверило да ли те је Phase Wake пробудио у лаганом сну и да би се препознавање побољшало за тебе. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон."
+            "value": "Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Samsung Health) чува. Приказују се у твојој историји и користе се за проверу тренутка твог буђења. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake kan läsa de sömnfaser som din hälsoapp (till exempel Samsung Health) sparar efter att du vaknat. De används bara för att kontrollera om du väcktes i lätt sömn och för att förbättra igenkänningen åt dig. Phase Wake läser bara, skriver aldrig, och inget lämnar din mobil."
+            "value": "Phase Wake kan läsa de sömndata som din hälsoapp (till exempel Samsung Health) sparar. De visas i din historik och används för att kontrollera ögonblicket då du väcktes. Phase Wake läser bara, skriver aldrig, och inget lämnar din mobil."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake inaweza kusoma hatua za usingizi ambazo programu yako ya afya (kwa mfano Samsung Health) huhifadhi baada ya kuamka. Zinatumika tu kuangalia kama uliamshwa katika usingizi mwepesi na kukuboreshea utambuzi. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako."
+            "value": "Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako na kutumika kuangalia wakati ulipoamshwa. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "நீங்கள் எழுந்த பிறகு உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்க நிலைகளை Phase Wake படிக்க முடியும். நீங்கள் லேசான தூக்கத்தில் எழுப்பப்பட்டீர்களா என்று சரிபார்க்கவும், உங்களுக்கான கண்டறிதலை மேம்படுத்தவும் மட்டுமே இவை பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது."
+            "value": "உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், உங்களை எழுப்பிய தருணத்தைச் சரிபார்க்கப் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "మీరు మేల్కొన్న తర్వాత మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర దశలను Phase Wake చదవగలదు. మిమ్మల్ని తేలికపాటి నిద్రలో లేపారో లేదో చూడటానికి, మీ కోసం గుర్తింపును మెరుగుపరచడానికి మాత్రమే వాటిని వాడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు."
+            "value": "మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, మిమ్మల్ని లేపిన క్షణాన్ని తనిఖీ చేయడానికి వాడబడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake อ่านระยะการนอนหลับที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้หลังคุณตื่นได้ ใช้เพื่อตรวจสอบว่าคุณถูกปลุกตอนหลับตื้นหรือไม่ และพัฒนาการตรวจจับให้เหมาะกับคุณเท่านั้น Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ"
+            "value": "Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณและใช้ตรวจสอบช่วงเวลาที่ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake, sağlık uygulamanın (örneğin Samsung Health) uyandıktan sonra kaydettiği uyku evrelerini okuyabilir. Bunlar yalnızca hafif uykuda uyandırılıp uyandırılmadığını kontrol etmek ve algılamayı senin için geliştirmek amacıyla kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz."
+            "value": "Phase Wake, sağlık uygulamanın (örneğin Samsung Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir ve uyandırıldığın anı kontrol etmek için kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake може читати фази сну, які після пробудження зберігає твій застосунок для здоров'я (наприклад, Samsung Health). Вони потрібні лише для перевірки, чи тебе розбудили в легкому сні, і для покращення розпізнавання саме для тебе. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон."
+            "value": "Phase Wake може читати дані про сон, які зберігає твій застосунок для здоров'я (наприклад, Samsung Health). Вони показуються в твоїй історії й потрібні, щоб перевірити момент пробудження. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake نیند کے وہ مراحل پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) تمہارے جاگنے کے بعد محفوظ کرتی ہے۔ ان سے صرف یہ دیکھا جاتا ہے کہ تمہیں ہلکی نیند میں جگایا گیا یا نہیں، اور تمہارے لیے پہچان بہتر بنائی جاتی ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔"
+            "value": "Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے اور تمہیں جگانے کا لمحہ جانچنے کے لیے استعمال ہوتا ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake sogʻliq ilovang (masalan, Samsung Health) uygʻonganingdan keyin saqlaydigan uyqu bosqichlarini oʻqiy oladi. Ular faqat seni yengil uyquda uygʻotilganingni tekshirish va aniqlashni sen uchun yaxshilash uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi."
+            "value": "Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi va seni uygʻotish paytini tekshirish uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake có thể đọc các giai đoạn ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu sau khi bạn thức dậy. Dữ liệu chỉ dùng để kiểm tra xem bạn có được đánh thức khi ngủ nông hay không và để cải thiện khả năng nhận diện cho bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn."
+            "value": "Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn và dùng để kiểm tra thời điểm bạn được đánh thức. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 可以讀取你的健康 App（例如 Samsung Health）在你醒來後儲存的睡眠階段。這些數據只會用來檢查你是否在淺睡時被叫醒，並為你改善偵測。Phase Wake 只讀取、從不寫入，而且所有資料都不會離開你的手機。"
+            "value": "Phase Wake 可以讀取你的健康 App（例如 Samsung Health）儲存的睡眠數據。這些數據會顯示在你的記錄中，並用來檢查叫醒你的時刻。Phase Wake 只讀取、從不寫入，而且所有資料都不會離開你的手機。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 可以读取你的健康应用（例如 Samsung Health）在你醒来后保存的睡眠阶段。这些数据仅用于检查你是否在浅睡时被叫醒，并为你改进检测效果。Phase Wake 只读取、从不写入，数据也不会离开你的手机。"
+            "value": "Phase Wake 可以读取你的健康应用（例如 Samsung Health）保存的睡眠数据。这些数据会显示在你的记录中，并用于检查叫醒你的时刻。Phase Wake 只读取、从不写入，数据也不会离开你的手机。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 可以讀取你的健康應用程式（例如 Samsung Health）在你醒來後儲存的睡眠階段。這些資料僅用於檢查你是否在淺眠時被叫醒，並為你改善偵測效果。Phase Wake 只讀取、從不寫入，資料也不會離開你的手機。"
+            "value": "Phase Wake 可以讀取你的健康應用程式（例如 Samsung Health）儲存的睡眠資料。這些資料會顯示在你的紀錄中，並用於檢查叫醒你的時刻。Phase Wake 只讀取、從不寫入，資料也不會離開你的手機。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-Phase Wake ingafunda izigaba zokulala ezigcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health) ngemva kokuvuka kwakho. Zisetshenziselwa kuphela ukuhlola ukuthi uvuswe yini ebuthongweni obulula nokuthuthukisa ukutholwa kwakho. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho."
+            "value": "I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho futhi isetshenziselwa ukuhlola isikhathi owavuswa ngaso. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho."
+          }
+        }
+      }
+    },
+    "health_rationale_apple": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Apple Health) stoor. Dit word in jou geskiedenis gewys en gebruik om die oomblik na te gaan waarop jy wakker gemaak is. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Apple Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ የተቀሰቀሱበትን ቅጽበት ለማረጋገጥም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Apple Health). تُعرض في سجلك وتُستخدم للتحقق من لحظة إيقاظك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake sağlamlıq tətbiqinin (məsələn, Apple Health) saxladığı yuxu məlumatlarını oxuya bilər. Onlar tarixçəndə göstərilir və oyadıldığın anı yoxlamaq üçün istifadə olunur. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake може да чете данните за съня, които здравното ти приложение (например Apple Health) записва. Те се показват в историята ти и се използват, за да се провери моментът на събуждането ти. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার স্বাস্থ্য অ্যাপ (যেমন Apple Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয় এবং তোমাকে জাগানোর মুহূর্তটি যাচাই করতে ব্যবহার হয়। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Apple Health) pohranjuje. Prikazuju se u tvojoj historiji i koriste se za provjeru trenutka tvog buđenja. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Apple Health) desa. Es mostren al teu historial i serveixen per comprovar el moment en què t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Apple Health). Zobrazují se v tvé historii a slouží ke kontrole okamžiku, kdy tě budík vzbudil. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Apple Health) gemmer. De vises i din historik og bruges til at tjekke det øjeblik, du blev vækket. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Apple Health) ablegt. Sie erscheinen in deinem Verlauf und dienen dazu, den Weckmoment zu prüfen. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Apple Health). Εμφανίζονται στο ιστορικό σου και χρησιμοποιούνται για να ελέγχεται η στιγμή που σε ξύπνησε. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake can read the sleep data that your health app (for example Apple Health) stores. It is shown in your history and used to check the moment you were woken. Phase Wake only reads, never writes, and nothing leaves your phone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Apple Health). Se muestran en tu historial y se usan para comprobar el momento en que te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Apple Health) salvestab. Neid näidatakse sinu ajaloos ja kasutatakse äratamise hetke kontrollimiseks. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k zure osasun-aplikazioak (adibidez, Apple Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, eta esnatu zaituen unea egiaztatzeko erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Apple Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند و برای بررسی لحظهٔ بیدار کردنت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Apple Health) tallentaa. Ne näytetään historiassasi, ja niillä tarkistetaan herätyshetki. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Apple Health). Ipinapakita ito sa kasaysayan mo at ginagamit para tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake peut lire les données de sommeil que ton application santé (par exemple Apple Health) enregistre. Elles s'affichent dans ton historique et servent à vérifier le moment de ton réveil. Phase Wake lit seulement, n'écrit jamais, et rien ne quitte ton téléphone."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Apple Health) a léamh. Taispeántar iad i do stair agus úsáidtear iad chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Apple Health). Móstranse no teu historial e úsanse para comprobar o momento en que te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારી હેલ્થ ઍપ (દા.ત. Apple Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે અને તમને જગાડવાની ક્ષણ તપાસવા માટે વપરાય છે. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Apple Health) שומרת. הם מוצגים בהיסטוריה שלכם ומשמשים לבדיקת רגע ההשכמה. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Apple Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है और तुम्हें जगाने का पल जाँचने के लिए इस्तेमाल होता है। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Apple Health) sprema. Prikazuju se u tvojoj povijesti i koriste se za provjeru trenutka tvog buđenja. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például az Apple Health) eltárol. Ezek megjelennek az előzményeidben, és az ébresztés pillanatának ellenőrzésére szolgálnak. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Apple Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ և օգտագործվում են քեզ արթնացնելու պահը ստուգելու համար։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Apple Health). Data ini ditampilkan di riwayatmu dan dipakai untuk memeriksa saat kamu dibangunkan. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Apple Health) vistar. Þau birtast í ferlinum þínum og eru notuð til að athuga vakningarstundina. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Apple Health) salva. Vengono mostrati nella tua cronologia e servono a verificare il momento del risveglio. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、ヘルスケアアプリ(Apple Healthなど)が保存した睡眠データを読み取れます。データは履歴に表示され、起こしたタイミングの確認に使用します。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Apple Health) ინახავს. ისინი ჩანს შენს ისტორიაში და გამოიყენება გაღვიძების მომენტის შესამოწმებლად. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake денсаулық қолданбаң (мысалы, Apple Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі және сені ояту сәтін тексеру үшін қолданылады. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Apple Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ហើយប្រើដើម្បីពិនិត្យពេលដែលអ្នកត្រូវបានដាស់។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Apple Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ಕ್ಷಣವನ್ನು ಪರಿಶೀಲಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 건강 앱(예: Apple Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되고 깨운 시점을 확인하는 데 사용돼요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Apple Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ແລະ ໃຊ້ເພື່ອກວດເວລາທີ່ເຈົ້າຖືກປຸກ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Apple Health). Jie rodomi tavo istorijoje ir naudojami patikrinti, kuriuo momentu tave pažadino. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Apple Health) saglabā. Tie tiek rādīti tavā vēsturē un izmantoti, lai pārbaudītu pamodināšanas brīdi. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake може да ги чита податоците за сон што ги зачувува твојата апликација за здравје (на пример Apple Health). Се прикажуваат во твојата историја и се користат за да се провери мигот на будењето. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Apple Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുകയും നിങ്ങളെ ഉണർത്തിയ നിമിഷം പരിശോധിക്കാൻ ഉപയോഗിക്കുകയും ചെയ്യുന്നു. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Apple Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд чамайг сэрээсэн мөчийг шалгахад ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचे हेल्थ ॲप (उदा. Apple Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो आणि तुम्हाला उठवण्याचा क्षण तपासण्यासाठी वापरला जातो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Apple Health). Data ini dipaparkan dalam sejarah awak dan digunakan untuk menyemak saat awak dikejutkan. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Apple Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး သင့်ကို နှိုးခဲ့သည့်အချိန်ကို စစ်ဆေးရန် အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kan lese søvndataene som helse-appen din (for eksempel Apple Health) lagrer. De vises i historikken din og brukes til å sjekke øyeblikket du ble vekket. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो स्वास्थ्य एप (जस्तै Apple Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ र तिमीलाई ब्युँझाएको क्षण जाँच्न प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Apple Health) opslaat. Ze worden in je geschiedenis getoond en gebruikt om het moment te controleren waarop je bent gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Apple Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦਾ ਪਲ ਜਾਂਚਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Apple Health). Są wyświetlane w twojej historii i służą do sprawdzenia momentu, w którym cię obudzono. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake pode ler os dados de sono que seu app de saúde (por exemplo, o Apple Health) salva. Eles aparecem no seu histórico e servem para verificar o momento do seu despertar. O Phase Wake só lê, nunca grava, e nada sai do seu celular."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake pode ler os dados de sono que a tua app de saúde (por exemplo, o Apple Health) guarda. Aparecem no teu histórico e servem para verificar o momento do teu despertar. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Apple Health) le salvează. Sunt afișate în istoricul tău și folosite pentru a verifica momentul trezirii. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Apple Health). Они показываются в твоей истории и нужны, чтобы проверить момент пробуждения. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ සෞඛ්‍ය යෙදුම (උදා. Apple Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vie čítať údaje o spánku, ktoré ukladá tvoja zdravotná aplikácia (napríklad Apple Health). Zobrazujú sa v tvojej histórii a slúžia na kontrolu okamihu, keď ťa budík zobudil. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Apple Health) shrani. Prikazani so v tvoji zgodovini in se uporabljajo za preverjanje trenutka bujenja. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Apple Health). Ato shfaqen në historikun tënd dhe përdoren për të kontrolluar momentin e zgjimit. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Apple Health) чува. Приказују се у твојој историји и користе се за проверу тренутка твог буђења. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake kan läsa de sömndata som din hälsoapp (till exempel Apple Health) sparar. De visas i din historik och används för att kontrollera ögonblicket då du väcktes. Phase Wake läser bara, skriver aldrig, och inget lämnar din mobil."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Apple Health) huhifadhi. Inaonyeshwa kwenye historia yako na kutumika kuangalia wakati ulipoamshwa. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Apple Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், உங்களை எழுப்பிய தருணத்தைச் சரிபார்க்கப் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ హెల్త్ యాప్ (ఉదా. Apple Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, మిమ్మల్ని లేపిన క్షణాన్ని తనిఖీ చేయడానికి వాడబడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Apple Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณและใช้ตรวจสอบช่วงเวลาที่ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, sağlık uygulamanın (örneğin Apple Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir ve uyandırıldığın anı kontrol etmek için kullanılır. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake може читати дані про сон, які зберігає твій застосунок для здоров'я (наприклад, Apple Health). Вони показуються в твоїй історії й потрібні, щоб перевірити момент пробудження. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Apple Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے اور تمہیں جگانے کا لمحہ جانچنے کے لیے استعمال ہوتا ہے۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake sogʻliq ilovang (masalan, Apple Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi va seni uygʻotish paytini tekshirish uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Apple Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn và dùng để kiểm tra thời điểm bạn được đánh thức. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 可以讀取你的健康 App（例如 Apple Health）儲存的睡眠數據。這些數據會顯示在你的記錄中，並用來檢查叫醒你的時刻。Phase Wake 只讀取、從不寫入，而且所有資料都不會離開你的手機。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 可以读取你的健康应用（例如 Apple Health）保存的睡眠数据。这些数据会显示在你的记录中，并用于检查叫醒你的时刻。Phase Wake 只读取、从不写入，数据也不会离开你的手机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 可以讀取你的健康應用程式（例如 Apple Health）儲存的睡眠資料。這些資料會顯示在你的紀錄中，並用於檢查叫醒你的時刻。Phase Wake 只讀取、從不寫入，資料也不會離開你的手機。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Apple Health). Iboniswa emlandweni wakho futhi isetshenziselwa ukuhlola isikhathi owavuswa ngaso. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho."
           }
         }
       }
@@ -149408,445 +149856,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vee alle aangetekende nagte op jou foon en horlosie uit. Jou wekkers bly."
+            "value": "Vee alle aangetekende nagte op jou foon en horlosie uit. Jou wekkers bly. Nagte uit ander apps word hier net versteek en bly in daardie apps."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "በስልክዎና በሰዓትዎ ላይ የተመዘገቡ ሁሉንም ሌሊቶች ይሰርዛል። ማንቂያዎችዎ ይቆያሉ።"
+            "value": "በስልክዎና በሰዓትዎ ላይ የተመዘገቡ ሁሉንም ሌሊቶች ይሰርዛል። ማንቂያዎችዎ ይቆያሉ። ከሌሎች መተግበሪያዎች የመጡ ሌሊቶች እዚህ የሚደበቁት ብቻ ነው፣ በእነዚያ መተግበሪያዎች ውስጥም ይቆያሉ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يحذف كل الليالي المسجّلة على هاتفك وساعتك. تبقى منبّهاتك كما هي."
+            "value": "يحذف كل الليالي المسجّلة على هاتفك وساعتك. تبقى منبّهاتك كما هي. الليالي من التطبيقات الأخرى تُخفى هنا فقط وتبقى في تلك التطبيقات."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telefonunda və saatında qeydə alınmış bütün gecələri silir. Siqnalların qalır."
+            "value": "Telefonunda və saatında qeydə alınmış bütün gecələri silir. Siqnalların qalır. Digər tətbiqlərdən gecələr burada yalnız gizlədilir və o tətbiqlərdə qalır."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Изтрива всички записани нощи на телефона и часовника. Будилниците остават."
+            "value": "Изтрива всички записани нощи на телефона и часовника. Будилниците остават. Нощите от други приложения само се скриват тук и остават в тези приложения."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ফোন আর ঘড়িতে রেকর্ড করা সব রাত মুছে যাবে। তোমার অ্যালার্মগুলো থাকবে।"
+            "value": "ফোন আর ঘড়িতে রেকর্ড করা সব রাত মুছে যাবে। তোমার অ্যালার্মগুলো থাকবে। অন্য অ্যাপের রাতগুলো এখানে শুধু লুকানো হয় এবং সেই অ্যাপগুলোতেই থেকে যায়।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Briše sve zabilježene noći na telefonu i satu. Tvoji alarmi ostaju."
+            "value": "Briše sve zabilježene noći na telefonu i satu. Tvoji alarmi ostaju. Noći iz drugih aplikacija ovdje se samo sakrivaju i ostaju u tim aplikacijama."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suprimeix totes les nits registrades al telèfon i al rellotge. Les alarmes es mantenen."
+            "value": "Suprimeix totes les nits registrades al telèfon i al rellotge. Les alarmes es mantenen. Les nits d’altres apps només s’amaguen aquí i es queden en aquestes apps."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Smaže všechny zaznamenané noci v telefonu a hodinkách. Tvoje budíky zůstanou."
+            "value": "Smaže všechny zaznamenané noci v telefonu a hodinkách. Tvoje budíky zůstanou. Noci z jiných aplikací se tu jen skryjí a zůstanou v těchto aplikacích."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sletter alle optagede nætter på din telefon og dit ur. Dine alarmer bliver."
+            "value": "Sletter alle optagede nætter på din telefon og dit ur. Dine alarmer bliver. Nætter fra andre apps skjules kun her og bliver i de apps."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Löscht alle aufgezeichneten Nächte auf Handy und Uhr. Deine Wecker bleiben."
+            "value": "Löscht alle aufgezeichneten Nächte auf Handy und Uhr. Deine Wecker bleiben. Nächte aus anderen Apps werden hier nur ausgeblendet und bleiben in diesen Apps."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Διαγράφει όλες τις καταγεγραμμένες νύχτες στο κινητό και στο ρολόι σου. Τα ξυπνητήρια σου παραμένουν."
+            "value": "Διαγράφει όλες τις καταγεγραμμένες νύχτες στο κινητό και στο ρολόι σου. Τα ξυπνητήρια σου παραμένουν. Οι νύχτες από άλλες εφαρμογές απλώς αποκρύπτονται εδώ και παραμένουν σε εκείνες τις εφαρμογές."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deletes all recorded nights on your phone and watch. Your alarms stay."
+            "value": "Deletes all recorded nights on your phone and watch. Your alarms stay. Nights from other apps are only hidden here and stay in those apps."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Borra todas las noches registradas en tu móvil y tu reloj. Tus alarmas se mantienen."
+            "value": "Borra todas las noches registradas en tu móvil y tu reloj. Tus alarmas se mantienen. Las noches de otras apps solo se ocultan aquí y se quedan en esas apps."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kustutab kõik salvestatud ööd telefonist ja kellast. Äratused jäävad alles."
+            "value": "Kustutab kõik salvestatud ööd telefonist ja kellast. Äratused jäävad alles. Teiste rakenduste ööd peidetakse siin ainult ära ja need jäävad neisse rakendustesse."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telefonoan eta erlojuan erregistratutako gau guztiak ezabatzen ditu. Alarmak mantendu egiten dira."
+            "value": "Telefonoan eta erlojuan erregistratutako gau guztiak ezabatzen ditu. Alarmak mantendu egiten dira. Beste aplikazio batzuetako gauak hemen ezkutatu baino ez dira egiten, eta aplikazio horietan geratzen dira."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "همه شب‌های ثبت‌شده در گوشی و ساعتت پاک می‌شود. زنگ‌های هشدارت می‌مانند."
+            "value": "همه شب‌های ثبت‌شده در گوشی و ساعتت پاک می‌شود. زنگ‌های هشدارت می‌مانند. شب‌های برنامه‌های دیگر اینجا فقط پنهان می‌شوند و در همان برنامه‌ها می‌مانند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Poistaa kaikki tallennetut yöt puhelimesta ja kellosta. Herätyksesi säilyvät."
+            "value": "Poistaa kaikki tallennetut yöt puhelimesta ja kellosta. Herätyksesi säilyvät. Muiden sovellusten yöt vain piilotetaan täällä, ja ne pysyvät niissä sovelluksissa."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dine-delete ang lahat ng naitalang gabi sa telepono at relo mo. Mananatili ang mga alarm mo."
+            "value": "Dine-delete ang lahat ng naitalang gabi sa telepono at relo mo. Mananatili ang mga alarm mo. Itinatago lang dito ang mga gabi mula sa ibang app at nananatili sila sa mga app na iyon."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efface toutes les nuits enregistrées sur ton téléphone et ta montre. Tes alarmes restent."
+            "value": "Efface toutes les nuits enregistrées sur ton téléphone et ta montre. Tes alarmes restent. Les nuits d'autres apps sont seulement masquées ici et restent dans ces apps."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scriosann sé gach oíche taifeadta ar do fhón agus ar d’uaireadóir. Fanann na haláraim."
+            "value": "Scriosann sé gach oíche taifeadta ar do fhón agus ar d’uaireadóir. Fanann na haláraim. Ní dhéantar ach oícheanta ó aipeanna eile a cheilt anseo agus fanann siad sna haipeanna sin."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina todas as noites rexistradas no teléfono e no reloxo. As alarmas mantéñense."
+            "value": "Elimina todas as noites rexistradas no teléfono e no reloxo. As alarmas mantéñense. As noites doutras apps só se ocultan aquí e quedan nesas apps."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "ફોન અને ઘડિયાળ પરની બધી નોંધાયેલી રાતો કાઢી નાખે છે. તમારા એલાર્મ રહે છે."
+            "value": "ફોન અને ઘડિયાળ પરની બધી નોંધાયેલી રાતો કાઢી નાખે છે. તમારા એલાર્મ રહે છે. અન્ય ઍપની રાતો અહીં ફક્ત છુપાવાય છે અને તે ઍપમાં જ રહે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מחיקת כל הלילות שהוקלטו בטלפון ובשעון. המעוררים שלך נשארים."
+            "value": "מחיקת כל הלילות שהוקלטו בטלפון ובשעון. המעוררים שלך נשארים. לילות מאפליקציות אחרות רק מוסתרים כאן ונשארים באפליקציות האלה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़ोन और वॉच पर रिकॉर्ड की गई सभी रातें हट जाएँगी। तुम्हारे अलार्म बने रहेंगे।"
+            "value": "फ़ोन और वॉच पर रिकॉर्ड की गई सभी रातें हट जाएँगी। तुम्हारे अलार्म बने रहेंगे। दूसरे ऐप की रातें यहाँ सिर्फ़ छिपाई जाती हैं और उन्हीं ऐप में रहती हैं।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Briše sve zabilježene noći na telefonu i satu. Tvoji alarmi ostaju."
+            "value": "Briše sve zabilježene noći na telefonu i satu. Tvoji alarmi ostaju. Noći iz drugih aplikacija ovdje se samo skrivaju i ostaju u tim aplikacijama."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Törli az összes rögzített éjszakát a telefonodon és az órádon. Az ébresztőid megmaradnak."
+            "value": "Törli az összes rögzített éjszakát a telefonodon és az órádon. Az ébresztőid megmaradnak. A más alkalmazásokból származó éjszakák itt csak el lesznek rejtve, és megmaradnak azokban az alkalmazásokban."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ջնջում է բոլոր գրանցված գիշերները հեռախոսիդ ու ժամացույցիդ վրա։ Զարթուցիչները մնում են։"
+            "value": "Ջնջում է բոլոր գրանցված գիշերները հեռախոսիդ ու ժամացույցիդ վրա։ Զարթուցիչները մնում են։ Այլ հավելվածների գիշերներն այստեղ միայն թաքցվում են և մնում են այդ հավելվածներում։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Menghapus semua malam yang tercatat di ponsel dan jam tanganmu. Alarmmu tetap ada."
+            "value": "Menghapus semua malam yang tercatat di ponsel dan jam tanganmu. Alarmmu tetap ada. Malam dari aplikasi lain hanya disembunyikan di sini dan tetap ada di aplikasi tersebut."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eyðir öllum skráðum nóttum í símanum og úrinu. Vekjararnir haldast."
+            "value": "Eyðir öllum skráðum nóttum í símanum og úrinu. Vekjararnir haldast. Nætur úr öðrum forritum eru aðeins faldar hér og haldast í þeim forritum."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina tutte le notti registrate su telefono e orologio. Le tue sveglie restano."
+            "value": "Elimina tutte le notti registrate su telefono e orologio. Le tue sveglie restano. Le notti di altre app vengono solo nascoste qui e restano in quelle app."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スマホとウォッチに記録されたすべての夜のデータを削除します。アラームはそのまま残ります。"
+            "value": "スマホとウォッチに記録されたすべての夜のデータを削除します。アラームはそのまま残ります。ほかのアプリの夜はここで非表示になるだけで、元のアプリに残ります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "შლის ყველა ჩაწერილ ღამეს ტელეფონსა და საათზე. მაღვიძარები რჩება."
+            "value": "შლის ყველა ჩაწერილ ღამეს ტელეფონსა და საათზე. მაღვიძარები რჩება. სხვა აპების ღამეები აქ მხოლოდ იმალება და იმ აპებში რჩება."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Телефон мен сағаттағы барлық жазылған түндерді жояды. Оятқыштарың сақталады."
+            "value": "Телефон мен сағаттағы барлық жазылған түндерді жояды. Оятқыштарың сақталады. Басқа қолданбалардың түндері мұнда тек жасырылады және сол қолданбаларда қалады."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "លុបយប់ដែលបានកត់ត្រាទាំងអស់លើទូរសព្ទ និងនាឡិកា។ ម៉ោងរោទ៍របស់អ្នកនៅដដែល។"
+            "value": "លុបយប់ដែលបានកត់ត្រាទាំងអស់លើទូរសព្ទ និងនាឡិកា។ ម៉ោងរោទ៍របស់អ្នកនៅដដែល។ យប់ពីកម្មវិធីផ្សេងត្រូវបានលាក់នៅទីនេះប៉ុណ្ណោះ ហើយនៅតែមាននៅក្នុងកម្មវិធីទាំងនោះ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ದಾಖಲಾದ ಎಲ್ಲಾ ರಾತ್ರಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ. ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ."
+            "value": "ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ದಾಖಲಾದ ಎಲ್ಲಾ ರಾತ್ರಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ. ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ. ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು ಇಲ್ಲಿ ಮರೆಮಾಡಲಾಗುತ್ತದೆ ಮಾತ್ರ, ಅವು ಆ ಆ್ಯಪ್‌ಗಳಲ್ಲೇ ಉಳಿಯುತ್ತವೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "휴대폰과 워치에 기록된 모든 밤 데이터를 삭제해요. 알람은 그대로 유지돼요."
+            "value": "휴대폰과 워치에 기록된 모든 밤 데이터를 삭제해요. 알람은 그대로 유지돼요. 다른 앱의 밤은 여기서 숨겨지기만 하고 그 앱에는 그대로 남아 있어요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ລຶບທຸກຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບ ແລະ ໂມງ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່"
+            "value": "ລຶບທຸກຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບ ແລະ ໂມງ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່ ຄືນຈາກແອັບອື່ນຖືກເຊື່ອງໄວ້ຢູ່ນີ້ເທົ່ານັ້ນ ແລະ ຍັງຢູ່ໃນແອັບເຫຼົ່ານັ້ນ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ištrina visas įrašytas naktis telefone ir laikrodyje. Žadintuvai lieka."
+            "value": "Ištrina visas įrašytas naktis telefone ir laikrodyje. Žadintuvai lieka. Naktys iš kitų programų čia tik paslepiamos ir lieka tose programose."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dzēš visas ierakstītās naktis tālrunī un pulkstenī. Modinātāji paliek."
+            "value": "Dzēš visas ierakstītās naktis tālrunī un pulkstenī. Modinātāji paliek. Naktis no citām lietotnēm šeit tiek tikai paslēptas un paliek šajās lietotnēs."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ги брише сите снимени ноќи на телефонот и часовникот. Алармите остануваат."
+            "value": "Ги брише сите снимени ноќи на телефонот и часовникот. Алармите остануваат. Ноќите од други апликации тука само се скриваат и остануваат во тие апликации."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഫോണിലും വാച്ചിലും രേഖപ്പെടുത്തിയ എല്ലാ രാത്രികളും ഇല്ലാതാക്കും. അലാറങ്ങൾ നിലനിൽക്കും."
+            "value": "ഫോണിലും വാച്ചിലും രേഖപ്പെടുത്തിയ എല്ലാ രാത്രികളും ഇല്ലാതാക്കും. അലാറങ്ങൾ നിലനിൽക്കും. മറ്റ് ആപ്പുകളിലെ രാത്രികൾ ഇവിടെ മറയ്ക്കുക മാത്രമാണ് ചെയ്യുന്നത്, അവ ആ ആപ്പുകളിൽ തന്നെ തുടരും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Утас, цаган дээрх бүх бүртгэсэн шөнийг устгана. Сэрүүлгүүд чинь үлдэнэ."
+            "value": "Утас, цаган дээрх бүх бүртгэсэн шөнийг устгана. Сэрүүлгүүд чинь үлдэнэ. Бусад аппын шөнүүд энд зөвхөн нуугдах бөгөөд тэр аппуудад хэвээр үлдэнэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "फोन आणि घड्याळावरील सर्व नोंदवलेल्या रात्री हटवते. तुमचे अलार्म राहतात."
+            "value": "फोन आणि घड्याळावरील सर्व नोंदवलेल्या रात्री हटवते. तुमचे अलार्म राहतात. इतर ॲप्समधील रात्री इथे फक्त लपवल्या जातात आणि त्या ॲप्समध्येच राहतात."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Memadam semua malam yang direkodkan pada telefon dan jam tanganmu. Penggera kekal."
+            "value": "Memadam semua malam yang direkodkan pada telefon dan jam tanganmu. Penggera kekal. Malam daripada apl lain hanya disembunyikan di sini dan kekal dalam apl tersebut."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "ဖုန်းနှင့် နာရီပေါ်ရှိ မှတ်တမ်းတင်ထားသော ညအားလုံးကို ဖျက်သည်။ နှိုးစက်များ ကျန်ရှိမည်။"
+            "value": "ဖုန်းနှင့် နာရီပေါ်ရှိ မှတ်တမ်းတင်ထားသော ညအားလုံးကို ဖျက်သည်။ နှိုးစက်များ ကျန်ရှိမည်။ အခြားအက်ပ်များမှ ညများကို ဤနေရာတွင် ဖျောက်ထားရုံသာဖြစ်ပြီး ထိုအက်ပ်များတွင် ဆက်ရှိနေမည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sletter alle registrerte netter på telefonen og klokka. Alarmene dine blir værende."
+            "value": "Sletter alle registrerte netter på telefonen og klokka. Alarmene dine blir værende. Netter fra andre apper skjules bare her og blir værende i de appene."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "तिम्रो फोन र घडीमा रेकर्ड भएका सबै रात मेटाउँछ। तिम्रा अलार्म रहन्छन्।"
+            "value": "तिम्रो फोन र घडीमा रेकर्ड भएका सबै रात मेटाउँछ। तिम्रा अलार्म रहन्छन्। अन्य एपका रातहरू यहाँ लुकाइन्छन् मात्र र ती एपहरूमै रहन्छन्।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wist alle opgenomen nachten op je telefoon en horloge. Je wekkers blijven."
+            "value": "Wist alle opgenomen nachten op je telefoon en horloge. Je wekkers blijven. Nachten uit andere apps worden hier alleen verborgen en blijven in die apps."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਦਰਜ ਸਾਰੀਆਂ ਰਾਤਾਂ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ।"
+            "value": "ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਦਰਜ ਸਾਰੀਆਂ ਰਾਤਾਂ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ। ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਇੱਥੇ ਸਿਰਫ਼ ਲੁਕਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਉਨ੍ਹਾਂ ਐਪਾਂ ਵਿੱਚ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usuwa wszystkie zapisane noce na telefonie i zegarku. Twoje budziki zostają."
+            "value": "Usuwa wszystkie zapisane noce na telefonie i zegarku. Twoje budziki zostają. Noce z innych aplikacji są tu tylko ukrywane i zostają w tych aplikacjach."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apaga todas as noites registradas no seu celular e no relógio. Seus alarmes continuam."
+            "value": "Apaga todas as noites registradas no seu celular e no relógio. Seus alarmes continuam. Noites de outros apps são apenas ocultadas aqui e continuam nesses apps."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apaga todas as noites registadas no teu telemóvel e no relógio. Os teus alarmes mantêm-se."
+            "value": "Apaga todas as noites registadas no teu telemóvel e no relógio. Os teus alarmes mantêm-se. As noites de outras apps são apenas ocultadas aqui e mantêm-se nessas apps."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Șterge toate nopțile înregistrate pe telefon și pe ceas. Alarmele tale rămân."
+            "value": "Șterge toate nopțile înregistrate pe telefon și pe ceas. Alarmele tale rămân. Nopțile din alte aplicații sunt doar ascunse aici și rămân în acele aplicații."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Удаляет все записанные ночи на телефоне и часах. Твои будильники останутся."
+            "value": "Удаляет все записанные ночи на телефоне и часах. Твои будильники останутся. Ночи из других приложений здесь только скрываются и остаются в этих приложениях."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබේ දුරකථනයේ සහ ඔරලෝසුවේ සටහන් වූ සියලු රාත්‍රි මකයි. ඔබේ එලාම ඉතිරි වේ."
+            "value": "ඔබේ දුරකථනයේ සහ ඔරලෝසුවේ සටහන් වූ සියලු රාත්‍රි මකයි. ඔබේ එලාම ඉතිරි වේ. වෙනත් යෙදුම්වල රාත්‍රී මෙහි සඟවනු ලබන්නේ පමණක් වන අතර ඒවා එම යෙදුම්වල පවතී."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vymaže všetky zaznamenané noci v telefóne aj v hodinkách. Budíky zostanú."
+            "value": "Vymaže všetky zaznamenané noci v telefóne aj v hodinkách. Budíky zostanú. Noci z iných aplikácií sa tu iba skryjú a zostanú v týchto aplikáciách."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izbriše vse zabeležene noči na telefonu in uri. Budilke ostanejo."
+            "value": "Izbriše vse zabeležene noči na telefonu in uri. Budilke ostanejo. Noči iz drugih aplikacij se tukaj samo skrijejo in ostanejo v teh aplikacijah."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fshin të gjitha netët e regjistruara në telefon dhe në orë. Alarmet e tua mbeten."
+            "value": "Fshin të gjitha netët e regjistruara në telefon dhe në orë. Alarmet e tua mbeten. Netët nga aplikacione të tjera këtu vetëm fshihen nga pamja dhe mbeten në ato aplikacione."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Брише све забележене ноћи на телефону и сату. Твоји аларми остају."
+            "value": "Брише све забележене ноћи на телефону и сату. Твоји аларми остају. Ноћи из других апликација овде се само скривају и остају у тим апликацијама."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Raderar alla registrerade nätter på telefonen och klockan. Dina alarm finns kvar."
+            "value": "Raderar alla registrerade nätter på telefonen och klockan. Dina alarm finns kvar. Nätter från andra appar döljs bara här och ligger kvar i de apparna."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inafuta usiku wote uliorekodiwa kwenye simu na saa yako. Kengele zako zinabaki."
+            "value": "Inafuta usiku wote uliorekodiwa kwenye simu na saa yako. Kengele zako zinabaki. Usiku kutoka programu nyingine unafichwa hapa tu na unabaki kwenye programu hizo."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "ஃபோனிலும் வாட்ச்சிலும் பதிவான எல்லா இரவுகளும் நீக்கப்படும். உங்கள் அலாரங்கள் அப்படியே இருக்கும்."
+            "value": "ஃபோனிலும் வாட்ச்சிலும் பதிவான எல்லா இரவுகளும் நீக்கப்படும். உங்கள் அலாரங்கள் அப்படியே இருக்கும். பிற ஆப்களின் இரவுகள் இங்கே மறைக்கப்படும் மட்டுமே, அவை அந்த ஆப்களிலேயே இருக்கும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "ఫోన్, వాచ్‌లో నమోదైన అన్ని రాత్రులను తొలగిస్తుంది. మీ అలారాలు అలాగే ఉంటాయి."
+            "value": "ఫోన్, వాచ్‌లో నమోదైన అన్ని రాత్రులను తొలగిస్తుంది. మీ అలారాలు అలాగే ఉంటాయి. ఇతర యాప్‌ల రాత్రులు ఇక్కడ దాచబడతాయి మాత్రమే, అవి ఆ యాప్‌లలోనే ఉంటాయి."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ลบข้อมูลทุกคืนที่บันทึกไว้บนโทรศัพท์และนาฬิกา การปลุกของคุณจะยังอยู่"
+            "value": "ลบข้อมูลทุกคืนที่บันทึกไว้บนโทรศัพท์และนาฬิกา การปลุกของคุณจะยังอยู่ คืนจากแอปอื่นจะถูกซ่อนไว้ที่นี่เท่านั้น และยังคงอยู่ในแอปเหล่านั้น"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telefonundaki ve saatindeki tüm kayıtlı geceleri siler. Alarmların kalır."
+            "value": "Telefonundaki ve saatindeki tüm kayıtlı geceleri siler. Alarmların kalır. Diğer uygulamalardaki geceler burada yalnızca gizlenir ve o uygulamalarda kalır."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Видаляє всі записані ночі на телефоні та годиннику. Твої будильники залишаться."
+            "value": "Видаляє всі записані ночі на телефоні та годиннику. Твої будильники залишаться. Ночі з інших застосунків тут лише приховуються й залишаються в тих застосунках."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "فون اور گھڑی پر ریکارڈ کی گئی تمام راتیں حذف ہو جائیں گی۔ تمہارے الارم باقی رہیں گے۔"
+            "value": "فون اور گھڑی پر ریکارڈ کی گئی تمام راتیں حذف ہو جائیں گی۔ تمہارے الارم باقی رہیں گے۔ دوسری ایپس کی راتیں یہاں صرف چھپائی جاتی ہیں اور انہی ایپس میں رہتی ہیں۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telefon va soatdagi barcha yozilgan tunlarni oʻchiradi. Budilniklaring qoladi."
+            "value": "Telefon va soatdagi barcha yozilgan tunlarni oʻchiradi. Budilniklaring qoladi. Boshqa ilovalardagi tunlar bu yerda faqat yashiriladi va oʻsha ilovalarda qoladi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Xóa mọi đêm đã ghi trên điện thoại và đồng hồ của bạn. Báo thức của bạn vẫn được giữ."
+            "value": "Xóa mọi đêm đã ghi trên điện thoại và đồng hồ của bạn. Báo thức của bạn vẫn được giữ. Các đêm từ ứng dụng khác chỉ bị ẩn ở đây và vẫn nằm trong các ứng dụng đó."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "刪除手機和手錶上記錄的所有晚上。你的鬧鐘會保留。"
+            "value": "刪除手機和手錶上記錄的所有晚上。你的鬧鐘會保留。來自其他 App 的晚上只會在這裡隱藏，並會保留在那些 App 中。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "将删除手机和手表上记录的所有夜晚数据。你的闹钟会保留。"
+            "value": "将删除手机和手表上记录的所有夜晚数据。你的闹钟会保留。来自其他应用的夜晚只会在这里隐藏，仍保留在那些应用中。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "將刪除手機和手錶上記錄的所有夜晚資料。你的鬧鐘會保留。"
+            "value": "將刪除手機和手錶上記錄的所有夜晚資料。你的鬧鐘會保留。來自其他 App 的夜晚只會在這裡隱藏，仍會保留在那些 App 中。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isusa bonke ubusuku obuqoshiwe efonini nasewashini lakho. Ama-alamu akho ayasala."
+            "value": "Isusa bonke ubusuku obuqoshiwe efonini nasewashini lakho. Ama-alamu akho ayasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app."
           }
         }
       }

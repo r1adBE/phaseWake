@@ -150,7 +150,8 @@ data class WeeklySummary(
 
         /**
          * Rückblick für die Woche, die am Samstag [weekEnd] endet. Schlaf aus der
-         * Gesundheits-App, Befinden aus den Uhr-Nächten; Wochen ohne beides ergeben [hasData] `false`.
+         * Gesundheits-App, Befinden aus den Uhr-Nächten und zu Nächten aus anderen Apps ([health]);
+         * Wochen ohne beides ergeben [hasData] `false`.
          */
         fun of(
             nights: List<NightRecord>,
@@ -159,17 +160,15 @@ data class WeeklySummary(
             zone: ZoneId,
             goalMinutes: Int,
             weekEnd: LocalDate,
+            health: List<HealthFeeling> = emptyList(),
         ): WeeklySummary {
             val from = weekEnd.minusDays(Regularity.WEEK_NIGHTS - 1L)
             fun inWeek(date: LocalDate) = !date.isBefore(from) && !date.isAfter(weekEnd)
             val asleep = NoteEffect.asleepByNight(sleeps, zone).filterKeys(::inWeek)
             val (regular, counted) = Regularity.count(Regularity.bedtimesOf(sleeps, zone), zone, until = weekEnd)
-            // Je Nachtdatum das Befinden der zuletzt geweckten Nacht (wie bei den Notizen).
-            val feelings = nights.filter { it.feeling != null }
-                .groupBy { SleepNotes.nightDate(it, zone) }
-                .filterKeys(::inWeek)
-                .map { (_, list) -> list.maxBy { it.wokeAt }.feeling!! }
-            val effects = NoteEffect.compute(nights, notes, zone, NoteEffect.asleepByNight(sleeps, zone))
+            // Je Nachtdatum das Befinden der zuletzt geweckten Nacht (wie bei den Notizen), sonst das der Fremd-Nacht.
+            val feelings = HealthFeelings.byDate(nights, health, zone).filterKeys(::inWeek).values
+            val effects = NoteEffect.compute(nights, notes, zone, NoteEffect.asleepByNight(sleeps, zone), health)
             return WeeklySummary(
                 from = from,
                 to = weekEnd,

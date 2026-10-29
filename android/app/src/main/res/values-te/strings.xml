@@ -96,7 +96,7 @@
     <string name="duration_hours_half">%1$d½ గం.</string>
     <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
     <string name="health_title">Health Connect నుంచి నిద్ర దశలు</string>
-    <string name="health_rationale">మీరు మేల్కొన్న తర్వాత మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర దశలను Phase Wake చదవగలదు. మిమ్మల్ని తేలికపాటి నిద్రలో లేపారో లేదో చూడటానికి, మీ కోసం గుర్తింపును మెరుగుపరచడానికి మాత్రమే వాటిని వాడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
+    <string name="health_rationale">మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, మిమ్మల్ని లేపిన క్షణాన్ని తనిఖీ చేయడానికి వాడబడుతుంది. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
     <string name="health_connect">హెల్త్ డేటాతో పోల్చండి</string>
     <string name="health_connect_hint">మేల్కొన్న తర్వాత Health Connect నుంచి నిద్ర దశలను చదువుతుంది, గుర్తింపును తనిఖీ చేసి మెరుగుపరచడానికి.</string>
     <string name="health_connected">కనెక్ట్ అయింది</string>
@@ -129,7 +129,7 @@
     <string name="greeting_evening">శుభ సాయంత్రం</string>
     <string name="greeting_night">శుభ రాత్రి</string>
     <string name="settings_clear_history">చరిత్ర తొలగించండి</string>
-    <string name="settings_clear_history_text">ఫోన్, వాచ్‌లో నమోదైన అన్ని రాత్రులను తొలగిస్తుంది. మీ అలారాలు అలాగే ఉంటాయి.</string>
+    <string name="settings_clear_history_text">ఫోన్, వాచ్‌లో నమోదైన అన్ని రాత్రులను తొలగిస్తుంది. మీ అలారాలు అలాగే ఉంటాయి. ఇతర యాప్‌ల రాత్రులు ఇక్కడ దాచబడతాయి మాత్రమే, అవి ఆ యాప్‌లలోనే ఉంటాయి.</string>
     <string name="settings_clear_history_confirm">తొలగించండి</string>
     <string name="action_cancel">రద్దు చేయండి</string>
     <string name="editor_advice_title">చిట్కా: పెద్ద వ్యవధి</string>
