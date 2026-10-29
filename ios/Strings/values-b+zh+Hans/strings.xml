@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">睡觉前请在你的 Apple Watch 上打开 Phase Wake。watchOS 只有在应用打开时才会启用闹钟。</string>
     <string name="night_unmeasured_apple">前 %1$d 分钟未测量——Apple Watch 只测量目标时间前的最后 %2$d 分钟。</string>
     <string name="settings_licenses_text_apple">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。\n声音：来自 opengameart.org 的自由录音（CC0）</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">来自 Apple Health 和其他应用的夜晚也可以显示在这里。要查看它们，请与健康数据对比。</string>
+    <string name="history_empty_no_data_apple">Apple Health 中还没有睡眠数据。睡眠需要先记录在那里（例如由你的 Apple Watch 记录），并且需要在“健康”App 中允许 Phase Wake 读取。</string>
+    <string name="backup_health_hint_apple">来自其他应用（例如 Apple Health）的夜晚不会被备份——它们保留在原处，授权后会再次显示。</string>
 </resources>

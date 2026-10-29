@@ -62,6 +62,15 @@
     <string name="history_title">Историја</string>
     <string name="history_empty_title">Сè уште нема ноќи</string>
     <string name="history_empty_text">По првата ноќ со часовникот ќе видиш кога и зошто те разбудил.</string>
+    <string name="history_health_mark">Без аларм на Phase Wake</string>
+    <string name="history_health_times">Во кревет %1$s · заспивање %2$s · будење %3$s</string>
+    <string name="history_health_times_simple">Во кревет %1$s · будење %2$s</string>
+    <string name="history_health_amounts">%1$s во кревет · %2$s сон · %3$s будност</string>
+    <string name="history_health_amount_simple">%1$s во кревет</string>
+    <string name="history_empty_connect">Тука може да се појават и ноќи од Samsung Health и други апликации. За да ги видиш, спореди со здравствените податоци.</string>
+    <string name="history_empty_no_data">Сè уште нема податоци за сон од Health Connect. Samsung Health мора да ги споделува: Samsung Health → Поставки → Health Connect.</string>
+    <string name="history_health_live">Од %1$s. Phase Wake автоматски ги презема промените и бришењата направени таму.</string>
+    <string name="history_health_live_unknown">Од твоите здравствени податоци. Phase Wake автоматски ги презема промените и бришењата направени таму.</string>
     <string name="history_average">Ø %1$d мин порано</string>
     <string name="history_light_share">%1$d %% во лесен сон</string>
     <string name="history_export">Извези анонимно</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Најмалку 8 знаци.</string>
     <string name="backup_password_mismatch">Лозинките не се совпаѓаат.</string>
     <string name="backup_password_hint">Без оваа лозинка никој не може да ја отвори копијата – ни ти.</string>
+    <string name="backup_health_hint">Ноќите од други апликации (на пр. Samsung Health) не се зачувуваат во резервната копија – остануваат таму и повторно се појавуваат штом ќе се даде пристап.</string>
     <string name="backup_create">Зачувај копија</string>
     <string name="backup_done">Копијата е зачувана.</string>
     <string name="backup_failed">Копијата не може да се зачува.</string>

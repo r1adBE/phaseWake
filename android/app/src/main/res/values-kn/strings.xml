@@ -61,6 +61,15 @@
     <string name="history_title">ಇತಿಹಾಸ</string>
     <string name="history_empty_title">ಇನ್ನೂ ಯಾವುದೇ ರಾತ್ರಿ ಇಲ್ಲ</string>
     <string name="history_empty_text">ವಾಚ್ ಜೊತೆಗಿನ ಮೊದಲ ರಾತ್ರಿಯ ನಂತರ, ಅದು ನಿಮ್ಮನ್ನು ಯಾವಾಗ ಮತ್ತು ಏಕೆ ಎಬ್ಬಿಸಿತು ಎಂದು ಇಲ್ಲಿ ಕಾಣುತ್ತದೆ.</string>
+    <string name="history_health_mark">Phase Wake ಅಲಾರಂ ಇಲ್ಲದೆ</string>
+    <string name="history_health_times">ಹಾಸಿಗೆಯಲ್ಲಿ %1$s · ನಿದ್ರೆ %2$s · ಎಚ್ಚರ %3$s</string>
+    <string name="history_health_times_simple">ಹಾಸಿಗೆಯಲ್ಲಿ %1$s · ಎಚ್ಚರ %2$s</string>
+    <string name="history_health_amounts">ಹಾಸಿಗೆಯಲ್ಲಿ %1$s · ನಿದ್ರೆ %2$s · ಎಚ್ಚರ %3$s</string>
+    <string name="history_health_amount_simple">ಹಾಸಿಗೆಯಲ್ಲಿ %1$s</string>
+    <string name="history_empty_connect">Samsung Health ಮತ್ತು ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳೂ ಇಲ್ಲಿ ಕಾಣಿಸಬಹುದು. ಅವುಗಳನ್ನು ನೋಡಲು, ಆರೋಗ್ಯ ಡೇಟಾದೊಂದಿಗೆ ಹೋಲಿಸಿ.</string>
+    <string name="history_empty_no_data">Health Connect ನಿಂದ ಇನ್ನೂ ನಿದ್ರೆಯ ಡೇಟಾ ಇಲ್ಲ. Samsung Health ಅದನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಕು: Samsung Health → ಸೆಟ್ಟಿಂಗ್‌ಗಳು → Health Connect.</string>
+    <string name="history_health_live">%1$s ನಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
+    <string name="history_health_live_unknown">ನಿಮ್ಮ ಆರೋಗ್ಯ ಡೇಟಾದಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
     <string name="history_average">Ø %1$d ನಿಮಿ. ಮುಂಚೆ</string>
     <string name="history_light_share">%1$d %% ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ</string>
     <string name="history_export">ಅನಾಮಧೇಯವಾಗಿ ರಫ್ತು ಮಾಡಿ</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು.</string>
     <string name="backup_password_mismatch">ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದುತ್ತಿಲ್ಲ.</string>
     <string name="backup_password_hint">ಈ ಪಾಸ್‌ವರ್ಡ್ ಇಲ್ಲದೆ ಯಾರೂ ಬ್ಯಾಕಪ್ ತೆರೆಯಲಾರರು – ನೀವೂ ಸಹ.</string>
+    <string name="backup_health_hint">ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು (ಉದಾ. Samsung Health) ಬ್ಯಾಕಪ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ – ಅವು ಅಲ್ಲಿಯೇ ಇರುತ್ತವೆ ಮತ್ತು ಅನುಮತಿ ನೀಡಿದ ತಕ್ಷಣ ಮತ್ತೆ ಕಾಣಿಸುತ್ತವೆ.</string>
     <string name="backup_create">ಬ್ಯಾಕಪ್ ಉಳಿಸಿ</string>
     <string name="backup_done">ಬ್ಯಾಕಪ್ ಉಳಿಸಲಾಗಿದೆ.</string>
     <string name="backup_failed">ಬ್ಯಾಕಪ್ ಉಳಿಸಲಾಗಲಿಲ್ಲ.</string>

@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Hãy mở Phase Wake trên Apple Watch trước khi đi ngủ. watchOS chỉ kích hoạt báo thức khi ứng dụng đang mở.</string>
     <string name="night_unmeasured_apple">%1$d phút đầu không được đo – Apple Watch chỉ đo %2$d phút cuối trước giờ mục tiêu.</string>
     <string name="settings_licenses_text_apple">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: SoundAnalysis của Apple, tích hợp sẵn trong iOS.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Các đêm từ Apple Health và ứng dụng khác cũng có thể hiện ở đây. Để xem, hãy so sánh với dữ liệu sức khỏe.</string>
+    <string name="history_empty_no_data_apple">Chưa có dữ liệu giấc ngủ từ Apple Health. Giấc ngủ cần được ghi lại ở đó, ví dụ bằng Apple Watch của bạn, và Phase Wake cần được phép đọc dữ liệu này trong ứng dụng Sức khỏe.</string>
+    <string name="backup_health_hint_apple">Các đêm từ ứng dụng khác (vd. Apple Health) không được sao lưu – chúng vẫn ở đó và hiện lại ngay khi bạn cấp quyền truy cập.</string>
 </resources>

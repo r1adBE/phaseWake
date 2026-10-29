@@ -63,6 +63,15 @@
     <string name="history_title">Vēsture</string>
     <string name="history_empty_title">Vēl nav nevienas nakts</string>
     <string name="history_empty_text">Pēc pirmās nakts ar pulksteni redzēsi, kad un kāpēc tas tevi pamodināja.</string>
+    <string name="history_health_mark">Bez Phase Wake modinātāja</string>
+    <string name="history_health_times">Gultā %1$s · iemigšana %2$s · pamošanās %3$s</string>
+    <string name="history_health_times_simple">Gultā %1$s · pamošanās %2$s</string>
+    <string name="history_health_amounts">Gultā %1$s · miegs %2$s · nomodā %3$s</string>
+    <string name="history_health_amount_simple">Gultā %1$s</string>
+    <string name="history_empty_connect">Šeit var parādīties arī naktis no lietotnes Samsung Health un citām lietotnēm. Lai tās redzētu, salīdzini ar veselības datiem.</string>
+    <string name="history_empty_no_data">No Health Connect vēl nav miega datu. Samsung Health tie jākopīgo: Samsung Health → Iestatījumi → Health Connect.</string>
+    <string name="history_health_live">No lietotnes %1$s. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
+    <string name="history_health_live_unknown">No taviem veselības datiem. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_average">Ø %1$d min agrāk</string>
     <string name="history_light_share">%1$d %% vieglā miegā</string>
     <string name="history_export">Eksportēt anonīmi</string>
@@ -437,6 +446,7 @@
     <string name="backup_password_short">Vismaz 8 rakstzīmes.</string>
     <string name="backup_password_mismatch">Paroles nesakrīt.</string>
     <string name="backup_password_hint">Bez šīs paroles neviens nevar atvērt dublējumu – pat tu ne.</string>
+    <string name="backup_health_hint">Naktis no citām lietotnēm (piem., Samsung Health) netiek dublētas – tās paliek tur un atkal parādās, tiklīdz piekļuve ir piešķirta.</string>
     <string name="backup_create">Saglabāt dublējumu</string>
     <string name="backup_done">Dublējums saglabāts.</string>
     <string name="backup_failed">Neizdevās saglabāt dublējumu.</string>

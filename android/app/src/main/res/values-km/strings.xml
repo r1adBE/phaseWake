@@ -60,6 +60,15 @@
     <string name="history_title">ប្រវត្តិ</string>
     <string name="history_empty_title">មិនទាន់មានយប់ណាមួយ</string>
     <string name="history_empty_text">បន្ទាប់ពីយប់ដំបូងជាមួយនាឡិកា អ្នកនឹងឃើញថាវាដាស់អ្នកនៅពេលណា និងហេតុអ្វី។</string>
+    <string name="history_health_mark">គ្មានម៉ោងរោទ៍ Phase Wake</string>
+    <string name="history_health_times">លើគ្រែ %1$s · គេងលក់ %2$s · ភ្ញាក់ %3$s</string>
+    <string name="history_health_times_simple">លើគ្រែ %1$s · ភ្ញាក់ %2$s</string>
+    <string name="history_health_amounts">លើគ្រែ %1$s · គេង %2$s · ភ្ញាក់ %3$s</string>
+    <string name="history_health_amount_simple">លើគ្រែ %1$s</string>
+    <string name="history_empty_connect">យប់ពី Samsung Health និងកម្មវិធីផ្សេងទៀតក៏អាចបង្ហាញនៅទីនេះដែរ។ ដើម្បីមើលវា សូមប្រៀបធៀបជាមួយទិន្នន័យសុខភាព។</string>
+    <string name="history_empty_no_data">មិនទាន់មានទិន្នន័យដំណេកពី Health Connect នៅឡើយទេ។ Samsung Health ត្រូវតែចែករំលែកវា៖ Samsung Health → ការកំណត់ → Health Connect។</string>
+    <string name="history_health_live">ពី %1$s។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
+    <string name="history_health_live_unknown">ពីទិន្នន័យសុខភាពរបស់អ្នក។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
     <string name="history_average">Ø មុន %1$d នាទី</string>
     <string name="history_light_share">%1$d %% ក្នុងដំណេកស្រាល</string>
     <string name="history_export">នាំចេញដោយអនាមិក</string>
@@ -410,6 +419,7 @@
     <string name="backup_password_short">យ៉ាងតិច 8 តួអក្សរ។</string>
     <string name="backup_password_mismatch">ពាក្យសម្ងាត់មិនដូចគ្នាទេ។</string>
     <string name="backup_password_hint">បើគ្មានពាក្យសម្ងាត់នេះ គ្មាននរណាអាចបើកការបម្រុងទុកបានទេ – សូម្បីតែអ្នក។</string>
+    <string name="backup_health_hint">យប់ពីកម្មវិធីផ្សេង (ឧ. Samsung Health) មិនត្រូវបានបម្រុងទុកទេ – វានៅតែនៅទីនោះ ហើយនឹងបង្ហាញម្ដងទៀតភ្លាមៗពេលផ្ដល់សិទ្ធិ។</string>
     <string name="backup_create">រក្សាទុកការបម្រុងទុក</string>
     <string name="backup_done">បានរក្សាទុកការបម្រុងទុក។</string>
     <string name="backup_failed">មិនអាចរក្សាទុកការបម្រុងទុកបានទេ។</string>

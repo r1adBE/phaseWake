@@ -159,6 +159,11 @@ data class BackupSettings(
     val holidayCountry: String = "",
     /** Region der Feiertage (z. B. «BE»); leer = ganzes Land. */
     val holidayRegion: String = "",
+    /**
+     * Zeitpunkt von «Verlauf löschen» (ms seit 1970); Nächte aus der Gesundheits-App, die bis dahin enden,
+     * bleiben ausgeblendet ([HealthHistory.visible]). `null` = nie gelöscht.
+     */
+    val historyClearedAt: Long? = null,
 )
 
 /**

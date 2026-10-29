@@ -63,6 +63,15 @@
     <string name="history_title">Zgodovina</string>
     <string name="history_empty_title">Še ni noči</string>
     <string name="history_empty_text">Po prvi noči z uro bo tu prikazano, kdaj in zakaj te je zbudila.</string>
+    <string name="history_health_mark">Brez budilke Phase Wake</string>
+    <string name="history_health_times">V postelji %1$s · uspavanje %2$s · prebujanje %3$s</string>
+    <string name="history_health_times_simple">V postelji %1$s · prebujanje %2$s</string>
+    <string name="history_health_amounts">%1$s v postelji · %2$s spanca · %3$s budnosti</string>
+    <string name="history_health_amount_simple">%1$s v postelji</string>
+    <string name="history_empty_connect">Tu se lahko prikažejo tudi noči iz aplikacije Samsung Health in drugih aplikacij. Če jih želiš videti, primerjaj z zdravstvenimi podatki.</string>
+    <string name="history_empty_no_data">Iz Health Connect še ni podatkov o spanju. Samsung Health jih mora deliti: Samsung Health → Nastavitve → Health Connect.</string>
+    <string name="history_health_live">Iz aplikacije %1$s. Spremembe in izbrise, narejene tam, Phase Wake prevzame samodejno.</string>
+    <string name="history_health_live_unknown">Iz tvojih zdravstvenih podatkov. Spremembe in izbrise, narejene tam, Phase Wake prevzame samodejno.</string>
     <string name="history_average">Ø %1$d min prej</string>
     <string name="history_light_share">%1$d %% v lahkem spancu</string>
     <string name="history_export">Izvozi anonimno</string>
@@ -449,6 +458,7 @@
     <string name="backup_password_short">Vsaj 8 znakov.</string>
     <string name="backup_password_mismatch">Gesli se ne ujemata.</string>
     <string name="backup_password_hint">Brez tega gesla varnostne kopije ne more odpreti nihče – niti ti.</string>
+    <string name="backup_health_hint">Noči iz drugih aplikacij (npr. Samsung Health) se ne varnostno kopirajo – ostanejo tam in se znova prikažejo, takoj ko dovoliš dostop.</string>
     <string name="backup_create">Shrani varnostno kopijo</string>
     <string name="backup_done">Varnostna kopija shranjena.</string>
     <string name="backup_failed">Varnostne kopije ni bilo mogoče shraniti.</string>

@@ -30,6 +30,17 @@
 
     <queries>
         <package android:name="com.google.android.apps.healthdata" />
+        <!--
+            Apps, die Health Connect nutzen, sichtbar machen (kein Recht, nur Sichtbarkeit): Der Verlauf nennt bei
+            Nächten aus Health Connect den Namen der Quell-App («aus Samsung Health»).
+        -->
+        <intent>
+            <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+            <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+        </intent>
     </queries>
 
     <application

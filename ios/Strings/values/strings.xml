@@ -20,4 +20,9 @@
     <string name="night_unmeasured_apple">First %1$d min not measured – the Apple Watch only measures the last %2$d min before the target.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: SoundAnalysis by Apple, built into iOS.\nSounds: free recordings (CC0) from opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Nights from Apple Health and other apps can show up here too. To see them, compare with health data.</string>
+    <string name="history_empty_no_data_apple">No sleep data from Apple Health yet. Sleep has to be recorded there, for example by your Apple Watch, and Phase Wake must be allowed to read it in the Health app.</string>
+    <string name="backup_health_hint_apple">Nights from other apps (e.g. Apple Health) aren’t backed up – they stay there and show up again once access is granted.</string>
 </resources>

@@ -62,6 +62,15 @@
     <string name="history_title">ඉතිහාසය</string>
     <string name="history_empty_title">තවම රාත්‍රි නැත</string>
     <string name="history_empty_text">ඔරලෝසුව සමඟ පළමු රාත්‍රියෙන් පසු, එය ඔබව අවදි කළේ කවදාද සහ ඇයිද කියා ඔබට පෙනේ.</string>
+    <string name="history_health_mark">Phase Wake එලාමයකින් තොරව</string>
+    <string name="history_health_times">ඇඳේ %1$s · නින්ද %2$s · අවදි %3$s</string>
+    <string name="history_health_times_simple">ඇඳේ %1$s · අවදි %2$s</string>
+    <string name="history_health_amounts">ඇඳේ %1$s · නින්ද %2$s · අවදියෙන් %3$s</string>
+    <string name="history_health_amount_simple">ඇඳේ %1$s</string>
+    <string name="history_empty_connect">Samsung Health සහ වෙනත් යෙදුම්වල රාත්‍රීද මෙහි පෙන්විය හැක. ඒවා බැලීමට, සෞඛ්‍ය දත්ත සමඟ සසඳන්න.</string>
+    <string name="history_empty_no_data">තවම Health Connect වෙතින් නින්දේ දත්ත නැත. Samsung Health ඒවා බෙදාගත යුතුය: Samsung Health → සැකසීම් → Health Connect.</string>
+    <string name="history_health_live">%1$s වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
+    <string name="history_health_live_unknown">ඔබේ සෞඛ්‍ය දත්ත වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
     <string name="history_average">Ø මිනි. %1$d කලින්</string>
     <string name="history_light_share">%1$d %% සැහැල්ලු නින්දේ</string>
     <string name="history_export">නිර්නාමිකව අපනයනය</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">අවම වශයෙන් අක්ෂර 8 ක්.</string>
     <string name="backup_password_mismatch">මුරපද නොගැළපේ.</string>
     <string name="backup_password_hint">මෙම මුරපදය නොමැතිව කිසිවෙකුට උපස්ථය විවෘත කළ නොහැක – ඔබටවත්.</string>
+    <string name="backup_health_hint">වෙනත් යෙදුම්වල රාත්‍රී (උදා. Samsung Health) උපස්ථ නොවේ – ඒවා එහිම පවතින අතර අවසරය ලබා දුන් විගස නැවත පෙන්වයි.</string>
     <string name="backup_create">උපස්ථය සුරකින්න</string>
     <string name="backup_done">උපස්ථය සුරැකුණා.</string>
     <string name="backup_failed">උපස්ථය සුරැකීමට නොහැකි විය.</string>

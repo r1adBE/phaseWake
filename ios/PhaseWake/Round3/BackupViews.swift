@@ -94,6 +94,7 @@ private struct BackupPasswordSheet: View {
                 SecureField(L("backup_password_repeat"), text: $repeated).textContentType(.newPassword)
                 if let problem, !password.isEmpty { Text(problem).font(.footnote).foregroundStyle(.red) }
                 Text(L("backup_password_hint")).font(.footnote).foregroundStyle(.secondary)
+                Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
                 if busy { ProgressView(L("backup_busy")) }
                 if failed { Text(L("backup_failed")).font(.footnote) }
             }
@@ -142,6 +143,7 @@ private struct RestoreSheet: View {
                 if let payload {
                     let c = BackupIO.counts(payload)
                     Text(L("restore_preview", Int64(c.alarms), Int64(c.nights), Int64(c.noteDays)))
+                    Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
                     Button(L("restore_confirm"), role: .destructive) { confirm = true }
                 }
             }

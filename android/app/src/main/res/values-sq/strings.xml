@@ -62,6 +62,15 @@
     <string name="history_title">Historiku</string>
     <string name="history_empty_title">Ende pa net</string>
     <string name="history_empty_text">Pas natës së parë me orën, këtu do të shohësh kur dhe pse të zgjoi.</string>
+    <string name="history_health_mark">Pa alarm të Phase Wake</string>
+    <string name="history_health_times">Në shtrat %1$s · gjumi %2$s · zgjimi %3$s</string>
+    <string name="history_health_times_simple">Në shtrat %1$s · zgjimi %2$s</string>
+    <string name="history_health_amounts">%1$s në shtrat · %2$s gjumë · %3$s zgjuar</string>
+    <string name="history_health_amount_simple">%1$s në shtrat</string>
+    <string name="history_empty_connect">Këtu mund të shfaqen edhe net nga Samsung Health dhe aplikacione të tjera. Për t’i parë, krahaso me të dhënat e shëndetit.</string>
+    <string name="history_empty_no_data">Ende nuk ka të dhëna gjumi nga Health Connect. Samsung Health duhet t’i ndajë: Samsung Health → Cilësimet → Health Connect.</string>
+    <string name="history_health_live">Nga %1$s. Phase Wake i zbaton automatikisht ndryshimet dhe fshirjet e bëra atje.</string>
+    <string name="history_health_live_unknown">Nga të dhënat e tua të shëndetit. Phase Wake i zbaton automatikisht ndryshimet dhe fshirjet e bëra atje.</string>
     <string name="history_average">Ø %1$d min më herët</string>
     <string name="history_light_share">%1$d %% në gjumë të lehtë</string>
     <string name="history_export">Eksporto anonimisht</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Të paktën 8 karaktere.</string>
     <string name="backup_password_mismatch">Fjalëkalimet nuk përputhen.</string>
     <string name="backup_password_hint">Pa këtë fjalëkalim, askush nuk mund ta hapë kopjen rezervë – as ti vetë.</string>
+    <string name="backup_health_hint">Netët nga aplikacione të tjera (p.sh. Samsung Health) nuk ruhen në kopjen rezervë – mbeten atje dhe shfaqen përsëri sapo të jepet qasja.</string>
     <string name="backup_create">Ruaj kopjen rezervë</string>
     <string name="backup_done">Kopja rezervë u ruajt.</string>
     <string name="backup_failed">Kopja rezervë nuk u ruajt dot.</string>

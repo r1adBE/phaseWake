@@ -93,7 +93,7 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
         // nicht geöffnet – jetzt rechnen; dann meist ohne Schlafdaten, nur mit dem Befinden.
         val prepared = app.settings.weeklyPrepared()?.takeIf { it.first == weekEnd }?.second
         val text = prepared ?: textOf(
-            WeeklySummary.of(app.nights.load(), app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L), app.notes.current(), zone, app.settings.sleepGoalNow(), weekEnd),
+            WeeklySummary.of(app.nights.load(), app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L, app.settings.historyClearedAt.first()), app.notes.current(), zone, app.settings.sleepGoalNow(), weekEnd),
             app.notes.custom.first(),
         )
         if (text.isNullOrEmpty()) return

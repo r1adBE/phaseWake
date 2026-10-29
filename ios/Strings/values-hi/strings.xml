@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">सोने से पहले अपनी Apple Watch पर Phase Wake खोलें। watchOS अलार्म को तभी सक्रिय करता है जब ऐप खुला हो।</string>
     <string name="night_unmeasured_apple">पहले %1$d मि. मापे नहीं गए – Apple Watch लक्ष्य से पहले के केवल आख़िरी %2$d मि. मापती है।</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: Apple का SoundAnalysis, iOS में अंतर्निहित।\nध्वनियाँ: opengameart.org से मुक्त रिकॉर्डिंग (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health और दूसरे ऐप की रातें भी यहाँ दिख सकती हैं। उन्हें देखने के लिए हेल्थ डेटा से मिलान करो।</string>
+    <string name="history_empty_no_data_apple">Apple Health से अभी तक नींद का कोई डेटा नहीं है। नींद वहाँ रिकॉर्ड होनी चाहिए, जैसे आपकी Apple Watch से, और Health ऐप में Phase Wake को उसे पढ़ने की अनुमति होनी चाहिए।</string>
+    <string name="backup_health_hint_apple">दूसरे ऐप की रातें (जैसे Apple Health) बैकअप में नहीं जातीं – वे वहीं रहती हैं और अनुमति मिलते ही फिर दिखती हैं।</string>
 </resources>

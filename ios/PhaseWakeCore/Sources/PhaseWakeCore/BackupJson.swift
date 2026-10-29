@@ -16,10 +16,14 @@ public struct BackupSettings: Equatable, Sendable {
     public var holidayCountry: String
     /// Region der Feiertage (z. B. «BE»); leer = ganzes Land.
     public var holidayRegion: String
+    /// Zeitpunkt von «Verlauf löschen» (ms seit 1970); Fremd-Nächte, die nicht danach enden, bleiben ausgeblendet
+    /// (``HealthHistory/visible(_:clearedAt:)``). `nil` = nie gelöscht.
+    public var historyClearedAt: Int64?
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
-                soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "") {
+                soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "",
+                historyClearedAt: Int64? = nil) {
         self.sleepGoal = sleepGoal
         self.bedtimeReminder = bedtimeReminder
         self.weeklyReview = weeklyReview
@@ -27,6 +31,7 @@ public struct BackupSettings: Equatable, Sendable {
         self.theme = theme
         self.holidayCountry = holidayCountry
         self.holidayRegion = holidayRegion
+        self.historyClearedAt = historyClearedAt
     }
 }
 
@@ -79,6 +84,7 @@ public struct BackupPayload: Equatable, Sendable {
                 "sleepGoal": s.sleepGoal, "bedtimeReminder": s.bedtimeReminder, "weeklyReview": s.weeklyReview,
                 "soundRecDefault": s.soundRecDefault, "theme": s.theme, "holidayCountry": s.holidayCountry,
                 "holidayRegion": s.holidayRegion,
+                "historyClearedAt": s.historyClearedAt.map { NSNumber(value: $0) as Any } ?? NSNull(),
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
@@ -115,7 +121,8 @@ public struct BackupPayload: Equatable, Sendable {
                 soundRecDefault: bool(s["soundRecDefault"]) ?? d.soundRecDefault,
                 theme: s["theme"] as? String ?? d.theme,
                 holidayCountry: s["holidayCountry"] as? String ?? d.holidayCountry,
-                holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion
+                holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion,
+                historyClearedAt: integer(s["historyClearedAt"])
             )
         )
     }

@@ -54,6 +54,15 @@
     <string name="history_title">Պատմություն</string>
     <string name="history_empty_title">Դեռ գիշերներ չկան</string>
     <string name="history_empty_text">Ժամացույցով առաջին գիշերից հետո կտեսնես, թե երբ և ինչու է այն քեզ արթնացրել։</string>
+    <string name="history_health_mark">Առանց Phase Wake զարթուցիչի</string>
+    <string name="history_health_times">Անկողնում %1$s · քուն %2$s · արթնացում %3$s</string>
+    <string name="history_health_times_simple">Անկողնում %1$s · արթնացում %2$s</string>
+    <string name="history_health_amounts">Անկողնում %1$s · քուն %2$s · արթուն %3$s</string>
+    <string name="history_health_amount_simple">Անկողնում %1$s</string>
+    <string name="history_empty_connect">Այստեղ կարող են երևալ նաև Samsung Health-ի և այլ հավելվածների գիշերները։ Դրանք տեսնելու համար համեմատիր առողջության տվյալների հետ։</string>
+    <string name="history_empty_no_data">Health Connect-ից դեռ քնի տվյալներ չկան։ Samsung Health-ը պետք է կիսվի դրանցով՝ Samsung Health → Կարգավորումներ → Health Connect։</string>
+    <string name="history_health_live">Աղբյուր՝ %1$s։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
+    <string name="history_health_live_unknown">Աղբյուր՝ քո առողջության տվյալներ։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
     <string name="history_average">Ø %1$d ր շուտ</string>
     <string name="history_light_share">%1$d %% թեթև քնում</string>
     <string name="history_export">Արտահանել անանուն</string>
@@ -409,6 +418,7 @@
     <string name="backup_password_short">Առնվազն 8 նիշ։</string>
     <string name="backup_password_mismatch">Գաղտնաբառերը չեն համընկնում։</string>
     <string name="backup_password_hint">Առանց այս գաղտնաբառի ոչ ոք չի կարող բացել պահուստային պատճենը – նույնիսկ դու։</string>
+    <string name="backup_health_hint">Այլ հավելվածների գիշերները (օր.՝ Samsung Health) չեն պահուստավորվում – դրանք մնում են այնտեղ և նորից երևում են, երբ թույլտվությունը տրվի։</string>
     <string name="backup_create">Պահել պատճենը</string>
     <string name="backup_done">Պահուստային պատճենը պահված է։</string>
     <string name="backup_failed">Չհաջողվեց պահել պահուստային պատճենը։</string>

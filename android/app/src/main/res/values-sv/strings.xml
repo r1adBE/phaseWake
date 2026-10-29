@@ -60,6 +60,15 @@
     <string name="history_title">Historik</string>
     <string name="history_empty_title">Inga nätter än</string>
     <string name="history_empty_text">Efter din första natt med klockan ser du här när och varför den väckte dig.</string>
+    <string name="history_health_mark">Utan Phase Wake-larm</string>
+    <string name="history_health_times">I sängen %1$s · somnade %2$s · vaknade %3$s</string>
+    <string name="history_health_times_simple">I sängen %1$s · vaknade %2$s</string>
+    <string name="history_health_amounts">%1$s i sängen · %2$s sömn · %3$s vaken</string>
+    <string name="history_health_amount_simple">%1$s i sängen</string>
+    <string name="history_empty_connect">Nätter från Samsung Health och andra appar kan också visas här. Jämför med hälsodata för att se dem.</string>
+    <string name="history_empty_no_data">Inga sömndata från Health Connect ännu. Samsung Health måste dela dem: Samsung Health → Inställningar → Health Connect.</string>
+    <string name="history_health_live">Från %1$s. Phase Wake tar automatiskt över ändringar och raderingar där.</string>
+    <string name="history_health_live_unknown">Från dina hälsodata. Phase Wake tar automatiskt över ändringar och raderingar där.</string>
     <string name="history_average">Ø %1$d min tidigare</string>
     <string name="history_light_share">%1$d %% i lätt sömn</string>
     <string name="history_export">Exportera anonymt</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Minst 8 tecken.</string>
     <string name="backup_password_mismatch">Lösenorden stämmer inte överens.</string>
     <string name="backup_password_hint">Utan det här lösenordet kan ingen öppna kopian – inte ens du.</string>
+    <string name="backup_health_hint">Nätter från andra appar (t.ex. Samsung Health) säkerhetskopieras inte – de ligger kvar där och visas igen så snart åtkomst har getts.</string>
     <string name="backup_create">Spara kopian</string>
     <string name="backup_done">Kopian har sparats.</string>
     <string name="backup_failed">Kopian kunde inte sparas.</string>

@@ -62,6 +62,15 @@
     <string name="history_title">Historial</string>
     <string name="history_empty_title">Aínda non hai noites</string>
     <string name="history_empty_text">Despois da primeira noite co reloxo, verás cando e por que te espertou.</string>
+    <string name="history_health_mark">Sen alarma de Phase Wake</string>
+    <string name="history_health_times">Na cama %1$s · inicio do sono %2$s · espertar %3$s</string>
+    <string name="history_health_times_simple">Na cama %1$s · espertar %2$s</string>
+    <string name="history_health_amounts">%1$s na cama · %2$s de sono · %3$s en vela</string>
+    <string name="history_health_amount_simple">%1$s na cama</string>
+    <string name="history_empty_connect">Aquí tamén poden aparecer noites de Samsung Health e doutras apps. Para velas, compara cos datos de saúde.</string>
+    <string name="history_empty_no_data">Aínda non hai datos de sono de Health Connect. Samsung Health ten que compartilos: Samsung Health → Configuración → Health Connect.</string>
+    <string name="history_health_live">De %1$s. Phase Wake aplica automaticamente os cambios e as eliminacións que fagas alí.</string>
+    <string name="history_health_live_unknown">Dos teus datos de saúde. Phase Wake aplica automaticamente os cambios e as eliminacións que fagas alí.</string>
     <string name="history_average">Ø %1$d min antes</string>
     <string name="history_light_share">%1$d %% en sono lixeiro</string>
     <string name="history_export">Exportar de forma anónima</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Polo menos 8 caracteres.</string>
     <string name="backup_password_mismatch">Os contrasinais non coinciden.</string>
     <string name="backup_password_hint">Sen este contrasinal ninguén pode abrir a copia – nin sequera ti.</string>
+    <string name="backup_health_hint">As noites doutras apps (p. ex. Samsung Health) non se gardan na copia de seguranza: quedan alí e volven aparecer en canto concedas o acceso.</string>
     <string name="backup_create">Gardar copia</string>
     <string name="backup_done">Copia gardada.</string>
     <string name="backup_failed">Non se puido gardar a copia.</string>

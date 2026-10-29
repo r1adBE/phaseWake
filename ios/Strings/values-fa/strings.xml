@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند.</string>
     <string name="night_unmeasured_apple">%1$d دق اول اندازه‌گیری نشد – Apple Watch فقط %2$d دق آخر پیش از زمان هدف را اندازه می‌گیرد.</string>
     <string name="settings_licenses_text_apple">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">شب‌های Apple Health و برنامه‌های دیگر هم می‌توانند اینجا نمایش داده شوند. برای دیدنشان، با داده‌های سلامت مقایسه کن.</string>
+    <string name="history_empty_no_data_apple">هنوز داده‌ی خوابی از Apple Health نیست. خواب باید آنجا ثبت شود، مثلاً با Apple Watch تو، و Phase Wake باید در اپ Health اجازه‌ی خواندنش را داشته باشد.</string>
+    <string name="backup_health_hint_apple">شب‌های برنامه‌های دیگر (مثلاً Apple Health) پشتیبان‌گیری نمی‌شوند – همان‌جا می‌مانند و به‌محض دادن اجازه دوباره نمایش داده می‌شوند.</string>
 </resources>

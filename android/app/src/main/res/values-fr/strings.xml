@@ -61,6 +61,15 @@
     <string name="history_title">Historique</string>
     <string name="history_empty_title">Pas encore de nuits</string>
     <string name="history_empty_text">Après ta première nuit avec la montre, tu verras ici quand et pourquoi elle t\'a réveillé.</string>
+    <string name="history_health_mark">Sans réveil Phase Wake</string>
+    <string name="history_health_times">Au lit %1$s · endormissement %2$s · réveil %3$s</string>
+    <string name="history_health_times_simple">Au lit %1$s · réveil %2$s</string>
+    <string name="history_health_amounts">%1$s au lit · %2$s de sommeil · %3$s d\'éveil</string>
+    <string name="history_health_amount_simple">%1$s au lit</string>
+    <string name="history_empty_connect">Les nuits de Samsung Health et d\'autres apps peuvent aussi apparaître ici. Pour les voir, compare avec les données santé.</string>
+    <string name="history_empty_no_data">Pas encore de données de sommeil de Health Connect. Samsung Health doit les partager : Samsung Health → Paramètres → Health Connect.</string>
+    <string name="history_health_live">Via %1$s. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
+    <string name="history_health_live_unknown">Via tes données santé. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
     <string name="history_average">Ø %1$d min plus tôt</string>
     <string name="history_light_share">%1$d %% en sommeil léger</string>
     <string name="history_export">Exporter anonymement</string>
@@ -434,6 +443,7 @@
     <string name="backup_password_short">Au moins 8 caractères.</string>
     <string name="backup_password_mismatch">Les mots de passe ne correspondent pas.</string>
     <string name="backup_password_hint">Sans ce mot de passe, personne ne peut ouvrir la sauvegarde – pas même toi.</string>
+    <string name="backup_health_hint">Les nuits d\'autres apps (p. ex. Samsung Health) ne sont pas sauvegardées : elles restent là-bas et réapparaissent dès que l\'accès est accordé.</string>
     <string name="backup_create">Enregistrer la sauvegarde</string>
     <string name="backup_done">Sauvegarde enregistrée.</string>
     <string name="backup_failed">Impossible d’enregistrer la sauvegarde.</string>

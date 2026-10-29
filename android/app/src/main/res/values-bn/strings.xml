@@ -61,6 +61,15 @@
     <string name="history_title">ইতিহাস</string>
     <string name="history_empty_title">এখনও কোনো রাত নেই</string>
     <string name="history_empty_text">ঘড়ি নিয়ে প্রথম রাতের পর এখানে দেখবে কখন আর কেন তোমাকে জাগানো হয়েছে।</string>
+    <string name="history_health_mark">Phase Wake অ্যালার্ম ছাড়া</string>
+    <string name="history_health_times">বিছানায় %1$s · ঘুম %2$s · ওঠা %3$s</string>
+    <string name="history_health_times_simple">বিছানায় %1$s · ওঠা %2$s</string>
+    <string name="history_health_amounts">বিছানায় %1$s · ঘুম %2$s · জেগে %3$s</string>
+    <string name="history_health_amount_simple">বিছানায় %1$s</string>
+    <string name="history_empty_connect">Samsung Health ও অন্য অ্যাপের রাতগুলোও এখানে দেখা যেতে পারে। দেখতে চাইলে স্বাস্থ্য ডেটার সঙ্গে মেলাও।</string>
+    <string name="history_empty_no_data">Health Connect থেকে এখনো ঘুমের ডেটা নেই। Samsung Health-কে শেয়ার করতে হবে: Samsung Health → সেটিংস → Health Connect।</string>
+    <string name="history_health_live">%1$s থেকে। সেখানে করা বদল ও মুছে ফেলা Phase Wake নিজে থেকেই মেনে নেয়।</string>
+    <string name="history_health_live_unknown">তোমার স্বাস্থ্য ডেটা থেকে। সেখানে করা বদল ও মুছে ফেলা Phase Wake নিজে থেকেই মেনে নেয়।</string>
     <string name="history_average">গড়ে %1$d মি. আগে</string>
     <string name="history_light_share">%1$d %% হালকা ঘুমে</string>
     <string name="history_export">বেনামে এক্সপোর্ট করো</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">কমপক্ষে ৮টি অক্ষর।</string>
     <string name="backup_password_mismatch">পাসওয়ার্ড দুটো মিলছে না।</string>
     <string name="backup_password_hint">এই পাসওয়ার্ড ছাড়া কেউ ব্যাকআপ খুলতে পারবে না – তুমিও না।</string>
+    <string name="backup_health_hint">অন্য অ্যাপের রাত (যেমন Samsung Health) ব্যাকআপ হয় না – সেগুলো সেখানেই থাকে এবং অনুমতি দিলে আবার দেখা যায়।</string>
     <string name="backup_create">ব্যাকআপ সেভ করো</string>
     <string name="backup_done">ব্যাকআপ সেভ হয়েছে।</string>
     <string name="backup_failed">ব্যাকআপ সেভ করা যায়নি।</string>

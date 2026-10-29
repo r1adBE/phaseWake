@@ -62,6 +62,15 @@
     <string name="history_title">Kasaysayan</string>
     <string name="history_empty_title">Wala pang gabi</string>
     <string name="history_empty_text">Pagkatapos ng unang gabi mo na suot ang relo, makikita mo kung kailan at bakit ka nito ginising.</string>
+    <string name="history_health_mark">Walang alarm ng Phase Wake</string>
+    <string name="history_health_times">Sa kama %1$s · nakatulog %2$s · gising %3$s</string>
+    <string name="history_health_times_simple">Sa kama %1$s · gising %2$s</string>
+    <string name="history_health_amounts">%1$s sa kama · %2$s tulog · %3$s gising</string>
+    <string name="history_health_amount_simple">%1$s sa kama</string>
+    <string name="history_empty_connect">Puwede ring lumabas dito ang mga gabi mula sa Samsung Health at ibang app. Para makita ang mga ito, ikumpara sa health data.</string>
+    <string name="history_empty_no_data">Wala pang sleep data mula sa Health Connect. Kailangang i-share ito ng Samsung Health: Samsung Health → Settings → Health Connect.</string>
+    <string name="history_health_live">Mula sa %1$s. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
+    <string name="history_health_live_unknown">Mula sa health data mo. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
     <string name="history_average">Ø %1$d min nang maaga</string>
     <string name="history_light_share">%1$d %% sa mababaw na tulog</string>
     <string name="history_export">I-export nang anonymous</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Hindi bababa sa 8 character.</string>
     <string name="backup_password_mismatch">Hindi magkatugma ang mga password.</string>
     <string name="backup_password_hint">Kung wala ang password na ito, walang makakapagbukas ng backup – kahit ikaw.</string>
+    <string name="backup_health_hint">Hindi naba-back up ang mga gabi mula sa ibang app (hal. Samsung Health) – nananatili sila roon at lalabas ulit kapag naibigay na ang access.</string>
     <string name="backup_create">I-save ang backup</string>
     <string name="backup_done">Na-save ang backup.</string>
     <string name="backup_failed">Hindi ma-save ang backup.</string>

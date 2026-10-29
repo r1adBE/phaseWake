@@ -62,6 +62,15 @@
     <string name="history_title">इतिहास</string>
     <string name="history_empty_title">अहिलेसम्म कुनै रात छैन</string>
     <string name="history_empty_text">घडीसँगको पहिलो रातपछि, तिमीलाई कहिले र किन ब्युँझाइयो भनेर देख्नेछौ।</string>
+    <string name="history_health_mark">Phase Wake अलार्मबिना</string>
+    <string name="history_health_times">ओछ्यानमा %1$s · निदाएको %2$s · उठेको %3$s</string>
+    <string name="history_health_times_simple">ओछ्यानमा %1$s · उठेको %2$s</string>
+    <string name="history_health_amounts">ओछ्यानमा %1$s · निद्रा %2$s · जागा %3$s</string>
+    <string name="history_health_amount_simple">ओछ्यानमा %1$s</string>
+    <string name="history_empty_connect">Samsung Health र अन्य एपका रातहरू पनि यहाँ देखिन सक्छन्। तिनलाई हेर्न स्वास्थ्य डेटासँग तुलना गर।</string>
+    <string name="history_empty_no_data">Health Connect बाट अहिलेसम्म निद्राको डेटा छैन। Samsung Health ले यसलाई सेयर गर्नुपर्छ: Samsung Health → सेटिङ → Health Connect।</string>
+    <string name="history_health_live">%1$s बाट। त्यहाँ गरिएका परिवर्तन र मेटाइहरू Phase Wake ले आफैँ लागू गर्छ।</string>
+    <string name="history_health_live_unknown">तिम्रो स्वास्थ्य डेटाबाट। त्यहाँ गरिएका परिवर्तन र मेटाइहरू Phase Wake ले आफैँ लागू गर्छ।</string>
     <string name="history_average">Ø %1$d मि. चाँडो</string>
     <string name="history_light_share">%1$d %% हल्का निद्रामा</string>
     <string name="history_export">गुमनाम रूपमा निर्यात</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">कम्तीमा ८ अक्षर।</string>
     <string name="backup_password_mismatch">पासवर्डहरू मिलेनन्।</string>
     <string name="backup_password_hint">यो पासवर्ड बिना कसैले ब्याकअप खोल्न सक्दैन – तिमी आफैँले पनि।</string>
+    <string name="backup_health_hint">अन्य एपका रातहरू (जस्तै Samsung Health) ब्याकअप हुँदैनन् – ती त्यहीँ रहन्छन् र अनुमति दिनेबित्तिकै फेरि देखिन्छन्।</string>
     <string name="backup_create">ब्याकअप सेभ गर</string>
     <string name="backup_done">ब्याकअप सेभ भयो।</string>
     <string name="backup_failed">ब्याकअप सेभ गर्न सकिएन।</string>

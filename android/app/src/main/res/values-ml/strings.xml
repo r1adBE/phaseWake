@@ -61,6 +61,15 @@
     <string name="history_title">ചരിത്രം</string>
     <string name="history_empty_title">ഇതുവരെ രാത്രികളൊന്നുമില്ല</string>
     <string name="history_empty_text">വാച്ചുമായുള്ള ആദ്യ രാത്രിക്കു ശേഷം, അത് എപ്പോൾ, എന്തുകൊണ്ട് ഉണർത്തി എന്ന് ഇവിടെ കാണാം.</string>
+    <string name="history_health_mark">Phase Wake അലാറം ഇല്ലാതെ</string>
+    <string name="history_health_times">കിടക്കയിൽ %1$s · ഉറക്കം %2$s · ഉണർന്നത് %3$s</string>
+    <string name="history_health_times_simple">കിടക്കയിൽ %1$s · ഉണർന്നത് %2$s</string>
+    <string name="history_health_amounts">കിടക്കയിൽ %1$s · ഉറക്കം %2$s · ഉണർന്നിരുന്നത് %3$s</string>
+    <string name="history_health_amount_simple">കിടക്കയിൽ %1$s</string>
+    <string name="history_empty_connect">Samsung Health-ൽ നിന്നും മറ്റ് ആപ്പുകളിൽ നിന്നുമുള്ള രാത്രികളും ഇവിടെ കാണാം. അവ കാണാൻ, ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക.</string>
+    <string name="history_empty_no_data">Health Connect-ൽ നിന്ന് ഇതുവരെ ഉറക്ക ഡാറ്റ ഇല്ല. Samsung Health അത് പങ്കിടണം: Samsung Health → ക്രമീകരണം → Health Connect.</string>
+    <string name="history_health_live">%1$s-ൽ നിന്ന്. അവിടെ വരുത്തുന്ന മാറ്റങ്ങളും ഇല്ലാതാക്കലുകളും Phase Wake സ്വയമേവ സ്വീകരിക്കുന്നു.</string>
+    <string name="history_health_live_unknown">നിങ്ങളുടെ ആരോഗ്യ ഡാറ്റയിൽ നിന്ന്. അവിടെ വരുത്തുന്ന മാറ്റങ്ങളും ഇല്ലാതാക്കലുകളും Phase Wake സ്വയമേവ സ്വീകരിക്കുന്നു.</string>
     <string name="history_average">Ø %1$d മി. നേരത്തേ</string>
     <string name="history_light_share">%1$d %% നേരിയ ഉറക്കത്തിൽ</string>
     <string name="history_export">അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ.</string>
     <string name="backup_password_mismatch">പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല.</string>
     <string name="backup_password_hint">ഈ പാസ്‌വേഡ് ഇല്ലാതെ ആർക്കും ബാക്കപ്പ് തുറക്കാനാകില്ല – നിങ്ങൾക്കു പോലും.</string>
+    <string name="backup_health_hint">മറ്റ് ആപ്പുകളിലെ രാത്രികൾ (ഉദാ. Samsung Health) ബാക്കപ്പ് ചെയ്യില്ല – അവ അവിടെത്തന്നെ തുടരും, അനുമതി നൽകിയാൽ വീണ്ടും കാണാം.</string>
     <string name="backup_create">ബാക്കപ്പ് സേവ് ചെയ്യുക</string>
     <string name="backup_done">ബാക്കപ്പ് സേവ് ചെയ്‌തു.</string>
     <string name="backup_failed">ബാക്കപ്പ് സേവ് ചെയ്യാനായില്ല.</string>

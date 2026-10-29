@@ -159,6 +159,8 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
         onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
         charts = insights.charts,
+        items = insights.history,
+        canConnectHealth = insights.health == HealthState.AVAILABLE,
     )
 }
 
@@ -180,6 +182,8 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
             DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
                 app.appScope.launch {
                     app.nights.clear()
+                    // Nächte aus Health Connect lassen sich nicht löschen: bis jetzt ausblenden.
+                    app.settings.setHistoryClearedAt(Instant.now())
                     app.notes.clearNotes()
                     app.routine.clearTicks()
                     app.sounds.clear()

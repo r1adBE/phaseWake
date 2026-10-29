@@ -62,6 +62,15 @@
     <string name="history_title">ታሪክ</string>
     <string name="history_empty_title">እስካሁን ምንም ሌሊት የለም</string>
     <string name="history_empty_text">ከሰዓቱ ጋር ከመጀመሪያው ሌሊትዎ በኋላ፣ መቼና ለምን እንደቀሰቀስዎት ያያሉ።</string>
+    <string name="history_health_mark">ያለ Phase Wake ማንቂያ</string>
+    <string name="history_health_times">አልጋ ላይ %1$s · እንቅልፍ %2$s · መንቃት %3$s</string>
+    <string name="history_health_times_simple">አልጋ ላይ %1$s · መንቃት %2$s</string>
+    <string name="history_health_amounts">%1$s አልጋ ላይ · %2$s እንቅልፍ · %3$s ንቃት</string>
+    <string name="history_health_amount_simple">%1$s አልጋ ላይ</string>
+    <string name="history_empty_connect">ከSamsung Health እና ከሌሎች መተግበሪያዎች የመጡ ሌሊቶችም እዚህ ሊታዩ ይችላሉ። ለማየት ከጤና ውሂብ ጋር ያወዳድሩ።</string>
+    <string name="history_empty_no_data">ከHealth Connect እስካሁን የእንቅልፍ ውሂብ የለም። Samsung Health ማጋራት አለበት፦ Samsung Health → ቅንብሮች → Health Connect።</string>
+    <string name="history_health_live">ከ%1$s። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
+    <string name="history_health_live_unknown">ከጤና ውሂብዎ። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_average">Ø %1$d ደቂቃ ቀደም ብሎ</string>
     <string name="history_light_share">%1$d %% በቀላል እንቅልፍ</string>
     <string name="history_export">ማንነትን ሳይገልጹ ወደ ውጭ ላክ</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">ቢያንስ 8 ቁምፊዎች።</string>
     <string name="backup_password_mismatch">የይለፍ ቃሎቹ አይዛመዱም።</string>
     <string name="backup_password_hint">ያለዚህ የይለፍ ቃል ማንም ምትኬውን መክፈት አይችልም – እርስዎም ቢሆኑ።</string>
+    <string name="backup_health_hint">ከሌሎች መተግበሪያዎች (ለምሳሌ Samsung Health) የመጡ ሌሊቶች አይቀመጡም – እዚያው ይቆያሉ፣ ፈቃድ እንደተሰጠም እንደገና ይታያሉ።</string>
     <string name="backup_create">ምትኬ አስቀምጥ</string>
     <string name="backup_done">ምትኬ ተቀምጧል።</string>
     <string name="backup_failed">ምትኬውን ማስቀመጥ አልተቻለም።</string>

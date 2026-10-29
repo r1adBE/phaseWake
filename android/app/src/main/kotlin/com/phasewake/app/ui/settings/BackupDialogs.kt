@@ -158,12 +158,24 @@ internal fun RestoreConfirmDialog(alarms: Int, nights: Int, noteDays: Int, onCon
             Column {
                 Text(stringResource(R.string.restore_preview, alarms, nights, noteDays), style = MaterialTheme.typography.titleSmall)
                 Text(stringResource(R.string.restore_confirm_text), modifier = Modifier.padding(top = 8.dp))
+                HealthNotBackedUp()
             }
         },
         confirmButton = {
             TextButton(onClick = onConfirm) { Text(stringResource(R.string.restore_confirm), color = MaterialTheme.colorScheme.error) }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
+    )
+}
+
+/** Hinweis in Sichern und Wiederherstellen: Nächte aus anderen Apps sind nicht in der Sicherung, sie bleiben dort. */
+@Composable
+private fun HealthNotBackedUp() {
+    Text(
+        stringResource(R.string.backup_health_hint),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(top = 8.dp),
     )
 }
 
@@ -202,6 +214,7 @@ internal fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit, 
                     color = if (message == R.string.backup_password_hint) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.error,
                     modifier = Modifier.padding(top = 8.dp),
                 )
+                HealthNotBackedUp()
             }
         },
         confirmButton = {

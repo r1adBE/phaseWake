@@ -125,6 +125,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         healthCheck++
         onPauseOrDispose { }
     }
+    // Nächte aus Health Connect sind ein Spiegel der Quelle: auch bei jedem Öffnen des Verlaufs neu lesen.
+    LaunchedEffect(route) { if (route == Routes.HISTORY) healthCheck++ }
     val insights = rememberInsights(app, data, healthCheck)
     val soundRec = rememberSoundRec(app, data, checkRun)
     val nightCheck = rememberNightCheck(app, checkRun)

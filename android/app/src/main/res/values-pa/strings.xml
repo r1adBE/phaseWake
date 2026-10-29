@@ -62,6 +62,15 @@
     <string name="history_title">ਇਤਿਹਾਸ</string>
     <string name="history_empty_title">ਅਜੇ ਕੋਈ ਰਾਤ ਨਹੀਂ</string>
     <string name="history_empty_text">ਘੜੀ ਨਾਲ ਪਹਿਲੀ ਰਾਤ ਤੋਂ ਬਾਅਦ, ਇੱਥੇ ਦਿਖੇਗਾ ਕਿ ਇਸ ਨੇ ਤੁਹਾਨੂੰ ਕਦੋਂ ਅਤੇ ਕਿਉਂ ਜਗਾਇਆ।</string>
+    <string name="history_health_mark">Phase Wake ਅਲਾਰਮ ਤੋਂ ਬਿਨਾਂ</string>
+    <string name="history_health_times">ਬਿਸਤਰੇ ਵਿੱਚ %1$s · ਨੀਂਦ %2$s · ਜਾਗੇ %3$s</string>
+    <string name="history_health_times_simple">ਬਿਸਤਰੇ ਵਿੱਚ %1$s · ਜਾਗੇ %2$s</string>
+    <string name="history_health_amounts">ਬਿਸਤਰੇ ਵਿੱਚ %1$s · ਨੀਂਦ %2$s · ਜਾਗਦੇ %3$s</string>
+    <string name="history_health_amount_simple">ਬਿਸਤਰੇ ਵਿੱਚ %1$s</string>
+    <string name="history_empty_connect">Samsung Health ਅਤੇ ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਵੀ ਇੱਥੇ ਦਿਖ ਸਕਦੀਆਂ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਦੇਖਣ ਲਈ ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ।</string>
+    <string name="history_empty_no_data">ਅਜੇ Health Connect ਤੋਂ ਨੀਂਦ ਦਾ ਡਾਟਾ ਨਹੀਂ ਹੈ। Samsung Health ਨੂੰ ਇਹ ਸਾਂਝਾ ਕਰਨਾ ਪਵੇਗਾ: Samsung Health → ਸੈਟਿੰਗਾਂ → Health Connect।</string>
+    <string name="history_health_live">%1$s ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
+    <string name="history_health_live_unknown">ਤੁਹਾਡੇ ਸਿਹਤ ਡਾਟੇ ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
     <string name="history_average">Ø %1$d ਮਿੰ. ਪਹਿਲਾਂ</string>
     <string name="history_light_share">%1$d %% ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ</string>
     <string name="history_export">ਗੁਮਨਾਮ ਤੌਰ ’ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ।</string>
     <string name="backup_password_mismatch">ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ।</string>
     <string name="backup_password_hint">ਇਸ ਪਾਸਵਰਡ ਤੋਂ ਬਿਨਾਂ ਕੋਈ ਵੀ ਬੈਕਅੱਪ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ – ਤੁਸੀਂ ਵੀ ਨਹੀਂ।</string>
+    <string name="backup_health_hint">ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ (ਜਿਵੇਂ Samsung Health) ਦਾ ਬੈਕਅੱਪ ਨਹੀਂ ਹੁੰਦਾ – ਉਹ ਉੱਥੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ ਇਜਾਜ਼ਤ ਮਿਲਦੇ ਹੀ ਮੁੜ ਦਿਖਦੀਆਂ ਹਨ।</string>
     <string name="backup_create">ਬੈਕਅੱਪ ਸੰਭਾਲੋ</string>
     <string name="backup_done">ਬੈਕਅੱਪ ਸੰਭਾਲਿਆ ਗਿਆ।</string>
     <string name="backup_failed">ਬੈਕਅੱਪ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।</string>

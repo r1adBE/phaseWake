@@ -61,6 +61,15 @@
     <string name="history_title">Istoric</string>
     <string name="history_empty_title">Încă nicio noapte</string>
     <string name="history_empty_text">După prima noapte cu ceasul vei vedea aici când și de ce te-a trezit.</string>
+    <string name="history_health_mark">Fără alarma Phase Wake</string>
+    <string name="history_health_times">În pat %1$s · adormire %2$s · trezire %3$s</string>
+    <string name="history_health_times_simple">În pat %1$s · trezire %2$s</string>
+    <string name="history_health_amounts">%1$s în pat · %2$s somn · %3$s de veghe</string>
+    <string name="history_health_amount_simple">%1$s în pat</string>
+    <string name="history_empty_connect">Aici pot apărea și nopți din Samsung Health și din alte aplicații. Ca să le vezi, compară cu datele de sănătate.</string>
+    <string name="history_empty_no_data">Încă nu există date de somn din Health Connect. Samsung Health trebuie să le partajeze: Samsung Health → Setări → Health Connect.</string>
+    <string name="history_health_live">Din %1$s. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
+    <string name="history_health_live_unknown">Din datele tale de sănătate. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_average">Ø %1$d min mai devreme</string>
     <string name="history_light_share">%1$d %% în somn ușor</string>
     <string name="history_export">Exportă anonim</string>
@@ -434,6 +443,7 @@
     <string name="backup_password_short">Cel puțin 8 caractere.</string>
     <string name="backup_password_mismatch">Parolele nu se potrivesc.</string>
     <string name="backup_password_hint">Fără această parolă nimeni nu poate deschide copia – nici tu.</string>
+    <string name="backup_health_hint">Nopțile din alte aplicații (de ex. Samsung Health) nu sunt incluse în backup – rămân acolo și reapar imediat ce acorzi accesul.</string>
     <string name="backup_create">Salvează copia</string>
     <string name="backup_done">Copie salvată.</string>
     <string name="backup_failed">Copia nu a putut fi salvată.</string>

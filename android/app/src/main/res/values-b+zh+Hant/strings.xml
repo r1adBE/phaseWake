@@ -59,6 +59,15 @@
     <string name="history_title">紀錄</string>
     <string name="history_empty_title">還沒有紀錄</string>
     <string name="history_empty_text">戴著手錶睡完第一晚後，就能在這裡看到何時、為何被叫醒。</string>
+    <string name="history_health_mark">無 Phase Wake 鬧鐘</string>
+    <string name="history_health_times">上床 %1$s · 入睡 %2$s · 起床 %3$s</string>
+    <string name="history_health_times_simple">上床 %1$s · 起床 %2$s</string>
+    <string name="history_health_amounts">臥床 %1$s · 睡眠 %2$s · 清醒 %3$s</string>
+    <string name="history_health_amount_simple">臥床 %1$s</string>
+    <string name="history_empty_connect">來自 Samsung Health 和其他 App 的夜晚也能顯示在這裡。若要查看，請與健康資料比對。</string>
+    <string name="history_empty_no_data">尚無來自 Health Connect 的睡眠資料。Samsung Health 必須分享資料：Samsung Health → 設定 → Health Connect。</string>
+    <string name="history_health_live">來自%1$s。你在那裡所做的變更和刪除，Phase Wake 會自動同步。</string>
+    <string name="history_health_live_unknown">來自你的健康資料。你在那裡所做的變更和刪除，Phase Wake 會自動同步。</string>
     <string name="history_average">平均提早 %1$d 分鐘</string>
     <string name="history_light_share">%1$d %% 在淺眠中</string>
     <string name="history_export">匿名匯出</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">至少 8 個字元。</string>
     <string name="backup_password_mismatch">兩次輸入的密碼不一致。</string>
     <string name="backup_password_hint">沒有這個密碼，誰都無法開啟備份，包括你自己。</string>
+    <string name="backup_health_hint">來自其他 App（例如 Samsung Health）的夜晚不會備份——它們會留在原處，授權後會再次顯示。</string>
     <string name="backup_create">儲存備份</string>
     <string name="backup_done">備份已儲存。</string>
     <string name="backup_failed">無法儲存備份。</string>

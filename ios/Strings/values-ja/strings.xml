@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。</string>
     <string name="night_unmeasured_apple">最初の%1$d分は未計測 – Apple Watchが計測するのは目標時刻前の最後の%2$d分だけです。</string>
     <string name="settings_licenses_text_apple">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。\nサウンド：opengameart.org のフリー録音（CC0）</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health やほかのアプリの夜もここに表示できます。表示するには、ヘルスデータと照合してください。</string>
+    <string name="history_empty_no_data_apple">Apple Health にまだ睡眠データがありません。睡眠がそこに記録され（例：Apple Watch で）、「ヘルスケア」App で Phase Wake の読み出しが許可されている必要があります。</string>
+    <string name="backup_health_hint_apple">ほかのアプリ（Apple Health など）の夜はバックアップされません。元のアプリに残り、アクセスを許可すると再び表示されます。</string>
 </resources>

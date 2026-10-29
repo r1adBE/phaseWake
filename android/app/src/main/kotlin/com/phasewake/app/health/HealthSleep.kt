@@ -7,6 +7,8 @@ import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.SleepSessionRecord
 import androidx.health.connect.client.request.ReadRecordsRequest
 import androidx.health.connect.client.time.TimeRangeFilter
+import com.phasewake.app.core.HealthHistory
+import com.phasewake.app.core.HealthSession
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.SleepSummary
@@ -35,16 +37,33 @@ class HealthSleep(private val context: Context) {
     suspend fun isGranted(): Boolean =
         isAvailable && runCatching { client.permissionController.getGrantedPermissions().containsAll(permissions) }.getOrDefault(false)
 
-    /** Alle Schlafphasen von [from] bis [to] in einer Abfrage (für den ganzen Verlauf). */
-    suspend fun stagesBetween(from: Instant, to: Instant): List<StageSpan> {
+    /**
+     * Alle Schlafsitzungen, die von [from] bis [to] in Health Connect liegen, mit Phasen und Herkunft
+     * (Paketname der schreibenden App). Leer ohne Zugriff oder bei einem Fehler. Nur im Speicher.
+     */
+    suspend fun sessions(from: Instant, to: Instant): List<HealthSession> {
         if (!isGranted()) return emptyList()
         return try {
-            client.readRecords(ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(from, to))).records.flatMap { session ->
-                session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }
+            val records = mutableListOf<SleepSessionRecord>()
+            var pageToken: String? = null
+            do {
+                val response = client.readRecords(
+                    ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(from, to), pageToken = pageToken),
+                )
+                records += response.records
+                pageToken = response.pageToken
+            } while (pageToken != null)
+            records.map { session ->
+                HealthSession(
+                    start = session.startTime,
+                    end = session.endTime,
+                    stages = session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }.sortedBy { it.start },
+                    source = session.metadata.dataOrigin.packageName.ifEmpty { null },
+                )
             }.sortedBy { it.start }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Schlafphasen nicht lesbar", e)
+            Log.w(TAG, "Schlafsitzungen nicht lesbar", e)
             emptyList()
         }
     }
@@ -70,27 +89,12 @@ class HealthSleep(private val context: Context) {
     }
 
     /**
-     * Ganze Nächte der letzten [days] Tage für die Trends. Sitzungen ohne Phasen zählen als
-     * Schlaf über die ganze Dauer.
+     * Ganze Nächte der letzten [days] Tage für Trends und Wochenrückblick ([HealthHistory.summaries]):
+     * Sitzungen ohne Phasen zählen als Schlaf über die ganze Dauer; was bis [clearedAt] endet, ist ausgeblendet.
      */
-    suspend fun recentSleep(days: Long = 15): List<SleepSummary> {
-        if (!isGranted()) return emptyList()
-        return try {
-            val now = Instant.now()
-            val response = client.readRecords(
-                ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(now.minus(Duration.ofDays(days)), now)),
-            )
-            SleepSummary.group(
-                response.records.flatMap { session ->
-                    session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }
-                        .ifEmpty { listOf(StageSpan(session.startTime, session.endTime, SleepStage.UNKNOWN)) }
-                },
-            )
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Schlafdauer nicht lesbar", e)
-            emptyList()
-        }
+    suspend fun recentSleep(days: Long, clearedAt: Instant?): List<SleepSummary> {
+        val now = Instant.now()
+        return HealthHistory.summaries(sessions(now.minus(Duration.ofDays(days)), now), clearedAt)
     }
 
     private fun map(stage: Int): SleepStage = when (stage) {

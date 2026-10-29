@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van.</string>
     <string name="night_unmeasured_apple">Az első %1$d p nincs mérve – az Apple Watch csak a célidő előtti utolsó %2$d percet méri.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">A Apple Health és más alkalmazások éjszakái is megjelenhetnek itt. Ha látni szeretnéd őket, vesd össze az egészségügyi adatokkal.</string>
+    <string name="history_empty_no_data_apple">Még nincsenek alvásadatok az Apple Health-ből. Az alvást ott kell rögzíteni, például az Apple Watch-oddal, és a Phase Wake-nek engedélyt kell kapnia az olvasásukra az Egészség appban.</string>
+    <string name="backup_health_hint_apple">Más alkalmazások éjszakái (pl. Apple Health) nem kerülnek a biztonsági mentésbe – ott maradnak, és a hozzáférés megadása után újra megjelennek.</string>
 </resources>

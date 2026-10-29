@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Otwórz Phase Wake na Apple Watch przed snem. watchOS aktywuje budzik tylko wtedy, gdy aplikacja jest otwarta.</string>
     <string name="night_unmeasured_apple">Pierwsze %1$d min bez pomiaru – Apple Watch mierzy tylko ostatnie %2$d min przed czasem docelowym.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: SoundAnalysis firmy Apple, wbudowany w iOS.\nDźwięki: wolne nagrania (CC0) z opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Tutaj mogą się też pojawiać noce z aplikacji Apple Health i innych aplikacji. Aby je zobaczyć, porównaj z danymi zdrowotnymi.</string>
+    <string name="history_empty_no_data_apple">Brak jeszcze danych o śnie z Apple Health. Sen musi być tam zapisywany, np. przez twój Apple Watch, a Phase Wake musi mieć w aplikacji Zdrowie zgodę na jego odczyt.</string>
+    <string name="backup_health_hint_apple">Noce z innych aplikacji (np. Apple Health) nie trafiają do kopii zapasowej – zostają tam i pojawiają się znowu, gdy tylko udzielisz dostępu.</string>
 </resources>

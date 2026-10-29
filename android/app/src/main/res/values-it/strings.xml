@@ -61,6 +61,15 @@
     <string name="history_title">Cronologia</string>
     <string name="history_empty_title">Ancora nessuna notte</string>
     <string name="history_empty_text">Dopo la tua prima notte con lo smartwatch vedrai qui quando e perché ti ha svegliato.</string>
+    <string name="history_health_mark">Senza sveglia Phase Wake</string>
+    <string name="history_health_times">A letto %1$s · addormentamento %2$s · risveglio %3$s</string>
+    <string name="history_health_times_simple">A letto %1$s · risveglio %2$s</string>
+    <string name="history_health_amounts">%1$s a letto · %2$s di sonno · %3$s di veglia</string>
+    <string name="history_health_amount_simple">%1$s a letto</string>
+    <string name="history_empty_connect">Qui possono comparire anche le notti di Samsung Health e di altre app. Per vederle, confronta con i dati di salute.</string>
+    <string name="history_empty_no_data">Ancora nessun dato sul sonno da Health Connect. Samsung Health deve condividerli: Samsung Health → Impostazioni → Health Connect.</string>
+    <string name="history_health_live">Da %1$s. Phase Wake applica automaticamente le modifiche e le eliminazioni fatte lì.</string>
+    <string name="history_health_live_unknown">Dai tuoi dati di salute. Phase Wake applica automaticamente le modifiche e le eliminazioni fatte lì.</string>
     <string name="history_average">Ø %1$d min prima</string>
     <string name="history_light_share">%1$d %% nel sonno leggero</string>
     <string name="history_export">Esporta in forma anonima</string>
@@ -434,6 +443,7 @@
     <string name="backup_password_short">Almeno 8 caratteri.</string>
     <string name="backup_password_mismatch">Le password non coincidono.</string>
     <string name="backup_password_hint">Senza questa password nessuno può aprire il backup – nemmeno tu.</string>
+    <string name="backup_health_hint">Le notti di altre app (ad es. Samsung Health) non vengono incluse nel backup: restano lì e ricompaiono non appena concedi l’accesso.</string>
     <string name="backup_create">Salva il backup</string>
     <string name="backup_done">Backup salvato.</string>
     <string name="backup_failed">Impossibile salvare il backup.</string>

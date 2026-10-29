@@ -62,6 +62,15 @@
     <string name="history_title">Umlando</string>
     <string name="history_empty_title">Abukho ubusuku okwamanje</string>
     <string name="history_empty_text">Ngemva kobusuku bakho bokuqala newashi, uzobona ukuthi likuvuse nini nokuthi kungani.</string>
+    <string name="history_health_mark">Ngaphandle kwe-alamu ye-Phase Wake</string>
+    <string name="history_health_times">Embhedeni %1$s · ulele %2$s · uvukile %3$s</string>
+    <string name="history_health_times_simple">Embhedeni %1$s · uvukile %2$s</string>
+    <string name="history_health_amounts">%1$s embhedeni · %2$s ulele · %3$s uphapheme</string>
+    <string name="history_health_amount_simple">%1$s embhedeni</string>
+    <string name="history_empty_connect">Ubusuku obuvela ku-Samsung Health nakwamanye ama-app nabo bungavela lapha. Ukuze ububone, qhathanisa nedatha yezempilo.</string>
+    <string name="history_empty_no_data">Ayikho idatha yokulala evela ku-Health Connect okwamanje. I-Samsung Health kufanele yabelane ngayo: Samsung Health → Izilungiselelo → Health Connect.</string>
+    <string name="history_health_live">Kusuka ku-%1$s. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
+    <string name="history_health_live_unknown">Kusuka kudatha yakho yezempilo. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
     <string name="history_average">Ø %1$d min ngaphambili</string>
     <string name="history_light_share">%1$d %% ebuthongweni obulula</string>
     <string name="history_export">Thumela ngaphandle ngokungaziwa</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Okungenani izinhlamvu ezi-8.</string>
     <string name="backup_password_mismatch">Amaphasiwedi awafani.</string>
     <string name="backup_password_hint">Ngaphandle kwale phasiwedi, akekho ongavula ikhophi yasenqolobaneni – ngisho nawe.</string>
+    <string name="backup_health_hint">Ubusuku obuvela kwamanye ama-app (isb. i-Samsung Health) abulondolozwa – buhlala lapho futhi buvele futhi uma sekunikezwe imvume.</string>
     <string name="backup_create">Londoloza ikhophi yasenqolobaneni</string>
     <string name="backup_done">Ikhophi yasenqolobaneni ilondoloziwe.</string>
     <string name="backup_failed">Ayikwazanga ukulondoloza ikhophi yasenqolobaneni.</string>

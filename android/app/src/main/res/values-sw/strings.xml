@@ -61,6 +61,15 @@
     <string name="history_title">Historia</string>
     <string name="history_empty_title">Bado hakuna usiku</string>
     <string name="history_empty_text">Baada ya usiku wako wa kwanza ukiwa na saa, utaona hapa ilikuamsha lini na kwa nini.</string>
+    <string name="history_health_mark">Bila kengele ya Phase Wake</string>
+    <string name="history_health_times">Kitandani %1$s · kulala %2$s · kuamka %3$s</string>
+    <string name="history_health_times_simple">Kitandani %1$s · kuamka %2$s</string>
+    <string name="history_health_amounts">%1$s kitandani · %2$s usingizi · %3$s macho</string>
+    <string name="history_health_amount_simple">%1$s kitandani</string>
+    <string name="history_empty_connect">Usiku kutoka Samsung Health na programu nyingine unaweza pia kuonekana hapa. Ili kuuona, linganisha na data ya afya.</string>
+    <string name="history_empty_no_data">Bado hakuna data ya usingizi kutoka Health Connect. Samsung Health lazima iishiriki: Samsung Health → Mipangilio → Health Connect.</string>
+    <string name="history_health_live">Kutoka %1$s. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
+    <string name="history_health_live_unknown">Kutoka data yako ya afya. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
     <string name="history_average">Wastani dak %1$d mapema</string>
     <string name="history_light_share">%1$d %% katika usingizi mwepesi</string>
     <string name="history_export">Hamisha bila kutambulisha</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">Angalau herufi 8.</string>
     <string name="backup_password_mismatch">Manenosiri hayalingani.</string>
     <string name="backup_password_hint">Bila nenosiri hili, hakuna anayeweza kufungua nakala – hata wewe.</string>
+    <string name="backup_health_hint">Usiku kutoka programu nyingine (k.m. Samsung Health) hauhifadhiwi nakala – unabaki huko na kuonekana tena mara ruhusa inapotolewa.</string>
     <string name="backup_create">Hifadhi nakala</string>
     <string name="backup_done">Nakala imehifadhiwa.</string>
     <string name="backup_failed">Imeshindwa kuhifadhi nakala.</string>

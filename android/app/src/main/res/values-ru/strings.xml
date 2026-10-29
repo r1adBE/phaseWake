@@ -62,6 +62,15 @@
     <string name="history_title">История</string>
     <string name="history_empty_title">Пока нет ночей</string>
     <string name="history_empty_text">После первой ночи с часами здесь появится, когда и почему они тебя разбудили.</string>
+    <string name="history_health_mark">Без будильника Phase Wake</string>
+    <string name="history_health_times">В постели %1$s · засыпание %2$s · пробуждение %3$s</string>
+    <string name="history_health_times_simple">В постели %1$s · пробуждение %2$s</string>
+    <string name="history_health_amounts">%1$s в постели · %2$s сна · %3$s бодрствования</string>
+    <string name="history_health_amount_simple">%1$s в постели</string>
+    <string name="history_empty_connect">Здесь могут появляться и ночи из приложения Samsung Health и других приложений. Чтобы их увидеть, включи сверку с данными о здоровье.</string>
+    <string name="history_empty_no_data">Пока нет данных о сне из Health Connect. Samsung Health должен ими делиться: Samsung Health → Настройки → Health Connect.</string>
+    <string name="history_health_live">Из приложения %1$s. Изменения и удаления, сделанные там, Phase Wake учитывает автоматически.</string>
+    <string name="history_health_live_unknown">Из твоих данных о здоровье. Изменения и удаления, сделанные там, Phase Wake учитывает автоматически.</string>
     <string name="history_average">Ø на %1$d мин раньше</string>
     <string name="history_light_share">%1$d %% в лёгком сне</string>
     <string name="history_export">Экспорт без личных данных</string>
@@ -447,6 +456,7 @@
     <string name="backup_password_short">Не меньше 8 символов.</string>
     <string name="backup_password_mismatch">Пароли не совпадают.</string>
     <string name="backup_password_hint">Без этого пароля никто не откроет копию – даже ты.</string>
+    <string name="backup_health_hint">Ночи из других приложений (например, Samsung Health) не попадают в резервную копию – они остаются там и снова появятся, как только будет дан доступ.</string>
     <string name="backup_create">Сохранить копию</string>
     <string name="backup_done">Копия сохранена.</string>
     <string name="backup_failed">Не удалось сохранить копию.</string>

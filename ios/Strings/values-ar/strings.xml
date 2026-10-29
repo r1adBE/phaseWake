@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">افتح Phase Wake على Apple Watch قبل أن تنام. لا يفعّل watchOS المنبه إلا أثناء فتح التطبيق.</string>
     <string name="night_unmeasured_apple">أول %1$d د لم تُقس – لا تقيس Apple Watch إلا آخر %2$d د قبل الموعد.</string>
     <string name="settings_licenses_text_apple">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: SoundAnalysis من Apple، مدمج في iOS.\nالأصوات: تسجيلات حرة (CC0) من opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">يمكن أن تظهر هنا أيضًا ليالٍ من Apple Health وتطبيقات أخرى. لرؤيتها، قارن ببيانات الصحة.</string>
+    <string name="history_empty_no_data_apple">لا توجد بيانات نوم من Apple Health بعد. يجب تسجيل النوم هناك، مثلاً بواسطة Apple Watch، ويجب السماح لـ Phase Wake بقراءته في تطبيق Health.</string>
+    <string name="backup_health_hint_apple">لا يتم نسخ الليالي من التطبيقات الأخرى (مثل Apple Health) احتياطيًا – فهي تبقى هناك وتظهر مجددًا بمجرد منح الإذن.</string>
 </resources>

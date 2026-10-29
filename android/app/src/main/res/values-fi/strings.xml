@@ -60,6 +60,15 @@
     <string name="history_title">Historia</string>
     <string name="history_empty_title">Ei vielä öitä</string>
     <string name="history_empty_text">Ensimmäisen kellon kanssa nukutun yön jälkeen näet täällä, milloin ja miksi se herätti sinut.</string>
+    <string name="history_health_mark">Ilman Phase Wake -herätystä</string>
+    <string name="history_health_times">Sängyssä %1$s · nukahtaminen %2$s · herääminen %3$s</string>
+    <string name="history_health_times_simple">Sängyssä %1$s · herääminen %2$s</string>
+    <string name="history_health_amounts">Sängyssä %1$s · unta %2$s · hereillä %3$s</string>
+    <string name="history_health_amount_simple">Sängyssä %1$s</string>
+    <string name="history_empty_connect">Täällä voi näkyä myös öitä sovelluksesta Samsung Health ja muista sovelluksista. Näet ne, kun vertaat terveystietoihin.</string>
+    <string name="history_empty_no_data">Palvelusta Health Connect ei ole vielä unitietoja. Samsung Healthin täytyy jakaa ne: Samsung Health → Asetukset → Health Connect.</string>
+    <string name="history_health_live">Lähde: %1$s. Phase Wake ottaa siellä tehdyt muutokset ja poistot automaattisesti huomioon.</string>
+    <string name="history_health_live_unknown">Lähde: terveystietosi. Phase Wake ottaa siellä tehdyt muutokset ja poistot automaattisesti huomioon.</string>
     <string name="history_average">Ø %1$d min aiemmin</string>
     <string name="history_light_share">%1$d %% kevyessä unessa</string>
     <string name="history_export">Vie anonyymisti</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Vähintään 8 merkkiä.</string>
     <string name="backup_password_mismatch">Salasanat eivät täsmää.</string>
     <string name="backup_password_hint">Ilman tätä salasanaa kukaan ei voi avata varmuuskopiota – et sinäkään.</string>
+    <string name="backup_health_hint">Muiden sovellusten (esim. Samsung Health) öitä ei varmuuskopioida – ne pysyvät siellä ja näkyvät taas, kun käyttöoikeus on annettu.</string>
     <string name="backup_create">Tallenna varmuuskopio</string>
     <string name="backup_done">Varmuuskopio tallennettu.</string>
     <string name="backup_failed">Varmuuskopiota ei voitu tallentaa.</string>

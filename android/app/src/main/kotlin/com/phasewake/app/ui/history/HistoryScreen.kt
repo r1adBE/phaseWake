@@ -34,6 +34,9 @@ import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.HealthHistory
+import com.phasewake.app.core.HistoryItem
+import com.phasewake.app.core.HistoryKind
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepNotes
@@ -109,18 +112,24 @@ fun HistoryScreen(
     onDeleteNightClips: (LocalDate) -> Unit = {},
     /** Diagramme oben im Verlauf; `null` oder leer: keine. */
     charts: HistoryCharts? = null,
+    /** Verlauf mit Nächten aus Health Connect ([HealthHistory.merge]); `null`: nur [nights]. */
+    items: List<HistoryItem>? = null,
+    /** Health Connect ist nutzbar, die Freigabe fehlt noch (Knopf im leeren Verlauf). */
+    canConnectHealth: Boolean = false,
 ) {
+    val history = remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
     val latestByDate = remember(nights) {
         nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
     }
-    // Geräusche ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): eigene Karte, nach Zeit zwischen die Nächte.
-    val soundsOnly = remember(soundClips, latestByDate) { SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys) }
-    val entries = remember(nights, soundsOnly) {
+    val healthDates = remember(history) { history.filter { it.kind == HistoryKind.HEALTH }.map { it.date }.toSet() }
+    // Geräusche ohne Nacht (z. B. Uhr nicht getragen, keine Gesundheitsdaten): eigene Karte, nach Zeit zwischen die Nächte.
+    val soundsOnly = remember(soundClips, latestByDate, healthDates) { SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys + healthDates) }
+    val entries = remember(history, soundsOnly) {
         buildList<HistoryEntry> {
             val pending = ArrayDeque(soundsOnly.map { HistoryEntry.Sounds(it.first, it.second) })
-            for (night in nights.asReversed()) {
-                while (pending.isNotEmpty() && pending.first().last.isAfter(night.wokeAt)) add(pending.removeFirst())
-                add(HistoryEntry.Night(night))
+            for (item in history) {
+                while (pending.isNotEmpty() && pending.first().last.isAfter(item.at)) add(pending.removeFirst())
+                add(item.night?.let { HistoryEntry.Night(it) } ?: HistoryEntry.Health(item))
             }
             addAll(pending)
         }
@@ -135,30 +144,14 @@ fun HistoryScreen(
         }
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes) } }
-        if (nights.isEmpty()) {
-            item(key = "empty") {
-                Card(
-                    shape = MaterialTheme.shapes.large,
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Column(Modifier.padding(20.dp)) {
-                        Text(stringResource(R.string.history_empty_title), style = MaterialTheme.typography.titleMedium)
-                        Text(
-                            stringResource(R.string.history_empty_text),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
-                    }
-                }
-            }
+        if (history.isEmpty()) {
+            item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
             soundsOnly.forEach { (night, last) ->
                 item(key = "sounds@$night") { SoundsOnlyCard(HistoryEntry.Sounds(night, last), soundClips, soundFile, onDeleteClip, onDeleteNightClips) }
             }
             return@LazyColumn
         }
-        item(key = "stats") { Stats(nights) }
+        if (nights.isNotEmpty()) item(key = "stats") { Stats(nights) }
         weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes) } }
         trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty()) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
@@ -167,6 +160,16 @@ fun HistoryScreen(
                 is HistoryEntry.Night -> entry.night
                 is HistoryEntry.Sounds -> {
                     SoundsOnlyCard(entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem())
+                    return@items
+                }
+                is HistoryEntry.Health -> {
+                    val date = entry.item.date
+                    HealthNightCard(
+                        entry.item.session ?: return@items, notes[date].orEmpty(), customNotes,
+                        onToggleNote = { onToggleNote(date, it) },
+                        sounds = NightSounds(SoundEvents.forNight(soundClips, date), soundFile, onDeleteClip) { onDeleteNightClips(date) },
+                        modifier = Modifier.animateItem(),
+                    )
                     return@items
                 }
             }
@@ -181,7 +184,7 @@ fun HistoryScreen(
                 onDeleteClips = { onDeleteNightClips(date) },
             )
         }
-        item(key = "export") {
+        if (nights.isNotEmpty()) item(key = "export") {
             OutlinedButton(onClick = onExport, modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp)) {
                 Icon(painterResource(R.drawable.ic_export), contentDescription = null, modifier = Modifier.size(18.dp))
                 Text(stringResource(R.string.history_export), modifier = Modifier.padding(start = 8.dp))
@@ -284,6 +287,11 @@ private sealed interface HistoryEntry {
         override val key: String get() = "${night.alarmId}@${night.windowStart.toEpochMilli()}"
     }
 
+    /** Nacht aus Health Connect ohne Phase-Wake-Wecker; höchstens eine je Nachtdatum. */
+    data class Health(val item: HistoryItem) : HistoryEntry {
+        override val key: String get() = "health@${item.date}"
+    }
+
     /** [last] = Beginn des jüngsten Ausschnitts. */
     data class Sounds(val night: LocalDate, val last: Instant) : HistoryEntry {
         override val key: String get() = "sounds@$night"
@@ -331,7 +339,7 @@ private fun verdict(context: Context, stages: List<StageSpan>, night: NightRecor
 
 /** Schlafphasen im Weckfenster als Band mit vier Höhen (oben wach, dann REM, leicht, unten tief) und je eigener Farbe. */
 @Composable
-private fun StageStrip(spans: List<StageSpan>, from: java.time.Instant, to: java.time.Instant, modifier: Modifier) {
+internal fun StageStrip(spans: List<StageSpan>, from: java.time.Instant, to: java.time.Instant, modifier: Modifier) {
     val brand = PhaseWakeTheme.brand
     val colors = stageColors()
     val total = Duration.between(from, to).toMillis().toFloat().coerceAtLeast(1f)

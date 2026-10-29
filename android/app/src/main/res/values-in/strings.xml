@@ -59,6 +59,15 @@
     <string name="history_title">Riwayat</string>
     <string name="history_empty_title">Belum ada malam</string>
     <string name="history_empty_text">Setelah malam pertama dengan jam tangan, kamu akan melihat kapan dan mengapa jam membangunkanmu.</string>
+    <string name="history_health_mark">Tanpa alarm Phase Wake</string>
+    <string name="history_health_times">Di kasur %1$s · tertidur %2$s · bangun %3$s</string>
+    <string name="history_health_times_simple">Di kasur %1$s · bangun %2$s</string>
+    <string name="history_health_amounts">%1$s di kasur · %2$s tidur · %3$s terjaga</string>
+    <string name="history_health_amount_simple">%1$s di kasur</string>
+    <string name="history_empty_connect">Malam dari Samsung Health dan aplikasi lain juga bisa muncul di sini. Untuk melihatnya, cocokkan dengan data kesehatan.</string>
+    <string name="history_empty_no_data">Belum ada data tidur dari Health Connect. Samsung Health harus membagikannya: Samsung Health → Setelan → Health Connect.</string>
+    <string name="history_health_live">Dari %1$s. Phase Wake otomatis mengikuti perubahan dan penghapusan di sana.</string>
+    <string name="history_health_live_unknown">Dari data kesehatanmu. Phase Wake otomatis mengikuti perubahan dan penghapusan di sana.</string>
     <string name="history_average">Rata-rata %1$d mnt lebih awal</string>
     <string name="history_light_share">%1$d %% dalam tidur ringan</string>
     <string name="history_export">Ekspor anonim</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">Minimal 8 karakter.</string>
     <string name="backup_password_mismatch">Kata sandi tidak cocok.</string>
     <string name="backup_password_hint">Tanpa kata sandi ini, tidak ada yang bisa membuka cadangan – termasuk kamu.</string>
+    <string name="backup_health_hint">Malam dari aplikasi lain (mis. Samsung Health) tidak dicadangkan – tetap tersimpan di sana dan muncul lagi setelah akses diberikan.</string>
     <string name="backup_create">Simpan cadangan</string>
     <string name="backup_done">Cadangan disimpan.</string>
     <string name="backup_failed">Cadangan tidak bisa disimpan.</string>

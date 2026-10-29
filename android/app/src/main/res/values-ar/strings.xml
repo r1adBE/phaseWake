@@ -64,6 +64,15 @@
     <string name="history_title">السجل</string>
     <string name="history_empty_title">لا توجد ليالٍ بعد</string>
     <string name="history_empty_text">بعد أول ليلة مع الساعة، سيظهر هنا وقت إيقاظك وسببه.</string>
+    <string name="history_health_mark">بدون منبّه Phase Wake</string>
+    <string name="history_health_times">في السرير %1$s · النوم %2$s · الاستيقاظ %3$s</string>
+    <string name="history_health_times_simple">في السرير %1$s · الاستيقاظ %2$s</string>
+    <string name="history_health_amounts">%1$s في السرير · %2$s نوم · %3$s يقظة</string>
+    <string name="history_health_amount_simple">%1$s في السرير</string>
+    <string name="history_empty_connect">يمكن أن تظهر هنا أيضًا ليالٍ من Samsung Health وتطبيقات أخرى. لرؤيتها، قارن ببيانات الصحة.</string>
+    <string name="history_empty_no_data">لا توجد بيانات نوم من Health Connect بعد. يجب أن يشاركها Samsung Health: ‏Samsung Health ← الإعدادات ← Health Connect.</string>
+    <string name="history_health_live">من %1$s. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
+    <string name="history_health_live_unknown">من بياناتك الصحية. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
     <string name="history_average">المتوسط: قبل الموعد بـ %1$d د</string>
     <string name="history_light_share">%1$d %% في النوم الخفيف</string>
     <string name="history_export">تصدير مجهول الهوية</string>
@@ -473,6 +482,7 @@
     <string name="backup_password_short">8 أحرف على الأقل.</string>
     <string name="backup_password_mismatch">كلمتا المرور غير متطابقتين.</string>
     <string name="backup_password_hint">دون كلمة المرور هذه لا يستطيع أحد فتح النسخة – ولا أنت.</string>
+    <string name="backup_health_hint">لا يتم نسخ الليالي من التطبيقات الأخرى (مثل Samsung Health) احتياطيًا – فهي تبقى هناك وتظهر مجددًا بمجرد منح الإذن.</string>
     <string name="backup_create">حفظ النسخة</string>
     <string name="backup_done">تم حفظ النسخة.</string>
     <string name="backup_failed">تعذّر حفظ النسخة.</string>

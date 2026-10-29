@@ -25,7 +25,8 @@ enum BackupIO {
             settings: BackupSettings(
                 sleepGoal: model.sleepGoal, bedtimeReminder: model.bedtimeReminder, weeklyReview: model.weeklyReview,
                 soundRecDefault: model.soundRecDefault, theme: theme.rawValue.uppercased(),
-                holidayCountry: model.holidays.country, holidayRegion: model.holidays.region
+                holidayCountry: model.holidays.country, holidayRegion: model.holidays.region,
+                historyClearedAt: model.historyClearedAt.map { Int64($0.timeIntervalSince1970 * 1000) }
             )
         )
     }
@@ -79,6 +80,11 @@ enum BackupIO {
         defaults.set(s.weeklyReview, forKey: PhoneModel.weeklyKey)
         defaults.set(s.soundRecDefault, forKey: PhoneModel.soundRecDefaultKey)
         defaults.set((ThemeMode(rawValue: s.theme.lowercased()) ?? .system).rawValue, forKey: themeKey)
+        if let cleared = s.historyClearedAt {
+            defaults.set(NSNumber(value: cleared), forKey: PhoneModel.historyClearedKey)
+        } else {
+            defaults.removeObject(forKey: PhoneModel.historyClearedKey)
+        }
         model.holidays.select(country: s.holidayCountry, region: s.holidayRegion)
         model.loadState()
         model.holidaysChanged()

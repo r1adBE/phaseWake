@@ -34,7 +34,8 @@ final class WeeklyReview {
         guard UIApplication.shared.isProtectedDataAvailable else { return }
         let calendar = Calendar.current
         guard let at = WeeklySummary.nextNotification(after: Date(), calendar: calendar) else { return }
-        let sleeps = await model.health.recentSleep(days: Double(NightHistory.maxNights + 1))
+        let health = await model.health.sessions()
+        let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt)
         let summary = WeeklySummary.of(
             nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: calendar,
             goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar))

@@ -62,6 +62,15 @@
     <string name="history_title">Historie</string>
     <string name="history_empty_title">Zatím žádné noci</string>
     <string name="history_empty_text">Po první noci s hodinkami tu uvidíš, kdy a proč tě vzbudily.</string>
+    <string name="history_health_mark">Bez budíku Phase Wake</string>
+    <string name="history_health_times">V posteli %1$s · usnutí %2$s · probuzení %3$s</string>
+    <string name="history_health_times_simple">V posteli %1$s · probuzení %2$s</string>
+    <string name="history_health_amounts">%1$s v posteli · %2$s spánku · %3$s bdění</string>
+    <string name="history_health_amount_simple">%1$s v posteli</string>
+    <string name="history_empty_connect">Zobrazit se tu mohou i noci z aplikace Samsung Health a dalších aplikací. Chceš-li je vidět, porovnej se zdravotními daty.</string>
+    <string name="history_empty_no_data">Zatím žádná data o spánku z Health Connect. Samsung Health je musí sdílet: Samsung Health → Nastavení → Health Connect.</string>
+    <string name="history_health_live">Z aplikace %1$s. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
+    <string name="history_health_live_unknown">Z tvých zdravotních dat. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
     <string name="history_average">Ø %1$d min dřív</string>
     <string name="history_light_share">%1$d %% v lehkém spánku</string>
     <string name="history_export">Exportovat anonymně</string>
@@ -447,6 +456,7 @@
     <string name="backup_password_short">Alespoň 8 znaků.</string>
     <string name="backup_password_mismatch">Hesla se neshodují.</string>
     <string name="backup_password_hint">Bez tohoto hesla zálohu nikdo neotevře – ani ty.</string>
+    <string name="backup_health_hint">Noci z jiných aplikací (např. Samsung Health) se nezálohují – zůstávají tam a znovu se objeví, jakmile udělíš přístup.</string>
     <string name="backup_create">Uložit zálohu</string>
     <string name="backup_done">Záloha uložena.</string>
     <string name="backup_failed">Zálohu se nepodařilo uložit.</string>

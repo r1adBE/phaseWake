@@ -60,6 +60,15 @@
     <string name="history_title">इतिहास</string>
     <string name="history_empty_title">अभी कोई रात नहीं</string>
     <string name="history_empty_text">घड़ी के साथ पहली रात के बाद यहाँ दिखेगा कि घड़ी ने कब और क्यों जगाया।</string>
+    <string name="history_health_mark">Phase Wake अलार्म के बिना</string>
+    <string name="history_health_times">बिस्तर पर %1$s · नींद %2$s · उठे %3$s</string>
+    <string name="history_health_times_simple">बिस्तर पर %1$s · उठे %2$s</string>
+    <string name="history_health_amounts">बिस्तर पर %1$s · नींद %2$s · जागे %3$s</string>
+    <string name="history_health_amount_simple">बिस्तर पर %1$s</string>
+    <string name="history_empty_connect">Samsung Health और दूसरे ऐप की रातें भी यहाँ दिख सकती हैं। उन्हें देखने के लिए हेल्थ डेटा से मिलान करो।</string>
+    <string name="history_empty_no_data">अभी Health Connect से नींद का डेटा नहीं है। Samsung Health को इसे शेयर करना होगा: Samsung Health → सेटिंग्स → Health Connect।</string>
+    <string name="history_health_live">%1$s से। वहाँ किए गए बदलाव और हटाना Phase Wake अपने-आप अपनाता है।</string>
+    <string name="history_health_live_unknown">तुम्हारे हेल्थ डेटा से। वहाँ किए गए बदलाव और हटाना Phase Wake अपने-आप अपनाता है।</string>
     <string name="history_average">औसत: %1$d मि. पहले</string>
     <string name="history_light_share">%1$d %% हल्की नींद में</string>
     <string name="history_export">गुमनाम एक्सपोर्ट</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">कम से कम 8 अक्षर।</string>
     <string name="backup_password_mismatch">पासवर्ड मेल नहीं खाते।</string>
     <string name="backup_password_hint">इस पासवर्ड के बिना कोई भी बैकअप नहीं खोल सकता – आप भी नहीं।</string>
+    <string name="backup_health_hint">दूसरे ऐप की रातें (जैसे Samsung Health) बैकअप में नहीं जातीं – वे वहीं रहती हैं और अनुमति मिलते ही फिर दिखती हैं।</string>
     <string name="backup_create">बैकअप सेव करें</string>
     <string name="backup_done">बैकअप सेव हो गया।</string>
     <string name="backup_failed">बैकअप सेव नहीं हो सका।</string>

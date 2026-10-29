@@ -61,6 +61,15 @@
     <string name="history_title">வரலாறு</string>
     <string name="history_empty_title">இன்னும் இரவுகள் இல்லை</string>
     <string name="history_empty_text">வாட்ச்சுடன் முதல் இரவுக்குப் பிறகு, அது உங்களை எப்போது, ஏன் எழுப்பியது என்று இங்கே பார்ப்பீர்கள்.</string>
+    <string name="history_health_mark">Phase Wake அலாரம் இல்லாமல்</string>
+    <string name="history_health_times">படுக்கையில் %1$s · தூக்கம் %2$s · எழுந்தது %3$s</string>
+    <string name="history_health_times_simple">படுக்கையில் %1$s · எழுந்தது %2$s</string>
+    <string name="history_health_amounts">படுக்கையில் %1$s · தூக்கம் %2$s · விழிப்பு %3$s</string>
+    <string name="history_health_amount_simple">படுக்கையில் %1$s</string>
+    <string name="history_empty_connect">Samsung Health மற்றும் பிற ஆப்களின் இரவுகளும் இங்கே தோன்றலாம். அவற்றைப் பார்க்க, ஆரோக்கியத் தரவுடன் ஒப்பிடுங்கள்.</string>
+    <string name="history_empty_no_data">Health Connect இலிருந்து இன்னும் தூக்கத் தரவு இல்லை. Samsung Health அதைப் பகிர வேண்டும்: Samsung Health → அமைப்புகள் → Health Connect.</string>
+    <string name="history_health_live">%1$s இலிருந்து. அங்கே செய்யும் மாற்றங்களையும் நீக்கங்களையும் Phase Wake தானாகவே ஏற்கிறது.</string>
+    <string name="history_health_live_unknown">உங்கள் ஆரோக்கியத் தரவிலிருந்து. அங்கே செய்யும் மாற்றங்களையும் நீக்கங்களையும் Phase Wake தானாகவே ஏற்கிறது.</string>
     <string name="history_average">சராசரி %1$d நிமி. முன்னதாக</string>
     <string name="history_light_share">%1$d %% லேசான தூக்கத்தில்</string>
     <string name="history_export">அநாமதேயமாக ஏற்றுமதி செய்</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">குறைந்தது 8 எழுத்துகள்.</string>
     <string name="backup_password_mismatch">கடவுச்சொற்கள் பொருந்தவில்லை.</string>
     <string name="backup_password_hint">இந்தக் கடவுச்சொல் இல்லாமல் யாராலும் காப்புப்பிரதியைத் திறக்க முடியாது – உங்களாலும் கூட.</string>
+    <string name="backup_health_hint">பிற ஆப்களின் இரவுகள் (எ.கா. Samsung Health) காப்புப் பிரதி எடுக்கப்படாது – அவை அங்கேயே இருக்கும், அனுமதி அளித்ததும் மீண்டும் தோன்றும்.</string>
     <string name="backup_create">காப்புப்பிரதியைச் சேமி</string>
     <string name="backup_done">காப்புப்பிரதி சேமிக்கப்பட்டது.</string>
     <string name="backup_failed">காப்புப்பிரதியைச் சேமிக்க முடியவில்லை.</string>

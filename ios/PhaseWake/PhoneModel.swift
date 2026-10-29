@@ -38,6 +38,9 @@ final class PhoneModel {
     static let routineItemsKey = "routineItems"
     static let routineTicksKey = "routineTicks"
     static let weeklyKey = "weeklyReview"
+    /// «Verlauf löschen» (ms seit 1970): Nächte aus Apple Health, die nicht danach enden, bleiben ausgeblendet.
+    private(set) var historyClearedAt: Date?
+    static let historyClearedKey = "historyClearedAt"
     /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
     private(set) var notes: [String: [String]] = [:]
     private(set) var customNotes: [CustomNote] = []
@@ -99,6 +102,7 @@ final class PhoneModel {
         routineItems = Routine.decodeItems(defaults.string(forKey: Self.routineItemsKey))
         routineTicks = Routine.decodeTicks(defaults.string(forKey: Self.routineTicksKey))
         weeklyReview = defaults.bool(forKey: Self.weeklyKey)
+        historyClearedAt = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber).map { Date(timeIntervalSince1970: $0.doubleValue / 1000) }
     }
 
     /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen.
@@ -193,6 +197,10 @@ final class PhoneModel {
         routineTicks = [:]
         UserDefaults.standard.removeObject(forKey: Self.routineTicksKey)
         recorder.deleteEverything()
+        // Nächte aus Apple Health lassen sich nicht löschen, nur ausblenden (`HealthHistory.visible`).
+        let now = Date()
+        historyClearedAt = now
+        UserDefaults.standard.set(NSNumber(value: Int64(now.timeIntervalSince1970 * 1000)), forKey: Self.historyClearedKey)
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 

@@ -62,6 +62,15 @@
     <string name="history_title">Historial</string>
     <string name="history_empty_title">Encara no hi ha nits</string>
     <string name="history_empty_text">Després de la primera nit amb el rellotge, veuràs quan i per què t’ha despertat.</string>
+    <string name="history_health_mark">Sense alarma de Phase Wake</string>
+    <string name="history_health_times">Al llit %1$s · inici del son %2$s · despertar %3$s</string>
+    <string name="history_health_times_simple">Al llit %1$s · despertar %2$s</string>
+    <string name="history_health_amounts">%1$s al llit · %2$s de son · %3$s de vigília</string>
+    <string name="history_health_amount_simple">%1$s al llit</string>
+    <string name="history_empty_connect">Aquí també poden aparèixer nits de Samsung Health i altres apps. Per veure-les, compara amb les dades de salut.</string>
+    <string name="history_empty_no_data">Encara no hi ha dades de son de Health Connect. Samsung Health les ha de compartir: Samsung Health → Configuració → Health Connect.</string>
+    <string name="history_health_live">De %1$s. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
+    <string name="history_health_live_unknown">De les teves dades de salut. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
     <string name="history_average">Ø %1$d min abans</string>
     <string name="history_light_share">%1$d %% en son lleuger</string>
     <string name="history_export">Exporta de manera anònima</string>
@@ -436,6 +445,7 @@
     <string name="backup_password_short">Com a mínim 8 caràcters.</string>
     <string name="backup_password_mismatch">Les contrasenyes no coincideixen.</string>
     <string name="backup_password_hint">Sense aquesta contrasenya, ningú no pot obrir la còpia – ni tan sols tu.</string>
+    <string name="backup_health_hint">Les nits d’altres apps (p. ex. Samsung Health) no es desen a la còpia de seguretat: es queden allà i tornen a aparèixer quan s’hi dona accés.</string>
     <string name="backup_create">Desa la còpia</string>
     <string name="backup_done">Còpia desada.</string>
     <string name="backup_failed">No s’ha pogut desar la còpia.</string>

@@ -21,12 +21,12 @@ E-Mail: riad.work@outlook.com
 | Bewegung nach «Gute Nacht» | Einschlafzeit erkennen | nur Uhr | bis zur nächsten Nacht |
 | Schlafnotizen (z. B. «Kaffee», «Sport», eigene Notizen) und Befinden | Auswertung, was deinen Schlaf beeinflusst | nur Handy | 90 Nächte; «Verlauf löschen» entfernt sie |
 | Schlafziel und Einstellungen der Bettzeit-Erinnerung | Erinnerung, Wochenstand | nur Handy | bis du sie änderst |
-| Schlafphasen aus Health Connect bzw. Apple Health (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern, Regelmässigkeit und Serien | nur Handy, nur gelesen | werden nicht gespeichert |
+| Schlafsitzungen und -phasen aus Health Connect bzw. Apple Health samt Name der Quell-App (nur wenn du es erlaubst) | Weckmoment prüfen, Erkennung verbessern, Nächte ohne Phase-Wake-Wecker im Verlauf zeigen, Regelmässigkeit und Serien | nur Handy, nur gelesen, bei jedem Öffnen neu (Änderungen und Löschungen in der Quell-App gelten sofort) | werden nicht gespeichert und nicht gesichert |
 | Kurze Tonausschnitte nächtlicher Geräusche über das Mikrofon (nur wenn du «Geräusche aufnehmen» einschaltest) | Schnarchen und Sprechen erkennen und dir zum Anhören zeigen | nur Handy, im App-Ordner | 7 Tage; einzeln oder alle löschbar, auch mit «Verlauf löschen» |
 | Abendroutine (deine Punkte und was du abgehakt hast) | Checkliste, Durchschnitt in den Trends | nur Handy | 90 Abende; «Verlauf löschen» entfernt die Haken |
 | Land und Region der Feiertage, daraus die Feiertage der nächsten 400 Tage | «An Feiertagen nicht wecken» | Handy, die Tage auch Uhr | bis du die Wahl änderst |
 | Diagnose-Protokoll (Zeiten und Arten von Ereignissen wie «geplant», «geklingelt», «gestoppt», Akkustand; keine Namen, keine Messwerte) | Fehlersuche, nur auf Wunsch angezeigt und geteilt | Handy und Uhr, je lokal | höchstens 7 Tage bzw. 500 Einträge; «Leeren» löscht es |
-| Verschlüsselte Sicherung (Wecker, Verlauf, Notizen, Abendroutine, Einstellungen; ohne Geräusche und Gesundheitsdaten) | Sichern und Wiederherstellen | nur dort, wo du die Datei speicherst; mit deinem Passwort verschlüsselt | bis du die Datei löschst |
+| Verschlüsselte Sicherung (Wecker, Verlauf, Notizen, Abendroutine, Einstellungen samt Zeitpunkt von «Verlauf löschen»; ohne Geräusche und Gesundheitsdaten) | Sichern und Wiederherstellen | nur dort, wo du die Datei speicherst; mit deinem Passwort verschlüsselt | bis du die Datei löschst |
 
 ## Mikrofon
 
@@ -60,7 +60,7 @@ Phase Wake processes all data only on your phone and your watch. There is no acc
 
 **Controller:** Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf, Switzerland · riad.work@outlook.com
 
-**Data processed on your devices:** alarms (until you delete them); motion and heart rate during the wake window to detect light sleep (last 90 nights); motion after “Good night” to detect when you fall asleep (watch only, until the next night); sleep stages read from Health Connect or Apple Health, only if you allow it, to check the wake moment and improve detection (phone only, read only, not stored).
+**Data processed on your devices:** alarms (until you delete them); motion and heart rate during the wake window to detect light sleep (last 90 nights); motion after “Good night” to detect when you fall asleep (watch only, until the next night); sleep sessions and stages read from Health Connect or Apple Health with the name of the source app, only if you allow it, to check the wake moment, improve detection and show nights without a Phase Wake alarm in the history (phone only, read only, re-read on every opening, not stored, not backed up).
 
 Phone and watch exchange alarms and nights directly via the operating system’s connection (Wear OS Data Layer or WatchConnectivity). Phase Wake has no internet permission and shares no data with us or third parties. If you export your nights as a CSV file, you decide whom to share it with; it contains no names, dates or device identifiers.
 

@@ -60,6 +60,15 @@
     <string name="history_title">ປະຫວັດ</string>
     <string name="history_empty_title">ຍັງບໍ່ມີຄືນໃດ</string>
     <string name="history_empty_text">ຫຼັງຈາກຄືນທຳອິດກັບໂມງ ເຈົ້າຈະເຫັນວ່າມັນປຸກເຈົ້າເມື່ອໃດ ແລະ ຍ້ອນຫຍັງ</string>
+    <string name="history_health_mark">ບໍ່ມີໂມງປຸກ Phase Wake</string>
+    <string name="history_health_times">ຢູ່ບ່ອນນອນ %1$s · ນອນຫຼັບ %2$s · ຕື່ນ %3$s</string>
+    <string name="history_health_times_simple">ຢູ່ບ່ອນນອນ %1$s · ຕື່ນ %2$s</string>
+    <string name="history_health_amounts">ຢູ່ບ່ອນນອນ %1$s · ນອນ %2$s · ຕື່ນ %3$s</string>
+    <string name="history_health_amount_simple">ຢູ່ບ່ອນນອນ %1$s</string>
+    <string name="history_empty_connect">ຄືນຈາກ Samsung Health ແລະ ແອັບອື່ນກໍສາມາດສະແດງຢູ່ນີ້ໄດ້. ເພື່ອເບິ່ງ ໃຫ້ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ.</string>
+    <string name="history_empty_no_data">ຍັງບໍ່ມີຂໍ້ມູນການນອນຈາກ Health Connect. Samsung Health ຕ້ອງແບ່ງປັນຂໍ້ມູນ: Samsung Health → ການຕັ້ງຄ່າ → Health Connect.</string>
+    <string name="history_health_live">ຈາກ %1$s. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
+    <string name="history_health_live_unknown">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_average">Ø ກ່ອນ %1$d ນາທີ</string>
     <string name="history_light_share">%1$d %% ໃນຊ່ວງຫຼັບຕື້ນ</string>
     <string name="history_export">ສົ່ງອອກແບບບໍ່ລະບຸຕົວຕົນ</string>
@@ -410,6 +419,7 @@
     <string name="backup_password_short">ຢ່າງໜ້ອຍ 8 ຕົວອັກສອນ</string>
     <string name="backup_password_mismatch">ລະຫັດຜ່ານບໍ່ກົງກັນ</string>
     <string name="backup_password_hint">ຖ້າບໍ່ມີລະຫັດຜ່ານນີ້ ບໍ່ມີໃຜເປີດໄຟລ໌ສຳຮອງໄດ້ – ແມ່ນແຕ່ເຈົ້າ</string>
+    <string name="backup_health_hint">ຄືນຈາກແອັບອື່ນ (ເຊັ່ນ Samsung Health) ບໍ່ຖືກສຳຮອງ – ມັນຍັງຢູ່ບ່ອນນັ້ນ ແລະ ຈະສະແດງອີກເມື່ອໃຫ້ສິດແລ້ວ.</string>
     <string name="backup_create">ບັນທຶກໄຟລ໌ສຳຮອງ</string>
     <string name="backup_done">ບັນທຶກໄຟລ໌ສຳຮອງແລ້ວ</string>
     <string name="backup_failed">ບັນທຶກໄຟລ໌ສຳຮອງບໍ່ໄດ້</string>

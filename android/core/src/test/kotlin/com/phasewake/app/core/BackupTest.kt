@@ -91,6 +91,14 @@ class BackupTest {
     }
 
     @Test
+    fun backupKeepsClearedAt() {
+        val cleared = payload.copy(settings = payload.settings.copy(historyClearedAt = 1_790_000_000_000L))
+        assertEquals(1_790_000_000_000L, BackupPayload.fromJson(cleared.toJson()).settings.historyClearedAt)
+        assertTrue("\"historyClearedAt\":null" in payload.toJson())
+        assertNull(BackupPayload.fromJson(payload.toJson()).settings.historyClearedAt)
+    }
+
+    @Test
     fun wrongPasswordOrChangedFile() {
         val sealed = BackupFile.encrypt("{}".encodeToByteArray(), "richtig1", salt, nonce)
         assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(sealed, "falsch12") }.reason)

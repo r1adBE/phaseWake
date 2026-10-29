@@ -60,6 +60,15 @@
     <string name="history_title">Verlauf</string>
     <string name="history_empty_title">Noch keine Nächte</string>
     <string name="history_empty_text">Nach der ersten Nacht mit der Uhr siehst du hier, wann und warum sie dich geweckt hat.</string>
+    <string name="history_health_mark">Ohne Phase-Wake-Wecker</string>
+    <string name="history_health_times">Im Bett %1$s · eingeschlafen %2$s · aufgewacht %3$s</string>
+    <string name="history_health_times_simple">Im Bett %1$s · aufgewacht %2$s</string>
+    <string name="history_health_amounts">%1$s im Bett · %2$s Schlaf · %3$s wach</string>
+    <string name="history_health_amount_simple">%1$s im Bett</string>
+    <string name="history_empty_connect">Auch Nächte aus Samsung Health und anderen Apps können hier erscheinen. Dafür mit Gesundheitsdaten abgleichen.</string>
+    <string name="history_empty_no_data">Noch keine Schlafdaten aus Health Connect. Samsung Health muss sie freigeben: Samsung Health → Einstellungen → Health Connect.</string>
+    <string name="history_health_live">Aus %1$s. Änderungen und Löschungen dort übernimmt Phase Wake automatisch.</string>
+    <string name="history_health_live_unknown">Aus deinen Gesundheitsdaten. Änderungen und Löschungen dort übernimmt Phase Wake automatisch.</string>
     <string name="history_average">Ø %1$d Min früher</string>
     <string name="history_light_share">%1$d %% im leichten Schlaf</string>
     <string name="history_export">Anonym exportieren</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Mindestens 8 Zeichen.</string>
     <string name="backup_password_mismatch">Die Passwörter stimmen nicht überein.</string>
     <string name="backup_password_hint">Ohne dieses Passwort lässt sich die Sicherung nicht öffnen – auch von dir nicht.</string>
+    <string name="backup_health_hint">Nächte aus anderen Apps (z. B. Samsung Health) werden nicht gesichert – sie bleiben dort und erscheinen wieder, sobald die Freigabe erteilt ist.</string>
     <string name="backup_create">Sicherung speichern</string>
     <string name="backup_done">Sicherung gespeichert.</string>
     <string name="backup_failed">Die Sicherung konnte nicht gespeichert werden.</string>

@@ -54,6 +54,15 @@
     <string name="history_title">ისტორია</string>
     <string name="history_empty_title">ჯერ ღამეები არ არის</string>
     <string name="history_empty_text">საათით პირველი ღამის შემდეგ ნახავ, როდის და რატომ გაგაღვიძა.</string>
+    <string name="history_health_mark">Phase Wake-ის მაღვიძარას გარეშე</string>
+    <string name="history_health_times">საწოლში %1$s · ჩაძინება %2$s · გაღვიძება %3$s</string>
+    <string name="history_health_times_simple">საწოლში %1$s · გაღვიძება %2$s</string>
+    <string name="history_health_amounts">საწოლში %1$s · ძილი %2$s · ფხიზლად %3$s</string>
+    <string name="history_health_amount_simple">საწოლში %1$s</string>
+    <string name="history_empty_connect">აქ შეიძლება გამოჩნდეს Samsung Health-ისა და სხვა აპების ღამეებიც. მათ სანახავად შეადარე ჯანმრთელობის მონაცემებს.</string>
+    <string name="history_empty_no_data">Health Connect-იდან ძილის მონაცემები ჯერ არ არის. Samsung Health-მა უნდა გააზიაროს ისინი: Samsung Health → პარამეტრები → Health Connect.</string>
+    <string name="history_health_live">წყარო: %1$s. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
+    <string name="history_health_live_unknown">წყარო: შენი ჯანმრთელობის მონაცემები. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
     <string name="history_average">Ø %1$d წთ-ით ადრე</string>
     <string name="history_light_share">%1$d %% მსუბუქ ძილში</string>
     <string name="history_export">ანონიმური ექსპორტი</string>
@@ -409,6 +418,7 @@
     <string name="backup_password_short">მინიმუმ 8 სიმბოლო.</string>
     <string name="backup_password_mismatch">პაროლები არ ემთხვევა.</string>
     <string name="backup_password_hint">ამ პაროლის გარეშე სარეზერვო ასლს ვერავინ გახსნის – შენც კი.</string>
+    <string name="backup_health_hint">სხვა აპების ღამეები (მაგ. Samsung Health) სარეზერვო ასლში არ ინახება – ისინი იქ რჩება და წვდომის მიცემისთანავე ისევ გამოჩნდება.</string>
     <string name="backup_create">ასლის შენახვა</string>
     <string name="backup_done">სარეზერვო ასლი შენახულია.</string>
     <string name="backup_failed">სარეზერვო ასლის შენახვა ვერ მოხერხდა.</string>

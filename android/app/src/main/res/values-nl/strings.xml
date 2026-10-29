@@ -60,6 +60,15 @@
     <string name="history_title">Geschiedenis</string>
     <string name="history_empty_title">Nog geen nachten</string>
     <string name="history_empty_text">Na je eerste nacht met het horloge zie je hier wanneer en waarom het je wekte.</string>
+    <string name="history_health_mark">Zonder Phase Wake-wekker</string>
+    <string name="history_health_times">In bed %1$s · in slaap %2$s · wakker %3$s</string>
+    <string name="history_health_times_simple">In bed %1$s · wakker %2$s</string>
+    <string name="history_health_amounts">%1$s in bed · %2$s slaap · %3$s wakker</string>
+    <string name="history_health_amount_simple">%1$s in bed</string>
+    <string name="history_empty_connect">Nachten uit Samsung Health en andere apps kunnen hier ook verschijnen. Vergelijk met gezondheidsgegevens om ze te zien.</string>
+    <string name="history_empty_no_data">Nog geen slaapgegevens uit Health Connect. Samsung Health moet ze delen: Samsung Health → Instellingen → Health Connect.</string>
+    <string name="history_health_live">Uit %1$s. Phase Wake neemt wijzigingen en verwijderingen daar automatisch over.</string>
+    <string name="history_health_live_unknown">Uit je gezondheidsgegevens. Phase Wake neemt wijzigingen en verwijderingen daar automatisch over.</string>
     <string name="history_average">Ø %1$d min eerder</string>
     <string name="history_light_share">%1$d %% in lichte slaap</string>
     <string name="history_export">Anoniem exporteren</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Minstens 8 tekens.</string>
     <string name="backup_password_mismatch">De wachtwoorden komen niet overeen.</string>
     <string name="backup_password_hint">Zonder dit wachtwoord kan niemand de back-up openen – ook jij niet.</string>
+    <string name="backup_health_hint">Nachten uit andere apps (bijv. Samsung Health) worden niet geback-upt – ze blijven daar en verschijnen weer zodra er toegang is gegeven.</string>
     <string name="backup_create">Back-up opslaan</string>
     <string name="backup_done">Back-up opgeslagen.</string>
     <string name="backup_failed">De back-up kon niet worden opgeslagen.</string>

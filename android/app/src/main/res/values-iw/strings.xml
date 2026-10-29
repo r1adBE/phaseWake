@@ -61,6 +61,15 @@
     <string name="history_title">היסטוריה</string>
     <string name="history_empty_title">עדיין אין לילות</string>
     <string name="history_empty_text">אחרי הלילה הראשון עם השעון תראו כאן מתי ולמה הוא העיר אתכם.</string>
+    <string name="history_health_mark">ללא שעון מעורר של Phase Wake</string>
+    <string name="history_health_times">במיטה %1$s · הירדמות %2$s · התעוררות %3$s</string>
+    <string name="history_health_times_simple">במיטה %1$s · התעוררות %2$s</string>
+    <string name="history_health_amounts">%1$s במיטה · %2$s שינה · %3$s ערות</string>
+    <string name="history_health_amount_simple">%1$s במיטה</string>
+    <string name="history_empty_connect">גם לילות מ־Samsung Health ומאפליקציות אחרות יכולים להופיע כאן. כדי לראות אותם, השוו לנתוני בריאות.</string>
+    <string name="history_empty_no_data">עדיין אין נתוני שינה מ־Health Connect. ‏Samsung Health צריכה לשתף אותם: Samsung Health ← הגדרות ← Health Connect.</string>
+    <string name="history_health_live">מ־%1$s. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
+    <string name="history_health_live_unknown">מנתוני הבריאות שלכם. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
     <string name="history_average">ממוצע: %1$d דק׳ מוקדם יותר</string>
     <string name="history_light_share">%1$d %% בשינה קלה</string>
     <string name="history_export">ייצוא אנונימי</string>
@@ -434,6 +443,7 @@
     <string name="backup_password_short">לפחות 8 תווים.</string>
     <string name="backup_password_mismatch">הסיסמאות אינן תואמות.</string>
     <string name="backup_password_hint">בלי הסיסמה הזו איש לא יוכל לפתוח את הגיבוי – גם לא אתם.</string>
+    <string name="backup_health_hint">לילות מאפליקציות אחרות (למשל Samsung Health) לא נכללים בגיבוי – הם נשארים שם ומופיעים שוב ברגע שניתנת הרשאה.</string>
     <string name="backup_create">שמירת הגיבוי</string>
     <string name="backup_done">הגיבוי נשמר.</string>
     <string name="backup_failed">לא ניתן היה לשמור את הגיבוי.</string>

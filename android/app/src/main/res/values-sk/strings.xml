@@ -63,6 +63,15 @@
     <string name="history_title">História</string>
     <string name="history_empty_title">Zatiaľ žiadne noci</string>
     <string name="history_empty_text">Po prvej noci s hodinkami tu uvidíš, kedy a prečo ťa zobudili.</string>
+    <string name="history_health_mark">Bez budíka Phase Wake</string>
+    <string name="history_health_times">V posteli %1$s · zaspatie %2$s · prebudenie %3$s</string>
+    <string name="history_health_times_simple">V posteli %1$s · prebudenie %2$s</string>
+    <string name="history_health_amounts">%1$s v posteli · %2$s spánku · %3$s bdenia</string>
+    <string name="history_health_amount_simple">%1$s v posteli</string>
+    <string name="history_empty_connect">Zobraziť sa tu môžu aj noci z aplikácie Samsung Health a ďalších aplikácií. Ak ich chceš vidieť, porovnaj so zdravotnými údajmi.</string>
+    <string name="history_empty_no_data">Zatiaľ žiadne údaje o spánku z Health Connect. Samsung Health ich musí zdieľať: Samsung Health → Nastavenia → Health Connect.</string>
+    <string name="history_health_live">Z aplikácie %1$s. Zmeny a vymazania urobené tam Phase Wake prevezme automaticky.</string>
+    <string name="history_health_live_unknown">Z tvojich zdravotných údajov. Zmeny a vymazania urobené tam Phase Wake prevezme automaticky.</string>
     <string name="history_average">Ø %1$d min skôr</string>
     <string name="history_light_share">%1$d %% v ľahkom spánku</string>
     <string name="history_export">Exportovať anonymne</string>
@@ -449,6 +458,7 @@
     <string name="backup_password_short">Aspoň 8 znakov.</string>
     <string name="backup_password_mismatch">Heslá sa nezhodujú.</string>
     <string name="backup_password_hint">Bez tohto hesla zálohu nikto neotvorí – ani ty.</string>
+    <string name="backup_health_hint">Noci z iných aplikácií (napr. Samsung Health) sa nezálohujú – zostávajú tam a znova sa zobrazia, len čo udelíš prístup.</string>
     <string name="backup_create">Uložiť zálohu</string>
     <string name="backup_done">Záloha uložená.</string>
     <string name="backup_failed">Zálohu sa nepodarilo uložiť.</string>

@@ -62,6 +62,15 @@
     <string name="history_title">Geskiedenis</string>
     <string name="history_empty_title">Nog geen nagte nie</string>
     <string name="history_empty_text">Ná jou eerste nag met die horlosie sien jy wanneer en hoekom dit jou wakker gemaak het.</string>
+    <string name="history_health_mark">Sonder Phase Wake-wekker</string>
+    <string name="history_health_times">In die bed %1$s · aan die slaap %2$s · wakker %3$s</string>
+    <string name="history_health_times_simple">In die bed %1$s · wakker %2$s</string>
+    <string name="history_health_amounts">%1$s in die bed · %2$s geslaap · %3$s wakker</string>
+    <string name="history_health_amount_simple">%1$s in die bed</string>
+    <string name="history_empty_connect">Nagte uit Samsung Health en ander apps kan ook hier verskyn. Vergelyk met gesondheidsdata om hulle te sien.</string>
+    <string name="history_empty_no_data">Nog geen slaapdata uit Health Connect nie. Samsung Health moet dit deel: Samsung Health → Instellings → Health Connect.</string>
+    <string name="history_health_live">Uit %1$s. Phase Wake neem veranderinge en skrappings daar outomaties oor.</string>
+    <string name="history_health_live_unknown">Uit jou gesondheidsdata. Phase Wake neem veranderinge en skrappings daar outomaties oor.</string>
     <string name="history_average">Ø %1$d min vroeër</string>
     <string name="history_light_share">%1$d %% in ligte slaap</string>
     <string name="history_export">Voer anoniem uit</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Minstens 8 karakters.</string>
     <string name="backup_password_mismatch">Die wagwoorde stem nie ooreen nie.</string>
     <string name="backup_password_hint">Sonder hierdie wagwoord kan niemand die rugsteun oopmaak nie – selfs nie jy nie.</string>
+    <string name="backup_health_hint">Nagte uit ander apps (bv. Samsung Health) word nie gerugsteun nie – hulle bly daar en verskyn weer sodra toegang gegee is.</string>
     <string name="backup_create">Stoor rugsteun</string>
     <string name="backup_done">Rugsteun gestoor.</string>
     <string name="backup_failed">Kon nie die rugsteun stoor nie.</string>

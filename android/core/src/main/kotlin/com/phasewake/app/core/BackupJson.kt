@@ -18,7 +18,7 @@ object BackupJson {
         val settings = linkedMapOf<String, Any?>(
             "sleepGoal" to s.sleepGoal, "bedtimeReminder" to s.bedtimeReminder, "weeklyReview" to s.weeklyReview,
             "soundRecDefault" to s.soundRecDefault, "theme" to s.theme, "holidayCountry" to s.holidayCountry,
-            "holidayRegion" to s.holidayRegion,
+            "holidayRegion" to s.holidayRegion, "historyClearedAt" to s.historyClearedAt,
         )
         val root = linkedMapOf<String, Any?>(
             "format" to FORMAT, "version" to VERSION, "createdAt" to payload.createdAt, "alarms" to payload.alarms,
@@ -50,6 +50,7 @@ object BackupJson {
                 theme = s["theme"] as? String ?: d.theme,
                 holidayCountry = s["holidayCountry"] as? String ?: d.holidayCountry,
                 holidayRegion = s["holidayRegion"] as? String ?: d.holidayRegion,
+                historyClearedAt = s["historyClearedAt"] as? Long,
             ),
         )
     }

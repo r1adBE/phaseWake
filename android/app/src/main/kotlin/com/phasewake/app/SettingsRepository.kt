@@ -13,6 +13,7 @@ import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.core.Transient
 import com.phasewake.app.ui.theme.ThemeMode
+import java.time.Instant
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -161,6 +162,16 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[NAP_MINUTES] = minutes }
     }
 
+    /**
+     * Zeitpunkt von «Verlauf löschen»; Nächte aus Health Connect, die bis dahin enden, bleiben ausgeblendet
+     * (sie lassen sich dort nicht löschen). `null` = nie gelöscht.
+     */
+    val historyClearedAt: Flow<Instant?> = store.data.map { prefs -> prefs[HISTORY_CLEARED_AT]?.let(Instant::ofEpochMilli) }
+
+    suspend fun setHistoryClearedAt(at: Instant) {
+        store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
+    }
+
     /** Alle Einstellungen für die Sicherung. */
     suspend fun backupSettings(): BackupSettings {
         val prefs = store.data.first()
@@ -172,6 +183,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             theme = themeMode.first().name,
             holidayCountry = prefs[HOLIDAY_COUNTRY].orEmpty(),
             holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
+            historyClearedAt = prefs[HISTORY_CLEARED_AT],
         )
     }
 
@@ -185,6 +197,8 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             it[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
             it[HOLIDAY_COUNTRY] = settings.holidayCountry
             it[HOLIDAY_REGION] = settings.holidayRegion
+            val cleared = settings.historyClearedAt
+            if (cleared == null) it.remove(HISTORY_CLEARED_AT) else it[HISTORY_CLEARED_AT] = cleared
         }
     }
 
@@ -205,6 +219,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
         val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
         val SOUND = stringPreferencesKey("sleep_sound")
+        val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")
         const val NO_TIMER = 0
     }
 }

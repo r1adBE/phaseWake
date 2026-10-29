@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Ұйықтар алдында Apple Watch-та Phase Wake-ті аш. watchOS оятқышты тек қолданба ашық кезде іске қосады.</string>
     <string name="night_unmeasured_apple">Алғашқы %1$d мин өлшенбеді – Apple Watch мақсатты уақытқа дейінгі соңғы %2$d минутты ғана өлшейді.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT лицензиясы, © r1adBE.\nManrope қарпі: SIL Open Font License 1.1, © The Manrope Project Authors.\nДыбыстарды тану: Apple-дің SoundAnalysis құралы, iOS-қа кірістірілген.\nДыбыстар: opengameart.org сайтындағы еркін жазбалар (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Мұнда Apple Health және басқа қолданбалардың түндері де көрсетілуі мүмкін. Оларды көру үшін денсаулық деректерімен салыстыр.</string>
+    <string name="history_empty_no_data_apple">Apple Health-тен әзірге ұйқы деректері жоқ. Ұйқы сонда жазылуы керек, мысалы Apple Watch арқылы, және Phase Wake-ке Health қолданбасында оны оқуға рұқсат берілуі керек.</string>
+    <string name="backup_health_hint_apple">Басқа қолданбалардың түндері (мысалы, Apple Health) сақтық көшірмеге кірмейді – олар сонда қалады және рұқсат берілгенде қайта көрінеді.</string>
 </resources>

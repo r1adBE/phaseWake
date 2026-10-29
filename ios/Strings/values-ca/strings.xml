@@ -18,4 +18,9 @@
     <string name="night_unmeasured_apple">Els primers %1$d min no s’han mesurat – l’Apple Watch només mesura els últims %2$d min abans de l’hora objectiu.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: llicència MIT, © r1adBE.\nTipus de lletra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecció de sons: SoundAnalysis d’Apple, integrat a l’iOS.\nSons: enregistraments lliures (CC0) d’opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Aquí també poden aparèixer nits de Apple Health i altres apps. Per veure-les, compara amb les dades de salut.</string>
+    <string name="history_empty_no_data_apple">Encara no hi ha dades de son d’Apple Health. El son s’hi ha de registrar, per exemple amb el teu Apple Watch, i cal permetre que Phase Wake el llegeixi a l’app Salut.</string>
+    <string name="backup_health_hint_apple">Les nits d’altres apps (p. ex. Apple Health) no es desen a la còpia de seguretat: es queden allà i tornen a aparèixer quan s’hi dona accés.</string>
 </resources>

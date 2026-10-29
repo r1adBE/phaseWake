@@ -60,6 +60,15 @@
     <string name="history_title">Geçmiş</string>
     <string name="history_empty_title">Henüz gece yok</string>
     <string name="history_empty_text">Saatle ilk gecenden sonra seni ne zaman ve neden uyandırdığını burada görürsün.</string>
+    <string name="history_health_mark">Phase Wake alarmı olmadan</string>
+    <string name="history_health_times">Yatakta %1$s · uykuya dalış %2$s · uyanış %3$s</string>
+    <string name="history_health_times_simple">Yatakta %1$s · uyanış %2$s</string>
+    <string name="history_health_amounts">Yatakta %1$s · uyku %2$s · uyanık %3$s</string>
+    <string name="history_health_amount_simple">Yatakta %1$s</string>
+    <string name="history_empty_connect">Samsung Health ve diğer uygulamalardaki geceler de burada görünebilir. Onları görmek için sağlık verileriyle karşılaştır.</string>
+    <string name="history_empty_no_data">Health Connect’ten henüz uyku verisi yok. Samsung Health bunları paylaşmalı: Samsung Health → Ayarlar → Health Connect.</string>
+    <string name="history_health_live">Kaynak: %1$s. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
+    <string name="history_health_live_unknown">Kaynak: sağlık verilerin. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
     <string name="history_average">Ø %1$d dk erken</string>
     <string name="history_light_share">%%%1$d hafif uykuda</string>
     <string name="history_export">Anonim dışa aktar</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">En az 8 karakter.</string>
     <string name="backup_password_mismatch">Şifreler eşleşmiyor.</string>
     <string name="backup_password_hint">Bu şifre olmadan yedeği kimse açamaz – sen de.</string>
+    <string name="backup_health_hint">Diğer uygulamalardaki geceler (ör. Samsung Health) yedeklenmez – orada kalır ve erişim izni verilir verilmez yeniden görünür.</string>
     <string name="backup_create">Yedeği kaydet</string>
     <string name="backup_done">Yedek kaydedildi.</string>
     <string name="backup_failed">Yedek kaydedilemedi.</string>

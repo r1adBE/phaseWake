@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Відкрий Phase Wake на Apple Watch перед сном. watchOS активує будильник, лише поки застосунок відкритий.</string>
     <string name="night_unmeasured_apple">Перші %1$d хв не виміряно – Apple Watch вимірює лише останні %2$d хв до цілі.</string>
     <string name="settings_licenses_text_apple">Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: SoundAnalysis від Apple, вбудовано в iOS.\nЗвуки: вільні записи (CC0) з opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Тут можуть з\'являтися й ночі із застосунку Apple Health та інших застосунків. Щоб їх побачити, увімкни звіряння з даними про здоров\'я.</string>
+    <string name="history_empty_no_data_apple">Даних про сон з Apple Health поки немає. Сон має записуватися там, наприклад твоїм Apple Watch, а Phase Wake потрібно дозволити читати його в застосунку «Здоровʼя».</string>
+    <string name="backup_health_hint_apple">Ночі з інших застосунків (напр. Apple Health) не потрапляють до резервної копії – вони залишаються там і знову з\'являться, щойно буде надано доступ.</string>
 </resources>

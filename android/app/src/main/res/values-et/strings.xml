@@ -62,6 +62,15 @@
     <string name="history_title">Ajalugu</string>
     <string name="history_empty_title">Veel pole ühtegi ööd</string>
     <string name="history_empty_text">Pärast esimest ööd kellaga näed, millal ja miks see sind äratas.</string>
+    <string name="history_health_mark">Ilma Phase Wake’i äratuseta</string>
+    <string name="history_health_times">Voodis %1$s · uinumine %2$s · ärkamine %3$s</string>
+    <string name="history_health_times_simple">Voodis %1$s · ärkamine %2$s</string>
+    <string name="history_health_amounts">Voodis %1$s · und %2$s · ärkvel %3$s</string>
+    <string name="history_health_amount_simple">Voodis %1$s</string>
+    <string name="history_empty_connect">Siin võivad ilmuda ka ööd rakendusest Samsung Health ja teistest rakendustest. Nende nägemiseks võrdle terviseandmetega.</string>
+    <string name="history_empty_no_data">Rakendusest Health Connect pole veel uneandmeid. Samsung Health peab neid jagama: Samsung Health → Seaded → Health Connect.</string>
+    <string name="history_health_live">Allikas: %1$s. Phase Wake võtab sealsed muudatused ja kustutamised automaatselt üle.</string>
+    <string name="history_health_live_unknown">Allikas: sinu terviseandmed. Phase Wake võtab sealsed muudatused ja kustutamised automaatselt üle.</string>
     <string name="history_average">Ø %1$d min varem</string>
     <string name="history_light_share">%1$d %% kerges unes</string>
     <string name="history_export">Ekspordi anonüümselt</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Vähemalt 8 märki.</string>
     <string name="backup_password_mismatch">Paroolid ei ühti.</string>
     <string name="backup_password_hint">Ilma selle paroolita ei saa keegi varukoopiat avada – isegi mitte sina.</string>
+    <string name="backup_health_hint">Teiste rakenduste (nt Samsung Health) öid ei varundata – need jäävad sinna ja ilmuvad uuesti, kui juurdepääs on antud.</string>
     <string name="backup_create">Salvesta varukoopia</string>
     <string name="backup_done">Varukoopia salvestatud.</string>
     <string name="backup_failed">Varukoopiat ei õnnestunud salvestada.</string>

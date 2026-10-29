@@ -60,6 +60,15 @@
     <string name="history_title">Előzmények</string>
     <string name="history_empty_title">Még nincs éjszaka</string>
     <string name="history_empty_text">Az első, órával töltött éjszaka után itt látod, mikor és miért ébresztett az óra.</string>
+    <string name="history_health_mark">Phase Wake ébresztő nélkül</string>
+    <string name="history_health_times">Ágyban %1$s · elalvás %2$s · ébredés %3$s</string>
+    <string name="history_health_times_simple">Ágyban %1$s · ébredés %2$s</string>
+    <string name="history_health_amounts">Ágyban %1$s · alvás %2$s · ébren %3$s</string>
+    <string name="history_health_amount_simple">Ágyban %1$s</string>
+    <string name="history_empty_connect">A Samsung Health és más alkalmazások éjszakái is megjelenhetnek itt. Ha látni szeretnéd őket, vesd össze az egészségügyi adatokkal.</string>
+    <string name="history_empty_no_data">Még nincsenek alvásadatok a Health Connect szolgáltatásból. A Samsung Healthnek meg kell osztania őket: Samsung Health → Beállítások → Health Connect.</string>
+    <string name="history_health_live">Forrás: %1$s. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
+    <string name="history_health_live_unknown">Forrás: az egészségügyi adataid. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_average">Ø %1$d p korábban</string>
     <string name="history_light_share">%1$d %% könnyű alvásban</string>
     <string name="history_export">Exportálás névtelenül</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Legalább 8 karakter.</string>
     <string name="backup_password_mismatch">A jelszavak nem egyeznek.</string>
     <string name="backup_password_hint">E jelszó nélkül senki sem nyithatja meg a mentést – te sem.</string>
+    <string name="backup_health_hint">Más alkalmazások éjszakái (pl. Samsung Health) nem kerülnek a biztonsági mentésbe – ott maradnak, és a hozzáférés megadása után újra megjelennek.</string>
     <string name="backup_create">Mentés tárolása</string>
     <string name="backup_done">Mentés tárolva.</string>
     <string name="backup_failed">A mentést nem sikerült tárolni.</string>

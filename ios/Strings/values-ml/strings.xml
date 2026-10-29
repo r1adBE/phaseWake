@@ -20,4 +20,9 @@
     <string name="night_unmeasured_apple">ആദ്യ %1$d മി. അളന്നില്ല – ലക്ഷ്യത്തിനു മുമ്പുള്ള അവസാന %2$d മി. മാത്രമേ Apple Watch അളക്കൂ.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT ലൈസൻസ്, © r1adBE.\nManrope ഫോണ്ട്: SIL Open Font License 1.1, © The Manrope Project Authors.\nശബ്ദം തിരിച്ചറിയൽ: Apple-ന്റെ SoundAnalysis, iOS-ൽ ഉൾച്ചേർത്തത്.\nശബ്ദങ്ങൾ: opengameart.org-ൽ നിന്നുള്ള സൗജന്യ റെക്കോർഡിങ്ങുകൾ (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health-ൽ നിന്നും മറ്റ് ആപ്പുകളിൽ നിന്നുമുള്ള രാത്രികളും ഇവിടെ കാണാം. അവ കാണാൻ, ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക.</string>
+    <string name="history_empty_no_data_apple">Apple Health-ൽ നിന്ന് ഇതുവരെ ഉറക്ക ഡാറ്റ ഇല്ല. ഉറക്കം അവിടെ രേഖപ്പെടുത്തണം, ഉദാഹരണത്തിന് നിങ്ങളുടെ Apple Watch വഴി, കൂടാതെ Health ആപ്പിൽ Phase Wake-ന് അത് വായിക്കാൻ അനുമതി വേണം.</string>
+    <string name="backup_health_hint_apple">മറ്റ് ആപ്പുകളിലെ രാത്രികൾ (ഉദാ. Apple Health) ബാക്കപ്പ് ചെയ്യില്ല – അവ അവിടെത്തന്നെ തുടരും, അനുമതി നൽകിയാൽ വീണ്ടും കാണാം.</string>
 </resources>

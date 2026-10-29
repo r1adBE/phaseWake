@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Před spaním otevři Phase Wake na Apple Watch. watchOS aktivuje budík, jen když je aplikace otevřená.</string>
     <string name="night_unmeasured_apple">Prvních %1$d min neměřeno – Apple Watch měří jen posledních %2$d min před cílovým časem.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS.\nZvuky: volné nahrávky (CC0) z opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Zobrazit se tu mohou i noci z aplikace Apple Health a dalších aplikací. Chceš-li je vidět, porovnej se zdravotními daty.</string>
+    <string name="history_empty_no_data_apple">Z Apple Health zatím nejsou žádná data o spánku. Spánek se tam musí zaznamenávat, třeba tvými Apple Watch, a Phase Wake musí mít v aplikaci Zdraví povoleno ho číst.</string>
+    <string name="backup_health_hint_apple">Noci z jiných aplikací (např. Apple Health) se nezálohují – zůstávají tam a znovu se objeví, jakmile udělíš přístup.</string>
 </resources>

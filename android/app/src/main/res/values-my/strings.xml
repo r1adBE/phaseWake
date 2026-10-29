@@ -60,6 +60,15 @@
     <string name="history_title">မှတ်တမ်း</string>
     <string name="history_empty_title">ညများ မရှိသေးပါ</string>
     <string name="history_empty_text">နာရီနှင့် ပထမညပြီးနောက် ဘယ်အချိန်၊ ဘာကြောင့် နှိုးခဲ့သည်ကို ဤနေရာတွင် မြင်ရမည်။</string>
+    <string name="history_health_mark">Phase Wake နှိုးစက်မပါ</string>
+    <string name="history_health_times">အိပ်ရာဝင် %1$s · အိပ်ပျော် %2$s · နိုး %3$s</string>
+    <string name="history_health_times_simple">အိပ်ရာဝင် %1$s · နိုး %2$s</string>
+    <string name="history_health_amounts">အိပ်ရာပေါ် %1$s · အိပ်ချိန် %2$s · နိုးနေ %3$s</string>
+    <string name="history_health_amount_simple">အိပ်ရာပေါ် %1$s</string>
+    <string name="history_empty_connect">Samsung Health နှင့် အခြားအက်ပ်များမှ ညများကိုလည်း ဤနေရာတွင် ပြနိုင်သည်။ ကြည့်ရန် ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ပါ။</string>
+    <string name="history_empty_no_data">Health Connect မှ အိပ်စက်မှုဒေတာ မရှိသေးပါ။ Samsung Health က မျှဝေရပါမည်- Samsung Health → ဆက်တင်များ → Health Connect။</string>
+    <string name="history_health_live">%1$s မှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
+    <string name="history_health_live_unknown">သင့်ကျန်းမာရေးဒေတာမှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_average">Ø %1$d မိနစ် စော</string>
     <string name="history_light_share">%1$d %% အိပ်ရေးပေါ့ချိန်တွင်</string>
     <string name="history_export">အမည်မဖော်ဘဲ ထုတ်ယူရန်</string>
@@ -410,6 +419,7 @@
     <string name="backup_password_short">အနည်းဆုံး စာလုံး 8 လုံး။</string>
     <string name="backup_password_mismatch">စကားဝှက်များ မတူပါ။</string>
     <string name="backup_password_hint">ဤစကားဝှက်မရှိလျှင် မည်သူမျှ အရန်ဖိုင်ကို ဖွင့်၍မရပါ – သင်ကိုယ်တိုင်ပင်။</string>
+    <string name="backup_health_hint">အခြားအက်ပ်များ (ဥပမာ Samsung Health) မှ ညများကို အရန်မသိမ်းပါ – ၎င်းတို့သည် ထိုနေရာတွင် ရှိနေပြီး ခွင့်ပြုချက်ပေးသည်နှင့် ပြန်ပေါ်လာမည်။</string>
     <string name="backup_create">အရန်ဖိုင် သိမ်းရန်</string>
     <string name="backup_done">အရန်ဖိုင် သိမ်းပြီးပါပြီ။</string>
     <string name="backup_failed">အရန်ဖိုင် သိမ်း၍ မရပါ။</string>

@@ -62,6 +62,15 @@
     <string name="history_title">ઇતિહાસ</string>
     <string name="history_empty_title">હજી કોઈ રાત નથી</string>
     <string name="history_empty_text">ઘડિયાળ સાથેની પહેલી રાત પછી, તેણે તમને ક્યારે અને શા માટે જગાડ્યા તે અહીં દેખાશે.</string>
+    <string name="history_health_mark">Phase Wake એલાર્મ વગર</string>
+    <string name="history_health_times">પથારીમાં %1$s · ઊંઘ %2$s · જાગ્યા %3$s</string>
+    <string name="history_health_times_simple">પથારીમાં %1$s · જાગ્યા %2$s</string>
+    <string name="history_health_amounts">પથારીમાં %1$s · ઊંઘ %2$s · જાગતા %3$s</string>
+    <string name="history_health_amount_simple">પથારીમાં %1$s</string>
+    <string name="history_empty_connect">Samsung Health અને અન્ય ઍપની રાતો પણ અહીં દેખાઈ શકે છે. તે જોવા માટે, હેલ્થ ડેટા સાથે સરખાવો.</string>
+    <string name="history_empty_no_data">હજી Health Connect માંથી ઊંઘનો ડેટા નથી. Samsung Health એ તે શેર કરવો પડશે: Samsung Health → સેટિંગ્સ → Health Connect.</string>
+    <string name="history_health_live">%1$s માંથી. ત્યાં થયેલા ફેરફાર અને કાઢી નાખેલું Phase Wake આપમેળે અપનાવે છે.</string>
+    <string name="history_health_live_unknown">તમારા હેલ્થ ડેટામાંથી. ત્યાં થયેલા ફેરફાર અને કાઢી નાખેલું Phase Wake આપમેળે અપનાવે છે.</string>
     <string name="history_average">Ø %1$d મિ. વહેલા</string>
     <string name="history_light_share">%1$d %% હળવી ઊંઘમાં</string>
     <string name="history_export">અનામી રીતે એક્સપોર્ટ કરો</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">ઓછામાં ઓછા 8 અક્ષર.</string>
     <string name="backup_password_mismatch">પાસવર્ડ મેળ ખાતા નથી.</string>
     <string name="backup_password_hint">આ પાસવર્ડ વગર કોઈ બેકઅપ ખોલી શકતું નથી – તમે પણ નહીં.</string>
+    <string name="backup_health_hint">અન્ય ઍપની રાતો (દા.ત. Samsung Health) નો બૅકઅપ લેવાતો નથી – તે ત્યાં જ રહે છે અને પરવાનગી મળતાં ફરી દેખાય છે.</string>
     <string name="backup_create">બેકઅપ સાચવો</string>
     <string name="backup_done">બેકઅપ સચવાયો.</string>
     <string name="backup_failed">બેકઅપ સાચવી શકાયો નહીં.</string>

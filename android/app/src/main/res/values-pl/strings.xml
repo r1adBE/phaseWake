@@ -62,6 +62,15 @@
     <string name="history_title">Historia</string>
     <string name="history_empty_title">Jeszcze brak nocy</string>
     <string name="history_empty_text">Po pierwszej nocy z zegarkiem zobaczysz tu, kiedy i dlaczego cię obudził.</string>
+    <string name="history_health_mark">Bez budzika Phase Wake</string>
+    <string name="history_health_times">W łóżku %1$s · zaśnięcie %2$s · pobudka %3$s</string>
+    <string name="history_health_times_simple">W łóżku %1$s · pobudka %2$s</string>
+    <string name="history_health_amounts">%1$s w łóżku · %2$s snu · %3$s czuwania</string>
+    <string name="history_health_amount_simple">%1$s w łóżku</string>
+    <string name="history_empty_connect">Tutaj mogą się też pojawiać noce z aplikacji Samsung Health i innych aplikacji. Aby je zobaczyć, porównaj z danymi zdrowotnymi.</string>
+    <string name="history_empty_no_data">Brak jeszcze danych o śnie z Health Connect. Samsung Health musi je udostępniać: Samsung Health → Ustawienia → Health Connect.</string>
+    <string name="history_health_live">Z aplikacji %1$s. Zmiany i usunięcia wprowadzone tam Phase Wake przejmuje automatycznie.</string>
+    <string name="history_health_live_unknown">Z twoich danych zdrowotnych. Zmiany i usunięcia wprowadzone tam Phase Wake przejmuje automatycznie.</string>
     <string name="history_average">Ø %1$d min wcześniej</string>
     <string name="history_light_share">%1$d %% w lekkim śnie</string>
     <string name="history_export">Eksportuj anonimowo</string>
@@ -447,6 +456,7 @@
     <string name="backup_password_short">Co najmniej 8 znaków.</string>
     <string name="backup_password_mismatch">Hasła się nie zgadzają.</string>
     <string name="backup_password_hint">Bez tego hasła nikt nie otworzy kopii – nawet Ty.</string>
+    <string name="backup_health_hint">Noce z innych aplikacji (np. Samsung Health) nie trafiają do kopii zapasowej – zostają tam i pojawiają się znowu, gdy tylko udzielisz dostępu.</string>
     <string name="backup_create">Zapisz kopię</string>
     <string name="backup_done">Kopia zapisana.</string>
     <string name="backup_failed">Nie udało się zapisać kopii.</string>

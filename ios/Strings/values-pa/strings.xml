@@ -20,4 +20,9 @@
     <string name="night_unmeasured_apple">ਪਹਿਲੇ %1$d ਮਿੰ. ਨਹੀਂ ਮਾਪੇ – Apple Watch ਟੀਚੇ ਤੋਂ ਪਹਿਲਾਂ ਸਿਰਫ਼ ਆਖਰੀ %2$d ਮਿੰ. ਮਾਪਦੀ ਹੈ।</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope ਫ਼ੌਂਟ: SIL Open Font License 1.1, © The Manrope Project Authors.\nਆਵਾਜ਼ ਪਛਾਣ: Apple ਦਾ SoundAnalysis, iOS ਵਿੱਚ ਸ਼ਾਮਲ।\nਆਵਾਜ਼ਾਂ: opengameart.org ਤੋਂ ਮੁਫ਼ਤ ਰਿਕਾਰਡਿੰਗਾਂ (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health ਅਤੇ ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਵੀ ਇੱਥੇ ਦਿਖ ਸਕਦੀਆਂ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਦੇਖਣ ਲਈ ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ।</string>
+    <string name="history_empty_no_data_apple">Apple Health ਤੋਂ ਹਾਲੇ ਨੀਂਦ ਦਾ ਕੋਈ ਡਾਟਾ ਨਹੀਂ। ਨੀਂਦ ਉੱਥੇ ਦਰਜ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ, ਜਿਵੇਂ ਤੁਹਾਡੀ Apple Watch ਨਾਲ, ਅਤੇ Health ਐਪ ਵਿੱਚ Phase Wake ਨੂੰ ਇਸਨੂੰ ਪੜ੍ਹਨ ਦੀ ਇਜਾਜ਼ਤ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।</string>
+    <string name="backup_health_hint_apple">ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ (ਜਿਵੇਂ Apple Health) ਦਾ ਬੈਕਅੱਪ ਨਹੀਂ ਹੁੰਦਾ – ਉਹ ਉੱਥੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ ਇਜਾਜ਼ਤ ਮਿਲਦੇ ਹੀ ਮੁੜ ਦਿਖਦੀਆਂ ਹਨ।</string>
 </resources>

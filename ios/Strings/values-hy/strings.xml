@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Քնելուց առաջ բացիր Phase Wake-ը Apple Watch-ում։ watchOS-ն ակտիվացնում է զարթուցիչը միայն, երբ հավելվածը բաց է։</string>
     <string name="night_unmeasured_apple">Առաջին %1$d ր-ն չի չափվել – Apple Watch-ը չափում է միայն նպատակային ժամից առաջ վերջին %2$d ր-ն։</string>
     <string name="settings_licenses_text_apple">Phase Wake՝ MIT լիցենզիա, © r1adBE.\nManrope տառատեսակ՝ SIL Open Font License 1.1, © The Manrope Project Authors.\nՁայների ճանաչում՝ Apple-ի SoundAnalysis, ներկառուցված iOS-ում։\nՁայներ՝ ազատ ձայնագրություններ (CC0) opengameart.org-ից</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Այստեղ կարող են երևալ նաև Apple Health-ի և այլ հավելվածների գիշերները։ Դրանք տեսնելու համար համեմատիր առողջության տվյալների հետ։</string>
+    <string name="history_empty_no_data_apple">Apple Health-ից դեռ քնի տվյալներ չկան։ Քունը պետք է գրանցվի այնտեղ, օրինակ՝ քո Apple Watch-ով, և Phase Wake-ին պետք է թույլատրվի կարդալ այն Health հավելվածում։</string>
+    <string name="backup_health_hint_apple">Այլ հավելվածների գիշերները (օր.՝ Apple Health) չեն պահուստավորվում – դրանք մնում են այնտեղ և նորից երևում են, երբ թույլտվությունը տրվի։</string>
 </resources>

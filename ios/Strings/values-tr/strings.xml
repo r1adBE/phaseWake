@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Uyumadan önce Apple Watch’ta Phase Wake’i aç. watchOS alarmı yalnızca uygulama açıkken etkinleştirir.</string>
     <string name="night_unmeasured_apple">İlk %1$d dk ölçülmedi – Apple Watch yalnızca hedef saatten önceki son %2$d dk’yı ölçer.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health ve diğer uygulamalardaki geceler de burada görünebilir. Onları görmek için sağlık verileriyle karşılaştır.</string>
+    <string name="history_empty_no_data_apple">Apple Health’ten henüz uyku verisi yok. Uykunun orada kaydedilmesi gerekir, örneğin Apple Watch’unla, ve Phase Wake’in Sağlık uygulamasında onu okumasına izin verilmelidir.</string>
+    <string name="backup_health_hint_apple">Diğer uygulamalardaki geceler (ör. Apple Health) yedeklenmez – orada kalır ve erişim izni verilir verilmez yeniden görünür.</string>
 </resources>

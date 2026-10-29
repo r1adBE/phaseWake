@@ -59,6 +59,15 @@
     <string name="history_title">履歴</string>
     <string name="history_empty_title">まだ記録がありません</string>
     <string name="history_empty_text">ウォッチで最初の夜を過ごすと、いつ、なぜ起こしたかがここに表示されます。</string>
+    <string name="history_health_mark">Phase Wake のアラームなし</string>
+    <string name="history_health_times">就床 %1$s · 入眠 %2$s · 起床 %3$s</string>
+    <string name="history_health_times_simple">就床 %1$s · 起床 %2$s</string>
+    <string name="history_health_amounts">床上 %1$s · 睡眠 %2$s · 覚醒 %3$s</string>
+    <string name="history_health_amount_simple">床上 %1$s</string>
+    <string name="history_empty_connect">Samsung Health やほかのアプリの夜もここに表示できます。表示するには、ヘルスデータと照合してください。</string>
+    <string name="history_empty_no_data">Health Connect の睡眠データはまだありません。Samsung Health でデータを共有する必要があります：Samsung Health → 設定 → Health Connect。</string>
+    <string name="history_health_live">%1$s から。そちらでの変更や削除は Phase Wake に自動で反映されます。</string>
+    <string name="history_health_live_unknown">ヘルスデータから。そちらでの変更や削除は Phase Wake に自動で反映されます。</string>
     <string name="history_average">平均 %1$d分早く</string>
     <string name="history_light_share">浅い眠り %1$d %%</string>
     <string name="history_export">匿名でエクスポート</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">8文字以上。</string>
     <string name="backup_password_mismatch">パスワードが一致しません。</string>
     <string name="backup_password_hint">このパスワードがないと、誰もバックアップを開けません（あなたも）。</string>
+    <string name="backup_health_hint">ほかのアプリ（Samsung Health など）の夜はバックアップされません。元のアプリに残り、アクセスを許可すると再び表示されます。</string>
     <string name="backup_create">バックアップを保存</string>
     <string name="backup_done">バックアップを保存しました。</string>
     <string name="backup_failed">バックアップを保存できませんでした。</string>

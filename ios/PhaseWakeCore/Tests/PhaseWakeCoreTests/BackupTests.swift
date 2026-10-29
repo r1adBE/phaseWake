@@ -73,6 +73,14 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupPayload.fromJson(String(decoding: back, as: UTF8.self)), payload)
     }
 
+    func testBackupKeepsClearedAt() throws {
+        var p = payload
+        XCTAssertTrue(p.toJson().contains(#""historyClearedAt":null"#))
+        XCTAssertNil(try BackupPayload.fromJson(p.toJson()).settings.historyClearedAt)
+        p.settings.historyClearedAt = 1_790_000_000_000
+        XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings.historyClearedAt, 1_790_000_000_000)
+    }
+
     func testWrongPasswordOrChangedFile() throws {
         let sealed = try BackupFile.encrypt(Data("{}".utf8), password: "richtig1", salt: salt, nonce: nonce)
         XCTAssertThrowsError(try BackupFile.decrypt(sealed, password: "falsch12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }

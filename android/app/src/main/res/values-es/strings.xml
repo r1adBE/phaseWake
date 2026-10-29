@@ -61,6 +61,15 @@
     <string name="history_title">Historial</string>
     <string name="history_empty_title">Aún no hay noches</string>
     <string name="history_empty_text">Tras tu primera noche con el reloj verás aquí cuándo y por qué te despertó.</string>
+    <string name="history_health_mark">Sin alarma de Phase Wake</string>
+    <string name="history_health_times">En la cama %1$s · inicio del sueño %2$s · despertar %3$s</string>
+    <string name="history_health_times_simple">En la cama %1$s · despertar %2$s</string>
+    <string name="history_health_amounts">%1$s en la cama · %2$s de sueño · %3$s en vela</string>
+    <string name="history_health_amount_simple">%1$s en la cama</string>
+    <string name="history_empty_connect">Aquí también pueden aparecer noches de Samsung Health y otras apps. Para verlas, compara con datos de salud.</string>
+    <string name="history_empty_no_data">Aún no hay datos de sueño de Health Connect. Samsung Health tiene que compartirlos: Samsung Health → Ajustes → Health Connect.</string>
+    <string name="history_health_live">De %1$s. Phase Wake aplica automáticamente los cambios y eliminaciones que hagas allí.</string>
+    <string name="history_health_live_unknown">De tus datos de salud. Phase Wake aplica automáticamente los cambios y eliminaciones que hagas allí.</string>
     <string name="history_average">Ø %1$d min antes</string>
     <string name="history_light_share">%1$d %% en sueño ligero</string>
     <string name="history_export">Exportar de forma anónima</string>
@@ -434,6 +443,7 @@
     <string name="backup_password_short">Al menos 8 caracteres.</string>
     <string name="backup_password_mismatch">Las contraseñas no coinciden.</string>
     <string name="backup_password_hint">Sin esta contraseña nadie puede abrir la copia, ni siquiera tú.</string>
+    <string name="backup_health_hint">Las noches de otras apps (p. ej. Samsung Health) no se incluyen en la copia de seguridad: se quedan allí y vuelven a aparecer en cuanto concedas el acceso.</string>
     <string name="backup_create">Guardar la copia</string>
     <string name="backup_done">Copia guardada.</string>
     <string name="backup_failed">No se pudo guardar la copia.</string>

@@ -63,6 +63,15 @@
     <string name="history_title">Историја</string>
     <string name="history_empty_title">Још нема ноћи</string>
     <string name="history_empty_text">После прве ноћи са сатом овде ћеш видети када те је и зашто пробудио.</string>
+    <string name="history_health_mark">Без аларма Phase Wake</string>
+    <string name="history_health_times">У кревету %1$s · успављивање %2$s · буђење %3$s</string>
+    <string name="history_health_times_simple">У кревету %1$s · буђење %2$s</string>
+    <string name="history_health_amounts">%1$s у кревету · %2$s сна · %3$s будности</string>
+    <string name="history_health_amount_simple">%1$s у кревету</string>
+    <string name="history_empty_connect">Овде се могу приказати и ноћи из апликације Samsung Health и других апликација. Да их видиш, упореди са здравственим подацима.</string>
+    <string name="history_empty_no_data">Још нема података о сну из Health Connect. Samsung Health мора да их дели: Samsung Health → Подешавања → Health Connect.</string>
+    <string name="history_health_live">Из апликације %1$s. Phase Wake аутоматски преузима измене и брисања направљена тамо.</string>
+    <string name="history_health_live_unknown">Из твојих здравствених података. Phase Wake аутоматски преузима измене и брисања направљена тамо.</string>
     <string name="history_average">Ø %1$d мин раније</string>
     <string name="history_light_share">%1$d %% у лаганом сну</string>
     <string name="history_export">Извези анонимно</string>
@@ -437,6 +446,7 @@
     <string name="backup_password_short">Најмање 8 знакова.</string>
     <string name="backup_password_mismatch">Лозинке се не подударају.</string>
     <string name="backup_password_hint">Без ове лозинке нико не може да отвори резервну копију – чак ни ти.</string>
+    <string name="backup_health_hint">Ноћи из других апликација (нпр. Samsung Health) не чувају се у резервној копији – остају тамо и поново се појаве чим се одобри приступ.</string>
     <string name="backup_create">Сачувај резервну копију</string>
     <string name="backup_done">Резервна копија је сачувана.</string>
     <string name="backup_failed">Резервну копију није могуће сачувати.</string>

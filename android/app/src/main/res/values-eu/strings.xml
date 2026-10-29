@@ -62,6 +62,15 @@
     <string name="history_title">Historia</string>
     <string name="history_empty_title">Oraindik ez dago gaurik</string>
     <string name="history_empty_text">Erlojuarekin lehen gaua igaro ondoren, noiz eta zergatik esnatu zaituen ikusiko duzu.</string>
+    <string name="history_health_mark">Phase Wake alarmarik gabe</string>
+    <string name="history_health_times">Ohean %1$s · lotara %2$s · esnatzea %3$s</string>
+    <string name="history_health_times_simple">Ohean %1$s · esnatzea %2$s</string>
+    <string name="history_health_amounts">Ohean %1$s · loa %2$s · esna %3$s</string>
+    <string name="history_health_amount_simple">Ohean %1$s</string>
+    <string name="history_empty_connect">Samsung Health eta beste aplikazio batzuetako gauak ere ager daitezke hemen. Ikusteko, alderatu osasun-datuekin.</string>
+    <string name="history_empty_no_data">Oraindik ez dago Health Connect-eko lo-daturik. Samsung Health-ek partekatu behar ditu: Samsung Health → Ezarpenak → Health Connect.</string>
+    <string name="history_health_live">Iturria: %1$s. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
+    <string name="history_health_live_unknown">Iturria: zure osasun-datuak. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_average">Ø %1$d min lehenago</string>
     <string name="history_light_share">%%%1$d lo arinean</string>
     <string name="history_export">Esportatu modu anonimoan</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Gutxienez 8 karaktere.</string>
     <string name="backup_password_mismatch">Pasahitzak ez datoz bat.</string>
     <string name="backup_password_hint">Pasahitz hau gabe, inork ezin du babeskopia ireki – ezta zuk ere.</string>
+    <string name="backup_health_hint">Beste aplikazio batzuetako gauak (adib. Samsung Health) ez dira babeskopian gordetzen: han geratzen dira eta berriro agertzen dira baimena ematen denean.</string>
     <string name="backup_create">Gorde babeskopia</string>
     <string name="backup_done">Babeskopia gorde da.</string>
     <string name="backup_failed">Ezin izan da babeskopia gorde.</string>

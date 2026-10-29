@@ -60,6 +60,15 @@
     <string name="history_title">Ιστορικό</string>
     <string name="history_empty_title">Δεν υπάρχουν νύχτες ακόμη</string>
     <string name="history_empty_text">Μετά την πρώτη νύχτα με το ρολόι θα βλέπεις εδώ πότε και γιατί σε ξύπνησε.</string>
+    <string name="history_health_mark">Χωρίς ξυπνητήρι Phase Wake</string>
+    <string name="history_health_times">Στο κρεβάτι %1$s · ύπνος %2$s · ξύπνημα %3$s</string>
+    <string name="history_health_times_simple">Στο κρεβάτι %1$s · ξύπνημα %2$s</string>
+    <string name="history_health_amounts">%1$s στο κρεβάτι · %2$s ύπνος · %3$s εγρήγορση</string>
+    <string name="history_health_amount_simple">%1$s στο κρεβάτι</string>
+    <string name="history_empty_connect">Εδώ μπορούν να εμφανίζονται και νύχτες από το Samsung Health και άλλες εφαρμογές. Για να τις δεις, κάνε σύγκριση με τα δεδομένα υγείας.</string>
+    <string name="history_empty_no_data">Δεν υπάρχουν ακόμη δεδομένα ύπνου από το Health Connect. Το Samsung Health πρέπει να τα μοιράζεται: Samsung Health → Ρυθμίσεις → Health Connect.</string>
+    <string name="history_health_live">Από %1$s. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
+    <string name="history_health_live_unknown">Από τα δεδομένα υγείας σου. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
     <string name="history_average">Ø %1$d λ. νωρίτερα</string>
     <string name="history_light_share">%1$d %% σε ελαφρύ ύπνο</string>
     <string name="history_export">Ανώνυμη εξαγωγή</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Τουλάχιστον 8 χαρακτήρες.</string>
     <string name="backup_password_mismatch">Οι κωδικοί δεν ταιριάζουν.</string>
     <string name="backup_password_hint">Χωρίς αυτόν τον κωδικό κανείς δεν ανοίγει το αντίγραφο – ούτε εσύ.</string>
+    <string name="backup_health_hint">Οι νύχτες από άλλες εφαρμογές (π.χ. Samsung Health) δεν περιλαμβάνονται στο αντίγραφο ασφαλείας – μένουν εκεί και εμφανίζονται ξανά μόλις δοθεί πρόσβαση.</string>
     <string name="backup_create">Αποθήκευση αντιγράφου</string>
     <string name="backup_done">Το αντίγραφο αποθηκεύτηκε.</string>
     <string name="backup_failed">Δεν ήταν δυνατή η αποθήκευση του αντιγράφου.</string>

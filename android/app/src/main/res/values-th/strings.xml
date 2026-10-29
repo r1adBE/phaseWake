@@ -59,6 +59,15 @@
     <string name="history_title">ประวัติ</string>
     <string name="history_empty_title">ยังไม่มีบันทึกการนอน</string>
     <string name="history_empty_text">หลังคืนแรกที่ใช้นาฬิกา คุณจะเห็นที่นี่ว่าถูกปลุกเมื่อไรและเพราะอะไร</string>
+    <string name="history_health_mark">ไม่มีนาฬิกาปลุก Phase Wake</string>
+    <string name="history_health_times">เข้านอน %1$s · หลับ %2$s · ตื่น %3$s</string>
+    <string name="history_health_times_simple">เข้านอน %1$s · ตื่น %2$s</string>
+    <string name="history_health_amounts">บนเตียง %1$s · หลับ %2$s · ตื่น %3$s</string>
+    <string name="history_health_amount_simple">บนเตียง %1$s</string>
+    <string name="history_empty_connect">คืนจาก Samsung Health และแอปอื่นก็แสดงที่นี่ได้ หากต้องการดู ให้เปรียบเทียบกับข้อมูลสุขภาพ</string>
+    <string name="history_empty_no_data">ยังไม่มีข้อมูลการนอนจาก Health Connect โดย Samsung Health ต้องแชร์ข้อมูล: Samsung Health → การตั้งค่า → Health Connect</string>
+    <string name="history_health_live">จาก %1$s การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
+    <string name="history_health_live_unknown">จากข้อมูลสุขภาพของคุณ การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
     <string name="history_average">เฉลี่ยเร็วขึ้น %1$d นาที</string>
     <string name="history_light_share">%1$d %% ในช่วงหลับตื้น</string>
     <string name="history_export">ส่งออกแบบไม่ระบุตัวตน</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">อย่างน้อย 8 ตัวอักษร</string>
     <string name="backup_password_mismatch">รหัสผ่านไม่ตรงกัน</string>
     <string name="backup_password_hint">ถ้าไม่มีรหัสผ่านนี้ ไม่มีใครเปิดข้อมูลสำรองได้ แม้แต่คุณ</string>
+    <string name="backup_health_hint">คืนจากแอปอื่น (เช่น Samsung Health) จะไม่ถูกสำรองข้อมูล โดยยังอยู่ที่นั่นและจะแสดงอีกครั้งเมื่ออนุญาตการเข้าถึง</string>
     <string name="backup_create">บันทึกข้อมูลสำรอง</string>
     <string name="backup_done">บันทึกข้อมูลสำรองแล้ว</string>
     <string name="backup_failed">บันทึกข้อมูลสำรองไม่ได้</string>

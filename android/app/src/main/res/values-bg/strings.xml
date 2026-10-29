@@ -61,6 +61,15 @@
     <string name="history_title">История</string>
     <string name="history_empty_title">Още няма нощи</string>
     <string name="history_empty_text">След първата нощ с часовника тук ще видиш кога и защо те е събудил.</string>
+    <string name="history_health_mark">Без будилник на Phase Wake</string>
+    <string name="history_health_times">В леглото %1$s · заспиване %2$s · събуждане %3$s</string>
+    <string name="history_health_times_simple">В леглото %1$s · събуждане %2$s</string>
+    <string name="history_health_amounts">%1$s в леглото · %2$s сън · %3$s будност</string>
+    <string name="history_health_amount_simple">%1$s в леглото</string>
+    <string name="history_empty_connect">Тук могат да се появят и нощи от Samsung Health и други приложения. За да ги видиш, сравни със здравните данни.</string>
+    <string name="history_empty_no_data">Все още няма данни за съня от Health Connect. Samsung Health трябва да ги споделя: Samsung Health → Настройки → Health Connect.</string>
+    <string name="history_health_live">От %1$s. Phase Wake прилага автоматично промените и изтриванията там.</string>
+    <string name="history_health_live_unknown">От твоите здравни данни. Phase Wake прилага автоматично промените и изтриванията там.</string>
     <string name="history_average">Ø %1$d мин по-рано</string>
     <string name="history_light_share">%1$d %% в лек сън</string>
     <string name="history_export">Анонимен експорт</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">Поне 8 знака.</string>
     <string name="backup_password_mismatch">Паролите не съвпадат.</string>
     <string name="backup_password_hint">Без тази парола никой не може да отвори копието – дори ти.</string>
+    <string name="backup_health_hint">Нощите от други приложения (напр. Samsung Health) не се архивират – остават там и се появяват отново, щом бъде дадено разрешение.</string>
     <string name="backup_create">Запази копие</string>
     <string name="backup_done">Копието е запазено.</string>
     <string name="backup_failed">Копието не можа да се запази.</string>

@@ -60,6 +60,15 @@
     <string name="history_title">Historik</string>
     <string name="history_empty_title">Ingen nætter endnu</string>
     <string name="history_empty_text">Efter din første nat med uret kan du her se, hvornår og hvorfor det vækkede dig.</string>
+    <string name="history_health_mark">Uden Phase Wake-alarm</string>
+    <string name="history_health_times">I seng %1$s · faldt i søvn %2$s · vågnede %3$s</string>
+    <string name="history_health_times_simple">I seng %1$s · vågnede %2$s</string>
+    <string name="history_health_amounts">%1$s i seng · %2$s søvn · %3$s vågen</string>
+    <string name="history_health_amount_simple">%1$s i seng</string>
+    <string name="history_empty_connect">Nætter fra Samsung Health og andre apps kan også vises her. Sammenlign med sundhedsdata for at se dem.</string>
+    <string name="history_empty_no_data">Endnu ingen søvndata fra Health Connect. Samsung Health skal dele dem: Samsung Health → Indstillinger → Health Connect.</string>
+    <string name="history_health_live">Fra %1$s. Phase Wake overtager automatisk ændringer og sletninger dér.</string>
+    <string name="history_health_live_unknown">Fra dine sundhedsdata. Phase Wake overtager automatisk ændringer og sletninger dér.</string>
     <string name="history_average">Ø %1$d min tidligere</string>
     <string name="history_light_share">%1$d %% i let søvn</string>
     <string name="history_export">Eksportér anonymt</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Mindst 8 tegn.</string>
     <string name="backup_password_mismatch">Adgangskoderne er ikke ens.</string>
     <string name="backup_password_hint">Uden denne adgangskode kan ingen åbne kopien – heller ikke dig.</string>
+    <string name="backup_health_hint">Nætter fra andre apps (f.eks. Samsung Health) sikkerhedskopieres ikke – de bliver dér og vises igen, så snart adgang er givet.</string>
     <string name="backup_create">Gem kopien</string>
     <string name="backup_done">Kopien er gemt.</string>
     <string name="backup_failed">Kopien kunne ikke gemmes.</string>

@@ -61,6 +61,15 @@
     <string name="history_title">تاریخچہ</string>
     <string name="history_empty_title">ابھی کوئی رات نہیں</string>
     <string name="history_empty_text">گھڑی کے ساتھ پہلی رات کے بعد یہاں دیکھو گے کہ اس نے تمہیں کب اور کیوں جگایا۔</string>
+    <string name="history_health_mark">Phase Wake الارم کے بغیر</string>
+    <string name="history_health_times">بستر میں %1$s · نیند %2$s · جاگے %3$s</string>
+    <string name="history_health_times_simple">بستر میں %1$s · جاگے %2$s</string>
+    <string name="history_health_amounts">بستر میں %1$s · نیند %2$s · جاگتے %3$s</string>
+    <string name="history_health_amount_simple">بستر میں %1$s</string>
+    <string name="history_empty_connect">Samsung Health اور دوسری ایپس کی راتیں بھی یہاں دکھ سکتی ہیں۔ انہیں دیکھنے کے لیے صحت کے ڈیٹا سے موازنہ کرو۔</string>
+    <string name="history_empty_no_data">ابھی Health Connect سے نیند کا ڈیٹا نہیں ہے۔ Samsung Health کو اسے شیئر کرنا ہوگا: ‏Samsung Health ← سیٹنگز ← Health Connect۔</string>
+    <string name="history_health_live">%1$s سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
+    <string name="history_health_live_unknown">تمہارے صحت کے ڈیٹا سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
     <string name="history_average">اوسطاً %1$d منٹ پہلے</string>
     <string name="history_light_share">%1$d %% ہلکی نیند میں</string>
     <string name="history_export">گمنام طور پر ایکسپورٹ کرو</string>
@@ -423,6 +432,7 @@
     <string name="backup_password_short">کم از کم 8 حروف۔</string>
     <string name="backup_password_mismatch">پاس ورڈ آپس میں نہیں ملتے۔</string>
     <string name="backup_password_hint">اس پاس ورڈ کے بغیر کوئی بیک اپ نہیں کھول سکتا – تم بھی نہیں۔</string>
+    <string name="backup_health_hint">دوسری ایپس کی راتیں (مثلاً Samsung Health) بیک اپ نہیں ہوتیں – وہ وہیں رہتی ہیں اور اجازت ملتے ہی دوبارہ دکھتی ہیں۔</string>
     <string name="backup_create">بیک اپ محفوظ کرو</string>
     <string name="backup_done">بیک اپ محفوظ ہو گیا۔</string>
     <string name="backup_failed">بیک اپ محفوظ نہیں ہو سکا۔</string>

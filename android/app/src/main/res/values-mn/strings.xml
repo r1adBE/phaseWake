@@ -62,6 +62,15 @@
     <string name="history_title">Түүх</string>
     <string name="history_empty_title">Одоохондоо шөнө алга</string>
     <string name="history_empty_text">Цагтай анхны шөнийн дараа хэзээ, яагаад чамайг сэрээснийг харна.</string>
+    <string name="history_health_mark">Phase Wake сэрүүлэггүй</string>
+    <string name="history_health_times">Орондоо %1$s · унтсан %2$s · сэрсэн %3$s</string>
+    <string name="history_health_times_simple">Орондоо %1$s · сэрсэн %2$s</string>
+    <string name="history_health_amounts">Орондоо %1$s · нойр %2$s · сэрүүн %3$s</string>
+    <string name="history_health_amount_simple">Орондоо %1$s</string>
+    <string name="history_empty_connect">Samsung Health болон бусад аппын шөнүүд ч энд харагдаж болно. Тэдгээрийг харахын тулд эрүүл мэндийн өгөгдөлтэй харьцуул.</string>
+    <string name="history_empty_no_data">Health Connect-оос нойрны өгөгдөл хараахан алга. Samsung Health үүнийг хуваалцах ёстой: Samsung Health → Тохиргоо → Health Connect.</string>
+    <string name="history_health_live">Эх сурвалж: %1$s. Тэнд хийсэн өөрчлөлт, устгалыг Phase Wake автоматаар хүлээн авна.</string>
+    <string name="history_health_live_unknown">Эх сурвалж: чиний эрүүл мэндийн өгөгдөл. Тэнд хийсэн өөрчлөлт, устгалыг Phase Wake автоматаар хүлээн авна.</string>
     <string name="history_average">Ø %1$d мин эрт</string>
     <string name="history_light_share">%1$d %% нь хөнгөн нойронд</string>
     <string name="history_export">Нэргүйгээр экспортлох</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Дор хаяж 8 тэмдэгт.</string>
     <string name="backup_password_mismatch">Нууц үг таарахгүй байна.</string>
     <string name="backup_password_hint">Энэ нууц үггүйгээр нөөцийг хэн ч нээж чадахгүй – чи ч гэсэн.</string>
+    <string name="backup_health_hint">Бусад аппын шөнүүд (жишээ нь Samsung Health) нөөцлөгдөхгүй – тэнд хэвээр үлдэж, зөвшөөрөл өгмөгц дахин харагдана.</string>
     <string name="backup_create">Нөөц хадгалах</string>
     <string name="backup_done">Нөөц хадгалагдлаа.</string>
     <string name="backup_failed">Нөөцийг хадгалж чадсангүй.</string>

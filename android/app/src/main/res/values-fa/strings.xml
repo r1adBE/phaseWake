@@ -60,6 +60,15 @@
     <string name="history_title">تاریخچه</string>
     <string name="history_empty_title">هنوز شبی ثبت نشده</string>
     <string name="history_empty_text">بعد از اولین شب با ساعت، اینجا می‌بینی کِی و چرا بیدارت کرده.</string>
+    <string name="history_health_mark">بدون زنگ Phase Wake</string>
+    <string name="history_health_times">در تخت %1$s · خواب %2$s · بیداری %3$s</string>
+    <string name="history_health_times_simple">در تخت %1$s · بیداری %2$s</string>
+    <string name="history_health_amounts">%1$s در تخت · %2$s خواب · %3$s بیدار</string>
+    <string name="history_health_amount_simple">%1$s در تخت</string>
+    <string name="history_empty_connect">شب‌های Samsung Health و برنامه‌های دیگر هم می‌توانند اینجا نمایش داده شوند. برای دیدنشان، با داده‌های سلامت مقایسه کن.</string>
+    <string name="history_empty_no_data">هنوز داده‌ی خوابی از Health Connect نیست. Samsung Health باید آن‌ها را به اشتراک بگذارد: ‏Samsung Health ← تنظیمات ← Health Connect.</string>
+    <string name="history_health_live">از %1$s. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
+    <string name="history_health_live_unknown">از داده‌های سلامت تو. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
     <string name="history_average">میانگین: %1$d دق زودتر</string>
     <string name="history_light_share">%1$d %% در خواب سبک</string>
     <string name="history_export">خروجی ناشناس</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">دست‌کم ۸ نویسه.</string>
     <string name="backup_password_mismatch">گذرواژه‌ها یکی نیستند.</string>
     <string name="backup_password_hint">بدون این گذرواژه هیچ‌کس نمی‌تواند پشتیبان را باز کند – حتی خودت.</string>
+    <string name="backup_health_hint">شب‌های برنامه‌های دیگر (مثلاً Samsung Health) پشتیبان‌گیری نمی‌شوند – همان‌جا می‌مانند و به‌محض دادن اجازه دوباره نمایش داده می‌شوند.</string>
     <string name="backup_create">ذخیرهٔ پشتیبان</string>
     <string name="backup_done">پشتیبان ذخیره شد.</string>
     <string name="backup_failed">ذخیرهٔ پشتیبان ممکن نشد.</string>

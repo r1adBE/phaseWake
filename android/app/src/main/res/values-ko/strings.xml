@@ -59,6 +59,15 @@
     <string name="history_title">기록</string>
     <string name="history_empty_title">아직 기록이 없어요</string>
     <string name="history_empty_text">워치와 함께 첫 밤을 보내면 언제, 왜 깨웠는지 여기에 표시돼요.</string>
+    <string name="history_health_mark">Phase Wake 알람 없음</string>
+    <string name="history_health_times">취침 %1$s · 잠듦 %2$s · 기상 %3$s</string>
+    <string name="history_health_times_simple">취침 %1$s · 기상 %2$s</string>
+    <string name="history_health_amounts">누운 시간 %1$s · 수면 %2$s · 깸 %3$s</string>
+    <string name="history_health_amount_simple">누운 시간 %1$s</string>
+    <string name="history_empty_connect">Samsung Health와 다른 앱의 밤도 여기에 표시될 수 있어요. 보려면 건강 데이터와 비교하세요.</string>
+    <string name="history_empty_no_data">아직 Health Connect의 수면 데이터가 없어요. Samsung Health에서 데이터를 공유해야 해요: Samsung Health → 설정 → Health Connect.</string>
+    <string name="history_health_live">출처: %1$s. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
+    <string name="history_health_live_unknown">출처: 내 건강 데이터. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
     <string name="history_average">평균 %1$d분 일찍</string>
     <string name="history_light_share">얕은 잠에서 %1$d %%</string>
     <string name="history_export">익명으로 내보내기</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">8자 이상.</string>
     <string name="backup_password_mismatch">비밀번호가 일치하지 않아요.</string>
     <string name="backup_password_hint">이 비밀번호 없이는 누구도 백업을 열 수 없어요. 나도요.</string>
+    <string name="backup_health_hint">다른 앱(예: Samsung Health)의 밤은 백업되지 않아요. 그 앱에 그대로 남아 있고, 권한을 허용하면 다시 표시돼요.</string>
     <string name="backup_create">백업 저장</string>
     <string name="backup_done">백업을 저장했어요.</string>
     <string name="backup_failed">백업을 저장하지 못했어요.</string>

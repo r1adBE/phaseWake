@@ -59,6 +59,15 @@
     <string name="history_title">Lịch sử</string>
     <string name="history_empty_title">Chưa có đêm nào</string>
     <string name="history_empty_text">Sau đêm đầu tiên dùng đồng hồ, bạn sẽ thấy ở đây thời điểm và lý do bạn được đánh thức.</string>
+    <string name="history_health_mark">Không có báo thức Phase Wake</string>
+    <string name="history_health_times">Lên giường %1$s · ngủ %2$s · thức dậy %3$s</string>
+    <string name="history_health_times_simple">Lên giường %1$s · thức dậy %2$s</string>
+    <string name="history_health_amounts">%1$s trên giường · %2$s ngủ · %3$s thức</string>
+    <string name="history_health_amount_simple">%1$s trên giường</string>
+    <string name="history_empty_connect">Các đêm từ Samsung Health và ứng dụng khác cũng có thể hiện ở đây. Để xem, hãy so sánh với dữ liệu sức khỏe.</string>
+    <string name="history_empty_no_data">Chưa có dữ liệu giấc ngủ từ Health Connect. Samsung Health cần chia sẻ dữ liệu: Samsung Health → Cài đặt → Health Connect.</string>
+    <string name="history_health_live">Từ %1$s. Phase Wake tự động cập nhật theo các thay đổi và xóa ở đó.</string>
+    <string name="history_health_live_unknown">Từ dữ liệu sức khỏe của bạn. Phase Wake tự động cập nhật theo các thay đổi và xóa ở đó.</string>
     <string name="history_average">TB sớm %1$d phút</string>
     <string name="history_light_share">%1$d %% trong giấc ngủ nông</string>
     <string name="history_export">Xuất ẩn danh</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">Ít nhất 8 ký tự.</string>
     <string name="backup_password_mismatch">Mật khẩu không khớp.</string>
     <string name="backup_password_hint">Không có mật khẩu này, không ai mở được bản sao lưu – kể cả bạn.</string>
+    <string name="backup_health_hint">Các đêm từ ứng dụng khác (vd. Samsung Health) không được sao lưu – chúng vẫn ở đó và hiện lại ngay khi bạn cấp quyền truy cập.</string>
     <string name="backup_create">Lưu bản sao lưu</string>
     <string name="backup_done">Đã lưu bản sao lưu.</string>
     <string name="backup_failed">Không lưu được bản sao lưu.</string>

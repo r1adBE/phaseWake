@@ -62,6 +62,15 @@
     <string name="history_title">చరిత్ర</string>
     <string name="history_empty_title">ఇంకా రాత్రులు లేవు</string>
     <string name="history_empty_text">వాచ్‌తో మొదటి రాత్రి తర్వాత, అది మిమ్మల్ని ఎప్పుడు, ఎందుకు లేపిందో ఇక్కడ కనిపిస్తుంది.</string>
+    <string name="history_health_mark">Phase Wake అలారం లేకుండా</string>
+    <string name="history_health_times">పడకపై %1$s · నిద్ర %2$s · మేలుకొన్నది %3$s</string>
+    <string name="history_health_times_simple">పడకపై %1$s · మేలుకొన్నది %2$s</string>
+    <string name="history_health_amounts">పడకపై %1$s · నిద్ర %2$s · మెలకువ %3$s</string>
+    <string name="history_health_amount_simple">పడకపై %1$s</string>
+    <string name="history_empty_connect">Samsung Health మరియు ఇతర యాప్‌ల రాత్రులు కూడా ఇక్కడ కనిపించవచ్చు. వాటిని చూడటానికి, హెల్త్ డేటాతో పోల్చండి.</string>
+    <string name="history_empty_no_data">Health Connect నుండి ఇంకా నిద్ర డేటా లేదు. Samsung Health దాన్ని షేర్ చేయాలి: Samsung Health → సెట్టింగ్‌లు → Health Connect.</string>
+    <string name="history_health_live">%1$s నుండి. అక్కడ చేసిన మార్పులు, తొలగింపులను Phase Wake ఆటోమేటిక్‌గా అనుసరిస్తుంది.</string>
+    <string name="history_health_live_unknown">మీ హెల్త్ డేటా నుండి. అక్కడ చేసిన మార్పులు, తొలగింపులను Phase Wake ఆటోమేటిక్‌గా అనుసరిస్తుంది.</string>
     <string name="history_average">Ø %1$d ని. ముందుగా</string>
     <string name="history_light_share">%1$d %% తేలికపాటి నిద్రలో</string>
     <string name="history_export">అనామకంగా ఎగుమతి చేయండి</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">కనీసం 8 అక్షరాలు.</string>
     <string name="backup_password_mismatch">పాస్‌వర్డ్‌లు సరిపోలలేదు.</string>
     <string name="backup_password_hint">ఈ పాస్‌వర్డ్ లేకుండా బ్యాకప్‌ను ఎవరూ తెరవలేరు – మీరు కూడా.</string>
+    <string name="backup_health_hint">ఇతర యాప్‌ల రాత్రులు (ఉదా. Samsung Health) బ్యాకప్ కావు – అవి అక్కడే ఉంటాయి, అనుమతి ఇచ్చిన వెంటనే మళ్లీ కనిపిస్తాయి.</string>
     <string name="backup_create">బ్యాకప్ సేవ్ చేయండి</string>
     <string name="backup_done">బ్యాకప్ సేవ్ అయింది.</string>
     <string name="backup_failed">బ్యాకప్ సేవ్ చేయలేకపోయాం.</string>

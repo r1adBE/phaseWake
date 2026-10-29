@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Open Phase Wake op je Apple Watch voordat je gaat slapen. watchOS activeert de wekker alleen zolang de app geopend is.</string>
     <string name="night_unmeasured_apple">Eerste %1$d min niet gemeten – de Apple Watch meet alleen de laatste %2$d min voor de doeltijd.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS.\nGeluiden: vrije opnamen (CC0) van opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Nachten uit Apple Health en andere apps kunnen hier ook verschijnen. Vergelijk met gezondheidsgegevens om ze te zien.</string>
+    <string name="history_empty_no_data_apple">Nog geen slaapgegevens uit Apple Health. Je slaap moet daar worden vastgelegd, bijvoorbeeld door je Apple Watch, en Phase Wake moet hem in de Gezondheid-app mogen lezen.</string>
+    <string name="backup_health_hint_apple">Nachten uit andere apps (bijv. Apple Health) worden niet geback-upt – ze blijven daar en verschijnen weer zodra er toegang is gegeven.</string>
 </resources>

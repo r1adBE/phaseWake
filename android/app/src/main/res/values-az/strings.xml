@@ -54,6 +54,15 @@
     <string name="history_title">Tarixçə</string>
     <string name="history_empty_title">Hələ gecə yoxdur</string>
     <string name="history_empty_text">Saatla ilk gecədən sonra səni nə vaxt və niyə oyatdığını görəcəksən.</string>
+    <string name="history_health_mark">Phase Wake zəngli saatı olmadan</string>
+    <string name="history_health_times">Yataqda %1$s · yuxuya getmə %2$s · oyanma %3$s</string>
+    <string name="history_health_times_simple">Yataqda %1$s · oyanma %2$s</string>
+    <string name="history_health_amounts">Yataqda %1$s · yuxu %2$s · oyaq %3$s</string>
+    <string name="history_health_amount_simple">Yataqda %1$s</string>
+    <string name="history_empty_connect">Samsung Health və digər tətbiqlərdən gecələr də burada görünə bilər. Onları görmək üçün sağlamlıq məlumatları ilə müqayisə et.</string>
+    <string name="history_empty_no_data">Health Connect-dən hələ yuxu məlumatı yoxdur. Samsung Health onları paylaşmalıdır: Samsung Health → Ayarlar → Health Connect.</string>
+    <string name="history_health_live">Mənbə: %1$s. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
+    <string name="history_health_live_unknown">Mənbə: sağlamlıq məlumatların. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
     <string name="history_average">Ø %1$d dəq tez</string>
     <string name="history_light_share">%1$d %% yüngül yuxuda</string>
     <string name="history_export">Anonim ixrac et</string>
@@ -409,6 +418,7 @@
     <string name="backup_password_short">Ən azı 8 simvol.</string>
     <string name="backup_password_mismatch">Parollar uyğun gəlmir.</string>
     <string name="backup_password_hint">Bu parol olmadan ehtiyat nüsxəni heç kim aça bilməz – hətta sən də.</string>
+    <string name="backup_health_hint">Digər tətbiqlərdən gecələr (məs. Samsung Health) ehtiyat nüsxəyə düşmür – onlar orada qalır və icazə veriləndə yenidən görünür.</string>
     <string name="backup_create">Nüsxəni saxla</string>
     <string name="backup_done">Ehtiyat nüsxə saxlanıldı.</string>
     <string name="backup_failed">Ehtiyat nüsxəni saxlamaq olmadı.</string>

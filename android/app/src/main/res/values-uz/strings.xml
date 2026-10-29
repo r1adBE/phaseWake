@@ -62,6 +62,15 @@
     <string name="history_title">Tarix</string>
     <string name="history_empty_title">Hali tunlar yoʻq</string>
     <string name="history_empty_text">Soat bilan birinchi tundan keyin seni qachon va nima uchun uygʻotganini koʻrasan.</string>
+    <string name="history_health_mark">Phase Wake budilnikisiz</string>
+    <string name="history_health_times">Toʻshakda %1$s · uxlab qolish %2$s · uygʻonish %3$s</string>
+    <string name="history_health_times_simple">Toʻshakda %1$s · uygʻonish %2$s</string>
+    <string name="history_health_amounts">Toʻshakda %1$s · uyqu %2$s · bedor %3$s</string>
+    <string name="history_health_amount_simple">Toʻshakda %1$s</string>
+    <string name="history_empty_connect">Bu yerda Samsung Health va boshqa ilovalardagi tunlar ham chiqishi mumkin. Ularni koʻrish uchun sogʻliq maʼlumotlari bilan solishtir.</string>
+    <string name="history_empty_no_data">Health Connect’dan hali uyqu maʼlumotlari yoʻq. Samsung Health ularni ulashishi kerak: Samsung Health → Sozlamalar → Health Connect.</string>
+    <string name="history_health_live">Manba: %1$s. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
+    <string name="history_health_live_unknown">Manba: sogʻliq maʼlumotlaring. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
     <string name="history_average">Ø %1$d daq ertaroq</string>
     <string name="history_light_share">%1$d %% yengil uyquda</string>
     <string name="history_export">Anonim eksport qilish</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Kamida 8 ta belgi.</string>
     <string name="backup_password_mismatch">Parollar mos kelmadi.</string>
     <string name="backup_password_hint">Bu parolsiz zaxira nusxani hech kim ocha olmaydi – hatto sen ham.</string>
+    <string name="backup_health_hint">Boshqa ilovalardagi tunlar (masalan, Samsung Health) zaxiralanmaydi – ular oʻsha yerda qoladi va ruxsat berilishi bilan yana chiqadi.</string>
     <string name="backup_create">Zaxira nusxani saqlash</string>
     <string name="backup_done">Zaxira nusxa saqlandi.</string>
     <string name="backup_failed">Zaxira nusxani saqlab boʻlmadi.</string>

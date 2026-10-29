@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Deschide Phase Wake pe Apple Watch înainte de culcare. watchOS activează alarma doar cât timp aplicația este deschisă.</string>
     <string name="night_unmeasured_apple">Primele %1$d min nemăsurate – Apple Watch măsoară doar ultimele %2$d min dinainte de ora țintă.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: SoundAnalysis de la Apple, integrat în iOS.\nSunete: înregistrări libere (CC0) de pe opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Aici pot apărea și nopți din Apple Health și din alte aplicații. Ca să le vezi, compară cu datele de sănătate.</string>
+    <string name="history_empty_no_data_apple">Încă nu există date despre somn din Apple Health. Somnul trebuie înregistrat acolo, de exemplu de Apple Watch-ul tău, iar Phase Wake trebuie să aibă voie să-l citească în aplicația Sănătate.</string>
+    <string name="backup_health_hint_apple">Nopțile din alte aplicații (de ex. Apple Health) nu sunt incluse în backup – rămân acolo și reapar imediat ce acorzi accesul.</string>
 </resources>

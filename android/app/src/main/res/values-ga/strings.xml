@@ -65,6 +65,15 @@
     <string name="history_title">Stair</string>
     <string name="history_empty_title">Níl aon oícheanta fós</string>
     <string name="history_empty_text">Tar éis do chéad oíche leis an uaireadóir, feicfidh tú cathain agus cén fáth ar dhúisigh sé thú.</string>
+    <string name="history_health_mark">Gan aláram Phase Wake</string>
+    <string name="history_health_times">Sa leaba %1$s · codladh %2$s · dúiseacht %3$s</string>
+    <string name="history_health_times_simple">Sa leaba %1$s · dúiseacht %2$s</string>
+    <string name="history_health_amounts">%1$s sa leaba · %2$s codladh · %3$s i do dhúiseacht</string>
+    <string name="history_health_amount_simple">%1$s sa leaba</string>
+    <string name="history_empty_connect">Is féidir le hoícheanta ó Samsung Health agus ó aipeanna eile a bheith le feiceáil anseo freisin. Le hiad a fheiceáil, cuir i gcomparáid le sonraí sláinte.</string>
+    <string name="history_empty_no_data">Níl aon sonraí codlata ó Health Connect fós. Caithfidh Samsung Health iad a roinnt: Samsung Health → Socruithe → Health Connect.</string>
+    <string name="history_health_live">Ó %1$s. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
+    <string name="history_health_live_unknown">Ó do shonraí sláinte. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
     <string name="history_average">Ø %1$d nóim níos luaithe</string>
     <string name="history_light_share">%1$d %% i gcodladh éadrom</string>
     <string name="history_export">Easpórtáil gan ainm</string>
@@ -463,6 +472,7 @@
     <string name="backup_password_short">8 gcarachtar ar a laghad.</string>
     <string name="backup_password_mismatch">Ní hionann na pasfhocail.</string>
     <string name="backup_password_hint">Gan an pasfhocal seo, ní féidir le duine ar bith an cúltaca a oscailt – fiú tusa.</string>
+    <string name="backup_health_hint">Ní dhéantar cúltaca d’oícheanta ó aipeanna eile (m.sh. Samsung Health) – fanann siad ansin agus feicfear arís iad nuair a thugtar rochtain.</string>
     <string name="backup_create">Sábháil cúltaca</string>
     <string name="backup_done">Cúltaca sábháilte.</string>
     <string name="backup_failed">Níorbh fhéidir an cúltaca a shábháil.</string>

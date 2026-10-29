@@ -62,6 +62,15 @@
     <string name="history_title">Ferill</string>
     <string name="history_empty_title">Engar nætur enn</string>
     <string name="history_empty_text">Eftir fyrstu nóttina með úrinu sérðu hvenær og hvers vegna það vakti þig.</string>
+    <string name="history_health_mark">Án Phase Wake-vekjara</string>
+    <string name="history_health_times">Í rúminu %1$s · sofnað %2$s · vaknað %3$s</string>
+    <string name="history_health_times_simple">Í rúminu %1$s · vaknað %2$s</string>
+    <string name="history_health_amounts">%1$s í rúminu · %2$s svefn · %3$s vakandi</string>
+    <string name="history_health_amount_simple">%1$s í rúminu</string>
+    <string name="history_empty_connect">Nætur úr Samsung Health og öðrum forritum geta líka birst hér. Berðu saman við heilsugögn til að sjá þær.</string>
+    <string name="history_empty_no_data">Engin svefngögn frá Health Connect enn. Samsung Health þarf að deila þeim: Samsung Health → Stillingar → Health Connect.</string>
+    <string name="history_health_live">Frá %1$s. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
+    <string name="history_health_live_unknown">Úr heilsugögnunum þínum. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
     <string name="history_average">Ø %1$d mín fyrr</string>
     <string name="history_light_share">%1$d %% í léttum svefni</string>
     <string name="history_export">Flytja út nafnlaust</string>
@@ -424,6 +433,7 @@
     <string name="backup_password_short">Að minnsta kosti 8 stafir.</string>
     <string name="backup_password_mismatch">Lykilorðin passa ekki saman.</string>
     <string name="backup_password_hint">Án þessa lykilorðs getur enginn opnað afritið – ekki einu sinni þú.</string>
+    <string name="backup_health_hint">Nætur úr öðrum forritum (t.d. Samsung Health) eru ekki afritaðar – þær haldast þar og birtast aftur um leið og aðgangur er veittur.</string>
     <string name="backup_create">Vista afrit</string>
     <string name="backup_done">Afrit vistað.</string>
     <string name="backup_failed">Ekki tókst að vista afritið.</string>

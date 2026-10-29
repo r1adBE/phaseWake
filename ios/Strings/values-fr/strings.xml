@@ -17,4 +17,9 @@
     <string name="check_watch_arm_problem">Ouvre Phase Wake sur ton Apple Watch avant de dormir. watchOS n’active l’alarme que tant que l’app est ouverte.</string>
     <string name="night_unmeasured_apple">%1$d premières min non mesurées – l’Apple Watch ne mesure que les %2$d dernières min avant l’heure cible.</string>
     <string name="settings_licenses_text_apple">Phase Wake : licence MIT, © r1adBE.\nPolice Manrope : SIL Open Font License 1.1, © The Manrope Project Authors.\nDétection des sons : SoundAnalysis d’Apple, intégré à iOS.\nSons : enregistrements libres (CC0) issus d’opengameart.org</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Les nuits de Apple Health et d\'autres apps peuvent aussi apparaître ici. Pour les voir, compare avec les données santé.</string>
+    <string name="history_empty_no_data_apple">Pas encore de données de sommeil d’Apple Health. Le sommeil doit y être enregistré, par exemple par ton Apple Watch, et Phase Wake doit être autorisé à le lire dans l’app Santé.</string>
+    <string name="backup_health_hint_apple">Les nuits d\'autres apps (p. ex. Apple Health) ne sont pas sauvegardées : elles restent là-bas et réapparaissent dès que l\'accès est accordé.</string>
 </resources>

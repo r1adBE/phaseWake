@@ -22,7 +22,9 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CustomNote
-import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.HealthHistory
+import com.phasewake.app.core.HealthSession
+import com.phasewake.app.core.HistoryItem
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.Regularity
@@ -143,6 +145,8 @@ internal class Insights(
     val charts: HistoryCharts,
     /** Wochenrückblick als Karte am Sonntag und Montag; sonst `null`. */
     val weekly: WeeklySummary?,
+    /** Verlauf: eigene Nächte und Nächte aus Health Connect, neueste zuerst ([HealthHistory.merge]). */
+    val history: List<HistoryItem>,
 )
 
 /**
@@ -161,19 +165,20 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
             else -> HealthState.AVAILABLE
         }
     }
-    // Trends: Schlafdauer aus Health Connect (falls verbunden) und Befinden aus dem Verlauf.
-    val sleeps by produceState(emptyList<SleepSummary>(), health, healthCheck) {
-        // So weit zurück wie der Verlauf: auch für die Wirkung der Notizen (Trends nehmen nur 14 Tage).
-        value = if (health == HealthState.CONNECTED) app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L) else emptyList()
+    val clearedAt by app.settings.historyClearedAt.collectAsStateWithLifecycle(initialValue = null)
+    // Eine Abfrage für alles (Verlauf, Diagramme, Trends, Wirkung der Notizen, Phasen der eigenen Nächte):
+    // so weit zurück wie der Verlauf, mindestens bis vor die älteste eigene Nacht. Nur im Speicher.
+    val sessions by produceState(emptyList<HealthSession>(), health, healthCheck, nights?.size) {
+        val now = Instant.now()
+        val from = listOfNotNull(
+            now.minus(Duration.ofDays(HealthHistory.DAYS + 1)),
+            nights?.minOfOrNull { it.windowStart }?.minus(STAGES_BEFORE),
+        ).min()
+        value = if (health == HealthState.CONNECTED) app.health.sessions(from, now) else emptyList()
     }
-    val stages by produceState(emptyList<StageSpan>(), health, healthCheck, nights?.size) {
-        val list = nights.orEmpty()
-        value = if (health == HealthState.CONNECTED && list.isNotEmpty()) {
-            app.health.stagesBetween(list.first().windowStart.minus(STAGES_BEFORE), list.last().wokeAt.plus(STAGES_AFTER))
-        } else {
-            emptyList()
-        }
-    }
+    val sleeps = remember(sessions, clearedAt) { HealthHistory.summaries(sessions, clearedAt) }
+    val stages = remember(sessions, clearedAt) { HealthHistory.stages(sessions, clearedAt) }
+    val history = remember(nights, sessions, clearedAt) { HealthHistory.merge(nights.orEmpty(), sessions, clearedAt, ZoneId.systemDefault()) }
     val trends = remember(nights, sleeps) { Trends.compute(nights.orEmpty(), sleeps, Instant.now(), ZoneId.systemDefault()) }
     val goalWeek = remember(sleeps, data.sleepGoal) { SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, ZoneId.systemDefault()), data.sleepGoal) }
     val noteEffects = remember(nights, data.notes, sleeps) {
@@ -197,7 +202,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
         val list = nights ?: return@LaunchedEffect
         if (data.weeklyReview) app.weekly.prepare(list, sleeps, data.notes, data.sleepGoal, data.customNotes)
     }
-    return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly)
+    return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly, history)
 }
 
 /** Gewohnheiten: Regelmässigkeit und Serien aus der Gesundheits-App, Abendroutine aus den Haken. */

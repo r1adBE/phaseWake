@@ -59,6 +59,15 @@
     <string name="history_title">Sejarah</string>
     <string name="history_empty_title">Belum ada malam</string>
     <string name="history_empty_text">Selepas malam pertama bersama jam tangan, awak akan nampak bila dan mengapa ia bangunkan awak.</string>
+    <string name="history_health_mark">Tanpa penggera Phase Wake</string>
+    <string name="history_health_times">Di katil %1$s · tertidur %2$s · bangun %3$s</string>
+    <string name="history_health_times_simple">Di katil %1$s · bangun %2$s</string>
+    <string name="history_health_amounts">%1$s di katil · %2$s tidur · %3$s berjaga</string>
+    <string name="history_health_amount_simple">%1$s di katil</string>
+    <string name="history_empty_connect">Malam daripada Samsung Health dan apl lain juga boleh muncul di sini. Untuk melihatnya, banding dengan data kesihatan.</string>
+    <string name="history_empty_no_data">Belum ada data tidur daripada Health Connect. Samsung Health perlu berkongsinya: Samsung Health → Tetapan → Health Connect.</string>
+    <string name="history_health_live">Daripada %1$s. Phase Wake mengikut perubahan dan pemadaman di sana secara automatik.</string>
+    <string name="history_health_live_unknown">Daripada data kesihatan awak. Phase Wake mengikut perubahan dan pemadaman di sana secara automatik.</string>
     <string name="history_average">Purata %1$d min lebih awal</string>
     <string name="history_light_share">%1$d %% dalam tidur ringan</string>
     <string name="history_export">Eksport tanpa nama</string>
@@ -408,6 +417,7 @@
     <string name="backup_password_short">Sekurang-kurangnya 8 aksara.</string>
     <string name="backup_password_mismatch">Kata laluan tidak sepadan.</string>
     <string name="backup_password_hint">Tanpa kata laluan ini, tiada sesiapa boleh membuka sandaran – termasuk awak.</string>
+    <string name="backup_health_hint">Malam daripada apl lain (cth. Samsung Health) tidak disandarkan – ia kekal di sana dan muncul semula sebaik sahaja akses diberikan.</string>
     <string name="backup_create">Simpan sandaran</string>
     <string name="backup_done">Sandaran disimpan.</string>
     <string name="backup_failed">Sandaran tidak dapat disimpan.</string>

@@ -60,6 +60,15 @@
     <string name="history_title">Historikk</string>
     <string name="history_empty_title">Ingen netter ennå</string>
     <string name="history_empty_text">Etter den første natten med klokka ser du her når og hvorfor den vekket deg.</string>
+    <string name="history_health_mark">Uten Phase Wake-alarm</string>
+    <string name="history_health_times">I senga %1$s · sovnet %2$s · våknet %3$s</string>
+    <string name="history_health_times_simple">I senga %1$s · våknet %2$s</string>
+    <string name="history_health_amounts">%1$s i senga · %2$s søvn · %3$s våken</string>
+    <string name="history_health_amount_simple">%1$s i senga</string>
+    <string name="history_empty_connect">Netter fra Samsung Health og andre apper kan også vises her. Sammenlign med helsedata for å se dem.</string>
+    <string name="history_empty_no_data">Ingen søvndata fra Health Connect ennå. Samsung Health må dele dem: Samsung Health → Innstillinger → Health Connect.</string>
+    <string name="history_health_live">Fra %1$s. Phase Wake tar automatisk med endringer og slettinger der.</string>
+    <string name="history_health_live_unknown">Fra helsedataene dine. Phase Wake tar automatisk med endringer og slettinger der.</string>
     <string name="history_average">Ø %1$d min tidligere</string>
     <string name="history_light_share">%1$d %% i lett søvn</string>
     <string name="history_export">Eksporter anonymt</string>
@@ -421,6 +430,7 @@
     <string name="backup_password_short">Minst 8 tegn.</string>
     <string name="backup_password_mismatch">Passordene er ikke like.</string>
     <string name="backup_password_hint">Uten dette passordet kan ingen åpne kopien – heller ikke du.</string>
+    <string name="backup_health_hint">Netter fra andre apper (f.eks. Samsung Health) sikkerhetskopieres ikke – de blir værende der og vises igjen så snart tilgang er gitt.</string>
     <string name="backup_create">Lagre kopien</string>
     <string name="backup_done">Kopien er lagret.</string>
     <string name="backup_failed">Kopien kunne ikke lagres.</string>

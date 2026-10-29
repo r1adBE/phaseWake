@@ -64,6 +64,15 @@
     <string name="history_title">Istorija</string>
     <string name="history_empty_title">Naktų dar nėra</string>
     <string name="history_empty_text">Po pirmosios nakties su laikrodžiu matysi, kada ir kodėl jis tave pažadino.</string>
+    <string name="history_health_mark">Be Phase Wake žadintuvo</string>
+    <string name="history_health_times">Lovoje %1$s · užmigimas %2$s · pabudimas %3$s</string>
+    <string name="history_health_times_simple">Lovoje %1$s · pabudimas %2$s</string>
+    <string name="history_health_amounts">Lovoje %1$s · miegas %2$s · budrumas %3$s</string>
+    <string name="history_health_amount_simple">Lovoje %1$s</string>
+    <string name="history_empty_connect">Čia gali būti rodomos ir naktys iš programos Samsung Health bei kitų programų. Kad jas matytum, palygink su sveikatos duomenimis.</string>
+    <string name="history_empty_no_data">Iš Health Connect miego duomenų dar nėra. Samsung Health turi jais dalytis: Samsung Health → Nustatymai → Health Connect.</string>
+    <string name="history_health_live">Iš programos %1$s. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
+    <string name="history_health_live_unknown">Iš tavo sveikatos duomenų. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
     <string name="history_average">Ø %1$d min anksčiau</string>
     <string name="history_light_share">%1$d %% lengvo miego metu</string>
     <string name="history_export">Eksportuoti anonimiškai</string>
@@ -450,6 +459,7 @@
     <string name="backup_password_short">Bent 8 simboliai.</string>
     <string name="backup_password_mismatch">Slaptažodžiai nesutampa.</string>
     <string name="backup_password_hint">Be šio slaptažodžio niekas negalės atidaryti atsarginės kopijos – net ir tu.</string>
+    <string name="backup_health_hint">Naktys iš kitų programų (pvz., Samsung Health) nėra kopijuojamos – jos lieka ten ir vėl atsiranda, kai suteikiama prieiga.</string>
     <string name="backup_create">Išsaugoti kopiją</string>
     <string name="backup_done">Atsarginė kopija išsaugota.</string>
     <string name="backup_failed">Nepavyko išsaugoti atsarginės kopijos.</string>

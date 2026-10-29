@@ -20,4 +20,9 @@
     <string name="night_unmeasured_apple">පළමු මිනි. %1$d මැනුණේ නැත – Apple Watch මනින්නේ ඉලක්ක වේලාවට පෙර අවසන් මිනිත්තු %2$d පමණි.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope අකුරු: SIL Open Font License 1.1, © The Manrope Project Authors.\nශබ්ද හඳුනාගැනීම: Apple හි SoundAnalysis, iOS තුළ ගොඩනගා ඇත.\nශබ්ද: opengameart.org වෙතින් නොමිලේ පටිගත කිරීම් (CC0)</string>
+    <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
+    <string name="health_apple">Apple Health</string>
+    <string name="history_empty_connect_apple">Apple Health සහ වෙනත් යෙදුම්වල රාත්‍රීද මෙහි පෙන්විය හැක. ඒවා බැලීමට, සෞඛ්‍ය දත්ත සමඟ සසඳන්න.</string>
+    <string name="history_empty_no_data_apple">Apple Health වෙතින් තවම නින්දේ දත්ත නැත. නින්ද එහි සටහන් විය යුතුය, උදාහරණයක් ලෙස ඔබේ Apple Watch මගින්, සහ Health යෙදුමේ Phase Wake හට එය කියවීමට අවසර තිබිය යුතුය.</string>
+    <string name="backup_health_hint_apple">වෙනත් යෙදුම්වල රාත්‍රී (උදා. Apple Health) උපස්ථ නොවේ – ඒවා එහිම පවතින අතර අවසරය ලබා දුන් විගස නැවත පෙන්වයි.</string>
 </resources>
