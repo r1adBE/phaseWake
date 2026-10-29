@@ -1,0 +1,36 @@
+I-Phase Wake ikuvusa ebuthongweni obulula esikhundleni sokukuvusa phakathi kobuthongo obujulile. Emizuzwini yokugcina ngaphambi kwe-alamu yakho, iwashi lakho elihlakaniphile lilinganisa ukunyakaza nokushaya kwenhliziyo bese likuvusa ngesikhathi esifaneleke kakhulu ngaphakathi kwesikhala sakho sokuvuka – kamuva kakhulu ngesikhathi esihlosiwe.
+
+Isebenza kanjani
+• Khetha isikhathi sokuvuka nesikhala (kuze kube yimizuzu engu-30), gqoka iwashi lakho, ulale.
+• Iwashi lilinganisa kuphela ngesikhathi sesikhala sokuvuka: ilonga ibhethri.
+• Ukudlidliza esihlakaleni, nomsindo uma uthanda – ifoni yakho ikhala njenge-alamu yokwesekwa uma kukhona okungahambi kahle.
+• Bamba ukuze umise, snuza kuze kube izikhathi ezi-3.
+
+Yakhelwe ukuthi ungalali ngokweqile
+• Ukuhlola kobusuku ngaphambi kokulala: iwashi lixhunyiwe, izimvume zinikeziwe, ibhethri ligcwele ngokwanele.
+• I-alamu yokuhlola ethi “Hlola emizuzwini emi-2” enomphumela wesinyathelo ngesinyathelo.
+• Iyakhala nalapho kuvulwe okuthi Ungaphazamisi nemodi yesikhathi sokulala.
+• Yeqa okulandelayo futhi ungavusi ngamaholide – amaholide amazwe angaphezu kwe-150 nezifunda zawo, ngaphandle kwe-inthanethi.
+
+Lala kangcono
+• Umbiko wasekuseni: wavuswa nini nokuthi uzizwa kanjani.
+• Umlando onamashadi: izikhathi zokulala, ubude bokulala, isikhathi sokuvuka, izigaba zokulala, umuzwa.
+• Umgomo wokulala, isikhumbuzi sesikhathi sokulala, inqubo yakusihlwa, ukubuyekezwa kwesonto nochungechunge.
+• Amanothi okulala (ikhofi, ukuzivocavoca, ukucindezeleka …) ukuze ubone amaphethini.
+• Imisindo yokulala: imvula, ulwandle, ihlathi ebusuku, umfudlana, iziko, ifeni, umsindo namagagasi okulala – nesibali-sikhathi.
+• Qopha ukuhona nokukhuluma ulele uma ufuna – efonini yakho kuphela.
+• Ukulala kancane okukuvusa ebuthongweni obulula.
+• Ukuphuma kwelanga okumnene esikrinini ngaphambi kwe-alamu yakho.
+• Izigaba zokulala ezivela ku-Health Connect, uma ufuna.
+
+Idatha yakho ihlala nawe
+• Ayikho i-akhawunti, ayikho iseva, azikho izikhangiso, azikho izilandeleli.
+• Konke kuhlala efonini nasewashini lakho. Ikhophi yasenqolobaneni njengefayela elibethelwe ngephasiwedi yakho.
+
+Kwabo bonke
+• Izilimi ezingu-74, idizayini ekhanyayo nemnyama, yenzelwe abangaboni imibala nabafundi besikrini.
+• Mahhala futhi ingumthombo ovulekile: github.com/r1adBE/phaseWake
+
+Idinga iwashi le-Wear OS (isb. i-Galaxy Watch) elifakwe uhlelo lokusebenza lwe-Phase Wake ewashini. Ngaphandle kwewashi, i-Phase Wake ikuvusa ngesikhathi esihlosiwe efonini yakho.
+
+I-Phase Wake ayiyona idivayisi yezokwelapha.

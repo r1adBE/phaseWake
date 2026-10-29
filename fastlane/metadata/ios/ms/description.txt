@@ -1,0 +1,36 @@
+Phase Wake membangunkan awak semasa tidur ringan, bukan di tengah-tengah tidur nyenyak. Pada minit-minit terakhir sebelum penggera, Apple Watch awak mengukur pergerakan dan kadar denyutan jantung, lalu membangunkan awak pada saat terbaik dalam tetingkap bangun – selewat-lewatnya pada masa sasaran.
+
+Cara ia berfungsi
+• Pilih masa bangun dan tetingkap (hingga 30 min), pakai jam tangan, tidur.
+• Jam tangan hanya mengukur dalam tetingkap bangun: jimat bateri.
+• Getaran di pergelangan tangan, dengan bunyi jika mahu – iPhone turut berbunyi sebagai penggera sandaran sekiranya ada masalah.
+• Tahan untuk henti, tangguh hingga 3 kali.
+
+Dibina supaya awak tidak terlajak tidur
+• Semakan malam sebelum tidur: jam tangan bersambung, kebenaran diberikan, bateri mencukupi.
+• Uji penggera “Uji dalam 2 minit” dengan keputusan langkah demi langkah.
+• Penggera sandaran pada iPhone tetap berbunyi semasa Jangan Ganggu dan Fokus Tidur.
+• Langkau kali seterusnya dan jangan kejutkan pada cuti umum – cuti umum bagi lebih 150 negara dan wilayahnya, tanpa internet.
+
+Tidur lebih baik
+• Laporan pagi: bila awak dibangunkan dan apa perasaan awak.
+• Sejarah dengan carta: waktu tidur, tempoh tidur, saat bangun, fasa tidur, perasaan.
+• Sasaran tidur, peringatan waktu tidur, rutin malam, ringkasan mingguan dan rentetan.
+• Catatan tidur (kopi, sukan, tekanan …) untuk mengesan corak.
+• Bunyi untuk tidur: hujan, laut, hutan waktu malam, anak sungai, unggun api, kipas, hingar dan gelombang tidur – dengan pemasa.
+• Rakam dengkuran dan bercakap dalam tidur jika mahu – hanya pada iPhone awak.
+• Tidur sekejap yang membangunkan awak semasa tidur ringan.
+• Matahari terbit lembut dalam mod meja sisi katil sebelum penggera.
+• Peringkat tidur daripada Apple Health, jika mahu.
+
+Data awak kekal dengan awak
+• Tiada akaun, tiada pelayan, tiada iklan, tiada penjejak.
+• Semuanya kekal pada iPhone dan jam tangan. Sandaran sebagai fail tersulit dengan kata laluan awak.
+
+Untuk semua
+• 74 bahasa, reka bentuk cerah dan gelap, dibuat untuk orang buta warna dan pembaca skrin.
+• Percuma dan sumber terbuka: github.com/r1adBE/phaseWake
+
+Memerlukan Apple Watch untuk membangunkan awak semasa tidur ringan; apl jam tangan disertakan. Tanpa jam tangan, Phase Wake membangunkan awak pada masa sasaran pada iPhone.
+
+Phase Wake bukan peranti perubatan.

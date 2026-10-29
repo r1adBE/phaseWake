@@ -1,0 +1,36 @@
+Phase Wake väcker dig i lätt sömn i stället för mitt i djupsömnen. Under de sista minuterna före larmet mäter din smartklocka rörelse och puls och väcker dig vid bästa tillfället inom ditt väckningsfönster – senast vid den inställda tiden.
+
+Så fungerar det
+• Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
+• Klockan mäter bara under väckningsfönstret: skonsamt för batteriet.
+• Vibration på handleden, med ljud om du vill – mobilen ringer som reservlarm om något går fel.
+• Håll in för att stänga av, snooze upp till 3 gånger.
+
+Gjord för att du inte ska försova dig
+• Nattkontroll före sänggåendet: klocka ansluten, behörigheter givna, tillräckligt med batteri.
+• Testa väckarklockan: ”Testa om 2 minuter” med resultat steg för steg.
+• Ringer även i Stör ej och sänggåendeläge.
+• Hoppa över nästa gång och väck inte på helgdagar – helgdagar för över 150 länder och deras regioner, offline.
+
+Sov bättre
+• Morgonrapport: när du väcktes och hur du mår.
+• Historik med diagram: sovtider, sömnlängd, väckningsögonblick, sömnfaser, känsla.
+• Sömnmål, påminnelse om läggdags, kvällsrutin, veckoöversikt och sviter.
+• Sömnanteckningar (kaffe, träning, stress …) för att se mönster.
+• Insomningsljud: regn, hav, skog om natten, bäck, brasa, fläkt, brus och sömnvågor – med timer.
+• Spela in snarkning och sömnprat om du vill – bara på din mobil.
+• Tupplur som väcker dig i lätt sömn.
+• Mjuk soluppgång på skärmen före larmet.
+• Sömnfaser från Health Connect, om du vill.
+
+Dina data stannar hos dig
+• Inget konto, ingen server, ingen reklam, inga spårare.
+• Allt stannar på mobilen och klockan. Säkerhetskopia som krypterad fil med ditt lösenord.
+
+För alla
+• 74 språk, ljust och mörkt utseende, gjord för färgblinda och skärmläsare.
+• Gratis och öppen källkod: github.com/r1adBE/phaseWake
+
+Kräver en Wear OS-klocka (t.ex. Galaxy Watch) med appen Phase Wake installerad på klockan. Utan klocka väcker Phase Wake dig vid den inställda tiden på mobilen.
+
+Phase Wake är inte en medicinteknisk produkt.

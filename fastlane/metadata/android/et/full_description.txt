@@ -1,0 +1,36 @@
+Phase Wake äratab sind kerges unes, mitte keset sügavat und. Viimastel minutitel enne äratust mõõdab sinu nutikell liikumist ja pulssi ning äratab sind äratusakna sees sobivaimal hetkel – hiljemalt sihtajal.
+
+Kuidas see töötab
+• Vali äratusaeg ja äratusaken (kuni 30 min), pane kell kätte, maga.
+• Kell mõõdab ainult äratusakna ajal: säästab akut.
+• Vibratsioon randmel, soovi korral heliga – telefon heliseb varuäratusena, kui midagi läheb valesti.
+• Peatamiseks hoia all, lükka edasi kuni 3 korda.
+
+Et sa sisse ei magaks
+• Öine kontroll enne magamaminekut: kell ühendatud, load antud, aku piisavalt täis.
+• Prooviäratus „Proovi 2 minuti pärast“ samm-sammulise tulemusega.
+• Heliseb ka režiimis „Mitte segada“ ja magamamineku režiimis.
+• Jäta järgmine kord vahele ja ära ärata pühade ajal – pühad enam kui 150 riigi ja nende piirkondade jaoks, ilma internetita.
+
+Parem uni
+• Hommikune ülevaade: millal sind äratati ja kuidas sa end tunned.
+• Ajalugu graafikutega: uneajad, une kestus, ärkamishetk, unefaasid, enesetunne.
+• Une eesmärk, magamamineku meeldetuletus, õhturutiin, nädala ülevaade ja seeriad.
+• Unemärkmed (kohv, sport, stress …), et seoseid märgata.
+• Unehelid: vihm, ookean, mets öösel, oja, kamin, ventilaator, müra ja unelained – taimeriga.
+• Salvesta soovi korral norskamist ja unes rääkimist – ainult sinu telefonis.
+• Uinak äratusega kerges unes.
+• Õrn päikesetõus ekraanil enne äratust.
+• Unefaasid Health Connectist, kui soovid.
+
+Sinu andmed jäävad sinule
+• Pole kontot, serverit, reklaame ega jälgijaid.
+• Kõik jääb telefoni ja kella. Varukoopia krüpteeritud failina sinu parooliga.
+
+Kõigile
+• 74 keelt, hele ja tume kujundus, sobib värvipimedatele ja ekraanilugejatele.
+• Tasuta ja avatud lähtekoodiga: github.com/r1adBE/phaseWake
+
+Vajab Wear OS-iga kella (nt Galaxy Watch), kuhu on paigaldatud Phase Wake'i rakendus. Ilma kellata äratab Phase Wake sind sihtajal telefonis.
+
+Phase Wake ei ole meditsiiniseade.

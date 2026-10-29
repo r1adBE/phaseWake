@@ -1,0 +1,36 @@
+Phase Wake inakuamsha katika usingizi mwepesi badala ya katikati ya usingizi mzito. Katika dakika za mwisho kabla ya kengele yako, saa yako janja hupima mwendo na mapigo ya moyo, na hukuamsha wakati unaofaa zaidi ndani ya kipindi chako cha kuamka – kabla ya muda lengwa au wakati huo.
+
+Jinsi inavyofanya kazi
+• Chagua muda wa kuamka na kipindi (hadi dak 30), vaa saa yako, lala.
+• Saa hupima tu wakati wa kipindi cha kuamka: inaokoa betri.
+• Mtetemo kwenye kifundo cha mkono, pamoja na sauti ukipenda – simu yako inalia kama kengele ya akiba endapo kitu kitaharibika.
+• Shikilia ili kuzima, ahirisha hadi mara 3.
+
+Imeundwa ili usipitilize usingizi
+• Ukaguzi wa usiku kabla ya kulala: saa imeunganishwa, ruhusa zimetolewa, betri ina chaji ya kutosha.
+• Kengele ya majaribio “Jaribu baada ya dakika 2” yenye matokeo hatua kwa hatua.
+• Inalia hata ukiwa na “Usinisumbue” na hali ya wakati wa kulala.
+• Ruka wakati ujao na usiamshwe siku za sikukuu – sikukuu za zaidi ya nchi 150 na maeneo yake, bila intaneti.
+
+Lala vizuri zaidi
+• Ripoti ya asubuhi: uliamshwa lini na unajisikiaje.
+• Historia yenye chati: nyakati za kulala, muda wa usingizi, wakati wa kuamka, hatua za usingizi, hisia.
+• Lengo la usingizi, kikumbusho cha kulala, ratiba ya jioni, muhtasari wa wiki na mfululizo.
+• Madokezo ya usingizi (kahawa, michezo, msongo …) ili kuona uhusiano.
+• Sauti za kulala: mvua, bahari, msitu usiku, kijito, moto wa meko, feni, kelele na mawimbi ya usingizi – pamoja na kipima muda.
+• Rekodi kukoroma na kuongea usingizini ukitaka – kwenye simu yako tu.
+• Usingizi mfupi unaokuamsha katika usingizi mwepesi.
+• Macheo laini kwenye skrini kabla ya kengele.
+• Hatua za usingizi kutoka Health Connect, ukitaka.
+
+Data yako inabaki kwako
+• Hakuna akaunti, hakuna seva, hakuna matangazo, hakuna vifuatiliaji.
+• Kila kitu kinabaki kwenye simu na saa yako. Nakala ya akiba kama faili iliyosimbwa kwa nenosiri lako.
+
+Kwa kila mtu
+• Lugha 74, muundo wa mwanga na giza, imeundwa kwa wasioona rangi na visoma skrini.
+• Bure na chanzo huria: github.com/r1adBE/phaseWake
+
+Inahitaji saa ya Wear OS (k.m. Galaxy Watch) yenye programu ya Phase Wake iliyosakinishwa kwenye saa. Bila saa, Phase Wake inakuamsha kwa muda lengwa kwenye simu yako.
+
+Phase Wake si kifaa cha matibabu.

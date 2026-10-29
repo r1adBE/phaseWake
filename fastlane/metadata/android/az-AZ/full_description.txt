@@ -1,0 +1,36 @@
+Phase Wake səni dərin yuxunun ortasında deyil, yüngül yuxuda oyadır. Siqnaldan əvvəlki son dəqiqələrdə smart saatın hərəkəti və ürək döyüntüsünü ölçür və səni oyanma pəncərəsi daxilində ən uyğun anda oyadır – ən gec hədəf vaxtında.
+
+Necə işləyir
+• Oyanma vaxtını və pəncərəni (30 dəq-yə qədər) seç, saatını tax, yat.
+• Saat yalnız oyanma pəncərəsində ölçür: batareyaya qənaət edir.
+• Biləyində vibrasiya, istəsən səslə – nəsə səhv getsə, telefonun ehtiyat siqnal kimi çalır.
+• Dayandırmaq üçün saxla, 3 dəfəyə qədər təxirə sal.
+
+Yuxuya qalmayasan deyə
+• Yatmazdan əvvəl gecə yoxlaması: saat qoşulub, icazələr verilib, batareya kifayət qədər doludur.
+• “2 dəqiqəyə test et” test siqnalı, nəticə addım-addım.
+• “Narahat etməyin” və yuxu rejimində də çalır.
+• Növbəti dəfəni ötür və bayramlarda oyatma – 150-dən çox ölkə və onların regionları üçün bayramlar, internetsiz.
+
+Daha yaxşı yat
+• Səhər hesabatı: nə vaxt oyadıldın və özünü necə hiss edirsən.
+• Qrafiklərlə tarixçə: yatma vaxtları, yuxu müddəti, oyanma anı, yuxu fazaları, əhval.
+• Yuxu hədəfi, yatma vaxtı xatırlatması, axşam rutini, həftəlik icmal və seriyalar.
+• Əlaqələri görmək üçün yuxu qeydləri (qəhvə, idman, stress …).
+• Yuxu səsləri: yağış, okean, gecə meşəsi, çay, kamin, ventilyator, küy və yuxu dalğaları – taymerlə.
+• İstəsən, xoruldamanı və yuxuda danışmanı yaz – yalnız telefonunda.
+• Yüngül yuxuda oyadan qısa yuxu.
+• Siqnaldan əvvəl ekranda yumşaq gündoğumu.
+• İstəsən, Health Connect-dən yuxu fazaları.
+
+Məlumatların səndə qalır
+• Hesab yox, server yox, reklam yox, izləyici yox.
+• Hər şey telefonunda və saatında qalır. Parolunla şifrələnmiş fayl kimi ehtiyat nüsxə.
+
+Hamı üçün
+• 74 dil, açıq və tünd dizayn, rəngkorlar və ekran oxuyucuları üçün hazırlanıb.
+• Pulsuz və açıq mənbə: github.com/r1adBE/phaseWake
+
+Saatda Phase Wake tətbiqi quraşdırılmış Wear OS saatı (məs. Galaxy Watch) tələb olunur. Saat olmadan Phase Wake səni hədəf vaxtında telefonda oyadır.
+
+Phase Wake tibbi cihaz deyil.

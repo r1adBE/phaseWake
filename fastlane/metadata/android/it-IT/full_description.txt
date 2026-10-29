@@ -1,0 +1,36 @@
+Phase Wake ti sveglia nel sonno leggero invece che nel pieno del sonno profondo. Negli ultimi minuti prima della sveglia, il tuo smartwatch misura movimento e battito cardiaco e ti sveglia nel momento migliore all’interno della tua finestra di risveglio – al più tardi all’orario obiettivo.
+
+Come funziona
+• Scegli l’orario della sveglia e la finestra (fino a 30 min), indossa l’orologio, dormi.
+• L’orologio misura solo durante la finestra di risveglio: risparmia batteria.
+• Vibrazione al polso, con suono se vuoi – il telefono suona come sveglia di riserva nel caso qualcosa vada storto.
+• Tieni premuto per fermare, posticipa fino a 3 volte.
+
+Fatto perché tu non perda la sveglia
+• Controllo notturno prima di dormire: orologio connesso, autorizzazioni concesse, batteria sufficiente.
+• Sveglia di prova «Prova tra 2 minuti» con esito passo per passo.
+• Suona anche con Non disturbare e in modalità riposo.
+• Salta la prossima volta e non svegliare nei festivi – festivi di oltre 150 paesi e delle loro regioni, offline.
+
+Dormi meglio
+• Resoconto del mattino: quando è suonata la sveglia e come ti senti.
+• Cronologia con grafici: orari di sonno, durata del sonno, momento del risveglio, fasi del sonno, stato d’animo.
+• Obiettivo di sonno, promemoria per la notte, routine serale, riepilogo settimanale e serie.
+• Note sul sonno (caffè, sport, stress …) per scoprire le correlazioni.
+• Suoni per addormentarsi: pioggia, mare, bosco di notte, ruscello, camino, ventilatore, rumore e onde per dormire – con timer.
+• Registra russare e parole nel sonno, se vuoi – solo sul tuo telefono.
+• Pisolino con risveglio nel sonno leggero.
+• Alba delicata sullo schermo prima della sveglia.
+• Fasi del sonno da Health Connect, se vuoi.
+
+I tuoi dati restano con te
+• Niente account, niente server, niente pubblicità, niente tracker.
+• Tutto resta sul telefono e sull’orologio. Backup come file cifrato con la tua password.
+
+Per tutti
+• 74 lingue, tema chiaro e scuro, pensato per persone daltoniche e lettori di schermo.
+• Gratis e open source: github.com/r1adBE/phaseWake
+
+Richiede un orologio Wear OS (ad es. Galaxy Watch) con l’app Phase Wake installata sull’orologio. Senza orologio, Phase Wake ti sveglia all’orario obiettivo sul telefono.
+
+Phase Wake non è un dispositivo medico.

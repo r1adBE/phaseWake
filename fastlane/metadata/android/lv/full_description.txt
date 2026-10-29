@@ -1,0 +1,36 @@
+Phase Wake tevi modina vieglā miegā, nevis dziļa miega vidū. Pēdējās minūtēs pirms modinātāja tavs viedpulkstenis mēra kustības un pulsu un modina tevi piemērotākajā brīdī modināšanas logā – vēlākais mērķa laikā.
+
+Kā tas darbojas
+• Izvēlies modināšanas laiku un logu (līdz 30 min), uzliec pulksteni, guli.
+• Pulkstenis mēra tikai modināšanas logā: taupa akumulatoru.
+• Vibrācija uz plaukstas locītavas, ja vēlies, arī ar skaņu – tālrunis zvana kā rezerves modinātājs, ja kaut kas noiet greizi.
+• Turi, lai apturētu, atliec līdz 3 reizēm.
+
+Lai tu neaizgulētos
+• Nakts pārbaude pirms gulētiešanas: pulkstenis savienots, atļaujas piešķirtas, akumulators pietiekami uzlādēts.
+• Testa modinātājs „Testēt pēc 2 minūtēm“ ar rezultātu soli pa solim.
+• Zvana arī režīmā „Netraucēt“ un gulētiešanas režīmā.
+• Izlaist nākamreiz un nemodināt svētku dienās – svētku dienas vairāk nekā 150 valstīm un to reģioniem, bezsaistē.
+
+Labāks miegs
+• Rīta pārskats: kad tevi pamodināja un kā jūties.
+• Vēsture ar diagrammām: gulētiešanas laiki, miega ilgums, pamošanās brīdis, miega fāzes, pašsajūta.
+• Miega mērķis, atgādinājums par gulētiešanu, vakara rituāls, nedēļas pārskats un sērijas.
+• Miega piezīmes (kafija, sports, stress …), lai saskatītu sakarības.
+• Miega skaņas: lietus, okeāns, mežs naktī, strautiņš, kamīns, ventilators, troksnis un miega viļņi – ar taimeri.
+• Ja vēlies, ieraksti krākšanu un runāšanu miegā – tikai tavā tālrunī.
+• Diendusa ar modināšanu vieglā miegā.
+• Maigs saullēkts ekrānā pirms modinātāja.
+• Miega fāzes no Health Connect, ja vēlies.
+
+Tavi dati paliek pie tevis
+• Nav konta, nav servera, nav reklāmu, nav izsekotāju.
+• Viss paliek tālrunī un pulkstenī. Dublējums kā šifrēts fails ar tavu paroli.
+
+Visiem
+• 74 valodas, gaišs un tumšs dizains, piemērots krāsu aklajiem un ekrāna lasītājiem.
+• Bez maksas un atvērtā koda: github.com/r1adBE/phaseWake
+
+Nepieciešams Wear OS pulkstenis (piem., Galaxy Watch) ar instalētu Phase Wake lietotni pulkstenī. Bez pulksteņa Phase Wake modina mērķa laikā tālrunī.
+
+Phase Wake nav medicīniska ierīce.

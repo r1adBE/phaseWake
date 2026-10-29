@@ -1,0 +1,36 @@
+Phase Wake herättää sinut kevyestä unesta eikä keskeltä syvää unta. Viimeisinä minuutteina ennen herätystä älykellosi mittaa liikettä ja sykettä ja herättää sinut parhaaseen aikaan aikaikkunasi sisällä – viimeistään tavoiteaikana.
+
+Näin se toimii
+• Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
+• Kello mittaa vain aikaikkunan aikana: säästää akkua.
+• Värinä ranteessa, halutessasi äänen kanssa – puhelin soi varaherätyksenä, jos jokin menee pieleen.
+• Pysäytä pitämällä painettuna, torkuta enintään 3 kertaa.
+
+Tehty, ettet nuku pommiin
+• Yötarkistus ennen nukkumaanmenoa: kello yhdistetty, luvat annettu, akkua riittävästi.
+• Testiherätys ”Testaa 2 minuutin päästä” ja tulos vaihe vaiheelta.
+• Soi myös Älä häiritse -tilassa ja nukkumaanmenotilassa.
+• Ohita seuraava kerta äläkä herätä juhlapäivinä – juhlapäivät yli 150 maalle ja niiden alueille, ilman internetiä.
+
+Nuku paremmin
+• Aamuraportti: milloin sinut herätettiin ja miltä sinusta tuntuu.
+• Historia kaavioineen: nukkumaanmenoajat, unen kesto, heräämishetki, univaiheet, vointi.
+• Unitavoite, nukkumaanmenomuistutus, iltarutiini, viikkokatsaus ja putket.
+• Unimuistiinpanot (kahvi, urheilu, stressi …) yhteyksien huomaamiseen.
+• Nukahtamisäänet: sade, meri, yömetsä, puro, takkatuli, tuuletin, kohina ja uniaallot – ajastimella.
+• Tallenna kuorsaus ja unipuhe halutessasi – vain puhelimeesi.
+• Päiväunet, joilta herätään kevyessä unessa.
+• Lempeä auringonnousu näytöllä ennen herätystä.
+• Univaiheet Health Connectista, jos haluat.
+
+Tietosi pysyvät sinulla
+• Ei tiliä, ei palvelinta, ei mainoksia, ei seurantaa.
+• Kaikki pysyy puhelimessa ja kellossa. Varmuuskopio salattuna tiedostona omalla salasanallasi.
+
+Kaikille
+• 74 kieltä, vaalea ja tumma ulkoasu, tehty värisokeille ja ruudunlukijoille.
+• Ilmainen ja avointa lähdekoodia: github.com/r1adBE/phaseWake
+
+Vaatii Wear OS -kellon (esim. Galaxy Watch), johon on asennettu Phase Wake -sovellus. Ilman kelloa Phase Wake herättää sinut tavoiteaikana puhelimella.
+
+Phase Wake ei ole lääkinnällinen laite.

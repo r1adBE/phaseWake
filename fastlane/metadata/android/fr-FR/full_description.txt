@@ -1,0 +1,36 @@
+Phase Wake te réveille en sommeil léger plutôt qu’en plein sommeil profond. Dans les dernières minutes avant l’alarme, ta montre connectée mesure les mouvements et le pouls, et te réveille au meilleur moment dans ta plage de réveil – au plus tard à l’heure cible.
+
+Comment ça marche
+• Choisis ton heure de réveil et ta plage (jusqu’à 30 min), mets ta montre, dors.
+• La montre ne mesure que pendant la plage de réveil : économe en batterie.
+• Vibration au poignet, avec son si tu veux – ton téléphone sonne en alarme de secours au cas où quelque chose tournerait mal.
+• Maintiens pour arrêter, rappel jusqu’à 3 fois.
+
+Conçu pour que tu ne rates pas ton réveil
+• Contrôle de nuit avant de dormir : montre connectée, autorisations accordées, batterie suffisante.
+• Réveil test « Tester dans 2 minutes » avec résultat étape par étape.
+• Sonne même en mode Ne pas déranger et en mode coucher.
+• Sauter la prochaine fois et ne pas réveiller les jours fériés – jours fériés de plus de 150 pays et de leurs régions, hors ligne.
+
+Mieux dormir
+• Bilan du matin : l’heure de ton réveil et comment tu te sens.
+• Historique avec graphiques : heures de coucher, durée du sommeil, moment du réveil, phases de sommeil, ressenti.
+• Objectif de sommeil, rappel du coucher, routine du soir, bilan de la semaine et séries.
+• Notes de sommeil (café, sport, stress …) pour repérer les tendances.
+• Sons pour s’endormir : pluie, mer, forêt la nuit, ruisseau, feu de cheminée, ventilateur, bruit et ondes pour dormir – avec minuteur.
+• Enregistre tes ronflements et tes paroles pendant le sommeil si tu veux – uniquement sur ton téléphone.
+• Sieste qui te réveille en sommeil léger.
+• Lever de soleil doux à l’écran avant l’alarme.
+• Phases de sommeil depuis Health Connect, si tu veux.
+
+Tes données restent chez toi
+• Pas de compte, pas de serveur, pas de pub, pas de traqueurs.
+• Tout reste sur ton téléphone et ta montre. Sauvegarde sous forme de fichier chiffré avec ton mot de passe.
+
+Pour tout le monde
+• 74 langues, thème clair et sombre, conçu pour les personnes daltoniennes et les lecteurs d’écran.
+• Gratuit et open source : github.com/r1adBE/phaseWake
+
+Nécessite une montre Wear OS (par ex. Galaxy Watch) avec l’app Phase Wake installée sur la montre. Sans montre, Phase Wake te réveille à l’heure cible sur ton téléphone.
+
+Phase Wake n’est pas un dispositif médical.

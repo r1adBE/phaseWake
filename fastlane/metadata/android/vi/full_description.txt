@@ -1,0 +1,36 @@
+Phase Wake đánh thức bạn khi ngủ nông thay vì giữa giấc ngủ sâu. Trong những phút cuối trước giờ báo thức, đồng hồ thông minh đo chuyển động và nhịp tim rồi đánh thức bạn vào thời điểm tốt nhất trong khoảng đánh thức – muộn nhất là đúng giờ mục tiêu.
+
+Cách hoạt động
+• Chọn giờ thức dậy và khoảng đánh thức (tối đa 30 phút), đeo đồng hồ, đi ngủ.
+• Đồng hồ chỉ đo trong khoảng đánh thức: tiết kiệm pin.
+• Rung trên cổ tay, có âm thanh nếu muốn – điện thoại đổ chuông làm báo thức dự phòng phòng khi có sự cố.
+• Giữ để tắt, báo lại tối đa 3 lần.
+
+Để bạn không ngủ quên
+• Kiểm tra ban đêm trước khi ngủ: đồng hồ đã kết nối, đã cấp quyền, pin đủ.
+• Thử báo thức “Thử sau 2 phút” với kết quả từng bước.
+• Vẫn đổ chuông khi bật Không làm phiền và chế độ giờ đi ngủ.
+• Bỏ qua lần tới và không đánh thức vào ngày lễ – ngày lễ của hơn 150 quốc gia và khu vực, không cần internet.
+
+Ngủ ngon hơn
+• Báo cáo buổi sáng: bạn được đánh thức lúc nào và cảm thấy thế nào.
+• Lịch sử với biểu đồ: giờ ngủ, thời lượng ngủ, thời điểm thức dậy, các giai đoạn ngủ, cảm giác.
+• Mục tiêu ngủ, nhắc giờ đi ngủ, thói quen buổi tối, tổng kết tuần và chuỗi ngày.
+• Ghi chú giấc ngủ (cà phê, thể thao, căng thẳng …) để nhận ra quy luật.
+• Âm thanh ru ngủ: mưa, biển, rừng đêm, suối, lò sưởi, quạt, tiếng ồn và sóng ru ngủ – có hẹn giờ.
+• Ghi âm tiếng ngáy và nói mớ nếu bạn muốn – chỉ trên điện thoại của bạn.
+• Ngủ trưa và được đánh thức khi ngủ nông.
+• Bình minh dịu nhẹ trên màn hình trước giờ báo thức.
+• Các giai đoạn ngủ từ Health Connect, nếu bạn muốn.
+
+Dữ liệu của bạn ở lại với bạn
+• Không tài khoản, không máy chủ, không quảng cáo, không trình theo dõi.
+• Mọi thứ nằm trên điện thoại và đồng hồ của bạn. Sao lưu thành tệp mã hóa bằng mật khẩu của bạn.
+
+Cho mọi người
+• 74 ngôn ngữ, giao diện sáng và tối, phù hợp với người mù màu và trình đọc màn hình.
+• Miễn phí và mã nguồn mở: github.com/r1adBE/phaseWake
+
+Cần đồng hồ Wear OS (ví dụ Galaxy Watch) đã cài ứng dụng Phase Wake. Không có đồng hồ, Phase Wake đánh thức bạn đúng giờ mục tiêu trên điện thoại.
+
+Phase Wake không phải là thiết bị y tế.

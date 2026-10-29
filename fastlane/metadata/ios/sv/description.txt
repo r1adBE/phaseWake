@@ -1,0 +1,36 @@
+Phase Wake väcker dig i lätt sömn i stället för mitt i djupsömnen. Under de sista minuterna före larmet mäter din Apple Watch rörelse och puls och väcker dig vid bästa tillfället inom ditt väckningsfönster – senast vid den inställda tiden.
+
+Så fungerar det
+• Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
+• Klockan mäter bara under väckningsfönstret: skonsamt för batteriet.
+• Vibration på handleden, med ljud om du vill – iPhone ringer som reservlarm om något går fel.
+• Håll in för att stänga av, snooze upp till 3 gånger.
+
+Gjord för att du inte ska försova dig
+• Nattkontroll före sänggåendet: klocka ansluten, behörigheter givna, tillräckligt med batteri.
+• Testa väckarklockan: ”Testa om 2 minuter” med resultat steg för steg.
+• Reservlarmet på iPhone ringer även i Stör ej och i fokusläget Sömn.
+• Hoppa över nästa gång och väck inte på helgdagar – helgdagar för över 150 länder och deras regioner, offline.
+
+Sov bättre
+• Morgonrapport: när du väcktes och hur du mår.
+• Historik med diagram: sovtider, sömnlängd, väckningsögonblick, sömnfaser, känsla.
+• Sömnmål, påminnelse om läggdags, kvällsrutin, veckoöversikt och sviter.
+• Sömnanteckningar (kaffe, träning, stress …) för att se mönster.
+• Insomningsljud: regn, hav, skog om natten, bäck, brasa, fläkt, brus och sömnvågor – med timer.
+• Spela in snarkning och sömnprat om du vill – bara på din iPhone.
+• Tupplur som väcker dig i lätt sömn.
+• Mjuk soluppgång i nattduksbordsläget före larmet.
+• Sömnfaser från Apple Health, om du vill.
+
+Dina data stannar hos dig
+• Inget konto, ingen server, ingen reklam, inga spårare.
+• Allt stannar på iPhone och klockan. Säkerhetskopia som krypterad fil med ditt lösenord.
+
+För alla
+• 74 språk, ljust och mörkt utseende, gjord för färgblinda och skärmläsare.
+• Gratis och öppen källkod: github.com/r1adBE/phaseWake
+
+Kräver en Apple Watch för att väcka dig i lätt sömn; klockappen ingår. Utan klocka väcker Phase Wake dig vid den inställda tiden på iPhone.
+
+Phase Wake är inte en medicinteknisk produkt.

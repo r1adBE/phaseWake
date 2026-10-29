@@ -1,0 +1,36 @@
+Phase Wake espértate no sono lixeiro en vez de no medio do sono profundo. Nos últimos minutos antes da alarma, o teu reloxo intelixente mide o movemento e o pulso e espértate no momento máis axeitado dentro da xanela de espertar – como moi tarde á hora prevista.
+
+Como funciona
+• Escolle a hora e a xanela de espertar (ata 30 min), pon o reloxo e dorme.
+• O reloxo só mide durante a xanela de espertar: aforra batería.
+• Vibración no pulso, con son se queres – o teléfono soa como alarma de reserva por se algo falla.
+• Mantén premido para parar, adia ata 3 veces.
+
+Para que non se che peguen as sabas
+• Comprobación nocturna antes de durmir: reloxo conectado, permisos concedidos, batería suficiente.
+• Alarma de proba «Probar en 2 minutos» co resultado paso a paso.
+• Soa mesmo con «Non molestar» e co modo hora de durmir.
+• Omitir a próxima e non espertar nos festivos – festivos de máis de 150 países e as súas rexións, sen conexión.
+
+Durme mellor
+• Informe da mañá: cando te espertou e como te sentes.
+• Historial con gráficos: horas de sono, duración do sono, momento de espertar, fases do sono, estado.
+• Obxectivo de sono, recordatorio para deitarte, rutina nocturna, resumo semanal e rachas.
+• Notas do sono (café, deporte, estrés …) para descubrir relacións.
+• Sons para durmir: choiva, océano, bosque de noite, regato, lareira, ventilador, ruído e ondas para durmir – con temporizador.
+• Grava os roncos e o falar en soños se queres – só no teu teléfono.
+• Sesta curta con espertar no sono lixeiro.
+• Amencer suave na pantalla antes da alarma.
+• Fases do sono de Health Connect, se queres.
+
+Os teus datos quedan contigo
+• Sen conta, sen servidor, sen anuncios, sen rastrexadores.
+• Todo queda no teléfono e no reloxo. Copia de seguranza como ficheiro cifrado co teu contrasinal.
+
+Para todos
+• 74 idiomas, deseño claro e escuro, pensado para persoas daltónicas e lectores de pantalla.
+• De balde e de código aberto: github.com/r1adBE/phaseWake
+
+Necesita un reloxo con Wear OS (p. ex. Galaxy Watch) coa app Phase Wake instalada no reloxo. Sen reloxo, Phase Wake espértate á hora prevista no teléfono.
+
+Phase Wake non é un produto sanitario.

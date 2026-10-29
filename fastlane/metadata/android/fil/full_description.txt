@@ -1,0 +1,36 @@
+Ginigising ka ng Phase Wake sa mababaw na tulog sa halip na sa gitna ng malalim na tulog. Sa huling mga minuto bago ang alarm mo, sinusukat ng smartwatch mo ang galaw at heart rate, at ginigising ka nito sa pinakaangkop na sandali sa loob ng window ng paggising – pinakahuli sa target na oras.
+
+Paano ito gumagana
+• Piliin ang oras ng paggising at ang window (hanggang 30 min), isuot ang relo, matulog.
+• Sumusukat lang ang relo sa loob ng window ng paggising: tipid sa baterya.
+• Vibration sa pulso, may tunog kung gusto mo – tutunog ang telepono mo bilang backup na alarm kung sakaling may magkaproblema.
+• Pindutin nang matagal para ihinto, mag-snooze hanggang 3 beses.
+
+Ginawa para hindi ka ma-late ng gising
+• Pagsusuri bago matulog: nakakonekta ang relo, naibigay ang mga pahintulot, sapat ang baterya.
+• Test na alarm na "I-test sa loob ng 2 minuto" na may resulta nang hakbang-hakbang.
+• Tumutunog kahit naka-Huwag Istorbohin o naka-bedtime mode.
+• Laktawan sa susunod at huwag manggising tuwing holiday – mga holiday ng mahigit 150 bansa at ng kanilang mga rehiyon, offline.
+
+Mas mahimbing na tulog
+• Ulat sa umaga: kailan ka ginising at ano ang pakiramdam mo.
+• Kasaysayan na may mga chart: oras ng pagtulog, haba ng tulog, sandali ng paggising, mga yugto ng tulog, pakiramdam.
+• Layunin sa tulog, paalala sa oras ng pagtulog, routine sa gabi, lingguhang buod at sunod-sunod na gabi.
+• Mga tala sa tulog (kape, sports, stress …) para makita ang mga pattern.
+• Mga tunog pampatulog: ulan, dagat, gubat sa gabi, batis, fireplace, bentilador, ingay at mga alon ng tulog – may timer.
+• I-record ang hilik at pagsasalita habang tulog kung gusto mo – sa telepono mo lang.
+• Power nap na gumigising sa iyo sa mababaw na tulog.
+• Banayad na pagsikat ng araw sa screen bago ang alarm.
+• Mga yugto ng tulog mula sa Health Connect, kung gusto mo.
+
+Sa iyo lang ang data mo
+• Walang account, walang server, walang ads, walang tracker.
+• Nananatili ang lahat sa telepono at relo mo. Backup bilang naka-encrypt na file na may password mo.
+
+Para sa lahat
+• 74 na wika, maliwanag at madilim na disenyo, ginawa para sa mga color-blind at sa mga screen reader.
+• Libre at open source: github.com/r1adBE/phaseWake
+
+Kailangan ng relong Wear OS (hal. Galaxy Watch) na may naka-install na Phase Wake app sa relo. Kung walang relo, ginigising ka ng Phase Wake sa target na oras sa telepono mo.
+
+Hindi medical device ang Phase Wake.

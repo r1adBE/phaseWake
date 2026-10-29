@@ -1,0 +1,36 @@
+Phase Wake pažadina tave lengvo miego metu, o ne gilaus miego viduryje. Paskutinėmis minutėmis prieš žadintuvą tavo išmanusis laikrodis matuoja judesius ir pulsą ir pažadina tave tinkamiausiu momentu žadinimo lange – vėliausiai tiksliniu laiku.
+
+Kaip tai veikia
+• Pasirink žadinimo laiką ir žadinimo langą (iki 30 min), užsidėk laikrodį, miegok.
+• Laikrodis matuoja tik žadinimo lange: tausoja bateriją.
+• Vibracija ant riešo, jei nori – ir su garsu; telefonas suskamba kaip atsarginis žadintuvas, jei kas nors nepavyktų.
+• Laikyk, kad sustabdytum, atidėk iki 3 kartų.
+
+Kad nepramiegotum
+• Nakties patikra prieš miegą: laikrodis prijungtas, leidimai suteikti, baterija pakankamai įkrauta.
+• Bandomasis žadintuvas „Išbandyti po 2 minučių“ su rezultatu žingsnis po žingsnio.
+• Skamba net ir įjungus „Netrukdyti“ bei miego režimą.
+• Praleisti kitą kartą ir nežadinti per šventes – daugiau nei 150 šalių ir jų regionų šventės, be interneto.
+
+Geresnis miegas
+• Rytinė ataskaita: kada tave pažadino ir kaip jautiesi.
+• Istorija su diagramomis: miego laikas, miego trukmė, pažadinimo momentas, miego fazės, savijauta.
+• Miego tikslas, priminimas eiti miegoti, vakaro ritualas, savaitės apžvalga ir serijos.
+• Miego pastabos (kava, sportas, stresas …), kad pamatytum sąsajas.
+• Miego garsai: lietus, vandenynas, miškas naktį, upelis, židinys, ventiliatorius, triukšmas ir miego bangos – su laikmačiu.
+• Jei nori, įrašyk knarkimą ir kalbėjimą per miegus – tik savo telefone.
+• Pogulis su pažadinimu lengvo miego metu.
+• Švelnus saulėtekis ekrane prieš žadintuvą.
+• Miego fazės iš Health Connect, jei nori.
+
+Tavo duomenys lieka pas tave
+• Jokios paskyros, jokio serverio, jokių reklamų, jokių sekiklių.
+• Viskas lieka telefone ir laikrodyje. Atsarginė kopija – šifruotas failas su tavo slaptažodžiu.
+
+Visiems
+• 74 kalbos, šviesus ir tamsus dizainas, pritaikyta neskiriantiems spalvų ir ekrano skaitytuvams.
+• Nemokama ir atvirojo kodo: github.com/r1adBE/phaseWake
+
+Reikalingas Wear OS laikrodis (pvz., Galaxy Watch) su įdiegta Phase Wake programėle laikrodyje. Be laikrodžio Phase Wake pažadina tiksliniu laiku telefone.
+
+Phase Wake nėra medicinos priemonė.

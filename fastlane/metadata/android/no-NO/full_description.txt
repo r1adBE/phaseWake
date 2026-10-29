@@ -1,0 +1,36 @@
+Phase Wake vekker deg i lett søvn i stedet for midt i dyp søvn. De siste minuttene før alarmen måler smartklokka di bevegelse og puls og vekker deg i det beste øyeblikket innenfor vekkevinduet – senest på ønsket tid.
+
+Slik fungerer det
+• Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
+• Klokka måler bare i vekkevinduet: skåner batteriet.
+• Vibrasjon på håndleddet, med lyd om du vil – telefonen ringer i tillegg som reservealarm hvis noe går galt.
+• Hold for å stoppe, slumre opptil 3 ganger.
+
+Laget så du ikke forsover deg
+• Nattsjekk før leggetid: klokka tilkoblet, tillatelser gitt, nok batteri.
+• Testalarm «Test om 2 minutter» med resultat steg for steg.
+• Ringer også med Ikke forstyrr og sengetidsmodus.
+• Hopp over neste gang, og ikke vekk på helligdager – helligdager for over 150 land og deres regioner, uten nett.
+
+Sov bedre
+• Morgenrapport: når du ble vekket og hvordan du har det.
+• Historikk med diagrammer: leggetider, søvnlengde, vekkeøyeblikk, søvnfaser, dagsform.
+• Søvnmål, påminnelse om leggetid, kveldsrutine, ukeoversikt og rekker.
+• Søvnnotater (kaffe, trening, stress …) for å se sammenhenger.
+• Innsovningslyder: regn, hav, skog om natten, bekk, peis, vifte, støy og søvnbølger – med tidtaker.
+• Ta opp snorking og søvnprat om du vil – bare på telefonen din.
+• Hvil med vekking i lett søvn.
+• Mild soloppgang på skjermen før alarmen.
+• Søvnfaser fra Health Connect, om du vil.
+
+Dataene dine blir hos deg
+• Ingen konto, ingen server, ingen reklame, ingen sporere.
+• Alt blir på telefonen og klokka. Sikkerhetskopi som kryptert fil med passordet ditt.
+
+For alle
+• 74 språk, lyst og mørkt design, laget for fargeblinde og skjermlesere.
+• Gratis og åpen kildekode: github.com/r1adBE/phaseWake
+
+Krever en Wear OS-klokke (f.eks. Galaxy Watch) med Phase Wake-appen installert på klokka. Uten klokke vekker Phase Wake deg på ønsket tid på telefonen.
+
+Phase Wake er ikke medisinsk utstyr.

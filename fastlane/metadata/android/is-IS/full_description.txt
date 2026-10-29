@@ -1,0 +1,36 @@
+Phase Wake vekur þig í léttum svefni í stað þess að vekja þig úr djúpsvefni. Síðustu mínúturnar fyrir vekjarann mælir snjallúrið hreyfingu og púls og vekur þig á heppilegasta augnablikinu innan vakningargluggans – í síðasta lagi á markmiðstíma.
+
+Svona virkar það
+• Veldu vakningartíma og glugga (allt að 30 mín), settu upp úrið, sofðu.
+• Úrið mælir aðeins í vakningarglugganum: sparar rafhlöðuna.
+• Titringur á úlnliðnum, með hljóði ef þú vilt – síminn hringir sem varavekjari ef eitthvað fer úrskeiðis.
+• Haltu inni til að stöðva, blundaðu allt að 3 sinnum.
+
+Svo þú sofir ekki yfir þig
+• Næturathugun fyrir svefn: úr tengt, heimildir veittar, næg hleðsla á rafhlöðu.
+• Prufuvekjari „Prófa eftir 2 mínútur“ með niðurstöðu skref fyrir skref.
+• Hringir líka í „Ónáðið ekki“ og háttatímastillingu.
+• Sleppa næst og ekki vekja á frídögum – frídagar fyrir yfir 150 lönd og svæði þeirra, án nettengingar.
+
+Betri svefn
+• Morgunskýrsla: hvenær vekjarinn vakti þig og hvernig þér líður.
+• Ferill með gröfum: háttatími, svefnlengd, vakningarstund, svefnstig, líðan.
+• Svefnmarkmið, áminning um háttatíma, kvöldrútína, vikuyfirlit og raðir.
+• Svefnathugasemdir (kaffi, hreyfing, streita …) til að sjá samhengi.
+• Svefnhljóð: rigning, haf, skógur að nóttu, lækur, arinn, vifta, suð og svefnbylgjur – með tímastilli.
+• Taktu upp hrotur og svefntal ef þú vilt – bara í símanum þínum.
+• Kríublundur með vakningu í léttum svefni.
+• Mjúk sólarupprás á skjánum fyrir vekjarann.
+• Svefnstig úr Health Connect, ef þú vilt.
+
+Gögnin þín eru hjá þér
+• Enginn aðgangur, enginn þjónn, engar auglýsingar, engir rekjarar.
+• Allt er áfram í símanum og úrinu. Afrit sem dulkóðuð skrá með lykilorðinu þínu.
+
+Fyrir alla
+• 74 tungumál, ljóst og dökkt útlit, gert fyrir litblinda og skjálesara.
+• Ókeypis og opinn hugbúnaður: github.com/r1adBE/phaseWake
+
+Krefst Wear OS-úrs (t.d. Galaxy Watch) með Phase Wake-appinu uppsettu á úrinu. Án úrs vekur Phase Wake þig á markmiðstíma í símanum.
+
+Phase Wake er ekki lækningatæki.

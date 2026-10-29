@@ -1,0 +1,36 @@
+Phase Wake te budi u laganom snu umjesto usred dubokog sna. U posljednjim minutama prije alarma pametni sat mjeri pokrete i puls i budi te u najboljem trenutku unutar intervala buđenja – najkasnije u ciljno vrijeme.
+
+Kako radi
+• Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
+• Sat mjeri samo tijekom intervala buđenja: štedi bateriju.
+• Vibracija na zapešću, po želji i sa zvukom – telefon zvoni kao rezervni alarm ako nešto pođe po zlu.
+• Drži za zaustavljanje, odgodi do 3 puta.
+
+Napravljeno da se ne uspavaš
+• Noćna provjera prije spavanja: sat povezan, dopuštenja dana, baterija dovoljno puna.
+• Probni alarm „Testiraj za 2 minute“ s rezultatom korak po korak.
+• Zvoni i uz „Ne uznemiravaj“ i u načinu za spavanje.
+• Preskoči sljedeći put i ne budi na praznike – praznici za više od 150 zemalja i njihove regije, bez interneta.
+
+Spavaj bolje
+• Jutarnje izvješće: kada si probuđen i kako se osjećaš.
+• Povijest s grafikonima: vrijeme odlaska na spavanje, trajanje sna, trenutak buđenja, faze sna, osjećaj.
+• Cilj spavanja, podsjetnik za spavanje, večernja rutina, tjedni pregled i nizovi.
+• Bilješke o snu (kava, sport, stres …) za uočavanje obrazaca.
+• Zvukovi za spavanje: kiša, more, šuma noću, potok, vatra u kaminu, ventilator, šum i valovi za san – s mjeračem vremena.
+• Snimaj hrkanje i govor u snu ako želiš – samo na tvom telefonu.
+• Kratki drijemež s buđenjem u laganom snu.
+• Nježan izlazak sunca na zaslonu prije alarma.
+• Faze sna iz Health Connecta, ako želiš.
+
+Tvoji podaci ostaju kod tebe
+• Bez računa, bez poslužitelja, bez oglasa, bez alata za praćenje.
+• Sve ostaje na telefonu i satu. Sigurnosna kopija kao šifrirana datoteka s tvojom lozinkom.
+
+Za sve
+• 74 jezika, svijetli i tamni izgled, prilagođeno daltonistima i čitačima zaslona.
+• Besplatno i otvorenog koda: github.com/r1adBE/phaseWake
+
+Potreban je sat s Wear OS-om (npr. Galaxy Watch) s instaliranom aplikacijom Phase Wake. Bez sata Phase Wake te budi u ciljno vrijeme na telefonu.
+
+Phase Wake nije medicinski proizvod.

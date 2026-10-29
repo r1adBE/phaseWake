@@ -1,0 +1,36 @@
+O Phase Wake acorda você no sono leve, e não no meio do sono profundo. Nos últimos minutos antes do alarme, seu Apple Watch mede movimento e frequência cardíaca e acorda você no melhor momento dentro da sua janela de despertar – no máximo no horário-alvo.
+
+Como funciona
+• Escolha o horário e a janela de despertar (até 30 min), coloque o relógio e durma.
+• O relógio só mede durante a janela de despertar: poupa a bateria.
+• Vibração no pulso, com som se quiser – o iPhone toca como alarme reserva caso algo dê errado.
+• Segure para parar; soneca até 3 vezes.
+
+Feito para você não perder a hora
+• Verificação noturna antes de dormir: relógio conectado, permissões concedidas, bateria suficiente.
+• Testar o alarme: “Testar em 2 minutos”, com resultado passo a passo.
+• O alarme reserva no iPhone toca mesmo com Não perturbe e no foco Sono.
+• Pular na próxima vez e não acordar em feriados – feriados de mais de 150 países e suas regiões, sem internet.
+
+Durma melhor
+• Relatório da manhã: quando você foi acordado e como se sente.
+• Histórico com gráficos: horários de sono, duração do sono, momento do despertar, fases do sono, sensação.
+• Meta de sono, lembrete de dormir, rotina da noite, resumo semanal e sequências.
+• Notas de sono (café, esporte, estresse …) para perceber padrões.
+• Sons para adormecer: chuva, mar, floresta à noite, riacho, lareira, ventilador, ruído e ondas para dormir – com temporizador.
+• Grave ronco e fala durante o sono, se quiser – só no seu iPhone.
+• Soneca (cochilo) que acorda você no sono leve.
+• Nascer do sol suave no modo de mesa de cabeceira antes do alarme.
+• Fases do sono do Apple Health, se você quiser.
+
+Seus dados ficam com você
+• Sem conta, sem servidor, sem anúncios, sem rastreadores.
+• Tudo fica no seu iPhone e no relógio. Backup como arquivo criptografado com a sua senha.
+
+Para todos
+• 74 idiomas, design claro e escuro, pensado para daltônicos e leitores de tela.
+• Grátis e de código aberto: github.com/r1adBE/phaseWake
+
+Requer um Apple Watch para acordar você no sono leve; o app para o relógio está incluído. Sem relógio, o Phase Wake acorda você no horário-alvo no iPhone.
+
+O Phase Wake não é um dispositivo médico.

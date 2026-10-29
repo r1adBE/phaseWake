@@ -1,0 +1,36 @@
+Phase Wake te trezește în somn ușor, nu în mijlocul somnului profund. În ultimele minute dinaintea alarmei, Apple Watch-ul tău măsoară mișcarea și pulsul și te trezește în cel mai bun moment din intervalul de trezire – cel târziu la ora țintă.
+
+Cum funcționează
+• Alege ora de trezire și intervalul (până la 30 min), pune-ți ceasul, dormi.
+• Ceasul măsoară doar în intervalul de trezire: cruță bateria.
+• Vibrație la încheietură, cu sunet dacă vrei – iPhone-ul sună ca alarmă de rezervă, în caz că ceva nu merge.
+• Ține apăsat pentru oprire, amânare de până la 3 ori.
+
+Gândit ca să nu dormi peste ora de trezire
+• Verificarea de noapte înainte de culcare: ceas conectat, permisiuni acordate, baterie suficientă.
+• Testează alarma: „Testează în 2 minute”, cu rezultat pas cu pas.
+• Alarma de rezervă de pe iPhone sună și în modul Nu deranja și în modul de concentrare Somn.
+• Sari data viitoare și nu trezi în sărbători – sărbători pentru peste 150 de țări și regiunile lor, fără internet.
+
+Dormi mai bine
+• Raportul de dimineață: când ai fost trezit și cum te simți.
+• Istoric cu grafice: orele de culcare, durata somnului, momentul trezirii, fazele somnului, starea.
+• Obiectiv de somn, memento de culcare, rutina de seară, rezumatul săptămânii și serii.
+• Notițe de somn (cafea, sport, stres …) ca să vezi tiparele.
+• Sunete pentru adormit: ploaie, mare, pădure noaptea, pârâu, foc în șemineu, ventilator, zgomot și unde pentru somn – cu temporizator.
+• Înregistrează sforăitul și vorbitul în somn, dacă vrei – doar pe iPhone-ul tău.
+• Pui de somn cu trezire în somn ușor.
+• Răsărit blând în modul noptieră înainte de alarmă.
+• Fazele somnului din Apple Health, dacă vrei.
+
+Datele tale rămân la tine
+• Fără cont, fără server, fără reclame, fără trackere.
+• Totul rămâne pe iPhone și pe ceas. Copie de rezervă ca fișier criptat cu parola ta.
+
+Pentru toți
+• 74 de limbi, temă luminoasă și întunecată, gândit pentru daltoniști și cititoare de ecran.
+• Gratuit și open source: github.com/r1adBE/phaseWake
+
+Necesită un Apple Watch pentru trezirea în somn ușor; aplicația pentru ceas este inclusă. Fără ceas, Phase Wake te trezește la ora țintă pe iPhone.
+
+Phase Wake nu este un dispozitiv medical.

@@ -1,0 +1,36 @@
+Phase Wake et desperta en son lleuger en lloc de fer-ho enmig del son profund. Durant els últims minuts abans de l’alarma, el teu Apple Watch mesura el moviment i el pols i et desperta en el moment més adequat dins de la finestra de despertar – com a molt tard a l’hora objectiu.
+
+Com funciona
+• Tria l’hora i la finestra de despertar (fins a 30 min), posa’t el rellotge i dorm.
+• El rellotge només mesura durant la finestra de despertar: estalvia bateria.
+• Vibració al canell, amb so si vols – l’iPhone sona com a alarma de reserva per si alguna cosa falla.
+• Mantén premut per aturar, posposa fins a 3 vegades.
+
+Perquè no se t’enganxin els llençols
+• Control nocturn abans de dormir: rellotge connectat, permisos concedits, bateria prou carregada.
+• Alarma de prova «Prova d’aquí a 2 minuts» amb el resultat pas a pas.
+• L’alarma de reserva de l’iPhone sona fins i tot amb «No molestis» i amb la concentració Son.
+• Omet la propera vegada i no despertis els festius – festius de més de 150 països i les seves regions, sense connexió.
+
+Dorm millor
+• Informe del matí: quan t’ha despertat i com et sents.
+• Historial amb gràfics: hores de son, durada del son, moment del despertar, fases del son, estat.
+• Objectiu de son, recordatori d’anar a dormir, rutina del vespre, resum setmanal i ratxes.
+• Notes del son (cafè, esport, estrès …) per descobrir relacions.
+• Sons per dormir: pluja, mar, bosc de nit, rierol, llar de foc, ventilador, soroll i ones per dormir – amb temporitzador.
+• Enregistra els roncs i el parlar en somnis si vols – només al teu iPhone.
+• Becaina amb despertar en son lleuger.
+• Sortida del sol suau en el mode tauleta de nit abans de l’alarma.
+• Fases del son de Salut d’Apple, si vols.
+
+Les teves dades es queden amb tu
+• Sense compte, sense servidor, sense anuncis, sense rastrejadors.
+• Tot es queda a l’iPhone i al rellotge. Còpia de seguretat com a fitxer xifrat amb la teva contrasenya.
+
+Per a tothom
+• 74 idiomes, disseny clar i fosc, pensat per a persones daltòniques i lectors de pantalla.
+• Gratuïta i de codi obert: github.com/r1adBE/phaseWake
+
+Cal un Apple Watch per despertar-te en son lleuger; l’app del rellotge està inclosa. Sense rellotge, Phase Wake et desperta a l’hora objectiu a l’iPhone.
+
+Phase Wake no és un producte sanitari.

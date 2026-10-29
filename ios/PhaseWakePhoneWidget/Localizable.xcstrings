@@ -13878,7 +13878,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寢時間前 %1$lld 分鐘提醒你:鬧鐘時間減去睡眠目標。"
+            "value": "在就寢時間前 %1$lld 分鐘提醒你：鬧鐘時間減去睡眠目標。"
           }
         },
         "zu": {
@@ -24630,7 +24630,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "時間範圍內的喚醒時刻"
+            "value": "喚醒時段內的醒來時刻"
           }
         },
         "zu": {
@@ -25078,7 +25078,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "喚醒時間範圍"
+            "value": "喚醒時段"
           }
         },
         "zu": {
@@ -56230,7 +56230,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在最近 %2$lld 個夜晚中，有 %1$lld 個夜晚視窗內沒有淺眠。設為 %3$lld 分鐘，你會更容易在合適的時刻醒來。"
+            "value": "在最近 %2$lld 個夜晚中，有 %1$lld 個夜晚喚醒時段內沒有淺眠。設為 %3$lld 分鐘，你會更容易在合適的時刻醒來。"
           }
         },
         "zu": {
@@ -56722,7 +56722,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "提示：使用更大的視窗"
+            "value": "提示：加長喚醒時段"
           }
         },
         "zu": {
@@ -71200,7 +71200,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "隨時間範圍開始，到目標時間達到最亮。"
+            "value": "隨喚醒時段開始，到目標時間達到最亮。"
           }
         },
         "zu": {
@@ -72992,7 +72992,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "時間範圍：%1$lld 分鐘"
+            "value": "喚醒時段：%1$lld 分鐘"
           }
         },
         "zu": {
@@ -78368,7 +78368,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "計入每週統計,並決定你的就寢時間。"
+            "value": "計入每週統計，並決定你的就寢時間。"
           }
         },
         "zu": {
@@ -80258,7 +80258,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "達成睡眠目標:%2$lld 晚中 %1$lld 晚"
+            "value": "達成睡眠目標：%2$lld 晚中 %1$lld 晚"
           }
         },
         "zu": {
@@ -101030,7 +101030,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "設定一個時間和一段時間範圍。你睡得淺時，手錶會叫醒你。"
+            "value": "設定一個時間和喚醒時段。你睡得淺時，手錶會叫醒你。"
           }
         },
         "zu": {
@@ -101926,7 +101926,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "時間範圍執行中——正在偵測"
+            "value": "喚醒時段進行中——正在偵測"
           }
         },
         "zu": {
@@ -114612,7 +114612,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "最多 %1$lld 則自訂備註,例如「冥想」。"
+            "value": "最多 %1$lld 則自訂備註，例如「冥想」。"
           }
         },
         "zu": {
@@ -115956,7 +115956,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "記錄幾個晚上,就能在這裡看到什麼有影響。"
+            "value": "記錄幾個晚上，就能在這裡看到什麼有影響。"
           }
         },
         "zu": {
@@ -116950,7 +116950,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "「%1$@」之後感受 %2$@(%3$lld 晚 對 %4$lld 晚)"
+            "value": "「%1$@」之後感受 %2$@（%3$lld 晚 對 %4$lld 晚）"
           }
         },
         "zu": {
@@ -119234,7 +119234,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "備註:%1$@"
+            "value": "備註：%1$@"
           }
         },
         "zu": {
@@ -120578,7 +120578,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你最晚想幾點醒來？如果睡得淺，手錶會在窗口內更早叫醒你。"
+            "value": "你最晚想幾點醒來？如果睡得淺，手錶會在喚醒時段內更早叫醒你。"
           }
         },
         "zu": {
@@ -127298,7 +127298,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "當你睡得淺時，Phase Wake 會在你的時間窗口內叫醒你。手錶負責測量，手機也會響。"
+            "value": "當你睡得淺時，Phase Wake 會在你的喚醒時段內叫醒你。手錶負責測量，手機也會響。"
           }
         },
         "zu": {
@@ -129090,7 +129090,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "時間範圍內沒有測量資料"
+            "value": "喚醒時段內沒有測量資料"
           }
         },
         "zu": {
@@ -167148,7 +167148,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "以媒體音量播放,最遲在你的喚醒時段開始時停止。"
+            "value": "以媒體音量播放，最遲在你的喚醒時段開始時停止。"
           }
         },
         "zu": {
@@ -175212,7 +175212,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "從時間範圍起"
+            "value": "從喚醒時段起"
           }
         },
         "zu": {
@@ -177004,7 +177004,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 分鐘後依你下一個鬧鐘的設定響鈴，不能稍後提醒。不計為一晚。"
+            "value": "2 分鐘後依你下一個鬧鐘的設定響鈴，不能貪睡。不計為一晚。"
           }
         },
         "zu": {
@@ -182380,7 +182380,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的喚醒時間範圍在那之前就開始了。"
+            "value": "你的喚醒時段在那之前就開始了。"
           }
         },
         "zu": {

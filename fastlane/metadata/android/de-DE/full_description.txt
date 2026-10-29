@@ -1,0 +1,36 @@
+Phase Wake weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf. Deine Smartwatch misst in den letzten Minuten vor dem Wecker Bewegung und Puls und weckt dich im besten Moment innerhalb deines Weckfensters – spätestens zur Zielzeit.
+
+So funktioniert's
+• Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
+• Die Uhr misst nur im Weckfenster: schont den Akku.
+• Vibration am Handgelenk, auf Wunsch mit Ton – das Handy klingelt als Zweitwecker mit, falls etwas schiefgeht.
+• Zum Stoppen halten, schlummern bis 3×.
+
+Gemacht, damit du nicht verschläfst
+• Nacht-Check vor dem Schlafen: Uhr verbunden, Rechte erteilt, Akku voll genug.
+• Probewecker «In 2 Minuten testen» mit Ergebnis Schritt für Schritt.
+• Klingelt auch bei «Nicht stören» und im Bettzeit-Modus.
+• Nächstes Mal überspringen und an Feiertagen nicht wecken – Feiertage für über 150 Länder und ihre Regionen, ohne Internet.
+
+Besser schlafen
+• Morgenbericht: wann du geweckt wurdest und wie du dich fühlst.
+• Verlauf mit Diagrammen: Schlafzeiten, Schlafdauer, Weckmoment, Schlafphasen, Befinden.
+• Schlafziel, Bettzeit-Erinnerung, Abendroutine, Wochenrückblick und Serien.
+• Schlafnotizen (Kaffee, Sport, Stress …), um Zusammenhänge zu sehen.
+• Einschlafklänge: Regen, Meer, Wald bei Nacht, Bach, Kaminfeuer, Ventilator, Rauschen und Einschlaf-Wellen – mit Timer.
+• Schnarchen und Sprechen im Schlaf aufnehmen, wenn du willst – nur auf deinem Handy.
+• Powernap mit Wecken im leichten Schlaf.
+• Sanfter Sonnenaufgang auf dem Bildschirm vor dem Wecken.
+• Schlafphasen aus Health Connect, wenn du willst.
+
+Deine Daten bleiben bei dir
+• Kein Konto, kein Server, keine Werbung, keine Tracker.
+• Alles bleibt auf Handy und Uhr. Sicherung als verschlüsselte Datei mit deinem Passwort.
+
+Für alle
+• 74 Sprachen, helles und dunkles Design, für Farbenblinde und Bildschirmleser gemacht.
+• Kostenlos und quelloffen: github.com/r1adBE/phaseWake
+
+Braucht eine Wear-OS-Uhr (z. B. Galaxy Watch) mit der Phase-Wake-App auf der Uhr. Ohne Uhr weckt Phase Wake zur Zielzeit auf dem Handy.
+
+Phase Wake ist kein Medizinprodukt.

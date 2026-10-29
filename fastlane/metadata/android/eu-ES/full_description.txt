@@ -1,0 +1,36 @@
+Phase Wake-k lo arinean esnatzen zaitu, ez lo sakonaren erdian. Alarmaren aurreko azken minutuetan, zure erloju adimendunak mugimendua eta pultsua neurtzen ditu, eta esnatze-leihoaren barruan unerik egokienean esnatzen zaitu – beranduenez helburuko orduan.
+
+Nola funtzionatzen du
+• Aukeratu esnatzeko ordua eta leihoa (30 min arte), jarri erlojua eta egin lo.
+• Erlojuak esnatze-leihoan bakarrik neurtzen du: bateria aurrezten du.
+• Bibrazioa eskumuturrean, nahi baduzu soinuarekin – telefonoak ordezko alarma gisa joko du zerbait gaizki ateratzen bada.
+• Eutsi sakatuta gelditzeko, atzeratu 3 aldiz arte.
+
+Lo geratu ez zaitezen
+• Gaueko egiaztapena oheratu aurretik: erlojua konektatuta, baimenak emanda, bateria nahikoa.
+• Proba-alarma «Probatu 2 minutu barru», emaitza urratsez urrats.
+• «Ez molestatu» eta oheratzeko moduan ere jotzen du.
+• Saltatu hurrengoa eta ez esnatu jaiegunetan – 150 herrialde baino gehiagoren eta haien eskualdeen jaiegunak, konexiorik gabe.
+
+Lo hobea
+• Goizeko txostena: noiz esnatu zaituen eta nola sentitzen zaren.
+• Historia grafikoekin: lo-orduak, loaren iraupena, esnatze-unea, lo-faseak, aldartea.
+• Lo-helburua, oheratzeko gogorarazpena, gaueko errutina, asteko laburpena eta segidak.
+• Lo-oharrak (kafea, kirola, estresa …) loturak ikusteko.
+• Lo egiteko soinuak: euria, ozeanoa, basoa gauez, erreka, tximinia, haizagailua, zarata eta lo-uhinak – tenporizadorearekin.
+• Grabatu zurrungak eta lotan hitz egitea nahi baduzu – zure telefonoan bakarrik.
+• Siesta laburra, lo arinean esnatzen zaituena.
+• Egunsenti leuna pantailan alarmaren aurretik.
+• Lo-faseak Health Connect-etik, nahi baduzu.
+
+Zure datuak zurekin geratzen dira
+• Konturik ez, zerbitzaririk ez, iragarkirik ez, jarraitzailerik ez.
+• Dena telefonoan eta erlojuan geratzen da. Babeskopia fitxategi enkriptatu gisa, zure pasahitzarekin.
+
+Guztiontzat
+• 74 hizkuntza, diseinu argia eta iluna, kolore-itsuentzat eta pantaila-irakurgailuentzat egina.
+• Doakoa eta kode irekikoa: github.com/r1adBE/phaseWake
+
+Wear OS erloju bat behar da (adib. Galaxy Watch), Phase Wake aplikazioa erlojuan instalatuta duela. Erlojurik gabe, Phase Wake-k helburuko orduan esnatzen zaitu telefonoan.
+
+Phase Wake ez da produktu sanitarioa.

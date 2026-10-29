@@ -1,0 +1,36 @@
+Phase Wake membangunkanmu saat tidur ringan, bukan di tengah tidur nyenyak. Pada menit-menit terakhir sebelum alarm, Apple Watch-mu mengukur gerakan dan detak jantung, lalu membangunkanmu di saat terbaik dalam rentang bangunmu – paling lambat pada waktu target.
+
+Cara kerjanya
+• Pilih waktu bangun dan rentang (hingga 30 mnt), pakai jam tanganmu, lalu tidur.
+• Jam tangan hanya mengukur selama rentang bangun: hemat baterai.
+• Getaran di pergelangan tangan, dengan suara jika mau – iPhone-mu ikut berbunyi sebagai alarm cadangan kalau ada yang salah.
+• Tahan untuk menghentikan, tunda hingga 3 kali.
+
+Dibuat agar kamu tidak kesiangan
+• Pemeriksaan malam sebelum tidur: jam terhubung, izin diberikan, baterai cukup.
+• Uji alarm “Uji dalam 2 menit” dengan hasil langkah demi langkah.
+• Alarm cadangan di iPhone tetap berbunyi saat Jangan Ganggu dan Fokus Tidur.
+• Lewati kali berikutnya dan jangan bangunkan saat hari libur – hari libur untuk lebih dari 150 negara beserta wilayahnya, offline.
+
+Tidur lebih baik
+• Laporan pagi: kapan kamu dibangunkan dan bagaimana perasaanmu.
+• Riwayat dengan grafik: waktu tidur, durasi tidur, momen bangun, fase tidur, perasaan.
+• Target tidur, pengingat waktu tidur, rutinitas malam, ringkasan mingguan, dan rentetan.
+• Catatan tidur (kopi, olahraga, stres …) untuk melihat polanya.
+• Suara pengantar tidur: hujan, laut, hutan malam, sungai kecil, perapian, kipas angin, derau, dan gelombang tidur – dengan timer.
+• Rekam dengkuran dan mengigau jika mau – hanya di iPhone-mu.
+• Tidur siang yang membangunkanmu saat tidur ringan.
+• Matahari terbit lembut dalam mode samping tempat tidur sebelum alarm.
+• Fase tidur dari Apple Health, jika mau.
+
+Datamu tetap milikmu
+• Tanpa akun, tanpa server, tanpa iklan, tanpa pelacak.
+• Semuanya tetap di iPhone dan jam tanganmu. Cadangan berupa file terenkripsi dengan kata sandimu.
+
+Untuk semua orang
+• 74 bahasa, desain terang dan gelap, dibuat untuk penyandang buta warna dan pembaca layar.
+• Gratis dan open source: github.com/r1adBE/phaseWake
+
+Memerlukan Apple Watch untuk membangunkanmu saat tidur ringan; aplikasi jam tangan sudah termasuk. Tanpa jam tangan, Phase Wake membangunkanmu pada waktu target di iPhone.
+
+Phase Wake bukan alat kesehatan.

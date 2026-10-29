@@ -1,0 +1,36 @@
+Phase Wake seni chuqur uyqu oʻrtasida emas, yengil uyquda uygʻotadi. Budilnikdan oldingi oxirgi daqiqalarda aqlli soating harakat va yurak urishini oʻlchaydi va seni uygʻotish oraligʻi ichidagi eng qulay paytda uygʻotadi – eng kechi belgilangan vaqtda.
+
+Qanday ishlaydi
+• Uygʻonish vaqti va oraliqni (30 daqiqagacha) tanla, soatingni tak, uxla.
+• Soat faqat uygʻotish oraligʻida oʻlchaydi: batareyani tejaydi.
+• Bilagingda tebranish, xohlasang tovush bilan – biror narsa notoʻgʻri ketsa, telefoning zaxira budilnik sifatida jiringlaydi.
+• Toʻxtatish uchun bosib tur, 3 martagacha kechiktir.
+
+Uxlab qolmasliging uchun
+• Uxlashdan oldin tungi tekshiruv: soat ulangan, ruxsatlar berilgan, batareya yetarli.
+• «2 daqiqada sinash» sinov budilnigi, natija bosqichma-bosqich.
+• «Bezovta qilinmasin» va uyqu rejimida ham jiringlaydi.
+• Keyingisini oʻtkazib yuborish va bayramlarda uygʻotmaslik – 150 dan ortiq mamlakat va ularning hududlari bayramlari, internetsiz.
+
+Yaxshiroq uxla
+• Ertalabki hisobot: qachon uygʻotilding va oʻzingni qanday his qilyapsan.
+• Diagrammali tarix: uxlash vaqtlari, uyqu davomiyligi, uygʻonish payti, uyqu bosqichlari, kayfiyat.
+• Uyqu maqsadi, uxlash vaqti eslatmasi, kechki odat, haftalik sharh va seriyalar.
+• Bogʻliqliklarni koʻrish uchun uyqu qaydlari (qahva, sport, stress …).
+• Uyqu tovushlari: yomgʻir, okean, tungi oʻrmon, soy, kamin, ventilyator, shovqin va uyqu toʻlqinlari – taymer bilan.
+• Xohlasang, xurrak va uyqudagi gapirishni yoz – faqat telefoningda.
+• Yengil uyquda uygʻotadigan qisqa uyqu.
+• Budilnikdan oldin ekranda mayin quyosh chiqishi.
+• Xohlasang, Health Connectʼdan uyqu bosqichlari.
+
+Maʼlumotlaring oʻzingda qoladi
+• Hisob yoʻq, server yoʻq, reklama yoʻq, treker yoʻq.
+• Hammasi telefoning va soatingda qoladi. Paroling bilan shifrlangan fayl koʻrinishida zaxira nusxa.
+
+Hamma uchun
+• 74 til, yorugʻ va qorongʻi dizayn, rang ajrata olmaydiganlar va ekran oʻquvchilari uchun moslangan.
+• Bepul va ochiq kodli: github.com/r1adBE/phaseWake
+
+Phase Wake ilovasi oʻrnatilgan Wear OS soati (masalan, Galaxy Watch) kerak. Soatsiz Phase Wake seni belgilangan vaqtda telefonda uygʻotadi.
+
+Phase Wake tibbiy qurilma emas.

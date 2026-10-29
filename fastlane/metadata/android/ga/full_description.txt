@@ -1,0 +1,36 @@
+Dúisíonn Phase Wake thú i gcodladh éadrom seachas i lár codladh trom. Sna nóiméid dheireanacha roimh d’aláram, tomhaiseann d’uaireadóir cliste gluaiseacht agus ráta croí agus dúisíonn sé thú ag an nóiméad is oiriúnaí laistigh de d’fhuinneog dhúisithe – ag an spriocam ar a dhéanaí.
+
+Conas a oibríonn sé
+• Roghnaigh d’am dúisithe agus d’fhuinneog (suas le 30 nóim), caith d’uaireadóir, codail.
+• Ní thomhaiseann an t-uaireadóir ach le linn na fuinneoige dúisithe: spárálann sé an ceallra.
+• Crith ar do chaol na láimhe, le fuaim más maith leat – buailfidh d’fhón mar aláram cúltaca ar eagla go rachadh rud éigin mícheart.
+• Coinnigh síos chun stopadh, cuir siar suas le 3 huaire.
+
+Ionas nach gcodlóidh tú thar am
+• Seiceáil na hoíche roimh chodladh: uaireadóir ceangailte, ceadanna tugtha, dóthain ceallra.
+• Aláram tástála “Tástáil i gceann 2 nóiméad” le toradh céim ar chéim.
+• Buaileann sé fiú le “Ná Cuir Isteach Orm” agus le mód am codlata.
+• Scipeáil an chéad cheann eile agus ná dúisigh ar laethanta saoire – laethanta saoire do níos mó ná 150 tír agus a réigiúin, as líne.
+
+Codladh níos fearr
+• Tuairisc na maidine: cathain a dúisíodh thú agus conas atá tú.
+• Stair le cairteacha: amanna codlata, fad codlata, nóiméad dúisithe, céimeanna codlata, mothúchán.
+• Sprioc codlata, meabhrúchán am codlata, gnáthamh tráthnóna, athbhreithniú seachtainiúil agus sraitheanna.
+• Nótaí codlata (caife, spórt, strus …) chun patrúin a fheiceáil.
+• Fuaimeanna codlata: báisteach, aigéan, foraois san oíche, sruthán, teallach, gaothrán, torann agus tonnta codlata – le lasc ama.
+• Taifead srannadh agus caint i do chodladh más mian leat – ar d’fhón amháin.
+• Néal cumhachta a dhúisíonn thú i gcodladh éadrom.
+• Éirí gréine séimh ar an scáileán roimh d’aláram.
+• Céimeanna codlata ó Health Connect, más mian leat.
+
+Fanann do shonraí agatsa
+• Gan chuntas, gan fhreastalaí, gan fhógraí, gan rianaitheoirí.
+• Fanann gach rud ar d’fhón agus ar d’uaireadóir. Cúltaca mar chomhad criptithe le do phasfhocal.
+
+Do chách
+• 74 teanga, dearadh geal agus dorcha, déanta do dhaoine dathdhalla agus do léitheoirí scáileáin.
+• Saor in aisce agus foinse oscailte: github.com/r1adBE/phaseWake
+
+Teastaíonn uaireadóir Wear OS (m.sh. Galaxy Watch) agus aip Phase Wake suiteáilte air. Gan uaireadóir, dúisíonn Phase Wake thú ag an spriocam ar d’fhón.
+
+Ní feiste leighis é Phase Wake.

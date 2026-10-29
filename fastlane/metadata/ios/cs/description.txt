@@ -1,0 +1,36 @@
+Phase Wake tě budí v lehkém spánku, ne uprostřed hlubokého spánku. V posledních minutách před budíkem měří tvoje Apple Watch pohyb a tep a probudí tě v nejlepší chvíli v rámci okna buzení – nejpozději v cílový čas.
+
+Jak to funguje
+• Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
+• Hodinky měří jen v okně buzení: šetří baterii.
+• Vibrace na zápěstí, na přání se zvukem – iPhone zvoní jako záložní budík, kdyby se něco pokazilo.
+• Podržením zastavíš, odložit můžeš až 3×.
+
+Navrženo proti zaspání
+• Noční kontrola před spaním: hodinky připojené, oprávnění udělená, baterie dost nabitá.
+• Zkušební budík „Vyzkoušet za 2 minuty“ s výsledkem krok za krokem.
+• Záložní budík v iPhonu zvoní i v režimu Nerušit a v režimu soustředění Spánek.
+• Příště přeskočit a nebudit o svátcích – svátky pro více než 150 zemí a jejich regiony, offline.
+
+Lepší spánek
+• Ranní zpráva: kdy tě budík probudil a jak se cítíš.
+• Historie s grafy: doby spánku, délka spánku, okamžik probuzení, fáze spánku, pocit.
+• Cíl spánku, připomínka spánku, večerní rutina, týdenní přehled a série.
+• Poznámky ke spánku (káva, sport, stres …) pro odhalení souvislostí.
+• Zvuky na usínání: déšť, moře, noční les, potok, krb, ventilátor, šum a vlny ke spánku – s časovačem.
+• Nahrávání chrápání a mluvení ze spaní, pokud chceš – jen v tvém iPhonu.
+• Šlofík s buzením v lehkém spánku.
+• Jemný východ slunce v nočním režimu před buzením.
+• Fáze spánku z Apple Health, pokud chceš.
+
+Tvá data zůstávají u tebe
+• Žádný účet, žádný server, žádné reklamy, žádné trackery.
+• Vše zůstává v iPhonu a hodinkách. Záloha jako šifrovaný soubor s tvým heslem.
+
+Pro všechny
+• 74 jazyků, světlý a tmavý vzhled, připraveno pro barvoslepé a čtečky obrazovky.
+• Zdarma a open source: github.com/r1adBE/phaseWake
+
+K buzení v lehkém spánku je potřeba Apple Watch; aplikace pro hodinky je součástí. Bez hodinek tě Phase Wake probudí v cílový čas v iPhonu.
+
+Phase Wake není zdravotnický prostředek.

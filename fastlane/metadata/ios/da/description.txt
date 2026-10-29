@@ -1,0 +1,36 @@
+Phase Wake vækker dig i let søvn i stedet for midt i den dybe søvn. I de sidste minutter før alarmen måler dit Apple Watch bevægelse og puls og vækker dig på det bedste tidspunkt inden for dit vækkevindue – senest på dit ønskede tidspunkt.
+
+Sådan virker det
+• Vælg vækketid og vindue (op til 30 min), tag uret på, og sov.
+• Uret måler kun i vækkevinduet: skåner batteriet.
+• Vibration på håndleddet, med lyd hvis du vil – din iPhone ringer med som reservealarm, hvis noget går galt.
+• Hold for at stoppe, slumre op til 3 gange.
+
+Lavet, så du ikke sover over dig
+• Nattjek før sengetid: ur forbundet, tilladelser givet, batteri nok.
+• Testalarm »Test om 2 minutter« med resultat trin for trin.
+• Reservealarmen på din iPhone ringer også med Forstyr ikke og fokusfunktionen Søvn.
+• Spring over næste gang, og væk ikke på helligdage – helligdage for over 150 lande og deres regioner, uden internet.
+
+Sov bedre
+• Morgenrapport: hvornår du blev vækket, og hvordan du har det.
+• Historik med diagrammer: sengetider, søvnlængde, vækketidspunkt, søvnfaser, velbefindende.
+• Søvnmål, påmindelse om sengetid, aftenrutine, ugeoverblik og striber.
+• Søvnnoter (kaffe, sport, stress …) for at se sammenhænge.
+• Lyde til at falde i søvn: regn, hav, skov om natten, bæk, pejs, ventilator, støj og søvnbølger – med timer.
+• Optag snorken og søvnsnak, hvis du vil – kun på din iPhone.
+• Lur med vækning i let søvn.
+• Blid solopgang i natbordstilstand før alarmen.
+• Søvnfaser fra Apple Health, hvis du vil.
+
+Dine data bliver hos dig
+• Ingen konto, ingen server, ingen reklamer, ingen trackere.
+• Alt bliver på din iPhone og uret. Sikkerhedskopi som krypteret fil med din adgangskode.
+
+For alle
+• 74 sprog, lyst og mørkt design, lavet til farveblinde og skærmlæsere.
+• Gratis og open source: github.com/r1adBE/phaseWake
+
+Kræver et Apple Watch for at vække dig i let søvn; ur-appen følger med. Uden ur vækker Phase Wake dig på dit ønskede tidspunkt på din iPhone.
+
+Phase Wake er ikke medicinsk udstyr.

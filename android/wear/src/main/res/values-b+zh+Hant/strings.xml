@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="channel_window">喚醒時間範圍</string>
+    <string name="channel_window">喚醒時段</string>
     <string name="channel_window_description">Phase Wake 監測淺眠期間顯示。</string>
     <string name="channel_alarm">鬧鐘</string>
     <string name="channel_alarm_description">叫醒你。</string>
@@ -23,7 +23,7 @@
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">今天</string>
     <string name="home_tomorrow">明天</string>
-    <string name="home_window_length">範圍 %1$d 分鐘</string>
+    <string name="home_window_length">喚醒時段 %1$d 分鐘</string>
     <string name="home_alarms">鬧鐘</string>
     <string name="home_permissions">允許權限</string>
     <string name="home_permissions_hint">測量和鬧鐘畫面所需。</string>
@@ -52,7 +52,7 @@
     <string name="editor_edit">編輯鬧鐘</string>
     <string name="editor_target">最晚叫醒我</string>
     <string name="editor_latest">最晚</string>
-    <string name="editor_window">時間範圍：%1$d 分鐘</string>
+    <string name="editor_window">喚醒時段：%1$d 分鐘</string>
     <string name="editor_days">重複</string>
     <string name="editor_save">儲存</string>
     <string name="editor_delete">刪除鬧鐘</string>
@@ -79,5 +79,5 @@
     <string name="diag_next">下一個鬧鐘：%1$s</string>
     <string name="diag_version">版本 %1$s</string>
     <string name="transient_alarm_running">你的鬧鐘正在進行中。</string>
-    <string name="transient_alarm_soon">你的喚醒時間範圍在那之前就開始了。</string>
+    <string name="transient_alarm_soon">你的喚醒時段在那之前就開始了。</string>
 </resources>

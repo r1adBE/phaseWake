@@ -1,0 +1,36 @@
+Phase Wake wakes you in light sleep instead of in the middle of deep sleep. In the last minutes before your alarm, your Apple Watch measures movement and heart rate and wakes you at the best moment within your wake window – at the latest at your target time.
+
+How it works
+• Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
+• The watch only measures during the wake window: easy on the battery.
+• Vibration on your wrist, with sound if you like – your iPhone rings as a backup alarm in case anything goes wrong.
+• Hold to stop, snooze up to 3 times.
+
+Built so you don't oversleep
+• Night check before bed: watch connected, permissions granted, battery high enough.
+• Test alarm "Test in 2 minutes" with a step-by-step result.
+• The backup alarm on your iPhone rings even with Do Not Disturb and the Sleep Focus.
+• Skip next time and don't wake on public holidays – holidays for more than 150 countries and their regions, offline.
+
+Sleep better
+• Morning report: when you were woken and how you feel.
+• History with charts: bedtimes, sleep duration, wake-up moment, sleep stages, feeling.
+• Sleep goal, bedtime reminder, evening routine, weekly review and streaks.
+• Sleep notes (coffee, sport, stress …) to spot patterns.
+• Sleep sounds: rain, ocean, forest at night, brook, fireplace, fan, noise and sleep waves – with timer.
+• Record snoring and sleep talking if you want – only on your iPhone.
+• Power nap that wakes you in light sleep.
+• Gentle sunrise in nightstand mode before your alarm.
+• Sleep stages from Apple Health, if you want.
+
+Your data stays with you
+• No account, no server, no ads, no trackers.
+• Everything stays on your iPhone and watch. Backup as an encrypted file with your password.
+
+For everyone
+• 74 languages, light and dark design, made for colour-blind people and screen readers.
+• Free and open source: github.com/r1adBE/phaseWake
+
+Requires an Apple Watch to wake you in light sleep; the watch app is included. Without a watch, Phase Wake wakes you at your target time on your iPhone.
+
+Phase Wake is not a medical device.

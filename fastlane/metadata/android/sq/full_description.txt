@@ -1,0 +1,36 @@
+Phase Wake të zgjon në gjumë të lehtë, jo në mes të gjumit të thellë. Në minutat e fundit para alarmit, ora inteligjente mat lëvizjet dhe rrahjet e zemrës dhe të zgjon në momentin më të mirë brenda intervalit të zgjimit – jo më vonë se ora e synuar.
+
+Si funksionon
+• Zgjidh orën e zgjimit dhe intervalin (deri në 30 min), vendos orën në dorë, fli.
+• Ora mat vetëm gjatë intervalit të zgjimit: kursen baterinë.
+• Dridhje në kyç, me tingull nëse dëshiron – telefoni bie si alarm rezervë, në rast se diçka shkon keq.
+• Mbaje shtypur për ta ndalur, shtyje deri në 3 herë.
+
+Që të mos ngelesh në gjumë
+• Kontrolli i natës para gjumit: ora e lidhur, lejet e dhëna, bateria mjaftueshëm e mbushur.
+• Alarm prove „Provo pas 2 minutash“ me rezultat hap pas hapi.
+• Bie edhe me „Mos shqetëso“ dhe në modalitetin e gjumit.
+• Kapërce herën tjetër dhe mos zgjo në festa – festat për më shumë se 150 vende dhe rajonet e tyre, pa internet.
+
+Fli më mirë
+• Raporti i mëngjesit: kur u zgjove dhe si ndihesh.
+• Historiku me grafikë: oraret e gjumit, kohëzgjatja e gjumit, momenti i zgjimit, fazat e gjumit, gjendja.
+• Objektivi i gjumit, kujtesa për gjumë, rutina e mbrëmjes, përmbledhja javore dhe seritë.
+• Shënime për gjumin (kafe, sport, stres …) për të dalluar modelet.
+• Tinguj për gjumë: shi, det, pyll natën, përrua, zjarr në oxhak, ventilator, zhurmë dhe valë gjumi – me kohëmatës.
+• Regjistro gërhitjen dhe të folurit në gjumë, nëse do – vetëm në telefonin tënd.
+• Dremitje që të zgjon në gjumë të lehtë.
+• Lindje e butë e diellit në ekran para alarmit.
+• Fazat e gjumit nga Health Connect, nëse do.
+
+Të dhënat e tua mbeten te ti
+• Pa llogari, pa server, pa reklama, pa gjurmues.
+• Gjithçka mbetet në telefon dhe në orë. Kopje rezervë si skedar i enkriptuar me fjalëkalimin tënd.
+
+Për të gjithë
+• 74 gjuhë, pamje e çelët dhe e errët, e përshtatur për njerëzit me daltonizëm dhe për lexuesit e ekranit.
+• Falas dhe me burim të hapur: github.com/r1adBE/phaseWake
+
+Kërkon një orë me Wear OS (p.sh. Galaxy Watch) me aplikacionin Phase Wake të instaluar në orë. Pa orë, Phase Wake të zgjon në orën e synuar në telefon.
+
+Phase Wake nuk është pajisje mjekësore.

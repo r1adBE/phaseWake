@@ -1,0 +1,36 @@
+Phase Wake budzi cię w lekkim śnie, a nie w środku głębokiego snu. W ostatnich minutach przed budzikiem smartwatch mierzy ruch i tętno i budzi cię w najlepszym momencie w twoim oknie budzenia – najpóźniej w czasie docelowym.
+
+Jak to działa
+• Wybierz godzinę budzenia i okno (do 30 min), załóż zegarek, śpij.
+• Zegarek mierzy tylko w oknie budzenia: oszczędza baterię.
+• Wibracje na nadgarstku, na życzenie z dźwiękiem – telefon dzwoni jako budzik zapasowy, gdyby coś poszło nie tak.
+• Przytrzymaj, aby wyłączyć; drzemka do 3 razy.
+
+Zaprojektowany, żeby nie zaspać
+• Kontrola nocy przed snem: zegarek połączony, uprawnienia nadane, bateria wystarczająco naładowana.
+• Testuj budzik: „Testuj za 2 minuty” z wynikiem krok po kroku.
+• Dzwoni także w trybie Nie przeszkadzać i w trybie snu.
+• Pomiń następnym razem i nie budź w święta – święta dla ponad 150 krajów i ich regionów, bez internetu.
+
+Lepszy sen
+• Raport poranny: kiedy cię obudzono i jak się czujesz.
+• Historia z wykresami: pory snu, długość snu, moment budzenia, fazy snu, samopoczucie.
+• Cel snu, przypomnienie o śnie, wieczorna rutyna, podsumowanie tygodnia i serie.
+• Notatki o śnie (kawa, sport, stres …), by dostrzec zależności.
+• Dźwięki do zasypiania: deszcz, morze, las nocą, strumyk, kominek, wentylator, szum i fale do zasypiania – z minutnikiem.
+• Nagrywanie chrapania i mówienia przez sen, jeśli chcesz – tylko na twoim telefonie.
+• Drzemka w ciągu dnia z budzeniem w lekkim śnie.
+• Łagodny wschód słońca na ekranie przed budzikiem.
+• Fazy snu z Health Connect, jeśli chcesz.
+
+Twoje dane zostają u ciebie
+• Bez konta, bez serwera, bez reklam, bez trackerów.
+• Wszystko zostaje na telefonie i zegarku. Kopia zapasowa jako zaszyfrowany plik z twoim hasłem.
+
+Dla wszystkich
+• 74 języki, jasny i ciemny motyw, przystosowany dla osób z daltonizmem i czytników ekranu.
+• Za darmo i open source: github.com/r1adBE/phaseWake
+
+Wymaga zegarka z Wear OS (np. Galaxy Watch) z zainstalowaną na nim aplikacją Phase Wake. Bez zegarka Phase Wake budzi cię w czasie docelowym na telefonie.
+
+Phase Wake nie jest wyrobem medycznym.

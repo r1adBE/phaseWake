@@ -19,7 +19,7 @@
     <string name="home_next_tomorrow">明天</string>
     <string name="home_next_in">在淺眠時喚醒你 · %1$s後</string>
     <string name="home_no_alarm_title">在剛剛好的時刻醒來</string>
-    <string name="home_no_alarm_text">設定一個時間和一段時間範圍。你睡得淺時，手錶會叫醒你。</string>
+    <string name="home_no_alarm_text">設定一個時間和喚醒時段。你睡得淺時，手錶會叫醒你。</string>
     <string name="home_add_alarm">新增鬧鐘</string>
     <string name="home_last_night">昨晚</string>
     <string name="home_alarms">你的鬧鐘</string>
@@ -47,7 +47,7 @@
     <string name="editor_latest">最晚</string>
     <string name="editor_sleep_duration">睡 %1$s</string>
     <string name="editor_sleep_hint">從你入睡時開始計時。請在手錶上點選「晚安」。</string>
-    <string name="editor_window">時間範圍：%1$d 分鐘</string>
+    <string name="editor_window">喚醒時段：%1$d 分鐘</string>
     <string name="editor_window_hint">在 %1$s 到 %2$s 之間叫醒你</string>
     <string name="editor_days">重複</string>
     <string name="editor_weekdays">平日</string>
@@ -120,9 +120,9 @@
     <string name="settings_clear_history_text">將刪除手機和手錶上記錄的所有夜晚資料。你的鬧鐘會保留。</string>
     <string name="settings_clear_history_confirm">刪除</string>
     <string name="action_cancel">取消</string>
-    <string name="editor_advice_title">提示：使用更大的視窗</string>
+    <string name="editor_advice_title">提示：加長喚醒時段</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">在最近 %2$d 個夜晚中，有 %1$d 個夜晚視窗內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</item>
+        <item quantity="other">在最近 %2$d 個夜晚中，有 %1$d 個夜晚喚醒時段內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</item>
     </plurals>
     <string name="editor_advice_apply">使用 %1$d 分鐘</string>
     <string name="channel_sunrise">日出</string>
@@ -133,11 +133,11 @@
     <string name="editor_sunrise_hint">螢幕先泛起微弱的橙色光，再逐漸變為全亮度的明亮暖光。</string>
     <string name="editor_sunrise_phone_hint">請將手機螢幕朝上放置。</string>
     <string name="sunrise_ring">喚醒時</string>
-    <string name="sunrise_window">從時間範圍起</string>
+    <string name="sunrise_window">從喚醒時段起</string>
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">在叫醒你時開始，%1$d 分鐘後達到最亮。</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">隨時間範圍開始，到目標時間達到最亮。</string>
+    <string name="editor_sunrise_window_hint">隨喚醒時段開始，到目標時間達到最亮。</string>
     <string name="sunrise_device_title">顯示在</string>
     <string name="sunrise_device_phone">手機</string>
     <string name="sunrise_device_watch">手錶</string>
@@ -161,7 +161,7 @@
     <string name="quality_full">已測量：活動和心率</string>
     <string name="quality_motion_only">僅有活動資料 – 缺少心率</string>
     <string name="quality_partial">測量有中斷 – 手錶摘下了嗎？</string>
-    <string name="quality_none">時間範圍內沒有測量資料</string>
+    <string name="quality_none">喚醒時段內沒有測量資料</string>
     <string name="feeling_question">你感覺如何？</string>
     <string name="feeling_1">精疲力竭</string>
     <string name="feeling_2">疲倦</string>
@@ -204,7 +204,7 @@
     <string name="editor_discard">捨棄</string>
     <string name="editor_keep_editing">繼續編輯</string>
     <string name="editor_delete_title">刪除這個鬧鐘？</string>
-    <string name="home_window_running">時間範圍執行中——正在偵測</string>
+    <string name="home_window_running">喚醒時段進行中——正在偵測</string>
     <string name="check_volume">鬧鐘音量</string>
     <string name="check_volume_problem">鬧鐘音量為 0——手機會無聲響鈴。</string>
     <string name="health_update">更新 Health Connect</string>
@@ -231,25 +231,25 @@
     <string name="note_sick">生病</string>
     <string name="notes_custom_add">新增備註</string>
     <string name="notes_custom_title">自訂備註</string>
-    <string name="notes_custom_hint">最多 %1$d 則自訂備註,例如「冥想」。</string>
+    <string name="notes_custom_hint">最多 %1$d 則自訂備註，例如「冥想」。</string>
     <string name="notes_custom_rename">重新命名</string>
     <string name="notes_custom_delete">刪除%1$s</string>
     <string name="notes_label">備註</string>
-    <string name="notes_value">備註:%1$s</string>
+    <string name="notes_value">備註：%1$s</string>
     <string name="notes_effects_title">影響你睡眠的因素</string>
     <plurals name="notes_effect_line">
-        <item quantity="other">「%1$s」之後感受 %2$s(%3$d 晚 對 %4$d 晚)</item>
+        <item quantity="other">「%1$s」之後感受 %2$s（%3$d 晚 對 %4$d 晚）</item>
     </plurals>
     <string name="notes_effect_none">暫時還沒有明顯差異</string>
-    <string name="notes_effect_hint">記錄幾個晚上,就能在這裡看到什麼有影響。</string>
+    <string name="notes_effect_hint">記錄幾個晚上，就能在這裡看到什麼有影響。</string>
     <string name="goal_title">睡眠目標</string>
     <string name="goal_value">每晚 %1$s</string>
-    <string name="goal_hint">計入每週統計,並決定你的就寢時間。</string>
+    <string name="goal_hint">計入每週統計，並決定你的就寢時間。</string>
     <plurals name="goal_week">
-        <item quantity="other">達成睡眠目標:%2$d 晚中 %1$d 晚</item>
+        <item quantity="other">達成睡眠目標：%2$d 晚中 %1$d 晚</item>
     </plurals>
     <string name="bedtime_title">就寢提醒</string>
-    <string name="bedtime_text">在就寢時間前 %1$d 分鐘提醒你:鬧鐘時間減去睡眠目標。</string>
+    <string name="bedtime_text">在就寢時間前 %1$d 分鐘提醒你：鬧鐘時間減去睡眠目標。</string>
     <string name="bedtime_notification">%1$s 就寢 – 這樣到 %3$s 的鬧鐘前你能睡 %2$s。</string>
     <string name="channel_reminders">提醒</string>
     <string name="sounds_title">助眠聲音</string>
@@ -269,7 +269,7 @@
     <string name="sounds_play">播放</string>
     <string name="sounds_stop">停止</string>
     <string name="sounds_remaining">還剩 %1$s</string>
-    <string name="sounds_hint">以媒體音量播放,最遲在你的喚醒時段開始時停止。</string>
+    <string name="sounds_hint">以媒體音量播放，最遲在你的喚醒時段開始時停止。</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">錄製聲音</string>
     <string name="sound_rec_hint">只保存短片段。片段留在手機上，7 天後刪除。</string>
@@ -322,7 +322,7 @@
     <string name="charts_title">圖表</string>
     <string name="chart_bars_title">睡眠時段</string>
     <string name="chart_durations_title">每晚睡眠時長</string>
-    <string name="chart_wake_title">時間範圍內的喚醒時刻</string>
+    <string name="chart_wake_title">喚醒時段內的醒來時刻</string>
     <string name="chart_stages_title">當晚的睡眠階段</string>
     <string name="chart_feeling_title">感覺</string>
     <string name="chart_nights_7">7 晚</string>
@@ -335,13 +335,13 @@
     <string name="chart_stage_rem">快速動眼</string>
     <string name="chart_stage_light">淺眠</string>
     <string name="chart_stage_deep">深眠</string>
-    <string name="chart_window">喚醒時間範圍</string>
+    <string name="chart_window">喚醒時段</string>
     <string name="chart_no_data">無資料</string>
     <string name="chart_feeling_hint">輕點一個點即可查看那晚的備註。</string>
     <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">測試鬧鐘</string>
     <string name="test_button">2 分鐘後測試</string>
-    <string name="test_hint">2 分鐘後依你下一個鬧鐘的設定響鈴，不能稍後提醒。不計為一晚。</string>
+    <string name="test_hint">2 分鐘後依你下一個鬧鐘的設定響鈴，不能貪睡。不計為一晚。</string>
     <string name="test_running">測試鬧鐘 %1$s</string>
     <string name="test_result_title">測試結果</string>
     <string name="test_step_received">手錶已收到測試</string>
@@ -356,7 +356,7 @@
     <string name="watch_open_app">在手錶上開啟 Phase Wake</string>
     <string name="onb_step">第 %1$d 步，共 %2$d 步</string>
     <string name="onb_welcome_title">歡迎使用 Phase Wake</string>
-    <string name="onb_welcome_text">當你睡得淺時，Phase Wake 會在你的時間窗口內叫醒你。手錶負責測量，手機也會響。</string>
+    <string name="onb_welcome_text">當你睡得淺時，Phase Wake 會在你的喚醒時段內叫醒你。手錶負責測量，手機也會響。</string>
     <string name="onb_privacy">你的資料只留在你的裝置上。</string>
     <string name="onb_watch_title">連接手錶</string>
     <string name="onb_watch_ok">你的手錶已連線。</string>
@@ -364,7 +364,7 @@
     <string name="onb_optional">%1$s（選用）</string>
     <string name="onb_granted">已允許</string>
     <string name="onb_alarm_title">第一個鬧鐘</string>
-    <string name="onb_alarm_text">你最晚想幾點醒來？如果睡得淺，手錶會在窗口內更早叫醒你。</string>
+    <string name="onb_alarm_text">你最晚想幾點醒來？如果睡得淺，手錶會在喚醒時段內更早叫醒你。</string>
     <string name="onb_alarm_create">建立鬧鐘</string>
     <string name="onb_alarm_done">鬧鐘已建立：%1$s</string>
     <string name="onb_done_title">完成</string>
@@ -454,7 +454,7 @@
     <string name="alarm_skip_on">略過%1$s</string>
     <string name="alarm_skip_undo_for">復原略過：%1$s</string>
     <string name="transient_alarm_running">你的鬧鐘正在進行中。</string>
-    <string name="transient_alarm_soon">你的喚醒時間範圍在那之前就開始了。</string>
+    <string name="transient_alarm_soon">你的喚醒時段在那之前就開始了。</string>
     <string name="check_watch_update">更新手錶上的 Phase Wake</string>
     <string name="check_watch_update_problem">在此之前，手錶不會略過任何鬧鐘，假日也會叫醒你。</string>
 </resources>

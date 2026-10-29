@@ -1,0 +1,36 @@
+A Phase Wake könnyű alvásból ébreszt, nem a mélyalvás közepéből. Az ébresztő előtti utolsó percekben az Apple Watch méri a mozgást és a pulzust, és az időablakon belül a legjobb pillanatban ébreszt – legkésőbb a célidőben.
+
+Így működik
+• Válaszd ki az ébresztési időt és az időablakot (legfeljebb 30 perc), vedd fel az órát, aludj.
+• Az óra csak az időablakban mér: kíméli az akkumulátort.
+• Rezgés a csuklódon, ha kéred, hanggal – az iPhone tartalék ébresztőként is megszólal, ha valami félremenne.
+• Leállítás nyomva tartással, szundi legfeljebb 3-szor.
+
+Hogy ne aludj el
+• Éjszakai ellenőrzés lefekvés előtt: óra csatlakoztatva, engedélyek megadva, elég akkumulátor.
+• Próbaébresztés „Teszt 2 perc múlva” lépésenkénti eredménnyel.
+• Az iPhone tartalék ébresztője Ne zavarjanak és Alvás fókusz mellett is megszólal.
+• Következő alkalom kihagyása, ünnepnapokon nincs ébresztés – több mint 150 ország és régióik ünnepnapjai, internet nélkül.
+
+Aludj jobban
+• Reggeli jelentés: mikor ébresztett és hogy érzed magad.
+• Előzmények grafikonokkal: lefekvési idők, alvásidő, ébredés pillanata, alvási fázisok, közérzet.
+• Alvási cél, lefekvési emlékeztető, esti rutin, heti összefoglaló és sorozatok.
+• Alvási jegyzetek (kávé, sport, stressz …) az összefüggések felismeréséhez.
+• Elalvást segítő hangok: eső, tenger, éjszakai erdő, patak, kandallótűz, ventilátor, zaj és elalvási hullámok – időzítővel.
+• Horkolás és alvás közbeni beszéd rögzítése, ha szeretnéd – csak az iPhone-odon.
+• Szunyókálás könnyű alvásból ébresztéssel.
+• Gyengéd napfelkelte éjjeliszekrény-módban ébresztés előtt.
+• Alvási fázisok az Apple Health-ből, ha szeretnéd.
+
+Az adataid nálad maradnak
+• Nincs fiók, nincs szerver, nincs reklám, nincs követés.
+• Minden az iPhone-odon és az órádon marad. Biztonsági mentés titkosított fájlként, a saját jelszavaddal.
+
+Mindenkinek
+• 74 nyelv, világos és sötét megjelenés, színtévesztőknek és képernyőolvasóknak is.
+• Ingyenes és nyílt forráskódú: github.com/r1adBE/phaseWake
+
+A könnyű alvásból ébresztéshez Apple Watch szükséges; az órára szánt alkalmazás benne van. Óra nélkül a Phase Wake a célidőben ébreszt az iPhone-on.
+
+A Phase Wake nem orvostechnikai eszköz.

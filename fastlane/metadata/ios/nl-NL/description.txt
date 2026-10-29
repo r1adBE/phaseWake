@@ -1,0 +1,36 @@
+Phase Wake wekt je in lichte slaap in plaats van midden uit je diepe slaap. In de laatste minuten voor je wekker meet je Apple Watch beweging en hartslag en wekt je op het beste moment binnen je wekvenster – uiterlijk op je doeltijd.
+
+Zo werkt het
+• Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.
+• Het horloge meet alleen tijdens het wekvenster: spaart de batterij.
+• Trilling op je pols, desgewenst met geluid – je iPhone gaat als reservewekker mee af, voor het geval er iets misgaat.
+• Vasthouden om te stoppen, tot 3× snoozen.
+
+Gemaakt zodat je je niet verslaapt
+• Nachtcheck voor het slapengaan: horloge verbonden, rechten verleend, batterij vol genoeg.
+• Testwekker ‘Testen over 2 minuten’ met stap-voor-stap-resultaat.
+• De reservewekker op je iPhone gaat ook af bij Niet storen en met de focus Slaap.
+• Volgende keer overslaan en niet wekken op feestdagen – feestdagen voor meer dan 150 landen en hun regio’s, offline.
+
+Beter slapen
+• Ochtendrapport: wanneer je gewekt bent en hoe je je voelt.
+• Geschiedenis met grafieken: slaaptijden, slaapduur, wekmoment, slaapfasen, gevoel.
+• Slaapdoel, bedtijdherinnering, avondroutine, weekoverzicht en reeksen.
+• Slaapnotities (koffie, sport, stress …) om verbanden te zien.
+• Slaapgeluiden: regen, zee, bos bij nacht, beekje, haardvuur, ventilator, ruis en slaapgolven – met timer.
+• Snurken en praten in je slaap opnemen als je wilt – alleen op je iPhone.
+• Powernap die je wekt in lichte slaap.
+• Zachte zonsopgang in de nachtkastmodus voor je wekker.
+• Slaapfasen uit Apple Health, als je wilt.
+
+Je gegevens blijven bij jou
+• Geen account, geen server, geen advertenties, geen trackers.
+• Alles blijft op je iPhone en horloge. Back-up als versleuteld bestand met je eigen wachtwoord.
+
+Voor iedereen
+• 74 talen, licht en donker ontwerp, gemaakt voor kleurenblinden en schermlezers.
+• Gratis en open source: github.com/r1adBE/phaseWake
+
+Vereist een Apple Watch om je in lichte slaap te wekken; de horloge-app zit erbij. Zonder horloge wekt Phase Wake je op je doeltijd via je iPhone.
+
+Phase Wake is geen medisch hulpmiddel.

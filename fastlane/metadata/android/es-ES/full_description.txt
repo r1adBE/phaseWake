@@ -1,0 +1,36 @@
+Phase Wake te despierta en sueño ligero en lugar de en pleno sueño profundo. En los últimos minutos antes de la alarma, tu smartwatch mide el movimiento y el pulso y te despierta en el mejor momento dentro de tu ventana de despertar – como muy tarde a la hora objetivo.
+
+Cómo funciona
+• Elige la hora y la ventana (hasta 30 min), ponte el reloj y duerme.
+• El reloj solo mide durante la ventana de despertar: cuida la batería.
+• Vibración en la muñeca, con sonido si quieres – el móvil suena también como alarma de respaldo por si algo falla.
+• Mantén pulsado para detener, pospón hasta 3 veces.
+
+Para que no se te peguen las sábanas
+• Revisión nocturna antes de dormir: reloj conectado, permisos concedidos, batería suficiente.
+• Alarma de prueba «Probar en 2 minutos» con resultado paso a paso.
+• Suena incluso con No molestar y el modo hora de dormir.
+• Saltar la próxima vez y no despertar en festivos – festivos de más de 150 países y sus regiones, sin conexión.
+
+Duerme mejor
+• Informe matutino: cuándo te despertó y cómo te sientes.
+• Historial con gráficos: horas de dormir, duración del sueño, momento de despertar, fases del sueño, estado de ánimo.
+• Objetivo de sueño, recordatorio para acostarte, rutina nocturna, resumen semanal y rachas.
+• Notas de sueño (café, deporte, estrés …) para detectar patrones.
+• Sonidos para dormir: lluvia, mar, bosque de noche, arroyo, chimenea, ventilador, ruido y ondas para dormir – con temporizador.
+• Graba ronquidos y lo que hablas en sueños si quieres – solo en tu móvil.
+• Siesta que te despierta en sueño ligero.
+• Amanecer suave en la pantalla antes de la alarma.
+• Fases del sueño de Health Connect, si quieres.
+
+Tus datos se quedan contigo
+• Sin cuenta, sin servidor, sin anuncios, sin rastreadores.
+• Todo se queda en tu móvil y tu reloj. Copia de seguridad como archivo cifrado con tu contraseña.
+
+Para todos
+• 74 idiomas, diseño claro y oscuro, pensado para personas daltónicas y lectores de pantalla.
+• Gratis y de código abierto: github.com/r1adBE/phaseWake
+
+Requiere un reloj con Wear OS (p. ej., Galaxy Watch) con la app Phase Wake instalada en el reloj. Sin reloj, Phase Wake te despierta a la hora objetivo en el móvil.
+
+Phase Wake no es un producto sanitario.

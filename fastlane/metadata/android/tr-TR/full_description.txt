@@ -1,0 +1,36 @@
+Phase Wake seni derin uykunun ortasında değil, hafif uykuda uyandırır. Alarmdan önceki son dakikalarda akıllı saatin hareketi ve nabzı ölçer ve seni uyandırma aralığındaki en iyi anda uyandırır – en geç hedef saatte.
+
+Nasıl çalışır
+• Uyanma saatini ve aralığı seç (30 dk'ya kadar), saatini tak, uyu.
+• Saat yalnızca uyandırma aralığında ölçer: pili korur.
+• Bileğinde titreşim, istersen sesli – bir şeyler ters giderse telefonun yedek alarm olarak çalar.
+• Durdurmak için basılı tut, en fazla 3 kez ertele.
+
+Uyuyakalmaman için tasarlandı
+• Yatmadan önce gece kontrolü: saat bağlı, izinler verilmiş, pil yeterli.
+• Alarmı test et: “2 dakika sonra test et”, adım adım sonuçla.
+• Rahatsız Etme ve uyku vakti modunda da çalar.
+• Bir sonrakini atla ve tatillerde uyandırma – 150'den fazla ülke ve bölgeleri için tatiller, internetsiz.
+
+Daha iyi uyu
+• Sabah raporu: ne zaman uyandırıldığın ve nasıl hissettiğin.
+• Grafiklerle geçmiş: yatma saatleri, uyku süresi, uyanma anı, uyku evreleri, hissediş.
+• Uyku hedefi, yatma saati hatırlatıcısı, akşam rutini, haftalık özet ve seriler.
+• Örüntüleri görmek için uyku notları (kahve, spor, stres …).
+• Uyku sesleri: yağmur, deniz, gece ormanı, dere, şömine, vantilatör, gürültü ve uyku dalgaları – zamanlayıcıyla.
+• İstersen horlamayı ve uykuda konuşmayı kaydet – yalnızca telefonunda.
+• Hafif uykuda uyandıran şekerleme.
+• Alarmdan önce ekranda yumuşak gün doğumu.
+• İstersen Health Connect'ten uyku evreleri.
+
+Verilerin sende kalır
+• Hesap yok, sunucu yok, reklam yok, izleyici yok.
+• Her şey telefonunda ve saatinde kalır. Şifrenle korunan şifreli dosya olarak yedekleme.
+
+Herkes için
+• 74 dil, açık ve koyu tasarım, renk körleri ve ekran okuyucular için yapıldı.
+• Ücretsiz ve açık kaynak: github.com/r1adBE/phaseWake
+
+Üzerinde Phase Wake uygulaması yüklü bir Wear OS saat (ör. Galaxy Watch) gerekir. Saat olmadan Phase Wake seni hedef saatte telefonda uyandırır.
+
+Phase Wake tıbbi bir cihaz değildir.
