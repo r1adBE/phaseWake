@@ -157,7 +157,7 @@ private fun SessionFeeling(feeling: NightFeeling) {
     } else {
         val context = LocalContext.current
         Text(
-            context.getString(R.string.feeling_value, feelingName(context, value)),
+            stringResource(R.string.feeling_value, feelingName(context, value)),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 6.dp),
