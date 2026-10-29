@@ -39,7 +39,7 @@ internal object PhoneStatus {
                 null -> res.getString(R.string.diag_none)
                 else -> dateTime(at)
             }),
-            StatusLine(res.getString(R.string.diag_next_watch), watch["next"]?.takeIf { it.isNotEmpty() } ?: res.getString(if (report == null) R.string.diag_unknown else R.string.diag_none)),
+            StatusLine(res.getString(R.string.diag_next_watch), watch["next"]?.takeIf { it.isNotEmpty() }?.let(::watchWindow) ?: res.getString(if (report == null) R.string.diag_unknown else R.string.diag_none)),
             StatusLine(res.getString(R.string.check_exact_alarms), yesNo(BackupAlarm.canScheduleExact(context))),
             StatusLine(res.getString(R.string.diag_battery_opt), yesNo(!power.isIgnoringBatteryOptimizations(context.packageName))),
             StatusLine(res.getString(R.string.check_notifications), yesNo(NightCheckState.hasNotificationPermission(context))),
@@ -52,6 +52,14 @@ internal object PhoneStatus {
                     (watch["version"] ?: res.getString(R.string.diag_unknown)),
             ),
         )
+    }
+
+    /** «2026-10-30T06:00:00Z – 2026-10-30T06:30:00Z» der Uhr als Ortszeit «30.10.26, 07:00 – 07:30»; unlesbar: wie geliefert. */
+    private fun watchWindow(text: String): String {
+        val parts = text.split(" – ").mapNotNull { runCatching { Instant.parse(it.trim()) }.getOrNull() }
+        if (parts.size != 2) return text
+        val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(parts[1].atZone(ZoneId.systemDefault()))
+        return dateTime(parts[0]) + " – " + time
     }
 
     private fun dateTime(at: Instant): String =
