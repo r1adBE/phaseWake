@@ -46,7 +46,18 @@ import com.phasewake.app.shared.DoNotDisturb
  * Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Jede Prüfung hat einen Text
  * und – wenn der Nutzer etwas tun kann – einen Knopf, der direkt zur richtigen Einstellung führt.
  */
-enum class Check(val title: Int, val problem: Int, val action: Int?, val problemTitle: Int = title, val inReadyList: Boolean = true) {
+/**
+ * Eine Prüfung des Nacht-Checks. [advisory]: nur ein Hinweis – die Karte bleibt «Bereit», weil der Wecker trotzdem
+ * zuverlässig klingelt; der Hinweis steht mit Knopf darunter und fehlt im Widget.
+ */
+enum class Check(
+    val title: Int,
+    val problem: Int,
+    val action: Int?,
+    val problemTitle: Int = title,
+    val inReadyList: Boolean = true,
+    val advisory: Boolean = false,
+) {
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
 
     /** Uhr verbunden, aber Phase Wake fehlt dort: Knopf öffnet den Play Store auf der Uhr. */
@@ -72,7 +83,7 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
      * Weckbildschirm sonst nur als Mitteilung oben. Nicht in der Bereit-Liste: ohne Uhr oder ohne Unterstützung
      * des Systems gibt es nichts zu prüfen.
      */
-    COMPANION(R.string.check_companion, R.string.check_companion_problem, R.string.companion_connect, inReadyList = false),
+    COMPANION(R.string.check_companion, R.string.check_companion_problem, R.string.companion_connect, inReadyList = false, advisory = true),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
 
     /** «Nicht stören» ist an, aber ohne Sonderrecht nicht lesbar, ob Wecker durchkommen: ehrlich sagen. */
@@ -89,9 +100,9 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
     ),
 }
 
-/** Ergebnis aller Prüfungen; `failed` leer heisst: bereit für die Nacht. */
+/** Ergebnis aller Prüfungen; ohne offene Prüfung (Hinweise zählen nicht) heisst: bereit für die Nacht. */
 data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = true) {
-    val ready: Boolean get() = failed.isEmpty()
+    val ready: Boolean get() = failed.none { !it.advisory }
 
     companion object {
         /** Unter diesem Akkustand (Handy ohne Ladekabel, Uhr laut ihrer Meldung) warnt der Check. */

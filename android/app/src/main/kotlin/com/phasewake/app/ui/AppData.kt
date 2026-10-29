@@ -339,7 +339,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     watchAppMissing = missingOn.isNotEmpty(),
                     watchKnowsSkip = knowsSkip,
                 )
-                check?.let { com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, it.failed) }
+                check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
                 delay(NIGHT_CHECK_INTERVAL_MS)
             }
         }
