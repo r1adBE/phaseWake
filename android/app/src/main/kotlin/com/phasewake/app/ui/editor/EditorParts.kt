@@ -1,5 +1,12 @@
 package com.phasewake.app.ui.editor
 
+import androidx.compose.ui.unit.isSpecified
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.foundation.text.BasicText
 import android.content.Context
 import android.media.RingtoneManager
 import androidx.compose.foundation.background
@@ -58,9 +65,24 @@ internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) 
                 selected = value == selected,
                 onClick = { onSelect(value) },
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
-            ) { Text(stringResource(label), maxLines = 1) }
+            ) { ChoiceLabel(stringResource(label)) }
         }
     }
+}
+
+/**
+ * Beschriftung eines Auswahl-Felds: eine Zeile, die bei Platzmangel (drei Felder, lange Sprachen) die Schrift
+ * schrittweise bis 10 sp verkleinert, statt abzuschneiden.
+ */
+@Composable
+private fun ChoiceLabel(text: String) {
+    val style = LocalTextStyle.current.copy(color = LocalContentColor.current, textAlign = TextAlign.Center)
+    BasicText(
+        text,
+        style = style,
+        maxLines = 1,
+        autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp, stepSize = 0.5.sp),
+    )
 }
 
 /** Eine Zeile der Weckton-Auswahl (Optionsfeld, Name, rechts optional der gewählte Systemton). */
