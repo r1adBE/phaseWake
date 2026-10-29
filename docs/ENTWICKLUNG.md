@@ -38,7 +38,10 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 
 ## 3. Build-Nummern und Versionen
 
-- Version und Build-Nummer kommen **nur** aus dem Build (Gradle: `PHASEWAKE_BUILD`, Xcode: Projekt-Einstellungen).
+- Version und Build-Nummer kommen **nur** aus dem Build. Die Version (aktuell 16.2.2) steht einmal in
+  `android/gradle.properties` (`phasewake.version`) und gleich in Xcode (`MARKETING_VERSION`); `version_check.py`
+  prüft das. Die Build-Nummer ist die Laufnummer der CI (`PHASEWAKE_BUILD`) und steigt mit jedem Build; die Uhr-App
+  bekommt 1 000 000 dazu, weil Google Play für Handy und Uhr verschiedene Nummern verlangt.
 - Produktivcode liest keine Build-Nummer (`versionCode`, `longVersionCode`, `CFBundleVersion`) und enthält keine
   Versions- oder Build-Literale. Die Versionsbezeichnung (`versionName`, `CFBundleShortVersionString`) darf nur die
   Einstellungsseite anzeigen.

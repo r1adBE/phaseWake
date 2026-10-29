@@ -13,10 +13,12 @@ android {
         applicationId = "com.phasewake.app"
         minSdk = 30
         targetSdk = 36
-        // Testversionen aus GitHub bekommen die Laufnummer, damit sie sich ohne Deinstallieren aktualisieren lassen.
+        // Version aus gradle.properties (eine Quelle für alle Geräte); Build-Nummer = Laufnummer der CI, steigt mit
+        // jedem Build, damit sich Testversionen und Store-Updates ohne Deinstallieren installieren lassen.
         val build = providers.environmentVariable("PHASEWAKE_BUILD").orNull?.toIntOrNull()
-        versionCode = build ?: 1
-        versionName = if (build != null) "1.0-test.$build" else "1.0"
+        // Uhr: eigener Bereich, weil Play für Handy und Uhr derselben App verschiedene Build-Nummern verlangt.
+        versionCode = 1_000_000 + (build ?: 1)
+        versionName = providers.gradleProperty("phasewake.version").get()
     }
 
     signingConfigs {
