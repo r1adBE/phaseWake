@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Sem notificações, o telemóvel não pode tocar como alarme de reserva.</string>
     <string name="check_full_screen">Alarme em ecrã inteiro permitido</string>
     <string name="check_full_screen_problem">Permite isto para que o alarme apareça mesmo com o telemóvel bloqueado.</string>
+    <string name="companion_connect">Ligar como app complementar</string>
+    <string name="companion_why">Para que o alarme apareça à frente mesmo enquanto usas o telemóvel.</string>
+    <string name="companion_connected">Ligada como app complementar</string>
+    <string name="check_companion">App complementar do relógio</string>
+    <string name="check_companion_problem">Caso contrário, enquanto usas o telemóvel, o alarme aparece só como notificação no topo.</string>
+    <string name="companion_failed">Nenhum relógio encontrado. Verifica se está ligado e se o Bluetooth está ativo e tenta novamente.</string>
     <string name="check_exact_alarms">Alarmes exatos permitidos</string>
     <string name="check_exact_alarms_problem">Permite alarmes e lembretes para que o alarme de reserva toque à hora certa.</string>
     <string name="check_dnd">Não incomodar deixa passar os alarmes</string>

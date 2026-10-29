@@ -162,6 +162,12 @@
     <string name="check_notifications_problem">沒有通知，手機就無法作為備用鬧鐘響鬧。</string>
     <string name="check_full_screen">全螢幕鬧鐘已允許</string>
     <string name="check_full_screen_problem">請允許此項，讓手機鎖定時鬧鐘也會顯示。</string>
+    <string name="companion_connect">以配套應用程式連接</string>
+    <string name="companion_why">這樣即使你正在使用手機，鬧鐘也會在最前面顯示。</string>
+    <string name="companion_connected">已以配套應用程式連接</string>
+    <string name="check_companion">手錶的配套應用程式</string>
+    <string name="check_companion_problem">否則在你使用手機時，鬧鐘只會以通知形式在頂部顯示。</string>
+    <string name="companion_failed">找不到手錶。請檢查手錶已連接且藍牙已開啟，然後再試一次。</string>
     <string name="check_exact_alarms">精確鬧鐘已允許</string>
     <string name="check_exact_alarms_problem">請允許「鬧鐘和提醒」，讓備用鬧鐘準時響鬧。</string>
     <string name="check_dnd">「請勿打擾」容許鬧鐘</string>

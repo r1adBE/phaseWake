@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">నోటిఫికేషన్‌లు లేకుండా మీ ఫోన్ బ్యాకప్ అలారంగా మోగలేదు.</string>
     <string name="check_full_screen">పూర్తి స్క్రీన్ అలారానికి అనుమతి ఉంది</string>
     <string name="check_full_screen_problem">ఫోన్ లాక్‌లో ఉన్నా అలారం కనిపించేలా దీన్ని అనుమతించండి.</string>
+    <string name="companion_connect">సహచర యాప్‌గా కనెక్ట్ చేయండి</string>
+    <string name="companion_why">ఫోన్ వాడుతున్నప్పుడు కూడా అలారం అన్నిటికంటే ముందు కనిపించేలా.</string>
+    <string name="companion_connected">సహచర యాప్‌గా కనెక్ట్ అయింది</string>
+    <string name="check_companion">వాచ్ సహచర యాప్</string>
+    <string name="check_companion_problem">లేకపోతే ఫోన్ వాడుతున్నప్పుడు అలారం పైన నోటిఫికేషన్‌గా మాత్రమే కనిపిస్తుంది.</string>
+    <string name="companion_failed">వాచ్ కనిపించలేదు. అది కనెక్ట్ అయి ఉందో, బ్లూటూత్ ఆన్‌లో ఉందో చూసి మళ్లీ ప్రయత్నించండి.</string>
     <string name="check_exact_alarms">ఖచ్చితమైన అలారాలకు అనుమతి ఉంది</string>
     <string name="check_exact_alarms_problem">బ్యాకప్ అలారం సమయానికి మోగేలా “అలారాలు &amp; రిమైండర్‌లు”ను అనుమతించండి.</string>
     <string name="check_dnd">“అంతరాయం కలిగించవద్దు” అలారాలను మోగనిస్తుంది</string>

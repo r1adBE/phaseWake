@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Ohne Mitteilungen kann das Handy nicht als Zweitwecker klingeln.</string>
     <string name="check_full_screen">Wecker im Vollbild erlaubt</string>
     <string name="check_full_screen_problem">Erlaube das, damit der Wecker auch bei gesperrtem Handy erscheint.</string>
+    <string name="companion_connect">Als Begleit-App verbinden</string>
+    <string name="companion_why">Damit der Wecker auch bei benutztem Handy ganz vorne erscheint.</string>
+    <string name="companion_connected">Als Begleit-App verbunden</string>
+    <string name="check_companion">Begleit-App der Uhr</string>
+    <string name="check_companion_problem">Benutzt du gerade das Handy, erscheint der Wecker sonst nur als Mitteilung oben.</string>
+    <string name="companion_failed">Keine Uhr gefunden. Prüfe, ob sie verbunden und Bluetooth an ist, und versuch es noch einmal.</string>
     <string name="check_exact_alarms">Exakte Wecker erlaubt</string>
     <string name="check_exact_alarms_problem">Erlaube «Wecker und Erinnerungen», damit der Zweitwecker pünktlich klingelt.</string>
     <string name="check_dnd">«Nicht stören» lässt Wecker durch</string>

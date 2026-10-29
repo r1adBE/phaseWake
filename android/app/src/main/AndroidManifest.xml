@@ -22,6 +22,15 @@
     <!-- Gerätesperre (Fingerabdruck, Gesicht oder PIN) vor «Verlauf löschen» und «Wiederherstellen». -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <!--
+        Begleit-App der Uhr (CompanionDeviceManager): Damit darf der Weckbildschirm auch bei benutztem Handy nach vorn.
+        Gekoppelte Geräte lesen («Geräte in der Nähe», ab Android 12), nur um die Uhr direkt zur Bestätigung anzubieten;
+        nur auf Knopfdruck gefragt, nichts wird gespeichert. Ohne Begleit-App-Unterstützung des Systems fehlt nur der Knopf.
+    -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-feature android:name="android.software.companion_device_setup" android:required="false" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+    <!--
         Kein Internet: Bibliotheken (z. B. MediaPipe für das Geräusch-Modell) können diese Rechte beim
         Zusammenführen der Manifeste einbringen. Hier ausdrücklich entfernt, wie in DATENSCHUTZ.md zugesagt.
     -->

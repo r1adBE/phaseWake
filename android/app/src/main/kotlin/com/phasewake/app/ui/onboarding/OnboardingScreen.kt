@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -41,6 +42,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.R
+import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Transient
 import com.phasewake.app.ring.WakeTones
@@ -82,6 +84,8 @@ internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavAc
         onConnectHealth = actions.connectHealth,
         onCreateAlarm = { spec -> app.afterAlarmsChanged { app.alarms.upsert(spec) } },
         onStartTest = { startTest(app) },
+        // Neu gelesen mit jedem Nacht-Check (nach dem Verbinden prüft er sofort neu).
+        companionLinked = remember(state.nightCheck.check) { CompanionLink.isAssociated(app) },
     )
     OnboardingContent(page, onPage = { page = it }, model, onDone)
 }
@@ -99,6 +103,8 @@ internal class OnboardingModel(
     val onConnectHealth: () -> Unit,
     val onCreateAlarm: (AlarmSpec) -> Unit,
     val onStartTest: () -> Unit,
+    /** Ob Phase Wake schon Begleit-App der Uhr ist ([Check.COMPANION]). */
+    val companionLinked: Boolean = false,
 )
 
 /** Einrichtung ohne eigenen Seitenzustand: Seite [page] (0–[STEPS]; [STEPS] = «Fertig»), Wechsel über [onPage]. */
@@ -162,7 +168,10 @@ private fun Welcome() {
     }
 }
 
-/** Uhr verbunden, Phase Wake fehlt dort (Knopf zum Installieren) oder keine Uhr gekoppelt. */
+/**
+ * Uhr verbunden, Phase Wake fehlt dort (Knopf zum Installieren) oder keine Uhr gekoppelt. Mit verbundener Uhr dazu
+ * die Begleit-App: Knopf zum Verbinden oder «✓ Als Begleit-App verbunden».
+ */
 @Composable
 private fun WatchStep(model: OnboardingModel) {
     val failed = model.check?.failed.orEmpty()
@@ -174,6 +183,17 @@ private fun WatchStep(model: OnboardingModel) {
             }
             Check.WATCH in failed -> Body(R.string.check_watch_problem)
             model.check != null -> Body(R.string.onb_watch_ok)
+        }
+        when {
+            Check.COMPANION in failed -> {
+                Body(R.string.companion_why)
+                FilledTonalButton(onClick = { model.onFix(Check.COMPANION) }) { Text(stringResource(R.string.companion_connect)) }
+            }
+            model.companionLinked -> Text(
+                "✓ " + stringResource(R.string.companion_connected),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
     }
 }

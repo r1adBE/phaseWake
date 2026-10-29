@@ -169,6 +169,12 @@
     <string name="check_notifications_problem">Без уведомлений телефон не сможет зазвонить как резервный будильник.</string>
     <string name="check_full_screen">Полноэкранный будильник разрешён</string>
     <string name="check_full_screen_problem">Разреши это, чтобы будильник появлялся даже на заблокированном телефоне.</string>
+    <string name="companion_connect">Подключить как сопутствующее приложение</string>
+    <string name="companion_why">Чтобы будильник появлялся на переднем плане, даже когда ты пользуешься телефоном.</string>
+    <string name="companion_connected">Подключено как сопутствующее приложение</string>
+    <string name="check_companion">Сопутствующее приложение часов</string>
+    <string name="check_companion_problem">Иначе, пока ты пользуешься телефоном, будильник показывается только как уведомление вверху.</string>
+    <string name="companion_failed">Часы не найдены. Проверь, что они подключены и Bluetooth включён, и попробуй ещё раз.</string>
     <string name="check_exact_alarms">Точные будильники разрешены</string>
     <string name="check_exact_alarms_problem">Разреши будильники и напоминания, чтобы резервный будильник звонил вовремя.</string>
     <string name="check_dnd">Режим «Не беспокоить» пропускает будильники</string>

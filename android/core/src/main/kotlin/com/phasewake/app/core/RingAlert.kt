@@ -8,6 +8,12 @@ enum class RingRoute {
     /** Die App hat ein sichtbares Fenster: Sie darf den Weckbildschirm selbst öffnen. */
     DIRECT,
 
+    /**
+     * Begleit-App einer verbundenen Uhr (CompanionDeviceManager): Android erlaubt ihr den Start aus dem Hintergrund,
+     * die App öffnet den Weckbildschirm selbst – auch bei Display an und entsperrt.
+     */
+    COMPANION,
+
     /** Display aus oder gesperrt, Vollbild erlaubt: Das System öffnet den Weckbildschirm über die Weck-Mitteilung. */
     FULL_SCREEN,
 
@@ -27,11 +33,13 @@ object RingAlert {
     const val REALERT_SECONDS: Int = 20
 
     /**
-     * Erwarteter Weg für die Diagnose. [appVisible]: ein Fenster der App ist sichtbar; [interactive]: Display an
-     * (Always-on/Ambient zählt als aus); [locked]: Sperrbildschirm; [fullScreenAllowed]: Recht für Vollbild (Android 14+).
+     * Erwarteter Weg für die Diagnose. [appVisible]: ein Fenster der App ist sichtbar; [companion]: Zuordnung als
+     * Begleit-App einer Uhr (nur Handy); [interactive]: Display an (Always-on/Ambient zählt als aus); [locked]:
+     * Sperrbildschirm; [fullScreenAllowed]: Recht für Vollbild (Android 14+).
      */
-    fun route(appVisible: Boolean, interactive: Boolean, locked: Boolean, fullScreenAllowed: Boolean): RingRoute = when {
+    fun route(appVisible: Boolean, companion: Boolean, interactive: Boolean, locked: Boolean, fullScreenAllowed: Boolean): RingRoute = when {
         appVisible -> RingRoute.DIRECT
+        companion -> RingRoute.COMPANION
         fullScreenAllowed && (!interactive || locked) -> RingRoute.FULL_SCREEN
         else -> RingRoute.HEADS_UP
     }

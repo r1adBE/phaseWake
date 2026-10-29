@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
+import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
@@ -65,6 +66,13 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
     WATCH_UPDATE(R.string.check_watch_update, R.string.check_watch_update_problem, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
+
+    /**
+     * Uhr erreichbar, Phase Wake aber nicht Begleit-App der Uhr ([CompanionLink]): Bei benutztem Handy erscheint der
+     * Weckbildschirm sonst nur als Mitteilung oben. Nicht in der Bereit-Liste: ohne Uhr oder ohne Unterstützung
+     * des Systems gibt es nichts zu prüfen.
+     */
+    COMPANION(R.string.check_companion, R.string.check_companion_problem, R.string.companion_connect, inReadyList = false),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
 
     /** «Nicht stören» ist an, aber ohne Sonderrecht nicht lesbar, ob Wecker durchkommen: ehrlich sagen. */
@@ -114,6 +122,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
                     !context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
                 ) add(Check.FULL_SCREEN)
+                if (watchReachable && CompanionLink.supported(context) && !CompanionLink.isAssociated(context)) add(Check.COMPANION)
                 when (DoNotDisturb.alarms(context)) {
                     DoNotDisturb.Alarms.BLOCKED -> add(Check.DND)
                     DoNotDisturb.Alarms.UNKNOWN -> add(Check.DND_UNKNOWN)

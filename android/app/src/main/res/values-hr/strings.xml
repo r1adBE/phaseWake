@@ -168,6 +168,12 @@
     <string name="check_notifications_problem">Bez obavijesti telefon ne može zvoniti kao rezervni alarm.</string>
     <string name="check_full_screen">Alarm preko cijelog zaslona dopušten</string>
     <string name="check_full_screen_problem">Dopusti to kako bi se alarm prikazao i kad je telefon zaključan.</string>
+    <string name="companion_connect">Poveži kao prateću aplikaciju</string>
+    <string name="companion_why">Kako bi se alarm prikazao skroz naprijed i dok koristiš telefon.</string>
+    <string name="companion_connected">Povezano kao prateća aplikacija</string>
+    <string name="check_companion">Prateća aplikacija sata</string>
+    <string name="check_companion_problem">Dok koristiš telefon, alarm se inače prikazuje samo kao obavijest na vrhu.</string>
+    <string name="companion_failed">Sat nije pronađen. Provjeri je li povezan i je li Bluetooth uključen pa pokušaj ponovno.</string>
     <string name="check_exact_alarms">Točni alarmi dopušteni</string>
     <string name="check_exact_alarms_problem">Dopusti „Alarmi i podsjetnici“ kako bi rezervni alarm zvonio na vrijeme.</string>
     <string name="check_dnd">„Ne uznemiravaj“ propušta alarme</string>

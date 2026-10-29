@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">通知がないと、スマートフォンがバックアップのアラームとして鳴りません。</string>
     <string name="check_full_screen">全画面アラームが許可されています</string>
     <string name="check_full_screen_problem">ロック中でもアラームが表示されるよう、許可してください。</string>
+    <string name="companion_connect">コンパニオンアプリとして接続</string>
+    <string name="companion_why">スマートフォンを使っているときも、アラームが最前面に表示されるようにします。</string>
+    <string name="companion_connected">コンパニオンアプリとして接続済み</string>
+    <string name="check_companion">ウォッチのコンパニオンアプリ</string>
+    <string name="check_companion_problem">接続しないと、スマートフォンの使用中はアラームが上部の通知としてのみ表示されます。</string>
+    <string name="companion_failed">ウォッチが見つかりません。接続されていて Bluetooth がオンになっているか確認し、もう一度お試しください。</string>
     <string name="check_exact_alarms">正確なアラームが許可されています</string>
     <string name="check_exact_alarms_problem">予備のアラームが時間どおりに鳴るよう、「アラームとリマインダー」を許可してください。</string>
     <string name="check_dnd">おやすみモード中もアラームが鳴ります</string>

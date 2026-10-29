@@ -170,6 +170,12 @@
     <string name="check_notifications_problem">Bez upozornení nemôže telefón zvoniť ako záložný budík.</string>
     <string name="check_full_screen">Budík na celej obrazovke povolený</string>
     <string name="check_full_screen_problem">Povoľ to, aby sa budík zobrazil aj pri zamknutom telefóne.</string>
+    <string name="companion_connect">Pripojiť ako sprievodnú aplikáciu</string>
+    <string name="companion_why">Aby sa budík zobrazil úplne vpredu, aj keď práve používaš telefón.</string>
+    <string name="companion_connected">Pripojené ako sprievodná aplikácia</string>
+    <string name="check_companion">Sprievodná aplikácia hodiniek</string>
+    <string name="check_companion_problem">Keď telefón používaš, budík sa inak zobrazí len ako upozornenie hore.</string>
+    <string name="companion_failed">Hodinky sa nenašli. Skontroluj, či sú pripojené a Bluetooth je zapnutý, a skús to znova.</string>
     <string name="check_exact_alarms">Presné budíky povolené</string>
     <string name="check_exact_alarms_problem">Povoľ „Budíky a pripomenutia“, aby záložný budík zazvonil načas.</string>
     <string name="check_dnd">Režim Nerušiť prepúšťa budíky</string>

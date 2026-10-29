@@ -164,6 +164,12 @@
     <string name="check_notifications_problem">اطلاعات کے بغیر تمہارا فون بیک اپ الارم کے طور پر نہیں بج سکتا۔</string>
     <string name="check_full_screen">فل اسکرین الارم کی اجازت ہے</string>
     <string name="check_full_screen_problem">اس کی اجازت دو تاکہ فون لاک ہونے پر بھی الارم نظر آئے۔</string>
+    <string name="companion_connect">ساتھی ایپ کے طور پر جوڑو</string>
+    <string name="companion_why">تاکہ فون استعمال کرتے ہوئے بھی الارم بالکل سامنے آئے۔</string>
+    <string name="companion_connected">ساتھی ایپ کے طور پر جڑی ہے</string>
+    <string name="check_companion">گھڑی کی ساتھی ایپ</string>
+    <string name="check_companion_problem">ورنہ فون استعمال کرتے ہوئے الارم صرف اوپر ایک اطلاع کے طور پر نظر آتا ہے۔</string>
+    <string name="companion_failed">کوئی گھڑی نہیں ملی۔ دیکھو کہ وہ جڑی ہوئی ہے اور بلوٹوتھ آن ہے، پھر دوبارہ کوشش کرو۔</string>
     <string name="check_exact_alarms">درست وقت کے الارم کی اجازت ہے</string>
     <string name="check_exact_alarms_problem">“الارمز اور یاد دہانیاں” کی اجازت دو تاکہ بیک اپ الارم وقت پر بجے۔</string>
     <string name="check_dnd">“ڈسٹرب نہ کریں” الارم کو بجنے دیتا ہے</string>

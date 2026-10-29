@@ -202,6 +202,17 @@ class WearSync(context: Context) {
         emptyList()
     }
 
+    /**
+     * Angezeigte Namen der verbundenen Geräte (z. B. «Galaxy Watch8 Classic (1A2B)»), um die gekoppelte Uhr für die
+     * Begleit-App-Zuordnung zu finden. Leer ohne verbundene Uhr oder ohne Wear-Dienste.
+     */
+    suspend fun connectedNames(): List<String> = try {
+        Wearable.getNodeClient(app).connectedNodes.await().map { it.displayName }.filter { it.isNotBlank() }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        emptyList()
+    }
+
     /** Ob gerade ein Gerät mit [capability] erreichbar ist; `false` auch ohne Wear-Dienste. */
     suspend fun isReachable(capability: String): Boolean = try {
         capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.isNotEmpty()

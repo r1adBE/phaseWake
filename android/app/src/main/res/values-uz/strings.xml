@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Bildirishnomalarsiz telefoning zaxira budilnik sifatida jiringlay olmaydi.</string>
     <string name="check_full_screen">Toʻliq ekranli budilnikka ruxsat bor</string>
     <string name="check_full_screen_problem">Telefon qulflangan boʻlsa ham budilnik chiqishi uchun bunga ruxsat ber.</string>
+    <string name="companion_connect">Hamroh ilova sifatida ulash</string>
+    <string name="companion_why">Telefondan foydalanayotganingda ham budilnik eng oldinda chiqishi uchun.</string>
+    <string name="companion_connected">Hamroh ilova sifatida ulangan</string>
+    <string name="check_companion">Soatning hamroh ilovasi</string>
+    <string name="check_companion_problem">Aks holda telefondan foydalanayotganingda budilnik faqat yuqorida bildirishnoma sifatida chiqadi.</string>
+    <string name="companion_failed">Soat topilmadi. Ulanganini va Bluetooth yoqilganini tekshir, keyin qayta urinib ko‘r.</string>
     <string name="check_exact_alarms">Aniq budilniklarga ruxsat bor</string>
     <string name="check_exact_alarms_problem">Zaxira budilnik oʻz vaqtida jiringlashi uchun «Signal va eslatmalar»ga ruxsat ber.</string>
     <string name="check_dnd">«Bezovta qilinmasin» budilniklarni oʻtkazadi</string>

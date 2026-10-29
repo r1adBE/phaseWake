@@ -12,17 +12,19 @@ import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
+import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.RingAlert
 import com.phasewake.app.phoneApp
 
 /**
- * Bringt den Weckbildschirm des Handys nach vorn, auf drei Wegen zugleich (docs/ENTSCHEIDE.md, 29.10.2026):
- * neue Weck-Mitteilung mit Vollbild (eine Aktualisierung startet es nie), Wecker-Alarm des Systems, der
- * [PhoneRingActivity] in 1 s öffnet, und direkter Start (erlaubt, solange ein Fenster der App sichtbar ist).
- * Ist der Weckbildschirm danach nicht zu sehen, alle [RingAlert.REALERT_SECONDS] dasselbe noch einmal.
- * Bei Display an und entsperrt zeigt Android eine Vollbild-Mitteilung nur oben an; die Erinnerung bringt
- * dann das Vollbild, sobald das Display aus oder gesperrt ist.
+ * Bringt den Weckbildschirm des Handys nach vorn (docs/ENTSCHEIDE.md, 29.10.2026). Hauptweg mit Zuordnung als
+ * Begleit-App der Uhr ([CompanionLink]): direkter Start, den Android dann auch aus dem Hintergrund erlaubt, also
+ * auch bei benutztem Handy. Ersatzwege, immer dazu: neue Weck-Mitteilung mit Vollbild (eine Aktualisierung startet
+ * es nie), Wecker-Alarm des Systems, der [PhoneRingActivity] in 1 s öffnet, und ohne Zuordnung derselbe direkte
+ * Start (erlaubt, solange ein Fenster der App sichtbar ist). Ist der Weckbildschirm danach nicht zu sehen, alle
+ * [RingAlert.REALERT_SECONDS] dasselbe noch einmal. Ohne Zuordnung zeigt Android bei Display an und entsperrt nur
+ * eine Mitteilung oben; die Erinnerung bringt dann das Vollbild, sobald das Display aus oder gesperrt ist.
  */
 internal class PhoneRingAlert(private val service: Service, private val handler: Handler) {
     /** Kennung der aktuellen Weck-Mitteilung; `null` = noch keine in diesem Dienst. */
@@ -72,16 +74,18 @@ internal class PhoneRingAlert(private val service: Service, private val handler:
         handler.postDelayed(realert, REALERT_MS)
     }
 
-    /** Wecker-Alarm und direkter Start; gibt den Zustand für die Diagnose zurück. */
+    /** Direkter Start und Wecker-Alarm; gibt den Zustand für die Diagnose zurück. */
     private fun bring(): String {
-        val probe = probe()
-        scheduleAlarm()
-        // Ohne sichtbares Fenster verwirft Android den Start still; dann tragen Mitteilung und Alarm.
+        val companion = CompanionLink.isAssociated(service)
+        val probe = probe(companion)
+        // Mit Zuordnung der Hauptweg; ohne verwirft Android den Start ohne sichtbares Fenster still,
+        // dann tragen Mitteilung und Alarm.
         service.startActivity(
             Intent(service, PhoneRingActivity::class.java)
-                .putExtra(PhoneRingActivity.EXTRA_VIA, PhoneRingActivity.VIA_DIRECT)
+                .putExtra(PhoneRingActivity.EXTRA_VIA, if (companion) PhoneRingActivity.VIA_COMPANION else PhoneRingActivity.VIA_DIRECT)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
         )
+        scheduleAlarm()
         return probe
     }
 
@@ -101,8 +105,8 @@ internal class PhoneRingAlert(private val service: Service, private val handler:
         }
     }
 
-    /** Erwarteter Weg ([RingAlert.route]) und was dazu führt, ohne persönliche Daten. */
-    private fun probe(): String {
+    /** Erwarteter Weg ([RingAlert.route]) und was dazu führt, ohne persönliche Daten; [companion]: Zuordnung da. */
+    private fun probe(companion: Boolean): String {
         val interactive = service.getSystemService(PowerManager::class.java).isInteractive
         val locked = service.getSystemService(KeyguardManager::class.java).isKeyguardLocked
         val notifications = NotificationManagerCompat.from(service)
@@ -111,9 +115,9 @@ internal class PhoneRingAlert(private val service: Service, private val handler:
         // Vordergrunddienst allein (IMPORTANCE_FOREGROUND_SERVICE) zählt nicht als sichtbar.
         val visible = info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND ||
             info.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE
-        val route = RingAlert.route(visible, interactive, locked, fullScreen)
+        val route = RingAlert.route(visible, companion, interactive, locked, fullScreen)
         return "${route.name} screen=${if (interactive) "on" else "off"} locked=$locked fsi=$fullScreen " +
-            "notifications=${notifications.areNotificationsEnabled()} app=$visible"
+            "notifications=${notifications.areNotificationsEnabled()} app=$visible companion=$companion"
     }
 
     private companion object {

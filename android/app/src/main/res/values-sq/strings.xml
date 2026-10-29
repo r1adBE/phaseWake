@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Pa njoftime, telefoni yt nuk mund të bjerë si alarm rezervë.</string>
     <string name="check_full_screen">Alarmi në ekran të plotë i lejuar</string>
     <string name="check_full_screen_problem">Lejoje këtë, që alarmi të shfaqet edhe kur telefoni është i kyçur.</string>
+    <string name="companion_connect">Lidhe si aplikacion shoqërues</string>
+    <string name="companion_why">Që alarmi të dalë krejt përpara edhe kur je duke përdorur telefonin.</string>
+    <string name="companion_connected">E lidhur si aplikacion shoqërues</string>
+    <string name="check_companion">Aplikacioni shoqërues i orës</string>
+    <string name="check_companion_problem">Përndryshe, ndërsa përdor telefonin, alarmi shfaqet vetëm si njoftim lart.</string>
+    <string name="companion_failed">Nuk u gjet asnjë orë. Kontrollo që të jetë e lidhur dhe që Bluetooth të jetë i aktivizuar, pastaj provo përsëri.</string>
     <string name="check_exact_alarms">Alarmet e sakta të lejuara</string>
     <string name="check_exact_alarms_problem">Lejo „Alarmet dhe rikujtuesit“, që alarmi rezervë të bjerë në kohë.</string>
     <string name="check_dnd">„Mos shqetëso“ i lejon alarmet</string>

@@ -164,6 +164,12 @@
     <string name="check_notifications_problem">Bila arifa, simu yako haiwezi kulia kama kengele ya akiba.</string>
     <string name="check_full_screen">Kengele ya skrini nzima imeruhusiwa</string>
     <string name="check_full_screen_problem">Ruhusu hili ili kengele ionekane hata simu ikiwa imefungwa.</string>
+    <string name="companion_connect">Unganisha kama programu shirikishi</string>
+    <string name="companion_why">Ili kengele ionekane mbele kabisa hata unapotumia simu.</string>
+    <string name="companion_connected">Imeunganishwa kama programu shirikishi</string>
+    <string name="check_companion">Programu shirikishi ya saa</string>
+    <string name="check_companion_problem">Vinginevyo, unapotumia simu, kengele huonekana tu kama arifa juu.</string>
+    <string name="companion_failed">Hakuna saa iliyopatikana. Hakikisha imeunganishwa na Bluetooth imewashwa, kisha ujaribu tena.</string>
     <string name="check_exact_alarms">Kengele kamili zimeruhusiwa</string>
     <string name="check_exact_alarms_problem">Ruhusu “Kengele na vikumbusho” ili kengele ya akiba ilie kwa wakati.</string>
     <string name="check_dnd">“Usinisumbue” inaruhusu kengele</string>

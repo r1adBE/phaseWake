@@ -164,6 +164,12 @@
     <string name="check_notifications_problem">அறிவிப்புகள் இல்லாமல் உங்கள் ஃபோன் மாற்று அலாரமாக ஒலிக்க முடியாது.</string>
     <string name="check_full_screen">முழுத்திரை அலாரம் அனுமதிக்கப்பட்டது</string>
     <string name="check_full_screen_problem">ஃபோன் பூட்டியிருந்தாலும் அலாரம் தோன்ற இதை அனுமதியுங்கள்.</string>
+    <string name="companion_connect">துணை ஆப்ஸாக இணையுங்கள்</string>
+    <string name="companion_why">ஃபோனைப் பயன்படுத்தும்போதும் அலாரம் எல்லாவற்றுக்கும் முன்னால் தோன்ற.</string>
+    <string name="companion_connected">துணை ஆப்ஸாக இணைக்கப்பட்டது</string>
+    <string name="check_companion">வாட்சின் துணை ஆப்ஸ்</string>
+    <string name="check_companion_problem">இல்லையெனில் ஃபோனைப் பயன்படுத்தும்போது அலாரம் மேலே ஒரு அறிவிப்பாக மட்டுமே தோன்றும்.</string>
+    <string name="companion_failed">வாட்ச் எதுவும் கிடைக்கவில்லை. அது இணைக்கப்பட்டுள்ளதா, புளூடூத் இயக்கத்தில் உள்ளதா எனச் சரிபார்த்து மீண்டும் முயலுங்கள்.</string>
     <string name="check_exact_alarms">துல்லிய அலாரங்கள் அனுமதிக்கப்பட்டன</string>
     <string name="check_exact_alarms_problem">மாற்று அலாரம் சரியான நேரத்தில் ஒலிக்க “அலாரங்களும் நினைவூட்டல்களும்” என்பதை அனுமதியுங்கள்.</string>
     <string name="check_dnd">“தொந்தரவு செய்ய வேண்டாம்” அலாரங்களை அனுமதிக்கிறது</string>

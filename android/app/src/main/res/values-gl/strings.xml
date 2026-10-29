@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Sen notificacións, o teléfono non pode soar como alarma de reserva.</string>
     <string name="check_full_screen">Alarma a pantalla completa permitida</string>
     <string name="check_full_screen_problem">Permíteo para que a alarma apareza aínda que o teléfono estea bloqueado.</string>
+    <string name="companion_connect">Conectar como app complementaria</string>
+    <string name="companion_why">Para que a alarma apareza diante mesmo mentres usas o teléfono.</string>
+    <string name="companion_connected">Conectada como app complementaria</string>
+    <string name="check_companion">App complementaria do reloxo</string>
+    <string name="check_companion_problem">Se non, mentres usas o teléfono, a alarma só aparece como notificación arriba.</string>
+    <string name="companion_failed">Non se atopou ningún reloxo. Comproba que estea conectado e que o Bluetooth estea activado, e téntao de novo.</string>
     <string name="check_exact_alarms">Alarmas exactas permitidas</string>
     <string name="check_exact_alarms_problem">Permite «Alarmas e recordatorios» para que a alarma de reserva soe á hora.</string>
     <string name="check_dnd">«Non molestar» deixa pasar as alarmas</string>

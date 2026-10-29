@@ -170,6 +170,12 @@
     <string name="check_notifications_problem">Brez obvestil telefon ne more zvoniti kot rezervna budilka.</string>
     <string name="check_full_screen">Budilka čez cel zaslon dovoljena</string>
     <string name="check_full_screen_problem">Dovoli to, da se budilka prikaže tudi na zaklenjenem telefonu.</string>
+    <string name="companion_connect">Poveži kot spremljevalno aplikacijo</string>
+    <string name="companion_why">Da se budilka prikaže čisto spredaj, tudi ko uporabljaš telefon.</string>
+    <string name="companion_connected">Povezano kot spremljevalna aplikacija</string>
+    <string name="check_companion">Spremljevalna aplikacija ure</string>
+    <string name="check_companion_problem">Sicer se budilka med uporabo telefona prikaže le kot obvestilo na vrhu.</string>
+    <string name="companion_failed">Ura ni najdena. Preveri, ali je povezana in ali je Bluetooth vklopljen, nato poskusi znova.</string>
     <string name="check_exact_alarms">Natančne budilke dovoljene</string>
     <string name="check_exact_alarms_problem">Dovoli »Budilke in opomniki«, da rezervna budilka zazvoni pravočasno.</string>
     <string name="check_dnd">»Ne moti« prepušča budilke</string>

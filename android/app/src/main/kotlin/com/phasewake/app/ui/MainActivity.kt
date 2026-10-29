@@ -136,6 +136,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthCheck++
     }
+    // Als Begleit-App der Uhr verbinden; danach den Nacht-Check neu prüfen.
+    val connectCompanion = rememberCompanionConnect { checkRun++ }
     // Teilen des Verlaufs: zuerst ein Satz dazu, was die Datei enthält.
     var askExport by rememberSaveable { mutableStateOf(false) }
     val actions = NavActions(
@@ -151,6 +153,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         connectHealth = { healthPermission.launch(app.health.permissions) },
         onFix = { item ->
             when {
+                item == Check.COMPANION -> connectCompanion()
                 item != Check.NOTIFICATIONS -> fixCheck(context, item, nightCheck.missingOn)
                 // Die Versionsprüfung steht hier sichtbar für Lint; canAskNotifications prüft sie ebenfalls.
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && canAskNotifications(context, askedNotifications) -> {

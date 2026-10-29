@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Zonder meldingen kan je telefoon niet overgaan als back-upwekker.</string>
     <string name="check_full_screen">Wekker op volledig scherm toegestaan</string>
     <string name="check_full_screen_problem">Sta dit toe zodat de wekker ook verschijnt als je telefoon vergrendeld is.</string>
+    <string name="companion_connect">Verbinden als begeleidende app</string>
+    <string name="companion_why">Zodat de wekker helemaal vooraan verschijnt, ook terwijl je je telefoon gebruikt.</string>
+    <string name="companion_connected">Verbonden als begeleidende app</string>
+    <string name="check_companion">Begeleidende app van het horloge</string>
+    <string name="check_companion_problem">Anders verschijnt de wekker tijdens het gebruik van je telefoon alleen als melding bovenaan.</string>
+    <string name="companion_failed">Geen horloge gevonden. Controleer of het verbonden is en bluetooth aanstaat, en probeer het opnieuw.</string>
     <string name="check_exact_alarms">Exacte wekkers toegestaan</string>
     <string name="check_exact_alarms_problem">Sta wekkers en herinneringen toe zodat de reservewekker op tijd afgaat.</string>
     <string name="check_dnd">Niet storen laat wekkers door</string>

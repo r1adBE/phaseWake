@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Uten varsler kan ikke telefonen ringe som reservealarm.</string>
     <string name="check_full_screen">Fullskjermalarm er tillatt</string>
     <string name="check_full_screen_problem">Tillat dette slik at alarmen vises selv når telefonen er låst.</string>
+    <string name="companion_connect">Koble til som følgeapp</string>
+    <string name="companion_why">Så alarmen kommer helt frem, også mens du bruker telefonen.</string>
+    <string name="companion_connected">Koblet til som følgeapp</string>
+    <string name="check_companion">Klokkens følgeapp</string>
+    <string name="check_companion_problem">Ellers vises alarmen bare som et varsel øverst mens du bruker telefonen.</string>
+    <string name="companion_failed">Fant ingen klokke. Sjekk at den er tilkoblet og at Bluetooth er på, og prøv igjen.</string>
     <string name="check_exact_alarms">Nøyaktige alarmer tillatt</string>
     <string name="check_exact_alarms_problem">Tillat alarmer og påminnelser slik at reservealarmen ringer i tide.</string>
     <string name="check_dnd">Ikke forstyrr slipper gjennom alarmer</string>

@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Sin notificaciones, tu teléfono no puede sonar como alarma de respaldo.</string>
     <string name="check_full_screen">Alarma a pantalla completa permitida</string>
     <string name="check_full_screen_problem">Permítelo para que la alarma aparezca incluso con el teléfono bloqueado.</string>
+    <string name="companion_connect">Conectar como app complementaria</string>
+    <string name="companion_why">Para que la alarma aparezca delante incluso mientras usas el teléfono.</string>
+    <string name="companion_connected">Conectada como app complementaria</string>
+    <string name="check_companion">App complementaria del reloj</string>
+    <string name="check_companion_problem">Si no, mientras usas el teléfono, la alarma solo aparece como notificación arriba.</string>
+    <string name="companion_failed">No se encontró ningún reloj. Comprueba que esté conectado y que el Bluetooth esté activado, y vuelve a intentarlo.</string>
     <string name="check_exact_alarms">Alarmas exactas permitidas</string>
     <string name="check_exact_alarms_problem">Permite alarmas y recordatorios para que la alarma de respaldo suene a tiempo.</string>
     <string name="check_dnd">No molestar deja pasar las alarmas</string>

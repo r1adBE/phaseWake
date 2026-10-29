@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">ਸੂਚਨਾਵਾਂ ਤੋਂ ਬਿਨਾਂ ਤੁਹਾਡਾ ਫ਼ੋਨ ਬੈਕਅੱਪ ਅਲਾਰਮ ਵਜੋਂ ਨਹੀਂ ਵੱਜ ਸਕਦਾ।</string>
     <string name="check_full_screen">ਪੂਰੀ-ਸਕ੍ਰੀਨ ਅਲਾਰਮ ਦੀ ਇਜਾਜ਼ਤ</string>
     <string name="check_full_screen_problem">ਇਸ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ ਤਾਂ ਜੋ ਫ਼ੋਨ ਲਾਕ ਹੋਣ ’ਤੇ ਵੀ ਅਲਾਰਮ ਦਿਖੇ।</string>
+    <string name="companion_connect">ਸਾਥੀ ਐਪ ਵਜੋਂ ਕਨੈਕਟ ਕਰੋ</string>
+    <string name="companion_why">ਤਾਂ ਜੋ ਫ਼ੋਨ ਵਰਤਦੇ ਸਮੇਂ ਵੀ ਅਲਾਰਮ ਬਿਲਕੁਲ ਸਾਹਮਣੇ ਆਵੇ।</string>
+    <string name="companion_connected">ਸਾਥੀ ਐਪ ਵਜੋਂ ਕਨੈਕਟ ਹੈ</string>
+    <string name="check_companion">ਘੜੀ ਦੀ ਸਾਥੀ ਐਪ</string>
+    <string name="check_companion_problem">ਨਹੀਂ ਤਾਂ ਫ਼ੋਨ ਵਰਤਦੇ ਸਮੇਂ ਅਲਾਰਮ ਸਿਰਫ਼ ਉੱਪਰ ਸੂਚਨਾ ਵਜੋਂ ਦਿਖਦਾ ਹੈ।</string>
+    <string name="companion_failed">ਕੋਈ ਘੜੀ ਨਹੀਂ ਮਿਲੀ। ਜਾਂਚ ਕਰੋ ਕਿ ਇਹ ਕਨੈਕਟ ਹੈ ਅਤੇ ਬਲੂਟੁੱਥ ਚਾਲੂ ਹੈ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="check_exact_alarms">ਸਟੀਕ ਅਲਾਰਮਾਂ ਦੀ ਇਜਾਜ਼ਤ</string>
     <string name="check_exact_alarms_problem">“ਅਲਾਰਮ ਅਤੇ ਰਿਮਾਈਂਡਰ” ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ ਤਾਂ ਜੋ ਬੈਕਅੱਪ ਅਲਾਰਮ ਸਮੇਂ ਸਿਰ ਵੱਜੇ।</string>
     <string name="check_dnd">“ਪਰੇਸ਼ਾਨ ਨਾ ਕਰੋ” ਅਲਾਰਮ ਵੱਜਣ ਦਿੰਦਾ ਹੈ</string>

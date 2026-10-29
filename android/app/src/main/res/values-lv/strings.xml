@@ -168,6 +168,12 @@
     <string name="check_notifications_problem">Bez paziņojumiem tālrunis nevar zvanīt kā rezerves modinātājs.</string>
     <string name="check_full_screen">Pilnekrāna modinātājs atļauts</string>
     <string name="check_full_screen_problem">Atļauj to, lai modinātājs parādītos arī tad, ja tālrunis ir bloķēts.</string>
+    <string name="companion_connect">Savienot kā pavadošo lietotni</string>
+    <string name="companion_why">Lai modinātājs parādītos pašā priekšā arī tad, kad izmanto tālruni.</string>
+    <string name="companion_connected">Savienots kā pavadošā lietotne</string>
+    <string name="check_companion">Pulksteņa pavadošā lietotne</string>
+    <string name="check_companion_problem">Citādi, kamēr izmanto tālruni, modinātājs parādās tikai kā paziņojums augšā.</string>
+    <string name="companion_failed">Pulkstenis netika atrasts. Pārbaudi, vai tas ir savienots un Bluetooth ir ieslēgts, un mēģini vēlreiz.</string>
     <string name="check_exact_alarms">Precīzi modinātāji atļauti</string>
     <string name="check_exact_alarms_problem">Atļauj „Signāli un atgādinājumi“, lai rezerves modinātājs zvanītu laikā.</string>
     <string name="check_dnd">„Netraucēt“ laiž cauri modinātājus</string>

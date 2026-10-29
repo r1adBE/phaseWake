@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">Tanpa notifikasi, ponselmu tidak bisa berbunyi sebagai alarm cadangan.</string>
     <string name="check_full_screen">Alarm layar penuh diizinkan</string>
     <string name="check_full_screen_problem">Izinkan agar alarm muncul meskipun ponsel terkunci.</string>
+    <string name="companion_connect">Hubungkan sebagai aplikasi pendamping</string>
+    <string name="companion_why">Agar alarm muncul paling depan meskipun kamu sedang memakai ponsel.</string>
+    <string name="companion_connected">Terhubung sebagai aplikasi pendamping</string>
+    <string name="check_companion">Aplikasi pendamping jam tangan</string>
+    <string name="check_companion_problem">Jika tidak, saat kamu memakai ponsel, alarm hanya muncul sebagai notifikasi di atas.</string>
+    <string name="companion_failed">Jam tangan tidak ditemukan. Periksa apakah sudah terhubung dan Bluetooth aktif, lalu coba lagi.</string>
     <string name="check_exact_alarms">Alarm tepat waktu diizinkan</string>
     <string name="check_exact_alarms_problem">Izinkan alarm &amp; pengingat agar alarm cadangan berbunyi tepat waktu.</string>
     <string name="check_dnd">Jangan Ganggu meloloskan alarm</string>

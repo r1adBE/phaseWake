@@ -167,6 +167,12 @@
     <string name="check_notifications_problem">Sense notificacions, el telèfon no pot sonar com a alarma de reserva.</string>
     <string name="check_full_screen">Alarma a pantalla completa permesa</string>
     <string name="check_full_screen_problem">Permet-ho perquè l’alarma aparegui encara que el telèfon estigui bloquejat.</string>
+    <string name="companion_connect">Connecta com a app complementària</string>
+    <string name="companion_why">Perquè l’alarma surti al davant fins i tot mentre fas servir el telèfon.</string>
+    <string name="companion_connected">Connectada com a app complementària</string>
+    <string name="check_companion">App complementària del rellotge</string>
+    <string name="check_companion_problem">Si no, mentre fas servir el telèfon, l’alarma només apareix com a notificació a dalt.</string>
+    <string name="companion_failed">No s’ha trobat cap rellotge. Comprova que estigui connectat i que el Bluetooth estigui activat, i torna-ho a provar.</string>
     <string name="check_exact_alarms">Alarmes exactes permeses</string>
     <string name="check_exact_alarms_problem">Permet «Alarmes i recordatoris» perquè l’alarma de reserva soni a l’hora.</string>
     <string name="check_dnd">«No molestis» deixa passar les alarmes</string>

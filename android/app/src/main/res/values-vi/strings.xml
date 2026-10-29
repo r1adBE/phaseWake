@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">Không có thông báo, điện thoại của bạn không thể reo làm báo thức dự phòng.</string>
     <string name="check_full_screen">Đã cho phép báo thức toàn màn hình</string>
     <string name="check_full_screen_problem">Hãy cho phép để báo thức hiện ra ngay cả khi điện thoại đang khóa.</string>
+    <string name="companion_connect">Kết nối làm ứng dụng đồng hành</string>
+    <string name="companion_why">Để báo thức hiện ra ngay phía trước kể cả khi bạn đang dùng điện thoại.</string>
+    <string name="companion_connected">Đã kết nối làm ứng dụng đồng hành</string>
+    <string name="check_companion">Ứng dụng đồng hành của đồng hồ</string>
+    <string name="check_companion_problem">Nếu không, khi bạn đang dùng điện thoại, báo thức chỉ hiện thành thông báo ở trên cùng.</string>
+    <string name="companion_failed">Không tìm thấy đồng hồ. Hãy kiểm tra đồng hồ đã kết nối và Bluetooth đang bật, rồi thử lại.</string>
     <string name="check_exact_alarms">Đã cho phép báo thức chính xác</string>
     <string name="check_exact_alarms_problem">Hãy cho phép báo thức và lời nhắc để báo thức dự phòng reo đúng giờ.</string>
     <string name="check_dnd">Chế độ Không làm phiền vẫn cho báo thức kêu</string>

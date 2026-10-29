@@ -155,6 +155,12 @@
     <string name="check_notifications_problem">Bildirişlər olmadan telefonun ehtiyat siqnal kimi çala bilməz.</string>
     <string name="check_full_screen">Tam ekran siqnala icazə var</string>
     <string name="check_full_screen_problem">Telefonun kilidli olanda da siqnal görünsün deyə icazə ver.</string>
+    <string name="companion_connect">Köməkçi tətbiq kimi qoş</string>
+    <string name="companion_why">Telefondan istifadə edərkən də siqnal ən öndə görünsün deyə.</string>
+    <string name="companion_connected">Köməkçi tətbiq kimi qoşulub</string>
+    <string name="check_companion">Saatın köməkçi tətbiqi</string>
+    <string name="check_companion_problem">Telefondan istifadə edərkən siqnal əks halda yalnız yuxarıda bildiriş kimi görünür.</string>
+    <string name="companion_failed">Saat tapılmadı. Qoşulduğunu və Bluetooth-un açıq olduğunu yoxla, sonra yenidən cəhd et.</string>
     <string name="check_exact_alarms">Dəqiq siqnallara icazə var</string>
     <string name="check_exact_alarms_problem">Ehtiyat siqnal vaxtında çalsın deyə “Siqnallar və xatırlatmalar”a icazə ver.</string>
     <string name="check_dnd">“Narahat etməyin” siqnalları buraxır</string>

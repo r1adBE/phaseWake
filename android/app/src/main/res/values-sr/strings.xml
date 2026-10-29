@@ -168,6 +168,12 @@
     <string name="check_notifications_problem">Без обавештења телефон не може да звони као резервни аларм.</string>
     <string name="check_full_screen">Аларм преко целог екрана дозвољен</string>
     <string name="check_full_screen_problem">Дозволи то да би се аларм приказао и када је телефон закључан.</string>
+    <string name="companion_connect">Повежи као пратећу апликацију</string>
+    <string name="companion_why">Да би се аларм приказао скроз напред и док користиш телефон.</string>
+    <string name="companion_connected">Повезано као пратећа апликација</string>
+    <string name="check_companion">Пратећа апликација сата</string>
+    <string name="check_companion_problem">Док користиш телефон, аларм се иначе приказује само као обавештење на врху.</string>
+    <string name="companion_failed">Сат није пронађен. Провери да ли је повезан и да ли је Bluetooth укључен, па покушај поново.</string>
     <string name="check_exact_alarms">Тачни аларми дозвољени</string>
     <string name="check_exact_alarms_problem">Дозволи „Аларми и подсетници“ да би резервни аларм звонио на време.</string>
     <string name="check_dnd">„Не узнемиравај“ пропушта аларме</string>

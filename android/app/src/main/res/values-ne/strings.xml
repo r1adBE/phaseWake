@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">सूचना बिना तिम्रो फोन ब्याकअप अलार्मको रूपमा बज्न सक्दैन।</string>
     <string name="check_full_screen">फुल-स्क्रिन अलार्मलाई अनुमति छ</string>
     <string name="check_full_screen_problem">फोन लक हुँदा पनि अलार्म देखियोस् भन्नका लागि यसलाई अनुमति देऊ।</string>
+    <string name="companion_connect">सहयोगी एपका रूपमा जोड</string>
+    <string name="companion_why">फोन चलाइरहेको बेला पनि अलार्म एकदमै अगाडि आओस् भन्नका लागि।</string>
+    <string name="companion_connected">सहयोगी एपका रूपमा जोडियो</string>
+    <string name="check_companion">घडीको सहयोगी एप</string>
+    <string name="check_companion_problem">नत्र फोन चलाइरहेको बेला अलार्म माथि सूचनाका रूपमा मात्र देखिन्छ।</string>
+    <string name="companion_failed">कुनै घडी फेला परेन। घडी जोडिएको र ब्लुटुथ खुला छ कि छैन जाँच, अनि फेरि प्रयास गर।</string>
     <string name="check_exact_alarms">सटीक अलार्मलाई अनुमति छ</string>
     <string name="check_exact_alarms_problem">ब्याकअप अलार्म समयमै बजोस् भन्नका लागि “अलार्म र रिमाइन्डर” लाई अनुमति देऊ।</string>
     <string name="check_dnd">“बाधा नपुर्‍याउनुहोस्” ले अलार्म बज्न दिन्छ</string>

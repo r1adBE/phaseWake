@@ -164,6 +164,12 @@
     <string name="check_notifications_problem">ಅಧಿಸೂಚನೆಗಳಿಲ್ಲದೆ ಫೋನ್ ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಆಗಿ ರಿಂಗ್ ಆಗಲಾರದು.</string>
     <string name="check_full_screen">ಪೂರ್ಣ ಪರದೆ ಅಲಾರಾಂಗೆ ಅನುಮತಿ ಇದೆ</string>
     <string name="check_full_screen_problem">ಫೋನ್ ಲಾಕ್ ಆಗಿದ್ದರೂ ಅಲಾರಾಂ ಕಾಣಿಸಲು ಇದನ್ನು ಅನುಮತಿಸಿ.</string>
+    <string name="companion_connect">ಸಹಚರ ಆ್ಯಪ್ ಆಗಿ ಸಂಪರ್ಕಿಸಿ</string>
+    <string name="companion_why">ಫೋನ್ ಬಳಸುತ್ತಿರುವಾಗಲೂ ಅಲಾರಾಂ ಎಲ್ಲಕ್ಕಿಂತ ಮುಂದೆ ಕಾಣಿಸಲು.</string>
+    <string name="companion_connected">ಸಹಚರ ಆ್ಯಪ್ ಆಗಿ ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
+    <string name="check_companion">ವಾಚ್‌ನ ಸಹಚರ ಆ್ಯಪ್</string>
+    <string name="check_companion_problem">ಇಲ್ಲದಿದ್ದರೆ ಫೋನ್ ಬಳಸುತ್ತಿರುವಾಗ ಅಲಾರಾಂ ಮೇಲೆ ಅಧಿಸೂಚನೆಯಾಗಿ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ.</string>
+    <string name="companion_failed">ಯಾವುದೇ ವಾಚ್ ಕಂಡುಬಂದಿಲ್ಲ. ಅದು ಸಂಪರ್ಕಗೊಂಡಿದೆಯೇ ಮತ್ತು ಬ್ಲೂಟೂತ್ ಆನ್ ಆಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="check_exact_alarms">ನಿಖರ ಅಲಾರಾಂಗಳಿಗೆ ಅನುಮತಿ ಇದೆ</string>
     <string name="check_exact_alarms_problem">ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ರಿಂಗ್ ಆಗಲು ಅಲಾರಾಂಗಳು &amp; ಜ್ಞಾಪನೆಗಳನ್ನು ಅನುಮತಿಸಿ.</string>
     <string name="check_dnd">ಅಡಚಣೆ ಮಾಡಬೇಡಿ ಅಲಾರಾಂಗಳನ್ನು ಬಿಡುತ್ತದೆ</string>

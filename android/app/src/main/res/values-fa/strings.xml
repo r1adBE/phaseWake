@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">بدون اعلان، گوشی نمی‌تواند به‌عنوان زنگ پشتیبان زنگ بزند.</string>
     <string name="check_full_screen">زنگ تمام‌صفحه مجاز است</string>
     <string name="check_full_screen_problem">این را مجاز کن تا زنگ حتی وقتی گوشی قفل است نمایش داده شود.</string>
+    <string name="companion_connect">اتصال به‌عنوان برنامهٔ همراه</string>
+    <string name="companion_why">تا زنگ حتی وقتی از گوشی استفاده می‌کنی، کاملاً جلو بیاید.</string>
+    <string name="companion_connected">به‌عنوان برنامهٔ همراه متصل شد</string>
+    <string name="check_companion">برنامهٔ همراه ساعت</string>
+    <string name="check_companion_problem">در غیر این صورت، وقتی از گوشی استفاده می‌کنی، زنگ فقط به‌صورت اعلان در بالا نمایش داده می‌شود.</string>
+    <string name="companion_failed">ساعتی پیدا نشد. بررسی کن که متصل باشد و بلوتوث روشن باشد، بعد دوباره امتحان کن.</string>
     <string name="check_exact_alarms">زنگ‌های دقیق مجاز است</string>
     <string name="check_exact_alarms_problem">زنگ‌ها و یادآوری‌ها را مجاز کن تا زنگ پشتیبان سر وقت به صدا درآید.</string>
     <string name="check_dnd">مزاحم نشوید، زنگ‌ها را عبور می‌دهد</string>

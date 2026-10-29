@@ -1,6 +1,6 @@
 # Datenschutzerklärung Phase Wake
 
-Stand: 28. Oktober 2026 · [English version below](#privacy-policy-phase-wake)
+Stand: 29. Oktober 2026 · [English version below](#privacy-policy-phase-wake)
 
 ## Kurz
 
@@ -25,6 +25,7 @@ E-Mail: riad.work@outlook.com
 | Kurze Tonausschnitte nächtlicher Geräusche über das Mikrofon (nur wenn du «Geräusche aufnehmen» einschaltest) | Schnarchen und Sprechen erkennen und dir zum Anhören zeigen | nur Handy, im App-Ordner | 7 Tage; einzeln oder alle löschbar, auch mit «Verlauf löschen» |
 | Abendroutine (deine Punkte und was du abgehakt hast) | Checkliste, Durchschnitt in den Trends | nur Handy | 90 Abende; «Verlauf löschen» entfernt die Haken |
 | Land und Region der Feiertage, daraus die Feiertage der nächsten 400 Tage | «An Feiertagen nicht wecken» | Handy, die Tage auch Uhr | bis du die Wahl änderst |
+| Zuordnung als Begleit-App der Uhr: Bluetooth-Adresse der Uhr (nur Android, nur wenn du «Als Begleit-App verbinden» bestätigst); zum Anbieten der Uhr liest Phase Wake dabei einmal die gekoppelten Bluetooth-Geräte (Recht «Geräte in der Nähe») und speichert davon nichts | Weckbildschirm auch bei benutztem Handy nach vorn bringen | nur Handy, gespeichert vom System, nicht von Phase Wake | bis du die Zuordnung in den Einstellungen des Systems entfernst oder Phase Wake deinstallierst |
 | Diagnose-Protokoll (Zeiten und Arten von Ereignissen wie «geplant», «geklingelt», «gestoppt», Akkustand; keine Namen, keine Messwerte) | Fehlersuche, nur auf Wunsch angezeigt und geteilt | Handy und Uhr, je lokal | höchstens 7 Tage bzw. 500 Einträge; «Leeren» löscht es |
 | Verschlüsselte Sicherung (Wecker, Verlauf, Notizen, Abendroutine, Einstellungen samt Zeitpunkt von «Verlauf löschen»; ohne Geräusche und Gesundheitsdaten) | Sichern und Wiederherstellen | nur dort, wo du die Datei speicherst; mit deinem Passwort verschlüsselt | bis du die Datei löschst |
 
@@ -54,13 +55,15 @@ Da wir keine Daten von dir erhalten, gibt es bei uns nichts einzusehen, zu beric
 
 # Privacy policy Phase Wake
 
-As of 28 October 2026
+As of 29 October 2026
 
 Phase Wake processes all data only on your phone and your watch. There is no account, no server, no advertising and no analytics. We receive no data from you.
 
 **Controller:** Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf, Switzerland · riad.work@outlook.com
 
 **Data processed on your devices:** alarms (until you delete them); motion and heart rate during the wake window to detect light sleep (last 90 nights); motion after “Good night” to detect when you fall asleep (watch only, until the next night); sleep sessions and stages read from Health Connect or Apple Health with the name of the source app, only if you allow it, to check the wake moment, improve detection and show nights without a Phase Wake alarm in the history (phone only, read only, re-read on every opening, not stored, not backed up).
+
+**Companion app (Android only, optional):** if you confirm “Connect as companion app”, the system (not Phase Wake) stores the link to your watch, including its Bluetooth address, on the phone, so the alarm screen comes to the front even while you use the phone. To offer your watch, Phase Wake reads the list of paired Bluetooth devices once (“Nearby devices” permission) and stores none of it. The link stays until you remove it in the system settings or uninstall the app.
 
 Phone and watch exchange alarms and nights directly via the operating system’s connection (Wear OS Data Layer or WatchConnectivity). Phase Wake has no internet permission and shares no data with us or third parties. If you export your nights as a CSV file, you decide whom to share it with; it contains no names, dates or device identifiers.
 

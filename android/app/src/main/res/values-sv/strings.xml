@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Utan aviseringar kan inte telefonen ringa som reservalarm.</string>
     <string name="check_full_screen">Helskärmslarm tillåtet</string>
     <string name="check_full_screen_problem">Tillåt detta så att alarmet visas även när telefonen är låst.</string>
+    <string name="companion_connect">Anslut som följeslagarapp</string>
+    <string name="companion_why">Så att alarmet kommer längst fram även medan du använder telefonen.</string>
+    <string name="companion_connected">Ansluten som följeslagarapp</string>
+    <string name="check_companion">Klockans följeslagarapp</string>
+    <string name="check_companion_problem">Annars visas alarmet bara som en avisering överst medan du använder telefonen.</string>
+    <string name="companion_failed">Ingen klocka hittades. Kontrollera att den är ansluten och att Bluetooth är på, och försök igen.</string>
     <string name="check_exact_alarms">Exakta alarm tillåtna</string>
     <string name="check_exact_alarms_problem">Tillåt alarm och påminnelser så att reservalarmet ringer i tid.</string>
     <string name="check_dnd">Stör ej släpper igenom alarm</string>

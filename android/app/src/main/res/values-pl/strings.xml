@@ -169,6 +169,12 @@
     <string name="check_notifications_problem">Bez powiadomień telefon nie zadzwoni jako zapasowy budzik.</string>
     <string name="check_full_screen">Budzik na pełnym ekranie dozwolony</string>
     <string name="check_full_screen_problem">Zezwól na to, aby budzik pojawiał się także przy zablokowanym telefonie.</string>
+    <string name="companion_connect">Połącz jako aplikację towarzyszącą</string>
+    <string name="companion_why">Aby budzik pojawiał się na samym przodzie, nawet gdy używasz telefonu.</string>
+    <string name="companion_connected">Połączono jako aplikację towarzyszącą</string>
+    <string name="check_companion">Aplikacja towarzysząca zegarka</string>
+    <string name="check_companion_problem">W przeciwnym razie podczas używania telefonu budzik pojawia się tylko jako powiadomienie u góry.</string>
+    <string name="companion_failed">Nie znaleziono zegarka. Sprawdź, czy jest połączony i czy Bluetooth jest włączony, a potem spróbuj ponownie.</string>
     <string name="check_exact_alarms">Dokładne alarmy dozwolone</string>
     <string name="check_exact_alarms_problem">Zezwól na alarmy i przypomnienia, aby zapasowy budzik zadzwonił na czas.</string>
     <string name="check_dnd">Nie przeszkadzać przepuszcza budziki</string>

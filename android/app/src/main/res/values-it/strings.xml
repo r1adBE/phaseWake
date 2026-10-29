@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Senza notifiche il telefono non può suonare come sveglia di riserva.</string>
     <string name="check_full_screen">Sveglia a schermo intero consentita</string>
     <string name="check_full_screen_problem">Consentila perché la sveglia compaia anche a telefono bloccato.</string>
+    <string name="companion_connect">Collega come app complementare</string>
+    <string name="companion_why">Così la sveglia compare in primo piano anche mentre usi il telefono.</string>
+    <string name="companion_connected">Collegata come app complementare</string>
+    <string name="check_companion">App complementare dell’orologio</string>
+    <string name="check_companion_problem">Altrimenti, mentre usi il telefono, la sveglia compare solo come notifica in alto.</string>
+    <string name="companion_failed">Nessun orologio trovato. Controlla che sia collegato e che il Bluetooth sia attivo, poi riprova.</string>
     <string name="check_exact_alarms">Sveglie esatte consentite</string>
     <string name="check_exact_alarms_problem">Consenti sveglie e promemoria perché la sveglia di riserva suoni puntuale.</string>
     <string name="check_dnd">Non disturbare lascia passare le sveglie</string>

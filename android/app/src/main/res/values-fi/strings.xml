@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Ilman ilmoituksia puhelimesi ei voi soida varaherätyksenä.</string>
     <string name="check_full_screen">Koko näytön herätys sallittu</string>
     <string name="check_full_screen_problem">Salli tämä, jotta herätys näkyy myös puhelimen ollessa lukittu.</string>
+    <string name="companion_connect">Yhdistä kumppanisovelluksena</string>
+    <string name="companion_why">Jotta herätys tulee aivan eteen myös silloin, kun käytät puhelinta.</string>
+    <string name="companion_connected">Yhdistetty kumppanisovelluksena</string>
+    <string name="check_companion">Kellon kumppanisovellus</string>
+    <string name="check_companion_problem">Muuten herätys näkyy puhelinta käyttäessäsi vain ilmoituksena ylhäällä.</string>
+    <string name="companion_failed">Kelloa ei löytynyt. Tarkista, että se on yhdistetty ja Bluetooth on päällä, ja yritä uudelleen.</string>
     <string name="check_exact_alarms">Tarkat herätykset sallittu</string>
     <string name="check_exact_alarms_problem">Salli herätykset ja muistutukset, jotta varaherätys soi ajallaan.</string>
     <string name="check_dnd">Älä häiritse päästää herätykset läpi</string>

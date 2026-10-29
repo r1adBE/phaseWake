@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Uden notifikationer kan din telefon ikke ringe som backup-alarm.</string>
     <string name="check_full_screen">Alarm på fuld skærm er tilladt</string>
     <string name="check_full_screen_problem">Tillad det, så alarmen vises, selv når telefonen er låst.</string>
+    <string name="companion_connect">Forbind som ledsagerapp</string>
+    <string name="companion_why">Så alarmen kommer helt frem, også mens du bruger telefonen.</string>
+    <string name="companion_connected">Forbundet som ledsagerapp</string>
+    <string name="check_companion">Urets ledsagerapp</string>
+    <string name="check_companion_problem">Mens du bruger telefonen, vises alarmen ellers kun som en notifikation øverst.</string>
+    <string name="companion_failed">Intet ur fundet. Tjek, at det er forbundet, og at Bluetooth er slået til, og prøv igen.</string>
     <string name="check_exact_alarms">Præcise alarmer tilladt</string>
     <string name="check_exact_alarms_problem">Tillad alarmer og påmindelser, så reservealarmen ringer til tiden.</string>
     <string name="check_dnd">Forstyr ikke lader alarmer igennem</string>

@@ -13,7 +13,8 @@ import com.phasewake.app.ui.home.Check
 
 /**
  * Öffnet zu einer offenen Prüfung des Nacht-Checks die passende Einstellungsseite. Mitteilungen
- * ([Check.NOTIFICATIONS]) fragt [PhaseWakeNav] selbst an; Prüfungen ohne Einstellung tun nichts.
+ * ([Check.NOTIFICATIONS]) und die Begleit-App ([Check.COMPANION]) fragt [PhaseWakeNav] selbst an; Prüfungen ohne
+ * Einstellung tun nichts.
  * [missingOn]: Uhren ohne Phase Wake.
  */
 internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
@@ -27,7 +28,7 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
         Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
         Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
         Check.WATCH_APP -> missingOn.firstOrNull()?.let { node -> openStoreOnWatch(context, node) }
-        Check.NOTIFICATIONS, Check.WATCH, Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.WATCH_UPDATE, Check.BATTERY -> Unit
+        Check.NOTIFICATIONS, Check.COMPANION, Check.WATCH, Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.WATCH_UPDATE, Check.BATTERY -> Unit
     }
 }
 

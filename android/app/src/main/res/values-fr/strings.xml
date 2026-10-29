@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Sans notifications, ton téléphone ne peut pas sonner comme alarme de secours.</string>
     <string name="check_full_screen">Alarme en plein écran autorisée</string>
     <string name="check_full_screen_problem">Autorise-la pour que l’alarme s’affiche même quand le téléphone est verrouillé.</string>
+    <string name="companion_connect">Connecter comme app compagnon</string>
+    <string name="companion_why">Pour que l’alarme passe au premier plan même quand tu utilises ton téléphone.</string>
+    <string name="companion_connected">Connectée comme app compagnon</string>
+    <string name="check_companion">App compagnon de la montre</string>
+    <string name="check_companion_problem">Sinon, quand tu utilises ton téléphone, l’alarme ne s’affiche qu’en notification en haut.</string>
+    <string name="companion_failed">Aucune montre trouvée. Vérifie qu’elle est connectée et que le Bluetooth est activé, puis réessaie.</string>
     <string name="check_exact_alarms">Alarmes exactes autorisées</string>
     <string name="check_exact_alarms_problem">Autorise les alarmes et rappels pour que l’alarme de secours sonne à l’heure.</string>
     <string name="check_dnd">Ne pas déranger laisse passer les alarmes</string>

@@ -29569,6 +29569,902 @@
         }
       }
     },
+    "check_companion": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metgeseltoep van die horlosie"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የሰዓቱ አጋር መተግበሪያ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التطبيق المرافق للساعة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatın köməkçi tətbiqi"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Придружаващо приложение на часовника"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়ির সহযোগী অ্যাপ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prateća aplikacija sata"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementària del rellotge"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doprovodná aplikace hodinek"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urets ledsagerapp"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begleit-App der Uhr"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνοδευτική εφαρμογή του ρολογιού"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Companion app of the watch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementaria del reloj"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kella kaasrakendus"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlojuaren aplikazio osagarria"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ همراه ساعت"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellon kumppanisovellus"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Companion app ng relo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App compagnon de la montre"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aip chompánach an uaireadóra"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementaria do reloxo"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળની સાથી ઍપ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "האפליקציה הנלווית של השעון"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच का साथी ऐप"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prateća aplikacija sata"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az óra kísérőalkalmazása"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույցի ուղեկից հավելվածը"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikasi pendamping jam tangan"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fylgiforrit úrsins"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementare dell’orologio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチのコンパニオンアプリ"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათის თანმხლები აპი"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағаттың серік қолданбасы"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កម្មវិធីដៃគូរបស់នាឡិកា"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್‌ನ ಸಹಚರ ಆ್ಯಪ್"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치의 컴패니언 앱"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ແອັບຄູ່ຂອງໂມງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laikrodžio palydovinė programa"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulksteņa pavadošā lietotne"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Придружна апликација на часовникот"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിന്റെ സഹചാരി ആപ്പ്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цагны хамтрагч апп"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळाचे सहचर ॲप"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apl pendamping jam tangan"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီ၏ အဖော်အက်ပ်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokkens følgeapp"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीको सहयोगी एप"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begeleidende app van het horloge"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ਦੀ ਸਾਥੀ ਐਪ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacja towarzysząca zegarka"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementar do relógio"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App complementar do relógio"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicația însoțitoare a ceasului"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сопутствующее приложение часов"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවේ සහකාර යෙදුම"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprievodná aplikácia hodiniek"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spremljevalna aplikacija ure"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacioni shoqërues i orës"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пратећа апликација сата"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockans följeslagarapp"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programu shirikishi ya saa"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வாட்சின் துணை ஆப்ஸ்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్ సహచర యాప్"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แอปคู่หูของนาฬิกา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatin yardımcı uygulaması"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Супутній застосунок годинника"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی کی ساتھی ایپ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soatning hamroh ilovasi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ứng dụng đồng hành của đồng hồ"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶的配套應用程式"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表的配套应用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶的配套應用程式"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uhlelo lokusebenza olusizayo lwewashi"
+          }
+        }
+      }
+    },
+    "check_companion_problem": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terwyl jy jou foon gebruik, verskyn die wekker anders net as 'n kennisgewing bo."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ስልክዎን እየተጠቀሙ ሳሉ፣ ያለዚህ ማንቂያው ከላይ እንደ ማሳወቂያ ብቻ ይታያል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أثناء استخدامك للهاتف، يظهر المنبه بدون ذلك كإشعار في الأعلى فقط."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefondan istifadə edərkən siqnal əks halda yalnız yuxarıda bildiriş kimi görünür."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Иначе, докато използваш телефона, будилникът се показва само като известие горе."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নইলে ফোন ব্যবহার করার সময় অ্যালার্ম শুধু উপরে একটি বিজ্ঞপ্তি হিসেবে দেখা যায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dok koristiš telefon, alarm se inače prikazuje samo kao obavještenje na vrhu."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si no, mentre fas servir el telèfon, l’alarma només apareix com a notificació a dalt."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Když telefon používáš, budík se jinak zobrazí jen jako oznámení nahoře."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mens du bruger telefonen, vises alarmen ellers kun som en notifikation øverst."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzt du gerade das Handy, erscheint der Wecker sonst nur als Mitteilung oben."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αλλιώς, όσο χρησιμοποιείς το κινητό, το ξυπνητήρι εμφανίζεται μόνο ως ειδοποίηση επάνω."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While you're using your phone, the alarm otherwise only shows as a notification at the top."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si no, mientras usas el teléfono, la alarma solo aparece como notificación arriba."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muidu kuvatakse äratus telefoni kasutamise ajal ainult teavitusena üleval."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bestela, telefonoa erabiltzen ari zarenean, alarma goiko jakinarazpen gisa bakarrik agertzen da."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در غیر این صورت، وقتی از گوشی استفاده می‌کنی، زنگ فقط به‌صورت اعلان در بالا نمایش داده می‌شود."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muuten herätys näkyy puhelinta käyttäessäsi vain ilmoituksena ylhäällä."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habang ginagamit mo ang telepono, lalabas lang ang alarm bilang notification sa itaas kung wala ito."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinon, quand tu utilises ton téléphone, l’alarme ne s’affiche qu’en notification en haut."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Murach seo, agus tú ag úsáid an fhóin, ní thaispeántar an t-aláram ach mar fhógra ag an mbarr."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se non, mentres usas o teléfono, a alarma só aparece como notificación arriba."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "નહીં તો ફોન વાપરતા હો ત્યારે એલાર્મ ફક્ત ઉપર સૂચના તરીકે દેખાય છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אחרת, בזמן שימוש בטלפון השעון המעורר מופיע רק כהתראה למעלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वरना फ़ोन इस्तेमाल करते समय अलार्म सिर्फ़ ऊपर एक सूचना के रूप में दिखता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dok koristiš telefon, alarm se inače prikazuje samo kao obavijest na vrhu."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Különben a telefon használata közben az ébresztés csak értesítésként jelenik meg felül."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Այլապես, երբ հեռախոսն օգտագործում ես, զարթուցիչը երևում է միայն որպես ծանուցում վերևում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika tidak, saat kamu memakai ponsel, alarm hanya muncul sebagai notifikasi di atas."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annars birtist vekjarinn aðeins sem tilkynning efst meðan þú notar símann."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altrimenti, mentre usi il telefono, la sveglia compare solo come notifica in alto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続しないと、スマートフォンの使用中はアラームが上部の通知としてのみ表示されます。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სხვა შემთხვევაში, ტელეფონის გამოყენებისას მაღვიძარა მხოლოდ შეტყობინებად ჩანს ზემოთ."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Әйтпесе телефонды қолданып отырғанда оятқыш тек жоғарыда хабарландыру ретінде көрінеді."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើមិនដូច្នោះទេ ពេលអ្នកកំពុងប្រើទូរសព្ទ ម៉ោងរោទ៍បង្ហាញតែជាការជូនដំណឹងនៅខាងលើប៉ុណ្ណោះ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇಲ್ಲದಿದ್ದರೆ ಫೋನ್ ಬಳಸುತ್ತಿರುವಾಗ ಅಲಾರಾಂ ಮೇಲೆ ಅಧಿಸೂಚನೆಯಾಗಿ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결하지 않으면 휴대폰을 사용하는 동안 알람이 위쪽 알림으로만 표시돼요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຖ້າບໍ່ດັ່ງນັ້ນ ຂະນະທີ່ເຈົ້າໃຊ້ໂທລະສັບ ໂມງປຸກຈະສະແດງເປັນການແຈ້ງເຕືອນຢູ່ທາງເທິງເທົ່ານັ້ນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kitaip, kai naudojiesi telefonu, žadintuvas rodomas tik kaip pranešimas viršuje."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Citādi, kamēr izmanto tālruni, modinātājs parādās tikai kā paziņojums augšā."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инаку, додека го користиш телефонот, алармот се појавува само како известување горе."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അല്ലെങ്കിൽ ഫോൺ ഉപയോഗിക്കുമ്പോൾ അലാറം മുകളിൽ ഒരു അറിയിപ്പായി മാത്രമേ കാണൂ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эс бөгөөс утсаа ашиглаж байхад сэрүүлэг зөвхөн дээд талд мэдэгдэл болж харагдана."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नाहीतर फोन वापरत असताना अलार्म फक्त वर सूचना म्हणून दिसतो."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika tidak, semasa awak menggunakan telefon, penggera hanya dipaparkan sebagai pemberitahuan di atas."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "မဟုတ်ပါက ဖုန်းသုံးနေစဉ် နှိုးစက်သည် အပေါ်ရှိ အကြောင်းကြားချက်အဖြစ်သာ ပေါ်ပါသည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ellers vises alarmen bare som et varsel øverst mens du bruker telefonen."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नत्र फोन चलाइरहेको बेला अलार्म माथि सूचनाका रूपमा मात्र देखिन्छ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anders verschijnt de wekker tijdens het gebruik van je telefoon alleen als melding bovenaan."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਹੀਂ ਤਾਂ ਫ਼ੋਨ ਵਰਤਦੇ ਸਮੇਂ ਅਲਾਰਮ ਸਿਰਫ਼ ਉੱਪਰ ਸੂਚਨਾ ਵਜੋਂ ਦਿਖਦਾ ਹੈ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W przeciwnym razie podczas używania telefonu budzik pojawia się tylko jako powiadomienie u góry."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caso contrário, enquanto você usa o celular, o alarme aparece só como notificação no topo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caso contrário, enquanto usas o telemóvel, o alarme aparece só como notificação no topo."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altfel, cât timp folosești telefonul, alarma apare doar ca notificare sus."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Иначе, пока ты пользуешься телефоном, будильник показывается только как уведомление вверху."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නැතහොත් දුරකථනය භාවිත කරන අතරතුර එලාමය ඉහළින් දැනුම්දීමක් ලෙස පමණක් පෙනේ."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keď telefón používaš, budík sa inak zobrazí len ako upozornenie hore."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sicer se budilka med uporabo telefona prikaže le kot obvestilo na vrhu."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Përndryshe, ndërsa përdor telefonin, alarmi shfaqet vetëm si njoftim lart."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Док користиш телефон, аларм се иначе приказује само као обавештење на врху."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annars visas alarmet bara som en avisering överst medan du använder telefonen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vinginevyo, unapotumia simu, kengele huonekana tu kama arifa juu."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இல்லையெனில் ஃபோனைப் பயன்படுத்தும்போது அலாரம் மேலே ஒரு அறிவிப்பாக மட்டுமே தோன்றும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లేకపోతే ఫోన్ వాడుతున్నప్పుడు అలారం పైన నోటిఫికేషన్‌గా మాత్రమే కనిపిస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มิฉะนั้น ขณะที่คุณใช้โทรศัพท์ นาฬิกาปลุกจะแสดงเป็นการแจ้งเตือนด้านบนเท่านั้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aksi halde telefonu kullanırken alarm yalnızca üstte bir bildirim olarak görünür."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Інакше, поки ти користуєшся телефоном, будильник показується лише як сповіщення вгорі."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ورنہ فون استعمال کرتے ہوئے الارم صرف اوپر ایک اطلاع کے طور پر نظر آتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aks holda telefondan foydalanayotganingda budilnik faqat yuqorida bildirishnoma sifatida chiqadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nếu không, khi bạn đang dùng điện thoại, báo thức chỉ hiện thành thông báo ở trên cùng."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "否則在你使用手機時，鬧鐘只會以通知形式在頂部顯示。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "否则在你使用手机时，闹钟只会以通知形式显示在顶部。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "否則在你使用手機時，鬧鐘只會以通知形式顯示在頂端。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma kungenjalo, ngesikhathi usebenzisa ifoni, i-alamu ivela kuphela njengesaziso phezulu."
+          }
+        }
+      }
+    },
     "check_dnd": {
       "localizations": {
         "af": {
@@ -42557,6 +43453,1798 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kuze kube yilapho, iwashi lakho ngeke leqe ama-alamu futhi lizokuvusa nangamaholide."
+          }
+        }
+      }
+    },
+    "companion_connect": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppel as metgeseltoep"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንደ አጋር መተግበሪያ ያገናኙ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الربط كتطبيق مرافق"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köməkçi tətbiq kimi qoş"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свържи като придружаващо приложение"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সহযোগী অ্যাপ হিসেবে সংযুক্ত করো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poveži kao prateću aplikaciju"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecta com a app complementària"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Připojit jako doprovodnou aplikaci"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbind som ledsagerapp"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als Begleit-App verbinden"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σύνδεση ως συνοδευτική εφαρμογή"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect as companion app"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar como app complementaria"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ühenda kaasrakendusena"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konektatu aplikazio osagarri gisa"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اتصال به‌عنوان برنامهٔ همراه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yhdistä kumppanisovelluksena"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikonekta bilang companion app"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecter comme app compagnon"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceangail mar aip chompánach"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar como app complementaria"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાથી ઍપ તરીકે કનેક્ટ કરો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חיבור כאפליקציה נלווית"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साथी ऐप के रूप में जोड़ें"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poveži kao prateću aplikaciju"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Csatlakoztatás kísérőalkalmazásként"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Միացնել որպես ուղեկից հավելված"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hubungkan sebagai aplikasi pendamping"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tengja sem fylgiforrit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collega come app complementare"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コンパニオンアプリとして接続"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაკავშირება თანმხლებ აპად"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Серік қолданба ретінде қосу"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ភ្ជាប់ជាកម្មវិធីដៃគូ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಹಚರ ಆ್ಯಪ್ ಆಗಿ ಸಂಪರ್ಕಿಸಿ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "컴패니언 앱으로 연결"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເຊື່ອມຕໍ່ເປັນແອັບຄູ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prijungti kaip palydovinę programą"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savienot kā pavadošo lietotni"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поврзи како придружна апликација"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സഹചാരി ആപ്പായി കണക്റ്റ് ചെയ്യുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хамтрагч апп болгон холбох"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहचर ॲप म्हणून जोडा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sambungkan sebagai apl pendamping"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အဖော်အက်ပ်အဖြစ် ချိတ်ဆက်ရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koble til som følgeapp"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहयोगी एपका रूपमा जोड"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinden als begeleidende app"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਥੀ ਐਪ ਵਜੋਂ ਕਨੈਕਟ ਕਰੋ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Połącz jako aplikację towarzyszącą"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar como app complementar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligar como app complementar"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectează ca aplicație însoțitoare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключить как сопутствующее приложение"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සහකාර යෙදුමක් ලෙස සම්බන්ධ කරන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pripojiť ako sprievodnú aplikáciu"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poveži kot spremljevalno aplikacijo"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lidhe si aplikacion shoqërues"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повежи као пратећу апликацију"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anslut som följeslagarapp"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unganisha kama programu shirikishi"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "துணை ஆப்ஸாக இணையுங்கள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సహచర యాప్‌గా కనెక్ట్ చేయండి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เชื่อมต่อเป็นแอปคู่หู"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yardımcı uygulama olarak bağla"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Під’єднати як супутній застосунок"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساتھی ایپ کے طور پر جوڑو"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamroh ilova sifatida ulash"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kết nối làm ứng dụng đồng hành"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以配套應用程式連接"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "作为配套应用连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以配套應用程式連結"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xhuma njengohlelo lokusebenza olusizayo"
+          }
+        }
+      }
+    },
+    "companion_connected": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gekoppel as metgeseltoep"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንደ አጋር መተግበሪያ ተገናኝቷል"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مربوط كتطبيق مرافق"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Köməkçi tətbiq kimi qoşulub"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свързано като придружаващо приложение"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সহযোগী অ্যাপ হিসেবে সংযুক্ত"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povezano kao prateća aplikacija"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectada com a app complementària"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Připojeno jako doprovodná aplikace"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbundet som ledsagerapp"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als Begleit-App verbunden"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνδέθηκε ως συνοδευτική εφαρμογή"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected as companion app"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectada como app complementaria"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ühendatud kaasrakendusena"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikazio osagarri gisa konektatuta"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به‌عنوان برنامهٔ همراه متصل شد"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yhdistetty kumppanisovelluksena"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nakakonekta bilang companion app"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectée comme app compagnon"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceangailte mar aip chompánach"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectada como app complementaria"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાથી ઍપ તરીકે કનેક્ટ થયું"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחובר כאפליקציה נלווית"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साथी ऐप के रूप में जुड़ा है"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povezano kao prateća aplikacija"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kísérőalkalmazásként csatlakoztatva"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Միացված է որպես ուղեկից հավելված"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terhubung sebagai aplikasi pendamping"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tengt sem fylgiforrit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collegata come app complementare"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コンパニオンアプリとして接続済み"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაკავშირებულია თანმხლებ აპად"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Серік қолданба ретінде қосылған"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានភ្ជាប់ជាកម្មវិធីដៃគូ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಹಚರ ಆ್ಯಪ್ ಆಗಿ ಸಂಪರ್ಕಗೊಂಡಿದೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "컴패니언 앱으로 연결됨"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເຊື່ອມຕໍ່ເປັນແອັບຄູ່ແລ້ວ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prijungta kaip palydovinė programa"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savienots kā pavadošā lietotne"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поврзано како придружна апликација"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സഹചാരി ആപ്പായി കണക്റ്റ് ചെയ്‌തു"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хамтрагч апп болгон холбосон"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहचर ॲप म्हणून जोडले आहे"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disambungkan sebagai apl pendamping"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အဖော်အက်ပ်အဖြစ် ချိတ်ဆက်ပြီးပါပြီ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koblet til som følgeapp"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहयोगी एपका रूपमा जोडियो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbonden als begeleidende app"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਥੀ ਐਪ ਵਜੋਂ ਕਨੈਕਟ ਹੈ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Połączono jako aplikację towarzyszącą"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado como app complementar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligada como app complementar"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectată ca aplicație însoțitoare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключено как сопутствующее приложение"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සහකාර යෙදුමක් ලෙස සම්බන්ධයි"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pripojené ako sprievodná aplikácia"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povezano kot spremljevalna aplikacija"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E lidhur si aplikacion shoqërues"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повезано као пратећа апликација"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ansluten som följeslagarapp"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imeunganishwa kama programu shirikishi"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "துணை ஆப்ஸாக இணைக்கப்பட்டது"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సహచర యాప్‌గా కనెక్ట్ అయింది"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เชื่อมต่อเป็นแอปคู่หูแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yardımcı uygulama olarak bağlandı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Під’єднано як супутній застосунок"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساتھی ایپ کے طور پر جڑی ہے"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamroh ilova sifatida ulangan"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã kết nối làm ứng dụng đồng hành"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已以配套應用程式連接"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已作为配套应用连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已以配套應用程式連結"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuxhunywe njengohlelo lokusebenza olusizayo"
+          }
+        }
+      }
+    },
+    "companion_failed": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen horlosie gevind nie. Kyk of dit gekoppel is en Bluetooth aan is, en probeer weer."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ምንም ሰዓት አልተገኘም። መገናኘቱንና ብሉቱዝ መብራቱን ያረጋግጡ፣ ከዚያ እንደገና ይሞክሩ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يتم العثور على ساعة. تأكد من أنها متصلة وأن البلوتوث مفعّل، ثم حاول مرة أخرى."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat tapılmadı. Qoşulduğunu və Bluetooth-un açıq olduğunu yoxla, sonra yenidən cəhd et."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не е намерен часовник. Провери дали е свързан и Bluetooth е включен, после опитай отново."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "কোনো ঘড়ি পাওয়া যায়নি। ঘড়ি সংযুক্ত আছে আর ব্লুটুথ চালু আছে কিনা দেখো, তারপর আবার চেষ্টা করো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sat nije pronađen. Provjeri je li povezan i je li Bluetooth uključen, pa pokušaj ponovo."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No s’ha trobat cap rellotge. Comprova que estigui connectat i que el Bluetooth estigui activat, i torna-ho a provar."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky nenalezeny. Zkontroluj, že jsou připojené a Bluetooth je zapnutý, a zkus to znovu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intet ur fundet. Tjek, at det er forbundet, og at Bluetooth er slået til, og prøv igen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Uhr gefunden. Prüfe, ob sie verbunden und Bluetooth an ist, und versuch es noch einmal."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν βρέθηκε ρολόι. Έλεγξε ότι είναι συνδεδεμένο και ότι το Bluetooth είναι ενεργό και δοκίμασε ξανά."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No watch found. Check that it's connected and Bluetooth is on, then try again."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró ningún reloj. Comprueba que esté conectado y que el Bluetooth esté activado, y vuelve a intentarlo."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kella ei leitud. Kontrolli, et see on ühendatud ja Bluetooth on sees, ning proovi uuesti."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ez da erlojurik aurkitu. Egiaztatu konektatuta dagoela eta Bluetootha aktibatuta dagoela, eta saiatu berriro."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعتی پیدا نشد. بررسی کن که متصل باشد و بلوتوث روشن باشد، بعد دوباره امتحان کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kelloa ei löytynyt. Tarkista, että se on yhdistetty ja Bluetooth on päällä, ja yritä uudelleen."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walang nakitang relo. Tingnan kung nakakonekta ito at naka-on ang Bluetooth, saka subukan ulit."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune montre trouvée. Vérifie qu’elle est connectée et que le Bluetooth est activé, puis réessaie."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Níor aimsíodh uaireadóir. Seiceáil go bhfuil sé ceangailte agus Bluetooth air, agus bain triail eile as."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non se atopou ningún reloxo. Comproba que estea conectado e que o Bluetooth estea activado, e téntao de novo."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "કોઈ ઘડિયાળ મળી નથી. તે કનેક્ટ છે અને બ્લૂટૂથ ચાલુ છે કે નહીં તે તપાસો, પછી ફરી પ્રયાસ કરો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא נמצא שעון. בדקו שהוא מחובר ושה-Bluetooth פועל, ונסו שוב."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई वॉच नहीं मिली। देखें कि वह जुड़ी है और ब्लूटूथ चालू है, फिर दोबारा कोशिश करें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sat nije pronađen. Provjeri je li povezan i je li Bluetooth uključen pa pokušaj ponovno."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nem található óra. Ellenőrizd, hogy csatlakoztatva van-e és be van-e kapcsolva a Bluetooth, majd próbáld újra."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույց չի գտնվել։ Ստուգիր, որ այն միացված է, և Bluetooth-ը միացված է, ապա նորից փորձիր։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tangan tidak ditemukan. Periksa apakah sudah terhubung dan Bluetooth aktif, lalu coba lagi."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekkert úr fannst. Athugaðu hvort það sé tengt og kveikt sé á Bluetooth og reyndu aftur."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun orologio trovato. Controlla che sia collegato e che il Bluetooth sia attivo, poi riprova."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチが見つかりません。接続されていて Bluetooth がオンになっているか確認し、もう一度お試しください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათი ვერ მოიძებნა. შეამოწმე, რომ დაკავშირებულია და Bluetooth ჩართულია, შემდეგ ისევ სცადე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағат табылмады. Оның қосылғанын және Bluetooth қосулы екенін тексеріп, қайталап көр."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រកមិនឃើញនាឡិកាទេ។ សូមពិនិត្យថាវាបានភ្ជាប់ ហើយ Bluetooth បានបើក រួចសាកល្បងម្ដងទៀត។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಯಾವುದೇ ವಾಚ್ ಕಂಡುಬಂದಿಲ್ಲ. ಅದು ಸಂಪರ್ಕಗೊಂಡಿದೆಯೇ ಮತ್ತು ಬ್ಲೂಟೂತ್ ಆನ್ ಆಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치를 찾지 못했어요. 워치가 연결되어 있고 블루투스가 켜져 있는지 확인한 뒤 다시 시도해 주세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ບໍ່ພົບໂມງ. ກວດເບິ່ງວ່າໂມງເຊື່ອມຕໍ່ຢູ່ ແລະ Bluetooth ເປີດຢູ່ ແລ້ວລອງໃໝ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laikrodis nerastas. Patikrink, ar jis prijungtas ir ar įjungtas „Bluetooth“, ir bandyk dar kartą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulkstenis netika atrasts. Pārbaudi, vai tas ir savienots un Bluetooth ir ieslēgts, un mēģini vēlreiz."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не е пронајден часовник. Провери дали е поврзан и дали Bluetooth е вклучен, па обиди се повторно."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ച് കണ്ടെത്തിയില്ല. അത് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ, ബ്ലൂടൂത്ത് ഓണാണോ എന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цаг олдсонгүй. Холбогдсон эсэх, Bluetooth асаалттай эсэхийг шалгаад дахин оролд."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळ सापडले नाही. ते जोडलेले आहे आणि ब्लूटूथ चालू आहे का ते तपासा, मग पुन्हा प्रयत्न करा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiada jam tangan ditemui. Semak sama ada ia disambungkan dan Bluetooth dihidupkan, kemudian cuba lagi."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီ မတွေ့ပါ။ ချိတ်ဆက်ထားခြင်းနှင့် Bluetooth ဖွင့်ထားခြင်း ရှိမရှိ စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fant ingen klokke. Sjekk at den er tilkoblet og at Bluetooth er på, og prøv igjen."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुनै घडी फेला परेन। घडी जोडिएको र ब्लुटुथ खुला छ कि छैन जाँच, अनि फेरि प्रयास गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen horloge gevonden. Controleer of het verbonden is en bluetooth aanstaat, en probeer het opnieuw."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕੋਈ ਘੜੀ ਨਹੀਂ ਮਿਲੀ। ਜਾਂਚ ਕਰੋ ਕਿ ਇਹ ਕਨੈਕਟ ਹੈ ਅਤੇ ਬਲੂਟੁੱਥ ਚਾਲੂ ਹੈ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie znaleziono zegarka. Sprawdź, czy jest połączony i czy Bluetooth jest włączony, a potem spróbuj ponownie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum relógio encontrado. Verifique se ele está conectado e se o Bluetooth está ativado e tente de novo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum relógio encontrado. Verifica se está ligado e se o Bluetooth está ativo e tenta novamente."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niciun ceas găsit. Verifică dacă e conectat și dacă Bluetooth e pornit, apoi încearcă din nou."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часы не найдены. Проверь, что они подключены и Bluetooth включён, и попробуй ещё раз."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවක් හමු නොවීය. එය සම්බන්ධදැයි සහ බ්ලූටූත් ක්‍රියාත්මකදැයි පරීක්ෂා කර නැවත උත්සාහ කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky sa nenašli. Skontroluj, či sú pripojené a Bluetooth je zapnutý, a skús to znova."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ura ni najdena. Preveri, ali je povezana in ali je Bluetooth vklopljen, nato poskusi znova."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuk u gjet asnjë orë. Kontrollo që të jetë e lidhur dhe që Bluetooth të jetë i aktivizuar, pastaj provo përsëri."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сат није пронађен. Провери да ли је повезан и да ли је Bluetooth укључен, па покушај поново."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen klocka hittades. Kontrollera att den är ansluten och att Bluetooth är på, och försök igen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hakuna saa iliyopatikana. Hakikisha imeunganishwa na Bluetooth imewashwa, kisha ujaribu tena."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வாட்ச் எதுவும் கிடைக்கவில்லை. அது இணைக்கப்பட்டுள்ளதா, புளூடூத் இயக்கத்தில் உள்ளதா எனச் சரிபார்த்து மீண்டும் முயலுங்கள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్ కనిపించలేదు. అది కనెక్ట్ అయి ఉందో, బ్లూటూత్ ఆన్‌లో ఉందో చూసి మళ్లీ ప్రయత్నించండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่พบนาฬิกา ตรวจสอบว่าเชื่อมต่ออยู่และเปิดบลูทูธแล้ว จากนั้นลองอีกครั้ง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat bulunamadı. Bağlı olduğunu ve Bluetooth'un açık olduğunu kontrol et, sonra tekrar dene."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Годинник не знайдено. Перевір, чи він під’єднаний і чи ввімкнено Bluetooth, і спробуй ще раз."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "کوئی گھڑی نہیں ملی۔ دیکھو کہ وہ جڑی ہوئی ہے اور بلوٹوتھ آن ہے، پھر دوبارہ کوشش کرو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soat topilmadi. Ulanganini va Bluetooth yoqilganini tekshir, keyin qayta urinib ko‘r."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không tìm thấy đồng hồ. Hãy kiểm tra đồng hồ đã kết nối và Bluetooth đang bật, rồi thử lại."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到手錶。請檢查手錶已連接且藍牙已開啟，然後再試一次。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到手表。请检查手表是否已连接、蓝牙是否已开启，然后重试。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到手錶。請確認手錶已連線且藍牙已開啟，然後再試一次。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alikho iwashi elitholakele. Hlola ukuthi lixhunyiwe futhi i-Bluetooth ivuliwe, bese uzama futhi."
+          }
+        }
+      }
+    },
+    "companion_why": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sodat die wekker heel voor verskyn, selfs terwyl jy jou foon gebruik."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ስልክዎን እየተጠቀሙ ቢሆንም ማንቂያው ከሁሉም ፊት እንዲታይ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ليظهر المنبه في المقدمة حتى أثناء استخدامك للهاتف."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefondan istifadə edərkən də siqnal ən öndə görünsün deyə."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За да се показва будилникът най-отпред, дори докато използваш телефона."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "যাতে ফোন ব্যবহার করার সময়ও অ্যালার্ম একেবারে সামনে আসে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kako bi se alarm prikazao skroz naprijed i dok koristiš telefon."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perquè l’alarma surti al davant fins i tot mentre fas servir el telèfon."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby se budík zobrazil úplně vepředu, i když telefon právě používáš."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Så alarmen kommer helt frem, også mens du bruger telefonen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit der Wecker auch bei benutztem Handy ganz vorne erscheint."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ώστε το ξυπνητήρι να εμφανίζεται μπροστά, ακόμη κι όταν χρησιμοποιείς το κινητό."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So the alarm comes right to the front even while you're using your phone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que la alarma aparezca delante incluso mientras usas el teléfono."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et äratus tuleks täiesti ette ka siis, kui sa telefoni kasutad."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonoa erabiltzen ari zarenean ere alarma aurrean ager dadin."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تا زنگ حتی وقتی از گوشی استفاده می‌کنی، کاملاً جلو بیاید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jotta herätys tulee aivan eteen myös silloin, kun käytät puhelinta."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para lumabas sa harap ang alarm kahit ginagamit mo ang telepono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour que l’alarme passe au premier plan même quand tu utilises ton téléphone."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ionas go dtiocfaidh an t-aláram chun tosaigh fiú agus tú ag úsáid an fhóin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que a alarma apareza diante mesmo mentres usas o teléfono."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જેથી ફોન વાપરતા હો ત્યારે પણ એલાર્મ એકદમ આગળ દેખાય."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כדי שהשעון המעורר יופיע ממש בחזית גם כשאתם משתמשים בטלפון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ताकि फ़ोन इस्तेमाल करते समय भी अलार्म बिल्कुल सामने आए।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kako bi se alarm prikazao skroz naprijed i dok koristiš telefon."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hogy az ébresztés akkor is legelöl jelenjen meg, amikor használod a telefont."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Որպեսզի զարթուցիչը հայտնվի ամենաառջևում, նույնիսկ երբ հեռախոսն օգտագործում ես։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agar alarm muncul paling depan meskipun kamu sedang memakai ponsel."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svo vekjarinn birtist alveg fremst, líka meðan þú notar símann."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Così la sveglia compare in primo piano anche mentre usi il telefono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマートフォンを使っているときも、アラームが最前面に表示されるようにします。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "რომ მაღვიძარა ყველაზე წინ გამოჩნდეს, მაშინაც კი, როცა ტელეფონს იყენებ."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефонды қолданып отырсаң да, оятқыш ең алдыңғы жақта көрінуі үшін."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដើម្បីឲ្យម៉ោងរោទ៍បង្ហាញនៅខាងមុខបង្អស់ ទោះបីអ្នកកំពុងប្រើទូរសព្ទក៏ដោយ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಫೋನ್ ಬಳಸುತ್ತಿರುವಾಗಲೂ ಅಲಾರಾಂ ಎಲ್ಲಕ್ಕಿಂತ ಮುಂದೆ ಕಾಣಿಸಲು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰을 사용하는 중에도 알람이 맨 앞에 나타나도록 해요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເພື່ອໃຫ້ໂມງປຸກສະແດງຢູ່ທາງໜ້າສຸດ ເຖິງວ່າເຈົ້າກຳລັງໃຊ້ໂທລະສັບຢູ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kad žadintuvas atsirastų pačiame priekyje, net kai naudojiesi telefonu."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lai modinātājs parādītos pašā priekšā arī tad, kad izmanto tālruni."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За алармот да се појави најнапред и додека го користиш телефонот."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഫോൺ ഉപയോഗിക്കുമ്പോഴും അലാറം ഏറ്റവും മുന്നിൽ വരാൻ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Утсаа ашиглаж байхад ч сэрүүлэг хамгийн урд гарч ирэхийн тулд."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोन वापरत असतानाही अलार्म अगदी समोर यावा म्हणून."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supaya penggera muncul paling hadapan walaupun awak sedang menggunakan telefon."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖုန်းသုံးနေစဉ်မှာပင် နှိုးစက်သည် ရှေ့ဆုံးတွင် ပေါ်လာစေရန်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Så alarmen kommer helt frem, også mens du bruker telefonen."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोन चलाइरहेको बेला पनि अलार्म एकदमै अगाडि आओस् भन्नका लागि।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zodat de wekker helemaal vooraan verschijnt, ook terwijl je je telefoon gebruikt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤਾਂ ਜੋ ਫ਼ੋਨ ਵਰਤਦੇ ਸਮੇਂ ਵੀ ਅਲਾਰਮ ਬਿਲਕੁਲ ਸਾਹਮਣੇ ਆਵੇ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby budzik pojawiał się na samym przodzie, nawet gdy używasz telefonu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que o alarme apareça na frente mesmo enquanto você usa o celular."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que o alarme apareça à frente mesmo enquanto usas o telemóvel."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ca alarma să apară în prim-plan chiar și când folosești telefonul."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы будильник появлялся на переднем плане, даже когда ты пользуешься телефоном."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "දුරකථනය භාවිත කරන අතරතුරත් එලාමය ඉදිරියෙන්ම පෙනෙන්නට."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby sa budík zobrazil úplne vpredu, aj keď práve používaš telefón."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da se budilka prikaže čisto spredaj, tudi ko uporabljaš telefon."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Që alarmi të dalë krejt përpara edhe kur je duke përdorur telefonin."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да би се аларм приказао скроз напред и док користиш телефон."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Så att alarmet kommer längst fram även medan du använder telefonen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ili kengele ionekane mbele kabisa hata unapotumia simu."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஃபோனைப் பயன்படுத்தும்போதும் அலாரம் எல்லாவற்றுக்கும் முன்னால் தோன்ற."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫోన్ వాడుతున్నప్పుడు కూడా అలారం అన్నిటికంటే ముందు కనిపించేలా."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เพื่อให้นาฬิกาปลุกแสดงขึ้นด้านหน้าสุดแม้ขณะที่คุณใช้โทรศัพท์อยู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonu kullanırken bile alarm en önde görünsün diye."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Щоб будильник з’являвся на передньому плані, навіть коли ти користуєшся телефоном."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاکہ فون استعمال کرتے ہوئے بھی الارم بالکل سامنے آئے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefondan foydalanayotganingda ham budilnik eng oldinda chiqishi uchun."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Để báo thức hiện ra ngay phía trước kể cả khi bạn đang dùng điện thoại."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這樣即使你正在使用手機，鬧鐘也會在最前面顯示。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这样即使你正在使用手机，闹钟也会显示在最前面。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這樣即使你正在使用手機，鬧鐘也會顯示在最前面。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukuze i-alamu ivele phambili ngisho nalapho usebenzisa ifoni."
           }
         }
       }

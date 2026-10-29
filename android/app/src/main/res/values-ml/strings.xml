@@ -164,6 +164,12 @@
     <string name="check_notifications_problem">അറിയിപ്പുകൾ ഇല്ലാതെ ഫോണിന് ബാക്കപ്പ് അലാറമായി റിങ് ചെയ്യാനാകില്ല.</string>
     <string name="check_full_screen">ഫുൾ സ്‌ക്രീൻ അലാറം അനുവദിച്ചു</string>
     <string name="check_full_screen_problem">ഫോൺ ലോക്ക് ആയിരിക്കുമ്പോഴും അലാറം കാണാൻ ഇത് അനുവദിക്കുക.</string>
+    <string name="companion_connect">സഹചാരി ആപ്പായി കണക്റ്റ് ചെയ്യുക</string>
+    <string name="companion_why">ഫോൺ ഉപയോഗിക്കുമ്പോഴും അലാറം ഏറ്റവും മുന്നിൽ വരാൻ.</string>
+    <string name="companion_connected">സഹചാരി ആപ്പായി കണക്റ്റ് ചെയ്‌തു</string>
+    <string name="check_companion">വാച്ചിന്റെ സഹചാരി ആപ്പ്</string>
+    <string name="check_companion_problem">അല്ലെങ്കിൽ ഫോൺ ഉപയോഗിക്കുമ്പോൾ അലാറം മുകളിൽ ഒരു അറിയിപ്പായി മാത്രമേ കാണൂ.</string>
+    <string name="companion_failed">വാച്ച് കണ്ടെത്തിയില്ല. അത് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ, ബ്ലൂടൂത്ത് ഓണാണോ എന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="check_exact_alarms">കൃത്യമായ അലാറങ്ങൾ അനുവദിച്ചു</string>
     <string name="check_exact_alarms_problem">ബാക്കപ്പ് അലാറം കൃത്യസമയത്ത് അടിക്കാൻ അലാറങ്ങളും &amp; റിമൈൻഡറുകളും അനുവദിക്കുക.</string>
     <string name="check_dnd">ശല്യപ്പെടുത്തരുത് അലാറങ്ങളെ കടത്തിവിടുന്നു</string>

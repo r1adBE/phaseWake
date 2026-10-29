@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Jakinarazpenik gabe, telefonoak ezin du ordezko alarma gisa jo.</string>
     <string name="check_full_screen">Pantaila osoko alarma baimenduta</string>
     <string name="check_full_screen_problem">Baimendu hau, telefonoa blokeatuta dagoenean ere alarma ager dadin.</string>
+    <string name="companion_connect">Konektatu aplikazio osagarri gisa</string>
+    <string name="companion_why">Telefonoa erabiltzen ari zarenean ere alarma aurrean ager dadin.</string>
+    <string name="companion_connected">Aplikazio osagarri gisa konektatuta</string>
+    <string name="check_companion">Erlojuaren aplikazio osagarria</string>
+    <string name="check_companion_problem">Bestela, telefonoa erabiltzen ari zarenean, alarma goiko jakinarazpen gisa bakarrik agertzen da.</string>
+    <string name="companion_failed">Ez da erlojurik aurkitu. Egiaztatu konektatuta dagoela eta Bluetootha aktibatuta dagoela, eta saiatu berriro.</string>
     <string name="check_exact_alarms">Alarma zehatzak baimenduta</string>
     <string name="check_exact_alarms_problem">Baimendu «Alarmak eta abisuak», ordezko alarmak garaiz jo dezan.</string>
     <string name="check_dnd">«Ez molestatu» moduak alarmak uzten ditu</string>

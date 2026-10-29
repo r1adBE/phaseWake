@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Kung walang notification, hindi makakatunog ang telepono mo bilang backup na alarm.</string>
     <string name="check_full_screen">Pinapayagan ang full-screen na alarm</string>
     <string name="check_full_screen_problem">Payagan ito para lumabas ang alarm kahit naka-lock ang telepono mo.</string>
+    <string name="companion_connect">Ikonekta bilang companion app</string>
+    <string name="companion_why">Para lumabas sa harap ang alarm kahit ginagamit mo ang telepono.</string>
+    <string name="companion_connected">Nakakonekta bilang companion app</string>
+    <string name="check_companion">Companion app ng relo</string>
+    <string name="check_companion_problem">Habang ginagamit mo ang telepono, lalabas lang ang alarm bilang notification sa itaas kung wala ito.</string>
+    <string name="companion_failed">Walang nakitang relo. Tingnan kung nakakonekta ito at naka-on ang Bluetooth, saka subukan ulit.</string>
     <string name="check_exact_alarms">Pinapayagan ang eksaktong alarm</string>
     <string name="check_exact_alarms_problem">Payagan ang “Mga alarm at paalala” para tumunog sa oras ang backup na alarm.</string>
     <string name="check_dnd">Pinapalusot ng Huwag Istorbohin ang mga alarm</string>

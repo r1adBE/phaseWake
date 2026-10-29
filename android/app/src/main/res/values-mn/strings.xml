@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Мэдэгдэлгүйгээр утас чинь нөөц сэрүүлэг болж дуугарч чадахгүй.</string>
     <string name="check_full_screen">Бүтэн дэлгэцийн сэрүүлэг зөвшөөрөгдсөн</string>
     <string name="check_full_screen_problem">Утас түгжээтэй байсан ч сэрүүлэг гарч ирэхийн тулд үүнийг зөвшөөр.</string>
+    <string name="companion_connect">Хамтрагч апп болгон холбох</string>
+    <string name="companion_why">Утсаа ашиглаж байхад ч сэрүүлэг хамгийн урд гарч ирэхийн тулд.</string>
+    <string name="companion_connected">Хамтрагч апп болгон холбосон</string>
+    <string name="check_companion">Цагны хамтрагч апп</string>
+    <string name="check_companion_problem">Эс бөгөөс утсаа ашиглаж байхад сэрүүлэг зөвхөн дээд талд мэдэгдэл болж харагдана.</string>
+    <string name="companion_failed">Цаг олдсонгүй. Холбогдсон эсэх, Bluetooth асаалттай эсэхийг шалгаад дахин оролд.</string>
     <string name="check_exact_alarms">Нарийн сэрүүлэг зөвшөөрөгдсөн</string>
     <string name="check_exact_alarms_problem">Нөөц сэрүүлэг цагтаа дуугарахын тулд «Сэрүүлэг ба сануулга»-ыг зөвшөөр.</string>
     <string name="check_dnd">«Бүү саад бол» сэрүүлгийг нэвтрүүлнэ</string>

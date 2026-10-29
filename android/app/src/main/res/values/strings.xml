@@ -167,6 +167,12 @@
     <string name="check_notifications_problem">Without notifications, your phone can’t ring as a backup alarm.</string>
     <string name="check_full_screen">Full-screen alarm allowed</string>
     <string name="check_full_screen_problem">Allow this so the alarm appears even when your phone is locked.</string>
+    <string name="companion_connect">Connect as companion app</string>
+    <string name="companion_why">So the alarm comes right to the front even while you\'re using your phone.</string>
+    <string name="companion_connected">Connected as companion app</string>
+    <string name="check_companion">Companion app of the watch</string>
+    <string name="check_companion_problem">While you\'re using your phone, the alarm otherwise only shows as a notification at the top.</string>
+    <string name="companion_failed">No watch found. Check that it\'s connected and Bluetooth is on, then try again.</string>
     <string name="check_exact_alarms">Exact alarms allowed</string>
     <string name="check_exact_alarms_problem">Allow alarms &amp; reminders so the backup alarm rings on time.</string>
     <string name="check_dnd">Do Not Disturb lets alarms through</string>

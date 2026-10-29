@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">ያለ ማሳወቂያዎች ስልክዎ እንደ ተጠባባቂ ማንቂያ መደወል አይችልም።</string>
     <string name="check_full_screen">ሙሉ ማያ ገጽ ማንቂያ ተፈቅዷል</string>
     <string name="check_full_screen_problem">ስልክዎ ተቆልፎ ቢሆንም ማንቂያው እንዲታይ ይህን ይፍቀዱ።</string>
+    <string name="companion_connect">እንደ አጋር መተግበሪያ ያገናኙ</string>
+    <string name="companion_why">ስልክዎን እየተጠቀሙ ቢሆንም ማንቂያው ከሁሉም ፊት እንዲታይ።</string>
+    <string name="companion_connected">እንደ አጋር መተግበሪያ ተገናኝቷል</string>
+    <string name="check_companion">የሰዓቱ አጋር መተግበሪያ</string>
+    <string name="check_companion_problem">ስልክዎን እየተጠቀሙ ሳሉ፣ ያለዚህ ማንቂያው ከላይ እንደ ማሳወቂያ ብቻ ይታያል።</string>
+    <string name="companion_failed">ምንም ሰዓት አልተገኘም። መገናኘቱንና ብሉቱዝ መብራቱን ያረጋግጡ፣ ከዚያ እንደገና ይሞክሩ።</string>
     <string name="check_exact_alarms">ትክክለኛ ማንቂያዎች ተፈቅደዋል</string>
     <string name="check_exact_alarms_problem">ተጠባባቂ ማንቂያው በሰዓቱ እንዲደውል ማንቂያዎች &amp; አስታዋሾችን ይፍቀዱ።</string>
     <string name="check_dnd">አትረብሽ ማንቂያዎችን ያሳልፋል</string>

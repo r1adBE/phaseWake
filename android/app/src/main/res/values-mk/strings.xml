@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Без известувања телефонот не може да ѕвони како резервен аларм.</string>
     <string name="check_full_screen">Аларм на цел екран е дозволен</string>
     <string name="check_full_screen_problem">Дозволи го ова за алармот да се појави и кога телефонот е заклучен.</string>
+    <string name="companion_connect">Поврзи како придружна апликација</string>
+    <string name="companion_why">За алармот да се појави најнапред и додека го користиш телефонот.</string>
+    <string name="companion_connected">Поврзано како придружна апликација</string>
+    <string name="check_companion">Придружна апликација на часовникот</string>
+    <string name="check_companion_problem">Инаку, додека го користиш телефонот, алармот се појавува само како известување горе.</string>
+    <string name="companion_failed">Не е пронајден часовник. Провери дали е поврзан и дали Bluetooth е вклучен, па обиди се повторно.</string>
     <string name="check_exact_alarms">Точните аларми се дозволени</string>
     <string name="check_exact_alarms_problem">Дозволи „Аларми и потсетници“ за резервниот аларм да ѕвони навреме.</string>
     <string name="check_dnd">„Не вознемирувај“ ги пропушта алармите</string>

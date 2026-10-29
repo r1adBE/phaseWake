@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">सूचनाओं के बिना आपका फ़ोन बैकअप अलार्म के रूप में नहीं बज सकता।</string>
     <string name="check_full_screen">फ़ुल-स्क्रीन अलार्म की अनुमति है</string>
     <string name="check_full_screen_problem">इसकी अनुमति दें ताकि फ़ोन लॉक होने पर भी अलार्म दिखे।</string>
+    <string name="companion_connect">साथी ऐप के रूप में जोड़ें</string>
+    <string name="companion_why">ताकि फ़ोन इस्तेमाल करते समय भी अलार्म बिल्कुल सामने आए।</string>
+    <string name="companion_connected">साथी ऐप के रूप में जुड़ा है</string>
+    <string name="check_companion">वॉच का साथी ऐप</string>
+    <string name="check_companion_problem">वरना फ़ोन इस्तेमाल करते समय अलार्म सिर्फ़ ऊपर एक सूचना के रूप में दिखता है।</string>
+    <string name="companion_failed">कोई वॉच नहीं मिली। देखें कि वह जुड़ी है और ब्लूटूथ चालू है, फिर दोबारा कोशिश करें।</string>
     <string name="check_exact_alarms">सटीक अलार्म की अनुमति है</string>
     <string name="check_exact_alarms_problem">अलार्म और रिमाइंडर की अनुमति दें ताकि बैकअप अलार्म समय पर बजे।</string>
     <string name="check_dnd">डू नॉट डिस्टर्ब में अलार्म की अनुमति है</string>

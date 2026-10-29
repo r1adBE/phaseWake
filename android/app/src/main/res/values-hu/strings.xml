@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Értesítések nélkül a telefonod nem tud tartalék ébresztőként csörögni.</string>
     <string name="check_full_screen">Teljes képernyős ébresztés engedélyezve</string>
     <string name="check_full_screen_problem">Engedélyezd, hogy az ébresztés zárolt telefonon is megjelenjen.</string>
+    <string name="companion_connect">Csatlakoztatás kísérőalkalmazásként</string>
+    <string name="companion_why">Hogy az ébresztés akkor is legelöl jelenjen meg, amikor használod a telefont.</string>
+    <string name="companion_connected">Kísérőalkalmazásként csatlakoztatva</string>
+    <string name="check_companion">Az óra kísérőalkalmazása</string>
+    <string name="check_companion_problem">Különben a telefon használata közben az ébresztés csak értesítésként jelenik meg felül.</string>
+    <string name="companion_failed">Nem található óra. Ellenőrizd, hogy csatlakoztatva van-e és be van-e kapcsolva a Bluetooth, majd próbáld újra.</string>
     <string name="check_exact_alarms">Pontos ébresztések engedélyezve</string>
     <string name="check_exact_alarms_problem">Engedélyezd az ébresztéseket és emlékeztetőket, hogy a tartalék ébresztés pontosan szóljon.</string>
     <string name="check_dnd">A Ne zavarjanak átengedi az ébresztőket</string>

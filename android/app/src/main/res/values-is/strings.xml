@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Án tilkynninga getur síminn ekki hringt sem varavekjari.</string>
     <string name="check_full_screen">Vekjari á öllum skjánum leyfður</string>
     <string name="check_full_screen_problem">Leyfðu þetta svo vekjarinn birtist líka þegar síminn er læstur.</string>
+    <string name="companion_connect">Tengja sem fylgiforrit</string>
+    <string name="companion_why">Svo vekjarinn birtist alveg fremst, líka meðan þú notar símann.</string>
+    <string name="companion_connected">Tengt sem fylgiforrit</string>
+    <string name="check_companion">Fylgiforrit úrsins</string>
+    <string name="check_companion_problem">Annars birtist vekjarinn aðeins sem tilkynning efst meðan þú notar símann.</string>
+    <string name="companion_failed">Ekkert úr fannst. Athugaðu hvort það sé tengt og kveikt sé á Bluetooth og reyndu aftur.</string>
     <string name="check_exact_alarms">Nákvæmir vekjarar leyfðir</string>
     <string name="check_exact_alarms_problem">Leyfðu „Vekjarar og áminningar“ svo varavekjarinn hringi á réttum tíma.</string>
     <string name="check_dnd">„Ónáðið ekki“ hleypir vekjurum í gegn</string>

@@ -144,6 +144,9 @@ class PhoneRingActivity : ComponentActivity() {
         const val VIA_ALARM = "alarm"
         const val VIA_DIRECT = "direct"
 
+        /** Direkter Start als Begleit-App der Uhr (auch aus dem Hintergrund erlaubt). */
+        const val VIA_COMPANION = "companion"
+
         /** Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert [PhoneRingAlert]. */
         @Volatile
         var shown: Boolean = false

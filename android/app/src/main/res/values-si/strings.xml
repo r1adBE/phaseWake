@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">දැනුම්දීම් නොමැතිව ඔබේ දුරකථනයට උපස්ථ එලාමයක් ලෙස නාද විය නොහැක.</string>
     <string name="check_full_screen">පූර්ණ තිර එලාමයට ඉඩ ඇත</string>
     <string name="check_full_screen_problem">දුරකථනය අගුළු දමා තිබියදීත් එලාමය පෙනෙන්නට මෙයට ඉඩ දෙන්න.</string>
+    <string name="companion_connect">සහකාර යෙදුමක් ලෙස සම්බන්ධ කරන්න</string>
+    <string name="companion_why">දුරකථනය භාවිත කරන අතරතුරත් එලාමය ඉදිරියෙන්ම පෙනෙන්නට.</string>
+    <string name="companion_connected">සහකාර යෙදුමක් ලෙස සම්බන්ධයි</string>
+    <string name="check_companion">ඔරලෝසුවේ සහකාර යෙදුම</string>
+    <string name="check_companion_problem">නැතහොත් දුරකථනය භාවිත කරන අතරතුර එලාමය ඉහළින් දැනුම්දීමක් ලෙස පමණක් පෙනේ.</string>
+    <string name="companion_failed">ඔරලෝසුවක් හමු නොවීය. එය සම්බන්ධදැයි සහ බ්ලූටූත් ක්‍රියාත්මකදැයි පරීක්ෂා කර නැවත උත්සාහ කරන්න.</string>
     <string name="check_exact_alarms">නිශ්චිත එලාමවලට ඉඩ ඇත</string>
     <string name="check_exact_alarms_problem">උපස්ථ එලාමය නියමිත වේලාවට නාද වීමට “එලාම සහ සිහිකැඳවීම්” වලට ඉඩ දෙන්න.</string>
     <string name="check_dnd">“බාධා නොකරන්න” එලාමවලට ඉඩ දෙයි</string>

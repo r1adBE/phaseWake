@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Bildirimler olmadan telefonun yedek alarm olarak çalamaz.</string>
     <string name="check_full_screen">Tam ekran alarma izin verildi</string>
     <string name="check_full_screen_problem">Telefonun kilitliyken bile alarmın görünmesi için buna izin ver.</string>
+    <string name="companion_connect">Yardımcı uygulama olarak bağla</string>
+    <string name="companion_why">Telefonu kullanırken bile alarm en önde görünsün diye.</string>
+    <string name="companion_connected">Yardımcı uygulama olarak bağlandı</string>
+    <string name="check_companion">Saatin yardımcı uygulaması</string>
+    <string name="check_companion_problem">Aksi halde telefonu kullanırken alarm yalnızca üstte bir bildirim olarak görünür.</string>
+    <string name="companion_failed">Saat bulunamadı. Bağlı olduğunu ve Bluetooth\'un açık olduğunu kontrol et, sonra tekrar dene.</string>
     <string name="check_exact_alarms">Tam zamanlı alarmlara izin verildi</string>
     <string name="check_exact_alarms_problem">Yedek alarmın zamanında çalması için alarmlara ve hatırlatıcılara izin ver.</string>
     <string name="check_dnd">Rahatsız Etme alarmların çalmasına izin veriyor</string>

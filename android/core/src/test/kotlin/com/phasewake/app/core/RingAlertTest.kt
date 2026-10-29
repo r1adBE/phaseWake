@@ -7,20 +7,27 @@ import kotlin.test.assertNotEquals
 class RingAlertTest {
     @Test
     fun visibleAppOpensDirectly() {
-        assertEquals(RingRoute.DIRECT, RingAlert.route(appVisible = true, interactive = true, locked = false, fullScreenAllowed = false))
-        assertEquals(RingRoute.DIRECT, RingAlert.route(appVisible = true, interactive = false, locked = true, fullScreenAllowed = true))
+        assertEquals(RingRoute.DIRECT, RingAlert.route(appVisible = true, companion = false, interactive = true, locked = false, fullScreenAllowed = false))
+        assertEquals(RingRoute.DIRECT, RingAlert.route(appVisible = true, companion = false, interactive = false, locked = true, fullScreenAllowed = true))
+    }
+
+    @Test
+    fun companionAppOpensDirectlyEvenWhileInUse() {
+        assertEquals(RingRoute.COMPANION, RingAlert.route(appVisible = false, companion = true, interactive = true, locked = false, fullScreenAllowed = false))
+        assertEquals(RingRoute.COMPANION, RingAlert.route(appVisible = false, companion = true, interactive = false, locked = true, fullScreenAllowed = true))
+        assertEquals(RingRoute.DIRECT, RingAlert.route(appVisible = true, companion = true, interactive = true, locked = false, fullScreenAllowed = true))
     }
 
     @Test
     fun darkOrLockedScreenGetsFullScreen() {
-        assertEquals(RingRoute.FULL_SCREEN, RingAlert.route(appVisible = false, interactive = false, locked = false, fullScreenAllowed = true))
-        assertEquals(RingRoute.FULL_SCREEN, RingAlert.route(appVisible = false, interactive = true, locked = true, fullScreenAllowed = true))
+        assertEquals(RingRoute.FULL_SCREEN, RingAlert.route(appVisible = false, companion = false, interactive = false, locked = false, fullScreenAllowed = true))
+        assertEquals(RingRoute.FULL_SCREEN, RingAlert.route(appVisible = false, companion = false, interactive = true, locked = true, fullScreenAllowed = true))
     }
 
     @Test
     fun deviceInUseOrNoPermissionGetsHeadsUp() {
-        assertEquals(RingRoute.HEADS_UP, RingAlert.route(appVisible = false, interactive = true, locked = false, fullScreenAllowed = true))
-        assertEquals(RingRoute.HEADS_UP, RingAlert.route(appVisible = false, interactive = false, locked = true, fullScreenAllowed = false))
+        assertEquals(RingRoute.HEADS_UP, RingAlert.route(appVisible = false, companion = false, interactive = true, locked = false, fullScreenAllowed = true))
+        assertEquals(RingRoute.HEADS_UP, RingAlert.route(appVisible = false, companion = false, interactive = false, locked = true, fullScreenAllowed = false))
     }
 
     @Test

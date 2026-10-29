@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">सूचनांशिवाय तुमचा फोन बॅकअप अलार्म म्हणून वाजू शकत नाही.</string>
     <string name="check_full_screen">फुल-स्क्रीन अलार्मला परवानगी</string>
     <string name="check_full_screen_problem">फोन लॉक असतानाही अलार्म दिसावा म्हणून याला परवानगी द्या.</string>
+    <string name="companion_connect">सहचर ॲप म्हणून जोडा</string>
+    <string name="companion_why">फोन वापरत असतानाही अलार्म अगदी समोर यावा म्हणून.</string>
+    <string name="companion_connected">सहचर ॲप म्हणून जोडले आहे</string>
+    <string name="check_companion">घड्याळाचे सहचर ॲप</string>
+    <string name="check_companion_problem">नाहीतर फोन वापरत असताना अलार्म फक्त वर सूचना म्हणून दिसतो.</string>
+    <string name="companion_failed">घड्याळ सापडले नाही. ते जोडलेले आहे आणि ब्लूटूथ चालू आहे का ते तपासा, मग पुन्हा प्रयत्न करा.</string>
     <string name="check_exact_alarms">अचूक अलार्मना परवानगी</string>
     <string name="check_exact_alarms_problem">बॅकअप अलार्म वेळेवर वाजावा म्हणून “अलार्म आणि रिमाइंडर” ला परवानगी द्या.</string>
     <string name="check_dnd">“व्यत्यय आणू नका” अलार्म वाजू देते</string>

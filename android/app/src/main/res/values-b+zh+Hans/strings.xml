@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">没有通知，手机无法作为备用闹钟响铃。</string>
     <string name="check_full_screen">全屏闹钟已允许</string>
     <string name="check_full_screen_problem">请允许此项，这样手机锁屏时闹钟也能显示。</string>
+    <string name="companion_connect">作为配套应用连接</string>
+    <string name="companion_why">这样即使你正在使用手机，闹钟也会显示在最前面。</string>
+    <string name="companion_connected">已作为配套应用连接</string>
+    <string name="check_companion">手表的配套应用</string>
+    <string name="check_companion_problem">否则在你使用手机时，闹钟只会以通知形式显示在顶部。</string>
+    <string name="companion_failed">未找到手表。请检查手表是否已连接、蓝牙是否已开启，然后重试。</string>
     <string name="check_exact_alarms">已允许精确闹钟</string>
     <string name="check_exact_alarms_problem">请允许“闹钟和提醒”，这样备用闹钟才能准时响起。</string>
     <string name="check_dnd">勿扰模式允许闹钟</string>

@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Ngaphandle kwezaziso, ifoni yakho ayikwazi ukukhala njenge-alamu yokwesekwa.</string>
     <string name="check_full_screen">I-alamu yesikrini esigcwele ivunyelwe</string>
     <string name="check_full_screen_problem">Vumela lokhu ukuze i-alamu ivele nalapho ifoni yakho ikhiyiwe.</string>
+    <string name="companion_connect">Xhuma njengohlelo lokusebenza olusizayo</string>
+    <string name="companion_why">Ukuze i-alamu ivele phambili ngisho nalapho usebenzisa ifoni.</string>
+    <string name="companion_connected">Kuxhunywe njengohlelo lokusebenza olusizayo</string>
+    <string name="check_companion">Uhlelo lokusebenza olusizayo lwewashi</string>
+    <string name="check_companion_problem">Uma kungenjalo, ngesikhathi usebenzisa ifoni, i-alamu ivela kuphela njengesaziso phezulu.</string>
+    <string name="companion_failed">Alikho iwashi elitholakele. Hlola ukuthi lixhunyiwe futhi i-Bluetooth ivuliwe, bese uzama futhi.</string>
     <string name="check_exact_alarms">Ama-alamu anembile avunyelwe</string>
     <string name="check_exact_alarms_problem">Vumela ama-alamu &amp; izikhumbuzi ukuze i-alamu yokwesekwa ikhale ngesikhathi.</string>
     <string name="check_dnd">Ungaphazamisi uvumela ama-alamu</string>

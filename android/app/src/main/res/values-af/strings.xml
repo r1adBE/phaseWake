@@ -165,6 +165,12 @@
     <string name="check_notifications_problem">Sonder kennisgewings kan jou foon nie as rugsteunwekker lui nie.</string>
     <string name="check_full_screen">Volskermwekker toegelaat</string>
     <string name="check_full_screen_problem">Laat dit toe sodat die wekker verskyn selfs wanneer jou foon gesluit is.</string>
+    <string name="companion_connect">Koppel as metgeseltoep</string>
+    <string name="companion_why">Sodat die wekker heel voor verskyn, selfs terwyl jy jou foon gebruik.</string>
+    <string name="companion_connected">Gekoppel as metgeseltoep</string>
+    <string name="check_companion">Metgeseltoep van die horlosie</string>
+    <string name="check_companion_problem">Terwyl jy jou foon gebruik, verskyn die wekker anders net as \'n kennisgewing bo.</string>
+    <string name="companion_failed">Geen horlosie gevind nie. Kyk of dit gekoppel is en Bluetooth aan is, en probeer weer.</string>
     <string name="check_exact_alarms">Presiese wekkers toegelaat</string>
     <string name="check_exact_alarms_problem">Laat wekkers &amp; herinneringe toe sodat die rugsteunwekker betyds lui.</string>
     <string name="check_dnd">Moenie Steur Nie laat wekkers deur</string>

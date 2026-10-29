@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Sem notificações, seu celular não pode tocar como alarme reserva.</string>
     <string name="check_full_screen">Alarme em tela cheia permitido</string>
     <string name="check_full_screen_problem">Permita isso para que o alarme apareça mesmo com o celular bloqueado.</string>
+    <string name="companion_connect">Conectar como app complementar</string>
+    <string name="companion_why">Para que o alarme apareça na frente mesmo enquanto você usa o celular.</string>
+    <string name="companion_connected">Conectado como app complementar</string>
+    <string name="check_companion">App complementar do relógio</string>
+    <string name="check_companion_problem">Caso contrário, enquanto você usa o celular, o alarme aparece só como notificação no topo.</string>
+    <string name="companion_failed">Nenhum relógio encontrado. Verifique se ele está conectado e se o Bluetooth está ativado e tente de novo.</string>
     <string name="check_exact_alarms">Alarmes exatos permitidos</string>
     <string name="check_exact_alarms_problem">Permita alarmes e lembretes para que o alarme reserva toque na hora certa.</string>
     <string name="check_dnd">Não perturbe deixa os alarmes passarem</string>

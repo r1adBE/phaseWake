@@ -175,6 +175,12 @@
     <string name="check_notifications_problem">بدون الإشعارات لن يتمكن هاتفك من الرنين كمنبه احتياطي.</string>
     <string name="check_full_screen">منبه الشاشة الكاملة مسموح</string>
     <string name="check_full_screen_problem">اسمح بذلك ليظهر المنبه حتى عندما يكون الهاتف مقفلًا.</string>
+    <string name="companion_connect">الربط كتطبيق مرافق</string>
+    <string name="companion_why">ليظهر المنبه في المقدمة حتى أثناء استخدامك للهاتف.</string>
+    <string name="companion_connected">مربوط كتطبيق مرافق</string>
+    <string name="check_companion">التطبيق المرافق للساعة</string>
+    <string name="check_companion_problem">أثناء استخدامك للهاتف، يظهر المنبه بدون ذلك كإشعار في الأعلى فقط.</string>
+    <string name="companion_failed">لم يتم العثور على ساعة. تأكد من أنها متصلة وأن البلوتوث مفعّل، ثم حاول مرة أخرى.</string>
     <string name="check_exact_alarms">المنبهات الدقيقة مسموحة</string>
     <string name="check_exact_alarms_problem">اسمح بالمنبهات والتذكيرات ليرنّ المنبه الاحتياطي في الوقت المحدد.</string>
     <string name="check_dnd">عدم الإزعاج يسمح بالمنبهات</string>

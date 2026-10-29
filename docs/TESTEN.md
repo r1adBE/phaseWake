@@ -72,6 +72,19 @@ Danach im Diagnose-Protokoll je Gerät: `RING_SCREEN … FULL_SCREEN|HEADS_UP|DI
 `RING_SCREEN … shown via fullscreen|alarm|direct|tap`. Fehlt «shown via», kam der Weckbildschirm nicht; `fsi=false`
 heisst: Erlaubnis für den Weckbildschirm fehlt (Nacht-Check bzw. Hinweis auf der Uhr).
 
+### Begleit-App: Wecker bei benutztem Handy (nur Android-Handy)
+
+1. Uhr verbunden, Phase Wake auf der Uhr: Der Nacht-Check zeigt «Begleit-App der Uhr» mit «Als Begleit-App verbinden»
+   (ebenso die Einrichtung im Schritt «Uhr verbinden»). Tippen → Android fragt nach «Geräte in der Nähe» → erlauben →
+   das System bietet die Uhr direkt an → bestätigen. Danach verschwindet der Punkt; die Einrichtung zeigt «✓ Als
+   Begleit-App verbunden». Galaxy Wearable bzw. die Wear-OS-App funktionieren unverändert (Benachrichtigungen, Zifferblatt).
+2. Dasselbe mit «Geräte in der Nähe» abgelehnt: Das System sucht und listet Geräte zur Wahl; die Uhr wählen. Findet es
+   nichts, erscheint «Keine Uhr gefunden …».
+3. Fall B oben wiederholen (Handy entsperrt, eine andere App offen): Der Weckbildschirm erscheint sofort ganz vorne.
+   Diagnose: `RING_SCREEN … COMPANION … companion=true` und `shown via companion`.
+4. Zuordnung in den Einstellungen des Systems entfernen (je nach Hersteller unter dem Bluetooth-Gerät oder
+   «Begleit-Apps»): Der Nacht-Check zeigt den Punkt wieder, der Wecker verhält sich wie in Fall B.
+
 Bei einem Fehler: In den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose» → «Uhr-Protokoll holen» → «Protokoll teilen» und den Text mitschicken.
 
 ## Was zurückmelden

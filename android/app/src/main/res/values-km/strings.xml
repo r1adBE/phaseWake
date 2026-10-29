@@ -161,6 +161,12 @@
     <string name="check_notifications_problem">បើគ្មានការជូនដំណឹង ទូរសព្ទមិនអាចរោទ៍ជាម៉ោងរោទ៍បម្រុងបានទេ។</string>
     <string name="check_full_screen">ម៉ោងរោទ៍ពេញអេក្រង់បានអនុញ្ញាត</string>
     <string name="check_full_screen_problem">អនុញ្ញាតវា ដើម្បីឲ្យម៉ោងរោទ៍បង្ហាញ ទោះបីទូរសព្ទជាប់សោក៏ដោយ។</string>
+    <string name="companion_connect">ភ្ជាប់ជាកម្មវិធីដៃគូ</string>
+    <string name="companion_why">ដើម្បីឲ្យម៉ោងរោទ៍បង្ហាញនៅខាងមុខបង្អស់ ទោះបីអ្នកកំពុងប្រើទូរសព្ទក៏ដោយ។</string>
+    <string name="companion_connected">បានភ្ជាប់ជាកម្មវិធីដៃគូ</string>
+    <string name="check_companion">កម្មវិធីដៃគូរបស់នាឡិកា</string>
+    <string name="check_companion_problem">បើមិនដូច្នោះទេ ពេលអ្នកកំពុងប្រើទូរសព្ទ ម៉ោងរោទ៍បង្ហាញតែជាការជូនដំណឹងនៅខាងលើប៉ុណ្ណោះ។</string>
+    <string name="companion_failed">រកមិនឃើញនាឡិកាទេ។ សូមពិនិត្យថាវាបានភ្ជាប់ ហើយ Bluetooth បានបើក រួចសាកល្បងម្ដងទៀត។</string>
     <string name="check_exact_alarms">ម៉ោងរោទ៍ច្បាស់លាស់បានអនុញ្ញាត</string>
     <string name="check_exact_alarms_problem">អនុញ្ញាត «ម៉ោងរោទ៍ &amp; ការរំលឹក» ដើម្បីឲ្យម៉ោងរោទ៍បម្រុងរោទ៍ទាន់ពេល។</string>
     <string name="check_dnd">«កុំរំខាន» អនុញ្ញាតម៉ោងរោទ៍</string>

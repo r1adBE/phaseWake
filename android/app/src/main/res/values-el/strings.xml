@@ -163,6 +163,12 @@
     <string name="check_notifications_problem">Χωρίς ειδοποιήσεις, το κινητό σου δεν μπορεί να χτυπήσει ως εφεδρικό ξυπνητήρι.</string>
     <string name="check_full_screen">Το ξυπνητήρι πλήρους οθόνης επιτρέπεται</string>
     <string name="check_full_screen_problem">Επίτρεψέ το, ώστε το ξυπνητήρι να εμφανίζεται ακόμη και όταν το κινητό είναι κλειδωμένο.</string>
+    <string name="companion_connect">Σύνδεση ως συνοδευτική εφαρμογή</string>
+    <string name="companion_why">Ώστε το ξυπνητήρι να εμφανίζεται μπροστά, ακόμη κι όταν χρησιμοποιείς το κινητό.</string>
+    <string name="companion_connected">Συνδέθηκε ως συνοδευτική εφαρμογή</string>
+    <string name="check_companion">Συνοδευτική εφαρμογή του ρολογιού</string>
+    <string name="check_companion_problem">Αλλιώς, όσο χρησιμοποιείς το κινητό, το ξυπνητήρι εμφανίζεται μόνο ως ειδοποίηση επάνω.</string>
+    <string name="companion_failed">Δεν βρέθηκε ρολόι. Έλεγξε ότι είναι συνδεδεμένο και ότι το Bluetooth είναι ενεργό και δοκίμασε ξανά.</string>
     <string name="check_exact_alarms">Επιτρέπονται ακριβή ξυπνητήρια</string>
     <string name="check_exact_alarms_problem">Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις, ώστε το εφεδρικό ξυπνητήρι να χτυπά στην ώρα του.</string>
     <string name="check_dnd">Το «Μην ενοχλείτε» επιτρέπει ξυπνητήρια</string>

@@ -155,6 +155,12 @@
     <string name="check_notifications_problem">შეტყობინებების გარეშე ტელეფონი სარეზერვო მაღვიძარად ვერ დარეკავს.</string>
     <string name="check_full_screen">სრულეკრანიანი მაღვიძარა დაშვებულია</string>
     <string name="check_full_screen_problem">დაუშვი, რომ მაღვიძარა ჩაკეტილ ტელეფონზეც გამოჩნდეს.</string>
+    <string name="companion_connect">დაკავშირება თანმხლებ აპად</string>
+    <string name="companion_why">რომ მაღვიძარა ყველაზე წინ გამოჩნდეს, მაშინაც კი, როცა ტელეფონს იყენებ.</string>
+    <string name="companion_connected">დაკავშირებულია თანმხლებ აპად</string>
+    <string name="check_companion">საათის თანმხლები აპი</string>
+    <string name="check_companion_problem">სხვა შემთხვევაში, ტელეფონის გამოყენებისას მაღვიძარა მხოლოდ შეტყობინებად ჩანს ზემოთ.</string>
+    <string name="companion_failed">საათი ვერ მოიძებნა. შეამოწმე, რომ დაკავშირებულია და Bluetooth ჩართულია, შემდეგ ისევ სცადე.</string>
     <string name="check_exact_alarms">ზუსტი მაღვიძარები დაშვებულია</string>
     <string name="check_exact_alarms_problem">დაუშვი „მაღვიძარები და შეხსენებები“, რომ სარეზერვო მაღვიძარამ დროზე დარეკოს.</string>
     <string name="check_dnd">„არ შემაწუხოთ“ უშვებს მაღვიძარებს</string>

@@ -103,7 +103,8 @@ private fun probe(context: Context): String {
     val notifications = NotificationManagerCompat.from(context)
     val fullScreen = notifications.canUseFullScreenIntent()
     val visible = appVisible()
-    val route = RingAlert.route(visible, interactive, locked, fullScreen)
+    // Die Uhr ist nie Begleit-App (die Zuordnung hält das Handy).
+    val route = RingAlert.route(visible, companion = false, interactive = interactive, locked = locked, fullScreenAllowed = fullScreen)
     return "${route.name} screen=${if (interactive) "on" else "off"} locked=$locked fsi=$fullScreen " +
         "notifications=${notifications.areNotificationsEnabled()} app=$visible"
 }

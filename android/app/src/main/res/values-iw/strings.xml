@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">בלי התראות הטלפון לא יוכל לצלצל כשעון מעורר גיבוי.</string>
     <string name="check_full_screen">הרשאת מסך מלא ניתנה</string>
     <string name="check_full_screen_problem">אשרו זאת כדי שהשעון המעורר יופיע גם כשהטלפון נעול.</string>
+    <string name="companion_connect">חיבור כאפליקציה נלווית</string>
+    <string name="companion_why">כדי שהשעון המעורר יופיע ממש בחזית גם כשאתם משתמשים בטלפון.</string>
+    <string name="companion_connected">מחובר כאפליקציה נלווית</string>
+    <string name="check_companion">האפליקציה הנלווית של השעון</string>
+    <string name="check_companion_problem">אחרת, בזמן שימוש בטלפון השעון המעורר מופיע רק כהתראה למעלה.</string>
+    <string name="companion_failed">לא נמצא שעון. בדקו שהוא מחובר ושה-Bluetooth פועל, ונסו שוב.</string>
     <string name="check_exact_alarms">שעונים מעוררים מדויקים מאושרים</string>
     <string name="check_exact_alarms_problem">אשרו שעונים מעוררים ותזכורות כדי שהשעון המעורר הגיבוי יצלצל בזמן.</string>
     <string name="check_dnd">״נא לא להפריע״ מאפשר שעונים מעוררים</string>

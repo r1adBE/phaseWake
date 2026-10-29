@@ -166,6 +166,12 @@
     <string name="check_notifications_problem">Fără notificări, telefonul tău nu poate suna ca alarmă de rezervă.</string>
     <string name="check_full_screen">Alarmă pe ecran complet permisă</string>
     <string name="check_full_screen_problem">Permite acest lucru pentru ca alarma să apară chiar și cu telefonul blocat.</string>
+    <string name="companion_connect">Conectează ca aplicație însoțitoare</string>
+    <string name="companion_why">Ca alarma să apară în prim-plan chiar și când folosești telefonul.</string>
+    <string name="companion_connected">Conectată ca aplicație însoțitoare</string>
+    <string name="check_companion">Aplicația însoțitoare a ceasului</string>
+    <string name="check_companion_problem">Altfel, cât timp folosești telefonul, alarma apare doar ca notificare sus.</string>
+    <string name="companion_failed">Niciun ceas găsit. Verifică dacă e conectat și dacă Bluetooth e pornit, apoi încearcă din nou.</string>
     <string name="check_exact_alarms">Alarme exacte permise</string>
     <string name="check_exact_alarms_problem">Permite alarmele și mementourile pentru ca alarma de rezervă să sune la timp.</string>
     <string name="check_dnd">Nu deranja lasă alarmele să treacă</string>

@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">หากไม่มีการแจ้งเตือน โทรศัพท์ของคุณจะส่งเสียงเป็นนาฬิกาปลุกสำรองไม่ได้</string>
     <string name="check_full_screen">อนุญาตนาฬิกาปลุกแบบเต็มหน้าจอแล้ว</string>
     <string name="check_full_screen_problem">อนุญาตสิ่งนี้เพื่อให้นาฬิกาปลุกแสดงขึ้นแม้โทรศัพท์จะล็อกอยู่</string>
+    <string name="companion_connect">เชื่อมต่อเป็นแอปคู่หู</string>
+    <string name="companion_why">เพื่อให้นาฬิกาปลุกแสดงขึ้นด้านหน้าสุดแม้ขณะที่คุณใช้โทรศัพท์อยู่</string>
+    <string name="companion_connected">เชื่อมต่อเป็นแอปคู่หูแล้ว</string>
+    <string name="check_companion">แอปคู่หูของนาฬิกา</string>
+    <string name="check_companion_problem">มิฉะนั้น ขณะที่คุณใช้โทรศัพท์ นาฬิกาปลุกจะแสดงเป็นการแจ้งเตือนด้านบนเท่านั้น</string>
+    <string name="companion_failed">ไม่พบนาฬิกา ตรวจสอบว่าเชื่อมต่ออยู่และเปิดบลูทูธแล้ว จากนั้นลองอีกครั้ง</string>
     <string name="check_exact_alarms">อนุญาตการปลุกที่แม่นยำแล้ว</string>
     <string name="check_exact_alarms_problem">อนุญาตการปลุกและการช่วยเตือนเพื่อให้นาฬิกาปลุกสำรองดังตรงเวลา</string>
     <string name="check_dnd">โหมดห้ามรบกวนยังให้นาฬิกาปลุกดังได้</string>

@@ -56,6 +56,7 @@ class WearSyncOfflineTest {
         tolerant { sync.fetchNights() }
         tolerant { sync.nodesWithout(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.isReachable(DataLayer.CAPABILITY_WATCH) }
+        tolerant { sync.connectedNames() }
     }
 
     private companion object {

@@ -155,6 +155,12 @@
     <string name="check_notifications_problem">Առանց ծանուցումների հեռախոսդ չի կարող զանգել որպես պահուստային զարթուցիչ։</string>
     <string name="check_full_screen">Լիաէկրան զարթուցիչը թույլատրված է</string>
     <string name="check_full_screen_problem">Թույլատրիր, որ զարթուցիչը երևա նույնիսկ կողպված հեռախոսում։</string>
+    <string name="companion_connect">Միացնել որպես ուղեկից հավելված</string>
+    <string name="companion_why">Որպեսզի զարթուցիչը հայտնվի ամենաառջևում, նույնիսկ երբ հեռախոսն օգտագործում ես։</string>
+    <string name="companion_connected">Միացված է որպես ուղեկից հավելված</string>
+    <string name="check_companion">Ժամացույցի ուղեկից հավելվածը</string>
+    <string name="check_companion_problem">Այլապես, երբ հեռախոսն օգտագործում ես, զարթուցիչը երևում է միայն որպես ծանուցում վերևում։</string>
+    <string name="companion_failed">Ժամացույց չի գտնվել։ Ստուգիր, որ այն միացված է, և Bluetooth-ը միացված է, ապա նորից փորձիր։</string>
     <string name="check_exact_alarms">Ճշգրիտ զարթուցիչները թույլատրված են</string>
     <string name="check_exact_alarms_problem">Թույլատրիր «Զարթուցիչներ և հիշեցումներ», որպեսզի պահուստային զարթուցիչը ժամանակին զանգի։</string>
     <string name="check_dnd">«Չանհանգստացնել»-ը թողնում է զարթուցիչները</string>

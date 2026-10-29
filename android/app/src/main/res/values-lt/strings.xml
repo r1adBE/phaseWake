@@ -171,6 +171,12 @@
     <string name="check_notifications_problem">Be pranešimų telefonas negalės skambėti kaip atsarginis žadintuvas.</string>
     <string name="check_full_screen">Viso ekrano žadintuvas leidžiamas</string>
     <string name="check_full_screen_problem">Leisk tai, kad žadintuvas būtų rodomas net ir užrakintame telefone.</string>
+    <string name="companion_connect">Prijungti kaip palydovinę programą</string>
+    <string name="companion_why">Kad žadintuvas atsirastų pačiame priekyje, net kai naudojiesi telefonu.</string>
+    <string name="companion_connected">Prijungta kaip palydovinė programa</string>
+    <string name="check_companion">Laikrodžio palydovinė programa</string>
+    <string name="check_companion_problem">Kitaip, kai naudojiesi telefonu, žadintuvas rodomas tik kaip pranešimas viršuje.</string>
+    <string name="companion_failed">Laikrodis nerastas. Patikrink, ar jis prijungtas ir ar įjungtas „Bluetooth“, ir bandyk dar kartą.</string>
     <string name="check_exact_alarms">Tikslūs žadintuvai leidžiami</string>
     <string name="check_exact_alarms_problem">Leisk „Žadintuvai ir priminimai“, kad atsarginis žadintuvas suskambėtų laiku.</string>
     <string name="check_dnd">„Netrukdyti“ praleidžia žadintuvus</string>

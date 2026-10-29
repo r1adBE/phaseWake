@@ -160,6 +160,12 @@
     <string name="check_notifications_problem">Tanpa pemberitahuan, telefon awak tidak boleh berdering sebagai penggera sandaran.</string>
     <string name="check_full_screen">Penggera skrin penuh dibenarkan</string>
     <string name="check_full_screen_problem">Benarkan ini supaya penggera dipaparkan walaupun telefon awak dikunci.</string>
+    <string name="companion_connect">Sambungkan sebagai apl pendamping</string>
+    <string name="companion_why">Supaya penggera muncul paling hadapan walaupun awak sedang menggunakan telefon.</string>
+    <string name="companion_connected">Disambungkan sebagai apl pendamping</string>
+    <string name="check_companion">Apl pendamping jam tangan</string>
+    <string name="check_companion_problem">Jika tidak, semasa awak menggunakan telefon, penggera hanya dipaparkan sebagai pemberitahuan di atas.</string>
+    <string name="companion_failed">Tiada jam tangan ditemui. Semak sama ada ia disambungkan dan Bluetooth dihidupkan, kemudian cuba lagi.</string>
     <string name="check_exact_alarms">Penggera tepat dibenarkan</string>
     <string name="check_exact_alarms_problem">Benarkan penggera &amp; peringatan supaya penggera sandaran berbunyi tepat pada masanya.</string>
     <string name="check_dnd">Jangan Ganggu membenarkan penggera</string>
