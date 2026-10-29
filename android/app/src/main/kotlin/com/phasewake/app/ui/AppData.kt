@@ -35,6 +35,9 @@ import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.StageSpan
+import com.phasewake.app.core.TestRun
+import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.core.Streak
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
@@ -51,6 +54,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 // Zustand der Handy-App für die Navigation: gespeicherte Daten, Auswertungen, Aufnahme, Nacht-Check.
@@ -75,6 +79,18 @@ internal class AppData(
     val soundClips: List<SoundClip>?,
     val routineItems: List<RoutineItem>,
     val routineTicks: Map<LocalDate, List<String>>,
+    /** Feiertage für Wecker mit «An Feiertagen nicht wecken». */
+    val holidays: Set<LocalDate> = emptySet(),
+    /** Gespeicherter Probewecker oder Powernap (auch abgelaufen; [Transient.isActive] prüft). */
+    val transient: TransientPlan? = null,
+    /** Laufender oder beendeter Probewecker für das Ergebnis; `null` = nichts anzuzeigen. */
+    val testRun: TestRun? = null,
+    /** Vorschlag der Powernap-Dauer in Minuten. */
+    val napMinutes: Int = Transient.NAP_DEFAULT_MINUTES,
+    /** Ersteinrichtung erledigt; `null`, bis gelesen. */
+    val onboardingDone: Boolean? = null,
+    /** Diagnose in den Einstellungen sichtbar. */
+    val diagnostics: Boolean = false,
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -96,9 +112,17 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     LaunchedEffect(Unit) { app.sounds.load() }
     val routineItems by app.routine.items.collectAsStateWithLifecycle(initialValue = emptyList())
     val routineTicks by app.routine.ticks.collectAsStateWithLifecycle(initialValue = emptyMap())
+    val holidays by app.holidays.store.dates.collectAsStateWithLifecycle(initialValue = emptySet())
+    val transient by app.transient.stored.collectAsStateWithLifecycle(initialValue = null)
+    val testRun by app.testRuns.run.collectAsStateWithLifecycle(initialValue = null)
+    val napMinutes by app.settings.napMinutes.collectAsStateWithLifecycle(initialValue = Transient.NAP_DEFAULT_MINUTES)
+    val onboardingFlow = remember { app.settings.onboardingDone.map<Boolean, Boolean?> { it } }
+    val onboardingDone by onboardingFlow.collectAsStateWithLifecycle(initialValue = null)
+    val diagnostics by app.settings.diagnostics.collectAsStateWithLifecycle(initialValue = false)
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
+        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics,
     )
 }
 
@@ -211,10 +235,10 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
     val soundRecChoice by app.settings.soundRecChoice.collectAsStateWithLifecycle(initialValue = null)
     fun tonight() = SleepNotes.nightDate(Instant.now(), ZoneId.systemDefault())
     val soundRecChosen = soundRecChoice?.takeIf { it.first == tonight() }?.second
-    val soundRecAuto = remember(soundRecDefault, data.alarms, data.sleepGoal, checkRun) {
+    val soundRecAuto = remember(soundRecDefault, data.alarms, data.sleepGoal, data.holidays, checkRun) {
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        soundRecDefault && AlarmSchedule.earliestPlan(data.alarms, now, zone).let { plan -> SoundEvents.mayAutoStart(now, plan?.target, data.sleepGoal, zone, plan?.windowStart) }
+        soundRecDefault && AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays).let { plan -> SoundEvents.mayAutoStart(now, plan?.target, data.sleepGoal, zone, plan?.windowStart) }
     }
     val soundRecWanted = soundRecChosen ?: soundRecAuto
     var micDenied by rememberSaveable { mutableStateOf(false) }
@@ -249,7 +273,7 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
         if (!lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return@LaunchedEffect
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        if (soundRecChosen != true || SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(data.alarms, now, zone)?.windowStart)) startRecording()
+        if (soundRecChosen != true || SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays)?.windowStart)) startRecording()
     }
     return SoundRecControl(
         state = SoundRecState(soundRecWanted && (data.recording != null || hasMic()), data.recording != null, micDenied),
@@ -290,6 +314,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     app.sync.watchBattery(),
                     watchAppMissing = missingOn.isNotEmpty(),
                 )
+                check?.let { com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, it.failed) }
                 delay(NIGHT_CHECK_INTERVAL_MS)
             }
         }

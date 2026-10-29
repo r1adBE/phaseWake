@@ -3,6 +3,8 @@ package com.phasewake.app.shared
 import android.content.Context
 import android.util.Log
 import com.phasewake.app.core.Codec
+import com.phasewake.app.core.HolidayList
+import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
 import com.google.android.gms.common.api.ApiException
 import android.net.Uri
@@ -11,6 +13,7 @@ import com.google.android.gms.wearable.DataClient
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.DataMap
 import com.google.android.gms.wearable.PutDataMapRequest
+import com.google.android.gms.wearable.PutDataRequest
 import com.google.android.gms.wearable.Wearable
 import kotlinx.coroutines.tasks.await
 
@@ -27,11 +30,7 @@ class WearSync(context: Context) {
     private val capabilityClient by lazy { Wearable.getCapabilityClient(app) }
 
     suspend fun publishAlarms(snapshot: AlarmSnapshot) = guarded("Wecker senden") {
-        val request = PutDataMapRequest.create(DataLayer.PATH_ALARMS).apply {
-            dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeAlarms(snapshot.alarms))
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, snapshot.updatedAt)
-        }
-        dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+        dataClient.putDataItem(alarmsRequest(snapshot)).await()
     }
 
     /**
@@ -56,11 +55,7 @@ class WearSync(context: Context) {
      * nicht. Das Handy liest nach Präfix, auch ältere Pfade nur mit Fensterbeginn.
      */
     suspend fun publishNight(night: NightRecord) = guarded("Nacht senden") {
-        val path = DataLayer.PATH_NIGHT_PREFIX + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
-        val request = PutDataMapRequest.create(path).apply {
-            dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
-        }
-        dataClient.putDataItem(request.asPutDataRequest()).await()
+        dataClient.putDataItem(nightRequest(night)).await()
     }
 
     /**
@@ -70,12 +65,7 @@ class WearSync(context: Context) {
     suspend fun publishWatchReady(ready: Boolean, battery: Int? = null): Boolean {
         var stored = false
         guarded("Status senden") {
-            val request = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
-                dataMap.putBoolean(DataLayer.KEY_READY, ready)
-                if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
-                dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
-            }
-            dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis())).await()
             stored = true
         }
         return stored
@@ -85,7 +75,7 @@ class WearSync(context: Context) {
     suspend fun watchReady(): Boolean? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
-            items.firstOrNull()?.let { DataMapItem.fromDataItem(it).dataMap.getBoolean(DataLayer.KEY_READY) }
+            items.firstOrNull()?.let { readReady(DataMapItem.fromDataItem(it).dataMap) }
         } finally {
             items.release()
         }
@@ -98,9 +88,38 @@ class WearSync(context: Context) {
     suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
-            items.firstOrNull()?.let { DataMapItem.fromDataItem(it).dataMap }
-                ?.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && System.currentTimeMillis() - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
-                ?.getInt(DataLayer.KEY_BATTERY)
+            items.firstOrNull()?.let { readBattery(DataMapItem.fromDataItem(it).dataMap, System.currentTimeMillis(), maxAgeMs) }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: zuletzt gemeldeter Zeitpunkt des Uhr-Status (ms), also «zuletzt gesehen»; `null`, wenn unbekannt. */
+    suspend fun watchSeenAt(): Long? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        try {
+            items.firstOrNull()?.let { readSeenAt(DataMapItem.fromDataItem(it).dataMap) }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: Feiertage an die Uhren (als Paket, damit auch eine gerade getrennte Uhr sie bekommt). */
+    suspend fun publishHolidays(list: HolidayList, updatedAt: Long) = guarded("Feiertage senden") {
+        dataClient.putDataItem(holidaysRequest(list, updatedAt)).await()
+    }
+
+    /** Uhr: zuletzt abgelegte Feiertage mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    suspend fun fetchHolidays(): Pair<HolidayList, Long>? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_HOLIDAYS).build()).await()
+        try {
+            items.map { readHolidays(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.second }
         } finally {
             items.release()
         }
@@ -111,10 +130,7 @@ class WearSync(context: Context) {
 
     /** Handy: Verlauf überall löschen – auch auf einer Uhr, die gerade nicht verbunden ist. */
     suspend fun clearHistoryEverywhere() = guarded("Verlauf löschen") {
-        val request = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, System.currentTimeMillis())
-        }
-        dataClient.putDataItem(request.asPutDataRequest().setUrgent()).await()
+        dataClient.putDataItem(clearRequest(System.currentTimeMillis())).await()
         deleteNights()
     }
 
@@ -194,6 +210,51 @@ class WearSync(context: Context) {
         fun readAlarms(map: DataMap): AlarmSnapshot? = runCatching {
             AlarmSnapshot(Codec.decodeAlarms(map.getString(DataLayer.KEY_TEXT).orEmpty()), map.getLong(DataLayer.KEY_UPDATED_AT))
         }.onFailure { Log.w(TAG, "Wecker-Paket unlesbar", it) }.getOrNull()
+
+        /** Paket mit allen Weckern (dringend: die Uhr soll gleich neu planen). */
+        fun alarmsRequest(snapshot: AlarmSnapshot): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_ALARMS).apply {
+            dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeAlarms(snapshot.alarms))
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, snapshot.updatedAt)
+        }.asPutDataRequest().setUrgent()
+
+        /** Paket einer Nacht unter «Präfix + Fensterbeginn-Kennung» (siehe [publishNight]). */
+        fun nightRequest(night: NightRecord): PutDataRequest =
+            PutDataMapRequest.create(DataLayer.PATH_NIGHT_PREFIX + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)).apply {
+                dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
+            }.asPutDataRequest()
+
+        /** Status-Paket der Uhr; [battery] fehlt, wenn unbekannt. */
+        fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
+            dataMap.putBoolean(DataLayer.KEY_READY, ready)
+            if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
+        }.asPutDataRequest().setUrgent()
+
+        /** Feiertags-Paket für die Uhren. */
+        fun holidaysRequest(list: HolidayList, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_HOLIDAYS).apply {
+            dataMap.putString(DataLayer.KEY_TEXT, Holidays.encode(list))
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
+        }.asPutDataRequest().setUrgent()
+
+        /** Paket «Verlauf löschen» mit Zeitpunkt. */
+        fun clearRequest(nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
+        }.asPutDataRequest().setUrgent()
+
+        /** Bereit-Meldung aus dem Status-Paket. */
+        fun readReady(map: DataMap): Boolean = map.getBoolean(DataLayer.KEY_READY)
+
+        /** Akkustand aus dem Status-Paket; `null` ohne Angabe oder älter als [maxAgeMs]. */
+        fun readBattery(map: DataMap, nowMs: Long, maxAgeMs: Long): Int? =
+            map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
+                ?.getInt(DataLayer.KEY_BATTERY)
+
+        /** Zeitpunkt des Status-Pakets (ms); `null` ohne Angabe. */
+        fun readSeenAt(map: DataMap): Long? = map.getLong(DataLayer.KEY_UPDATED_AT).takeIf { it > 0 }
+
+        /** Liest ein Feiertags-Paket: Liste (tolerant, siehe [Holidays.decode]) und Zeitpunkt. */
+        fun readHolidays(map: DataMap): Pair<HolidayList, Long> =
+            Holidays.decode(map.getString(DataLayer.KEY_TEXT)) to map.getLong(DataLayer.KEY_UPDATED_AT)
 
         /** Liest ein empfangenes Nacht-Paket. @return `null`, wenn es unlesbar ist. */
         fun readNight(map: DataMap): NightRecord? = runCatching {

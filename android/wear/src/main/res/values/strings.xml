@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Snoozing until %1$s</string>
 
     <string name="home_no_alarm">No alarm set</string>
-    <string name="home_no_alarm_hint">Set alarms in Phase Wake on your phone.</string>
+    <string name="home_no_alarm_hint">Add an alarm – here or in Phase Wake on your phone.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Today</string>
     <string name="home_tomorrow">Tomorrow</string>
@@ -62,4 +62,25 @@
     <string name="editor_delete_title">Delete this alarm?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
     <string name="editor_enabled">Alarm on</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Skip next time</string>
+    <string name="alarm_skipped">Skipped: %1$s</string>
+    <string name="nap_title">Power nap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="nap_start">Start</string>
+    <string name="nap_running">Until %1$s</string>
+    <string name="nap_stop">End power nap</string>
+    <string name="diag_title">Diagnostics</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d more tap</item>
+        <item quantity="other">%1$d more taps</item>
+    </plurals>
+    <string name="diag_clear">Clear</string>
+    <string name="diag_hide">Hide diagnostics</string>
+    <string name="diag_empty">No events yet.</string>
+    <string name="diag_next">Next alarm: %1$s</string>
+    <string name="diag_version">Version %1$s</string>
 </resources>

@@ -133,7 +133,15 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
 /** Karte auf der Startseite: grün und knapp, wenn alles stimmt; sonst jede offene Prüfung mit Knopf. */
 @Composable
-internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.compose.ui.graphics.Color, onFix: (Check) -> Unit) {
+internal fun NightCheckCard(
+    state: NightCheckState,
+    containerColor: androidx.compose.ui.graphics.Color,
+    onFix: (Check) -> Unit,
+    /** «In 2 Minuten testen»; `null` = kein Knopf. */
+    onTest: (() -> Unit)? = null,
+    /** Zielzeit eines laufenden Probeweckers. */
+    testAt: java.time.Instant? = null,
+) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val ready = state.ready
     val readyText = stringResource(R.string.check_ready)
@@ -178,6 +186,7 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                     }
                 }
             }
+            TestButton(onTest, testAt)
             state.failed.forEach { check ->
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
@@ -196,5 +205,18 @@ internal fun NightCheckCard(state: NightCheckState, containerColor: androidx.com
                 }
             }
         }
+    }
+}
+
+/** Probewecker: Knopf, oder während er läuft seine Zeit. */
+@Composable
+private fun TestButton(onTest: (() -> Unit)?, testAt: java.time.Instant?) {
+    when {
+        testAt != null -> Text(
+            stringResource(R.string.test_running, com.phasewake.app.ui.Format.time(testAt)),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        onTest != null -> androidx.compose.material3.OutlinedButton(onClick = onTest) { Text(stringResource(R.string.test_button)) }
     }
 }

@@ -66,7 +66,7 @@ class SleepSoundService : Service() {
             val app = phoneApp
             app.appScope.launch {
                 val now = Instant.now()
-                val window = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, ZoneId.systemDefault())?.windowStart ?: return@launch
+                val window = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, ZoneId.systemDefault(), app.holidays.store.current())?.windowStart ?: return@launch
                 val end = maxOf(window, now).toEpochMilli()
                 handler.post {
                     val playing = state.value ?: return@post

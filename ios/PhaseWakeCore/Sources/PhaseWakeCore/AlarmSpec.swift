@@ -111,6 +111,11 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let sunriseDevice: SunriseDevice
     /// Weckaufgabe; auf Apple ohne Wirkung, wird aber erhalten und mit der Uhr abgeglichen.
     public let wakeTask: WakeTask
+    /// «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier (ms seit 1970) fallen
+    /// aus; 0 = keiner. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker (`AlarmSchedule.skipNext`).
+    public let skipUntil: Int64
+    /// An Feiertagen (Land und Region in den Einstellungen) nicht wecken. Nur für wiederholte Wecker.
+    public let skipHolidays: Bool
 
     /// - Throws: ``DetectorConfigError`` bei ungültigen Werten (gleiche Regeln wie Kotlin).
     public init(
@@ -127,7 +132,9 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         label: String = "",
         sunrise: Sunrise = .off,
         wakeTask: WakeTask = WakeTask.none,
-        sunriseDevice: SunriseDevice = .phone
+        sunriseDevice: SunriseDevice = .phone,
+        skipUntil: Int64 = 0,
+        skipHolidays: Bool = false
     ) throws {
         guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
@@ -152,6 +159,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         self.sunrise = sunrise
         self.wakeTask = wakeTask
         self.sunriseDevice = sunriseDevice
+        self.skipUntil = skipUntil
+        self.skipHolidays = skipHolidays
     }
 
     /// Ob das iPhone als Zweitwecker mitweckt.
@@ -167,125 +176,21 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public var watchSunrise: Sunrise { sunriseDevice.onWatch ? sunrise : .off }
 
     /// Kopie mit geändertem Ein/Aus-Zustand.
-    public func with(enabled: Bool) -> AlarmSpec {
+    public func with(enabled: Bool) -> AlarmSpec { copy(enabled: enabled) }
+
+    /// Kopie mit anderem `skipUntil` (ms seit 1970, 0 = nichts überspringen).
+    public func with(skipUntil: Int64) -> AlarmSpec { copy(skipUntil: skipUntil) }
+
+    /// Kopie mit anderer Feiertagsregel.
+    public func with(skipHolidays: Bool) -> AlarmSpec { copy(skipHolidays: skipHolidays) }
+
+    private func copy(enabled: Bool? = nil, skipUntil: Int64? = nil, skipHolidays: Bool? = nil) -> AlarmSpec {
         // Werte stammen aus einem gültigen Wecker; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
-            enabled: enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
-            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice
+            enabled: enabled ?? self.enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
+            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice,
+            skipUntil: skipUntil ?? self.skipUntil, skipHolidays: skipHolidays ?? self.skipHolidays
         )
-    }
-}
-
-/// Zeitplan einer Weck-Nacht.
-public struct WakePlan: Equatable, Sendable {
-    /// Kennung des Weckers, zu dem der Plan gehört.
-    public let alarmId: String
-    /// Beginn des Weckfensters.
-    public let windowStart: Date
-    /// Zielzeit: spätester Weckmoment.
-    public let target: Date
-
-    /// Erzeugt einen Plan; `windowStart` liegt vor `target`.
-    public init(alarmId: String, windowStart: Date, target: Date) {
-        self.alarmId = alarmId
-        self.windowStart = windowStart
-        self.target = target
-    }
-}
-
-/// Berechnet, wann ein Wecker das nächste Mal fällig ist. Identisch zu `AlarmSchedule` (Kotlin).
-public enum AlarmSchedule {
-    private static let searchDays = 8
-
-    /// Nächste Zielzeit, die echt nach `now` liegt, oder `nil`, wenn der Wecker aus ist.
-    /// Sommer-/Winterzeit: in der Lücke die erste gültige Zeit danach, in der Überlappung die frühere.
-    public static func nextTarget(_ spec: AlarmSpec, now: Date, calendar: Calendar) -> Date? {
-        guard spec.enabled else { return nil }
-        let today = calendar.startOfDay(for: now)
-        for offset in 0...searchDays {
-            guard let day = calendar.date(byAdding: .day, value: offset, to: today) else { continue }
-            if !spec.isOneShot, !spec.days.contains(Weekday(date: day, calendar: calendar)) { continue }
-            var parts = calendar.dateComponents([.year, .month, .day], from: day)
-            parts.hour = spec.hour
-            parts.minute = spec.minute
-            guard let target = resolve(parts, calendar: calendar) else { continue }
-            if target > now { return target }
-        }
-        return nil
-    }
-
-    /// Plan für die nächste Nacht des Weckers (Zielzeit echt nach `now`), oder `nil`, wenn er aus ist.
-    public static func nextPlan(_ spec: AlarmSpec, now: Date, calendar: Calendar) -> WakePlan? {
-        guard let target = nextTarget(spec, now: now, calendar: calendar) else { return nil }
-        return WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.windowMinutes), target: target)
-    }
-
-    /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die kleinere Kennung, damit beide Plattformen denselben Wecker wählen.
-    public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar) -> WakePlan? {
-        earliestPlan(specs, now: now, doneUntil: [:], calendar: calendar)
-    }
-
-    /// Wie oben, aber pro Wecker erst ab `doneUntil[id]` (erledigte bzw. ausgesetzte Nacht).
-    /// Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
-    public static func earliestPlan(_ specs: [AlarmSpec], now: Date, doneUntil: [String: Date], calendar: Calendar) -> WakePlan? {
-        specs.compactMap { nextPlan($0, now: max(now, doneUntil[$0.id] ?? .distantPast), calendar: calendar) }
-            .min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
-    }
-
-    /// Einschlafzeit plus Schlafdauer, nie später als `latest`.
-    public static func sleepTarget(onset: Date, sleepDurationMinutes: Int, latest: Date) -> Date {
-        min(onset.addingTimeInterval(TimeInterval(sleepDurationMinutes * 60)), latest)
-    }
-
-    /// Beginn des Weckfensters: `windowMinutes` Minuten vor `target`.
-    public static func windowStart(_ target: Date, windowMinutes: Int) -> Date {
-        target.addingTimeInterval(-TimeInterval(windowMinutes * 60))
-    }
-
-    /// Wie `ZonedDateTime.of`: In der Lücke verschiebt Foundation um die Lückenlänge nach vorn,
-    /// in der Überlappung wählt es die frühere Zeit (beides durch Tests abgesichert).
-    private static func resolve(_ parts: DateComponents, calendar: Calendar) -> Date? {
-        calendar.date(from: parts)
-    }
-}
-
-/// Schlummern: 5 Minuten, höchstens 3-mal.
-public enum Snooze {
-    /// Schlummerdauer in Minuten.
-    public static let minutes = 5
-    /// Höchstzahl Schlummern pro Weckvorgang; danach nur noch Stoppen, damit niemand den Morgen verschlummert.
-    public static let maxCount = 3
-
-    /// Ob nach `count` bisherigen Schlummern noch einmal geschlummert werden darf.
-    public static func canSnooze(_ count: Int) -> Bool { count < maxCount }
-
-    /// Zeitpunkt des nächsten Klingelns: `now` plus 5 Minuten.
-    public static func nextRing(_ now: Date) -> Date { now.addingTimeInterval(TimeInterval(minutes * 60)) }
-}
-
-/// Einschlaf-Erkennung (Regel, Abschnitt 6).
-public enum SleepOnset {
-    /// 30 Epochen = 15 Minuten durchgehende Ruhe.
-    public static let stillEpochs = 30
-
-    /// Sucht die erste ruhige Strecke von `stillEpochs` Epochen.
-    /// - Parameters:
-    ///   - motions: Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge; `nil` (leere Epoche) unterbricht die Strecke.
-    ///   - threshold: Leicht-Schwelle in m/s²; ruhig heisst Bewegung vorhanden und darunter.
-    /// - Returns: Index der ersten Epoche der ersten ruhigen Strecke, oder `nil`, solange es keine gibt.
-    public static func find(_ motions: [Double?], threshold: Double = DetectorConfig.defaultLightThreshold) -> Int? {
-        var runStart = 0
-        var runLength = 0
-        for (index, motion) in motions.enumerated() {
-            if let motion, motion < threshold {
-                if runLength == 0 { runStart = index }
-                runLength += 1
-                if runLength == stillEpochs { return runStart }
-            } else {
-                runLength = 0
-            }
-        }
-        return nil
     }
 }

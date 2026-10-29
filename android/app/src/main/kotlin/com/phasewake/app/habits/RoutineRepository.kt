@@ -10,6 +10,7 @@ import java.time.LocalDate
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /** Abendroutine: eigene Punkte und die Haken je Nachtdatum. Nur auf dem Handy. Format siehe [Routine]. */
@@ -44,6 +45,21 @@ class RoutineRepository(private val store: DataStore<Preferences>) {
     /** «Verlauf löschen»: die Haken aller Abende; die Punkte bleiben. */
     suspend fun clearTicks() {
         store.edit { it.remove(TICKS) }
+    }
+
+    /** Gespeicherte Texte (Punkte oder `null` = nie geändert, Haken) für die Sicherung. */
+    suspend fun raw(): Pair<String?, String> = store.data.first().let { it[ITEMS] to it[TICKS].orEmpty() }
+
+    /** Ersetzt Punkte und Haken (Wiederherstellen); `null` = die Vorschläge. */
+    suspend fun restore(items: String?, ticks: String) {
+        store.edit {
+            if (items == null) {
+                it.remove(ITEMS)
+            } else {
+                it[ITEMS] = Routine.encodeItems(Routine.decodeItems(items))
+            }
+            it[TICKS] = Routine.encodeTicks(Routine.decodeTicks(ticks))
+        }
     }
 
     private companion object {

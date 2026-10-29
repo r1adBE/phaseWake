@@ -104,7 +104,7 @@ internal fun DrawScope.dashed(color: Color, from: Offset, to: Offset) =
 @Composable
 internal fun labelStyle(): TextStyle = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, SHADE }
+internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, SHADE, NONE }
 
 internal data class LegendItem(val text: String, val mark: LegendMark, val color: Color)
 
@@ -138,6 +138,8 @@ internal fun DrawScope.mark(mark: LegendMark, color: Color, center: Offset, r: F
         )
         LegendMark.DASH -> dashed(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y))
         LegendMark.SHADE -> drawRoundRect(color, Offset(center.x - r * 2, center.y - r), Size(r * 4, r * 2), CornerRadius(r / 2))
+        // Ohne Marke: Das Zeichen steht schon im Text (z. B. «✓ Ziel erreicht»).
+        LegendMark.NONE -> Unit
     }
 }
 
@@ -152,7 +154,7 @@ internal fun Legend(items: List<LegendItem>) {
     ) {
         items.forEach { item ->
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Canvas(Modifier.size(width = 16.dp, height = 12.dp)) { mark(item.mark, item.color, center, 3.5.dp.toPx()) }
+                if (item.mark != LegendMark.NONE) Canvas(Modifier.size(width = 16.dp, height = 12.dp)) { mark(item.mark, item.color, center, 3.5.dp.toPx()) }
                 Text(item.text, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 4.dp))
             }
         }

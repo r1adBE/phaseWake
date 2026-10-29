@@ -36,12 +36,12 @@ extension SmartAlarm {
         if let until = state["snoozedUntil"] as? Double {
             let date = Date(timeIntervalSince1970: until)
             plan = WakePlan(alarmId: night.alarmId, windowStart: date, target: date)
-            phase = .snoozed(until: date, snoozesLeft: Snooze.maxCount - snoozes)
+            phase = .snoozed(until: date, snoozesLeft: snoozesLeft)
             // Die Schlummer-Sitzung hätte längst starten müssen.
             interrupted = date.addingTimeInterval(Self.startTolerance) < Date()
         } else {
             plan = nightPlan
-            phase = .ringing(reason, snoozesLeft: Snooze.maxCount - snoozes)
+            phase = .ringing(reason, snoozesLeft: snoozesLeft)
             // Nach einem Neustart der App gibt es keine Sitzung mehr, also auch keine Vibration.
             interrupted = true
         }

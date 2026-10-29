@@ -79,7 +79,7 @@ struct HistoryView: View {
         let now = Date()
         return HistoryChartsData.of(
             nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
-            nextTarget: AlarmSchedule.earliestPlan(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current)?.target,
+            nextTarget: model.nextPlan(now: now)?.target,
             goalMinutes: model.sleepGoal, now: now, calendar: .current
         )
     }
@@ -128,7 +128,8 @@ struct HistoryView: View {
     /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
     private var goalWeek: (reached: Int, total: Int)? {
         let weekAgo = Date().addingTimeInterval(-7 * 86_400)
-        let recent = sleeps.filter { $0.end > weekAgo }.map { (date: SleepNotes.nightDate($0.start, calendar: .current), asleepMinutes: $0.asleepMinutes) }
+        // Nachtdatum nach dem Ende der Nacht, wie Android (`SleepGoal.nightsOf`).
+        let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .current)
         let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
         return status.total > 0 ? status : nil
     }

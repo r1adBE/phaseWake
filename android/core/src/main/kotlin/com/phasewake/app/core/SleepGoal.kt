@@ -84,11 +84,13 @@ object Bedtime {
         zone: ZoneId,
         goalMinutes: Int,
         leadMinutes: Int = LEAD_MINUTES,
+        /** Feiertage für Wecker mit [AlarmSpec.skipHolidays]; an solchen Tagen keine Erinnerung. */
+        holidays: Set<LocalDate> = emptySet(),
     ): Reminder? {
         var cursor = from
         val remaining = specs.toMutableList()
         repeat(MAX_STEPS) {
-            val plan = AlarmSchedule.earliestPlan(remaining, cursor, zone) ?: return null
+            val plan = AlarmSchedule.earliestPlan(remaining, cursor, zone, holidays) ?: return null
             val at = reminderAt(plan.target, goalMinutes, leadMinutes)
             if (at.isAfter(cursor)) return Reminder(at, bedtime(plan.target, goalMinutes), plan.target)
             // Ein Einmal-Wecker klingelt nur diese eine Nacht; er kommt danach nicht wieder.

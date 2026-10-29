@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">Ditangguh hingga %1$s</string>
 
     <string name="home_no_alarm">Tiada penggera ditetapkan</string>
-    <string name="home_no_alarm_hint">Tetapkan penggera dalam Phase Wake pada telefon.</string>
+    <string name="home_no_alarm_hint">Cipta penggera – di sini atau dalam Phase Wake pada telefon.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hari ini</string>
     <string name="home_tomorrow">Esok</string>
@@ -59,4 +59,23 @@
     <string name="editor_delete_title">Padam penggera ini?</string>
     <string name="home_max_alarms">Maksimum %1$d penggera – padam satu untuk menambah yang baharu.</string>
     <string name="editor_enabled">Penggera hidup</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Langkau kali seterusnya</string>
+    <string name="alarm_skipped">Dilangkau: %1$s</string>
+    <string name="nap_title">Tidur sekejap</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d minit</item>
+    </plurals>
+    <string name="nap_start">Mula</string>
+    <string name="nap_running">Hingga %1$s</string>
+    <string name="nap_stop">Tamatkan tidur sekejap</string>
+    <string name="diag_title">Diagnostik</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">%1$d kali lagi</item>
+    </plurals>
+    <string name="diag_clear">Kosongkan</string>
+    <string name="diag_hide">Sembunyikan diagnostik</string>
+    <string name="diag_empty">Belum ada peristiwa.</string>
+    <string name="diag_next">Penggera seterusnya: %1$s</string>
+    <string name="diag_version">Versi %1$s</string>
 </resources>

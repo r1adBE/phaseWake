@@ -29,7 +29,7 @@ extension SmartAlarm {
         let model = WatchModel.shared
         self.plan = plan
         nightPlan = plan
-        spec = model.alarms.first { $0.id == plan.alarmId }
+        spec = model.spec(for: plan.alarmId)
         detector = WakeDetector(config: Calibration.calibrate(nights: NightHistory.motionsForCalibration(model.storage.nights())))
         epochs = []
         unmeasured = max(0, Int(Date().timeIntervalSince(plan.windowStart)) / DetectorConfig.epochSeconds)
@@ -37,6 +37,7 @@ extension SmartAlarm {
         snoozes = 0
         phase = .measuring(plan)
         publishArmed()
+        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.time(plan.windowStart))–\(Format.time(plan.target)) unmeasured \(unmeasured)")
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
         let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
@@ -116,6 +117,7 @@ extension SmartAlarm {
             // Vor dem Start der Sitzung gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung.
             if epochs.count <= unmeasured { continue }
             if case .wake(let reason) = detector.onEpoch(epoch) {
+                DiagStore.shared.log(.phase, reason.rawValue)
                 ring(reason)
                 return
             }

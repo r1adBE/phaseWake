@@ -96,7 +96,7 @@ Phase Wake ist gratis, ohne Werbung und ohne Abo. Wer die Entwicklung unterstüt
 
 ## Lizenz
 
-[MIT](LICENSE) © r1adBE · Schrift [Manrope](licenses/Manrope-OFL.txt) unter SIL Open Font License 1.1 · Android: [MediaPipe Tasks Audio](https://github.com/google-ai-edge/mediapipe) und das Modell [YAMNet](https://www.kaggle.com/models/google/yamnet) unter [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), © Google LLC
+[MIT](LICENSE) © r1adBE · Schrift [Manrope](licenses/Manrope-OFL.txt) unter SIL Open Font License 1.1 · Android: [MediaPipe Tasks Audio](https://github.com/google-ai-edge/mediapipe) und das Modell [YAMNet](https://www.kaggle.com/models/google/yamnet) unter [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), © Google LLC · Feiertage: Daten aus dem Python-Paket [holidays](https://github.com/vacanza/holidays) unter MIT-Lizenz · nur für Tests: [Robolectric](https://robolectric.org) (MIT)
 
 Klänge: freie Aufnahmen unter [CC0](https://creativecommons.org/publicdomain/zero/1.0/) von opengameart.org, für die App zu nahtlosen Schleifen geschnitten bzw. als Weckton aufbereitet:
 

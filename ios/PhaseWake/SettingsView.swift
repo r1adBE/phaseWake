@@ -7,6 +7,8 @@ struct SettingsView: View {
     @AppStorage("themeMode") private var themeMode = ThemeMode.system
     @State private var confirmClear = false
     @AppStorage("healthRequested") private var healthRequested = false
+    @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
+    @State private var diagUnlocked = DiagStore.shared.unlocked
 
     var body: some View {
         NavigationStack {
@@ -36,6 +38,8 @@ struct SettingsView: View {
                     Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
                     Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
                 }
+                Section(L("test_title")) { TestAlarmButton() }
+                HolidaySettingsSection()
                 CustomNotesSection()
                 RoutineSection()
                 Section(L("sound_rec_title")) {
@@ -51,6 +55,7 @@ struct SettingsView: View {
                     Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
                     Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
                 }
+                BackupSection()
                 Section(L("settings_about")) {
                     Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
                     Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
@@ -58,14 +63,20 @@ struct SettingsView: View {
                         Link(L("settings_support"), destination: URL(string: "https://github.com/sponsors/r1adBE")!)
                         Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)
                     }
-                    Text(L("settings_licenses_text_apple")).font(.footnote).foregroundStyle(.secondary)
-                    Text(L("settings_version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""))
-                        .font(.footnote).foregroundStyle(.secondary)
+                    Button(L("settings_onboarding")) { onboardingDone = false }
+                    Text(L("settings_licenses_text_apple") + "\n" + L("settings_license_holidays")).font(.footnote).foregroundStyle(.secondary)
+                    DiagVersionRow(unlocked: $diagUnlocked)
+                    if diagUnlocked {
+                        NavigationLink(L("diag_title")) { DiagView(unlocked: $diagUnlocked) }
+                    }
                 }
             }
             .navigationTitle(L("settings_title"))
             .confirmationDialog(L("settings_clear_history_text"), isPresented: $confirmClear, titleVisibility: .visible) {
-                Button(L("settings_clear_history_confirm"), role: .destructive) { model.clearHistory() }
+                // Mit Gerätesperre zusätzlich Face ID, Touch ID oder Code; ohne Sperre genügt diese Rückfrage.
+                Button(L("settings_clear_history_confirm"), role: .destructive) {
+                    Task { if await DeviceAuth.confirm(reason: L("auth_clear_history")) { model.clearHistory() } }
+                }
             }
         }
     }

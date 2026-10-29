@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Snoozen tot %1$s</string>
 
     <string name="home_no_alarm">Geen wekker ingesteld</string>
-    <string name="home_no_alarm_hint">Stel wekkers in via Phase Wake op je telefoon.</string>
+    <string name="home_no_alarm_hint">Maak een wekker – hier of in Phase Wake op je telefoon.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Vandaag</string>
     <string name="home_tomorrow">Morgen</string>
@@ -60,4 +60,25 @@
     <string name="editor_delete_title">Deze wekker verwijderen?</string>
     <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
     <string name="editor_enabled">Wekker aan</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Volgende keer overslaan</string>
+    <string name="alarm_skipped">Overgeslagen: %1$s</string>
+    <string name="nap_title">Powernap</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuut</item>
+        <item quantity="other">%1$d minuten</item>
+    </plurals>
+    <string name="nap_start">Starten</string>
+    <string name="nap_running">Tot %1$s</string>
+    <string name="nap_stop">Powernap beëindigen</string>
+    <string name="diag_title">Diagnose</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Nog %1$d keer</item>
+        <item quantity="other">Nog %1$d keer</item>
+    </plurals>
+    <string name="diag_clear">Wissen</string>
+    <string name="diag_hide">Diagnose verbergen</string>
+    <string name="diag_empty">Nog geen gebeurtenissen.</string>
+    <string name="diag_next">Volgende wekker: %1$s</string>
+    <string name="diag_version">Versie %1$s</string>
 </resources>

@@ -32,6 +32,9 @@ enum Brand {
     /// Rand eines nicht gewählten Chips, ≥ 3:1 zur Karte (WCAG 1.4.11): hell 90 % ≈ 3.4:1 auf Weiss,
     /// dunkel 75 % ≈ 4.7:1 auf der Karte über dem Nachthimmel (≈ 3.2:1 im Lavendel-Schein oben rechts).
     static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.75) : glow.opacity(0.9) }
+    /// Umriss von Bedienelementen (wie Material `outline` auf Android), ≥ 3:1 zu Karte und Hintergrund
+    /// (WCAG 1.4.11): dunkel 726EA4 ≈ 3.5:1 auf der Karte, hell 8C87A8 ≈ 3.4:1 auf Weiss.
+    static func outline(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x726EA4) : Color(hex: 0x8C87A8) }
     /// Fläche eines gewählten Chips.
     static func chipSelected(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : Color(hex: 0xE4DFFB) }
     /// Leiser Nebentext (Erklärung), ≥ 4.5:1.
@@ -165,6 +168,14 @@ enum Format {
         if calendar.isDateInToday(date) { return L(todayKey) }
         if calendar.isDateInTomorrow(date) { return L(tomorrowKey) }
         return date.formatted(.dateTime.weekday(.wide)).capitalized(with: .current)
+    }
+
+    /// Kurzer Tag mit Datum ohne Jahr («Do., 30.10.») zu «yyyy-MM-dd», für «Übersprungen» und Feiertage.
+    static func shortDay(_ date: String) -> String {
+        let parts = date.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3,
+              let day = Calendar.current.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12)) else { return date }
+        return day.formatted(.dateTime.weekday(.abbreviated).day().month(.defaultDigits))
     }
 
     /// `%lld` braucht 64 Bit; `Int` hat auf arm64_32-Uhren nur 32, daher `Int64`.

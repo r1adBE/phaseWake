@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Slumrer til %1$s</string>
 
     <string name="home_no_alarm">Ingen alarm stilt</string>
-    <string name="home_no_alarm_hint">Still alarmer i Phase Wake på telefonen.</string>
+    <string name="home_no_alarm_hint">Opprett en alarm – her eller i Phase Wake på telefonen.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">I dag</string>
     <string name="home_tomorrow">I morgen</string>
@@ -60,4 +60,25 @@
     <string name="editor_delete_title">Slette denne alarmen?</string>
     <string name="home_max_alarms">Maks %1$d alarmer – slett en for å legge til en ny.</string>
     <string name="editor_enabled">Alarm på</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Hopp over neste gang</string>
+    <string name="alarm_skipped">Hoppet over: %1$s</string>
+    <string name="nap_title">Hvil</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minutt</item>
+        <item quantity="other">%1$d minutter</item>
+    </plurals>
+    <string name="nap_start">Start</string>
+    <string name="nap_running">Til %1$s</string>
+    <string name="nap_stop">Avslutt hvil</string>
+    <string name="diag_title">Diagnose</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d gang til</item>
+        <item quantity="other">%1$d ganger til</item>
+    </plurals>
+    <string name="diag_clear">Tøm</string>
+    <string name="diag_hide">Skjul diagnose</string>
+    <string name="diag_empty">Ingen hendelser ennå.</string>
+    <string name="diag_next">Neste alarm: %1$s</string>
+    <string name="diag_version">Versjon %1$s</string>
 </resources>

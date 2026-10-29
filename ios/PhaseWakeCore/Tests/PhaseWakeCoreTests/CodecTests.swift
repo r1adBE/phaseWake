@@ -9,10 +9,11 @@ final class CodecTests: XCTestCase {
             try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([])), [])
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n"
         )
     }
 
@@ -20,7 +21,7 @@ final class CodecTests: XCTestCase {
         let math = try AlarmSpec(id: "m", hour: 6, minute: 0, wakeTask: .math)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([math])), [math])
         // Byte-gleich mit Android: 13. Feld am Ende.
-        XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE\n")
+        XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n")
         // Ältere Stände ohne 13. Feld und unbekannte Werte → Halten.
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF\n").first?.wakeTask, WakeTask.none)
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|PUZZLE|extra\n").first?.wakeTask, WakeTask.none)
@@ -33,7 +34,7 @@ final class CodecTests: XCTestCase {
         let watch = try AlarmSpec(id: "d", hour: 6, minute: 15, windowMinutes: 20, phone: .off, sunrise: .ring, sunriseDevice: .watch)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([watch])), [watch])
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable): 14. Feld am Ende.
-        XCTAssertEqual(Codec.encodeAlarms([watch]), "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH\n")
+        XCTAssertEqual(Codec.encodeAlarms([watch]), "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n")
         // Ältere Stände ohne 14. Feld und unbekannte Werte → Handy (wie CodecTest.sunriseDeviceIsTolerant).
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").first?.sunriseDevice, .phone)
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").first?.sunriseDevice, .phone)
@@ -81,6 +82,9 @@ final class CodecTests: XCTestCase {
             epochs: [Epoch(motion: 0, heartRate: 52), Epoch(motion: 0.000213456789123, heartRate: nil), Epoch(motion: nil, heartRate: 55.583333333333336), Epoch(motion: nil, heartRate: nil)]
         )
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
+        let empty = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                                reason: night.reason, snoozes: night.snoozes, epochs: [])
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(empty)), empty)
         XCTAssertEqual(night.minutesBeforeTarget, 12)
     }
 
@@ -99,6 +103,7 @@ final class CodecTests: XCTestCase {
         let newer = try Codec.decodeAlarms("phasewake-alarms 1\nx|6|0||30|1|LOUD|0||||MOON|extra\n")
         XCTAssertEqual(newer.first?.phone, .sound)
         XCTAssertEqual(newer.first?.sunrise, .off)
+        XCTAssertEqual(newer.first?.wakeTask, WakeTask.none)
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-alarms 1\n"))
     }
@@ -118,6 +123,7 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday]), "Mo–Fr")
         XCTAssertEqual(f([.sunday, .saturday]), "Sa, So")
         XCTAssertEqual(f([.monday, .wednesday, .friday]), "Mo, Mi, Fr")
+        XCTAssertEqual(f([.monday, .tuesday, .wednesday, .saturday]), "Mo–Mi, Sa")
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday], Locale(identifier: "en_US")), "Mon–Fri")
         // Wie Kotlin: Spanne über das Wochenende bleibt zusammen.
         XCTAssertEqual(f([.saturday, .sunday, .monday]), "Sa–Mo")

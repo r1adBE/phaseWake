@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">Posticipata alle %1$s</string>
 
     <string name="home_no_alarm">Nessuna sveglia</string>
-    <string name="home_no_alarm_hint">Imposta le sveglie in Phase Wake sul telefono.</string>
+    <string name="home_no_alarm_hint">Crea una sveglia – qui o in Phase Wake sul telefono.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Oggi</string>
     <string name="home_tomorrow">Domani</string>
@@ -61,4 +61,27 @@
     <string name="editor_delete_title">Eliminare questa sveglia?</string>
     <string name="home_max_alarms">Massimo %1$d sveglie: eliminane una per aggiungerne una nuova.</string>
     <string name="editor_enabled">Sveglia attiva</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Salta la prossima volta</string>
+    <string name="alarm_skipped">Saltata: %1$s</string>
+    <string name="nap_title">Pisolino</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="many">%1$d minuti</item>
+        <item quantity="other">%1$d minuti</item>
+    </plurals>
+    <string name="nap_start">Avvia</string>
+    <string name="nap_running">Fino alle %1$s</string>
+    <string name="nap_stop">Termina il pisolino</string>
+    <string name="diag_title">Diagnostica</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ancora %1$d volta</item>
+        <item quantity="many">Ancora %1$d volte</item>
+        <item quantity="other">Ancora %1$d volte</item>
+    </plurals>
+    <string name="diag_clear">Svuota</string>
+    <string name="diag_hide">Nascondi la diagnostica</string>
+    <string name="diag_empty">Ancora nessun evento.</string>
+    <string name="diag_next">Prossima sveglia: %1$s</string>
+    <string name="diag_version">Versione %1$s</string>
 </resources>

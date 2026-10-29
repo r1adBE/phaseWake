@@ -132,7 +132,7 @@ struct SoundsSheet: View {
 
     /// Beginn des nächsten Weckfensters: Dort enden die Klänge spätestens.
     private func windowStart(now: Date) -> Date? {
-        AlarmSchedule.earliestPlan(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current)?.windowStart
+        model.nextPlan(now: now)?.windowStart
     }
 
     private func start(_ sound: SleepSound) {

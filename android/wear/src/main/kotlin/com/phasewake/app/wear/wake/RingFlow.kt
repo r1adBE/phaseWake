@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.WakeTask
@@ -51,16 +53,20 @@ internal fun WakeService.ring() {
     handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
     saveProgress(n)
 
+    app.diag.log(DiagKind.RING, "watch ${n.reason ?: WakeReason.DEADLINE}")
     // Immer melden: Das Handy entscheidet selbst (Zweitwecker, Sonnenaufgang, Unterdrückung der Sicherung).
     sendRing(n)
 }
 
 internal fun WakeService.ringingNotification(n: Night) =
-    Notifications.ringing(this, reasonText(n.reason ?: WakeReason.DEADLINE), Snooze.MAX_COUNT - n.snoozes)
+    Notifications.ringing(this, reasonText(n.reason ?: WakeReason.DEADLINE), snoozesLeft(n))
+
+/** Verbleibende Schlummer-Runden; beim Probewecker keine (er prüft genau einen Weckvorgang). */
+internal fun snoozesLeft(n: Night): Int = if (Transient.allowsSnooze(n.plan.alarmId)) Snooze.MAX_COUNT - n.snoozes else 0
 
 /** Meldet dem Handy «klingeln» mit Zielzeit, Sendezeit und verbleibenden Schlummer-Runden. */
 internal fun WakeService.sendRing(n: Night) {
-    val message = RingMessage(n.plan.alarmId, n.plan.target.toEpochMilli(), System.currentTimeMillis(), Snooze.MAX_COUNT - n.snoozes)
+    val message = RingMessage(n.plan.alarmId, n.plan.target.toEpochMilli(), System.currentTimeMillis(), snoozesLeft(n))
     lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_RING, message.encode()) }
 }
 
@@ -100,7 +106,7 @@ internal fun WakeService.publishRinging(n: Night) {
         else -> 0f
     }
     app.ringState.publish(
-        RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, since, Snooze.MAX_COUNT - n.snoozes, n.taskOnPhone, sunrise, lightFrom),
+        RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, since, snoozesLeft(n), n.taskOnPhone, sunrise, lightFrom),
     )
 }
 
@@ -153,11 +159,12 @@ internal fun WakeService.taskFallback(why: String) {
 internal fun WakeService.snooze(notifyPhone: Boolean, fromPhone: Boolean = false) {
     val n = night ?: return
     if (n.phase != Phase.RINGING) return
-    if (!Snooze.canSnooze(n.snoozes)) {
+    if (snoozesLeft(n) <= 0) {
         if (fromPhone) sendRing(n)
         return
     }
     stopRinging()
+    app.diag.log(DiagKind.SNOOZE, if (fromPhone) "from phone" else if (notifyPhone) "on watch" else "timeout")
     n.snoozes++
     n.phase = Phase.SNOOZED
     // Beim Schlummern gilt auf der Uhr immer Halten: Das Handy-Klingeln mit der Aufgabe ist dann vorbei.
@@ -188,7 +195,7 @@ internal fun WakeService.onRingTimeout() {
     val n = night ?: return
     if (n.phase != Phase.RINGING) return
     // Das Handy klingelt als Sicherung weiter: niemand hat reagiert.
-    if (Snooze.canSnooze(n.snoozes)) snooze(notifyPhone = false) else dismiss(notifyPhone = false)
+    if (snoozesLeft(n) > 0) snooze(notifyPhone = false) else dismiss(notifyPhone = false)
 }
 
 /** Sicherheitsnetz: Die Nacht läuft weit über die Zielzeit hinaus. Beenden statt endlos messen oder klingeln. */

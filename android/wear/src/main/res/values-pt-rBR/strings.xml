@@ -21,7 +21,7 @@
     <string name="ring_snoozed_until">Soneca até %1$s</string>
 
     <string name="home_no_alarm">Nenhum alarme</string>
-    <string name="home_no_alarm_hint">Defina alarmes no Phase Wake do celular.</string>
+    <string name="home_no_alarm_hint">Crie um alarme – aqui ou no Phase Wake no celular.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hoje</string>
     <string name="home_tomorrow">Amanhã</string>
@@ -61,4 +61,27 @@
     <string name="editor_delete_title">Excluir este alarme?</string>
     <string name="home_max_alarms">No máximo %1$d alarmes – exclua um para adicionar outro.</string>
     <string name="editor_enabled">Alarme ativado</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Pular na próxima vez</string>
+    <string name="alarm_skipped">Pulado: %1$s</string>
+    <string name="nap_title">Soneca</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuto</item>
+        <item quantity="many">%1$d minutos</item>
+        <item quantity="other">%1$d minutos</item>
+    </plurals>
+    <string name="nap_start">Começar</string>
+    <string name="nap_running">Até %1$s</string>
+    <string name="nap_stop">Terminar a soneca</string>
+    <string name="diag_title">Diagnóstico</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Mais %1$d vez</item>
+        <item quantity="many">Mais %1$d vezes</item>
+        <item quantity="other">Mais %1$d vezes</item>
+    </plurals>
+    <string name="diag_clear">Limpar</string>
+    <string name="diag_hide">Ocultar diagnóstico</string>
+    <string name="diag_empty">Ainda sem eventos.</string>
+    <string name="diag_next">Próximo alarme: %1$s</string>
+    <string name="diag_version">Versão %1$s</string>
 </resources>

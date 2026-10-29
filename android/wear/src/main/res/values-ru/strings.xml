@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Отложено до %1$s</string>
 
     <string name="home_no_alarm">Будильник не задан</string>
-    <string name="home_no_alarm_hint">Задай будильники в Phase Wake на телефоне.</string>
+    <string name="home_no_alarm_hint">Создай будильник – здесь или в Phase Wake на телефоне.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Сегодня</string>
     <string name="home_tomorrow">Завтра</string>
@@ -62,4 +62,29 @@
     <string name="editor_delete_title">Удалить этот будильник?</string>
     <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>
     <string name="editor_enabled">Будильник включён</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Пропустить в следующий раз</string>
+    <string name="alarm_skipped">Пропущено: %1$s</string>
+    <string name="nap_title">Короткий сон</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="few">%1$d минуты</item>
+        <item quantity="many">%1$d минут</item>
+        <item quantity="other">%1$d минуты</item>
+    </plurals>
+    <string name="nap_start">Начать</string>
+    <string name="nap_running">До %1$s</string>
+    <string name="nap_stop">Завершить короткий сон</string>
+    <string name="diag_title">Диагностика</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ещё %1$d раз</item>
+        <item quantity="few">Ещё %1$d раза</item>
+        <item quantity="many">Ещё %1$d раз</item>
+        <item quantity="other">Ещё %1$d раза</item>
+    </plurals>
+    <string name="diag_clear">Очистить</string>
+    <string name="diag_hide">Скрыть диагностику</string>
+    <string name="diag_empty">Событий пока нет.</string>
+    <string name="diag_next">Следующий будильник: %1$s</string>
+    <string name="diag_version">Версия %1$s</string>
 </resources>

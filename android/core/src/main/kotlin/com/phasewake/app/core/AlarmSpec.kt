@@ -35,6 +35,13 @@ data class AlarmSpec(
     val sunriseDevice: SunriseDevice = SunriseDevice.PHONE,
     /** Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy. */
     val wakeTask: WakeTask = WakeTask.NONE,
+    /**
+     * «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier (ms seit 1970) fallen aus;
+     * 0 = keiner. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker, siehe [AlarmSchedule.skipNext].
+     */
+    val skipUntil: Long = 0L,
+    /** An Feiertagen (Land und Region in den Einstellungen) nicht wecken. Nur für wiederholte Wecker. */
+    val skipHolidays: Boolean = false,
 ) {
     init {
         require(id.isNotBlank()) { "id darf nicht leer sein" }

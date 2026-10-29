@@ -5,7 +5,15 @@ import android.content.Context
 import com.phasewake.app.health.HealthSleep
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ring.RingNotifications
+import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagDevice
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.holidays.HolidayRepository
 import com.phasewake.app.shared.AlarmRepository
+import com.phasewake.app.shared.DiagnosticsLog
+import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.TestRunStore
+import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
@@ -24,6 +32,7 @@ class PhaseWakeApp : Application() {
         SupervisorJob() + Dispatchers.Default + CoroutineExceptionHandler { _, e ->
             // Ein Fehler in einer Hintergrundarbeit darf den Prozess (und einen klingelnden Wecker) nicht beenden.
             Log.e("PhaseWakeApp", "Hintergrundarbeit fehlgeschlagen", e)
+            diag.log(DiagKind.ERROR, e.javaClass.simpleName)
         },
     )
 
@@ -39,6 +48,18 @@ class PhaseWakeApp : Application() {
     val sounds by lazy { com.phasewake.app.sounds.SoundStore(this) }
     val routine by lazy { com.phasewake.app.habits.RoutineRepository(phaseWakeStore) }
 
+    /** Diagnose-Protokoll (geräteverschlüsselt, auch vor dem ersten Entsperren). */
+    val diag by lazy { DiagnosticsLog.forContext(this, DiagDevice.PHONE) }
+
+    /** Probewecker oder Powernap, der gerade gilt. */
+    val transient by lazy { TransientStore(phaseWakeStore) }
+    val testRuns by lazy { TestRunStore(phaseWakeStore) }
+    val holidays by lazy { HolidayRepository(this, settings, HolidayStore(phaseWakeStore), sync, diag::log) }
+
+    /** Weckart zu einer Kennung: gespeicherter Wecker oder vorübergehender Plan (Probewecker, Powernap). */
+    suspend fun specFor(alarmId: String?): AlarmSpec? =
+        alarms.current().alarms.firstOrNull { it.id == alarmId } ?: transient.specFor(alarmId)
+
     override fun onCreate() {
         super.onCreate()
         RingNotifications.createChannels(this)
@@ -49,7 +70,11 @@ class PhaseWakeApp : Application() {
         com.phasewake.app.sounds.SoundRecorderService.createChannel(this)
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
         // nicht lesbar; neu geplant wird beim Entsperren (BOOT_COMPLETED).
-        if (!BackupAlarm.isUnlocked(this)) return
+        if (!BackupAlarm.isUnlocked(this)) {
+            diag.log(DiagKind.DIRECT_BOOT, "app start locked")
+            return
+        }
+        diag.log(DiagKind.BOOT, "app start")
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
         appScope.launch {
@@ -61,6 +86,8 @@ class PhaseWakeApp : Application() {
                 sync.delete(uri)
             }
             backup.reschedule()
+            // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
+            if (holidays.refresh()) backup.reschedule()
         }
         // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
         appScope.launch { sounds.cleanup() }
@@ -71,8 +98,10 @@ class PhaseWakeApp : Application() {
     fun afterAlarmsChanged(change: suspend () -> com.phasewake.app.shared.AlarmSnapshot) {
         appScope.launch {
             val snapshot = change()
+            diag.log(DiagKind.SYNC, "alarms sent ${snapshot.alarms.size}")
             sync.publishAlarms(snapshot)
             backup.reschedule()
+            com.phasewake.app.widget.NextAlarmWidget.update(this@PhaseWakeApp)
         }
     }
 }

@@ -1,6 +1,10 @@
 package com.phasewake.app.sync
 
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.TestStep
 import com.phasewake.app.phoneApp
+import com.phasewake.app.transient.Transients
+import com.phasewake.app.diag.WatchReport
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.RingMessage
@@ -10,6 +14,7 @@ import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
+import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
 /** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Status, Weck- und Stopp-Meldungen. */
@@ -25,6 +30,7 @@ class PhoneListenerService : WearableListenerService() {
                 .maxByOrNull { it.updatedAt }
                 ?.let { app.alarms.applyRemote(it) } == true
             // Eine (neu gekoppelte) Uhr meldet sich: Der Zweitwecker wartet jetzt die Nachfrist ab.
+            if (applied) app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
             val status = changed.any { it.uri.path == DataLayer.PATH_WATCH_STATUS }
             if (applied || status) app.backup.reschedule()
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
@@ -49,6 +55,14 @@ class PhoneListenerService : WearableListenerService() {
                 // Blockierend, damit der Weiterleitungs-Alarm steht, bevor der Dienst endet.
                 runBlocking { app.backup.watchRang(message) }
             }
+            // Probewecker auf der Uhr angekommen.
+            DataLayer.PATH_TEST_ACK -> runBlocking {
+                app.testRuns.record(DataLayer.text(event.data), TestStep.RECEIVED, Instant.now())
+                app.diag.log(DiagKind.TEST, "watch received")
+            }
+            DataLayer.PATH_NAP -> runBlocking { Transients.received(app, event.data) }
+            DataLayer.PATH_TRANSIENT_CANCEL -> runBlocking { Transients.cancelled(app, event.data) }
+            DataLayer.PATH_DIAG_LOG -> WatchReport.received(event.data)
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
                 // Restzahl vor dem Verstummen: für die Sicherung, falls die Uhr nach dem Schlummern ausfällt.

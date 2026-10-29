@@ -77,7 +77,11 @@ struct DurationsCard: View {
             .frame(height: chartHeight)
             .chartFadeIn()
             .chartSummary(summary)
-            ChartLegend(items: [(symbol: AnyView(DashSymbol(color: .accentColor)), text: L("chart_goal", Format.duration(minutes: d.goalMinutes)))])
+            ChartLegend(items: [
+                (symbol: AnyView(DashSymbol(color: .accentColor)), text: L("chart_goal", Format.duration(minutes: d.goalMinutes))),
+                // Gefüllte Säule mit «✓» = Ziel erreicht (wie Android).
+                (symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(palette.active).frame(width: 8, height: 12)), text: L("chart_goal_met")),
+            ])
         }
     }
 }

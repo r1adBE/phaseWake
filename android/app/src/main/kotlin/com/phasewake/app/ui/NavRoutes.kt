@@ -9,12 +9,17 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.phasewake.app.PhaseWakeApp
+import com.phasewake.app.R
+import com.phasewake.app.diag.DiagnosticsScreen
+import com.phasewake.app.security.DeviceAuth
+import com.phasewake.app.ui.onboarding.OnboardingScreen
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.SleepSound
@@ -70,6 +75,21 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(Routes.HISTORY) { HistoryRoute(app, state, actions, content) }
         composable(Routes.SETTINGS) { SettingsRoute(app, state, actions, content) }
         composable(Routes.SOUNDS) { SoundsRoute(app, state.data, actions) }
+        composable(ExtraRoutes.DIAGNOSTICS) {
+            DiagnosticsScreen(
+                onBack = { actions.nav.popBackStack() },
+                onHide = {
+                    app.appScope.launch { app.settings.setDiagnostics(false) }
+                    actions.nav.popBackStack()
+                },
+            )
+        }
+        composable(ExtraRoutes.ONBOARDING) {
+            OnboardingScreen(app, state, actions, onDone = {
+                app.appScope.launch { app.settings.setOnboardingDone(true) }
+                actions.nav.switchTab(Routes.ALARMS)
+            })
+        }
         composable(
             Routes.EDITOR,
             arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
@@ -107,6 +127,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         routineItems = data.routineItems,
         routineTicks = data.routineTicks,
         onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
+        extras = homeExtras(app, data),
     )
 }
 
@@ -144,6 +165,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
 @Composable
 private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions, content: PaddingValues) {
     val context = LocalContext.current
+    val res = LocalResources.current
     val data = state.data
     val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
     SettingsScreen(
@@ -154,12 +176,15 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
         onExport = actions.onExport,
         canExport = !data.nights.isNullOrEmpty(),
         onClearHistory = {
-            app.appScope.launch {
-                app.nights.clear()
-                app.notes.clearNotes()
-                app.routine.clearTicks()
-                app.sounds.clear()
-                app.sync.clearHistoryEverywhere()
+            // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
+            DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
+                app.appScope.launch {
+                    app.nights.clear()
+                    app.notes.clearNotes()
+                    app.routine.clearTicks()
+                    app.sounds.clear()
+                    app.sync.clearHistoryEverywhere()
+                }
             }
         },
         health = state.insights.health,
@@ -197,6 +222,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
         routineItems = data.routineItems,
         onAddRoutineItem = { text -> app.appScope.launch { app.routine.add(text) } },
         onRemoveRoutineItem = { id -> app.appScope.launch { app.routine.remove(id) } },
+        extras = settingsExtras(app, data, actions),
     )
 }
 
@@ -206,12 +232,12 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
     // Einschlafklänge: Ende nach dem Timer, spätestens zu Beginn des nächsten Weckfensters.
     fun startSounds(chosen: SleepSound, timer: Int?) {
         val now = Instant.now()
-        val endsAt = SleepSounds.stopAt(now, timer, AlarmSchedule.earliestPlan(data.alarms, now, ZoneId.systemDefault())?.windowStart)
+        val endsAt = SleepSounds.stopAt(now, timer, AlarmSchedule.earliestPlan(data.alarms, now, ZoneId.systemDefault(), data.holidays)?.windowStart)
         if (endsAt != null && !endsAt.isAfter(now)) return
         SleepSoundService.play(context, chosen, endsAt)
     }
     val now = Instant.now()
-    val windowStart = AlarmSchedule.earliestPlan(data.alarms, now, ZoneId.systemDefault())?.windowStart
+    val windowStart = AlarmSchedule.earliestPlan(data.alarms, now, ZoneId.systemDefault(), data.holidays)?.windowStart
     SoundsScreen(
         playing = data.soundPlaying,
         selected = data.sound,

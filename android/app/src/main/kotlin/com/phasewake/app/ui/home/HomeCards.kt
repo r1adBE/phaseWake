@@ -9,8 +9,26 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValueDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -164,8 +182,22 @@ internal fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCl
     }
 }
 
+/**
+ * Zeile eines Weckers: antippen öffnet den Editor, der Schalter schaltet. Das Menü daneben bietet
+ * «Nächstes Mal überspringen» (nur wiederholte, eingeschaltete Wecker); übersprungen steht das Datum da,
+ * mit «Rückgängig».
+ */
 @Composable
-internal fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit, onToggle: (Boolean) -> Unit) {
+internal fun AlarmRow(
+    alarm: AlarmSpec,
+    modifier: Modifier,
+    onClick: () -> Unit,
+    onToggle: (Boolean) -> Unit,
+    /** Datum des übersprungenen Termins, schon formatiert; `null` = nichts übersprungen. */
+    skipped: String? = null,
+    onSkip: (() -> Unit)? = null,
+    onUndoSkip: () -> Unit = {},
+) {
     val context = LocalContext.current
     val res = LocalResources.current
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
@@ -175,7 +207,7 @@ internal fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit,
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(
-            Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp),
+            Modifier.clickable(onClick = onClick).padding(start = 18.dp, end = 6.dp, top = 14.dp, bottom = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(Modifier.weight(1f)) {
@@ -195,10 +227,37 @@ internal fun AlarmRow(alarm: AlarmSpec, modifier: Modifier, onClick: () -> Unit,
                     if (alarm.label.isNotBlank()) add(alarm.label)
                 }
                 Text(details.joinToString(" · "), style = MaterialTheme.typography.bodySmall, color = muted)
+                if (skipped != null) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(stringResource(R.string.alarm_skipped, skipped), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+                        TextButton(onClick = onUndoSkip) { Text(stringResource(R.string.alarm_skip_undo)) }
+                    }
+                }
             }
             // Der Schalter nennt den Wecker, den er schaltet (Bildschirmleser).
             val switchLabel = Format.window(alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
             Switch(checked = alarm.enabled, onCheckedChange = onToggle, modifier = Modifier.semantics { contentDescription = switchLabel })
+            AlarmMenu(switchLabel, onSkip.takeIf { skipped == null && alarm.enabled && !alarm.isOneShot })
+        }
+    }
+}
+
+/** Menü «Mehr» der Wecker-Zeile; ohne [onSkip] nur ein Platzhalter gleicher Breite (Zeilen bleiben bündig). */
+@Composable
+private fun AlarmMenu(name: String, onSkip: (() -> Unit)?) {
+    var open by remember { mutableStateOf(false) }
+    Box {
+        IconButton(onClick = { open = true }, enabled = onSkip != null) {
+            if (onSkip != null) Icon(painterResource(R.drawable.ic_more), contentDescription = stringResource(R.string.alarm_actions, name))
+        }
+        DropdownMenu(expanded = open && onSkip != null, onDismissRequest = { open = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.alarm_skip)) },
+                onClick = {
+                    open = false
+                    onSkip?.invoke()
+                },
+            )
         }
     }
 }

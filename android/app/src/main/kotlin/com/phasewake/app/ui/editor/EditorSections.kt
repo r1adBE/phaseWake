@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -177,6 +179,19 @@ internal fun DaysSection(state: EditorState) {
             TextButton(onClick = { state.days = WEEKDAYS }) { Text(stringResource(R.string.editor_weekdays)) }
             TextButton(onClick = { state.days = WEEKEND }) { Text(stringResource(R.string.editor_weekend)) }
             TextButton(onClick = { state.days = DayOfWeek.entries.toSet() }) { Text(stringResource(R.string.alarm_every_day)) }
+        }
+        // Feiertage nur für wiederholte Wecker; ein Einmal-Wecker klingelt an seinem Tag.
+        AnimatedVisibility(state.days.isNotEmpty()) {
+            Row(
+                Modifier.fillMaxWidth().toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }).padding(top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                    Text(stringResource(R.string.editor_skip_holidays), style = MaterialTheme.typography.titleSmall)
+                    Text(stringResource(R.string.editor_skip_holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Switch(checked = state.skipHolidays, onCheckedChange = null)
+            }
         }
     }
 }

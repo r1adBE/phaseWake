@@ -18,6 +18,9 @@ final class PhoneModel {
     /// Geräusche in der Nacht (nur auf Wunsch).
     let recorder = SoundRecorder()
     let weekly = WeeklyReview()
+    /// Feiertage (Land, Region, Daten) sowie Probewecker und Powernap (Runde 3, eigene Dateien).
+    let holidays = HolidayStore()
+    let transient = PhoneTransient()
     /// Gewählter Reiter (eine Mitteilung kann den Verlauf öffnen).
     var selectedTab = AppTab.alarms
     /// Geräusche aufnehmen: Vorgabe für neue Nächte, Standard aus.
@@ -29,11 +32,12 @@ final class PhoneModel {
     private(set) var routineTicks: [String: [String]] = [:]
     /// Wochenrückblick am Sonntag um 18 Uhr, Standard aus.
     private(set) var weeklyReview = false
-    private static let soundRecDefaultKey = "soundRecDefault"
+    // Schlüssel auch für Sichern und Wiederherstellen (`BackupIO`).
+    static let soundRecDefaultKey = "soundRecDefault"
     private static let soundRecNightKey = "soundRecNight"
-    private static let routineItemsKey = "routineItems"
-    private static let routineTicksKey = "routineTicks"
-    private static let weeklyKey = "weeklyReview"
+    static let routineItemsKey = "routineItems"
+    static let routineTicksKey = "routineTicks"
+    static let weeklyKey = "weeklyReview"
     /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
     private(set) var notes: [String: [String]] = [:]
     private(set) var customNotes: [CustomNote] = []
@@ -41,8 +45,8 @@ final class PhoneModel {
     private(set) var sleepGoal: Int = SleepGoal.defaultMinutes
     /// Bettzeit-Erinnerung, Standard aus.
     private(set) var bedtimeReminder = false
-    private static let sleepGoalKey = "sleepGoalMinutes"
-    private static let bedtimeKey = "bedtimeReminder"
+    static let sleepGoalKey = "sleepGoalMinutes"
+    static let bedtimeKey = "bedtimeReminder"
     /// Zeitpunkt, zu dem die Uhr zuletzt geweckt hat – der Nachttisch-Modus holt dann das Licht nach.
     private(set) var lastRing: Date?
     /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
@@ -55,22 +59,8 @@ final class PhoneModel {
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
 
     private init() {
-        alarms = storage.snapshot().alarms
-        nights = storage.nights()
-        notes = storage.notes()
-        customNotes = storage.customNotes()
-        let goal = UserDefaults.standard.integer(forKey: Self.sleepGoalKey)
-        sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
-        bedtimeReminder = UserDefaults.standard.bool(forKey: Self.bedtimeKey)
-        let defaults = UserDefaults.standard
-        soundRecDefault = defaults.bool(forKey: Self.soundRecDefaultKey)
-        if let text = defaults.string(forKey: Self.soundRecNightKey) {
-            let parts = text.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
-            if parts.count == 2, NightDate.isValid(parts[0]) { soundRecChoice = (night: parts[0], on: parts[1] == "1") }
-        }
-        routineItems = Routine.decodeItems(defaults.string(forKey: Self.routineItemsKey))
-        routineTicks = Routine.decodeTicks(defaults.string(forKey: Self.routineTicksKey))
-        weeklyReview = defaults.bool(forKey: Self.weeklyKey)
+        loadState()
+        holidays.adopt(lastSent: storage.holidays)
         // Zeitzone oder Uhrzeit geändert (Reise): Die AlarmKit-Wecker stehen auf festen Zeitpunkten, also neu planen.
         let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange, UIApplication.significantTimeChangeNotification]
         for name in names {
@@ -84,8 +74,34 @@ final class PhoneModel {
         // Einschlafklänge prüfen ihr Ende jede Minute gegen den aktuellen Plan.
         sounds.currentWindowStart = { [weak self] in
             guard let self else { return nil }
-            return AlarmSchedule.earliestPlan(self.alarms, now: Date(), doneUntil: self.doneUntil, calendar: .current)?.windowStart
+            return self.nextPlan()?.windowStart
         }
+    }
+
+    /// Liest den ganzen Stand aus dem Speicher (beim Start und nach dem Wiederherstellen einer Sicherung).
+    func loadState() {
+        alarms = storage.snapshot().alarms
+        nights = storage.nights()
+        notes = storage.notes()
+        customNotes = storage.customNotes()
+        let defaults = UserDefaults.standard
+        let goal = defaults.integer(forKey: Self.sleepGoalKey)
+        sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
+        bedtimeReminder = defaults.bool(forKey: Self.bedtimeKey)
+        soundRecDefault = defaults.bool(forKey: Self.soundRecDefaultKey)
+        soundRecChoice = nil
+        if let text = defaults.string(forKey: Self.soundRecNightKey) {
+            let parts = text.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+            if parts.count == 2, NightDate.isValid(parts[0]) { soundRecChoice = (night: parts[0], on: parts[1] == "1") }
+        }
+        routineItems = Routine.decodeItems(defaults.string(forKey: Self.routineItemsKey))
+        routineTicks = Routine.decodeTicks(defaults.string(forKey: Self.routineTicksKey))
+        weeklyReview = defaults.bool(forKey: Self.weeklyKey)
+    }
+
+    /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen.
+    func nextPlan(now: Date = Date()) -> WakePlan? {
+        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current, holidays: holidays.dates)
     }
 
     func upsert(_ spec: AlarmSpec) {
@@ -105,6 +121,7 @@ final class PhoneModel {
     func applyRemote(_ snapshot: AlarmSnapshot) {
         guard storage.applyRemote(snapshot) else { return }
         alarms = snapshot.alarms
+        DiagStore.shared.log(.alarmsReceived, "\(snapshot.alarms.count) alarms from watch")
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
     }
@@ -174,7 +191,7 @@ final class PhoneModel {
     private func change(_ edit: ([AlarmSpec]) -> [AlarmSpec]) {
         let snapshot = storage.mutate(edit)
         alarms = snapshot.alarms
-        PhoneConnectivity.shared.publish(snapshot)
+        PhoneConnectivity.shared.publish(snapshot, holidays: holidays.list)
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
     }
@@ -237,7 +254,7 @@ final class PhoneModel {
 
     /// Plant die Bettzeit-Erinnerung neu (Wecker, Ziel, Einstellung, Zeitzone oder neue Nacht geändert).
     func replanBedtime() async {
-        await bedtime.reschedule(alarms: alarms, doneUntil: doneUntil, goalMinutes: sleepGoal, enabled: bedtimeReminder)
+        await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder, holidays: holidays.dates)
     }
 }
 
@@ -268,7 +285,7 @@ extension PhoneModel {
     /// Wecker ab 21 Uhr (`SoundEvents.mayAutoStart`); davor nur, wenn der Nutzer selbst einschaltet.
     func autoStartSoundRec(now: Date = Date()) async {
         guard !recorder.running, recorder.permissionGranted else { return }
-        let plan = AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current)
+        let plan = nextPlan(now: now)
         let night = SleepNotes.nightDate(now, calendar: .current)
         if let choice = soundRecChoice, choice.night == night {
             guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
@@ -291,9 +308,7 @@ extension PhoneModel {
     }
 
     /// Zielzeit des nächsten Weckers (früh geweckte Nächte übersprungen).
-    private func nextAlarmTarget(now: Date = Date()) -> Date? {
-        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current)?.target
-    }
+    private func nextAlarmTarget(now: Date = Date()) -> Date? { nextPlan(now: now)?.target }
 
     // MARK: Abendroutine
 

@@ -115,7 +115,7 @@ class SoundRecorderService : Service() {
             if (System.currentTimeMillis() < endsAtMs - SoundEvents.AFTER_TARGET.toMillis()) {
                 phoneApp.appScope.launch {
                     val specs = phoneApp.alarms.current().alarms
-                    val end = SoundEvents.recordingEnd(start, AlarmSchedule.earliestPlan(specs, start, ZoneId.systemDefault())?.target)
+                    val end = SoundEvents.recordingEnd(start, AlarmSchedule.earliestPlan(specs, start, ZoneId.systemDefault(), phoneApp.holidays.store.current())?.target)
                     handler.post {
                         if (!running) return@post
                         endsAtMs = end.toEpochMilli()

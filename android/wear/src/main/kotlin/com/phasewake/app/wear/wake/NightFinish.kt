@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
@@ -38,7 +40,10 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     NotificationManagerCompat.from(this).cancel(Notifications.ID_SERVICE)
     releaseWakeLock()
 
-    val record = n.firstRing?.let { wokeAt ->
+    // Probewecker und Powernap: kein Eintrag im Verlauf, nichts «erledigt», kein Einmal-Wecker.
+    val transient = Transient.kindOf(n.plan.alarmId) != null
+    app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
+    val record = n.firstRing?.takeIf { !transient }?.let { wokeAt ->
         NightRecord(n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList())
     }
     val endedAt = Instant.now()
@@ -68,10 +73,11 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
                 // Zielzeiten anderer Wecker, die während dieser Nacht fällig wurden, nachholen.
                 runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
             }
+            if (transient) runStep("Vorübergehenden Plan löschen") { app.transient.clear(n.plan.alarmId) }
             runStep("Einschlaf-Ausnahme löschen") { app.onsetOverride.clear() }
             runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
             if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
-            if (spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
+            if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
             runStep("Neu planen") { app.scheduler.reschedule() }
         } finally {
             withContext(Dispatchers.Main) {

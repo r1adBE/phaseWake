@@ -35,9 +35,9 @@ class CodecTest {
     @Test
     fun alarmsFormatIsStable() {
         val text = Codec.encodeAlarms(alarms.take(1))
-        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE\n", text)
-        assertEquals("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|PHONE\n", Codec.encodeAlarms(alarms.drop(2).take(1)))
-        assertEquals("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH\n", Codec.encodeAlarms(alarms.drop(3)))
+        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n", text)
+        assertEquals("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n", Codec.encodeAlarms(alarms.drop(2).take(1)))
+        assertEquals("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n", Codec.encodeAlarms(alarms.drop(3)))
     }
 
     @Test

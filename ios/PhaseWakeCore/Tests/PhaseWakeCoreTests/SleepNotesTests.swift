@@ -199,4 +199,30 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(CustomNote(id: "custom:a", name: "\n|").name, "")
         XCTAssertEqual(SleepNotes.trim(["2026-10-27": ["SICK", "SICK", "ALCOHOL"], "2026-10-26": []]), ["2026-10-27": ["ALCOHOL", "SICK"]])
     }
+
+    /// Wie `SleepNotesTest.toggleAndStorageRoundTrip` (Kotlin).
+    func testToggleAndStorageRoundTrip() {
+        var notes: [String: [String]] = [:]
+        notes["2026-10-27"] = SleepNotes.toggle("ALCOHOL", in: notes["2026-10-27"] ?? [])
+        notes["2026-10-27"] = SleepNotes.toggle("custom:abc", in: notes["2026-10-27"] ?? [])
+        notes["2026-10-26"] = SleepNotes.toggle("SICK", in: notes["2026-10-26"] ?? [])
+        XCTAssertEqual(notes["2026-10-27"], ["ALCOHOL", "custom:abc"])
+        let text = SleepNotes.encode(notes)
+        XCTAssertEqual(text, "2026-10-26|SICK\n2026-10-27|ALCOHOL,custom:abc")
+        XCTAssertEqual(SleepNotes.decode(text), notes)
+        // Abschalten der letzten Notiz entfernt das Datum.
+        XCTAssertEqual(SleepNotes.toggle("SICK", in: ["SICK"]), [])
+        XCTAssertNil(SleepNotes.decode(SleepNotes.encode(["2026-10-26": []]))["2026-10-26"])
+        XCTAssertEqual(SleepNotes.decode("kaputt\n2026-10-27|NAP,,NAP\n2026-10-28|"), ["2026-10-27": ["NAP"]])
+    }
+
+    /// Wie `SleepNotesTest.keepsNewestNinetyDates` (Kotlin).
+    func testKeepsNewestNinetyDates() {
+        var many: [String: [String]] = [:]
+        for day in 0..<100 { many[NightDate.adding(-day, to: "2026-10-27")] = ["NAP"] }
+        let kept = SleepNotes.trim(many)
+        XCTAssertEqual(kept.count, 90)
+        XCTAssertEqual(kept.keys.sorted().first, NightDate.adding(-89, to: "2026-10-27"))
+        XCTAssertEqual(kept.keys.sorted().last, "2026-10-27")
+    }
 }

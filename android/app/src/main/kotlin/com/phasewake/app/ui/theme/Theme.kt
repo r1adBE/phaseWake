@@ -123,7 +123,8 @@ private val DarkScheme = darkColorScheme(
     surfaceContainer = Color(0xFF161B3A),
     surfaceContainerHigh = Color(0xFF1C2245),
     surfaceContainerHighest = Color(0xFF232A52),
-    outline = Color(0xFF5A5788),
+    // Rand (Felder, Standard-Chips): mindestens 3:1 gegen Karte und Hintergrund, auch simuliert (WCAG 1.4.11).
+    outline = Color(0xFF726EA4),
     outlineVariant = Color(0xFF2A2D55),
     error = Color(0xFFFFB4AB),
     onError = Color(0xFF690005),

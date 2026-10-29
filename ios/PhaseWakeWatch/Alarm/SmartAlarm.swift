@@ -132,6 +132,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             // Eine schon geplante Sitzung für einen anderen Plan ist überholt.
             if case .scheduled(let current) = phase, current != plan { invalidateSession() }
             if case .scheduled = phase, session != nil, !tooEarly { return }
+            if phase != .waiting(plan) { DiagStore.shared.log(.scheduled, "waiting \(Format.time(plan.target)) active \(active)") }
             phase = .waiting(plan)
             publishArmed()
             return
@@ -147,6 +148,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         session = newSession
         self.plan = plan
         phase = .scheduled(plan)
+        DiagStore.shared.log(.scheduled, "session \(Format.time(start)) target \(Format.time(plan.target))")
         publishArmed()
     }
 

@@ -153,6 +153,14 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         }
     }
 
+    /// Ersetzt alle Nächte (Wiederherstellen einer Sicherung); gleiche Nächte zählen einmal, höchstens 90.
+    public func replaceNights(_ nights: [NightRecord]) {
+        lock.lock(); defer { lock.unlock() }
+        var unique: [NightRecord] = []
+        for night in nights where !unique.contains(where: { Self.sameNight($0, night) }) { unique.append(night) }
+        writeNightsLocked(NightHistory.trim(unique))
+    }
+
     /// Löscht alle Nächte (Datei weg); fehlt sie schon, ist das kein Fehler.
     public func clearNights() {
         lock.lock(); defer { lock.unlock() }
@@ -193,6 +201,15 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         defaults.removeObject(forKey: Self.notesKey)
     }
 
+    /// Ersetzt die Notizen aller Nächte (Wiederherstellen einer Sicherung). - Returns: neuer Stand.
+    @discardableResult
+    public func replaceNotes(_ notes: [String: [String]]) -> [String: [String]] {
+        lock.lock(); defer { lock.unlock() }
+        let text = SleepNotes.encode(notes)
+        defaults.set(text, forKey: Self.notesKey)
+        return SleepNotes.decode(text)
+    }
+
     /// Die eigenen Notizen in gespeicherter Reihenfolge, höchstens 5.
     public func customNotes() -> [CustomNote] {
         lock.lock(); defer { lock.unlock() }
@@ -205,6 +222,22 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         defaults.set(SleepNotes.encodeCustom(notes.filter { !$0.name.isEmpty }), forKey: Self.customNotesKey)
     }
 
+    // MARK: Feiertage (Uhr: vom iPhone; iPhone: zuletzt gesendet)
+
+    private static let holidaysKey = "holidays"
+
+    /// Feiertage im Format von `Holidays.encode`; leer, wenn nie empfangen.
+    public var holidays: HolidayList {
+        get {
+            lock.lock(); defer { lock.unlock() }
+            return Holidays.decode(defaults.string(forKey: Self.holidaysKey))
+        }
+        set {
+            lock.lock(); defer { lock.unlock() }
+            defaults.set(Holidays.encode(newValue), forKey: Self.holidaysKey)
+        }
+    }
+
     private static func log(_ message: String) {
         #if canImport(os)
         logger.error("\(message, privacy: .public)")
@@ -214,42 +247,4 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     #if canImport(os)
     private static let logger = Logger(subsystem: "com.phasewake.app", category: "Storage")
     #endif
-}
-
-/// Schlüssel der Verbindung iPhone ↔ Uhr (WatchConnectivity).
-public enum SyncKeys {
-    /// Wecker im Format «phasewake-alarms 1»; bei Befehlen die Kennung des Weckers.
-    public static let alarms = "alarms"
-    /// Zeitpunkt der letzten Änderung der Wecker in ms.
-    public static let updatedAt = "updatedAt"
-    /// Eine Nacht im Format «phasewake-night 1», Uhr → iPhone.
-    public static let night = "night"
-    /// Name des Befehls (`ring`, `stop`, `snooze`, `clearHistory`).
-    public static let command = "command"
-    /// Befehl Uhr → iPhone: Die Uhr weckt jetzt, das iPhone weckt mit.
-    public static let ring = "ring"
-    /// Befehl: Wecken beendet (in beide Richtungen).
-    public static let stop = "stop"
-    /// Befehl iPhone → Uhr: Schlummern.
-    public static let snooze = "snooze"
-    /// Befehl iPhone → Uhr: Verlauf auf der Uhr löschen.
-    public static let clearHistory = "clearHistory"
-    /// Uhr → iPhone bei «ring» und «stop»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
-    /// auch die verbleibenden Schlummer-Runden. iPhone → Uhr: nur die Sendezeit. Ältere Versionen schicken nichts davon.
-    public static let target = "target"
-    /// Sendezeit in ms seit 1970 (siehe `target`).
-    public static let sentAt = "sentAt"
-    /// Verbleibende Schlummer-Runden bei «ring» (siehe `target`).
-    public static let snoozesLeft = "snoozesLeft"
-    /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
-    public static let maxRingAgeMs: Int64 = 2 * 60_000
-    /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
-    public static let armedTarget = "armedTarget"
-    /// Uhr → iPhone im Anwendungskontext: Akkustand der Uhr in Prozent und Zeitpunkt der Messung (ms).
-    /// Ältere Uhr-Versionen schicken beides nicht.
-    public static let battery = "battery"
-    /// Zeitpunkt der Akkumessung in ms seit 1970 (siehe `battery`).
-    public static let batteryAt = "batteryAt"
-    /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
-    public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 }

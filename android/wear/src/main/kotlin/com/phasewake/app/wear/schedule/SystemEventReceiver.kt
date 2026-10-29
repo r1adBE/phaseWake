@@ -8,6 +8,8 @@ import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlin.coroutines.cancellation.CancellationException
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
 import kotlinx.coroutines.launch
 
 /**
@@ -27,7 +29,8 @@ class SystemEventReceiver : BroadcastReceiver() {
             try {
                 // Vor dem Entsperren geweckt: Nacht als erledigt merken und einen Einmal-Wecker ausschalten.
                 // Ein Fehler hier darf das Neuplanen nicht verhindern.
-                DirectBoot.takeRang(context)?.let { (alarmId, target) ->
+                // Probewecker und Powernap zählen nie als Nacht.
+                DirectBoot.takeRang(context)?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                     try {
                         app.scheduler.markDone(alarmId, target)
                         app.scheduler.saveDone()
@@ -39,6 +42,7 @@ class SystemEventReceiver : BroadcastReceiver() {
                     }
                 }
                 // Was das Handy in der Zwischenzeit abgelegt hat (Wecker, «Verlauf löschen»), vor dem Neuplanen.
+                app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}")
                 PhoneCatchUp.run(app)
                 app.scheduler.reschedule()
                 // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).

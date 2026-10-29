@@ -1,6 +1,8 @@
 package com.phasewake.app.wear.sync
 
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.wear.diag.WatchDiag
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.schedule.DirectBoot
@@ -26,9 +28,15 @@ class WatchListenerService : WearableListenerService() {
         val clearedAt = changed
             .filter { it.uri.path == DataLayer.PATH_CLEAR_HISTORY }
             .maxOfOrNull { DataMapItem.fromDataItem(it).dataMap.getLong(DataLayer.KEY_UPDATED_AT) }
+        val holidays = changed
+            .filter { it.uri.path == DataLayer.PATH_HOLIDAYS }
+            .map { WearSync.readHolidays(DataMapItem.fromDataItem(it).dataMap) }
+            .maxByOrNull { it.second }
         val app = wearApp
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
+            val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
+            if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays?.first?.region} ${holidays?.first?.dates?.size}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {
@@ -36,7 +44,9 @@ class WatchListenerService : WearableListenerService() {
                 clearedAt > 0 -> PhoneCatchUp.applyClear(app, clearedAt)
                 else -> app.nights.clear()
             }
-            if (remote != null && app.alarms.applyRemote(remote)) app.scheduler.reschedule()
+            val newAlarms = remote != null && app.alarms.applyRemote(remote)
+            if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote?.alarms?.size}")
+            if (newAlarms || newHolidays) app.scheduler.reschedule()
         }
     }
 
@@ -60,6 +70,9 @@ class WatchListenerService : WearableListenerService() {
             DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_PHONE_SNOOZE, remoteAlarmId = alarmId)
             // Weckaufgabe: Das Handy zeigt sie (wiederholt) oder hat sie ungelöst beendet. Nur an einen laufenden Dienst.
             DataLayer.PATH_TASK_SHOWN -> WakeService.command(this, WakeService.ACTION_TASK_SHOWN, remoteAlarmId = alarmId, remoteTarget = message.target)
+            DataLayer.PATH_TEST, DataLayer.PATH_NAP -> runBlocking { TransientInbox.received(wearApp, event.path, event.data) }
+            DataLayer.PATH_TRANSIENT_CANCEL -> runBlocking { TransientInbox.cancelled(wearApp, DataLayer.text(event.data)) }
+            DataLayer.PATH_DIAG_REQUEST -> runBlocking { WatchDiag.sendReport(wearApp) }
             DataLayer.PATH_TASK_GONE -> WakeService.command(this, WakeService.ACTION_TASK_GONE, remoteAlarmId = alarmId, remoteTarget = message.target)
         }
     }

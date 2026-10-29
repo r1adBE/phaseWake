@@ -18,13 +18,17 @@ import android.os.VibratorManager
 import android.util.Log
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.core.TestStep
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.RingMessage
+import com.phasewake.app.transient.Transients
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -119,7 +123,12 @@ class PhoneRingService : Service() {
         }
         val afterSnooze = state.value is State.Snoozed
         if (afterSnooze) state.value = State.Idle
-        val left = if (fromWatch) watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes()) else Snooze.MAX_COUNT - snoozesDone
+        // Probewecker: ohne Schlummern (er prüft genau einen Weckvorgang).
+        val left = when {
+            !Transient.allowsSnooze(alarmId) -> 0
+            fromWatch -> watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes())
+            else -> Snooze.MAX_COUNT - snoozesDone
+        }
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
         startActivity(Intent(this, PhoneRingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         handler.postDelayed(timeout, TIMEOUT_MS)
@@ -128,7 +137,10 @@ class PhoneRingService : Service() {
         lastAlarmId = alarmId
         phoneApp.appScope.launch(Dispatchers.Main) {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
-            val spec = if (BackupAlarm.isUnlocked(this@PhoneRingService)) phoneApp.alarms.current().alarms.firstOrNull { it.id == alarmId } else null
+            val unlocked = BackupAlarm.isUnlocked(this@PhoneRingService)
+            val spec = if (unlocked) phoneApp.specFor(alarmId) else null
+            phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch" else "phone backup")
+            if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, java.time.Instant.now())
             // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
             val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
             // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
@@ -203,7 +215,7 @@ class PhoneRingService : Service() {
         phoneApp.backup.cancelSnooze()
         // Am Handy beendet: auch keine Sicherung nach dem Schlummern mehr (nicht beim stillen Stopp
         // auf «stop» der Uhr hin, der kann ein Schlummern sein).
-        if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId)
+        if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId).also { Transients.endedHere(phoneApp, lastAlarmId) }
         SunriseLight.stop(this)
         state.value = State.Idle
         // Still beendet (Zeitgrenze, Handy-Weckart «Aus», «stop» der Uhr): Die Aufgabe ist weg, die Uhr erlaubt wieder Halten.
@@ -269,14 +281,16 @@ class PhoneRingService : Service() {
         player?.setVolume(volume * duck, volume * duck)
     }
 
+    private fun vibrator(): Vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        getSystemService(VibratorManager::class.java).defaultVibrator
+    } else {
+        @Suppress("DEPRECATION") // Vor Android 12 der einzige Weg.
+        getSystemService(Vibrator::class.java)
+    }
+
     private fun vibrate() {
         if (state.value !is State.Ringing) return
-        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            getSystemService(VibratorManager::class.java).defaultVibrator
-        } else {
-            @Suppress("DEPRECATION") // Vor Android 12 der einzige Weg.
-            getSystemService(Vibrator::class.java)
-        }
+        val vibrator = vibrator()
         val effect = VibrationEffect.createWaveform(longArrayOf(0, 500, 1000), 0)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             vibrator.vibrate(effect, VibrationAttributes.createForUsage(VibrationAttributes.USAGE_ALARM))
@@ -294,13 +308,7 @@ class PhoneRingService : Service() {
             release()
         }
         player = null
-        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            getSystemService(VibratorManager::class.java).defaultVibrator
-        } else {
-            @Suppress("DEPRECATION") // Vor Android 12 der einzige Weg.
-            getSystemService(Vibrator::class.java)
-        }
-        vibrator.cancel()
+        vibrator().cancel()
     }
 
     /** Zustand für den Weckbildschirm. */

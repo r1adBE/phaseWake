@@ -24,6 +24,7 @@ struct EditorView: View {
     @State private var confirmDelete = false
     @State private var newId = UUID().uuidString
     @State private var showMore = false
+    @State private var skipHolidays = false
 
     var body: some View {
         NavigationStack {
@@ -66,7 +67,13 @@ struct EditorView: View {
                     HStack {
                         ForEach(weekOrder, id: \.self) { day in
                             let on = days.contains(day)
-                            Button(dayName(day)) { if on { days.remove(day) } else { days.insert(day) } }
+                            Button { if on { days.remove(day) } else { days.insert(day) } } label: {
+                                VStack(spacing: 2) {
+                                    Text(dayName(day))
+                                    // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
+                                    Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
+                                }
+                            }
                                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                                 .frame(maxWidth: .infinity, minHeight: 36)
                                 .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
@@ -83,6 +90,9 @@ struct EditorView: View {
                     .buttonStyle(.borderless)
                     .font(.footnote)
                 }
+
+                // Nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
+                if !days.isEmpty { HolidaySkipSection(skipHolidays: $skipHolidays) }
 
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
@@ -202,6 +212,7 @@ struct EditorView: View {
         label = existing.label
         sound = existing.sound
         sunrise = existing.sunrise
+        skipHolidays = existing.skipHolidays
         // Schon gesetzte Optionen nicht verstecken.
         showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil
     }
@@ -225,12 +236,27 @@ struct EditorView: View {
             // anbieten, einen vorhandenen Wert aber unverändert behalten.
             wakeTask: existing?.wakeTask ?? WakeTask.none,
             // Gerätewahl gibt es auf Apple nicht (nur iPhone): vorhandenen Wert behalten, neu = Handy.
-            sunriseDevice: existing?.sunriseDevice ?? .phone
+            sunriseDevice: existing?.sunriseDevice ?? .phone,
+            // «Nächstes Mal überspringen» bleibt beim Bearbeiten, wie es ist (Liste: Rückgängig).
+            skipUntil: existing?.skipUntil ?? 0,
+            skipHolidays: skipHolidays
         )
     }
 
     private func save() {
         if let spec = current() { model.upsert(spec) }
         dismiss()
+    }
+}
+
+/// «An Feiertagen nicht wecken» mit Hinweis auf die Einstellungen.
+private struct HolidaySkipSection: View {
+    @Binding var skipHolidays: Bool
+
+    var body: some View {
+        Section {
+            Toggle(L("editor_skip_holidays"), isOn: $skipHolidays)
+            Text(L("editor_skip_holidays_hint")).font(.footnote).foregroundStyle(.secondary)
+        }
     }
 }

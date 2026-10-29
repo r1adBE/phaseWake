@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -116,13 +117,23 @@ internal fun DayToggle(label: String, description: String, selected: Boolean, on
             .toggleable(value = selected, role = Role.Checkbox, onValueChange = { onToggle() })
             .semantics { contentDescription = description },
     ) {
-        Text(
-            label,
-            style = MaterialTheme.typography.labelMedium,
-            color = if (selected) colors.onPrimary else colors.onSurface,
-            maxLines = 1,
-            softWrap = false,
-        )
+        // Gewählt zusätzlich mit Punkt unter dem Kürzel: nicht nur die Füllfarbe zeigt es (Farbfehlsichtigkeit).
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                label,
+                style = MaterialTheme.typography.labelMedium,
+                color = if (selected) colors.onPrimary else colors.onSurface,
+                maxLines = 1,
+                softWrap = false,
+            )
+            Box(
+                Modifier
+                    .padding(top = 2.dp)
+                    .size(4.dp)
+                    .clip(CircleShape)
+                    .background(if (selected) colors.onPrimary else Color.Transparent),
+            )
+        }
     }
 }
 

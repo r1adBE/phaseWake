@@ -14,7 +14,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import android.widget.Toast
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
+import com.phasewake.app.core.DiagUnlock
+import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientKind
+import com.phasewake.app.wear.R
+import com.phasewake.app.wear.diag.WatchDiag
+import com.phasewake.app.wear.sync.TransientInbox
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
@@ -52,7 +62,7 @@ private fun heartRatePermission(): String =
     if (Build.VERSION.SDK_INT >= 36) "android.permission.health.READ_HEART_RATE" else Manifest.permission.BODY_SENSORS
 
 @Composable
-internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit) {
+internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: () -> Unit = {}, onDiagnostics: () -> Unit = {}) {
     val context = LocalContext.current
     val app = context.wearApp
     val scope = rememberCoroutineScope()
@@ -123,7 +133,9 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit) {
         if (ring is RingUi.Ringing) context.startActivity(Intent(context, RingActivity::class.java))
     }
 
+    val extras = homeExtras(now, zone, onNap, onDiagnostics)
     HomeContent(
+        extras = extras,
         alarms = alarms,
         loading = loaded == null,
         lastNight = nights?.lastOrNull(),
@@ -159,6 +171,38 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit) {
         },
         onAdd = onAdd,
         onEdit = onEdit,
+    )
+}
+
+/** Powernap, Überspringen und Diagnose (7× auf das Weckfenster, ab dem 4. Mal «Noch N Mal»). */
+@Composable
+private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnostics: () -> Unit): WatchHomeExtras {
+    val context = LocalContext.current
+    val app = context.wearApp
+    val res = LocalResources.current
+    val transient by app.transient.stored.collectAsStateWithLifecycle(initialValue = null)
+    val diagFlow = remember { WatchDiag.shown(context) }
+    val diagnostics by diagFlow.collectAsStateWithLifecycle(initialValue = false)
+    var taps by remember { mutableIntStateOf(0) }
+    val locale = LocalConfiguration.current.locales[0]
+    return WatchHomeExtras(
+        nap = transient?.takeIf { it.kind == TransientKind.NAP && Transient.isActive(it, now) },
+        onNap = onNap,
+        onStopNap = { id -> app.appScope.launch { TransientInbox.cancelled(app, id, fromWatch = true) } },
+        skipped = { alarm ->
+            AlarmSchedule.skippedDate(alarm, now, zone)?.let {
+                java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(it)
+            }
+        },
+        onWindowTap = {
+            if (!diagnostics) {
+                taps++
+                DiagUnlock.remaining(taps)?.let { Toast.makeText(context, res.getQuantityString(R.plurals.diag_taps_left, it, it), Toast.LENGTH_SHORT).show() }
+                if (DiagUnlock.unlocked(taps)) app.appScope.launch { WatchDiag.setShown(context, true) }
+            }
+        },
+        diagnostics = diagnostics,
+        onDiagnostics = onDiagnostics,
     )
 }
 

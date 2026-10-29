@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">%1$s까지 다시 알림</string>
 
     <string name="home_no_alarm">설정된 알람 없음</string>
-    <string name="home_no_alarm_hint">휴대폰의 Phase Wake에서 알람을 설정하세요.</string>
+    <string name="home_no_alarm_hint">알람을 만드세요. 여기서나 휴대폰의 Phase Wake에서.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">오늘</string>
     <string name="home_tomorrow">내일</string>
@@ -59,4 +59,23 @@
     <string name="editor_delete_title">이 알람을 삭제할까요?</string>
     <string name="home_max_alarms">알람은 최대 %1$d개입니다 – 새로 추가하려면 하나를 삭제하세요.</string>
     <string name="editor_enabled">알람 켜짐</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">다음 번 건너뛰기</string>
+    <string name="alarm_skipped">건너뜀: %1$s</string>
+    <string name="nap_title">낮잠</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d분</item>
+    </plurals>
+    <string name="nap_start">시작</string>
+    <string name="nap_running">%1$s까지</string>
+    <string name="nap_stop">낮잠 끝내기</string>
+    <string name="diag_title">진단</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">%1$d번 더</item>
+    </plurals>
+    <string name="diag_clear">비우기</string>
+    <string name="diag_hide">진단 숨기기</string>
+    <string name="diag_empty">아직 이벤트가 없어요.</string>
+    <string name="diag_next">다음 알람: %1$s</string>
+    <string name="diag_version">버전 %1$s</string>
 </resources>

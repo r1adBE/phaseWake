@@ -179,4 +179,16 @@ final class ChartDataTests: XCTestCase {
         XCTAssertEqual(ChartData.lastDate(["2026-10-26"], today: "2026-10-28"), "2026-10-27")
         XCTAssertEqual([SleepStage.awake, .rem, .light, .deep, .unknown].map(ChartData.level), [0, 1, 2, 3, nil])
     }
+
+    /// Wie `ChartDataTest.emptyInputsGiveNoChart` (Kotlin).
+    func testEmptyInputsGiveNoChart() {
+        XCTAssertNil(ChartData.sleepBars([], calendar: zurich, today: "2026-10-27", nextTarget: nil, goalMinutes: 450))
+        XCTAssertNil(ChartData.durations([], calendar: zurich, today: "2026-10-27", goalMinutes: 450))
+        XCTAssertNil(ChartData.wakeMoments([], calendar: zurich))
+        let night = watchNight("2026-10-27", 10, .lightSleep)
+        XCTAssertNil(ChartData.hypnogram([], night: night))
+        // Nur unbekannte Phasen: nichts zu zeigen.
+        let unknown = StageSpan(start: night.windowStart.addingTimeInterval(-3600), end: night.target, stage: .unknown)
+        XCTAssertNil(ChartData.hypnogram([unknown], night: night))
+    }
 }

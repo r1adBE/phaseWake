@@ -12,6 +12,8 @@ struct PhaseWakeApp: App {
         Fonts.register()
         PhoneConnectivity.shared.activate()
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
+        // Bestehende Installation mit Weckern: gilt als eingerichtet, keine Ersteinrichtung.
+        if !PhoneModel.shared.alarms.isEmpty { UserDefaults.standard.set(true, forKey: OnboardingView.doneKey) }
     }
 
     var body: some Scene {
@@ -19,11 +21,8 @@ struct PhaseWakeApp: App {
             RootView()
                 .environment(model)
                 .preferredColorScheme(themeMode.colorScheme)
-                .task {
-                    await model.backup.reschedule(model.alarms)
-                    await model.replanBedtime()
-                    await model.replanWeekly()
-                }
+                // Start: Protokoll, Feiertage laden, Sicherung, Erinnerungen und laufende Probewecker.
+                .task { await model.startUp() }
         }
     }
 }
@@ -46,6 +45,7 @@ struct RootView: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) private var scheme
+    @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
 
     var body: some View {
         @Bindable var model = model
@@ -55,10 +55,14 @@ struct RootView: View {
             SettingsView().tabItem { Label(L("nav_settings"), systemImage: "slider.horizontal.3") }.tag(AppTab.settings)
         }
         .tint(Brand.accent(scheme))
+        .fullScreenCover(isPresented: Binding(get: { !onboardingDone }, set: { onboardingDone = !$0 })) {
+            OnboardingView().environment(model)
+        }
         .onChange(of: scenePhase) { _, phase in
             guard phase == .active else { return }
             // Beim Öffnen: alte Ausschnitte weg, Wochenrückblick mit dem neuesten Stand.
             model.recorder.expire()
+            model.becameActive()
             Task { await model.replanWeekly() }
         }
     }

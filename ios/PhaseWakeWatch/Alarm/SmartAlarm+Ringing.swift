@@ -5,11 +5,13 @@ extension SmartAlarm {
     // MARK: Wecken
 
     func ring(_ reason: WakeReason) {
+        if phase.isMeasuring { DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs") }
         stopSensors()
         // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem.
         self.reason = reason
         if firstRing == nil { firstRing = Date() }
-        phase = .ringing(reason, snoozesLeft: Snooze.maxCount - snoozes)
+        phase = .ringing(reason, snoozesLeft: snoozesLeft)
+        DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
         save()
         hapticStart = Date()
         // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute.
@@ -35,22 +37,28 @@ extension SmartAlarm {
     func sendRing() {
         guard let alarmId = nightPlan?.alarmId ?? plan?.alarmId else { return }
         WatchConnectivityBridge.shared.send(command: SyncKeys.ring, alarmId: alarmId, target: nightPlan?.target,
-                                            snoozesLeft: Snooze.maxCount - snoozes)
+                                            snoozesLeft: snoozesLeft)
+    }
+
+    /// Verbleibende Schlummer-Runden; der Probewecker prüft genau einen Weckvorgang und schlummert nie.
+    var snoozesLeft: Int {
+        Transient.allowsSnooze(nightPlan?.alarmId ?? plan?.alarmId) ? Snooze.maxCount - snoozes : 0
     }
 
     /// Schlummern am iPhone gewählt: wie auf der Uhr. Geht es nicht mehr, klingelt das iPhone weiter.
     func snoozeFromPhone() {
         guard phase.isRinging else { return }
-        if Snooze.canSnooze(snoozes) { snooze() } else { sendRing() }
+        if snoozesLeft > 0 { snooze() } else { sendRing() }
     }
 
     /// Schlummern: Sitzung beenden und neu für in 5 Minuten planen (App ist dabei aktiv).
     func snooze() {
-        guard phase.isRinging, Snooze.canSnooze(snoozes), let plan else { return }
+        guard phase.isRinging, snoozesLeft > 0, let plan else { return }
         snoozes += 1
+        DiagStore.shared.log(.snooze, "\(snoozes)")
         invalidateSession()
         let until = Snooze.nextRing(Date())
-        phase = .snoozed(until: until, snoozesLeft: Snooze.maxCount - snoozes)
+        phase = .snoozed(until: until, snoozesLeft: snoozesLeft)
         let next = WKExtendedRuntimeSession()
         next.delegate = self
         next.start(at: until)
@@ -65,6 +73,7 @@ extension SmartAlarm {
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
     func dismiss(notifyPhone: Bool = true) {
         guard phase.isRinging || phase.isSnoozed else { return }
+        DiagStore.shared.log(.stop, notifyPhone ? "watch" : "phone")
         removeFallback([Self.fallbackId, Self.interruptedId])
         finish(notifyPhone: notifyPhone)
     }
@@ -74,6 +83,7 @@ extension SmartAlarm {
     /// die Nacht, aber kein «stop»: Sein Wecker soll weiterklingeln.
     func finishInterrupted() {
         guard phase.isRinging || phase.isSnoozed else { return }
+        DiagStore.shared.log(.error, "session ended while ringing")
         if !ringExpired {
             var at = Date()
             if case .snoozed(let until, _) = phase, until > at { at = until.addingTimeInterval(Self.fallbackDelay) }
@@ -87,7 +97,9 @@ extension SmartAlarm {
         invalidateSession()
         stopSensors()
         let model = WatchModel.shared
-        if let nightPlan, let firstRing {
+        // Probewecker und Powernap: kein Verlauf, kein «erledigt», kein Ausschalten (`Transient`).
+        let transient = Transient.kindOf(nightPlan?.alarmId) != nil
+        if let nightPlan, let firstRing, !transient {
             let night = NightRecord(
                 alarmId: nightPlan.alarmId,
                 windowStart: nightPlan.windowStart,
@@ -107,6 +119,7 @@ extension SmartAlarm {
         if let alarm = model.alarms.first(where: { $0.id == nightPlan?.alarmId }), alarm.isOneShot, alarm.enabled {
             model.setEnabled(alarm, false)
         }
+        if transient { model.endTransient(nightPlan?.alarmId) }
         phase = .idle
         plan = nil
         nightPlan = nil

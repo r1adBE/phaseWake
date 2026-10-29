@@ -262,4 +262,19 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertEqual(summary.snoreMinutes, 0)
         XCTAssertNil(SoundEventDetector().threshold)
     }
+
+    /// Wie `SoundEventsTest.medianSafeFilesAndShortSnoring` (Kotlin).
+    func testMedianSafeFilesAndShortSnoring() {
+        XCTAssertEqual(SoundEventDetector.median([3, 1, 2]), 2, accuracy: 1e-9)
+        XCTAssertEqual(SoundEventDetector.median([4, 1, 2, 3]), 2.5, accuracy: 1e-9)
+        XCTAssertTrue(SoundEvents.isSafeFile("a-1_b.m4a"))
+        XCTAssertFalse(SoundEvents.isSafeFile("."))
+        XCTAssertFalse(SoundEvents.isSafeFile(".."))
+        XCTAssertFalse(SoundEvents.isSafeFile("../x.m4a"))
+        XCTAssertFalse(SoundEvents.isSafeFile(""))
+        XCTAssertEqual(SoundSummary(snoreMs: 0, snoreClips: 0, talkClips: 0, otherClips: 0).snoreMinutes, 0)
+        XCTAssertEqual(SoundSummary(snoreMs: 10_000, snoreClips: 1, talkClips: 0, otherClips: 0).snoreMinutes, 1)
+        XCTAssertEqual(SoundSummary(snoreMs: 0, snoreClips: 1, talkClips: 2, otherClips: 3).clips, 6)
+        XCTAssertEqual(SoundEvents.levelDb(UnsafeBufferPointer<Float>(start: nil, count: 0)), SoundEvents.silenceDb)
+    }
 }

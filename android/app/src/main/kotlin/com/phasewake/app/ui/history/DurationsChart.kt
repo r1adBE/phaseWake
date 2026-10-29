@@ -121,6 +121,11 @@ internal fun DurationsCard(week: Durations?, twoWeeks: Durations, modifier: Modi
             val last = measurer.measure(morning(d.bars.last().date, "dM"), label)
             drawText(last, topLeft = Offset(size.width - last.size.width, size.height - last.size.height))
         }
-        Legend(listOf(LegendItem(stringResource(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(d.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary)))
+        Legend(
+            listOf(
+                LegendItem(stringResource(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(d.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary),
+                LegendItem(stringResource(R.string.chart_goal_met), LegendMark.NONE, brand.chartActive),
+            ),
+        )
     }
 }

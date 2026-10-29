@@ -54,11 +54,18 @@ private val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDN
 internal fun newAlarm(): AlarmSpec = AlarmSpec(id = UUID.randomUUID().toString(), hour = 7, minute = 0, days = WEEKDAYS, sound = DEFAULT_SOUND)
 
 /**
- * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus); alles andere
+ * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus, Überspringen); alles andere
  * (Sonnenaufgang, Töne, Handy-Wecker, Aufgabe, Schlafdauer, Name) bleibt wie im gespeicherten Wecker.
  */
-internal fun mergeEdit(stored: AlarmSpec?, draft: AlarmSpec): AlarmSpec =
-    stored?.copy(hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled) ?: draft
+internal fun mergeEdit(stored: AlarmSpec?, draft: AlarmSpec): AlarmSpec {
+    stored ?: return draft
+    // Überspringen gilt nur für den bisherigen Zeitplan (wie am Handy).
+    val sameSchedule = stored.hour == draft.hour && stored.minute == draft.minute && stored.days == draft.days
+    return stored.copy(
+        hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled,
+        skipUntil = if (sameSchedule) draft.skipUntil else 0L,
+    )
+}
 
 /** Entwurf über das Format der Wecker sichern, damit er eine Drehung oder ein Ende des Prozesses übersteht. */
 internal val draftSaver = androidx.compose.runtime.saveable.Saver<AlarmSpec?, String>(
@@ -81,6 +88,10 @@ internal fun EditorContent(
     onChange: (AlarmSpec) -> Unit,
     onSave: () -> Unit,
     onDelete: () -> Unit,
+    /** Datum des übersprungenen Termins (formatiert), `null` = keiner. */
+    skipped: String? = null,
+    /** «Nächstes Mal überspringen» ein/aus; `null` = kein Schalter (neuer oder einmaliger Wecker). */
+    onSkip: ((Boolean) -> Unit)? = null,
 ) {
     val listState = rememberScalingLazyListState()
     val locale = LocalConfiguration.current.locales[0]
@@ -149,6 +160,21 @@ internal fun EditorContent(
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                     label = { Text(stringResource(R.string.editor_enabled)) },
                 )
+            }
+            if (onSkip != null) {
+                item {
+                    SwitchButton(
+                        checked = skipped != null,
+                        onCheckedChange = onSkip,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.alarm_skip)) },
+                        secondaryLabel = if (skipped != null) {
+                            { Text(stringResource(R.string.alarm_skipped, skipped)) }
+                        } else {
+                            null
+                        },
+                    )
+                }
             }
             if (!isNew) {
                 item {

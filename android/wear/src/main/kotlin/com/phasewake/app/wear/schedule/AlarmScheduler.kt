@@ -17,7 +17,11 @@ import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUp
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.AlarmRepository
+import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.TransientStore
+import com.phasewake.app.wear.wearApp
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.tile.NextAlarmTileService
@@ -26,6 +30,7 @@ import com.phasewake.app.wear.wake.WakeService
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
+import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -52,6 +57,10 @@ class AlarmScheduler(
     private val onsetOverride: OnsetOverride,
     private val store: DataStore<Preferences>,
     private val sync: WearSync,
+    /** Feiertage vom Handy für Wecker mit «An Feiertagen nicht wecken». */
+    private val holidays: HolidayStore,
+    /** Probewecker oder Powernap: planen wie einen Wecker, aber nie als Nacht im Verlauf. */
+    private val transient: TransientStore,
     /** Uhrzeit; die Zeitzone wird bei jedem Aufruf neu gelesen, nie beim Erzeugen festgehalten (Reisen). */
     private val clock: () -> Clock = { Clock.system(java.time.ZoneId.systemDefault()) },
 ) {
@@ -76,12 +85,13 @@ class AlarmScheduler(
         // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
         val done = doneUntil(prefs)
         val busy = busyRange(prefs, now)
-        val plan = alarms.current().alarms
-            .mapNotNull { spec ->
+        val days = holidays.current()
+        val plan = (
+            alarms.current().alarms.mapNotNull { spec ->
                 val doneAt = done[spec.id] ?: Instant.EPOCH
-                missedPlan(spec, busy, doneAt, now, zone) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone)
-            }
-            .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+                missedPlan(spec, busy, doneAt, now, zone, days) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone, days)
+            } + listOfNotNull(transient.active()?.plan)
+            ).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
         return onsetOverride.apply(plan, now)
     }
 
@@ -102,9 +112,9 @@ class AlarmScheduler(
      * ([CatchUp.alarmIds]); ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich.
      * Sonst `null`.
      */
-    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId): WakePlan? {
+    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId, days: Set<LocalDate>): WakePlan? {
         if (busy == null || spec.id !in busy.alarmIds) return null
-        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone) ?: return null
+        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone, days) ?: return null
         if (target.isAfter(busy.until) || target.isAfter(now)) return null
         return WakePlan(spec.id, AlarmSchedule.windowStart(target, spec.windowMinutes), target)
     }
@@ -124,6 +134,7 @@ class AlarmScheduler(
     suspend fun noteNightEnded(windowStart: Instant, until: Instant) {
         val zone = clock().zone
         val specs = alarms.current().alarms
+        val days = holidays.current()
         store.edit { prefs ->
             val oldFrom = prefs[CATCH_UP_FROM]
             val oldUntil = prefs[CATCH_UP_UNTIL]
@@ -135,7 +146,7 @@ class AlarmScheduler(
             prefs[CATCH_UP_FROM] = from
             prefs[CATCH_UP_UNTIL] = to
             val due = specs.filter { spec ->
-                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
+                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone, days)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
             }.map { it.id }.toSet()
             prefs[CATCH_UP_IDS] = if (extend) prefs[CATCH_UP_IDS].orEmpty() + due else due
         }
@@ -195,7 +206,8 @@ class AlarmScheduler(
             return@withLock null
         }
         val specs = alarms.current().alarms
-        val spec = specs.firstOrNull { it.id == plan.alarmId }
+        val spec = specs.firstOrNull { it.id == plan.alarmId } ?: transient.specFor(plan.alarmId)
+        logScheduled(plan)
         if (pendingRing == null) {
             // Dazu der Plan danach: Endet eine Nacht vor dem ersten Entsperren, gilt dieser (DirectBoot.promoteNext).
             val after = followingPlan(plan, specs, now)
@@ -224,7 +236,7 @@ class AlarmScheduler(
         if (!late || saved.at.isBefore(now.minus(DirectBoot.MISSED_DURING_BOOT))) return null
         val done = doneUntil(store.data.first())[saved.plan.alarmId]
         if (done != null && !done.isBefore(saved.plan.target)) return null
-        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled }) return null
+        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled } && transient.specFor(saved.plan.alarmId) == null) return null
         return saved
     }
 
@@ -232,10 +244,21 @@ class AlarmScheduler(
     private suspend fun followingPlan(plan: WakePlan, specs: List<AlarmSpec>, now: Instant): WakePlan? {
         val zone = clock().zone
         val done = doneUntil(store.data.first())
+        val days = holidays.current()
         return specs.mapNotNull { spec ->
             val from = if (spec.id == plan.alarmId) maxOf(now, plan.target) else now
-            AlarmSchedule.nextPlan(spec, maxOf(from, done[spec.id] ?: Instant.EPOCH), zone)
+            AlarmSchedule.nextPlan(spec, maxOf(from, done[spec.id] ?: Instant.EPOCH), zone, days)
         }.filter { it != plan }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+    }
+
+    /** Zuletzt protokollierter Plan; ein Eintrag nur bei einer Änderung (neu geplant wird oft). */
+    @Volatile
+    private var loggedPlan: WakePlan? = null
+
+    private fun logScheduled(plan: WakePlan) {
+        if (plan == loggedPlan) return
+        loggedPlan = plan
+        context.wearApp.diag.log(DiagKind.SCHEDULED, "watch ${plan.windowStart} – ${plan.target}")
     }
 
     /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */

@@ -8,6 +8,7 @@ extension SmartAlarm {
         Task { @MainActor in
             guard extendedRuntimeSession === self.session || self.session == nil else { return }
             self.session = extendedRuntimeSession
+            DiagStore.shared.log(.window, "session started")
             switch self.phase {
             case .snoozed:
                 // Nach dem Schlummern startet die neue Sitzung direkt mit dem Wecken.
@@ -34,6 +35,7 @@ extension SmartAlarm {
             guard extendedRuntimeSession === self.session else { return }
             self.session = nil
             self.stopSensors()
+            DiagStore.shared.log(.error, "session invalidated \(reason.rawValue)")
             switch self.phase {
             case .scheduled(let plan):
                 // Vom System abgelehnt oder zurückgezogen: Der Rückfall weckt; beim nächsten Öffnen neu planen.

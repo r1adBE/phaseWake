@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.datastore.preferences.core.edit
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm.Companion.ACTION_SUNRISE
 import com.phasewake.app.ring.BackupAlarm.Companion.SUNRISE_SHOWN_UNTIL
 import java.time.Instant
@@ -18,7 +19,8 @@ internal suspend fun BackupAlarm.rescheduleSunrise() {
     val wanted = alarms.current().alarms.filter { it.phoneSunrise == Sunrise.WINDOW }
     // Ein bereits gezeigtes Licht nicht noch einmal starten.
     val shown = Instant.ofEpochMilli(store.data.first()[SUNRISE_SHOWN_UNTIL] ?: 0L)
-    val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone) ?: return
+    val holidays = context.phoneApp.holidays.store.current()
+    val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone, holidays) ?: return
     val at = maxOf(plan.windowStart, now())
     // Kein Wecker-Alarm: sonst zeigten Sperrbildschirm und andere Apps den Fensterbeginn als Weckzeit.
     setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, plan.windowStart, plan.target))

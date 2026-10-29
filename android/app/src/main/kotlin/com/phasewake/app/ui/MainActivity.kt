@@ -63,6 +63,10 @@ import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
+import com.phasewake.app.core.TestRuns
+import com.phasewake.app.ui.home.TestResultDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /** Einzige Activity der Handy-App; Navigation zwischen Wecker, Verlauf, Einstellungen und Editor. */
 class MainActivity : ComponentActivity() {
@@ -164,6 +168,24 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             nav.switchTab(Routes.HISTORY)
         }
     }
+    // Erster Start: Einrichtung. Bestehende Installationen (Wecker oder Verlauf vorhanden) überspringen sie.
+    LaunchedEffect(data.onboardingDone) {
+        if (data.onboardingDone != false || openHistory) return@LaunchedEffect
+        if (app.alarms.current().alarms.isNotEmpty() || app.nights.load().isNotEmpty()) {
+            app.settings.setOnboardingDone(true)
+        } else if (route != ExtraRoutes.ONBOARDING) {
+            nav.navigate(ExtraRoutes.ONBOARDING)
+        }
+    }
+    // Ergebnis des Probeweckers, sobald es feststeht (Stopp angekommen oder 3 Minuten nach der Zielzeit).
+    var tick by remember { mutableIntStateOf(0) }
+    LaunchedEffect(data.testRun) {
+        while (data.testRun != null) {
+            delay(TEST_TICK_MS)
+            tick++
+        }
+    }
+    val testResult = data.testRun?.takeIf { tick >= 0 && TestRuns.isFinished(it, java.time.Instant.now()) }
     // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Vollbild nicht erlaubt): beim Öffnen zeigen.
     val ringing by PhoneRingService.ringState.collectAsStateWithLifecycle()
     LaunchedEffect(ringing) {
@@ -190,6 +212,9 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                 onDismiss = { askExport = false },
             )
         }
+        testResult?.let { run ->
+            TestResultDialog(run, nightCheck.check, onFix = actions.onFix, onClose = { app.appScope.launch { app.testRuns.clear() } })
+        }
         if (intro) Intro(onFinished = { intro = false })
     }
 }
@@ -205,7 +230,7 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
     Scaffold(
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
-            if (route != Routes.EDITOR && route != Routes.SOUNDS) {
+            if (route !in FULL_SCREEN_ROUTES) {
                 val onNight = route == Routes.ALARMS && PhaseWakeTheme.isDark
                 NavigationBar(containerColor = if (onNight) Night.Bar else MaterialTheme.colorScheme.surfaceContainerLow) {
                     tabs.forEach { tab ->
@@ -248,6 +273,12 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
         AppNavHost(app, state, actions, content, homeList)
     }
 }
+
+/** Bildschirme ohne untere Navigationsleiste. */
+private val FULL_SCREEN_ROUTES = setOf(Routes.EDITOR, Routes.SOUNDS, ExtraRoutes.DIAGNOSTICS, ExtraRoutes.ONBOARDING)
+
+/** So oft wird geprüft, ob das Ergebnis des Probeweckers feststeht. */
+private const val TEST_TICK_MS = 5_000L
 
 /** Wechselt den Reiter; jeder Reiter behält seinen Zustand (Scrollstand). */
 internal fun NavHostController.switchTab(route: String) = navigate(route) {

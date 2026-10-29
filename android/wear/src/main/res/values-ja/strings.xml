@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">%1$sまでスヌーズ</string>
 
     <string name="home_no_alarm">アラーム未設定</string>
-    <string name="home_no_alarm_hint">スマートフォンのPhase Wakeで設定してください。</string>
+    <string name="home_no_alarm_hint">アラームを作成 – ここか、スマホのPhase Wakeで。</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">今日</string>
     <string name="home_tomorrow">明日</string>
@@ -59,4 +59,23 @@
     <string name="editor_delete_title">このアラームを削除しますか?</string>
     <string name="home_max_alarms">アラームは最大%1$d件です – 新しく追加するには1件削除してください。</string>
     <string name="editor_enabled">アラームをオン</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">次回をスキップ</string>
+    <string name="alarm_skipped">スキップ: %1$s</string>
+    <string name="nap_title">仮眠</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d分</item>
+    </plurals>
+    <string name="nap_start">開始</string>
+    <string name="nap_running">%1$sまで</string>
+    <string name="nap_stop">仮眠を終了</string>
+    <string name="diag_title">診断</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">あと%1$d回</item>
+    </plurals>
+    <string name="diag_clear">消去</string>
+    <string name="diag_hide">診断を非表示</string>
+    <string name="diag_empty">まだイベントはありません。</string>
+    <string name="diag_next">次のアラーム: %1$s</string>
+    <string name="diag_version">バージョン %1$s</string>
 </resources>

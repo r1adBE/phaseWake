@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Snooze till %1$s</string>
 
     <string name="home_no_alarm">Inget larm inställt</string>
-    <string name="home_no_alarm_hint">Ställ in larm i Phase Wake på mobilen.</string>
+    <string name="home_no_alarm_hint">Skapa ett alarm – här eller i Phase Wake på telefonen.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Idag</string>
     <string name="home_tomorrow">I morgon</string>
@@ -60,4 +60,25 @@
     <string name="editor_delete_title">Ta bort det här larmet?</string>
     <string name="home_max_alarms">Högst %1$d larm – ta bort ett för att lägga till ett nytt.</string>
     <string name="editor_enabled">Larm på</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Hoppa över nästa gång</string>
+    <string name="alarm_skipped">Överhoppat: %1$s</string>
+    <string name="nap_title">Tupplur</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minut</item>
+        <item quantity="other">%1$d minuter</item>
+    </plurals>
+    <string name="nap_start">Starta</string>
+    <string name="nap_running">Till %1$s</string>
+    <string name="nap_stop">Avsluta tupplur</string>
+    <string name="diag_title">Diagnostik</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d gång till</item>
+        <item quantity="other">%1$d gånger till</item>
+    </plurals>
+    <string name="diag_clear">Töm</string>
+    <string name="diag_hide">Dölj diagnostik</string>
+    <string name="diag_empty">Inga händelser än.</string>
+    <string name="diag_next">Nästa alarm: %1$s</string>
+    <string name="diag_version">Version %1$s</string>
 </resources>

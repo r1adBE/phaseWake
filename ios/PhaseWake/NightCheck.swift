@@ -49,7 +49,7 @@ enum NightCheck {
         let session = WCSession.isSupported() ? WCSession.default : nil
         let model = PhoneModel.shared
         // Wie auf der Uhr: Eine heute schon abgeschlossene Nacht zählt nicht mehr.
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: Date(), doneUntil: model.doneUntil, calendar: .current)
+        let plan = model.nextPlan()
         if session?.activationState != .activated || session?.isPaired != true {
             failed.append(.watch)
         } else if session?.isWatchAppInstalled != true {
@@ -167,6 +167,8 @@ struct NightCheckCard: View {
                     }
                 }
             }
+            // Probewecker: prüft Uhr, iPhone und Verbindung in 2 Minuten.
+            TestAlarmButton().font(Fonts.manrope(14, relativeTo: .subheadline)).padding(.top, 4)
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)

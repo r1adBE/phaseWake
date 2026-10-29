@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">ปลุกซ้ำเวลา %1$s</string>
 
     <string name="home_no_alarm">ยังไม่ได้ตั้งปลุก</string>
-    <string name="home_no_alarm_hint">ตั้งนาฬิกาปลุกใน Phase Wake บนโทรศัพท์</string>
+    <string name="home_no_alarm_hint">สร้างการปลุก – ที่นี่หรือใน Phase Wake บนโทรศัพท์</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">วันนี้</string>
     <string name="home_tomorrow">พรุ่งนี้</string>
@@ -59,4 +59,23 @@
     <string name="editor_delete_title">ลบนาฬิกาปลุกนี้ไหม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
     <string name="editor_enabled">นาฬิกาปลุกเปิดอยู่</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">ข้ามครั้งถัดไป</string>
+    <string name="alarm_skipped">ข้ามแล้ว: %1$s</string>
+    <string name="nap_title">งีบหลับ</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d นาที</item>
+    </plurals>
+    <string name="nap_start">เริ่ม</string>
+    <string name="nap_running">ถึง %1$s</string>
+    <string name="nap_stop">จบการงีบ</string>
+    <string name="diag_title">การวินิจฉัย</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">อีก %1$d ครั้ง</item>
+    </plurals>
+    <string name="diag_clear">ล้าง</string>
+    <string name="diag_hide">ซ่อนการวินิจฉัย</string>
+    <string name="diag_empty">ยังไม่มีเหตุการณ์</string>
+    <string name="diag_next">การปลุกถัดไป: %1$s</string>
+    <string name="diag_version">เวอร์ชัน %1$s</string>
 </resources>

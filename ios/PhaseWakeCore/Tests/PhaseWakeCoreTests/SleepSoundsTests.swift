@@ -106,4 +106,15 @@ final class SleepSoundsTests: XCTestCase {
         XCTAssertEqual(SleepSounds.timerOptions, [15, 30, 60, nil])
         XCTAssertEqual(SleepSounds.defaultTimerMinutes, 30)
     }
+
+    /// Wie `SleepSoundsTest.recordingsAreNotGeneratedAndSeedZoneIsValid` (Kotlin). Ohne die Prüfung auf
+    /// Aufnahmen: Der Swift-Generator wirft nicht, die iPhone-App spielt Aufnahmen über AVAudioPlayer.
+    func testSeedZoneIsValidAndChannels() {
+        // Startwert 0 wäre für xorshift ein Fixpunkt (nur Nullen); er wird versetzt.
+        var generator = NoiseGenerator(sound: .white, sampleRate: rate, seed: 0)
+        XCTAssertTrue((0..<4_800).map { _ in generator.next() }.contains { $0 != 0 })
+        XCTAssertEqual(NoiseGenerator(sound: .pink).channels, 1)
+        XCTAssertEqual(NoiseGenerator(sound: .binaural).channels, 2)
+        XCTAssertNil(SleepSounds.stopAt(start: Date(timeIntervalSince1970: 0), timerMinutes: nil, nextWindowStart: nil))
+    }
 }

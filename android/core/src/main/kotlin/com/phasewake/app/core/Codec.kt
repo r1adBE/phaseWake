@@ -20,8 +20,11 @@ object Codec {
     private const val NIGHT_HEADER = "phasewake-night 1"
     private const val SEP = "|"
 
-    /** id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|Sonnenaufgang-Gerät */
-    private const val FIELDS = 14
+    /**
+     * id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|Sonnenaufgang-Gerät|
+     * Überspringen-bis|Feiertage
+     */
+    private const val FIELDS = 16
 
     /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
     private const val FIELDS_V1 = 11
@@ -55,6 +58,8 @@ object Codec {
                 a.sunrise.name,
                 a.wakeTask.name,
                 a.sunriseDevice.name,
+                a.skipUntil.toString(),
+                if (a.skipHolidays) "1" else "0",
             ).joinToString(SEP)).append('\n')
         }
     }
@@ -100,6 +105,9 @@ object Codec {
                     wakeTask = f.getOrNull(12)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
                     // Feld 14 fehlt bei älteren Ständen, unbekannt aus neueren: Handy.
                     sunriseDevice = f.getOrNull(13)?.let { v -> SunriseDevice.entries.firstOrNull { it.name == v } } ?: SunriseDevice.PHONE,
+                    // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen.
+                    skipUntil = f.getOrNull(14)?.toLongOrNull()?.coerceAtLeast(0L) ?: 0L,
+                    skipHolidays = f.getOrNull(15) == "1",
                 )
             }
 

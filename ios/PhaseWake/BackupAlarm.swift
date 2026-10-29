@@ -25,6 +25,8 @@ final class BackupAlarm {
     private static let oneShotKey = "backupOneShotTargets"
     private static let snoozeSafetyKey = "backupSnoozeSafetyId"
     private static let snoozedAtKey = "backupSnoozedAt"
+    /// Sicherung des laufenden Probeweckers oder Powernaps.
+    private static let transientKey = "backupTransientId"
     /// Das «stop» der Uhr direkt nach dem Schlummern ist nur das Echo davon, kein Beenden.
     private static let snoozeEcho: TimeInterval = 30
     /// Klingelt die Uhr nach dem Schlummern nicht wieder (Sitzung nicht gestartet): dann das iPhone.
@@ -63,7 +65,8 @@ final class BackupAlarm {
         var ids: [String] = []
         while ids.count < Self.nightsAhead {
             guard let plan = AlarmSchedule.earliestPlan(alarms.filter { $0.phoneBackup && !skip.contains($0.id) }, now: from,
-                                                        doneUntil: suppressed, calendar: .current) else { break }
+                                                        doneUntil: suppressed, calendar: .current,
+                                                        holidays: PhoneModel.shared.holidays.dates) else { break }
             from = plan.target
             if let first = firstTargets[plan.alarmId] {
                 // Einmalig: nur das erste Vorkommen. Ist es ausgesetzt, folgt keine weitere Nacht.
@@ -76,6 +79,7 @@ final class BackupAlarm {
             await schedule(id: id, at: plan.target.addingTimeInterval(Self.grace), tone: tone)
         }
         UserDefaults.standard.set(ids, forKey: Self.backupIdsKey)
+        DiagStore.shared.log(.scheduled, "phone backup \(ids.count) nights")
     }
 
     /// Zielzeit des ersten Vorkommens je eingeschaltetem einmaligem Wecker, gemerkt ab dem ersten Planen.
@@ -97,16 +101,20 @@ final class BackupAlarm {
 
     /// Die Uhr klingelt gerade: sofort mitklingeln (falls gewünscht) und die Sicherung dieser Nacht aussetzen.
     /// `target` ist die Zielzeit der Nacht laut Uhr (ältere Versionen schicken sie nicht).
-    func ringNow(alarm: AlarmSpec?, target: Date?, snoozesLeft: Int) async {
+    /// - Returns: ob das iPhone mitklingelt (Weckart nicht «aus»).
+    @discardableResult
+    func ringNow(alarm: AlarmSpec?, target: Date?, snoozesLeft: Int) async -> Bool {
         // Die Uhr klingelt wieder: Die Sicherung fürs Schlummern ist nicht mehr nötig.
         await cancelSnoozeSafety()
-        if alarm?.phone != .off {
+        let rings = alarm?.phone != .off
+        if rings {
             let id = UUID()
             ringingId = id
             await schedule(id: id, at: Date().addingTimeInterval(2), fromWatch: true, snoozesLeft: snoozesLeft,
                            tone: alarm.flatMap { WakeTone(rawValue: $0.sound) })
         }
         await watchHandled(alarmId: alarm?.id, target: target)
+        return rings
     }
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
@@ -117,7 +125,8 @@ final class BackupAlarm {
         let spec = alarms.first { $0.id == alarmId }
         let window = TimeInterval(AlarmSpec.maxWindowMinutes * 60)
         let nightTarget = target
-            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .current) }
+            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .current,
+                                                    holidays: PhoneModel.shared.holidays.dates) }
             ?? now.addingTimeInterval(window)
         let until = nightTarget.addingTimeInterval(Self.grace)
         // Ohne Kennung (ältere Uhr): alle Wecker dieser Nacht, wie bisher.
@@ -175,6 +184,30 @@ final class BackupAlarm {
     private func cancelSnoozeSafety() async {
         guard let id = UserDefaults.standard.string(forKey: Self.snoozeSafetyKey).flatMap(UUID.init(uuidString:)) else { return }
         UserDefaults.standard.removeObject(forKey: Self.snoozeSafetyKey)
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            try? AlarmManager.shared.cancel(id: id)
+            return
+        }
+        #endif
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
+    }
+
+    /// Sicherung für einen Probewecker oder Powernap: klingelt kurz nach dessen Zielzeit, falls sich die Uhr
+    /// nicht meldet (wie die Sicherung einer Nacht). Ohne iPhone-Wecker («aus») keine.
+    func scheduleTransient(_ transient: TransientPlan) async {
+        await cancelTransient()
+        guard transient.spec.phoneBackup else { return }
+        let id = UUID()
+        UserDefaults.standard.set(id.uuidString, forKey: Self.transientKey)
+        await schedule(id: id, at: transient.plan.target.addingTimeInterval(Self.grace), tone: WakeTone(rawValue: transient.spec.sound))
+        DiagStore.shared.log(.scheduled, "phone backup \(transient.kind.rawValue) \(Format.time(transient.plan.target))")
+    }
+
+    /// Sicherung des Probeweckers bzw. Powernaps verwerfen (die Uhr hat geklingelt, gestoppt oder abgebrochen).
+    func cancelTransient() async {
+        guard let id = UserDefaults.standard.string(forKey: Self.transientKey).flatMap(UUID.init(uuidString:)) else { return }
+        UserDefaults.standard.removeObject(forKey: Self.transientKey)
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
             try? AlarmManager.shared.cancel(id: id)

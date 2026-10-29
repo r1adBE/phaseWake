@@ -12,9 +12,13 @@ final class WatchModel {
     let storage = PhaseWakeStorage.watchShared
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
+    /// Probewecker oder Powernap, der statt des nächsten Weckers gilt; nie im Verlauf (`Transient`).
+    private(set) var transient: TransientPlan?
+    private static let transientKey = "transientPlan"
 
     private init() {
         alarms = storage.snapshot().alarms
+        transient = UserDefaults.standard.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
@@ -23,12 +27,66 @@ final class WatchModel {
         }
     }
 
-    /// Nächster Plan; eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
-    var plan: WakePlan? { AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current) }
+    /// Nächster Plan: ein vorübergehender (Probewecker, Powernap), solange er noch wecken kann; sonst der nächste
+    /// Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
+    var plan: WakePlan? {
+        if let transient, now < transient.plan.target.addingTimeInterval(SmartAlarm.fallbackDelay) { return transient.plan }
+        return AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current, holidays: storage.holidays.dates)
+    }
+
+    /// Weckart zur Kennung: gespeicherter Wecker oder der vorübergehende Plan.
+    func spec(for id: String?) -> AlarmSpec? {
+        alarms.first { $0.id == id } ?? (transient?.spec.id == id ? transient?.spec : nil)
+    }
 
     func refresh() {
         now = Date()
         alarms = storage.snapshot().alarms
+        // Abgelaufen (2 h nach der Zielzeit): verwerfen.
+        if let transient, !Transient.isActive(transient, now: now) { setTransient(nil) }
+    }
+
+    /// Probewecker oder Powernap übernehmen (vom iPhone oder hier gestartet) und gleich planen.
+    func startTransient(_ plan: TransientPlan) {
+        setTransient(plan)
+        DiagStore.shared.log(plan.kind == .test ? .test : .nap, "received \(Format.time(plan.plan.target))")
+        reschedule()
+    }
+
+    /// Vorübergehenden Plan verwerfen (beendet, abgebrochen oder vom iPhone zurückgenommen).
+    func endTransient(_ id: String? = nil) {
+        guard let transient, id == nil || transient.plan.alarmId == id else { return }
+        setTransient(nil)
+    }
+
+    /// Powernap von der Uhr aus: gleich planen (die App ist offen, darum klappt die Sitzung) und dem iPhone melden.
+    func startNap(minutes: Int) {
+        let next = AlarmSchedule.earliestPlan(alarms, now: Date(), calendar: .current)
+        let nap = Transient.nap(base: alarms.first { $0.id == next?.alarmId }, now: Date(), calendar: .current,
+                                minutes: minutes, uuid: UUID().uuidString.lowercased())
+        startTransient(nap)
+        WatchConnectivityBridge.shared.send(command: SyncKeys.nap, extra: [SyncKeys.payload: Transient.encode(nap)])
+    }
+
+    /// Powernap vorzeitig beenden (vor dem Klingeln); das iPhone verwirft seine Sicherung.
+    func stopNap() {
+        guard let transient, transient.kind == .nap else { return }
+        endTransient()
+        DiagStore.shared.log(.nap, "cancelled")
+        WatchConnectivityBridge.shared.send(command: SyncKeys.transientCancel, extra: [SyncKeys.id: transient.plan.alarmId])
+        reschedule()
+    }
+
+    private func setTransient(_ plan: TransientPlan?) {
+        transient = plan
+        UserDefaults.standard.set(plan.map(Transient.encode), forKey: Self.transientKey)
+    }
+
+    /// Feiertage vom iPhone übernehmen und neu planen, falls sie sich geändert haben.
+    func applyHolidays(_ list: HolidayList) {
+        guard storage.holidays != list else { return }
+        storage.holidays = list
+        reschedule()
     }
 
     /// Ein/Aus auf der Uhr; Änderung geht ans iPhone und plant neu.
@@ -72,6 +130,7 @@ final class WatchModel {
     func applyRemote(_ snapshot: AlarmSnapshot) {
         guard storage.applyRemote(snapshot) else { return }
         alarms = snapshot.alarms
+        DiagStore.shared.log(.alarmsReceived, "\(snapshot.alarms.count) alarms")
         reschedule()
     }
 
@@ -79,6 +138,12 @@ final class WatchModel {
     func reschedule() {
         refresh()
         SmartAlarm.shared.schedule(plan)
+        let armed: Bool
+        switch SmartAlarm.shared.phase {
+        case .idle, .waiting: armed = false
+        case .scheduled, .measuring, .ringing, .snoozed: armed = true
+        }
+        WatchDiagStatus.shared.update(plan: plan, armed: armed)
         // Komplikation auf dem Zifferblatt sofort aktualisieren.
         WidgetCenter.shared.reloadAllTimelines()
     }

@@ -24,7 +24,7 @@
     <string name="ring_snoozed_until">غفوة حتى %1$s</string>
 
     <string name="home_no_alarm">لا منبّه مضبوط</string>
-    <string name="home_no_alarm_hint">اضبطوا المنبّهات في Phase Wake على هاتفكم.</string>
+    <string name="home_no_alarm_hint">أنشئ منبّهًا – هنا أو في Phase Wake على الهاتف.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">اليوم</string>
     <string name="home_tomorrow">غدًا</string>
@@ -64,4 +64,33 @@
     <string name="editor_delete_title">حذف هذا المنبّه؟</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
     <string name="editor_enabled">المنبّه مفعّل</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">تخطَّ المرة القادمة</string>
+    <string name="alarm_skipped">تم التخطي: %1$s</string>
+    <string name="nap_title">قيلولة</string>
+    <plurals name="nap_minutes">
+        <item quantity="zero">%1$d دقيقة</item>
+        <item quantity="one">دقيقة واحدة (%1$d)</item>
+        <item quantity="two">دقيقتان (%1$d)</item>
+        <item quantity="few">%1$d دقائق</item>
+        <item quantity="many">%1$d دقيقة</item>
+        <item quantity="other">%1$d دقيقة</item>
+    </plurals>
+    <string name="nap_start">بدء</string>
+    <string name="nap_running">حتى %1$s</string>
+    <string name="nap_stop">إنهاء القيلولة</string>
+    <string name="diag_title">التشخيص</string>
+    <plurals name="diag_taps_left">
+        <item quantity="zero">%1$d مرة أخرى</item>
+        <item quantity="one">مرة أخرى</item>
+        <item quantity="two">مرتان أخريان</item>
+        <item quantity="few">%1$d مرات أخرى</item>
+        <item quantity="many">%1$d مرة أخرى</item>
+        <item quantity="other">%1$d مرة أخرى</item>
+    </plurals>
+    <string name="diag_clear">مسح</string>
+    <string name="diag_hide">إخفاء التشخيص</string>
+    <string name="diag_empty">لا أحداث بعد.</string>
+    <string name="diag_next">المنبّه التالي: %1$s</string>
+    <string name="diag_version">الإصدار %1$s</string>
 </resources>

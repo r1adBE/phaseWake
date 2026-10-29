@@ -50,6 +50,7 @@ func unmeasuredText(_ night: NightRecord) -> String? {
 /// Fünf runde Knöpfe von «erschöpft» bis «erholt»; ein Tipp genügt.
 struct FeelingPicker: View {
     let onPick: (Int) -> Void
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -61,7 +62,7 @@ struct FeelingPicker: View {
                             .font(Fonts.manrope(18, .bold, relativeTo: .title3))
                             .frame(maxWidth: .infinity)
                             .aspectRatio(1, contentMode: .fit)
-                            .overlay(Circle().stroke(Color.secondary.opacity(0.5), lineWidth: 1))
+                            .overlay(Circle().stroke(Brand.outline(scheme), lineWidth: 1))
                             .contentShape(Circle())
                     }
                     .buttonStyle(.plain)

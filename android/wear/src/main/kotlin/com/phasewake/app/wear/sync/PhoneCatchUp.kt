@@ -16,7 +16,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Holt nach, was das Handy schon abgelegt hat, falls die Uhr eine Änderung verpasst hat (Prozess neu,
- * Neustart, Update): den neuesten Weckerstand und ein «Verlauf löschen». Nur nach dem ersten Entsperren
+ * Neustart, Update): den neuesten Weckerstand, die Feiertage und ein «Verlauf löschen». Nur nach dem ersten Entsperren
  * aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann allein weiter.
  */
 object PhoneCatchUp {
@@ -25,7 +25,7 @@ object PhoneCatchUp {
     /** Zeitpunkt (ms) des zuletzt angewendeten «Verlauf löschen» vom Handy. */
     private val CLEAR_APPLIED_AT = longPreferencesKey("clear_history_applied_at")
 
-    /** @return ob sich die Wecker geändert haben (dann neu planen). Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
+    /** @return ob sich Wecker oder Feiertage geändert haben (dann neu planen). Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
     suspend fun run(app: PhaseWakeWear): Boolean = withTimeoutOrNull(TIMEOUT_MS) { catchUp(app) } ?: false
 
     private const val TIMEOUT_MS = 5_000L
@@ -37,6 +37,13 @@ object PhoneCatchUp {
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Wecker nachholen fehlgeschlagen", e)
+        }
+        try {
+            // Feiertage: nur ein neuerer Stand; ändern sie sich, muss neu geplant werden.
+            app.sync.fetchHolidays()?.let { (list, at) -> if (app.holidays.set(list, at, onlyIfNewer = true)) changed = true }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Feiertage nachholen fehlgeschlagen", e)
         }
         try {
             latestClear(app)?.let { applyClear(app, it) }

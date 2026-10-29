@@ -1,14 +1,10 @@
 package com.phasewake.app.shared
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.CodecException
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
@@ -16,15 +12,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-
-/** DataStore im Speicher: gleiche Schnittstelle, ohne Datei und ohne Android. */
-private class MemoryStore(initial: Preferences = emptyPreferences()) : DataStore<Preferences> {
-    private val state = MutableStateFlow(initial)
-    override val data: Flow<Preferences> = state
-
-    override suspend fun updateData(transform: suspend (t: Preferences) -> Preferences): Preferences =
-        transform(state.value).also { state.value = it }
-}
 
 class AlarmRepositoryTest {
     private var now = 1_000L

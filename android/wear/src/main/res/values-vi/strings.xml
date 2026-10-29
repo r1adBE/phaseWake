@@ -19,7 +19,7 @@
     <string name="ring_snoozed_until">Báo lại lúc %1$s</string>
 
     <string name="home_no_alarm">Chưa đặt báo thức</string>
-    <string name="home_no_alarm_hint">Đặt báo thức trong Phase Wake trên điện thoại.</string>
+    <string name="home_no_alarm_hint">Tạo báo thức – tại đây hoặc trong Phase Wake trên điện thoại.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Hôm nay</string>
     <string name="home_tomorrow">Ngày mai</string>
@@ -59,4 +59,23 @@
     <string name="editor_delete_title">Xóa báo thức này?</string>
     <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
     <string name="editor_enabled">Báo thức bật</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Bỏ qua lần tới</string>
+    <string name="alarm_skipped">Đã bỏ qua: %1$s</string>
+    <string name="nap_title">Ngủ trưa</string>
+    <plurals name="nap_minutes">
+        <item quantity="other">%1$d phút</item>
+    </plurals>
+    <string name="nap_start">Bắt đầu</string>
+    <string name="nap_running">Đến %1$s</string>
+    <string name="nap_stop">Kết thúc ngủ trưa</string>
+    <string name="diag_title">Chẩn đoán</string>
+    <plurals name="diag_taps_left">
+        <item quantity="other">Còn %1$d lần</item>
+    </plurals>
+    <string name="diag_clear">Xóa</string>
+    <string name="diag_hide">Ẩn chẩn đoán</string>
+    <string name="diag_empty">Chưa có sự kiện.</string>
+    <string name="diag_next">Báo thức tiếp theo: %1$s</string>
+    <string name="diag_version">Phiên bản %1$s</string>
 </resources>

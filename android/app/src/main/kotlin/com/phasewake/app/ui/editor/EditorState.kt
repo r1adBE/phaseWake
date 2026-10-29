@@ -38,6 +38,9 @@ internal class EditorState(val base: AlarmSpec) {
     var wakeTask by mutableStateOf(base.wakeTask)
     var label by mutableStateOf(base.label)
 
+    /** An Feiertagen nicht wecken (nur wiederholte Wecker). */
+    var skipHolidays by mutableStateOf(base.skipHolidays)
+
     /** «Mehr» aufgeklappt. */
     var more by mutableStateOf(false)
 
@@ -46,6 +49,9 @@ internal class EditorState(val base: AlarmSpec) {
     fun result(time: TimePickerState): AlarmSpec = base.copy(
         hour = time.hour,
         minute = time.minute,
+        // Ein übersprungener Termin gilt nur für den bisherigen Zeitplan; ändert er sich, nichts mehr überspringen.
+        skipUntil = if (time.hour == base.hour && time.minute == base.minute && days == base.days) base.skipUntil else 0L,
+        skipHolidays = skipHolidays,
         days = days,
         windowMinutes = window.roundToInt(),
         sleepDurationMinutes = if (sleepMode) sleepMinutes.roundToInt() else null,
@@ -69,7 +75,7 @@ internal class EditorState(val base: AlarmSpec) {
                 listOf(
                     it.window, ArrayList(it.days.map { day -> day.value }), it.sleepMode, it.sleepMinutes,
                     it.phone.name, it.watchSound, it.sound, it.sunrise.name, it.sunriseDevice.name,
-                    it.wakeTask.name, it.label, it.more,
+                    it.wakeTask.name, it.label, it.more, it.skipHolidays,
                 )
             },
             restore = { v ->
@@ -86,6 +92,7 @@ internal class EditorState(val base: AlarmSpec) {
                     wakeTask = WakeTask.valueOf(v[9] as String)
                     label = v[10] as String
                     more = v[11] as Boolean
+                    skipHolidays = v[12] as Boolean
                 }
             },
         )

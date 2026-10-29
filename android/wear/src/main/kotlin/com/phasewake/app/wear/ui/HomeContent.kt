@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -64,12 +66,13 @@ internal fun HomeContent(
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onAdd: () -> Unit = {},
     onEdit: (AlarmSpec) -> Unit = {},
+    extras: WatchHomeExtras = WatchHomeExtras(),
 ) {
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
     val listState = rememberScalingLazyListState()
     ScreenScaffold(scrollState = listState) {
         ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
-            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading) }
+            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading, extras.onWindowTap) }
             if (sleepAlarm != null) {
                 item {
                     GoodNightButton(
@@ -80,6 +83,7 @@ internal fun HomeContent(
                     )
                 }
             }
+            extras.onNap?.let { onNap -> item { NapChip(extras.nap, zone, onNap, extras.onStopNap) } }
             if (permissionsMissing) {
                 item {
                     Button(
@@ -109,7 +113,12 @@ internal fun HomeContent(
             }
             items(alarms.size) { index ->
                 val alarm = alarms[index]
-                AlarmSwitch(alarm, onEdit = { onEdit(alarm) }) { enabled -> onToggle(alarm, enabled) }
+                AlarmSwitch(alarm, extras.skipped(alarm), onEdit = { onEdit(alarm) }) { enabled -> onToggle(alarm, enabled) }
+            }
+            if (extras.diagnostics) {
+                item {
+                    Button(onClick = extras.onDiagnostics, modifier = Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.diag_title)) })
+                }
             }
             if (!loading) {
                 item {
@@ -137,9 +146,13 @@ internal fun HomeContent(
 }
 
 @Composable
-private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean = false) {
+private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean = false, onTap: () -> Unit = {}) {
     // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist.
-    Box(Modifier.size(width = 164.dp, height = 164.dp), contentAlignment = Alignment.Center) {
+    // Tippen zählt nur für das Freischalten der Diagnose (7×), ohne Rolle für Bildschirmleser.
+    Box(
+        Modifier.size(width = 164.dp, height = 164.dp).pointerInput(Unit) { detectTapGestures { onTap() } },
+        contentAlignment = Alignment.Center,
+    ) {
         if (loading) return@Box
         if (plan != null) {
             WindowRing(dialFraction(plan.windowStart, zone), dialFraction(plan.target, zone), Modifier.size(156.dp))
@@ -240,7 +253,7 @@ private fun GoodNightButton(active: Boolean, tooFar: Boolean, sleepMinutes: Int,
 
 /** Zeile antippen öffnet den Editor, der Schalter rechts schaltet ein/aus. */
 @Composable
-private fun AlarmSwitch(alarm: AlarmSpec, onEdit: () -> Unit, onToggle: (Boolean) -> Unit) {
+private fun AlarmSwitch(alarm: AlarmSpec, skipped: String?, onEdit: () -> Unit, onToggle: (Boolean) -> Unit) {
     val time = LocalTime.of(alarm.hour, alarm.minute)
     val start = time.minusMinutes(alarm.windowMinutes.toLong())
     val days = DayFormat.format(
@@ -256,7 +269,10 @@ private fun AlarmSwitch(alarm: AlarmSpec, onEdit: () -> Unit, onToggle: (Boolean
         containerClickLabel = stringResource(R.string.editor_edit),
         modifier = Modifier.fillMaxWidth(),
         label = { Text(window) },
-        secondaryLabel = { Text(listOf(days, alarm.label).filter { it.isNotBlank() }.joinToString(" · ")) },
+        secondaryLabel = {
+            val skip = skipped?.let { stringResource(R.string.alarm_skipped, it) }
+            Text(listOfNotNull(days, alarm.label, skip).filter { it.isNotBlank() }.joinToString(" · "))
+        },
     )
 }
 

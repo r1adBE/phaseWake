@@ -25,7 +25,7 @@ struct HomeView: View {
                             header(now: context.date)
                         }
                         TimelineView(.everyMinute) { context in
-                            let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current)
+                            let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current, holidays: model.holidays.dates)
                             VStack(spacing: 16) {
                                 // Nacht-Check nur, wenn ein Wecker ansteht.
                                 if plan != nil {
@@ -33,11 +33,13 @@ struct HomeView: View {
                                         Task { await NightCheck.fix(check); failedChecks = await NightCheck.collect() }
                                     }
                                 }
+                                TransientStatusCard()
+                                if model.transient.nap == nil { NapCard() }
                                 if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
                                     NightstandButton { nightstand = true }
                                 }
                                 // Abends bis zum Weckfenster: Notizen für die kommende Nacht.
-                                let next = AlarmSchedule.earliestPlan(model.alarms, now: context.date, doneUntil: model.doneUntil, calendar: .current)
+                                let next = model.nextPlan(now: context.date)
                                 let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current)
                                 let tonight = SleepNotes.nightDate(context.date, calendar: .current)
                                 if evening {
@@ -113,6 +115,10 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $nightstand) { NightstandView() }
             .sheet(isPresented: $sounds) { SoundsSheet().environment(model) }
             .sheet(item: $editing) { EditorView(existing: $0) }
+            .sheet(isPresented: Binding(get: { model.transient.showResult }, set: { model.transient.showResult = $0 }),
+                   onDismiss: { model.transient.closeResult() }) {
+                if let run = model.transient.run { TestResultSheet(run: run).environment(model) }
+            }
             .sheet(isPresented: $creating) { EditorView(existing: nil) }
         }
     }
@@ -140,7 +146,7 @@ struct HomeView: View {
     }
 
     private func header(now: Date) -> some View {
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current)
+        let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current, holidays: model.holidays.dates)
         return VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 10) {
                 LogoMark().frame(width: 48, height: 48)
@@ -162,6 +168,9 @@ struct HomeView: View {
                 Text(minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.muted)
+                if let holiday = skippedHoliday(now: now) {
+                    Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+                }
                 HeroWave().frame(height: 72).padding(.top, 14)
             } else {
                 Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
@@ -191,6 +200,11 @@ struct HomeView: View {
         // Mit VoiceOver: Doppeltipp öffnet den Wecker wie ein Tipp.
         .accessibilityAddTraits(plan != nil ? .isButton : [])
         .accessibilityAction { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
+    }
+
+    /// Frühester Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte («Do 30.10.: Feiertag – nicht geweckt»).
+    private func skippedHoliday(now: Date) -> String? {
+        model.alarms.compactMap { AlarmSchedule.skippedHoliday($0, now: now, calendar: .current, holidays: model.holidays.dates) }.min()
     }
 
     private func greetingKey(_ now: Date) -> String {
@@ -298,6 +312,14 @@ private struct AlarmRow: View {
                     .font(Fonts.manrope(22, .bold, relativeTo: .title2))
                     .foregroundStyle(alarm.enabled ? .primary : .secondary)
                 Text(details).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                if let skipped {
+                    HStack(spacing: 8) {
+                        Text(L("alarm_skipped", Format.shortDay(skipped))).font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                        Button(L("alarm_skip_undo")) { model.setSkipped(alarm, false) }
+                            .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                            .buttonStyle(.borderless)
+                    }
+                }
             }
             Spacer()
             Toggle("", isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
@@ -305,10 +327,28 @@ private struct AlarmRow: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(perform: onTap)
+        .contextMenu {
+            Button(L("editor_edit"), systemImage: "pencil", action: onTap)
+            if skipped != nil {
+                Button(L("alarm_skip_undo"), systemImage: "arrow.uturn.backward") { model.setSkipped(alarm, false) }
+            } else if !alarm.isOneShot && alarm.enabled {
+                Button(L("alarm_skip"), systemImage: "forward.end") { model.setSkipped(alarm, true) }
+            }
+        }
         .accessibilityAction(named: L("editor_edit"), onTap)
+        .accessibilityActions {
+            if skipped != nil {
+                Button(L("alarm_skip_undo")) { model.setSkipped(alarm, false) }
+            } else if !alarm.isOneShot && alarm.enabled {
+                Button(L("alarm_skip")) { model.setSkipped(alarm, true) }
+            }
+        }
         .card()
         .accessibilityElement(children: .combine)
     }
+
+    /// Übersprungener Termin «yyyy-MM-dd», solange er bevorsteht.
+    private var skipped: String? { AlarmSchedule.skippedDate(alarm, now: Date(), calendar: .current) }
 
     private var details: String {
         var parts = [Format.days(alarm)]

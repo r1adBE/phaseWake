@@ -40,6 +40,10 @@ import com.phasewake.app.ui.sounds.SoundRecordingCard
 import java.io.File
 import java.time.LocalDate
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientPlan
+import com.phasewake.app.ui.Format
+import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -84,6 +88,8 @@ fun HomeScreen(
     clock: () -> Instant = Instant::now,
     /** Scrollstand der Liste; die App liest ihn, um «Neuer Wecker» beim Scrollen einzuklappen. */
     listState: LazyListState = rememberLazyListState(),
+    /** Probewecker, Powernap, Überspringen und Feiertage; ohne: nichts davon (Bildschirmfotos). */
+    extras: HomeExtras = HomeExtras(),
 ) {
     var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
@@ -93,7 +99,14 @@ fun HomeScreen(
         }
     }
     val zone = ZoneId.systemDefault()
-    val plan = remember(alarms, now) { AlarmSchedule.earliestPlan(alarms, now, zone) }
+    val plan = remember(alarms, now, extras.holidays) { AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays) }
+    val locale = LocalConfiguration.current.locales[0]
+    // Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte (nur bis zum nächsten Weckfenster).
+    val holidayNote = remember(alarms, now, extras.holidays, plan) {
+        alarms.mapNotNull { AlarmSchedule.skippedHoliday(it, now, zone, extras.holidays) }.minOrNull()
+            ?.takeIf { day -> plan == null || !day.isAfter(plan.target.atZone(zone).toLocalDate()) }
+            ?.let { Format.shortDay(it, locale) }
+    }
 
     // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
     val dark = PhaseWakeTheme.isDark
@@ -108,11 +121,14 @@ fun HomeScreen(
         modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
-            Header(plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark, onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit)
+            Header(
+                plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark,
+                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote,
+            )
         }
         // Nacht-Check nur, wenn ein Wecker ansteht – sonst gibt es nichts abzusichern.
         if (check != null && plan != null) {
-            item(key = "check") { NightCheckCard(check, cardColor(), onFix) }
+            item(key = "check") { NightCheckCard(check, cardColor(), onFix, extras.onTest, extras.testAt) }
         }
         // Am Abend bis zum Weckfenster: Notizen für die kommende Nacht.
         val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
@@ -133,6 +149,9 @@ fun HomeScreen(
         }
         if (onSounds != null) {
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
+        }
+        extras.onNap?.let { onNap ->
+            item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
         if (lastNight != null) {
             val date = SleepNotes.nightDate(lastNight, zone)
@@ -157,7 +176,12 @@ fun HomeScreen(
         if (alarms.isNotEmpty()) {
             item(key = "header") { AlarmsTitle() }
             items(alarms, key = { it.id }) { alarm ->
-                AlarmRow(alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) })
+                AlarmRow(
+                    alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) },
+                    skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
+                    onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
+                    onUndoSkip = { extras.onUndoSkip(alarm) },
+                )
             }
             if (alarms.size >= MAX_ALARMS) {
                 item(key = "limit") { AlarmLimitHint() }
@@ -167,6 +191,26 @@ fun HomeScreen(
     }
     if (dark) AnimatedNight(Modifier.fillMaxSize()) { list() } else list()
 }
+
+/** Neues der Startseite (Runde 3); Vorgaben = nichts davon, wie in den Bildschirmfotos. */
+class HomeExtras(
+    /** Feiertage für Wecker mit «An Feiertagen nicht wecken». */
+    val holidays: Set<LocalDate> = emptySet(),
+    /** Laufender Powernap; `null` = keiner. */
+    val nap: TransientPlan? = null,
+    /** Vorschlag der Dauer in Minuten. */
+    val napMinutes: Int = Transient.NAP_DEFAULT_MINUTES,
+    /** Powernap starten (Minuten); `null` = keine Karte. */
+    val onNap: ((Int) -> Unit)? = null,
+    val onStopNap: (String) -> Unit = {},
+    /** «Nächstes Mal überspringen»; `null` = kein Menü. */
+    val onSkip: ((AlarmSpec) -> Unit)? = null,
+    val onUndoSkip: (AlarmSpec) -> Unit = {},
+    /** «In 2 Minuten testen» auf dem Nacht-Check; `null` = kein Knopf. */
+    val onTest: (() -> Unit)? = null,
+    /** Zielzeit eines laufenden Probeweckers; `null` = keiner. */
+    val testAt: Instant? = null,
+)
 
 /** Höchstens so viele Wecker: Die Uhr führt ohnehin nur eine Nacht zugleich, und die Liste bleibt übersichtlich. */
 internal const val MAX_ALARMS = 8

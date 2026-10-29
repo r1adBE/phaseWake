@@ -61,8 +61,38 @@ object DataLayer {
     /** Akkustand der Uhr in Prozent (0–100), im selben Paket wie [KEY_READY]; fehlt bei älteren Versionen. */
     const val KEY_BATTERY = "battery"
 
+    /**
+     * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
+     * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
+     */
+    const val PATH_TEST = "/phasewake/test"
+
+    /** Nachricht Uhr → Handy: Probewecker empfangen; Inhalt = seine Kennung (UTF-8). */
+    const val PATH_TEST_ACK = "/phasewake/test-ack"
+
+    /** Nachricht in beide Richtungen: Powernap gestartet; Inhalt = `Transient.encode` (Art NAP). */
+    const val PATH_NAP = "/phasewake/nap"
+
+    /** Nachricht in beide Richtungen: Probewecker oder Powernap abgebrochen; Inhalt = Kennung (UTF-8). */
+    const val PATH_TRANSIENT_CANCEL = "/phasewake/transient-cancel"
+
+    /**
+     * Datenpaket Handy → Uhr: Feiertage der nächsten 400 Tage für «An Feiertagen nicht wecken»;
+     * Schlüssel [KEY_TEXT] (`Holidays.encode`, z. B. «CH-BE|2026-12-25,2026-12-26») und [KEY_UPDATED_AT].
+     */
+    const val PATH_HOLIDAYS = "/phasewake/holidays"
+
+    /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
+    const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
+
+    /** Nachricht Uhr → Handy: Diagnose-Bericht; Inhalt = `DiagReports.encode`. */
+    const val PATH_DIAG_LOG = "/phasewake/diag-log"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
+
+    /** Inhalt einer Nachricht als Text (UTF-8); ohne Inhalt leer. */
+    fun text(data: ByteArray?): String = data?.decodeToString().orEmpty()
 
     /** Fähigkeiten, über die sich die Apps gegenseitig finden (res/values/wear.xml). */
     const val CAPABILITY_PHONE = "phasewake_phone"

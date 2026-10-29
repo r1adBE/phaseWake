@@ -7,9 +7,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.phasewake.app.core.BackupSettings
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
+import com.phasewake.app.core.Transient
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
@@ -121,7 +123,77 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[WEEKLY_PREPARED] = "$weekEnd|$text" }
     }
 
+    /** Ersteinrichtung abgeschlossen oder übersprungen. */
+    val onboardingDone: Flow<Boolean> = store.data.map { it[ONBOARDING_DONE] ?: false }
+
+    suspend fun setOnboardingDone(done: Boolean) {
+        store.edit { it[ONBOARDING_DONE] = done }
+    }
+
+    /**
+     * Land und Region der Feiertage: `null` = noch nie gewählt (dann gilt die Region des Geräts),
+     * leeres Land = keine Feiertage. Region leer = ganzes Land.
+     */
+    val holidayChoice: Flow<Pair<String, String>?> = store.data.map { prefs ->
+        prefs[HOLIDAY_COUNTRY]?.let { it to (prefs[HOLIDAY_REGION] ?: "") }
+    }
+
+    suspend fun setHolidayChoice(country: String, region: String) {
+        store.edit {
+            it[HOLIDAY_COUNTRY] = country
+            it[HOLIDAY_REGION] = region
+        }
+    }
+
+    /** Diagnose freigeschaltet (7× auf die Versionszeile getippt). */
+    val diagnostics: Flow<Boolean> = store.data.map { it[DIAGNOSTICS] ?: false }
+
+    suspend fun setDiagnostics(shown: Boolean) {
+        store.edit { it[DIAGNOSTICS] = shown }
+    }
+
+    /** Zuletzt gewählte Dauer des Powernaps in Minuten. */
+    val napMinutes: Flow<Int> = store.data.map {
+        (it[NAP_MINUTES] ?: Transient.NAP_DEFAULT_MINUTES).coerceIn(Transient.NAP_MIN_MINUTES, Transient.NAP_MAX_MINUTES)
+    }
+
+    suspend fun setNapMinutes(minutes: Int) {
+        store.edit { it[NAP_MINUTES] = minutes }
+    }
+
+    /** Alle Einstellungen für die Sicherung. */
+    suspend fun backupSettings(): BackupSettings {
+        val prefs = store.data.first()
+        return BackupSettings(
+            sleepGoal = sleepGoal.first(),
+            bedtimeReminder = prefs[BEDTIME_REMINDER] ?: false,
+            weeklyReview = prefs[WEEKLY_REVIEW] ?: false,
+            soundRecDefault = prefs[SOUND_REC_DEFAULT] ?: false,
+            theme = themeMode.first().name,
+            holidayCountry = prefs[HOLIDAY_COUNTRY].orEmpty(),
+            holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
+        )
+    }
+
+    /** Übernimmt die Einstellungen einer Sicherung; ein unbekanntes Design wird «System». */
+    suspend fun restore(settings: BackupSettings) {
+        store.edit {
+            it[SLEEP_GOAL] = SleepGoal.clamp(settings.sleepGoal)
+            it[BEDTIME_REMINDER] = settings.bedtimeReminder
+            it[WEEKLY_REVIEW] = settings.weeklyReview
+            it[SOUND_REC_DEFAULT] = settings.soundRecDefault
+            it[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
+            it[HOLIDAY_COUNTRY] = settings.holidayCountry
+            it[HOLIDAY_REGION] = settings.holidayRegion
+        }
+    }
+
     private companion object {
+        val ONBOARDING_DONE = booleanPreferencesKey("onboarding_done")
+        val HOLIDAY_COUNTRY = stringPreferencesKey("holiday_country")
+        val HOLIDAY_REGION = stringPreferencesKey("holiday_region")
+        val DIAGNOSTICS = booleanPreferencesKey("diagnostics")
+        val NAP_MINUTES = intPreferencesKey("nap_minutes")
         val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")
         val SOUND_REC_NIGHT = stringPreferencesKey("sound_rec_night")
         val WEEKLY_REVIEW = booleanPreferencesKey("weekly_review")

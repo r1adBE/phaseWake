@@ -191,6 +191,196 @@
         }
       }
     },
+    "NSFaceIDUsageDescription": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يطلب Phase Wake استخدام Face ID قبل حذف سجلك أو استبدال بياناتك."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake si vyžádá Face ID, než smaže tvou historii nebo nahradí tvoje data."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake beder om Face ID, før din historik slettes, eller dine data erstattes."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake fragt nach Face ID, bevor dein Verlauf gelöscht oder deine Daten ersetzt werden."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake ζητά Face ID πριν διαγραφεί το ιστορικό σου ή αντικατασταθούν τα δεδομένα σου."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake te pide Face ID antes de borrar tu historial o reemplazar tus datos."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake پیش از حذف تاریخچه یا جایگزینی داده‌هایت Face ID را درخواست می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake pyytää Face ID:tä ennen kuin historiasi poistetaan tai tietosi korvataan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake demande Face ID avant de supprimer ton historique ou de remplacer tes données."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Phase Wake מבקש Face ID לפני מחיקת ההיסטוריה שלך או החלפת הנתונים שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हारा इतिहास हटाने या तुम्हारा डेटा बदलने से पहले Phase Wake Face ID माँगता है।"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake Face ID-t kér, mielőtt törölné az előzményeidet vagy lecserélné az adataidat."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meminta Face ID sebelum riwayatmu dihapus atau datamu diganti."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake chiede Face ID prima di eliminare la tua cronologia o sostituire i tuoi dati."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wakeは、履歴を削除したりデータを置き換えたりする前にFace IDを求めます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake는 기록을 삭제하거나 데이터를 바꾸기 전에 Face ID를 요청합니다."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meminta Face ID sebelum sejarahmu dipadam atau datamu diganti."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ber om Face ID før historikken din slettes eller dataene dine erstattes."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vraagt om Face ID voordat je geschiedenis wordt verwijderd of je gegevens worden vervangen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake prosi o Face ID, zanim usunie twoją historię lub zastąpi twoje dane."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake pede o Face ID antes de apagar seu histórico ou substituir seus dados."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake pede o Face ID antes de apagar o teu histórico ou substituir os teus dados."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake îți cere Face ID înainte de a-ți șterge istoricul sau de a-ți înlocui datele."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake запрашивает Face ID, прежде чем удалить твою историю или заменить твои данные."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ber om Face ID innan din historik raderas eller dina data ersätts."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake จะขอ Face ID ก่อนลบประวัติหรือแทนที่ข้อมูลของคุณ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, geçmişin silinmeden veya verilerin değiştirilmeden önce Face ID ister."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake запитує Face ID, перш ніж видалити твою історію або замінити твої дані."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake yêu cầu Face ID trước khi xóa lịch sử hoặc thay thế dữ liệu của bạn."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake会在删除你的记录或替换你的数据前请求Face ID。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake會在刪除你的紀錄或取代你的資料前要求Face ID。"
+          }
+        }
+      }
+    },
     "NSHealthShareUsageDescription": {
       "localizations": {
         "ar": {

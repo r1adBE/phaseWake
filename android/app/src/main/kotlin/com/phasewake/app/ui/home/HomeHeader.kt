@@ -68,6 +68,8 @@ internal fun Header(
     /** `null`: Limit erreicht, kein Knopf «Neuer Wecker». */
     onAdd: (() -> Unit)?,
     onEdit: (String) -> Unit,
+    /** Datum eines Feiertags, an dem ein Wecker nicht weckt (schon formatiert); `null` = keiner. */
+    holidayNote: String? = null,
 ) {
     val context = LocalContext.current
     // In Vorschau und Bildschirmfotos gibt es keinen zweiten Frame: dort gleich sichtbar.
@@ -119,6 +121,7 @@ internal fun Header(
                             style = MaterialTheme.typography.bodyMedium,
                             color = Night.Muted,
                         )
+                        holidayNote?.let { HolidayNote(it) }
                         HeroWave(Modifier.fillMaxWidth().height(76.dp).padding(top = 18.dp), windowFraction = 0.32f, onNight = true)
                     } else {
                         Text(
@@ -128,6 +131,7 @@ internal fun Header(
                             modifier = Modifier.padding(top = 2.dp),
                         )
                         Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
+                        holidayNote?.let { HolidayNote(it) }
                         HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
                         if (onAdd != null) {
                             Button(
@@ -144,6 +148,12 @@ internal fun Header(
             }
         }
     }
+}
+
+/** «Do., 30.10.: Feiertag – nicht geweckt». */
+@Composable
+private fun HolidayNote(day: String) {
+    Text(stringResource(R.string.home_holiday_skipped, day), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
 }
 
 /** «Heute», «Morgen» oder der Wochentag («Montag») – nie «Morgen» für einen Tag weiter weg. */

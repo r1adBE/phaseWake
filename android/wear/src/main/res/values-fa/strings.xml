@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">چرت تا %1$s</string>
 
     <string name="home_no_alarm">زنگی تنظیم نشده</string>
-    <string name="home_no_alarm_hint">زنگ‌ها را در Phase Wake روی گوشی تنظیم کن.</string>
+    <string name="home_no_alarm_hint">زنگ بساز – همین‌جا یا در Phase Wake روی گوشی.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">امروز</string>
     <string name="home_tomorrow">فردا</string>
@@ -60,4 +60,25 @@
     <string name="editor_delete_title">این زنگ حذف شود؟</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
     <string name="editor_enabled">زنگ روشن</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">دفعهٔ بعد رد شود</string>
+    <string name="alarm_skipped">رد شد: %1$s</string>
+    <string name="nap_title">چرت کوتاه</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d دقیقه</item>
+        <item quantity="other">%1$d دقیقه</item>
+    </plurals>
+    <string name="nap_start">شروع</string>
+    <string name="nap_running">تا %1$s</string>
+    <string name="nap_stop">پایان چرت</string>
+    <string name="diag_title">عیب‌یابی</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">%1$d بار دیگر</item>
+        <item quantity="other">%1$d بار دیگر</item>
+    </plurals>
+    <string name="diag_clear">پاک کردن</string>
+    <string name="diag_hide">پنهان کردن عیب‌یابی</string>
+    <string name="diag_empty">هنوز رویدادی نیست.</string>
+    <string name="diag_next">زنگ بعدی: %1$s</string>
+    <string name="diag_version">نسخهٔ %1$s</string>
 </resources>

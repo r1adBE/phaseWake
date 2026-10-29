@@ -20,7 +20,7 @@
     <string name="ring_snoozed_until">Szundi eddig: %1$s</string>
 
     <string name="home_no_alarm">Nincs ébresztő beállítva</string>
-    <string name="home_no_alarm_hint">Állíts be ébresztőt a telefonod Phase Wake appjában.</string>
+    <string name="home_no_alarm_hint">Hozz létre ébresztőt – itt vagy a telefonon a Phase Wake-ben.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Ma</string>
     <string name="home_tomorrow">Holnap</string>
@@ -60,4 +60,25 @@
     <string name="editor_delete_title">Törlöd ezt az ébresztőt?</string>
     <string name="home_max_alarms">Legfeljebb %1$d ébresztő – törölj egyet, hogy újat adhass hozzá.</string>
     <string name="editor_enabled">Ébresztő be</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Következő alkalom kihagyása</string>
+    <string name="alarm_skipped">Kihagyva: %1$s</string>
+    <string name="nap_title">Szunyókálás</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d perc</item>
+        <item quantity="other">%1$d perc</item>
+    </plurals>
+    <string name="nap_start">Indítás</string>
+    <string name="nap_running">Eddig: %1$s</string>
+    <string name="nap_stop">Szunyókálás befejezése</string>
+    <string name="diag_title">Diagnosztika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Még %1$d koppintás</item>
+        <item quantity="other">Még %1$d koppintás</item>
+    </plurals>
+    <string name="diag_clear">Ürítés</string>
+    <string name="diag_hide">Diagnosztika elrejtése</string>
+    <string name="diag_empty">Még nincs esemény.</string>
+    <string name="diag_next">Következő ébresztő: %1$s</string>
+    <string name="diag_version">Verzió: %1$s</string>
 </resources>

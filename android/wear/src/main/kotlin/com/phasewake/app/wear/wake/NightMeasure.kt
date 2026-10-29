@@ -6,6 +6,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.lifecycleScope
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.Decision
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.Sunrise
@@ -92,7 +93,7 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
     lifecycleScope.launch {
         // Wecker und kalibrierte Schwellen laden. Auch wenn schon geweckt wird (Neustart zur
         // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
-        val spec = app.alarms.current().alarms.firstOrNull { it.id == plan.alarmId }
+        val spec = app.specFor(plan.alarmId)
         val config = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load()))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
@@ -105,6 +106,7 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
         }
         when (current.phase) {
             Phase.MEASURING -> {
+                app.diag.log(DiagKind.MEASURE_START, if (canMeasure) "window ${plan.windowStart}" else "no sensors, wake at target")
                 current.detector = WakeDetector(config)
                 if (canMeasure) startSensors(current)
                 // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
@@ -169,6 +171,7 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
         val decision = n.detector.onEpoch(epoch)
         if (decision is Decision.Wake) {
             n.reason = decision.reason
+            app.diag.log(DiagKind.PHASE, decision.reason.name)
             ring()
             return
         }

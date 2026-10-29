@@ -18,51 +18,37 @@ final class BedtimeReminder {
         _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
     }
 
-    func reschedule(alarms: [AlarmSpec], doneUntil: [String: Date], goalMinutes: Int, enabled: Bool) async {
+    func reschedule(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>) async {
         let previous = queue
         let task = Task { @MainActor in
             await previous?.value
-            await self.rescheduleNow(alarms: alarms, doneUntil: doneUntil, goalMinutes: goalMinutes, enabled: enabled)
+            await self.rescheduleNow(alarms: alarms, goalMinutes: goalMinutes, enabled: enabled, holidays: holidays)
         }
         queue = task
         await task.value
     }
 
-    private func rescheduleNow(alarms: [AlarmSpec], doneUntil: [String: Date], goalMinutes: Int, enabled: Bool) async {
+    /// Je Nacht zählt nur der früheste Wecker; eine schon verpasste Erinnerung entfällt (Regel im Kern, `Bedtime.next`).
+    private func rescheduleNow(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>) async {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.nightsAhead).map(Self.identifier))
         guard enabled else { return }
-        let now = Date()
         let calendar = Calendar.current
-        var from = now
-        var skip = Set<String>()
-        var lastNight: String?
-        var index = 0
-        // Je Nacht zählt nur der früheste Wecker; begrenzt, falls viele Wecker am selben Morgen stehen.
-        for _ in 0..<(Self.nightsAhead * 8) {
-            guard index < Self.nightsAhead,
-                  let plan = AlarmSchedule.earliestPlan(alarms.filter { !skip.contains($0.id) }, now: from, doneUntil: doneUntil, calendar: calendar)
-            else { break }
-            from = plan.target
-            // Einmaliger Wecker: nur sein nächstes Vorkommen.
-            if alarms.first(where: { $0.id == plan.alarmId })?.isOneShot == true { skip.insert(plan.alarmId) }
-            let night = SleepNotes.nightDate(plan.windowStart, calendar: calendar)
-            guard night != lastNight else { continue }
-            lastNight = night
-            let at = Bedtime.reminderAt(nextAlarmTarget: plan.target, goalMinutes: goalMinutes)
-            // Schon vorbei: diese Nacht ohne Erinnerung.
-            guard at > now else { continue }
+        var from = Date()
+        for index in 0..<Self.nightsAhead {
+            guard let reminder = Bedtime.next(alarms, from: from, calendar: calendar, goalMinutes: goalMinutes, holidays: holidays) else { break }
+            // Die nächste Erinnerung liegt echt nach dieser: so folgt die nächste Nacht.
+            from = reminder.at
             let content = UNMutableNotificationContent()
             content.title = L("bedtime_title")
             content.body = L("bedtime_notification",
-                             Format.time(Bedtime.bedtime(nextAlarmTarget: plan.target, goalMinutes: goalMinutes)),
+                             Format.time(reminder.bedtime),
                              Format.duration(minutes: goalMinutes),
-                             Format.time(plan.target))
+                             Format.time(reminder.target))
             content.sound = .default
-            let parts = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: at)
+            let parts = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: reminder.at)
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
             try? await center.add(UNNotificationRequest(identifier: Self.identifier(index), content: content, trigger: trigger))
-            index += 1
         }
     }
 }

@@ -12,14 +12,15 @@ extension AlarmSpec {
         )
     }
 
-    /// Kopie mit Zeit, Fenster, Tagen und Ein/Aus aus `draft`; alles andere (Sonnenaufgang, Töne,
-    /// iPhone-Wecker, Aufgabe, Schlafdauer, Name) bleibt, wie es am iPhone eingestellt ist.
+    /// Kopie mit Zeit, Fenster, Tagen, Ein/Aus und «Nächstes Mal überspringen» aus `draft`; alles andere
+    /// (Sonnenaufgang, Töne, iPhone-Wecker, Aufgabe, Schlafdauer, Name, Feiertage) bleibt, wie es am iPhone eingestellt ist.
     func editedOnWatch(from draft: AlarmSpec) -> AlarmSpec {
         // Werte stammen aus gültigen Weckern; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
             id: id, hour: draft.hour, minute: draft.minute, days: draft.days, windowMinutes: draft.windowMinutes,
             enabled: draft.enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
-            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice
+            sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice,
+            skipUntil: draft.skipUntil, skipHolidays: skipHolidays
         )
     }
 }
@@ -39,6 +40,8 @@ struct WatchEditorView: View {
     @State private var window = AlarmSpec.defaultWindowMinutes
     @State private var days: Set<Weekday> = []
     @State private var enabled = true
+    /// «Nächstes Mal überspringen» (nur wiederholte Wecker).
+    @State private var skipNext = false
     @State private var loaded = false
     @State private var confirmDelete = false
 
@@ -85,6 +88,14 @@ struct WatchEditorView: View {
                 }
                 Section {
                     Toggle(L("editor_enabled"), isOn: $enabled).tint(Brand.echo)
+                    if !days.isEmpty {
+                        Toggle(L("alarm_skip"), isOn: $skipNext).tint(Brand.echo)
+                        if skipNext, let date = AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) {
+                            Text(L("alarm_skipped", Format.shortDay(date)))
+                                .font(Fonts.manrope(12, relativeTo: .footnote))
+                                .foregroundStyle(Brand.muted)
+                        }
+                    }
                 }
                 if !isNew {
                     Section {
@@ -120,6 +131,7 @@ struct WatchEditorView: View {
         window = start.windowMinutes
         days = start.days
         enabled = start.enabled
+        skipNext = AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) != nil
     }
 
     private func save() {
@@ -127,11 +139,19 @@ struct WatchEditorView: View {
             id: start.id, hour: hour, minute: minute, days: days, windowMinutes: window, enabled: enabled,
             phone: start.phone, watchSound: start.watchSound, sleepDurationMinutes: start.sleepDurationMinutes,
             sound: start.sound, label: start.label, sunrise: start.sunrise, wakeTask: start.wakeTask,
-            sunriseDevice: start.sunriseDevice
+            sunriseDevice: start.sunriseDevice, skipHolidays: start.skipHolidays
         ) {
-            model.save(draft)
+            model.save(withSkip(draft))
         }
         dismiss()
+    }
+
+    /// Überspringen behalten, wenn es schon galt und Zeit und Tage gleich sind; sonst neu für den nächsten Termin.
+    private func withSkip(_ draft: AlarmSpec) -> AlarmSpec {
+        guard skipNext, !draft.isOneShot else { return AlarmSchedule.undoSkip(draft) }
+        let unchanged = draft.hour == start.hour && draft.minute == start.minute && draft.days == start.days
+        if unchanged, AlarmSchedule.skippedDate(start, now: Date(), calendar: .current) != nil { return draft.with(skipUntil: start.skipUntil) }
+        return AlarmSchedule.skipNext(AlarmSchedule.undoSkip(draft), now: Date(), calendar: .current, holidays: model.storage.holidays.dates)
     }
 
     /// Wochentage ab dem Wochenbeginn der Region (z. B. Sonntag in den USA).

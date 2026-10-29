@@ -7,6 +7,8 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     /// Wecker im Editor: ein bestehender oder ein neuer (dann noch nicht in der Liste).
     @State private var editing: AlarmSpec?
+    @State private var choosingNap = false
+    @State private var diagUnlocked = DiagStore.shared.unlocked
 
     var body: some View {
         NavigationStack {
@@ -20,6 +22,7 @@ struct HomeView: View {
                         .foregroundStyle(Brand.muted)
                         .listRowBackground(Color.clear)
                 }
+                WatchNapRow(choosing: $choosingNap)
                 if let night = model.storage.nights().last {
                     // Letzte Nacht: wann und warum geweckt wurde.
                     VStack(spacing: 1) {
@@ -70,9 +73,16 @@ struct HomeView: View {
                         .foregroundStyle(Brand.muted)
                         .listRowBackground(Color.clear)
                 }
+                if diagUnlocked {
+                    NavigationLink(L("diag_title")) { WatchDiagView(unlocked: $diagUnlocked) }
+                }
+                WatchVersionRow(unlocked: $diagUnlocked).listRowBackground(Color.clear)
             }
             .background(NightSky(strength: 0.55))
             .scrollContentBackground(.hidden)
+        }
+        .sheet(isPresented: $choosingNap) {
+            NavigationStack { WatchNapView() }.environment(model)
         }
         .sheet(item: $editing) { alarm in
             WatchEditorView(start: alarm, isNew: !model.alarms.contains { $0.id == alarm.id })

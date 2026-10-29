@@ -108,4 +108,21 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.notes(), [:])
         XCTAssertEqual(s.customNotes().count, 1)
     }
+
+    /// Wiederherstellen ersetzt Nächte und Notizen; die Uhr merkt sich die Feiertage.
+    func testReplaceForRestoreAndHolidays() {
+        let s = storage()
+        let start = Date(timeIntervalSince1970: 1_793_165_400)
+        let night = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(600),
+                                reason: .awake, snoozes: 0, epochs: [])
+        s.add(NightRecord(alarmId: "old", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start, reason: .deadline, snoozes: 0, epochs: []))
+        s.replaceNights([night, night])
+        XCTAssertEqual(s.nights(), [night])
+        s.setNotes(["NAP"], nightDate: "2026-10-26")
+        XCTAssertEqual(s.replaceNotes(["2026-10-27": ["SICK"]]), ["2026-10-27": ["SICK"]])
+        XCTAssertEqual(s.notes(), ["2026-10-27": ["SICK"]])
+        XCTAssertEqual(s.holidays, HolidayList(region: "", dates: []))
+        s.holidays = HolidayList(region: "CH-BE", dates: ["2026-12-25"])
+        XCTAssertEqual(s.holidays, HolidayList(region: "CH-BE", dates: ["2026-12-25"]))
+    }
 }

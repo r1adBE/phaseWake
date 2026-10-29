@@ -22,7 +22,7 @@
     <string name="ring_snoozed_until">Odloženo do %1$s</string>
 
     <string name="home_no_alarm">Žádný budík</string>
-    <string name="home_no_alarm_hint">Nastav budíky v Phase Wake v telefonu.</string>
+    <string name="home_no_alarm_hint">Vytvoř budík – tady nebo v Phase Wake v telefonu.</string>
     <string name="home_window">%1$s – %2$s</string>
     <string name="home_today">Dnes</string>
     <string name="home_tomorrow">Zítra</string>
@@ -62,4 +62,29 @@
     <string name="editor_delete_title">Smazat tento budík?</string>
     <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>
     <string name="editor_enabled">Budík zapnutý</string>
+    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <string name="alarm_skip">Příště přeskočit</string>
+    <string name="alarm_skipped">Přeskočeno: %1$s</string>
+    <string name="nap_title">Šlofík</string>
+    <plurals name="nap_minutes">
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minuty</item>
+        <item quantity="many">%1$d minuty</item>
+        <item quantity="other">%1$d minut</item>
+    </plurals>
+    <string name="nap_start">Spustit</string>
+    <string name="nap_running">Do %1$s</string>
+    <string name="nap_stop">Ukončit šlofíka</string>
+    <string name="diag_title">Diagnostika</string>
+    <plurals name="diag_taps_left">
+        <item quantity="one">Ještě %1$d krát</item>
+        <item quantity="few">Ještě %1$d krát</item>
+        <item quantity="many">Ještě %1$d krát</item>
+        <item quantity="other">Ještě %1$d krát</item>
+    </plurals>
+    <string name="diag_clear">Vymazat</string>
+    <string name="diag_hide">Skrýt diagnostiku</string>
+    <string name="diag_empty">Zatím žádné události.</string>
+    <string name="diag_next">Další budík: %1$s</string>
+    <string name="diag_version">Verze %1$s</string>
 </resources>

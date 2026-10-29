@@ -82,6 +82,7 @@ fun SettingsScreen(
     routineItems: List<RoutineItem> = emptyList(),
     onAddRoutineItem: (String) -> Unit = {},
     onRemoveRoutineItem: (String) -> Unit = {},
+    extras: SettingsExtras = SettingsExtras(),
 ) {
     val uri = LocalUriHandler.current
     Column(
@@ -142,6 +143,10 @@ fun SettingsScreen(
             SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
         }
 
+        extras.onTest?.let { TestGroup(it) }
+
+        extras.holidays?.let { HolidaysGroup(it) }
+
         CustomNotesGroup(customNotes, onAddCustomNote, onRenameCustomNote, onDeleteCustomNote)
 
         RoutineGroup(routineItems, onAddRoutineItem, onRemoveRoutineItem)
@@ -150,37 +155,7 @@ fun SettingsScreen(
             SwitchRow(stringResource(R.string.sound_rec_default), stringResource(R.string.sound_rec_default_hint), soundRecDefault, onSoundRecDefault)
         }
 
-        Group(stringResource(R.string.settings_data)) {
-            Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
-            Column(Modifier.fillMaxWidth().clickable(enabled = canExport, onClick = onExport).padding(vertical = 10.dp)) {
-                Text(
-                    stringResource(R.string.settings_export),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = if (canExport) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(stringResource(R.string.settings_export_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-            var confirm by remember { mutableStateOf(false) }
-            Text(
-                stringResource(R.string.settings_clear_history),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
-            )
-            if (confirm) {
-                AlertDialog(
-                    onDismissRequest = { confirm = false },
-                    title = { Text(stringResource(R.string.settings_clear_history)) },
-                    text = { Text(stringResource(R.string.settings_clear_history_text)) },
-                    confirmButton = {
-                        TextButton(onClick = { confirm = false; onClearHistory() }) {
-                            Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)
-                        }
-                    },
-                    dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
-                )
-            }
-        }
+        DataGroup(onExport, canExport, onClearHistory, extras)
 
         Group(stringResource(R.string.health_connect)) {
             Text(stringResource(R.string.health_connect_hint), style = MaterialTheme.typography.bodyMedium)
@@ -200,156 +175,7 @@ fun SettingsScreen(
             }
         }
 
-        Group(stringResource(R.string.settings_about)) {
-            Text(
-                stringResource(R.string.settings_open_source),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable { uri.openUri(REPO_URL) }.padding(vertical = 8.dp),
-            )
-            Text(
-                stringResource(R.string.settings_privacy),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable { uri.openUri(PRIVACY_URL) }.padding(vertical = 8.dp),
-            )
-            Text(
-                stringResource(R.string.settings_support),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable { uri.openUri(SPONSOR_URL) }.padding(top = 8.dp),
-            )
-            Text(stringResource(R.string.settings_support_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 8.dp))
-            Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 4.dp))
-            Text(stringResource(R.string.settings_licenses_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Text(
-                stringResource(R.string.settings_version, version),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 12.dp),
-            )
-        }
-    }
-}
-
-/** Eigene Schlafnotizen: hinzufügen, umbenennen, löschen (höchstens [SleepNotes.MAX_CUSTOM]). */
-@Composable
-private fun CustomNotesGroup(
-    notes: List<CustomNote>,
-    onAdd: (String) -> Unit,
-    onRename: (String, String) -> Unit,
-    onDelete: (String) -> Unit,
-) {
-    // Bearbeitete Notiz: `null` = keine, leere Kennung = neue Notiz.
-    var editing by remember { mutableStateOf<CustomNote?>(null) }
-    Group(stringResource(R.string.notes_custom_title)) {
-        Text(
-            stringResource(R.string.notes_custom_hint, SleepNotes.MAX_CUSTOM),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        notes.forEach { note ->
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(note.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-                TextButton(onClick = { editing = note }) { Text(stringResource(R.string.notes_custom_rename)) }
-                IconButton(onClick = { onDelete(note.id) }) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, note.name))
-                }
-            }
-        }
-        if (notes.size < SleepNotes.MAX_CUSTOM) {
-            TextButton(onClick = { editing = CustomNote("", "") }, contentPadding = PaddingValues(0.dp)) {
-                Text(stringResource(R.string.notes_custom_add))
-            }
-        }
-    }
-    editing?.let { note ->
-        var name by remember(note) { mutableStateOf(note.name) }
-        AlertDialog(
-            onDismissRequest = { editing = null },
-            title = { Text(stringResource(if (note.id.isEmpty()) R.string.notes_custom_add else R.string.notes_custom_rename)) },
-            text = {
-                OutlinedTextField(
-                    value = name,
-                    onValueChange = { name = it.replace("\n", "").take(SleepNotes.MAX_NAME_LENGTH) },
-                    label = { Text(stringResource(R.string.editor_label)) },
-                    singleLine = true,
-                )
-            },
-            confirmButton = {
-                TextButton(
-                    enabled = SleepNotes.cleanName(name).isNotEmpty(),
-                    onClick = {
-                        if (note.id.isEmpty()) onAdd(name) else onRename(note.id, name)
-                        editing = null
-                    },
-                ) { Text(stringResource(R.string.editor_save)) }
-            },
-            dismissButton = { TextButton(onClick = { editing = null }) { Text(stringResource(R.string.action_cancel)) } },
-        )
-    }
-}
-
-/** Zeile mit Titel, Erklärung und Schalter; die ganze Zeile schaltet. */
-@Composable
-private fun SwitchRow(title: String, text: String, checked: Boolean, onChange: (Boolean) -> Unit) {
-    Row(
-        Modifier.fillMaxWidth().toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(Modifier.weight(1f).padding(end = 12.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall)
-            Text(text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        Switch(checked = checked, onCheckedChange = null)
-    }
-}
-
-/** Abendroutine: Punkte hinzufügen und entfernen (höchstens [Routine.MAX_ITEMS]). */
-@Composable
-private fun RoutineGroup(items: List<RoutineItem>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
-    val context = LocalContext.current
-    var adding by remember { mutableStateOf(false) }
-    Group(stringResource(R.string.routine_title)) {
-        items.forEach { item ->
-            val name = routineName(context, item)
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-                IconButton(onClick = { onRemove(item.id) }) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, name))
-                }
-            }
-        }
-        if (items.size < Routine.MAX_ITEMS) {
-            TextButton(onClick = { adding = true }, contentPadding = PaddingValues(0.dp)) {
-                Text(stringResource(R.string.routine_add))
-            }
-        }
-    }
-    if (adding) {
-        var text by remember { mutableStateOf("") }
-        AlertDialog(
-            onDismissRequest = { adding = false },
-            title = { Text(stringResource(R.string.routine_add)) },
-            text = {
-                OutlinedTextField(
-                    value = text,
-                    onValueChange = { text = it.replace("\n", "").take(Routine.MAX_TEXT_LENGTH) },
-                    label = { Text(stringResource(R.string.editor_label)) },
-                    singleLine = true,
-                )
-            },
-            confirmButton = {
-                TextButton(
-                    enabled = Routine.cleanText(text).isNotEmpty(),
-                    onClick = {
-                        onAdd(text)
-                        adding = false
-                    },
-                ) { Text(stringResource(R.string.editor_save)) }
-            },
-            dismissButton = { TextButton(onClick = { adding = false }) { Text(stringResource(R.string.action_cancel)) } },
-        )
+        AboutGroup(version, extras)
     }
 }
 
@@ -357,20 +183,7 @@ private fun RoutineGroup(items: List<RoutineItem>, onAdd: (String) -> Unit, onRe
 enum class HealthState { UNAVAILABLE, UPDATE_REQUIRED, AVAILABLE, CONNECTED }
 
 private const val HEALTH_CONNECT_STORE = "https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata"
-private const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
-private const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
-private const val REPO_URL = "https://github.com/r1adBE/phaseWake"
+internal const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
+internal const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
+internal const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 
-@Composable
-private fun Group(title: String, content: @Composable ColumnScope.() -> Unit) {
-    Card(
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(title, style = MaterialTheme.typography.titleMedium)
-            content()
-        }
-    }
-}
