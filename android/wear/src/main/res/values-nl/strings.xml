@@ -81,4 +81,6 @@
     <string name="diag_empty">Nog geen gebeurtenissen.</string>
     <string name="diag_next">Volgende wekker: %1$s</string>
     <string name="diag_version">Versie %1$s</string>
+    <string name="transient_alarm_running">Je wekker loopt op dit moment.</string>
+    <string name="transient_alarm_soon">Je wekvenster begint al eerder.</string>
 </resources>

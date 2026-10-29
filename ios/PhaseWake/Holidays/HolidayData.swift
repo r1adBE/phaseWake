@@ -111,6 +111,7 @@ final class HolidayStore {
     @discardableResult
     func load() async -> Bool {
         if database == nil { database = await Task.detached(priority: .utility) { HolidayDatabase.load() }.value }
+        validateRegion()
         return refresh()
     }
 
@@ -124,13 +125,26 @@ final class HolidayStore {
         return true
     }
 
-    /// Neue Wahl; eine Region gehört immer zum Land (sonst ganzes Land).
+    /// Neue Wahl; eine Region gehört immer zum Land (sonst ganzes Land). Solange die Daten noch laden (z. B.
+    /// Wiederherstellen direkt nach dem Start), bleibt die Region ungeprüft stehen; `load` prüft sie danach.
     func select(country: String, region: String) {
         self.country = country
-        self.region = database?.countries[country]?.regions[region] != nil ? region : ""
-        UserDefaults.standard.set(self.country, forKey: Self.countryKey)
-        UserDefaults.standard.set(self.region, forKey: Self.regionKey)
+        self.region = region
+        validateRegion()
+        save()
         refresh()
         if database == nil { dates = [] }
+    }
+
+    /// Region, die es im Land nicht gibt, wird zu «ganzes Land»; ohne Daten keine Prüfung.
+    private func validateRegion() {
+        guard let database, !region.isEmpty, database.countries[country]?.regions[region] == nil else { return }
+        region = ""
+        save()
+    }
+
+    private func save() {
+        UserDefaults.standard.set(country, forKey: Self.countryKey)
+        UserDefaults.standard.set(region, forKey: Self.regionKey)
     }
 }

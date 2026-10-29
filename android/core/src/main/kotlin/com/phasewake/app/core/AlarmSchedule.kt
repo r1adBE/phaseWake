@@ -5,6 +5,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 /** Zeitplan einer Weck-Nacht: wann das Fenster beginnt und wann spätestens geweckt wird. */
@@ -39,8 +40,8 @@ object AlarmSchedule {
      * Nächste Zielzeit des Weckers, die echt nach [now] liegt, oder `null`, wenn er aus ist.
      *
      * Läuft das Fenster schon (now zwischen Fensterbeginn und Zielzeit), ist das die heutige Zielzeit.
-     * Bei wiederholten Weckern fallen Termine bis [AlarmSpec.skipUntil] aus und – mit
-     * [AlarmSpec.skipHolidays] – solche, deren Datum (in [zone]) in [holidays] liegt.
+     * Bei wiederholten Weckern fallen Termine bis [AlarmSpec.skipUntil] (Wandzeit, siehe [wallMillis]) aus und
+     * – mit [AlarmSpec.skipHolidays] – solche, deren Datum (in [zone]) in [holidays] liegt.
      */
     fun nextTarget(spec: AlarmSpec, now: Instant, zone: ZoneId, holidays: Set<LocalDate> = emptySet()): Instant? {
         if (!spec.enabled) return null
@@ -51,7 +52,7 @@ object AlarmSchedule {
             val date = today.plusDays(offset)
             if (!spec.isOneShot && date.dayOfWeek !in spec.days) continue
             val target = ZonedDateTime.of(date, time, zone).toInstant()
-            if (target.isAfter(now) && !dropped(spec, target, date, holidays)) return target
+            if (target.isAfter(now) && !dropped(spec, wallMillis(target, zone), date, holidays)) return target
         }
         return null
     }
@@ -60,12 +61,20 @@ object AlarmSchedule {
     private fun mayDrop(spec: AlarmSpec, holidays: Set<LocalDate>): Boolean =
         !spec.isOneShot && (spec.skipUntil > 0L || (spec.skipHolidays && holidays.isNotEmpty()))
 
-    /** Ob der Termin [target] am Datum [date] ausfällt: übersprungen oder Feiertag. */
-    private fun dropped(spec: AlarmSpec, target: Instant, date: LocalDate, holidays: Set<LocalDate>): Boolean {
+    /** Ob der Termin mit Wandzeit [wall] ([wallMillis]) am Datum [date] ausfällt: übersprungen oder Feiertag. */
+    private fun dropped(spec: AlarmSpec, wall: Long, date: LocalDate, holidays: Set<LocalDate>): Boolean {
         if (spec.isOneShot) return false
-        if (target.toEpochMilli() <= spec.skipUntil) return true
+        if (wall <= spec.skipUntil) return true
         return spec.skipHolidays && date in holidays
     }
+
+    /**
+     * Wandzeit von [at] in [zone] in Millisekunden: Datum und Uhrzeit vor Ort, gezählt, als wäre es UTC
+     * (2026-10-29 07:00 in Zürich und in New York ergibt dieselbe Zahl). So speichert [AlarmSpec.skipUntil] den
+     * übersprungenen Termin: Auf Reisen fällt derselbe Kalendertag aus, nicht derselbe absolute Zeitpunkt.
+     */
+    fun wallMillis(at: Instant, zone: ZoneId): Long =
+        at.atZone(zone).toLocalDateTime().toInstant(ZoneOffset.UTC).toEpochMilli()
 
     /** Plan für die nächste Nacht des Weckers, oder `null`, wenn er aus ist. Ausfälle wie bei [nextTarget]. */
     fun nextPlan(spec: AlarmSpec, now: Instant, zone: ZoneId, holidays: Set<LocalDate> = emptySet()): WakePlan? {
@@ -73,27 +82,95 @@ object AlarmSchedule {
         return WakePlan(spec.id, windowStart(target, spec.windowMinutes), target)
     }
 
-    /** Der früheste Plan über alle Wecker, oder `null`, wenn keiner aktiv ist. */
-    fun earliestPlan(specs: Collection<AlarmSpec>, now: Instant, zone: ZoneId, holidays: Set<LocalDate> = emptySet()): WakePlan? =
-        specs.mapNotNull { nextPlan(it, now, zone, holidays) }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+    /**
+     * Der früheste Plan über alle Wecker, oder `null`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die
+     * kleinere Kennung. [doneUntil]: pro Wecker erledigt bzw. ausgesetzt bis (früh geweckt, Zweitwecker hat
+     * geklingelt); dieser Wecker sucht erst ab dort. Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
+     */
+    fun earliestPlan(
+        specs: Collection<AlarmSpec>,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        doneUntil: Map<String, Instant> = emptyMap(),
+    ): WakePlan? =
+        specs.mapNotNull { nextPlan(it, searchFrom(now, doneUntil[it.id]), zone, holidays) }
+            .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+
+    /** Ab wann gesucht wird: [now], oder [doneUntil], wenn das später ist (eine erledigte Nacht zählt nicht). */
+    private fun searchFrom(now: Instant, doneUntil: Instant?): Instant =
+        if (doneUntil != null && doneUntil.isAfter(now)) doneUntil else now
 
     /**
-     * «Nächstes Mal überspringen»: [AlarmSpec.skipUntil] auf die nächste Zielzeit nach allen Regeln (auch nach
-     * Feiertagen). Einmal-Wecker, ausgeschaltete Wecker oder ohne Termin: unverändert.
+     * «Nächstes Mal überspringen»: [AlarmSpec.skipUntil] = Wandzeit ([wallMillis]) der nächsten Zielzeit nach allen
+     * Regeln (auch nach Feiertagen), gesucht ab dem späteren von [now] und [doneUntil]. So trifft es nach frühem
+     * Wecken (Nacht erledigt, Zielzeit noch vorn) den nächsten Termin, nicht den schon erledigten heutigen.
+     * Einmal-Wecker, ausgeschaltete Wecker oder ohne Termin: unverändert.
      */
-    fun skipNext(spec: AlarmSpec, now: Instant, zone: ZoneId, holidays: Set<LocalDate> = emptySet()): AlarmSpec {
+    fun skipNext(
+        spec: AlarmSpec,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        doneUntil: Instant? = null,
+    ): AlarmSpec {
         if (spec.isOneShot) return spec
-        val next = nextTarget(spec, now, zone, holidays) ?: return spec
-        return spec.copy(skipUntil = next.toEpochMilli())
+        val next = nextTarget(spec, searchFrom(now, doneUntil), zone, holidays) ?: return spec
+        return spec.copy(skipUntil = wallMillis(next, zone))
+    }
+
+    /**
+     * Datum (in [zone]) des Termins, den [skipNext] mit denselben Werten überspringen würde; für den Menüpunkt
+     * «Do 30.10. überspringen». `null` bei Einmal-Weckern, ausgeschalteten Weckern oder ohne Termin.
+     */
+    fun nextSkipDate(
+        spec: AlarmSpec,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        doneUntil: Instant? = null,
+    ): LocalDate? {
+        if (spec.isOneShot) return null
+        return nextTarget(spec, searchFrom(now, doneUntil), zone, holidays)?.atZone(zone)?.toLocalDate()
+    }
+
+    /**
+     * [AlarmSpec.skipUntil] nach dem Bearbeiten von [old] zu [edited]: bleibt, wenn Stunde, Minute und Tage gleich
+     * sind; sonst 0 (geänderte Zeit oder Tage heben das Überspringen auf, docs/ENTSCHEIDE.md). Schaltet der Nutzer
+     * im selben Bearbeiten «Nächstes Mal überspringen» bewusst ein, ruft der Editor danach [skipNext] auf den neuen
+     * Stand auf.
+     */
+    fun keepSkip(old: AlarmSpec, edited: AlarmSpec): Long =
+        if (old.hour == edited.hour && old.minute == edited.minute && old.days == edited.days) old.skipUntil else 0L
+
+    /**
+     * [AlarmSpec.skipUntil] nach einem Editor mit Schalter «Nächstes Mal überspringen» (Uhr). [edited] trägt den Stand
+     * des Schalters in `skipUntil`: gleich wie bei [old] = nicht angefasst → [keepSkip]; anders und > 0 = bewusst
+     * eingeschaltet → [skipNext] auf den neuen Stand (gilt für den neuen Zeitplan, ab [doneUntil]); 0 = ausgeschaltet → 0.
+     */
+    fun editedSkip(
+        old: AlarmSpec,
+        edited: AlarmSpec,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        doneUntil: Instant? = null,
+    ): Long = when {
+        edited.skipUntil == old.skipUntil -> keepSkip(old, edited)
+        edited.skipUntil > 0L -> skipNext(edited.copy(skipUntil = 0L), now, zone, holidays, doneUntil).skipUntil
+        else -> 0L
     }
 
     /** Hebt das Überspringen auf. */
     fun undoSkip(spec: AlarmSpec): AlarmSpec = spec.copy(skipUntil = 0L)
 
-    /** Datum des übersprungenen Termins, solange er noch bevorsteht ([AlarmSpec.skipUntil] nach [now]); sonst `null`. */
+    /**
+     * Datum des übersprungenen Termins, solange er noch bevorsteht ([AlarmSpec.skipUntil] nach der Wandzeit von [now]
+     * in [zone]); sonst `null`. Das Datum hängt nicht von der Zone ab (Wandzeit).
+     */
     fun skippedDate(spec: AlarmSpec, now: Instant, zone: ZoneId): LocalDate? {
-        if (spec.isOneShot || spec.skipUntil <= now.toEpochMilli()) return null
-        return Instant.ofEpochMilli(spec.skipUntil).atZone(zone).toLocalDate()
+        if (spec.isOneShot || spec.skipUntil <= wallMillis(now, zone)) return null
+        return Instant.ofEpochMilli(spec.skipUntil).atOffset(ZoneOffset.UTC).toLocalDate()
     }
 
     /**
@@ -104,6 +181,24 @@ object AlarmSchedule {
         if (!spec.skipHolidays || spec.isOneShot || holidays.isEmpty()) return null
         val date = nextTarget(spec.copy(skipHolidays = false), now, zone)?.atZone(zone)?.toLocalDate() ?: return null
         return date.takeIf { it in holidays }
+    }
+
+    /**
+     * Hinweis «Do 30.10.: Feiertag – nicht geweckt» der Startseite: der früheste [skippedHoliday] über alle Wecker
+     * (je ab dem späteren von [now] und [doneUntil]), aber nur, wenn er nicht nach dem Datum der Zielzeit des
+     * nächsten Plans ([earliestPlan]) liegt – ein Feiertag hinter dem nächsten Wecken ist noch kein Hinweis.
+     * Ohne Plan zählt jeder. Sonst `null`.
+     */
+    fun holidayNote(
+        specs: Collection<AlarmSpec>,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate>,
+        doneUntil: Map<String, Instant> = emptyMap(),
+    ): LocalDate? {
+        val day = specs.mapNotNull { skippedHoliday(it, searchFrom(now, doneUntil[it.id]), zone, holidays) }.minOrNull() ?: return null
+        val plan = earliestPlan(specs, now, zone, holidays, doneUntil) ?: return day
+        return day.takeIf { !it.isAfter(plan.target.atZone(zone).toLocalDate()) }
     }
 
     /**

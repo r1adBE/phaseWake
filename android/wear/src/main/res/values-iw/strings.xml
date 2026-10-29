@@ -84,4 +84,6 @@
     <string name="diag_empty">עדיין אין אירועים.</string>
     <string name="diag_next">ההשכמה הבאה: %1$s</string>
     <string name="diag_version">גרסה %1$s</string>
+    <string name="transient_alarm_running">ההשכמה שלכם פועלת עכשיו.</string>
+    <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
 </resources>

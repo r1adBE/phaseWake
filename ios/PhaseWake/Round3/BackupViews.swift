@@ -41,9 +41,17 @@ struct BackupSection: View {
             let access = url.startAccessingSecurityScopedResource()
             defer { if access { url.stopAccessingSecurityScopedResource() } }
             do {
+                // Grösse zuerst: Eine versehentlich gewählte grosse Datei (Video) wird nicht ganz gelesen.
+                let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
+                guard Int64(size) <= BackupFile.maxFileBytes else {
+                    message = L("restore_wrong_password")
+                    DiagStore.shared.log(.error, "backup too large: \(size) bytes")
+                    return
+                }
                 restoreFile = try Data(contentsOf: url)
             } catch {
-                message = L("restore_wrong_password")
+                // Nicht lesbar (z. B. in iCloud noch nicht geladen, kein Zugriff): kein Passwortfehler.
+                message = L("restore_unreadable")
                 DiagStore.shared.log(.error, "backup not readable: \(error.localizedDescription)")
             }
         }
@@ -74,7 +82,7 @@ private struct BackupPasswordSheet: View {
     @State private var failed = false
 
     private var problem: String? {
-        if password.count < BackupFile.minPassword { return L("backup_password_short") }
+        if !BackupFile.passwordOk(password) { return L("backup_password_short") }
         if password != repeated { return L("backup_password_mismatch") }
         return nil
     }

@@ -464,4 +464,10 @@
     <string name="diag_unknown">unbekannt</string>
     <string name="diag_none">keiner</string>
     <string name="chart_goal_met">✓ Ziel erreicht</string>
+    <string name="alarm_skip_on">%1$s überspringen</string>
+    <string name="alarm_skip_undo_for">Überspringen rückgängig: %1$s</string>
+    <string name="transient_alarm_running">Gerade läuft dein Wecker.</string>
+    <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
+    <string name="check_watch_update">Phase Wake auf der Uhr aktualisieren</string>
+    <string name="check_watch_update_problem">Bis dahin überspringt die Uhr keine Termine und weckt auch an Feiertagen.</string>
 </resources>

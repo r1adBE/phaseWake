@@ -126,6 +126,10 @@ class PlatformTest {
         assertEquals(55, WearSync.readBattery(status, 10_500L, 1_000L))
         assertNull(WearSync.readBattery(status, 20_000L, 1_000L))
         assertEquals(10_000L, WearSync.readSeenAt(status))
+        assertEquals(Codec.ALARM_FIELDS, WearSync.readAlarmFields(status))
+        // Status einer älteren Uhr ohne Angabe: 0, also ohne Überspringen und Feiertage.
+        assertEquals(0, WearSync.readAlarmFields(DataMap().apply { putBoolean(DataLayer.KEY_READY, true) }))
+        assertFalse(Codec.watchKnowsSkip(WearSync.readAlarmFields(DataMap())))
         val noBattery = DataMap.fromByteArray(WearSync.statusRequest(false, null, 10_000L).data!!)
         assertFalse(WearSync.readReady(noBattery))
         assertNull(WearSync.readBattery(noBattery, 10_000L, 1_000L))
@@ -133,6 +137,12 @@ class PlatformTest {
 
         val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
         assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))
+        val cancel = WearSync.transientCancelRequest("nap-1", 5L)
+        assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)
+        assertTrue(cancel.isUrgent)
+        assertEquals("nap-1", WearSync.readTransientCancel(DataMap.fromByteArray(cancel.data!!)))
+        assertNull(WearSync.readTransientCancel(DataMap()))
+        assertNull(WearSync.readTransientCancel(DataMap().apply { putString(DataLayer.KEY_TEXT, "") }))
         val clear = WearSync.clearRequest(77L)
         assertEquals(DataLayer.PATH_CLEAR_HISTORY, clear.uri.path)
         assertEquals(77L, DataMap.fromByteArray(clear.data!!).getLong(DataLayer.KEY_UPDATED_AT))

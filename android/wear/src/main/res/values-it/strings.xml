@@ -84,4 +84,6 @@
     <string name="diag_empty">Ancora nessun evento.</string>
     <string name="diag_next">Prossima sveglia: %1$s</string>
     <string name="diag_version">Versione %1$s</string>
+    <string name="transient_alarm_running">La tua sveglia è in corso proprio ora.</string>
+    <string name="transient_alarm_soon">La finestra della tua sveglia inizia prima.</string>
 </resources>

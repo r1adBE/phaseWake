@@ -78,4 +78,6 @@
     <string name="diag_empty">Chưa có sự kiện.</string>
     <string name="diag_next">Báo thức tiếp theo: %1$s</string>
     <string name="diag_version">Phiên bản %1$s</string>
+    <string name="transient_alarm_running">Báo thức của bạn đang chạy ngay lúc này.</string>
+    <string name="transient_alarm_soon">Khoảng thời gian báo thức của bạn bắt đầu trước đó.</string>
 </resources>

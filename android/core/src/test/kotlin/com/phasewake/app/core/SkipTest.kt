@@ -5,6 +5,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -18,6 +19,9 @@ class SkipTest {
 
     private fun at(text: String): Instant = LocalDateTime.parse(text).atZone(zurich).toInstant()
 
+    /** Wandzeit wie [AlarmSchedule.wallMillis]: Ortszeit, gezählt als UTC. */
+    private fun wall(text: String): Long = LocalDateTime.parse(text).toInstant(ZoneOffset.UTC).toEpochMilli()
+
     private fun alarm(days: Set<DayOfWeek> = weekdays) = AlarmSpec(id = "a", hour = 7, minute = 0, days = days)
 
     // Mittwoch, 28. Oktober 2026, 22:00.
@@ -26,7 +30,7 @@ class SkipTest {
     @Test
     fun skipNextSkipsExactlyOneOccurrence() {
         val skipped = AlarmSchedule.skipNext(alarm(), evening, zurich)
-        assertEquals(at("2026-10-29T07:00").toEpochMilli(), skipped.skipUntil)
+        assertEquals(wall("2026-10-29T07:00"), skipped.skipUntil)
         assertEquals(at("2026-10-30T07:00"), AlarmSchedule.nextTarget(skipped, evening, zurich))
         assertEquals(LocalDate.of(2026, 10, 29), AlarmSchedule.skippedDate(skipped, evening, zurich))
         // Nach dem übersprungenen Termin gilt alles wieder normal.
@@ -46,7 +50,7 @@ class SkipTest {
         val friday = at("2026-10-30T20:00")
         val skipped = AlarmSchedule.skipNext(alarm(), at("2026-10-30T07:30"), zurich)
         // Nächster Termin wäre Montag 2.11.; übersprungen → Dienstag.
-        assertEquals(at("2026-11-02T07:00").toEpochMilli(), skipped.skipUntil)
+        assertEquals(wall("2026-11-02T07:00"), skipped.skipUntil)
         assertEquals(at("2026-11-03T07:00"), AlarmSchedule.nextTarget(skipped, friday, zurich))
     }
 
@@ -63,7 +67,7 @@ class SkipTest {
     fun oneShotIgnoresSkipAndHolidays() {
         val once = alarm(days = emptySet())
         assertEquals(once, AlarmSchedule.skipNext(once, evening, zurich))
-        val forced = once.copy(skipUntil = at("2026-10-29T07:00").toEpochMilli(), skipHolidays = true)
+        val forced = once.copy(skipUntil = wall("2026-10-29T07:00"), skipHolidays = true)
         val holidays = setOf(LocalDate.of(2026, 10, 29))
         assertEquals(at("2026-10-29T07:00"), AlarmSchedule.nextTarget(forced, evening, zurich, holidays))
         assertNull(AlarmSchedule.skippedDate(forced, evening, zurich))
@@ -93,7 +97,7 @@ class SkipTest {
     fun skipNextJumpsOverHolidays() {
         val holidays = setOf(LocalDate.of(2026, 10, 29))
         val skipped = AlarmSchedule.skipNext(alarm().copy(skipHolidays = true), evening, zurich, holidays)
-        assertEquals(at("2026-10-30T07:00").toEpochMilli(), skipped.skipUntil)
+        assertEquals(wall("2026-10-30T07:00"), skipped.skipUntil)
         assertEquals(at("2026-11-02T07:00"), AlarmSchedule.nextTarget(skipped, evening, zurich, holidays))
     }
 
@@ -129,5 +133,16 @@ class SkipTest {
         assertEquals(0L, bad.skipUntil)
         assertFalse(bad.skipHolidays)
         assertEquals(0L, Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").single().skipUntil)
+    }
+
+    @Test
+    fun watchFormatCapability() {
+        // Eine Weckerzeile hat so viele Felder, wie die Uhr im Status meldet.
+        val line = Codec.encodeAlarms(listOf(alarm())).lines()[1]
+        assertEquals(Codec.ALARM_FIELDS, line.split("|").size)
+        assertTrue(Codec.watchKnowsSkip(null))
+        assertTrue(Codec.watchKnowsSkip(Codec.ALARM_FIELDS))
+        assertFalse(Codec.watchKnowsSkip(0))
+        assertFalse(Codec.watchKnowsSkip(14))
     }
 }

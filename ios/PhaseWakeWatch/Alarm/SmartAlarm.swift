@@ -52,6 +52,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     nonisolated static let fallbackId = "phasewake.fallback"
     /// Eigene Kennung für das Wecken nach einer abgebrochenen Sitzung: Neu planen ersetzt sie nicht.
     static let interruptedId = "phasewake.fallback.interrupted"
+    /// Eigene Kennung für das Wecken eines vorübergehenden Plans, der die Sitzung der Nacht nicht verdrängen durfte.
+    static let transientFallbackId = "phasewake.fallback.transient"
+    /// Mitteilung «Öffne Phase Wake auf der Uhr», wenn die Sitzung der Nacht nur bei offener App planbar ist.
+    static let openAppId = "phasewake.openApp"
     static let stateKey = "smartAlarmNight"
 
     /// Zustand der Nacht; gesetzt nur von `SmartAlarm` und seinen Erweiterungen (Dateien `SmartAlarm+…`).
@@ -113,6 +117,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         if case .measuring(let running) = phase {
             // Wecker während der Messung geändert, aus- oder abgeschaltet: Messung ohne Aufzeichnung beenden.
             guard running != plan else { return }
+            // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
+            if let plan, Transient.kindOf(plan.alarmId) != nil, Transient.kindOf(running.alarmId) == nil {
+                scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+                return
+            }
             cancelMeasuring()
         }
         guard let plan else {
@@ -122,10 +131,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             publishArmed()
             return
         }
+        let active = WKApplication.shared().applicationState == .active
+        if !active, keepsRealSession(for: plan) { return }
         scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay))
         if case .scheduled(let current) = phase, current == plan, session != nil { return }
 
-        let active = WKApplication.shared().applicationState == .active
         let start = Self.sessionStart(plan)
         let tooEarly = start.timeIntervalSinceNow > Self.maxLeadTime
         guard active, !tooEarly else {
@@ -150,6 +160,29 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         phase = .scheduled(plan)
         DiagStore.shared.log(.scheduled, "session \(Format.time(start)) target \(Format.time(plan.target))")
         publishArmed()
+    }
+
+    /// Bei geschlossener App lässt sich keine neue Sitzung planen: Ein vorübergehender Plan verdrängt dann nicht die
+    /// schon geplante Sitzung des echten Weckers, sondern weckt über eine eigene Rückfall-Mitteilung. Öffnet man die
+    /// App, bekommt er die Sitzung; danach plant `WatchModel.transientEnded` die Nacht neu. - Returns: ob so behandelt.
+    private func keepsRealSession(for plan: WakePlan) -> Bool {
+        guard Transient.kindOf(plan.alarmId) != nil, case .scheduled(let current) = phase, session != nil,
+              Transient.kindOf(current.alarmId) == nil else { return false }
+        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+        DiagStore.shared.log(.scheduled, "keep session \(Format.time(current.target)), transient by notification")
+        return true
+    }
+
+    /// Bittet, die App zu öffnen, damit die Sitzung für `plan` geplant wird – nur, wenn sie schon planbar wäre (36 h).
+    func notifyOpenApp(for plan: WakePlan) {
+        guard Self.sessionStart(plan).timeIntervalSinceNow <= Self.maxLeadTime else { return }
+        let content = UNMutableNotificationContent()
+        content.title = L("watch_open_app")
+        content.sound = .default
+        let request = UNNotificationRequest(identifier: Self.openAppId, content: content,
+                                            trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false))
+        UNUserNotificationCenter.current().add(request)
+        DiagStore.shared.log(.scheduled, "ask to open app for \(Format.time(plan.target))")
     }
 
     /// Start der Sitzung: am Fensterbeginn, aber höchstens `sessionLead` vor der Zielzeit, weil die

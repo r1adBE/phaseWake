@@ -42,6 +42,30 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupFile.encrypt(plain, password: password, salt: salt, nonce: nonce), file)
     }
 
+    func testUnicodePasswordIsNormalised() throws {
+        // Passwort-Datei absichtlich in NFD («a» + Trema), Schlüssel aus NFC abgeleitet.
+        let file = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v1-nfc.pwbak.b64")))
+        let nfd = try testdata("backup-v1-nfc.password")
+        // Swift vergleicht Zeichenketten kanonisch; die Codepunkte zeigen, dass die Datei wirklich NFD ist.
+        XCTAssertEqual(Array(nfd.unicodeScalars), Array("Mondlicht-a\u{0308}€-2026".unicodeScalars))
+        let expected = try testdata("backup-v1.json")
+        XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: nfd), as: UTF8.self), expected)
+        XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: "Mondlicht-\u{e4}€-2026"), as: UTF8.self), expected)
+        XCTAssertEqual(try BackupFile.encrypt(Data(expected.utf8), password: "Mondlicht-\u{e4}€-2026", salt: salt, nonce: nonce), file)
+    }
+
+    func testShortPasswordIsRefused() {
+        XCTAssertFalse(BackupFile.passwordOk(""))
+        XCTAssertFalse(BackupFile.passwordOk("1234567"))
+        XCTAssertTrue(BackupFile.passwordOk("12345678"))
+        // «ä» als NFD (zwei Codepunkte) zählt als ein Zeichen: «abcdefä» hat 7.
+        XCTAssertFalse(BackupFile.passwordOk("abcdefa\u{0308}"))
+        XCTAssertTrue(BackupFile.passwordOk("abcdefga\u{0308}"))
+        XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "", salt: salt, nonce: nonce))
+        XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "1234567", salt: salt, nonce: nonce))
+        XCTAssertGreaterThanOrEqual(BackupFile.maxFileBytes, 1_000_000)
+    }
+
     func testRoundTrip() throws {
         let sealed = try BackupFile.encrypt(Data(payload.toJson().utf8), password: "geheim123", salt: salt, nonce: nonce)
         XCTAssertEqual(sealed.prefix(5), BackupFile.magic)

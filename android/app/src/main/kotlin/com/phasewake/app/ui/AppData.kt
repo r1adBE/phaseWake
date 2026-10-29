@@ -20,6 +20,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
@@ -91,6 +92,8 @@ internal class AppData(
     val onboardingDone: Boolean? = null,
     /** Diagnose in den Einstellungen sichtbar. */
     val diagnostics: Boolean = false,
+    /** Pro Wecker erledigt bis (Uhr hat die Nacht übernommen, Zweitwecker hat geweckt); siehe `BackupAlarm.doneUntilFlow`. */
+    val doneUntil: Map<String, Instant> = emptyMap(),
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -119,10 +122,11 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val onboardingFlow = remember { app.settings.onboardingDone.map<Boolean, Boolean?> { it } }
     val onboardingDone by onboardingFlow.collectAsStateWithLifecycle(initialValue = null)
     val diagnostics by app.settings.diagnostics.collectAsStateWithLifecycle(initialValue = false)
+    val doneUntil by app.backup.doneUntilFlow.collectAsStateWithLifecycle(initialValue = emptyMap())
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
-        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics,
+        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil,
     )
 }
 
@@ -290,8 +294,11 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
     )
 }
 
-/** Nacht-Check und die Uhren ohne Phase Wake (für den Knopf «Auf der Uhr installieren»). */
-internal class NightCheckData(val check: NightCheckState?, val missingOn: List<String>)
+/**
+ * Nacht-Check und die Uhren ohne Phase Wake (für den Knopf «Auf der Uhr installieren»). [watchKnowsSkip]: Die Uhr
+ * kennt «Überspringen» und «Feiertage» (oder es ist keine bekannt); sonst blendet das Handy beides aus.
+ */
+internal class NightCheckData(val check: NightCheckState?, val missingOn: List<String>, val watchKnowsSkip: Boolean = true)
 
 /**
  * Nacht-Check: bei jedem Öffnen ([checkRun]) und danach jede halbe Minute (die Uhr kann kommen und
@@ -303,23 +310,26 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     var check by remember { mutableStateOf<NightCheckState?>(null) }
     var missingOn by remember { mutableStateOf(emptyList<String>()) }
+    var knowsSkip by remember { mutableStateOf(true) }
     LaunchedEffect(checkRun) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             while (true) {
                 missingOn = app.sync.nodesWithout(DataLayer.CAPABILITY_WATCH)
+                knowsSkip = Codec.watchKnowsSkip(app.sync.watchAlarmFields())
                 check = NightCheckState.collect(
                     context,
                     app.sync.isReachable(DataLayer.CAPABILITY_WATCH),
                     app.sync.watchReady(),
                     app.sync.watchBattery(),
                     watchAppMissing = missingOn.isNotEmpty(),
+                    watchKnowsSkip = knowsSkip,
                 )
                 check?.let { com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, it.failed) }
                 delay(NIGHT_CHECK_INTERVAL_MS)
             }
         }
     }
-    return NightCheckData(check, missingOn)
+    return NightCheckData(check, missingOn, knowsSkip)
 }
 
 /** Abstand der Nacht-Checks, solange die App sichtbar ist. */

@@ -1,13 +1,17 @@
 package com.phasewake.app.ui
 
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.PhaseWakeApp
+import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.TestRuns
 import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.holidays.HolidayCountry
 import com.phasewake.app.transient.Transients
@@ -19,7 +23,9 @@ import com.phasewake.app.ui.settings.countryName
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // Neues aus Runde 3 für die Bildschirme: Startseite (Powernap, Überspringen, Probewecker) und Einstellungen.
 
@@ -30,22 +36,43 @@ internal object ExtraRoutes {
 }
 
 /** Startet den Probewecker (im Hintergrund, übersteht das Verlassen des Bildschirms). */
-internal fun startTest(app: PhaseWakeApp) {
-    app.appScope.launch { Transients.startTest(app) }
+internal fun startTest(app: PhaseWakeApp) = launchTransient(app) { Transients.startTest(app) }
+
+/**
+ * Startet einen Probewecker oder Powernap mit [start] im Hintergrund; lehnt der Kern ab (Wecker läuft oder beginnt
+ * vorher), erscheint der Grund als kurzer Hinweis.
+ */
+private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientConflict?) {
+    app.appScope.launch {
+        val refused = start() ?: return@launch
+        val text = when (refused) {
+            TransientConflict.ALARM_RUNNING -> R.string.transient_alarm_running
+            TransientConflict.ALARM_SOON -> R.string.transient_alarm_soon
+        }
+        withContext(Dispatchers.Main) { Toast.makeText(app, text, Toast.LENGTH_LONG).show() }
+    }
 }
 
-/** Probewecker, Powernap, Überspringen und Feiertage für die Startseite. */
-internal fun homeExtras(app: PhaseWakeApp, data: AppData, now: Instant = Instant.now()): HomeExtras {
+/**
+ * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [skipAllowed]: Die Uhr kennt «Überspringen»
+ * (`Codec.watchKnowsSkip`); sonst kein Menü, denn die Uhr weckte trotzdem.
+ */
+internal fun homeExtras(app: PhaseWakeApp, data: AppData, skipAllowed: Boolean = true, now: Instant = Instant.now()): HomeExtras {
     val transient = data.transient?.takeIf { Transient.isActive(it, now) }
     return HomeExtras(
         holidays = data.holidays,
+        doneUntil = data.doneUntil,
         nap = transient?.takeIf { it.kind == TransientKind.NAP },
         napMinutes = data.napMinutes,
-        onNap = { minutes -> app.appScope.launch { Transients.startNap(app, minutes) } },
+        onNap = { minutes -> launchTransient(app) { Transients.startNap(app, minutes) } },
         onStopNap = { id -> app.appScope.launch { Transients.cancel(app, id) } },
-        onSkip = { alarm ->
-            app.afterAlarmsChanged { app.alarms.update(alarm.id) { AlarmSchedule.skipNext(it, Instant.now(), ZoneId.systemDefault(), data.holidays) } }
-        },
+        onSkip = { alarm: AlarmSpec ->
+            app.afterAlarmsChanged {
+                // Ab der erledigten Nacht: Nach frühem Wecken trifft es den nächsten Termin, nicht den heutigen.
+                val done = app.backup.doneUntil()[alarm.id]
+                app.alarms.update(alarm.id) { AlarmSchedule.skipNext(it, Instant.now(), ZoneId.systemDefault(), data.holidays, done) }
+            }
+        }.takeIf { skipAllowed },
         onUndoSkip = { alarm -> app.afterAlarmsChanged { app.alarms.update(alarm.id, AlarmSchedule::undoSkip) } },
         onTest = { startTest(app) },
         testAt = data.testRun?.takeIf { transient?.kind == TransientKind.TEST && !TestRuns.isFinished(it, now) }?.target,

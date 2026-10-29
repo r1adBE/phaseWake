@@ -478,4 +478,10 @@
     <string name="diag_unknown">necunoscut</string>
     <string name="diag_none">niciuna</string>
     <string name="chart_goal_met">✓ Obiectiv atins</string>
+    <string name="alarm_skip_on">Sari peste %1$s</string>
+    <string name="alarm_skip_undo_for">Anulează saltul: %1$s</string>
+    <string name="transient_alarm_running">Alarma ta rulează chiar acum.</string>
+    <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
+    <string name="check_watch_update">Actualizează Phase Wake pe ceas</string>
+    <string name="check_watch_update_problem">Până atunci, ceasul nu sare peste nicio alarmă și te trezește și în sărbători.</string>
 </resources>

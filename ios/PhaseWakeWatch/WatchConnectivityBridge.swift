@@ -39,6 +39,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// (Nacht-Check auf dem iPhone).
     private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
+        // Formatfähigkeit: Das iPhone erkennt so eine ältere Uhr ohne Überspringen und Feiertage.
+        context[SyncKeys.alarmFields] = Int64(Codec.alarmFields)
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
         if device.batteryState == .unplugged, device.batteryLevel >= 0 {
@@ -146,14 +148,18 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
                 DiagStore.shared.log(plan.kind == .test ? .test : .nap, "too late")
                 return true
             }
-            Task { @MainActor in WatchModel.shared.startTransient(plan) }
-            if plan.kind == .test { send(command: SyncKeys.testAck, extra: [SyncKeys.id: plan.plan.alarmId]) }
+            // Kollidiert er mit einem Wecker (Fenster läuft, klingelt, überdeckt das Fenster): verwerfen, ohne
+            // Bestätigung – das iPhone zeigt dann «Uhr hat den Test empfangen» als nicht erfüllt.
+            Task { @MainActor in
+                guard WatchModel.shared.accept(plan), plan.kind == .test else { return }
+                self.send(command: SyncKeys.testAck, extra: [SyncKeys.id: plan.plan.alarmId])
+            }
             return true
         case SyncKeys.transientCancel:
             let id = message[SyncKeys.id] as? String
             Task { @MainActor in
                 WatchModel.shared.endTransient(id)
-                WatchModel.shared.reschedule()
+                WatchModel.shared.transientEnded()
             }
             return true
         default:

@@ -92,7 +92,8 @@ struct EditorView: View {
                 }
 
                 // Nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
-                if !days.isEmpty { HolidaySkipSection(skipHolidays: $skipHolidays) }
+                // Eine ältere Uhr kennt die Feiertagsregel nicht: dann nicht anbieten (Nacht-Check meldet es).
+                if !days.isEmpty && model.watchKnowsSkip { HolidaySkipSection(skipHolidays: $skipHolidays) }
 
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
@@ -237,14 +238,15 @@ struct EditorView: View {
             wakeTask: existing?.wakeTask ?? WakeTask.none,
             // Gerätewahl gibt es auf Apple nicht (nur iPhone): vorhandenen Wert behalten, neu = Handy.
             sunriseDevice: existing?.sunriseDevice ?? .phone,
-            // «Nächstes Mal überspringen» bleibt beim Bearbeiten, wie es ist (Liste: Rückgängig).
+            // «Nächstes Mal überspringen» bleibt nur bei gleicher Zeit und gleichen Tagen (`save`, `keepSkip`).
             skipUntil: existing?.skipUntil ?? 0,
             skipHolidays: skipHolidays
         )
     }
 
     private func save() {
-        if let spec = current() { model.upsert(spec) }
+        // Geänderte Zeit oder Tage heben das Überspringen auf (wie Android und die Uhren).
+        if let spec = current() { model.upsert(existing.map { spec.with(skipUntil: AlarmSchedule.keepSkip(old: $0, edited: spec)) } ?? spec) }
         dismiss()
     }
 }

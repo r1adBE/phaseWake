@@ -114,8 +114,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
                 } else {
                     model.watchRang()
                     DiagStore.shared.log(.ring, "watch rang, phone too")
-                    let rang = await model.backup.ringNow(alarm: model.ringSpec(alarmId), target: target, snoozesLeft: snoozesLeft)
-                    await model.transient.watchRang(alarmId, phoneRang: rang)
+                    let ring = await model.backup.ringNow(alarm: model.ringSpec(alarmId), target: target, snoozesLeft: snoozesLeft)
+                    await model.transient.watchRang(alarmId, phoneRing: ring)
                 }
             case SyncKeys.stop:
                 DiagStore.shared.log(.stop, "from watch")
@@ -159,7 +159,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         if !context.isEmpty { seenWatch() }
         if let armed = context[SyncKeys.armedTarget] as? Int64 {
             let date = armed > 0 ? Date(timeIntervalSince1970: Double(armed) / 1000) : nil
-            Task { @MainActor in PhoneModel.shared.watchArmed(date) }
+            // Ohne Angabe: ältere Uhr, die Überspringen und Feiertage nicht kennt.
+            let fields = Int((context[SyncKeys.alarmFields] as? Int64) ?? 0)
+            Task { @MainActor in PhoneModel.shared.watchArmed(date, alarmFields: fields) }
         }
         // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
         var battery: (percent: Int, at: Date)?

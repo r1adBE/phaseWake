@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Erzeugt den Testvektor der verschlüsselten Sicherung (shared/testdata/backup-v1.*).
+"""Erzeugt die Testvektoren der verschlüsselten Sicherung (shared/testdata/backup-v1*.*).
 
 Unabhängig von den Apps (Python «cryptography»): Beide Kerne (Kotlin und Swift) müssen diese Datei mit dem
 Passwort entschlüsseln und denselben Inhalt lesen. Format siehe docs/KONZEPT.md, Abschnitt «Sichern».
 Salz und Nonce sind hier fest, damit der Vektor reproduzierbar ist; die Apps nehmen echte Zufallswerte.
+Der Schlüssel kommt aus dem Passwort in Unicode-NFC. Der zweite Vektor (backup-v1-nfc.*) hat ein Passwort mit «ä€»,
+in der Passwort-Datei absichtlich als NFD geschrieben: Beide Kerne müssen vor der Ableitung normalisieren.
 
 Aufruf: python3 .github/scripts/make-backup-vector.py [--check]
 """
@@ -11,6 +13,7 @@ import base64
 import json
 import pathlib
 import sys
+import unicodedata
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -21,6 +24,7 @@ OUT = ROOT / "shared/testdata"
 MAGIC = b"PWBK1"
 ITERATIONS = 210_000
 PASSWORD = "Mondlicht-2026"
+PASSWORD_NFC = "Mondlicht-\u00e4\u20ac-2026"
 SALT = bytes(range(16))
 NONCE = bytes(range(100, 112))
 
@@ -50,23 +54,29 @@ PAYLOAD = {
 }
 
 
+def seal(plain: bytes, password: str) -> bytes:
+    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=SALT, iterations=ITERATIONS)
+    key = kdf.derive(unicodedata.normalize("NFC", password).encode("utf-8"))
+    sealed = AESGCM(key).encrypt(NONCE, plain, None)  # Geheimtext | Tag (16), ohne zusätzliche Daten
+    return MAGIC + SALT + NONCE + sealed
+
+
 def build() -> dict[str, bytes]:
     plain = json.dumps(PAYLOAD, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=SALT, iterations=ITERATIONS)
-    key = kdf.derive(PASSWORD.encode("utf-8"))
-    sealed = AESGCM(key).encrypt(NONCE, plain, None)  # Geheimtext | Tag (16), ohne zusätzliche Daten
-    data = MAGIC + SALT + NONCE + sealed
+    nfd = unicodedata.normalize("NFD", PASSWORD_NFC)
     return {
         "backup-v1.json": plain + b"\n",
         "backup-v1.password": PASSWORD.encode("utf-8") + b"\n",
-        "backup-v1.pwbak.b64": base64.b64encode(data) + b"\n",
+        "backup-v1.pwbak.b64": base64.b64encode(seal(plain, PASSWORD)) + b"\n",
+        "backup-v1-nfc.password": nfd.encode("utf-8") + b"\n",
+        "backup-v1-nfc.pwbak.b64": base64.b64encode(seal(plain, nfd)) + b"\n",
     }
 
 
 def main() -> int:
     files = build()
     if "--check" in sys.argv:
-        bad = [name for name, content in files.items() if (OUT / name).read_bytes() != content]
+        bad = [name for name, content in files.items() if not (OUT / name).exists() or (OUT / name).read_bytes() != content]
         for name in bad:
             print(f"veraltet: shared/testdata/{name}")
         return 1 if bad else 0

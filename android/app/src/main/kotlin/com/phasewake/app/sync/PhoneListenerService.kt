@@ -43,6 +43,10 @@ class PhoneListenerService : WearableListenerService() {
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)
             }
+            // Abbruch auf der Uhr, während das Handy nicht erreichbar war: nachgeliefert als Paket.
+            changed.filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
+                .mapNotNull { WearSync.readTransientCancel(DataMapItem.fromDataItem(it).dataMap) }
+                .forEach { Transients.cancelled(app, it) }
         }
     }
 

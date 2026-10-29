@@ -57,6 +57,12 @@ enum class Check(val title: Int, val problem: Int, val action: Int?, val problem
      * Nicht in der Bereit-Liste: Ältere Uhren melden keinen Akkustand, ein Häkchen wäre dann geraten.
      */
     WATCH_BATTERY(R.string.check_watch_battery, R.string.check_watch_battery_problem, null, inReadyList = false),
+
+    /**
+     * Phase Wake auf der Uhr ist älter und kennt «Überspringen» und «Feiertage» nicht (`Codec.watchKnowsSkip`): Die Uhr
+     * weckt dann trotzdem. Nicht in der Bereit-Liste; das Handy blendet beides aus, bis die Uhr aktualisiert ist.
+     */
+    WATCH_UPDATE(R.string.check_watch_update, R.string.check_watch_update_problem, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
@@ -84,8 +90,8 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         const val LOW_BATTERY_PERCENT = 20
 
         /**
-         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady] und
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt).
+         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchKnowsSkip] (Version der Uhr).
          */
         fun collect(
             context: Context,
@@ -93,6 +99,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchReady: Boolean?,
             watchBattery: Int? = null,
             watchAppMissing: Boolean = false,
+            watchKnowsSkip: Boolean = true,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -101,6 +108,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     watchReady == false -> add(Check.WATCH_SETUP)
                 }
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
+                if (!watchKnowsSkip) add(Check.WATCH_UPDATE)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&

@@ -81,4 +81,6 @@
     <string name="diag_empty">Ei vielä tapahtumia.</string>
     <string name="diag_next">Seuraava herätys: %1$s</string>
     <string name="diag_version">Versio %1$s</string>
+    <string name="transient_alarm_running">Herätyksesi on juuri käynnissä.</string>
+    <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
 </resources>

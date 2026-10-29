@@ -26,6 +26,22 @@ object Codec {
      */
     private const val FIELDS = 16
 
+    /**
+     * So viele Felder je Weckerzeile kennt diese Version ([FIELDS]); die Uhr meldet die Zahl im Status, damit das
+     * Handy eine ältere Uhr erkennt ([watchKnowsSkip]).
+     */
+    const val ALARM_FIELDS: Int = FIELDS
+
+    /** Ab so vielen Feldern kennt eine Version Überspringen (Feld 15) und Feiertage (Feld 16). */
+    const val SKIP_FIELDS: Int = 16
+
+    /**
+     * Ob eine Uhr, die [watchFields] Felder je Weckerzeile kennt, Überspringen und Feiertage beachtet. `null` = keine
+     * Uhr bekannt (nie ein Status): `true`, das Handy weckt dann allein und beachtet beides. Ein Status ohne Angabe
+     * stammt von einer älteren Uhr und zählt als 0.
+     */
+    fun watchKnowsSkip(watchFields: Int?): Boolean = watchFields == null || watchFields >= SKIP_FIELDS
+
     /** Ältere Stände ohne Sonnenaufgang (Feld 12 fehlt → aus). */
     private const val FIELDS_V1 = 11
 

@@ -5,8 +5,8 @@ import androidx.core.app.NotificationManagerCompat
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
-import com.phasewake.app.core.Transient
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.AlarmSnapshot
@@ -50,7 +50,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     // Vor dem ersten Entsperren nichts speichern (nicht lesbar). Nach dem Entsperren holt
     // SystemEventReceiver nach: Nacht erledigt, Einmal-Wecker aus, neu planen.
     if (!DirectBoot.isUnlocked(this)) {
-        finishLocked(n.plan, rang = record != null, notifyPhone)
+        // Auch ein Probewecker oder Powernap, der geweckt hat: Nach dem Entsperren wird sein Plan gelöscht.
+        finishLocked(n.plan, rang = record != null || (transient && n.firstRing != null), notifyPhone)
         return
     }
     // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen

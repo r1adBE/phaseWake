@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -188,10 +190,14 @@ internal fun AlarmRow(
     skipped: String? = null,
     onSkip: (() -> Unit)? = null,
     onUndoSkip: () -> Unit = {},
+    /** Datum, das «Überspringen» treffen würde, schon formatiert (im Menü genannt); `null` = ohne Datum. */
+    skipDate: String? = null,
 ) {
     val context = LocalContext.current
     val res = LocalResources.current
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
+    // Schalter, Menü und «Rückgängig» nennen den Wecker, für den sie gelten (Bildschirmleser).
+    val switchLabel = Format.window(alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
@@ -221,34 +227,46 @@ internal fun AlarmRow(
                 if (skipped != null) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(stringResource(R.string.alarm_skipped, skipped), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
-                        TextButton(onClick = onUndoSkip) { Text(stringResource(R.string.alarm_skip_undo)) }
+                        val undoLabel = stringResource(R.string.alarm_skip_undo_for, "$skipped · $switchLabel")
+                        TextButton(onClick = onUndoSkip, modifier = Modifier.semantics { contentDescription = undoLabel }) {
+                            Text(stringResource(R.string.alarm_skip_undo))
+                        }
                     }
                 }
             }
-            // Der Schalter nennt den Wecker, den er schaltet (Bildschirmleser).
-            val switchLabel = Format.window(alarm) + (alarm.label.takeIf { it.isNotBlank() }?.let { " · $it" } ?: "")
             Switch(checked = alarm.enabled, onCheckedChange = onToggle, modifier = Modifier.semantics { contentDescription = switchLabel })
-            AlarmMenu(switchLabel, onSkip.takeIf { skipped == null && alarm.enabled && !alarm.isOneShot })
+            AlarmMenu(switchLabel, onSkip.takeIf { skipped == null && alarm.enabled && !alarm.isOneShot }, skipDate)
         }
     }
 }
 
-/** Menü «Mehr» der Wecker-Zeile; ohne [onSkip] nur ein Platzhalter gleicher Breite (Zeilen bleiben bündig). */
+/**
+ * Menü «Mehr» der Wecker-Zeile mit «Do 30.10. überspringen» ([skipDate]; ohne Datum «Nächstes Mal überspringen»).
+ * Ohne [onSkip] nur ein Platzhalter gleicher Breite ohne Bedienelement: Zeilen bleiben bündig, und der Bildschirmleser
+ * findet keinen namenlosen Knopf.
+ */
 @Composable
-private fun AlarmMenu(name: String, onSkip: (() -> Unit)?) {
-    var open by remember { mutableStateOf(false) }
-    Box {
-        IconButton(onClick = { open = true }, enabled = onSkip != null) {
-            if (onSkip != null) Icon(painterResource(R.drawable.ic_more), contentDescription = stringResource(R.string.alarm_actions, name))
-        }
-        DropdownMenu(expanded = open && onSkip != null, onDismissRequest = { open = false }) {
-            DropdownMenuItem(
-                text = { Text(stringResource(R.string.alarm_skip)) },
-                onClick = {
-                    open = false
-                    onSkip?.invoke()
-                },
-            )
+private fun AlarmMenu(name: String, onSkip: (() -> Unit)?, skipDate: String?) {
+    if (onSkip == null) {
+        Spacer(Modifier.size(MENU_SIZE))
+    } else {
+        var open by remember { mutableStateOf(false) }
+        Box {
+            IconButton(onClick = { open = true }) {
+                Icon(painterResource(R.drawable.ic_more), contentDescription = stringResource(R.string.alarm_actions, name))
+            }
+            DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+                DropdownMenuItem(
+                    text = { Text(skipDate?.let { stringResource(R.string.alarm_skip_on, it) } ?: stringResource(R.string.alarm_skip)) },
+                    onClick = {
+                        open = false
+                        onSkip()
+                    },
+                )
+            }
         }
     }
 }
+
+/** Breite des Menüknopfs (Mindestgrösse eines Bedienelements), auch für den Platzhalter. */
+private val MENU_SIZE = 48.dp

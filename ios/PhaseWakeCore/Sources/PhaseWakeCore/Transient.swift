@@ -27,6 +27,14 @@ public struct TransientPlan: Equatable, Sendable {
     }
 }
 
+/// Warum ein Probewecker oder Powernap jetzt nicht starten darf (`Transient.conflict`). Rohwerte wie die Kotlin-Namen.
+public enum TransientConflict: String, CaseIterable, Sendable {
+    /// Ein Weckfenster läuft, oder eine Nacht klingelt bzw. schlummert: «Gerade läuft dein Wecker.»
+    case alarmRunning = "ALARM_RUNNING"
+    /// Das Weckfenster des nächsten Weckers beginnt vor der Zielzeit des Plans: «Dein Weckfenster beginnt schon vorher.»
+    case alarmSoon = "ALARM_SOON"
+}
+
 /// Regeln und Format für `TransientPlan`. Auf iPhone, Apple Watch, Android und Wear OS gleich.
 public enum Transient {
     /// Präfix der Kennung eines Probeweckers; eine UUID beginnt nie mit «t», darum eindeutig.
@@ -54,6 +62,11 @@ public enum Transient {
     /// So lange nach der Zielzeit gilt ein Plan noch (Klingeln, Schlummern, Stopp), in Sekunden; danach wird
     /// er verworfen. Gleich der Höchstdauer einer Nacht auf der Uhr (2 Stunden).
     public static let activeAfterTarget: TimeInterval = 2 * 3600
+
+    /// So lange nach der Zielzeit (Sekunden) wird ein Plan noch geplant, auch nach einem Neustart: 60 s wie die
+    /// Rückfall-Frist der Apple Watch (`SmartAlarm.fallbackDelay`). Ein Plan, dessen Ende die Uhr verpasst hat, klingelt
+    /// so nie Stunden später nach; ein schon klingelnder Plan behält seine Weckart bis `activeAfterTarget`.
+    public static let planAfterTarget: TimeInterval = 60
 
     private static let header = "phasewake-transient 1"
     private static let separator = "|"
@@ -95,6 +108,32 @@ public enum Transient {
     /// Ob der Plan noch gilt: bis `activeAfterTarget` nach der Zielzeit.
     public static func isActive(_ transient: TransientPlan, now: Date) -> Bool {
         now < transient.plan.target.addingTimeInterval(activeAfterTarget)
+    }
+
+    /// Ob der Plan noch geplant wird: bis `planAfterTarget` nach der Zielzeit.
+    public static func isPlannable(_ transient: TransientPlan, now: Date) -> Bool {
+        now < transient.plan.target.addingTimeInterval(planAfterTarget)
+    }
+
+    /// Welcher Plan als Nächstes gilt: `real` (nächster echter Wecker) oder `transient`, solange dieser noch geplant
+    /// wird (`isPlannable`); der mit der früheren Zielzeit, bei Gleichstand die kleinere Kennung. Auf allen Geräten
+    /// gleich: Ein Powernap verdrängt nie einen früheren echten Wecker. `nil`, wenn keiner gilt.
+    public static func choose(real: WakePlan?, transient: TransientPlan?, now: Date) -> WakePlan? {
+        let extra = transient.flatMap { isPlannable($0, now: now) ? $0.plan : nil }
+        return [real, extra].compactMap { $0 }.min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
+    }
+
+    /// Ob der neue Plan `transient` (gerade erzeugt, Start `now`) abgelehnt wird. `next`: nächster echter Plan
+    /// (`AlarmSchedule.earliestPlan` mit erledigten Nächten); `nightActive`: eine Nacht klingelt oder schlummert.
+    /// - `alarmRunning`: `nightActive`, oder `now` liegt im Fenster von `next` (Fensterbeginn bis Zielzeit) – sonst
+    ///   bräche der Plan die Messung des echten Weckers ab.
+    /// - `alarmSoon`: Die Zielzeit von `transient` liegt nach dem Fensterbeginn von `next`; der Plan überdeckte das Fenster.
+    /// Sonst `nil`.
+    public static func conflict(_ transient: TransientPlan, next: WakePlan?, nightActive: Bool, now: Date) -> TransientConflict? {
+        if nightActive { return .alarmRunning }
+        guard let next else { return nil }
+        if now >= next.windowStart && now < next.target { return .alarmRunning }
+        return transient.plan.target > next.windowStart ? .alarmSoon : nil
     }
 
     /// Schreibt den Plan: Kopfzeile, «ART|fensterbeginnMs|zielzeitMs», danach der Wecker im Format von

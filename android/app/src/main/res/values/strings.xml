@@ -468,4 +468,10 @@
     <string name="diag_unknown">unknown</string>
     <string name="diag_none">none</string>
     <string name="chart_goal_met">✓ Goal reached</string>
+    <string name="alarm_skip_on">Skip %1$s</string>
+    <string name="alarm_skip_undo_for">Undo skip: %1$s</string>
+    <string name="transient_alarm_running">Your alarm is running right now.</string>
+    <string name="transient_alarm_soon">Your alarm window starts before that.</string>
+    <string name="check_watch_update">Update Phase Wake on your watch</string>
+    <string name="check_watch_update_problem">Until then, your watch won’t skip alarms and will also wake you on holidays.</string>
 </resources>

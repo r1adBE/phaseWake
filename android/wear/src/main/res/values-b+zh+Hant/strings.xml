@@ -78,4 +78,6 @@
     <string name="diag_empty">還沒有事件。</string>
     <string name="diag_next">下一個鬧鐘：%1$s</string>
     <string name="diag_version">版本 %1$s</string>
+    <string name="transient_alarm_running">你的鬧鐘正在進行中。</string>
+    <string name="transient_alarm_soon">你的喚醒時間範圍在那之前就開始了。</string>
 </resources>

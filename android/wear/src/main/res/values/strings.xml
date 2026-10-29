@@ -83,4 +83,6 @@
     <string name="diag_empty">No events yet.</string>
     <string name="diag_next">Next alarm: %1$s</string>
     <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Your alarm is running right now.</string>
+    <string name="transient_alarm_soon">Your alarm window starts before that.</string>
 </resources>

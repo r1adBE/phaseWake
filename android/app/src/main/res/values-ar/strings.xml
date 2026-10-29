@@ -520,4 +520,10 @@
     <string name="diag_unknown">غير معروف</string>
     <string name="diag_none">لا شيء</string>
     <string name="chart_goal_met">✓ تحقق الهدف</string>
+    <string name="alarm_skip_on">تخطَّ %1$s</string>
+    <string name="alarm_skip_undo_for">تراجع عن التخطي: %1$s</string>
+    <string name="transient_alarm_running">منبّهك يعمل الآن.</string>
+    <string name="transient_alarm_soon">نافذة منبّهك تبدأ قبل ذلك.</string>
+    <string name="check_watch_update">حدّث Phase Wake على الساعة</string>
+    <string name="check_watch_update_problem">حتى ذلك الحين لن تتخطى الساعة أي منبّه وستوقظك أيضًا في العطل.</string>
 </resources>

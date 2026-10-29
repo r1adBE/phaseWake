@@ -57,8 +57,21 @@ final class NotificationRouter: NSObject, UNUserNotificationCenterDelegate, @unc
     static let shared = NotificationRouter()
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        guard response.notification.request.identifier == WeeklyReview.identifier else { return }
+        let id = response.notification.request.identifier
+        // Zweitwecker vor iOS 26 (Kennung = UUID, siehe `BackupAlarm`): Der Probewecker zählt das Klingeln.
+        if UUID(uuidString: id) != nil { await MainActor.run { PhoneModel.shared.transient.phoneAlerted(id) } }
+        guard id == WeeklyReview.identifier else { return }
         await MainActor.run { PhoneModel.shared.selectedTab = .history }
+    }
+
+    /// Bei offener App: Der Zweitwecker (Kennung = UUID) erscheint und klingelt trotzdem – ein Wecker muss wecken.
+    /// Alle anderen Mitteilungen bleiben wie bisher stumm, solange die App offen ist.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async
+        -> UNNotificationPresentationOptions {
+        let id = notification.request.identifier
+        guard UUID(uuidString: id) != nil else { return [] }
+        await MainActor.run { PhoneModel.shared.transient.phoneAlerted(id) }
+        return [.banner, .list, .sound]
     }
 }
 

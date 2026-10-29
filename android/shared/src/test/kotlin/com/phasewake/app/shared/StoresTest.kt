@@ -48,6 +48,20 @@ class StoresTest {
     }
 
     @Test
+    fun staleNapIsNotPlannedAfterWatchComesBack() = runTest {
+        // Nap aktiv, Uhr eine Stunde nach der Zielzeit wieder an (Akku, Neustart), Stopp kam nie an: neu planen
+        // nimmt den Nap nicht mehr, die Weckart bleibt für ein laufendes Klingeln aber lesbar.
+        val store = TransientStore(MemoryStore()) { now }
+        val nap = Transient.nap(null, start, ZoneOffset.UTC, 20, "3")
+        store.set(nap)
+        assertEquals(nap.plan, Transient.choose(null, store.active(), now))
+        now = nap.plan.target.plusSeconds(3_600)
+        assertEquals(nap, store.active())
+        assertNull(Transient.choose(null, store.active(), now))
+        assertEquals(nap.spec, store.specFor("nap-3"))
+    }
+
+    @Test
     fun transientStoreIgnoresBrokenText() = runTest {
         val broken = MemoryStore(emptyPreferences().toMutablePreferences().apply { this[stringPreferencesKey("transient_plan")] = "kaputt" })
         val store = TransientStore(broken) { now }

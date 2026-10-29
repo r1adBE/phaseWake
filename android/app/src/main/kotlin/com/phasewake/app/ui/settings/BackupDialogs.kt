@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -49,21 +50,27 @@ internal fun ColumnScope.BackupRows() {
     val app = context.phoneApp
     val scope = rememberCoroutineScope()
     var creating by remember { mutableStateOf(false) }
+    // Bewusst nicht gesichert (kein Passwort im gespeicherten Zustand): Nach Drehen oder Prozessende fehlt es.
     var password by remember { mutableStateOf("") }
+    // Datei schon gewählt, Passwort dabei verloren: noch einmal fragen, nie mit leerem Passwort verschlüsseln.
+    var saveTo by rememberSaveable { mutableStateOf<Uri?>(null) }
     var restoreFrom by remember { mutableStateOf<Uri?>(null) }
     var preview by remember { mutableStateOf<BackupPreview?>(null) }
     var busy by remember { mutableStateOf(false) }
     fun toast(text: Int) = Toast.makeText(context, res.getString(text), Toast.LENGTH_SHORT).show()
-    val save = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument(MIME)) { uri ->
-        val chosen = password
-        password = ""
-        if (uri == null) return@rememberLauncherForActivityResult
+    fun write(uri: Uri, chosen: String) {
         scope.launch {
             busy = true
             val ok = BackupManager.create(context, app, uri, chosen)
             busy = false
             toast(if (ok) R.string.backup_done else R.string.backup_failed)
         }
+    }
+    val save = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument(MIME)) { uri ->
+        val chosen = password
+        password = ""
+        if (uri == null) return@rememberLauncherForActivityResult
+        if (BackupFile.passwordOk(chosen)) write(uri, chosen) else saveTo = uri
     }
     val pick = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri -> restoreFrom = uri }
 
@@ -79,6 +86,15 @@ internal fun ColumnScope.BackupRows() {
                 save.launch(res.getString(R.string.backup_file_name, LocalDate.now().toString()))
             },
             onDismiss = { creating = false },
+        )
+    }
+    saveTo?.let { uri ->
+        NewPasswordDialog(
+            onSave = { chosen ->
+                saveTo = null
+                write(uri, chosen)
+            },
+            onDismiss = { saveTo = null },
         )
     }
     restoreFrom?.let { uri ->
@@ -135,12 +151,12 @@ private fun DataRow(title: Int, hint: Int?, onClick: () -> Unit) {
     }
 }
 
-/** Passwort zweimal; mindestens [BackupFile.MIN_PASSWORD] Zeichen. */
+/** Passwort zweimal; mindestens [BackupFile.MIN_PASSWORD] Zeichen ([BackupFile.passwordOk]). */
 @Composable
 private fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit) {
     var first by remember { mutableStateOf("") }
     var second by remember { mutableStateOf("") }
-    val tooShort = first.length < BackupFile.MIN_PASSWORD
+    val tooShort = !BackupFile.passwordOk(first)
     val mismatch = second.isNotEmpty() && second != first
     AlertDialog(
         onDismissRequest = onDismiss,

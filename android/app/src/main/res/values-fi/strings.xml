@@ -464,4 +464,10 @@
     <string name="diag_unknown">tuntematon</string>
     <string name="diag_none">ei mitään</string>
     <string name="chart_goal_met">✓ Tavoite saavutettu</string>
+    <string name="alarm_skip_on">Ohita %1$s</string>
+    <string name="alarm_skip_undo_for">Kumoa ohitus: %1$s</string>
+    <string name="transient_alarm_running">Herätyksesi on juuri käynnissä.</string>
+    <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
+    <string name="check_watch_update">Päivitä Phase Wake kellossa</string>
+    <string name="check_watch_update_problem">Siihen asti kello ei ohita herätyksiä ja herättää myös juhlapäivinä.</string>
 </resources>

@@ -55,4 +55,7 @@ public enum SyncKeys {
     public static let payload = "payload"
     /// Kennung eines vorübergehenden Plans.
     public static let id = "id"
+    /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der
+    /// Schlüssel bei einem Kontext, der sonst von der Uhr stammt, ist es eine ältere Uhr (zählt als 0).
+    public static let alarmFields = "alarmFields"
 }

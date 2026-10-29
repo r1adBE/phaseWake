@@ -81,4 +81,6 @@
     <string name="diag_empty">Κανένα συμβάν ακόμη.</string>
     <string name="diag_next">Επόμενη αφύπνιση: %1$s</string>
     <string name="diag_version">Έκδοση %1$s</string>
+    <string name="transient_alarm_running">Η αφύπνισή σου είναι σε εξέλιξη αυτή τη στιγμή.</string>
+    <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
 </resources>

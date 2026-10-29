@@ -2,6 +2,7 @@ package com.phasewake.app.core
 
 import java.nio.charset.StandardCharsets
 import java.security.GeneralSecurityException
+import java.text.Normalizer
 import javax.crypto.AEADBadTagException
 import javax.crypto.Cipher
 import javax.crypto.SecretKeyFactory
@@ -33,7 +34,8 @@ class BackupException(
  * Verschlüsselte Sicherungsdatei (`.pwbak`), auf Android und Apple gleich:
  * `MAGIC | Salz (16) | Nonce (12) | Geheimtext | Prüfsumme (16)`.
  *
- * Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (UTF-8) mit [ITERATIONS] Runden, 256 Bit. Verfahren:
+ * Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8) mit [ITERATIONS] Runden, 256 Bit. NFC,
+ * damit «ü» als ein Zeichen oder als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt. Verfahren:
  * AES-256-GCM ohne zusätzliche Daten. 210 000 Runden: Empfehlung von OWASP (2023) für PBKDF2-SHA256.
  */
 object BackupFile {
@@ -55,12 +57,28 @@ object BackupFile {
     /** Schlüssellänge in Bit (AES-256). */
     const val KEY_BITS: Int = 256
 
-    /** Kürzestes erlaubtes Passwort in Zeichen. */
+    /** Kürzestes erlaubtes Passwort in Zeichen (Unicode-Codepunkte nach NFC, siehe [passwordOk]). */
     const val MIN_PASSWORD: Int = 8
 
-    /** Verschlüsselt [plain] mit [password]; [salt] und [nonce] kommen vom Aufrufer (zufällig, im Test fest). */
+    /**
+     * Grösste Datei, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB; eine
+     * versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
+     */
+    const val MAX_FILE_BYTES: Long = 20L * 1024 * 1024
+
+    /** Ob [password] lang genug ist: mindestens [MIN_PASSWORD] Unicode-Codepunkte nach NFC. Gleiche Zählung in Swift. */
+    fun passwordOk(password: String): Boolean {
+        val nfc = normalize(password)
+        return nfc.codePointCount(0, nfc.length) >= MIN_PASSWORD
+    }
+
+    /**
+     * Verschlüsselt [plain] mit [password]; [salt] und [nonce] kommen vom Aufrufer (zufällig, im Test fest).
+     * Ein zu kurzes Passwort ([passwordOk]) wirft [IllegalArgumentException]: Nie eine Sicherung mit leerem Passwort.
+     */
     fun encrypt(plain: ByteArray, password: String, salt: ByteArray, nonce: ByteArray): ByteArray {
         require(salt.size == SALT_BYTES && nonce.size == NONCE_BYTES) { "Salz oder Nonce mit falscher Länge" }
+        require(passwordOk(password)) { "Passwort zu kurz" }
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, key(password, salt), GCMParameterSpec(TAG_BYTES * 8, nonce))
         return MAGIC + salt + nonce + cipher.doFinal(plain)
@@ -87,8 +105,10 @@ object BackupFile {
 
     private const val TRANSFORMATION = "AES/GCM/NoPadding"
 
+    private fun normalize(password: String): String = Normalizer.normalize(password, Normalizer.Form.NFC)
+
     private fun key(password: String, salt: ByteArray): SecretKeySpec {
-        val spec = PBEKeySpec(password.toCharArray(), salt, ITERATIONS, KEY_BITS)
+        val spec = PBEKeySpec(normalize(password).toCharArray(), salt, ITERATIONS, KEY_BITS)
         try {
             val bytes = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(spec).encoded
             return SecretKeySpec(bytes, "AES")

@@ -12,8 +12,11 @@ extension SmartAlarm {
         let model = WatchModel.shared
         model.refresh()
         let now = Date()
-        guard let current = model.plan,
-              plan == nil || plan == current,
+        // Die geplante Sitzung gehört zum nächsten Plan oder zum echten Wecker, dessen Sitzung ein vorübergehender
+        // Plan bei geschlossener App nicht verdrängt hat (`keepsRealSession`).
+        let candidates = [model.plan, model.realPlan].compactMap { $0 }
+        let matching: WakePlan? = if let plan { candidates.contains(plan) ? plan : nil } else { model.plan }
+        guard let current = matching,
               now >= Self.sessionStart(current).addingTimeInterval(-Self.startTolerance),
               now < current.target.addingTimeInterval(Self.fallbackDelay) else {
             invalidateSession()

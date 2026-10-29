@@ -28,6 +28,7 @@ import androidx.wear.compose.material3.Slider
 import androidx.wear.compose.material3.SwitchButton
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.TimePicker
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.DayFormat
@@ -55,16 +56,22 @@ internal fun newAlarm(): AlarmSpec = AlarmSpec(id = UUID.randomUUID().toString()
 
 /**
  * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus, Überspringen); alles andere
- * (Sonnenaufgang, Töne, Handy-Wecker, Aufgabe, Schlafdauer, Name) bleibt wie im gespeicherten Wecker.
+ * (Sonnenaufgang, Töne, Handy-Wecker, Aufgabe, Schlafdauer, Name) bleibt wie im gespeicherten Wecker. Überspringen
+ * bestimmt [skip] aus gespeichertem und bearbeitetem Stand (der Entwurf trägt den Schalter): Ohne Angabe gilt
+ * [AlarmSchedule.keepSkip]; beim Speichern [AlarmSchedule.editedSkip], damit ein bewusst eingeschalteter Schalter
+ * auch nach einer geänderten Zeit gilt.
  */
-internal fun mergeEdit(stored: AlarmSpec?, draft: AlarmSpec): AlarmSpec {
+internal fun mergeEdit(
+    stored: AlarmSpec?,
+    draft: AlarmSpec,
+    skip: (old: AlarmSpec, edited: AlarmSpec) -> Long = AlarmSchedule::keepSkip,
+): AlarmSpec {
     stored ?: return draft
-    // Überspringen gilt nur für den bisherigen Zeitplan (wie am Handy).
-    val sameSchedule = stored.hour == draft.hour && stored.minute == draft.minute && stored.days == draft.days
-    return stored.copy(
+    val edited = stored.copy(
         hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled,
-        skipUntil = if (sameSchedule) draft.skipUntil else 0L,
+        skipUntil = draft.skipUntil,
     )
+    return edited.copy(skipUntil = skip(stored, edited))
 }
 
 /** Entwurf über das Format der Wecker sichern, damit er eine Drehung oder ein Ende des Prozesses übersteht. */

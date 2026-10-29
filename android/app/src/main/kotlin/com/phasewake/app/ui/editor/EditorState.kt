@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
@@ -44,13 +45,14 @@ internal class EditorState(val base: AlarmSpec) {
     /** «Mehr» aufgeklappt. */
     var more by mutableStateOf(false)
 
-    /** Der Wecker mit den Eingaben; eingeschaltet, Name ohne Leerraum am Rand. */
+    /**
+     * Der Wecker mit den Eingaben; eingeschaltet, Name ohne Leerraum am Rand. Ein übersprungener Termin bleibt nur
+     * bei gleicher Zeit und gleichen Tagen ([AlarmSchedule.keepSkip]).
+     */
     @OptIn(ExperimentalMaterial3Api::class)
     fun result(time: TimePickerState): AlarmSpec = base.copy(
         hour = time.hour,
         minute = time.minute,
-        // Ein übersprungener Termin gilt nur für den bisherigen Zeitplan; ändert er sich, nichts mehr überspringen.
-        skipUntil = if (time.hour == base.hour && time.minute == base.minute && days == base.days) base.skipUntil else 0L,
         skipHolidays = skipHolidays,
         days = days,
         windowMinutes = window.roundToInt(),
@@ -63,7 +65,7 @@ internal class EditorState(val base: AlarmSpec) {
         sunriseDevice = sunriseDevice,
         wakeTask = wakeTask,
         enabled = true,
-    )
+    ).let { edited -> edited.copy(skipUntil = AlarmSchedule.keepSkip(base, edited)) }
 
     companion object {
         /** Vorschlag der Schlafdauer im Einschlaf-Modus in Minuten (7 h 30 min). */

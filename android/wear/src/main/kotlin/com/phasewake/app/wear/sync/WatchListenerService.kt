@@ -1,18 +1,18 @@
 package com.phasewake.app.wear.sync
 
-import com.phasewake.app.core.DiagKind
-import com.phasewake.app.shared.DataLayer
-import com.phasewake.app.wear.diag.WatchDiag
-import com.phasewake.app.shared.RingMessage
-import com.phasewake.app.shared.WearSync
-import com.phasewake.app.wear.schedule.DirectBoot
-import com.phasewake.app.wear.wake.WakeService
-import com.phasewake.app.wear.wearApp
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RingMessage
+import com.phasewake.app.shared.WearSync
+import com.phasewake.app.wear.diag.WatchDiag
+import com.phasewake.app.wear.schedule.DirectBoot
+import com.phasewake.app.wear.wake.WakeService
+import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
@@ -32,9 +32,14 @@ class WatchListenerService : WearableListenerService() {
             .filter { it.uri.path == DataLayer.PATH_HOLIDAYS }
             .map { WearSync.readHolidays(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.second }
+        // Abbruch am Handy, während die Uhr nicht erreichbar war: nachgeliefert als Paket.
+        val cancelled = changed
+            .filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
+            .mapNotNull { WearSync.readTransientCancel(DataMapItem.fromDataItem(it).dataMap) }
         val app = wearApp
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
+            cancelled.forEach { TransientInbox.cancelled(app, it) }
             val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
             if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.

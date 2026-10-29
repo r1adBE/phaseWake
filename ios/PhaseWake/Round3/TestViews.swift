@@ -12,6 +12,9 @@ struct TestAlarmButton: View {
             }
             .disabled(model.transient.run != nil)
             Text(L("test_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+            if let refusal = model.transient.refusal(.test) {
+                Label(refusal, systemImage: "exclamationmark.circle").font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+            }
         }
     }
 }
@@ -56,11 +59,11 @@ struct TestResultSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                if TestStep.allCases.allSatisfy({ TestRuns.result(run, $0) != false }) {
+                if TestStep.allCases.allSatisfy({ outcome($0) != .failed }) {
                     Label(L("test_all_ok"), systemImage: "checkmark.seal").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 }
                 ForEach(TestStep.allCases, id: \.self) { step in
-                    row(step, TestRuns.result(run, step))
+                    row(step, outcome(step))
                 }
             }
             .navigationTitle(L("test_result_title"))
@@ -75,25 +78,54 @@ struct TestResultSheet: View {
         }
     }
 
-    private func row(_ step: TestStep, _ ok: Bool?) -> some View {
+    /// Ergebnis eines Schritts zur Anzeige.
+    enum Outcome { case passed, failed, skipped, unknown }
+
+    /// Wie `TestRuns.result`; nicht beobachtetes iPhone-Klingeln ohne bekannte Ursache ist «unbekannt».
+    private func outcome(_ step: TestStep) -> Outcome {
+        switch TestRuns.result(run, step) {
+        case nil: .skipped
+        case true?: .passed
+        case false?: step == .phoneRang && model.transient.phoneRingUnobserved ? .unknown : .failed
+        }
+    }
+
+    private func row(_ step: TestStep, _ outcome: Outcome) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 10) {
-                Image(systemName: ok == nil ? "minus.circle" : ok == true ? "checkmark.circle.fill" : "xmark.circle")
-                    .foregroundStyle(ok == false ? Color.red : Color.accentColor)
+                Image(systemName: Self.symbol(outcome))
+                    .foregroundStyle(outcome == .failed ? Color.red : Color.accentColor)
                     .accessibilityHidden(true)
                 Text(title(step)).font(Fonts.manrope(15, .semibold, relativeTo: .body))
                 Spacer()
-                Text(L(ok == nil ? "test_step_skipped" : ok == true ? "test_step_passed" : "test_step_failed"))
-                    .font(Fonts.manrope(13, relativeTo: .footnote))
+                Text(Self.text(outcome)).font(Fonts.manrope(13, relativeTo: .footnote))
             }
             .accessibilityElement(children: .combine)
-            if ok == false, let check = Self.fix(step) {
+            if outcome == .failed, let check = Self.fix(step) {
                 Text(check.problem).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(.secondary)
                 if check.canFix {
                     Button(L("check_allow")) { Task { await NightCheck.fix(check) } }
                         .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                 }
             }
+        }
+    }
+
+    private static func symbol(_ outcome: Outcome) -> String {
+        switch outcome {
+        case .passed: "checkmark.circle.fill"
+        case .failed: "xmark.circle"
+        case .skipped: "minus.circle"
+        case .unknown: "questionmark.circle"
+        }
+    }
+
+    private static func text(_ outcome: Outcome) -> String {
+        switch outcome {
+        case .passed: L("test_step_passed")
+        case .failed: L("test_step_failed")
+        case .skipped: L("test_step_skipped")
+        case .unknown: L("diag_unknown")
         }
     }
 

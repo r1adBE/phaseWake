@@ -16,17 +16,18 @@ import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
-import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.HolidayStore
 import com.phasewake.app.shared.TransientStore
-import com.phasewake.app.wear.wearApp
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.tile.NextAlarmTileService
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.wake.WakeService
+import com.phasewake.app.wear.wearApp
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
@@ -74,10 +75,17 @@ class AlarmScheduler(
     private var doneInMemory: Map<String, Instant> = emptyMap()
 
     /**
-     * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht.
-     * Startseite, Kachel und Komplikation zeigen genau diesen.
+     * Der Plan, der als Nächstes gilt – mit erkanntem Einschlafen und ohne eine schon erledigte Nacht; ein
+     * Probewecker oder Powernap nur nach [Transient.choose] (nie nach seiner Zielzeit + 60 s, nie vor einem früheren
+     * Wecker). Startseite, Kachel und Komplikation zeigen genau diesen.
      */
     suspend fun nextPlan(): WakePlan? {
+        val now = clock().instant()
+        return onsetOverride.apply(Transient.choose(nextAlarmPlan(), transient.active(), now), now)
+    }
+
+    /** Der nächste echte Wecker ohne Probewecker und Powernap; erledigte Nächte und Nachholen wie in [nextPlan]. */
+    suspend fun nextAlarmPlan(): WakePlan? {
         val now = clock().instant()
         val zone = clock().zone
         val prefs = store.data.first()
@@ -86,14 +94,14 @@ class AlarmScheduler(
         val done = doneUntil(prefs)
         val busy = busyRange(prefs, now)
         val days = holidays.current()
-        val plan = (
-            alarms.current().alarms.mapNotNull { spec ->
-                val doneAt = done[spec.id] ?: Instant.EPOCH
-                missedPlan(spec, busy, doneAt, now, zone, days) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone, days)
-            } + listOfNotNull(transient.active()?.plan)
-            ).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
-        return onsetOverride.apply(plan, now)
+        return alarms.current().alarms.mapNotNull { spec ->
+            val doneAt = done[spec.id] ?: Instant.EPOCH
+            missedPlan(spec, busy, doneAt, now, zone, days) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone, days)
+        }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
+
+    /** Pro Wecker erledigt bis (für «Nächstes Mal überspringen» nach frühem Wecken). */
+    suspend fun doneUntil(): Map<String, Instant> = doneUntil(store.data.first())
 
     /** Pro Wecker erledigt bis: gespeichert und aus [markDone], der spätere Wert gilt. */
     private fun doneUntil(prefs: Preferences): Map<String, Instant> {

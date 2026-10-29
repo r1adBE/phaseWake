@@ -27,11 +27,31 @@ final class WatchModel {
         }
     }
 
-    /// Nächster Plan: ein vorübergehender (Probewecker, Powernap), solange er noch wecken kann; sonst der nächste
-    /// Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
-    var plan: WakePlan? {
-        if let transient, now < transient.plan.target.addingTimeInterval(SmartAlarm.fallbackDelay) { return transient.plan }
-        return AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current, holidays: storage.holidays.dates)
+    /// Nächster Plan: der frühere von nächstem Wecker und vorübergehendem Plan (Probewecker, Powernap), wie auf
+    /// Android (`Transient.choose`); ein Powernap verdrängt nie einen früheren Wecker.
+    var plan: WakePlan? { Transient.choose(real: realPlan, transient: transient, now: now) }
+
+    /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
+    var realPlan: WakePlan? {
+        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current, holidays: storage.holidays.dates)
+    }
+
+    /// Warum ein neuer Probewecker oder Powernap jetzt nicht geht: Fenster läuft, Nacht misst, klingelt oder
+    /// schlummert, oder er überdeckte das nächste Fenster (`Transient.conflict`).
+    func conflict(_ candidate: TransientPlan) -> TransientConflict? {
+        refresh()
+        let busy = SmartAlarm.shared.phase.isMeasuring || SmartAlarm.shared.phase.isRinging || SmartAlarm.shared.phase.isSnoozed
+        return Transient.conflict(candidate, next: realPlan, nightActive: busy, now: now)
+    }
+
+    /// Plan vom iPhone: übernehmen, wenn er nicht mit einem Wecker kollidiert. - Returns: ob übernommen.
+    func accept(_ candidate: TransientPlan) -> Bool {
+        if let reason = conflict(candidate) {
+            DiagStore.shared.log(candidate.kind == .test ? .test : .nap, "refused \(reason.rawValue)")
+            return false
+        }
+        startTransient(candidate)
+        return true
     }
 
     /// Weckart zur Kennung: gespeicherter Wecker oder der vorübergehende Plan.
@@ -57,15 +77,28 @@ final class WatchModel {
     func endTransient(_ id: String? = nil) {
         guard let transient, id == nil || transient.plan.alarmId == id else { return }
         setTransient(nil)
+        SmartAlarm.shared.removeFallback([SmartAlarm.transientFallbackId])
+    }
+
+    /// Nach dem Ende eines vorübergehenden Plans neu planen. Bei geschlossener App lässt watchOS die Sitzung der
+    /// Nacht nicht planen: dann eine Mitteilung «Öffne Phase Wake auf der Uhr» (der Rückfall steht trotzdem).
+    func transientEnded() {
+        reschedule()
+        if case .waiting(let next) = SmartAlarm.shared.phase, Transient.kindOf(next.alarmId) == nil {
+            SmartAlarm.shared.notifyOpenApp(for: next)
+        }
     }
 
     /// Powernap von der Uhr aus: gleich planen (die App ist offen, darum klappt die Sitzung) und dem iPhone melden.
-    func startNap(minutes: Int) {
-        let next = AlarmSchedule.earliestPlan(alarms, now: Date(), calendar: .current)
+    /// - Returns: der Grund, wenn er nicht geht (Hinweis im Dialog); sonst `nil`.
+    func startNap(minutes: Int) -> TransientConflict? {
+        let next = realPlan
         let nap = Transient.nap(base: alarms.first { $0.id == next?.alarmId }, now: Date(), calendar: .current,
                                 minutes: minutes, uuid: UUID().uuidString.lowercased())
+        if let reason = conflict(nap) { return reason }
         startTransient(nap)
         WatchConnectivityBridge.shared.send(command: SyncKeys.nap, extra: [SyncKeys.payload: Transient.encode(nap)])
+        return nil
     }
 
     /// Powernap vorzeitig beenden (vor dem Klingeln); das iPhone verwirft seine Sicherung.
@@ -74,7 +107,7 @@ final class WatchModel {
         endTransient()
         DiagStore.shared.log(.nap, "cancelled")
         WatchConnectivityBridge.shared.send(command: SyncKeys.transientCancel, extra: [SyncKeys.id: transient.plan.alarmId])
-        reschedule()
+        transientEnded()
     }
 
     private func setTransient(_ plan: TransientPlan?) {
@@ -101,15 +134,30 @@ final class WatchModel {
     static let maxAlarms = 8
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
 
+    /// «Nächstes Mal überspringen» im Uhr-Editor: nicht angefasst, bewusst ein- oder ausgeschaltet.
+    enum SkipEdit { case keep, on, off }
+
     /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (zuletzt gespeichert gewinnt).
     /// Ein bestehender Wecker behält alles, was die Uhr nicht bearbeitet (siehe `AlarmSpec.editedOnWatch`).
-    func save(_ draft: AlarmSpec) {
+    /// Überspringen gilt nach dem Zusammenführen: nicht angefasst `keepSkip`, eingeschaltet `skipNext` auf den neuen
+    /// Stand (ab einer erledigten Nacht), ausgeschaltet `undoSkip` – wie Android.
+    func save(_ draft: AlarmSpec, skip: SkipEdit) {
+        let now = Date()
+        let done = storage.doneUntil[draft.id]
+        let holidays = storage.holidays.dates
         let snapshot = storage.mutate { list in
             var list = list
+            let old = list.first { $0.id == draft.id }
+            var merged = old.map { $0.editedOnWatch(from: draft) } ?? draft
+            switch skip {
+            case .keep: merged = merged.with(skipUntil: old.map { AlarmSchedule.keepSkip(old: $0, edited: merged) } ?? 0)
+            case .on: merged = AlarmSchedule.skipNext(AlarmSchedule.undoSkip(merged), now: now, doneUntil: done, calendar: .current, holidays: holidays)
+            case .off: merged = AlarmSchedule.undoSkip(merged)
+            }
             if let i = list.firstIndex(where: { $0.id == draft.id }) {
-                list[i] = list[i].editedOnWatch(from: draft)
+                list[i] = merged
             } else if list.count < Self.maxAlarms {
-                list.append(draft)
+                list.append(merged)
             }
             return list
         }

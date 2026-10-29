@@ -81,4 +81,6 @@
     <string name="diag_empty">Ingen hendelser ennå.</string>
     <string name="diag_next">Neste alarm: %1$s</string>
     <string name="diag_version">Versjon %1$s</string>
+    <string name="transient_alarm_running">Alarmen din er i gang akkurat nå.</string>
+    <string name="transient_alarm_soon">Vekkevinduet ditt starter allerede før.</string>
 </resources>

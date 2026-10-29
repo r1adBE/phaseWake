@@ -78,4 +78,6 @@
     <string name="diag_empty">Belum ada peristiwa.</string>
     <string name="diag_next">Alarm berikutnya: %1$s</string>
     <string name="diag_version">Versi %1$s</string>
+    <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
+    <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
 </resources>

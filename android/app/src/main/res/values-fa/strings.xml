@@ -464,4 +464,10 @@
     <string name="diag_unknown">نامعلوم</string>
     <string name="diag_none">هیچ</string>
     <string name="chart_goal_met">✓ هدف رسید</string>
+    <string name="alarm_skip_on">رد کردن %1$s</string>
+    <string name="alarm_skip_undo_for">واگرد رد کردن: %1$s</string>
+    <string name="transient_alarm_running">زنگ تو همین حالا در جریان است.</string>
+    <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
+    <string name="check_watch_update">Phase Wake را روی ساعت به‌روز کن</string>
+    <string name="check_watch_update_problem">تا آن موقع ساعت هیچ زنگی را رد نمی‌کند و روزهای تعطیل هم بیدارت می‌کند.</string>
 </resources>

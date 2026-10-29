@@ -9,7 +9,7 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
-    case watch, watchApp, watchArm, watchBattery, alarms, notifications, battery
+    case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
 
     var title: String {
         switch self {
@@ -17,6 +17,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchApp: L("check_watch_app")
         case .watchArm: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
+        case .watchUpdate: L("check_watch_update")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -29,6 +30,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchApp: L("check_watch_app_problem")
         case .watchArm: L("check_watch_arm_problem")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
+        case .watchUpdate: L("check_watch_update_problem")
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -64,6 +66,8 @@ enum NightCheck {
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
             }
+            // Ältere Uhr-App: überspringt keine Termine und weckt an Feiertagen.
+            if !model.watchKnowsSkip { failed.append(.watchUpdate) }
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
@@ -111,7 +115,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .battery:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery:
             break
         }
     }

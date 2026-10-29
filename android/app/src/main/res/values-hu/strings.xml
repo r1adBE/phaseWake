@@ -464,4 +464,10 @@
     <string name="diag_unknown">ismeretlen</string>
     <string name="diag_none">nincs</string>
     <string name="chart_goal_met">✓ Cél elérve</string>
+    <string name="alarm_skip_on">%1$s kihagyása</string>
+    <string name="alarm_skip_undo_for">Kihagyás visszavonása: %1$s</string>
+    <string name="transient_alarm_running">Az ébresztőd éppen most fut.</string>
+    <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
+    <string name="check_watch_update">Frissítsd a Phase Wake-et az órán</string>
+    <string name="check_watch_update_problem">Addig az óra nem hagy ki ébresztést, és ünnepnapokon is felébreszt.</string>
 </resources>

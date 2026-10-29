@@ -12,8 +12,10 @@ struct PhaseWakeApp: App {
         Fonts.register()
         PhoneConnectivity.shared.activate()
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
-        // Bestehende Installation mit Weckern: gilt als eingerichtet, keine Ersteinrichtung.
-        if !PhoneModel.shared.alarms.isEmpty { UserDefaults.standard.set(true, forKey: OnboardingView.doneKey) }
+        // Bestehende Installation mit Weckern oder Verlauf: gilt als eingerichtet, keine Ersteinrichtung (wie Android).
+        if !PhoneModel.shared.alarms.isEmpty || !PhoneModel.shared.nights.isEmpty {
+            UserDefaults.standard.set(true, forKey: OnboardingView.doneKey)
+        }
     }
 
     var body: some Scene {

@@ -51,6 +51,8 @@ final class PhoneModel {
     private(set) var lastRing: Date?
     /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
     private(set) var watchArmedTarget: Date?
+    /// Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`); `nil` = noch kein Stand der Uhr, 0 = ältere Uhr.
+    private(set) var watchAlarmFields: Int?
     /// Akkustand der Apple Watch in Prozent, wie zuletzt gemeldet, und Zeitpunkt der Messung.
     private var watchBatteryLevel: (percent: Int, at: Date)?
 
@@ -162,9 +164,13 @@ final class PhoneModel {
         }
     }
 
-    func watchArmed(_ target: Date?) {
+    func watchArmed(_ target: Date?, alarmFields: Int) {
         watchArmedTarget = target
+        watchAlarmFields = alarmFields
     }
+
+    /// Ob die Uhr Überspringen und Feiertage beachtet; sonst blendet das iPhone beides aus (Nacht-Check meldet es).
+    var watchKnowsSkip: Bool { Codec.watchKnowsSkip(watchAlarmFields) }
 
     func setWatchBattery(_ level: (percent: Int, at: Date)?) { watchBatteryLevel = level }
 

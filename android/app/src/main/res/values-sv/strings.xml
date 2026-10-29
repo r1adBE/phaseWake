@@ -464,4 +464,10 @@
     <string name="diag_unknown">okänt</string>
     <string name="diag_none">inget</string>
     <string name="chart_goal_met">✓ Målet nått</string>
+    <string name="alarm_skip_on">Hoppa över %1$s</string>
+    <string name="alarm_skip_undo_for">Ångra överhoppning: %1$s</string>
+    <string name="transient_alarm_running">Ditt alarm pågår just nu.</string>
+    <string name="transient_alarm_soon">Ditt väckningsfönster börjar redan innan.</string>
+    <string name="check_watch_update">Uppdatera Phase Wake på klockan</string>
+    <string name="check_watch_update_problem">Tills dess hoppar klockan inte över några alarm och väcker dig även på helgdagar.</string>
 </resources>

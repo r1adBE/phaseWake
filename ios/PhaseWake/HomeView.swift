@@ -25,7 +25,8 @@ struct HomeView: View {
                             header(now: context.date)
                         }
                         TimelineView(.everyMinute) { context in
-                            let plan = AlarmSchedule.earliestPlan(model.alarms, now: context.date, calendar: .current, holidays: model.holidays.dates)
+                            // Eine früh geweckte Nacht zählt nicht mehr (wie Nacht-Check und Widget).
+                            let plan = model.nextPlan(now: context.date)
                             VStack(spacing: 16) {
                                 // Nacht-Check nur, wenn ein Wecker ansteht.
                                 if plan != nil {
@@ -147,7 +148,7 @@ struct HomeView: View {
     }
 
     private func header(now: Date) -> some View {
-        let plan = AlarmSchedule.earliestPlan(model.alarms, now: now, calendar: .current, holidays: model.holidays.dates)
+        let plan = model.nextPlan(now: now)
         return VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 10) {
                 LogoMark().frame(width: 48, height: 48)
@@ -203,9 +204,9 @@ struct HomeView: View {
         .accessibilityAction { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
     }
 
-    /// Frühester Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte («Do 30.10.: Feiertag – nicht geweckt»).
+    /// Feiertag, an dem ein Wecker sonst geweckt hätte, bis zum nächsten Wecken («Do 30.10.: Feiertag – nicht geweckt»).
     private func skippedHoliday(now: Date) -> String? {
-        model.alarms.compactMap { AlarmSchedule.skippedHoliday($0, now: now, calendar: .current, holidays: model.holidays.dates) }.min()
+        AlarmSchedule.holidayNote(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current, holidays: model.holidays.dates)
     }
 
     private func greetingKey(_ now: Date) -> String {
@@ -319,6 +320,7 @@ private struct AlarmRow: View {
                         Button(L("alarm_skip_undo")) { model.setSkipped(alarm, false) }
                             .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
                             .buttonStyle(.borderless)
+                            .accessibilityLabel(undoLabel(skipped))
                     }
                 }
             }
@@ -332,16 +334,16 @@ private struct AlarmRow: View {
             Button(L("editor_edit"), systemImage: "pencil", action: onTap)
             if skipped != nil {
                 Button(L("alarm_skip_undo"), systemImage: "arrow.uturn.backward") { model.setSkipped(alarm, false) }
-            } else if !alarm.isOneShot && alarm.enabled {
-                Button(L("alarm_skip"), systemImage: "forward.end") { model.setSkipped(alarm, true) }
+            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+                Button(skipTitle, systemImage: "forward.end") { model.setSkipped(alarm, true) }
             }
         }
         .accessibilityAction(named: L("editor_edit"), onTap)
         .accessibilityActions {
-            if skipped != nil {
-                Button(L("alarm_skip_undo")) { model.setSkipped(alarm, false) }
-            } else if !alarm.isOneShot && alarm.enabled {
-                Button(L("alarm_skip")) { model.setSkipped(alarm, true) }
+            if let skipped {
+                Button(undoLabel(skipped)) { model.setSkipped(alarm, false) }
+            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+                Button(skipTitle) { model.setSkipped(alarm, true) }
             }
         }
         .card()
@@ -350,6 +352,18 @@ private struct AlarmRow: View {
 
     /// Übersprungener Termin «yyyy-MM-dd», solange er bevorsteht.
     private var skipped: String? { AlarmSchedule.skippedDate(alarm, now: Date(), calendar: .current) }
+
+    /// «Do 30.10. überspringen»: der Tag, den der Menüpunkt trifft (nach früh geweckter Nacht der nächste).
+    private var skipTitle: String {
+        AlarmSchedule.nextSkipDate(alarm, now: Date(), doneUntil: model.doneUntil[alarm.id], calendar: .current,
+                                   holidays: model.holidays.dates)
+            .map { L("alarm_skip_on", Format.shortDay($0)) } ?? L("alarm_skip")
+    }
+
+    /// Für Bildschirmleser: «Überspringen rückgängig: Übersprungen: Do 30.10. (6:30–7:00)».
+    private func undoLabel(_ skipped: String) -> String {
+        L("alarm_skip_undo_for", L("alarm_skipped", Format.shortDay(skipped)) + " (" + Format.window(alarm) + ")")
+    }
 
     private var details: String {
         var parts = [Format.days(alarm)]

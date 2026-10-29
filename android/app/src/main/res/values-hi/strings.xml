@@ -464,4 +464,10 @@
     <string name="diag_unknown">अज्ञात</string>
     <string name="diag_none">कोई नहीं</string>
     <string name="chart_goal_met">✓ लक्ष्य पूरा</string>
+    <string name="alarm_skip_on">%1$s छोड़ें</string>
+    <string name="alarm_skip_undo_for">छोड़ना रद्द करें: %1$s</string>
+    <string name="transient_alarm_running">आपका अलार्म अभी चल रहा है।</string>
+    <string name="transient_alarm_soon">आपके अलार्म की विंडो उससे पहले शुरू होती है।</string>
+    <string name="check_watch_update">वॉच पर Phase Wake अपडेट करें</string>
+    <string name="check_watch_update_problem">तब तक वॉच कोई अलार्म नहीं छोड़ेगी और छुट्टियों पर भी आपको जगाएगी।</string>
 </resources>

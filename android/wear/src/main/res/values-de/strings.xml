@@ -81,4 +81,6 @@
     <string name="diag_empty">Noch keine Ereignisse.</string>
     <string name="diag_next">Nächster Wecker: %1$s</string>
     <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Gerade läuft dein Wecker.</string>
+    <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
 </resources>

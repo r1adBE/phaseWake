@@ -87,4 +87,6 @@
     <string name="diag_empty">Событий пока нет.</string>
     <string name="diag_next">Следующий будильник: %1$s</string>
     <string name="diag_version">Версия %1$s</string>
+    <string name="transient_alarm_running">Сейчас работает твой будильник.</string>
+    <string name="transient_alarm_soon">Окно твоего будильника начинается раньше.</string>
 </resources>

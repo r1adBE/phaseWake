@@ -72,36 +72,26 @@ class WearSync(context: Context) {
     }
 
     /** Handy: zuletzt gemeldeter Status der Uhr; `null`, wenn sie noch nie etwas gemeldet hat. */
-    suspend fun watchReady(): Boolean? = try {
-        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
-        try {
-            items.firstOrNull()?.let { readReady(DataMapItem.fromDataItem(it).dataMap) }
-        } finally {
-            items.release()
-        }
-    } catch (e: Exception) {
-        if (e is kotlinx.coroutines.CancellationException) throw e
-        null
-    }
+    suspend fun watchReady(): Boolean? = readStatus { readReady(it) }
 
     /** Handy: zuletzt gemeldeter Akkustand der Uhr in Prozent; `null`, wenn unbekannt oder älter als [maxAgeMs]. */
-    suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? = try {
-        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
-        try {
-            items.firstOrNull()?.let { readBattery(DataMapItem.fromDataItem(it).dataMap, System.currentTimeMillis(), maxAgeMs) }
-        } finally {
-            items.release()
-        }
-    } catch (e: Exception) {
-        if (e is kotlinx.coroutines.CancellationException) throw e
-        null
-    }
+    suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? =
+        readStatus { readBattery(it, System.currentTimeMillis(), maxAgeMs) }
 
     /** Handy: zuletzt gemeldeter Zeitpunkt des Uhr-Status (ms), also «zuletzt gesehen»; `null`, wenn unbekannt. */
-    suspend fun watchSeenAt(): Long? = try {
+    suspend fun watchSeenAt(): Long? = readStatus { readSeenAt(it) }
+
+    /**
+     * Handy: Felder je Weckerzeile, die die Uhr kennt ([readAlarmFields]); `null`, wenn sie noch nie einen Status
+     * gemeldet hat oder die Wear-Dienste fehlen.
+     */
+    suspend fun watchAlarmFields(): Int? = readStatus { readAlarmFields(it) }
+
+    /** Liest das Status-Paket der Uhr mit [read]; `null`, wenn keines da ist oder die Wear-Dienste fehlen. */
+    private suspend fun <T> readStatus(read: (DataMap) -> T?): T? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
-            items.firstOrNull()?.let { readSeenAt(DataMapItem.fromDataItem(it).dataMap) }
+            items.firstOrNull()?.let { read(DataMapItem.fromDataItem(it).dataMap) }
         } finally {
             items.release()
         }
@@ -126,6 +116,15 @@ class WearSync(context: Context) {
     } catch (e: Exception) {
         if (e is kotlinx.coroutines.CancellationException) throw e
         null
+    }
+
+    /**
+     * Probewecker oder Powernap [alarmId] abgebrochen: als Nachricht (sofort) und als Datenpaket (auch für ein gerade
+     * nicht erreichbares Gerät, das sonst zur alten Zielzeit klingelte). [capability]: die Gegenseite.
+     */
+    suspend fun publishTransientCancel(capability: String, alarmId: String) {
+        message(capability, DataLayer.PATH_TRANSIENT_CANCEL, alarmId.encodeToByteArray())
+        guarded("Abbruch ablegen") { dataClient.putDataItem(transientCancelRequest(alarmId, System.currentTimeMillis())).await() }
     }
 
     /** Handy: Verlauf überall löschen – auch auf einer Uhr, die gerade nicht verbunden ist. */
@@ -223,12 +222,23 @@ class WearSync(context: Context) {
                 dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
             }.asPutDataRequest()
 
-        /** Status-Paket der Uhr; [battery] fehlt, wenn unbekannt. */
+        /** Status-Paket der Uhr mit den Feldern je Weckerzeile dieser Version; [battery] fehlt, wenn unbekannt. */
         fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
             if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
         }.asPutDataRequest().setUrgent()
+
+        /** Paket «Probewecker oder Powernap abgebrochen», siehe [DataLayer.PATH_TRANSIENT_CANCELLED]. */
+        fun transientCancelRequest(alarmId: String, nowMs: Long): PutDataRequest =
+            PutDataMapRequest.create(DataLayer.PATH_TRANSIENT_CANCELLED).apply {
+                dataMap.putString(DataLayer.KEY_TEXT, alarmId)
+                dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
+            }.asPutDataRequest().setUrgent()
+
+        /** Kennung aus dem Abbruch-Paket; `null`, wenn sie fehlt oder leer ist. */
+        fun readTransientCancel(map: DataMap): String? = map.getString(DataLayer.KEY_TEXT)?.takeIf { it.isNotEmpty() }
 
         /** Feiertags-Paket für die Uhren. */
         fun holidaysRequest(list: HolidayList, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_HOLIDAYS).apply {
@@ -248,6 +258,9 @@ class WearSync(context: Context) {
         fun readBattery(map: DataMap, nowMs: Long, maxAgeMs: Long): Int? =
             map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
                 ?.getInt(DataLayer.KEY_BATTERY)
+
+        /** Felder je Weckerzeile aus dem Status-Paket; ohne Angabe (ältere Uhr) 0. */
+        fun readAlarmFields(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_ALARM_FIELDS)) map.getInt(DataLayer.KEY_ALARM_FIELDS) else 0
 
         /** Zeitpunkt des Status-Pakets (ms); `null` ohne Angabe. */
         fun readSeenAt(map: DataMap): Long? = map.getLong(DataLayer.KEY_UPDATED_AT).takeIf { it > 0 }

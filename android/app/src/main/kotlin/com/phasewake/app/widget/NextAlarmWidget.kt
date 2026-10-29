@@ -87,7 +87,8 @@ class NextAlarmWidget : AppWidgetProvider() {
             val zone = ZoneId.systemDefault()
             val now = Instant.now()
             val alarms = app.alarms.current().alarms
-            val plan = AlarmSchedule.earliestPlan(alarms, now, zone, app.holidays.store.current())
+            // Ohne die schon erledigte Nacht (früh geweckt): sonst stünde bis zur Zielzeit noch der heutige Wecker da.
+            val plan = AlarmSchedule.earliestPlan(alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil())
             val views = RemoteViews(context.packageName, R.layout.widget_next_alarm)
             if (plan == null) {
                 views.setTextViewText(R.id.widget_window, context.getString(R.string.widget_no_alarm))

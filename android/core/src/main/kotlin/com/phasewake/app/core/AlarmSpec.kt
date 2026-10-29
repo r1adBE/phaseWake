@@ -36,8 +36,10 @@ data class AlarmSpec(
     /** Was zum Beenden nötig ist: Halten (Standard) oder eine Rechenaufgabe am Handy. */
     val wakeTask: WakeTask = WakeTask.NONE,
     /**
-     * «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier (ms seit 1970) fallen aus;
-     * 0 = keiner. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker, siehe [AlarmSchedule.skipNext].
+     * «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier fallen aus; 0 = keiner.
+     * Wandzeit in ms ([AlarmSchedule.wallMillis]: Ortsdatum und -uhrzeit, gezählt wie UTC), damit auf Reisen
+     * derselbe Kalendertag ausfällt. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker, siehe
+     * [AlarmSchedule.skipNext].
      */
     val skipUntil: Long = 0L,
     /** An Feiertagen (Land und Region in den Einstellungen) nicht wecken. Nur für wiederholte Wecker. */

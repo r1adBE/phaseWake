@@ -7,6 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -46,6 +47,31 @@ class BackupTest {
         assertEquals(BackupSettings(480, true, false, true, "DARK", "CH", "BE"), p.settings)
         // Dasselbe mit den Werten des Vektors verschlüsselt ergibt (bis auf den Inhalt) dieselbe Datei.
         assertContentEquals(file, BackupFile.encrypt(plain, password, salt, nonce))
+    }
+
+    @Test
+    fun unicodePasswordIsNormalised() {
+        // Passwort-Datei absichtlich in NFD («a» + Trema), Schlüssel aus NFC abgeleitet.
+        val file = Base64.getDecoder().decode(File(testdata, "backup-v1-nfc.pwbak.b64").readText().trim())
+        val nfd = File(testdata, "backup-v1-nfc.password").readText().trim()
+        assertEquals("Mondlicht-a\u0308€-2026", nfd)
+        val expected = File(testdata, "backup-v1.json").readText().trim()
+        assertEquals(expected, BackupFile.decrypt(file, nfd).decodeToString())
+        assertEquals(expected, BackupFile.decrypt(file, "Mondlicht-\u00e4€-2026").decodeToString())
+        assertContentEquals(file, BackupFile.encrypt(expected.encodeToByteArray(), "Mondlicht-\u00e4€-2026", salt, nonce))
+    }
+
+    @Test
+    fun shortPasswordIsRefused() {
+        assertFalse(BackupFile.passwordOk(""))
+        assertFalse(BackupFile.passwordOk("1234567"))
+        assertTrue(BackupFile.passwordOk("12345678"))
+        // «ä» als NFD (zwei Codepunkte) zählt als ein Zeichen: «abcdefä» hat 7.
+        assertFalse(BackupFile.passwordOk("abcdefa\u0308"))
+        assertTrue(BackupFile.passwordOk("abcdefga\u0308"))
+        assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "", salt, nonce) }
+        assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "1234567", salt, nonce) }
+        assertTrue(BackupFile.MAX_FILE_BYTES >= 1_000_000L)
     }
 
     @Test

@@ -84,4 +84,6 @@
     <string name="diag_empty">Încă niciun eveniment.</string>
     <string name="diag_next">Următoarea alarmă: %1$s</string>
     <string name="diag_version">Versiunea %1$s</string>
+    <string name="transient_alarm_running">Alarma ta rulează chiar acum.</string>
+    <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
 </resources>

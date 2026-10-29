@@ -464,4 +464,10 @@
     <string name="diag_unknown">bilinmiyor</string>
     <string name="diag_none">yok</string>
     <string name="chart_goal_met">✓ Hedefe ulaşıldı</string>
+    <string name="alarm_skip_on">%1$s tarihini atla</string>
+    <string name="alarm_skip_undo_for">Atlamayı geri al: %1$s</string>
+    <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
+    <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
+    <string name="check_watch_update">Saatteki Phase Wake\'i güncelle</string>
+    <string name="check_watch_update_problem">O zamana kadar saat hiçbir alarmı atlamaz ve tatillerde de seni uyandırır.</string>
 </resources>

@@ -29,7 +29,8 @@ public struct BackupError: Error, Equatable, Sendable {
 /// Verschlüsselte Sicherungsdatei (`.pwbak`), auf Apple und Android gleich:
 /// `MAGIC | Salz (16) | Nonce (12) | Geheimtext | Prüfsumme (16)`.
 ///
-/// Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (UTF-8) mit `iterations` Runden, 256 Bit (CommonCrypto).
+/// Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8) mit `iterations` Runden, 256 Bit (CommonCrypto).
+/// NFC, damit «ü» als ein Zeichen oder als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt.
 /// Verfahren: AES-256-GCM ohne zusätzliche Daten (CryptoKit). 210 000 Runden: Empfehlung von OWASP (2023)
 /// für PBKDF2-SHA256. Identisch zu `BackupFile` (Kotlin).
 public enum BackupFile {
@@ -45,14 +46,25 @@ public enum BackupFile {
     public static let iterations = 210_000
     /// Schlüssellänge in Bit (AES-256).
     public static let keyBits = 256
-    /// Kürzestes erlaubtes Passwort in Zeichen.
+    /// Kürzestes erlaubtes Passwort in Zeichen (Unicode-Codepunkte nach NFC, siehe `passwordOk`).
     public static let minPassword = 8
+    /// Grösste Datei in Byte, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB;
+    /// eine versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
+    public static let maxFileBytes: Int64 = 20 * 1024 * 1024
+
+    /// Ob `password` lang genug ist: mindestens `minPassword` Unicode-Codepunkte nach NFC (gleiche Zählung wie Kotlin,
+    /// nicht Graphem-Gruppen).
+    public static func passwordOk(_ password: String) -> Bool {
+        normalize(password).unicodeScalars.count >= minPassword
+    }
 
     /// Verschlüsselt `plain` mit `password`; `salt` (16 Byte) und `nonce` (12 Byte) kommen vom Aufrufer
-    /// (zufällig, im Test fest).
-    /// - Throws: ``BackupError`` (`unreadable`) bei falscher Länge von Salz oder Nonce oder einem Fehler der Verschlüsselung.
+    /// (zufällig, im Test fest). Nie eine Sicherung mit zu kurzem oder leerem Passwort.
+    /// - Throws: ``BackupError`` (`unreadable`) bei zu kurzem Passwort (`passwordOk`), falscher Länge von Salz oder
+    ///   Nonce oder einem Fehler der Verschlüsselung.
     public static func encrypt(_ plain: Data, password: String, salt: Data, nonce: Data) throws -> Data {
         guard salt.count == saltBytes, nonce.count == nonceBytes else { throw BackupError(.unreadable, "Salz oder Nonce mit falscher Länge") }
+        guard passwordOk(password) else { throw BackupError(.unreadable, "Passwort zu kurz") }
         do {
             let key = try deriveKey(password, salt: salt)
             let sealed = try AES.GCM.seal(plain, using: key, nonce: AES.GCM.Nonce(data: nonce))
@@ -83,11 +95,14 @@ public enum BackupFile {
         }
     }
 
-    /// PBKDF2-HMAC-SHA256, 32 Byte.
+    /// Unicode NFC (wie `Normalizer.Form.NFC` in Kotlin).
+    private static func normalize(_ password: String) -> String { password.precomposedStringWithCanonicalMapping }
+
+    /// PBKDF2-HMAC-SHA256 über NFC(Passwort) als UTF-8, 32 Byte.
     private static func deriveKey(_ password: String, salt: Data) throws -> SymmetricKey {
         let keyLength = keyBits / 8
         var key = [UInt8](repeating: 0, count: keyLength)
-        let passwordBytes = [UInt8](password.utf8)
+        let passwordBytes = [UInt8](normalize(password).utf8)
         let saltBytes = [UInt8](salt)
         let status = passwordBytes.withUnsafeBufferPointer { pw in
             pw.withMemoryRebound(to: CChar.self) { chars in

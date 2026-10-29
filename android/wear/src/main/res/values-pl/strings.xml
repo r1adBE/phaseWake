@@ -87,4 +87,6 @@
     <string name="diag_empty">Brak zdarzeń.</string>
     <string name="diag_next">Następny budzik: %1$s</string>
     <string name="diag_version">Wersja %1$s</string>
+    <string name="transient_alarm_running">Twój budzik właśnie działa.</string>
+    <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
 </resources>

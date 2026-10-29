@@ -478,4 +478,10 @@
     <string name="diag_unknown">inconnu</string>
     <string name="diag_none">aucun</string>
     <string name="chart_goal_met">✓ Objectif atteint</string>
+    <string name="alarm_skip_on">Sauter %1$s</string>
+    <string name="alarm_skip_undo_for">Annuler le saut : %1$s</string>
+    <string name="transient_alarm_running">Ton réveil est en cours en ce moment.</string>
+    <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
+    <string name="check_watch_update">Mets à jour Phase Wake sur la montre</string>
+    <string name="check_watch_update_problem">D\'ici là, ta montre ne saute aucun réveil et te réveille aussi les jours fériés.</string>
 </resources>

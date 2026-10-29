@@ -1,33 +1,36 @@
 package com.phasewake.app.wear.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import androidx.wear.compose.material3.AppScaffold
-import androidx.compose.runtime.remember
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientConflict
+import com.phasewake.app.wear.R
 import com.phasewake.app.wear.diag.WatchDiag
 import com.phasewake.app.wear.sync.TransientInbox
+import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
+import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
-import com.phasewake.app.wear.wearApp
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /** Uhr-App: Startbildschirm (nächstes Weckfenster, Wecker, Berechtigungen) und einfacher Wecker-Editor. */
 class MainActivity : ComponentActivity() {
@@ -54,6 +57,9 @@ private fun WatchApp() {
     val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
     var draft by rememberSaveable(stateSaver = draftSaver) { mutableStateOf<AlarmSpec?>(null) }
     val holidays by app.holidays.dates.collectAsStateWithLifecycle(initialValue = emptySet())
+    // Erledigte Nächte (früh geweckt): «Nächstes Mal überspringen» trifft dann den nächsten Termin.
+    var done by remember { mutableStateOf(emptyMap<String, Instant>()) }
+    LaunchedEffect(alarms) { done = app.scheduler.doneUntil() }
     // Nur vom eigenen Bildschirm aus zurück: Ein Doppeltipp darf nicht auch den Start schliessen.
     fun back(from: String) {
         if (nav.currentDestination?.route == from) nav.popBackStack()
@@ -75,7 +81,11 @@ private fun WatchApp() {
             }
             composable(ROUTE_NAP) {
                 NapScreen(Transient.NAP_DEFAULT_MINUTES) { minutes ->
-                    app.appScope.launch { TransientInbox.startNap(app, minutes) }
+                    app.appScope.launch {
+                        // Abgelehnt (Wecker läuft oder beginnt vorher): Hinweis, nichts geändert.
+                        val refused = TransientInbox.startNap(app, minutes) ?: return@launch
+                        withContext(Dispatchers.Main) { Toast.makeText(app, conflictText(refused), Toast.LENGTH_LONG).show() }
+                    }
                     back(ROUTE_NAP)
                 }
             }
@@ -98,7 +108,12 @@ private fun WatchApp() {
                                 val stored = list.firstOrNull { it.id == current.id }
                                 // Höchstens MAX_ALARMS Wecker, wie am Handy.
                                 if (stored != null || list.size < MAX_ALARMS) {
-                                    app.sync.publishAlarms(app.alarms.upsert(mergeEdit(stored, current)))
+                                    val zone = ZoneId.systemDefault()
+                                    val doneAt = app.scheduler.doneUntil()[current.id]
+                                    val merged = mergeEdit(stored, current) { old, edited ->
+                                        AlarmSchedule.editedSkip(old, edited, Instant.now(), zone, app.holidays.current(), doneAt)
+                                    }
+                                    app.sync.publishAlarms(app.alarms.upsert(merged))
                                     app.scheduler.reschedule()
                                 }
                             }
@@ -107,7 +122,7 @@ private fun WatchApp() {
                         skipped = AlarmSchedule.skippedDate(current, Instant.now(), ZoneId.systemDefault())?.let { shortDay(it) },
                         onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) null else { on ->
                             draft = if (on) {
-                                AlarmSchedule.skipNext(current.copy(skipUntil = 0L), Instant.now(), ZoneId.systemDefault(), holidays)
+                                AlarmSchedule.skipNext(current.copy(skipUntil = 0L), Instant.now(), ZoneId.systemDefault(), holidays, done[current.id])
                             } else {
                                 AlarmSchedule.undoSkip(current)
                             }
@@ -161,6 +176,12 @@ private fun DiagRoute(onHide: () -> Unit) {
             onHide()
         },
     )
+}
+
+/** Hinweis, warum ein Powernap nicht startet. */
+private fun conflictText(conflict: TransientConflict): Int = when (conflict) {
+    TransientConflict.ALARM_RUNNING -> R.string.transient_alarm_running
+    TransientConflict.ALARM_SOON -> R.string.transient_alarm_soon
 }
 
 /** Kurzes Datum mit Wochentag (z. B. «Do., 30.10.»). */

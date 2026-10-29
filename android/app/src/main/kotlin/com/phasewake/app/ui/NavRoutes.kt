@@ -93,7 +93,7 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(
             Routes.EDITOR,
             arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
-        ) { entry -> EditorRoute(app, state.data, entry.arguments?.getString("id"), actions) }
+        ) { entry -> EditorRoute(app, state, entry.arguments?.getString("id"), actions) }
     }
 }
 
@@ -127,7 +127,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         routineItems = data.routineItems,
         routineTicks = data.routineTicks,
         onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
-        extras = homeExtras(app, data),
+        extras = homeExtras(app, data, skipAllowed = state.nightCheck.watchKnowsSkip),
     )
 }
 
@@ -260,10 +260,12 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
 }
 
 @Composable
-private fun EditorRoute(app: PhaseWakeApp, data: AppData, id: String?, actions: NavActions) {
+private fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions) {
+    val data = state.data
     val existing = data.alarms.firstOrNull { it.id == id }
     EditorScreen(
         existing = existing,
+        holidaysAllowed = state.nightCheck.watchKnowsSkip,
         advice = existing?.let { WindowAdvice.suggest(it, data.nights.orEmpty()) },
         onBack = { actions.nav.popBackStack() },
         onSave = { spec ->

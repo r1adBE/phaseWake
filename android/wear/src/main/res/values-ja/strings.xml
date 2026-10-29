@@ -78,4 +78,6 @@
     <string name="diag_empty">まだイベントはありません。</string>
     <string name="diag_next">次のアラーム: %1$s</string>
     <string name="diag_version">バージョン %1$s</string>
+    <string name="transient_alarm_running">いまアラームが作動中です。</string>
+    <string name="transient_alarm_soon">アラームの時間幅はそれより前に始まります。</string>
 </resources>

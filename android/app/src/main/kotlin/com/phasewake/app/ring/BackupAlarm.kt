@@ -28,7 +28,10 @@ import com.phasewake.app.ui.MainActivity
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -234,6 +237,15 @@ class BackupAlarm(
         val spec = alarms.current().alarms.firstOrNull { it.id == alarmId } ?: return
         if (spec.isOneShot && spec.enabled) context.phoneApp.afterAlarmsChanged { alarms.setEnabled(spec.id, false) }
     }
+
+    /**
+     * Pro Wecker erledigt bis: Die Uhr hat die Nacht übernommen oder der Zweitwecker hat geweckt (Zielzeit + Nachfrist).
+     * Das Gegenstück zu `doneUntil` der Uhr: Überspringen, Startseite und Widget suchen für diesen Wecker erst ab hier.
+     */
+    val doneUntilFlow: Flow<Map<String, Instant>> = store.data.map { decodeSuppressed(it[SUPPRESSED]) }.distinctUntilChanged()
+
+    /** Aktueller Stand von [doneUntilFlow]. */
+    suspend fun doneUntil(): Map<String, Instant> = doneUntilFlow.first()
 
     /** Pro Wecker: ausgesetzt bis; ein späterer Zeitpunkt gewinnt, abgelaufene fallen weg. */
     private suspend fun suppress(until: Map<String, Instant>) {

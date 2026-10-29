@@ -93,4 +93,6 @@
     <string name="diag_empty">لا أحداث بعد.</string>
     <string name="diag_next">المنبّه التالي: %1$s</string>
     <string name="diag_version">الإصدار %1$s</string>
+    <string name="transient_alarm_running">منبّهك يعمل الآن.</string>
+    <string name="transient_alarm_soon">نافذة منبّهك تبدأ قبل ذلك.</string>
 </resources>

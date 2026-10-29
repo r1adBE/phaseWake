@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Transient
 import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlin.coroutines.cancellation.CancellationException
-import com.phasewake.app.core.DiagKind
-import com.phasewake.app.core.Transient
 import kotlinx.coroutines.launch
 
 /**
@@ -29,8 +29,11 @@ class SystemEventReceiver : BroadcastReceiver() {
             try {
                 // Vor dem Entsperren geweckt: Nacht als erledigt merken und einen Einmal-Wecker ausschalten.
                 // Ein Fehler hier darf das Neuplanen nicht verhindern.
-                // Probewecker und Powernap zählen nie als Nacht.
-                DirectBoot.takeRang(context)?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
+                // Probewecker und Powernap zählen nie als Nacht; ihr Plan ist mit dem Wecken vorbei (sonst klingelte
+                // er nach dem Entsperren noch einmal).
+                val rang = DirectBoot.takeRang(context)
+                rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) -> app.transient.clear(alarmId) }
+                rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                     try {
                         app.scheduler.markDone(alarmId, target)
                         app.scheduler.saveDone()

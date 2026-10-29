@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.onboarding
 
 import android.text.format.DateFormat
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -68,6 +69,9 @@ private const val STEPS = 5
 @Composable
 internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavActions, onDone: () -> Unit) {
     var page by rememberSaveable { mutableIntStateOf(0) }
+    // System-Zurück: einen Schritt zurück; auf der ersten Seite wie «Überspringen» (sonst erschiene die Einrichtung
+    // beim nächsten Start wieder, ohne angelegten Wecker).
+    BackHandler { if (page > 0) page-- else onDone() }
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 20.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(

@@ -492,4 +492,10 @@
     <string name="diag_unknown">nieznane</string>
     <string name="diag_none">brak</string>
     <string name="chart_goal_met">✓ Cel osiągnięty</string>
+    <string name="alarm_skip_on">Pomiń %1$s</string>
+    <string name="alarm_skip_undo_for">Cofnij pominięcie: %1$s</string>
+    <string name="transient_alarm_running">Twój budzik właśnie działa.</string>
+    <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
+    <string name="check_watch_update">Zaktualizuj Phase Wake na zegarku</string>
+    <string name="check_watch_update_problem">Do tego czasu zegarek nie pominie żadnego budzika i obudzi cię także w święta.</string>
 </resources>

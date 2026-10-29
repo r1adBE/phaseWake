@@ -78,4 +78,6 @@
     <string name="diag_empty">Belum ada peristiwa.</string>
     <string name="diag_next">Penggera seterusnya: %1$s</string>
     <string name="diag_version">Versi %1$s</string>
+    <string name="transient_alarm_running">Penggera awak sedang berjalan sekarang.</string>
+    <string name="transient_alarm_soon">Tetingkap penggera awak bermula lebih awal.</string>
 </resources>

@@ -450,4 +450,10 @@
     <string name="diag_unknown">ไม่ทราบ</string>
     <string name="diag_none">ไม่มี</string>
     <string name="chart_goal_met">✓ ถึงเป้าหมาย</string>
+    <string name="alarm_skip_on">ข้าม %1$s</string>
+    <string name="alarm_skip_undo_for">เลิกข้าม: %1$s</string>
+    <string name="transient_alarm_running">การปลุกของคุณกำลังทำงานอยู่ตอนนี้</string>
+    <string name="transient_alarm_soon">ช่วงเวลาปลุกของคุณเริ่มก่อนหน้านั้น</string>
+    <string name="check_watch_update">อัปเดต Phase Wake บนนาฬิกา</string>
+    <string name="check_watch_update_problem">จนกว่าจะอัปเดต นาฬิกาจะไม่ข้ามการปลุกใดและจะปลุกคุณในวันหยุดด้วย</string>
 </resources>

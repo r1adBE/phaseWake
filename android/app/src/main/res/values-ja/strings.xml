@@ -450,4 +450,10 @@
     <string name="diag_unknown">不明</string>
     <string name="diag_none">なし</string>
     <string name="chart_goal_met">✓ 目標達成</string>
+    <string name="alarm_skip_on">%1$sをスキップ</string>
+    <string name="alarm_skip_undo_for">スキップを元に戻す: %1$s</string>
+    <string name="transient_alarm_running">いまアラームが作動中です。</string>
+    <string name="transient_alarm_soon">アラームの時間幅はそれより前に始まります。</string>
+    <string name="check_watch_update">ウォッチのPhase Wakeを更新してください</string>
+    <string name="check_watch_update_problem">それまでウォッチはアラームをスキップせず、祝日にも起こします。</string>
 </resources>

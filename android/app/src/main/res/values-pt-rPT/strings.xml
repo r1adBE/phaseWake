@@ -478,4 +478,10 @@
     <string name="diag_unknown">desconhecido</string>
     <string name="diag_none">nenhum</string>
     <string name="chart_goal_met">✓ Meta atingida</string>
+    <string name="alarm_skip_on">Saltar %1$s</string>
+    <string name="alarm_skip_undo_for">Anular salto: %1$s</string>
+    <string name="transient_alarm_running">O teu alarme está a decorrer neste momento.</string>
+    <string name="transient_alarm_soon">A janela do teu alarme começa antes disso.</string>
+    <string name="check_watch_update">Atualiza o Phase Wake no relógio</string>
+    <string name="check_watch_update_problem">Até lá, o relógio não salta nenhum alarme e também te acorda nos feriados.</string>
 </resources>

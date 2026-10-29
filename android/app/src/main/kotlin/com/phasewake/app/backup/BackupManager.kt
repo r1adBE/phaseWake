@@ -11,8 +11,11 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CodecException
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.SleepNotes
+import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.io.InputStream
 import java.security.SecureRandom
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -52,7 +55,10 @@ object BackupManager {
         }
         app.diag.log(DiagKind.OTHER, "backup saved")
         true
-    } catch (e: IOException) {
+    } catch (e: Exception) {
+        // Jeder Fehler (Schreiben, Passwort zu kurz, Anbieter der Verschlüsselung) meldet «nicht gespeichert», statt
+        // die App über den Bereich abstürzen zu lassen; nur der Abbruch der Coroutine geht weiter.
+        if (e is CancellationException) throw e
         Log.w(TAG, "Sicherung nicht geschrieben", e)
         false
     }
@@ -63,7 +69,7 @@ object BackupManager {
      */
     suspend fun open(context: Context, uri: Uri, password: String): BackupPreview {
         val bytes = try {
-            withContext(Dispatchers.IO) { context.contentResolver.openInputStream(uri)?.use { it.readBytes() } }
+            withContext(Dispatchers.IO) { context.contentResolver.openInputStream(uri)?.use { readLimited(it) } }
         } catch (e: IOException) {
             throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei nicht lesbar", e)
         } ?: throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei nicht lesbar")
@@ -80,6 +86,27 @@ object BackupManager {
         }
         return BackupPreview(payload, alarms, payload.nights.size, SleepNotes.decode(payload.notes).size)
     }
+
+    /**
+     * Liest höchstens [BackupFile.MAX_FILE_BYTES]; eine grössere Datei (z. B. versehentlich ein Video) ist keine
+     * Sicherung und wird nicht ganz in den Speicher gelesen.
+     */
+    private fun readLimited(input: InputStream): ByteArray {
+        val out = ByteArrayOutputStream()
+        val buffer = ByteArray(READ_BUFFER)
+        var total = 0L
+        while (true) {
+            val read = input.read(buffer)
+            if (read < 0) break
+            total += read
+            if (total > BackupFile.MAX_FILE_BYTES) throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Datei zu gross")
+            out.write(buffer, 0, read)
+        }
+        return out.toByteArray()
+    }
+
+    /** Lesepuffer in Byte. */
+    private const val READ_BUFFER = 64 * 1024
 
     /** Ersetzt alle Daten durch [payload] und gleicht mit der Uhr ab. Unlesbare Nächte fallen weg. */
     suspend fun restore(app: PhaseWakeApp, payload: BackupPayload) {

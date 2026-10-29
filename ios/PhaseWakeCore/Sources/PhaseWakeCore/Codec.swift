@@ -17,6 +17,20 @@ public enum Codec {
     ]
     private static let daysByCode = Dictionary(uniqueKeysWithValues: dayCodes.map { ($1, $0) })
 
+    /// So viele Felder je Weckerzeile kennt diese Version; die Uhr meldet die Zahl im Status (`SyncKeys.alarmFields`),
+    /// damit das iPhone eine ältere Uhr erkennt (`watchKnowsSkip`).
+    public static let alarmFields = 16
+    /// Ab so vielen Feldern kennt eine Version Überspringen (Feld 15) und Feiertage (Feld 16).
+    public static let skipFields = 16
+
+    /// Ob eine Uhr, die `watchFields` Felder je Weckerzeile kennt, Überspringen und Feiertage beachtet. `nil` = keine
+    /// Uhr bekannt (nie ein Status): `true`, das iPhone weckt dann allein und beachtet beides. Ein Status ohne Angabe
+    /// stammt von einer älteren Uhr und zählt als 0.
+    public static func watchKnowsSkip(_ watchFields: Int?) -> Bool {
+        guard let watchFields else { return true }
+        return watchFields >= skipFields
+    }
+
     /// Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit 16 Feldern, getrennt durch «|». Texte URL-kodiert wie in Kotlin, damit beide Seiten byte-gleich schreiben.
     public static func encodeAlarms(_ alarms: [AlarmSpec]) -> String {
         var out = alarmsHeader + "\n"

@@ -158,7 +158,7 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
 
 /** Wochentage: sieben runde Schalter und Kurzwahl (Werktage, Wochenende, täglich). */
 @Composable
-internal fun DaysSection(state: EditorState) {
+internal fun DaysSection(state: EditorState, holidaysAllowed: Boolean = true) {
     Section {
         Text(stringResource(R.string.editor_days), style = MaterialTheme.typography.titleMedium)
         // Sieben Tage in einer Zeile, Wochenbeginn nach Sprache und Region (z. B. Sonntag in den USA).
@@ -180,8 +180,9 @@ internal fun DaysSection(state: EditorState) {
             TextButton(onClick = { state.days = WEEKEND }) { Text(stringResource(R.string.editor_weekend)) }
             TextButton(onClick = { state.days = DayOfWeek.entries.toSet() }) { Text(stringResource(R.string.alarm_every_day)) }
         }
-        // Feiertage nur für wiederholte Wecker; ein Einmal-Wecker klingelt an seinem Tag.
-        AnimatedVisibility(state.days.isNotEmpty()) {
+        // Feiertage nur für wiederholte Wecker; ein Einmal-Wecker klingelt an seinem Tag. Kennt die Uhr sie nicht,
+        // nur noch zum Ausschalten (sonst zeigte der Editor etwas, das die Uhr nicht beachtet).
+        AnimatedVisibility(state.days.isNotEmpty() && (holidaysAllowed || state.skipHolidays)) {
             Row(
                 Modifier.fillMaxWidth().toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }).padding(top = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,

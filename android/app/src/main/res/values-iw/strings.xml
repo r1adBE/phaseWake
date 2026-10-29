@@ -478,4 +478,10 @@
     <string name="diag_unknown">לא ידוע</string>
     <string name="diag_none">אין</string>
     <string name="chart_goal_met">✓ היעד הושג</string>
+    <string name="alarm_skip_on">דילוג על %1$s</string>
+    <string name="alarm_skip_undo_for">ביטול הדילוג: %1$s</string>
+    <string name="transient_alarm_running">ההשכמה שלכם פועלת עכשיו.</string>
+    <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
+    <string name="check_watch_update">עדכנו את Phase Wake בשעון</string>
+    <string name="check_watch_update_problem">עד אז השעון לא ידלג על אף השכמה ויעיר אתכם גם בחגים.</string>
 </resources>

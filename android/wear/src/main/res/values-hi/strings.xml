@@ -81,4 +81,6 @@
     <string name="diag_empty">अभी कोई घटना नहीं।</string>
     <string name="diag_next">अगला अलार्म: %1$s</string>
     <string name="diag_version">वर्शन %1$s</string>
+    <string name="transient_alarm_running">आपका अलार्म अभी चल रहा है।</string>
+    <string name="transient_alarm_soon">आपके अलार्म की विंडो उससे पहले शुरू होती है।</string>
 </resources>

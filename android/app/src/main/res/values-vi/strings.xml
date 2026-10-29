@@ -450,4 +450,10 @@
     <string name="diag_unknown">không rõ</string>
     <string name="diag_none">không có</string>
     <string name="chart_goal_met">✓ Đạt mục tiêu</string>
+    <string name="alarm_skip_on">Bỏ qua %1$s</string>
+    <string name="alarm_skip_undo_for">Hoàn tác bỏ qua: %1$s</string>
+    <string name="transient_alarm_running">Báo thức của bạn đang chạy ngay lúc này.</string>
+    <string name="transient_alarm_soon">Khoảng thời gian báo thức của bạn bắt đầu trước đó.</string>
+    <string name="check_watch_update">Cập nhật Phase Wake trên đồng hồ</string>
+    <string name="check_watch_update_problem">Cho đến lúc đó, đồng hồ sẽ không bỏ qua báo thức nào và vẫn đánh thức bạn vào ngày lễ.</string>
 </resources>

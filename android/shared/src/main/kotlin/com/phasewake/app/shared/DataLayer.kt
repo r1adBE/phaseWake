@@ -62,6 +62,12 @@ object DataLayer {
     const val KEY_BATTERY = "battery"
 
     /**
+     * Felder je Weckerzeile, die die Uhr kennt (`Codec.ALARM_FIELDS`), im selben Paket wie [KEY_READY]. Fehlt bei
+     * Uhren vor «Überspringen» und «Feiertage»; das Handy blendet beides dann aus (`Codec.watchKnowsSkip`).
+     */
+    const val KEY_ALARM_FIELDS = "alarmFields"
+
+    /**
      * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
      * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
      */
@@ -75,6 +81,13 @@ object DataLayer {
 
     /** Nachricht in beide Richtungen: Probewecker oder Powernap abgebrochen; Inhalt = Kennung (UTF-8). */
     const val PATH_TRANSIENT_CANCEL = "/phasewake/transient-cancel"
+
+    /**
+     * Datenpaket in beide Richtungen, zusätzlich zu [PATH_TRANSIENT_CANCEL]: derselbe Abbruch, damit ihn auch ein
+     * gerade nicht erreichbares Gerät nachholt (Nachrichten werden nicht nachgeliefert). Schlüssel [KEY_TEXT] =
+     * Kennung, [KEY_UPDATED_AT].
+     */
+    const val PATH_TRANSIENT_CANCELLED = "/phasewake/transient-cancelled"
 
     /**
      * Datenpaket Handy → Uhr: Feiertage der nächsten 400 Tage für «An Feiertagen nicht wecken»;

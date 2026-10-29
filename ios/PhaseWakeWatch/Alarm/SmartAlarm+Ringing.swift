@@ -125,6 +125,7 @@ extension SmartAlarm {
         nightPlan = nil
         spec = nil
         clearSaved()
-        model.reschedule()
+        // Nach einem vorübergehenden Plan die Nacht wieder planen (bei geschlossener App: Bitte, sie zu öffnen).
+        if transient { model.transientEnded() } else { model.reschedule() }
     }
 }

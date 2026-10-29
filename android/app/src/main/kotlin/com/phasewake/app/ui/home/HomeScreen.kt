@@ -99,13 +99,13 @@ fun HomeScreen(
         }
     }
     val zone = ZoneId.systemDefault()
-    val plan = remember(alarms, now, extras.holidays) { AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays) }
+    // Eine schon erledigte Nacht (früh geweckt, Zielzeit noch vorn) ist nicht mehr der nächste Wecker.
+    val done = extras.doneUntil
+    val plan = remember(alarms, now, extras.holidays, done) { AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays, done) }
     val locale = LocalConfiguration.current.locales[0]
     // Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte (nur bis zum nächsten Weckfenster).
-    val holidayNote = remember(alarms, now, extras.holidays, plan) {
-        alarms.mapNotNull { AlarmSchedule.skippedHoliday(it, now, zone, extras.holidays) }.minOrNull()
-            ?.takeIf { day -> plan == null || !day.isAfter(plan.target.atZone(zone).toLocalDate()) }
-            ?.let { Format.shortDay(it, locale) }
+    val holidayNote = remember(alarms, now, extras.holidays, done) {
+        AlarmSchedule.holidayNote(alarms, now, zone, extras.holidays, done)?.let { Format.shortDay(it, locale) }
     }
 
     // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
@@ -181,6 +181,7 @@ fun HomeScreen(
                     skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
                     onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
                     onUndoSkip = { extras.onUndoSkip(alarm) },
+                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])?.let { Format.shortDay(it, locale) },
                 )
             }
             if (alarms.size >= MAX_ALARMS) {
@@ -196,6 +197,8 @@ fun HomeScreen(
 class HomeExtras(
     /** Feiertage für Wecker mit «An Feiertagen nicht wecken». */
     val holidays: Set<LocalDate> = emptySet(),
+    /** Pro Wecker erledigt bis (früh geweckt); dieser Wecker zählt erst danach wieder. */
+    val doneUntil: Map<String, Instant> = emptyMap(),
     /** Laufender Powernap; `null` = keiner. */
     val nap: TransientPlan? = null,
     /** Vorschlag der Dauer in Minuten. */
@@ -203,7 +206,7 @@ class HomeExtras(
     /** Powernap starten (Minuten); `null` = keine Karte. */
     val onNap: ((Int) -> Unit)? = null,
     val onStopNap: (String) -> Unit = {},
-    /** «Nächstes Mal überspringen»; `null` = kein Menü. */
+    /** «Nächstes Mal überspringen»; `null` = kein Menü (auch, solange die Uhr es nicht kennt). */
     val onSkip: ((AlarmSpec) -> Unit)? = null,
     val onUndoSkip: (AlarmSpec) -> Unit = {},
     /** «In 2 Minuten testen» auf dem Nacht-Check; `null` = kein Knopf. */

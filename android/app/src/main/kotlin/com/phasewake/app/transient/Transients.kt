@@ -7,8 +7,11 @@ import com.phasewake.app.core.CodecException
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.TestRun
 import com.phasewake.app.core.Transient
+import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.core.TransientPlan
+import com.phasewake.app.ring.PhoneRingService
+import com.phasewake.app.ring.SnoozeSafety
 import com.phasewake.app.shared.DataLayer
 import java.time.Instant
 import java.time.ZoneId
@@ -24,23 +27,39 @@ object Transients {
 
     /**
      * «In 2 Minuten testen»: Weckart des nächsten echten Weckers (ohne Wecker die Vorgaben). Ersetzt einen
-     * laufenden Probewecker oder Powernap.
+     * wartenden Probewecker oder Powernap. Abgelehnt ([conflict]), solange ein Wecker läuft oder sein Fenster vorher
+     * beginnt. @return `null`, wenn gestartet; sonst der Grund (Hinweis), nichts geändert.
      */
-    suspend fun startTest(app: PhaseWakeApp): TransientPlan {
+    suspend fun startTest(app: PhaseWakeApp): TransientConflict? {
         val now = Instant.now()
         val plan = Transient.test(nextAlarm(app, now), now, ZoneId.systemDefault(), UUID.randomUUID().toString())
+        conflict(app, plan, now)?.let { return it }
         app.testRuns.start(TestRun(plan.spec.id, plan.plan.target, plan.spec.phone))
         begin(app, plan, DataLayer.PATH_TEST)
-        return plan
+        return null
     }
 
-    /** Powernap ab jetzt mit [minutes] Dauer; die Dauer bleibt als Vorschlag für das nächste Mal. */
-    suspend fun startNap(app: PhaseWakeApp, minutes: Int): TransientPlan {
+    /** Powernap ab jetzt mit [minutes] Dauer; die Dauer bleibt als Vorschlag. Abgelehnt wie [startTest]. */
+    suspend fun startNap(app: PhaseWakeApp, minutes: Int): TransientConflict? {
         val now = Instant.now()
         app.settings.setNapMinutes(minutes)
         val plan = Transient.nap(nextAlarm(app, now), now, ZoneId.systemDefault(), minutes, UUID.randomUUID().toString())
+        conflict(app, plan, now)?.let { return it }
         begin(app, plan, DataLayer.PATH_NAP)
-        return plan
+        return null
+    }
+
+    /**
+     * Ob [plan] abgelehnt wird ([Transient.conflict]). Nächster Plan: der nächste echte Wecker ohne erledigte Nacht.
+     * Eine Nacht läuft: Das Handy klingelt oder schlummert, die Sicherung nach dem Schlummern auf der Uhr steht,
+     * oder ein vorübergehender Plan ist in seinem Fenster.
+     */
+    private suspend fun conflict(app: PhaseWakeApp, plan: TransientPlan, now: Instant): TransientConflict? {
+        val zone = ZoneId.systemDefault()
+        val next = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil())
+        val running = app.transient.active()?.plan?.let { !now.isBefore(it.windowStart) && now.isBefore(it.target) } == true
+        val night = PhoneRingService.ringState.value != PhoneRingService.State.Idle || SnoozeSafety.load(app) != null || running
+        return Transient.conflict(plan, next, night, now)
     }
 
     /** Bricht den Plan [alarmId] ab, hier und auf der Uhr. */
@@ -48,7 +67,7 @@ object Transients {
         if (!app.transient.clear(alarmId)) return
         if (Transient.kindOf(alarmId) == TransientKind.TEST) app.testRuns.clear()
         app.diag.log(DiagKind.OTHER, "transient cancelled")
-        app.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TRANSIENT_CANCEL, alarmId.encodeToByteArray())
+        app.sync.publishTransientCancel(DataLayer.CAPABILITY_WATCH, alarmId)
         app.backup.reschedule()
     }
 
@@ -66,10 +85,12 @@ object Transients {
         app.backup.reschedule()
     }
 
-    /** Die Uhr hat abgebrochen ([DataLayer.PATH_TRANSIENT_CANCEL]). */
-    suspend fun cancelled(app: PhaseWakeApp, payload: ByteArray?) {
-        val id = DataLayer.text(payload)
-        if (app.transient.clear(id)) app.backup.reschedule()
+    /** Die Uhr hat abgebrochen ([DataLayer.PATH_TRANSIENT_CANCEL] bzw. nachgeliefert als Paket). */
+    suspend fun cancelled(app: PhaseWakeApp, payload: ByteArray?) = cancelled(app, DataLayer.text(payload))
+
+    /** Abbruch des Plans [alarmId] durch die Uhr: nicht mehr anzeigen und nicht mehr sichern. */
+    suspend fun cancelled(app: PhaseWakeApp, alarmId: String) {
+        if (app.transient.clear(alarmId)) app.backup.reschedule()
     }
 
     /** Am Handy beendet (Stopp beim Handy-Klingeln): ein Probewecker oder Powernap ist damit vorbei. */

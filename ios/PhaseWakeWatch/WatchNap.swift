@@ -7,6 +7,8 @@ struct WatchNapView: View {
     @Environment(WatchModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var minutes = Transient.napDefaultMinutes
+    /// Grund, warum der Powernap gerade nicht geht (Wecker läuft oder Fenster beginnt vorher).
+    @State private var refused: TransientConflict?
 
     var body: some View {
         List {
@@ -15,10 +17,14 @@ struct WatchNapView: View {
                     .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             }
             Button(L("nap_start")) {
-                model.startNap(minutes: minutes)
-                dismiss()
+                refused = model.startNap(minutes: minutes)
+                if refused == nil { dismiss() }
             }
             .tint(Brand.echo)
+            if let refused {
+                Label(L(refused == .alarmRunning ? "transient_alarm_running" : "transient_alarm_soon"), systemImage: "exclamationmark.circle")
+                    .font(Fonts.manrope(13, relativeTo: .footnote))
+            }
         }
         .navigationTitle(L("nap_title"))
     }

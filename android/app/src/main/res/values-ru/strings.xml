@@ -492,4 +492,10 @@
     <string name="diag_unknown">неизвестно</string>
     <string name="diag_none">нет</string>
     <string name="chart_goal_met">✓ Цель достигнута</string>
+    <string name="alarm_skip_on">Пропустить %1$s</string>
+    <string name="alarm_skip_undo_for">Отменить пропуск: %1$s</string>
+    <string name="transient_alarm_running">Сейчас работает твой будильник.</string>
+    <string name="transient_alarm_soon">Окно твоего будильника начинается раньше.</string>
+    <string name="check_watch_update">Обнови Phase Wake на часах</string>
+    <string name="check_watch_update_problem">До этого часы не пропускают будильники и будят тебя и в праздники.</string>
 </resources>

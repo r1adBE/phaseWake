@@ -450,4 +450,10 @@
     <string name="diag_unknown">未知</string>
     <string name="diag_none">无</string>
     <string name="chart_goal_met">✓ 达成目标</string>
+    <string name="alarm_skip_on">跳过%1$s</string>
+    <string name="alarm_skip_undo_for">撤销跳过：%1$s</string>
+    <string name="transient_alarm_running">你的闹钟正在进行中。</string>
+    <string name="transient_alarm_soon">你的唤醒时间窗在那之前就开始了。</string>
+    <string name="check_watch_update">更新手表上的 Phase Wake</string>
+    <string name="check_watch_update_problem">在此之前，手表不会跳过任何闹钟，节假日也会叫醒你。</string>
 </resources>

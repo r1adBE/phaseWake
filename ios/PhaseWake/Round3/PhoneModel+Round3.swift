@@ -18,10 +18,11 @@ extension PhoneModel {
         Task { await replanBedtime() }
     }
 
-    /// «Nächstes Mal überspringen» bzw. rückgängig; geht an die Uhr wie jede Änderung.
+    /// «Nächstes Mal überspringen» bzw. rückgängig; geht an die Uhr wie jede Änderung. Nach früh geweckter Nacht
+    /// (Zielzeit noch vorn) trifft es den nächsten Termin, nicht den erledigten heutigen.
     func setSkipped(_ alarm: AlarmSpec, _ skipped: Bool) {
         let updated = skipped
-            ? AlarmSchedule.skipNext(alarm, now: Date(), calendar: .current, holidays: holidays.dates)
+            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .current, holidays: holidays.dates)
             : AlarmSchedule.undoSkip(alarm)
         upsert(updated)
     }

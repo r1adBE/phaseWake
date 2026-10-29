@@ -84,4 +84,6 @@
     <string name="diag_empty">Aucun événement pour l’instant.</string>
     <string name="diag_next">Prochain réveil : %1$s</string>
     <string name="diag_version">Version %1$s</string>
+    <string name="transient_alarm_running">Ton réveil est en cours en ce moment.</string>
+    <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
 </resources>

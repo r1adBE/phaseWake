@@ -33,6 +33,9 @@ struct NapCard: View {
                 .tint(Brand.accent(scheme))
                 .foregroundStyle(Brand.onAccent(scheme))
             }
+            if let refusal = model.transient.refusal(.nap) {
+                Label(refusal, systemImage: "exclamationmark.circle").font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+            }
         }
         .card()
     }

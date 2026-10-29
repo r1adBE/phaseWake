@@ -111,8 +111,9 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public let sunriseDevice: SunriseDevice
     /// Weckaufgabe; auf Apple ohne Wirkung, wird aber erhalten und mit der Uhr abgeglichen.
     public let wakeTask: WakeTask
-    /// «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier (ms seit 1970) fallen
-    /// aus; 0 = keiner. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker (`AlarmSchedule.skipNext`).
+    /// «Nächstes Mal überspringen»: Termine mit einer Zielzeit bis einschliesslich hier fallen aus; 0 = keiner.
+    /// Wandzeit in ms (`AlarmSchedule.wallMillis`: Ortsdatum und -uhrzeit, gezählt wie UTC), damit auf Reisen derselbe
+    /// Kalendertag ausfällt. Der Wecker bleibt eingeschaltet. Nur für wiederholte Wecker (`AlarmSchedule.skipNext`).
     public let skipUntil: Int64
     /// An Feiertagen (Land und Region in den Einstellungen) nicht wecken. Nur für wiederholte Wecker.
     public let skipHolidays: Bool
@@ -178,7 +179,7 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     /// Kopie mit geändertem Ein/Aus-Zustand.
     public func with(enabled: Bool) -> AlarmSpec { copy(enabled: enabled) }
 
-    /// Kopie mit anderem `skipUntil` (ms seit 1970, 0 = nichts überspringen).
+    /// Kopie mit anderem `skipUntil` (Wandzeit-ms, 0 = nichts überspringen).
     public func with(skipUntil: Int64) -> AlarmSpec { copy(skipUntil: skipUntil) }
 
     /// Kopie mit anderer Feiertagsregel.

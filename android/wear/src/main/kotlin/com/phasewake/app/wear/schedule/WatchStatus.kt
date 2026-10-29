@@ -13,6 +13,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
+import com.phasewake.app.core.Codec
 import com.phasewake.app.shared.WearSync
 import java.time.Clock
 import java.time.Duration
@@ -36,8 +37,9 @@ internal class WatchStatus(
 
     /**
      * Sendet den Status, aber nur bei Bedarf: Bereitschaft geändert, Akkustand um mindestens
-     * [BATTERY_STEP] Punkte geändert oder letzte Meldung älter als [MAX_AGE]. Jede Meldung ist ein
-     * dringendes Datenpaket und lässt das Handy neu planen.
+     * [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne die Felder je Weckerzeile
+     * dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde «aktualisieren»).
+     * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
      */
     suspend fun publish(): Unit = lock.withLock {
         val ready = isReady()
@@ -46,7 +48,7 @@ internal class WatchStatus(
         val prefs = store.data.first()
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
-        val due = prefs[SENT_READY] != ready ||
+        val due = prefs[SENT_READY] != ready || prefs[SENT_FIELDS] != Codec.ALARM_FIELDS ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
@@ -55,6 +57,7 @@ internal class WatchStatus(
         store.edit {
             it[SENT_READY] = ready
             it[SENT_AT] = now
+            it[SENT_FIELDS] = Codec.ALARM_FIELDS
             if (battery != null) it[SENT_BATTERY] = battery else it.remove(SENT_BATTERY)
         }
     }
@@ -79,6 +82,7 @@ internal class WatchStatus(
         private val SENT_READY = booleanPreferencesKey("status_sent_ready")
         private val SENT_BATTERY = intPreferencesKey("status_sent_battery")
         private val SENT_AT = longPreferencesKey("status_sent_at")
+        private val SENT_FIELDS = intPreferencesKey("status_sent_alarm_fields")
         private const val BATTERY_STEP = 5
         private val MAX_AGE: Duration = Duration.ofHours(1)
 

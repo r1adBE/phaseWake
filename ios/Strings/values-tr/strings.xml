@@ -17,4 +17,5 @@
     <string name="check_watch_arm_problem">Uyumadan önce Apple Watch’ta Phase Wake’i aç. watchOS alarmı yalnızca uygulama açıkken etkinleştirir.</string>
     <string name="night_unmeasured_apple">İlk %1$d dk ölçülmedi – Apple Watch yalnızca hedef saatten önceki son %2$d dk’yı ölçer.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)</string>
+    <string name="restore_unreadable">Dosya okunamadı. Hiçbir şey değiştirilmedi.</string>
 </resources>

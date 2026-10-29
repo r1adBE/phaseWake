@@ -17,4 +17,5 @@
     <string name="check_watch_arm_problem">Åbn Phase Wake på dit Apple Watch, før du går i seng. watchOS aktiverer kun alarmen, mens appen er åben.</string>
     <string name="night_unmeasured_apple">Første %1$d min ikke målt – Apple Watch måler kun de sidste %2$d min før ønsket tid.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: SoundAnalysis fra Apple, indbygget i iOS.\nLyde: frie optagelser (CC0) fra opengameart.org</string>
+    <string name="restore_unreadable">Filen kunne ikke læses. Intet blev ændret.</string>
 </resources>

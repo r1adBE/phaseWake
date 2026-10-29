@@ -78,4 +78,6 @@
     <string name="diag_empty">아직 이벤트가 없어요.</string>
     <string name="diag_next">다음 알람: %1$s</string>
     <string name="diag_version">버전 %1$s</string>
+    <string name="transient_alarm_running">지금 알람이 진행 중이에요.</string>
+    <string name="transient_alarm_soon">알람 범위가 그보다 먼저 시작돼요.</string>
 </resources>

@@ -492,4 +492,10 @@
     <string name="diag_unknown">neznámé</string>
     <string name="diag_none">žádný</string>
     <string name="chart_goal_met">✓ Cíl splněn</string>
+    <string name="alarm_skip_on">Přeskočit %1$s</string>
+    <string name="alarm_skip_undo_for">Zrušit přeskočení: %1$s</string>
+    <string name="transient_alarm_running">Právě běží tvůj budík.</string>
+    <string name="transient_alarm_soon">Okno tvého budíku začíná už dřív.</string>
+    <string name="check_watch_update">Aktualizuj Phase Wake v hodinkách</string>
+    <string name="check_watch_update_problem">Do té doby hodinky nic nepřeskočí a budí tě i o svátcích.</string>
 </resources>

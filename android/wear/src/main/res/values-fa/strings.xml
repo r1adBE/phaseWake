@@ -81,4 +81,6 @@
     <string name="diag_empty">هنوز رویدادی نیست.</string>
     <string name="diag_next">زنگ بعدی: %1$s</string>
     <string name="diag_version">نسخهٔ %1$s</string>
+    <string name="transient_alarm_running">زنگ تو همین حالا در جریان است.</string>
+    <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
 </resources>

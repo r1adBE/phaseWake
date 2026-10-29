@@ -81,4 +81,6 @@
     <string name="diag_empty">Henüz olay yok.</string>
     <string name="diag_next">Sonraki alarm: %1$s</string>
     <string name="diag_version">Sürüm %1$s</string>
+    <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
+    <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
 </resources>

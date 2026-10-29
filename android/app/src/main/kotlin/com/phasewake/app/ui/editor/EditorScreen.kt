@@ -67,6 +67,8 @@ fun EditorScreen(
     onBack: () -> Unit,
     onSave: (AlarmSpec) -> Unit,
     onDelete: (AlarmSpec) -> Unit,
+    /** «An Feiertagen nicht wecken» anbieten: nicht, solange die Uhr es nicht kennt (ausser es ist schon an). */
+    holidaysAllowed: Boolean = true,
 ) {
     val context = LocalContext.current
     // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
@@ -128,7 +130,7 @@ fun EditorScreen(
             AnimatedVisibility(state.sleepMode) { SleepSection(state) }
             if (advice != null && state.window.roundToInt() < advice.windowMinutes) AdviceCard(state, advice)
             WindowSection(state, time)
-            DaysSection(state)
+            DaysSection(state, holidaysAllowed)
             AlertSection(state)
             SunriseSection(state)
             MoreSection(state, preview, soundPicker)

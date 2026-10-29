@@ -450,4 +450,10 @@
     <string name="diag_unknown">tidak diketahui</string>
     <string name="diag_none">tidak ada</string>
     <string name="chart_goal_met">✓ Target tercapai</string>
+    <string name="alarm_skip_on">Lewati %1$s</string>
+    <string name="alarm_skip_undo_for">Urungkan lewati: %1$s</string>
+    <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
+    <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
+    <string name="check_watch_update">Perbarui Phase Wake di jam tangan</string>
+    <string name="check_watch_update_problem">Sampai saat itu, jam tanganmu tidak akan melewati alarm dan tetap membangunkanmu saat hari libur.</string>
 </resources>
