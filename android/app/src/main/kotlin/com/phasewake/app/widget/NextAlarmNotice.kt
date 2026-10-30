@@ -79,7 +79,7 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             .setContentTitle(NextAlarmWidget.windowText(context, plan, zone))
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_STATUS)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(true)
             .setSilent(true)
@@ -115,7 +115,13 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
     }
 
     companion object {
-        const val CHANNEL = "next_alarm"
+        /**
+         * Kanal mit normaler Wichtigkeit, aber ohne Ton: Android und One UI blenden Mitteilungen niedriger Wichtigkeit
+         * («lautlos») auf dem Sperrbildschirm standardmässig aus. Die Wichtigkeit eines Kanals lässt sich nicht
+         * nachträglich anheben, darum neue Kennung; der alte Kanal [OLD_CHANNEL] wird gelöscht.
+         */
+        const val CHANNEL = "next_alarm_lock"
+        private const val OLD_CHANNEL = "next_alarm"
         private const val NOTIFICATION_ID = 8
         private const val REQUEST_CODE = 9
         private const val ACTION = "com.phasewake.app.action.NEXT_ALARM_NOTICE"
@@ -147,10 +153,12 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             app.appScope.launch { app.nextAlarm.reschedule() }
         }
 
-        /** Stiller Kanal ohne Ton, Vibration und App-Symbol-Punkt; auf dem Sperrbildschirm ganz sichtbar. */
+        /** Kanal ohne Ton, Vibration und App-Symbol-Punkt; auf dem Sperrbildschirm ganz sichtbar. */
         fun createChannel(context: Context) {
-            context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-                NotificationChannel(CHANNEL, context.getString(R.string.widget_name), NotificationManager.IMPORTANCE_LOW).apply {
+            val notifications = context.getSystemService(NotificationManager::class.java)
+            notifications.deleteNotificationChannel(OLD_CHANNEL)
+            notifications.createNotificationChannel(
+                NotificationChannel(CHANNEL, context.getString(R.string.widget_name), NotificationManager.IMPORTANCE_DEFAULT).apply {
                     setSound(null, null)
                     enableVibration(false)
                     setShowBadge(false)
