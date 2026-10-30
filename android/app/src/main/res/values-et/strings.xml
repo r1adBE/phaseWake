@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Nädala ülevaade</string>
     <string name="weekly_toggle">Pühapäeviti kell 18 märguanne sinu nädala kohta.</string>
+    <string name="next_alarm_notif_title">Äratus lukustuskuval</string>
+    <string name="next_alarm_notif_hint">Vaikne teavitus alates õhtust äratusakna ja öise kontrolliga.</string>
     <string name="weekly_notification_title">Sinu nädal</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s und · une eesmärk %2$d/7 · regulaarne magamaminek %3$d/7 · enesetunne %4$s</string>
     <string name="weekly_notification_feeling">Ø enesetunne sel nädalal: %1$s</string>

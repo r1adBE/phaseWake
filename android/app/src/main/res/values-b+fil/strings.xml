@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Lingguhang buod</string>
     <string name="weekly_toggle">Tuwing Linggo, 6 pm, isang notification tungkol sa linggo mo.</string>
+    <string name="next_alarm_notif_title">Alarm sa lock screen</string>
+    <string name="next_alarm_notif_hint">Tahimik na notification mula gabi, kasama ang wake window at ang pagsusuri bago matulog.</string>
     <string name="weekly_notification_title">Ang linggo mo</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s na tulog · layunin %2$d/7 · regular na pagtulog %3$d/7 · pakiramdam %4$s</string>
     <string name="weekly_notification_feeling">Ø pakiramdam ngayong linggo: %1$s</string>

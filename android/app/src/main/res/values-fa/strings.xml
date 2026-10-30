@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">مرور هفته</string>
     <string name="weekly_toggle">یکشنبه‌ها ساعت ۱۸:۰۰ اعلانی دربارهٔ هفته‌ات.</string>
+    <string name="next_alarm_notif_title">زنگ روی صفحهٔ قفل</string>
+    <string name="next_alarm_notif_hint">اعلان بی‌صدا از عصر با بازهٔ بیداری و بررسی شب.</string>
     <string name="weekly_notification_title">هفتهٔ تو</string>
     <string name="weekly_notification_text">میانگین Ø %1$s خواب · هدف خواب %2$d/7 · منظم %3$d/7 · حس %4$s</string>
     <string name="weekly_notification_feeling">میانگین Ø حس این هفته: %1$s</string>

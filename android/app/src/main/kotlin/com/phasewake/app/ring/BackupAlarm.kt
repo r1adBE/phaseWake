@@ -56,8 +56,9 @@ class BackupAlarm(
     internal val zone: ZoneId get() = ZoneId.systemDefault()
 
     /**
-     * Plant Zweitwecker und Sonnenaufgang neu, danach Bettzeit-Erinnerung und Wochenrückblick (hängen an denselben
-     * Ereignissen: Wecker geändert, Neustart, Zeit oder Zeitzone). Ein Fehler dort stört den Zweitwecker nicht.
+     * Plant Zweitwecker und Sonnenaufgang neu, danach Bettzeit-Erinnerung, Wochenrückblick und die Mitteilung
+     * «Nächster Wecker» (hängen an denselben Ereignissen: Wecker geändert, Neustart, Zeit oder Zeitzone). Ein Fehler
+     * dort stört den Zweitwecker nicht.
      */
     suspend fun reschedule() {
         rescheduleBackup()
@@ -72,6 +73,12 @@ class BackupAlarm(
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Wochenrückblick nicht planbar", e)
+        }
+        try {
+            context.phoneApp.nextAlarm.reschedule()
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Mitteilung «Nächster Wecker» nicht planbar", e)
         }
     }
 

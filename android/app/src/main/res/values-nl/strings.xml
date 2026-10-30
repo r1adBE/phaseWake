@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Weekoverzicht</string>
     <string name="weekly_toggle">Op zondag om 18:00 een melding over je week.</string>
+    <string name="next_alarm_notif_title">Wekker op het vergrendelscherm</string>
+    <string name="next_alarm_notif_hint">Stille melding vanaf de avond met je wekvenster en de nachtcheck.</string>
     <string name="weekly_notification_title">Jouw week</string>
     <string name="weekly_notification_text">Ø %1$s slaap · slaapdoel %2$d/7 · regelmatig %3$d/7 · gevoel %4$s</string>
     <string name="weekly_notification_feeling">Ø gevoel deze week: %1$s</string>

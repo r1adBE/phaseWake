@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Wochenrückblick</string>
     <string name="weekly_toggle">Am Sonntag um 18 Uhr eine Mitteilung zu deiner Woche.</string>
+    <string name="next_alarm_notif_title">Wecker auf dem Sperrbildschirm</string>
+    <string name="next_alarm_notif_hint">Leise Meldung ab dem Abend mit Weckfenster und Nacht-Check.</string>
     <string name="weekly_notification_title">Deine Woche</string>
     <string name="weekly_notification_text">Ø %1$s Schlaf · Schlafziel %2$d/7 · regelmässig %3$d/7 · Befinden %4$s</string>
     <string name="weekly_notification_feeling">Ø Befinden diese Woche: %1$s</string>

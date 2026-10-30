@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Haftalik sharh</string>
     <string name="weekly_toggle">Yakshanba kunlari 18:00 da haftang haqida bildirishnoma.</string>
+    <string name="next_alarm_notif_title">Qulf ekranida budilnik</string>
+    <string name="next_alarm_notif_hint">Kechqurundan uyg‘onish oynasi va tungi tekshiruv bilan ovozsiz bildirishnoma.</string>
     <string name="weekly_notification_title">Haftang</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s uyqu · uyqu maqsadi %2$d/7 · muntazam uxlash %3$d/7 · kayfiyat %4$s</string>
     <string name="weekly_notification_feeling">Bu haftadagi Ø kayfiyat: %1$s</string>

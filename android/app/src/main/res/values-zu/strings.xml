@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Ukubuyekezwa kwesonto</string>
     <string name="weekly_toggle">NgamaSonto ngo-18:00, isaziso ngesonto lakho.</string>
+    <string name="next_alarm_notif_title">I-alamu esikrinini sokukhiya</string>
+    <string name="next_alarm_notif_hint">Isaziso esithulile kusukela kusihlwa esinewindi lokuvuka nokuhlola kobusuku.</string>
     <string name="weekly_notification_title">Isonto lakho</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s wokulala · umgomo %2$d/7 · isikhathi sokulala esijwayelekile %3$d/7 · umuzwa %4$s</string>
     <string name="weekly_notification_feeling">Ø umuzwa kuleli sonto: %1$s</string>

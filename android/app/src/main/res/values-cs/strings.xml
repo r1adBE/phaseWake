@@ -360,6 +360,8 @@
     </plurals>
     <string name="weekly_title">Týdenní přehled</string>
     <string name="weekly_toggle">V neděli v 18:00 oznámení o tvém týdnu.</string>
+    <string name="next_alarm_notif_title">Budík na zamykací obrazovce</string>
+    <string name="next_alarm_notif_hint">Tiché oznámení od večera s oknem buzení a noční kontrolou.</string>
     <string name="weekly_notification_title">Tvůj týden</string>
     <string name="weekly_notification_text">Ø %1$s spánku · cíl %2$d/7 · pravidelně %3$d/7 · pocit %4$s</string>
     <string name="weekly_notification_feeling">Ø pocit tento týden: %1$s</string>

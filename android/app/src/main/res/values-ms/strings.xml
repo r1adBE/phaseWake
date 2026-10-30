@@ -324,6 +324,8 @@
     </plurals>
     <string name="weekly_title">Ringkasan mingguan</string>
     <string name="weekly_toggle">Setiap Ahad pukul 18:00, pemberitahuan tentang minggu anda.</string>
+    <string name="next_alarm_notif_title">Penggera pada skrin kunci</string>
+    <string name="next_alarm_notif_hint">Pemberitahuan senyap dari waktu petang dengan tetingkap bangun dan semakan malam.</string>
     <string name="weekly_notification_title">Minggu anda</string>
     <string name="weekly_notification_text">Ø tidur %1$s · sasaran %2$d/7 · teratur %3$d/7 · perasaan %4$s</string>
     <string name="weekly_notification_feeling">Ø perasaan minggu ini: %1$s</string>

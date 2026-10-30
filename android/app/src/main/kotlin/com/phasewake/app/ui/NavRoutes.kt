@@ -7,9 +7,11 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -206,6 +208,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     val res = LocalResources.current
     val data = state.data
     val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
+    val nextAlarmNotice by app.settings.nextAlarmNotice.collectAsStateWithLifecycle(initialValue = true)
     SettingsScreen(
         themeMode = state.themeMode,
         version = version,
@@ -235,6 +238,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
                 app.settings.setSleepGoal(minutes)
                 app.publishSleepGoal()
                 app.bedtime.reschedule()
+                app.nextAlarm.reschedule()
             }
         },
         bedtimeReminder = data.bedtimeReminder,
@@ -244,6 +248,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
             app.appScope.launch {
                 app.settings.setBedtimeReminder(enabled)
                 app.bedtime.reschedule()
+                app.nextAlarm.reschedule()
             }
         },
         customNotes = data.customNotes,
@@ -256,6 +261,14 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
             app.appScope.launch {
                 app.settings.setWeeklyReview(enabled)
                 app.weekly.reschedule()
+            }
+        },
+        nextAlarmNotice = nextAlarmNotice,
+        onNextAlarmNotice = { enabled ->
+            if (enabled) actions.askNotificationsIfMissing()
+            app.appScope.launch {
+                app.settings.setNextAlarmNotice(enabled)
+                app.nextAlarm.reschedule()
             }
         },
         soundRecDefault = state.soundRec.default,

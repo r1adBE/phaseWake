@@ -323,6 +323,8 @@
     </plurals>
     <string name="weekly_title">ສະຫຼຸບປະຈຳອາທິດ</string>
     <string name="weekly_toggle">ທຸກວັນອາທິດ 6 ໂມງແລງ ມີການແຈ້ງເຕືອນກ່ຽວກັບອາທິດຂອງເຈົ້າ</string>
+    <string name="next_alarm_notif_title">ໂມງປຸກຢູ່ໜ້າຈໍລັອກ</string>
+    <string name="next_alarm_notif_hint">ການແຈ້ງເຕືອນແບບງຽບຕັ້ງແຕ່ຕອນແລງ ພ້ອມຊ່ວງເວລາປຸກ ແລະ ການກວດກ່ອນນອນ.</string>
     <string name="weekly_notification_title">ອາທິດຂອງເຈົ້າ</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø ນອນ %1$s · ເປົ້າໝາຍການນອນ %2$d/7 · ເຂົ້ານອນສະໝ່ຳສະເໝີ %3$d/7 · ຄວາມຮູ້ສຶກ %4$s</string>
     <string name="weekly_notification_feeling">Ø ຄວາມຮູ້ສຶກອາທິດນີ້: %1$s</string>

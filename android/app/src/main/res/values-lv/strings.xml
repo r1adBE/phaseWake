@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">Nedēļas pārskats</string>
     <string name="weekly_toggle">Svētdienās 18:00 – paziņojums par tavu nedēļu.</string>
+    <string name="next_alarm_notif_title">Modinātājs bloķēšanas ekrānā</string>
+    <string name="next_alarm_notif_hint">Kluss paziņojums no vakara ar modināšanas logu un nakts pārbaudi.</string>
     <string name="weekly_notification_title">Tava nedēļa</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s miega · miega mērķis %2$d/7 · regulāra gulētiešana %3$d/7 · pašsajūta %4$s</string>
     <string name="weekly_notification_feeling">Ø pašsajūta šonedēļ: %1$s</string>

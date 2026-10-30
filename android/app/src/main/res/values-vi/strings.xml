@@ -324,6 +324,8 @@
     </plurals>
     <string name="weekly_title">Tổng kết tuần</string>
     <string name="weekly_toggle">Chủ nhật lúc 18:00, một thông báo về tuần của bạn.</string>
+    <string name="next_alarm_notif_title">Báo thức trên màn hình khóa</string>
+    <string name="next_alarm_notif_hint">Thông báo im lặng từ buổi tối với khung giờ thức dậy và kiểm tra ban đêm.</string>
     <string name="weekly_notification_title">Tuần của bạn</string>
     <string name="weekly_notification_text">Ø ngủ %1$s · mục tiêu %2$d/7 · đều đặn %3$d/7 · cảm giác %4$s</string>
     <string name="weekly_notification_feeling">Ø cảm giác tuần này: %1$s</string>

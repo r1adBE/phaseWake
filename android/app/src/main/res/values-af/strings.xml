@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Weekoorsig</string>
     <string name="weekly_toggle">Sondae om 18:00 ’n kennisgewing oor jou week.</string>
+    <string name="next_alarm_notif_title">Wekker op die sluitskerm</string>
+    <string name="next_alarm_notif_hint">Stil kennisgewing vanaf die aand met jou wekvenster en die nagtoets.</string>
     <string name="weekly_notification_title">Jou week</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s slaap · slaapdoel %2$d/7 · gereelde slaaptyd %3$d/7 · gevoel %4$s</string>
     <string name="weekly_notification_feeling">Ø gevoel hierdie week: %1$s</string>

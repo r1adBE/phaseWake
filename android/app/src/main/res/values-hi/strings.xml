@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">साप्ताहिक सार</string>
     <string name="weekly_toggle">रविवार शाम 6 बजे तुम्हारे हफ़्ते के बारे में एक सूचना।</string>
+    <string name="next_alarm_notif_title">लॉक स्क्रीन पर अलार्म</string>
+    <string name="next_alarm_notif_hint">शाम से जागने की अवधि और रात की जांच के साथ शांत सूचना।</string>
     <string name="weekly_notification_title">तुम्हारा हफ़्ता</string>
     <string name="weekly_notification_text">औसत Ø %1$s नींद · नींद का लक्ष्य %2$d/7 · नियमित %3$d/7 · एहसास %4$s</string>
     <string name="weekly_notification_feeling">इस हफ़्ते औसत Ø एहसास: %1$s</string>

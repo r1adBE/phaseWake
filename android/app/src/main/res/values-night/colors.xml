@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="window_background">#0C1027</color>
+    <!-- Widget «Nächster Wecker», dunkles Design: Nachthimmel (Night.Top → Night.Bottom), Text wie auf dem Startbild. -->
+    <color name="widget_top">#FF141A3D</color>
+    <color name="widget_bottom">#FF070914</color>
+    <color name="widget_text">#FFFBF7F0</color>
+    <color name="widget_text_secondary">#FFC9C3E6</color>
 </resources>

@@ -360,6 +360,8 @@
     </plurals>
     <string name="weekly_title">Підсумок тижня</string>
     <string name="weekly_toggle">Щонеділі о 18:00 сповіщення про твій тиждень.</string>
+    <string name="next_alarm_notif_title">Будильник на екрані блокування</string>
+    <string name="next_alarm_notif_hint">Тихе сповіщення з вечора: вікно пробудження і нічна перевірка.</string>
     <string name="weekly_notification_title">Твій тиждень</string>
     <string name="weekly_notification_text">Ø %1$s сну · ціль %2$d/7 · регулярно %3$d/7 · самопочуття %4$s</string>
     <string name="weekly_notification_feeling">Ø самопочуття цього тижня: %1$s</string>

@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">Bilan de la semaine</string>
     <string name="weekly_toggle">Le dimanche à 18 h, une notification sur ta semaine.</string>
+    <string name="next_alarm_notif_title">Réveil sur l\'écran de verrouillage</string>
+    <string name="next_alarm_notif_hint">Notification silencieuse dès le soir avec la fenêtre de réveil et le contrôle de nuit.</string>
     <string name="weekly_notification_title">Ta semaine</string>
     <string name="weekly_notification_text">Ø %1$s de sommeil · objectif %2$d/7 · coucher régulier %3$d/7 · ressenti %4$s</string>
     <string name="weekly_notification_feeling">Ø ressenti cette semaine : %1$s</string>

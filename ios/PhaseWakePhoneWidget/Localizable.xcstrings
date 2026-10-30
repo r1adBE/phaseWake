@@ -119999,6 +119999,902 @@
         }
       }
     },
+    "next_alarm_notif_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stil kennisgewing vanaf die aand met jou wekvenster en die nagtoets."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከምሽት ጀምሮ የመንቂያ መስኮትዎን እና የሌሊት ፍተሻውን የሚያሳይ ጸጥ ያለ ማሳወቂያ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إشعار صامت من المساء مع نافذة الاستيقاظ وفحص الليل."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Axşamdan oyanma pəncərəsi və gecə yoxlaması ilə səssiz bildiriş."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тихо известие от вечерта с прозореца за събуждане и нощната проверка."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সন্ধ্যা থেকে নীরব বিজ্ঞপ্তি, জাগার সময়সীমা আর রাতের চেকসহ।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiha obavijest od večeri s prozorom buđenja i noćnom provjerom."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificació silenciosa des del vespre amb la finestra de despertar i el control nocturn."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiché oznámení od večera s oknem buzení a noční kontrolou."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lydløs notifikation fra aftenen med dit vækkevindue og nattjekket."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leise Meldung ab dem Abend mit Weckfenster und Nacht-Check."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αθόρυβη ειδοποίηση από το βράδυ με το παράθυρο αφύπνισης και τον νυχτερινό έλεγχο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silent notification from the evening with your wake window and night check."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificación silenciosa desde la tarde con la ventana de despertar y la revisión nocturna."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaikne teavitus alates õhtust äratusakna ja öise kontrolliga."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jakinarazpen isila arratsaldetik, esnatzeko leihoarekin eta gaueko egiaztapenarekin."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعلان بی‌صدا از عصر با بازهٔ بیداری و بررسی شب."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Äänetön ilmoitus illasta alkaen: herätysikkuna ja yötarkistus."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tahimik na notification mula gabi, kasama ang wake window at ang pagsusuri bago matulog."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notification silencieuse dès le soir avec la fenêtre de réveil et le contrôle de nuit."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fógra ciúin ón tráthnóna le d’fhuinneog dhúisithe agus seiceáil na hoíche."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificación silenciosa desde a noite coa xanela de espertar e a comprobación nocturna."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાંજથી જાગવાની વિન્ડો અને રાતની તપાસ સાથે શાંત સૂચના."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התראה שקטה מהערב עם חלון ההשכמה ובדיקת הלילה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शाम से जागने की अवधि और रात की जांच के साथ शांत सूचना।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiha obavijest od večeri s prozorom buđenja i noćnom provjerom."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Néma értesítés estétől az ébresztési ablakkal és az éjszakai ellenőrzéssel."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Լուռ ծանուցում երեկոյից՝ արթնացման պատուհանով և գիշերային ստուգումով։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifikasi senyap sejak malam dengan rentang bangun dan pemeriksaan malam."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hljóðlaus tilkynning frá kvöldi með vökuglugga og næturathugun."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifica silenziosa dalla sera con la finestra di risveglio e il controllo notturno."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夕方から、起床ウィンドウとナイトチェックを静かな通知で表示します。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩუმი შეტყობინება საღამოდან, გაღვიძების ფანჯრითა და ღამის შემოწმებით."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кештен бастап ояту терезесі мен түнгі тексеріс көрсетілген дыбыссыз хабарландыру."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការជូនដំណឹងស្ងាត់ៗតាំងពីពេលល្ងាច ជាមួយចន្លោះពេលភ្ញាក់ និងការពិនិត្យពេលយប់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಂಜೆಯಿಂದ ಏಳುವ ಅವಧಿ ಮತ್ತು ರಾತ್ರಿ ಪರಿಶೀಲನೆಯೊಂದಿಗೆ ಶಾಂತ ಅಧಿಸೂಚನೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "저녁부터 기상 구간과 밤 점검을 무음 알림으로 보여 줍니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການແຈ້ງເຕືອນແບບງຽບຕັ້ງແຕ່ຕອນແລງ ພ້ອມຊ່ວງເວລາປຸກ ແລະ ການກວດກ່ອນນອນ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tylus pranešimas nuo vakaro su žadinimo langu ir nakties patikra."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kluss paziņojums no vakara ar modināšanas logu un nakts pārbaudi."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тивко известување од вечерта со прозорецот за будење и ноќната проверка."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വൈകുന്നേരം മുതൽ ഉണരൽ സമയപരിധിയും രാത്രി പരിശോധനയും കാണിക്കുന്ന നിശബ്ദ അറിയിപ്പ്."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оройноос сэрэх цонх болон шөнийн шалгалттай чимээгүй мэдэгдэл."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "संध्याकाळपासून उठण्याची वेळ-मर्यादा आणि रात्रीच्या तपासणीसह शांत सूचना."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pemberitahuan senyap dari waktu petang dengan tetingkap bangun dan semakan malam."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ညနေကစပြီး နိုးချိန်အပိုင်းအခြားနှင့် ညဘက် စစ်ဆေးချက်ပါသော အသံမဲ့ အသိပေးချက်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lydløst varsel fra kvelden med vekkevinduet og nattsjekken."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साँझदेखि उठ्ने समय-सीमा र रातको जाँचसहितको शान्त सूचना।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stille melding vanaf de avond met je wekvenster en de nachtcheck."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸ਼ਾਮ ਤੋਂ ਜਾਗਣ ਦੀ ਵਿੰਡੋ ਅਤੇ ਰਾਤ ਦੀ ਜਾਂਚ ਨਾਲ ਚੁੱਪ ਸੂਚਨਾ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciche powiadomienie od wieczora z oknem budzenia i kontrolą nocy."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificação silenciosa desde a noite com a janela de despertar e a verificação noturna."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificação silenciosa desde a noite com a janela de despertar e a verificação noturna."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificare silențioasă de seara, cu fereastra de trezire și verificarea de noapte."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тихое уведомление с вечера: окно пробуждения и ночная проверка."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සවස සිට අවදි වීමේ කාල පරාසය සහ රාත්‍රී පරීක්ෂාව සමඟ නිහඬ දැනුම්දීමක්."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiché upozornenie od večera s oknom budenia a nočnou kontrolou."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiho obvestilo od večera z oknom bujenja in nočnim pregledom."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Njoftim i heshtur që nga mbrëmja me dritaren e zgjimit dhe kontrollin e natës."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тихо обавештење од вечери са прозором буђења и ноћном провером."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tyst avisering från kvällen med väckningsfönstret och nattkontrollen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arifa kimya kuanzia jioni yenye dirisha la kuamka na ukaguzi wa usiku."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மாலை முதல் எழும் நேர இடைவெளியும் இரவுச் சரிபார்ப்பும் கொண்ட அமைதியான அறிவிப்பு."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సాయంత్రం నుండి మేల్కొనే విండో, రాత్రి తనిఖీతో నిశ్శబ్ద నోటిఫికేషన్."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การแจ้งเตือนแบบเงียบตั้งแต่ช่วงเย็น พร้อมช่วงเวลาปลุกและการตรวจก่อนนอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akşamdan itibaren uyanma aralığı ve gece kontrolüyle sessiz bildirim."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тихе сповіщення з вечора: вікно пробудження і нічна перевірка."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شام سے جاگنے کی ونڈو اور رات کے چیک کے ساتھ خاموش اطلاع۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kechqurundan uyg‘onish oynasi va tungi tekshiruv bilan ovozsiz bildirishnoma."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông báo im lặng từ buổi tối với khung giờ thức dậy và kiểm tra ban đêm."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由傍晚起顯示靜音通知，包括喚醒時段和夜間檢查。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从傍晚起显示静默通知，含唤醒时段和夜间检查。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從傍晚起顯示靜音通知，含喚醒時段和夜間檢查。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isaziso esithulile kusukela kusihlwa esinewindi lokuvuka nokuhlola kobusuku."
+          }
+        }
+      }
+    },
+    "next_alarm_notif_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekker op die sluitskerm"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ማንቂያ በመቆለፊያ ማያ ገጽ ላይ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبّه على شاشة القفل"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilid ekranında siqnal"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будилник на заключения екран"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লক স্ক্রিনে অ্যালার্ম"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm na zaključanom ekranu"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma a la pantalla de bloqueig"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budík na zamykací obrazovce"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm på låseskærmen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wecker auf dem Sperrbildschirm"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αφύπνιση στην οθόνη κλειδώματος"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm on the lock screen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma en la pantalla de bloqueo"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Äratus lukustuskuval"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma blokeo-pantailan"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ روی صفحهٔ قفل"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herätys lukitusnäytöllä"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm sa lock screen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réveil sur l'écran de verrouillage"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aláram ar an scáileán glasála"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma na pantalla de bloqueo"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "લૉક સ્ક્રીન પર એલાર્મ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השכמה במסך הנעילה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लॉक स्क्रीन पर अलार्म"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm na zaključanom zaslonu"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ébresztő a lezárási képernyőn"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Զարթուցիչը կողպէկրանին"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm di layar kunci"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vekjari á lásskjá"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglia nella schermata di blocco"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ロック画面にアラームを表示"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მაღვიძარა დაბლოკილ ეკრანზე"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құлып экранындағы оятқыш"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងរោទ៍នៅលើអេក្រង់ចាក់សោ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಅಲಾರಾಂ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠금 화면에 알람 표시"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງປຸກຢູ່ໜ້າຈໍລັອກ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žadintuvas užrakinimo ekrane"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modinātājs bloķēšanas ekrānā"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аларм на заклучениот екран"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലോക്ക് സ്ക്രീനിൽ അലാറം"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түгжих дэлгэц дээрх сэрүүлэг"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लॉक स्क्रीनवर अलार्म"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera pada skrin kunci"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "လော့ခ်မျက်နှာပြင်ပေါ်ရှိ နှိုးစက်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm på låseskjermen"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक स्क्रिनमा अलार्म"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekker op het vergrendelscherm"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਕ ਸਕ੍ਰੀਨ ’ਤੇ ਅਲਾਰਮ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budzik na ekranie blokady"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme na tela de bloqueio"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme no ecrã de bloqueio"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmă pe ecranul de blocare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник на экране блокировки"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අගුළු තිරයේ එලාමය"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budík na uzamknutej obrazovke"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budilka na zaklenjenem zaslonu"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmi në ekranin e kyçjes"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аларм на закључаном екрану"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm på låsskärmen"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kengele kwenye skrini iliyofungwa"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பூட்டுத் திரையில் அலாரம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లాక్ స్క్రీన్‌పై అలారం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การปลุกบนหน้าจอล็อก"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit ekranında alarm"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник на екрані блокування"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لاک اسکرین پر الارم"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qulf ekranida budilnik"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Báo thức trên màn hình khóa"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上鎖畫面上的鬧鐘"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锁屏上的闹钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鎖定畫面上的鬧鐘"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-alamu esikrinini sokukhiya"
+          }
+        }
+      }
+    },
     "night_asleep": {
       "localizations": {
         "af": {

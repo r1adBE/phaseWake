@@ -335,6 +335,8 @@
     </plurals>
     <string name="weekly_title">সাপ্তাহিক সারসংক্ষেপ</string>
     <string name="weekly_toggle">প্রতি রবিবার সন্ধ্যা ৬টায় তোমার সপ্তাহ নিয়ে একটা বিজ্ঞপ্তি।</string>
+    <string name="next_alarm_notif_title">লক স্ক্রিনে অ্যালার্ম</string>
+    <string name="next_alarm_notif_hint">সন্ধ্যা থেকে নীরব বিজ্ঞপ্তি, জাগার সময়সীমা আর রাতের চেকসহ।</string>
     <string name="weekly_notification_title">তোমার সপ্তাহ</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">গড়ে %1$s ঘুম · ঘুমের লক্ষ্য %2$d/৭ · নিয়মিত ঘুমানো %3$d/৭ · অনুভূতি %4$s</string>
     <string name="weekly_notification_feeling">এই সপ্তাহের গড় অনুভূতি: %1$s</string>

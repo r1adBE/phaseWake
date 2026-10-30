@@ -335,6 +335,8 @@
     </plurals>
     <string name="weekly_title">வாராந்திரச் சுருக்கம்</string>
     <string name="weekly_toggle">ஒவ்வொரு ஞாயிறும் மாலை 6 மணிக்கு உங்கள் வாரம் பற்றிய அறிவிப்பு.</string>
+    <string name="next_alarm_notif_title">பூட்டுத் திரையில் அலாரம்</string>
+    <string name="next_alarm_notif_hint">மாலை முதல் எழும் நேர இடைவெளியும் இரவுச் சரிபார்ப்பும் கொண்ட அமைதியான அறிவிப்பு.</string>
     <string name="weekly_notification_title">உங்கள் வாரம்</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">சராசரி %1$s தூக்கம் · இலக்கு %2$d/7 · சீரான உறக்கம் %3$d/7 · உணர்வு %4$s</string>
     <string name="weekly_notification_feeling">இந்த வாரச் சராசரி உணர்வு: %1$s</string>

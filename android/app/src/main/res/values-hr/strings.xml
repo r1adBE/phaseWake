@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">Tjedni pregled</string>
     <string name="weekly_toggle">Nedjeljom u 18:00 obavijest o tvom tjednu.</string>
+    <string name="next_alarm_notif_title">Alarm na zaključanom zaslonu</string>
+    <string name="next_alarm_notif_hint">Tiha obavijest od večeri s prozorom buđenja i noćnom provjerom.</string>
     <string name="weekly_notification_title">Tvoj tjedan</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s sna · cilj %2$d/7 · redovito %3$d/7 · osjećaj %4$s</string>
     <string name="weekly_notification_feeling">Ø osjećaj ovaj tjedan: %1$s</string>

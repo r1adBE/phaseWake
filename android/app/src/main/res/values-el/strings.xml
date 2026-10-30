@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Εβδομαδιαία ανασκόπηση</string>
     <string name="weekly_toggle">Την Κυριακή στις 18:00 μια ειδοποίηση για την εβδομάδα σου.</string>
+    <string name="next_alarm_notif_title">Αφύπνιση στην οθόνη κλειδώματος</string>
+    <string name="next_alarm_notif_hint">Αθόρυβη ειδοποίηση από το βράδυ με το παράθυρο αφύπνισης και τον νυχτερινό έλεγχο.</string>
     <string name="weekly_notification_title">Η εβδομάδα σου</string>
     <string name="weekly_notification_text">Ø %1$s ύπνος · στόχος %2$d/7 · τακτικά %3$d/7 · αίσθηση %4$s</string>
     <string name="weekly_notification_feeling">Ø αίσθηση αυτή την εβδομάδα: %1$s</string>

@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Долоо хоногийн тойм</string>
     <string name="weekly_toggle">Ням гараг бүр 18:00-д долоо хоногийн чинь тухай мэдэгдэл.</string>
+    <string name="next_alarm_notif_title">Түгжих дэлгэц дээрх сэрүүлэг</string>
+    <string name="next_alarm_notif_hint">Оройноос сэрэх цонх болон шөнийн шалгалттай чимээгүй мэдэгдэл.</string>
     <string name="weekly_notification_title">Чиний долоо хоног</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s нойр · нойрны зорилго %2$d/7 · тогтмол унталт %3$d/7 · мэдрэмж %4$s</string>
     <string name="weekly_notification_feeling">Энэ долоо хоногийн Ø мэдрэмж: %1$s</string>

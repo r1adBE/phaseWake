@@ -347,6 +347,8 @@
     </plurals>
     <string name="weekly_title">Resum setmanal</string>
     <string name="weekly_toggle">Diumenge a les 18 h, una notificació sobre la teva setmana.</string>
+    <string name="next_alarm_notif_title">Alarma a la pantalla de bloqueig</string>
+    <string name="next_alarm_notif_hint">Notificació silenciosa des del vespre amb la finestra de despertar i el control nocturn.</string>
     <string name="weekly_notification_title">La teva setmana</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s de son · objectiu %2$d/7 · hora regular %3$d/7 · estat %4$s</string>
     <string name="weekly_notification_feeling">Ø estat aquesta setmana: %1$s</string>

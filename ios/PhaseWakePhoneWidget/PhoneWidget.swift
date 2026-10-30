@@ -2,8 +2,9 @@ import SwiftUI
 import WidgetKit
 
 /// iPhone-Widget «Nächster Wecker»: Weckfenster, Tag und Nacht-Check (✓ bzw. ! mit der ersten offenen
-/// Prüfung) auf dem Home- und dem Sperrbildschirm. Liest den Stand, den die App in der App-Gruppe ablegt
-/// (``PhoneWidgetSnapshot``); Antippen öffnet die App. Gleicher Inhalt wie das Android-Widget.
+/// Prüfung) auf dem Home- und dem Sperrbildschirm (rund, rechteckig, in einer Zeile). Liest den Stand, den die
+/// App in der App-Gruppe ablegt (``PhoneWidgetSnapshot``); Antippen öffnet die App. Gleicher Inhalt wie das
+/// Android-Widget.
 @main
 struct PhaseWakePhoneWidgets: WidgetBundle {
     var body: some Widget { PhoneNextAlarmWidget() }
@@ -51,19 +52,30 @@ struct PhoneNextAlarmWidget: Widget {
         }
         .configurationDisplayName(L("widget_name"))
         .description(L("widget_description"))
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
 
-/// Hintergrund im Mitternacht-Verlauf, im hellen Design Papier.
+/// Farben des Home-Widgets je Design des Systems, identisch zum Android-Widget (`widget_*` in values/colors.xml):
+/// dunkel Nachthimmel mit warmem Weiss, hell Creme → blasses Lavendel mit Nachtblau. Kontrast auf beiden
+/// Verlaufsenden ≥ 4.5:1 (hell 15.8/13.1 bzw. 6.4/5.3, dunkel 15.8/18.6 bzw. 10.0/11.8). Der Titel bleibt in der
+/// Hauptfarbe ``Brand/accent(_:)`` (hell 9.7/8.0, dunkel 8.5/10.0).
+enum PhoneWidgetPalette {
+    /// Oberes Ende des Verlaufs.
+    static func top(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightTop : Color(hex: 0xFBF7F0) }
+    /// Unteres Ende des Verlaufs.
+    static func bottom(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightBottom : Color(hex: 0xE4DFFB) }
+    /// Haupttext (Weckfenster).
+    static func text(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.moon : Color(hex: 0x141A3D) }
+    /// Nebentext (Tag, Nacht-Check).
+    static func secondary(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x5B5486) }
+}
+
+/// Hintergrund als Verlauf nach [PhoneWidgetPalette]; die Sperrbildschirm-Grössen zeichnet das System selbst.
 private struct PhoneAlarmBackground: View {
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
-        if scheme == .dark {
-            LinearGradient(colors: [Brand.nightTop, Brand.nightBottom], startPoint: .top, endPoint: .bottom)
-        } else {
-            Brand.paper
-        }
+        LinearGradient(colors: [PhoneWidgetPalette.top(scheme), PhoneWidgetPalette.bottom(scheme)], startPoint: .top, endPoint: .bottom)
     }
 }

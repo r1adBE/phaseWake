@@ -359,6 +359,8 @@
     </plurals>
     <string name="weekly_title">Tedenski pregled</string>
     <string name="weekly_toggle">Ob nedeljah ob 18. uri obvestilo o tvojem tednu.</string>
+    <string name="next_alarm_notif_title">Budilka na zaklenjenem zaslonu</string>
+    <string name="next_alarm_notif_hint">Tiho obvestilo od večera z oknom bujenja in nočnim pregledom.</string>
     <string name="weekly_notification_title">Tvoj teden</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s spanca · cilj spanja %2$d/7 · reden čas spanja %3$d/7 · počutje %4$s</string>
     <string name="weekly_notification_feeling">Ø počutje ta teden: %1$s</string>

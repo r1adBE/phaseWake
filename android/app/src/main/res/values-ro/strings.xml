@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">Rezumatul săptămânii</string>
     <string name="weekly_toggle">Duminica la 18:00, o notificare despre săptămâna ta.</string>
+    <string name="next_alarm_notif_title">Alarmă pe ecranul de blocare</string>
+    <string name="next_alarm_notif_hint">Notificare silențioasă de seara, cu fereastra de trezire și verificarea de noapte.</string>
     <string name="weekly_notification_title">Săptămâna ta</string>
     <string name="weekly_notification_text">Ø %1$s de somn · obiectiv %2$d/7 · regulat %3$d/7 · stare %4$s</string>
     <string name="weekly_notification_feeling">Ø stare săptămâna aceasta: %1$s</string>

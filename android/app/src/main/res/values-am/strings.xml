@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">ሳምንታዊ ግምገማ</string>
     <string name="weekly_toggle">እሁድ 18:00 ላይ ስለ ሳምንትዎ ማሳወቂያ።</string>
+    <string name="next_alarm_notif_title">ማንቂያ በመቆለፊያ ማያ ገጽ ላይ</string>
+    <string name="next_alarm_notif_hint">ከምሽት ጀምሮ የመንቂያ መስኮትዎን እና የሌሊት ፍተሻውን የሚያሳይ ጸጥ ያለ ማሳወቂያ።</string>
     <string name="weekly_notification_title">የእርስዎ ሳምንት</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s እንቅልፍ · የእንቅልፍ ግብ %2$d/7 · መደበኛ የመኝታ ሰዓት %3$d/7 · ስሜት %4$s</string>
     <string name="weekly_notification_feeling">የዚህ ሳምንት Ø ስሜት: %1$s</string>

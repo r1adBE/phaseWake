@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Heti összefoglaló</string>
     <string name="weekly_toggle">Vasárnap 18:00-kor értesítés a hetedről.</string>
+    <string name="next_alarm_notif_title">Ébresztő a lezárási képernyőn</string>
+    <string name="next_alarm_notif_hint">Néma értesítés estétől az ébresztési ablakkal és az éjszakai ellenőrzéssel.</string>
     <string name="weekly_notification_title">A heted</string>
     <string name="weekly_notification_text">Ø %1$s alvás · alvási cél %2$d/7 · rendszeres %3$d/7 · érzés %4$s</string>
     <string name="weekly_notification_feeling">Ø érzés ezen a héten: %1$s</string>

@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Ugeoverblik</string>
     <string name="weekly_toggle">Om søndagen kl. 18 en notifikation om din uge.</string>
+    <string name="next_alarm_notif_title">Alarm på låseskærmen</string>
+    <string name="next_alarm_notif_hint">Lydløs notifikation fra aftenen med dit vækkevindue og nattjekket.</string>
     <string name="weekly_notification_title">Din uge</string>
     <string name="weekly_notification_text">Ø %1$s søvn · søvnmål %2$d/7 · regelmæssigt %3$d/7 · følelse %4$s</string>
     <string name="weekly_notification_feeling">Ø følelse denne uge: %1$s</string>

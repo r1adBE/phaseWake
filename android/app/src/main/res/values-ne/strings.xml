@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">साप्ताहिक समीक्षा</string>
     <string name="weekly_toggle">आइतबार साँझ ६ बजे तिम्रो हप्ताबारे सूचना।</string>
+    <string name="next_alarm_notif_title">लक स्क्रिनमा अलार्म</string>
+    <string name="next_alarm_notif_hint">साँझदेखि उठ्ने समय-सीमा र रातको जाँचसहितको शान्त सूचना।</string>
     <string name="weekly_notification_title">तिम्रो हप्ता</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s निद्रा · निद्राको लक्ष्य %2$d/७ · नियमित सुत्ने समय %3$d/७ · अनुभूति %4$s</string>
     <string name="weekly_notification_feeling">यो हप्ताको Ø अनुभूति: %1$s</string>

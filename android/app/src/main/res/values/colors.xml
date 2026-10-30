@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="window_background">#FBF7F0</color>
+    <!--
+        Widget «Nächster Wecker», helles Design: Creme → blasses Lavendel, Text dunkles Nachtblau, Nebentext
+        gedämpftes Violett (Kontrast auf beiden Verlaufsenden mindestens 4.5:1: 15.8/13.1 bzw. 6.4/5.3).
+        Dunkel in values-night.
+    -->
+    <color name="widget_top">#FFFBF7F0</color>
+    <color name="widget_bottom">#FFE4DFFB</color>
+    <color name="widget_text">#FF141A3D</color>
+    <color name="widget_text_secondary">#FF5B5486</color>
 </resources>

@@ -360,6 +360,8 @@
     </plurals>
     <string name="weekly_title">Savaitės apžvalga</string>
     <string name="weekly_toggle">Sekmadieniais 18:00 – pranešimas apie tavo savaitę.</string>
+    <string name="next_alarm_notif_title">Žadintuvas užrakinimo ekrane</string>
+    <string name="next_alarm_notif_hint">Tylus pranešimas nuo vakaro su žadinimo langu ir nakties patikra.</string>
     <string name="weekly_notification_title">Tavo savaitė</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s miego · miego tikslas %2$d/7 · reguliarus miego laikas %3$d/7 · savijauta %4$s</string>
     <string name="weekly_notification_feeling">Ø savijauta šią savaitę: %1$s</string>

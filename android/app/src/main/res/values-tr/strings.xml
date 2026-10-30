@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Haftalık özet</string>
     <string name="weekly_toggle">Pazar günleri 18:00’de haftan hakkında bir bildirim.</string>
+    <string name="next_alarm_notif_title">Kilit ekranında alarm</string>
+    <string name="next_alarm_notif_hint">Akşamdan itibaren uyanma aralığı ve gece kontrolüyle sessiz bildirim.</string>
     <string name="weekly_notification_title">Haftan</string>
     <string name="weekly_notification_text">Ø %1$s uyku · uyku hedefi %2$d/7 · düzenli %3$d/7 · hissediş %4$s</string>
     <string name="weekly_notification_feeling">Bu hafta Ø hissediş: %1$s</string>

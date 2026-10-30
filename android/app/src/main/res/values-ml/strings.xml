@@ -335,6 +335,8 @@
     </plurals>
     <string name="weekly_title">ആഴ്‌ചയുടെ അവലോകനം</string>
     <string name="weekly_toggle">ഞായറാഴ്‌ച വൈകിട്ട് 6-ന് ആഴ്‌ചയെക്കുറിച്ച് ഒരു അറിയിപ്പ്.</string>
+    <string name="next_alarm_notif_title">ലോക്ക് സ്ക്രീനിൽ അലാറം</string>
+    <string name="next_alarm_notif_hint">വൈകുന്നേരം മുതൽ ഉണരൽ സമയപരിധിയും രാത്രി പരിശോധനയും കാണിക്കുന്ന നിശബ്ദ അറിയിപ്പ്.</string>
     <string name="weekly_notification_title">നിങ്ങളുടെ ആഴ്‌ച</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s ഉറക്കം · ഉറക്ക ലക്ഷ്യം %2$d/7 · സ്ഥിര ഉറക്കസമയം %3$d/7 · അനുഭവം %4$s</string>
     <string name="weekly_notification_feeling">ഈ ആഴ്‌ചയിലെ Ø അനുഭവം: %1$s</string>

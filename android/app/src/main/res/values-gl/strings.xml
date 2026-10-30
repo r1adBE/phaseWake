@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Resumo semanal</string>
     <string name="weekly_toggle">Os domingos ás 18:00, unha notificación sobre a túa semana.</string>
+    <string name="next_alarm_notif_title">Alarma na pantalla de bloqueo</string>
+    <string name="next_alarm_notif_hint">Notificación silenciosa desde a noite coa xanela de espertar e a comprobación nocturna.</string>
     <string name="weekly_notification_title">A túa semana</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s de sono · obxectivo %2$d/7 · hora regular %3$d/7 · estado %4$s</string>
     <string name="weekly_notification_feeling">Ø estado esta semana: %1$s</string>

@@ -162,6 +162,11 @@
             android:name=".reminder.BedtimeReminder$Receiver"
             android:exported="false" />
 
+        <!-- Mitteilung «Nächster Wecker» (eigener, ungenauer Alarm zum Zeigen und Wegräumen): nicht von aussen auslösbar. -->
+        <receiver
+            android:name=".widget.NextAlarmNotice$Receiver"
+            android:exported="false" />
+
         <!-- Wochenrückblick und tägliches Löschen alter Geräusche (eigene, ungenaue Alarme): nicht von aussen auslösbar. -->
         <receiver
             android:name=".reminder.WeeklyReminder$Receiver"

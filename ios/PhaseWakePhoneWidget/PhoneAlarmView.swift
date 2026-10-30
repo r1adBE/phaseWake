@@ -27,6 +27,8 @@ struct PhoneAlarmView: View {
 
     var body: some View {
         switch family {
+        case .accessoryCircular:
+            circular
         case .accessoryInline:
             Text(entry.plan == nil ? L("widget_no_alarm") : "☾ " + window)
         case .accessoryRectangular:
@@ -43,6 +45,26 @@ struct PhoneAlarmView: View {
         }
     }
 
+    /// Rund auf dem Sperrbildschirm: Symbol und Zielzeit (bei «Genau» ein Wecker-Symbol statt des Monds).
+    /// VoiceOver liest das ganze Fenster bzw. «Genau um …».
+    private var circular: some View {
+        ZStack {
+            AccessoryWidgetBackground()
+            VStack(spacing: 0) {
+                Image(systemName: entry.plan?.exact == true ? "alarm.fill" : "moon.stars.fill")
+                    .font(.system(size: 12, weight: .semibold))
+                    .widgetAccentable()
+                Text(entry.plan.map { Format.time($0.target) } ?? "–")
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
+            }
+            .padding(4)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(entry.plan == nil ? L("widget_no_alarm") : [L("widget_name"), window].joined(separator: ", "))
+    }
+
     /// Home-Bildschirm (klein und mittel).
     private var home: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -54,12 +76,12 @@ struct PhoneAlarmView: View {
                 .font(.system(size: family == .systemSmall ? 22 : 28, weight: .bold, design: .rounded))
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)
-                .foregroundStyle(scheme == .dark ? Brand.moon : Color(hex: 0x1A1830))
+                .foregroundStyle(PhoneWidgetPalette.text(scheme))
             if let dayLine {
-                Text(dayLine).font(.system(size: 13)).foregroundStyle(Brand.secondaryText(scheme)).lineLimit(1)
+                Text(dayLine).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
             }
             if let checkLine {
-                Text(checkLine).font(.system(size: 12, weight: .medium)).foregroundStyle(Brand.secondaryText(scheme)).lineLimit(2)
+                Text(checkLine).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

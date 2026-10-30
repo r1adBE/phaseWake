@@ -338,6 +338,8 @@
     </plurals>
     <string name="weekly_title">Weekly review</string>
     <string name="weekly_toggle">On Sundays at 6 pm, a notification about your week.</string>
+    <string name="next_alarm_notif_title">Alarm on the lock screen</string>
+    <string name="next_alarm_notif_hint">Silent notification from the evening with your wake window and night check.</string>
     <string name="weekly_notification_title">Your week</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s sleep · sleep goal %2$d/7 · regular bedtime %3$d/7 · feeling %4$s</string>
     <string name="weekly_notification_feeling">Ø feeling this week: %1$s</string>

@@ -360,6 +360,8 @@
     </plurals>
     <string name="weekly_title">Podsumowanie tygodnia</string>
     <string name="weekly_toggle">W niedzielę o 18:00 powiadomienie o twoim tygodniu.</string>
+    <string name="next_alarm_notif_title">Budzik na ekranie blokady</string>
+    <string name="next_alarm_notif_hint">Ciche powiadomienie od wieczora z oknem budzenia i kontrolą nocy.</string>
     <string name="weekly_notification_title">Twój tydzień</string>
     <string name="weekly_notification_text">Ø %1$s snu · cel snu %2$d/7 · regularnie %3$d/7 · samopoczucie %4$s</string>
     <string name="weekly_notification_feeling">Ø samopoczucie w tym tygodniu: %1$s</string>

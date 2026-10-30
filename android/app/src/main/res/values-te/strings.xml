@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">వారపు సమీక్ష</string>
     <string name="weekly_toggle">ప్రతి ఆదివారం సాయంత్రం 6 గంటలకు మీ వారం గురించి నోటిఫికేషన్.</string>
+    <string name="next_alarm_notif_title">లాక్ స్క్రీన్‌పై అలారం</string>
+    <string name="next_alarm_notif_hint">సాయంత్రం నుండి మేల్కొనే విండో, రాత్రి తనిఖీతో నిశ్శబ్ద నోటిఫికేషన్.</string>
     <string name="weekly_notification_title">మీ వారం</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s నిద్ర · నిద్ర లక్ష్యం %2$d/7 · క్రమమైన నిద్ర సమయం %3$d/7 · మూడ్ %4$s</string>
     <string name="weekly_notification_feeling">ఈ వారం Ø మూడ్: %1$s</string>

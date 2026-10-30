@@ -336,6 +336,8 @@
     </plurals>
     <string name="weekly_title">Asteko laburpena</string>
     <string name="weekly_toggle">Igandeetan 18:00etan, zure asteari buruzko jakinarazpena.</string>
+    <string name="next_alarm_notif_title">Alarma blokeo-pantailan</string>
+    <string name="next_alarm_notif_hint">Jakinarazpen isila arratsaldetik, esnatzeko leihoarekin eta gaueko egiaztapenarekin.</string>
     <string name="weekly_notification_title">Zure astea</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s lo · lo-helburua %2$d/7 · oheratze erregularra %3$d/7 · sentipena %4$s</string>
     <string name="weekly_notification_feeling">Ø sentipena aste honetan: %1$s</string>

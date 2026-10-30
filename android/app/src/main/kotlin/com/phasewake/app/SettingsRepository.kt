@@ -66,6 +66,13 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         store.edit { it[BEDTIME_SHOWN_AT] = millis }
     }
 
+    /** Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm an oder aus (Standard an). */
+    val nextAlarmNotice: Flow<Boolean> = store.data.map { it[NEXT_ALARM_NOTICE] ?: true }
+
+    suspend fun setNextAlarmNotice(enabled: Boolean) {
+        store.edit { it[NEXT_ALARM_NOTICE] = enabled }
+    }
+
     /** Timer der Einschlafklänge in Minuten; `null` = ohne Timer. */
     val soundTimer: Flow<Int?> = store.data.map { prefs ->
         when (val minutes = prefs[SOUND_TIMER] ?: SleepSounds.DEFAULT_TIMER_MINUTES) {
@@ -232,6 +239,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
         val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")
         val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
+        val NEXT_ALARM_NOTICE = booleanPreferencesKey("next_alarm_notice")
         val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
         val SOUND = stringPreferencesKey("sleep_sound")
         val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")

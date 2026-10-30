@@ -324,6 +324,8 @@
     </plurals>
     <string name="weekly_title">週の振り返り</string>
     <string name="weekly_toggle">日曜18:00に1週間のまとめを通知します。</string>
+    <string name="next_alarm_notif_title">ロック画面にアラームを表示</string>
+    <string name="next_alarm_notif_hint">夕方から、起床ウィンドウとナイトチェックを静かな通知で表示します。</string>
     <string name="weekly_notification_title">今週</string>
     <string name="weekly_notification_text">Ø 睡眠 %1$s · 睡眠目標 %2$d/7 · 規則的 %3$d/7 · 気分 %4$s</string>
     <string name="weekly_notification_feeling">今週の Ø 気分: %1$s</string>

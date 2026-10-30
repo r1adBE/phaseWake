@@ -11,6 +11,7 @@ import android.widget.RemoteViews
 import androidx.core.content.edit
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ui.Format
@@ -25,7 +26,8 @@ import kotlinx.coroutines.launch
 /**
  * Widget «Nächster Wecker» (klassisch mit RemoteViews, ohne zusätzliche Bibliothek): Weckfenster, Tag und
  * Nacht-Check (✓ bzw. ! mit der ersten offenen Prüfung). Antippen öffnet die App. Aktualisiert alle 30 Minuten
- * (System) und bei jedem Neuplanen des Zweitweckers und jedem Nacht-Check.
+ * (System) und bei jedem Neuplanen des Zweitweckers und jedem Nacht-Check. Fenster und Check zeigt auch die
+ * Mitteilung [NextAlarmNotice] auf dem Sperrbildschirm.
  */
 class NextAlarmWidget : AppWidgetProvider() {
 
@@ -75,6 +77,7 @@ class NextAlarmWidget : AppWidgetProvider() {
             if (prefs.getString(KEY_CHECK, null) == text) return
             prefs.edit { putString(KEY_CHECK, text) }
             update(context)
+            NextAlarmNotice.update(context)
         }
 
         private fun ids(context: Context): IntArray =
@@ -94,12 +97,7 @@ class NextAlarmWidget : AppWidgetProvider() {
                 views.setTextViewText(R.id.widget_window, context.getString(R.string.widget_no_alarm))
                 views.setViewVisibility(R.id.widget_day, View.GONE)
             } else {
-                val window = if (plan.exact) {
-                    context.getString(R.string.window_exact_line, Format.time(plan.target, zone))
-                } else {
-                    Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone)
-                }
-                views.setTextViewText(R.id.widget_window, window)
+                views.setTextViewText(R.id.widget_window, windowText(context, plan, zone))
                 val label = alarms.firstOrNull { it.id == plan.alarmId }?.label.orEmpty()
                 views.setTextViewText(R.id.widget_day, listOf(day(context, plan.target, zone), label).filter { it.isNotBlank() }.joinToString(" · "))
                 views.setViewVisibility(R.id.widget_day, View.VISIBLE)
@@ -115,15 +113,22 @@ class NextAlarmWidget : AppWidgetProvider() {
             AppWidgetManager.getInstance(context).updateAppWidget(ids, views)
         }
 
+        /** Weckfenster «6:30 – 7:00», bei «Genau» «Genau um 7:00» (auch für die Mitteilung [NextAlarmNotice]). */
+        internal fun windowText(context: Context, plan: WakePlan, zone: ZoneId): String = if (plan.exact) {
+            context.getString(R.string.window_exact_line, Format.time(plan.target, zone))
+        } else {
+            Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone)
+        }
+
         /** «✓ Bereit für die Nacht» oder «! » mit der ersten offenen Prüfung; `null`, solange kein Check lief. */
-        private fun checkText(context: Context): String? {
+        internal fun checkText(context: Context): String? {
             val stored = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY_CHECK, null) ?: return null
             val first = stored.split(",").firstNotNullOfOrNull { name -> Check.entries.firstOrNull { it.name == name } }
             return if (first == null) "✓ " + context.getString(R.string.check_ready) else "! " + context.getString(first.problemTitle)
         }
 
         /** «Heute», «Morgen» oder der Wochentag. */
-        private fun day(context: Context, target: Instant, zone: ZoneId): String {
+        internal fun day(context: Context, target: Instant, zone: ZoneId): String {
             val date = target.atZone(zone).toLocalDate()
             val today = LocalDate.now(zone)
             val locale = context.resources.configuration.locales[0]

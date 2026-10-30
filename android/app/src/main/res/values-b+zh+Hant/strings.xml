@@ -324,6 +324,8 @@
     </plurals>
     <string name="weekly_title">每週回顧</string>
     <string name="weekly_toggle">每週日 18:00 推送一週總結。</string>
+    <string name="next_alarm_notif_title">鎖定畫面上的鬧鐘</string>
+    <string name="next_alarm_notif_hint">從傍晚起顯示靜音通知，含喚醒時段和夜間檢查。</string>
     <string name="weekly_notification_title">你的一週</string>
     <string name="weekly_notification_text">Ø 睡眠 %1$s · 睡眠目標 %2$d/7 · 規律 %3$d/7 · 感覺 %4$s</string>
     <string name="weekly_notification_feeling">本週 Ø 感覺：%1$s</string>

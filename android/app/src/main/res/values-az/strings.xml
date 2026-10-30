@@ -323,6 +323,8 @@
     </plurals>
     <string name="weekly_title">Həftəlik icmal</string>
     <string name="weekly_toggle">Bazar günləri saat 18:00-da həftən haqqında bildiriş.</string>
+    <string name="next_alarm_notif_title">Kilid ekranında siqnal</string>
+    <string name="next_alarm_notif_hint">Axşamdan oyanma pəncərəsi və gecə yoxlaması ilə səssiz bildiriş.</string>
     <string name="weekly_notification_title">Sənin həftən</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s yuxu · yuxu hədəfi %2$d/7 · müntəzəm yatma %3$d/7 · əhval %4$s</string>
     <string name="weekly_notification_feeling">Bu həftə Ø əhval: %1$s</string>

@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">Riepilogo settimanale</string>
     <string name="weekly_toggle">La domenica alle 18, una notifica sulla tua settimana.</string>
+    <string name="next_alarm_notif_title">Sveglia nella schermata di blocco</string>
+    <string name="next_alarm_notif_hint">Notifica silenziosa dalla sera con la finestra di risveglio e il controllo notturno.</string>
     <string name="weekly_notification_title">La tua settimana</string>
     <string name="weekly_notification_text">Ø %1$s di sonno · obiettivo %2$d/7 · regolare %3$d/7 · sensazione %4$s</string>
     <string name="weekly_notification_feeling">Ø sensazione questa settimana: %1$s</string>

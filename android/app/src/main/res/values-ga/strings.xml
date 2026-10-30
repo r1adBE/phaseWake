@@ -372,6 +372,8 @@
     </plurals>
     <string name="weekly_title">Athbhreithniú seachtainiúil</string>
     <string name="weekly_toggle">Ar an Domhnach ag 18:00, fógra faoi do sheachtain.</string>
+    <string name="next_alarm_notif_title">Aláram ar an scáileán glasála</string>
+    <string name="next_alarm_notif_hint">Fógra ciúin ón tráthnóna le d’fhuinneog dhúisithe agus seiceáil na hoíche.</string>
     <string name="weekly_notification_title">Do sheachtain</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s codlata · sprioc codlata %2$d/7 · am codlata rialta %3$d/7 · mothú %4$s</string>
     <string name="weekly_notification_feeling">Ø mothú an tseachtain seo: %1$s</string>

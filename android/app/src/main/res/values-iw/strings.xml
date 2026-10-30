@@ -348,6 +348,8 @@
     </plurals>
     <string name="weekly_title">סיכום שבועי</string>
     <string name="weekly_toggle">בימי ראשון ב־18:00 התראה על השבוע שלך.</string>
+    <string name="next_alarm_notif_title">השכמה במסך הנעילה</string>
+    <string name="next_alarm_notif_hint">התראה שקטה מהערב עם חלון ההשכמה ובדיקת הלילה.</string>
     <string name="weekly_notification_title">השבוע שלך</string>
     <string name="weekly_notification_text">Ø %1$s שינה · יעד שינה %2$d/7 · קבוע %3$d/7 · תחושה %4$s</string>
     <string name="weekly_notification_feeling">Ø תחושה השבוע: %1$s</string>

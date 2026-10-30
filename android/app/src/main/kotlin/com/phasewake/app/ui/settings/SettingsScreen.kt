@@ -78,6 +78,9 @@ fun SettingsScreen(
     onDeleteCustomNote: (String) -> Unit = {},
     weeklyReview: Boolean = false,
     onWeeklyReview: (Boolean) -> Unit = {},
+    /** Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm (Standard an). */
+    nextAlarmNotice: Boolean = true,
+    onNextAlarmNotice: (Boolean) -> Unit = {},
     soundRecDefault: Boolean = false,
     onSoundRecDefault: (Boolean) -> Unit = {},
     routineItems: List<RoutineItem> = emptyList(),
@@ -143,6 +146,7 @@ fun SettingsScreen(
                 Switch(checked = bedtimeReminder, onCheckedChange = null)
             }
             SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
+            SwitchRow(stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint), nextAlarmNotice, onNextAlarmNotice)
         }
 
         extras.onTest?.let { TestGroup(it) }
