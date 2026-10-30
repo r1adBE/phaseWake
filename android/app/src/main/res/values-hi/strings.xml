@@ -18,10 +18,10 @@
 
     <string name="home_next_today">आज</string>
     <string name="home_next_tomorrow">कल</string>
-    <string name="home_next_in">हल्की नींद में जगाएगा · %1$s बाद</string>
+    <string name="home_next_in">बेचैन होते ही जगाएगा · %1$s बाद</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ठीक लक्ष्य समय पर जगाएगा · %1$s बाद</string>
     <string name="home_no_alarm_title">सही पल पर जागो</string>
-    <string name="home_no_alarm_text">समय और विंडो चुनो। जब तुम्हारी नींद हल्की होगी, घड़ी तुम्हें जगा देगी।</string>
+    <string name="home_no_alarm_text">समय और विंडो चुनो। जैसे ही तुम बेचैन होने लगोगे, घड़ी तुम्हें उसी विंडो में जगा देगी।</string>
     <string name="home_add_alarm">नया अलार्म</string>
     <string name="home_last_night">बीती रात</string>
     <string name="home_alarms">तुम्हारे अलार्म</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">जागने के बाद Health Connect से नींद के चरण पढ़ता है, ताकि पहचान जाँची और बेहतर की जा सके।</string>
     <string name="health_connected">जुड़ा है</string>
     <string name="health_unavailable">इस फ़ोन पर Health Connect उपलब्ध नहीं है।</string>
-    <string name="verdict_good">हेल्थ डेटा: %1$s ✓</string>
-    <string name="verdict_deep">हेल्थ डेटा: गहरी नींद</string>
-    <string name="stage_light">हल्की नींद</string>
-    <string name="stage_rem">REM नींद</string>
-    <string name="stage_awake">जागा हुआ</string>
     <string name="editor_alert">कैसे जगाएँ</string>
     <string name="editor_alert_hint">आवाज़ हमेशा वाइब्रेशन के साथ आती है। अलार्म डू नॉट डिस्टर्ब, बेडटाइम मोड और साइलेंट फ़ोन में भी बजते हैं।</string>
     <string name="editor_alert_watch">घड़ी</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">तरोताज़ा</string>
     <string name="feeling_value">एहसास: %1$s</string>
     <string name="feeling_rate">एहसास 5 में से %1$d: %2$s</string>
-    <string name="feeling_hint">समय के साथ आप देखेंगे कि हल्की नींद में जागना आपके लिए अच्छा है या नहीं।</string>
+    <string name="feeling_hint">समय के साथ आप देखेंगे कि पहले जगना आपके लिए अच्छा है या नहीं।</string>
     <string name="trends_title">पिछले 7 दिन</string>
     <string name="trends_not_enough">कुछ रातों के बाद रुझान दिखेंगे।</string>
     <string name="trends_asleep">औसत Ø नींद %1$s</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (वैकल्पिक)</string>
     <string name="onb_granted">अनुमति है</string>
     <string name="onb_alarm_title">पहला अलार्म</string>
-    <string name="onb_alarm_text">आप ज़्यादा से ज़्यादा कब तक जागना चाहते हैं? नींद हल्की हो तो वॉच आपको विंडो में पहले जगा देगी।</string>
+    <string name="onb_alarm_text">आप ज़्यादा से ज़्यादा कब तक जागना चाहते हैं? जैसे ही आप बेचैन होने लगते हैं, वॉच आपको उससे पहले की विंडो में जगा देगी।</string>
     <string name="onb_alarm_create">अलार्म बनाएं</string>
     <string name="onb_alarm_done">अलार्म बना: %1$s</string>
     <string name="onb_done_title">तैयार</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d मिनट</item>
     </plurals>
     <string name="nap_start">झपकी शुरू करें</string>
-    <string name="nap_hint">इस समय के बाद जगाता है, आखिरी मिनटों में हल्की नींद होने पर पहले ही। रात के रूप में नहीं गिना जाता।</string>
+    <string name="nap_hint">इस समय के बाद जगाता है, आखिरी मिनटों में बेचैन होने पर पहले ही। रात के रूप में नहीं गिना जाता।</string>
     <string name="nap_running">झपकी %1$s तक</string>
     <string name="nap_stop">झपकी खत्म करें</string>
     <string name="widget_name">अगला अलार्म</string>

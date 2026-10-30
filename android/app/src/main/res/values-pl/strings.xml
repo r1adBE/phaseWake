@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Dziś</string>
     <string name="home_next_tomorrow">Jutro</string>
-    <string name="home_next_in">Budzi w lekkim śnie · za %1$s</string>
+    <string name="home_next_in">Budzi, gdy tylko sen staje się niespokojny · za %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Budzi dokładnie o czasie docelowym · za %1$s</string>
     <string name="home_no_alarm_title">Wstań we właściwym momencie</string>
-    <string name="home_no_alarm_text">Ustaw godzinę i okno. Zegarek obudzi cię, gdy będziesz spać lekko.</string>
+    <string name="home_no_alarm_text">Ustaw godzinę i okno. Zegarek obudzi cię w nim, gdy tylko twój sen stanie się niespokojny.</string>
     <string name="home_add_alarm">Nowy budzik</string>
     <string name="home_last_night">Ostatnia noc</string>
     <string name="home_alarms">Twoje budziki</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
     <string name="health_connected">Połączono</string>
     <string name="health_unavailable">Health Connect nie jest dostępne na tym telefonie.</string>
-    <string name="verdict_good">Dane zdrowotne: %1$s ✓</string>
-    <string name="verdict_deep">Dane zdrowotne: głęboki sen</string>
-    <string name="stage_light">lekki sen</string>
-    <string name="stage_rem">sen REM</string>
-    <string name="stage_awake">czuwanie</string>
     <string name="editor_alert">Jak cię obudzić</string>
     <string name="editor_alert_hint">Dźwięk zawsze idzie z wibracją. Budziki dzwonią też w trybie Nie przeszkadzać, w trybie snu i na wyciszonym telefonie.</string>
     <string name="editor_alert_watch">Zegarek</string>
@@ -200,7 +195,7 @@
     <string name="feeling_5">Rześko</string>
     <string name="feeling_value">Samopoczucie: %1$s</string>
     <string name="feeling_rate">Samopoczucie %1$d z 5: %2$s</string>
-    <string name="feeling_hint">Z czasem zobaczysz, czy budzenie się w lekkim śnie ci służy.</string>
+    <string name="feeling_hint">Z czasem zobaczysz, czy wcześniejsze budzenie ci służy.</string>
     <string name="trends_title">Ostatnie 7 dni</string>
     <string name="trends_not_enough">Trendy pojawią się po kilku nocach.</string>
     <string name="trends_asleep">Ø %1$s snu</string>
@@ -424,7 +419,7 @@
     <string name="onb_optional">%1$s (opcjonalnie)</string>
     <string name="onb_granted">Zezwolono</string>
     <string name="onb_alarm_title">Pierwszy budzik</string>
-    <string name="onb_alarm_text">O której najpóźniej chcesz wstać? Zegarek obudzi Cię wcześniej w oknie, jeśli śpisz płytko.</string>
+    <string name="onb_alarm_text">O której najpóźniej chcesz wstać? Zegarek obudzi Cię w oknie przed tą godziną, gdy tylko Twój sen stanie się niespokojny.</string>
     <string name="onb_alarm_create">Utwórz budzik</string>
     <string name="onb_alarm_done">Budzik utworzony: %1$s</string>
     <string name="onb_done_title">Gotowe</string>
@@ -457,7 +452,7 @@
         <item quantity="other">%1$d minuty</item>
     </plurals>
     <string name="nap_start">Rozpocznij drzemkę</string>
-    <string name="nap_hint">Budzi Cię po tym czasie, w ostatnich minutach już przy płytkim śnie. Nie liczy się jako noc.</string>
+    <string name="nap_hint">Budzi Cię po tym czasie, w ostatnich minutach już wtedy, gdy sen stanie się niespokojny. Nie liczy się jako noc.</string>
     <string name="nap_running">Drzemka do %1$s</string>
     <string name="nap_stop">Zakończ drzemkę</string>
     <string name="widget_name">Następny budzik</string>

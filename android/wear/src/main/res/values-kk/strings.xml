@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Ояту терезесі</string>
-    <string name="channel_window_description">Phase Wake жеңіл ұйқыны бақылап жатқанда көрсетіледі.</string>
+    <string name="channel_window_description">Phase Wake оятуға қолайлы сәтті күтіп тұрғанда көрсетіледі.</string>
     <string name="channel_alarm">Оятқыш</string>
     <string name="channel_alarm_description">Сені оятады.</string>
-    <string name="notification_window_title">Жеңіл ұйқы бақылануда</string>
+    <string name="notification_window_title">Қолайлы сәтті күтуде</string>
     <string name="notification_window_text">Ең кеші %1$s оятады</string>
     <string name="notification_ring_title">Қайырлы таң</string>
     <string name="ring_greeting">Қайырлы таң</string>
@@ -33,7 +33,7 @@
     <string name="alarm_every_day">Күн сайын</string>
     <string name="tile_label">Келесі оятқыш</string>
     <string name="tile_next">Келесі оятқыш</string>
-    <string name="tile_light_sleep">Жеңіл ұйқыда оятады</string>
+    <string name="tile_light_sleep">Мазасызданғанда оятады</string>
     <string name="notification_good_night_title">Тыныш ұйықта</string>
     <string name="notification_good_night_text">Ұйықтап кетуіңді күтуде</string>
     <string name="home_good_night">Қайырлы түн</string>

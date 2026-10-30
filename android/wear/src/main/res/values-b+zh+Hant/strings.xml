@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">喚醒時段</string>
-    <string name="channel_window_description">Phase Wake 監測淺眠期間顯示。</string>
+    <string name="channel_window_description">Phase Wake 等待合適的喚醒時機期間顯示。</string>
     <string name="channel_alarm">鬧鐘</string>
     <string name="channel_alarm_description">叫醒你。</string>
-    <string name="notification_window_title">正在監測淺眠</string>
+    <string name="notification_window_title">正在等待合適的時機</string>
     <string name="notification_window_text">最晚 %1$s 叫醒你</string>
     <string name="notification_ring_title">早安</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">每天</string>
     <string name="tile_label">下一個鬧鐘</string>
     <string name="tile_next">下一個鬧鐘</string>
-    <string name="tile_light_sleep">在淺眠時喚醒你</string>
+    <string name="tile_light_sleep">睡得不安穩時叫醒你</string>
     <string name="notification_good_night_title">好好睡</string>
     <string name="notification_good_night_text">等待你入睡</string>
     <string name="home_good_night">晚安</string>

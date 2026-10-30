@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Idag</string>
     <string name="home_next_tomorrow">I morgon</string>
-    <string name="home_next_in">Väcker dig i lätt sömn · om %1$s</string>
+    <string name="home_next_in">Väcker dig så snart sömnen blir orolig · om %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Väcker dig precis på önskad tid · om %1$s</string>
     <string name="home_no_alarm_title">Vakna i rätt ögonblick</string>
-    <string name="home_no_alarm_text">Ställ in en tid och ett intervall. Klockan väcker dig när du sover lätt.</string>
+    <string name="home_no_alarm_text">Ställ in en tid och ett intervall. Klockan väcker dig inom det så snart sömnen blir orolig.</string>
     <string name="home_add_alarm">Nytt larm</string>
     <string name="home_last_night">Senaste natten</string>
     <string name="home_alarms">Dina larm</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Läser sömnfaser från Health Connect efter uppvaknandet för att kontrollera och förbättra igenkänningen.</string>
     <string name="health_connected">Ansluten</string>
     <string name="health_unavailable">Health Connect är inte tillgängligt på den här mobilen.</string>
-    <string name="verdict_good">Hälsodata: %1$s ✓</string>
-    <string name="verdict_deep">Hälsodata: djupsömn</string>
-    <string name="stage_light">lätt sömn</string>
-    <string name="stage_rem">REM-sömn</string>
-    <string name="stage_awake">vaken</string>
     <string name="editor_alert">Så väcks du</string>
     <string name="editor_alert_hint">Ljud kommer alltid med vibration. Larm ringer även i Stör ej, sänggåendeläge och med ljudlös mobil.</string>
     <string name="editor_alert_watch">Klocka</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Utvilad</string>
     <string name="feeling_value">Känsla: %1$s</string>
     <string name="feeling_rate">Känsla %1$d av 5: %2$s</string>
-    <string name="feeling_hint">Med tiden ser du om det gör dig gott att vakna i lätt sömn.</string>
+    <string name="feeling_hint">Med tiden ser du om det gör dig gott att väckas tidigare.</string>
     <string name="trends_title">Senaste 7 dagarna</string>
     <string name="trends_not_enough">Trender visas efter några nätter.</string>
     <string name="trends_asleep">Ø %1$s sömn</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (valfritt)</string>
     <string name="onb_granted">Tillåtet</string>
     <string name="onb_alarm_title">Första alarmet</string>
-    <string name="onb_alarm_text">När vill du vara vaken senast? Klockan väcker dig tidigare inom fönstret om du sover lätt.</string>
+    <string name="onb_alarm_text">När vill du vara vaken senast? Klockan väcker dig i fönstret innan, så snart sömnen blir orolig.</string>
     <string name="onb_alarm_create">Skapa alarm</string>
     <string name="onb_alarm_done">Alarm skapat: %1$s</string>
     <string name="onb_done_title">Klart</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d minuter</item>
     </plurals>
     <string name="nap_start">Starta tupplur</string>
-    <string name="nap_hint">Väcker dig efter den här tiden, de sista minuterna redan vid lätt sömn. Räknas inte som en natt.</string>
+    <string name="nap_hint">Väcker dig efter den här tiden, de sista minuterna redan om sömnen blir orolig. Räknas inte som en natt.</string>
     <string name="nap_running">Tupplur till %1$s</string>
     <string name="nap_stop">Avsluta tupplur</string>
     <string name="widget_name">Nästa alarm</string>

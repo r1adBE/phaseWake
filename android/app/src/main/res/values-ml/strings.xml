@@ -19,10 +19,10 @@
 
     <string name="home_next_today">ഇന്ന്</string>
     <string name="home_next_tomorrow">നാളെ</string>
-    <string name="home_next_in">നേരിയ ഉറക്കത്തിൽ ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
+    <string name="home_next_in">അസ്വസ്ഥരാകുമ്പോൾത്തന്നെ ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">കൃത്യമായി ലക്ഷ്യസമയത്ത് ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
     <string name="home_no_alarm_title">ശരിയായ നിമിഷത്തിൽ ഉണരൂ</string>
-    <string name="home_no_alarm_text">ഒരു സമയവും സമയപരിധിയും സജ്ജമാക്കുക. നിങ്ങൾ നേരിയ ഉറക്കത്തിലാകുമ്പോൾ വാച്ച് ഉണർത്തും.</string>
+    <string name="home_no_alarm_text">ഒരു സമയവും സമയപരിധിയും സജ്ജമാക്കുക. നിങ്ങൾ അസ്വസ്ഥരാകാൻ തുടങ്ങുമ്പോൾത്തന്നെ വാച്ച് ആ സമയപരിധിക്കുള്ളിൽ ഉണർത്തും.</string>
     <string name="home_add_alarm">പുതിയ അലാറം</string>
     <string name="home_last_night">കഴിഞ്ഞ രാത്രി</string>
     <string name="home_alarms">നിങ്ങളുടെ അലാറങ്ങൾ</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">കണ്ടെത്തൽ പരിശോധിച്ച് മെച്ചപ്പെടുത്താൻ, ഉണർന്ന ശേഷം Health Connect-ൽ നിന്ന് ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും.</string>
     <string name="health_connected">കണക്റ്റ് ചെയ്‌തു</string>
     <string name="health_unavailable">ഈ ഫോണിൽ Health Connect ലഭ്യമല്ല.</string>
-    <string name="verdict_good">ആരോഗ്യ ഡാറ്റ: %1$s ✓</string>
-    <string name="verdict_deep">ആരോഗ്യ ഡാറ്റ: ഗാഢനിദ്ര</string>
-    <string name="stage_light">നേരിയ ഉറക്കം</string>
-    <string name="stage_rem">REM ഉറക്കം</string>
-    <string name="stage_awake">ഉണർന്ന്</string>
     <string name="editor_alert">എങ്ങനെ ഉണർത്തണം</string>
     <string name="editor_alert_hint">ശബ്ദത്തിനൊപ്പം എപ്പോഴും വൈബ്രേഷനും ഉണ്ടാകും. ശല്യപ്പെടുത്തരുത്, ബെഡ്‌ടൈം മോഡ്, സൈലന്റ് ഫോൺ എന്നിവയിലും അലാറം അടിക്കും.</string>
     <string name="editor_alert_watch">വാച്ച്</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">ഉന്മേഷം</string>
     <string name="feeling_value">അനുഭവം: %1$s</string>
     <string name="feeling_rate">അനുഭവം 5-ൽ %1$d: %2$s</string>
-    <string name="feeling_hint">നേരിയ ഉറക്കത്തിൽ ഉണരുന്നത് നിങ്ങൾക്ക് ഗുണം ചെയ്യുന്നുണ്ടോ എന്ന് കാലക്രമേണ കാണാം.</string>
+    <string name="feeling_hint">നേരത്തേ ഉണരുന്നത് നിങ്ങൾക്ക് ഗുണം ചെയ്യുന്നുണ്ടോ എന്ന് കാലക്രമേണ കാണാം.</string>
     <string name="trends_title">കഴിഞ്ഞ 7 ദിവസം</string>
     <string name="trends_not_enough">കുറച്ച് രാത്രികൾക്കു ശേഷം ട്രെൻഡുകൾ കാണാം.</string>
     <string name="trends_asleep">Ø %1$s ഉറക്കം</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (ഓപ്‌ഷണൽ)</string>
     <string name="onb_granted">അനുവദിച്ചു</string>
     <string name="onb_alarm_title">ആദ്യ അലാറം</string>
-    <string name="onb_alarm_text">പരമാവധി എപ്പോൾ ഉണർന്നിരിക്കണം? നേരിയ ഉറക്കത്തിലാണെങ്കിൽ വാച്ച് സമയപരിധിക്കുള്ളിൽ നേരത്തേ ഉണർത്തും.</string>
+    <string name="onb_alarm_text">പരമാവധി എപ്പോൾ ഉണർന്നിരിക്കണം? നിങ്ങൾ അസ്വസ്ഥരാകാൻ തുടങ്ങുമ്പോൾത്തന്നെ വാച്ച് അതിനു മുമ്പുള്ള സമയപരിധിക്കുള്ളിൽ ഉണർത്തും.</string>
     <string name="onb_alarm_create">അലാറം സൃഷ്ടിക്കുക</string>
     <string name="onb_alarm_done">അലാറം സൃഷ്ടിച്ചു: %1$s</string>
     <string name="onb_done_title">എല്ലാം തയ്യാർ</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d മിനിറ്റ്</item>
     </plurals>
     <string name="nap_start">പവർ നാപ്പ് തുടങ്ങുക</string>
-    <string name="nap_hint">ഈ സമയം കഴിഞ്ഞ് ഉണർത്തും, അവസാന മിനിറ്റുകളിൽ നേരിയ ഉറക്കമുണ്ടെങ്കിൽ നേരത്തേ. ഒരു രാത്രിയായി കണക്കാക്കില്ല.</string>
+    <string name="nap_hint">ഈ സമയം കഴിഞ്ഞ് ഉണർത്തും, അവസാന മിനിറ്റുകളിൽ അസ്വസ്ഥരായാൽ നേരത്തേ. ഒരു രാത്രിയായി കണക്കാക്കില്ല.</string>
     <string name="nap_running">%1$s വരെ പവർ നാപ്പ്</string>
     <string name="nap_stop">പവർ നാപ്പ് അവസാനിപ്പിക്കുക</string>
     <string name="widget_name">അടുത്ത അലാറം</string>

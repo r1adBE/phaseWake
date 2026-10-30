@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Isikhala sokuvuka</string>
-    <string name="channel_window_description">Kuboniswa ngesikhathi i-Phase Wake ibheka ubuthongo obulula.</string>
+    <string name="channel_window_description">Kuboniswa ngesikhathi i-Phase Wake ilinde isikhathi esihle sokukuvusa.</string>
     <string name="channel_alarm">I-alamu</string>
     <string name="channel_alarm_description">Ikuvusa.</string>
-    <string name="notification_window_title">Ibheka ubuthongo obulula</string>
+    <string name="notification_window_title">Ilinde isikhathi esihle</string>
     <string name="notification_window_text">Ikuvusa kamuva kakhulu ngo-%1$s</string>
     <string name="notification_ring_title">Sawubona ekuseni</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Nsuku zonke</string>
     <string name="tile_label">I-alamu elandelayo</string>
     <string name="tile_next">I-alamu elandelayo</string>
-    <string name="tile_light_sleep">Ikuvusa ebuthongweni obulula</string>
+    <string name="tile_light_sleep">Ikuvusa uma ungazinzi</string>
     <string name="notification_good_night_title">Lala kahle</string>
     <string name="notification_good_night_text">Ilinde ukuthi ulale</string>
     <string name="home_good_night">Ulale kahle</string>

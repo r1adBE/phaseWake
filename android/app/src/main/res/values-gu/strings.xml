@@ -20,10 +20,10 @@
 
     <string name="home_next_today">આજે</string>
     <string name="home_next_tomorrow">આવતીકાલે</string>
-    <string name="home_next_in">હળવી ઊંઘમાં જગાડશે · %1$s પછી</string>
+    <string name="home_next_in">બેચેન થવા લાગો કે તરત જગાડશે · %1$s પછી</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">બરાબર લક્ષ્ય સમયે જગાડશે · %1$s પછી</string>
     <string name="home_no_alarm_title">યોગ્ય ક્ષણે જાગો</string>
-    <string name="home_no_alarm_text">સમય અને સમયગાળો પસંદ કરો. તમારી ઊંઘ હળવી હોય ત્યારે ઘડિયાળ તમને જગાડશે.</string>
+    <string name="home_no_alarm_text">સમય અને સમયગાળો પસંદ કરો. તમે બેચેન થવા લાગો કે તરત ઘડિયાળ તમને તેમાં જગાડશે.</string>
     <string name="home_add_alarm">નવો એલાર્મ</string>
     <string name="home_last_night">ગઈ રાત</string>
     <string name="home_alarms">તમારા એલાર્મ</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">જાગ્યા પછી Health Connect પરથી ઊંઘના તબક્કા વાંચે છે, ઓળખ તપાસવા અને સુધારવા માટે.</string>
     <string name="health_connected">કનેક્ટ થયેલ</string>
     <string name="health_unavailable">આ ફોન પર Health Connect ઉપલબ્ધ નથી.</string>
-    <string name="verdict_good">હેલ્થ ડેટા: %1$s ✓</string>
-    <string name="verdict_deep">હેલ્થ ડેટા: ગાઢ ઊંઘ</string>
-    <string name="stage_light">હળવી ઊંઘ</string>
-    <string name="stage_rem">REM ઊંઘ</string>
-    <string name="stage_awake">જાગતા</string>
     <string name="editor_alert">કેવી રીતે જગાડવા</string>
     <string name="editor_alert_hint">અવાજ સાથે હંમેશાં વાઇબ્રેશન પણ હોય છે. “ખલેલ પાડશો નહીં”, બેડટાઇમ મોડ અને સાઇલન્ટ ફોનમાં પણ એલાર્મ વાગે છે.</string>
     <string name="editor_alert_watch">ઘડિયાળ</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">તાજગીભર્યા</string>
     <string name="feeling_value">મૂડ: %1$s</string>
     <string name="feeling_rate">મૂડ 5માંથી %1$d: %2$s</string>
-    <string name="feeling_hint">સમય જતાં તમે જોશો કે હળવી ઊંઘમાં જાગવું તમને ફાયદો કરે છે કે નહીં.</string>
+    <string name="feeling_hint">સમય જતાં તમે જોશો કે વહેલા જાગવું તમને ફાયદો કરે છે કે નહીં.</string>
     <string name="trends_title">છેલ્લા 7 દિવસ</string>
     <string name="trends_not_enough">થોડી રાતો પછી ટ્રેન્ડ દેખાશે.</string>
     <string name="trends_asleep">Ø %1$s ઊંઘ</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (વૈકલ્પિક)</string>
     <string name="onb_granted">મંજૂર</string>
     <string name="onb_alarm_title">પહેલો એલાર્મ</string>
-    <string name="onb_alarm_text">તમારે વધુમાં વધુ ક્યારે જાગી જવું છે? ઊંઘ હળવી હોય તો ઘડિયાળ તમને સમયગાળામાં વહેલા જગાડે છે.</string>
+    <string name="onb_alarm_text">તમારે વધુમાં વધુ ક્યારે જાગી જવું છે? તમે બેચેન થવા લાગો કે તરત ઘડિયાળ તમને તે પહેલાંના સમયગાળામાં જગાડે છે.</string>
     <string name="onb_alarm_create">એલાર્મ બનાવો</string>
     <string name="onb_alarm_done">એલાર્મ બન્યો: %1$s</string>
     <string name="onb_done_title">બધું તૈયાર</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d મિનિટ</item>
     </plurals>
     <string name="nap_start">પાવર નેપ શરૂ કરો</string>
-    <string name="nap_hint">આ સમય પછી જગાડે છે, છેલ્લી મિનિટોમાં હળવી ઊંઘ હોય તો પહેલેથી. રાત તરીકે ગણાતું નથી.</string>
+    <string name="nap_hint">આ સમય પછી જગાડે છે, છેલ્લી મિનિટોમાં બેચેન થાઓ તો પહેલેથી. રાત તરીકે ગણાતું નથી.</string>
     <string name="nap_running">%1$s સુધી પાવર નેપ</string>
     <string name="nap_stop">પાવર નેપ પૂરી કરો</string>
     <string name="widget_name">આગલો એલાર્મ</string>

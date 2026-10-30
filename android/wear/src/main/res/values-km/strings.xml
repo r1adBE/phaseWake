@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">ចន្លោះពេលដាស់</string>
-    <string name="channel_window_description">បង្ហាញពេល Phase Wake កំពុងតាមដានដំណេកស្រាល។</string>
+    <string name="channel_window_description">បង្ហាញពេល Phase Wake កំពុងរង់ចាំពេលល្អដើម្បីដាស់អ្នក។</string>
     <string name="channel_alarm">ម៉ោងរោទ៍</string>
     <string name="channel_alarm_description">ដាស់អ្នក។</string>
-    <string name="notification_window_title">កំពុងតាមដានដំណេកស្រាល</string>
+    <string name="notification_window_title">កំពុងរង់ចាំពេលល្អ</string>
     <string name="notification_window_text">ដាស់អ្នកយឺតបំផុតនៅ %1$s</string>
     <string name="notification_ring_title">អរុណសួស្តី</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">រៀងរាល់ថ្ងៃ</string>
     <string name="tile_label">ម៉ោងរោទ៍បន្ទាប់</string>
     <string name="tile_next">ម៉ោងរោទ៍បន្ទាប់</string>
-    <string name="tile_light_sleep">ដាស់ពេលដេកស្រាល</string>
+    <string name="tile_light_sleep">ដាស់ពេលដេកមិនស្ងប់</string>
     <string name="notification_good_night_title">សូមដេកលក់ស្រួល</string>
     <string name="notification_good_night_text">កំពុងរង់ចាំអ្នកលង់លក់</string>
     <string name="home_good_night">រាត្រីសួស្តី</string>

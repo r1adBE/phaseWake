@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Azi</string>
     <string name="home_next_tomorrow">Mâine</string>
-    <string name="home_next_in">Te trezește din somn ușor · peste %1$s</string>
+    <string name="home_next_in">Te trezește imediat ce somnul devine agitat · peste %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Te trezește exact la ora țintă · peste %1$s</string>
     <string name="home_no_alarm_title">Trezește-te la momentul potrivit</string>
-    <string name="home_no_alarm_text">Alege o oră și un interval. Ceasul te trezește când dormi ușor.</string>
+    <string name="home_no_alarm_text">Alege o oră și un interval. Ceasul te trezește în el imediat ce somnul tău devine agitat.</string>
     <string name="home_add_alarm">Alarmă nouă</string>
     <string name="home_last_night">Noaptea trecută</string>
     <string name="home_alarms">Alarmele tale</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
     <string name="health_connected">Conectat</string>
     <string name="health_unavailable">Health Connect nu este disponibil pe acest telefon.</string>
-    <string name="verdict_good">Date de sănătate: %1$s ✓</string>
-    <string name="verdict_deep">Date de sănătate: somn profund</string>
-    <string name="stage_light">somn ușor</string>
-    <string name="stage_rem">somn REM</string>
-    <string name="stage_awake">treaz</string>
     <string name="editor_alert">Cum te trezim</string>
     <string name="editor_alert_hint">Sunetul vine mereu cu vibrație. Alarmele sună și în modul Nu deranja, în modul de culcare și cu telefonul pe silențios.</string>
     <string name="editor_alert_watch">Ceas</string>
@@ -197,7 +192,7 @@
     <string name="feeling_5">Odihnit</string>
     <string name="feeling_value">Stare: %1$s</string>
     <string name="feeling_rate">Stare %1$d din 5: %2$s</string>
-    <string name="feeling_hint">În timp vei vedea dacă trezirea în somn ușor îți face bine.</string>
+    <string name="feeling_hint">În timp vei vedea dacă trezirea mai devreme îți face bine.</string>
     <string name="trends_title">Ultimele 7 zile</string>
     <string name="trends_not_enough">Tendințele apar după câteva nopți.</string>
     <string name="trends_asleep">Ø %1$s de somn</string>
@@ -412,7 +407,7 @@
     <string name="onb_optional">%1$s (opțional)</string>
     <string name="onb_granted">Permis</string>
     <string name="onb_alarm_title">Prima alarmă</string>
-    <string name="onb_alarm_text">Cel mai târziu când vrei să fii treaz? Ceasul te trezește mai devreme în fereastră dacă dormi ușor.</string>
+    <string name="onb_alarm_text">Cel mai târziu când vrei să fii treaz? Ceasul te trezește în fereastra dinainte, imediat ce somnul tău devine agitat.</string>
     <string name="onb_alarm_create">Creează alarma</string>
     <string name="onb_alarm_done">Alarmă creată: %1$s</string>
     <string name="onb_done_title">Gata</string>
@@ -444,7 +439,7 @@
         <item quantity="other">%1$d de minute</item>
     </plurals>
     <string name="nap_start">Începe puiul de somn</string>
-    <string name="nap_hint">Te trezește după acest timp, în ultimele minute deja în somn ușor. Nu contează ca noapte.</string>
+    <string name="nap_hint">Te trezește după acest timp, în ultimele minute deja dacă somnul devine agitat. Nu contează ca noapte.</string>
     <string name="nap_running">Pui de somn până la %1$s</string>
     <string name="nap_stop">Încheie puiul de somn</string>
     <string name="widget_name">Următoarea alarmă</string>

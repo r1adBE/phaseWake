@@ -21,10 +21,10 @@
 
     <string name="home_next_today">Today</string>
     <string name="home_next_tomorrow">Tomorrow</string>
-    <string name="home_next_in">Wakes you in light sleep · in %1$s</string>
+    <string name="home_next_in">Wakes you once you get restless · in %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Wakes you right at the target time · in %1$s</string>
     <string name="home_no_alarm_title">Wake up at the right moment</string>
-    <string name="home_no_alarm_text">Set a time and a window. Your watch wakes you when you sleep lightly.</string>
+    <string name="home_no_alarm_text">Set a time and a window. Your watch wakes you within it once you get restless.</string>
     <string name="home_add_alarm">New alarm</string>
     <string name="home_last_night">Last night</string>
     <string name="home_alarms">Your alarms</string>
@@ -109,11 +109,6 @@
     <string name="health_connect_hint">Reads sleep stages from Health Connect after waking, to check and improve detection.</string>
     <string name="health_connected">Connected</string>
     <string name="health_unavailable">Health Connect is not available on this phone.</string>
-    <string name="verdict_good">Health data: %1$s ✓</string>
-    <string name="verdict_deep">Health data: deep sleep</string>
-    <string name="stage_light">light sleep</string>
-    <string name="stage_rem">REM sleep</string>
-    <string name="stage_awake">awake</string>
     <string name="editor_alert">How to wake you</string>
     <string name="editor_alert_hint">Sound always comes with vibration. Alarms also ring with Do Not Disturb, bedtime mode and a silent phone.</string>
     <string name="editor_alert_watch">Watch</string>
@@ -198,7 +193,7 @@
     <string name="feeling_5">Refreshed</string>
     <string name="feeling_value">Feeling: %1$s</string>
     <string name="feeling_rate">Feeling %1$d of 5: %2$s</string>
-    <string name="feeling_hint">Over time you’ll see whether waking in light sleep does you good.</string>
+    <string name="feeling_hint">Over time you’ll see whether waking earlier does you good.</string>
     <string name="trends_title">Last 7 days</string>
     <string name="trends_not_enough">Trends appear after a few nights.</string>
     <string name="trends_asleep">Ø %1$s of sleep</string>
@@ -430,7 +425,7 @@
     <string name="onb_optional">%1$s (optional)</string>
     <string name="onb_granted">Allowed</string>
     <string name="onb_alarm_title">First alarm</string>
-    <string name="onb_alarm_text">When do you want to be awake at the latest? Your watch wakes you earlier within the window if you sleep lightly.</string>
+    <string name="onb_alarm_text">When do you want to be awake at the latest? Your watch wakes you in the window before, once you get restless.</string>
     <string name="onb_alarm_create">Create alarm</string>
     <string name="onb_alarm_done">Alarm created: %1$s</string>
     <string name="onb_done_title">All set</string>
@@ -461,7 +456,7 @@
         <item quantity="other">%1$d minutes</item>
     </plurals>
     <string name="nap_start">Start power nap</string>
-    <string name="nap_hint">Wakes you after this time, in the last minutes already in light sleep. Doesn’t count as a night.</string>
+    <string name="nap_hint">Wakes you after this time, in the last minutes already if you get restless. Doesn’t count as a night.</string>
     <string name="nap_running">Power nap until %1$s</string>
     <string name="nap_stop">End power nap</string>
     <string name="widget_name">Next alarm</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Uyandırma aralığı</string>
-    <string name="channel_window_description">Phase Wake hafif uykuyu beklerken gösterilir.</string>
+    <string name="channel_window_description">Phase Wake seni uyandırmak için iyi bir anı beklerken gösterilir.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Seni uyandırır.</string>
-    <string name="notification_window_title">Hafif uyku bekleniyor</string>
+    <string name="notification_window_title">İyi bir anı bekliyor</string>
     <string name="notification_window_text">En geç şu saatte uyandırır: %1$s</string>
     <string name="notification_ring_title">Günaydın</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Her gün</string>
     <string name="tile_label">Sonraki alarm</string>
     <string name="tile_next">Sonraki alarm</string>
-    <string name="tile_light_sleep">Hafif uykuda uyandırır</string>
+    <string name="tile_light_sleep">Huzursuzlanınca uyandırır</string>
     <string name="notification_good_night_title">İyi uykular</string>
     <string name="notification_good_night_text">Uykuya dalman bekleniyor</string>
     <string name="home_good_night">İyi geceler</string>

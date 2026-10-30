@@ -16,10 +16,10 @@
     <string name="nav_settings">პარამეტრები</string>
     <string name="home_next_today">დღეს</string>
     <string name="home_next_tomorrow">ხვალ</string>
-    <string name="home_next_in">გაღვიძება მსუბუქ ძილში · %1$s-ში</string>
+    <string name="home_next_in">გაღვიძება, როგორც კი მოუსვენარი გახდები · %1$s-ში</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">გაღვიძება ზუსტად სამიზნე დროს · %1$s-ში</string>
     <string name="home_no_alarm_title">გაიღვიძე სწორ მომენტში</string>
-    <string name="home_no_alarm_text">დააყენე დრო და ფანჯარა. საათი გაგაღვიძებს, როცა მსუბუქად გძინავს.</string>
+    <string name="home_no_alarm_text">დააყენე დრო და ფანჯარა. საათი მასში გაგაღვიძებს, როგორც კი მოუსვენარი გახდები.</string>
     <string name="home_add_alarm">ახალი მაღვიძარა</string>
     <string name="home_last_night">გასული ღამე</string>
     <string name="home_alarms">შენი მაღვიძარები</string>
@@ -97,11 +97,6 @@
     <string name="health_connect_hint">გაღვიძების შემდეგ კითხულობს ძილის ფაზებს Health Connect-დან, რათა შეამოწმოს და გააუმჯობესოს ამოცნობა.</string>
     <string name="health_connected">დაკავშირებულია</string>
     <string name="health_unavailable">Health Connect ამ ტელეფონზე მიუწვდომელია.</string>
-    <string name="verdict_good">ჯანმრთელობის მონაცემები: %1$s ✓</string>
-    <string name="verdict_deep">ჯანმრთელობის მონაცემები: ღრმა ძილი</string>
-    <string name="stage_light">მსუბუქი ძილი</string>
-    <string name="stage_rem">REM ძილი</string>
-    <string name="stage_awake">ფხიზლად</string>
     <string name="editor_alert">როგორ გაგაღვიძოს</string>
     <string name="editor_alert_hint">ხმა ყოველთვის ვიბრაციასთან ერთადაა. მაღვიძარები რეკავს „არ შემაწუხოთ“, ძილის რეჟიმსა და უხმო ტელეფონზეც.</string>
     <string name="editor_alert_watch">საათი</string>
@@ -186,7 +181,7 @@
     <string name="feeling_5">ხალისიანად</string>
     <string name="feeling_value">თვითგრძნობა: %1$s</string>
     <string name="feeling_rate">თვითგრძნობა %1$d/5: %2$s</string>
-    <string name="feeling_hint">დროთა განმავლობაში ნახავ, გარგებს თუ არა მსუბუქ ძილში გაღვიძება.</string>
+    <string name="feeling_hint">დროთა განმავლობაში ნახავ, გარგებს თუ არა უფრო ადრე გაღვიძება.</string>
     <string name="trends_title">ბოლო 7 დღე</string>
     <string name="trends_not_enough">ტენდენციები რამდენიმე ღამის შემდეგ გამოჩნდება.</string>
     <string name="trends_asleep">Ø %1$s ძილი</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (არასავალდებულო)</string>
     <string name="onb_granted">დაშვებულია</string>
     <string name="onb_alarm_title">პირველი მაღვიძარა</string>
-    <string name="onb_alarm_text">არაუგვიანეს როდის გინდა გაღვიძება? თუ მსუბუქად გძინავს, საათი ფანჯარაში უფრო ადრე გაგაღვიძებს.</string>
+    <string name="onb_alarm_text">არაუგვიანეს როდის გინდა გაღვიძება? საათი მანამდე, ფანჯარაში გაგაღვიძებს, როგორც კი მოუსვენარი გახდები.</string>
     <string name="onb_alarm_create">მაღვიძარის შექმნა</string>
     <string name="onb_alarm_done">მაღვიძარა შეიქმნა: %1$s</string>
     <string name="onb_done_title">ყველაფერი მზადაა</string>
@@ -419,7 +414,7 @@
         <item quantity="other">%1$d წუთი</item>
     </plurals>
     <string name="nap_start">ხანმოკლე ძილის დაწყება</string>
-    <string name="nap_hint">გაგაღვიძებს ამ დროის შემდეგ, ბოლო წუთებში უკვე მსუბუქ ძილში. ღამედ არ ითვლება.</string>
+    <string name="nap_hint">გაგაღვიძებს ამ დროის შემდეგ, ბოლო წუთებში უკვე, თუ მოუსვენარი გახდები. ღამედ არ ითვლება.</string>
     <string name="nap_running">ხანმოკლე ძილი %1$s-მდე</string>
     <string name="nap_stop">ხანმოკლე ძილის დასრულება</string>
     <string name="widget_name">შემდეგი მაღვიძარა</string>

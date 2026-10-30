@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">నిద్రలేపే వ్యవధి</string>
-    <string name="channel_window_description">Phase Wake తేలికపాటి నిద్ర కోసం చూస్తున్నప్పుడు కనిపిస్తుంది.</string>
+    <string name="channel_window_description">లేపడానికి మంచి క్షణం కోసం Phase Wake ఎదురుచూస్తున్నప్పుడు కనిపిస్తుంది.</string>
     <string name="channel_alarm">అలారం</string>
     <string name="channel_alarm_description">మిమ్మల్ని లేపుతుంది.</string>
-    <string name="notification_window_title">తేలికపాటి నిద్ర కోసం చూస్తోంది</string>
+    <string name="notification_window_title">మంచి క్షణం కోసం ఎదురుచూస్తోంది</string>
     <string name="notification_window_text">గరిష్ఠంగా %1$sకల్లా లేపుతుంది</string>
     <string name="notification_ring_title">శుభోదయం</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">ప్రతిరోజూ</string>
     <string name="tile_label">తదుపరి అలారం</string>
     <string name="tile_next">తదుపరి అలారం</string>
-    <string name="tile_light_sleep">తేలికపాటి నిద్రలో లేపుతుంది</string>
+    <string name="tile_light_sleep">అశాంతిగా కదిలితే లేపుతుంది</string>
     <string name="notification_good_night_title">హాయిగా నిద్రపోండి</string>
     <string name="notification_good_night_text">మీరు నిద్రపోయే వరకు వేచి ఉంది</string>
     <string name="home_good_night">శుభ రాత్రి</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Rentang bangun</string>
-    <string name="channel_window_description">Tampil saat Phase Wake memantau tidur ringan.</string>
+    <string name="channel_window_description">Tampil saat Phase Wake menunggu saat yang tepat untuk membangunkanmu.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Membangunkanmu.</string>
-    <string name="notification_window_title">Memantau tidur ringan</string>
+    <string name="notification_window_title">Menunggu saat yang tepat</string>
     <string name="notification_window_text">Membangunkanmu paling lambat %1$s</string>
     <string name="notification_ring_title">Selamat pagi</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">Setiap hari</string>
     <string name="tile_label">Alarm berikutnya</string>
     <string name="tile_next">Alarm berikutnya</string>
-    <string name="tile_light_sleep">Membangunkanmu saat tidur ringan</string>
+    <string name="tile_light_sleep">Membangunkan saat gelisah</string>
     <string name="notification_good_night_title">Tidur nyenyak</string>
     <string name="notification_good_night_text">Menunggu kamu tertidur</string>
     <string name="home_good_night">Selamat tidur</string>

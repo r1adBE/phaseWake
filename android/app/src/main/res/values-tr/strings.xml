@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Bugün</string>
     <string name="home_next_tomorrow">Yarın</string>
-    <string name="home_next_in">Hafif uykuda uyandırır · %1$s sonra</string>
+    <string name="home_next_in">Huzursuzlandığın anda uyandırır · %1$s sonra</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Tam hedef saatte uyandırır · %1$s sonra</string>
     <string name="home_no_alarm_title">Tam zamanında uyan</string>
-    <string name="home_no_alarm_text">Bir saat ve bir aralık belirle. Saatin, hafif uyuduğunda seni uyandırır.</string>
+    <string name="home_no_alarm_text">Bir saat ve bir aralık belirle. Saatin, huzursuzlanmaya başladığın anda seni bu aralıkta uyandırır.</string>
     <string name="home_add_alarm">Yeni alarm</string>
     <string name="home_last_night">Dün gece</string>
     <string name="home_alarms">Alarmların</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Uyandıktan sonra uyku evrelerini Health Connect\'ten okuyarak algılamayı kontrol eder ve geliştirir.</string>
     <string name="health_connected">Bağlı</string>
     <string name="health_unavailable">Health Connect bu telefonda kullanılamıyor.</string>
-    <string name="verdict_good">Sağlık verisi: %1$s ✓</string>
-    <string name="verdict_deep">Sağlık verisi: derin uyku</string>
-    <string name="stage_light">hafif uyku</string>
-    <string name="stage_rem">REM uykusu</string>
-    <string name="stage_awake">uyanık</string>
     <string name="editor_alert">Nasıl uyandırılsın</string>
     <string name="editor_alert_hint">Ses her zaman titreşimle birlikte gelir. Alarmlar Rahatsız Etme, uyku vakti modu ve sessiz telefonda da çalar.</string>
     <string name="editor_alert_watch">Saat</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Dinç</string>
     <string name="feeling_value">Hissediş: %1$s</string>
     <string name="feeling_rate">Hissediş 5 üzerinden %1$d: %2$s</string>
-    <string name="feeling_hint">Zamanla hafif uykuda uyanmanın sana iyi gelip gelmediğini göreceksin.</string>
+    <string name="feeling_hint">Zamanla daha erken uyandırılmanın sana iyi gelip gelmediğini göreceksin.</string>
     <string name="trends_title">Son 7 gün</string>
     <string name="trends_not_enough">Eğilimler birkaç gece sonra görünür.</string>
     <string name="trends_asleep">Ø %1$s uyku</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (isteğe bağlı)</string>
     <string name="onb_granted">İzin verildi</string>
     <string name="onb_alarm_title">İlk alarm</string>
-    <string name="onb_alarm_text">En geç ne zaman uyanık olmak istiyorsun? Hafif uyuyorsan saat seni pencere içinde daha erken uyandırır.</string>
+    <string name="onb_alarm_text">En geç ne zaman uyanık olmak istiyorsun? Saat, huzursuzlanmaya başladığın anda seni öncesindeki pencerede uyandırır.</string>
     <string name="onb_alarm_create">Alarm oluştur</string>
     <string name="onb_alarm_done">Alarm oluşturuldu: %1$s</string>
     <string name="onb_done_title">Hazır</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d dakika</item>
     </plurals>
     <string name="nap_start">Şekerlemeyi başlat</string>
-    <string name="nap_hint">Bu sürenin sonunda, son dakikalarda hafif uykudayken seni uyandırır. Gece sayılmaz.</string>
+    <string name="nap_hint">Bu sürenin sonunda uyandırır, son dakikalarda huzursuzlanırsan daha önce. Gece sayılmaz.</string>
     <string name="nap_running">Şekerleme %1$s saatine kadar</string>
     <string name="nap_stop">Şekerlemeyi bitir</string>
     <string name="widget_name">Sonraki alarm</string>

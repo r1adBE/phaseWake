@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">ഉണർത്തൽ സമയപരിധി</string>
-    <string name="channel_window_description">Phase Wake നേരിയ ഉറക്കം നിരീക്ഷിക്കുമ്പോൾ കാണിക്കും.</string>
+    <string name="channel_window_description">ഉണർത്താൻ നല്ല നിമിഷത്തിനായി Phase Wake കാത്തിരിക്കുമ്പോൾ കാണിക്കും.</string>
     <string name="channel_alarm">അലാറം</string>
     <string name="channel_alarm_description">നിങ്ങളെ ഉണർത്തുന്നു.</string>
-    <string name="notification_window_title">നേരിയ ഉറക്കം നിരീക്ഷിക്കുന്നു</string>
+    <string name="notification_window_title">നല്ല നിമിഷത്തിനായി കാത്തിരിക്കുന്നു</string>
     <string name="notification_window_text">പരമാവധി %1$s-ന് ഉണർത്തും</string>
     <string name="notification_ring_title">സുപ്രഭാതം</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">എല്ലാ ദിവസവും</string>
     <string name="tile_label">അടുത്ത അലാറം</string>
     <string name="tile_next">അടുത്ത അലാറം</string>
-    <string name="tile_light_sleep">നേരിയ ഉറക്കത്തിൽ ഉണർത്തും</string>
+    <string name="tile_light_sleep">അസ്വസ്ഥരാകുമ്പോൾ ഉണർത്തും</string>
     <string name="notification_good_night_title">നന്നായി ഉറങ്ങൂ</string>
     <string name="notification_good_night_text">നിങ്ങൾ ഉറങ്ങാൻ കാത്തിരിക്കുന്നു</string>
     <string name="home_good_night">ശുഭരാത്രി</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">आज</string>
     <string name="home_next_tomorrow">उद्या</string>
-    <string name="home_next_in">हलक्या झोपेत उठवेल · %1$s नंतर</string>
+    <string name="home_next_in">अस्वस्थ होऊ लागताच उठवेल · %1$s नंतर</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">अगदी लक्ष्य वेळेवर उठवेल · %1$s नंतर</string>
     <string name="home_no_alarm_title">योग्य क्षणी जागे व्हा</string>
-    <string name="home_no_alarm_text">वेळ आणि कालावधी निवडा. तुमची झोप हलकी असताना घड्याळ तुम्हाला उठवेल.</string>
+    <string name="home_no_alarm_text">वेळ आणि कालावधी निवडा. तुम्ही अस्वस्थ होऊ लागताच घड्याळ तुम्हाला त्या कालावधीत उठवेल.</string>
     <string name="home_add_alarm">नवीन अलार्म</string>
     <string name="home_last_night">काल रात्री</string>
     <string name="home_alarms">तुमचे अलार्म</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">उठल्यानंतर Health Connect मधून झोपेचे टप्पे वाचते, ओळख तपासण्यासाठी आणि सुधारण्यासाठी.</string>
     <string name="health_connected">जोडलेले</string>
     <string name="health_unavailable">या फोनवर Health Connect उपलब्ध नाही.</string>
-    <string name="verdict_good">हेल्थ डेटा: %1$s ✓</string>
-    <string name="verdict_deep">हेल्थ डेटा: गाढ झोप</string>
-    <string name="stage_light">हलकी झोप</string>
-    <string name="stage_rem">REM झोप</string>
-    <string name="stage_awake">जागे</string>
     <string name="editor_alert">कसे उठवायचे</string>
     <string name="editor_alert_hint">आवाजासोबत नेहमी व्हायब्रेशनही असते. “व्यत्यय आणू नका”, बेडटाइम मोड आणि सायलेंट फोनमध्येही अलार्म वाजतात.</string>
     <string name="editor_alert_watch">घड्याळ</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ताजेतवाने</string>
     <string name="feeling_value">मूड: %1$s</string>
     <string name="feeling_rate">मूड ५ पैकी %1$d: %2$s</string>
-    <string name="feeling_hint">हलक्या झोपेत उठणं तुम्हाला फायद्याचं आहे का, हे काही काळाने दिसेल.</string>
+    <string name="feeling_hint">लवकर उठवलं जाणं तुम्हाला फायद्याचं आहे का, हे काही काळाने दिसेल.</string>
     <string name="trends_title">मागील ७ दिवस</string>
     <string name="trends_not_enough">काही रात्रींनंतर ट्रेंड दिसतील.</string>
     <string name="trends_asleep">Ø %1$s झोप</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (ऐच्छिक)</string>
     <string name="onb_granted">परवानगी दिली</string>
     <string name="onb_alarm_title">पहिला अलार्म</string>
-    <string name="onb_alarm_text">तुम्हाला जास्तीत जास्त किती वाजता जागे व्हायचे आहे? झोप हलकी असल्यास घड्याळ कालावधीत तुम्हाला लवकर उठवते.</string>
+    <string name="onb_alarm_text">तुम्हाला जास्तीत जास्त किती वाजता जागे व्हायचे आहे? तुम्ही अस्वस्थ होऊ लागताच घड्याळ त्याआधीच्या कालावधीत तुम्हाला उठवते.</string>
     <string name="onb_alarm_create">अलार्म तयार करा</string>
     <string name="onb_alarm_done">अलार्म तयार: %1$s</string>
     <string name="onb_done_title">सगळं तयार</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d मिनिटे</item>
     </plurals>
     <string name="nap_start">पॉवर नॅप सुरू करा</string>
-    <string name="nap_hint">या वेळेनंतर उठवते, शेवटच्या मिनिटांत हलक्या झोपेत असल्यास आधीच. रात्र म्हणून मोजली जात नाही.</string>
+    <string name="nap_hint">या वेळेनंतर उठवते, शेवटच्या मिनिटांत अस्वस्थ झाल्यास आधीच. रात्र म्हणून मोजली जात नाही.</string>
     <string name="nap_running">%1$s पर्यंत पॉवर नॅप</string>
     <string name="nap_stop">पॉवर नॅप संपवा</string>
     <string name="widget_name">पुढचा अलार्म</string>

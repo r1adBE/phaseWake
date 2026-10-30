@@ -20,10 +20,10 @@
 
     <string name="home_next_today">ఈరోజు</string>
     <string name="home_next_tomorrow">రేపు</string>
-    <string name="home_next_in">తేలికపాటి నిద్రలో లేపుతుంది · %1$s తర్వాత</string>
+    <string name="home_next_in">అశాంతిగా కదలడం మొదలవగానే లేపుతుంది · %1$s తర్వాత</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">సరిగ్గా లక్ష్య సమయానికి లేపుతుంది · %1$s తర్వాత</string>
     <string name="home_no_alarm_title">సరైన క్షణంలో మేల్కొనండి</string>
-    <string name="home_no_alarm_text">సమయం, వ్యవధి ఎంచుకోండి. మీ నిద్ర తేలికగా ఉన్నప్పుడు వాచ్ మిమ్మల్ని లేపుతుంది.</string>
+    <string name="home_no_alarm_text">సమయం, వ్యవధి ఎంచుకోండి. మీరు అశాంతిగా కదలడం మొదలుపెట్టగానే వాచ్ ఆ వ్యవధిలో మిమ్మల్ని లేపుతుంది.</string>
     <string name="home_add_alarm">కొత్త అలారం</string>
     <string name="home_last_night">నిన్న రాత్రి</string>
     <string name="home_alarms">మీ అలారాలు</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">మేల్కొన్న తర్వాత Health Connect నుంచి నిద్ర దశలను చదువుతుంది, గుర్తింపును తనిఖీ చేసి మెరుగుపరచడానికి.</string>
     <string name="health_connected">కనెక్ట్ అయింది</string>
     <string name="health_unavailable">ఈ ఫోన్‌లో Health Connect అందుబాటులో లేదు.</string>
-    <string name="verdict_good">హెల్త్ డేటా: %1$s ✓</string>
-    <string name="verdict_deep">హెల్త్ డేటా: గాఢ నిద్ర</string>
-    <string name="stage_light">తేలికపాటి నిద్ర</string>
-    <string name="stage_rem">REM నిద్ర</string>
-    <string name="stage_awake">మేల్కొని</string>
     <string name="editor_alert">ఎలా లేపాలి</string>
     <string name="editor_alert_hint">ధ్వనితో పాటు ఎప్పుడూ వైబ్రేషన్ కూడా ఉంటుంది. “అంతరాయం కలిగించవద్దు”, బెడ్‌టైమ్ మోడ్, సైలెంట్ ఫోన్‌లోనూ అలారాలు మోగుతాయి.</string>
     <string name="editor_alert_watch">వాచ్</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ఉత్సాహంగా</string>
     <string name="feeling_value">మూడ్: %1$s</string>
     <string name="feeling_rate">మూడ్ 5కి %1$d: %2$s</string>
-    <string name="feeling_hint">తేలికపాటి నిద్రలో మేల్కోవడం మీకు మంచిదో కాదో కాలక్రమేణా తెలుస్తుంది.</string>
+    <string name="feeling_hint">ముందుగా మేల్కొలపడం మీకు మంచిదో కాదో కాలక్రమేణా తెలుస్తుంది.</string>
     <string name="trends_title">గత 7 రోజులు</string>
     <string name="trends_not_enough">కొన్ని రాత్రుల తర్వాత ట్రెండ్‌లు కనిపిస్తాయి.</string>
     <string name="trends_asleep">Ø %1$s నిద్ర</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (ఐచ్ఛికం)</string>
     <string name="onb_granted">అనుమతించారు</string>
     <string name="onb_alarm_title">మొదటి అలారం</string>
-    <string name="onb_alarm_text">మీరు గరిష్ఠంగా ఎప్పటికల్లా మేల్కోవాలి? నిద్ర తేలికగా ఉంటే వాచ్ మిమ్మల్ని వ్యవధిలో ముందుగానే లేపుతుంది.</string>
+    <string name="onb_alarm_text">మీరు గరిష్ఠంగా ఎప్పటికల్లా మేల్కోవాలి? మీరు అశాంతిగా కదలడం మొదలుపెట్టగానే వాచ్ దానికి ముందున్న వ్యవధిలో లేపుతుంది.</string>
     <string name="onb_alarm_create">అలారం సృష్టించండి</string>
     <string name="onb_alarm_done">అలారం సృష్టించారు: %1$s</string>
     <string name="onb_done_title">అంతా సిద్ధం</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d నిమిషాలు</item>
     </plurals>
     <string name="nap_start">పవర్ న్యాప్ మొదలుపెట్టండి</string>
-    <string name="nap_hint">ఈ సమయం తర్వాత లేపుతుంది, చివరి నిమిషాల్లో తేలికపాటి నిద్రలో ఉంటే ముందుగానే. రాత్రిగా లెక్కించబడదు.</string>
+    <string name="nap_hint">ఈ సమయం తర్వాత లేపుతుంది, చివరి నిమిషాల్లో అశాంతిగా కదిలితే ముందుగానే. రాత్రిగా లెక్కించబడదు.</string>
     <string name="nap_running">%1$s వరకు పవర్ న్యాప్</string>
     <string name="nap_stop">పవర్ న్యాప్ ముగించండి</string>
     <string name="widget_name">తదుపరి అలారం</string>

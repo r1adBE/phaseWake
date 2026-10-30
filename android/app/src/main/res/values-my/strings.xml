@@ -18,10 +18,10 @@
 
     <string name="home_next_today">ယနေ့</string>
     <string name="home_next_tomorrow">မနက်ဖြန်</string>
-    <string name="home_next_in">အိပ်ရေးပေါ့ချိန်တွင် နှိုးမည် · နောက် %1$s</string>
+    <string name="home_next_in">မငြိမ်မသက် ဖြစ်လာသည်နှင့် နှိုးမည် · နောက် %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ပစ်မှတ်အချိန်တိတိတွင် နှိုးမည် · နောက် %1$s</string>
     <string name="home_no_alarm_title">သင့်တော်သည့်အချိန်တွင် နိုးထပါ</string>
-    <string name="home_no_alarm_text">အချိန်နှင့် အချိန်အပိုင်းကို သတ်မှတ်ပါ။ အိပ်ရေးပေါ့နေချိန်တွင် နာရီက နှိုးပေးမည်။</string>
+    <string name="home_no_alarm_text">အချိန်နှင့် အချိန်အပိုင်းကို သတ်မှတ်ပါ။ မငြိမ်မသက် ဖြစ်လာသည်နှင့် နာရီက ထိုအပိုင်းအတွင်း နှိုးပေးမည်။</string>
     <string name="home_add_alarm">နှိုးစက်အသစ်</string>
     <string name="home_last_night">မနေ့ညက</string>
     <string name="home_alarms">သင့်နှိုးစက်များ</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">ရှာဖွေမှုကို စစ်ဆေးပြီး ပိုကောင်းစေရန် နိုးပြီးနောက် Health Connect မှ အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။</string>
     <string name="health_connected">ချိတ်ဆက်ထားသည်</string>
     <string name="health_unavailable">ဤဖုန်းတွင် Health Connect မရနိုင်ပါ။</string>
-    <string name="verdict_good">ကျန်းမာရေးဒေတာ- %1$s ✓</string>
-    <string name="verdict_deep">ကျန်းမာရေးဒေတာ- အိပ်ရေးနက်</string>
-    <string name="stage_light">အိပ်ရေးပေါ့</string>
-    <string name="stage_rem">REM အိပ်စက်မှု</string>
-    <string name="stage_awake">နိုးနေ</string>
     <string name="editor_alert">နှိုးပုံ</string>
     <string name="editor_alert_hint">အသံသည် တုန်ခါမှုနှင့် အမြဲတွဲလာသည်။ မနှောင့်ယှက်ရ၊ အိပ်ချိန်မုဒ်နှင့် အသံပိတ်ဖုန်းတွင်လည်း နှိုးစက်များ မြည်သည်။</string>
     <string name="editor_alert_watch">နာရီ</string>
@@ -192,7 +187,7 @@
     <string name="feeling_5">လန်းဆန်း</string>
     <string name="feeling_value">ခံစားမှု- %1$s</string>
     <string name="feeling_rate">ခံစားမှု 5 တွင် %1$d- %2$s</string>
-    <string name="feeling_hint">အိပ်ရေးပေါ့ချိန်တွင် နိုးခြင်းက သင့်အတွက် ကောင်းသလား အချိန်ကြာလာလျှင် မြင်ရမည်။</string>
+    <string name="feeling_hint">စောစော နှိုးခြင်းက သင့်အတွက် ကောင်းသလား အချိန်ကြာလာလျှင် မြင်ရမည်။</string>
     <string name="trends_title">နောက်ဆုံး 7 ရက်</string>
     <string name="trends_not_enough">ညအနည်းငယ်ပြီးနောက် လမ်းကြောင်းများ ပေါ်လာမည်။</string>
     <string name="trends_asleep">Ø %1$s အိပ်</string>
@@ -390,7 +385,7 @@
     <string name="onb_optional">%1$s (ရွေးချယ်နိုင်)</string>
     <string name="onb_granted">ခွင့်ပြုပြီး</string>
     <string name="onb_alarm_title">ပထမ နှိုးစက်</string>
-    <string name="onb_alarm_text">အနောက်ကျဆုံး ဘယ်အချိန်မှာ နိုးနေချင်သလဲ။ အိပ်ရေးပေါ့နေလျှင် နာရီက အချိန်အပိုင်းအတွင်း စောစော နှိုးပေးမည်။</string>
+    <string name="onb_alarm_text">အနောက်ကျဆုံး ဘယ်အချိန်မှာ နိုးနေချင်သလဲ။ မငြိမ်မသက် ဖြစ်လာသည်နှင့် နာရီက ယင်းမတိုင်မီ အချိန်အပိုင်းအတွင်း နှိုးပေးမည်။</string>
     <string name="onb_alarm_create">နှိုးစက် ဖန်တီးရန်</string>
     <string name="onb_alarm_done">နှိုးစက် ဖန်တီးပြီး- %1$s</string>
     <string name="onb_done_title">အားလုံး အသင့်</string>
@@ -420,7 +415,7 @@
         <item quantity="other">%1$d မိနစ်</item>
     </plurals>
     <string name="nap_start">ခဏအိပ် စရန်</string>
-    <string name="nap_hint">ဤအချိန်ပြီးလျှင် နှိုးမည်၊ နောက်ဆုံးမိနစ်များတွင် အိပ်ရေးပေါ့နေလျှင် စောနှိုးမည်။ ညအဖြစ် မရေတွက်ပါ။</string>
+    <string name="nap_hint">ဤအချိန်ပြီးလျှင် နှိုးမည်၊ နောက်ဆုံးမိနစ်များတွင် မငြိမ်မသက် ဖြစ်လာလျှင် စောနှိုးမည်။ ညအဖြစ် မရေတွက်ပါ။</string>
     <string name="nap_running">%1$s အထိ ခဏအိပ်</string>
     <string name="nap_stop">ခဏအိပ် ရပ်ရန်</string>
     <string name="widget_name">နောက် နှိုးစက်</string>

@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Hoje</string>
     <string name="home_next_tomorrow">Amanhã</string>
-    <string name="home_next_in">Acorda você no sono leve · em %1$s</string>
+    <string name="home_next_in">Acorda você assim que seu sono fica agitado · em %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Acorda você exatamente no horário-alvo · em %1$s</string>
     <string name="home_no_alarm_title">Acorde na hora certa</string>
-    <string name="home_no_alarm_text">Defina um horário e uma janela. Seu relógio acorda você quando seu sono está leve.</string>
+    <string name="home_no_alarm_text">Defina um horário e uma janela. Seu relógio acorda você dentro dela assim que seu sono fica agitado.</string>
     <string name="home_add_alarm">Novo alarme</string>
     <string name="home_last_night">Ontem à noite</string>
     <string name="home_alarms">Seus alarmes</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Lê as fases do sono do Health Connect depois de acordar, para verificar e melhorar a detecção.</string>
     <string name="health_connected">Conectado</string>
     <string name="health_unavailable">O Health Connect não está disponível neste celular.</string>
-    <string name="verdict_good">Dados de saúde: %1$s ✓</string>
-    <string name="verdict_deep">Dados de saúde: sono profundo</string>
-    <string name="stage_light">sono leve</string>
-    <string name="stage_rem">sono REM</string>
-    <string name="stage_awake">acordado</string>
     <string name="editor_alert">Como acordar você</string>
     <string name="editor_alert_hint">O som sempre vem com vibração. Os alarmes tocam também com Não perturbe, modo hora de dormir e celular no silencioso.</string>
     <string name="editor_alert_watch">Relógio</string>
@@ -197,7 +192,7 @@
     <string name="feeling_5">Descansado</string>
     <string name="feeling_value">Sensação: %1$s</string>
     <string name="feeling_rate">Sensação %1$d de 5: %2$s</string>
-    <string name="feeling_hint">Com o tempo, você verá se acordar durante o sono leve faz bem a você.</string>
+    <string name="feeling_hint">Com o tempo, você verá se acordar mais cedo faz bem a você.</string>
     <string name="trends_title">Últimos 7 dias</string>
     <string name="trends_not_enough">As tendências aparecem após algumas noites.</string>
     <string name="trends_asleep">Ø %1$s de sono</string>
@@ -412,7 +407,7 @@
     <string name="onb_optional">%1$s (opcional)</string>
     <string name="onb_granted">Permitido</string>
     <string name="onb_alarm_title">Primeiro alarme</string>
-    <string name="onb_alarm_text">Até que horas você quer estar acordado? O relógio acorda você antes, dentro da janela, se o sono estiver leve.</string>
+    <string name="onb_alarm_text">Até que horas você quer estar acordado? O relógio acorda você na janela anterior assim que seu sono fica agitado.</string>
     <string name="onb_alarm_create">Criar alarme</string>
     <string name="onb_alarm_done">Alarme criado: %1$s</string>
     <string name="onb_done_title">Pronto</string>
@@ -444,7 +439,7 @@
         <item quantity="other">%1$d minutos</item>
     </plurals>
     <string name="nap_start">Começar a soneca</string>
-    <string name="nap_hint">Acorda você após esse tempo, nos últimos minutos já em sono leve. Não conta como noite.</string>
+    <string name="nap_hint">Acorda você após esse tempo, nos últimos minutos já se o sono ficar agitado. Não conta como noite.</string>
     <string name="nap_running">Soneca até %1$s</string>
     <string name="nap_stop">Terminar a soneca</string>
     <string name="widget_name">Próximo alarme</string>

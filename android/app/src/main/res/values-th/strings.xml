@@ -17,10 +17,10 @@
 
     <string name="home_next_today">วันนี้</string>
     <string name="home_next_tomorrow">พรุ่งนี้</string>
-    <string name="home_next_in">ปลุกตอนหลับตื้น · อีก %1$s</string>
+    <string name="home_next_in">ปลุกทันทีที่คุณนอนกระสับกระส่าย · อีก %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ปลุกตรงเวลาเป้าหมายพอดี · อีก %1$s</string>
     <string name="home_no_alarm_title">ตื่นในจังหวะที่ใช่</string>
-    <string name="home_no_alarm_text">ตั้งเวลาและช่วงเวลาปลุก นาฬิกาจะปลุกคุณเมื่อคุณหลับตื้น</string>
+    <string name="home_no_alarm_text">ตั้งเวลาและช่วงเวลาปลุก นาฬิกาจะปลุกคุณในช่วงนั้นทันทีที่คุณเริ่มนอนกระสับกระส่าย</string>
     <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
     <string name="home_last_night">เมื่อคืน</string>
     <string name="home_alarms">นาฬิกาปลุกของคุณ</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
     <string name="health_connected">เชื่อมต่อแล้ว</string>
     <string name="health_unavailable">โทรศัพท์เครื่องนี้ไม่รองรับ Health Connect</string>
-    <string name="verdict_good">ข้อมูลสุขภาพ: %1$s ✓</string>
-    <string name="verdict_deep">ข้อมูลสุขภาพ: หลับลึก</string>
-    <string name="stage_light">หลับตื้น</string>
-    <string name="stage_rem">หลับ REM</string>
-    <string name="stage_awake">ตื่น</string>
     <string name="editor_alert">วิธีปลุกคุณ</string>
     <string name="editor_alert_hint">เสียงจะมาพร้อมการสั่นเสมอ นาฬิกาปลุกดังแม้เปิดโหมดห้ามรบกวน โหมดเวลานอน หรือปิดเสียงโทรศัพท์</string>
     <string name="editor_alert_watch">นาฬิกา</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">สดชื่น</string>
     <string name="feeling_value">ความรู้สึก: %1$s</string>
     <string name="feeling_rate">ความรู้สึก %1$d จาก 5: %2$s</string>
-    <string name="feeling_hint">เมื่อใช้ไปสักพัก คุณจะเห็นว่าการตื่นในช่วงหลับตื้นดีกับคุณหรือไม่</string>
+    <string name="feeling_hint">เมื่อใช้ไปสักพัก คุณจะเห็นว่าการถูกปลุกเร็วขึ้นดีกับคุณหรือไม่</string>
     <string name="trends_title">7 วันที่ผ่านมา</string>
     <string name="trends_not_enough">แนวโน้มจะแสดงหลังผ่านไปไม่กี่คืน</string>
     <string name="trends_asleep">Ø นอนหลับ %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (ไม่บังคับ)</string>
     <string name="onb_granted">อนุญาตแล้ว</string>
     <string name="onb_alarm_title">การปลุกครั้งแรก</string>
-    <string name="onb_alarm_text">คุณอยากตื่นช้าที่สุดเมื่อไร ถ้าหลับตื้น นาฬิกาจะปลุกเร็วขึ้นในช่วงเวลานั้น</string>
+    <string name="onb_alarm_text">คุณอยากตื่นช้าที่สุดเมื่อไร นาฬิกาจะปลุกคุณในช่วงเวลาก่อนหน้านั้นทันทีที่คุณเริ่มนอนกระสับกระส่าย</string>
     <string name="onb_alarm_create">สร้างการปลุก</string>
     <string name="onb_alarm_done">สร้างการปลุกแล้ว: %1$s</string>
     <string name="onb_done_title">เรียบร้อย</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d นาที</item>
     </plurals>
     <string name="nap_start">เริ่มงีบ</string>
-    <string name="nap_hint">ปลุกคุณหลังเวลานี้ ในไม่กี่นาทีสุดท้ายจะปลุกก่อนถ้าหลับตื้น ไม่นับเป็นคืน</string>
+    <string name="nap_hint">ปลุกคุณหลังเวลานี้ ในไม่กี่นาทีสุดท้ายจะปลุกก่อนถ้าคุณนอนกระสับกระส่าย ไม่นับเป็นคืน</string>
     <string name="nap_running">งีบถึง %1$s</string>
     <string name="nap_stop">จบการงีบ</string>
     <string name="widget_name">การปลุกถัดไป</string>

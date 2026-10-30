@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Vandag</string>
     <string name="home_next_tomorrow">Môre</string>
-    <string name="home_next_in">Maak jou in ligte slaap wakker · oor %1$s</string>
+    <string name="home_next_in">Maak jou wakker sodra jy onrustig word · oor %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Maak jou presies op teikentyd wakker · oor %1$s</string>
     <string name="home_no_alarm_title">Word op die regte oomblik wakker</string>
-    <string name="home_no_alarm_text">Stel ’n tyd en ’n venster. Jou horlosie maak jou wakker wanneer jy lig slaap.</string>
+    <string name="home_no_alarm_text">Stel ’n tyd en ’n venster. Jou horlosie maak jou daarin wakker sodra jy onrustig word.</string>
     <string name="home_add_alarm">Nuwe wekker</string>
     <string name="home_last_night">Gisteraand</string>
     <string name="home_alarms">Jou wekkers</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Lees ná die wakker word slaapfases uit Health Connect om die bespeuring na te gaan en te verbeter.</string>
     <string name="health_connected">Gekoppel</string>
     <string name="health_unavailable">Health Connect is nie op hierdie foon beskikbaar nie.</string>
-    <string name="verdict_good">Gesondheidsdata: %1$s ✓</string>
-    <string name="verdict_deep">Gesondheidsdata: diep slaap</string>
-    <string name="stage_light">ligte slaap</string>
-    <string name="stage_rem">REM-slaap</string>
-    <string name="stage_awake">wakker</string>
     <string name="editor_alert">Hoe om jou wakker te maak</string>
     <string name="editor_alert_hint">Klank kom altyd saam met vibrasie. Wekkers lui ook met Moenie Steur Nie, slaaptydmodus en ’n stil foon.</string>
     <string name="editor_alert_watch">Horlosie</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Uitgerus</string>
     <string name="feeling_value">Gevoel: %1$s</string>
     <string name="feeling_rate">Gevoel %1$d van 5: %2$s</string>
-    <string name="feeling_hint">Met tyd sien jy of dit jou goed doen om in ligte slaap wakker te word.</string>
+    <string name="feeling_hint">Met tyd sien jy of dit jou goed doen om vroeër wakker gemaak te word.</string>
     <string name="trends_title">Laaste 7 dae</string>
     <string name="trends_not_enough">Tendense verskyn ná ’n paar nagte.</string>
     <string name="trends_asleep">Ø %1$s slaap</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (opsioneel)</string>
     <string name="onb_granted">Toegelaat</string>
     <string name="onb_alarm_title">Eerste wekker</string>
-    <string name="onb_alarm_text">Wanneer wil jy uiterlik wakker wees? Jou horlosie maak jou vroeër binne die venster wakker as jy lig slaap.</string>
+    <string name="onb_alarm_text">Wanneer wil jy uiterlik wakker wees? Die horlosie maak jou in die venster daarvoor wakker sodra jy onrustig word.</string>
     <string name="onb_alarm_create">Skep wekker</string>
     <string name="onb_alarm_done">Wekker geskep: %1$s</string>
     <string name="onb_done_title">Alles gereed</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minute</item>
     </plurals>
     <string name="nap_start">Begin kraguiltjie</string>
-    <string name="nap_hint">Maak jou ná hierdie tyd wakker, in die laaste minute al in ligte slaap. Tel nie as ’n nag nie.</string>
+    <string name="nap_hint">Maak jou ná hierdie tyd wakker, in die laaste minute al as jy onrustig word. Tel nie as ’n nag nie.</string>
     <string name="nap_running">Kraguiltjie tot %1$s</string>
     <string name="nap_stop">Beëindig kraguiltjie</string>
     <string name="widget_name">Volgende wekker</string>

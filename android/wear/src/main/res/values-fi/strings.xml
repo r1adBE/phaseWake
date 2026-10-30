@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Herätysikkuna</string>
-    <string name="channel_window_description">Näkyy, kun Phase Wake seuraa kevyttä unta.</string>
+    <string name="channel_window_description">Näkyy, kun Phase Wake odottaa sopivaa hetkeä herättää sinut.</string>
     <string name="channel_alarm">Herätys</string>
     <string name="channel_alarm_description">Herättää sinut.</string>
-    <string name="notification_window_title">Seuraa kevyttä unta</string>
+    <string name="notification_window_title">Odottaa sopivaa hetkeä</string>
     <string name="notification_window_text">Herättää viimeistään %1$s</string>
     <string name="notification_ring_title">Huomenta</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Joka päivä</string>
     <string name="tile_label">Seuraava herätys</string>
     <string name="tile_next">Seuraava herätys</string>
-    <string name="tile_light_sleep">Herättää kevyessä unessa</string>
+    <string name="tile_light_sleep">Herättää, kun olet levoton</string>
     <string name="notification_good_night_title">Hyvää yötä</string>
     <string name="notification_good_night_text">Odottaa, että nukahdat</string>
     <string name="home_good_night">Hyvää yötä</string>

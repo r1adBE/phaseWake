@@ -19,10 +19,10 @@
 
     <string name="home_next_today">இன்று</string>
     <string name="home_next_tomorrow">நாளை</string>
-    <string name="home_next_in">லேசான தூக்கத்தில் எழுப்பும் · %1$s இல்</string>
+    <string name="home_next_in">அமைதியின்றி அசையத் தொடங்கியதும் எழுப்பும் · %1$s இல்</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">சரியாக இலக்கு நேரத்தில் எழுப்பும் · %1$s இல்</string>
     <string name="home_no_alarm_title">சரியான தருணத்தில் எழுங்கள்</string>
-    <string name="home_no_alarm_text">ஒரு நேரத்தையும் வரம்பையும் அமையுங்கள். நீங்கள் லேசாகத் தூங்கும்போது வாட்ச் உங்களை எழுப்பும்.</string>
+    <string name="home_no_alarm_text">ஒரு நேரத்தையும் வரம்பையும் அமையுங்கள். நீங்கள் அமைதியின்றி அசையத் தொடங்கியதும் வாட்ச் அந்த வரம்புக்குள் உங்களை எழுப்பும்.</string>
     <string name="home_add_alarm">புதிய அலாரம்</string>
     <string name="home_last_night">நேற்றிரவு</string>
     <string name="home_alarms">உங்கள் அலாரங்கள்</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">எழுந்த பிறகு Health Connect இலிருந்து தூக்க நிலைகளைப் படித்து, கண்டறிதலைச் சரிபார்த்து மேம்படுத்தும்.</string>
     <string name="health_connected">இணைக்கப்பட்டது</string>
     <string name="health_unavailable">இந்த ஃபோனில் Health Connect கிடைக்கவில்லை.</string>
-    <string name="verdict_good">ஆரோக்கியத் தரவு: %1$s ✓</string>
-    <string name="verdict_deep">ஆரோக்கியத் தரவு: ஆழ்ந்த தூக்கம்</string>
-    <string name="stage_light">லேசான தூக்கம்</string>
-    <string name="stage_rem">REM தூக்கம்</string>
-    <string name="stage_awake">விழிப்பு</string>
     <string name="editor_alert">எப்படி எழுப்ப வேண்டும்</string>
     <string name="editor_alert_hint">ஒலியுடன் எப்போதும் அதிர்வும் இருக்கும். “தொந்தரவு செய்ய வேண்டாம்”, உறக்க நேரப் பயன்முறை, சைலன்ட் ஃபோன் ஆகியவற்றிலும் அலாரம் ஒலிக்கும்.</string>
     <string name="editor_alert_watch">வாட்ச்</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">புத்துணர்ச்சி</string>
     <string name="feeling_value">உணர்வு: %1$s</string>
     <string name="feeling_rate">உணர்வு 5 இல் %1$d: %2$s</string>
-    <string name="feeling_hint">லேசான தூக்கத்தில் எழுவது உங்களுக்கு நல்லதா என்று காலப்போக்கில் தெரியும்.</string>
+    <string name="feeling_hint">முன்னதாக எழுப்பப்படுவது உங்களுக்கு நல்லதா என்று காலப்போக்கில் தெரியும்.</string>
     <string name="trends_title">கடந்த 7 நாட்கள்</string>
     <string name="trends_not_enough">சில இரவுகளுக்குப் பிறகு போக்குகள் தெரியும்.</string>
     <string name="trends_asleep">சராசரி %1$s தூக்கம்</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (விருப்பத்தேர்வு)</string>
     <string name="onb_granted">அனுமதிக்கப்பட்டது</string>
     <string name="onb_alarm_title">முதல் அலாரம்</string>
-    <string name="onb_alarm_text">அதிகபட்சம் எப்போது எழுந்திருக்க வேண்டும்? நீங்கள் லேசாகத் தூங்கினால் வாட்ச் வரம்புக்குள் முன்னதாகவே எழுப்பும்.</string>
+    <string name="onb_alarm_text">அதிகபட்சம் எப்போது எழுந்திருக்க வேண்டும்? நீங்கள் அமைதியின்றி அசையத் தொடங்கியதும் வாட்ச் அதற்கு முந்தைய வரம்புக்குள் எழுப்பும்.</string>
     <string name="onb_alarm_create">அலாரத்தை உருவாக்கு</string>
     <string name="onb_alarm_done">அலாரம் உருவாக்கப்பட்டது: %1$s</string>
     <string name="onb_done_title">எல்லாம் தயார்</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d நிமிடங்கள்</item>
     </plurals>
     <string name="nap_start">குட்டித் தூக்கம் தொடங்கு</string>
-    <string name="nap_hint">இந்த நேரத்துக்குப் பிறகு எழுப்பும்; கடைசி நிமிடங்களில் லேசான தூக்கம் இருந்தால் முன்னதாகவே. இரவாகக் கணக்கிடப்படாது.</string>
+    <string name="nap_hint">இந்த நேரத்துக்குப் பிறகு எழுப்பும்; கடைசி நிமிடங்களில் அமைதியின்றி அசைந்தால் முன்னதாகவே. இரவாகக் கணக்கிடப்படாது.</string>
     <string name="nap_running">%1$s வரை குட்டித் தூக்கம்</string>
     <string name="nap_stop">குட்டித் தூக்கத்தை முடி</string>
     <string name="widget_name">அடுத்த அலாரம்</string>

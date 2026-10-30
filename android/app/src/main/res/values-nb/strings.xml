@@ -18,10 +18,10 @@
 
     <string name="home_next_today">I dag</string>
     <string name="home_next_tomorrow">I morgen</string>
-    <string name="home_next_in">Vekker deg i lett søvn · om %1$s</string>
+    <string name="home_next_in">Vekker deg så snart du blir urolig · om %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Vekker deg nøyaktig på ønsket tid · om %1$s</string>
     <string name="home_no_alarm_title">Våkne i riktig øyeblikk</string>
-    <string name="home_no_alarm_text">Velg et tidspunkt og et vindu. Klokka vekker deg når du sover lett.</string>
+    <string name="home_no_alarm_text">Velg et tidspunkt og et vindu. Klokka vekker deg innenfor det så snart du blir urolig.</string>
     <string name="home_add_alarm">Ny alarm</string>
     <string name="home_last_night">Siste natt</string>
     <string name="home_alarms">Alarmene dine</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Leser søvnfaser fra Health Connect etter oppvåkning for å sjekke og forbedre gjenkjenningen.</string>
     <string name="health_connected">Tilkoblet</string>
     <string name="health_unavailable">Health Connect er ikke tilgjengelig på denne telefonen.</string>
-    <string name="verdict_good">Helsedata: %1$s ✓</string>
-    <string name="verdict_deep">Helsedata: dyp søvn</string>
-    <string name="stage_light">lett søvn</string>
-    <string name="stage_rem">REM-søvn</string>
-    <string name="stage_awake">våken</string>
     <string name="editor_alert">Slik vekkes du</string>
     <string name="editor_alert_hint">Lyd kommer alltid med vibrasjon. Alarmer ringer også i Ikke forstyrr, sengetidsmodus og med lydløs telefon.</string>
     <string name="editor_alert_watch">Klokke</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Uthvilt</string>
     <string name="feeling_value">Følelse: %1$s</string>
     <string name="feeling_rate">Følelse %1$d av 5: %2$s</string>
-    <string name="feeling_hint">Over tid ser du om det gjør deg godt å våkne i lett søvn.</string>
+    <string name="feeling_hint">Over tid ser du om det gjør deg godt å bli vekket tidligere.</string>
     <string name="trends_title">Siste 7 dager</string>
     <string name="trends_not_enough">Trender vises etter noen netter.</string>
     <string name="trends_asleep">Ø %1$s søvn</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (valgfritt)</string>
     <string name="onb_granted">Tillatt</string>
     <string name="onb_alarm_title">Første alarm</string>
-    <string name="onb_alarm_text">Når vil du senest være våken? Klokken vekker deg tidligere innenfor vinduet hvis du sover lett.</string>
+    <string name="onb_alarm_text">Når vil du senest være våken? Klokken vekker deg i vinduet før, så snart du blir urolig.</string>
     <string name="onb_alarm_create">Opprett alarm</string>
     <string name="onb_alarm_done">Alarm opprettet: %1$s</string>
     <string name="onb_done_title">Ferdig</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d minutter</item>
     </plurals>
     <string name="nap_start">Start hvil</string>
-    <string name="nap_hint">Vekker deg etter denne tiden, de siste minuttene allerede ved lett søvn. Teller ikke som en natt.</string>
+    <string name="nap_hint">Vekker deg etter denne tiden, de siste minuttene allerede hvis du blir urolig. Teller ikke som en natt.</string>
     <string name="nap_running">Hvil til %1$s</string>
     <string name="nap_stop">Avslutt hvil</string>
     <string name="widget_name">Neste alarm</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">எழுப்பும் வரம்பு</string>
-    <string name="channel_window_description">Phase Wake லேசான தூக்கத்தைக் கவனிக்கும்போது காட்டப்படும்.</string>
+    <string name="channel_window_description">எழுப்ப நல்ல தருணத்துக்காக Phase Wake காத்திருக்கும்போது காட்டப்படும்.</string>
     <string name="channel_alarm">அலாரம்</string>
     <string name="channel_alarm_description">உங்களை எழுப்பும்.</string>
-    <string name="notification_window_title">லேசான தூக்கத்தைக் கவனிக்கிறது</string>
+    <string name="notification_window_title">நல்ல தருணத்துக்காகக் காத்திருக்கிறது</string>
     <string name="notification_window_text">அதிகபட்சம் %1$s க்குள் எழுப்பும்</string>
     <string name="notification_ring_title">காலை வணக்கம்</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">தினமும்</string>
     <string name="tile_label">அடுத்த அலாரம்</string>
     <string name="tile_next">அடுத்த அலாரம்</string>
-    <string name="tile_light_sleep">லேசான தூக்கத்தில் எழுப்பும்</string>
+    <string name="tile_light_sleep">அமைதியின்றி அசைந்தால் எழுப்பும்</string>
     <string name="notification_good_night_title">நன்றாகத் தூங்குங்கள்</string>
     <string name="notification_good_night_text">நீங்கள் தூங்கும் வரை காத்திருக்கிறது</string>
     <string name="home_good_night">இனிய இரவு</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Väckningsfönster</string>
-    <string name="channel_window_description">Visas medan Phase Wake bevakar lätt sömn.</string>
+    <string name="channel_window_description">Visas medan Phase Wake väntar på ett bra tillfälle att väcka dig.</string>
     <string name="channel_alarm">Larm</string>
     <string name="channel_alarm_description">Väcker dig.</string>
-    <string name="notification_window_title">Bevakar lätt sömn</string>
+    <string name="notification_window_title">Väntar på ett bra tillfälle</string>
     <string name="notification_window_text">Väcker dig senast %1$s</string>
     <string name="notification_ring_title">God morgon</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Varje dag</string>
     <string name="tile_label">Nästa larm</string>
     <string name="tile_next">Nästa larm</string>
-    <string name="tile_light_sleep">Väcker dig i lätt sömn</string>
+    <string name="tile_light_sleep">Väcker dig vid oro</string>
     <string name="notification_good_night_title">Sov gott</string>
     <string name="notification_good_night_text">Väntar på att du ska somna</string>
     <string name="home_good_night">Godnatt</string>

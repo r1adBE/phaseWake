@@ -22,10 +22,10 @@
 
     <string name="home_next_today">اليوم</string>
     <string name="home_next_tomorrow">غدًا</string>
-    <string name="home_next_in">يوقظك في النوم الخفيف · بعد %1$s</string>
+    <string name="home_next_in">يوقظك بمجرد أن تبدأ بالتململ · بعد %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">يوقظك في الموعد المحدد تمامًا · بعد %1$s</string>
     <string name="home_no_alarm_title">الاستيقاظ في اللحظة المناسبة</string>
-    <string name="home_no_alarm_text">اضبطوا وقتًا ونافذة زمنية. تُوقظك ساعتك عندما يكون نومك خفيفًا.</string>
+    <string name="home_no_alarm_text">اضبطوا وقتًا ونافذة زمنية. تُوقظك ساعتك خلالها بمجرد أن تبدأ بالتململ.</string>
     <string name="home_add_alarm">منبّه جديد</string>
     <string name="home_last_night">الليلة الماضية</string>
     <string name="home_alarms">منبّهاتك</string>
@@ -109,11 +109,6 @@
     <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
     <string name="health_connected">متصل</string>
     <string name="health_unavailable">Health Connect غير متاح على هذا الهاتف.</string>
-    <string name="verdict_good">بيانات الصحة: %1$s ✓</string>
-    <string name="verdict_deep">بيانات الصحة: نوم عميق</string>
-    <string name="stage_light">نوم خفيف</string>
-    <string name="stage_rem">نوم REM</string>
-    <string name="stage_awake">استيقاظ</string>
     <string name="editor_alert">طريقة الإيقاظ</string>
     <string name="editor_alert_hint">يأتي الصوت دائمًا مع الاهتزاز. تعمل المنبّهات أيضًا مع وضع عدم الإزعاج ووضع وقت النوم والهاتف الصامت.</string>
     <string name="editor_alert_watch">الساعة</string>
@@ -206,7 +201,7 @@
     <string name="feeling_5">انتعاش</string>
     <string name="feeling_value">الشعور: %1$s</string>
     <string name="feeling_rate">الشعور %1$d من 5: %2$s</string>
-    <string name="feeling_hint">مع الوقت سترى ما إذا كان الاستيقاظ في النوم الخفيف يفيدك.</string>
+    <string name="feeling_hint">مع الوقت سترى ما إذا كان الإيقاظ الأبكر يفيدك.</string>
     <string name="trends_title">آخر 7 أيام</string>
     <string name="trends_not_enough">تظهر الاتجاهات بعد بضع ليالٍ.</string>
     <string name="trends_asleep">متوسط النوم Ø %1$s</string>
@@ -448,7 +443,7 @@
     <string name="onb_optional">%1$s (اختياري)</string>
     <string name="onb_granted">مسموح</string>
     <string name="onb_alarm_title">المنبّه الأول</string>
-    <string name="onb_alarm_text">متى تريد أن تستيقظ على أبعد تقدير؟ توقظك الساعة أبكر ضمن النافذة إذا كان نومك خفيفًا.</string>
+    <string name="onb_alarm_text">متى تريد أن تستيقظ على أبعد تقدير؟ توقظك الساعة ضمن النافذة التي تسبقه بمجرد أن تبدأ بالتململ.</string>
     <string name="onb_alarm_create">إنشاء منبّه</string>
     <string name="onb_alarm_done">تم إنشاء المنبّه: %1$s</string>
     <string name="onb_done_title">جاهز</string>
@@ -483,7 +478,7 @@
         <item quantity="other">%1$d دقيقة</item>
     </plurals>
     <string name="nap_start">بدء القيلولة</string>
-    <string name="nap_hint">يوقظك بعد هذه المدة، وفي الدقائق الأخيرة عند النوم الخفيف. لا تُحتسب ليلة.</string>
+    <string name="nap_hint">يوقظك بعد هذه المدة، وفي الدقائق الأخيرة أبكر إذا بدأت بالتململ. لا تُحتسب ليلة.</string>
     <string name="nap_running">قيلولة حتى %1$s</string>
     <string name="nap_stop">إنهاء القيلولة</string>
     <string name="widget_name">المنبّه التالي</string>

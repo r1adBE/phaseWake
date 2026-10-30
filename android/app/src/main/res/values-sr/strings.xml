@@ -21,10 +21,10 @@
 
     <string name="home_next_today">Данас</string>
     <string name="home_next_tomorrow">Сутра</string>
-    <string name="home_next_in">Буди те у лаганом сну · за %1$s</string>
+    <string name="home_next_in">Буди те чим ти сан постане немиран · за %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Буди те тачно у циљно време · за %1$s</string>
     <string name="home_no_alarm_title">Пробуди се у правом тренутку</string>
-    <string name="home_no_alarm_text">Подеси време и интервал. Сат те буди када лагано спаваш.</string>
+    <string name="home_no_alarm_text">Подеси време и интервал. Сат те у њему буди чим ти сан постане немиран.</string>
     <string name="home_add_alarm">Нови аларм</string>
     <string name="home_last_night">Прошла ноћ</string>
     <string name="home_alarms">Твоји аларми</string>
@@ -108,11 +108,6 @@
     <string name="health_connect_hint">После буђења чита фазе сна из Health Connect-а да би проверио и побољшао препознавање.</string>
     <string name="health_connected">Повезано</string>
     <string name="health_unavailable">Health Connect није доступан на овом телефону.</string>
-    <string name="verdict_good">Здравствени подаци: %1$s ✓</string>
-    <string name="verdict_deep">Здравствени подаци: дубок сан</string>
-    <string name="stage_light">лагани сан</string>
-    <string name="stage_rem">REM сан</string>
-    <string name="stage_awake">будност</string>
     <string name="editor_alert">Начин буђења</string>
     <string name="editor_alert_hint">Звук увек долази уз вибрацију. Аларми звоне и уз „Не узнемиравај“, режим спавања и утишан телефон.</string>
     <string name="editor_alert_watch">Сат</string>
@@ -199,7 +194,7 @@
     <string name="feeling_5">Одморно</string>
     <string name="feeling_value">Осећај: %1$s</string>
     <string name="feeling_rate">Осећај %1$d од 5: %2$s</string>
-    <string name="feeling_hint">Временом ћеш видети да ли ти буђење у лаганом сну прија.</string>
+    <string name="feeling_hint">Временом ћеш видети да ли ти раније буђење прија.</string>
     <string name="trends_title">Последњих 7 дана</string>
     <string name="trends_not_enough">Трендови се појављују после неколико ноћи.</string>
     <string name="trends_asleep">Ø %1$s сна</string>
@@ -415,7 +410,7 @@
     <string name="onb_optional">%1$s (опционо)</string>
     <string name="onb_granted">Дозвољено</string>
     <string name="onb_alarm_title">Први аларм</string>
-    <string name="onb_alarm_text">Када најкасније желиш да се пробудиш? Сат те буди раније у оквиру интервала ако лагано спаваш.</string>
+    <string name="onb_alarm_text">Када најкасније желиш да се пробудиш? Сат те буди у интервалу пре тога, чим ти сан постане немиран.</string>
     <string name="onb_alarm_create">Направи аларм</string>
     <string name="onb_alarm_done">Аларм је направљен: %1$s</string>
     <string name="onb_done_title">Све је спремно</string>
@@ -447,7 +442,7 @@
         <item quantity="other">%1$d минута</item>
     </plurals>
     <string name="nap_start">Покрени кратку дремку</string>
-    <string name="nap_hint">Буди те после овог времена, у последњим минутима већ у лаганом сну. Не рачуна се као ноћ.</string>
+    <string name="nap_hint">Буди те после овог времена, у последњим минутима већ ако ти сан постане немиран. Не рачуна се као ноћ.</string>
     <string name="nap_running">Кратка дремка до %1$s</string>
     <string name="nap_stop">Заврши кратку дремку</string>
     <string name="widget_name">Следећи аларм</string>

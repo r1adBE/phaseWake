@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Прозорец за събуждане</string>
-    <string name="channel_window_description">Показва се, докато Phase Wake следи за лек сън.</string>
+    <string name="channel_window_description">Показва се, докато Phase Wake чака подходящ момент да те събуди.</string>
     <string name="channel_alarm">Будилник</string>
     <string name="channel_alarm_description">Събужда те.</string>
-    <string name="notification_window_title">Следи за лек сън</string>
+    <string name="notification_window_title">Чака подходящ момент</string>
     <string name="notification_window_text">Събужда те най-късно в %1$s</string>
     <string name="notification_ring_title">Добро утро</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Всеки ден</string>
     <string name="tile_label">Следващ будилник</string>
     <string name="tile_next">Следващ будилник</string>
-    <string name="tile_light_sleep">Събужда те в лек сън</string>
+    <string name="tile_light_sleep">Събужда при неспокоен сън</string>
     <string name="notification_good_night_title">Спи спокойно</string>
     <string name="notification_good_night_text">Изчаква да заспиш</string>
     <string name="home_good_night">Лека нощ</string>

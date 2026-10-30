@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Heute</string>
     <string name="home_next_tomorrow">Morgen</string>
-    <string name="home_next_in">Weckt im leichten Schlaf · in %1$s</string>
+    <string name="home_next_in">Weckt, sobald du unruhig wirst · in %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Weckt genau zur Zielzeit · in %1$s</string>
     <string name="home_no_alarm_title">Im richtigen Moment aufwachen</string>
-    <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich, wenn du leicht schläfst.</string>
+    <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich darin, sobald du unruhig wirst.</string>
     <string name="home_add_alarm">Neuer Wecker</string>
     <string name="home_last_night">Letzte Nacht</string>
     <string name="home_alarms">Deine Wecker</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
     <string name="health_connected">Verbunden</string>
     <string name="health_unavailable">Health Connect ist auf diesem Handy nicht verfügbar.</string>
-    <string name="verdict_good">Gesundheitsdaten: %1$s ✓</string>
-    <string name="verdict_deep">Gesundheitsdaten: Tiefschlaf</string>
-    <string name="stage_light">leichter Schlaf</string>
-    <string name="stage_rem">REM-Schlaf</string>
-    <string name="stage_awake">wach</string>
     <string name="editor_alert">So weckt dich Phase Wake</string>
     <string name="editor_alert_hint">Ton kommt immer mit Vibration. Wecker klingeln auch bei «Nicht stören», im Bettzeitmodus und bei lautlosem Handy.</string>
     <string name="editor_alert_watch">Uhr</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Erholt</string>
     <string name="feeling_value">Befinden: %1$s</string>
     <string name="feeling_rate">Befinden %1$d von 5: %2$s</string>
-    <string name="feeling_hint">So siehst du mit der Zeit, ob dir das Wecken im leichten Schlaf guttut.</string>
+    <string name="feeling_hint">So siehst du mit der Zeit, ob dir das frühere Wecken guttut.</string>
     <string name="trends_title">Letzte 7 Tage</string>
     <string name="trends_not_enough">Trends erscheinen nach ein paar Nächten.</string>
     <string name="trends_asleep">Ø %1$s Schlaf</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (optional)</string>
     <string name="onb_granted">Erlaubt</string>
     <string name="onb_alarm_title">Erster Wecker</string>
-    <string name="onb_alarm_text">Wann willst du spätestens wach sein? Die Uhr weckt dich im Fenster davor, wenn du leicht schläfst.</string>
+    <string name="onb_alarm_text">Wann willst du spätestens wach sein? Die Uhr weckt dich im Fenster davor, sobald du unruhig wirst.</string>
     <string name="onb_alarm_create">Wecker anlegen</string>
     <string name="onb_alarm_done">Wecker angelegt: %1$s</string>
     <string name="onb_done_title">Fertig</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d Minuten</item>
     </plurals>
     <string name="nap_start">Powernap starten</string>
-    <string name="nap_hint">Weckt dich nach dieser Zeit, in den letzten Minuten schon bei leichtem Schlaf. Zählt nicht als Nacht.</string>
+    <string name="nap_hint">Weckt dich nach dieser Zeit, in den letzten Minuten schon, wenn du unruhig wirst. Zählt nicht als Nacht.</string>
     <string name="nap_running">Powernap bis %1$s</string>
     <string name="nap_stop">Powernap beenden</string>
     <string name="widget_name">Nächster Wecker</string>

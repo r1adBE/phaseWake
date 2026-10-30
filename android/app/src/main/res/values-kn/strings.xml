@@ -19,10 +19,10 @@
 
     <string name="home_next_today">ಇಂದು</string>
     <string name="home_next_tomorrow">ನಾಳೆ</string>
-    <string name="home_next_in">ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ · %1$s ನಂತರ</string>
+    <string name="home_next_in">ಚಡಪಡಿಸಲು ಶುರುಮಾಡಿದ ತಕ್ಷಣ ಎಬ್ಬಿಸುತ್ತದೆ · %1$s ನಂತರ</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ · %1$s ನಂತರ</string>
     <string name="home_no_alarm_title">ಸರಿಯಾದ ಕ್ಷಣದಲ್ಲಿ ಎದ್ದೇಳಿ</string>
-    <string name="home_no_alarm_text">ಸಮಯ ಮತ್ತು ಅವಧಿಯನ್ನು ಹೊಂದಿಸಿ. ನೀವು ಹಗುರವಾಗಿ ನಿದ್ರಿಸುತ್ತಿರುವಾಗ ವಾಚ್ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
+    <string name="home_no_alarm_text">ಸಮಯ ಮತ್ತು ಅವಧಿಯನ್ನು ಹೊಂದಿಸಿ. ನೀವು ಚಡಪಡಿಸಲು ಶುರುಮಾಡಿದ ತಕ್ಷಣ ವಾಚ್ ಆ ಅವಧಿಯೊಳಗೆ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="home_add_alarm">ಹೊಸ ಅಲಾರಾಂ</string>
     <string name="home_last_night">ಕಳೆದ ರಾತ್ರಿ</string>
     <string name="home_alarms">ನಿಮ್ಮ ಅಲಾರಾಂಗಳು</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಸುಧಾರಿಸಲು, ಎದ್ದ ನಂತರ Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು ಓದುತ್ತದೆ.</string>
     <string name="health_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
     <string name="health_unavailable">ಈ ಫೋನ್‌ನಲ್ಲಿ Health Connect ಲಭ್ಯವಿಲ್ಲ.</string>
-    <string name="verdict_good">ಆರೋಗ್ಯ ಡೇಟಾ: %1$s ✓</string>
-    <string name="verdict_deep">ಆರೋಗ್ಯ ಡೇಟಾ: ಗಾಢ ನಿದ್ರೆ</string>
-    <string name="stage_light">ಹಗುರ ನಿದ್ರೆ</string>
-    <string name="stage_rem">REM ನಿದ್ರೆ</string>
-    <string name="stage_awake">ಎಚ್ಚರ</string>
     <string name="editor_alert">ಹೇಗೆ ಎಬ್ಬಿಸಬೇಕು</string>
     <string name="editor_alert_hint">ಶಬ್ದದ ಜೊತೆ ಯಾವಾಗಲೂ ಕಂಪನ ಇರುತ್ತದೆ. ಅಡಚಣೆ ಮಾಡಬೇಡಿ, ಬೆಡ್‌ಟೈಮ್ ಮೋಡ್ ಮತ್ತು ಸೈಲೆಂಟ್ ಫೋನ್‌ನಲ್ಲೂ ಅಲಾರಾಂಗಳು ರಿಂಗ್ ಆಗುತ್ತವೆ.</string>
     <string name="editor_alert_watch">ವಾಚ್</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">ಉಲ್ಲಾಸ</string>
     <string name="feeling_value">ಅನಿಸಿಕೆ: %1$s</string>
     <string name="feeling_rate">ಅನಿಸಿಕೆ 5 ರಲ್ಲಿ %1$d: %2$s</string>
-    <string name="feeling_hint">ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಏಳುವುದು ನಿಮಗೆ ಒಳ್ಳೆಯದೇ ಎಂದು ಕಾಲಕ್ರಮೇಣ ತಿಳಿಯುತ್ತದೆ.</string>
+    <string name="feeling_hint">ಮೊದಲೇ ಏಳುವುದು ನಿಮಗೆ ಒಳ್ಳೆಯದೇ ಎಂದು ಕಾಲಕ್ರಮೇಣ ತಿಳಿಯುತ್ತದೆ.</string>
     <string name="trends_title">ಕಳೆದ 7 ದಿನಗಳು</string>
     <string name="trends_not_enough">ಕೆಲವು ರಾತ್ರಿಗಳ ನಂತರ ಪ್ರವೃತ್ತಿಗಳು ಕಾಣುತ್ತವೆ.</string>
     <string name="trends_asleep">Ø %1$s ನಿದ್ರೆ</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (ಐಚ್ಛಿಕ)</string>
     <string name="onb_granted">ಅನುಮತಿಸಲಾಗಿದೆ</string>
     <string name="onb_alarm_title">ಮೊದಲ ಅಲಾರಾಂ</string>
-    <string name="onb_alarm_text">ತಡವೆಂದರೆ ಯಾವಾಗ ಎದ್ದಿರಬೇಕು? ನೀವು ಹಗುರವಾಗಿ ನಿದ್ರಿಸುತ್ತಿದ್ದರೆ ವಾಚ್ ಅವಧಿಯೊಳಗೆ ಮೊದಲೇ ಎಬ್ಬಿಸುತ್ತದೆ.</string>
+    <string name="onb_alarm_text">ತಡವೆಂದರೆ ಯಾವಾಗ ಎದ್ದಿರಬೇಕು? ನೀವು ಚಡಪಡಿಸಲು ಶುರುಮಾಡಿದ ತಕ್ಷಣ ವಾಚ್ ಅದಕ್ಕಿಂತ ಮೊದಲಿನ ಅವಧಿಯೊಳಗೆ ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="onb_alarm_create">ಅಲಾರಾಂ ರಚಿಸಿ</string>
     <string name="onb_alarm_done">ಅಲಾರಾಂ ರಚಿಸಲಾಗಿದೆ: %1$s</string>
     <string name="onb_done_title">ಎಲ್ಲಾ ಸಿದ್ಧ</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d ನಿಮಿಷಗಳು</item>
     </plurals>
     <string name="nap_start">ಪವರ್ ನ್ಯಾಪ್ ಶುರು ಮಾಡಿ</string>
-    <string name="nap_hint">ಈ ಸಮಯದ ನಂತರ ಎಬ್ಬಿಸುತ್ತದೆ, ಕೊನೆಯ ನಿಮಿಷಗಳಲ್ಲಿ ಹಗುರ ನಿದ್ರೆಯಿದ್ದರೆ ಮೊದಲೇ. ರಾತ್ರಿ ಎಂದು ಎಣಿಸುವುದಿಲ್ಲ.</string>
+    <string name="nap_hint">ಈ ಸಮಯದ ನಂತರ ಎಬ್ಬಿಸುತ್ತದೆ, ಕೊನೆಯ ನಿಮಿಷಗಳಲ್ಲಿ ಚಡಪಡಿಸಿದರೆ ಮೊದಲೇ. ರಾತ್ರಿ ಎಂದು ಎಣಿಸುವುದಿಲ್ಲ.</string>
     <string name="nap_running">%1$s ವರೆಗೆ ಪವರ್ ನ್ಯಾಪ್</string>
     <string name="nap_stop">ಪವರ್ ನ್ಯಾಪ್ ಮುಗಿಸಿ</string>
     <string name="widget_name">ಮುಂದಿನ ಅಲಾರಾಂ</string>

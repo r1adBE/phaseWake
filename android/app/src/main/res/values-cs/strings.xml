@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Dnes</string>
     <string name="home_next_tomorrow">Zítra</string>
-    <string name="home_next_in">Budí tě v lehkém spánku · za %1$s</string>
+    <string name="home_next_in">Budí tě, jakmile je tvůj spánek neklidný · za %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Budí tě přesně v cílový čas · za %1$s</string>
     <string name="home_no_alarm_title">Probuď se v tu pravou chvíli</string>
-    <string name="home_no_alarm_text">Nastav čas a okno. Hodinky tě probudí, když budeš spát lehce.</string>
+    <string name="home_no_alarm_text">Nastav čas a okno. Hodinky tě v něm vzbudí, jakmile začne být tvůj spánek neklidný.</string>
     <string name="home_add_alarm">Nový budík</string>
     <string name="home_last_night">Minulá noc</string>
     <string name="home_alarms">Tvoje budíky</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Po probuzení načte fáze spánku z Health Connect, aby rozpoznávání ověřil a vylepšil.</string>
     <string name="health_connected">Připojeno</string>
     <string name="health_unavailable">Health Connect není v tomto telefonu dostupný.</string>
-    <string name="verdict_good">Zdravotní data: %1$s ✓</string>
-    <string name="verdict_deep">Zdravotní data: hluboký spánek</string>
-    <string name="stage_light">lehký spánek</string>
-    <string name="stage_rem">REM spánek</string>
-    <string name="stage_awake">vzhůru</string>
     <string name="editor_alert">Jak tě vzbudit</string>
     <string name="editor_alert_hint">Zvuk vždy doprovází vibrace. Budíky zvoní i v režimu Nerušit, ve spánkovém režimu a při ztlumeném telefonu.</string>
     <string name="editor_alert_watch">Hodinky</string>
@@ -200,7 +195,7 @@
     <string name="feeling_5">Svěže</string>
     <string name="feeling_value">Pocit: %1$s</string>
     <string name="feeling_rate">Pocit %1$d z 5: %2$s</string>
-    <string name="feeling_hint">Časem uvidíš, jestli ti probuzení v lehkém spánku dělá dobře.</string>
+    <string name="feeling_hint">Časem uvidíš, jestli ti dřívější buzení dělá dobře.</string>
     <string name="trends_title">Posledních 7 dní</string>
     <string name="trends_not_enough">Trendy se zobrazí po několika nocích.</string>
     <string name="trends_asleep">Ø spánku %1$s</string>
@@ -424,7 +419,7 @@
     <string name="onb_optional">%1$s (volitelné)</string>
     <string name="onb_granted">Povoleno</string>
     <string name="onb_alarm_title">První budík</string>
-    <string name="onb_alarm_text">Kdy chceš být nejpozději vzhůru? Hodinky tě vzbudí dřív v okně, když spíš lehce.</string>
+    <string name="onb_alarm_text">Kdy chceš být nejpozději vzhůru? Hodinky tě vzbudí v okně před tím, jakmile začne být tvůj spánek neklidný.</string>
     <string name="onb_alarm_create">Vytvořit budík</string>
     <string name="onb_alarm_done">Budík vytvořen: %1$s</string>
     <string name="onb_done_title">Hotovo</string>
@@ -457,7 +452,7 @@
         <item quantity="other">%1$d minut</item>
     </plurals>
     <string name="nap_start">Spustit šlofíka</string>
-    <string name="nap_hint">Vzbudí tě po této době, v posledních minutách už při lehkém spánku. Nepočítá se jako noc.</string>
+    <string name="nap_hint">Vzbudí tě po této době, v posledních minutách už tehdy, když je tvůj spánek neklidný. Nepočítá se jako noc.</string>
     <string name="nap_running">Šlofík do %1$s</string>
     <string name="nap_stop">Ukončit šlofíka</string>
     <string name="widget_name">Další budík</string>

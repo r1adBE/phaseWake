@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Í dag</string>
     <string name="home_next_tomorrow">Á morgun</string>
-    <string name="home_next_in">Vekur þig í léttum svefni · eftir %1$s</string>
+    <string name="home_next_in">Vekur þig um leið og svefninn verður órólegur · eftir %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Vekur þig nákvæmlega á markmiðstíma · eftir %1$s</string>
     <string name="home_no_alarm_title">Vaknaðu á réttu augnabliki</string>
-    <string name="home_no_alarm_text">Veldu tíma og glugga. Úrið vekur þig þegar þú sefur létt.</string>
+    <string name="home_no_alarm_text">Veldu tíma og glugga. Úrið vekur þig innan hans um leið og svefninn verður órólegur.</string>
     <string name="home_add_alarm">Nýr vekjari</string>
     <string name="home_last_night">Síðasta nótt</string>
     <string name="home_alarms">Vekjararnir þínir</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Les svefnstig úr Health Connect eftir að þú vaknar, til að athuga og bæta greininguna.</string>
     <string name="health_connected">Tengt</string>
     <string name="health_unavailable">Health Connect er ekki í boði í þessum síma.</string>
-    <string name="verdict_good">Heilsugögn: %1$s ✓</string>
-    <string name="verdict_deep">Heilsugögn: djúpsvefn</string>
-    <string name="stage_light">léttur svefn</string>
-    <string name="stage_rem">REM-svefn</string>
-    <string name="stage_awake">vakandi</string>
     <string name="editor_alert">Hvernig á að vekja þig</string>
     <string name="editor_alert_hint">Hljóði fylgir alltaf titringur. Vekjarar hringja líka í „Ónáðið ekki“, háttatímastillingu og á hljóðlausum síma.</string>
     <string name="editor_alert_watch">Úr</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Endurnærð(ur)</string>
     <string name="feeling_value">Líðan: %1$s</string>
     <string name="feeling_rate">Líðan %1$d af 5: %2$s</string>
-    <string name="feeling_hint">Með tímanum sérðu hvort það gerir þér gott að vakna í léttum svefni.</string>
+    <string name="feeling_hint">Með tímanum sérðu hvort fyrri vakning gerir þér gott.</string>
     <string name="trends_title">Síðustu 7 dagar</string>
     <string name="trends_not_enough">Þróun birtist eftir nokkrar nætur.</string>
     <string name="trends_asleep">Ø %1$s svefn</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (valfrjálst)</string>
     <string name="onb_granted">Leyft</string>
     <string name="onb_alarm_title">Fyrsti vekjarinn</string>
-    <string name="onb_alarm_text">Hvenær viltu vera vakandi í síðasta lagi? Úrið vekur þig fyrr innan gluggans ef þú sefur létt.</string>
+    <string name="onb_alarm_text">Hvenær viltu vera vakandi í síðasta lagi? Úrið vekur þig í glugganum á undan um leið og svefninn verður órólegur.</string>
     <string name="onb_alarm_create">Búa til vekjara</string>
     <string name="onb_alarm_done">Vekjari búinn til: %1$s</string>
     <string name="onb_done_title">Allt klárt</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d mínútur</item>
     </plurals>
     <string name="nap_start">Byrja kríublund</string>
-    <string name="nap_hint">Vekur þig eftir þennan tíma, síðustu mínúturnar þegar í léttum svefni. Telst ekki sem nótt.</string>
+    <string name="nap_hint">Vekur þig eftir þennan tíma, síðustu mínúturnar strax ef svefninn verður órólegur. Telst ekki sem nótt.</string>
     <string name="nap_running">Kríublundur til %1$s</string>
     <string name="nap_stop">Ljúka kríublundi</string>
     <string name="widget_name">Næsti vekjari</string>

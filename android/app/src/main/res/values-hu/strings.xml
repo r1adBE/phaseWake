@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Ma</string>
     <string name="home_next_tomorrow">Holnap</string>
-    <string name="home_next_in">Könnyű alvásban ébreszt · %1$s múlva</string>
+    <string name="home_next_in">Ébreszt, amint nyugtalan leszel · %1$s múlva</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Pontosan célidőben ébreszt · %1$s múlva</string>
     <string name="home_no_alarm_title">Ébredj a megfelelő pillanatban</string>
-    <string name="home_no_alarm_text">Állíts be egy időpontot és egy időablakot. Az órád akkor ébreszt, amikor könnyen alszol.</string>
+    <string name="home_no_alarm_text">Állíts be egy időpontot és egy időablakot. Az órád ezen belül ébreszt, amint nyugtalan leszel.</string>
     <string name="home_add_alarm">Új ébresztő</string>
     <string name="home_last_night">Múlt éjszaka</string>
     <string name="home_alarms">Ébresztőid</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Ébredés után beolvassa az alvási fázisokat a Health Connectből, hogy ellenőrizze és javítsa az észlelést.</string>
     <string name="health_connected">Csatlakoztatva</string>
     <string name="health_unavailable">A Health Connect nem érhető el ezen a telefonon.</string>
-    <string name="verdict_good">Egészségügyi adatok: %1$s ✓</string>
-    <string name="verdict_deep">Egészségügyi adatok: mély alvás</string>
-    <string name="stage_light">könnyű alvás</string>
-    <string name="stage_rem">REM-alvás</string>
-    <string name="stage_awake">ébren</string>
     <string name="editor_alert">Hogyan ébresszünk</string>
     <string name="editor_alert_hint">A hang mindig rezgéssel jár együtt. Az ébresztők Ne zavarjanak módban, lefekvési módban és némított telefonnál is szólnak.</string>
     <string name="editor_alert_watch">Óra</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Kipihent</string>
     <string name="feeling_value">Érzés: %1$s</string>
     <string name="feeling_rate">Érzés: %1$d/5 – %2$s</string>
-    <string name="feeling_hint">Idővel látni fogod, jót tesz-e neked a könnyű alvásban ébredés.</string>
+    <string name="feeling_hint">Idővel látni fogod, jót tesz-e neked a korábbi ébresztés.</string>
     <string name="trends_title">Elmúlt 7 nap</string>
     <string name="trends_not_enough">A trendek néhány éjszaka után jelennek meg.</string>
     <string name="trends_asleep">Ø alvás: %1$s</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (nem kötelező)</string>
     <string name="onb_granted">Engedélyezve</string>
     <string name="onb_alarm_title">Első ébresztő</string>
-    <string name="onb_alarm_text">Legkésőbb mikor akarsz ébren lenni? Az óra korábban, az ablakon belül ébreszt, ha éberen alszol.</string>
+    <string name="onb_alarm_text">Legkésőbb mikor akarsz ébren lenni? Az óra az előtte lévő ablakban ébreszt, amint nyugtalan leszel.</string>
     <string name="onb_alarm_create">Ébresztő létrehozása</string>
     <string name="onb_alarm_done">Ébresztő létrehozva: %1$s</string>
     <string name="onb_done_title">Kész</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d perc</item>
     </plurals>
     <string name="nap_start">Szunyókálás indítása</string>
-    <string name="nap_hint">Ennyi idő után ébreszt, az utolsó percekben már éber alvásnál. Nem számít éjszakának.</string>
+    <string name="nap_hint">Ennyi idő után ébreszt, az utolsó percekben már akkor, ha nyugtalan leszel. Nem számít éjszakának.</string>
     <string name="nap_running">Szunyókálás eddig: %1$s</string>
     <string name="nap_stop">Szunyókálás befejezése</string>
     <string name="widget_name">Következő ébresztő</string>

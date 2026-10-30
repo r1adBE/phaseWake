@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Interval buđenja</string>
-    <string name="channel_window_description">Prikazuje se dok Phase Wake prati lagani san.</string>
+    <string name="channel_window_description">Prikazuje se dok Phase Wake čeka dobar trenutak za buđenje.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Budi te.</string>
-    <string name="notification_window_title">Čeka se lagani san</string>
+    <string name="notification_window_title">Čeka dobar trenutak</string>
     <string name="notification_window_text">Budi te najkasnije u %1$s</string>
     <string name="notification_ring_title">Dobro jutro</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Svaki dan</string>
     <string name="tile_label">Sljedeći alarm</string>
     <string name="tile_next">Sljedeći alarm</string>
-    <string name="tile_light_sleep">Budi te u laganom snu</string>
+    <string name="tile_light_sleep">Budi te kad si nemiran</string>
     <string name="notification_good_night_title">Ugodan san</string>
     <string name="notification_good_night_text">Čeka se da zaspiš</string>
     <string name="home_good_night">Laku noć</string>

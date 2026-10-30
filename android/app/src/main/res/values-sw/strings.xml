@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Leo</string>
     <string name="home_next_tomorrow">Kesho</string>
-    <string name="home_next_in">Inakuamsha katika usingizi mwepesi · baada ya %1$s</string>
+    <string name="home_next_in">Inakuamsha mara tu unapoanza kutotulia · baada ya %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Inakuamsha hasa kwa muda lengwa · baada ya %1$s</string>
     <string name="home_no_alarm_title">Amka wakati unaofaa</string>
-    <string name="home_no_alarm_text">Weka muda na kipindi. Saa yako inakuamsha ukiwa katika usingizi mwepesi.</string>
+    <string name="home_no_alarm_text">Weka muda na kipindi. Saa yako inakuamsha ndani yake mara tu unapoanza kutotulia.</string>
     <string name="home_add_alarm">Kengele mpya</string>
     <string name="home_last_night">Usiku uliopita</string>
     <string name="home_alarms">Kengele zako</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Husoma hatua za usingizi kutoka Health Connect baada ya kuamka, ili kukagua na kuboresha utambuzi.</string>
     <string name="health_connected">Imeunganishwa</string>
     <string name="health_unavailable">Health Connect haipatikani kwenye simu hii.</string>
-    <string name="verdict_good">Data ya afya: %1$s ✓</string>
-    <string name="verdict_deep">Data ya afya: usingizi mzito</string>
-    <string name="stage_light">usingizi mwepesi</string>
-    <string name="stage_rem">usingizi wa REM</string>
-    <string name="stage_awake">macho</string>
     <string name="editor_alert">Jinsi ya kukuamsha</string>
     <string name="editor_alert_hint">Sauti huja na mtetemo kila wakati. Kengele hulia pia ukiwa na “Usinisumbue”, hali ya kulala na simu iliyo kimya.</string>
     <string name="editor_alert_watch">Saa</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">Nimeburudika</string>
     <string name="feeling_value">Hali: %1$s</string>
     <string name="feeling_rate">Hali %1$d kati ya 5: %2$s</string>
-    <string name="feeling_hint">Kadiri muda unavyopita utaona kama kuamka katika usingizi mwepesi kunakufaa.</string>
+    <string name="feeling_hint">Kadiri muda unavyopita utaona kama kuamshwa mapema kunakufaa.</string>
     <string name="trends_title">Siku 7 zilizopita</string>
     <string name="trends_not_enough">Mienendo itaonekana baada ya usiku kadhaa.</string>
     <string name="trends_asleep">Wastani %1$s za usingizi</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (si lazima)</string>
     <string name="onb_granted">Imeruhusiwa</string>
     <string name="onb_alarm_title">Kengele ya kwanza</string>
-    <string name="onb_alarm_text">Unataka kuwa macho kabla ya saa ngapi? Saa yako itakuamsha mapema ndani ya kipindi ukiwa katika usingizi mwepesi.</string>
+    <string name="onb_alarm_text">Unataka kuwa macho kabla ya saa ngapi? Saa yako itakuamsha ndani ya kipindi kilichotangulia mara tu unapoanza kutotulia.</string>
     <string name="onb_alarm_create">Unda kengele</string>
     <string name="onb_alarm_done">Kengele imeundwa: %1$s</string>
     <string name="onb_done_title">Tayari</string>
@@ -433,7 +428,7 @@
         <item quantity="other">Dakika %1$d</item>
     </plurals>
     <string name="nap_start">Anza usingizi mfupi</string>
-    <string name="nap_hint">Inakuamsha baada ya muda huu, au mapema katika dakika za mwisho ukiwa katika usingizi mwepesi. Haihesabiwi kama usiku.</string>
+    <string name="nap_hint">Inakuamsha baada ya muda huu, au mapema katika dakika za mwisho ukianza kutotulia. Haihesabiwi kama usiku.</string>
     <string name="nap_running">Usingizi mfupi hadi %1$s</string>
     <string name="nap_stop">Maliza usingizi mfupi</string>
     <string name="widget_name">Kengele inayofuata</string>

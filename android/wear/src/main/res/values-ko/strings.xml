@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">기상 범위</string>
-    <string name="channel_window_description">Phase Wake가 얕은 잠을 살피는 동안 표시돼요.</string>
+    <string name="channel_window_description">Phase Wake가 깨우기 좋은 순간을 기다리는 동안 표시돼요.</string>
     <string name="channel_alarm">알람</string>
     <string name="channel_alarm_description">깨워 드려요.</string>
-    <string name="notification_window_title">얕은 잠을 살피는 중</string>
+    <string name="notification_window_title">좋은 순간을 기다리는 중</string>
     <string name="notification_window_text">늦어도 %1$s까지 깨워요</string>
     <string name="notification_ring_title">좋은 아침이에요</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">매일</string>
     <string name="tile_label">다음 알람</string>
     <string name="tile_next">다음 알람</string>
-    <string name="tile_light_sleep">얕은 잠에서 깨워요</string>
+    <string name="tile_light_sleep">뒤척이면 깨워요</string>
     <string name="notification_good_night_title">잘 자요</string>
     <string name="notification_good_night_text">잠들기를 기다리는 중</string>
     <string name="home_good_night">잘 자요</string>

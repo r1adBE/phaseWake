@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">የመቀስቀሻ ክልል</string>
-    <string name="channel_window_description">Phase Wake ቀላል እንቅልፍን ሲከታተል ይታያል።</string>
+    <string name="channel_window_description">Phase Wake ለመቀስቀስ ጥሩ ጊዜን ሲጠብቅ ይታያል።</string>
     <string name="channel_alarm">ማንቂያ</string>
     <string name="channel_alarm_description">ይቀሰቅስዎታል።</string>
-    <string name="notification_window_title">ቀላል እንቅልፍን እየተከታተለ ነው</string>
+    <string name="notification_window_title">ጥሩ ጊዜን እየጠበቀ ነው</string>
     <string name="notification_window_text">ቢዘገይ %1$s ላይ ይቀሰቅስዎታል</string>
     <string name="notification_ring_title">እንደምን አደሩ</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">በየቀኑ</string>
     <string name="tile_label">ቀጣይ ማንቂያ</string>
     <string name="tile_next">ቀጣይ ማንቂያ</string>
-    <string name="tile_light_sleep">በቀላል እንቅልፍ ይቀሰቅስዎታል</string>
+    <string name="tile_light_sleep">እረፍት ሲያጡ ይቀሰቅሳል</string>
     <string name="notification_good_night_title">መልካም እንቅልፍ</string>
     <string name="notification_good_night_text">እስኪተኙ እየጠበቀ ነው</string>
     <string name="home_good_night">ደህና እደሩ</string>

@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Uygʻotish oraligʻi</string>
-    <string name="channel_window_description">Phase Wake yengil uyquni kuzatayotganda koʻrsatiladi.</string>
+    <string name="channel_window_description">Phase Wake uygʻotish uchun yaxshi lahzani kutayotganda koʻrsatiladi.</string>
     <string name="channel_alarm">Budilnik</string>
     <string name="channel_alarm_description">Seni uygʻotadi.</string>
-    <string name="notification_window_title">Yengil uyqu kuzatilmoqda</string>
+    <string name="notification_window_title">Yaxshi lahzani kutmoqda</string>
     <string name="notification_window_text">Eng kechi %1$s da uygʻotadi</string>
     <string name="notification_ring_title">Xayrli tong</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Har kuni</string>
     <string name="tile_label">Keyingi budilnik</string>
     <string name="tile_next">Keyingi budilnik</string>
-    <string name="tile_light_sleep">Yengil uyquda uygʻotadi</string>
+    <string name="tile_light_sleep">Bezovtalansang uygʻotadi</string>
     <string name="notification_good_night_title">Yaxshi uxla</string>
     <string name="notification_good_night_text">Uxlab qolishing kutilmoqda</string>
     <string name="home_good_night">Xayrli tun</string>

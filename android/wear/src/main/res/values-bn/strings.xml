@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">জাগানোর সময়সীমা</string>
-    <string name="channel_window_description">Phase Wake হালকা ঘুমের দিকে নজর রাখার সময় দেখা যায়।</string>
+    <string name="channel_window_description">Phase Wake জাগানোর জন্য ভালো মুহূর্তের অপেক্ষা করার সময় দেখা যায়।</string>
     <string name="channel_alarm">অ্যালার্ম</string>
     <string name="channel_alarm_description">তোমাকে জাগায়।</string>
-    <string name="notification_window_title">হালকা ঘুমের অপেক্ষায়</string>
+    <string name="notification_window_title">ভালো মুহূর্তের অপেক্ষায়</string>
     <string name="notification_window_text">সর্বশেষ %1$s-এ জাগাবে</string>
     <string name="notification_ring_title">সুপ্রভাত</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">প্রতিদিন</string>
     <string name="tile_label">পরের অ্যালার্ম</string>
     <string name="tile_next">পরের অ্যালার্ম</string>
-    <string name="tile_light_sleep">হালকা ঘুমে জাগাবে</string>
+    <string name="tile_light_sleep">অস্থির হলেই জাগাবে</string>
     <string name="notification_good_night_title">ভালো করে ঘুমাও</string>
     <string name="notification_good_night_text">তোমার ঘুমিয়ে পড়ার অপেক্ষায়</string>
     <string name="home_good_night">শুভরাত্রি</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Finestra di risveglio</string>
-    <string name="channel_window_description">Mostrata mentre Phase Wake cerca il sonno leggero.</string>
+    <string name="channel_window_description">Mostrata mentre Phase Wake attende un buon momento per svegliarti.</string>
     <string name="channel_alarm">Sveglia</string>
     <string name="channel_alarm_description">Ti sveglia.</string>
-    <string name="notification_window_title">In attesa del sonno leggero</string>
+    <string name="notification_window_title">In attesa di un buon momento</string>
     <string name="notification_window_text">Ti sveglia al più tardi alle %1$s</string>
     <string name="notification_ring_title">Buongiorno</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Ogni giorno</string>
     <string name="tile_label">Prossima sveglia</string>
     <string name="tile_next">Prossima sveglia</string>
-    <string name="tile_light_sleep">Ti sveglia nel sonno leggero</string>
+    <string name="tile_light_sleep">Ti sveglia se ti agiti</string>
     <string name="notification_good_night_title">Dormi bene</string>
     <string name="notification_good_night_text">In attesa che tu ti addormenti</string>
     <string name="home_good_night">Buonanotte</string>

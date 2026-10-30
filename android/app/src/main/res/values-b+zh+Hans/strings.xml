@@ -17,10 +17,10 @@
 
     <string name="home_next_today">今天</string>
     <string name="home_next_tomorrow">明天</string>
-    <string name="home_next_in">在浅睡时唤醒你 · %1$s后</string>
+    <string name="home_next_in">一旦你睡得不安稳就叫醒你 · %1$s后</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">准时在目标时间唤醒你 · %1$s后</string>
     <string name="home_no_alarm_title">在恰到好处的时刻醒来</string>
-    <string name="home_no_alarm_text">设定一个时间和一个时间窗。你睡得浅时，手表会叫醒你。</string>
+    <string name="home_no_alarm_text">设定一个时间和一个时间窗。一旦你睡得不安稳，手表就会在窗口内叫醒你。</string>
     <string name="home_add_alarm">新建闹钟</string>
     <string name="home_last_night">昨晚</string>
     <string name="home_alarms">我的闹钟</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">醒来后从 Health Connect 读取睡眠阶段，用于检查并改进检测。</string>
     <string name="health_connected">已连接</string>
     <string name="health_unavailable">此手机不支持 Health Connect。</string>
-    <string name="verdict_good">健康数据：%1$s ✓</string>
-    <string name="verdict_deep">健康数据：深睡</string>
-    <string name="stage_light">浅睡</string>
-    <string name="stage_rem">快速眼动睡眠</string>
-    <string name="stage_awake">清醒</string>
     <string name="editor_alert">叫醒方式</string>
     <string name="editor_alert_hint">响铃时总会同时振动。即使开启勿扰、就寝模式或手机静音，闹钟也会响。</string>
     <string name="editor_alert_watch">手表</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">精力充沛</string>
     <string name="feeling_value">感觉：%1$s</string>
     <string name="feeling_rate">感觉 %1$d/5：%2$s</string>
-    <string name="feeling_hint">久而久之，你会看到在浅睡眠时醒来是否对你有益。</string>
+    <string name="feeling_hint">久而久之，你会看到提前叫醒是否对你有益。</string>
     <string name="trends_title">最近 7 天</string>
     <string name="trends_not_enough">几晚之后会显示趋势。</string>
     <string name="trends_asleep">平均 Ø 睡眠 %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s（可选）</string>
     <string name="onb_granted">已允许</string>
     <string name="onb_alarm_title">第一个闹钟</string>
-    <string name="onb_alarm_text">你最晚想几点醒来？如果睡得浅，手表会在窗口内更早叫醒你。</string>
+    <string name="onb_alarm_text">你最晚想几点醒来？一旦你睡得不安稳，手表会在此前的窗口内叫醒你。</string>
     <string name="onb_alarm_create">创建闹钟</string>
     <string name="onb_alarm_done">闹钟已创建：%1$s</string>
     <string name="onb_done_title">完成</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d 分钟</item>
     </plurals>
     <string name="nap_start">开始小睡</string>
-    <string name="nap_hint">在这段时间后叫醒你，最后几分钟内睡得浅时会提前叫醒。不计为一晚。</string>
+    <string name="nap_hint">在这段时间后叫醒你，最后几分钟内一旦睡得不安稳就会提前叫醒。不计为一晚。</string>
     <string name="nap_running">小睡至 %1$s</string>
     <string name="nap_stop">结束小睡</string>
     <string name="widget_name">下一个闹钟</string>

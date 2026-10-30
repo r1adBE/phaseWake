@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Weckfenster</string>
-    <string name="channel_window_description">Erscheint, während Phase Wake auf leichten Schlaf wartet.</string>
+    <string name="channel_window_description">Erscheint, während Phase Wake auf einen guten Moment zum Wecken wartet.</string>
     <string name="channel_alarm">Wecker</string>
     <string name="channel_alarm_description">Weckt dich.</string>
-    <string name="notification_window_title">Wartet auf leichten Schlaf</string>
+    <string name="notification_window_title">Wartet auf einen guten Moment</string>
     <string name="notification_window_text">Weckt dich spätestens um %1$s</string>
     <string name="notification_ring_title">Guten Morgen</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Täglich</string>
     <string name="tile_label">Nächster Wecker</string>
     <string name="tile_next">Nächster Wecker</string>
-    <string name="tile_light_sleep">Weckt im leichten Schlaf</string>
+    <string name="tile_light_sleep">Weckt bei Unruhe</string>
     <string name="notification_good_night_title">Schlaf gut</string>
     <string name="notification_good_night_text">Wartet, bis du eingeschlafen bist</string>
     <string name="home_good_night">Gute Nacht</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Gaur</string>
     <string name="home_next_tomorrow">Bihar</string>
-    <string name="home_next_in">Lo arinean esnatuko zaitu · %1$s barru</string>
+    <string name="home_next_in">Ezinegona hasten zaizunean esnatuko zaitu · %1$s barru</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Helburuko orduan bertan esnatuko zaitu · %1$s barru</string>
     <string name="home_no_alarm_title">Esnatu une egokian</string>
-    <string name="home_no_alarm_text">Ezarri ordu bat eta leiho bat. Erlojuak lo arinean zaudenean esnatuko zaitu.</string>
+    <string name="home_no_alarm_text">Ezarri ordu bat eta leiho bat. Erlojuak leihoaren barruan esnatuko zaitu, ezinegona hasten zaizun unean.</string>
     <string name="home_add_alarm">Alarma berria</string>
     <string name="home_last_night">Bart</string>
     <string name="home_alarms">Zure alarmak</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Esnatu ondoren, lo-faseak irakurtzen ditu Health Connect-etik, hautematea egiaztatu eta hobetzeko.</string>
     <string name="health_connected">Konektatuta</string>
     <string name="health_unavailable">Health Connect ez dago erabilgarri telefono honetan.</string>
-    <string name="verdict_good">Osasun-datuak: %1$s ✓</string>
-    <string name="verdict_deep">Osasun-datuak: lo sakona</string>
-    <string name="stage_light">lo arina</string>
-    <string name="stage_rem">REM loa</string>
-    <string name="stage_awake">esna</string>
     <string name="editor_alert">Nola esnatu</string>
     <string name="editor_alert_hint">Soinuak beti dakar bibrazioa. Alarmek «Ez molestatu» moduan, lo-moduan eta telefonoa isilik dagoenean ere jotzen dute.</string>
     <string name="editor_alert_watch">Erlojua</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Freskatuta</string>
     <string name="feeling_value">Sentipena: %1$s</string>
     <string name="feeling_rate">Sentipena: %1$d/5: %2$s</string>
-    <string name="feeling_hint">Denborarekin ikusiko duzu lo arinean esnatzeak onura ematen dizun.</string>
+    <string name="feeling_hint">Denborarekin ikusiko duzu lehenago esnatzeak onura ematen dizun.</string>
     <string name="trends_title">Azken 7 egunak</string>
     <string name="trends_not_enough">Joerak gau batzuen ondoren agertzen dira.</string>
     <string name="trends_asleep">Ø %1$s lo</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (aukerakoa)</string>
     <string name="onb_granted">Baimenduta</string>
     <string name="onb_alarm_title">Lehen alarma</string>
-    <string name="onb_alarm_text">Noiz nahi duzu esna egon beranduenez? Lo arinean bazaude, erlojuak lehenago esnatuko zaitu leihoaren barruan.</string>
+    <string name="onb_alarm_text">Noiz nahi duzu esna egon beranduenez? Erlojuak aurreko leihoan esnatuko zaitu, ezinegona hasten zaizun unean.</string>
     <string name="onb_alarm_create">Sortu alarma</string>
     <string name="onb_alarm_done">Alarma sortuta: %1$s</string>
     <string name="onb_done_title">Dena prest</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minutu</item>
     </plurals>
     <string name="nap_start">Hasi siesta</string>
-    <string name="nap_hint">Denbora hori igarotakoan esnatzen zaitu; azken minutuetan, lo arinean bazaude, lehenago. Ez da gau gisa zenbatzen.</string>
+    <string name="nap_hint">Denbora hori igarotakoan esnatzen zaitu; azken minutuetan, ezinegona hasten bazaizu, lehenago. Ez da gau gisa zenbatzen.</string>
     <string name="nap_running">Siesta %1$s arte</string>
     <string name="nap_stop">Amaitu siesta</string>
     <string name="widget_name">Hurrengo alarma</string>

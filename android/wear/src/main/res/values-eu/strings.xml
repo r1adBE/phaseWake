@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Esnatze-leihoa</string>
-    <string name="channel_window_description">Phase Wake lo arinaren zain dagoen bitartean erakusten da.</string>
+    <string name="channel_window_description">Phase Wake zu esnatzeko une egokiaren zain dagoen bitartean erakusten da.</string>
     <string name="channel_alarm">Alarma</string>
     <string name="channel_alarm_description">Esnatu egiten zaitu.</string>
-    <string name="notification_window_title">Lo arinaren zain</string>
+    <string name="notification_window_title">Une egokiaren zain</string>
     <string name="notification_window_text">Beranduenez %1$s-rako esnatuko zaitu</string>
     <string name="notification_ring_title">Egun on</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Egunero</string>
     <string name="tile_label">Hurrengo alarma</string>
     <string name="tile_next">Hurrengo alarma</string>
-    <string name="tile_light_sleep">Lo arinean esnatzen zaitu</string>
+    <string name="tile_light_sleep">Ezinegonean esnatzen zaitu</string>
     <string name="notification_good_night_title">Ondo lo egin</string>
     <string name="notification_good_night_text">Lokartu arte zain</string>
     <string name="home_good_night">Gabon</string>

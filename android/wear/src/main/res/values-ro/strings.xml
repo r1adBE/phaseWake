@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Interval de trezire</string>
-    <string name="channel_window_description">Apare cât timp Phase Wake urmărește somnul ușor.</string>
+    <string name="channel_window_description">Apare cât timp Phase Wake așteaptă un moment bun ca să te trezească.</string>
     <string name="channel_alarm">Alarmă</string>
     <string name="channel_alarm_description">Te trezește.</string>
-    <string name="notification_window_title">Urmărește somnul ușor</string>
+    <string name="notification_window_title">Așteaptă un moment bun</string>
     <string name="notification_window_text">Te trezește cel târziu la %1$s</string>
     <string name="notification_ring_title">Bună dimineața</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Zilnic</string>
     <string name="tile_label">Următoarea alarmă</string>
     <string name="tile_next">Următoarea alarmă</string>
-    <string name="tile_light_sleep">Te trezește din somn ușor</string>
+    <string name="tile_light_sleep">Te trezește la somn agitat</string>
     <string name="notification_good_night_title">Somn ușor</string>
     <string name="notification_good_night_text">Așteaptă să adormi</string>
     <string name="home_good_night">Noapte bună</string>

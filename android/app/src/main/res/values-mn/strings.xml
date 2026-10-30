@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Өнөөдөр</string>
     <string name="home_next_tomorrow">Маргааш</string>
-    <string name="home_next_in">Хөнгөн нойронд сэрээнэ · %1$s дараа</string>
+    <string name="home_next_in">Тайван бус унтаж эхлэхэд сэрээнэ · %1$s дараа</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Яг зорилтот цагт сэрээнэ · %1$s дараа</string>
     <string name="home_no_alarm_title">Яг зөв мөчид сэр</string>
-    <string name="home_no_alarm_text">Цаг болон хугацаа тохируул. Нойр чинь хөнгөн үед цаг чинь чамайг сэрээнэ.</string>
+    <string name="home_no_alarm_text">Цаг болон хугацаа тохируул. Тайван бус унтаж эхлэхэд цаг чинь чамайг тэр хугацааны дотор сэрээнэ.</string>
     <string name="home_add_alarm">Шинэ сэрүүлэг</string>
     <string name="home_last_night">Өнгөрсөн шөнө</string>
     <string name="home_alarms">Чиний сэрүүлгүүд</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Сэрсний дараа Health Connect-оос нойрны үе шатыг уншиж, илрүүлэлтийг шалгаж сайжруулна.</string>
     <string name="health_connected">Холбогдсон</string>
     <string name="health_unavailable">Энэ утсанд Health Connect байхгүй.</string>
-    <string name="verdict_good">Эрүүл мэндийн өгөгдөл: %1$s ✓</string>
-    <string name="verdict_deep">Эрүүл мэндийн өгөгдөл: гүн нойр</string>
-    <string name="stage_light">хөнгөн нойр</string>
-    <string name="stage_rem">REM нойр</string>
-    <string name="stage_awake">сэрүүн</string>
     <string name="editor_alert">Хэрхэн сэрээх</string>
     <string name="editor_alert_hint">Дуу үргэлж чичиргээтэй хамт. Сэрүүлэг «Бүү саад бол», унтах горим болон дуугүй утсан дээр ч дуугарна.</string>
     <string name="editor_alert_watch">Цаг</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Сэргэг</string>
     <string name="feeling_value">Мэдрэмж: %1$s</string>
     <string name="feeling_rate">Мэдрэмж 5-аас %1$d: %2$s</string>
-    <string name="feeling_hint">Цаг хугацааны явцад хөнгөн нойронд сэрэх нь чамд тустай эсэхийг харна.</string>
+    <string name="feeling_hint">Цаг хугацааны явцад эрт сэрэх нь чамд тустай эсэхийг харна.</string>
     <string name="trends_title">Сүүлийн 7 хоног</string>
     <string name="trends_not_enough">Хандлага хэдэн шөнийн дараа гарна.</string>
     <string name="trends_asleep">Ø %1$s нойр</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (заавал биш)</string>
     <string name="onb_granted">Зөвшөөрсөн</string>
     <string name="onb_alarm_title">Эхний сэрүүлэг</string>
-    <string name="onb_alarm_text">Хамгийн оройдоо хэдэн цагт сэрүүн байхыг хүсэж байна? Нойр чинь хөнгөн бол цаг чинь хугацааны дотор эрт сэрээнэ.</string>
+    <string name="onb_alarm_text">Хамгийн оройдоо хэдэн цагт сэрүүн байхыг хүсэж байна? Тайван бус унтаж эхлэхэд цаг чинь түүнээс өмнөх хугацааны дотор сэрээнэ.</string>
     <string name="onb_alarm_create">Сэрүүлэг үүсгэх</string>
     <string name="onb_alarm_done">Сэрүүлэг үүссэн: %1$s</string>
     <string name="onb_done_title">Бэлэн боллоо</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d минут</item>
     </plurals>
     <string name="nap_start">Богино нойр эхлүүлэх</string>
-    <string name="nap_hint">Энэ хугацааны дараа сэрээнэ, сүүлийн минутуудад хөнгөн нойронд ч сэрээж болно. Шөнөд тооцохгүй.</string>
+    <string name="nap_hint">Энэ хугацааны дараа сэрээнэ, сүүлийн минутуудад тайван бус унтаж эхэлбэл эрт. Шөнөд тооцохгүй.</string>
     <string name="nap_running">Богино нойр %1$s хүртэл</string>
     <string name="nap_stop">Богино нойр дуусгах</string>
     <string name="widget_name">Дараагийн сэрүүлэг</string>

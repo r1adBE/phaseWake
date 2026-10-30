@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Fuinneog dhúisithe</string>
-    <string name="channel_window_description">Taispeántar é fad atá Phase Wake ag faire ar chodladh éadrom.</string>
+    <string name="channel_window_description">Taispeántar é fad atá Phase Wake ag fanacht le nóiméad maith chun tú a dhúiseacht.</string>
     <string name="channel_alarm">Aláram</string>
     <string name="channel_alarm_description">Dúisíonn sé thú.</string>
-    <string name="notification_window_title">Ag faire ar chodladh éadrom</string>
+    <string name="notification_window_title">Ag fanacht le nóiméad maith</string>
     <string name="notification_window_text">Dúiseoidh sé thú faoi %1$s ar a dhéanaí</string>
     <string name="notification_ring_title">Maidin mhaith</string>
 
@@ -39,7 +39,7 @@
     <string name="alarm_every_day">Gach lá</string>
     <string name="tile_label">An chéad aláram eile</string>
     <string name="tile_next">An chéad aláram eile</string>
-    <string name="tile_light_sleep">Dúiseoidh sé thú i gcodladh éadrom</string>
+    <string name="tile_light_sleep">Dúisíonn sé thú má bhíonn tú corrthónach</string>
     <string name="notification_good_night_title">Codladh sámh</string>
     <string name="notification_good_night_text">Ag fanacht go dtitfidh tú i do chodladh</string>
     <string name="home_good_night">Oíche mhaith</string>

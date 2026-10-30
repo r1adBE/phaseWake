@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">ຊ່ວງເວລາປຸກ</string>
-    <string name="channel_window_description">ສະແດງຕອນທີ່ Phase Wake ກຳລັງເຝົ້າເບິ່ງການຫຼັບຕື້ນ</string>
+    <string name="channel_window_description">ສະແດງຕອນທີ່ Phase Wake ກຳລັງລໍຖ້າຈັງຫວະທີ່ດີເພື່ອປຸກເຈົ້າ</string>
     <string name="channel_alarm">ໂມງປຸກ</string>
     <string name="channel_alarm_description">ປຸກເຈົ້າ</string>
-    <string name="notification_window_title">ກຳລັງເຝົ້າເບິ່ງການຫຼັບຕື້ນ</string>
+    <string name="notification_window_title">ກຳລັງລໍຖ້າຈັງຫວະທີ່ດີ</string>
     <string name="notification_window_text">ປຸກເຈົ້າຊ້າສຸດຕອນ %1$s</string>
     <string name="notification_ring_title">ສະບາຍດີຕອນເຊົ້າ</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">ທຸກມື້</string>
     <string name="tile_label">ໂມງປຸກຖັດໄປ</string>
     <string name="tile_next">ໂມງປຸກຖັດໄປ</string>
-    <string name="tile_light_sleep">ປຸກຕອນຫຼັບຕື້ນ</string>
+    <string name="tile_light_sleep">ປຸກເມື່ອນອນບໍ່ສະຫງົບ</string>
     <string name="notification_good_night_title">ນອນຫຼັບຝັນດີ</string>
     <string name="notification_good_night_text">ກຳລັງລໍຖ້າໃຫ້ເຈົ້າຫຼັບ</string>
     <string name="home_good_night">ລາຕີສະຫວັດ</string>

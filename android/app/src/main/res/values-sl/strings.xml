@@ -21,10 +21,10 @@
 
     <string name="home_next_today">Danes</string>
     <string name="home_next_tomorrow">Jutri</string>
-    <string name="home_next_in">Zbudi v lahkem spancu · čez %1$s</string>
+    <string name="home_next_in">Zbudi, takoj ko je spanec nemiren · čez %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Zbudi natanko ob ciljnem času · čez %1$s</string>
     <string name="home_no_alarm_title">Zbudi se ob pravem trenutku</string>
-    <string name="home_no_alarm_text">Nastavi čas in okno. Ura te zbudi, ko spiš lahno.</string>
+    <string name="home_no_alarm_text">Nastavi čas in okno. Ura te v njem zbudi, takoj ko postane tvoj spanec nemiren.</string>
     <string name="home_add_alarm">Nova budilka</string>
     <string name="home_last_night">Pretekla noč</string>
     <string name="home_alarms">Tvoje budilke</string>
@@ -108,11 +108,6 @@
     <string name="health_connect_hint">Po prebujenju prebere faze spanca iz Health Connect, da preveri in izboljša zaznavanje.</string>
     <string name="health_connected">Povezano</string>
     <string name="health_unavailable">Health Connect na tem telefonu ni na voljo.</string>
-    <string name="verdict_good">Zdravstveni podatki: %1$s ✓</string>
-    <string name="verdict_deep">Zdravstveni podatki: globok spanec</string>
-    <string name="stage_light">lahek spanec</string>
-    <string name="stage_rem">spanec REM</string>
-    <string name="stage_awake">budnost</string>
     <string name="editor_alert">Način bujenja</string>
     <string name="editor_alert_hint">Zvok je vedno skupaj z vibriranjem. Budilke zvonijo tudi v načinu »Ne moti«, v načinu za spanje in na utišanem telefonu.</string>
     <string name="editor_alert_watch">Ura</string>
@@ -201,7 +196,7 @@
     <string name="feeling_5">Spočito</string>
     <string name="feeling_value">Počutje: %1$s</string>
     <string name="feeling_rate">Počutje %1$d od 5: %2$s</string>
-    <string name="feeling_hint">Sčasoma se bo pokazalo, ali ti bujenje v lahkem spancu dobro dene.</string>
+    <string name="feeling_hint">Sčasoma se bo pokazalo, ali ti zgodnejše bujenje dobro dene.</string>
     <string name="trends_title">Zadnjih 7 dni</string>
     <string name="trends_not_enough">Trendi se prikažejo po nekaj nočeh.</string>
     <string name="trends_asleep">Ø %1$s spanca</string>
@@ -426,7 +421,7 @@
     <string name="onb_optional">%1$s (neobvezno)</string>
     <string name="onb_granted">Dovoljeno</string>
     <string name="onb_alarm_title">Prva budilka</string>
-    <string name="onb_alarm_text">Kdaj želiš biti najpozneje pokonci? Ura te v oknu zbudi prej, če spiš lahno.</string>
+    <string name="onb_alarm_text">Kdaj želiš biti najpozneje pokonci? Ura te zbudi v oknu pred tem, takoj ko postane tvoj spanec nemiren.</string>
     <string name="onb_alarm_create">Ustvari budilko</string>
     <string name="onb_alarm_done">Budilka ustvarjena: %1$s</string>
     <string name="onb_done_title">Vse pripravljeno</string>
@@ -459,7 +454,7 @@
         <item quantity="other">%1$d minut</item>
     </plurals>
     <string name="nap_start">Začni kratek spanec</string>
-    <string name="nap_hint">Zbudi te po tem času, v zadnjih minutah že v lahkem spancu. Ne šteje kot noč.</string>
+    <string name="nap_hint">Zbudi te po tem času, v zadnjih minutah že, če postane spanec nemiren. Ne šteje kot noč.</string>
     <string name="nap_running">Kratek spanec do %1$s</string>
     <string name="nap_stop">Končaj kratek spanec</string>
     <string name="widget_name">Naslednja budilka</string>

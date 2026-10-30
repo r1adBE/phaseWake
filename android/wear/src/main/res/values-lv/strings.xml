@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Modināšanas logs</string>
-    <string name="channel_window_description">Tiek rādīts, kamēr Phase Wake gaida vieglu miegu.</string>
+    <string name="channel_window_description">Tiek rādīts, kamēr Phase Wake gaida piemērotu brīdi tevi pamodināt.</string>
     <string name="channel_alarm">Modinātājs</string>
     <string name="channel_alarm_description">Pamodina tevi.</string>
-    <string name="notification_window_title">Gaida vieglu miegu</string>
+    <string name="notification_window_title">Gaida piemērotu brīdi</string>
     <string name="notification_window_text">Pamodinās vēlākais %1$s</string>
     <string name="notification_ring_title">Labrīt</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Katru dienu</string>
     <string name="tile_label">Nākamais modinātājs</string>
     <string name="tile_next">Nākamais modinātājs</string>
-    <string name="tile_light_sleep">Modina vieglā miegā</string>
+    <string name="tile_light_sleep">Modina nemierīgā miegā</string>
     <string name="notification_good_night_title">Saldu miegu</string>
     <string name="notification_good_night_text">Gaida, kad aizmigsi</string>
     <string name="home_good_night">Ar labu nakti</string>

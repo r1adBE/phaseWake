@@ -17,10 +17,10 @@
 
     <string name="home_next_today">Hôm nay</string>
     <string name="home_next_tomorrow">Ngày mai</string>
-    <string name="home_next_in">Đánh thức khi ngủ nông · sau %1$s</string>
+    <string name="home_next_in">Đánh thức ngay khi bạn trằn trọc · sau %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Đánh thức đúng giờ mục tiêu · sau %1$s</string>
     <string name="home_no_alarm_title">Thức dậy đúng lúc</string>
-    <string name="home_no_alarm_text">Đặt giờ và khoảng thời gian. Đồng hồ sẽ đánh thức bạn khi bạn ngủ nông.</string>
+    <string name="home_no_alarm_text">Đặt giờ và khoảng thời gian. Đồng hồ sẽ đánh thức bạn trong khoảng đó ngay khi bạn bắt đầu trằn trọc.</string>
     <string name="home_add_alarm">Báo thức mới</string>
     <string name="home_last_night">Đêm qua</string>
     <string name="home_alarms">Báo thức của bạn</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
     <string name="health_connected">Đã kết nối</string>
     <string name="health_unavailable">Health Connect không khả dụng trên điện thoại này.</string>
-    <string name="verdict_good">Dữ liệu sức khỏe: %1$s ✓</string>
-    <string name="verdict_deep">Dữ liệu sức khỏe: ngủ sâu</string>
-    <string name="stage_light">ngủ nông</string>
-    <string name="stage_rem">ngủ REM</string>
-    <string name="stage_awake">thức</string>
     <string name="editor_alert">Cách đánh thức bạn</string>
     <string name="editor_alert_hint">Âm thanh luôn đi kèm rung. Báo thức vẫn đổ chuông khi bật Không làm phiền, chế độ giờ đi ngủ hoặc điện thoại im lặng.</string>
     <string name="editor_alert_watch">Đồng hồ</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">Sảng khoái</string>
     <string name="feeling_value">Cảm giác: %1$s</string>
     <string name="feeling_rate">Cảm giác %1$d trên 5: %2$s</string>
-    <string name="feeling_hint">Theo thời gian, bạn sẽ thấy việc thức dậy khi ngủ nhẹ có tốt cho bạn không.</string>
+    <string name="feeling_hint">Theo thời gian, bạn sẽ thấy việc được đánh thức sớm hơn có tốt cho bạn không.</string>
     <string name="trends_title">7 ngày qua</string>
     <string name="trends_not_enough">Xu hướng sẽ hiện sau vài đêm.</string>
     <string name="trends_asleep">Ø ngủ %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (không bắt buộc)</string>
     <string name="onb_granted">Đã cho phép</string>
     <string name="onb_alarm_title">Báo thức đầu tiên</string>
-    <string name="onb_alarm_text">Muộn nhất bạn muốn thức dậy lúc nào? Nếu ngủ nông, đồng hồ sẽ đánh thức bạn sớm hơn trong khung giờ.</string>
+    <string name="onb_alarm_text">Muộn nhất bạn muốn thức dậy lúc nào? Đồng hồ sẽ đánh thức bạn trong khung giờ trước đó ngay khi bạn bắt đầu trằn trọc.</string>
     <string name="onb_alarm_create">Tạo báo thức</string>
     <string name="onb_alarm_done">Đã tạo báo thức: %1$s</string>
     <string name="onb_done_title">Xong</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d phút</item>
     </plurals>
     <string name="nap_start">Bắt đầu ngủ trưa</string>
-    <string name="nap_hint">Đánh thức bạn sau khoảng thời gian này, trong vài phút cuối nếu đang ngủ nông. Không tính là một đêm.</string>
+    <string name="nap_hint">Đánh thức bạn sau khoảng thời gian này, trong vài phút cuối sớm hơn nếu bạn trằn trọc. Không tính là một đêm.</string>
     <string name="nap_running">Ngủ trưa đến %1$s</string>
     <string name="nap_stop">Kết thúc ngủ trưa</string>
     <string name="widget_name">Báo thức tiếp theo</string>

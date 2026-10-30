@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Žadinimo langas</string>
-    <string name="channel_window_description">Rodoma, kol Phase Wake laukia lengvo miego.</string>
+    <string name="channel_window_description">Rodoma, kol Phase Wake laukia tinkamos akimirkos tave pažadinti.</string>
     <string name="channel_alarm">Žadintuvas</string>
     <string name="channel_alarm_description">Pažadina tave.</string>
-    <string name="notification_window_title">Laukiama lengvo miego</string>
+    <string name="notification_window_title">Laukiama tinkamos akimirkos</string>
     <string name="notification_window_text">Pažadins vėliausiai %1$s</string>
     <string name="notification_ring_title">Labas rytas</string>
 
@@ -38,7 +38,7 @@
     <string name="alarm_every_day">Kasdien</string>
     <string name="tile_label">Kitas žadintuvas</string>
     <string name="tile_next">Kitas žadintuvas</string>
-    <string name="tile_light_sleep">Pažadins lengvo miego metu</string>
+    <string name="tile_light_sleep">Pažadins, kai miegas neramus</string>
     <string name="notification_good_night_title">Gero miego</string>
     <string name="notification_good_night_text">Laukiama, kol užmigsi</string>
     <string name="home_good_night">Labanakt</string>

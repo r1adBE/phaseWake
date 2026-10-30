@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Արթնացման պատուհան</string>
-    <string name="channel_window_description">Ցուցադրվում է, երբ Phase Wake-ը հետևում է թեթև քնին։</string>
+    <string name="channel_window_description">Ցուցադրվում է, երբ Phase Wake-ը սպասում է քեզ արթնացնելու հարմար պահի։</string>
     <string name="channel_alarm">Զարթուցիչ</string>
     <string name="channel_alarm_description">Արթնացնում է քեզ։</string>
-    <string name="notification_window_title">Հետևում է թեթև քնին</string>
+    <string name="notification_window_title">Սպասում է հարմար պահի</string>
     <string name="notification_window_text">Կարթնացնի ամենաուշը %1$s</string>
     <string name="notification_ring_title">Բարի լույս</string>
     <string name="ring_greeting">Բարի լույս</string>
@@ -33,7 +33,7 @@
     <string name="alarm_every_day">Ամեն օր</string>
     <string name="tile_label">Հաջորդ զարթուցիչ</string>
     <string name="tile_next">Հաջորդ զարթուցիչ</string>
-    <string name="tile_light_sleep">Արթնացնում է թեթև քնում</string>
+    <string name="tile_light_sleep">Արթնացնում է անհանգստանալիս</string>
     <string name="notification_good_night_title">Հանգիստ քուն</string>
     <string name="notification_good_night_text">Սպասում է, որ քնես</string>
     <string name="home_good_night">Բարի գիշեր</string>

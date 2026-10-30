@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">חלון התעוררות</string>
-    <string name="channel_window_description">מוצג בזמן ההמתנה של Phase Wake לשינה קלה.</string>
+    <string name="channel_window_description">מוצג בזמן ש-Phase Wake ממתין לרגע טוב להעיר אתכם.</string>
     <string name="channel_alarm">מעורר</string>
     <string name="channel_alarm_description">מעיר אתכם.</string>
-    <string name="notification_window_title">ממתינים לשינה קלה</string>
+    <string name="notification_window_title">ממתינים לרגע טוב</string>
     <string name="notification_window_text">יעיר אתכם עד %1$s לכל המאוחר</string>
     <string name="notification_ring_title">בוקר טוב</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">כל יום</string>
     <string name="tile_label">המעורר הבא</string>
     <string name="tile_next">המעורר הבא</string>
-    <string name="tile_light_sleep">מעיר בשינה קלה</string>
+    <string name="tile_light_sleep">מעיר כשהשינה לא שקטה</string>
     <string name="notification_good_night_title">שינה נעימה</string>
     <string name="notification_good_night_text">ממתין להירדמות</string>
     <string name="home_good_night">לילה טוב</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Ngayon</string>
     <string name="home_next_tomorrow">Bukas</string>
-    <string name="home_next_in">Gigisingin ka sa mababaw na tulog · sa loob ng %1$s</string>
+    <string name="home_next_in">Gigisingin ka sa sandaling hindi ka na mapakali · sa loob ng %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Gigisingin ka eksakto sa target na oras · sa loob ng %1$s</string>
     <string name="home_no_alarm_title">Gumising sa tamang sandali</string>
-    <string name="home_no_alarm_text">Magtakda ng oras at window. Gigisingin ka ng relo mo kapag mababaw ang tulog mo.</string>
+    <string name="home_no_alarm_text">Magtakda ng oras at window. Gigisingin ka ng relo mo sa loob nito sa sandaling hindi ka na mapakali.</string>
     <string name="home_add_alarm">Bagong alarm</string>
     <string name="home_last_night">Kagabi</string>
     <string name="home_alarms">Mga alarm mo</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Binabasa ang mga yugto ng tulog mula sa Health Connect pagkagising, para tingnan at pahusayin ang pag-detect.</string>
     <string name="health_connected">Nakakonekta</string>
     <string name="health_unavailable">Hindi available ang Health Connect sa teleponong ito.</string>
-    <string name="verdict_good">Health data: %1$s ✓</string>
-    <string name="verdict_deep">Health data: malalim na tulog</string>
-    <string name="stage_light">mababaw na tulog</string>
-    <string name="stage_rem">REM na tulog</string>
-    <string name="stage_awake">gising</string>
     <string name="editor_alert">Paano ka gigisingin</string>
     <string name="editor_alert_hint">Laging may kasamang vibration ang tunog. Tumutunog din ang mga alarm kahit naka-Huwag Istorbohin, naka-bedtime mode, o naka-silent ang telepono.</string>
     <string name="editor_alert_watch">Relo</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Presko</string>
     <string name="feeling_value">Pakiramdam: %1$s</string>
     <string name="feeling_rate">Pakiramdam %1$d sa 5: %2$s</string>
-    <string name="feeling_hint">Sa paglipas ng panahon, makikita mo kung nakakabuti sa iyo ang paggising sa mababaw na tulog.</string>
+    <string name="feeling_hint">Sa paglipas ng panahon, makikita mo kung nakakabuti sa iyo ang mas maagang paggising.</string>
     <string name="trends_title">Huling 7 araw</string>
     <string name="trends_not_enough">Lalabas ang mga trend pagkatapos ng ilang gabi.</string>
     <string name="trends_asleep">Ø %1$s na tulog</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (opsyonal)</string>
     <string name="onb_granted">Pinayagan</string>
     <string name="onb_alarm_title">Unang alarm</string>
-    <string name="onb_alarm_text">Anong oras mo gustong gising ka na sa pinakahuli? Gigisingin ka ng relo nang mas maaga sa loob ng window kung mababaw ang tulog mo.</string>
+    <string name="onb_alarm_text">Anong oras mo gustong gising ka na sa pinakahuli? Gigisingin ka ng relo sa window bago iyon, sa sandaling hindi ka na mapakali.</string>
     <string name="onb_alarm_create">Gumawa ng alarm</string>
     <string name="onb_alarm_done">Nagawa ang alarm: %1$s</string>
     <string name="onb_done_title">Handa na</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minuto</item>
     </plurals>
     <string name="nap_start">Simulan ang power nap</string>
-    <string name="nap_hint">Gigisingin ka pagkatapos ng oras na ito, at sa mga huling minuto ay kapag mababaw na ang tulog mo. Hindi binibilang bilang gabi.</string>
+    <string name="nap_hint">Gigisingin ka pagkatapos ng oras na ito, at sa mga huling minuto ay mas maaga kung hindi ka na mapakali. Hindi binibilang bilang gabi.</string>
     <string name="nap_running">Power nap hanggang %1$s</string>
     <string name="nap_stop">Tapusin ang power nap</string>
     <string name="widget_name">Susunod na alarm</string>

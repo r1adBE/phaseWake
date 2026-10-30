@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Bugun</string>
     <string name="home_next_tomorrow">Ertaga</string>
-    <string name="home_next_in">Yengil uyquda uygʻotadi · %1$s dan keyin</string>
+    <string name="home_next_in">Bezovtalanishing bilan uygʻotadi · %1$s dan keyin</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Aynan belgilangan vaqtda uygʻotadi · %1$s dan keyin</string>
     <string name="home_no_alarm_title">Ayni vaqtida uygʻon</string>
-    <string name="home_no_alarm_text">Vaqt va oraliqni belgila. Uyquing yengil boʻlganda soating seni uygʻotadi.</string>
+    <string name="home_no_alarm_text">Vaqt va oraliqni belgila. Bezovtalana boshlashing bilan soating seni shu oraliq ichida uygʻotadi.</string>
     <string name="home_add_alarm">Yangi budilnik</string>
     <string name="home_last_night">Oʻtgan tun</string>
     <string name="home_alarms">Budilniklaring</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Uygʻongandan keyin Health Connectʼdan uyqu bosqichlarini oʻqiydi – aniqlashni tekshirish va yaxshilash uchun.</string>
     <string name="health_connected">Ulangan</string>
     <string name="health_unavailable">Bu telefonda Health Connect mavjud emas.</string>
-    <string name="verdict_good">Sogʻliq maʼlumotlari: %1$s ✓</string>
-    <string name="verdict_deep">Sogʻliq maʼlumotlari: chuqur uyqu</string>
-    <string name="stage_light">yengil uyqu</string>
-    <string name="stage_rem">REM uyqu</string>
-    <string name="stage_awake">uygʻoq</string>
     <string name="editor_alert">Qanday uygʻotish</string>
     <string name="editor_alert_hint">Tovush doim tebranish bilan birga. Budilniklar «Bezovta qilinmasin», uyqu rejimi va ovozsiz telefonda ham jiringlaydi.</string>
     <string name="editor_alert_watch">Soat</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Tetik</string>
     <string name="feeling_value">Kayfiyat: %1$s</string>
     <string name="feeling_rate">Kayfiyat 5 dan %1$d: %2$s</string>
-    <string name="feeling_hint">Vaqt oʻtib, yengil uyquda uygʻonish senga foyda qilyaptimi – koʻrasan.</string>
+    <string name="feeling_hint">Vaqt oʻtib, ertaroq uygʻotilish senga foyda qilyaptimi – koʻrasan.</string>
     <string name="trends_title">Oxirgi 7 kun</string>
     <string name="trends_not_enough">Tendensiyalar bir necha tundan keyin chiqadi.</string>
     <string name="trends_asleep">Ø %1$s uyqu</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (ixtiyoriy)</string>
     <string name="onb_granted">Ruxsat berilgan</string>
     <string name="onb_alarm_title">Birinchi budilnik</string>
-    <string name="onb_alarm_text">Eng kechi soat nechada uygʻoq boʻlishni xohlaysan? Uyquing yengil boʻlsa, soating seni oraliq ichida ertaroq uygʻotadi.</string>
+    <string name="onb_alarm_text">Eng kechi soat nechada uygʻoq boʻlishni xohlaysan? Bezovtalana boshlashing bilan soating seni undan oldingi oraliq ichida uygʻotadi.</string>
     <string name="onb_alarm_create">Budilnik yaratish</string>
     <string name="onb_alarm_done">Budilnik yaratildi: %1$s</string>
     <string name="onb_done_title">Tayyor</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d daqiqa</item>
     </plurals>
     <string name="nap_start">Qisqa uyquni boshlash</string>
-    <string name="nap_hint">Shu vaqtdan keyin uygʻotadi, oxirgi daqiqalarda esa yengil uyquda. Tun sifatida hisoblanmaydi.</string>
+    <string name="nap_hint">Shu vaqtdan keyin uygʻotadi, oxirgi daqiqalarda esa bezovtalansang, ertaroq. Tun sifatida hisoblanmaydi.</string>
     <string name="nap_running">Qisqa uyqu %1$s gacha</string>
     <string name="nap_stop">Qisqa uyquni tugatish</string>
     <string name="widget_name">Keyingi budilnik</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Finestra de despertar</string>
-    <string name="channel_window_description">Es mostra mentre Phase Wake espera el son lleuger.</string>
+    <string name="channel_window_description">Es mostra mentre Phase Wake espera un bon moment per despertar-te.</string>
     <string name="channel_alarm">Alarma</string>
     <string name="channel_alarm_description">Et desperta.</string>
-    <string name="notification_window_title">Esperant el son lleuger</string>
+    <string name="notification_window_title">Esperant un bon moment</string>
     <string name="notification_window_text">Et desperta com a tard a les %1$s</string>
     <string name="notification_ring_title">Bon dia</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Cada dia</string>
     <string name="tile_label">Propera alarma</string>
     <string name="tile_next">Propera alarma</string>
-    <string name="tile_light_sleep">Et desperta en son lleuger</string>
+    <string name="tile_light_sleep">Et desperta si estàs inquiet</string>
     <string name="notification_good_night_title">Que descansis</string>
     <string name="notification_good_night_text">Esperant que t’adormis</string>
     <string name="home_good_night">Bona nit</string>

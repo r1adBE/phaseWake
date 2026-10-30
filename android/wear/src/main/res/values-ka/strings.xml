@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">გაღვიძების ფანჯარა</string>
-    <string name="channel_window_description">ჩანს, როცა Phase Wake მსუბუქ ძილს ადევნებს თვალს.</string>
+    <string name="channel_window_description">ჩანს, როცა Phase Wake გაღვიძებისთვის კარგ მომენტს ელოდება.</string>
     <string name="channel_alarm">მაღვიძარა</string>
     <string name="channel_alarm_description">გაღვიძებს.</string>
-    <string name="notification_window_title">მსუბუქი ძილის მოლოდინში</string>
+    <string name="notification_window_title">კარგი მომენტის მოლოდინში</string>
     <string name="notification_window_text">გაგაღვიძებს არაუგვიანეს %1$s</string>
     <string name="notification_ring_title">დილა მშვიდობისა</string>
     <string name="ring_greeting">დილა მშვიდობისა</string>
@@ -33,7 +33,7 @@
     <string name="alarm_every_day">ყოველდღე</string>
     <string name="tile_label">შემდეგი მაღვიძარა</string>
     <string name="tile_next">შემდეგი მაღვიძარა</string>
-    <string name="tile_light_sleep">გაღვიძება მსუბუქ ძილში</string>
+    <string name="tile_light_sleep">გაღვიძება მოუსვენრობისას</string>
     <string name="notification_good_night_title">ტკბილად გეძინოს</string>
     <string name="notification_good_night_text">ელოდება შენს ჩაძინებას</string>
     <string name="home_good_night">ძილი ნებისა</string>

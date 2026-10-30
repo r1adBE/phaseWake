@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Okno bujenja</string>
-    <string name="channel_window_description">Prikazano, medtem ko Phase Wake čaka na lahek spanec.</string>
+    <string name="channel_window_description">Prikazano, medtem ko Phase Wake čaka na pravi trenutek za bujenje.</string>
     <string name="channel_alarm">Budilka</string>
     <string name="channel_alarm_description">Zbudi te.</string>
-    <string name="notification_window_title">Čaka na lahek spanec</string>
+    <string name="notification_window_title">Čaka na pravi trenutek</string>
     <string name="notification_window_text">Zbudi te najpozneje ob %1$s</string>
     <string name="notification_ring_title">Dobro jutro</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Vsak dan</string>
     <string name="tile_label">Naslednja budilka</string>
     <string name="tile_next">Naslednja budilka</string>
-    <string name="tile_light_sleep">Zbudi v lahkem spancu</string>
+    <string name="tile_light_sleep">Zbudi ob nemirnem spancu</string>
     <string name="notification_good_night_title">Lepo spi</string>
     <string name="notification_good_night_text">Čaka, da zaspiš</string>
     <string name="home_good_night">Lahko noč</string>

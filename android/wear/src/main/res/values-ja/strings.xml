@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">起床ウィンドウ</string>
-    <string name="channel_window_description">Phase Wakeが浅い眠りを見守っている間に表示されます。</string>
+    <string name="channel_window_description">Phase Wakeが起こすのに良いタイミングを待っている間に表示されます。</string>
     <string name="channel_alarm">アラーム</string>
     <string name="channel_alarm_description">あなたを起こします。</string>
-    <string name="notification_window_title">浅い眠りを見守り中</string>
+    <string name="notification_window_title">良いタイミングを待っています</string>
     <string name="notification_window_text">遅くとも%1$sまでに起こします</string>
     <string name="notification_ring_title">おはようございます</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">毎日</string>
     <string name="tile_label">次のアラーム</string>
     <string name="tile_next">次のアラーム</string>
-    <string name="tile_light_sleep">浅い眠りで起こします</string>
+    <string name="tile_light_sleep">落ち着かなくなったら起こします</string>
     <string name="notification_good_night_title">おやすみなさい</string>
     <string name="notification_good_night_text">眠りにつくのを待っています</string>
     <string name="home_good_night">おやすみ</string>

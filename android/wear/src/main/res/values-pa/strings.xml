@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">ਜਗਾਉਣ ਦੀ ਮਿਆਦ</string>
-    <string name="channel_window_description">ਜਦੋਂ Phase Wake ਹਲਕੀ ਨੀਂਦ ’ਤੇ ਨਜ਼ਰ ਰੱਖਦਾ ਹੈ, ਉਦੋਂ ਦਿਖਦਾ ਹੈ।</string>
+    <string name="channel_window_description">ਜਦੋਂ Phase Wake ਜਗਾਉਣ ਲਈ ਸਹੀ ਪਲ ਦੀ ਉਡੀਕ ਕਰਦਾ ਹੈ, ਉਦੋਂ ਦਿਖਦਾ ਹੈ।</string>
     <string name="channel_alarm">ਅਲਾਰਮ</string>
     <string name="channel_alarm_description">ਤੁਹਾਨੂੰ ਜਗਾਉਂਦਾ ਹੈ।</string>
-    <string name="notification_window_title">ਹਲਕੀ ਨੀਂਦ ’ਤੇ ਨਜ਼ਰ</string>
+    <string name="notification_window_title">ਸਹੀ ਪਲ ਦੀ ਉਡੀਕ</string>
     <string name="notification_window_text">ਵੱਧ ਤੋਂ ਵੱਧ %1$s ਤੱਕ ਜਗਾਏਗਾ</string>
     <string name="notification_ring_title">ਸ਼ੁਭ ਸਵੇਰ</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">ਹਰ ਰੋਜ਼</string>
     <string name="tile_label">ਅਗਲਾ ਅਲਾਰਮ</string>
     <string name="tile_next">ਅਗਲਾ ਅਲਾਰਮ</string>
-    <string name="tile_light_sleep">ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਉਂਦਾ ਹੈ</string>
+    <string name="tile_light_sleep">ਬੇਚੈਨੀ ’ਤੇ ਜਗਾਉਂਦਾ ਹੈ</string>
     <string name="notification_good_night_title">ਚੰਗੀ ਨੀਂਦ ਸੌਂਵੋ</string>
     <string name="notification_good_night_text">ਤੁਹਾਡੇ ਸੌਂ ਜਾਣ ਦੀ ਉਡੀਕ ਹੈ</string>
     <string name="home_good_night">ਸ਼ੁਭ ਰਾਤ</string>

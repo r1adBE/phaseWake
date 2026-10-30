@@ -19,10 +19,10 @@
 
     <string name="home_next_today">היום</string>
     <string name="home_next_tomorrow">מחר</string>
-    <string name="home_next_in">מעיר בשינה קלה · בעוד %1$s</string>
+    <string name="home_next_in">מעיר ברגע שהשינה נעשית חסרת מנוחה · בעוד %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">מעיר בדיוק בשעת היעד · בעוד %1$s</string>
     <string name="home_no_alarm_title">להתעורר ברגע הנכון</string>
-    <string name="home_no_alarm_text">קבעו שעה וחלון זמן. השעון יעיר אתכם כשהשינה קלה.</string>
+    <string name="home_no_alarm_text">קבעו שעה וחלון זמן. השעון יעיר אתכם בתוכו ברגע שהשינה נעשית חסרת מנוחה.</string>
     <string name="home_add_alarm">מעורר חדש</string>
     <string name="home_last_night">הלילה האחרון</string>
     <string name="home_alarms">המעוררים שלכם</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
     <string name="health_connected">מחובר</string>
     <string name="health_unavailable">Health Connect אינו זמין בטלפון הזה.</string>
-    <string name="verdict_good">נתוני בריאות: %1$s ✓</string>
-    <string name="verdict_deep">נתוני בריאות: שינה עמוקה</string>
-    <string name="stage_light">שינה קלה</string>
-    <string name="stage_rem">שינת REM</string>
-    <string name="stage_awake">ערות</string>
     <string name="editor_alert">איך להעיר אתכם</string>
     <string name="editor_alert_hint">צליל תמיד מגיע עם רטט. מעוררים מצלצלים גם במצב ‘נא לא להפריע’, במצב שעת שינה ובטלפון מושתק.</string>
     <string name="editor_alert_watch">שעון</string>
@@ -197,7 +192,7 @@
     <string name="feeling_5">רעננות</string>
     <string name="feeling_value">תחושה: %1$s</string>
     <string name="feeling_rate">תחושה %1$d מתוך 5: %2$s</string>
-    <string name="feeling_hint">עם הזמן תראו אם התעוררות בשינה קלה עושה לכם טוב.</string>
+    <string name="feeling_hint">עם הזמן תראו אם השכמה מוקדמת יותר עושה לכם טוב.</string>
     <string name="trends_title">7 הימים האחרונים</string>
     <string name="trends_not_enough">מגמות מופיעות אחרי כמה לילות.</string>
     <string name="trends_asleep">Ø שינה %1$s</string>
@@ -412,7 +407,7 @@
     <string name="onb_optional">%1$s (רשות)</string>
     <string name="onb_granted">מותר</string>
     <string name="onb_alarm_title">השכמה ראשונה</string>
-    <string name="onb_alarm_text">עד מתי לכל המאוחר אתם רוצים להיות ערים? השעון יעיר אתכם מוקדם יותר בתוך החלון אם השינה קלה.</string>
+    <string name="onb_alarm_text">עד מתי לכל המאוחר אתם רוצים להיות ערים? השעון יעיר אתכם בחלון שלפני כן, ברגע שהשינה נעשית חסרת מנוחה.</string>
     <string name="onb_alarm_create">יצירת השכמה</string>
     <string name="onb_alarm_done">ההשכמה נוצרה: %1$s</string>
     <string name="onb_done_title">מוכן</string>
@@ -444,7 +439,7 @@
         <item quantity="other">%1$d דקות</item>
     </plurals>
     <string name="nap_start">התחלת תנומה</string>
-    <string name="nap_hint">מעיר אתכם אחרי הזמן הזה, בדקות האחרונות כבר בשינה קלה. לא נחשב כלילה.</string>
+    <string name="nap_hint">מעיר אתכם אחרי הזמן הזה, בדקות האחרונות כבר אם השינה נעשית חסרת מנוחה. לא נחשב כלילה.</string>
     <string name="nap_running">תנומה עד %1$s</string>
     <string name="nap_stop">סיום התנומה</string>
     <string name="widget_name">ההשכמה הבאה</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">ዛሬ</string>
     <string name="home_next_tomorrow">ነገ</string>
-    <string name="home_next_in">በቀላል እንቅልፍ ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
+    <string name="home_next_in">እረፍት ማጣት ሲጀምሩ ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">በትክክል በታለመው ሰዓት ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
     <string name="home_no_alarm_title">በትክክለኛው ቅጽበት መንቃት</string>
-    <string name="home_no_alarm_text">ሰዓትና የጊዜ ክልል ያዘጋጁ። ቀላል እንቅልፍ ላይ ሲሆኑ ሰዓትዎ ይቀሰቅስዎታል።</string>
+    <string name="home_no_alarm_text">ሰዓትና የጊዜ ክልል ያዘጋጁ። እረፍት ማጣት ሲጀምሩ ሰዓትዎ በክልሉ ውስጥ ይቀሰቅስዎታል።</string>
     <string name="home_add_alarm">አዲስ ማንቂያ</string>
     <string name="home_last_night">ትናንት ማታ</string>
     <string name="home_alarms">የእርስዎ ማንቂያዎች</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">ማወቂያውን ለማረጋገጥና ለማሻሻል ከነቁ በኋላ የእንቅልፍ ደረጃዎችን ከHealth Connect ያነባል።</string>
     <string name="health_connected">ተገናኝቷል</string>
     <string name="health_unavailable">Health Connect በዚህ ስልክ ላይ አይገኝም።</string>
-    <string name="verdict_good">የጤና ውሂብ: %1$s ✓</string>
-    <string name="verdict_deep">የጤና ውሂብ: ጥልቅ እንቅልፍ</string>
-    <string name="stage_light">ቀላል እንቅልፍ</string>
-    <string name="stage_rem">REM እንቅልፍ</string>
-    <string name="stage_awake">ነቅቷል</string>
     <string name="editor_alert">እንዴት እንቀስቅስዎ</string>
     <string name="editor_alert_hint">ድምፅ ሁልጊዜ ከንዝረት ጋር ይመጣል። ማንቂያዎች በአትረብሽ፣ በመኝታ ሁነታ እና ጸጥ ባለ ስልክም ይደውላሉ።</string>
     <string name="editor_alert_watch">ሰዓት</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ታድሻለሁ</string>
     <string name="feeling_value">ስሜት: %1$s</string>
     <string name="feeling_rate">ስሜት %1$d ከ5: %2$s</string>
-    <string name="feeling_hint">ከጊዜ በኋላ በቀላል እንቅልፍ መንቃት ይጠቅምዎት እንደሆነ ያያሉ።</string>
+    <string name="feeling_hint">ከጊዜ በኋላ ቀደም ብሎ መቀስቀስ ይጠቅምዎት እንደሆነ ያያሉ።</string>
     <string name="trends_title">ያለፉት 7 ቀናት</string>
     <string name="trends_not_enough">አዝማሚያዎች ከጥቂት ሌሊቶች በኋላ ይታያሉ።</string>
     <string name="trends_asleep">Ø %1$s እንቅልፍ</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (አማራጭ)</string>
     <string name="onb_granted">ተፈቅዷል</string>
     <string name="onb_alarm_title">የመጀመሪያ ማንቂያ</string>
-    <string name="onb_alarm_text">ቢዘገይ መቼ መንቃት ይፈልጋሉ? ቀላል እንቅልፍ ላይ ከሆኑ ሰዓትዎ በክልሉ ውስጥ ቀደም ብሎ ይቀሰቅስዎታል።</string>
+    <string name="onb_alarm_text">ቢዘገይ መቼ መንቃት ይፈልጋሉ? እረፍት ማጣት ሲጀምሩ ሰዓትዎ ከዚያ በፊት ባለው ክልል ውስጥ ይቀሰቅስዎታል።</string>
     <string name="onb_alarm_create">ማንቂያ ፍጠር</string>
     <string name="onb_alarm_done">ማንቂያ ተፈጥሯል: %1$s</string>
     <string name="onb_done_title">ሁሉም ዝግጁ ነው</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d ደቂቃዎች</item>
     </plurals>
     <string name="nap_start">አጭር እንቅልፍ ጀምር</string>
-    <string name="nap_hint">ከዚህ ጊዜ በኋላ ይቀሰቅስዎታል፣ በመጨረሻዎቹ ደቂቃዎች ውስጥ ቀላል እንቅልፍ ላይ ከሆኑ ቀደም ብሎ። እንደ ሌሊት አይቆጠርም።</string>
+    <string name="nap_hint">ከዚህ ጊዜ በኋላ ይቀሰቅስዎታል፣ በመጨረሻዎቹ ደቂቃዎች ውስጥ እረፍት ማጣት ከጀመሩ ቀደም ብሎ። እንደ ሌሊት አይቆጠርም።</string>
     <string name="nap_running">አጭር እንቅልፍ እስከ %1$s</string>
     <string name="nap_stop">አጭር እንቅልፍ ጨርስ</string>
     <string name="widget_name">ቀጣይ ማንቂያ</string>

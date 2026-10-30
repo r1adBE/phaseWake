@@ -17,10 +17,10 @@
 
     <string name="home_next_today">Hari ini</string>
     <string name="home_next_tomorrow">Esok</string>
-    <string name="home_next_in">Bangunkan awak dalam tidur ringan · dalam %1$s</string>
+    <string name="home_next_in">Bangunkan awak sebaik sahaja awak mula gelisah · dalam %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Bangunkan awak tepat pada masa sasaran · dalam %1$s</string>
     <string name="home_no_alarm_title">Bangun pada saat yang tepat</string>
-    <string name="home_no_alarm_text">Tetapkan masa dan tetingkap. Jam tangan akan bangunkan awak ketika tidur awak ringan.</string>
+    <string name="home_no_alarm_text">Tetapkan masa dan tetingkap. Jam tangan akan bangunkan awak di dalamnya sebaik sahaja awak mula gelisah.</string>
     <string name="home_add_alarm">Penggera baharu</string>
     <string name="home_last_night">Semalam</string>
     <string name="home_alarms">Penggera awak</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">Membaca peringkat tidur daripada Health Connect selepas bangun, untuk menyemak dan menambah baik pengesanan.</string>
     <string name="health_connected">Disambungkan</string>
     <string name="health_unavailable">Health Connect tidak tersedia pada telefon ini.</string>
-    <string name="verdict_good">Data kesihatan: %1$s ✓</string>
-    <string name="verdict_deep">Data kesihatan: tidur nyenyak</string>
-    <string name="stage_light">tidur ringan</string>
-    <string name="stage_rem">tidur REM</string>
-    <string name="stage_awake">terjaga</string>
     <string name="editor_alert">Cara membangunkan awak</string>
     <string name="editor_alert_hint">Bunyi sentiasa disertai getaran. Penggera juga berbunyi semasa Jangan Ganggu, mod waktu tidur dan telefon senyap.</string>
     <string name="editor_alert_watch">Jam tangan</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">Segar</string>
     <string name="feeling_value">Perasaan: %1$s</string>
     <string name="feeling_rate">Perasaan %1$d daripada 5: %2$s</string>
-    <string name="feeling_hint">Lama-kelamaan awak akan nampak sama ada bangun dalam tidur ringan memberi manfaat.</string>
+    <string name="feeling_hint">Lama-kelamaan awak akan nampak sama ada dikejutkan lebih awal memberi manfaat.</string>
     <string name="trends_title">7 hari lepas</string>
     <string name="trends_not_enough">Trend muncul selepas beberapa malam.</string>
     <string name="trends_asleep">Ø tidur %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (pilihan)</string>
     <string name="onb_granted">Dibenarkan</string>
     <string name="onb_alarm_title">Penggera pertama</string>
-    <string name="onb_alarm_text">Selewat-lewatnya bila awak mahu bangun? Jika tidur ringan, jam tangan mengejutkan awak lebih awal dalam tetingkap.</string>
+    <string name="onb_alarm_text">Selewat-lewatnya bila awak mahu bangun? Jam tangan mengejutkan awak dalam tetingkap sebelumnya sebaik sahaja awak mula gelisah.</string>
     <string name="onb_alarm_create">Cipta penggera</string>
     <string name="onb_alarm_done">Penggera dicipta: %1$s</string>
     <string name="onb_done_title">Siap</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d minit</item>
     </plurals>
     <string name="nap_start">Mula tidur sekejap</string>
-    <string name="nap_hint">Mengejutkan awak selepas masa ini, pada minit-minit terakhir apabila tidur ringan. Tidak dikira sebagai malam.</string>
+    <string name="nap_hint">Mengejutkan awak selepas masa ini, pada minit-minit terakhir lebih awal jika awak mula gelisah. Tidak dikira sebagai malam.</string>
     <string name="nap_running">Tidur sekejap hingga %1$s</string>
     <string name="nap_stop">Tamatkan tidur sekejap</string>
     <string name="widget_name">Penggera seterusnya</string>

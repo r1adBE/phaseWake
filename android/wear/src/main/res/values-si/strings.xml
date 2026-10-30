@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">අවදි පරාසය</string>
-    <string name="channel_window_description">Phase Wake සැහැල්ලු නින්ද සොයන අතරතුර පෙන්වයි.</string>
+    <string name="channel_window_description">Phase Wake අවදි කිරීමට හොඳ මොහොතක් බලා සිටින අතරතුර පෙන්වයි.</string>
     <string name="channel_alarm">එලාමය</string>
     <string name="channel_alarm_description">ඔබව අවදි කරයි.</string>
-    <string name="notification_window_title">සැහැල්ලු නින්ද සොයමින්</string>
+    <string name="notification_window_title">හොඳ මොහොතක් බලාපොරොත්තුවෙන්</string>
     <string name="notification_window_text">උපරිම %1$s වන විට අවදි කරයි</string>
     <string name="notification_ring_title">සුබ උදෑසනක්</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">සෑම දිනකම</string>
     <string name="tile_label">ඊළඟ එලාමය</string>
     <string name="tile_next">ඊළඟ එලාමය</string>
-    <string name="tile_light_sleep">සැහැල්ලු නින්දේදී අවදි කරයි</string>
+    <string name="tile_light_sleep">නොසන්සුන් වූ විට අවදි කරයි</string>
     <string name="notification_good_night_title">හොඳින් නිදාගන්න</string>
     <string name="notification_good_night_text">ඔබ නින්දට යන තුරු රැඳී සිටී</string>
     <string name="home_good_night">සුබ රාත්‍රියක්</string>

@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Сэрээх хугацаа</string>
-    <string name="channel_window_description">Phase Wake хөнгөн нойрыг хүлээж байх үед харагдана.</string>
+    <string name="channel_window_description">Phase Wake сэрээх тохиромжтой мөчийг хүлээж байх үед харагдана.</string>
     <string name="channel_alarm">Сэрүүлэг</string>
     <string name="channel_alarm_description">Чамайг сэрээнэ.</string>
-    <string name="notification_window_title">Хөнгөн нойрыг хүлээж байна</string>
+    <string name="notification_window_title">Тохиромжтой мөчийг хүлээж байна</string>
     <string name="notification_window_text">Хамгийн оройдоо %1$s-д сэрээнэ</string>
     <string name="notification_ring_title">Өглөөний мэнд</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Өдөр бүр</string>
     <string name="tile_label">Дараагийн сэрүүлэг</string>
     <string name="tile_next">Дараагийн сэрүүлэг</string>
-    <string name="tile_light_sleep">Хөнгөн нойронд сэрээнэ</string>
+    <string name="tile_light_sleep">Тайван бус болоход сэрээнэ</string>
     <string name="notification_good_night_title">Сайхан унтаарай</string>
     <string name="notification_good_night_text">Чамайг унтахыг хүлээж байна</string>
     <string name="home_good_night">Сайхан амраарай</string>

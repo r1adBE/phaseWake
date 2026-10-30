@@ -20,10 +20,10 @@
 
     <string name="home_next_today">आज</string>
     <string name="home_next_tomorrow">भोलि</string>
-    <string name="home_next_in">हल्का निद्रामा ब्युँझाउँछ · %1$s पछि</string>
+    <string name="home_next_in">छटपटिन थाल्नेबित्तिकै ब्युँझाउँछ · %1$s पछि</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ठ्याक्कै लक्षित समयमा ब्युँझाउँछ · %1$s पछि</string>
     <string name="home_no_alarm_title">ठीक समयमा ब्युँझ</string>
-    <string name="home_no_alarm_text">समय र अवधि सेट गर। निद्रा हल्का हुँदा तिम्रो घडीले तिमीलाई ब्युँझाउँछ।</string>
+    <string name="home_no_alarm_text">समय र अवधि सेट गर। तिमी छटपटिन थाल्नेबित्तिकै तिम्रो घडीले तिमीलाई त्यही अवधिभित्र ब्युँझाउँछ।</string>
     <string name="home_add_alarm">नयाँ अलार्म</string>
     <string name="home_last_night">हिजो राति</string>
     <string name="home_alarms">तिम्रा अलार्म</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">पहिचान जाँच्न र सुधार्न, ब्युँझेपछि Health Connect बाट निद्राका चरण पढ्छ।</string>
     <string name="health_connected">जोडिएको</string>
     <string name="health_unavailable">यो फोनमा Health Connect उपलब्ध छैन।</string>
-    <string name="verdict_good">स्वास्थ्य डेटा: %1$s ✓</string>
-    <string name="verdict_deep">स्वास्थ्य डेटा: गहिरो निद्रा</string>
-    <string name="stage_light">हल्का निद्रा</string>
-    <string name="stage_rem">REM निद्रा</string>
-    <string name="stage_awake">ब्युँझेको</string>
     <string name="editor_alert">कसरी ब्युँझाउने</string>
     <string name="editor_alert_hint">आवाजसँग सधैँ कम्पन हुन्छ। “बाधा नपुर्‍याउनुहोस्”, सुत्ने मोड र साइलेन्ट फोनमा पनि अलार्म बज्छ।</string>
     <string name="editor_alert_watch">घडी</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ताजा</string>
     <string name="feeling_value">अनुभूति: %1$s</string>
     <string name="feeling_rate">अनुभूति ५ मध्ये %1$d: %2$s</string>
-    <string name="feeling_hint">समयसँगै, हल्का निद्रामा ब्युँझँदा तिमीलाई फाइदा हुन्छ कि हुँदैन भनेर देख्नेछौ।</string>
+    <string name="feeling_hint">समयसँगै, चाँडै ब्युँझाइँदा तिमीलाई फाइदा हुन्छ कि हुँदैन भनेर देख्नेछौ।</string>
     <string name="trends_title">पछिल्ला ७ दिन</string>
     <string name="trends_not_enough">केही रातपछि प्रवृत्ति देखिन्छ।</string>
     <string name="trends_asleep">Ø %1$s निद्रा</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (ऐच्छिक)</string>
     <string name="onb_granted">अनुमति दिइयो</string>
     <string name="onb_alarm_title">पहिलो अलार्म</string>
-    <string name="onb_alarm_text">बढीमा कति बजे ब्युँझिसक्न चाहन्छौ? निद्रा हल्का भए घडीले अवधिभित्र अलि चाँडै ब्युँझाउँछ।</string>
+    <string name="onb_alarm_text">बढीमा कति बजे ब्युँझिसक्न चाहन्छौ? तिमी छटपटिन थाल्नेबित्तिकै घडीले त्योभन्दा अघिको अवधिभित्र ब्युँझाउँछ।</string>
     <string name="onb_alarm_create">अलार्म बनाऊ</string>
     <string name="onb_alarm_done">अलार्म बन्यो: %1$s</string>
     <string name="onb_done_title">सबै तयार</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d मिनेट</item>
     </plurals>
     <string name="nap_start">छोटो निद्रा सुरु गर</string>
-    <string name="nap_hint">यति समयपछि ब्युँझाउँछ, अन्तिम मिनेटहरूमा हल्का निद्रामा भए पहिल्यै। रातको रूपमा गनिँदैन।</string>
+    <string name="nap_hint">यति समयपछि ब्युँझाउँछ, अन्तिम मिनेटहरूमा छटपटिन थाले पहिल्यै। रातको रूपमा गनिँदैन।</string>
     <string name="nap_running">%1$s सम्म छोटो निद्रा</string>
     <string name="nap_stop">छोटो निद्रा अन्त्य गर</string>
     <string name="widget_name">अर्को अलार्म</string>

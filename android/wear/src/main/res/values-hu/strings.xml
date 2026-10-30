@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Ébresztési ablak</string>
-    <string name="channel_window_description">Addig látszik, amíg a Phase Wake a könnyű alvást figyeli.</string>
+    <string name="channel_window_description">Addig látszik, amíg a Phase Wake jó pillanatra vár az ébresztéshez.</string>
     <string name="channel_alarm">Ébresztő</string>
     <string name="channel_alarm_description">Felébreszt.</string>
-    <string name="notification_window_title">Könnyű alvást figyel</string>
+    <string name="notification_window_title">Jó pillanatra vár</string>
     <string name="notification_window_text">Ébresztés legkésőbb: %1$s</string>
     <string name="notification_ring_title">Jó reggelt</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Naponta</string>
     <string name="tile_label">Következő ébresztő</string>
     <string name="tile_next">Következő ébresztő</string>
-    <string name="tile_light_sleep">Könnyű alvásban ébreszt</string>
+    <string name="tile_light_sleep">Ébreszt, ha nyugtalan vagy</string>
     <string name="notification_good_night_title">Aludj jól</string>
     <string name="notification_good_night_text">Várja, hogy elaludj</string>
     <string name="home_good_night">Jó éjszakát</string>

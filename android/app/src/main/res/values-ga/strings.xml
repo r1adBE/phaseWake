@@ -23,10 +23,10 @@
 
     <string name="home_next_today">Inniu</string>
     <string name="home_next_tomorrow">Amárach</string>
-    <string name="home_next_in">Dúiseoidh sé thú i gcodladh éadrom · i %1$s</string>
+    <string name="home_next_in">Dúiseoidh sé thú chomh luath is a éiríonn tú corrthónach · i %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Dúiseoidh sé thú díreach ag an spriocam · i %1$s</string>
     <string name="home_no_alarm_title">Dúisigh ag an nóiméad ceart</string>
-    <string name="home_no_alarm_text">Socraigh am agus fuinneog. Dúiseoidh an t-uaireadóir thú nuair atá tú i gcodladh éadrom.</string>
+    <string name="home_no_alarm_text">Socraigh am agus fuinneog. Dúiseoidh an t-uaireadóir thú laistigh di chomh luath is a éiríonn tú corrthónach.</string>
     <string name="home_add_alarm">Aláram nua</string>
     <string name="home_last_night">Aréir</string>
     <string name="home_alarms">Do chuid aláram</string>
@@ -110,11 +110,6 @@
     <string name="health_connect_hint">Léann sé céimeanna codlata ó Health Connect tar éis duit dúiseacht, chun an brath a sheiceáil agus a fheabhsú.</string>
     <string name="health_connected">Ceangailte</string>
     <string name="health_unavailable">Níl Health Connect ar fáil ar an bhfón seo.</string>
-    <string name="verdict_good">Sonraí sláinte: %1$s ✓</string>
-    <string name="verdict_deep">Sonraí sláinte: codladh trom</string>
-    <string name="stage_light">codladh éadrom</string>
-    <string name="stage_rem">codladh REM</string>
-    <string name="stage_awake">i do dhúiseacht</string>
     <string name="editor_alert">Conas thú a dhúiseacht</string>
     <string name="editor_alert_hint">Bíonn creathadh i gcónaí leis an bhfuaim. Buaileann aláraim freisin le “Ná Cuir Isteach Orm”, mód am codlata agus fón ciúin.</string>
     <string name="editor_alert_watch">Uaireadóir</string>
@@ -205,7 +200,7 @@
     <string name="feeling_5">Athnuaite</string>
     <string name="feeling_value">Mothú: %1$s</string>
     <string name="feeling_rate">Mothú %1$d as 5: %2$s</string>
-    <string name="feeling_hint">Le himeacht ama feicfidh tú an ndéanann dúiseacht i gcodladh éadrom maitheas duit.</string>
+    <string name="feeling_hint">Le himeacht ama feicfidh tú an ndéanann dúiseacht níos luaithe maitheas duit.</string>
     <string name="trends_title">Na 7 lá deireanacha</string>
     <string name="trends_not_enough">Taispeántar treochtaí tar éis cúpla oíche.</string>
     <string name="trends_asleep">Ø %1$s codlata</string>
@@ -439,7 +434,7 @@
     <string name="onb_optional">%1$s (roghnach)</string>
     <string name="onb_granted">Ceadaithe</string>
     <string name="onb_alarm_title">An chéad aláram</string>
-    <string name="onb_alarm_text">Cén t-am is déanaí ar mhaith leat a bheith i do dhúiseacht? Dúiseoidh d’uaireadóir thú níos luaithe laistigh den fhuinneog má tá tú i gcodladh éadrom.</string>
+    <string name="onb_alarm_text">Cén t-am is déanaí ar mhaith leat a bheith i do dhúiseacht? Dúiseoidh d’uaireadóir thú san fhuinneog roimhe sin chomh luath is a éiríonn tú corrthónach.</string>
     <string name="onb_alarm_create">Cruthaigh aláram</string>
     <string name="onb_alarm_done">Aláram cruthaithe: %1$s</string>
     <string name="onb_done_title">Gach rud réidh</string>
@@ -473,7 +468,7 @@
         <item quantity="other">%1$d nóiméad</item>
     </plurals>
     <string name="nap_start">Tosaigh néal cumhachta</string>
-    <string name="nap_hint">Dúiseoidh sé thú tar éis an ama seo, sna nóiméid dheireanacha i gcodladh éadrom cheana. Ní áirítear é mar oíche.</string>
+    <string name="nap_hint">Dúiseoidh sé thú tar éis an ama seo, sna nóiméid dheireanacha cheana má éiríonn tú corrthónach. Ní áirítear é mar oíche.</string>
     <string name="nap_running">Néal cumhachta go dtí %1$s</string>
     <string name="nap_stop">Críochnaigh an néal cumhachta</string>
     <string name="widget_name">An chéad aláram eile</string>

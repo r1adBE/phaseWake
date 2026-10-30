@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Okno buzení</string>
-    <string name="channel_window_description">Zobrazeno, zatímco Phase Wake hlídá lehký spánek.</string>
+    <string name="channel_window_description">Zobrazeno, zatímco Phase Wake čeká na vhodnou chvíli k buzení.</string>
     <string name="channel_alarm">Budík</string>
     <string name="channel_alarm_description">Budí tě.</string>
-    <string name="notification_window_title">Hlídám lehký spánek</string>
+    <string name="notification_window_title">Čeká na vhodnou chvíli</string>
     <string name="notification_window_text">Vzbudí tě nejpozději v %1$s</string>
     <string name="notification_ring_title">Dobré ráno</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Každý den</string>
     <string name="tile_label">Další budík</string>
     <string name="tile_next">Další budík</string>
-    <string name="tile_light_sleep">Budí tě v lehkém spánku</string>
+    <string name="tile_light_sleep">Budí při neklidném spánku</string>
     <string name="notification_good_night_title">Spi dobře</string>
     <string name="notification_good_night_text">Čekám, až usneš</string>
     <string name="home_good_night">Dobrou noc</string>

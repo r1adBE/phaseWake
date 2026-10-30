@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Σήμερα</string>
     <string name="home_next_tomorrow">Αύριο</string>
-    <string name="home_next_in">Σε ξυπνά στον ελαφρύ ύπνο · σε %1$s</string>
+    <string name="home_next_in">Σε ξυπνά μόλις ο ύπνος σου γίνει ανήσυχος · σε %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Σε ξυπνά ακριβώς στην ώρα στόχου · σε %1$s</string>
     <string name="home_no_alarm_title">Ξύπνα τη σωστή στιγμή</string>
-    <string name="home_no_alarm_text">Όρισε ώρα και παράθυρο. Το ρολόι σε ξυπνά όταν κοιμάσαι ελαφρά.</string>
+    <string name="home_no_alarm_text">Όρισε ώρα και παράθυρο. Το ρολόι σε ξυπνά μέσα σε αυτό μόλις ο ύπνος σου γίνει ανήσυχος.</string>
     <string name="home_add_alarm">Νέο ξυπνητήρι</string>
     <string name="home_last_night">Χθεσινή νύχτα</string>
     <string name="home_alarms">Τα ξυπνητήριά σου</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
     <string name="health_connected">Συνδέθηκε</string>
     <string name="health_unavailable">Το Health Connect δεν είναι διαθέσιμο σε αυτό το κινητό.</string>
-    <string name="verdict_good">Δεδομένα υγείας: %1$s ✓</string>
-    <string name="verdict_deep">Δεδομένα υγείας: βαθύς ύπνος</string>
-    <string name="stage_light">ελαφρύς ύπνος</string>
-    <string name="stage_rem">ύπνος REM</string>
-    <string name="stage_awake">εγρήγορση</string>
     <string name="editor_alert">Πώς να σε ξυπνά</string>
     <string name="editor_alert_hint">Ο ήχος συνοδεύεται πάντα από δόνηση. Τα ξυπνητήρια χτυπούν και με «Μην ενοχλείτε», σε λειτουργία ώρας ύπνου και με σίγαση.</string>
     <string name="editor_alert_watch">Ρολόι</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Ξεκούραστος</string>
     <string name="feeling_value">Αίσθηση: %1$s</string>
     <string name="feeling_rate">Αίσθηση %1$d από 5: %2$s</string>
-    <string name="feeling_hint">Με τον καιρό θα δεις αν σου κάνει καλό να ξυπνάς σε ελαφρύ ύπνο.</string>
+    <string name="feeling_hint">Με τον καιρό θα δεις αν σου κάνει καλό το νωρίτερο ξύπνημα.</string>
     <string name="trends_title">Τελευταίες 7 ημέρες</string>
     <string name="trends_not_enough">Οι τάσεις εμφανίζονται μετά από μερικές νύχτες.</string>
     <string name="trends_asleep">Ø ύπνος %1$s</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (προαιρετικά)</string>
     <string name="onb_granted">Επιτρέπεται</string>
     <string name="onb_alarm_title">Πρώτη αφύπνιση</string>
-    <string name="onb_alarm_text">Μέχρι πότε θέλεις το αργότερο να έχεις ξυπνήσει; Το ρολόι σε ξυπνά νωρίτερα μέσα στο παράθυρο αν κοιμάσαι ελαφριά.</string>
+    <string name="onb_alarm_text">Μέχρι πότε θέλεις το αργότερο να έχεις ξυπνήσει; Το ρολόι σε ξυπνά στο παράθυρο πριν από αυτό, μόλις ο ύπνος σου γίνει ανήσυχος.</string>
     <string name="onb_alarm_create">Δημιουργία αφύπνισης</string>
     <string name="onb_alarm_done">Η αφύπνιση δημιουργήθηκε: %1$s</string>
     <string name="onb_done_title">Έτοιμο</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d λεπτά</item>
     </plurals>
     <string name="nap_start">Έναρξη υπνάκου</string>
-    <string name="nap_hint">Σε ξυπνά μετά από αυτόν τον χρόνο, στα τελευταία λεπτά ήδη σε ελαφρύ ύπνο. Δεν μετράει ως νύχτα.</string>
+    <string name="nap_hint">Σε ξυπνά μετά από αυτόν τον χρόνο, στα τελευταία λεπτά ήδη αν ο ύπνος σου γίνει ανήσυχος. Δεν μετράει ως νύχτα.</string>
     <string name="nap_running">Υπνάκος έως τις %1$s</string>
     <string name="nap_stop">Τέλος υπνάκου</string>
     <string name="widget_name">Επόμενη αφύπνιση</string>

@@ -17,10 +17,10 @@
 
     <string name="home_next_today">Hari ini</string>
     <string name="home_next_tomorrow">Besok</string>
-    <string name="home_next_in">Membangunkan saat tidur ringan · dalam %1$s</string>
+    <string name="home_next_in">Membangunkan begitu kamu mulai gelisah · dalam %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Membangunkan tepat pada waktu target · dalam %1$s</string>
     <string name="home_no_alarm_title">Bangun di saat yang tepat</string>
-    <string name="home_no_alarm_text">Atur waktu dan rentang. Jam tanganmu membangunkanmu saat tidurmu ringan.</string>
+    <string name="home_no_alarm_text">Atur waktu dan rentang. Jam tanganmu membangunkanmu di dalamnya begitu kamu mulai gelisah.</string>
     <string name="home_add_alarm">Alarm baru</string>
     <string name="home_last_night">Semalam</string>
     <string name="home_alarms">Alarm kamu</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">Membaca fase tidur dari Health Connect setelah bangun, untuk memeriksa dan meningkatkan deteksi.</string>
     <string name="health_connected">Terhubung</string>
     <string name="health_unavailable">Health Connect tidak tersedia di ponsel ini.</string>
-    <string name="verdict_good">Data kesehatan: %1$s ✓</string>
-    <string name="verdict_deep">Data kesehatan: tidur nyenyak</string>
-    <string name="stage_light">tidur ringan</string>
-    <string name="stage_rem">tidur REM</string>
-    <string name="stage_awake">terjaga</string>
     <string name="editor_alert">Cara membangunkanmu</string>
     <string name="editor_alert_hint">Suara selalu disertai getaran. Alarm juga berbunyi saat Jangan Ganggu, mode waktu tidur, dan ponsel senyap.</string>
     <string name="editor_alert_watch">Jam tangan</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">Segar</string>
     <string name="feeling_value">Perasaan: %1$s</string>
     <string name="feeling_rate">Perasaan %1$d dari 5: %2$s</string>
-    <string name="feeling_hint">Seiring waktu kamu akan melihat apakah bangun di tidur ringan baik untukmu.</string>
+    <string name="feeling_hint">Seiring waktu kamu akan melihat apakah dibangunkan lebih awal baik untukmu.</string>
     <string name="trends_title">7 hari terakhir</string>
     <string name="trends_not_enough">Tren muncul setelah beberapa malam.</string>
     <string name="trends_asleep">Ø tidur %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (pilihan)</string>
     <string name="onb_granted">Diizinkan</string>
     <string name="onb_alarm_title">Alarm pertama</string>
-    <string name="onb_alarm_text">Paling lambat kapan kamu ingin bangun? Jika tidurmu ringan, jam tangan membangunkanmu lebih awal dalam jendela.</string>
+    <string name="onb_alarm_text">Paling lambat kapan kamu ingin bangun? Jam tangan membangunkanmu dalam jendela sebelumnya begitu kamu mulai gelisah.</string>
     <string name="onb_alarm_create">Buat alarm</string>
     <string name="onb_alarm_done">Alarm dibuat: %1$s</string>
     <string name="onb_done_title">Selesai</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d menit</item>
     </plurals>
     <string name="nap_start">Mulai tidur siang</string>
-    <string name="nap_hint">Membangunkanmu setelah waktu ini, di menit-menit terakhir saat tidurmu ringan. Tidak dihitung sebagai malam.</string>
+    <string name="nap_hint">Membangunkanmu setelah waktu ini, di menit-menit terakhir sudah jika kamu mulai gelisah. Tidak dihitung sebagai malam.</string>
     <string name="nap_running">Tidur siang sampai %1$s</string>
     <string name="nap_stop">Akhiri tidur siang</string>
     <string name="widget_name">Alarm berikutnya</string>

@@ -18,10 +18,10 @@
 
     <string name="home_next_today">ថ្ងៃនេះ</string>
     <string name="home_next_tomorrow">ថ្ងៃស្អែក</string>
-    <string name="home_next_in">ដាស់ពេលដេកស្រាល · ក្នុងរយៈពេល %1$s</string>
+    <string name="home_next_in">ដាស់ភ្លាមៗពេលអ្នកដេកមិនស្ងប់ · ក្នុងរយៈពេល %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ដាស់ត្រូវម៉ោងគោលដៅពិតប្រាកដ · ក្នុងរយៈពេល %1$s</string>
     <string name="home_no_alarm_title">ភ្ញាក់នៅពេលត្រឹមត្រូវ</string>
-    <string name="home_no_alarm_text">កំណត់ម៉ោង និងចន្លោះពេល។ នាឡិកានឹងដាស់អ្នក នៅពេលអ្នកដេកស្រាល។</string>
+    <string name="home_no_alarm_text">កំណត់ម៉ោង និងចន្លោះពេល។ នាឡិកានឹងដាស់អ្នកក្នុងចន្លោះនោះ ភ្លាមៗនៅពេលអ្នកចាប់ផ្ដើមដេកមិនស្ងប់។</string>
     <string name="home_add_alarm">ម៉ោងរោទ៍ថ្មី</string>
     <string name="home_last_night">យប់មិញ</string>
     <string name="home_alarms">ម៉ោងរោទ៍របស់អ្នក</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">អានដំណាក់កាលដំណេកពី Health Connect ក្រោយភ្ញាក់ ដើម្បីពិនិត្យ និងកែលម្អការរកឃើញ។</string>
     <string name="health_connected">បានភ្ជាប់</string>
     <string name="health_unavailable">Health Connect មិនមាននៅលើទូរសព្ទនេះទេ។</string>
-    <string name="verdict_good">ទិន្នន័យសុខភាព៖ %1$s ✓</string>
-    <string name="verdict_deep">ទិន្នន័យសុខភាព៖ ដំណេកជ្រៅ</string>
-    <string name="stage_light">ដំណេកស្រាល</string>
-    <string name="stage_rem">ដំណេក REM</string>
-    <string name="stage_awake">ភ្ញាក់</string>
     <string name="editor_alert">របៀបដាស់</string>
     <string name="editor_alert_hint">សំឡេងតែងមកជាមួយការញ័រ។ ម៉ោងរោទ៍នៅតែរោទ៍ ទោះបីបើក «កុំរំខាន» មុខងារពេលដេក ឬទូរសព្ទស្ងាត់ក៏ដោយ។</string>
     <string name="editor_alert_watch">នាឡិកា</string>
@@ -192,7 +187,7 @@
     <string name="feeling_5">ស្រស់ស្រាយ</string>
     <string name="feeling_value">អារម្មណ៍៖ %1$s</string>
     <string name="feeling_rate">អារម្មណ៍ %1$d លើ 5៖ %2$s</string>
-    <string name="feeling_hint">យូរៗទៅ អ្នកនឹងឃើញថាការភ្ញាក់ក្នុងដំណេកស្រាលល្អសម្រាប់អ្នកឬទេ។</string>
+    <string name="feeling_hint">យូរៗទៅ អ្នកនឹងឃើញថាការដាស់មុនល្អសម្រាប់អ្នកឬទេ។</string>
     <string name="trends_title">7 ថ្ងៃចុងក្រោយ</string>
     <string name="trends_not_enough">និន្នាការនឹងបង្ហាញក្រោយពីពីរបីយប់។</string>
     <string name="trends_asleep">Ø ដេក %1$s</string>
@@ -390,7 +385,7 @@
     <string name="onb_optional">%1$s (ជាជម្រើស)</string>
     <string name="onb_granted">បានអនុញ្ញាត</string>
     <string name="onb_alarm_title">ម៉ោងរោទ៍ដំបូង</string>
-    <string name="onb_alarm_text">តើអ្នកចង់ភ្ញាក់យឺតបំផុតនៅពេលណា? នាឡិកានឹងដាស់អ្នកមុននេះក្នុងចន្លោះពេល បើអ្នកដេកស្រាល។</string>
+    <string name="onb_alarm_text">តើអ្នកចង់ភ្ញាក់យឺតបំផុតនៅពេលណា? នាឡិកានឹងដាស់អ្នកក្នុងចន្លោះពេលមុននោះ ភ្លាមៗនៅពេលអ្នកចាប់ផ្ដើមដេកមិនស្ងប់។</string>
     <string name="onb_alarm_create">បង្កើតម៉ោងរោទ៍</string>
     <string name="onb_alarm_done">បានបង្កើតម៉ោងរោទ៍៖ %1$s</string>
     <string name="onb_done_title">រួចរាល់</string>
@@ -420,7 +415,7 @@
         <item quantity="other">%1$d នាទី</item>
     </plurals>
     <string name="nap_start">ចាប់ផ្ដើមដេកខ្លី</string>
-    <string name="nap_hint">ដាស់អ្នកក្រោយរយៈពេលនេះ ហើយក្នុងនាទីចុងក្រោយ ដាស់មុនបើដេកស្រាល។ មិនរាប់ជាយប់ទេ។</string>
+    <string name="nap_hint">ដាស់អ្នកក្រោយរយៈពេលនេះ ហើយក្នុងនាទីចុងក្រោយ ដាស់មុនបើអ្នកដេកមិនស្ងប់។ មិនរាប់ជាយប់ទេ។</string>
     <string name="nap_running">ដេកខ្លីរហូតដល់ %1$s</string>
     <string name="nap_stop">បញ្ចប់ការដេកខ្លី</string>
     <string name="widget_name">ម៉ោងរោទ៍បន្ទាប់</string>

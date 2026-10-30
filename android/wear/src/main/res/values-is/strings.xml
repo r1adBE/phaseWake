@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Vakningargluggi</string>
-    <string name="channel_window_description">Birtist á meðan Phase Wake fylgist með léttum svefni.</string>
+    <string name="channel_window_description">Birtist á meðan Phase Wake bíður eftir góðu augnabliki til að vekja þig.</string>
     <string name="channel_alarm">Vekjari</string>
     <string name="channel_alarm_description">Vekur þig.</string>
-    <string name="notification_window_title">Fylgist með léttum svefni</string>
+    <string name="notification_window_title">Bíður eftir góðu augnabliki</string>
     <string name="notification_window_text">Vekur þig í síðasta lagi kl. %1$s</string>
     <string name="notification_ring_title">Góðan daginn</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Alla daga</string>
     <string name="tile_label">Næsti vekjari</string>
     <string name="tile_next">Næsti vekjari</string>
-    <string name="tile_light_sleep">Vekur þig í léttum svefni</string>
+    <string name="tile_light_sleep">Vekur þig við óróleika</string>
     <string name="notification_good_night_title">Sofðu vel</string>
     <string name="notification_good_night_text">Bíður eftir að þú sofnir</string>
     <string name="home_good_night">Góða nótt</string>

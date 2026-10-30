@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Παράθυρο αφύπνισης</string>
-    <string name="channel_window_description">Εμφανίζεται όσο το Phase Wake περιμένει ελαφρύ ύπνο.</string>
+    <string name="channel_window_description">Εμφανίζεται όσο το Phase Wake περιμένει την κατάλληλη στιγμή για να σε ξυπνήσει.</string>
     <string name="channel_alarm">Ξυπνητήρι</string>
     <string name="channel_alarm_description">Σε ξυπνά.</string>
-    <string name="notification_window_title">Αναμονή ελαφρού ύπνου</string>
+    <string name="notification_window_title">Περιμένει την κατάλληλη στιγμή</string>
     <string name="notification_window_text">Σε ξυπνά το αργότερο στις %1$s</string>
     <string name="notification_ring_title">Καλημέρα</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Κάθε μέρα</string>
     <string name="tile_label">Επόμενο ξυπνητήρι</string>
     <string name="tile_next">Επόμενο ξυπνητήρι</string>
-    <string name="tile_light_sleep">Σε ξυπνά στον ελαφρύ ύπνο</string>
+    <string name="tile_light_sleep">Σε ξυπνά σε ανήσυχο ύπνο</string>
     <string name="notification_good_night_title">Καλό ύπνο</string>
     <string name="notification_good_night_text">Περιμένω να κοιμηθείς</string>
     <string name="home_good_night">Καληνύχτα</string>

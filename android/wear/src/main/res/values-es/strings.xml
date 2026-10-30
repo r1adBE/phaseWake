@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Ventana de despertar</string>
-    <string name="channel_window_description">Se muestra mientras Phase Wake espera el sueño ligero.</string>
+    <string name="channel_window_description">Se muestra mientras Phase Wake espera un buen momento para despertarte.</string>
     <string name="channel_alarm">Alarma</string>
     <string name="channel_alarm_description">Te despierta.</string>
-    <string name="notification_window_title">Esperando el sueño ligero</string>
+    <string name="notification_window_title">Esperando un buen momento</string>
     <string name="notification_window_text">Te despierta como tarde a las %1$s</string>
     <string name="notification_ring_title">Buenos días</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Cada día</string>
     <string name="tile_label">Próxima alarma</string>
     <string name="tile_next">Próxima alarma</string>
-    <string name="tile_light_sleep">Te despierta en sueño ligero</string>
+    <string name="tile_light_sleep">Te despierta si te inquietas</string>
     <string name="notification_good_night_title">Que duermas bien</string>
     <string name="notification_good_night_text">Esperando a que te duermas</string>
     <string name="home_good_night">Buenas noches</string>

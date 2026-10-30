@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Vandaag</string>
     <string name="home_next_tomorrow">Morgen</string>
-    <string name="home_next_in">Wekt je in lichte slaap · over %1$s</string>
+    <string name="home_next_in">Wekt je zodra je onrustig wordt · over %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Wekt je precies op de doeltijd · over %1$s</string>
     <string name="home_no_alarm_title">Word wakker op het juiste moment</string>
-    <string name="home_no_alarm_text">Stel een tijd en een venster in. Je horloge wekt je als je licht slaapt.</string>
+    <string name="home_no_alarm_text">Stel een tijd en een venster in. Je horloge wekt je daarbinnen zodra je onrustig wordt.</string>
     <string name="home_add_alarm">Nieuwe wekker</string>
     <string name="home_last_night">Afgelopen nacht</string>
     <string name="home_alarms">Je wekkers</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Leest na het wakker worden de slaapfases uit Health Connect, om de herkenning te controleren en te verbeteren.</string>
     <string name="health_connected">Verbonden</string>
     <string name="health_unavailable">Health Connect is niet beschikbaar op deze telefoon.</string>
-    <string name="verdict_good">Gezondheidsgegevens: %1$s ✓</string>
-    <string name="verdict_deep">Gezondheidsgegevens: diepe slaap</string>
-    <string name="stage_light">lichte slaap</string>
-    <string name="stage_rem">REM-slaap</string>
-    <string name="stage_awake">wakker</string>
     <string name="editor_alert">Hoe we je wekken</string>
     <string name="editor_alert_hint">Geluid komt altijd met trillen. Wekkers gaan ook af bij Niet storen, de bedtijdmodus en een telefoon op stil.</string>
     <string name="editor_alert_watch">Horloge</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Uitgerust</string>
     <string name="feeling_value">Gevoel: %1$s</string>
     <string name="feeling_rate">Gevoel %1$d van 5: %2$s</string>
-    <string name="feeling_hint">Na verloop van tijd zie je of wakker worden in lichte slaap je goed doet.</string>
+    <string name="feeling_hint">Na verloop van tijd zie je of eerder gewekt worden je goed doet.</string>
     <string name="trends_title">Laatste 7 dagen</string>
     <string name="trends_not_enough">Trends verschijnen na een paar nachten.</string>
     <string name="trends_asleep">Ø %1$s slaap</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (optioneel)</string>
     <string name="onb_granted">Toegestaan</string>
     <string name="onb_alarm_title">Eerste wekker</string>
-    <string name="onb_alarm_text">Wanneer wil je uiterlijk wakker zijn? Het horloge wekt je eerder binnen het venster als je licht slaapt.</string>
+    <string name="onb_alarm_text">Wanneer wil je uiterlijk wakker zijn? Het horloge wekt je in het venster daarvoor, zodra je onrustig wordt.</string>
     <string name="onb_alarm_create">Wekker maken</string>
     <string name="onb_alarm_done">Wekker gemaakt: %1$s</string>
     <string name="onb_done_title">Klaar</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d minuten</item>
     </plurals>
     <string name="nap_start">Powernap starten</string>
-    <string name="nap_hint">Wekt je na deze tijd, in de laatste minuten al bij lichte slaap. Telt niet als nacht.</string>
+    <string name="nap_hint">Wekt je na deze tijd, in de laatste minuten al als je onrustig wordt. Telt niet als nacht.</string>
     <string name="nap_running">Powernap tot %1$s</string>
     <string name="nap_stop">Powernap beëindigen</string>
     <string name="widget_name">Volgende wekker</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Okno budenia</string>
-    <string name="channel_window_description">Zobrazuje sa, kým Phase Wake čaká na ľahký spánok.</string>
+    <string name="channel_window_description">Zobrazuje sa, kým Phase Wake čaká na vhodnú chvíľu na budenie.</string>
     <string name="channel_alarm">Budík</string>
     <string name="channel_alarm_description">Zobudí ťa.</string>
-    <string name="notification_window_title">Čaká na ľahký spánok</string>
+    <string name="notification_window_title">Čaká na vhodnú chvíľu</string>
     <string name="notification_window_text">Zobudí ťa najneskôr o %1$s</string>
     <string name="notification_ring_title">Dobré ráno</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Každý deň</string>
     <string name="tile_label">Ďalší budík</string>
     <string name="tile_next">Ďalší budík</string>
-    <string name="tile_light_sleep">Zobudí ťa v ľahkom spánku</string>
+    <string name="tile_light_sleep">Budí pri nepokojnom spánku</string>
     <string name="notification_good_night_title">Dobre sa vyspi</string>
     <string name="notification_good_night_text">Čaká, kým zaspíš</string>
     <string name="home_good_night">Dobrú noc</string>

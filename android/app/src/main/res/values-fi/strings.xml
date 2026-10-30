@@ -18,10 +18,10 @@
 
     <string name="home_next_today">Tänään</string>
     <string name="home_next_tomorrow">Huomenna</string>
-    <string name="home_next_in">Herättää kevyessä unessa · %1$s päästä</string>
+    <string name="home_next_in">Herättää, kun unesi muuttuu levottomaksi · %1$s päästä</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Herättää täsmälleen tavoiteaikana · %1$s päästä</string>
     <string name="home_no_alarm_title">Herää oikealla hetkellä</string>
-    <string name="home_no_alarm_text">Aseta aika ja aikaikkuna. Kellosi herättää sinut, kun nukut kevyesti.</string>
+    <string name="home_no_alarm_text">Aseta aika ja aikaikkuna. Kellosi herättää sinut sen aikana heti, kun unesi muuttuu levottomaksi.</string>
     <string name="home_add_alarm">Uusi herätys</string>
     <string name="home_last_night">Viime yö</string>
     <string name="home_alarms">Herätyksesi</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
     <string name="health_connected">Yhdistetty</string>
     <string name="health_unavailable">Health Connect ei ole käytettävissä tässä puhelimessa.</string>
-    <string name="verdict_good">Terveystiedot: %1$s ✓</string>
-    <string name="verdict_deep">Terveystiedot: syvä uni</string>
-    <string name="stage_light">kevyt uni</string>
-    <string name="stage_rem">REM-uni</string>
-    <string name="stage_awake">hereillä</string>
     <string name="editor_alert">Näin sinut herätetään</string>
     <string name="editor_alert_hint">Ääni tulee aina värinän kanssa. Herätykset soivat myös Älä häiritse -tilassa, nukkumaanmenotilassa ja äänettömällä puhelimella.</string>
     <string name="editor_alert_watch">Kello</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">Virkeä</string>
     <string name="feeling_value">Olo: %1$s</string>
     <string name="feeling_rate">Olo %1$d/5: %2$s</string>
-    <string name="feeling_hint">Ajan myötä näet, tekeekö kevyessä unessa herääminen sinulle hyvää.</string>
+    <string name="feeling_hint">Ajan myötä näet, tekeekö aiempi herätys sinulle hyvää.</string>
     <string name="trends_title">Viimeiset 7 päivää</string>
     <string name="trends_not_enough">Trendit näkyvät muutaman yön jälkeen.</string>
     <string name="trends_asleep">Ø unta %1$s</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (valinnainen)</string>
     <string name="onb_granted">Sallittu</string>
     <string name="onb_alarm_title">Ensimmäinen herätys</string>
-    <string name="onb_alarm_text">Milloin haluat olla viimeistään hereillä? Kello herättää sinut aiemmin ikkunan sisällä, jos nukut kevyesti.</string>
+    <string name="onb_alarm_text">Milloin haluat olla viimeistään hereillä? Kello herättää sinut sitä edeltävässä ikkunassa heti, kun unesi muuttuu levottomaksi.</string>
     <string name="onb_alarm_create">Luo herätys</string>
     <string name="onb_alarm_done">Herätys luotu: %1$s</string>
     <string name="onb_done_title">Valmista</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d minuuttia</item>
     </plurals>
     <string name="nap_start">Aloita päiväunet</string>
-    <string name="nap_hint">Herättää sinut tämän ajan jälkeen, viimeisinä minuutteina jo kevyessä unessa. Ei lasketa yöksi.</string>
+    <string name="nap_hint">Herättää sinut tämän ajan jälkeen, viimeisinä minuutteina jo silloin, kun unesi muuttuu levottomaksi. Ei lasketa yöksi.</string>
     <string name="nap_running">Päiväunet klo %1$s asti</string>
     <string name="nap_stop">Lopeta päiväunet</string>
     <string name="widget_name">Seuraava herätys</string>

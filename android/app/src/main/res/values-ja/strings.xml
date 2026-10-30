@@ -17,10 +17,10 @@
 
     <string name="home_next_today">今日</string>
     <string name="home_next_tomorrow">明日</string>
-    <string name="home_next_in">浅い眠りで起こします · %1$s後</string>
+    <string name="home_next_in">眠りが落ち着かなくなったら起こします · %1$s後</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">目標時刻ちょうどに起こします · %1$s後</string>
     <string name="home_no_alarm_title">ちょうどいいタイミングで目覚めよう</string>
-    <string name="home_no_alarm_text">時刻と時間幅を設定してください。眠りが浅いときにウォッチが起こします。</string>
+    <string name="home_no_alarm_text">時刻と時間幅を設定してください。眠りが落ち着かなくなったら、ウォッチがその中で起こします。</string>
     <string name="home_add_alarm">新規アラーム</string>
     <string name="home_last_night">昨夜</string>
     <string name="home_alarms">アラーム一覧</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">起床後にHealth Connectから睡眠ステージを読み取り、検出の確認と改善に使います。</string>
     <string name="health_connected">接続済み</string>
     <string name="health_unavailable">このスマートフォンではHealth Connectを利用できません。</string>
-    <string name="verdict_good">ヘルスデータ: %1$s ✓</string>
-    <string name="verdict_deep">ヘルスデータ: 深い眠り</string>
-    <string name="stage_light">浅い眠り</string>
-    <string name="stage_rem">レム睡眠</string>
-    <string name="stage_awake">覚醒</string>
     <string name="editor_alert">起こし方</string>
     <string name="editor_alert_hint">音は必ずバイブレーションと一緒に鳴ります。おやすみモードや就寝モード、マナーモード中でもアラームは鳴ります。</string>
     <string name="editor_alert_watch">ウォッチ</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">爽快</string>
     <string name="feeling_value">気分: %1$s</string>
     <string name="feeling_rate">気分 5段階中%1$d: %2$s</string>
-    <string name="feeling_hint">続けると、浅い眠りで起きることが自分に合っているかが分かります。</string>
+    <string name="feeling_hint">続けると、早めに起こされることが自分に合っているかが分かります。</string>
     <string name="trends_title">直近7日間</string>
     <string name="trends_not_enough">数晩分のデータがたまるとトレンドが表示されます。</string>
     <string name="trends_asleep">Ø 睡眠時間 %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s（任意）</string>
     <string name="onb_granted">許可済み</string>
     <string name="onb_alarm_title">最初のアラーム</string>
-    <string name="onb_alarm_text">遅くとも何時に起きたいですか？眠りが浅ければ、ウォッチがウィンドウ内で早めに起こします。</string>
+    <string name="onb_alarm_text">遅くとも何時に起きたいですか？眠りが落ち着かなくなったら、ウォッチがその前の時間幅の中で起こします。</string>
     <string name="onb_alarm_create">アラームを作成</string>
     <string name="onb_alarm_done">アラームを作成しました: %1$s</string>
     <string name="onb_done_title">完了</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d分</item>
     </plurals>
     <string name="nap_start">仮眠を開始</string>
-    <string name="nap_hint">この時間の後に起こします。最後の数分は眠りが浅ければ先に起こします。夜としては記録されません。</string>
+    <string name="nap_hint">この時間の後に起こします。最後の数分は、眠りが落ち着かなくなれば先に起こします。夜としては記録されません。</string>
     <string name="nap_running">仮眠 %1$sまで</string>
     <string name="nap_stop">仮眠を終了</string>
     <string name="widget_name">次のアラーム</string>

@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Прозорец за будење</string>
-    <string name="channel_window_description">Се прикажува додека Phase Wake чека лесен сон.</string>
+    <string name="channel_window_description">Се прикажува додека Phase Wake чека добар момент да те разбуди.</string>
     <string name="channel_alarm">Аларм</string>
     <string name="channel_alarm_description">Те буди.</string>
-    <string name="notification_window_title">Чека лесен сон</string>
+    <string name="notification_window_title">Чека добар момент</string>
     <string name="notification_window_text">Те буди најдоцна до %1$s</string>
     <string name="notification_ring_title">Добро утро</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Секој ден</string>
     <string name="tile_label">Следен аларм</string>
     <string name="tile_next">Следен аларм</string>
-    <string name="tile_light_sleep">Те буди во лесен сон</string>
+    <string name="tile_light_sleep">Те буди при немирен сон</string>
     <string name="notification_good_night_title">Спиј убаво</string>
     <string name="notification_good_night_text">Чека да заспиеш</string>
     <string name="home_good_night">Добра ноќ</string>

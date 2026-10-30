@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">နှိုးချိန်အပိုင်း</string>
-    <string name="channel_window_description">Phase Wake က အိပ်ရေးပေါ့ကို စောင့်ကြည့်နေစဉ် ပြသည်။</string>
+    <string name="channel_window_description">Phase Wake က နှိုးရန် သင့်တော်သည့်အချိန်ကို စောင့်နေစဉ် ပြသည်။</string>
     <string name="channel_alarm">နှိုးစက်</string>
     <string name="channel_alarm_description">သင့်ကို နှိုးပေးသည်။</string>
-    <string name="notification_window_title">အိပ်ရေးပေါ့ကို စောင့်ကြည့်နေသည်</string>
+    <string name="notification_window_title">သင့်တော်သည့်အချိန်ကို စောင့်နေသည်</string>
     <string name="notification_window_text">အနောက်ကျဆုံး %1$s တွင် နှိုးမည်</string>
     <string name="notification_ring_title">မင်္ဂလာနံနက်ခင်းပါ</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">နေ့တိုင်း</string>
     <string name="tile_label">နောက် နှိုးစက်</string>
     <string name="tile_next">နောက် နှိုးစက်</string>
-    <string name="tile_light_sleep">အိပ်ရေးပေါ့ချိန်တွင် နှိုးမည်</string>
+    <string name="tile_light_sleep">မငြိမ်မသက်ဖြစ်လျှင် နှိုးမည်</string>
     <string name="notification_good_night_title">ကောင်းကောင်း အိပ်ပါ</string>
     <string name="notification_good_night_text">အိပ်ပျော်သည်အထိ စောင့်နေသည်</string>
     <string name="home_good_night">ကောင်းသောညပါ</string>

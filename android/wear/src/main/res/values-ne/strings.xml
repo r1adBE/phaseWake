@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">ब्युँझाउने अवधि</string>
-    <string name="channel_window_description">Phase Wake ले हल्का निद्रा पर्खिरहँदा देखिन्छ।</string>
+    <string name="channel_window_description">Phase Wake ले ब्युँझाउन राम्रो पल पर्खिरहँदा देखिन्छ।</string>
     <string name="channel_alarm">अलार्म</string>
     <string name="channel_alarm_description">तिमीलाई ब्युँझाउँछ।</string>
-    <string name="notification_window_title">हल्का निद्रा पर्खँदै</string>
+    <string name="notification_window_title">राम्रो पलको पर्खाइमा</string>
     <string name="notification_window_text">बढीमा %1$s सम्म ब्युँझाउँछ</string>
     <string name="notification_ring_title">शुभ प्रभात</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">हरेक दिन</string>
     <string name="tile_label">अर्को अलार्म</string>
     <string name="tile_next">अर्को अलार्म</string>
-    <string name="tile_light_sleep">हल्का निद्रामा ब्युँझाउँछ</string>
+    <string name="tile_light_sleep">छटपटिँदा ब्युँझाउँछ</string>
     <string name="notification_good_night_title">राम्ररी सुत</string>
     <string name="notification_good_night_text">तिमी निदाउन पर्खँदै</string>
     <string name="home_good_night">शुभ रात्रि</string>

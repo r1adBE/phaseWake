@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Vekkevindu</string>
-    <string name="channel_window_description">Vises mens Phase Wake følger med på lett søvn.</string>
+    <string name="channel_window_description">Vises mens Phase Wake venter på et godt øyeblikk å vekke deg.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Vekker deg.</string>
-    <string name="notification_window_title">Følger med på lett søvn</string>
+    <string name="notification_window_title">Venter på et godt øyeblikk</string>
     <string name="notification_window_text">Vekker deg senest %1$s</string>
     <string name="notification_ring_title">God morgen</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Hver dag</string>
     <string name="tile_label">Neste alarm</string>
     <string name="tile_next">Neste alarm</string>
-    <string name="tile_light_sleep">Vekker deg i lett søvn</string>
+    <string name="tile_light_sleep">Vekker deg ved uro</string>
     <string name="notification_good_night_title">Sov godt</string>
     <string name="notification_good_night_text">Venter på at du sovner</string>
     <string name="home_good_night">God natt</string>

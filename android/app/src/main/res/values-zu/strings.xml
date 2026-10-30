@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Namuhla</string>
     <string name="home_next_tomorrow">Kusasa</string>
-    <string name="home_next_in">Ikuvusa ebuthongweni obulula · ngemva kuka-%1$s</string>
+    <string name="home_next_in">Ikuvusa lapho uqala ukungazinzi · ngemva kuka-%1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Ikuvusa ngqo ngesikhathi esihlosiwe · ngemva kuka-%1$s</string>
     <string name="home_no_alarm_title">Vuka ngesikhathi esifanele</string>
-    <string name="home_no_alarm_text">Setha isikhathi nesikhala sokuvuka. Iwashi lakho likuvusa lapho ulele kancane.</string>
+    <string name="home_no_alarm_text">Setha isikhathi nesikhala sokuvuka. Iwashi lakho likuvusa ngaphakathi kwaso lapho uqala ukungazinzi.</string>
     <string name="home_add_alarm">I-alamu entsha</string>
     <string name="home_last_night">Izolo ebusuku</string>
     <string name="home_alarms">Ama-alamu akho</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Ifunda izigaba zokulala ku-Health Connect ngemva kokuvuka, ukuze ihlole futhi ithuthukise ukutholwa.</string>
     <string name="health_connected">Ixhunyiwe</string>
     <string name="health_unavailable">I-Health Connect ayitholakali kule foni.</string>
-    <string name="verdict_good">Idatha yezempilo: %1$s ✓</string>
-    <string name="verdict_deep">Idatha yezempilo: ubuthongo obujulile</string>
-    <string name="stage_light">ubuthongo obulula</string>
-    <string name="stage_rem">ubuthongo be-REM</string>
-    <string name="stage_awake">uvukile</string>
     <string name="editor_alert">Indlela yokukuvusa</string>
     <string name="editor_alert_hint">Umsindo uhlala uza nokudlidliza. Ama-alamu ayakhala nalapho kuvulwe okuthi Ungaphazamisi, imodi yesikhathi sokulala noma ifoni ithulisiwe.</string>
     <string name="editor_alert_watch">Iwashi</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Uphumule</string>
     <string name="feeling_value">Umuzwa: %1$s</string>
     <string name="feeling_rate">Umuzwa %1$d kwangu-5: %2$s</string>
-    <string name="feeling_hint">Ngokuhamba kwesikhathi uzobona ukuthi ukuvuka ebuthongweni obulula kuyakusiza yini.</string>
+    <string name="feeling_hint">Ngokuhamba kwesikhathi uzobona ukuthi ukuvuswa ngaphambili kuyakusiza yini.</string>
     <string name="trends_title">Izinsuku ezi-7 zokugcina</string>
     <string name="trends_not_enough">Izimo zivela ngemva kobusuku obumbalwa.</string>
     <string name="trends_asleep">Ø %1$s wokulala</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (kuyakhethwa)</string>
     <string name="onb_granted">Kuvunyelwe</string>
     <string name="onb_alarm_title">I-alamu yokuqala</string>
-    <string name="onb_alarm_text">Ufuna ukuvuka nini kamuva kakhulu? Iwashi lakho likuvusa ngaphambili ngaphakathi kwesikhala uma ulele kancane.</string>
+    <string name="onb_alarm_text">Ufuna ukuvuka nini kamuva kakhulu? Iwashi lakho likuvusa esikhaleni esingaphambi kwalokho lapho uqala ukungazinzi.</string>
     <string name="onb_alarm_create">Dala i-alamu</string>
     <string name="onb_alarm_done">I-alamu idaliwe: %1$s</string>
     <string name="onb_done_title">Konke sekulungile</string>
@@ -434,7 +429,7 @@
         <item quantity="other">imizuzu engu-%1$d</item>
     </plurals>
     <string name="nap_start">Qala ukulala kancane</string>
-    <string name="nap_hint">Ikuvusa ngemva kwalesi sikhathi, emizuzwini yokugcina kakade ebuthongweni obulula. Ayibalwa njengobusuku.</string>
+    <string name="nap_hint">Ikuvusa ngemva kwalesi sikhathi, emizuzwini yokugcina kakade uma uqala ukungazinzi. Ayibalwa njengobusuku.</string>
     <string name="nap_running">Ukulala kancane kuze kube ngu-%1$s</string>
     <string name="nap_stop">Qeda ukulala kancane</string>
     <string name="widget_name">I-alamu elandelayo</string>

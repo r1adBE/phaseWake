@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">જગાડવાનો સમયગાળો</string>
-    <string name="channel_window_description">Phase Wake હળવી ઊંઘ પર નજર રાખે ત્યારે દેખાય છે.</string>
+    <string name="channel_window_description">Phase Wake તમને જગાડવા માટે સારી ક્ષણની રાહ જુએ ત્યારે દેખાય છે.</string>
     <string name="channel_alarm">એલાર્મ</string>
     <string name="channel_alarm_description">તમને જગાડે છે.</string>
-    <string name="notification_window_title">હળવી ઊંઘ પર નજર</string>
+    <string name="notification_window_title">સારી ક્ષણની રાહ</string>
     <string name="notification_window_text">વધુમાં વધુ %1$s સુધીમાં જગાડશે</string>
     <string name="notification_ring_title">સુપ્રભાત</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">દરરોજ</string>
     <string name="tile_label">આગલો એલાર્મ</string>
     <string name="tile_next">આગલો એલાર્મ</string>
-    <string name="tile_light_sleep">હળવી ઊંઘમાં જગાડે છે</string>
+    <string name="tile_light_sleep">બેચેની થતાં જગાડે છે</string>
     <string name="notification_good_night_title">શાંતિથી સૂઈ જાઓ</string>
     <string name="notification_good_night_text">તમે ઊંઘી જાઓ તેની રાહ જોઈ રહ્યા છીએ</string>
     <string name="home_good_night">શુભ રાત્રિ</string>

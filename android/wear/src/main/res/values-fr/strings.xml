@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Plage de réveil</string>
-    <string name="channel_window_description">Affiché pendant que Phase Wake guette le sommeil léger.</string>
+    <string name="channel_window_description">Affiché pendant que Phase Wake attend un bon moment pour te réveiller.</string>
     <string name="channel_alarm">Réveil</string>
     <string name="channel_alarm_description">Te réveille.</string>
-    <string name="notification_window_title">Guette le sommeil léger</string>
+    <string name="notification_window_title">Attend un bon moment</string>
     <string name="notification_window_text">Te réveille au plus tard à %1$s</string>
     <string name="notification_ring_title">Bonjour</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Tous les jours</string>
     <string name="tile_label">Prochain réveil</string>
     <string name="tile_next">Prochain réveil</string>
-    <string name="tile_light_sleep">Te réveille en sommeil léger</string>
+    <string name="tile_light_sleep">Te réveille si tu t’agites</string>
     <string name="notification_good_night_title">Dors bien</string>
     <string name="notification_good_night_text">Attend que tu t\'endormes</string>
     <string name="home_good_night">Bonne nuit</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Oyanma pəncərəsi</string>
-    <string name="channel_window_description">Phase Wake yüngül yuxunu izləyərkən göstərilir.</string>
+    <string name="channel_window_description">Phase Wake oyatmaq üçün yaxşı anı gözləyərkən göstərilir.</string>
     <string name="channel_alarm">Siqnal</string>
     <string name="channel_alarm_description">Səni oyadır.</string>
-    <string name="notification_window_title">Yüngül yuxu izlənir</string>
+    <string name="notification_window_title">Yaxşı anı gözləyir</string>
     <string name="notification_window_text">Ən gec %1$s oyadır</string>
     <string name="notification_ring_title">Sabahın xeyir</string>
     <string name="ring_greeting">Sabahın xeyir</string>
@@ -33,7 +33,7 @@
     <string name="alarm_every_day">Hər gün</string>
     <string name="tile_label">Növbəti siqnal</string>
     <string name="tile_next">Növbəti siqnal</string>
-    <string name="tile_light_sleep">Yüngül yuxuda oyadır</string>
+    <string name="tile_light_sleep">Narahat olanda oyadır</string>
     <string name="notification_good_night_title">Rahat yat</string>
     <string name="notification_good_night_text">Yuxuya getməyin gözlənilir</string>
     <string name="home_good_night">Gecən xeyrə</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">जागने की विंडो</string>
-    <string name="channel_window_description">जब तक Phase Wake हल्की नींद पर नज़र रखता है, तब तक दिखता है।</string>
+    <string name="channel_window_description">जब तक Phase Wake जगाने के लिए सही पल का इंतज़ार करता है, तब तक दिखता है।</string>
     <string name="channel_alarm">अलार्म</string>
     <string name="channel_alarm_description">तुम्हें जगाता है।</string>
-    <string name="notification_window_title">हल्की नींद पर नज़र</string>
+    <string name="notification_window_title">सही पल का इंतज़ार</string>
     <string name="notification_window_text">अधिकतम %1$s तक जगा देगा</string>
     <string name="notification_ring_title">सुप्रभात</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">रोज़</string>
     <string name="tile_label">अगला अलार्म</string>
     <string name="tile_next">अगला अलार्म</string>
-    <string name="tile_light_sleep">हल्की नींद में जगाएगा</string>
+    <string name="tile_light_sleep">बेचैनी होते ही जगाएगा</string>
     <string name="notification_good_night_title">मीठी नींद</string>
     <string name="notification_good_night_text">तुम्हारे सोने का इंतज़ार</string>
     <string name="home_good_night">शुभ रात्रि</string>

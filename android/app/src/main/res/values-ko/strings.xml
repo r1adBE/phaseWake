@@ -17,10 +17,10 @@
 
     <string name="home_next_today">오늘</string>
     <string name="home_next_tomorrow">내일</string>
-    <string name="home_next_in">얕은 잠에서 깨워요 · %1$s 후</string>
+    <string name="home_next_in">뒤척이기 시작하면 깨워요 · %1$s 후</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">목표 시간에 정확히 깨워요 · %1$s 후</string>
     <string name="home_no_alarm_title">딱 맞는 순간에 일어나세요</string>
-    <string name="home_no_alarm_text">시간과 범위를 정해 보세요. 얕게 잠들었을 때 워치가 깨워 드려요.</string>
+    <string name="home_no_alarm_text">시간과 범위를 정해 보세요. 뒤척이기 시작하면 워치가 그 범위 안에서 깨워 드려요.</string>
     <string name="home_add_alarm">새 알람</string>
     <string name="home_last_night">어젯밤</string>
     <string name="home_alarms">내 알람</string>
@@ -104,11 +104,6 @@
     <string name="health_connect_hint">일어난 뒤 Health Connect에서 수면 단계를 읽어 감지를 확인하고 개선해요.</string>
     <string name="health_connected">연결됨</string>
     <string name="health_unavailable">이 휴대폰에서는 Health Connect를 사용할 수 없어요.</string>
-    <string name="verdict_good">건강 데이터: %1$s ✓</string>
-    <string name="verdict_deep">건강 데이터: 깊은 잠</string>
-    <string name="stage_light">얕은 잠</string>
-    <string name="stage_rem">렘수면</string>
-    <string name="stage_awake">깨어 있음</string>
     <string name="editor_alert">깨우는 방법</string>
     <string name="editor_alert_hint">소리는 항상 진동과 함께 울려요. 방해 금지 모드, 취침 모드, 무음일 때도 알람은 울려요.</string>
     <string name="editor_alert_watch">워치</string>
@@ -191,7 +186,7 @@
     <string name="feeling_5">개운</string>
     <string name="feeling_value">기분: %1$s</string>
     <string name="feeling_rate">기분 5점 중 %1$d점: %2$s</string>
-    <string name="feeling_hint">시간이 지나면 얕은 잠에서 깨는 게 도움이 되는지 알 수 있어요.</string>
+    <string name="feeling_hint">시간이 지나면 더 일찍 깨는 게 도움이 되는지 알 수 있어요.</string>
     <string name="trends_title">최근 7일</string>
     <string name="trends_not_enough">며칠 밤이 지나면 추세가 표시돼요.</string>
     <string name="trends_asleep">Ø 수면 %1$s</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s(선택)</string>
     <string name="onb_granted">허용됨</string>
     <string name="onb_alarm_title">첫 알람</string>
-    <string name="onb_alarm_text">늦어도 언제 일어나고 싶나요? 잠이 얕으면 워치가 창 안에서 더 일찍 깨워 줘요.</string>
+    <string name="onb_alarm_text">늦어도 언제 일어나고 싶나요? 뒤척이기 시작하면 워치가 그 전 범위 안에서 깨워 줘요.</string>
     <string name="onb_alarm_create">알람 만들기</string>
     <string name="onb_alarm_done">알람을 만들었어요: %1$s</string>
     <string name="onb_done_title">완료</string>
@@ -418,7 +413,7 @@
         <item quantity="other">%1$d분</item>
     </plurals>
     <string name="nap_start">낮잠 시작</string>
-    <string name="nap_hint">이 시간 후에 깨워 줘요. 마지막 몇 분은 잠이 얕으면 미리 깨워요. 밤으로 기록되지 않아요.</string>
+    <string name="nap_hint">이 시간 후에 깨워 줘요. 마지막 몇 분은 뒤척이면 미리 깨워요. 밤으로 기록되지 않아요.</string>
     <string name="nap_running">%1$s까지 낮잠</string>
     <string name="nap_stop">낮잠 끝내기</string>
     <string name="widget_name">다음 알람</string>

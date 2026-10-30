@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">Kipindi cha kuamka</string>
-    <string name="channel_window_description">Huonyeshwa wakati Phase Wake inasubiri usingizi mwepesi.</string>
+    <string name="channel_window_description">Huonyeshwa wakati Phase Wake inasubiri wakati mzuri wa kukuamsha.</string>
     <string name="channel_alarm">Kengele</string>
     <string name="channel_alarm_description">Inakuamsha.</string>
-    <string name="notification_window_title">Inasubiri usingizi mwepesi</string>
+    <string name="notification_window_title">Inasubiri wakati mzuri</string>
     <string name="notification_window_text">Inakuamsha kabla ya %1$s</string>
     <string name="notification_ring_title">Habari za asubuhi</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">Kila siku</string>
     <string name="tile_label">Kengele inayofuata</string>
     <string name="tile_next">Kengele inayofuata</string>
-    <string name="tile_light_sleep">Inakuamsha katika usingizi mwepesi</string>
+    <string name="tile_light_sleep">Inakuamsha usipotulia</string>
     <string name="notification_good_night_title">Lala salama</string>
     <string name="notification_good_night_text">Inasubiri ulale</string>
     <string name="home_good_night">Usiku mwema</string>

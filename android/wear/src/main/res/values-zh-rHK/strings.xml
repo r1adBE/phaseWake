@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">喚醒時段</string>
-    <string name="channel_window_description">Phase Wake 偵測淺睡期間顯示。</string>
+    <string name="channel_window_description">Phase Wake 等候合適的喚醒時機期間顯示。</string>
     <string name="channel_alarm">鬧鐘</string>
     <string name="channel_alarm_description">叫醒你。</string>
-    <string name="notification_window_title">正在偵測淺睡</string>
+    <string name="notification_window_title">正在等候合適的時機</string>
     <string name="notification_window_text">最遲 %1$s 叫醒你</string>
     <string name="notification_ring_title">早晨</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">每日</string>
     <string name="tile_label">下一個鬧鐘</string>
     <string name="tile_next">下一個鬧鐘</string>
-    <string name="tile_light_sleep">在淺睡時喚醒你</string>
+    <string name="tile_light_sleep">睡得不安穩時叫醒你</string>
     <string name="notification_good_night_title">好好休息</string>
     <string name="notification_good_night_text">等待你入睡</string>
     <string name="home_good_night">晚安</string>

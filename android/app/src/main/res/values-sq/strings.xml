@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Sot</string>
     <string name="home_next_tomorrow">Nesër</string>
-    <string name="home_next_in">Të zgjon në gjumë të lehtë · pas %1$s</string>
+    <string name="home_next_in">Të zgjon sapo gjumi bëhet i shqetësuar · pas %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Të zgjon saktësisht në orën e synuar · pas %1$s</string>
     <string name="home_no_alarm_title">Zgjohu në momentin e duhur</string>
-    <string name="home_no_alarm_text">Cakto kohën dhe intervalin. Ora jote të zgjon kur fle lehtë.</string>
+    <string name="home_no_alarm_text">Cakto kohën dhe intervalin. Ora jote të zgjon brenda tij sapo gjumi yt bëhet i shqetësuar.</string>
     <string name="home_add_alarm">Alarm i ri</string>
     <string name="home_last_night">Nata e kaluar</string>
     <string name="home_alarms">Alarmet e tua</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Pas zgjimit lexon fazat e gjumit nga Health Connect, për të kontrolluar dhe përmirësuar dallimin.</string>
     <string name="health_connected">E lidhur</string>
     <string name="health_unavailable">Health Connect nuk është i disponueshëm në këtë telefon.</string>
-    <string name="verdict_good">Të dhënat e shëndetit: %1$s ✓</string>
-    <string name="verdict_deep">Të dhënat e shëndetit: gjumë i thellë</string>
-    <string name="stage_light">gjumë i lehtë</string>
-    <string name="stage_rem">gjumë REM</string>
-    <string name="stage_awake">zgjuar</string>
     <string name="editor_alert">Mënyra e zgjimit</string>
     <string name="editor_alert_hint">Tingulli vjen gjithmonë me dridhje. Alarmet bien edhe me „Mos shqetëso“, në modalitetin e gjumit dhe kur telefoni është në heshtje.</string>
     <string name="editor_alert_watch">Ora</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Çlodhur</string>
     <string name="feeling_value">Gjendja: %1$s</string>
     <string name="feeling_rate">Gjendja %1$d nga 5: %2$s</string>
-    <string name="feeling_hint">Me kohën do të shohësh nëse zgjimi në gjumë të lehtë të bën mirë.</string>
+    <string name="feeling_hint">Me kohën do të shohësh nëse zgjimi më herët të bën mirë.</string>
     <string name="trends_title">7 ditët e fundit</string>
     <string name="trends_not_enough">Tendencat shfaqen pas disa netësh.</string>
     <string name="trends_asleep">Ø %1$s gjumë</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (opsionale)</string>
     <string name="onb_granted">E lejuar</string>
     <string name="onb_alarm_title">Alarmi i parë</string>
-    <string name="onb_alarm_text">Kur do të jesh zgjuar së voni? Ora të zgjon më herët brenda intervalit, nëse fle lehtë.</string>
+    <string name="onb_alarm_text">Kur do të jesh zgjuar së voni? Ora të zgjon në intervalin para saj, sapo gjumi yt bëhet i shqetësuar.</string>
     <string name="onb_alarm_create">Krijo alarmin</string>
     <string name="onb_alarm_done">Alarmi u krijua: %1$s</string>
     <string name="onb_done_title">Gjithçka gati</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minuta</item>
     </plurals>
     <string name="nap_start">Nis dremitjen</string>
-    <string name="nap_hint">Të zgjon pas kësaj kohe, në minutat e fundit që në gjumë të lehtë. Nuk llogaritet si natë.</string>
+    <string name="nap_hint">Të zgjon pas kësaj kohe, në minutat e fundit që kur gjumi bëhet i shqetësuar. Nuk llogaritet si natë.</string>
     <string name="nap_running">Dremitje deri në %1$s</string>
     <string name="nap_stop">Përfundo dremitjen</string>
     <string name="widget_name">Alarmi i radhës</string>

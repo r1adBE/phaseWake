@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">ช่วงเวลาปลุก</string>
-    <string name="channel_window_description">แสดงขณะที่ Phase Wake เฝ้าดูการหลับตื้น</string>
+    <string name="channel_window_description">แสดงขณะที่ Phase Wake รอจังหวะที่ดีเพื่อปลุกคุณ</string>
     <string name="channel_alarm">นาฬิกาปลุก</string>
     <string name="channel_alarm_description">ปลุกคุณ</string>
-    <string name="notification_window_title">กำลังเฝ้าดูการหลับตื้น</string>
+    <string name="notification_window_title">กำลังรอจังหวะที่ดี</string>
     <string name="notification_window_text">ปลุกคุณช้าสุดเวลา %1$s</string>
     <string name="notification_ring_title">อรุณสวัสดิ์</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">ทุกวัน</string>
     <string name="tile_label">ปลุกครั้งถัดไป</string>
     <string name="tile_next">ปลุกครั้งถัดไป</string>
-    <string name="tile_light_sleep">ปลุกตอนหลับตื้น</string>
+    <string name="tile_light_sleep">ปลุกเมื่อนอนกระสับกระส่าย</string>
     <string name="notification_good_night_title">หลับฝันดี</string>
     <string name="notification_good_night_text">รอให้คุณหลับ</string>
     <string name="home_good_night">ราตรีสวัสดิ์</string>

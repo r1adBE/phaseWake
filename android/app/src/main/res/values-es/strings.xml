@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Hoy</string>
     <string name="home_next_tomorrow">Mañana</string>
-    <string name="home_next_in">Te despierta en sueño ligero · en %1$s</string>
+    <string name="home_next_in">Te despierta en cuanto te inquietas · en %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Te despierta justo a la hora objetivo · en %1$s</string>
     <string name="home_no_alarm_title">Despierta en el momento justo</string>
-    <string name="home_no_alarm_text">Elige una hora y una ventana. Tu reloj te despierta cuando duermes ligero.</string>
+    <string name="home_no_alarm_text">Elige una hora y una ventana. Tu reloj te despierta dentro de ella en cuanto te inquietas.</string>
     <string name="home_add_alarm">Nueva alarma</string>
     <string name="home_last_night">Anoche</string>
     <string name="home_alarms">Tus alarmas</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Lee las fases del sueño de Health Connect al despertar, para comprobar y mejorar la detección.</string>
     <string name="health_connected">Conectado</string>
     <string name="health_unavailable">Health Connect no está disponible en este móvil.</string>
-    <string name="verdict_good">Datos de salud: %1$s ✓</string>
-    <string name="verdict_deep">Datos de salud: sueño profundo</string>
-    <string name="stage_light">sueño ligero</string>
-    <string name="stage_rem">sueño REM</string>
-    <string name="stage_awake">despierto</string>
     <string name="editor_alert">Cómo despertarte</string>
     <string name="editor_alert_hint">El sonido siempre va con vibración. Las alarmas suenan también con No molestar, el modo hora de dormir y el móvil en silencio.</string>
     <string name="editor_alert_watch">Reloj</string>
@@ -197,7 +192,7 @@
     <string name="feeling_5">Descansado</string>
     <string name="feeling_value">Sensación: %1$s</string>
     <string name="feeling_rate">Sensación %1$d de 5: %2$s</string>
-    <string name="feeling_hint">Con el tiempo verás si despertar en sueño ligero te sienta bien.</string>
+    <string name="feeling_hint">Con el tiempo verás si despertar antes te sienta bien.</string>
     <string name="trends_title">Últimos 7 días</string>
     <string name="trends_not_enough">Las tendencias aparecen tras unas cuantas noches.</string>
     <string name="trends_asleep">Ø de sueño: %1$s</string>
@@ -412,7 +407,7 @@
     <string name="onb_optional">%1$s (opcional)</string>
     <string name="onb_granted">Permitido</string>
     <string name="onb_alarm_title">Primera alarma</string>
-    <string name="onb_alarm_text">¿A qué hora quieres estar despierto como muy tarde? El reloj te despierta antes dentro de la ventana si duermes ligero.</string>
+    <string name="onb_alarm_text">¿A qué hora quieres estar despierto como muy tarde? El reloj te despierta en la ventana previa en cuanto te inquietas.</string>
     <string name="onb_alarm_create">Crear alarma</string>
     <string name="onb_alarm_done">Alarma creada: %1$s</string>
     <string name="onb_done_title">Listo</string>
@@ -444,7 +439,7 @@
         <item quantity="other">%1$d minutos</item>
     </plurals>
     <string name="nap_start">Empezar la siesta</string>
-    <string name="nap_hint">Te despierta tras este tiempo, en los últimos minutos ya en sueño ligero. No cuenta como noche.</string>
+    <string name="nap_hint">Te despierta tras este tiempo, en los últimos minutos ya si te inquietas. No cuenta como noche.</string>
     <string name="nap_running">Siesta hasta las %1$s</string>
     <string name="nap_stop">Terminar la siesta</string>
     <string name="widget_name">Próxima alarma</string>

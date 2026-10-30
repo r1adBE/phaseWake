@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">ಎಚ್ಚರಿಸುವ ಅವಧಿ</string>
-    <string name="channel_window_description">Phase Wake ಹಗುರ ನಿದ್ರೆಗಾಗಿ ಗಮನಿಸುತ್ತಿರುವಾಗ ಕಾಣುತ್ತದೆ.</string>
+    <string name="channel_window_description">Phase Wake ಎಬ್ಬಿಸಲು ಸೂಕ್ತ ಕ್ಷಣಕ್ಕಾಗಿ ಕಾಯುತ್ತಿರುವಾಗ ಕಾಣುತ್ತದೆ.</string>
     <string name="channel_alarm">ಅಲಾರಾಂ</string>
     <string name="channel_alarm_description">ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
-    <string name="notification_window_title">ಹಗುರ ನಿದ್ರೆಗಾಗಿ ಗಮನಿಸುತ್ತಿದೆ</string>
+    <string name="notification_window_title">ಸೂಕ್ತ ಕ್ಷಣಕ್ಕಾಗಿ ಕಾಯುತ್ತಿದೆ</string>
     <string name="notification_window_text">ತಡವೆಂದರೆ %1$s ಕ್ಕೆ ಎಬ್ಬಿಸುತ್ತದೆ</string>
     <string name="notification_ring_title">ಶುಭೋದಯ</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">ಪ್ರತಿದಿನ</string>
     <string name="tile_label">ಮುಂದಿನ ಅಲಾರಾಂ</string>
     <string name="tile_next">ಮುಂದಿನ ಅಲಾರಾಂ</string>
-    <string name="tile_light_sleep">ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ ಎಬ್ಬಿಸುತ್ತದೆ</string>
+    <string name="tile_light_sleep">ಚಡಪಡಿಸಿದಾಗ ಎಬ್ಬಿಸುತ್ತದೆ</string>
     <string name="notification_good_night_title">ಚೆನ್ನಾಗಿ ನಿದ್ರಿಸಿ</string>
     <string name="notification_good_night_text">ನೀವು ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಕಾಯುತ್ತಿದೆ</string>
     <string name="home_good_night">ಶುಭ ರಾತ್ರಿ</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Сегодня</string>
     <string name="home_next_tomorrow">Завтра</string>
-    <string name="home_next_in">Разбудит в лёгком сне · через %1$s</string>
+    <string name="home_next_in">Разбудит, как только сон станет беспокойным · через %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Разбудит точно в целевое время · через %1$s</string>
     <string name="home_no_alarm_title">Просыпайся в нужный момент</string>
-    <string name="home_no_alarm_text">Задай время и окно. Часы разбудят тебя, когда сон будет лёгким.</string>
+    <string name="home_no_alarm_text">Задай время и окно. Часы разбудят тебя в нём, как только сон станет беспокойным.</string>
     <string name="home_add_alarm">Новый будильник</string>
     <string name="home_last_night">Прошлая ночь</string>
     <string name="home_alarms">Твои будильники</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">После пробуждения читает фазы сна из Health Connect, чтобы проверять и улучшать распознавание.</string>
     <string name="health_connected">Подключено</string>
     <string name="health_unavailable">Health Connect недоступен на этом телефоне.</string>
-    <string name="verdict_good">Данные о здоровье: %1$s ✓</string>
-    <string name="verdict_deep">Данные о здоровье: глубокий сон</string>
-    <string name="stage_light">лёгкий сон</string>
-    <string name="stage_rem">REM-сон</string>
-    <string name="stage_awake">бодрствование</string>
     <string name="editor_alert">Как будить</string>
     <string name="editor_alert_hint">Звук всегда идёт с вибрацией. Будильники звонят и в режиме «Не беспокоить», в режиме сна и на беззвучном телефоне.</string>
     <string name="editor_alert_watch">Часы</string>
@@ -200,7 +195,7 @@
     <string name="feeling_5">Бодро</string>
     <string name="feeling_value">Самочувствие: %1$s</string>
     <string name="feeling_rate">Самочувствие %1$d из 5: %2$s</string>
-    <string name="feeling_hint">Со временем ты увидишь, идёт ли тебе на пользу пробуждение в лёгком сне.</string>
+    <string name="feeling_hint">Со временем ты увидишь, идёт ли тебе на пользу более раннее пробуждение.</string>
     <string name="trends_title">Последние 7 дней</string>
     <string name="trends_not_enough">Тренды появятся через несколько ночей.</string>
     <string name="trends_asleep">Ø сна %1$s</string>
@@ -424,7 +419,7 @@
     <string name="onb_optional">%1$s (по желанию)</string>
     <string name="onb_granted">Разрешено</string>
     <string name="onb_alarm_title">Первый будильник</string>
-    <string name="onb_alarm_text">Когда ты хочешь проснуться самое позднее? Часы разбудят тебя раньше в пределах окна, если сон чуткий.</string>
+    <string name="onb_alarm_text">Когда ты хочешь проснуться самое позднее? Часы разбудят тебя в окне до этого, как только сон станет беспокойным.</string>
     <string name="onb_alarm_create">Создать будильник</string>
     <string name="onb_alarm_done">Будильник создан: %1$s</string>
     <string name="onb_done_title">Готово</string>
@@ -457,7 +452,7 @@
         <item quantity="other">%1$d минуты</item>
     </plurals>
     <string name="nap_start">Начать короткий сон</string>
-    <string name="nap_hint">Будит тебя через это время, в последние минуты уже при чутком сне. Не считается ночью.</string>
+    <string name="nap_hint">Будит тебя через это время, в последние минуты уже тогда, когда сон станет беспокойным. Не считается ночью.</string>
     <string name="nap_running">Короткий сон до %1$s</string>
     <string name="nap_stop">Завершить короткий сон</string>
     <string name="widget_name">Следующий будильник</string>

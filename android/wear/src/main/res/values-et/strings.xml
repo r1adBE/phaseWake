@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Äratusaken</string>
-    <string name="channel_window_description">Kuvatakse, kui Phase Wake ootab kerget und.</string>
+    <string name="channel_window_description">Kuvatakse, kui Phase Wake ootab head hetke sind äratada.</string>
     <string name="channel_alarm">Äratus</string>
     <string name="channel_alarm_description">Äratab sind.</string>
-    <string name="notification_window_title">Kerge une ootel</string>
+    <string name="notification_window_title">Ootab head hetke</string>
     <string name="notification_window_text">Äratab sind hiljemalt kell %1$s</string>
     <string name="notification_ring_title">Tere hommikust</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Iga päev</string>
     <string name="tile_label">Järgmine äratus</string>
     <string name="tile_next">Järgmine äratus</string>
-    <string name="tile_light_sleep">Äratab kerges unes</string>
+    <string name="tile_light_sleep">Äratab rahutuse korral</string>
     <string name="notification_good_night_title">Maga hästi</string>
     <string name="notification_good_night_text">Ootan, kuni uinud</string>
     <string name="home_good_night">Head ööd</string>

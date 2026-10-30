@@ -19,10 +19,10 @@
 
     <string name="home_next_today">آج</string>
     <string name="home_next_tomorrow">کل</string>
-    <string name="home_next_in">ہلکی نیند میں جگائے گا · %1$s میں</string>
+    <string name="home_next_in">بے چین ہوتے ہی جگائے گا · %1$s میں</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">عین ہدف کے وقت پر جگائے گا · %1$s میں</string>
     <string name="home_no_alarm_title">صحیح لمحے پر جاگو</string>
-    <string name="home_no_alarm_text">وقت اور ونڈو مقرر کرو۔ جب تمہاری نیند ہلکی ہو گی، گھڑی تمہیں جگا دے گی۔</string>
+    <string name="home_no_alarm_text">وقت اور ونڈو مقرر کرو۔ جیسے ہی تم بے چین ہونے لگو گے، گھڑی تمہیں اسی ونڈو میں جگا دے گی۔</string>
     <string name="home_add_alarm">نیا الارم</string>
     <string name="home_last_night">پچھلی رات</string>
     <string name="home_alarms">تمہارے الارم</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">جاگنے کے بعد Health Connect سے نیند کے مراحل پڑھتا ہے، تاکہ پہچان کو جانچا اور بہتر بنایا جا سکے۔</string>
     <string name="health_connected">منسلک</string>
     <string name="health_unavailable">اس فون پر Health Connect دستیاب نہیں۔</string>
-    <string name="verdict_good">صحت کا ڈیٹا: %1$s ✓</string>
-    <string name="verdict_deep">صحت کا ڈیٹا: گہری نیند</string>
-    <string name="stage_light">ہلکی نیند</string>
-    <string name="stage_rem">REM نیند</string>
-    <string name="stage_awake">جاگتے ہوئے</string>
     <string name="editor_alert">کیسے جگایا جائے</string>
     <string name="editor_alert_hint">آواز ہمیشہ وائبریشن کے ساتھ آتی ہے۔ الارم “ڈسٹرب نہ کریں”، بیڈ ٹائم موڈ اور خاموش فون پر بھی بجتے ہیں۔</string>
     <string name="editor_alert_watch">گھڑی</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">تازہ دم</string>
     <string name="feeling_value">کیفیت: %1$s</string>
     <string name="feeling_rate">کیفیت 5 میں سے %1$d: %2$s</string>
-    <string name="feeling_hint">وقت کے ساتھ دیکھو گے کہ ہلکی نیند میں جاگنا تمہارے لیے اچھا ہے یا نہیں۔</string>
+    <string name="feeling_hint">وقت کے ساتھ دیکھو گے کہ پہلے جگایا جانا تمہارے لیے اچھا ہے یا نہیں۔</string>
     <string name="trends_title">پچھلے 7 دن</string>
     <string name="trends_not_enough">چند راتوں کے بعد رجحانات نظر آئیں گے۔</string>
     <string name="trends_asleep">اوسطاً %1$s نیند</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (اختیاری)</string>
     <string name="onb_granted">اجازت ہے</string>
     <string name="onb_alarm_title">پہلا الارم</string>
-    <string name="onb_alarm_text">زیادہ سے زیادہ کب تک جاگنا چاہتے ہو؟ اگر نیند ہلکی ہو تو گھڑی تمہیں ونڈو کے اندر پہلے جگا دے گی۔</string>
+    <string name="onb_alarm_text">زیادہ سے زیادہ کب تک جاگنا چاہتے ہو؟ جیسے ہی تم بے چین ہونے لگو، گھڑی تمہیں اس سے پہلے کی ونڈو میں جگا دے گی۔</string>
     <string name="onb_alarm_create">الارم بناؤ</string>
     <string name="onb_alarm_done">الارم بن گیا: %1$s</string>
     <string name="onb_done_title">سب تیار</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d منٹ</item>
     </plurals>
     <string name="nap_start">پاور نیپ شروع کرو</string>
-    <string name="nap_hint">اس وقت کے بعد جگاتا ہے، آخری چند منٹوں میں ہلکی نیند ہو تو پہلے ہی۔ رات میں شمار نہیں ہوتا۔</string>
+    <string name="nap_hint">اس وقت کے بعد جگاتا ہے، آخری چند منٹوں میں بے چین ہو تو پہلے ہی۔ رات میں شمار نہیں ہوتا۔</string>
     <string name="nap_running">%1$s تک پاور نیپ</string>
     <string name="nap_stop">پاور نیپ ختم کرو</string>
     <string name="widget_name">اگلا الارم</string>

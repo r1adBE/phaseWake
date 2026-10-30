@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Janela de despertar</string>
-    <string name="channel_window_description">Aparece enquanto o Phase Wake aguarda o sono leve.</string>
+    <string name="channel_window_description">Aparece enquanto o Phase Wake aguarda um bom momento para te acordar.</string>
     <string name="channel_alarm">Alarme</string>
     <string name="channel_alarm_description">Acorda-te.</string>
-    <string name="notification_window_title">A aguardar o sono leve</string>
+    <string name="notification_window_title">A aguardar um bom momento</string>
     <string name="notification_window_text">Acorda-te até às %1$s</string>
     <string name="notification_ring_title">Bom dia</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Todos os dias</string>
     <string name="tile_label">Próximo alarme</string>
     <string name="tile_next">Próximo alarme</string>
-    <string name="tile_light_sleep">Acorda-te no sono leve</string>
+    <string name="tile_light_sleep">Acorda-te com o sono agitado</string>
     <string name="notification_good_night_title">Dorme bem</string>
     <string name="notification_good_night_text">A aguardar que adormeças</string>
     <string name="home_good_night">Boa noite</string>

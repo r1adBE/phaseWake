@@ -16,10 +16,10 @@
     <string name="nav_settings">Параметрлер</string>
     <string name="home_next_today">Бүгін</string>
     <string name="home_next_tomorrow">Ертең</string>
-    <string name="home_next_in">Жеңіл ұйқыда оятады · %1$s кейін</string>
+    <string name="home_next_in">Мазасыздана бастасаң, оятады · %1$s кейін</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Дәл мақсатты уақытта оятады · %1$s кейін</string>
     <string name="home_no_alarm_title">Дәл кезінде ояну</string>
-    <string name="home_no_alarm_text">Уақыт пен терезені орнат. Жеңіл ұйықтап жатқанда сағатың сені оятады.</string>
+    <string name="home_no_alarm_text">Уақыт пен терезені орнат. Мазасыздана бастасаң, сағатың сені сол терезе ішінде оятады.</string>
     <string name="home_add_alarm">Жаңа оятқыш</string>
     <string name="home_last_night">Өткен түн</string>
     <string name="home_alarms">Оятқыштарың</string>
@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Оянғаннан кейін Health Connect-тен ұйқы фазаларын оқып, анықтауды тексереді және жақсартады.</string>
     <string name="health_connected">Қосылған</string>
     <string name="health_unavailable">Бұл телефонда Health Connect жоқ.</string>
-    <string name="verdict_good">Денсаулық деректері: %1$s ✓</string>
-    <string name="verdict_deep">Денсаулық деректері: терең ұйқы</string>
-    <string name="stage_light">жеңіл ұйқы</string>
-    <string name="stage_rem">REM ұйқысы</string>
-    <string name="stage_awake">ояу</string>
     <string name="editor_alert">Қалай ояту керек</string>
     <string name="editor_alert_hint">Дыбыс әрқашан дірілмен бірге. Оятқыштар «Мазаламау», ұйқы режимі мен дыбыссыз телефонда да шырылдайды.</string>
     <string name="editor_alert_watch">Сағат</string>
@@ -186,7 +181,7 @@
     <string name="feeling_5">Сергекпін</string>
     <string name="feeling_value">Көңіл-күй: %1$s</string>
     <string name="feeling_rate">Көңіл-күй 5-тен %1$d: %2$s</string>
-    <string name="feeling_hint">Уақыт өте келе жеңіл ұйқыда ояну саған пайдалы ма, көресің.</string>
+    <string name="feeling_hint">Уақыт өте келе ертерек ояну саған пайдалы ма, көресің.</string>
     <string name="trends_title">Соңғы 7 күн</string>
     <string name="trends_not_enough">Үрдістер бірнеше түннен кейін пайда болады.</string>
     <string name="trends_asleep">Ø %1$s ұйқы</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (міндетті емес)</string>
     <string name="onb_granted">Рұқсат берілді</string>
     <string name="onb_alarm_title">Алғашқы оятқыш</string>
-    <string name="onb_alarm_text">Ең кешінде қашан ояу болғың келеді? Жеңіл ұйықтасаң, сағатың сені терезе ішінде ертерек оятады.</string>
+    <string name="onb_alarm_text">Ең кешінде қашан ояу болғың келеді? Мазасыздана бастасаң, сағатың сені оған дейінгі терезе ішінде оятады.</string>
     <string name="onb_alarm_create">Оятқыш жасау</string>
     <string name="onb_alarm_done">Оятқыш жасалды: %1$s</string>
     <string name="onb_done_title">Бәрі дайын</string>
@@ -419,7 +414,7 @@
         <item quantity="other">%1$d минут</item>
     </plurals>
     <string name="nap_start">Қысқа ұйқыны бастау</string>
-    <string name="nap_hint">Осы уақыттан кейін оятады, соңғы минуттарда жеңіл ұйқыда-ақ. Түн ретінде саналмайды.</string>
+    <string name="nap_hint">Осы уақыттан кейін оятады, соңғы минуттарда мазасыздана бастасаң, ертерек. Түн ретінде саналмайды.</string>
     <string name="nap_running">Қысқа ұйқы: %1$s дейін</string>
     <string name="nap_stop">Қысқа ұйқыны аяқтау</string>
     <string name="widget_name">Келесі оятқыш</string>

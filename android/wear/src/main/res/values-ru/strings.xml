@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Окно пробуждения</string>
-    <string name="channel_window_description">Показывается, пока Phase Wake следит за лёгким сном.</string>
+    <string name="channel_window_description">Показывается, пока Phase Wake ждёт подходящий момент, чтобы разбудить тебя.</string>
     <string name="channel_alarm">Будильник</string>
     <string name="channel_alarm_description">Будит тебя.</string>
-    <string name="notification_window_title">Слежу за лёгким сном</string>
+    <string name="notification_window_title">Ждёт подходящий момент</string>
     <string name="notification_window_text">Разбудит не позже %1$s</string>
     <string name="notification_ring_title">Доброе утро</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Каждый день</string>
     <string name="tile_label">Следующий будильник</string>
     <string name="tile_next">Следующий будильник</string>
-    <string name="tile_light_sleep">Будит в лёгком сне</string>
+    <string name="tile_light_sleep">Будит при беспокойном сне</string>
     <string name="notification_good_night_title">Приятных снов</string>
     <string name="notification_good_night_text">Ждём, пока ты заснёшь</string>
     <string name="home_good_night">Спокойной ночи</string>

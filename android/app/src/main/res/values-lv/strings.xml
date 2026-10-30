@@ -21,10 +21,10 @@
 
     <string name="home_next_today">Šodien</string>
     <string name="home_next_tomorrow">Rīt</string>
-    <string name="home_next_in">Modina vieglā miegā · pēc %1$s</string>
+    <string name="home_next_in">Modina, tiklīdz miegs kļūst nemierīgs · pēc %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Modina tieši mērķa laikā · pēc %1$s</string>
     <string name="home_no_alarm_title">Mosties īstajā brīdī</string>
-    <string name="home_no_alarm_text">Iestati laiku un modināšanas logu. Pulkstenis tevi pamodina, kad tavs miegs ir viegls.</string>
+    <string name="home_no_alarm_text">Iestati laiku un modināšanas logu. Pulkstenis tevi tajā pamodina, tiklīdz tavs miegs kļūst nemierīgs.</string>
     <string name="home_add_alarm">Jauns modinātājs</string>
     <string name="home_last_night">Pagājusī nakts</string>
     <string name="home_alarms">Tavi modinātāji</string>
@@ -108,11 +108,6 @@
     <string name="health_connect_hint">Pēc pamošanās nolasa miega fāzes no Health Connect, lai pārbaudītu un uzlabotu noteikšanu.</string>
     <string name="health_connected">Savienots</string>
     <string name="health_unavailable">Health Connect šajā tālrunī nav pieejams.</string>
-    <string name="verdict_good">Veselības dati: %1$s ✓</string>
-    <string name="verdict_deep">Veselības dati: dziļš miegs</string>
-    <string name="stage_light">viegls miegs</string>
-    <string name="stage_rem">REM miegs</string>
-    <string name="stage_awake">nomodā</string>
     <string name="editor_alert">Kā tevi modināt</string>
     <string name="editor_alert_hint">Skaņa vienmēr ir kopā ar vibrāciju. Modinātāji zvana arī režīmā „Netraucēt“, gulētiešanas režīmā un tad, ja tālrunim izslēgta skaņa.</string>
     <string name="editor_alert_watch">Pulkstenis</string>
@@ -199,7 +194,7 @@
     <string name="feeling_5">Moži</string>
     <string name="feeling_value">Pašsajūta: %1$s</string>
     <string name="feeling_rate">Pašsajūta %1$d no 5: %2$s</string>
-    <string name="feeling_hint">Laika gaitā redzēsi, vai pamošanās vieglā miegā tev nāk par labu.</string>
+    <string name="feeling_hint">Laika gaitā redzēsi, vai agrāka modināšana tev nāk par labu.</string>
     <string name="trends_title">Pēdējās 7 dienas</string>
     <string name="trends_not_enough">Tendences parādīsies pēc dažām naktīm.</string>
     <string name="trends_asleep">Ø %1$s miega</string>
@@ -415,7 +410,7 @@
     <string name="onb_optional">%1$s (neobligāti)</string>
     <string name="onb_granted">Atļauts</string>
     <string name="onb_alarm_title">Pirmais modinātājs</string>
-    <string name="onb_alarm_text">Cikos vēlākais vēlies celties? Ja tavs miegs ir viegls, pulkstenis tevi pamodina agrāk loga robežās.</string>
+    <string name="onb_alarm_text">Cikos vēlākais vēlies celties? Pulkstenis tevi pamodina logā pirms tam, tiklīdz tavs miegs kļūst nemierīgs.</string>
     <string name="onb_alarm_create">Izveidot modinātāju</string>
     <string name="onb_alarm_done">Modinātājs izveidots: %1$s</string>
     <string name="onb_done_title">Viss gatavs</string>
@@ -447,7 +442,7 @@
         <item quantity="other">%1$d minūtes</item>
     </plurals>
     <string name="nap_start">Sākt diendusu</string>
-    <string name="nap_hint">Pamodina pēc šī laika, pēdējās minūtēs jau vieglā miegā. Netiek skaitīts kā nakts.</string>
+    <string name="nap_hint">Pamodina pēc šī laika, pēdējās minūtēs jau tad, ja miegs kļūst nemierīgs. Netiek skaitīts kā nakts.</string>
     <string name="nap_running">Diendusa līdz %1$s</string>
     <string name="nap_stop">Beigt diendusu</string>
     <string name="widget_name">Nākamais modinātājs</string>

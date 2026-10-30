@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Xanela de espertar</string>
-    <string name="channel_window_description">Móstrase mentres Phase Wake espera o sono lixeiro.</string>
+    <string name="channel_window_description">Móstrase mentres Phase Wake agarda un bo momento para espertarte.</string>
     <string name="channel_alarm">Alarma</string>
     <string name="channel_alarm_description">Espértate.</string>
-    <string name="notification_window_title">Esperando o sono lixeiro</string>
+    <string name="notification_window_title">Agardando un bo momento</string>
     <string name="notification_window_text">Espértate como moi tarde ás %1$s</string>
     <string name="notification_ring_title">Bos días</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Todos os días</string>
     <string name="tile_label">Próxima alarma</string>
     <string name="tile_next">Próxima alarma</string>
-    <string name="tile_light_sleep">Espértate no sono lixeiro</string>
+    <string name="tile_light_sleep">Espértate se te inquietas</string>
     <string name="notification_good_night_title">Que durmas ben</string>
     <string name="notification_good_night_text">Esperando a que adormezas</string>
     <string name="home_good_night">Boas noites</string>

@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Днес</string>
     <string name="home_next_tomorrow">Утре</string>
-    <string name="home_next_in">Събужда те в лек сън · след %1$s</string>
+    <string name="home_next_in">Събужда те, щом сънят ти стане неспокоен · след %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Събужда те точно в целевия час · след %1$s</string>
     <string name="home_no_alarm_title">Събуди се в точния момент</string>
-    <string name="home_no_alarm_text">Задай час и прозорец. Часовникът ще те събуди, когато спиш леко.</string>
+    <string name="home_no_alarm_text">Задай час и прозорец. Часовникът ще те събуди в него, щом сънят ти стане неспокоен.</string>
     <string name="home_add_alarm">Нов будилник</string>
     <string name="home_last_night">Миналата нощ</string>
     <string name="home_alarms">Твоите будилници</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">След събуждане чете фазите на съня от Health Connect, за да провери и подобри разпознаването.</string>
     <string name="health_connected">Свързано</string>
     <string name="health_unavailable">Health Connect не е наличен на този телефон.</string>
-    <string name="verdict_good">Здравни данни: %1$s ✓</string>
-    <string name="verdict_deep">Здравни данни: дълбок сън</string>
-    <string name="stage_light">лек сън</string>
-    <string name="stage_rem">REM сън</string>
-    <string name="stage_awake">будност</string>
     <string name="editor_alert">Как да те събуди</string>
     <string name="editor_alert_hint">Звукът винаги е с вибрация. Будилниците звънят и при „Не безпокойте“, режим за сън и тих телефон.</string>
     <string name="editor_alert_watch">Часовник</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">Отпочинало</string>
     <string name="feeling_value">Усещане: %1$s</string>
     <string name="feeling_rate">Усещане %1$d от 5: %2$s</string>
-    <string name="feeling_hint">С времето ще видиш дали събуждането в лек сън ти се отразява добре.</string>
+    <string name="feeling_hint">С времето ще видиш дали по-ранното събуждане ти се отразява добре.</string>
     <string name="trends_title">Последните 7 дни</string>
     <string name="trends_not_enough">Тенденциите се появяват след няколко нощи.</string>
     <string name="trends_asleep">Ø %1$s сън</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (по желание)</string>
     <string name="onb_granted">Разрешено</string>
     <string name="onb_alarm_title">Първи будилник</string>
-    <string name="onb_alarm_text">Кога най-късно искаш да станеш? Ако спиш леко, часовникът ще те събуди по-рано в прозореца.</string>
+    <string name="onb_alarm_text">Кога най-късно искаш да станеш? Часовникът ще те събуди в прозореца преди това, щом сънят ти стане неспокоен.</string>
     <string name="onb_alarm_create">Създай будилник</string>
     <string name="onb_alarm_done">Будилникът е създаден: %1$s</string>
     <string name="onb_done_title">Готово</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d минути</item>
     </plurals>
     <string name="nap_start">Започни дрямка</string>
-    <string name="nap_hint">Събужда те след това време, а в последните минути – още при лек сън. Не се брои за нощ.</string>
+    <string name="nap_hint">Събужда те след това време, а в последните минути – по-рано, ако сънят ти стане неспокоен. Не се брои за нощ.</string>
     <string name="nap_running">Дрямка до %1$s</string>
     <string name="nap_stop">Край на дрямката</string>
     <string name="widget_name">Следващ будилник</string>

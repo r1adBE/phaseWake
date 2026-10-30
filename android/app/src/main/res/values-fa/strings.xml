@@ -18,10 +18,10 @@
 
     <string name="home_next_today">امروز</string>
     <string name="home_next_tomorrow">فردا</string>
-    <string name="home_next_in">در خواب سبک بیدارت می‌کند · تا %1$s دیگر</string>
+    <string name="home_next_in">به‌محض اینکه بی‌قرار شوی بیدارت می‌کند · تا %1$s دیگر</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">دقیقاً در زمان هدف بیدارت می‌کند · تا %1$s دیگر</string>
     <string name="home_no_alarm_title">در لحظهٔ مناسب بیدار شو</string>
-    <string name="home_no_alarm_text">یک زمان و یک بازه تعیین کن. ساعتت وقتی خواب سبکی داری بیدارت می‌کند.</string>
+    <string name="home_no_alarm_text">یک زمان و یک بازه تعیین کن. ساعتت در همان بازه، به‌محض اینکه بی‌قرار شوی، بیدارت می‌کند.</string>
     <string name="home_add_alarm">زنگ جدید</string>
     <string name="home_last_night">شب گذشته</string>
     <string name="home_alarms">زنگ‌های تو</string>
@@ -105,11 +105,6 @@
     <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
     <string name="health_connected">وصل شد</string>
     <string name="health_unavailable">Health Connect روی این گوشی در دسترس نیست.</string>
-    <string name="verdict_good">داده‌های سلامت: %1$s ✓</string>
-    <string name="verdict_deep">داده‌های سلامت: خواب عمیق</string>
-    <string name="stage_light">خواب سبک</string>
-    <string name="stage_rem">خواب REM</string>
-    <string name="stage_awake">بیدار</string>
     <string name="editor_alert">نحوهٔ بیدار کردنت</string>
     <string name="editor_alert_hint">صدا همیشه با لرزش همراه است. زنگ‌ها در حالت «مزاحم نشو»، حالت زمان خواب و گوشی بی‌صدا هم به صدا درمی‌آیند.</string>
     <string name="editor_alert_watch">ساعت</string>
@@ -194,7 +189,7 @@
     <string name="feeling_5">سرحال</string>
     <string name="feeling_value">حس: %1$s</string>
     <string name="feeling_rate">حس %1$d از ۵: %2$s</string>
-    <string name="feeling_hint">با گذشت زمان می‌بینی که بیدارشدن در خواب سبک برایت خوب است یا نه.</string>
+    <string name="feeling_hint">با گذشت زمان می‌بینی که زودتر بیدارشدن برایت خوب است یا نه.</string>
     <string name="trends_title">۷ روز گذشته</string>
     <string name="trends_not_enough">روندها بعد از چند شب نمایش داده می‌شوند.</string>
     <string name="trends_asleep">میانگین Ø خواب %1$s</string>
@@ -400,7 +395,7 @@
     <string name="onb_optional">%1$s (اختیاری)</string>
     <string name="onb_granted">مجاز</string>
     <string name="onb_alarm_title">اولین زنگ</string>
-    <string name="onb_alarm_text">حداکثر تا کی می‌خواهی بیدار شوی؟ اگر خوابت سبک باشد، ساعت زودتر در بازه بیدارت می‌کند.</string>
+    <string name="onb_alarm_text">حداکثر تا کی می‌خواهی بیدار شوی؟ ساعت در بازهٔ پیش از آن، به‌محض اینکه بی‌قرار شوی، بیدارت می‌کند.</string>
     <string name="onb_alarm_create">ساخت زنگ</string>
     <string name="onb_alarm_done">زنگ ساخته شد: %1$s</string>
     <string name="onb_done_title">آماده</string>
@@ -431,7 +426,7 @@
         <item quantity="other">%1$d دقیقه</item>
     </plurals>
     <string name="nap_start">شروع چرت</string>
-    <string name="nap_hint">بعد از این مدت بیدارت می‌کند، در دقیقه‌های آخر از همان خواب سبک. شب حساب نمی‌شود.</string>
+    <string name="nap_hint">بعد از این مدت بیدارت می‌کند، در دقیقه‌های آخر هم اگر بی‌قرار شوی. شب حساب نمی‌شود.</string>
     <string name="nap_running">چرت تا %1$s</string>
     <string name="nap_stop">پایان چرت</string>
     <string name="widget_name">زنگ بعدی</string>

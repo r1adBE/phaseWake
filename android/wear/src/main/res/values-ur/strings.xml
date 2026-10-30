@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="channel_window">جاگنے کی ونڈو</string>
-    <string name="channel_window_description">جب Phase Wake ہلکی نیند پر نظر رکھتا ہے تب دکھائی دیتا ہے۔</string>
+    <string name="channel_window_description">جب Phase Wake جگانے کے لیے اچھے لمحے کا انتظار کرتا ہے تب دکھائی دیتا ہے۔</string>
     <string name="channel_alarm">الارم</string>
     <string name="channel_alarm_description">تمہیں جگاتا ہے۔</string>
-    <string name="notification_window_title">ہلکی نیند کا انتظار</string>
+    <string name="notification_window_title">اچھے لمحے کا انتظار</string>
     <string name="notification_window_text">زیادہ سے زیادہ %1$s تک جگائے گا</string>
     <string name="notification_ring_title">صبح بخیر</string>
 
@@ -35,7 +35,7 @@
     <string name="alarm_every_day">روزانہ</string>
     <string name="tile_label">اگلا الارم</string>
     <string name="tile_next">اگلا الارم</string>
-    <string name="tile_light_sleep">ہلکی نیند میں جگائے گا</string>
+    <string name="tile_light_sleep">بے چینی پر جگائے گا</string>
     <string name="notification_good_night_title">اچھی نیند لو</string>
     <string name="notification_good_night_text">تمہارے سو جانے کا انتظار</string>
     <string name="home_good_night">شب بخیر</string>

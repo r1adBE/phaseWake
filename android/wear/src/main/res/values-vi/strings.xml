@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Khoảng đánh thức</string>
-    <string name="channel_window_description">Hiển thị khi Phase Wake đang theo dõi giấc ngủ nông.</string>
+    <string name="channel_window_description">Hiển thị khi Phase Wake đang chờ thời điểm tốt để đánh thức bạn.</string>
     <string name="channel_alarm">Báo thức</string>
     <string name="channel_alarm_description">Đánh thức bạn.</string>
-    <string name="notification_window_title">Đang theo dõi giấc ngủ nông</string>
+    <string name="notification_window_title">Đang chờ thời điểm tốt</string>
     <string name="notification_window_text">Muộn nhất đánh thức lúc %1$s</string>
     <string name="notification_ring_title">Chào buổi sáng</string>
 
@@ -34,7 +34,7 @@
     <string name="alarm_every_day">Hằng ngày</string>
     <string name="tile_label">Báo thức tiếp</string>
     <string name="tile_next">Báo thức tiếp theo</string>
-    <string name="tile_light_sleep">Đánh thức khi ngủ nông</string>
+    <string name="tile_light_sleep">Đánh thức khi bạn trằn trọc</string>
     <string name="notification_good_night_title">Ngủ ngon nhé</string>
     <string name="notification_good_night_text">Đang chờ bạn chìm vào giấc ngủ</string>
     <string name="home_good_night">Ngủ ngon</string>

@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Hoxe</string>
     <string name="home_next_tomorrow">Mañá</string>
-    <string name="home_next_in">Espértate no sono lixeiro · en %1$s</string>
+    <string name="home_next_in">Espértate en canto te inquietas · en %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Espértate xusto á hora prevista · en %1$s</string>
     <string name="home_no_alarm_title">Esperta no momento xusto</string>
-    <string name="home_no_alarm_text">Escolle unha hora e unha xanela. O reloxo espértate cando durmes lixeiro.</string>
+    <string name="home_no_alarm_text">Escolle unha hora e unha xanela. O reloxo espértate dentro dela en canto te inquietas.</string>
     <string name="home_add_alarm">Nova alarma</string>
     <string name="home_last_night">Onte á noite</string>
     <string name="home_alarms">As túas alarmas</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Le as fases do sono de Health Connect despois de espertar, para comprobar e mellorar a detección.</string>
     <string name="health_connected">Conectado</string>
     <string name="health_unavailable">Health Connect non está dispoñible neste teléfono.</string>
-    <string name="verdict_good">Datos de saúde: %1$s ✓</string>
-    <string name="verdict_deep">Datos de saúde: sono profundo</string>
-    <string name="stage_light">sono lixeiro</string>
-    <string name="stage_rem">sono REM</string>
-    <string name="stage_awake">esperto</string>
     <string name="editor_alert">Como espertarte</string>
     <string name="editor_alert_hint">O son sempre vai con vibración. As alarmas tamén soan con «Non molestar», modo hora de durmir e o teléfono en silencio.</string>
     <string name="editor_alert_watch">Reloxo</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Descansado</string>
     <string name="feeling_value">Estado: %1$s</string>
     <string name="feeling_rate">Estado %1$d de 5: %2$s</string>
-    <string name="feeling_hint">Co tempo verás se espertar no sono lixeiro che senta ben.</string>
+    <string name="feeling_hint">Co tempo verás se espertar antes che senta ben.</string>
     <string name="trends_title">Últimos 7 días</string>
     <string name="trends_not_enough">As tendencias aparecen despois dalgunhas noites.</string>
     <string name="trends_asleep">Ø %1$s de sono</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (opcional)</string>
     <string name="onb_granted">Permitido</string>
     <string name="onb_alarm_title">Primeira alarma</string>
-    <string name="onb_alarm_text">Cando queres estar esperto como moi tarde? O reloxo espértate antes dentro da xanela se durmes lixeiro.</string>
+    <string name="onb_alarm_text">Cando queres estar esperto como moi tarde? O reloxo espértate na xanela anterior en canto te inquietas.</string>
     <string name="onb_alarm_create">Crear alarma</string>
     <string name="onb_alarm_done">Alarma creada: %1$s</string>
     <string name="onb_done_title">Todo listo</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minutos</item>
     </plurals>
     <string name="nap_start">Comezar sesta</string>
-    <string name="nap_hint">Espértate pasado este tempo, nos últimos minutos xa no sono lixeiro. Non conta como noite.</string>
+    <string name="nap_hint">Espértate pasado este tempo, nos últimos minutos xa se te inquietas. Non conta como noite.</string>
     <string name="nap_running">Sesta ata as %1$s</string>
     <string name="nap_stop">Rematar sesta</string>
     <string name="widget_name">Próxima alarma</string>

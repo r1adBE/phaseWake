@@ -19,10 +19,10 @@
 
     <string name="home_next_today">Oggi</string>
     <string name="home_next_tomorrow">Domani</string>
-    <string name="home_next_in">Ti sveglia nel sonno leggero · tra %1$s</string>
+    <string name="home_next_in">Ti sveglia non appena il sonno si fa agitato · tra %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Ti sveglia esattamente all’orario obiettivo · tra %1$s</string>
     <string name="home_no_alarm_title">Svegliati al momento giusto</string>
-    <string name="home_no_alarm_text">Scegli un orario e una finestra. Il tuo smartwatch ti sveglia quando dormi leggero.</string>
+    <string name="home_no_alarm_text">Scegli un orario e una finestra. Il tuo smartwatch ti sveglia al suo interno non appena il sonno si fa agitato.</string>
     <string name="home_add_alarm">Nuova sveglia</string>
     <string name="home_last_night">Ultima notte</string>
     <string name="home_alarms">Le tue sveglie</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
     <string name="health_connected">Connesso</string>
     <string name="health_unavailable">Health Connect non è disponibile su questo telefono.</string>
-    <string name="verdict_good">Dati di salute: %1$s ✓</string>
-    <string name="verdict_deep">Dati di salute: sonno profondo</string>
-    <string name="stage_light">sonno leggero</string>
-    <string name="stage_rem">sonno REM</string>
-    <string name="stage_awake">sveglio</string>
     <string name="editor_alert">Come svegliarti</string>
     <string name="editor_alert_hint">Il suono è sempre accompagnato dalla vibrazione. Le sveglie suonano anche con Non disturbare, la modalità riposo e il telefono in silenzioso.</string>
     <string name="editor_alert_watch">Smartwatch</string>
@@ -197,7 +192,7 @@
     <string name="feeling_5">Riposato</string>
     <string name="feeling_value">Sensazione: %1$s</string>
     <string name="feeling_rate">Sensazione %1$d su 5: %2$s</string>
-    <string name="feeling_hint">Col tempo vedrai se svegliarti nel sonno leggero ti fa bene.</string>
+    <string name="feeling_hint">Col tempo vedrai se svegliarti prima ti fa bene.</string>
     <string name="trends_title">Ultimi 7 giorni</string>
     <string name="trends_not_enough">Le tendenze compaiono dopo qualche notte.</string>
     <string name="trends_asleep">Ø di sonno: %1$s</string>
@@ -412,7 +407,7 @@
     <string name="onb_optional">%1$s (facoltativo)</string>
     <string name="onb_granted">Consentito</string>
     <string name="onb_alarm_title">Prima sveglia</string>
-    <string name="onb_alarm_text">Entro quando vuoi essere sveglio? L’orologio ti sveglia prima nella finestra se dormi leggero.</string>
+    <string name="onb_alarm_text">Entro quando vuoi essere sveglio? L’orologio ti sveglia nella finestra precedente non appena il sonno si fa agitato.</string>
     <string name="onb_alarm_create">Crea sveglia</string>
     <string name="onb_alarm_done">Sveglia creata: %1$s</string>
     <string name="onb_done_title">Fatto</string>
@@ -444,7 +439,7 @@
         <item quantity="other">%1$d minuti</item>
     </plurals>
     <string name="nap_start">Inizia il pisolino</string>
-    <string name="nap_hint">Ti sveglia dopo questo tempo, negli ultimi minuti già nel sonno leggero. Non conta come notte.</string>
+    <string name="nap_hint">Ti sveglia dopo questo tempo, negli ultimi minuti già se il sonno si fa agitato. Non conta come notte.</string>
     <string name="nap_running">Pisolino fino alle %1$s</string>
     <string name="nap_stop">Termina il pisolino</string>
     <string name="widget_name">Prossima sveglia</string>

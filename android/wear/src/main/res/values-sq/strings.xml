@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Intervali i zgjimit</string>
-    <string name="channel_window_description">Shfaqet ndërsa Phase Wake pret gjumin e lehtë.</string>
+    <string name="channel_window_description">Shfaqet ndërsa Phase Wake pret një moment të mirë për të të zgjuar.</string>
     <string name="channel_alarm">Alarmi</string>
     <string name="channel_alarm_description">Të zgjon.</string>
-    <string name="notification_window_title">Në pritje të gjumit të lehtë</string>
+    <string name="notification_window_title">Pret një moment të mirë</string>
     <string name="notification_window_text">Të zgjon së voni në %1$s</string>
     <string name="notification_ring_title">Mirëmëngjes</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Çdo ditë</string>
     <string name="tile_label">Alarmi i radhës</string>
     <string name="tile_next">Alarmi i radhës</string>
-    <string name="tile_light_sleep">Të zgjon në gjumë të lehtë</string>
+    <string name="tile_light_sleep">Të zgjon kur shqetësohesh</string>
     <string name="notification_good_night_title">Fli mirë</string>
     <string name="notification_good_night_text">Në pritje që të të zërë gjumi</string>
     <string name="home_good_night">Natën e mirë</string>

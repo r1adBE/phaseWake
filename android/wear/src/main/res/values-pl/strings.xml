@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">Okno budzenia</string>
-    <string name="channel_window_description">Widoczne, gdy Phase Wake czeka na lekki sen.</string>
+    <string name="channel_window_description">Widoczne, gdy Phase Wake czeka na dobry moment, by cię obudzić.</string>
     <string name="channel_alarm">Budzik</string>
     <string name="channel_alarm_description">Budzi cię.</string>
-    <string name="notification_window_title">Czekam na lekki sen</string>
+    <string name="notification_window_title">Czeka na dobry moment</string>
     <string name="notification_window_text">Obudzi cię najpóźniej o %1$s</string>
     <string name="notification_ring_title">Dzień dobry</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Codziennie</string>
     <string name="tile_label">Następny budzik</string>
     <string name="tile_next">Następny budzik</string>
-    <string name="tile_light_sleep">Budzi w lekkim śnie</string>
+    <string name="tile_light_sleep">Budzi przy niespokojnym śnie</string>
     <string name="notification_good_night_title">Śpij dobrze</string>
     <string name="notification_good_night_text">Czekam, aż zaśniesz</string>
     <string name="home_good_night">Dobranoc</string>

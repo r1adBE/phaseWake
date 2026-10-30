@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">उठवण्याचा कालावधी</string>
-    <string name="channel_window_description">Phase Wake हलक्या झोपेवर लक्ष ठेवत असताना दिसते.</string>
+    <string name="channel_window_description">Phase Wake उठवण्यासाठी योग्य क्षणाची वाट पाहत असताना दिसते.</string>
     <string name="channel_alarm">अलार्म</string>
     <string name="channel_alarm_description">तुम्हाला उठवते.</string>
-    <string name="notification_window_title">हलक्या झोपेवर लक्ष</string>
+    <string name="notification_window_title">योग्य क्षणाची वाट</string>
     <string name="notification_window_text">जास्तीत जास्त %1$s पर्यंत उठवेल</string>
     <string name="notification_ring_title">सुप्रभात</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">दररोज</string>
     <string name="tile_label">पुढचा अलार्म</string>
     <string name="tile_next">पुढचा अलार्म</string>
-    <string name="tile_light_sleep">हलक्या झोपेत उठवते</string>
+    <string name="tile_light_sleep">अस्वस्थ होताच उठवते</string>
     <string name="notification_good_night_title">शांत झोपा</string>
     <string name="notification_good_night_text">तुम्हाला झोप लागण्याची वाट पाहत आहे</string>
     <string name="home_good_night">शुभ रात्री</string>

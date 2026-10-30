@@ -22,10 +22,10 @@
 
     <string name="home_next_today">Šiandien</string>
     <string name="home_next_tomorrow">Rytoj</string>
-    <string name="home_next_in">Pažadins lengvo miego metu · po %1$s</string>
+    <string name="home_next_in">Pažadins, vos miegas taps neramus · po %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Pažadins tiksliai tiksliniu laiku · po %1$s</string>
     <string name="home_no_alarm_title">Pabusk tinkamu metu</string>
-    <string name="home_no_alarm_text">Nustatyk laiką ir žadinimo langą. Laikrodis pažadins tave lengvo miego metu.</string>
+    <string name="home_no_alarm_text">Nustatyk laiką ir žadinimo langą. Laikrodis pažadins tave jame, vos tik tavo miegas taps neramus.</string>
     <string name="home_add_alarm">Naujas žadintuvas</string>
     <string name="home_last_night">Praėjusi naktis</string>
     <string name="home_alarms">Tavo žadintuvai</string>
@@ -109,11 +109,6 @@
     <string name="health_connect_hint">Po pabudimo nuskaito miego fazes iš Health Connect, kad patikrintų ir patobulintų aptikimą.</string>
     <string name="health_connected">Prijungta</string>
     <string name="health_unavailable">Health Connect šiame telefone nepasiekiama.</string>
-    <string name="verdict_good">Sveikatos duomenys: %1$s ✓</string>
-    <string name="verdict_deep">Sveikatos duomenys: gilus miegas</string>
-    <string name="stage_light">lengvas miegas</string>
-    <string name="stage_rem">REM miegas</string>
-    <string name="stage_awake">budrumas</string>
     <string name="editor_alert">Kaip tave pažadinti</string>
     <string name="editor_alert_hint">Garsas visada skamba su vibracija. Žadintuvai skamba ir esant režimui „Netrukdyti“, miego režimui ar išjungtam telefono garsui.</string>
     <string name="editor_alert_watch">Laikrodis</string>
@@ -202,7 +197,7 @@
     <string name="feeling_5">Žvaliai</string>
     <string name="feeling_value">Savijauta: %1$s</string>
     <string name="feeling_rate">Savijauta %1$d iš 5: %2$s</string>
-    <string name="feeling_hint">Ilgainiui pamatysi, ar pabudimas lengvo miego metu tau į naudą.</string>
+    <string name="feeling_hint">Ilgainiui pamatysi, ar ankstesnis pažadinimas tau į naudą.</string>
     <string name="trends_title">Paskutinės 7 dienos</string>
     <string name="trends_not_enough">Tendencijos atsiras po kelių naktų.</string>
     <string name="trends_asleep">Ø %1$s miego</string>
@@ -427,7 +422,7 @@
     <string name="onb_optional">%1$s (neprivaloma)</string>
     <string name="onb_granted">Leista</string>
     <string name="onb_alarm_title">Pirmasis žadintuvas</string>
-    <string name="onb_alarm_text">Kada vėliausiai nori keltis? Jei miegosi lengvai, laikrodis pažadins tave anksčiau, lango ribose.</string>
+    <string name="onb_alarm_text">Kada vėliausiai nori keltis? Laikrodis pažadins tave prieš tai esančiame lange, vos tik tavo miegas taps neramus.</string>
     <string name="onb_alarm_create">Sukurti žadintuvą</string>
     <string name="onb_alarm_done">Žadintuvas sukurtas: %1$s</string>
     <string name="onb_done_title">Viskas paruošta</string>
@@ -460,7 +455,7 @@
         <item quantity="other">%1$d minučių</item>
     </plurals>
     <string name="nap_start">Pradėti pogulį</string>
-    <string name="nap_hint">Pažadina po šio laiko, paskutinėmis minutėmis – jau lengvo miego metu. Neskaičiuojama kaip naktis.</string>
+    <string name="nap_hint">Pažadina po šio laiko, paskutinėmis minutėmis – jau tada, kai miegas tampa neramus. Neskaičiuojama kaip naktis.</string>
     <string name="nap_running">Pogulis iki %1$s</string>
     <string name="nap_stop">Baigti pogulį</string>
     <string name="widget_name">Kitas žadintuvas</string>

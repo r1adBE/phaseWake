@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Avui</string>
     <string name="home_next_tomorrow">Demà</string>
-    <string name="home_next_in">Et desperta en son lleuger · d’aquí a %1$s</string>
+    <string name="home_next_in">Et desperta tan bon punt el son es torna inquiet · d’aquí a %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Et desperta just a l’hora objectiu · d’aquí a %1$s</string>
     <string name="home_no_alarm_title">Desperta’t en el moment just</string>
-    <string name="home_no_alarm_text">Tria una hora i una finestra. El rellotge et desperta quan dorms lleuger.</string>
+    <string name="home_no_alarm_text">Tria una hora i una finestra. El rellotge et desperta dins seu tan bon punt el son es torna inquiet.</string>
     <string name="home_add_alarm">Alarma nova</string>
     <string name="home_last_night">Ahir a la nit</string>
     <string name="home_alarms">Les teves alarmes</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Després de despertar-te, llegeix les fases del son de Health Connect per comprovar i millorar la detecció.</string>
     <string name="health_connected">Connectat</string>
     <string name="health_unavailable">Health Connect no està disponible en aquest telèfon.</string>
-    <string name="verdict_good">Dades de salut: %1$s ✓</string>
-    <string name="verdict_deep">Dades de salut: son profund</string>
-    <string name="stage_light">son lleuger</string>
-    <string name="stage_rem">son REM</string>
-    <string name="stage_awake">vigília</string>
     <string name="editor_alert">Com et despertem</string>
     <string name="editor_alert_hint">El so sempre va amb vibració. Les alarmes també sonen amb «No molestis», el mode de descans i el telèfon en silenci.</string>
     <string name="editor_alert_watch">Rellotge</string>
@@ -198,7 +193,7 @@
     <string name="feeling_5">Amb energia</string>
     <string name="feeling_value">Estat: %1$s</string>
     <string name="feeling_rate">Estat %1$d de 5: %2$s</string>
-    <string name="feeling_hint">Amb el temps veuràs si despertar-te en son lleuger et fa bé.</string>
+    <string name="feeling_hint">Amb el temps veuràs si despertar-te abans et fa bé.</string>
     <string name="trends_title">Últims 7 dies</string>
     <string name="trends_not_enough">Les tendències apareixen al cap d’unes quantes nits.</string>
     <string name="trends_asleep">Ø %1$s de son</string>
@@ -414,7 +409,7 @@
     <string name="onb_optional">%1$s (opcional)</string>
     <string name="onb_granted">Permès</string>
     <string name="onb_alarm_title">Primera alarma</string>
-    <string name="onb_alarm_text">A quina hora vols despertar-te com a molt tard? Si dorms lleuger, el rellotge et desperta abans, dins de la finestra.</string>
+    <string name="onb_alarm_text">A quina hora vols despertar-te com a molt tard? El rellotge et desperta en la finestra d’abans tan bon punt el son es torna inquiet.</string>
     <string name="onb_alarm_create">Crea l’alarma</string>
     <string name="onb_alarm_done">Alarma creada: %1$s</string>
     <string name="onb_done_title">Tot a punt</string>
@@ -446,7 +441,7 @@
         <item quantity="other">%1$d minuts</item>
     </plurals>
     <string name="nap_start">Comença la becaina</string>
-    <string name="nap_hint">Et desperta passat aquest temps, i en els últims minuts ja amb son lleuger. No compta com a nit.</string>
+    <string name="nap_hint">Et desperta passat aquest temps, i en els últims minuts ja si el son es torna inquiet. No compta com a nit.</string>
     <string name="nap_running">Becaina fins a les %1$s</string>
     <string name="nap_stop">Acaba la becaina</string>
     <string name="widget_name">Propera alarma</string>

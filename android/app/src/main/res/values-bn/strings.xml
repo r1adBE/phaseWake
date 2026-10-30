@@ -19,10 +19,10 @@
 
     <string name="home_next_today">আজ</string>
     <string name="home_next_tomorrow">আগামীকাল</string>
-    <string name="home_next_in">হালকা ঘুমে জাগাবে · %1$s পরে</string>
+    <string name="home_next_in">অস্থির হতে শুরু করলেই জাগাবে · %1$s পরে</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ঠিক লক্ষ্য সময়ে জাগাবে · %1$s পরে</string>
     <string name="home_no_alarm_title">ঠিক মুহূর্তে জেগে ওঠো</string>
-    <string name="home_no_alarm_text">একটা সময় আর সময়সীমা ঠিক করো। তুমি হালকা ঘুমে থাকলে ঘড়ি তোমাকে জাগাবে।</string>
+    <string name="home_no_alarm_text">একটা সময় আর সময়সীমা ঠিক করো। তুমি অস্থির হতে শুরু করলেই ঘড়ি সেই সময়সীমায় তোমাকে জাগাবে।</string>
     <string name="home_add_alarm">নতুন অ্যালার্ম</string>
     <string name="home_last_night">গত রাত</string>
     <string name="home_alarms">তোমার অ্যালার্ম</string>
@@ -106,11 +106,6 @@
     <string name="health_connect_hint">জাগার পর Health Connect থেকে ঘুমের পর্যায় পড়ে, শনাক্তকরণ যাচাই ও উন্নত করতে।</string>
     <string name="health_connected">সংযুক্ত</string>
     <string name="health_unavailable">এই ফোনে Health Connect নেই।</string>
-    <string name="verdict_good">স্বাস্থ্য ডেটা: %1$s ✓</string>
-    <string name="verdict_deep">স্বাস্থ্য ডেটা: গভীর ঘুম</string>
-    <string name="stage_light">হালকা ঘুম</string>
-    <string name="stage_rem">REM ঘুম</string>
-    <string name="stage_awake">জাগ্রত</string>
     <string name="editor_alert">কীভাবে জাগাবে</string>
     <string name="editor_alert_hint">শব্দের সঙ্গে সবসময় কম্পনও থাকে। “বিরক্ত করবে না”, বেডটাইম মোড আর সাইলেন্ট ফোনেও অ্যালার্ম বাজে।</string>
     <string name="editor_alert_watch">ঘড়ি</string>
@@ -195,7 +190,7 @@
     <string name="feeling_5">ঝরঝরে</string>
     <string name="feeling_value">অনুভূতি: %1$s</string>
     <string name="feeling_rate">অনুভূতি ৫-এর মধ্যে %1$d: %2$s</string>
-    <string name="feeling_hint">সময়ের সঙ্গে দেখবে হালকা ঘুমে জাগা তোমার জন্য ভালো কি না।</string>
+    <string name="feeling_hint">সময়ের সঙ্গে দেখবে আগে জাগানো তোমার জন্য ভালো কি না।</string>
     <string name="trends_title">গত ৭ দিন</string>
     <string name="trends_not_enough">কয়েক রাত পরে প্রবণতা দেখা যাবে।</string>
     <string name="trends_asleep">গড়ে %1$s ঘুম</string>
@@ -402,7 +397,7 @@
     <string name="onb_optional">%1$s (ঐচ্ছিক)</string>
     <string name="onb_granted">অনুমতি দেওয়া হয়েছে</string>
     <string name="onb_alarm_title">প্রথম অ্যালার্ম</string>
-    <string name="onb_alarm_text">সবচেয়ে দেরিতে কখন জেগে উঠতে চাও? হালকা ঘুমে থাকলে ঘড়ি তোমাকে সময়সীমার মধ্যে আগেই জাগাবে।</string>
+    <string name="onb_alarm_text">সবচেয়ে দেরিতে কখন জেগে উঠতে চাও? তুমি অস্থির হতে শুরু করলেই ঘড়ি তার আগের সময়সীমায় তোমাকে জাগাবে।</string>
     <string name="onb_alarm_create">অ্যালার্ম তৈরি করো</string>
     <string name="onb_alarm_done">অ্যালার্ম তৈরি হয়েছে: %1$s</string>
     <string name="onb_done_title">সব তৈরি</string>
@@ -433,7 +428,7 @@
         <item quantity="other">%1$d মিনিট</item>
     </plurals>
     <string name="nap_start">পাওয়ার ন্যাপ শুরু করো</string>
-    <string name="nap_hint">এই সময়ের পরে জাগায়, শেষ কয়েক মিনিটে হালকা ঘুমে থাকলে আগেই। রাত হিসেবে গোনা হয় না।</string>
+    <string name="nap_hint">এই সময়ের পরে জাগায়, শেষ কয়েক মিনিটে অস্থির হলে আগেই। রাত হিসেবে গোনা হয় না।</string>
     <string name="nap_running">%1$s পর্যন্ত পাওয়ার ন্যাপ</string>
     <string name="nap_stop">পাওয়ার ন্যাপ শেষ করো</string>
     <string name="widget_name">পরের অ্যালার্ম</string>

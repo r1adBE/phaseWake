@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Wekvenster</string>
-    <string name="channel_window_description">Word gewys terwyl Phase Wake vir ligte slaap oplet.</string>
+    <string name="channel_window_description">Word gewys terwyl Phase Wake wag vir ’n goeie oomblik om jou wakker te maak.</string>
     <string name="channel_alarm">Wekker</string>
     <string name="channel_alarm_description">Maak jou wakker.</string>
-    <string name="notification_window_title">Let op vir ligte slaap</string>
+    <string name="notification_window_title">Wag vir ’n goeie oomblik</string>
     <string name="notification_window_text">Maak jou uiterlik om %1$s wakker</string>
     <string name="notification_ring_title">Goeiemôre</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Elke dag</string>
     <string name="tile_label">Volgende wekker</string>
     <string name="tile_next">Volgende wekker</string>
-    <string name="tile_light_sleep">Maak jou in ligte slaap wakker</string>
+    <string name="tile_light_sleep">Maak wakker by onrus</string>
     <string name="notification_good_night_title">Slaap lekker</string>
     <string name="notification_good_night_text">Wag dat jy aan die slaap raak</string>
     <string name="home_good_night">Goeienag</string>

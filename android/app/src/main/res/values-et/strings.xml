@@ -20,10 +20,10 @@
 
     <string name="home_next_today">Täna</string>
     <string name="home_next_tomorrow">Homme</string>
-    <string name="home_next_in">Äratab kerges unes · %1$s pärast</string>
+    <string name="home_next_in">Äratab, kui su uni muutub rahutuks · %1$s pärast</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Äratab täpselt sihtajal · %1$s pärast</string>
     <string name="home_no_alarm_title">Ärka õigel hetkel</string>
-    <string name="home_no_alarm_text">Määra aeg ja äratusaken. Kell äratab sind, kui su uni on kerge.</string>
+    <string name="home_no_alarm_text">Määra aeg ja äratusaken. Kell äratab sind selle sees kohe, kui su uni muutub rahutuks.</string>
     <string name="home_add_alarm">Uus äratus</string>
     <string name="home_last_night">Eelmine öö</string>
     <string name="home_alarms">Sinu äratused</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Loeb pärast ärkamist unefaase Health Connectist, et tuvastust kontrollida ja parandada.</string>
     <string name="health_connected">Ühendatud</string>
     <string name="health_unavailable">Health Connect pole selles telefonis saadaval.</string>
-    <string name="verdict_good">Terviseandmed: %1$s ✓</string>
-    <string name="verdict_deep">Terviseandmed: sügav uni</string>
-    <string name="stage_light">kerge uni</string>
-    <string name="stage_rem">REM-uni</string>
-    <string name="stage_awake">ärkvel</string>
     <string name="editor_alert">Kuidas sind äratada</string>
     <string name="editor_alert_hint">Heliga kaasneb alati vibratsioon. Äratused helisevad ka režiimis „Mitte segada“, unerežiimis ja hääletu telefoniga.</string>
     <string name="editor_alert_watch">Kell</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">Puhanud</string>
     <string name="feeling_value">Enesetunne: %1$s</string>
     <string name="feeling_rate">Enesetunne %1$d/5: %2$s</string>
-    <string name="feeling_hint">Aja jooksul näed, kas kerges unes ärkamine teeb sulle head.</string>
+    <string name="feeling_hint">Aja jooksul näed, kas varasem äratus teeb sulle head.</string>
     <string name="trends_title">Viimased 7 päeva</string>
     <string name="trends_not_enough">Trendid ilmuvad mõne öö pärast.</string>
     <string name="trends_asleep">Ø %1$s und</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (valikuline)</string>
     <string name="onb_granted">Lubatud</string>
     <string name="onb_alarm_title">Esimene äratus</string>
-    <string name="onb_alarm_text">Millal tahad hiljemalt ärkvel olla? Kui su uni on kerge, äratab kell sind akna sees varem.</string>
+    <string name="onb_alarm_text">Millal tahad hiljemalt ärkvel olla? Kell äratab sind sellele eelnevas aknas kohe, kui su uni muutub rahutuks.</string>
     <string name="onb_alarm_create">Loo äratus</string>
     <string name="onb_alarm_done">Äratus loodud: %1$s</string>
     <string name="onb_done_title">Kõik valmis</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d minutit</item>
     </plurals>
     <string name="nap_start">Alusta uinakut</string>
-    <string name="nap_hint">Äratab pärast seda aega, viimastel minutitel juba kerges unes. Ei loeta ööks.</string>
+    <string name="nap_hint">Äratab pärast seda aega, viimastel minutitel juba siis, kui su uni muutub rahutuks. Ei loeta ööks.</string>
     <string name="nap_running">Uinak kuni %1$s</string>
     <string name="nap_stop">Lõpeta uinak</string>
     <string name="widget_name">Järgmine äratus</string>

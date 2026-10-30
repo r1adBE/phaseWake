@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="channel_window">نافذة الإيقاظ</string>
-    <string name="channel_window_description">تظهر أثناء ترقّب Phase Wake للنوم الخفيف.</string>
+    <string name="channel_window_description">تظهر أثناء انتظار Phase Wake لحظةً مناسبة لإيقاظك.</string>
     <string name="channel_alarm">منبّه</string>
     <string name="channel_alarm_description">يوقظك.</string>
-    <string name="notification_window_title">ترقّب النوم الخفيف</string>
+    <string name="notification_window_title">بانتظار لحظة مناسبة</string>
     <string name="notification_window_text">يوقظك بحدّ أقصى عند %1$s</string>
     <string name="notification_ring_title">صباح الخير</string>
 
@@ -39,7 +39,7 @@
     <string name="alarm_every_day">يوميًا</string>
     <string name="tile_label">المنبّه التالي</string>
     <string name="tile_next">المنبّه التالي</string>
-    <string name="tile_light_sleep">يوقظك في النوم الخفيف</string>
+    <string name="tile_light_sleep">يوقظك عند التململ</string>
     <string name="notification_good_night_title">نوم هنيء</string>
     <string name="notification_good_night_text">بانتظار النوم</string>
     <string name="home_good_night">ليلة سعيدة</string>

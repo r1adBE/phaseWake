@@ -3,10 +3,10 @@
     <string name="app_name" translatable="false">Phase Wake</string>
 
     <string name="channel_window">Wake window</string>
-    <string name="channel_window_description">Shown while Phase Wake watches for light sleep.</string>
+    <string name="channel_window_description">Shown while Phase Wake waits for a good moment to wake you.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Wakes you up.</string>
-    <string name="notification_window_title">Watching for light sleep</string>
+    <string name="notification_window_title">Waiting for a good moment</string>
     <string name="notification_window_text">Wakes you by %1$s at the latest</string>
     <string name="notification_ring_title">Good morning</string>
 
@@ -37,7 +37,7 @@
     <string name="alarm_every_day">Every day</string>
     <string name="tile_label">Next alarm</string>
     <string name="tile_next">Next alarm</string>
-    <string name="tile_light_sleep">Wakes you in light sleep</string>
+    <string name="tile_light_sleep">Wakes you when restless</string>
     <string name="notification_good_night_title">Sleep well</string>
     <string name="notification_good_night_text">Waiting for you to fall asleep</string>
     <string name="home_good_night">Good night</string>

@@ -12,8 +12,6 @@ struct HypnogramCard: View {
     let onOpen: (String) -> Void
     @Environment(\.colorScheme) private var scheme
 
-    private var takeaway: String? { wakeVerdict(h.stageAtWake)?.text }
-
     /// «Wach 20 Min · REM 1 Std. 20 Min · Leicht 2 Std. 10 Min · Tief 1 Std.»
     private var totals: String {
         stageRows.compactMap { stage in
@@ -42,7 +40,7 @@ struct HypnogramCard: View {
     }
 
     var body: some View {
-        ChartCard(title: L("chart_stages_title"), takeaway: takeaway, trailing: {
+        ChartCard(title: L("chart_stages_title"), takeaway: nil, trailing: {
             Text(longDate(nightDate)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
         }) {
             StageChart(timeline: timeline, height: chartHeight)

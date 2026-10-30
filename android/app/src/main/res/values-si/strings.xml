@@ -20,10 +20,10 @@
 
     <string name="home_next_today">අද</string>
     <string name="home_next_tomorrow">හෙට</string>
-    <string name="home_next_in">සැහැල්ලු නින්දේදී අවදි කරයි · තව %1$s කින්</string>
+    <string name="home_next_in">නොසන්සුන් වූ වහාම අවදි කරයි · තව %1$s කින්</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">හරියටම ඉලක්ක වේලාවට අවදි කරයි · තව %1$s කින්</string>
     <string name="home_no_alarm_title">හරියටම නිසි මොහොතේ අවදි වන්න</string>
-    <string name="home_no_alarm_text">වේලාවක් සහ පරාසයක් සකසන්න. ඔබ සැහැල්ලුවෙන් නිදන විට ඔරලෝසුව ඔබව අවදි කරයි.</string>
+    <string name="home_no_alarm_text">වේලාවක් සහ පරාසයක් සකසන්න. ඔබ නොසන්සුන් වීමට පටන් ගත් වහාම ඔරලෝසුව එම පරාසය තුළ ඔබව අවදි කරයි.</string>
     <string name="home_add_alarm">නව එලාමය</string>
     <string name="home_last_night">ඊයේ රාත්‍රිය</string>
     <string name="home_alarms">ඔබේ එලාම</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">හඳුනාගැනීම පරීක්ෂා කර වැඩිදියුණු කිරීමට, අවදි වූ පසු Health Connect වෙතින් නින්දේ අදියර කියවයි.</string>
     <string name="health_connected">සම්බන්ධයි</string>
     <string name="health_unavailable">මෙම දුරකථනයේ Health Connect නොමැත.</string>
-    <string name="verdict_good">සෞඛ්‍ය දත්ත: %1$s ✓</string>
-    <string name="verdict_deep">සෞඛ්‍ය දත්ත: ගැඹුරු නින්ද</string>
-    <string name="stage_light">සැහැල්ලු නින්ද</string>
-    <string name="stage_rem">REM නින්ද</string>
-    <string name="stage_awake">අවදියි</string>
     <string name="editor_alert">ඔබව අවදි කරන ආකාරය</string>
     <string name="editor_alert_hint">ශබ්දය සැමවිටම කම්පනය සමඟ පැමිණේ. “බාධා නොකරන්න”, නින්දේ ප්‍රකාරය සහ නිහඬ දුරකථනයේදීත් එලාම නාද වේ.</string>
     <string name="editor_alert_watch">ඔරලෝසුව</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ප්‍රබෝධමත්</string>
     <string name="feeling_value">හැඟීම: %1$s</string>
     <string name="feeling_rate">හැඟීම 5 න් %1$d: %2$s</string>
-    <string name="feeling_hint">සැහැල්ලු නින්දේදී අවදි වීම ඔබට යහපත්ද කියා කාලයත් සමඟ ඔබට පෙනේ.</string>
+    <string name="feeling_hint">කලින් අවදි කිරීම ඔබට යහපත්ද කියා කාලයත් සමඟ ඔබට පෙනේ.</string>
     <string name="trends_title">පසුගිය දින 7</string>
     <string name="trends_not_enough">රාත්‍රි කිහිපයකට පසු ප්‍රවණතා පෙනේ.</string>
     <string name="trends_asleep">Ø නින්ද %1$s</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (විකල්ප)</string>
     <string name="onb_granted">ඉඩ දී ඇත</string>
     <string name="onb_alarm_title">පළමු එලාමය</string>
-    <string name="onb_alarm_text">අවසන් වශයෙන් ඔබට අවදිව සිටීමට අවශ්‍ය කවදාද? ඔබ සැහැල්ලුවෙන් නිදන්නේ නම් ඔරලෝසුව පරාසය තුළ කලින් අවදි කරයි.</string>
+    <string name="onb_alarm_text">අවසන් වශයෙන් ඔබට අවදිව සිටීමට අවශ්‍ය කවදාද? ඔබ නොසන්සුන් වීමට පටන් ගත් වහාම ඔරලෝසුව ඊට පෙර පරාසය තුළ අවදි කරයි.</string>
     <string name="onb_alarm_create">එලාමය සාදන්න</string>
     <string name="onb_alarm_done">එලාමය සෑදුවා: %1$s</string>
     <string name="onb_done_title">සියල්ල සූදානම්</string>
@@ -434,7 +429,7 @@
         <item quantity="other">මිනිත්තු %1$d</item>
     </plurals>
     <string name="nap_start">කෙටි නින්ද අරඹන්න</string>
-    <string name="nap_hint">මෙම කාලයෙන් පසු අවදි කරයි, අවසන් මිනිත්තුවලදී සැහැල්ලු නින්දේ නම් ඊටත් කලින්. රාත්‍රියක් ලෙස ගණන් නොගැනේ.</string>
+    <string name="nap_hint">මෙම කාලයෙන් පසු අවදි කරයි, අවසන් මිනිත්තුවලදී නොසන්සුන් වුවහොත් ඊටත් කලින්. රාත්‍රියක් ලෙස ගණන් නොගැනේ.</string>
     <string name="nap_running">කෙටි නින්ද %1$s දක්වා</string>
     <string name="nap_stop">කෙටි නින්ද අවසන් කරන්න</string>
     <string name="widget_name">ඊළඟ එලාමය</string>

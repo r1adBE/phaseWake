@@ -20,10 +20,10 @@
 
     <string name="home_next_today">ਅੱਜ</string>
     <string name="home_next_tomorrow">ਕੱਲ੍ਹ</string>
-    <string name="home_next_in">ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
+    <string name="home_next_in">ਬੇਚੈਨ ਹੁੰਦੇ ਹੀ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
     <string name="home_no_alarm_title">ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋ</string>
-    <string name="home_no_alarm_text">ਸਮਾਂ ਅਤੇ ਮਿਆਦ ਚੁਣੋ। ਜਦੋਂ ਤੁਹਾਡੀ ਨੀਂਦ ਹਲਕੀ ਹੋਵੇਗੀ, ਘੜੀ ਤੁਹਾਨੂੰ ਜਗਾ ਦੇਵੇਗੀ।</string>
+    <string name="home_no_alarm_text">ਸਮਾਂ ਅਤੇ ਮਿਆਦ ਚੁਣੋ। ਜਿਵੇਂ ਹੀ ਤੁਸੀਂ ਬੇਚੈਨ ਹੋਣ ਲੱਗੋਗੇ, ਘੜੀ ਤੁਹਾਨੂੰ ਉਸ ਮਿਆਦ ਵਿੱਚ ਜਗਾ ਦੇਵੇਗੀ।</string>
     <string name="home_add_alarm">ਨਵਾਂ ਅਲਾਰਮ</string>
     <string name="home_last_night">ਪਿਛਲੀ ਰਾਤ</string>
     <string name="home_alarms">ਤੁਹਾਡੇ ਅਲਾਰਮ</string>
@@ -107,11 +107,6 @@
     <string name="health_connect_hint">ਜਾਗਣ ਤੋਂ ਬਾਅਦ Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ, ਪਛਾਣ ਜਾਂਚਣ ਅਤੇ ਸੁਧਾਰਨ ਲਈ।</string>
     <string name="health_connected">ਕਨੈਕਟ ਹੈ</string>
     <string name="health_unavailable">ਇਸ ਫ਼ੋਨ ’ਤੇ Health Connect ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
-    <string name="verdict_good">ਸਿਹਤ ਡਾਟਾ: %1$s ✓</string>
-    <string name="verdict_deep">ਸਿਹਤ ਡਾਟਾ: ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
-    <string name="stage_light">ਹਲਕੀ ਨੀਂਦ</string>
-    <string name="stage_rem">REM ਨੀਂਦ</string>
-    <string name="stage_awake">ਜਾਗਦੇ</string>
     <string name="editor_alert">ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਜਗਾਈਏ</string>
     <string name="editor_alert_hint">ਆਵਾਜ਼ ਦੇ ਨਾਲ ਹਮੇਸ਼ਾ ਥਰਥਰਾਹਟ ਵੀ ਹੁੰਦੀ ਹੈ। ਅਲਾਰਮ “ਪਰੇਸ਼ਾਨ ਨਾ ਕਰੋ”, ਬੈੱਡਟਾਈਮ ਮੋਡ ਅਤੇ ਸਾਈਲੈਂਟ ਫ਼ੋਨ ਵਿੱਚ ਵੀ ਵੱਜਦੇ ਹਨ।</string>
     <string name="editor_alert_watch">ਘੜੀ</string>
@@ -196,7 +191,7 @@
     <string name="feeling_5">ਤਰੋਤਾਜ਼ਾ</string>
     <string name="feeling_value">ਮੂਡ: %1$s</string>
     <string name="feeling_rate">ਮੂਡ 5 ਵਿੱਚੋਂ %1$d: %2$s</string>
-    <string name="feeling_hint">ਸਮੇਂ ਨਾਲ ਤੁਸੀਂ ਦੇਖੋਗੇ ਕਿ ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ ਜਾਗਣਾ ਤੁਹਾਡੇ ਲਈ ਚੰਗਾ ਹੈ ਜਾਂ ਨਹੀਂ।</string>
+    <string name="feeling_hint">ਸਮੇਂ ਨਾਲ ਤੁਸੀਂ ਦੇਖੋਗੇ ਕਿ ਪਹਿਲਾਂ ਜਾਗਣਾ ਤੁਹਾਡੇ ਲਈ ਚੰਗਾ ਹੈ ਜਾਂ ਨਹੀਂ।</string>
     <string name="trends_title">ਪਿਛਲੇ 7 ਦਿਨ</string>
     <string name="trends_not_enough">ਕੁਝ ਰਾਤਾਂ ਬਾਅਦ ਰੁਝਾਨ ਦਿਖਣਗੇ।</string>
     <string name="trends_asleep">Ø %1$s ਨੀਂਦ</string>
@@ -403,7 +398,7 @@
     <string name="onb_optional">%1$s (ਵਿਕਲਪਿਕ)</string>
     <string name="onb_granted">ਇਜਾਜ਼ਤ ਹੈ</string>
     <string name="onb_alarm_title">ਪਹਿਲਾ ਅਲਾਰਮ</string>
-    <string name="onb_alarm_text">ਤੁਸੀਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕਦੋਂ ਤੱਕ ਜਾਗਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਨੀਂਦ ਹਲਕੀ ਹੋਵੇ ਤਾਂ ਘੜੀ ਤੁਹਾਨੂੰ ਮਿਆਦ ਵਿੱਚ ਪਹਿਲਾਂ ਜਗਾ ਦਿੰਦੀ ਹੈ।</string>
+    <string name="onb_alarm_text">ਤੁਸੀਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕਦੋਂ ਤੱਕ ਜਾਗਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਿਵੇਂ ਹੀ ਤੁਸੀਂ ਬੇਚੈਨ ਹੋਣ ਲੱਗਦੇ ਹੋ, ਘੜੀ ਤੁਹਾਨੂੰ ਉਸ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਮਿਆਦ ਵਿੱਚ ਜਗਾ ਦਿੰਦੀ ਹੈ।</string>
     <string name="onb_alarm_create">ਅਲਾਰਮ ਬਣਾਓ</string>
     <string name="onb_alarm_done">ਅਲਾਰਮ ਬਣਿਆ: %1$s</string>
     <string name="onb_done_title">ਸਭ ਤਿਆਰ</string>
@@ -434,7 +429,7 @@
         <item quantity="other">%1$d ਮਿੰਟ</item>
     </plurals>
     <string name="nap_start">ਪਾਵਰ ਨੈਪ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="nap_hint">ਇਸ ਸਮੇਂ ਤੋਂ ਬਾਅਦ ਜਗਾਉਂਦਾ ਹੈ, ਆਖਰੀ ਮਿੰਟਾਂ ਵਿੱਚ ਹਲਕੀ ਨੀਂਦ ਹੋਵੇ ਤਾਂ ਪਹਿਲਾਂ ਹੀ। ਰਾਤ ਵਜੋਂ ਨਹੀਂ ਗਿਣਿਆ ਜਾਂਦਾ।</string>
+    <string name="nap_hint">ਇਸ ਸਮੇਂ ਤੋਂ ਬਾਅਦ ਜਗਾਉਂਦਾ ਹੈ, ਆਖਰੀ ਮਿੰਟਾਂ ਵਿੱਚ ਬੇਚੈਨ ਹੋਵੋ ਤਾਂ ਪਹਿਲਾਂ ਹੀ। ਰਾਤ ਵਜੋਂ ਨਹੀਂ ਗਿਣਿਆ ਜਾਂਦਾ।</string>
     <string name="nap_running">%1$s ਤੱਕ ਪਾਵਰ ਨੈਪ</string>
     <string name="nap_stop">ਪਾਵਰ ਨੈਪ ਖ਼ਤਮ ਕਰੋ</string>
     <string name="widget_name">ਅਗਲਾ ਅਲਾਰਮ</string>

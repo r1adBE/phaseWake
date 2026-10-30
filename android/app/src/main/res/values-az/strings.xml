@@ -16,10 +16,10 @@
     <string name="nav_settings">Ayarlar</string>
     <string name="home_next_today">Bu gün</string>
     <string name="home_next_tomorrow">Sabah</string>
-    <string name="home_next_in">Yüngül yuxuda oyadır · %1$s sonra</string>
+    <string name="home_next_in">Narahat olmağa başlayan kimi oyadır · %1$s sonra</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Düz hədəf vaxtında oyadır · %1$s sonra</string>
     <string name="home_no_alarm_title">Doğru anda oyan</string>
-    <string name="home_no_alarm_text">Vaxt və pəncərə seç. Yüngül yatanda saatın səni oyadır.</string>
+    <string name="home_no_alarm_text">Vaxt və pəncərə seç. Narahat olmağa başlayan kimi saatın səni həmin pəncərədə oyadır.</string>
     <string name="home_add_alarm">Yeni siqnal</string>
     <string name="home_last_night">Ötən gecə</string>
     <string name="home_alarms">Siqnalların</string>
@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Oyandıqdan sonra Health Connect-dən yuxu fazalarını oxuyur ki, aşkarlamanı yoxlasın və yaxşılaşdırsın.</string>
     <string name="health_connected">Qoşulub</string>
     <string name="health_unavailable">Health Connect bu telefonda yoxdur.</string>
-    <string name="verdict_good">Sağlamlıq məlumatları: %1$s ✓</string>
-    <string name="verdict_deep">Sağlamlıq məlumatları: dərin yuxu</string>
-    <string name="stage_light">yüngül yuxu</string>
-    <string name="stage_rem">REM yuxusu</string>
-    <string name="stage_awake">oyaq</string>
     <string name="editor_alert">Necə oyadılsın</string>
     <string name="editor_alert_hint">Səs həmişə vibrasiya ilə gəlir. Siqnallar “Narahat etməyin”, yuxu rejimi və səssiz telefonda da çalır.</string>
     <string name="editor_alert_watch">Saat</string>
@@ -186,7 +181,7 @@
     <string name="feeling_5">Gümrah</string>
     <string name="feeling_value">Əhval: %1$s</string>
     <string name="feeling_rate">Əhval 5-dən %1$d: %2$s</string>
-    <string name="feeling_hint">Zamanla yüngül yuxuda oyanmağın sənə xeyir edib-etmədiyini görəcəksən.</string>
+    <string name="feeling_hint">Zamanla daha tez oyanmağın sənə xeyir edib-etmədiyini görəcəksən.</string>
     <string name="trends_title">Son 7 gün</string>
     <string name="trends_not_enough">Meyllər bir neçə gecədən sonra görünəcək.</string>
     <string name="trends_asleep">Ø %1$s yuxu</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (istəyə bağlı)</string>
     <string name="onb_granted">İcazə verilib</string>
     <string name="onb_alarm_title">İlk siqnal</string>
-    <string name="onb_alarm_text">Ən gec nə vaxt oyaq olmaq istəyirsən? Yüngül yatsan, saatın səni pəncərə daxilində daha tez oyadır.</string>
+    <string name="onb_alarm_text">Ən gec nə vaxt oyaq olmaq istəyirsən? Narahat olmağa başlayan kimi saatın səni ondan əvvəlki pəncərədə oyadır.</string>
     <string name="onb_alarm_create">Siqnal yarat</string>
     <string name="onb_alarm_done">Siqnal yaradıldı: %1$s</string>
     <string name="onb_done_title">Hər şey hazırdır</string>
@@ -419,7 +414,7 @@
         <item quantity="other">%1$d dəqiqə</item>
     </plurals>
     <string name="nap_start">Qısa yuxunu başlat</string>
-    <string name="nap_hint">Bu müddətdən sonra oyadır, son dəqiqələrdə artıq yüngül yuxuda. Gecə kimi sayılmır.</string>
+    <string name="nap_hint">Bu müddətdən sonra oyadır, son dəqiqələrdə isə narahat olsan, daha tez. Gecə kimi sayılmır.</string>
     <string name="nap_running">Qısa yuxu: %1$s-dək</string>
     <string name="nap_stop">Qısa yuxunu bitir</string>
     <string name="widget_name">Növbəti siqnal</string>

@@ -16,10 +16,10 @@
     <string name="nav_settings">Կարգավորումներ</string>
     <string name="home_next_today">Այսօր</string>
     <string name="home_next_tomorrow">Վաղը</string>
-    <string name="home_next_in">Արթնացնում է թեթև քնում · %1$s հետո</string>
+    <string name="home_next_in">Արթնացնում է, հենց որ անհանգիստ ես դառնում · %1$s հետո</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Արթնացնում է ճիշտ նպատակային ժամին · %1$s հետո</string>
     <string name="home_no_alarm_title">Արթնացիր ճիշտ պահին</string>
-    <string name="home_no_alarm_text">Սահմանիր ժամը և պատուհանը։ Ժամացույցդ քեզ կարթնացնի, երբ թեթև քնած լինես։</string>
+    <string name="home_no_alarm_text">Սահմանիր ժամը և պատուհանը։ Ժամացույցդ քեզ կարթնացնի դրա ընթացքում, հենց որ անհանգիստ դառնաս։</string>
     <string name="home_add_alarm">Նոր զարթուցիչ</string>
     <string name="home_last_night">Անցած գիշեր</string>
     <string name="home_alarms">Քո զարթուցիչները</string>
@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Արթնանալուց հետո կարդում է քնի փուլերը Health Connect-ից՝ հայտնաբերումը ստուգելու և բարելավելու համար։</string>
     <string name="health_connected">Միացված է</string>
     <string name="health_unavailable">Health Connect-ը հասանելի չէ այս հեռախոսում։</string>
-    <string name="verdict_good">Առողջության տվյալներ՝ %1$s ✓</string>
-    <string name="verdict_deep">Առողջության տվյալներ՝ խոր քուն</string>
-    <string name="stage_light">թեթև քուն</string>
-    <string name="stage_rem">REM քուն</string>
-    <string name="stage_awake">արթուն</string>
     <string name="editor_alert">Ինչպես արթնացնել</string>
     <string name="editor_alert_hint">Ձայնը միշտ թրթռոցով է։ Զարթուցիչները զանգում են նաև «Չանհանգստացնել», քնի ռեժիմի և անձայն հեռախոսի դեպքում։</string>
     <string name="editor_alert_watch">Ժամացույց</string>
@@ -186,7 +181,7 @@
     <string name="feeling_5">Թարմ</string>
     <string name="feeling_value">Ինքնազգացում՝ %1$s</string>
     <string name="feeling_rate">Ինքնազգացում %1$d/5՝ %2$s</string>
-    <string name="feeling_hint">Ժամանակի ընթացքում կտեսնես՝ արդյոք թեթև քնում արթնանալը քեզ օգուտ է տալիս։</string>
+    <string name="feeling_hint">Ժամանակի ընթացքում կտեսնես՝ արդյոք ավելի վաղ արթնացումը քեզ օգուտ է տալիս։</string>
     <string name="trends_title">Վերջին 7 օրը</string>
     <string name="trends_not_enough">Միտումները կհայտնվեն մի քանի գիշեր հետո։</string>
     <string name="trends_asleep">Ø %1$s քուն</string>
@@ -388,7 +383,7 @@
     <string name="onb_optional">%1$s (ըստ ցանկության)</string>
     <string name="onb_granted">Թույլատրված է</string>
     <string name="onb_alarm_title">Առաջին զարթուցիչը</string>
-    <string name="onb_alarm_text">Ամենաուշը ե՞րբ ես ուզում արթուն լինել։ Եթե թեթև ես քնած, ժամացույցդ քեզ ավելի շուտ կարթնացնի պատուհանի ներսում։</string>
+    <string name="onb_alarm_text">Ամենաուշը ե՞րբ ես ուզում արթուն լինել։ Ժամացույցդ քեզ կարթնացնի դրանից առաջ՝ պատուհանի ներսում, հենց որ անհանգիստ դառնաս։</string>
     <string name="onb_alarm_create">Ստեղծել զարթուցիչ</string>
     <string name="onb_alarm_done">Զարթուցիչը ստեղծված է՝ %1$s</string>
     <string name="onb_done_title">Ամեն ինչ պատրաստ է</string>
@@ -419,7 +414,7 @@
         <item quantity="other">%1$d րոպե</item>
     </plurals>
     <string name="nap_start">Սկսել կարճ քունը</string>
-    <string name="nap_hint">Արթնացնում է այս ժամանակից հետո, վերջին րոպեներին՝ արդեն թեթև քնում։ Չի հաշվվում որպես գիշեր։</string>
+    <string name="nap_hint">Արթնացնում է այս ժամանակից հետո, վերջին րոպեներին՝ արդեն, եթե անհանգիստ դառնաս։ Չի հաշվվում որպես գիշեր։</string>
     <string name="nap_running">Կարճ քուն մինչև %1$s</string>
     <string name="nap_stop">Ավարտել կարճ քունը</string>
     <string name="widget_name">Հաջորդ զարթուցիչ</string>

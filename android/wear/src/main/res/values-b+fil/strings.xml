@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="channel_window">Window ng paggising</string>
-    <string name="channel_window_description">Ipinapakita habang hinihintay ng Phase Wake ang mababaw na tulog.</string>
+    <string name="channel_window_description">Ipinapakita habang naghihintay ang Phase Wake ng magandang sandali para gisingin ka.</string>
     <string name="channel_alarm">Alarm</string>
     <string name="channel_alarm_description">Ginigising ka.</string>
-    <string name="notification_window_title">Hinihintay ang mababaw na tulog</string>
+    <string name="notification_window_title">Naghihintay ng magandang sandali</string>
     <string name="notification_window_text">Gigisingin ka nang pinakahuli sa %1$s</string>
     <string name="notification_ring_title">Magandang umaga</string>
 
@@ -36,7 +36,7 @@
     <string name="alarm_every_day">Araw-araw</string>
     <string name="tile_label">Susunod na alarm</string>
     <string name="tile_next">Susunod na alarm</string>
-    <string name="tile_light_sleep">Gigisingin ka sa mababaw na tulog</string>
+    <string name="tile_light_sleep">Gigising kapag di mapakali</string>
     <string name="notification_good_night_title">Matulog nang mahimbing</string>
     <string name="notification_good_night_text">Hinihintay kang makatulog</string>
     <string name="home_good_night">Matutulog na</string>
