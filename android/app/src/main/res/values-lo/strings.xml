@@ -105,11 +105,6 @@
     <string name="health_connect_hint">ອ່ານໄລຍະການນອນຈາກ Health Connect ຫຼັງຕື່ນ ເພື່ອກວດ ແລະ ປັບປຸງການກວດຈັບ</string>
     <string name="health_connected">ເຊື່ອມຕໍ່ແລ້ວ</string>
     <string name="health_unavailable">Health Connect ບໍ່ມີຢູ່ໃນໂທລະສັບນີ້</string>
-    <string name="verdict_good">ຂໍ້ມູນສຸຂະພາບ: %1$s ✓</string>
-    <string name="verdict_deep">ຂໍ້ມູນສຸຂະພາບ: ຫຼັບເລິກ</string>
-    <string name="stage_light">ຫຼັບຕື້ນ</string>
-    <string name="stage_rem">ຫຼັບ REM</string>
-    <string name="stage_awake">ຕື່ນ</string>
     <string name="editor_alert">ວິທີປຸກເຈົ້າ</string>
     <string name="editor_alert_hint">ສຽງມາພ້ອມການສັ່ນສະເໝີ ໂມງປຸກຍັງດັງເຖິງວ່າຈະເປີດ “ຫ້າມລົບກວນ” ໂໝດເວລານອນ ຫຼື ໂທລະສັບປິດສຽງ</string>
     <string name="editor_alert_watch">ໂມງ</string>

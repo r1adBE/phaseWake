@@ -108,11 +108,6 @@
     <string name="health_connect_hint">После буђења чита фазе сна из Health Connect-а да би проверио и побољшао препознавање.</string>
     <string name="health_connected">Повезано</string>
     <string name="health_unavailable">Health Connect није доступан на овом телефону.</string>
-    <string name="verdict_good">Здравствени подаци: %1$s ✓</string>
-    <string name="verdict_deep">Здравствени подаци: дубок сан</string>
-    <string name="stage_light">лагани сан</string>
-    <string name="stage_rem">REM сан</string>
-    <string name="stage_awake">будност</string>
     <string name="editor_alert">Начин буђења</string>
     <string name="editor_alert_hint">Звук увек долази уз вибрацију. Аларми звоне и уз „Не узнемиравај“, режим спавања и утишан телефон.</string>
     <string name="editor_alert_watch">Сат</string>

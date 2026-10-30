@@ -105,11 +105,6 @@
     <string name="health_connect_hint">ရှာဖွေမှုကို စစ်ဆေးပြီး ပိုကောင်းစေရန် နိုးပြီးနောက် Health Connect မှ အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။</string>
     <string name="health_connected">ချိတ်ဆက်ထားသည်</string>
     <string name="health_unavailable">ဤဖုန်းတွင် Health Connect မရနိုင်ပါ။</string>
-    <string name="verdict_good">ကျန်းမာရေးဒေတာ- %1$s ✓</string>
-    <string name="verdict_deep">ကျန်းမာရေးဒေတာ- အိပ်ရေးနက်</string>
-    <string name="stage_light">အိပ်ရေးပေါ့</string>
-    <string name="stage_rem">REM အိပ်စက်မှု</string>
-    <string name="stage_awake">နိုးနေ</string>
     <string name="editor_alert">နှိုးပုံ</string>
     <string name="editor_alert_hint">အသံသည် တုန်ခါမှုနှင့် အမြဲတွဲလာသည်။ မနှောင့်ယှက်ရ၊ အိပ်ချိန်မုဒ်နှင့် အသံပိတ်ဖုန်းတွင်လည်း နှိုးစက်များ မြည်သည်။</string>
     <string name="editor_alert_watch">နာရီ</string>

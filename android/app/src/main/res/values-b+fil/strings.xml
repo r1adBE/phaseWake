@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Binabasa ang mga yugto ng tulog mula sa Health Connect pagkagising, para tingnan at pahusayin ang pag-detect.</string>
     <string name="health_connected">Nakakonekta</string>
     <string name="health_unavailable">Hindi available ang Health Connect sa teleponong ito.</string>
-    <string name="verdict_good">Health data: %1$s ✓</string>
-    <string name="verdict_deep">Health data: malalim na tulog</string>
-    <string name="stage_light">mababaw na tulog</string>
-    <string name="stage_rem">REM na tulog</string>
-    <string name="stage_awake">gising</string>
     <string name="editor_alert">Paano ka gigisingin</string>
     <string name="editor_alert_hint">Laging may kasamang vibration ang tunog. Tumutunog din ang mga alarm kahit naka-Huwag Istorbohin, naka-bedtime mode, o naka-silent ang telepono.</string>
     <string name="editor_alert_watch">Relo</string>

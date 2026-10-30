@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
     <string name="health_connected">Verbunden</string>
     <string name="health_unavailable">Health Connect ist auf diesem Handy nicht verfügbar.</string>
-    <string name="verdict_good">Gesundheitsdaten: %1$s ✓</string>
-    <string name="verdict_deep">Gesundheitsdaten: Tiefschlaf</string>
-    <string name="stage_light">leichter Schlaf</string>
-    <string name="stage_rem">REM-Schlaf</string>
-    <string name="stage_awake">wach</string>
     <string name="editor_alert">So weckt dich Phase Wake</string>
     <string name="editor_alert_hint">Ton kommt immer mit Vibration. Wecker klingeln auch bei «Nicht stören», im Bettzeitmodus und bei lautlosem Handy.</string>
     <string name="editor_alert_watch">Uhr</string>

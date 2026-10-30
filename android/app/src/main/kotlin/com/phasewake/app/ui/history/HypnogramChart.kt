@@ -1,6 +1,5 @@
 package com.phasewake.app.ui.history
 
-import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,20 +13,10 @@ import com.phasewake.app.core.Hypnogram
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
 import com.phasewake.app.core.SleepNotes
-import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.WakeReason
 import java.time.ZoneId
 
 // --- 4. Schlafphasen der Nacht ---
-
-/** Abgleich mit der Phase beim Wecken: «Gesundheitsdaten: leichter Schlaf ✓» (nicht mehr in der Nachtkarte). */
-fun hypnogramTakeaway(context: Context, h: Hypnogram): String? = when (h.stageAtWake) {
-    SleepStage.LIGHT -> context.getString(R.string.verdict_good, context.getString(R.string.stage_light))
-    SleepStage.REM -> context.getString(R.string.verdict_good, context.getString(R.string.stage_rem))
-    SleepStage.AWAKE -> context.getString(R.string.verdict_good, context.getString(R.string.stage_awake))
-    SleepStage.DEEP -> context.getString(R.string.verdict_deep)
-    SleepStage.UNKNOWN, null -> null
-}
 
 /** Platz über den Zeilen für die Blase in der Karte (kleiner als auf der Detailseite). */
 private val CARD_BUBBLE = 28.dp
@@ -43,7 +32,7 @@ internal fun HypnogramCard(h: Hypnogram, stats: NightStages, night: NightRecord,
     val date = morning(SleepNotes.nightDate(night, zone))
     val model = HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT))
     val trailing = @Composable { Text(date, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
-    ChartCard(stringResource(R.string.chart_stages_title), hypnogramTakeaway(context, h), modifier, trailing = trailing) {
+    ChartCard(stringResource(R.string.chart_stages_title), null, modifier, trailing = trailing) {
         StageHypnogram(model, height = CHART_HEIGHT + CARD_BUBBLE, bubbleSpace = CARD_BUBBLE, onOpen = onOpen)
         HypnoLegend(model)
         Text(

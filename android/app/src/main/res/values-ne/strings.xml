@@ -107,11 +107,6 @@
     <string name="health_connect_hint">पहिचान जाँच्न र सुधार्न, ब्युँझेपछि Health Connect बाट निद्राका चरण पढ्छ।</string>
     <string name="health_connected">जोडिएको</string>
     <string name="health_unavailable">यो फोनमा Health Connect उपलब्ध छैन।</string>
-    <string name="verdict_good">स्वास्थ्य डेटा: %1$s ✓</string>
-    <string name="verdict_deep">स्वास्थ्य डेटा: गहिरो निद्रा</string>
-    <string name="stage_light">हल्का निद्रा</string>
-    <string name="stage_rem">REM निद्रा</string>
-    <string name="stage_awake">ब्युँझेको</string>
     <string name="editor_alert">कसरी ब्युँझाउने</string>
     <string name="editor_alert_hint">आवाजसँग सधैँ कम्पन हुन्छ। “बाधा नपुर्‍याउनुहोस्”, सुत्ने मोड र साइलेन्ट फोनमा पनि अलार्म बज्छ।</string>
     <string name="editor_alert_watch">घडी</string>

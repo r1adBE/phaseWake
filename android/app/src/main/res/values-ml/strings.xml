@@ -106,11 +106,6 @@
     <string name="health_connect_hint">കണ്ടെത്തൽ പരിശോധിച്ച് മെച്ചപ്പെടുത്താൻ, ഉണർന്ന ശേഷം Health Connect-ൽ നിന്ന് ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും.</string>
     <string name="health_connected">കണക്റ്റ് ചെയ്‌തു</string>
     <string name="health_unavailable">ഈ ഫോണിൽ Health Connect ലഭ്യമല്ല.</string>
-    <string name="verdict_good">ആരോഗ്യ ഡാറ്റ: %1$s ✓</string>
-    <string name="verdict_deep">ആരോഗ്യ ഡാറ്റ: ഗാഢനിദ്ര</string>
-    <string name="stage_light">നേരിയ ഉറക്കം</string>
-    <string name="stage_rem">REM ഉറക്കം</string>
-    <string name="stage_awake">ഉണർന്ന്</string>
     <string name="editor_alert">എങ്ങനെ ഉണർത്തണം</string>
     <string name="editor_alert_hint">ശബ്ദത്തിനൊപ്പം എപ്പോഴും വൈബ്രേഷനും ഉണ്ടാകും. ശല്യപ്പെടുത്തരുത്, ബെഡ്‌ടൈം മോഡ്, സൈലന്റ് ഫോൺ എന്നിവയിലും അലാറം അടിക്കും.</string>
     <string name="editor_alert_watch">വാച്ച്</string>

@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Loeb pärast ärkamist unefaase Health Connectist, et tuvastust kontrollida ja parandada.</string>
     <string name="health_connected">Ühendatud</string>
     <string name="health_unavailable">Health Connect pole selles telefonis saadaval.</string>
-    <string name="verdict_good">Terviseandmed: %1$s ✓</string>
-    <string name="verdict_deep">Terviseandmed: sügav uni</string>
-    <string name="stage_light">kerge uni</string>
-    <string name="stage_rem">REM-uni</string>
-    <string name="stage_awake">ärkvel</string>
     <string name="editor_alert">Kuidas sind äratada</string>
     <string name="editor_alert_hint">Heliga kaasneb alati vibratsioon. Äratused helisevad ka režiimis „Mitte segada“, unerežiimis ja hääletu telefoniga.</string>
     <string name="editor_alert_watch">Kell</string>

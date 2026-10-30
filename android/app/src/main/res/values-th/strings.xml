@@ -104,11 +104,6 @@
     <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
     <string name="health_connected">เชื่อมต่อแล้ว</string>
     <string name="health_unavailable">โทรศัพท์เครื่องนี้ไม่รองรับ Health Connect</string>
-    <string name="verdict_good">ข้อมูลสุขภาพ: %1$s ✓</string>
-    <string name="verdict_deep">ข้อมูลสุขภาพ: หลับลึก</string>
-    <string name="stage_light">หลับตื้น</string>
-    <string name="stage_rem">หลับ REM</string>
-    <string name="stage_awake">ตื่น</string>
     <string name="editor_alert">วิธีปลุกคุณ</string>
     <string name="editor_alert_hint">เสียงจะมาพร้อมการสั่นเสมอ นาฬิกาปลุกดังแม้เปิดโหมดห้ามรบกวน โหมดเวลานอน หรือปิดเสียงโทรศัพท์</string>
     <string name="editor_alert_watch">นาฬิกา</string>

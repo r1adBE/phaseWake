@@ -107,11 +107,6 @@
     <string name="health_connect_hint">उठल्यानंतर Health Connect मधून झोपेचे टप्पे वाचते, ओळख तपासण्यासाठी आणि सुधारण्यासाठी.</string>
     <string name="health_connected">जोडलेले</string>
     <string name="health_unavailable">या फोनवर Health Connect उपलब्ध नाही.</string>
-    <string name="verdict_good">हेल्थ डेटा: %1$s ✓</string>
-    <string name="verdict_deep">हेल्थ डेटा: गाढ झोप</string>
-    <string name="stage_light">हलकी झोप</string>
-    <string name="stage_rem">REM झोप</string>
-    <string name="stage_awake">जागे</string>
     <string name="editor_alert">कसे उठवायचे</string>
     <string name="editor_alert_hint">आवाजासोबत नेहमी व्हायब्रेशनही असते. “व्यत्यय आणू नका”, बेडटाइम मोड आणि सायलेंट फोनमध्येही अलार्म वाजतात.</string>
     <string name="editor_alert_watch">घड्याळ</string>

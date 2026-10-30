@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Po probuzení načte fáze spánku z Health Connect, aby rozpoznávání ověřil a vylepšil.</string>
     <string name="health_connected">Připojeno</string>
     <string name="health_unavailable">Health Connect není v tomto telefonu dostupný.</string>
-    <string name="verdict_good">Zdravotní data: %1$s ✓</string>
-    <string name="verdict_deep">Zdravotní data: hluboký spánek</string>
-    <string name="stage_light">lehký spánek</string>
-    <string name="stage_rem">REM spánek</string>
-    <string name="stage_awake">vzhůru</string>
     <string name="editor_alert">Jak tě vzbudit</string>
     <string name="editor_alert_hint">Zvuk vždy doprovází vibrace. Budíky zvoní i v režimu Nerušit, ve spánkovém režimu a při ztlumeném telefonu.</string>
     <string name="editor_alert_watch">Hodinky</string>

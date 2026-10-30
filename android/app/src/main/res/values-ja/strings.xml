@@ -104,11 +104,6 @@
     <string name="health_connect_hint">起床後にHealth Connectから睡眠ステージを読み取り、検出の確認と改善に使います。</string>
     <string name="health_connected">接続済み</string>
     <string name="health_unavailable">このスマートフォンではHealth Connectを利用できません。</string>
-    <string name="verdict_good">ヘルスデータ: %1$s ✓</string>
-    <string name="verdict_deep">ヘルスデータ: 深い眠り</string>
-    <string name="stage_light">浅い眠り</string>
-    <string name="stage_rem">レム睡眠</string>
-    <string name="stage_awake">覚醒</string>
     <string name="editor_alert">起こし方</string>
     <string name="editor_alert_hint">音は必ずバイブレーションと一緒に鳴ります。おやすみモードや就寝モード、マナーモード中でもアラームは鳴ります。</string>
     <string name="editor_alert_watch">ウォッチ</string>

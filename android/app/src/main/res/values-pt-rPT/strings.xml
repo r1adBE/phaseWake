@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Lê as fases do sono do Health Connect depois de acordares, para verificar e melhorar a deteção.</string>
     <string name="health_connected">Ligado</string>
     <string name="health_unavailable">O Health Connect não está disponível neste telemóvel.</string>
-    <string name="verdict_good">Dados de saúde: %1$s ✓</string>
-    <string name="verdict_deep">Dados de saúde: sono profundo</string>
-    <string name="stage_light">sono leve</string>
-    <string name="stage_rem">sono REM</string>
-    <string name="stage_awake">acordado</string>
     <string name="editor_alert">Como te acordar</string>
     <string name="editor_alert_hint">O som vem sempre com vibração. Os alarmes tocam também com Não incomodar, modo de deitar e telemóvel em silêncio.</string>
     <string name="editor_alert_watch">Relógio</string>

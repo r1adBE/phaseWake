@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Сэрсний дараа Health Connect-оос нойрны үе шатыг уншиж, илрүүлэлтийг шалгаж сайжруулна.</string>
     <string name="health_connected">Холбогдсон</string>
     <string name="health_unavailable">Энэ утсанд Health Connect байхгүй.</string>
-    <string name="verdict_good">Эрүүл мэндийн өгөгдөл: %1$s ✓</string>
-    <string name="verdict_deep">Эрүүл мэндийн өгөгдөл: гүн нойр</string>
-    <string name="stage_light">хөнгөн нойр</string>
-    <string name="stage_rem">REM нойр</string>
-    <string name="stage_awake">сэрүүн</string>
     <string name="editor_alert">Хэрхэн сэрээх</string>
     <string name="editor_alert_hint">Дуу үргэлж чичиргээтэй хамт. Сэрүүлэг «Бүү саад бол», унтах горим болон дуугүй утсан дээр ч дуугарна.</string>
     <string name="editor_alert_watch">Цаг</string>

@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Lit les phases de sommeil dans Health Connect après le réveil, pour vérifier et améliorer la détection.</string>
     <string name="health_connected">Connecté</string>
     <string name="health_unavailable">Health Connect n\'est pas disponible sur ce téléphone.</string>
-    <string name="verdict_good">Données santé : %1$s ✓</string>
-    <string name="verdict_deep">Données santé : sommeil profond</string>
-    <string name="stage_light">sommeil léger</string>
-    <string name="stage_rem">sommeil paradoxal</string>
-    <string name="stage_awake">éveillé</string>
     <string name="editor_alert">Comment te réveiller</string>
     <string name="editor_alert_hint">Le son s\'accompagne toujours de vibrations. Les alarmes sonnent aussi en mode Ne pas déranger, en mode coucher et avec un téléphone en silencieux.</string>
     <string name="editor_alert_watch">Montre</string>

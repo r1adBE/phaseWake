@@ -109,11 +109,6 @@
     <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
     <string name="health_connected">متصل</string>
     <string name="health_unavailable">Health Connect غير متاح على هذا الهاتف.</string>
-    <string name="verdict_good">بيانات الصحة: %1$s ✓</string>
-    <string name="verdict_deep">بيانات الصحة: نوم عميق</string>
-    <string name="stage_light">نوم خفيف</string>
-    <string name="stage_rem">نوم REM</string>
-    <string name="stage_awake">استيقاظ</string>
     <string name="editor_alert">طريقة الإيقاظ</string>
     <string name="editor_alert_hint">يأتي الصوت دائمًا مع الاهتزاز. تعمل المنبّهات أيضًا مع وضع عدم الإزعاج ووضع وقت النوم والهاتف الصامت.</string>
     <string name="editor_alert_watch">الساعة</string>

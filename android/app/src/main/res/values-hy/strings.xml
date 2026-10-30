@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Արթնանալուց հետո կարդում է քնի փուլերը Health Connect-ից՝ հայտնաբերումը ստուգելու և բարելավելու համար։</string>
     <string name="health_connected">Միացված է</string>
     <string name="health_unavailable">Health Connect-ը հասանելի չէ այս հեռախոսում։</string>
-    <string name="verdict_good">Առողջության տվյալներ՝ %1$s ✓</string>
-    <string name="verdict_deep">Առողջության տվյալներ՝ խոր քուն</string>
-    <string name="stage_light">թեթև քուն</string>
-    <string name="stage_rem">REM քուն</string>
-    <string name="stage_awake">արթուն</string>
     <string name="editor_alert">Ինչպես արթնացնել</string>
     <string name="editor_alert_hint">Ձայնը միշտ թրթռոցով է։ Զարթուցիչները զանգում են նաև «Չանհանգստացնել», քնի ռեժիմի և անձայն հեռախոսի դեպքում։</string>
     <string name="editor_alert_watch">Ժամացույց</string>

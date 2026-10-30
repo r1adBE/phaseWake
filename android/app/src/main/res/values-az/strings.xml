@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Oyandıqdan sonra Health Connect-dən yuxu fazalarını oxuyur ki, aşkarlamanı yoxlasın və yaxşılaşdırsın.</string>
     <string name="health_connected">Qoşulub</string>
     <string name="health_unavailable">Health Connect bu telefonda yoxdur.</string>
-    <string name="verdict_good">Sağlamlıq məlumatları: %1$s ✓</string>
-    <string name="verdict_deep">Sağlamlıq məlumatları: dərin yuxu</string>
-    <string name="stage_light">yüngül yuxu</string>
-    <string name="stage_rem">REM yuxusu</string>
-    <string name="stage_awake">oyaq</string>
     <string name="editor_alert">Necə oyadılsın</string>
     <string name="editor_alert_hint">Səs həmişə vibrasiya ilə gəlir. Siqnallar “Narahat etməyin”, yuxu rejimi və səssiz telefonda da çalır.</string>
     <string name="editor_alert_watch">Saat</string>

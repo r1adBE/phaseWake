@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Lees ná die wakker word slaapfases uit Health Connect om die bespeuring na te gaan en te verbeter.</string>
     <string name="health_connected">Gekoppel</string>
     <string name="health_unavailable">Health Connect is nie op hierdie foon beskikbaar nie.</string>
-    <string name="verdict_good">Gesondheidsdata: %1$s ✓</string>
-    <string name="verdict_deep">Gesondheidsdata: diep slaap</string>
-    <string name="stage_light">ligte slaap</string>
-    <string name="stage_rem">REM-slaap</string>
-    <string name="stage_awake">wakker</string>
     <string name="editor_alert">Hoe om jou wakker te maak</string>
     <string name="editor_alert_hint">Klank kom altyd saam met vibrasie. Wekkers lui ook met Moenie Steur Nie, slaaptydmodus en ’n stil foon.</string>
     <string name="editor_alert_watch">Horlosie</string>

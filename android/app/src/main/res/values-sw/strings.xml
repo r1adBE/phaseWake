@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Husoma hatua za usingizi kutoka Health Connect baada ya kuamka, ili kukagua na kuboresha utambuzi.</string>
     <string name="health_connected">Imeunganishwa</string>
     <string name="health_unavailable">Health Connect haipatikani kwenye simu hii.</string>
-    <string name="verdict_good">Data ya afya: %1$s ✓</string>
-    <string name="verdict_deep">Data ya afya: usingizi mzito</string>
-    <string name="stage_light">usingizi mwepesi</string>
-    <string name="stage_rem">usingizi wa REM</string>
-    <string name="stage_awake">macho</string>
     <string name="editor_alert">Jinsi ya kukuamsha</string>
     <string name="editor_alert_hint">Sauti huja na mtetemo kila wakati. Kengele hulia pia ukiwa na “Usinisumbue”, hali ya kulala na simu iliyo kimya.</string>
     <string name="editor_alert_watch">Saa</string>

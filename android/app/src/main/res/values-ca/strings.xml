@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Després de despertar-te, llegeix les fases del son de Health Connect per comprovar i millorar la detecció.</string>
     <string name="health_connected">Connectat</string>
     <string name="health_unavailable">Health Connect no està disponible en aquest telèfon.</string>
-    <string name="verdict_good">Dades de salut: %1$s ✓</string>
-    <string name="verdict_deep">Dades de salut: son profund</string>
-    <string name="stage_light">son lleuger</string>
-    <string name="stage_rem">son REM</string>
-    <string name="stage_awake">vigília</string>
     <string name="editor_alert">Com et despertem</string>
     <string name="editor_alert_hint">El so sempre va amb vibració. Les alarmes també sonen amb «No molestis», el mode de descans i el telèfon en silenci.</string>
     <string name="editor_alert_watch">Rellotge</string>

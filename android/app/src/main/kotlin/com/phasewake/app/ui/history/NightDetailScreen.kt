@@ -36,9 +36,7 @@ import com.phasewake.app.R
 import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HistoryItem
-import com.phasewake.app.core.Hypnogram
 import com.phasewake.app.core.NightStages
-import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.StageStats
@@ -54,10 +52,9 @@ import java.util.Locale
 import kotlinx.coroutines.launch
 
 /**
- * Eine Nacht für die Detailseite: der Eintrag, die Auswertung der Phasen und das Hypnogramm (beides `null` ohne Phasen),
- * bei eigener Nacht dazu das Schlafprofil für den Abgleich des Weckmoments ([hypnogramTakeaway]).
+ * Eine Nacht für die Detailseite: der Eintrag, die Auswertung der Phasen und das Hypnogramm (beides `null` ohne Phasen).
  */
-internal data class NightView(val item: HistoryItem, val stats: NightStages?, val hypno: HypnoModel?, val profile: Hypnogram? = null)
+internal data class NightView(val item: HistoryItem, val stats: NightStages?, val hypno: HypnoModel?)
 
 /**
  * Rechnet die Ansicht einer Nacht: eigene Nacht über das Schlafprofil ([StageStats.forNight], Achse samt Weckfenster),
@@ -69,7 +66,7 @@ internal fun nightView(item: HistoryItem, stages: List<StageSpan>): NightView {
         val stats = StageStats.forNight(stages, night)
         val h = ChartData.hypnogram(stages, night)
         val model = if (h != null && stats != null) HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT)) else null
-        return NightView(item, stats, model, h)
+        return NightView(item, stats, model)
     }
     val session = item.session ?: return NightView(item, null, null)
     val stats = StageStats.forSession(session)
@@ -188,16 +185,6 @@ private fun NightHeader(view: NightView) {
                 modifier = Modifier.padding(top = 8.dp),
             )
             Text(nightSummary(context, night), style = MaterialTheme.typography.bodyMedium, color = scheme.onSurfaceVariant)
-            view.profile?.let { h ->
-                hypnogramTakeaway(context, h)?.let {
-                    Text(
-                        it,
-                        style = MaterialTheme.typography.labelLarge,
-                        color = if (h.stageAtWake == SleepStage.DEEP) scheme.error else scheme.primary,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
-                }
-            }
         } else if (session != null) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
                 Icon(painterResource(R.drawable.ic_health), contentDescription = null, tint = scheme.onSurfaceVariant, modifier = Modifier.size(16.dp))

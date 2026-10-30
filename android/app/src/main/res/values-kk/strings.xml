@@ -97,11 +97,6 @@
     <string name="health_connect_hint">Оянғаннан кейін Health Connect-тен ұйқы фазаларын оқып, анықтауды тексереді және жақсартады.</string>
     <string name="health_connected">Қосылған</string>
     <string name="health_unavailable">Бұл телефонда Health Connect жоқ.</string>
-    <string name="verdict_good">Денсаулық деректері: %1$s ✓</string>
-    <string name="verdict_deep">Денсаулық деректері: терең ұйқы</string>
-    <string name="stage_light">жеңіл ұйқы</string>
-    <string name="stage_rem">REM ұйқысы</string>
-    <string name="stage_awake">ояу</string>
     <string name="editor_alert">Қалай ояту керек</string>
     <string name="editor_alert_hint">Дыбыс әрқашан дірілмен бірге. Оятқыштар «Мазаламау», ұйқы режимі мен дыбыссыз телефонда да шырылдайды.</string>
     <string name="editor_alert_watch">Сағат</string>

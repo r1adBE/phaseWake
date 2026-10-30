@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Läser sömnfaser från Health Connect efter uppvaknandet för att kontrollera och förbättra igenkänningen.</string>
     <string name="health_connected">Ansluten</string>
     <string name="health_unavailable">Health Connect är inte tillgängligt på den här mobilen.</string>
-    <string name="verdict_good">Hälsodata: %1$s ✓</string>
-    <string name="verdict_deep">Hälsodata: djupsömn</string>
-    <string name="stage_light">lätt sömn</string>
-    <string name="stage_rem">REM-sömn</string>
-    <string name="stage_awake">vaken</string>
     <string name="editor_alert">Så väcks du</string>
     <string name="editor_alert_hint">Ljud kommer alltid med vibration. Larm ringer även i Stör ej, sänggåendeläge och med ljudlös mobil.</string>
     <string name="editor_alert_watch">Klocka</string>

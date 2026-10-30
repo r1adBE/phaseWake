@@ -105,11 +105,6 @@
     <string name="health_connect_hint">អានដំណាក់កាលដំណេកពី Health Connect ក្រោយភ្ញាក់ ដើម្បីពិនិត្យ និងកែលម្អការរកឃើញ។</string>
     <string name="health_connected">បានភ្ជាប់</string>
     <string name="health_unavailable">Health Connect មិនមាននៅលើទូរសព្ទនេះទេ។</string>
-    <string name="verdict_good">ទិន្នន័យសុខភាព៖ %1$s ✓</string>
-    <string name="verdict_deep">ទិន្នន័យសុខភាព៖ ដំណេកជ្រៅ</string>
-    <string name="stage_light">ដំណេកស្រាល</string>
-    <string name="stage_rem">ដំណេក REM</string>
-    <string name="stage_awake">ភ្ញាក់</string>
     <string name="editor_alert">របៀបដាស់</string>
     <string name="editor_alert_hint">សំឡេងតែងមកជាមួយការញ័រ។ ម៉ោងរោទ៍នៅតែរោទ៍ ទោះបីបើក «កុំរំខាន» មុខងារពេលដេក ឬទូរសព្ទស្ងាត់ក៏ដោយ។</string>
     <string name="editor_alert_watch">នាឡិកា</string>

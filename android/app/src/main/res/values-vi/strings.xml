@@ -104,11 +104,6 @@
     <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
     <string name="health_connected">Đã kết nối</string>
     <string name="health_unavailable">Health Connect không khả dụng trên điện thoại này.</string>
-    <string name="verdict_good">Dữ liệu sức khỏe: %1$s ✓</string>
-    <string name="verdict_deep">Dữ liệu sức khỏe: ngủ sâu</string>
-    <string name="stage_light">ngủ nông</string>
-    <string name="stage_rem">ngủ REM</string>
-    <string name="stage_awake">thức</string>
     <string name="editor_alert">Cách đánh thức bạn</string>
     <string name="editor_alert_hint">Âm thanh luôn đi kèm rung. Báo thức vẫn đổ chuông khi bật Không làm phiền, chế độ giờ đi ngủ hoặc điện thoại im lặng.</string>
     <string name="editor_alert_watch">Đồng hồ</string>

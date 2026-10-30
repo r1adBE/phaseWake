@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Leser søvnfaser fra Health Connect etter oppvåkning for å sjekke og forbedre gjenkjenningen.</string>
     <string name="health_connected">Tilkoblet</string>
     <string name="health_unavailable">Health Connect er ikke tilgjengelig på denne telefonen.</string>
-    <string name="verdict_good">Helsedata: %1$s ✓</string>
-    <string name="verdict_deep">Helsedata: dyp søvn</string>
-    <string name="stage_light">lett søvn</string>
-    <string name="stage_rem">REM-søvn</string>
-    <string name="stage_awake">våken</string>
     <string name="editor_alert">Slik vekkes du</string>
     <string name="editor_alert_hint">Lyd kommer alltid med vibrasjon. Alarmer ringer også i Ikke forstyrr, sengetidsmodus og med lydløs telefon.</string>
     <string name="editor_alert_watch">Klokke</string>

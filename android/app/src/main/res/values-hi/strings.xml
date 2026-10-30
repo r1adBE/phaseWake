@@ -105,11 +105,6 @@
     <string name="health_connect_hint">जागने के बाद Health Connect से नींद के चरण पढ़ता है, ताकि पहचान जाँची और बेहतर की जा सके।</string>
     <string name="health_connected">जुड़ा है</string>
     <string name="health_unavailable">इस फ़ोन पर Health Connect उपलब्ध नहीं है।</string>
-    <string name="verdict_good">हेल्थ डेटा: %1$s ✓</string>
-    <string name="verdict_deep">हेल्थ डेटा: गहरी नींद</string>
-    <string name="stage_light">हल्की नींद</string>
-    <string name="stage_rem">REM नींद</string>
-    <string name="stage_awake">जागा हुआ</string>
     <string name="editor_alert">कैसे जगाएँ</string>
     <string name="editor_alert_hint">आवाज़ हमेशा वाइब्रेशन के साथ आती है। अलार्म डू नॉट डिस्टर्ब, बेडटाइम मोड और साइलेंट फ़ोन में भी बजते हैं।</string>
     <string name="editor_alert_watch">घड़ी</string>

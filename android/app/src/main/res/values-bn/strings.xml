@@ -106,11 +106,6 @@
     <string name="health_connect_hint">জাগার পর Health Connect থেকে ঘুমের পর্যায় পড়ে, শনাক্তকরণ যাচাই ও উন্নত করতে।</string>
     <string name="health_connected">সংযুক্ত</string>
     <string name="health_unavailable">এই ফোনে Health Connect নেই।</string>
-    <string name="verdict_good">স্বাস্থ্য ডেটা: %1$s ✓</string>
-    <string name="verdict_deep">স্বাস্থ্য ডেটা: গভীর ঘুম</string>
-    <string name="stage_light">হালকা ঘুম</string>
-    <string name="stage_rem">REM ঘুম</string>
-    <string name="stage_awake">জাগ্রত</string>
     <string name="editor_alert">কীভাবে জাগাবে</string>
     <string name="editor_alert_hint">শব্দের সঙ্গে সবসময় কম্পনও থাকে। “বিরক্ত করবে না”, বেডটাইম মোড আর সাইলেন্ট ফোনেও অ্যালার্ম বাজে।</string>
     <string name="editor_alert_watch">ঘড়ি</string>

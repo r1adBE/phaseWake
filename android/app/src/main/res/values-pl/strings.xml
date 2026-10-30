@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
     <string name="health_connected">Połączono</string>
     <string name="health_unavailable">Health Connect nie jest dostępne na tym telefonie.</string>
-    <string name="verdict_good">Dane zdrowotne: %1$s ✓</string>
-    <string name="verdict_deep">Dane zdrowotne: głęboki sen</string>
-    <string name="stage_light">lekki sen</string>
-    <string name="stage_rem">sen REM</string>
-    <string name="stage_awake">czuwanie</string>
     <string name="editor_alert">Jak cię obudzić</string>
     <string name="editor_alert_hint">Dźwięk zawsze idzie z wibracją. Budziki dzwonią też w trybie Nie przeszkadzać, w trybie snu i na wyciszonym telefonie.</string>
     <string name="editor_alert_watch">Zegarek</string>

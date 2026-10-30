@@ -104,11 +104,6 @@
     <string name="health_connect_hint">일어난 뒤 Health Connect에서 수면 단계를 읽어 감지를 확인하고 개선해요.</string>
     <string name="health_connected">연결됨</string>
     <string name="health_unavailable">이 휴대폰에서는 Health Connect를 사용할 수 없어요.</string>
-    <string name="verdict_good">건강 데이터: %1$s ✓</string>
-    <string name="verdict_deep">건강 데이터: 깊은 잠</string>
-    <string name="stage_light">얕은 잠</string>
-    <string name="stage_rem">렘수면</string>
-    <string name="stage_awake">깨어 있음</string>
     <string name="editor_alert">깨우는 방법</string>
     <string name="editor_alert_hint">소리는 항상 진동과 함께 울려요. 방해 금지 모드, 취침 모드, 무음일 때도 알람은 울려요.</string>
     <string name="editor_alert_watch">워치</string>

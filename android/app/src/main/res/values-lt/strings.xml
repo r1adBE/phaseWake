@@ -109,11 +109,6 @@
     <string name="health_connect_hint">Po pabudimo nuskaito miego fazes iš Health Connect, kad patikrintų ir patobulintų aptikimą.</string>
     <string name="health_connected">Prijungta</string>
     <string name="health_unavailable">Health Connect šiame telefone nepasiekiama.</string>
-    <string name="verdict_good">Sveikatos duomenys: %1$s ✓</string>
-    <string name="verdict_deep">Sveikatos duomenys: gilus miegas</string>
-    <string name="stage_light">lengvas miegas</string>
-    <string name="stage_rem">REM miegas</string>
-    <string name="stage_awake">budrumas</string>
     <string name="editor_alert">Kaip tave pažadinti</string>
     <string name="editor_alert_hint">Garsas visada skamba su vibracija. Žadintuvai skamba ir esant režimui „Netrukdyti“, miego režimui ar išjungtam telefono garsui.</string>
     <string name="editor_alert_watch">Laikrodis</string>

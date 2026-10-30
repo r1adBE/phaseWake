@@ -67,18 +67,13 @@ struct NightDetailPage: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// Weckmoment, Grund und Zielzeit einer Phase-Wake-Nacht, dazu der Abgleich mit der Phase beim Wecken.
+    /// Weckmoment, Grund und Zielzeit einer Phase-Wake-Nacht.
     @ViewBuilder
     private func ownLines(_ night: NightRecord) -> some View {
         Text(L("night_woke", Format.time(night.wokeAt)) + " · " + L("night_target", Format.time(night.target)))
             .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
             .foregroundStyle(.tint)
         Text(nightSummary(night)).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
-        if let verdict = wakeVerdict(data.timeline?.stageAtWake) {
-            Text(verdict.text)
-                .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
-                .foregroundStyle(verdict.good ? Color.accentColor : .red)
-        }
     }
 
     /// Legende des Profils; «Genau» hat kein Weckfenster, dann ohne dessen Zeichen.
@@ -120,17 +115,5 @@ struct NightDetailPage: View {
     /// Die Nacht mit dem neuesten Befinden aus dem Modell (die Seite bleibt offen, während es gesetzt wird).
     private func current(_ night: NightRecord) -> NightRecord {
         model.nights.first { $0.alarmId == night.alarmId && $0.windowStart == night.windowStart } ?? night
-    }
-}
-
-/// «Im leichten Schlaf geweckt» bzw. «Aus dem Tiefschlaf geweckt» nach der Phase beim Wecken; `nil` ohne Phase.
-/// Gleiche Texte wie die Karte «Schlafphasen» (`HypnogramCard`); die Nachtkarte im Verlauf zeigt ihn nicht.
-func wakeVerdict(_ stage: SleepStage?) -> (text: String, good: Bool)? {
-    switch stage {
-    case .light: (L("verdict_good", L("stage_light")), true)
-    case .rem: (L("verdict_good", L("stage_rem")), true)
-    case .awake: (L("verdict_good", L("stage_awake")), true)
-    case .deep: (L("verdict_deep"), false)
-    case .unknown, nil: nil
     }
 }

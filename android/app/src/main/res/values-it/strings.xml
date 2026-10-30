@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
     <string name="health_connected">Connesso</string>
     <string name="health_unavailable">Health Connect non è disponibile su questo telefono.</string>
-    <string name="verdict_good">Dati di salute: %1$s ✓</string>
-    <string name="verdict_deep">Dati di salute: sonno profondo</string>
-    <string name="stage_light">sonno leggero</string>
-    <string name="stage_rem">sonno REM</string>
-    <string name="stage_awake">sveglio</string>
     <string name="editor_alert">Come svegliarti</string>
     <string name="editor_alert_hint">Il suono è sempre accompagnato dalla vibrazione. Le sveglie suonano anche con Non disturbare, la modalità riposo e il telefono in silenzioso.</string>
     <string name="editor_alert_watch">Smartwatch</string>

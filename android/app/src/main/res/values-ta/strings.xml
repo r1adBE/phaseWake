@@ -106,11 +106,6 @@
     <string name="health_connect_hint">எழுந்த பிறகு Health Connect இலிருந்து தூக்க நிலைகளைப் படித்து, கண்டறிதலைச் சரிபார்த்து மேம்படுத்தும்.</string>
     <string name="health_connected">இணைக்கப்பட்டது</string>
     <string name="health_unavailable">இந்த ஃபோனில் Health Connect கிடைக்கவில்லை.</string>
-    <string name="verdict_good">ஆரோக்கியத் தரவு: %1$s ✓</string>
-    <string name="verdict_deep">ஆரோக்கியத் தரவு: ஆழ்ந்த தூக்கம்</string>
-    <string name="stage_light">லேசான தூக்கம்</string>
-    <string name="stage_rem">REM தூக்கம்</string>
-    <string name="stage_awake">விழிப்பு</string>
     <string name="editor_alert">எப்படி எழுப்ப வேண்டும்</string>
     <string name="editor_alert_hint">ஒலியுடன் எப்போதும் அதிர்வும் இருக்கும். “தொந்தரவு செய்ய வேண்டாம்”, உறக்க நேரப் பயன்முறை, சைலன்ட் ஃபோன் ஆகியவற்றிலும் அலாரம் ஒலிக்கும்.</string>
     <string name="editor_alert_watch">வாட்ச்</string>

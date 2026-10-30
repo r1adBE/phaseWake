@@ -108,11 +108,6 @@
     <string name="health_connect_hint">Nakon buđenja čita faze sna iz Health Connecta kako bi provjerio i poboljšao prepoznavanje.</string>
     <string name="health_connected">Povezano</string>
     <string name="health_unavailable">Health Connect nije dostupan na ovom telefonu.</string>
-    <string name="verdict_good">Zdravstveni podaci: %1$s ✓</string>
-    <string name="verdict_deep">Zdravstveni podaci: duboki san</string>
-    <string name="stage_light">lagani san</string>
-    <string name="stage_rem">REM san</string>
-    <string name="stage_awake">budnost</string>
     <string name="editor_alert">Način buđenja</string>
     <string name="editor_alert_hint">Zvuk uvijek dolazi s vibracijom. Alarmi zvone i uz „Ne uznemiravaj“, način za spavanje i utišan telefon.</string>
     <string name="editor_alert_watch">Sat</string>

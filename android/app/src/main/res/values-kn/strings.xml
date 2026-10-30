@@ -106,11 +106,6 @@
     <string name="health_connect_hint">ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ಸುಧಾರಿಸಲು, ಎದ್ದ ನಂತರ Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳನ್ನು ಓದುತ್ತದೆ.</string>
     <string name="health_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
     <string name="health_unavailable">ಈ ಫೋನ್‌ನಲ್ಲಿ Health Connect ಲಭ್ಯವಿಲ್ಲ.</string>
-    <string name="verdict_good">ಆರೋಗ್ಯ ಡೇಟಾ: %1$s ✓</string>
-    <string name="verdict_deep">ಆರೋಗ್ಯ ಡೇಟಾ: ಗಾಢ ನಿದ್ರೆ</string>
-    <string name="stage_light">ಹಗುರ ನಿದ್ರೆ</string>
-    <string name="stage_rem">REM ನಿದ್ರೆ</string>
-    <string name="stage_awake">ಎಚ್ಚರ</string>
     <string name="editor_alert">ಹೇಗೆ ಎಬ್ಬಿಸಬೇಕು</string>
     <string name="editor_alert_hint">ಶಬ್ದದ ಜೊತೆ ಯಾವಾಗಲೂ ಕಂಪನ ಇರುತ್ತದೆ. ಅಡಚಣೆ ಮಾಡಬೇಡಿ, ಬೆಡ್‌ಟೈಮ್ ಮೋಡ್ ಮತ್ತು ಸೈಲೆಂಟ್ ಫೋನ್‌ನಲ್ಲೂ ಅಲಾರಾಂಗಳು ರಿಂಗ್ ಆಗುತ್ತವೆ.</string>
     <string name="editor_alert_watch">ವಾಚ್</string>

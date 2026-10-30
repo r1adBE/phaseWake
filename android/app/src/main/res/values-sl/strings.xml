@@ -108,11 +108,6 @@
     <string name="health_connect_hint">Po prebujenju prebere faze spanca iz Health Connect, da preveri in izboljša zaznavanje.</string>
     <string name="health_connected">Povezano</string>
     <string name="health_unavailable">Health Connect na tem telefonu ni na voljo.</string>
-    <string name="verdict_good">Zdravstveni podatki: %1$s ✓</string>
-    <string name="verdict_deep">Zdravstveni podatki: globok spanec</string>
-    <string name="stage_light">lahek spanec</string>
-    <string name="stage_rem">spanec REM</string>
-    <string name="stage_awake">budnost</string>
     <string name="editor_alert">Način bujenja</string>
     <string name="editor_alert_hint">Zvok je vedno skupaj z vibriranjem. Budilke zvonijo tudi v načinu »Ne moti«, v načinu za spanje in na utišanem telefonu.</string>
     <string name="editor_alert_watch">Ura</string>

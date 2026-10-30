@@ -107,11 +107,6 @@
     <string name="health_connect_hint">හඳුනාගැනීම පරීක්ෂා කර වැඩිදියුණු කිරීමට, අවදි වූ පසු Health Connect වෙතින් නින්දේ අදියර කියවයි.</string>
     <string name="health_connected">සම්බන්ධයි</string>
     <string name="health_unavailable">මෙම දුරකථනයේ Health Connect නොමැත.</string>
-    <string name="verdict_good">සෞඛ්‍ය දත්ත: %1$s ✓</string>
-    <string name="verdict_deep">සෞඛ්‍ය දත්ත: ගැඹුරු නින්ද</string>
-    <string name="stage_light">සැහැල්ලු නින්ද</string>
-    <string name="stage_rem">REM නින්ද</string>
-    <string name="stage_awake">අවදියි</string>
     <string name="editor_alert">ඔබව අවදි කරන ආකාරය</string>
     <string name="editor_alert_hint">ශබ්දය සැමවිටම කම්පනය සමඟ පැමිණේ. “බාධා නොකරන්න”, නින්දේ ප්‍රකාරය සහ නිහඬ දුරකථනයේදීත් එලාම නාද වේ.</string>
     <string name="editor_alert_watch">ඔරලෝසුව</string>

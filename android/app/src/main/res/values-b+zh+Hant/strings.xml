@@ -104,11 +104,6 @@
     <string name="health_connect_hint">醒來後從 Health Connect 讀取睡眠階段，用於檢查並改善偵測。</string>
     <string name="health_connected">已連結</string>
     <string name="health_unavailable">這支手機無法使用 Health Connect。</string>
-    <string name="verdict_good">健康資料：%1$s ✓</string>
-    <string name="verdict_deep">健康資料：深層睡眠</string>
-    <string name="stage_light">淺眠</string>
-    <string name="stage_rem">快速動眼睡眠</string>
-    <string name="stage_awake">清醒</string>
     <string name="editor_alert">喚醒方式</string>
     <string name="editor_alert_hint">響鈴時一定會同時震動。即使開啟勿擾模式、就寢模式或手機靜音，鬧鐘也會響。</string>
     <string name="editor_alert_watch">手錶</string>

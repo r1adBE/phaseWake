@@ -107,11 +107,6 @@
     <string name="health_connect_hint">ማወቂያውን ለማረጋገጥና ለማሻሻል ከነቁ በኋላ የእንቅልፍ ደረጃዎችን ከHealth Connect ያነባል።</string>
     <string name="health_connected">ተገናኝቷል</string>
     <string name="health_unavailable">Health Connect በዚህ ስልክ ላይ አይገኝም።</string>
-    <string name="verdict_good">የጤና ውሂብ: %1$s ✓</string>
-    <string name="verdict_deep">የጤና ውሂብ: ጥልቅ እንቅልፍ</string>
-    <string name="stage_light">ቀላል እንቅልፍ</string>
-    <string name="stage_rem">REM እንቅልፍ</string>
-    <string name="stage_awake">ነቅቷል</string>
     <string name="editor_alert">እንዴት እንቀስቅስዎ</string>
     <string name="editor_alert_hint">ድምፅ ሁልጊዜ ከንዝረት ጋር ይመጣል። ማንቂያዎች በአትረብሽ፣ በመኝታ ሁነታ እና ጸጥ ባለ ስልክም ይደውላሉ።</string>
     <string name="editor_alert_watch">ሰዓት</string>

@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Esnatu ondoren, lo-faseak irakurtzen ditu Health Connect-etik, hautematea egiaztatu eta hobetzeko.</string>
     <string name="health_connected">Konektatuta</string>
     <string name="health_unavailable">Health Connect ez dago erabilgarri telefono honetan.</string>
-    <string name="verdict_good">Osasun-datuak: %1$s ✓</string>
-    <string name="verdict_deep">Osasun-datuak: lo sakona</string>
-    <string name="stage_light">lo arina</string>
-    <string name="stage_rem">REM loa</string>
-    <string name="stage_awake">esna</string>
     <string name="editor_alert">Nola esnatu</string>
     <string name="editor_alert_hint">Soinuak beti dakar bibrazioa. Alarmek «Ez molestatu» moduan, lo-moduan eta telefonoa isilik dagoenean ere jotzen dute.</string>
     <string name="editor_alert_watch">Erlojua</string>

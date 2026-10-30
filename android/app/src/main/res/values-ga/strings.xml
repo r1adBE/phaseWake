@@ -110,11 +110,6 @@
     <string name="health_connect_hint">Léann sé céimeanna codlata ó Health Connect tar éis duit dúiseacht, chun an brath a sheiceáil agus a fheabhsú.</string>
     <string name="health_connected">Ceangailte</string>
     <string name="health_unavailable">Níl Health Connect ar fáil ar an bhfón seo.</string>
-    <string name="verdict_good">Sonraí sláinte: %1$s ✓</string>
-    <string name="verdict_deep">Sonraí sláinte: codladh trom</string>
-    <string name="stage_light">codladh éadrom</string>
-    <string name="stage_rem">codladh REM</string>
-    <string name="stage_awake">i do dhúiseacht</string>
     <string name="editor_alert">Conas thú a dhúiseacht</string>
     <string name="editor_alert_hint">Bíonn creathadh i gcónaí leis an bhfuaim. Buaileann aláraim freisin le “Ná Cuir Isteach Orm”, mód am codlata agus fón ciúin.</string>
     <string name="editor_alert_watch">Uaireadóir</string>

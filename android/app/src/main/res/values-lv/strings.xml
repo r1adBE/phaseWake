@@ -108,11 +108,6 @@
     <string name="health_connect_hint">Pēc pamošanās nolasa miega fāzes no Health Connect, lai pārbaudītu un uzlabotu noteikšanu.</string>
     <string name="health_connected">Savienots</string>
     <string name="health_unavailable">Health Connect šajā tālrunī nav pieejams.</string>
-    <string name="verdict_good">Veselības dati: %1$s ✓</string>
-    <string name="verdict_deep">Veselības dati: dziļš miegs</string>
-    <string name="stage_light">viegls miegs</string>
-    <string name="stage_rem">REM miegs</string>
-    <string name="stage_awake">nomodā</string>
     <string name="editor_alert">Kā tevi modināt</string>
     <string name="editor_alert_hint">Skaņa vienmēr ir kopā ar vibrāciju. Modinātāji zvana arī režīmā „Netraucēt“, gulētiešanas režīmā un tad, ja tālrunim izslēgta skaņa.</string>
     <string name="editor_alert_watch">Pulkstenis</string>

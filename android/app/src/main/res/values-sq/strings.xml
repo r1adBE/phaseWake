@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Pas zgjimit lexon fazat e gjumit nga Health Connect, për të kontrolluar dhe përmirësuar dallimin.</string>
     <string name="health_connected">E lidhur</string>
     <string name="health_unavailable">Health Connect nuk është i disponueshëm në këtë telefon.</string>
-    <string name="verdict_good">Të dhënat e shëndetit: %1$s ✓</string>
-    <string name="verdict_deep">Të dhënat e shëndetit: gjumë i thellë</string>
-    <string name="stage_light">gjumë i lehtë</string>
-    <string name="stage_rem">gjumë REM</string>
-    <string name="stage_awake">zgjuar</string>
     <string name="editor_alert">Mënyra e zgjimit</string>
     <string name="editor_alert_hint">Tingulli vjen gjithmonë me dridhje. Alarmet bien edhe me „Mos shqetëso“, në modalitetin e gjumit dhe kur telefoni është në heshtje.</string>
     <string name="editor_alert_watch">Ora</string>

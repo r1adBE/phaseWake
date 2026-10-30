@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Le as fases do sono de Health Connect despois de espertar, para comprobar e mellorar a detección.</string>
     <string name="health_connected">Conectado</string>
     <string name="health_unavailable">Health Connect non está dispoñible neste teléfono.</string>
-    <string name="verdict_good">Datos de saúde: %1$s ✓</string>
-    <string name="verdict_deep">Datos de saúde: sono profundo</string>
-    <string name="stage_light">sono lixeiro</string>
-    <string name="stage_rem">sono REM</string>
-    <string name="stage_awake">esperto</string>
     <string name="editor_alert">Como espertarte</string>
     <string name="editor_alert_hint">O son sempre vai con vibración. As alarmas tamén soan con «Non molestar», modo hora de durmir e o teléfono en silencio.</string>
     <string name="editor_alert_watch">Reloxo</string>

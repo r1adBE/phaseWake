@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Після пробудження читає фази сну з Health Connect, щоб перевіряти й покращувати розпізнавання.</string>
     <string name="health_connected">Підключено</string>
     <string name="health_unavailable">Health Connect недоступний на цьому телефоні.</string>
-    <string name="verdict_good">Дані про здоров\'я: %1$s ✓</string>
-    <string name="verdict_deep">Дані про здоров\'я: глибокий сон</string>
-    <string name="stage_light">легкий сон</string>
-    <string name="stage_rem">REM-сон</string>
-    <string name="stage_awake">неспання</string>
     <string name="editor_alert">Як будити</string>
     <string name="editor_alert_hint">Звук завжди йде з вібрацією. Будильники дзвонять і в режимі «Не турбувати», у режимі сну та на беззвучному телефоні.</string>
     <string name="editor_alert_watch">Годинник</string>

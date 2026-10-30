@@ -106,11 +106,6 @@
     <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
     <string name="health_connected">Conectat</string>
     <string name="health_unavailable">Health Connect nu este disponibil pe acest telefon.</string>
-    <string name="verdict_good">Date de sănătate: %1$s ✓</string>
-    <string name="verdict_deep">Date de sănătate: somn profund</string>
-    <string name="stage_light">somn ușor</string>
-    <string name="stage_rem">somn REM</string>
-    <string name="stage_awake">treaz</string>
     <string name="editor_alert">Cum te trezim</string>
     <string name="editor_alert_hint">Sunetul vine mereu cu vibrație. Alarmele sună și în modul Nu deranja, în modul de culcare și cu telefonul pe silențios.</string>
     <string name="editor_alert_watch">Ceas</string>

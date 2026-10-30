@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Leest na het wakker worden de slaapfases uit Health Connect, om de herkenning te controleren en te verbeteren.</string>
     <string name="health_connected">Verbonden</string>
     <string name="health_unavailable">Health Connect is niet beschikbaar op deze telefoon.</string>
-    <string name="verdict_good">Gezondheidsgegevens: %1$s ✓</string>
-    <string name="verdict_deep">Gezondheidsgegevens: diepe slaap</string>
-    <string name="stage_light">lichte slaap</string>
-    <string name="stage_rem">REM-slaap</string>
-    <string name="stage_awake">wakker</string>
     <string name="editor_alert">Hoe we je wekken</string>
     <string name="editor_alert_hint">Geluid komt altijd met trillen. Wekkers gaan ook af bij Niet storen, de bedtijdmodus en een telefoon op stil.</string>
     <string name="editor_alert_watch">Horloge</string>

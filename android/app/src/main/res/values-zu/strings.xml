@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Ifunda izigaba zokulala ku-Health Connect ngemva kokuvuka, ukuze ihlole futhi ithuthukise ukutholwa.</string>
     <string name="health_connected">Ixhunyiwe</string>
     <string name="health_unavailable">I-Health Connect ayitholakali kule foni.</string>
-    <string name="verdict_good">Idatha yezempilo: %1$s ✓</string>
-    <string name="verdict_deep">Idatha yezempilo: ubuthongo obujulile</string>
-    <string name="stage_light">ubuthongo obulula</string>
-    <string name="stage_rem">ubuthongo be-REM</string>
-    <string name="stage_awake">uvukile</string>
     <string name="editor_alert">Indlela yokukuvusa</string>
     <string name="editor_alert_hint">Umsindo uhlala uza nokudlidliza. Ama-alamu ayakhala nalapho kuvulwe okuthi Ungaphazamisi, imodi yesikhathi sokulala noma ifoni ithulisiwe.</string>
     <string name="editor_alert_watch">Iwashi</string>

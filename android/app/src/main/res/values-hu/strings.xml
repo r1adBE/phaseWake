@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Ébredés után beolvassa az alvási fázisokat a Health Connectből, hogy ellenőrizze és javítsa az észlelést.</string>
     <string name="health_connected">Csatlakoztatva</string>
     <string name="health_unavailable">A Health Connect nem érhető el ezen a telefonon.</string>
-    <string name="verdict_good">Egészségügyi adatok: %1$s ✓</string>
-    <string name="verdict_deep">Egészségügyi adatok: mély alvás</string>
-    <string name="stage_light">könnyű alvás</string>
-    <string name="stage_rem">REM-alvás</string>
-    <string name="stage_awake">ébren</string>
     <string name="editor_alert">Hogyan ébresszünk</string>
     <string name="editor_alert_hint">A hang mindig rezgéssel jár együtt. Az ébresztők Ne zavarjanak módban, lefekvési módban és némított telefonnál is szólnak.</string>
     <string name="editor_alert_watch">Óra</string>

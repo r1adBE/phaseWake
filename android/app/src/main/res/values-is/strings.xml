@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Les svefnstig úr Health Connect eftir að þú vaknar, til að athuga og bæta greininguna.</string>
     <string name="health_connected">Tengt</string>
     <string name="health_unavailable">Health Connect er ekki í boði í þessum síma.</string>
-    <string name="verdict_good">Heilsugögn: %1$s ✓</string>
-    <string name="verdict_deep">Heilsugögn: djúpsvefn</string>
-    <string name="stage_light">léttur svefn</string>
-    <string name="stage_rem">REM-svefn</string>
-    <string name="stage_awake">vakandi</string>
     <string name="editor_alert">Hvernig á að vekja þig</string>
     <string name="editor_alert_hint">Hljóði fylgir alltaf titringur. Vekjarar hringja líka í „Ónáðið ekki“, háttatímastillingu og á hljóðlausum síma.</string>
     <string name="editor_alert_watch">Úr</string>

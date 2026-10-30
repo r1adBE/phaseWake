@@ -105,11 +105,6 @@
     <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
     <string name="health_connected">وصل شد</string>
     <string name="health_unavailable">Health Connect روی این گوشی در دسترس نیست.</string>
-    <string name="verdict_good">داده‌های سلامت: %1$s ✓</string>
-    <string name="verdict_deep">داده‌های سلامت: خواب عمیق</string>
-    <string name="stage_light">خواب سبک</string>
-    <string name="stage_rem">خواب REM</string>
-    <string name="stage_awake">بیدار</string>
     <string name="editor_alert">نحوهٔ بیدار کردنت</string>
     <string name="editor_alert_hint">صدا همیشه با لرزش همراه است. زنگ‌ها در حالت «مزاحم نشو»، حالت زمان خواب و گوشی بی‌صدا هم به صدا درمی‌آیند.</string>
     <string name="editor_alert_watch">ساعت</string>

@@ -106,11 +106,6 @@
     <string name="health_connect_hint">جاگنے کے بعد Health Connect سے نیند کے مراحل پڑھتا ہے، تاکہ پہچان کو جانچا اور بہتر بنایا جا سکے۔</string>
     <string name="health_connected">منسلک</string>
     <string name="health_unavailable">اس فون پر Health Connect دستیاب نہیں۔</string>
-    <string name="verdict_good">صحت کا ڈیٹا: %1$s ✓</string>
-    <string name="verdict_deep">صحت کا ڈیٹا: گہری نیند</string>
-    <string name="stage_light">ہلکی نیند</string>
-    <string name="stage_rem">REM نیند</string>
-    <string name="stage_awake">جاگتے ہوئے</string>
     <string name="editor_alert">کیسے جگایا جائے</string>
     <string name="editor_alert_hint">آواز ہمیشہ وائبریشن کے ساتھ آتی ہے۔ الارم “ڈسٹرب نہ کریں”، بیڈ ٹائم موڈ اور خاموش فون پر بھی بجتے ہیں۔</string>
     <string name="editor_alert_watch">گھڑی</string>

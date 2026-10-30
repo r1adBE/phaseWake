@@ -106,11 +106,6 @@
     <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
     <string name="health_connected">מחובר</string>
     <string name="health_unavailable">Health Connect אינו זמין בטלפון הזה.</string>
-    <string name="verdict_good">נתוני בריאות: %1$s ✓</string>
-    <string name="verdict_deep">נתוני בריאות: שינה עמוקה</string>
-    <string name="stage_light">שינה קלה</string>
-    <string name="stage_rem">שינת REM</string>
-    <string name="stage_awake">ערות</string>
     <string name="editor_alert">איך להעיר אתכם</string>
     <string name="editor_alert_hint">צליל תמיד מגיע עם רטט. מעוררים מצלצלים גם במצב ‘נא לא להפריע’, במצב שעת שינה ובטלפון מושתק.</string>
     <string name="editor_alert_watch">שעון</string>

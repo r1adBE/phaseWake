@@ -107,11 +107,6 @@
     <string name="health_connect_hint">మేల్కొన్న తర్వాత Health Connect నుంచి నిద్ర దశలను చదువుతుంది, గుర్తింపును తనిఖీ చేసి మెరుగుపరచడానికి.</string>
     <string name="health_connected">కనెక్ట్ అయింది</string>
     <string name="health_unavailable">ఈ ఫోన్‌లో Health Connect అందుబాటులో లేదు.</string>
-    <string name="verdict_good">హెల్త్ డేటా: %1$s ✓</string>
-    <string name="verdict_deep">హెల్త్ డేటా: గాఢ నిద్ర</string>
-    <string name="stage_light">తేలికపాటి నిద్ర</string>
-    <string name="stage_rem">REM నిద్ర</string>
-    <string name="stage_awake">మేల్కొని</string>
     <string name="editor_alert">ఎలా లేపాలి</string>
     <string name="editor_alert_hint">ధ్వనితో పాటు ఎప్పుడూ వైబ్రేషన్ కూడా ఉంటుంది. “అంతరాయం కలిగించవద్దు”, బెడ్‌టైమ్ మోడ్, సైలెంట్ ఫోన్‌లోనూ అలారాలు మోగుతాయి.</string>
     <string name="editor_alert_watch">వాచ్</string>

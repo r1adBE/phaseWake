@@ -104,11 +104,6 @@
     <string name="health_connect_hint">Membaca peringkat tidur daripada Health Connect selepas bangun, untuk menyemak dan menambah baik pengesanan.</string>
     <string name="health_connected">Disambungkan</string>
     <string name="health_unavailable">Health Connect tidak tersedia pada telefon ini.</string>
-    <string name="verdict_good">Data kesihatan: %1$s ✓</string>
-    <string name="verdict_deep">Data kesihatan: tidur nyenyak</string>
-    <string name="stage_light">tidur ringan</string>
-    <string name="stage_rem">tidur REM</string>
-    <string name="stage_awake">terjaga</string>
     <string name="editor_alert">Cara membangunkan awak</string>
     <string name="editor_alert_hint">Bunyi sentiasa disertai getaran. Penggera juga berbunyi semasa Jangan Ganggu, mod waktu tidur dan telefon senyap.</string>
     <string name="editor_alert_watch">Jam tangan</string>

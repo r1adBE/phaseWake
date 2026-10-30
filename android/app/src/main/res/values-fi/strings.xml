@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
     <string name="health_connected">Yhdistetty</string>
     <string name="health_unavailable">Health Connect ei ole käytettävissä tässä puhelimessa.</string>
-    <string name="verdict_good">Terveystiedot: %1$s ✓</string>
-    <string name="verdict_deep">Terveystiedot: syvä uni</string>
-    <string name="stage_light">kevyt uni</string>
-    <string name="stage_rem">REM-uni</string>
-    <string name="stage_awake">hereillä</string>
     <string name="editor_alert">Näin sinut herätetään</string>
     <string name="editor_alert_hint">Ääni tulee aina värinän kanssa. Herätykset soivat myös Älä häiritse -tilassa, nukkumaanmenotilassa ja äänettömällä puhelimella.</string>
     <string name="editor_alert_watch">Kello</string>

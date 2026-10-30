@@ -107,11 +107,6 @@
     <string name="health_connect_hint">Uygʻongandan keyin Health Connectʼdan uyqu bosqichlarini oʻqiydi – aniqlashni tekshirish va yaxshilash uchun.</string>
     <string name="health_connected">Ulangan</string>
     <string name="health_unavailable">Bu telefonda Health Connect mavjud emas.</string>
-    <string name="verdict_good">Sogʻliq maʼlumotlari: %1$s ✓</string>
-    <string name="verdict_deep">Sogʻliq maʼlumotlari: chuqur uyqu</string>
-    <string name="stage_light">yengil uyqu</string>
-    <string name="stage_rem">REM uyqu</string>
-    <string name="stage_awake">uygʻoq</string>
     <string name="editor_alert">Qanday uygʻotish</string>
     <string name="editor_alert_hint">Tovush doim tebranish bilan birga. Budilniklar «Bezovta qilinmasin», uyqu rejimi va ovozsiz telefonda ham jiringlaydi.</string>
     <string name="editor_alert_watch">Soat</string>

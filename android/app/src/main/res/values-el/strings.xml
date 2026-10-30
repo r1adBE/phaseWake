@@ -105,11 +105,6 @@
     <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
     <string name="health_connected">Συνδέθηκε</string>
     <string name="health_unavailable">Το Health Connect δεν είναι διαθέσιμο σε αυτό το κινητό.</string>
-    <string name="verdict_good">Δεδομένα υγείας: %1$s ✓</string>
-    <string name="verdict_deep">Δεδομένα υγείας: βαθύς ύπνος</string>
-    <string name="stage_light">ελαφρύς ύπνος</string>
-    <string name="stage_rem">ύπνος REM</string>
-    <string name="stage_awake">εγρήγορση</string>
     <string name="editor_alert">Πώς να σε ξυπνά</string>
     <string name="editor_alert_hint">Ο ήχος συνοδεύεται πάντα από δόνηση. Τα ξυπνητήρια χτυπούν και με «Μην ενοχλείτε», σε λειτουργία ώρας ύπνου και με σίγαση.</string>
     <string name="editor_alert_watch">Ρολόι</string>

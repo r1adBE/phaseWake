@@ -107,11 +107,6 @@
     <string name="health_connect_hint">ਜਾਗਣ ਤੋਂ ਬਾਅਦ Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ, ਪਛਾਣ ਜਾਂਚਣ ਅਤੇ ਸੁਧਾਰਨ ਲਈ।</string>
     <string name="health_connected">ਕਨੈਕਟ ਹੈ</string>
     <string name="health_unavailable">ਇਸ ਫ਼ੋਨ ’ਤੇ Health Connect ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
-    <string name="verdict_good">ਸਿਹਤ ਡਾਟਾ: %1$s ✓</string>
-    <string name="verdict_deep">ਸਿਹਤ ਡਾਟਾ: ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
-    <string name="stage_light">ਹਲਕੀ ਨੀਂਦ</string>
-    <string name="stage_rem">REM ਨੀਂਦ</string>
-    <string name="stage_awake">ਜਾਗਦੇ</string>
     <string name="editor_alert">ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਜਗਾਈਏ</string>
     <string name="editor_alert_hint">ਆਵਾਜ਼ ਦੇ ਨਾਲ ਹਮੇਸ਼ਾ ਥਰਥਰਾਹਟ ਵੀ ਹੁੰਦੀ ਹੈ। ਅਲਾਰਮ “ਪਰੇਸ਼ਾਨ ਨਾ ਕਰੋ”, ਬੈੱਡਟਾਈਮ ਮੋਡ ਅਤੇ ਸਾਈਲੈਂਟ ਫ਼ੋਨ ਵਿੱਚ ਵੀ ਵੱਜਦੇ ਹਨ।</string>
     <string name="editor_alert_watch">ਘੜੀ</string>

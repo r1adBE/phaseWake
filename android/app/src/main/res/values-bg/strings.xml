@@ -106,11 +106,6 @@
     <string name="health_connect_hint">След събуждане чете фазите на съня от Health Connect, за да провери и подобри разпознаването.</string>
     <string name="health_connected">Свързано</string>
     <string name="health_unavailable">Health Connect не е наличен на този телефон.</string>
-    <string name="verdict_good">Здравни данни: %1$s ✓</string>
-    <string name="verdict_deep">Здравни данни: дълбок сън</string>
-    <string name="stage_light">лек сън</string>
-    <string name="stage_rem">REM сън</string>
-    <string name="stage_awake">будност</string>
     <string name="editor_alert">Как да те събуди</string>
     <string name="editor_alert_hint">Звукът винаги е с вибрация. Будилниците звънят и при „Не безпокойте“, режим за сън и тих телефон.</string>
     <string name="editor_alert_watch">Часовник</string>

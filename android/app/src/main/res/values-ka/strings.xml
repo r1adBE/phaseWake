@@ -97,11 +97,6 @@
     <string name="health_connect_hint">გაღვიძების შემდეგ კითხულობს ძილის ფაზებს Health Connect-დან, რათა შეამოწმოს და გააუმჯობესოს ამოცნობა.</string>
     <string name="health_connected">დაკავშირებულია</string>
     <string name="health_unavailable">Health Connect ამ ტელეფონზე მიუწვდომელია.</string>
-    <string name="verdict_good">ჯანმრთელობის მონაცემები: %1$s ✓</string>
-    <string name="verdict_deep">ჯანმრთელობის მონაცემები: ღრმა ძილი</string>
-    <string name="stage_light">მსუბუქი ძილი</string>
-    <string name="stage_rem">REM ძილი</string>
-    <string name="stage_awake">ფხიზლად</string>
     <string name="editor_alert">როგორ გაგაღვიძოს</string>
     <string name="editor_alert_hint">ხმა ყოველთვის ვიბრაციასთან ერთადაა. მაღვიძარები რეკავს „არ შემაწუხოთ“, ძილის რეჟიმსა და უხმო ტელეფონზეც.</string>
     <string name="editor_alert_watch">საათი</string>
