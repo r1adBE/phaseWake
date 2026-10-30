@@ -1,4 +1,4 @@
-Phase Wake ti sveglia nel sonno leggero invece che nel pieno del sonno profondo. Negli ultimi minuti prima della sveglia, il tuo Apple Watch misura movimento e battito cardiaco e ti sveglia nel momento migliore all’interno della tua finestra di risveglio – al più tardi all’orario obiettivo.
+Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi, esattamente all’orario obiettivo. Per questo il tuo Apple Watch segue movimento e battito cardiaco. Su Apple Watch, Phase Wake misura gli ultimi 25 minuti prima dell’orario obiettivo. Non può capire se la tua notte è stata troppo corta.
 
 Come funziona
 • Scegli l’orario della sveglia e la finestra (fino a 30 min), indossa l’orologio, dormi.
@@ -19,7 +19,7 @@ Dormi meglio
 • Note sul sonno (caffè, sport, stress …) per scoprire le correlazioni.
 • Suoni per addormentarsi: pioggia, mare, bosco di notte, ruscello, camino, ventilatore, rumore e onde per dormire – con timer.
 • Registra russare e parole nel sonno, se vuoi – solo sul tuo iPhone.
-• Pisolino con risveglio nel sonno leggero.
+• Pisolino con risveglio non appena il sonno si fa agitato.
 • Alba delicata in modalità comodino prima della sveglia.
 • Fasi del sonno da Apple Health, se vuoi.
 
@@ -31,6 +31,6 @@ Per tutti
 • 74 lingue, tema chiaro e scuro, pensato per persone daltoniche e lettori di schermo.
 • Gratis e open source: github.com/r1adBE/phaseWake
 
-Richiede un Apple Watch per svegliarti nel sonno leggero; l’app per l’orologio è inclusa. Senza orologio, Phase Wake ti sveglia all’orario obiettivo sull’iPhone.
+Richiede un Apple Watch per svegliarti nella finestra di risveglio; l’app per l’orologio è inclusa. Senza orologio, Phase Wake ti sveglia all’orario obiettivo sull’iPhone.
 
 Phase Wake non è un dispositivo medico.

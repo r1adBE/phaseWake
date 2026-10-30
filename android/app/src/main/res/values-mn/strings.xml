@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Шинэ шөнүүдэд асаалттай</string>
     <string name="sound_rec_default_hint">Унтах цагаасаа хойш Phase Wake-ийг нээхэд эхэлнэ (сэрүүлэггүй бол 21:00-аас). Зөвхөн богино хэсгүүд; утсан дээр чинь үлдэж, 7 хоногийн дараа устна.</string>
     <string name="sound_type_snore">Хурхирсан байж магадгүй</string>
-    <string name="sound_type_talk">Ярих</string>
+    <string name="sound_type_talk">Ярьсан байж магадгүй</string>
     <string name="sound_type_other">Бусад дуу</string>
     <plurals name="sound_summary">
         <item quantity="one">Хурхирсан байж магадгүй: %1$s (%2$d хэсэг)</item>
         <item quantity="other">Хурхирсан байж магадгүй: %1$s (%2$d хэсэг)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Ярих: %1$d хэсэг</item>
-        <item quantity="other">Ярих: %1$d хэсэг</item>
+        <item quantity="one">Ярьсан байж магадгүй: %1$d хэсэг</item>
+        <item quantity="other">Ярьсан байж магадгүй: %1$d хэсэг</item>
     </plurals>
     <string name="sound_clips_title">Дуу</string>
     <string name="sound_clip_delete">%1$s-ийн хэсгийг устгах</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Цаган дээрээ Phase Wake-ийг нээ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Алхам %2$d-аас %1$d</string>
     <string name="onb_welcome_title">Phase Wake-д тавтай морил</string>
-    <string name="onb_welcome_text">Нойр чинь хөнгөн үед Phase Wake чамайг хугацааны дотор сэрээнэ. Цаг чинь хэмжинэ, утас чинь бас дуугарна.</string>
+    <string name="onb_welcome_text">Phase Wake чамайг тайван бус унтаж эхлэх үед сэрээх хугацааны дотор сэрээнэ – тэр үед чи хөнгөн унтаж байгаа байх магадлалтай. Хамгийн оройдоо яг зорилтот цагт. Цаг чинь хэмжинэ, утас чинь бас дуугарна.</string>
     <string name="onb_privacy">Өгөгдөл чинь төхөөрөмжүүд дээр чинь үлдэнэ.</string>
     <string name="onb_watch_title">Цагаа холбо</string>
     <string name="onb_watch_ok">Цаг чинь холбогдсон.</string>

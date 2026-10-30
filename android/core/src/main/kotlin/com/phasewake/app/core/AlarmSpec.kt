@@ -79,8 +79,8 @@ data class AlarmSpec(
     val watchSunrise: Sunrise get() = if (sunriseDevice.onWatch) sunrise else Sunrise.OFF
 
     companion object {
-        /** Standard-Weckfenster in Minuten, gleich [MAX_WINDOW_MINUTES]. */
-        const val DEFAULT_WINDOW_MINUTES: Int = 30
+        /** Standard-Weckfenster neuer Wecker in Minuten. Gespeicherte Wecker tragen ihr Fenster immer selbst. */
+        const val DEFAULT_WINDOW_MINUTES: Int = 20
 
         /** Fensterwert für «Genau» ([isExact]): kein frühes Wecken. */
         const val EXACT_WINDOW: Int = 0

@@ -309,15 +309,15 @@
     <string name="sound_rec_default">नवीन रात्रींसाठी चालू</string>
     <string name="sound_rec_default_hint">झोपण्याच्या वेळेपासून Phase Wake उघडल्यावर सुरू होते (अलार्म नसल्यास रात्री ९ पासून). फक्त छोट्या क्लिप; त्या तुमच्या फोनवरच राहतात आणि ७ दिवसांनी हटवल्या जातात.</string>
     <string name="sound_type_snore">कदाचित घोरणे</string>
-    <string name="sound_type_talk">बोलणे</string>
+    <string name="sound_type_talk">कदाचित बोलणे</string>
     <string name="sound_type_other">इतर आवाज</string>
     <plurals name="sound_summary">
         <item quantity="one">कदाचित घोरणे: %1$s (%2$d क्लिप)</item>
         <item quantity="other">कदाचित घोरणे: %1$s (%2$d क्लिप)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">बोलणे: %1$d क्लिप</item>
-        <item quantity="other">बोलणे: %1$d क्लिप</item>
+        <item quantity="one">कदाचित बोलणे: %1$d क्लिप</item>
+        <item quantity="other">कदाचित बोलणे: %1$d क्लिप</item>
     </plurals>
     <string name="sound_clips_title">आवाज</string>
     <string name="sound_clip_delete">%1$s ची क्लिप हटवा</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">तुमच्या घड्याळावर Phase Wake उघडा</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">पायरी %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wake मध्ये स्वागत</string>
-    <string name="onb_welcome_text">तुमची झोप हलकी असताना Phase Wake तुम्हाला तुमच्या कालावधीत उठवते. घड्याळ मोजते, फोनही वाजतो.</string>
+    <string name="onb_welcome_text">तुम्ही अस्वस्थ होऊ लागताच Phase Wake तुम्हाला उठवण्याच्या कालावधीत उठवते – तेव्हा तुमची झोप बहुधा हलकी असते. जास्तीत जास्त अगदी लक्ष्य वेळेवर. घड्याळ मोजते, फोनही वाजतो.</string>
     <string name="onb_privacy">तुमचा डेटा तुमच्या डिव्हाइसवरच राहतो.</string>
     <string name="onb_watch_title">तुमचे घड्याळ जोडा</string>
     <string name="onb_watch_ok">तुमचे घड्याळ जोडले आहे.</string>

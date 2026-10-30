@@ -322,7 +322,7 @@
     <string name="sound_rec_default">Vklopljeno za nove noči</string>
     <string name="sound_rec_default_hint">Začne se, ko odpreš Phase Wake od časa za spanje naprej (brez budilke od 21. ure). Samo kratki posnetki; ostanejo na telefonu in se po 7 dneh izbrišejo.</string>
     <string name="sound_type_snore">Možno smrčanje</string>
-    <string name="sound_type_talk">Govorjenje</string>
+    <string name="sound_type_talk">Možno govorjenje</string>
     <string name="sound_type_other">Drug zvok</string>
     <plurals name="sound_summary">
         <item quantity="one">Možno smrčanje: %1$s (%2$d posnetek)</item>
@@ -331,10 +331,10 @@
         <item quantity="other">Možno smrčanje: %1$s (%2$d posnetkov)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Govorjenje: %1$d posnetek</item>
-        <item quantity="two">Govorjenje: %1$d posnetka</item>
-        <item quantity="few">Govorjenje: %1$d posnetki</item>
-        <item quantity="other">Govorjenje: %1$d posnetkov</item>
+        <item quantity="one">Možno govorjenje: %1$d posnetek</item>
+        <item quantity="two">Možno govorjenje: %1$d posnetka</item>
+        <item quantity="few">Možno govorjenje: %1$d posnetki</item>
+        <item quantity="other">Možno govorjenje: %1$d posnetkov</item>
     </plurals>
     <string name="sound_clips_title">Zvoki</string>
     <string name="sound_clip_delete">Izbriši posnetek ob %1$s</string>
@@ -418,7 +418,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Odpri Phase Wake na uri</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Korak %1$d od %2$d</string>
     <string name="onb_welcome_title">Dobrodošli v Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake te zbudi v tvojem oknu, ko spiš lahno. Ura meri, telefon zvoni zraven.</string>
+    <string name="onb_welcome_text">Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje natanko ob ciljnem času. Ura meri, telefon zvoni zraven.</string>
     <string name="onb_privacy">Tvoji podatki ostanejo na tvojih napravah.</string>
     <string name="onb_watch_title">Poveži uro</string>
     <string name="onb_watch_ok">Ura je povezana.</string>

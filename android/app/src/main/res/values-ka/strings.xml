@@ -296,15 +296,15 @@
     <string name="sound_rec_default">ჩართულია ახალი ღამეებისთვის</string>
     <string name="sound_rec_default_hint">იწყება, როცა Phase Wake-ს დაძინების დროიდან ხსნი (მაღვიძარის გარეშე – 21:00-დან). მხოლოდ მოკლე ფრაგმენტები; ისინი რჩება ტელეფონზე და 7 დღის შემდეგ იშლება.</string>
     <string name="sound_type_snore">შესაძლო ხვრინვა</string>
-    <string name="sound_type_talk">ლაპარაკი</string>
+    <string name="sound_type_talk">შესაძლო ლაპარაკი</string>
     <string name="sound_type_other">სხვა ხმა</string>
     <plurals name="sound_summary">
         <item quantity="one">შესაძლო ხვრინვა: %1$s (%2$d ფრაგმენტი)</item>
         <item quantity="other">შესაძლო ხვრინვა: %1$s (%2$d ფრაგმენტი)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">ლაპარაკი: %1$d ფრაგმენტი</item>
-        <item quantity="other">ლაპარაკი: %1$d ფრაგმენტი</item>
+        <item quantity="one">შესაძლო ლაპარაკი: %1$d ფრაგმენტი</item>
+        <item quantity="other">შესაძლო ლაპარაკი: %1$d ფრაგმენტი</item>
     </plurals>
     <string name="sound_clips_title">ხმები</string>
     <string name="sound_clip_delete">%1$s-ის ფრაგმენტის წაშლა</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">გახსენი Phase Wake საათზე</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ნაბიჯი %1$d / %2$d</string>
     <string name="onb_welcome_title">მოგესალმება Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake გაღვიძებს შენს ფანჯარაში, როცა მსუბუქად გძინავს. საათი ზომავს, ტელეფონიც რეკავს.</string>
+    <string name="onb_welcome_text">Phase Wake გაღვიძებს გაღვიძების ფანჯარაში, როგორც კი მოუსვენარი გახდები – მაშინ, სავარაუდოდ, მსუბუქად გძინავს. არაუგვიანეს ზუსტად სამიზნე დროს. საათი ზომავს, ტელეფონიც რეკავს.</string>
     <string name="onb_privacy">შენი მონაცემები შენს მოწყობილობებზე რჩება.</string>
     <string name="onb_watch_title">დააკავშირე საათი</string>
     <string name="onb_watch_ok">საათი დაკავშირებულია.</string>

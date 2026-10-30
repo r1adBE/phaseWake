@@ -1,4 +1,4 @@
-Phase Wake të zgjon në gjumë të lehtë, jo në mes të gjumit të thellë. Në minutat e fundit para alarmit, ora inteligjente mat lëvizjet dhe rrahjet e zemrës dhe të zgjon në momentin më të mirë brenda intervalit të zgjimit – jo më vonë se ora e synuar.
+Phase Wake të zgjon brenda intervalit të zgjimit sapo gjumi yt bëhet i shqetësuar – atëherë ka gjasa që fle lehtë. Jo më vonë se saktësisht në orën e synuar. Për këtë, ora inteligjente mat lëvizjet dhe rrahjet e zemrës në minutat e fundit para alarmit.
 
 Si funksionon
 • Zgjidh orën e zgjimit dhe intervalin (deri në 30 min), vendos orën në dorë, fli.
@@ -19,7 +19,7 @@ Fli më mirë
 • Shënime për gjumin (kafe, sport, stres …) për të dalluar modelet.
 • Tinguj për gjumë: shi, det, pyll natën, përrua, zjarr në oxhak, ventilator, zhurmë dhe valë gjumi – me kohëmatës.
 • Regjistro gërhitjen dhe të folurit në gjumë, nëse do – vetëm në telefonin tënd.
-• Dremitje që të zgjon në gjumë të lehtë.
+• Dremitje që të zgjon sapo gjumi bëhet i shqetësuar.
 • Lindje e butë e diellit në ekran para alarmit.
 • Fazat e gjumit nga Health Connect, nëse do.
 

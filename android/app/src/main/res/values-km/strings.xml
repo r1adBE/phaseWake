@@ -301,13 +301,13 @@
     <string name="sound_rec_default">បើកសម្រាប់យប់ថ្មីៗ</string>
     <string name="sound_rec_default_hint">ចាប់ផ្ដើមពេលអ្នកបើក Phase Wake ចាប់ពីម៉ោងចូលដេក (បើគ្មានម៉ោងរោទ៍ ចាប់ពីម៉ោង 9 យប់)។ តែឃ្លីបខ្លីៗ វានៅលើទូរសព្ទ ហើយត្រូវលុបក្រោយ 7 ថ្ងៃ។</string>
     <string name="sound_type_snore">ប្រហែលជាស្រមុក</string>
-    <string name="sound_type_talk">និយាយ</string>
+    <string name="sound_type_talk">ប្រហែលជានិយាយ</string>
     <string name="sound_type_other">សំឡេងផ្សេងទៀត</string>
     <plurals name="sound_summary">
         <item quantity="other">ប្រហែលជាស្រមុក៖ %1$s (%2$d ឃ្លីប)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">និយាយ៖ %1$d ឃ្លីប</item>
+        <item quantity="other">ប្រហែលជានិយាយ៖ %1$d ឃ្លីប</item>
     </plurals>
     <string name="sound_clips_title">សំឡេង</string>
     <string name="sound_clip_delete">លុបឃ្លីបពី %1$s</string>
@@ -382,7 +382,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">បើក Phase Wake លើនាឡិការបស់អ្នក</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ជំហាន %1$d លើ %2$d</string>
     <string name="onb_welcome_title">សូមស្វាគមន៍មកកាន់ Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake ដាស់អ្នកក្នុងចន្លោះពេល នៅពេលអ្នកដេកស្រាល។ នាឡិកាវាស់ ទូរសព្ទក៏រោទ៍ដែរ។</string>
+    <string name="onb_welcome_text">Phase Wake ដាស់អ្នកក្នុងចន្លោះពេលដាស់ ភ្លាមៗនៅពេលអ្នកចាប់ផ្ដើមដេកមិនស្ងប់ – ពេលនោះអ្នកប្រហែលជាកំពុងដេកស្រាល។ យឺតបំផុតត្រូវម៉ោងគោលដៅពិតប្រាកដ។ នាឡិកាវាស់ ទូរសព្ទក៏រោទ៍ដែរ។</string>
     <string name="onb_privacy">ទិន្នន័យរបស់អ្នកនៅលើឧបករណ៍របស់អ្នក។</string>
     <string name="onb_watch_title">ភ្ជាប់នាឡិការបស់អ្នក</string>
     <string name="onb_watch_ok">នាឡិការបស់អ្នកបានភ្ជាប់។</string>

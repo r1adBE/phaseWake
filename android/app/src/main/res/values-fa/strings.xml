@@ -309,15 +309,15 @@
     <string name="sound_rec_default">روشن برای شب‌های جدید</string>
     <string name="sound_rec_default_hint">وقتی Phase Wake را از زمان خوابت به بعد باز کنی شروع می‌شود (بدون زنگ از ساعت ۲۱). فقط قطعه‌های کوتاه؛ روی گوشی می‌مانند و بعد از ۷ روز پاک می‌شوند.</string>
     <string name="sound_type_snore">خروپف احتمالی</string>
-    <string name="sound_type_talk">حرف زدن</string>
+    <string name="sound_type_talk">حرف زدن احتمالی</string>
     <string name="sound_type_other">صدای دیگر</string>
     <plurals name="sound_summary">
         <item quantity="one">خروپف احتمالی: %1$s (%2$d قطعه)</item>
         <item quantity="other">خروپف احتمالی: %1$s (%2$d قطعه)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">حرف زدن: %1$d قطعه</item>
-        <item quantity="other">حرف زدن: %1$d قطعه</item>
+        <item quantity="one">حرف زدن احتمالی: %1$d قطعه</item>
+        <item quantity="other">حرف زدن احتمالی: %1$d قطعه</item>
     </plurals>
     <string name="sound_clips_title">صداها</string>
     <string name="sound_clip_delete">حذف قطعهٔ %1$s</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Phase Wake را روی ساعت باز کن</string>
     <string name="onb_step">مرحلهٔ %1$d از %2$d</string>
     <string name="onb_welcome_title">به Phase Wake خوش آمدی</string>
-    <string name="onb_welcome_text">Phase Wake وقتی خوابت سبک است، در بازهٔ تو بیدارت می‌کند. ساعت اندازه می‌گیرد، گوشی هم زنگ می‌زند.</string>
+    <string name="onb_welcome_text">Phase Wake به‌محض اینکه بی‌قرار شوی، درون بازهٔ بیداری بیدارت می‌کند – آن موقع احتمالاً خوابت سبک است. حداکثر درست در زمان هدف. ساعت اندازه می‌گیرد، گوشی هم زنگ می‌زند.</string>
     <string name="onb_privacy">داده‌هایت روی دستگاه‌های خودت می‌مانند.</string>
     <string name="onb_watch_title">اتصال ساعت</string>
     <string name="onb_watch_ok">ساعتت متصل است.</string>

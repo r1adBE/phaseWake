@@ -1,4 +1,4 @@
-A Phase Wake könnyű alvásból ébreszt, nem a mélyalvás közepéből. Az ébresztő előtti utolsó percekben az okosórád méri a mozgást és a pulzust, és az időablakon belül a legjobb pillanatban ébreszt – legkésőbb a célidőben.
+A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb pontosan a célidőben. Ehhez az okosórád az ébresztő előtti utolsó percekben méri a mozgást és a pulzust.
 
 Így működik
 • Válaszd ki az ébresztési időt és az időablakot (legfeljebb 30 perc), vedd fel az órát, aludj.
@@ -19,7 +19,7 @@ Aludj jobban
 • Alvási jegyzetek (kávé, sport, stressz …) az összefüggések felismeréséhez.
 • Elalvást segítő hangok: eső, tenger, éjszakai erdő, patak, kandallótűz, ventilátor, zaj és elalvási hullámok – időzítővel.
 • Horkolás és alvás közbeni beszéd rögzítése, ha szeretnéd – csak a telefonodon.
-• Szunyókálás könnyű alvásból ébresztéssel.
+• Szunyókálás ébresztéssel, amint nyugtalan leszel.
 • Gyengéd napfelkelte a képernyőn ébresztés előtt.
 • Alvási fázisok a Health Connectből, ha szeretnéd.
 

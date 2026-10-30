@@ -308,15 +308,15 @@
     <string name="sound_rec_default">নতুন রাতের জন্য চালু</string>
     <string name="sound_rec_default_hint">ঘুমানোর সময় থেকে Phase Wake খুললে শুরু হয় (অ্যালার্ম না থাকলে রাত ৯টা থেকে)। শুধু ছোট ক্লিপ; এগুলো তোমার ফোনেই থাকে আর ৭ দিন পরে মুছে যায়।</string>
     <string name="sound_type_snore">সম্ভবত নাক ডাকা</string>
-    <string name="sound_type_talk">কথা বলা</string>
+    <string name="sound_type_talk">সম্ভবত কথা বলা</string>
     <string name="sound_type_other">অন্য শব্দ</string>
     <plurals name="sound_summary">
         <item quantity="one">সম্ভবত নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
         <item quantity="other">সম্ভবত নাক ডাকা: %1$s (%2$dটি ক্লিপ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">কথা বলা: %1$dটি ক্লিপ</item>
-        <item quantity="other">কথা বলা: %1$dটি ক্লিপ</item>
+        <item quantity="one">সম্ভবত কথা বলা: %1$dটি ক্লিপ</item>
+        <item quantity="other">সম্ভবত কথা বলা: %1$dটি ক্লিপ</item>
     </plurals>
     <string name="sound_clips_title">শব্দ</string>
     <string name="sound_clip_delete">%1$s-এর ক্লিপ মুছে ফেলো</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">তোমার ঘড়িতে Phase Wake খোলো</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ধাপ %2$d-এর মধ্যে %1$d</string>
     <string name="onb_welcome_title">Phase Wake-এ স্বাগতম</string>
-    <string name="onb_welcome_text">তুমি হালকা ঘুমে থাকলে Phase Wake তোমার সময়সীমার মধ্যে তোমাকে জাগায়। ঘড়ি মাপে, ফোনও সঙ্গে বাজে।</string>
+    <string name="onb_welcome_text">তুমি অস্থির হতে শুরু করলেই Phase Wake তোমাকে জাগানোর সময়সীমার মধ্যে জাগায় – তখন সম্ভবত তোমার ঘুম হালকা। বড়জোর ঠিক লক্ষ্য সময়ে। ঘড়ি মাপে, ফোনও সঙ্গে বাজে।</string>
     <string name="onb_privacy">তোমার ডেটা তোমার ডিভাইসেই থাকে।</string>
     <string name="onb_watch_title">তোমার ঘড়ি সংযুক্ত করো</string>
     <string name="onb_watch_ok">তোমার ঘড়ি সংযুক্ত।</string>

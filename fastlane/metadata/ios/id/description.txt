@@ -1,4 +1,4 @@
-Phase Wake membangunkanmu saat tidur ringan, bukan di tengah tidur nyenyak. Pada menit-menit terakhir sebelum alarm, Apple Watch-mu mengukur gerakan dan detak jantung, lalu membangunkanmu di saat terbaik dalam rentang bangunmu – paling lambat pada waktu target.
+Phase Wake membangunkanmu dalam rentang bangun begitu kamu mulai gelisah – saat itu tidurmu kemungkinan sedang ringan. Paling lambat tepat pada waktu target. Untuk itu, Apple Watch memantau gerakan dan detak jantung. Di Apple Watch, Phase Wake mengukur 25 menit terakhir sebelum waktu target. Jam tidak bisa tahu apakah malammu terlalu singkat.
 
 Cara kerjanya
 • Pilih waktu bangun dan rentang (hingga 30 mnt), pakai jam tanganmu, lalu tidur.
@@ -19,7 +19,7 @@ Tidur lebih baik
 • Catatan tidur (kopi, olahraga, stres …) untuk melihat polanya.
 • Suara pengantar tidur: hujan, laut, hutan malam, sungai kecil, perapian, kipas angin, derau, dan gelombang tidur – dengan timer.
 • Rekam dengkuran dan mengigau jika mau – hanya di iPhone-mu.
-• Tidur siang yang membangunkanmu saat tidur ringan.
+• Tidur siang yang membangunkanmu begitu kamu mulai gelisah.
 • Matahari terbit lembut dalam mode samping tempat tidur sebelum alarm.
 • Fase tidur dari Apple Health, jika mau.
 
@@ -31,6 +31,6 @@ Untuk semua orang
 • 74 bahasa, desain terang dan gelap, dibuat untuk penyandang buta warna dan pembaca layar.
 • Gratis dan open source: github.com/r1adBE/phaseWake
 
-Memerlukan Apple Watch untuk membangunkanmu saat tidur ringan; aplikasi jam tangan sudah termasuk. Tanpa jam tangan, Phase Wake membangunkanmu pada waktu target di iPhone.
+Memerlukan Apple Watch untuk membangunkanmu dalam rentang bangun; aplikasi jam tangan sudah termasuk. Tanpa jam tangan, Phase Wake membangunkanmu pada waktu target di iPhone.
 
 Phase Wake bukan alat kesehatan.

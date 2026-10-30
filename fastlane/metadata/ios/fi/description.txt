@@ -1,4 +1,4 @@
-Phase Wake herättää sinut kevyestä unesta eikä keskeltä syvää unta. Viimeisinä minuutteina ennen herätystä Apple Watch mittaa liikettä ja sykettä ja herättää sinut parhaaseen aikaan aikaikkunasi sisällä – viimeistään tavoiteaikana.
+Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Sitä varten Apple Watch seuraa liikettä ja sykettä. Apple Watchilla Phase Wake mittaa viimeiset 25 minuuttia ennen tavoiteaikaa. Se ei tunnista, jäikö yösi liian lyhyeksi.
 
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
@@ -19,7 +19,7 @@ Nuku paremmin
 • Unimuistiinpanot (kahvi, urheilu, stressi …) yhteyksien huomaamiseen.
 • Nukahtamisäänet: sade, meri, yömetsä, puro, takkatuli, tuuletin, kohina ja uniaallot – ajastimella.
 • Tallenna kuorsaus ja unipuhe halutessasi – vain iPhoneesi.
-• Päiväunet, joilta herätään kevyessä unessa.
+• Päiväunet, joilta herätään heti, kun uni muuttuu levottomaksi.
 • Lempeä auringonnousu yöpöytätilassa ennen herätystä.
 • Univaiheet Apple Healthista, jos haluat.
 
@@ -31,6 +31,6 @@ Kaikille
 • 74 kieltä, vaalea ja tumma ulkoasu, tehty värisokeille ja ruudunlukijoille.
 • Ilmainen ja avointa lähdekoodia: github.com/r1adBE/phaseWake
 
-Kevyestä unesta herättäminen vaatii Apple Watchin; kellosovellus sisältyy. Ilman kelloa Phase Wake herättää sinut tavoiteaikana iPhonella.
+Herätysikkunan sisällä herättäminen vaatii Apple Watchin; kellosovellus sisältyy. Ilman kelloa Phase Wake herättää sinut tavoiteaikana iPhonella.
 
 Phase Wake ei ole lääkinnällinen laite.

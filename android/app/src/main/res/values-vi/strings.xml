@@ -302,13 +302,13 @@
     <string name="sound_rec_default">Bật cho các đêm mới</string>
     <string name="sound_rec_default_hint">Bắt đầu khi bạn mở Phase Wake từ giờ đi ngủ (không đặt báo thức thì từ 21:00). Chỉ những đoạn ngắn; chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
     <string name="sound_type_snore">Có thể là ngáy</string>
-    <string name="sound_type_talk">Nói mớ</string>
+    <string name="sound_type_talk">Có thể là nói mớ</string>
     <string name="sound_type_other">Âm thanh khác</string>
     <plurals name="sound_summary">
         <item quantity="other">Có thể là ngáy: %1$s (%2$d đoạn)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">Nói mớ: %1$d đoạn</item>
+        <item quantity="other">Có thể là nói mớ: %1$d đoạn</item>
     </plurals>
     <string name="sound_clips_title">Âm thanh</string>
     <string name="sound_clip_delete">Xóa đoạn lúc %1$s</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app">Mở Phase Wake trên đồng hồ</string>
     <string name="onb_step">Bước %1$d/%2$d</string>
     <string name="onb_welcome_title">Chào mừng đến với Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake đánh thức bạn trong khung giờ khi bạn ngủ nông. Đồng hồ đo, điện thoại cũng reo.</string>
+    <string name="onb_welcome_text">Phase Wake đánh thức bạn trong khoảng đánh thức ngay khi bạn bắt đầu trằn trọc – lúc đó có lẽ bạn đang ngủ nông. Muộn nhất là đúng giờ mục tiêu. Đồng hồ đo, điện thoại cũng reo.</string>
     <string name="onb_privacy">Dữ liệu của bạn ở lại trên thiết bị của bạn.</string>
     <string name="onb_watch_title">Kết nối đồng hồ</string>
     <string name="onb_watch_ok">Đồng hồ đã được kết nối.</string>

@@ -315,7 +315,7 @@
     <string name="sound_rec_default">Activat per a les nits noves</string>
     <string name="sound_rec_default_hint">Comença quan obres Phase Wake a partir de la teva hora d’anar a dormir (sense alarma, a partir de les 21 h). Només fragments curts; es queden al telèfon i se suprimeixen al cap de 7 dies.</string>
     <string name="sound_type_snore">Possibles roncs</string>
-    <string name="sound_type_talk">Parlar</string>
+    <string name="sound_type_talk">Possible parla</string>
     <string name="sound_type_other">Altres sons</string>
     <plurals name="sound_summary">
         <item quantity="one">Possibles roncs: %1$s (%2$d fragment)</item>
@@ -323,9 +323,9 @@
         <item quantity="other">Possibles roncs: %1$s (%2$d fragments)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Parlar: %1$d fragment</item>
-        <item quantity="many">Parlar: %1$d fragments</item>
-        <item quantity="other">Parlar: %1$d fragments</item>
+        <item quantity="one">Possible parla: %1$d fragment</item>
+        <item quantity="many">Possible parla: %1$d fragments</item>
+        <item quantity="other">Possible parla: %1$d fragments</item>
     </plurals>
     <string name="sound_clips_title">Sons</string>
     <string name="sound_clip_delete">Suprimeix el fragment de les %1$s</string>
@@ -406,7 +406,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Obre Phase Wake al rellotge</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Pas %1$d de %2$d</string>
     <string name="onb_welcome_title">Et donem la benvinguda a Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake et desperta dins de la finestra quan dorms lleuger. El rellotge mesura i el telèfon també sona.</string>
+    <string name="onb_welcome_text">Phase Wake et desperta dins de la finestra de despertar tan bon punt el son es torna inquiet – aleshores probablement dorms lleuger. Com a molt tard, just a l’hora objectiu. El rellotge mesura i el telèfon també sona.</string>
     <string name="onb_privacy">Les teves dades es queden als teus dispositius.</string>
     <string name="onb_watch_title">Connecta el rellotge</string>
     <string name="onb_watch_ok">El rellotge està connectat.</string>

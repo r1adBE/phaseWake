@@ -330,7 +330,7 @@
     <string name="sound_rec_default">Ar siúl d’oícheanta nua</string>
     <string name="sound_rec_default_hint">Tosaíonn sé nuair a osclaíonn tú Phase Wake ó d’am codlata ar aghaidh (gan aláram ó 21:00). Gearrthóga gearra amháin; fanann siad ar do fhón agus scriostar iad tar éis 7 lá.</string>
     <string name="sound_type_snore">Srannadh féideartha</string>
-    <string name="sound_type_talk">Caint</string>
+    <string name="sound_type_talk">Caint fhéideartha</string>
     <string name="sound_type_other">Fuaim eile</string>
     <plurals name="sound_summary">
         <item quantity="one">Srannadh féideartha: %1$s (%2$d ghearrthóg)</item>
@@ -340,11 +340,11 @@
         <item quantity="other">Srannadh féideartha: %1$s (%2$d gearrthóg)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Caint: %1$d ghearrthóg</item>
-        <item quantity="two">Caint: %1$d ghearrthóg</item>
-        <item quantity="few">Caint: %1$d ghearrthóg</item>
-        <item quantity="many">Caint: %1$d ngearrthóg</item>
-        <item quantity="other">Caint: %1$d gearrthóg</item>
+        <item quantity="one">Caint fhéideartha: %1$d ghearrthóg</item>
+        <item quantity="two">Caint fhéideartha: %1$d ghearrthóg</item>
+        <item quantity="few">Caint fhéideartha: %1$d ghearrthóg</item>
+        <item quantity="many">Caint fhéideartha: %1$d ngearrthóg</item>
+        <item quantity="other">Caint fhéideartha: %1$d gearrthóg</item>
     </plurals>
     <string name="sound_clips_title">Fuaimeanna</string>
     <string name="sound_clip_delete">Scrios gearrthóg ó %1$s</string>
@@ -431,7 +431,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Oscail Phase Wake ar d’uaireadóir</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Céim %1$d as %2$d</string>
     <string name="onb_welcome_title">Fáilte go Phase Wake</string>
-    <string name="onb_welcome_text">Dúisíonn Phase Wake thú laistigh d’fhuinneog nuair atá tú i gcodladh éadrom. Tomhaiseann d’uaireadóir, buaileann d’fhón freisin.</string>
+    <string name="onb_welcome_text">Dúisíonn Phase Wake thú laistigh d’fhuinneog dhúisithe chomh luath is a éiríonn tú corrthónach – is dócha go bhfuil tú i gcodladh éadrom ansin. Ar a dhéanaí, díreach ag an spriocam. Tomhaiseann d’uaireadóir, buaileann d’fhón freisin.</string>
     <string name="onb_privacy">Fanann do chuid sonraí ar do ghléasanna.</string>
     <string name="onb_watch_title">Ceangail d’uaireadóir</string>
     <string name="onb_watch_ok">Tá d’uaireadóir ceangailte.</string>

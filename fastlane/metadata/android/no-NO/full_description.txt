@@ -1,4 +1,4 @@
-Phase Wake vekker deg i lett søvn i stedet for midt i dyp søvn. De siste minuttene før alarmen måler smartklokka di bevegelse og puls og vekker deg i det beste øyeblikket innenfor vekkevinduet – senest på ønsket tid.
+Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Til det måler smartklokka di bevegelse og puls de siste minuttene før alarmen.
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
@@ -19,7 +19,7 @@ Sov bedre
 • Søvnnotater (kaffe, trening, stress …) for å se sammenhenger.
 • Innsovningslyder: regn, hav, skog om natten, bekk, peis, vifte, støy og søvnbølger – med tidtaker.
 • Ta opp snorking og søvnprat om du vil – bare på telefonen din.
-• Hvil med vekking i lett søvn.
+• Hvil med vekking så snart du blir urolig.
 • Mild soloppgang på skjermen før alarmen.
 • Søvnfaser fra Health Connect, om du vil.
 

@@ -1,4 +1,4 @@
-Phase Wake wakes you in light sleep instead of in the middle of deep sleep. In the last minutes before your alarm, your Apple Watch measures movement and heart rate and wakes you at the best moment within your wake window – at the latest at your target time.
+Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest, right on time. To do this, your Apple Watch tracks movement and heart rate. On Apple Watch, Phase Wake measures the last 25 minutes before your target time. It can't tell whether your night was too short.
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
@@ -19,7 +19,7 @@ Sleep better
 • Sleep notes (coffee, sport, stress …) to spot patterns.
 • Sleep sounds: rain, ocean, forest at night, brook, fireplace, fan, noise and sleep waves – with timer.
 • Record snoring and sleep talking if you want – only on your iPhone.
-• Power nap that wakes you in light sleep.
+• Power nap that wakes you as soon as you get restless.
 • Gentle sunrise in nightstand mode before your alarm.
 • Sleep stages from Apple Health, if you want.
 
@@ -31,6 +31,6 @@ For everyone
 • 74 languages, light and dark design, made for colour-blind people and screen readers.
 • Free and open source: github.com/r1adBE/phaseWake
 
-Requires an Apple Watch to wake you in light sleep; the watch app is included. Without a watch, Phase Wake wakes you at your target time on your iPhone.
+Requires an Apple Watch to wake you within your wake window; the watch app is included. Without a watch, Phase Wake wakes you at your target time on your iPhone.
 
 Phase Wake is not a medical device.

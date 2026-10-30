@@ -323,7 +323,7 @@
     <string name="sound_rec_default">Įjungta naujoms naktims</string>
     <string name="sound_rec_default_hint">Pradeda, kai atidarai Phase Wake nuo miego laiko (be žadintuvo – nuo 21:00). Tik trumpi įrašai; jie lieka tavo telefone ir ištrinami po 7 dienų.</string>
     <string name="sound_type_snore">Galimas knarkimas</string>
-    <string name="sound_type_talk">Kalbėjimas</string>
+    <string name="sound_type_talk">Galimas kalbėjimas</string>
     <string name="sound_type_other">Kitas garsas</string>
     <plurals name="sound_summary">
         <item quantity="one">Galimas knarkimas: %1$s (%2$d įrašas)</item>
@@ -332,10 +332,10 @@
         <item quantity="other">Galimas knarkimas: %1$s (%2$d įrašų)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Kalbėjimas: %1$d įrašas</item>
-        <item quantity="few">Kalbėjimas: %1$d įrašai</item>
-        <item quantity="many">Kalbėjimas: %1$d įrašo</item>
-        <item quantity="other">Kalbėjimas: %1$d įrašų</item>
+        <item quantity="one">Galimas kalbėjimas: %1$d įrašas</item>
+        <item quantity="few">Galimas kalbėjimas: %1$d įrašai</item>
+        <item quantity="many">Galimas kalbėjimas: %1$d įrašo</item>
+        <item quantity="other">Galimas kalbėjimas: %1$d įrašų</item>
     </plurals>
     <string name="sound_clips_title">Garsai</string>
     <string name="sound_clip_delete">Ištrinti įrašą %1$s</string>
@@ -419,7 +419,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Atidaryk Phase Wake laikrodyje</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">%1$d žingsnis iš %2$d</string>
     <string name="onb_welcome_title">Sveiki atvykę į Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake pažadina tave lango ribose, kai miegi lengvai. Laikrodis matuoja, telefonas taip pat skamba.</string>
+    <string name="onb_welcome_text">Phase Wake pažadina tave žadinimo lange, vos tik tavo miegas tampa neramus – tada tikriausiai miegi lengvai. Vėliausiai – tiksliai tiksliniu laiku. Laikrodis matuoja, telefonas taip pat skamba.</string>
     <string name="onb_privacy">Tavo duomenys lieka tavo įrenginiuose.</string>
     <string name="onb_watch_title">Prijunk laikrodį</string>
     <string name="onb_watch_ok">Laikrodis prijungtas.</string>

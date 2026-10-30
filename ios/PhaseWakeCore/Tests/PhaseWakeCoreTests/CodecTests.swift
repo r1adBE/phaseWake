@@ -6,7 +6,7 @@ final class CodecTests: XCTestCase {
     func testAlarmsRoundTripAndFormat() throws {
         let alarms = [
             try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25, phone: .vibrate, watchSound: true, sound: "content://media/internal/audio/media/42", label: "Arbeit | früh, 100 %"),
-            try AlarmSpec(id: "b", hour: 9, minute: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
+            try AlarmSpec(id: "b", hour: 9, minute: 30, windowMinutes: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([])), [])
@@ -18,7 +18,7 @@ final class CodecTests: XCTestCase {
     }
 
     func testWakeTaskField() throws {
-        let math = try AlarmSpec(id: "m", hour: 6, minute: 0, wakeTask: .math)
+        let math = try AlarmSpec(id: "m", hour: 6, minute: 0, windowMinutes: 30, wakeTask: .math)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([math])), [math])
         // Byte-gleich mit Android: 13. Feld am Ende.
         XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n")
@@ -43,6 +43,17 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(watch.phoneSunrise, .off)
         XCTAssertEqual(watch.watchSunrise, .ring)
         XCTAssertEqual(watch.with(enabled: false).sunriseDevice, .watch)
+    }
+
+    func testStoredWindowIgnoresDefault() throws {
+        // Gespeicherte Wecker tragen ihr Fenster (Feld 5) immer selbst: Ein alter 30-Min-Wecker bleibt 30 Min,
+        // auch wenn neue Wecker mit 20 Min starten (wie CodecTest.storedWindowIgnoresDefault).
+        XCTAssertEqual(AlarmSpec.defaultWindowMinutes, 20)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n").first?.windowMinutes, 30)
+        let stored = try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 30)
+        XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([stored])).first?.windowMinutes, 30)
+        // Ohne Fensterfeld ist die Zeile unlesbar; es gibt keinen stillen Rückfall auf den Standard.
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||\n"), [])
     }
 
     func testOlderFormatWithoutSunrise() throws {

@@ -3,7 +3,8 @@
 <h1 align="center">Phase Wake</h1>
 
 <p align="center">
-Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b> – weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf.<br>
+Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b>.<br>
+Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit.<br>
 Open Source · ohne Konto · ohne Server · ohne Abo<br>
 <sub>Stand: in Entwicklung, noch nicht in den Stores.</sub>
 </p>

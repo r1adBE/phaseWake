@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Activado para novas noites</string>
     <string name="sound_rec_default_hint">Comeza cando abres Phase Wake a partir da túa hora de deitarte (sen alarma, desde as 21:00). Só fragmentos curtos; quedan no teléfono e elimínanse despois de 7 días.</string>
     <string name="sound_type_snore">Posibles roncos</string>
-    <string name="sound_type_talk">Falar</string>
+    <string name="sound_type_talk">Posible fala</string>
     <string name="sound_type_other">Outro son</string>
     <plurals name="sound_summary">
         <item quantity="one">Posibles roncos: %1$s (%2$d fragmento)</item>
         <item quantity="other">Posibles roncos: %1$s (%2$d fragmentos)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Falar: %1$d fragmento</item>
-        <item quantity="other">Falar: %1$d fragmentos</item>
+        <item quantity="one">Posible fala: %1$d fragmento</item>
+        <item quantity="other">Posible fala: %1$d fragmentos</item>
     </plurals>
     <string name="sound_clips_title">Sons</string>
     <string name="sound_clip_delete">Eliminar fragmento das %1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Abre Phase Wake no reloxo</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Paso %1$d de %2$d</string>
     <string name="onb_welcome_title">Benvido a Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake espértate dentro da túa xanela cando durmes lixeiro. O reloxo mide e o teléfono tamén soa.</string>
+    <string name="onb_welcome_text">Phase Wake espértate dentro da túa xanela de espertar en canto te inquietas – daquela probablemente durmes lixeiro. Como moi tarde, xusto á hora prevista. O reloxo mide e o teléfono tamén soa.</string>
     <string name="onb_privacy">Os teus datos quedan nos teus dispositivos.</string>
     <string name="onb_watch_title">Conecta o reloxo</string>
     <string name="onb_watch_ok">O teu reloxo está conectado.</string>

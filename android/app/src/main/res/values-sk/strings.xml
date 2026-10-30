@@ -322,7 +322,7 @@
     <string name="sound_rec_default">Zapnuté pre nové noci</string>
     <string name="sound_rec_default_hint">Spustí sa, keď otvoríš Phase Wake od času na spanie (bez budíka od 21:00). Iba krátke záznamy; zostávajú v telefóne a po 7 dňoch sa vymažú.</string>
     <string name="sound_type_snore">Možné chrápanie</string>
-    <string name="sound_type_talk">Rozprávanie</string>
+    <string name="sound_type_talk">Možné rozprávanie</string>
     <string name="sound_type_other">Iný zvuk</string>
     <plurals name="sound_summary">
         <item quantity="one">Možné chrápanie: %1$s (%2$d záznam)</item>
@@ -331,10 +331,10 @@
         <item quantity="other">Možné chrápanie: %1$s (%2$d záznamov)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Rozprávanie: %1$d záznam</item>
-        <item quantity="few">Rozprávanie: %1$d záznamy</item>
-        <item quantity="many">Rozprávanie: %1$d záznamu</item>
-        <item quantity="other">Rozprávanie: %1$d záznamov</item>
+        <item quantity="one">Možné rozprávanie: %1$d záznam</item>
+        <item quantity="few">Možné rozprávanie: %1$d záznamy</item>
+        <item quantity="many">Možné rozprávanie: %1$d záznamu</item>
+        <item quantity="other">Možné rozprávanie: %1$d záznamov</item>
     </plurals>
     <string name="sound_clips_title">Zvuky</string>
     <string name="sound_clip_delete">Vymazať záznam z %1$s</string>
@@ -418,7 +418,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Otvor Phase Wake v hodinkách</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Krok %1$d z %2$d</string>
     <string name="onb_welcome_title">Vitaj v Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake ťa zobudí v rámci okna, keď spíš ľahko. Hodinky merajú, telefón zvoní tiež.</string>
+    <string name="onb_welcome_text">Phase Wake ťa zobudí v okne budenia, len čo sa tvoj spánok stane nepokojným – vtedy pravdepodobne spíš ľahko. Najneskôr presne v cieľový čas. Hodinky merajú, telefón zvoní tiež.</string>
     <string name="onb_privacy">Tvoje údaje zostávajú v tvojich zariadeniach.</string>
     <string name="onb_watch_title">Pripoj hodinky</string>
     <string name="onb_watch_ok">Hodinky sú pripojené.</string>

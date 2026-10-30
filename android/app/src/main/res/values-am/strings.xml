@@ -309,15 +309,15 @@
     <string name="sound_rec_default">ለአዲስ ሌሊቶች በርቷል</string>
     <string name="sound_rec_default_hint">ከመኝታ ሰዓትዎ ጀምሮ Phase Wakeን ሲከፍቱ ይጀምራል (ማንቂያ ከሌለ ከ21:00 ጀምሮ)። አጫጭር ቅንጥቦች ብቻ፤ በስልክዎ ላይ ይቆያሉ እና ከ7 ቀናት በኋላ ይሰረዛሉ።</string>
     <string name="sound_type_snore">ምናልባት ማንኮራፋት</string>
-    <string name="sound_type_talk">ማውራት</string>
+    <string name="sound_type_talk">ምናልባት ማውራት</string>
     <string name="sound_type_other">ሌላ ድምፅ</string>
     <plurals name="sound_summary">
         <item quantity="one">ምናልባት ማንኮራፋት: %1$s (%2$d ቅንጥብ)</item>
         <item quantity="other">ምናልባት ማንኮራፋት: %1$s (%2$d ቅንጥቦች)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">ማውራት: %1$d ቅንጥብ</item>
-        <item quantity="other">ማውራት: %1$d ቅንጥቦች</item>
+        <item quantity="one">ምናልባት ማውራት: %1$d ቅንጥብ</item>
+        <item quantity="other">ምናልባት ማውራት: %1$d ቅንጥቦች</item>
     </plurals>
     <string name="sound_clips_title">ድምፆች</string>
     <string name="sound_clip_delete">የ%1$s ቅንጥብ ሰርዝ</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Phase Wakeን በሰዓትዎ ላይ ይክፈቱ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ደረጃ %1$d ከ%2$d</string>
     <string name="onb_welcome_title">ወደ Phase Wake እንኳን ደህና መጡ</string>
-    <string name="onb_welcome_text">ቀላል እንቅልፍ ላይ ሲሆኑ Phase Wake በክልልዎ ውስጥ ይቀሰቅስዎታል። ሰዓትዎ ይለካል፣ ስልክዎም ይደውላል።</string>
+    <string name="onb_welcome_text">Phase Wake እረፍት ማጣት ሲጀምሩ በመቀስቀሻ ክልልዎ ውስጥ ይቀሰቅስዎታል – ያኔ ምናልባት ቀላል እንቅልፍ ላይ ነዎት። ቢዘገይ በትክክል በታለመው ሰዓት። ሰዓትዎ ይለካል፣ ስልክዎም ይደውላል።</string>
     <string name="onb_privacy">ውሂብዎ በመሣሪያዎችዎ ላይ ይቆያል።</string>
     <string name="onb_watch_title">ሰዓትዎን ያገናኙ</string>
     <string name="onb_watch_ok">ሰዓትዎ ተገናኝቷል።</string>

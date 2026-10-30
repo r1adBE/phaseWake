@@ -296,15 +296,15 @@
     <string name="sound_rec_default">Yeni gecələr üçün açıq</string>
     <string name="sound_rec_default_hint">Phase Wake-i yatma vaxtından sonra açanda başlayır (siqnal yoxdursa, 21:00-dan). Yalnız qısa kliplər; onlar telefonunda qalır və 7 gündən sonra silinir.</string>
     <string name="sound_type_snore">Ehtimal ki, xoruldama</string>
-    <string name="sound_type_talk">Danışma</string>
+    <string name="sound_type_talk">Ehtimal ki, danışma</string>
     <string name="sound_type_other">Başqa səs</string>
     <plurals name="sound_summary">
         <item quantity="one">Ehtimal ki, xoruldama: %1$s (%2$d klip)</item>
         <item quantity="other">Ehtimal ki, xoruldama: %1$s (%2$d klip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Danışma: %1$d klip</item>
-        <item quantity="other">Danışma: %1$d klip</item>
+        <item quantity="one">Ehtimal ki, danışma: %1$d klip</item>
+        <item quantity="other">Ehtimal ki, danışma: %1$d klip</item>
     </plurals>
     <string name="sound_clips_title">Səslər</string>
     <string name="sound_clip_delete">%1$s klipini sil</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Saatında Phase Wake-i aç</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Addım %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wake-ə xoş gəldin</string>
-    <string name="onb_welcome_text">Phase Wake yüngül yatanda səni pəncərən daxilində oyadır. Saatın ölçür, telefonun da çalır.</string>
+    <string name="onb_welcome_text">Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində oyadır – o zaman çox güman ki, yüngül yatırsan. Ən gec düz hədəf vaxtında. Saatın ölçür, telefonun da çalır.</string>
     <string name="onb_privacy">Məlumatların cihazlarında qalır.</string>
     <string name="onb_watch_title">Saatını qoş</string>
     <string name="onb_watch_ok">Saatın qoşulub.</string>

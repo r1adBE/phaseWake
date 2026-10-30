@@ -1,4 +1,4 @@
-Phase Wake wakes you in light sleep instead of in the middle of deep sleep. In the last minutes before your alarm, your smartwatch measures movement and heart rate and wakes you at the best moment within your wake window – at the latest at your target time.
+Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest, right on time. To do this, your smartwatch measures movement and heart rate in the last minutes before your alarm.
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
@@ -19,7 +19,7 @@ Sleep better
 • Sleep notes (coffee, sport, stress …) to spot patterns.
 • Sleep sounds: rain, ocean, forest at night, brook, fireplace, fan, noise and sleep waves – with timer.
 • Record snoring and sleep talking if you want – only on your phone.
-• Power nap that wakes you in light sleep.
+• Power nap that wakes you as soon as you get restless.
 • Gentle sunrise on the screen before your alarm.
 • Sleep stages from Health Connect, if you want.
 

@@ -323,7 +323,7 @@
     <string name="sound_rec_default">Włącz dla nowych nocy</string>
     <string name="sound_rec_default_hint">Startuje, gdy otworzysz Phase Wake od swojej pory snu (bez budzika od 21:00). Tylko krótkie fragmenty; zostają na telefonie i są usuwane po 7 dniach.</string>
     <string name="sound_type_snore">Możliwe chrapanie</string>
-    <string name="sound_type_talk">Mówienie</string>
+    <string name="sound_type_talk">Możliwe mówienie</string>
     <string name="sound_type_other">Inny dźwięk</string>
     <plurals name="sound_summary">
         <item quantity="one">Możliwe chrapanie: %1$s (%2$d fragment)</item>
@@ -332,10 +332,10 @@
         <item quantity="other">Możliwe chrapanie: %1$s (%2$d fragmentu)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Mówienie: %1$d fragment</item>
-        <item quantity="few">Mówienie: %1$d fragmenty</item>
-        <item quantity="many">Mówienie: %1$d fragmentów</item>
-        <item quantity="other">Mówienie: %1$d fragmentu</item>
+        <item quantity="one">Możliwe mówienie: %1$d fragment</item>
+        <item quantity="few">Możliwe mówienie: %1$d fragmenty</item>
+        <item quantity="many">Możliwe mówienie: %1$d fragmentów</item>
+        <item quantity="other">Możliwe mówienie: %1$d fragmentu</item>
     </plurals>
     <string name="sound_clips_title">Dźwięki</string>
     <string name="sound_clip_delete">Usuń fragment z %1$s</string>
@@ -416,7 +416,7 @@
     <string name="watch_open_app">Otwórz Phase Wake na zegarku</string>
     <string name="onb_step">Krok %1$d z %2$d</string>
     <string name="onb_welcome_title">Witaj w Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake budzi Cię w Twoim oknie, gdy śpisz płytko. Zegarek mierzy, telefon też dzwoni.</string>
+    <string name="onb_welcome_text">Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokojny – wtedy prawdopodobnie śpisz płytko. Najpóźniej dokładnie o czasie docelowym. Zegarek mierzy, telefon też dzwoni.</string>
     <string name="onb_privacy">Twoje dane zostają na Twoich urządzeniach.</string>
     <string name="onb_watch_title">Połącz zegarek</string>
     <string name="onb_watch_ok">Twój zegarek jest połączony.</string>

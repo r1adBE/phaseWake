@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Aan voor nieuwe nachten</string>
     <string name="sound_rec_default_hint">Start wanneer je Phase Wake vanaf je bedtijd opent (zonder wekker vanaf 21:00). Alleen korte fragmenten; ze blijven op je telefoon en worden na 7 dagen gewist.</string>
     <string name="sound_type_snore">Mogelijk snurken</string>
-    <string name="sound_type_talk">Praten</string>
+    <string name="sound_type_talk">Mogelijk praten</string>
     <string name="sound_type_other">Ander geluid</string>
     <plurals name="sound_summary">
         <item quantity="one">Mogelijk snurken: %1$s (%2$d fragment)</item>
         <item quantity="other">Mogelijk snurken: %1$s (%2$d fragmenten)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Praten: %1$d fragment</item>
-        <item quantity="other">Praten: %1$d fragmenten</item>
+        <item quantity="one">Mogelijk praten: %1$d fragment</item>
+        <item quantity="other">Mogelijk praten: %1$d fragmenten</item>
     </plurals>
     <string name="sound_clips_title">Geluiden</string>
     <string name="sound_clip_delete">Fragment van %1$s wissen</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Open Phase Wake op je horloge</string>
     <string name="onb_step">Stap %1$d van %2$d</string>
     <string name="onb_welcome_title">Welkom bij Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake wekt je binnen je venster als je licht slaapt. Het horloge meet, de telefoon gaat ook af.</string>
+    <string name="onb_welcome_text">Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk precies op je doeltijd. Het horloge meet, de telefoon gaat ook af.</string>
     <string name="onb_privacy">Je gegevens blijven op je apparaten.</string>
     <string name="onb_watch_title">Horloge verbinden</string>
     <string name="onb_watch_ok">Je horloge is verbonden.</string>

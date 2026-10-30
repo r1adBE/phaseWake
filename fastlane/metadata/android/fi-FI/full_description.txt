@@ -1,4 +1,4 @@
-Phase Wake herättää sinut kevyestä unesta eikä keskeltä syvää unta. Viimeisinä minuutteina ennen herätystä älykellosi mittaa liikettä ja sykettä ja herättää sinut parhaaseen aikaan aikaikkunasi sisällä – viimeistään tavoiteaikana.
+Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Sitä varten älykellosi mittaa liikettä ja sykettä viimeisinä minuutteina ennen herätystä.
 
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
@@ -19,7 +19,7 @@ Nuku paremmin
 • Unimuistiinpanot (kahvi, urheilu, stressi …) yhteyksien huomaamiseen.
 • Nukahtamisäänet: sade, meri, yömetsä, puro, takkatuli, tuuletin, kohina ja uniaallot – ajastimella.
 • Tallenna kuorsaus ja unipuhe halutessasi – vain puhelimeesi.
-• Päiväunet, joilta herätään kevyessä unessa.
+• Päiväunet, joilta herätään heti, kun uni muuttuu levottomaksi.
 • Lempeä auringonnousu näytöllä ennen herätystä.
 • Univaiheet Health Connectista, jos haluat.
 

@@ -124,7 +124,7 @@ struct NightDetailPage: View {
 }
 
 /// «Im leichten Schlaf geweckt» bzw. «Aus dem Tiefschlaf geweckt» nach der Phase beim Wecken; `nil` ohne Phase.
-/// Gleiche Texte wie die Nachtkarte.
+/// Gleiche Texte wie die Karte «Schlafphasen» (`HypnogramCard`); die Nachtkarte im Verlauf zeigt ihn nicht.
 func wakeVerdict(_ stage: SleepStage?) -> (text: String, good: Bool)? {
     switch stage {
     case .light: (L("verdict_good", L("stage_light")), true)

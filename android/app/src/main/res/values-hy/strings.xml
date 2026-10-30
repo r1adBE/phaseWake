@@ -296,15 +296,15 @@
     <string name="sound_rec_default">Միացված նոր գիշերների համար</string>
     <string name="sound_rec_default_hint">Սկսվում է, երբ բացում ես Phase Wake-ը քնելու ժամիցդ սկսած (առանց զարթուցիչի՝ 21:00-ից)։ Միայն կարճ հատվածներ, որոնք մնում են հեռախոսիդ վրա և ջնջվում են 7 օր հետո։</string>
     <string name="sound_type_snore">Հնարավոր խռմփոց</string>
-    <string name="sound_type_talk">Խոսք</string>
+    <string name="sound_type_talk">Հնարավոր խոսք</string>
     <string name="sound_type_other">Այլ ձայն</string>
     <plurals name="sound_summary">
         <item quantity="one">Հնարավոր խռմփոց՝ %1$s (%2$d հատված)</item>
         <item quantity="other">Հնարավոր խռմփոց՝ %1$s (%2$d հատված)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Խոսք՝ %1$d հատված</item>
-        <item quantity="other">Խոսք՝ %1$d հատված</item>
+        <item quantity="one">Հնարավոր խոսք՝ %1$d հատված</item>
+        <item quantity="other">Հնարավոր խոսք՝ %1$d հատված</item>
     </plurals>
     <string name="sound_clips_title">Ձայներ</string>
     <string name="sound_clip_delete">Ջնջել %1$s-ի հատվածը</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Բացիր Phase Wake-ը ժամացույցում</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Քայլ %1$d / %2$d</string>
     <string name="onb_welcome_title">Բարի գալուստ Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake-ը քեզ արթնացնում է պատուհանիդ ներսում, երբ թեթև ես քնած։ Ժամացույցդ չափում է, հեռախոսդ էլ է զանգում։</string>
+    <string name="onb_welcome_text">Phase Wake-ը քեզ արթնացնում է արթնացման պատուհանի սահմաններում, հենց որ անհանգիստ ես դառնում – այդ ժամանակ, հավանաբար, թեթև ես քնած։ Ամենաուշը՝ ճիշտ նպատակային ժամին։ Ժամացույցդ չափում է, հեռախոսդ էլ է զանգում։</string>
     <string name="onb_privacy">Քո տվյալները մնում են քո սարքերում։</string>
     <string name="onb_watch_title">Միացրու ժամացույցդ</string>
     <string name="onb_watch_ok">Ժամացույցդ միացված է։</string>

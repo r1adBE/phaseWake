@@ -25,7 +25,7 @@ final class AlarmScheduleTests: XCTestCase {
     func testRunningWindow() {
         let plan = AlarmSchedule.nextPlan(alarm(), now: at(2026, 10, 28, 6, 45), calendar: zurich)!
         XCTAssertEqual(plan.target, at(2026, 10, 28, 7, 0))
-        XCTAssertEqual(plan.windowStart, at(2026, 10, 28, 6, 30))
+        XCTAssertEqual(plan.windowStart, at(2026, 10, 28, 6, 40))
     }
 
     func testWeekdays() {

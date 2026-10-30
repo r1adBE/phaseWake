@@ -302,13 +302,13 @@
     <string name="sound_rec_default">เปิดสำหรับคืนใหม่</string>
     <string name="sound_rec_default_hint">เริ่มเมื่อคุณเปิด Phase Wake ตั้งแต่เวลาเข้านอน (ถ้าไม่ตั้งปลุก เริ่มตั้งแต่ 21:00 น.) เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
     <string name="sound_type_snore">อาจกรน</string>
-    <string name="sound_type_talk">ละเมอพูด</string>
+    <string name="sound_type_talk">อาจละเมอพูด</string>
     <string name="sound_type_other">เสียงอื่น</string>
     <plurals name="sound_summary">
         <item quantity="other">อาจกรน: %1$s (%2$d ช่วง)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">ละเมอพูด: %1$d ช่วง</item>
+        <item quantity="other">อาจละเมอพูด: %1$d ช่วง</item>
     </plurals>
     <string name="sound_clips_title">เสียง</string>
     <string name="sound_clip_delete">ลบช่วงเสียงเวลา %1$s</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app">เปิด Phase Wake บนนาฬิกา</string>
     <string name="onb_step">ขั้นที่ %1$d จาก %2$d</string>
     <string name="onb_welcome_title">ยินดีต้อนรับสู่ Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake ปลุกคุณในช่วงเวลาที่ตั้งไว้เมื่อคุณหลับตื้น นาฬิกาวัด โทรศัพท์ก็ดังด้วย</string>
+    <string name="onb_welcome_text">Phase Wake ปลุกคุณภายในช่วงเวลาปลุกทันทีที่คุณเริ่มนอนกระสับกระส่าย – ตอนนั้นคุณน่าจะกำลังหลับตื้น อย่างช้าที่สุดตรงเวลาเป้าหมายพอดี นาฬิกาวัด โทรศัพท์ก็ดังด้วย</string>
     <string name="onb_privacy">ข้อมูลของคุณอยู่บนอุปกรณ์ของคุณเท่านั้น</string>
     <string name="onb_watch_title">เชื่อมต่อนาฬิกา</string>
     <string name="onb_watch_ok">นาฬิกาเชื่อมต่ออยู่</string>

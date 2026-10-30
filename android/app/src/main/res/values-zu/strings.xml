@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Kuvuliwe ebusuku obusha</string>
     <string name="sound_rec_default_hint">Kuqala lapho uvula i-Phase Wake kusukela esikhathini sakho sokulala (ngaphandle kwe-alamu kusukela ngo-21:00). Iziqeshana ezimfushane kuphela; zihlala efonini yakho futhi zisuswa ngemva kwezinsuku ezi-7.</string>
     <string name="sound_type_snore">Mhlawumbe ukuhona</string>
-    <string name="sound_type_talk">Ukukhuluma</string>
+    <string name="sound_type_talk">Mhlawumbe ukukhuluma</string>
     <string name="sound_type_other">Omunye umsindo</string>
     <plurals name="sound_summary">
         <item quantity="one">Mhlawumbe ukuhona: %1$s (isiqeshana esingu-%2$d)</item>
         <item quantity="other">Mhlawumbe ukuhona: %1$s (iziqeshana ezingu-%2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Ukukhuluma: isiqeshana esingu-%1$d</item>
-        <item quantity="other">Ukukhuluma: iziqeshana ezingu-%1$d</item>
+        <item quantity="one">Mhlawumbe ukukhuluma: isiqeshana esingu-%1$d</item>
+        <item quantity="other">Mhlawumbe ukukhuluma: iziqeshana ezingu-%1$d</item>
     </plurals>
     <string name="sound_clips_title">Imisindo</string>
     <string name="sound_clip_delete">Susa isiqeshana sika-%1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Vula i-Phase Wake ewashini lakho</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Isinyathelo %1$d kwengu-%2$d</string>
     <string name="onb_welcome_title">Siyakwamukela ku-Phase Wake</string>
-    <string name="onb_welcome_text">I-Phase Wake ikuvusa ngaphakathi kwesikhala sakho lapho ulele kancane. Iwashi lakho liyalinganisa, nefoni yakho iyakhala.</string>
+    <string name="onb_welcome_text">I-Phase Wake ikuvusa ngaphakathi kwesikhala sakho sokuvuka lapho uqala ukungazinzi – ngaleso sikhathi kungenzeka ulele kancane. Kamuva kakhulu, ngqo ngesikhathi esihlosiwe. Iwashi lakho liyalinganisa, nefoni yakho iyakhala.</string>
     <string name="onb_privacy">Idatha yakho ihlala kumadivayisi akho.</string>
     <string name="onb_watch_title">Xhuma iwashi lakho</string>
     <string name="onb_watch_ok">Iwashi lakho lixhunyiwe.</string>

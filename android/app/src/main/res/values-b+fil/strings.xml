@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Naka-on para sa mga bagong gabi</string>
     <string name="sound_rec_default_hint">Nagsisimula kapag binuksan mo ang Phase Wake mula sa oras ng pagtulog mo (kung walang alarm, mula 9 pm). Maiikling clip lang; nananatili ang mga ito sa telepono mo at dine-delete pagkalipas ng 7 araw.</string>
     <string name="sound_type_snore">Posibleng hilik</string>
-    <string name="sound_type_talk">Pagsasalita</string>
+    <string name="sound_type_talk">Posibleng pagsasalita</string>
     <string name="sound_type_other">Ibang tunog</string>
     <plurals name="sound_summary">
         <item quantity="one">Posibleng hilik: %1$s (%2$d clip)</item>
         <item quantity="other">Posibleng hilik: %1$s (%2$d clip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Pagsasalita: %1$d clip</item>
-        <item quantity="other">Pagsasalita: %1$d clip</item>
+        <item quantity="one">Posibleng pagsasalita: %1$d clip</item>
+        <item quantity="other">Posibleng pagsasalita: %1$d clip</item>
     </plurals>
     <string name="sound_clips_title">Mga tunog</string>
     <string name="sound_clip_delete">I-delete ang clip mula %1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Buksan ang Phase Wake sa relo mo</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Hakbang %1$d sa %2$d</string>
     <string name="onb_welcome_title">Maligayang pagdating sa Phase Wake</string>
-    <string name="onb_welcome_text">Gigisingin ka ng Phase Wake sa loob ng window mo kapag mababaw ang tulog mo. Ang relo ang sumusukat, at tumutunog din ang telepono.</string>
+    <string name="onb_welcome_text">Ginigising ka ng Phase Wake sa loob ng window ng paggising mo sa sandaling hindi ka na mapakali – malamang mababaw ang tulog mo noon. Pinakahuli, eksakto sa target na oras. Ang relo ang sumusukat, at tumutunog din ang telepono.</string>
     <string name="onb_privacy">Nananatili ang data mo sa mga device mo.</string>
     <string name="onb_watch_title">Ikonekta ang relo mo</string>
     <string name="onb_watch_ok">Nakakonekta ang relo mo.</string>

@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Ieslēgts jaunām naktīm</string>
     <string name="sound_rec_default_hint">Sākas, kad atver Phase Wake no gulētiešanas laika (bez modinātāja – no 21:00). Tikai īsi fragmenti; tie paliek tavā tālrunī un tiek dzēsti pēc 7 dienām.</string>
     <string name="sound_type_snore">Iespējama krākšana</string>
-    <string name="sound_type_talk">Runāšana</string>
+    <string name="sound_type_talk">Iespējama runāšana</string>
     <string name="sound_type_other">Cita skaņa</string>
     <plurals name="sound_summary">
         <item quantity="zero">Iespējama krākšana: %1$s (%2$d fragmenti)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Iespējama krākšana: %1$s (%2$d fragmenti)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="zero">Runāšana: %1$d fragmenti</item>
-        <item quantity="one">Runāšana: %1$d fragments</item>
-        <item quantity="other">Runāšana: %1$d fragmenti</item>
+        <item quantity="zero">Iespējama runāšana: %1$d fragmenti</item>
+        <item quantity="one">Iespējama runāšana: %1$d fragments</item>
+        <item quantity="other">Iespējama runāšana: %1$d fragmenti</item>
     </plurals>
     <string name="sound_clips_title">Skaņas</string>
     <string name="sound_clip_delete">Dzēst fragmentu no %1$s</string>
@@ -407,7 +407,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Atver Phase Wake pulkstenī</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">%1$d. solis no %2$d</string>
     <string name="onb_welcome_title">Laipni lūdzam Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake tevi pamodina loga robežās, kad tavs miegs ir viegls. Pulkstenis mēra, tālrunis arī zvana.</string>
+    <string name="onb_welcome_text">Phase Wake tevi pamodina modināšanas logā, tiklīdz tavs miegs kļūst nemierīgs – tad tu, visticamāk, guli viegli. Vēlākais – tieši mērķa laikā. Pulkstenis mēra, tālrunis arī zvana.</string>
     <string name="onb_privacy">Tavi dati paliek tavās ierīcēs.</string>
     <string name="onb_watch_title">Savieno pulksteni</string>
     <string name="onb_watch_ok">Pulkstenis ir savienots.</string>

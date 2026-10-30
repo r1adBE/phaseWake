@@ -14,7 +14,8 @@ final class AlarmSpecTests: XCTestCase {
         XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: -1))
         XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, sleepDurationMinutes: 721))
         XCTAssertThrowsError(try AlarmSpec(id: "", hour: 7, minute: 0))
-        XCTAssertEqual(alarm().windowMinutes, AlarmSpec.maxWindowMinutes)
+        // Neue Wecker: 20 Min; gespeicherte tragen ihr Fenster selbst (CodecTests.testStoredWindowIgnoresDefault).
+        XCTAssertEqual(alarm().windowMinutes, 20)
     }
 
     func testExactWindowIsZeroAndMeasuresThirtyMinutes() throws {
@@ -22,7 +23,7 @@ final class AlarmSpecTests: XCTestCase {
         XCTAssertTrue(exact.isExact)
         XCTAssertEqual(exact.measureWindowMinutes, AlarmSpec.measureMinutes)
         XCTAssertFalse(alarm().isExact)
-        XCTAssertEqual(alarm().measureWindowMinutes, 30)
+        XCTAssertEqual(alarm().measureWindowMinutes, 20)
         XCTAssertEqual(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 10).measureWindowMinutes, 10)
         // Zwischen 0 und 10 gibt es nichts.
         XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 5))

@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Päällä uusille öille</string>
     <string name="sound_rec_default_hint">Käynnistyy, kun avaat Phase Waken nukkumaanmenoajastasi alkaen (ilman herätystä klo 21 alkaen). Vain lyhyitä pätkiä; ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
     <string name="sound_type_snore">Mahdollista kuorsausta</string>
-    <string name="sound_type_talk">Puhe</string>
+    <string name="sound_type_talk">Mahdollista puhetta</string>
     <string name="sound_type_other">Muu ääni</string>
     <plurals name="sound_summary">
         <item quantity="one">Mahdollista kuorsausta: %1$s (%2$d pätkä)</item>
         <item quantity="other">Mahdollista kuorsausta: %1$s (%2$d pätkää)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Puhe: %1$d pätkä</item>
-        <item quantity="other">Puhe: %1$d pätkää</item>
+        <item quantity="one">Mahdollista puhetta: %1$d pätkä</item>
+        <item quantity="other">Mahdollista puhetta: %1$d pätkää</item>
     </plurals>
     <string name="sound_clips_title">Äänet</string>
     <string name="sound_clip_delete">Poista pätkä klo %1$s</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Avaa Phase Wake kellossa</string>
     <string name="onb_step">Vaihe %1$d/%2$d</string>
     <string name="onb_welcome_title">Tervetuloa Phase Wakeen</string>
-    <string name="onb_welcome_text">Phase Wake herättää sinut ikkunan sisällä, kun nukut kevyesti. Kello mittaa, puhelin soi myös.</string>
+    <string name="onb_welcome_text">Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Kello mittaa, puhelin soi myös.</string>
     <string name="onb_privacy">Tietosi pysyvät laitteillasi.</string>
     <string name="onb_watch_title">Yhdistä kello</string>
     <string name="onb_watch_ok">Kellosi on yhdistetty.</string>

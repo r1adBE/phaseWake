@@ -301,13 +301,13 @@
     <string name="sound_rec_default">ເປີດສຳລັບຄືນໃໝ່</string>
     <string name="sound_rec_default_hint">ເລີ່ມເມື່ອເຈົ້າເປີດ Phase Wake ຕັ້ງແຕ່ເວລາເຂົ້ານອນ (ຖ້າບໍ່ມີໂມງປຸກ ຕັ້ງແຕ່ 21:00) ສະເພາະຄລິບສັ້ນ ຢູ່ໃນໂທລະສັບ ແລະ ຖືກລຶບຫຼັງ 7 ມື້</string>
     <string name="sound_type_snore">ອາດກົນ</string>
-    <string name="sound_type_talk">ລະເມີ</string>
+    <string name="sound_type_talk">ອາດລະເມີ</string>
     <string name="sound_type_other">ສຽງອື່ນ</string>
     <plurals name="sound_summary">
         <item quantity="other">ອາດກົນ: %1$s (%2$d ຄລິບ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">ລະເມີ: %1$d ຄລິບ</item>
+        <item quantity="other">ອາດລະເມີ: %1$d ຄລິບ</item>
     </plurals>
     <string name="sound_clips_title">ສຽງ</string>
     <string name="sound_clip_delete">ລຶບຄລິບຈາກ %1$s</string>
@@ -382,7 +382,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">ເປີດ Phase Wake ຢູ່ໂມງຂອງເຈົ້າ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ຂັ້ນຕອນ %1$d ຈາກ %2$d</string>
     <string name="onb_welcome_title">ຍິນດີຕ້ອນຮັບສູ່ Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake ປຸກເຈົ້າພາຍໃນຊ່ວງເວລາ ຕອນທີ່ເຈົ້າຫຼັບຕື້ນ ໂມງວັດແທກ ໂທລະສັບກໍດັງນຳ</string>
+    <string name="onb_welcome_text">Phase Wake ປຸກເຈົ້າພາຍໃນຊ່ວງເວລາປຸກ ທັນທີທີ່ເຈົ້າເລີ່ມນອນບໍ່ສະຫງົບ – ຕອນນັ້ນເຈົ້າອາດກຳລັງຫຼັບຕື້ນ ຊ້າສຸດຕົງເວລາເປົ້າໝາຍພໍດີ ໂມງວັດແທກ ໂທລະສັບກໍດັງນຳ</string>
     <string name="onb_privacy">ຂໍ້ມູນຂອງເຈົ້າຢູ່ໃນອຸປະກອນຂອງເຈົ້າ</string>
     <string name="onb_watch_title">ເຊື່ອມຕໍ່ໂມງຂອງເຈົ້າ</string>
     <string name="onb_watch_ok">ໂມງຂອງເຈົ້າເຊື່ອມຕໍ່ແລ້ວ</string>

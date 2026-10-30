@@ -1,4 +1,4 @@
-Phase Wake vekker deg i lett søvn i stedet for midt i dyp søvn. De siste minuttene før alarmen måler Apple Watch bevegelse og puls og vekker deg i det beste øyeblikket innenfor vekkevinduet – senest på ønsket tid.
+Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Til det følger Apple Watch med på bevegelse og puls. På Apple Watch måler Phase Wake de siste 25 minuttene før ønsket tid. Den kan ikke se om natten din var for kort.
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
@@ -19,7 +19,7 @@ Sov bedre
 • Søvnnotater (kaffe, trening, stress …) for å se sammenhenger.
 • Innsovningslyder: regn, hav, skog om natten, bekk, peis, vifte, støy og søvnbølger – med tidtaker.
 • Ta opp snorking og søvnprat om du vil – bare på iPhonen din.
-• Hvil med vekking i lett søvn.
+• Hvil med vekking så snart du blir urolig.
 • Mild soloppgang i nattbordmodus før alarmen.
 • Søvnfaser fra Apple Health, om du vil.
 
@@ -31,6 +31,6 @@ For alle
 • 74 språk, lyst og mørkt design, laget for fargeblinde og skjermlesere.
 • Gratis og åpen kildekode: github.com/r1adBE/phaseWake
 
-Krever Apple Watch for å vekke deg i lett søvn; klokkeappen følger med. Uten klokke vekker Phase Wake deg på ønsket tid på iPhone.
+Krever Apple Watch for å vekke deg innenfor vekkevinduet; klokkeappen følger med. Uten klokke vekker Phase Wake deg på ønsket tid på iPhone.
 
 Phase Wake er ikke medisinsk utstyr.

@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Pornit pentru nopțile noi</string>
     <string name="sound_rec_default_hint">Pornește când deschizi Phase Wake de la ora ta de culcare (fără alarmă, de la 21:00). Doar fragmente scurte; rămân pe telefon și se șterg după 7 zile.</string>
     <string name="sound_type_snore">Posibil sforăit</string>
-    <string name="sound_type_talk">Vorbit</string>
+    <string name="sound_type_talk">Posibil vorbit</string>
     <string name="sound_type_other">Alt sunet</string>
     <plurals name="sound_summary">
         <item quantity="one">Posibil sforăit: %1$s (%2$d fragment)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Posibil sforăit: %1$s (%2$d de fragmente)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Vorbit: %1$d fragment</item>
-        <item quantity="few">Vorbit: %1$d fragmente</item>
-        <item quantity="other">Vorbit: %1$d de fragmente</item>
+        <item quantity="one">Posibil vorbit: %1$d fragment</item>
+        <item quantity="few">Posibil vorbit: %1$d fragmente</item>
+        <item quantity="other">Posibil vorbit: %1$d de fragmente</item>
     </plurals>
     <string name="sound_clips_title">Sunete</string>
     <string name="sound_clip_delete">Șterge fragmentul de la %1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">Deschide Phase Wake pe ceas</string>
     <string name="onb_step">Pasul %1$d din %2$d</string>
     <string name="onb_welcome_title">Bun venit în Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake te trezește în fereastra ta când dormi ușor. Ceasul măsoară, telefonul sună și el.</string>
+    <string name="onb_welcome_text">Phase Wake te trezește în intervalul de trezire imediat ce somnul tău devine agitat – atunci probabil dormi ușor. Cel târziu exact la ora țintă. Ceasul măsoară, telefonul sună și el.</string>
     <string name="onb_privacy">Datele tale rămân pe dispozitivele tale.</string>
     <string name="onb_watch_title">Conectează ceasul</string>
     <string name="onb_watch_ok">Ceasul tău e conectat.</string>

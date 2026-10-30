@@ -1,4 +1,4 @@
-Phase Wake đánh thức bạn khi ngủ nông thay vì giữa giấc ngủ sâu. Trong những phút cuối trước giờ báo thức, Apple Watch đo chuyển động và nhịp tim rồi đánh thức bạn vào thời điểm tốt nhất trong khoảng đánh thức – muộn nhất là đúng giờ mục tiêu.
+Phase Wake đánh thức bạn trong khoảng đánh thức ngay khi bạn bắt đầu trằn trọc – lúc đó có lẽ bạn đang ngủ nông. Muộn nhất là đúng giờ mục tiêu. Để làm vậy, Apple Watch theo dõi chuyển động và nhịp tim. Trên Apple Watch, Phase Wake đo 25 phút cuối trước giờ mục tiêu. Đồng hồ không biết được đêm của bạn có quá ngắn hay không.
 
 Cách hoạt động
 • Chọn giờ thức dậy và khoảng đánh thức (tối đa 30 phút), đeo đồng hồ, đi ngủ.
@@ -19,7 +19,7 @@ Ngủ ngon hơn
 • Ghi chú giấc ngủ (cà phê, thể thao, căng thẳng …) để nhận ra quy luật.
 • Âm thanh ru ngủ: mưa, biển, rừng đêm, suối, lò sưởi, quạt, tiếng ồn và sóng ru ngủ – có hẹn giờ.
 • Ghi âm tiếng ngáy và nói mớ nếu bạn muốn – chỉ trên iPhone của bạn.
-• Ngủ trưa và được đánh thức khi ngủ nông.
+• Ngủ trưa và được đánh thức ngay khi bạn bắt đầu trằn trọc.
 • Bình minh dịu nhẹ ở chế độ đầu giường trước giờ báo thức.
 • Các giai đoạn ngủ từ Apple Health, nếu bạn muốn.
 
@@ -31,6 +31,6 @@ Cho mọi người
 • 74 ngôn ngữ, giao diện sáng và tối, phù hợp với người mù màu và trình đọc màn hình.
 • Miễn phí và mã nguồn mở: github.com/r1adBE/phaseWake
 
-Cần Apple Watch để đánh thức bạn khi ngủ nông; đã kèm ứng dụng cho đồng hồ. Không có đồng hồ, Phase Wake đánh thức bạn đúng giờ mục tiêu trên iPhone.
+Cần Apple Watch để đánh thức bạn trong khoảng đánh thức; đã kèm ứng dụng cho đồng hồ. Không có đồng hồ, Phase Wake đánh thức bạn đúng giờ mục tiêu trên iPhone.
 
 Phase Wake không phải là thiết bị y tế.

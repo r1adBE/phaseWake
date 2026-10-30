@@ -20,7 +20,7 @@ import java.time.ZoneId
 
 // --- 4. Schlafphasen der Nacht ---
 
-/** Wie der Abgleich in der Nachtkarte: «Gesundheitsdaten: leichter Schlaf ✓». */
+/** Abgleich mit der Phase beim Wecken: «Gesundheitsdaten: leichter Schlaf ✓» (nicht mehr in der Nachtkarte). */
 fun hypnogramTakeaway(context: Context, h: Hypnogram): String? = when (h.stageAtWake) {
     SleepStage.LIGHT -> context.getString(R.string.verdict_good, context.getString(R.string.stage_light))
     SleepStage.REM -> context.getString(R.string.verdict_good, context.getString(R.string.stage_rem))

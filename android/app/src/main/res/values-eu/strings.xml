@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Aktibatuta gau berrietarako</string>
     <string name="sound_rec_default_hint">Oheratzeko ordutik aurrera Phase Wake irekitzen duzunean hasten da (alarmarik gabe, 21:00etatik aurrera). Klip laburrak soilik; telefonoan geratzen dira eta 7 egunen ondoren ezabatzen dira.</string>
     <string name="sound_type_snore">Zurrunga posiblea</string>
-    <string name="sound_type_talk">Hitz egitea</string>
+    <string name="sound_type_talk">Hitz egite posiblea</string>
     <string name="sound_type_other">Beste soinu bat</string>
     <plurals name="sound_summary">
         <item quantity="one">Zurrunga posiblea: %1$s (klip %2$d)</item>
         <item quantity="other">Zurrunga posiblea: %1$s (%2$d klip)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Hitz egitea: klip %1$d</item>
-        <item quantity="other">Hitz egitea: %1$d klip</item>
+        <item quantity="one">Hitz egite posiblea: klip %1$d</item>
+        <item quantity="other">Hitz egite posiblea: %1$d klip</item>
     </plurals>
     <string name="sound_clips_title">Soinuak</string>
     <string name="sound_clip_delete">Ezabatu %1$s-ko klipa</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Ireki Phase Wake erlojuan</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">%1$d/%2$d urratsa</string>
     <string name="onb_welcome_title">Ongi etorri Phase Wake-ra</string>
-    <string name="onb_welcome_text">Phase Wake-k leihoaren barruan esnatzen zaitu, lo arinean zaudenean. Erlojuak neurtzen du, eta telefonoak ere jotzen du.</string>
+    <string name="onb_welcome_text">Phase Wake-k esnatze-leihoaren barruan esnatzen zaitu, ezinegona hasten zaizun unean – orduan seguruenik lo arinean zaude. Beranduenez, helburuko orduan bertan. Erlojuak neurtzen du, eta telefonoak ere jotzen du.</string>
     <string name="onb_privacy">Zure datuak zure gailuetan geratzen dira.</string>
     <string name="onb_watch_title">Konektatu erlojua</string>
     <string name="onb_watch_ok">Erlojua konektatuta dago.</string>

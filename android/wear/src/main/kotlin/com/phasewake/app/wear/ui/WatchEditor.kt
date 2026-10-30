@@ -57,7 +57,7 @@ private const val DEFAULT_SOUND = "raw:wake_birds"
 
 private val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
-/** Neuer Wecker mit denselben Vorgaben wie im Editor am Handy: 7:00, Werktage, Fenster 30 Min. */
+/** Neuer Wecker mit denselben Vorgaben wie im Editor am Handy: 7:00, Werktage, Fenster 20 Min. */
 internal fun newAlarm(): AlarmSpec = AlarmSpec(id = UUID.randomUUID().toString(), hour = 7, minute = 0, days = WEEKDAYS, sound = DEFAULT_SOUND)
 
 /**

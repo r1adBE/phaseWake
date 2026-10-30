@@ -309,15 +309,15 @@
     <string name="sound_rec_default">På for nye netter</string>
     <string name="sound_rec_default_hint">Starter når du åpner Phase Wake fra leggetiden din (uten alarm fra kl. 21). Bare korte klipp; de blir på telefonen og slettes etter 7 dager.</string>
     <string name="sound_type_snore">Mulig snorking</string>
-    <string name="sound_type_talk">Prat</string>
+    <string name="sound_type_talk">Mulig prat</string>
     <string name="sound_type_other">Annen lyd</string>
     <plurals name="sound_summary">
         <item quantity="one">Mulig snorking: %1$s (%2$d klipp)</item>
         <item quantity="other">Mulig snorking: %1$s (%2$d klipp)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Prat: %1$d klipp</item>
-        <item quantity="other">Prat: %1$d klipp</item>
+        <item quantity="one">Mulig prat: %1$d klipp</item>
+        <item quantity="other">Mulig prat: %1$d klipp</item>
     </plurals>
     <string name="sound_clips_title">Lyder</string>
     <string name="sound_clip_delete">Slett klipp fra %1$s</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Åpne Phase Wake på klokken</string>
     <string name="onb_step">Trinn %1$d av %2$d</string>
     <string name="onb_welcome_title">Velkommen til Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake vekker deg innenfor vinduet ditt når du sover lett. Klokken måler, telefonen ringer også.</string>
+    <string name="onb_welcome_text">Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Klokken måler, telefonen ringer også.</string>
     <string name="onb_privacy">Dataene dine blir på enhetene dine.</string>
     <string name="onb_watch_title">Koble til klokken</string>
     <string name="onb_watch_ok">Klokken din er tilkoblet.</string>

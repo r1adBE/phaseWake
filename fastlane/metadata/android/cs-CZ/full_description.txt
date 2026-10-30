@@ -1,4 +1,4 @@
-Phase Wake tě budí v lehkém spánku, ne uprostřed hlubokého spánku. V posledních minutách před budíkem měří tvoje chytré hodinky pohyb a tep a probudí tě v nejlepší chvíli v rámci okna buzení – nejpozději v cílový čas.
+Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději přesně v cílový čas. K tomu tvoje chytré hodinky v posledních minutách před budíkem měří pohyb a tep.
 
 Jak to funguje
 • Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
@@ -19,7 +19,7 @@ Lepší spánek
 • Poznámky ke spánku (káva, sport, stres …) pro odhalení souvislostí.
 • Zvuky na usínání: déšť, moře, noční les, potok, krb, ventilátor, šum a vlny ke spánku – s časovačem.
 • Nahrávání chrápání a mluvení ze spaní, pokud chceš – jen v tvém telefonu.
-• Šlofík s buzením v lehkém spánku.
+• Šlofík s buzením, jakmile je spánek neklidný.
 • Jemný východ slunce na displeji před buzením.
 • Fáze spánku z Health Connect, pokud chceš.
 

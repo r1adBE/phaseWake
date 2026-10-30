@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Activer pour les nouvelles nuits</string>
     <string name="sound_rec_default_hint">Démarre quand tu ouvres Phase Wake à partir de ton heure de coucher (sans réveil, dès 21 h). Seulement de courts extraits ; ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
     <string name="sound_type_snore">Ronflement possible</string>
-    <string name="sound_type_talk">Paroles</string>
+    <string name="sound_type_talk">Paroles possibles</string>
     <string name="sound_type_other">Autre bruit</string>
     <plurals name="sound_summary">
         <item quantity="one">Ronflement possible : %1$s (%2$d extrait)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Ronflement possible : %1$s (%2$d extraits)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Paroles : %1$d extrait</item>
-        <item quantity="many">Paroles : %1$d extraits</item>
-        <item quantity="other">Paroles : %1$d extraits</item>
+        <item quantity="one">Paroles possibles : %1$d extrait</item>
+        <item quantity="many">Paroles possibles : %1$d extraits</item>
+        <item quantity="other">Paroles possibles : %1$d extraits</item>
     </plurals>
     <string name="sound_clips_title">Bruits</string>
     <string name="sound_clip_delete">Supprimer l’extrait de %1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">Ouvre Phase Wake sur la montre</string>
     <string name="onb_step">Étape %1$d sur %2$d</string>
     <string name="onb_welcome_title">Bienvenue dans Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake te réveille dans ta fenêtre quand ton sommeil est léger. La montre mesure, le téléphone sonne aussi.</string>
+    <string name="onb_welcome_text">Phase Wake te réveille dans ta plage de réveil dès que ton sommeil devient agité – c’est alors sans doute un sommeil léger. Au plus tard, pile à l’heure cible. La montre mesure, le téléphone sonne aussi.</string>
     <string name="onb_privacy">Tes données restent sur tes appareils.</string>
     <string name="onb_watch_title">Connecter la montre</string>
     <string name="onb_watch_ok">Ta montre est connectée.</string>

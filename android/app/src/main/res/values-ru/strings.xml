@@ -323,7 +323,7 @@
     <string name="sound_rec_default">Включать для новых ночей</string>
     <string name="sound_rec_default_hint">Запускается, когда ты открываешь Phase Wake начиная со времени отхода ко сну (без будильника — с 21:00). Только короткие фрагменты; они остаются на телефоне и удаляются через 7 дней.</string>
     <string name="sound_type_snore">Возможно, храп</string>
-    <string name="sound_type_talk">Разговор</string>
+    <string name="sound_type_talk">Возможно, разговор</string>
     <string name="sound_type_other">Другой звук</string>
     <plurals name="sound_summary">
         <item quantity="one">Возможно, храп: %1$s (%2$d фрагмент)</item>
@@ -332,10 +332,10 @@
         <item quantity="other">Возможно, храп: %1$s (%2$d фрагмента)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Разговор: %1$d фрагмент</item>
-        <item quantity="few">Разговор: %1$d фрагмента</item>
-        <item quantity="many">Разговор: %1$d фрагментов</item>
-        <item quantity="other">Разговор: %1$d фрагмента</item>
+        <item quantity="one">Возможно, разговор: %1$d фрагмент</item>
+        <item quantity="few">Возможно, разговор: %1$d фрагмента</item>
+        <item quantity="many">Возможно, разговор: %1$d фрагментов</item>
+        <item quantity="other">Возможно, разговор: %1$d фрагмента</item>
     </plurals>
     <string name="sound_clips_title">Звуки</string>
     <string name="sound_clip_delete">Удалить фрагмент от %1$s</string>
@@ -416,7 +416,7 @@
     <string name="watch_open_app">Открой Phase Wake на часах</string>
     <string name="onb_step">Шаг %1$d из %2$d</string>
     <string name="onb_welcome_title">Добро пожаловать в Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake будит тебя в пределах окна, когда ты спишь чутко. Часы измеряют, телефон тоже звонит.</string>
+    <string name="onb_welcome_text">Phase Wake будит тебя в пределах окна пробуждения, как только твой сон становится беспокойным – тогда ты, скорее всего, спишь чутко. Не позже чем точно в целевое время. Часы измеряют, телефон тоже звонит.</string>
     <string name="onb_privacy">Твои данные остаются на твоих устройствах.</string>
     <string name="onb_watch_title">Подключить часы</string>
     <string name="onb_watch_ok">Часы подключены.</string>

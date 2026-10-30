@@ -1,4 +1,4 @@
-Phase Wake səni dərin yuxunun ortasında deyil, yüngül yuxuda oyadır. Siqnaldan əvvəlki son dəqiqələrdə smart saatın hərəkəti və ürək döyüntüsünü ölçür və səni oyanma pəncərəsi daxilində ən uyğun anda oyadır – ən gec hədəf vaxtında.
+Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində oyadır – o zaman çox güman ki, yüngül yatırsan. Ən gec düz hədəf vaxtında. Bunun üçün smart saatın siqnaldan əvvəlki son dəqiqələrdə hərəkəti və ürək döyüntüsünü ölçür.
 
 Necə işləyir
 • Oyanma vaxtını və pəncərəni (30 dəq-yə qədər) seç, saatını tax, yat.
@@ -19,7 +19,7 @@ Daha yaxşı yat
 • Əlaqələri görmək üçün yuxu qeydləri (qəhvə, idman, stress …).
 • Yuxu səsləri: yağış, okean, gecə meşəsi, çay, kamin, ventilyator, küy və yuxu dalğaları – taymerlə.
 • İstəsən, xoruldamanı və yuxuda danışmanı yaz – yalnız telefonunda.
-• Yüngül yuxuda oyadan qısa yuxu.
+• Narahat olmağa başlayan kimi oyadan qısa yuxu.
 • Siqnaldan əvvəl ekranda yumşaq gündoğumu.
 • İstəsən, Health Connect-dən yuxu fazaları.
 

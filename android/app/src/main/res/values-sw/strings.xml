@@ -308,15 +308,15 @@
     <string name="sound_rec_default">Washa kwa usiku mpya</string>
     <string name="sound_rec_default_hint">Inaanza unapofungua Phase Wake kuanzia muda wako wa kulala (bila kengele kuanzia saa 3 usiku). Vipande vifupi tu; vinabaki kwenye simu yako na hufutwa baada ya siku 7.</string>
     <string name="sound_type_snore">Huenda ni kukoroma</string>
-    <string name="sound_type_talk">Kuongea</string>
+    <string name="sound_type_talk">Huenda ni kuongea</string>
     <string name="sound_type_other">Sauti nyingine</string>
     <plurals name="sound_summary">
         <item quantity="one">Huenda ni kukoroma: %1$s (kipande %2$d)</item>
         <item quantity="other">Huenda ni kukoroma: %1$s (vipande %2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Kuongea: kipande %1$d</item>
-        <item quantity="other">Kuongea: vipande %1$d</item>
+        <item quantity="one">Huenda ni kuongea: kipande %1$d</item>
+        <item quantity="other">Huenda ni kuongea: vipande %1$d</item>
     </plurals>
     <string name="sound_clips_title">Sauti</string>
     <string name="sound_clip_delete">Futa kipande cha %1$s</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Fungua Phase Wake kwenye saa yako</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Hatua %1$d kati ya %2$d</string>
     <string name="onb_welcome_title">Karibu Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake inakuamsha ndani ya kipindi chako ukiwa katika usingizi mwepesi. Saa yako inapima, simu yako inalia pia.</string>
+    <string name="onb_welcome_text">Phase Wake inakuamsha ndani ya kipindi chako cha kuamka mara tu unapoanza kutotulia – wakati huo huenda uko katika usingizi mwepesi. Kwa kuchelewa zaidi, hasa kwa muda lengwa. Saa yako inapima, simu yako inalia pia.</string>
     <string name="onb_privacy">Data yako inabaki kwenye vifaa vyako.</string>
     <string name="onb_watch_title">Unganisha saa yako</string>
     <string name="onb_watch_ok">Saa yako imeunganishwa.</string>

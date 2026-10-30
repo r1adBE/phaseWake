@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Ativar para novas noites</string>
     <string name="sound_rec_default_hint">Começa quando abres o Phase Wake a partir da tua hora de deitar (sem alarme, desde as 21:00). Só excertos curtos; ficam no teu telemóvel e são apagados ao fim de 7 dias.</string>
     <string name="sound_type_snore">Possível ressonar</string>
-    <string name="sound_type_talk">Falar</string>
+    <string name="sound_type_talk">Possível fala</string>
     <string name="sound_type_other">Outro som</string>
     <plurals name="sound_summary">
         <item quantity="one">Possível ressonar: %1$s (%2$d excerto)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Possível ressonar: %1$s (%2$d excertos)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Falar: %1$d excerto</item>
-        <item quantity="many">Falar: %1$d excertos</item>
-        <item quantity="other">Falar: %1$d excertos</item>
+        <item quantity="one">Possível fala: %1$d excerto</item>
+        <item quantity="many">Possível fala: %1$d excertos</item>
+        <item quantity="other">Possível fala: %1$d excertos</item>
     </plurals>
     <string name="sound_clips_title">Sons</string>
     <string name="sound_clip_delete">Apagar excerto das %1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">Abra o Phase Wake no relógio</string>
     <string name="onb_step">Passo %1$d de %2$d</string>
     <string name="onb_welcome_title">Boas-vindas ao Phase Wake</string>
-    <string name="onb_welcome_text">O Phase Wake acorda-te dentro da tua janela quando o sono está leve. O relógio mede, o telemóvel também toca.</string>
+    <string name="onb_welcome_text">O Phase Wake acorda-te dentro da tua janela de despertar assim que o teu sono fica agitado – nessa altura provavelmente estás a dormir leve. No máximo, exatamente à hora-alvo. O relógio mede, o telemóvel também toca.</string>
     <string name="onb_privacy">Os teus dados ficam nos teus dispositivos.</string>
     <string name="onb_watch_title">Ligar o relógio</string>
     <string name="onb_watch_ok">O teu relógio está ligado.</string>

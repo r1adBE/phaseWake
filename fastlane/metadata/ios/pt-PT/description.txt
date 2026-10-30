@@ -1,4 +1,4 @@
-O Phase Wake acorda-te no sono leve, e não a meio do sono profundo. Nos últimos minutos antes do alarme, o teu Apple Watch mede o movimento e a frequência cardíaca e acorda-te no melhor momento dentro da tua janela de despertar – no máximo à hora-alvo.
+O Phase Wake acorda-te dentro da tua janela de despertar assim que o teu sono fica agitado – nessa altura provavelmente estás a dormir leve. No máximo, exatamente à hora-alvo. Para isso, o teu Apple Watch acompanha o movimento e a frequência cardíaca. No Apple Watch, o Phase Wake mede os últimos 25 minutos antes da hora-alvo. Não consegue saber se a tua noite foi demasiado curta.
 
 Como funciona
 • Escolhe a hora e a janela de despertar (até 30 min), põe o relógio e dorme.
@@ -19,7 +19,7 @@ Dorme melhor
 • Notas de sono (café, desporto, stress …) para perceber padrões.
 • Sons para adormecer: chuva, mar, floresta à noite, riacho, lareira, ventoinha, ruído e ondas para dormir – com temporizador.
 • Grava o ressonar e a fala durante o sono, se quiseres – só no teu iPhone.
-• Sesta que te acorda no sono leve.
+• Sesta que te acorda assim que o sono fica agitado.
 • Nascer do sol suave no modo de mesa de cabeceira antes do alarme.
 • Fases do sono do Apple Health, se quiseres.
 
@@ -31,6 +31,6 @@ Para todos
 • 74 idiomas, design claro e escuro, pensado para daltónicos e leitores de ecrã.
 • Gratuito e de código aberto: github.com/r1adBE/phaseWake
 
-Requer um Apple Watch para te acordar no sono leve; a app para o relógio está incluída. Sem relógio, o Phase Wake acorda-te à hora-alvo no iPhone.
+Requer um Apple Watch para te acordar dentro da tua janela de despertar; a app para o relógio está incluída. Sem relógio, o Phase Wake acorda-te à hora-alvo no iPhone.
 
 O Phase Wake não é um dispositivo médico.

@@ -309,15 +309,15 @@
     <string name="sound_rec_default">ਨਵੀਆਂ ਰਾਤਾਂ ਲਈ ਚਾਲੂ</string>
     <string name="sound_rec_default_hint">ਤੁਹਾਡੇ ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ Phase Wake ਖੋਲ੍ਹਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ (ਅਲਾਰਮ ਨਾ ਹੋਵੇ ਤਾਂ ਰਾਤ 9 ਵਜੇ ਤੋਂ)। ਸਿਰਫ਼ ਛੋਟੀਆਂ ਕਲਿੱਪਾਂ; ਇਹ ਤੁਹਾਡੇ ਫ਼ੋਨ ’ਤੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ 7 ਦਿਨਾਂ ਬਾਅਦ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
     <string name="sound_type_snore">ਸ਼ਾਇਦ ਘੁਰਾੜੇ</string>
-    <string name="sound_type_talk">ਬੋਲਣਾ</string>
+    <string name="sound_type_talk">ਸ਼ਾਇਦ ਬੋਲਣਾ</string>
     <string name="sound_type_other">ਹੋਰ ਆਵਾਜ਼</string>
     <plurals name="sound_summary">
         <item quantity="one">ਸ਼ਾਇਦ ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪ)</item>
         <item quantity="other">ਸ਼ਾਇਦ ਘੁਰਾੜੇ: %1$s (%2$d ਕਲਿੱਪਾਂ)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">ਬੋਲਣਾ: %1$d ਕਲਿੱਪ</item>
-        <item quantity="other">ਬੋਲਣਾ: %1$d ਕਲਿੱਪਾਂ</item>
+        <item quantity="one">ਸ਼ਾਇਦ ਬੋਲਣਾ: %1$d ਕਲਿੱਪ</item>
+        <item quantity="other">ਸ਼ਾਇਦ ਬੋਲਣਾ: %1$d ਕਲਿੱਪਾਂ</item>
     </plurals>
     <string name="sound_clips_title">ਆਵਾਜ਼ਾਂ</string>
     <string name="sound_clip_delete">%1$s ਦੀ ਕਲਿੱਪ ਮਿਟਾਓ</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">ਆਪਣੀ ਘੜੀ ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ਕਦਮ %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wake ਵਿੱਚ ਜੀ ਆਇਆਂ ਨੂੰ</string>
-    <string name="onb_welcome_text">ਜਦੋਂ ਤੁਹਾਡੀ ਨੀਂਦ ਹਲਕੀ ਹੁੰਦੀ ਹੈ, Phase Wake ਤੁਹਾਨੂੰ ਤੁਹਾਡੀ ਮਿਆਦ ਵਿੱਚ ਜਗਾਉਂਦਾ ਹੈ। ਘੜੀ ਮਾਪਦੀ ਹੈ, ਫ਼ੋਨ ਵੀ ਵੱਜਦਾ ਹੈ।</string>
+    <string name="onb_welcome_text">ਜਿਵੇਂ ਹੀ ਤੁਸੀਂ ਬੇਚੈਨ ਹੋਣ ਲੱਗਦੇ ਹੋ, Phase Wake ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਜਗਾਉਂਦਾ ਹੈ – ਉਦੋਂ ਤੁਹਾਡੀ ਨੀਂਦ ਸ਼ਾਇਦ ਹਲਕੀ ਹੁੰਦੀ ਹੈ। ਵੱਧ ਤੋਂ ਵੱਧ ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ। ਘੜੀ ਮਾਪਦੀ ਹੈ, ਫ਼ੋਨ ਵੀ ਵੱਜਦਾ ਹੈ।</string>
     <string name="onb_privacy">ਤੁਹਾਡਾ ਡਾਟਾ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ।</string>
     <string name="onb_watch_title">ਆਪਣੀ ਘੜੀ ਕਨੈਕਟ ਕਰੋ</string>
     <string name="onb_watch_ok">ਤੁਹਾਡੀ ਘੜੀ ਕਨੈਕਟ ਹੈ।</string>

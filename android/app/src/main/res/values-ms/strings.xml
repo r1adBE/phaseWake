@@ -302,13 +302,13 @@
     <string name="sound_rec_default">Hidup untuk malam baharu</string>
     <string name="sound_rec_default_hint">Bermula apabila anda membuka Phase Wake dari waktu tidur anda (tanpa penggera, mulai 9 malam). Hanya keratan pendek; kekal di telefon anda dan dipadam selepas 7 hari.</string>
     <string name="sound_type_snore">Mungkin berdengkur</string>
-    <string name="sound_type_talk">Bercakap</string>
+    <string name="sound_type_talk">Mungkin bercakap</string>
     <string name="sound_type_other">Bunyi lain</string>
     <plurals name="sound_summary">
         <item quantity="other">Mungkin berdengkur: %1$s (%2$d keratan)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">Bercakap: %1$d keratan</item>
+        <item quantity="other">Mungkin bercakap: %1$d keratan</item>
     </plurals>
     <string name="sound_clips_title">Bunyi</string>
     <string name="sound_clip_delete">Padam keratan pada %1$s</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app">Buka Phase Wake pada jam tangan</string>
     <string name="onb_step">Langkah %1$d daripada %2$d</string>
     <string name="onb_welcome_title">Selamat datang ke Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake mengejutkan awak dalam tetingkap masa apabila tidur awak ringan. Jam tangan mengukur, telefon juga berbunyi.</string>
+    <string name="onb_welcome_text">Phase Wake membangunkan awak dalam tetingkap bangun sebaik sahaja awak mula gelisah – ketika itu tidur awak mungkin ringan. Selewat-lewatnya tepat pada masa sasaran. Jam tangan mengukur, telefon juga berbunyi.</string>
     <string name="onb_privacy">Data awak kekal pada peranti awak.</string>
     <string name="onb_watch_title">Sambungkan jam tangan</string>
     <string name="onb_watch_ok">Jam tangan awak disambungkan.</string>

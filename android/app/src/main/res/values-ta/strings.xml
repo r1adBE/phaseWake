@@ -308,15 +308,15 @@
     <string name="sound_rec_default">புதிய இரவுகளுக்கு ஆன்</string>
     <string name="sound_rec_default_hint">உறங்கும் நேரத்திலிருந்து Phase Wake ஐத் திறக்கும்போது தொடங்கும் (அலாரம் இல்லையெனில் இரவு 9 மணியிலிருந்து). சிறு கிளிப்புகள் மட்டும்; அவை உங்கள் ஃபோனிலேயே இருக்கும், 7 நாட்களுக்குப் பிறகு நீக்கப்படும்.</string>
     <string name="sound_type_snore">குறட்டையாக இருக்கலாம்</string>
-    <string name="sound_type_talk">பேச்சு</string>
+    <string name="sound_type_talk">பேச்சாக இருக்கலாம்</string>
     <string name="sound_type_other">வேறு ஒலி</string>
     <plurals name="sound_summary">
         <item quantity="one">குறட்டையாக இருக்கலாம்: %1$s (%2$d கிளிப்)</item>
         <item quantity="other">குறட்டையாக இருக்கலாம்: %1$s (%2$d கிளிப்புகள்)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">பேச்சு: %1$d கிளிப்</item>
-        <item quantity="other">பேச்சு: %1$d கிளிப்புகள்</item>
+        <item quantity="one">பேச்சாக இருக்கலாம்: %1$d கிளிப்</item>
+        <item quantity="other">பேச்சாக இருக்கலாம்: %1$d கிளிப்புகள்</item>
     </plurals>
     <string name="sound_clips_title">ஒலிகள்</string>
     <string name="sound_clip_delete">%1$s கிளிப்பை நீக்கு</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">உங்கள் வாட்ச்சில் Phase Wake ஐத் திறவுங்கள்</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">படி %2$d இல் %1$d</string>
     <string name="onb_welcome_title">Phase Wake க்கு வரவேற்கிறோம்</string>
-    <string name="onb_welcome_text">நீங்கள் லேசாகத் தூங்கும்போது Phase Wake உங்கள் வரம்புக்குள் எழுப்பும். வாட்ச் அளவிடும், ஃபோனும் சேர்ந்து ஒலிக்கும்.</string>
+    <string name="onb_welcome_text">நீங்கள் அமைதியின்றி அசையத் தொடங்கியதும் Phase Wake உங்களை எழுப்பும் வரம்புக்குள் எழுப்புகிறது – அப்போது நீங்கள் பெரும்பாலும் லேசாகத் தூங்குகிறீர்கள். தாமதமானாலும் சரியாக இலக்கு நேரத்தில். வாட்ச் அளவிடும், ஃபோனும் சேர்ந்து ஒலிக்கும்.</string>
     <string name="onb_privacy">உங்கள் தரவு உங்கள் சாதனங்களிலேயே இருக்கும்.</string>
     <string name="onb_watch_title">உங்கள் வாட்ச்சை இணையுங்கள்</string>
     <string name="onb_watch_ok">உங்கள் வாட்ச் இணைக்கப்பட்டுள்ளது.</string>

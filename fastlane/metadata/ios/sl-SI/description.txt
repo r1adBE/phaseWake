@@ -1,4 +1,4 @@
-Phase Wake te zbudi v lahkem spancu namesto sredi globokega spanca. V zadnjih minutah pred budilko Apple Watch meri gibanje in srčni utrip ter te zbudi v najboljšem trenutku znotraj okna bujenja – najpozneje ob ciljnem času.
+Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje natanko ob ciljnem času. Za to Apple Watch spremlja gibanje in srčni utrip. Na uri Apple Watch Phase Wake meri zadnjih 25 minut pred ciljnim časom. Ne more prepoznati, ali je bila tvoja noč prekratka.
 
 Kako deluje
 • Izberi čas bujenja in okno (do 30 min), nadeni si uro, spi.
@@ -19,7 +19,7 @@ Boljši spanec
 • Opombe o spanju (kava, šport, stres …), da opaziš vzorce.
 • Zvoki za spanje: dež, morje, gozd ponoči, potok, kamin, ventilator, šum in valovi za spanje – s časovnikom.
 • Snemaj smrčanje in govorjenje v spanju, če želiš – samo na tvojem iPhonu.
-• Kratek spanec z bujenjem v lahkem spancu.
+• Kratek spanec z bujenjem, takoj ko postane spanec nemiren.
 • Nežen sončni vzhod v načinu nočne omarice pred budilko.
 • Faze spanca iz aplikacije Apple Health, če želiš.
 
@@ -31,6 +31,6 @@ Za vse
 • 74 jezikov, svetla in temna podoba, prilagojeno barvno slepim in bralnikom zaslona.
 • Brezplačno in odprtokodno: github.com/r1adBE/phaseWake
 
-Za bujenje v lahkem spancu potrebuješ Apple Watch; aplikacija za uro je priložena. Brez ure te Phase Wake zbudi ob ciljnem času na iPhonu.
+Za bujenje v oknu bujenja potrebuješ Apple Watch; aplikacija za uro je priložena. Brez ure te Phase Wake zbudi ob ciljnem času na iPhonu.
 
 Phase Wake ni medicinski pripomoček.

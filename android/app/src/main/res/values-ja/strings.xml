@@ -302,13 +302,13 @@
     <string name="sound_rec_default">新しい夜はオン</string>
     <string name="sound_rec_default_hint">就寝時刻以降に Phase Wake を開くと始まります（アラームなしの場合は21時から）。短い断片だけ。スマホに残り、7日後に削除されます。</string>
     <string name="sound_type_snore">いびきの可能性</string>
-    <string name="sound_type_talk">寝言</string>
+    <string name="sound_type_talk">寝言の可能性</string>
     <string name="sound_type_other">その他の音</string>
     <plurals name="sound_summary">
         <item quantity="other">いびきの可能性: %1$s（%2$d件）</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">寝言: %1$d件</item>
+        <item quantity="other">寝言の可能性: %1$d件</item>
     </plurals>
     <string name="sound_clips_title">音</string>
     <string name="sound_clip_delete">%1$sの断片を削除</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app">ウォッチでPhase Wakeを開いてください</string>
     <string name="onb_step">ステップ %1$d/%2$d</string>
     <string name="onb_welcome_title">Phase Wakeへようこそ</string>
-    <string name="onb_welcome_text">眠りが浅いときに、Phase Wakeがウィンドウ内で起こします。ウォッチが測定し、スマホも鳴ります。</string>
+    <string name="onb_welcome_text">Phase Wakeは、起床時間幅の中で眠りが落ち着かなくなった時点で起こします。そのときはおそらく眠りが浅いからです。遅くとも目標時刻ちょうどに起こします。ウォッチが測定し、スマホも鳴ります。</string>
     <string name="onb_privacy">データはあなたのデバイスに残ります。</string>
     <string name="onb_watch_title">ウォッチを接続</string>
     <string name="onb_watch_ok">ウォッチは接続されています。</string>

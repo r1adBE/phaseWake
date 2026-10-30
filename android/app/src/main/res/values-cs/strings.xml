@@ -323,7 +323,7 @@
     <string name="sound_rec_default">Zapnout pro nové noci</string>
     <string name="sound_rec_default_hint">Spustí se, když otevřeš Phase Wake od své doby spánku (bez budíku od 21:00). Jen krátké úryvky; zůstávají v telefonu a po 7 dnech se smažou.</string>
     <string name="sound_type_snore">Možné chrápání</string>
-    <string name="sound_type_talk">Mluvení</string>
+    <string name="sound_type_talk">Možné mluvení</string>
     <string name="sound_type_other">Jiný zvuk</string>
     <plurals name="sound_summary">
         <item quantity="one">Možné chrápání: %1$s (%2$d úryvek)</item>
@@ -332,10 +332,10 @@
         <item quantity="other">Možné chrápání: %1$s (%2$d úryvků)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Mluvení: %1$d úryvek</item>
-        <item quantity="few">Mluvení: %1$d úryvky</item>
-        <item quantity="many">Mluvení: %1$d úryvku</item>
-        <item quantity="other">Mluvení: %1$d úryvků</item>
+        <item quantity="one">Možné mluvení: %1$d úryvek</item>
+        <item quantity="few">Možné mluvení: %1$d úryvky</item>
+        <item quantity="many">Možné mluvení: %1$d úryvku</item>
+        <item quantity="other">Možné mluvení: %1$d úryvků</item>
     </plurals>
     <string name="sound_clips_title">Zvuky</string>
     <string name="sound_clip_delete">Smazat úryvek z %1$s</string>
@@ -416,7 +416,7 @@
     <string name="watch_open_app">Otevři Phase Wake na hodinkách</string>
     <string name="onb_step">Krok %1$d z %2$d</string>
     <string name="onb_welcome_title">Vítej v Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake tě vzbudí v okně, když spíš lehce. Hodinky měří, telefon zvoní také.</string>
+    <string name="onb_welcome_text">Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději přesně v cílový čas. Hodinky měří, telefon zvoní také.</string>
     <string name="onb_privacy">Tvoje data zůstávají ve tvých zařízeních.</string>
     <string name="onb_watch_title">Připojit hodinky</string>
     <string name="onb_watch_ok">Hodinky jsou připojené.</string>

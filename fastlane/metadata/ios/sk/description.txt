@@ -1,4 +1,4 @@
-Phase Wake ťa zobudí v ľahkom spánku namiesto uprostred hlbokého spánku. V posledných minútach pred budíkom meria tvoje Apple Watch pohyb a tep a zobudí ťa v najvhodnejšej chvíli v rámci okna budenia – najneskôr v cieľový čas.
+Phase Wake ťa zobudí v okne budenia, len čo sa tvoj spánok stane nepokojným – vtedy pravdepodobne spíš ľahko. Najneskôr presne v cieľový čas. Na to tvoje Apple Watch sledujú pohyb a tep. Na Apple Watch meria Phase Wake posledných 25 minút pred cieľovým časom. Nerozpozná, či bola tvoja noc príliš krátka.
 
 Ako to funguje
 • Vyber čas budenia a okno budenia (až 30 min), nasaď si hodinky, spi.
@@ -19,7 +19,7 @@ Lepší spánok
 • Poznámky k spánku (káva, šport, stres …) na odhalenie súvislostí.
 • Zvuky na spanie: dážď, more, nočný les, potok, krb, ventilátor, šum a vlny na spanie – s časovačom.
 • Ak chceš, nahrávaj chrápanie a rozprávanie zo spánku – len v iPhone.
-• Šlofík s budením v ľahkom spánku.
+• Šlofík s budením, len čo je spánok nepokojný.
 • Jemný východ slnka v režime nočného stolíka pred budíkom.
 • Fázy spánku z aplikácie Apple Health, ak chceš.
 
@@ -31,6 +31,6 @@ Pre všetkých
 • 74 jazykov, svetlý a tmavý vzhľad, vhodné pre farboslepých a čítačky obrazovky.
 • Zadarmo a s otvoreným zdrojovým kódom: github.com/r1adBE/phaseWake
 
-Na budenie v ľahkom spánku potrebuješ Apple Watch; aplikácia pre hodinky je súčasťou. Bez hodiniek ťa Phase Wake zobudí v cieľový čas v iPhone.
+Na budenie v okne budenia potrebuješ Apple Watch; aplikácia pre hodinky je súčasťou. Bez hodiniek ťa Phase Wake zobudí v cieľový čas v iPhone.
 
 Phase Wake nie je zdravotnícka pomôcka.

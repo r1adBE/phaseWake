@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Aktiv për netët e reja</string>
     <string name="sound_rec_default_hint">Nis kur hap Phase Wake nga ora e gjumit e tutje (pa alarm, nga ora 21:00). Vetëm fragmente të shkurtra; mbeten në telefon dhe fshihen pas 7 ditësh.</string>
     <string name="sound_type_snore">Gërhitje e mundshme</string>
-    <string name="sound_type_talk">Të folur</string>
+    <string name="sound_type_talk">Ndoshta të folur</string>
     <string name="sound_type_other">Tingull tjetër</string>
     <plurals name="sound_summary">
         <item quantity="one">Gërhitje e mundshme: %1$s (%2$d fragment)</item>
         <item quantity="other">Gërhitje e mundshme: %1$s (%2$d fragmente)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Të folur: %1$d fragment</item>
-        <item quantity="other">Të folur: %1$d fragmente</item>
+        <item quantity="one">Ndoshta të folur: %1$d fragment</item>
+        <item quantity="other">Ndoshta të folur: %1$d fragmente</item>
     </plurals>
     <string name="sound_clips_title">Tingujt</string>
     <string name="sound_clip_delete">Fshi fragmentin nga %1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Hap Phase Wake në orë</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Hapi %1$d nga %2$d</string>
     <string name="onb_welcome_title">Mirë se vjen në Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake të zgjon brenda intervalit kur fle lehtë. Ora mat, telefoni bie gjithashtu.</string>
+    <string name="onb_welcome_text">Phase Wake të zgjon brenda intervalit të zgjimit sapo gjumi yt bëhet i shqetësuar – atëherë ka gjasa që fle lehtë. Jo më vonë se saktësisht në orën e synuar. Ora mat, telefoni bie gjithashtu.</string>
     <string name="onb_privacy">Të dhënat e tua mbeten në pajisjet e tua.</string>
     <string name="onb_watch_title">Lidh orën</string>
     <string name="onb_watch_ok">Ora jote është e lidhur.</string>

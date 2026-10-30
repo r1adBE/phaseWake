@@ -1,4 +1,4 @@
-Phase Wake te budi u laganom snu umjesto usred dubokog sna. U posljednjim minutama prije alarma pametni sat mjeri pokrete i puls i budi te u najboljem trenutku unutar intervala buđenja – najkasnije u ciljno vrijeme.
+Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije točno u ciljno vrijeme. Za to pametni sat u posljednjim minutama prije alarma mjeri pokrete i puls.
 
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
@@ -19,7 +19,7 @@ Spavaj bolje
 • Bilješke o snu (kava, sport, stres …) za uočavanje obrazaca.
 • Zvukovi za spavanje: kiša, more, šuma noću, potok, vatra u kaminu, ventilator, šum i valovi za san – s mjeračem vremena.
 • Snimaj hrkanje i govor u snu ako želiš – samo na tvom telefonu.
-• Kratki drijemež s buđenjem u laganom snu.
+• Kratki drijemež s buđenjem čim san postane nemiran.
 • Nježan izlazak sunca na zaslonu prije alarma.
 • Faze sna iz Health Connecta, ako želiš.
 

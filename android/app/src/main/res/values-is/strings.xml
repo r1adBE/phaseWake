@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Á fyrir nýjar nætur</string>
     <string name="sound_rec_default_hint">Byrjar þegar þú opnar Phase Wake frá háttatíma (án vekjara frá kl. 21). Aðeins stuttar upptökur; þær verða eftir í símanum og er eytt eftir 7 daga.</string>
     <string name="sound_type_snore">Hugsanlegar hrotur</string>
-    <string name="sound_type_talk">Tal</string>
+    <string name="sound_type_talk">Hugsanlegt tal</string>
     <string name="sound_type_other">Annað hljóð</string>
     <plurals name="sound_summary">
         <item quantity="one">Hugsanlegar hrotur: %1$s (%2$d upptaka)</item>
         <item quantity="other">Hugsanlegar hrotur: %1$s (%2$d upptökur)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Tal: %1$d upptaka</item>
-        <item quantity="other">Tal: %1$d upptökur</item>
+        <item quantity="one">Hugsanlegt tal: %1$d upptaka</item>
+        <item quantity="other">Hugsanlegt tal: %1$d upptökur</item>
     </plurals>
     <string name="sound_clips_title">Hljóð</string>
     <string name="sound_clip_delete">Eyða upptöku frá %1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Opnaðu Phase Wake á úrinu</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Skref %1$d af %2$d</string>
     <string name="onb_welcome_title">Velkomin(n) í Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake vekur þig innan gluggans þegar þú sefur létt. Úrið mælir, síminn hringir líka.</string>
+    <string name="onb_welcome_text">Phase Wake vekur þig innan vakningargluggans um leið og svefninn verður órólegur – þá sefur þú líklega létt. Í síðasta lagi nákvæmlega á markmiðstíma. Úrið mælir, síminn hringir líka.</string>
     <string name="onb_privacy">Gögnin þín haldast á tækjunum þínum.</string>
     <string name="onb_watch_title">Tengdu úrið</string>
     <string name="onb_watch_ok">Úrið þitt er tengt.</string>

@@ -1,4 +1,4 @@
-Phase Wake te réveille en sommeil léger plutôt qu’en plein sommeil profond. Dans les dernières minutes avant l’alarme, ton Apple Watch mesure les mouvements et le pouls, et te réveille au meilleur moment dans ta plage de réveil – au plus tard à l’heure cible.
+Phase Wake te réveille dans ta plage de réveil dès que ton sommeil devient agité – c’est alors sans doute un sommeil léger. Au plus tard, pile à l’heure cible. Pour cela, ta Apple Watch suit les mouvements et le pouls. Sur l’Apple Watch, Phase Wake mesure les 25 dernières minutes avant l’heure cible. Elle ne peut pas savoir si ta nuit a été trop courte.
 
 Comment ça marche
 • Choisis ton heure de réveil et ta plage (jusqu’à 30 min), mets ta montre, dors.
@@ -19,7 +19,7 @@ Mieux dormir
 • Notes de sommeil (café, sport, stress …) pour repérer les tendances.
 • Sons pour s’endormir : pluie, mer, forêt la nuit, ruisseau, feu de cheminée, ventilateur, bruit et ondes pour dormir – avec minuteur.
 • Enregistre tes ronflements et tes paroles pendant le sommeil si tu veux – uniquement sur ton iPhone.
-• Sieste qui te réveille en sommeil léger.
+• Sieste qui te réveille dès que ton sommeil devient agité.
 • Lever de soleil doux en mode table de chevet avant l’alarme.
 • Phases de sommeil depuis Apple Health, si tu veux.
 
@@ -31,6 +31,6 @@ Pour tout le monde
 • 74 langues, thème clair et sombre, conçu pour les personnes daltoniennes et les lecteurs d’écran.
 • Gratuit et open source : github.com/r1adBE/phaseWake
 
-Nécessite une Apple Watch pour te réveiller en sommeil léger ; l’app pour la montre est incluse. Sans montre, Phase Wake te réveille à l’heure cible sur ton iPhone.
+Nécessite une Apple Watch pour te réveiller dans ta plage de réveil ; l’app pour la montre est incluse. Sans montre, Phase Wake te réveille à l’heure cible sur ton iPhone.
 
 Phase Wake n’est pas un dispositif médical.

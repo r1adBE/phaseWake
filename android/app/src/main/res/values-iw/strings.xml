@@ -316,7 +316,7 @@
     <string name="sound_rec_default">מופעל ללילות חדשים</string>
     <string name="sound_rec_default_hint">מתחיל כשפותחים את Phase Wake משעת השינה (בלי שעון מעורר – מ־21:00). רק קטעים קצרים; הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
     <string name="sound_type_snore">נחירות אפשריות</string>
-    <string name="sound_type_talk">דיבור</string>
+    <string name="sound_type_talk">דיבור אפשרי</string>
     <string name="sound_type_other">קול אחר</string>
     <plurals name="sound_summary">
         <item quantity="one">נחירות אפשריות: %1$s (קטע %2$d)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">נחירות אפשריות: %1$s (%2$d קטעים)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">דיבור: קטע %1$d</item>
-        <item quantity="two">דיבור: %1$d קטעים</item>
-        <item quantity="other">דיבור: %1$d קטעים</item>
+        <item quantity="one">דיבור אפשרי: קטע %1$d</item>
+        <item quantity="two">דיבור אפשרי: %1$d קטעים</item>
+        <item quantity="other">דיבור אפשרי: %1$d קטעים</item>
     </plurals>
     <string name="sound_clips_title">קולות</string>
     <string name="sound_clip_delete">מחיקת הקטע מ־%1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">פתחו את Phase Wake בשעון</string>
     <string name="onb_step">שלב %1$d מתוך %2$d</string>
     <string name="onb_welcome_title">ברוכים הבאים ל-Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake מעיר אתכם בתוך החלון כשהשינה קלה. השעון מודד, וגם הטלפון מצלצל.</string>
+    <string name="onb_welcome_text">Phase Wake מעיר אתכם בתוך חלון ההשכמה ברגע שהשינה נעשית חסרת מנוחה – אז כנראה השינה קלה. לכל המאוחר בדיוק בשעת היעד. השעון מודד, וגם הטלפון מצלצל.</string>
     <string name="onb_privacy">הנתונים שלכם נשארים במכשירים שלכם.</string>
     <string name="onb_watch_title">חיבור השעון</string>
     <string name="onb_watch_ok">השעון מחובר.</string>

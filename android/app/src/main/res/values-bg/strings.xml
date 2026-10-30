@@ -308,15 +308,15 @@
     <string name="sound_rec_default">Включено за нови нощи</string>
     <string name="sound_rec_default_hint">Стартира, когато отвориш Phase Wake след часа си за лягане (без будилник – след 21:00). Само кратки записи; остават на телефона и се изтриват след 7 дни.</string>
     <string name="sound_type_snore">Възможно хъркане</string>
-    <string name="sound_type_talk">Говорене</string>
+    <string name="sound_type_talk">Възможно говорене</string>
     <string name="sound_type_other">Друг звук</string>
     <plurals name="sound_summary">
         <item quantity="one">Възможно хъркане: %1$s (%2$d запис)</item>
         <item quantity="other">Възможно хъркане: %1$s (%2$d записа)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Говорене: %1$d запис</item>
-        <item quantity="other">Говорене: %1$d записа</item>
+        <item quantity="one">Възможно говорене: %1$d запис</item>
+        <item quantity="other">Възможно говорене: %1$d записа</item>
     </plurals>
     <string name="sound_clips_title">Звуци</string>
     <string name="sound_clip_delete">Изтрий записа от %1$s</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Отвори Phase Wake на часовника</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Стъпка %1$d от %2$d</string>
     <string name="onb_welcome_title">Добре дошли в Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake те събужда в прозореца ти, когато спиш леко. Часовникът измерва, телефонът също звъни.</string>
+    <string name="onb_welcome_text">Phase Wake те събужда в прозореца за събуждане, щом сънят ти стане неспокоен – тогава вероятно спиш леко. Най-късно точно в целевия час. Часовникът измерва, телефонът също звъни.</string>
     <string name="onb_privacy">Данните ти остават на твоите устройства.</string>
     <string name="onb_watch_title">Свържи часовника</string>
     <string name="onb_watch_ok">Часовникът ти е свързан.</string>

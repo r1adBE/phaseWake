@@ -309,15 +309,15 @@
     <string name="sound_rec_default">नयाँ रातहरूका लागि अन</string>
     <string name="sound_rec_default_hint">सुत्ने समयदेखि Phase Wake खोल्दा सुरु हुन्छ (अलार्म नभए राति ९ बजेदेखि)। छोटा क्लिप मात्र; यी तिम्रो फोनमै रहन्छन् र ७ दिनपछि मेटिन्छन्।</string>
     <string name="sound_type_snore">सम्भवतः घुर्ने</string>
-    <string name="sound_type_talk">बोल्ने</string>
+    <string name="sound_type_talk">सम्भवतः बोल्ने</string>
     <string name="sound_type_other">अन्य आवाज</string>
     <plurals name="sound_summary">
         <item quantity="one">सम्भवतः घुर्ने: %1$s (%2$d क्लिप)</item>
         <item quantity="other">सम्भवतः घुर्ने: %1$s (%2$d क्लिप)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">बोल्ने: %1$d क्लिप</item>
-        <item quantity="other">बोल्ने: %1$d क्लिप</item>
+        <item quantity="one">सम्भवतः बोल्ने: %1$d क्लिप</item>
+        <item quantity="other">सम्भवतः बोल्ने: %1$d क्लिप</item>
     </plurals>
     <string name="sound_clips_title">आवाजहरू</string>
     <string name="sound_clip_delete">%1$s को क्लिप मेटाऊ</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">घडीमा Phase Wake खोल</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">चरण %2$d मध्ये %1$d</string>
     <string name="onb_welcome_title">Phase Wake मा स्वागत छ</string>
-    <string name="onb_welcome_text">निद्रा हल्का हुँदा Phase Wake ले तिमीलाई अवधिभित्र ब्युँझाउँछ। घडीले मापन गर्छ, फोन पनि बज्छ।</string>
+    <string name="onb_welcome_text">तिमी छटपटिन थाल्नेबित्तिकै Phase Wake ले तिमीलाई ब्युँझाउने अवधिभित्र ब्युँझाउँछ – त्यतिबेला सम्भवतः तिम्रो निद्रा हल्का हुन्छ। बढीमा ठ्याक्कै लक्षित समयमा। घडीले मापन गर्छ, फोन पनि बज्छ।</string>
     <string name="onb_privacy">तिम्रो डेटा तिम्रै डिभाइसमा रहन्छ।</string>
     <string name="onb_watch_title">घडी जोड</string>
     <string name="onb_watch_ok">तिम्रो घडी जोडिएको छ।</string>

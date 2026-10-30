@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Für neue Nächte einschalten</string>
     <string name="sound_rec_default_hint">Startet, wenn du Phase Wake ab deiner Bettzeit öffnest (ohne Wecker ab 21 Uhr). Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
     <string name="sound_type_snore">Möglicherweise Schnarchen</string>
-    <string name="sound_type_talk">Sprechen</string>
+    <string name="sound_type_talk">Möglicherweise Sprechen</string>
     <string name="sound_type_other">Anderes Geräusch</string>
     <plurals name="sound_summary">
         <item quantity="one">Möglicherweise Schnarchen: %1$s (%2$d Ausschnitt)</item>
         <item quantity="other">Möglicherweise Schnarchen: %1$s (%2$d Ausschnitte)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Sprechen: %1$d Ausschnitt</item>
-        <item quantity="other">Sprechen: %1$d Ausschnitte</item>
+        <item quantity="one">Möglicherweise Sprechen: %1$d Ausschnitt</item>
+        <item quantity="other">Möglicherweise Sprechen: %1$d Ausschnitte</item>
     </plurals>
     <string name="sound_clips_title">Geräusche</string>
     <string name="sound_clip_delete">Ausschnitt von %1$s löschen</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Öffne Phase Wake auf der Uhr</string>
     <string name="onb_step">Schritt %1$d von %2$d</string>
     <string name="onb_welcome_title">Willkommen bei Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake weckt dich im Weckfenster, wenn du gerade leicht schläfst. Die Uhr misst, das Handy klingelt mit.</string>
+    <string name="onb_welcome_text">Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit. Die Uhr misst, das Handy klingelt mit.</string>
     <string name="onb_privacy">Deine Daten bleiben auf deinen Geräten.</string>
     <string name="onb_watch_title">Uhr verbinden</string>
     <string name="onb_watch_ok">Deine Uhr ist verbunden.</string>

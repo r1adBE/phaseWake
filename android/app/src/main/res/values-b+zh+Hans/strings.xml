@@ -302,13 +302,13 @@
     <string name="sound_rec_default">新的夜晚默认开启</string>
     <string name="sound_rec_default_hint">从你的就寝时间起打开 Phase Wake 时开始（未设闹钟则从 21:00 起）。只保存短片段；片段留在手机上，7 天后删除。</string>
     <string name="sound_type_snore">可能打鼾</string>
-    <string name="sound_type_talk">说梦话</string>
+    <string name="sound_type_talk">可能说梦话</string>
     <string name="sound_type_other">其他声音</string>
     <plurals name="sound_summary">
         <item quantity="other">可能打鼾：%1$s（%2$d 段）</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">说梦话：%1$d 段</item>
+        <item quantity="other">可能说梦话：%1$d 段</item>
     </plurals>
     <string name="sound_clips_title">声音</string>
     <string name="sound_clip_delete">删除 %1$s 的片段</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app">在手表上打开 Phase Wake</string>
     <string name="onb_step">第 %1$d 步，共 %2$d 步</string>
     <string name="onb_welcome_title">欢迎使用 Phase Wake</string>
-    <string name="onb_welcome_text">当你睡得浅时，Phase Wake 在你的时间窗口内叫醒你。手表负责测量，手机也会响。</string>
+    <string name="onb_welcome_text">Phase Wake 会在唤醒时间窗内，一旦你睡得不安稳就叫醒你——这时你多半睡得较浅。最迟准时在目标时间。手表负责测量，手机也会响。</string>
     <string name="onb_privacy">你的数据只留在你的设备上。</string>
     <string name="onb_watch_title">连接手表</string>
     <string name="onb_watch_ok">你的手表已连接。</string>

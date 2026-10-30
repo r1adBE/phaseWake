@@ -1,4 +1,4 @@
-Phase Wake budzi cię w lekkim śnie, a nie w środku głębokiego snu. W ostatnich minutach przed budzikiem Apple Watch mierzy ruch i tętno i budzi cię w najlepszym momencie w twoim oknie budzenia – najpóźniej w czasie docelowym.
+Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokojny – wtedy prawdopodobnie śpisz płytko. Najpóźniej dokładnie o czasie docelowym. W tym celu Apple Watch śledzi ruch i tętno. Na Apple Watch Phase Wake mierzy ostatnie 25 minut przed czasem docelowym. Nie rozpozna, czy twoja noc była za krótka.
 
 Jak to działa
 • Wybierz godzinę budzenia i okno (do 30 min), załóż zegarek, śpij.
@@ -19,7 +19,7 @@ Lepszy sen
 • Notatki o śnie (kawa, sport, stres …), by dostrzec zależności.
 • Dźwięki do zasypiania: deszcz, morze, las nocą, strumyk, kominek, wentylator, szum i fale do zasypiania – z minutnikiem.
 • Nagrywanie chrapania i mówienia przez sen, jeśli chcesz – tylko na twoim iPhonie.
-• Drzemka w ciągu dnia z budzeniem w lekkim śnie.
+• Drzemka w ciągu dnia z budzeniem, gdy tylko sen staje się niespokojny.
 • Łagodny wschód słońca w trybie nocnego stolika przed budzikiem.
 • Fazy snu z Apple Health, jeśli chcesz.
 
@@ -31,6 +31,6 @@ Dla wszystkich
 • 74 języki, jasny i ciemny motyw, przystosowany dla osób z daltonizmem i czytników ekranu.
 • Za darmo i open source: github.com/r1adBE/phaseWake
 
-Do budzenia w lekkim śnie potrzebny jest Apple Watch; aplikacja na zegarek jest w zestawie. Bez zegarka Phase Wake budzi cię w czasie docelowym na iPhonie.
+Do budzenia w oknie budzenia potrzebny jest Apple Watch; aplikacja na zegarek jest w zestawie. Bez zegarka Phase Wake budzi cię w czasie docelowym na iPhonie.
 
 Phase Wake nie jest wyrobem medycznym.

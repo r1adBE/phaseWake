@@ -290,9 +290,6 @@ private struct NightCard: View {
             if let unmeasured = unmeasuredText(night) {
                 Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             }
-            if let verdict = wakeVerdict(StageCheck.stageAtWake(stages, wokeAt: night.wokeAt)) {
-                Text(verdict.text).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(verdict.good ? Color.accentColor : .red)
-            }
             DetailsRow()
         }
         .contentShape(Rectangle())

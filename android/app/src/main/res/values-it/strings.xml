@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Attiva per le nuove notti</string>
     <string name="sound_rec_default_hint">Parte quando apri Phase Wake dalla tua ora di andare a letto (senza sveglia dalle 21:00). Solo brevi estratti; restano sul telefono e vengono eliminati dopo 7 giorni.</string>
     <string name="sound_type_snore">Possibile russare</string>
-    <string name="sound_type_talk">Parlare</string>
+    <string name="sound_type_talk">Possibile parlato</string>
     <string name="sound_type_other">Altro rumore</string>
     <plurals name="sound_summary">
         <item quantity="one">Possibile russare: %1$s (%2$d estratto)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Possibile russare: %1$s (%2$d estratti)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Parlare: %1$d estratto</item>
-        <item quantity="many">Parlare: %1$d estratti</item>
-        <item quantity="other">Parlare: %1$d estratti</item>
+        <item quantity="one">Possibile parlato: %1$d estratto</item>
+        <item quantity="many">Possibile parlato: %1$d estratti</item>
+        <item quantity="other">Possibile parlato: %1$d estratti</item>
     </plurals>
     <string name="sound_clips_title">Rumori</string>
     <string name="sound_clip_delete">Elimina l’estratto delle %1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">Apri Phase Wake sull’orologio</string>
     <string name="onb_step">Passo %1$d di %2$d</string>
     <string name="onb_welcome_title">Benvenuto in Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake ti sveglia nella finestra quando dormi leggero. L’orologio misura, anche il telefono suona.</string>
+    <string name="onb_welcome_text">Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi, esattamente all’orario obiettivo. L’orologio misura, anche il telefono suona.</string>
     <string name="onb_privacy">I tuoi dati restano sui tuoi dispositivi.</string>
     <string name="onb_watch_title">Collega l’orologio</string>
     <string name="onb_watch_ok">L’orologio è collegato.</string>

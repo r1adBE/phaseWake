@@ -309,15 +309,15 @@
     <string name="sound_rec_default">नई रातों के लिए चालू</string>
     <string name="sound_rec_default_hint">सोने के समय से Phase Wake खोलने पर शुरू होता है (अलार्म न हो तो रात 9 बजे से)। सिर्फ़ छोटे अंश; ये फ़ोन पर रहते हैं और 7 दिन बाद मिट जाते हैं।</string>
     <string name="sound_type_snore">संभवतः खर्राटे</string>
-    <string name="sound_type_talk">बातचीत</string>
+    <string name="sound_type_talk">संभवतः बातचीत</string>
     <string name="sound_type_other">दूसरी आवाज़</string>
     <plurals name="sound_summary">
         <item quantity="one">संभवतः खर्राटे: %1$s (%2$d अंश)</item>
         <item quantity="other">संभवतः खर्राटे: %1$s (%2$d अंश)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">बातचीत: %1$d अंश</item>
-        <item quantity="other">बातचीत: %1$d अंश</item>
+        <item quantity="one">संभवतः बातचीत: %1$d अंश</item>
+        <item quantity="other">संभवतः बातचीत: %1$d अंश</item>
     </plurals>
     <string name="sound_clips_title">आवाज़ें</string>
     <string name="sound_clip_delete">%1$s का अंश मिटाएँ</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">वॉच पर Phase Wake खोलें</string>
     <string name="onb_step">चरण %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wake में आपका स्वागत है</string>
-    <string name="onb_welcome_text">जब आपकी नींद हल्की होती है, Phase Wake आपको आपकी विंडो में जगाता है। वॉच मापती है, फ़ोन भी बजता है।</string>
+    <string name="onb_welcome_text">जैसे ही आप बेचैन होने लगते हैं, Phase Wake आपको जागने की विंडो के भीतर जगाता है – तब आपकी नींद शायद हल्की होती है। ज़्यादा से ज़्यादा ठीक लक्ष्य समय पर। वॉच मापती है, फ़ोन भी बजता है।</string>
     <string name="onb_privacy">आपका डेटा आपके डिवाइस पर ही रहता है।</string>
     <string name="onb_watch_title">वॉच जोड़ें</string>
     <string name="onb_watch_ok">आपकी वॉच जुड़ी है।</string>

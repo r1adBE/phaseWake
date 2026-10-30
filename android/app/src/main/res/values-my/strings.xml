@@ -301,13 +301,13 @@
     <string name="sound_rec_default">ညအသစ်များအတွက် ဖွင့်ရန်</string>
     <string name="sound_rec_default_hint">အိပ်ချိန်မှစ၍ (နှိုးစက်မရှိလျှင် ည 9 နာရီမှစ၍) Phase Wake ကို ဖွင့်သည့်အခါ စတင်သည်။ အတိုလေးများသာ၊ ဖုန်းပေါ်တွင်သာ ရှိပြီး 7 ရက်အကြာတွင် ဖျက်သည်။</string>
     <string name="sound_type_snore">ဟောက်နိုင်ခြေ</string>
-    <string name="sound_type_talk">စကားပြောခြင်း</string>
+    <string name="sound_type_talk">စကားပြောနိုင်ခြေ</string>
     <string name="sound_type_other">အခြားအသံ</string>
     <plurals name="sound_summary">
         <item quantity="other">ဟောက်နိုင်ခြေ- %1$s (အသံဖိုင် %2$d ခု)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="other">စကားပြောခြင်း- အသံဖိုင် %1$d ခု</item>
+        <item quantity="other">စကားပြောနိုင်ခြေ- အသံဖိုင် %1$d ခု</item>
     </plurals>
     <string name="sound_clips_title">အသံများ</string>
     <string name="sound_clip_delete">%1$s မှ အသံဖိုင် ဖျက်ရန်</string>
@@ -382,7 +382,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">နာရီပေါ်တွင် Phase Wake ဖွင့်ပါ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">အဆင့် %2$d တွင် %1$d</string>
     <string name="onb_welcome_title">Phase Wake မှ ကြိုဆိုပါသည်</string>
-    <string name="onb_welcome_text">အိပ်ရေးပေါ့နေချိန်တွင် Phase Wake က အချိန်အပိုင်းအတွင်း နှိုးပေးသည်။ နာရီက တိုင်းတာပြီး ဖုန်းလည်း မြည်သည်။</string>
+    <string name="onb_welcome_text">Phase Wake သည် သင် မငြိမ်မသက် ဖြစ်လာသည်နှင့် နှိုးချိန်အပိုင်းအတွင်း နှိုးပေးသည် – ထိုအချိန်တွင် အိပ်ရေးပေါ့နေနိုင်ခြေများသည်။ အနောက်ကျဆုံး ပစ်မှတ်အချိန်တိတိတွင်။ နာရီက တိုင်းတာပြီး ဖုန်းလည်း မြည်သည်။</string>
     <string name="onb_privacy">သင့်ဒေတာသည် သင့်စက်များပေါ်တွင်သာ ရှိသည်။</string>
     <string name="onb_watch_title">နာရီ ချိတ်ဆက်ရန်</string>
     <string name="onb_watch_ok">နာရီ ချိတ်ဆက်ပြီးပါပြီ။</string>

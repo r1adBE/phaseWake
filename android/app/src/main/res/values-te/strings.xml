@@ -309,15 +309,15 @@
     <string name="sound_rec_default">కొత్త రాత్రులకు ఆన్</string>
     <string name="sound_rec_default_hint">మీ నిద్ర సమయం నుంచి Phase Wake తెరిచినప్పుడు మొదలవుతుంది (అలారం లేకపోతే రాత్రి 9 నుంచి). చిన్న క్లిప్‌లు మాత్రమే; అవి మీ ఫోన్‌లోనే ఉంటాయి, 7 రోజుల తర్వాత తొలగిపోతాయి.</string>
     <string name="sound_type_snore">బహుశా గురక</string>
-    <string name="sound_type_talk">మాట్లాడటం</string>
+    <string name="sound_type_talk">బహుశా మాట్లాడటం</string>
     <string name="sound_type_other">ఇతర ధ్వని</string>
     <plurals name="sound_summary">
         <item quantity="one">బహుశా గురక: %1$s (%2$d క్లిప్)</item>
         <item quantity="other">బహుశా గురక: %1$s (%2$d క్లిప్‌లు)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">మాట్లాడటం: %1$d క్లిప్</item>
-        <item quantity="other">మాట్లాడటం: %1$d క్లిప్‌లు</item>
+        <item quantity="one">బహుశా మాట్లాడటం: %1$d క్లిప్</item>
+        <item quantity="other">బహుశా మాట్లాడటం: %1$d క్లిప్‌లు</item>
     </plurals>
     <string name="sound_clips_title">ధ్వనులు</string>
     <string name="sound_clip_delete">%1$s నాటి క్లిప్ తొలగించండి</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">మీ వాచ్‌లో Phase Wake తెరవండి</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">దశ %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wakeకి స్వాగతం</string>
-    <string name="onb_welcome_text">మీ నిద్ర తేలికగా ఉన్నప్పుడు Phase Wake మిమ్మల్ని మీ వ్యవధిలో లేపుతుంది. వాచ్ కొలుస్తుంది, ఫోన్ కూడా మోగుతుంది.</string>
+    <string name="onb_welcome_text">మీరు అశాంతిగా కదలడం మొదలుపెట్టగానే Phase Wake మిమ్మల్ని నిద్రలేపే వ్యవధిలో లేపుతుంది – అప్పుడు మీ నిద్ర బహుశా తేలికగా ఉంటుంది. గరిష్ఠంగా సరిగ్గా లక్ష్య సమయానికి. వాచ్ కొలుస్తుంది, ఫోన్ కూడా మోగుతుంది.</string>
     <string name="onb_privacy">మీ డేటా మీ పరికరాల్లోనే ఉంటుంది.</string>
     <string name="onb_watch_title">మీ వాచ్‌ను కనెక్ట్ చేయండి</string>
     <string name="onb_watch_ok">మీ వాచ్ కనెక్ట్ అయింది.</string>

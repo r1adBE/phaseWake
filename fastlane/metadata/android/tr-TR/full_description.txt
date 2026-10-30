@@ -1,4 +1,4 @@
-Phase Wake seni derin uykunun ortasında değil, hafif uykuda uyandırır. Alarmdan önceki son dakikalarda akıllı saatin hareketi ve nabzı ölçer ve seni uyandırma aralığındaki en iyi anda uyandırır – en geç hedef saatte.
+Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç tam hedef saatte. Bunun için akıllı saatin alarmdan önceki son dakikalarda hareketi ve nabzı ölçer.
 
 Nasıl çalışır
 • Uyanma saatini ve aralığı seç (30 dk'ya kadar), saatini tak, uyu.
@@ -19,7 +19,7 @@ Daha iyi uyu
 • Örüntüleri görmek için uyku notları (kahve, spor, stres …).
 • Uyku sesleri: yağmur, deniz, gece ormanı, dere, şömine, vantilatör, gürültü ve uyku dalgaları – zamanlayıcıyla.
 • İstersen horlamayı ve uykuda konuşmayı kaydet – yalnızca telefonunda.
-• Hafif uykuda uyandıran şekerleme.
+• Huzursuzlanmaya başladığın anda uyandıran şekerleme.
 • Alarmdan önce ekranda yumuşak gün doğumu.
 • İstersen Health Connect'ten uyku evreleri.
 

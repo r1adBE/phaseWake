@@ -46,8 +46,6 @@ import com.phasewake.app.ui.sounds.soundSummary
 import androidx.compose.runtime.remember
 import java.io.File
 import java.time.LocalDate
-import com.phasewake.app.core.SleepStage
-import com.phasewake.app.core.StageCheck
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WakeReason
@@ -276,16 +274,6 @@ private fun NightCard(
                 modifier = Modifier.padding(top = 8.dp),
             )
             Text(nightDetails(context, night), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            if (stages.isNotEmpty()) {
-                verdict(context, stages, night)?.let { (text, good) ->
-                    Text(
-                        text,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = if (good) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
-                        modifier = Modifier.padding(top = 6.dp),
-                    )
-                }
-            }
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
             soundSummary(context, clips)?.let { CompactLine(it) }
             DetailsLink()
@@ -341,13 +329,3 @@ private fun SoundsOnlyCard(
         }
     }
 }
-
-/** Abgleich mit der Gesundheits-App, z. B. «Gesundheitsdaten: leichter Schlaf ✓». */
-private fun verdict(context: Context, stages: List<StageSpan>, night: NightRecord): Pair<String, Boolean>? =
-    when (StageCheck.stageAtWake(stages, night.wokeAt)) {
-        SleepStage.LIGHT -> context.getString(R.string.verdict_good, context.getString(R.string.stage_light)) to true
-        SleepStage.REM -> context.getString(R.string.verdict_good, context.getString(R.string.stage_rem)) to true
-        SleepStage.AWAKE -> context.getString(R.string.verdict_good, context.getString(R.string.stage_awake)) to true
-        SleepStage.DEEP -> context.getString(R.string.verdict_deep) to false
-        SleepStage.UNKNOWN, null -> null
-    }

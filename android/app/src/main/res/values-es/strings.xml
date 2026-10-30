@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Activar para noches nuevas</string>
     <string name="sound_rec_default_hint">Empieza cuando abres Phase Wake a partir de tu hora de dormir (sin alarma, desde las 21:00). Solo fragmentos cortos; se quedan en tu teléfono y se borran a los 7 días.</string>
     <string name="sound_type_snore">Posibles ronquidos</string>
-    <string name="sound_type_talk">Habla</string>
+    <string name="sound_type_talk">Posible habla</string>
     <string name="sound_type_other">Otro sonido</string>
     <plurals name="sound_summary">
         <item quantity="one">Posibles ronquidos: %1$s (%2$d fragmento)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Posibles ronquidos: %1$s (%2$d fragmentos)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Habla: %1$d fragmento</item>
-        <item quantity="many">Habla: %1$d fragmentos</item>
-        <item quantity="other">Habla: %1$d fragmentos</item>
+        <item quantity="one">Posible habla: %1$d fragmento</item>
+        <item quantity="many">Posible habla: %1$d fragmentos</item>
+        <item quantity="other">Posible habla: %1$d fragmentos</item>
     </plurals>
     <string name="sound_clips_title">Sonidos</string>
     <string name="sound_clip_delete">Borrar fragmento de las %1$s</string>
@@ -404,7 +404,7 @@
     <string name="watch_open_app">Abre Phase Wake en el reloj</string>
     <string name="onb_step">Paso %1$d de %2$d</string>
     <string name="onb_welcome_title">Te damos la bienvenida a Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake te despierta dentro de tu ventana cuando duermes ligero. El reloj mide, el teléfono también suena.</string>
+    <string name="onb_welcome_text">Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, justo a la hora objetivo. El reloj mide, el teléfono también suena.</string>
     <string name="onb_privacy">Tus datos se quedan en tus dispositivos.</string>
     <string name="onb_watch_title">Conectar el reloj</string>
     <string name="onb_watch_ok">Tu reloj está conectado.</string>

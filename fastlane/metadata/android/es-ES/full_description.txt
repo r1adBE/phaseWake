@@ -1,4 +1,4 @@
-Phase Wake te despierta en sueño ligero en lugar de en pleno sueño profundo. En los últimos minutos antes de la alarma, tu smartwatch mide el movimiento y el pulso y te despierta en el mejor momento dentro de tu ventana de despertar – como muy tarde a la hora objetivo.
+Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, justo a la hora objetivo. Para ello, tu smartwatch mide el movimiento y el pulso en los últimos minutos antes de la alarma.
 
 Cómo funciona
 • Elige la hora y la ventana (hasta 30 min), ponte el reloj y duerme.
@@ -19,7 +19,7 @@ Duerme mejor
 • Notas de sueño (café, deporte, estrés …) para detectar patrones.
 • Sonidos para dormir: lluvia, mar, bosque de noche, arroyo, chimenea, ventilador, ruido y ondas para dormir – con temporizador.
 • Graba ronquidos y lo que hablas en sueños si quieres – solo en tu móvil.
-• Siesta que te despierta en sueño ligero.
+• Siesta que te despierta en cuanto te inquietas.
 • Amanecer suave en la pantalla antes de la alarma.
 • Fases del sueño de Health Connect, si quieres.
 

@@ -316,7 +316,7 @@
     <string name="sound_rec_default">Uključeno za nove noći</string>
     <string name="sound_rec_default_hint">Pokreće se kad otvoriš Phase Wake od svog vremena za spavanje (bez alarma od 21:00). Samo kratki isječci; ostaju na tvom telefonu i brišu se nakon 7 dana.</string>
     <string name="sound_type_snore">Moguće hrkanje</string>
-    <string name="sound_type_talk">Govor</string>
+    <string name="sound_type_talk">Mogući govor</string>
     <string name="sound_type_other">Drugi zvuk</string>
     <plurals name="sound_summary">
         <item quantity="one">Moguće hrkanje: %1$s (%2$d isječak)</item>
@@ -324,9 +324,9 @@
         <item quantity="other">Moguće hrkanje: %1$s (%2$d isječaka)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Govor: %1$d isječak</item>
-        <item quantity="few">Govor: %1$d isječka</item>
-        <item quantity="other">Govor: %1$d isječaka</item>
+        <item quantity="one">Mogući govor: %1$d isječak</item>
+        <item quantity="few">Mogući govor: %1$d isječka</item>
+        <item quantity="other">Mogući govor: %1$d isječaka</item>
     </plurals>
     <string name="sound_clips_title">Zvukovi</string>
     <string name="sound_clip_delete">Izbriši isječak (%1$s)</string>
@@ -407,7 +407,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Otvori Phase Wake na satu</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Korak %1$d od %2$d</string>
     <string name="onb_welcome_title">Dobro došli u Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake te budi unutar intervala kad lagano spavaš. Sat mjeri, a zvoni i telefon.</string>
+    <string name="onb_welcome_text">Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije točno u ciljno vrijeme. Sat mjeri, a zvoni i telefon.</string>
     <string name="onb_privacy">Tvoji podaci ostaju na tvojim uređajima.</string>
     <string name="onb_watch_title">Poveži sat</string>
     <string name="onb_watch_ok">Tvoj sat je povezan.</string>

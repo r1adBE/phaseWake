@@ -308,15 +308,15 @@
     <string name="sound_rec_default">ಹೊಸ ರಾತ್ರಿಗಳಿಗೆ ಆನ್</string>
     <string name="sound_rec_default_hint">ನಿಮ್ಮ ಮಲಗುವ ಸಮಯದಿಂದ (ಅಲಾರಾಂ ಇಲ್ಲದಿದ್ದರೆ ರಾತ್ರಿ 9 ರಿಂದ) Phase Wake ತೆರೆದಾಗ ಶುರುವಾಗುತ್ತದೆ. ಚಿಕ್ಕ ಕ್ಲಿಪ್‌ಗಳು ಮಾತ್ರ; ಅವು ಫೋನ್‌ನಲ್ಲೇ ಇದ್ದು 7 ದಿನಗಳ ನಂತರ ಅಳಿಸಲಾಗುತ್ತವೆ.</string>
     <string name="sound_type_snore">ಬಹುಶಃ ಗೊರಕೆ</string>
-    <string name="sound_type_talk">ಮಾತು</string>
+    <string name="sound_type_talk">ಬಹುಶಃ ಮಾತು</string>
     <string name="sound_type_other">ಇತರ ಶಬ್ದ</string>
     <plurals name="sound_summary">
         <item quantity="one">ಬಹುಶಃ ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್)</item>
         <item quantity="other">ಬಹುಶಃ ಗೊರಕೆ: %1$s (%2$d ಕ್ಲಿಪ್‌ಗಳು)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">ಮಾತು: %1$d ಕ್ಲಿಪ್</item>
-        <item quantity="other">ಮಾತು: %1$d ಕ್ಲಿಪ್‌ಗಳು</item>
+        <item quantity="one">ಬಹುಶಃ ಮಾತು: %1$d ಕ್ಲಿಪ್</item>
+        <item quantity="other">ಬಹುಶಃ ಮಾತು: %1$d ಕ್ಲಿಪ್‌ಗಳು</item>
     </plurals>
     <string name="sound_clips_title">ಶಬ್ದಗಳು</string>
     <string name="sound_clip_delete">%1$s ರ ಕ್ಲಿಪ್ ಅಳಿಸಿ</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">ಹಂತ %2$d ರಲ್ಲಿ %1$d</string>
     <string name="onb_welcome_title">Phase Wake ಗೆ ಸ್ವಾಗತ</string>
-    <string name="onb_welcome_text">ನೀವು ಹಗುರವಾಗಿ ನಿದ್ರಿಸುತ್ತಿರುವಾಗ Phase Wake ನಿಮ್ಮ ಅವಧಿಯೊಳಗೆ ಎಬ್ಬಿಸುತ್ತದೆ. ವಾಚ್ ಅಳೆಯುತ್ತದೆ, ಫೋನ್ ಕೂಡ ರಿಂಗ್ ಆಗುತ್ತದೆ.</string>
+    <string name="onb_welcome_text">ನೀವು ಚಡಪಡಿಸಲು ಶುರುಮಾಡಿದ ತಕ್ಷಣ Phase Wake ನಿಮ್ಮನ್ನು ಎಚ್ಚರಿಸುವ ಅವಧಿಯೊಳಗೆ ಎಬ್ಬಿಸುತ್ತದೆ – ಆಗ ನೀವು ಬಹುಶಃ ಹಗುರವಾಗಿ ನಿದ್ರಿಸುತ್ತಿರುತ್ತೀರಿ. ತಡವೆಂದರೆ ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ. ವಾಚ್ ಅಳೆಯುತ್ತದೆ, ಫೋನ್ ಕೂಡ ರಿಂಗ್ ಆಗುತ್ತದೆ.</string>
     <string name="onb_privacy">ನಿಮ್ಮ ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ.</string>
     <string name="onb_watch_title">ವಾಚ್ ಸಂಪರ್ಕಿಸಿ</string>
     <string name="onb_watch_ok">ನಿಮ್ಮ ವಾಚ್ ಸಂಪರ್ಕಗೊಂಡಿದೆ.</string>

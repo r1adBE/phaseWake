@@ -1,4 +1,4 @@
-Phase Wake wekt je in lichte slaap in plaats van midden uit je diepe slaap. In de laatste minuten voor je wekker meet je Apple Watch beweging en hartslag en wekt je op het beste moment binnen je wekvenster – uiterlijk op je doeltijd.
+Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk precies op je doeltijd. Daarvoor let je Apple Watch op beweging en hartslag. Op de Apple Watch meet Phase Wake de laatste 25 minuten voor je doeltijd. Hij kan niet zien of je nacht te kort was.
 
 Zo werkt het
 • Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.
@@ -19,7 +19,7 @@ Beter slapen
 • Slaapnotities (koffie, sport, stress …) om verbanden te zien.
 • Slaapgeluiden: regen, zee, bos bij nacht, beekje, haardvuur, ventilator, ruis en slaapgolven – met timer.
 • Snurken en praten in je slaap opnemen als je wilt – alleen op je iPhone.
-• Powernap die je wekt in lichte slaap.
+• Powernap die je wekt zodra je onrustig wordt.
 • Zachte zonsopgang in de nachtkastmodus voor je wekker.
 • Slaapfasen uit Apple Health, als je wilt.
 
@@ -31,6 +31,6 @@ Voor iedereen
 • 74 talen, licht en donker ontwerp, gemaakt voor kleurenblinden en schermlezers.
 • Gratis en open source: github.com/r1adBE/phaseWake
 
-Vereist een Apple Watch om je in lichte slaap te wekken; de horloge-app zit erbij. Zonder horloge wekt Phase Wake je op je doeltijd via je iPhone.
+Vereist een Apple Watch om je binnen je wekvenster te wekken; de horloge-app zit erbij. Zonder horloge wekt Phase Wake je op je doeltijd via je iPhone.
 
 Phase Wake is geen medisch hulpmiddel.

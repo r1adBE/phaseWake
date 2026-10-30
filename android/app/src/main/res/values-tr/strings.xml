@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Yeni geceler için açık</string>
     <string name="sound_rec_default_hint">Yatma saatinden itibaren Phase Wake’i açtığında başlar (alarm yoksa 21:00’den itibaren). Yalnızca kısa parçalar; telefonunda kalır ve 7 gün sonra silinir.</string>
     <string name="sound_type_snore">Olası horlama</string>
-    <string name="sound_type_talk">Konuşma</string>
+    <string name="sound_type_talk">Olası konuşma</string>
     <string name="sound_type_other">Başka ses</string>
     <plurals name="sound_summary">
         <item quantity="one">Olası horlama: %1$s (%2$d parça)</item>
         <item quantity="other">Olası horlama: %1$s (%2$d parça)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Konuşma: %1$d parça</item>
-        <item quantity="other">Konuşma: %1$d parça</item>
+        <item quantity="one">Olası konuşma: %1$d parça</item>
+        <item quantity="other">Olası konuşma: %1$d parça</item>
     </plurals>
     <string name="sound_clips_title">Sesler</string>
     <string name="sound_clip_delete">%1$s parçasını sil</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Saatte Phase Wake’i aç</string>
     <string name="onb_step">Adım %1$d / %2$d</string>
     <string name="onb_welcome_title">Phase Wake’e hoş geldin</string>
-    <string name="onb_welcome_text">Phase Wake, hafif uyurken seni pencere içinde uyandırır. Saat ölçer, telefon da çalar.</string>
+    <string name="onb_welcome_text">Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç tam hedef saatte. Saat ölçer, telefon da çalar.</string>
     <string name="onb_privacy">Verilerin cihazlarında kalır.</string>
     <string name="onb_watch_title">Saati bağla</string>
     <string name="onb_watch_ok">Saatin bağlı.</string>

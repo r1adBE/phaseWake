@@ -2,7 +2,7 @@ import PhaseWakeCore
 import SwiftUI
 
 extension AlarmSpec {
-    /// Neuer Wecker mit denselben Vorgaben wie im iPhone-Editor: jetzige Uhrzeit, Werktage, Fenster 30 Min.
+    /// Neuer Wecker mit denselben Vorgaben wie im iPhone-Editor: jetzige Uhrzeit, Werktage, Fenster 20 Min.
     static func newOnWatch(now: Date = Date()) -> AlarmSpec {
         let c = Calendar.current.dateComponents([.hour, .minute], from: now)
         // Werte im gültigen Bereich; die Prüfung kann nicht scheitern.

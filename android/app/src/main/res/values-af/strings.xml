@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Aan vir nuwe nagte</string>
     <string name="sound_rec_default_hint">Begin wanneer jy Phase Wake vanaf jou slaaptyd oopmaak (sonder wekker vanaf 21:00). Net kort snitte; hulle bly op jou foon en word ná 7 dae uitgevee.</string>
     <string name="sound_type_snore">Moontlik snork</string>
-    <string name="sound_type_talk">Praat</string>
+    <string name="sound_type_talk">Moontlik praat</string>
     <string name="sound_type_other">Ander klank</string>
     <plurals name="sound_summary">
         <item quantity="one">Moontlik snork: %1$s (%2$d snit)</item>
         <item quantity="other">Moontlik snork: %1$s (%2$d snitte)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Praat: %1$d snit</item>
-        <item quantity="other">Praat: %1$d snitte</item>
+        <item quantity="one">Moontlik praat: %1$d snit</item>
+        <item quantity="other">Moontlik praat: %1$d snitte</item>
     </plurals>
     <string name="sound_clips_title">Klanke</string>
     <string name="sound_clip_delete">Vee snit van %1$s uit</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Maak Phase Wake op jou horlosie oop</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Stap %1$d van %2$d</string>
     <string name="onb_welcome_title">Welkom by Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake maak jou binne jou venster wakker wanneer jy lig slaap. Jou horlosie meet, jou foon lui ook.</string>
+    <string name="onb_welcome_text">Phase Wake maak jou binne jou wekvenster wakker sodra jy onrustig word – dan slaap jy waarskynlik lig. Uiterlik presies op jou teikentyd. Jou horlosie meet, jou foon lui ook.</string>
     <string name="onb_privacy">Jou data bly op jou toestelle.</string>
     <string name="onb_watch_title">Koppel jou horlosie</string>
     <string name="onb_watch_ok">Jou horlosie is gekoppel.</string>

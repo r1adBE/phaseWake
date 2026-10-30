@@ -1,4 +1,4 @@
-Phase Wake weckt dich im leichten Schlaf statt mitten aus dem Tiefschlaf. Deine Apple Watch misst in den letzten Minuten vor dem Wecker Bewegung und Puls und weckt dich im besten Moment innerhalb deines Weckfensters – spätestens zur Zielzeit.
+Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit. Dafür achtet deine Apple Watch auf Bewegung und Puls. Auf der Apple Watch misst Phase Wake die letzten 25 Minuten vor der Zielzeit. Ob du in der Nacht zu kurz geschlafen hast, erkennt sie nicht.
 
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
@@ -19,7 +19,7 @@ Besser schlafen
 • Schlafnotizen (Kaffee, Sport, Stress …), um Zusammenhänge zu sehen.
 • Einschlafklänge: Regen, Meer, Wald bei Nacht, Bach, Kaminfeuer, Ventilator, Rauschen und Einschlaf-Wellen – mit Timer.
 • Schnarchen und Sprechen im Schlaf aufnehmen, wenn du willst – nur auf deinem iPhone.
-• Powernap mit Wecken im leichten Schlaf.
+• Powernap mit Wecken, sobald du unruhig wirst.
 • Sanfter Sonnenaufgang im Nachttisch-Modus vor dem Wecken.
 • Schlafphasen aus Apple Health, wenn du willst.
 
@@ -31,6 +31,6 @@ Für alle
 • 74 Sprachen, helles und dunkles Design, für Farbenblinde und Bildschirmleser gemacht.
 • Kostenlos und quelloffen: github.com/r1adBE/phaseWake
 
-Braucht eine Apple Watch für das Wecken im leichten Schlaf; die Uhr-App ist dabei. Ohne Uhr weckt Phase Wake zur Zielzeit auf dem iPhone.
+Braucht eine Apple Watch für das Wecken im Weckfenster; die Uhr-App ist dabei. Ohne Uhr weckt Phase Wake zur Zielzeit auf dem iPhone.
 
 Phase Wake ist kein Medizinprodukt.

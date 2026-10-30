@@ -296,15 +296,15 @@
     <string name="sound_rec_default">Жаңа түндер үшін қосулы</string>
     <string name="sound_rec_default_hint">Phase Wake-ті ұйқыға жату уақытыңнан бастап ашқанда басталады (оятқыш болмаса, 21:00-ден). Тек қысқа үзінділер; олар телефоныңда қалады және 7 күннен кейін жойылады.</string>
     <string name="sound_type_snore">Мүмкін қорылдау</string>
-    <string name="sound_type_talk">Сөйлеу</string>
+    <string name="sound_type_talk">Мүмкін сөйлеу</string>
     <string name="sound_type_other">Басқа дыбыс</string>
     <plurals name="sound_summary">
         <item quantity="one">Мүмкін қорылдау: %1$s (%2$d үзінді)</item>
         <item quantity="other">Мүмкін қорылдау: %1$s (%2$d үзінді)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Сөйлеу: %1$d үзінді</item>
-        <item quantity="other">Сөйлеу: %1$d үзінді</item>
+        <item quantity="one">Мүмкін сөйлеу: %1$d үзінді</item>
+        <item quantity="other">Мүмкін сөйлеу: %1$d үзінді</item>
     </plurals>
     <string name="sound_clips_title">Дыбыстар</string>
     <string name="sound_clip_delete">%1$s үзіндісін жою</string>
@@ -380,7 +380,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Сағатыңда Phase Wake-ті аш</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">%2$d қадамның %1$d-қадамы</string>
     <string name="onb_welcome_title">Phase Wake-ке қош келдің</string>
-    <string name="onb_welcome_text">Phase Wake жеңіл ұйықтап жатқанда сені терезе ішінде оятады. Сағатың өлшейді, телефоның да шырылдайды.</string>
+    <string name="onb_welcome_text">Phase Wake сен мазасыздана бастағанда сені ояту терезесі ішінде оятады – сол кезде ұйқың жеңіл болуы ықтимал. Ең кешінде дәл мақсатты уақытта. Сағатың өлшейді, телефоның да шырылдайды.</string>
     <string name="onb_privacy">Деректерің құрылғыларыңда қалады.</string>
     <string name="onb_watch_title">Сағатыңды қос</string>
     <string name="onb_watch_ok">Сағатың қосылған.</string>

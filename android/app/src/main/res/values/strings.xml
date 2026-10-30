@@ -311,15 +311,15 @@
     <string name="sound_rec_default">On for new nights</string>
     <string name="sound_rec_default_hint">Starts when you open Phase Wake from your bedtime on (without an alarm from 9 pm). Only short clips; they stay on your phone and are deleted after 7 days.</string>
     <string name="sound_type_snore">Possible snoring</string>
-    <string name="sound_type_talk">Talking</string>
+    <string name="sound_type_talk">Possible talking</string>
     <string name="sound_type_other">Other sound</string>
     <plurals name="sound_summary">
         <item quantity="one">Possible snoring: %1$s (%2$d clip)</item>
         <item quantity="other">Possible snoring: %1$s (%2$d clips)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Talking: %1$d clip</item>
-        <item quantity="other">Talking: %1$d clips</item>
+        <item quantity="one">Possible talking: %1$d clip</item>
+        <item quantity="other">Possible talking: %1$d clips</item>
     </plurals>
     <string name="sound_clips_title">Sounds</string>
     <string name="sound_clip_delete">Delete clip from %1$s</string>
@@ -422,7 +422,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Open Phase Wake on your watch</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Step %1$d of %2$d</string>
     <string name="onb_welcome_title">Welcome to Phase Wake</string>
-    <string name="onb_welcome_text">Phase Wake wakes you within your window when you sleep lightly. Your watch measures, your phone rings too.</string>
+    <string name="onb_welcome_text">Phase Wake wakes you within your wake window as soon as you get restless – that\'s when you\'re likely sleeping lightly. At the latest, right on time. Your watch measures, your phone rings too.</string>
     <string name="onb_privacy">Your data stays on your devices.</string>
     <string name="onb_watch_title">Connect your watch</string>
     <string name="onb_watch_ok">Your watch is connected.</string>

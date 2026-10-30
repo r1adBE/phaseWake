@@ -309,15 +309,15 @@
     <string name="sound_rec_default">නව රාත්‍රි සඳහා සක්‍රියයි</string>
     <string name="sound_rec_default_hint">නින්දට යන වේලාවේ සිට Phase Wake විවෘත කළ විට ආරම්භ වේ (එලාමයක් නැතිනම් රාත්‍රී 9 සිට). කෙටි කොටස් පමණි; ඒවා ඔබේ දුරකථනයේම පවතින අතර දින 7 කට පසු මැකේ.</string>
     <string name="sound_type_snore">ගොරවීමක් විය හැක</string>
-    <string name="sound_type_talk">කතා කිරීම</string>
+    <string name="sound_type_talk">කතා කිරීමක් විය හැක</string>
     <string name="sound_type_other">වෙනත් ශබ්දය</string>
     <plurals name="sound_summary">
         <item quantity="one">ගොරවීමක් විය හැක: %1$s (කොටස් %2$d)</item>
         <item quantity="other">ගොරවීමක් විය හැක: %1$s (කොටස් %2$d)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">කතා කිරීම: කොටස් %1$d</item>
-        <item quantity="other">කතා කිරීම: කොටස් %1$d</item>
+        <item quantity="one">කතා කිරීමක් විය හැක: කොටස් %1$d</item>
+        <item quantity="other">කතා කිරීමක් විය හැක: කොටස් %1$d</item>
     </plurals>
     <string name="sound_clips_title">ශබ්ද</string>
     <string name="sound_clip_delete">%1$s කොටස මකන්න</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">ඔරලෝසුවේ Phase Wake විවෘත කරන්න</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">පියවර %2$d න් %1$d</string>
     <string name="onb_welcome_title">Phase Wake වෙත සාදරයෙන් පිළිගනිමු</string>
-    <string name="onb_welcome_text">ඔබ සැහැල්ලුවෙන් නිදන විට Phase Wake ඔබව පරාසය තුළ අවදි කරයි. ඔරලෝසුව මනියි, දුරකථනයද නාද වේ.</string>
+    <string name="onb_welcome_text">ඔබ නොසන්සුන් වීමට පටන් ගත් වහාම Phase Wake ඔබව අවදි පරාසය තුළ අවදි කරයි – එවිට ඔබ බොහෝ විට සැහැල්ලුවෙන් නිදයි. අවසන් වශයෙන් හරියටම ඉලක්ක වේලාවට. ඔරලෝසුව මනියි, දුරකථනයද නාද වේ.</string>
     <string name="onb_privacy">ඔබේ දත්ත ඔබේ උපාංගවලම පවතී.</string>
     <string name="onb_watch_title">ඔරලෝසුව සම්බන්ධ කරන්න</string>
     <string name="onb_watch_ok">ඔබේ ඔරලෝසුව සම්බන්ධයි.</string>

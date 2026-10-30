@@ -72,8 +72,8 @@ public enum WakeTask: String, CaseIterable, Sendable {
 
 /// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
-    /// Standard-Weckfenster in Minuten (zugleich das Höchste, siehe `maxWindowMinutes`).
-    public static let defaultWindowMinutes = 30
+    /// Standard-Weckfenster neuer Wecker in Minuten. Gespeicherte Wecker tragen ihr Fenster immer selbst.
+    public static let defaultWindowMinutes = 20
     /// Fensterwert für «Genau» (`isExact`): kein frühes Wecken.
     public static let exactWindow = 0
     /// Bei «Genau» misst die Uhr so viele Minuten vor der Zielzeit, nur für den Verlauf.

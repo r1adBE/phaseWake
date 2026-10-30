@@ -33,7 +33,7 @@ class AlarmScheduleTest {
     fun runningWindowKeepsTodaysTarget() {
         val plan = AlarmSchedule.nextPlan(alarm(), at("2026-10-28T06:45"), zurich)!!
         assertEquals(at("2026-10-28T07:00"), plan.target)
-        assertEquals(at("2026-10-28T06:30"), plan.windowStart)
+        assertEquals(at("2026-10-28T06:40"), plan.windowStart)
     }
 
     @Test

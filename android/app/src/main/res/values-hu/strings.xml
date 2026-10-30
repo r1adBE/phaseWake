@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Bekapcsolva az új éjszakákra</string>
     <string name="sound_rec_default_hint">Akkor indul, amikor a lefekvési időpontodtól megnyitod a Phase Wake-et (ébresztő nélkül 21:00-tól). Csak rövid részletek; a telefonon maradnak, és 7 nap után törlődnek.</string>
     <string name="sound_type_snore">Lehetséges horkolás</string>
-    <string name="sound_type_talk">Beszéd</string>
+    <string name="sound_type_talk">Lehetséges beszéd</string>
     <string name="sound_type_other">Egyéb hang</string>
     <plurals name="sound_summary">
         <item quantity="one">Lehetséges horkolás: %1$s (%2$d részlet)</item>
         <item quantity="other">Lehetséges horkolás: %1$s (%2$d részlet)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Beszéd: %1$d részlet</item>
-        <item quantity="other">Beszéd: %1$d részlet</item>
+        <item quantity="one">Lehetséges beszéd: %1$d részlet</item>
+        <item quantity="other">Lehetséges beszéd: %1$d részlet</item>
     </plurals>
     <string name="sound_clips_title">Hangok</string>
     <string name="sound_clip_delete">%1$s részlet törlése</string>
@@ -392,7 +392,7 @@
     <string name="watch_open_app">Nyisd meg a Phase Wake-et az órán</string>
     <string name="onb_step">%1$d. lépés / %2$d</string>
     <string name="onb_welcome_title">Üdv a Phase Wake-ben</string>
-    <string name="onb_welcome_text">A Phase Wake az ablakodon belül ébreszt, amikor éppen éberen alszol. Az óra mér, a telefon is csörög.</string>
+    <string name="onb_welcome_text">A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb pontosan a célidőben. Az óra mér, a telefon is csörög.</string>
     <string name="onb_privacy">Az adataid az eszközeiden maradnak.</string>
     <string name="onb_watch_title">Óra csatlakoztatása</string>
     <string name="onb_watch_ok">Az órád csatlakoztatva van.</string>

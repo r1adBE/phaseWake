@@ -308,15 +308,15 @@
     <string name="sound_rec_default">نئی راتوں کے لیے آن</string>
     <string name="sound_rec_default_hint">جب تم اپنے سونے کے وقت سے Phase Wake کھولو تو شروع ہوتی ہے (الارم کے بغیر رات 9 بجے سے)۔ صرف چھوٹے کلپس؛ یہ تمہارے فون پر رہتے ہیں اور 7 دن بعد حذف ہو جاتے ہیں۔</string>
     <string name="sound_type_snore">ممکنہ خراٹے</string>
-    <string name="sound_type_talk">باتیں کرنا</string>
+    <string name="sound_type_talk">ممکنہ باتیں</string>
     <string name="sound_type_other">دوسری آواز</string>
     <plurals name="sound_summary">
         <item quantity="one">ممکنہ خراٹے: %1$s (%2$d کلپ)</item>
         <item quantity="other">ممکنہ خراٹے: %1$s (%2$d کلپس)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">باتیں: %1$d کلپ</item>
-        <item quantity="other">باتیں: %1$d کلپس</item>
+        <item quantity="one">ممکنہ باتیں: %1$d کلپ</item>
+        <item quantity="other">ممکنہ باتیں: %1$d کلپس</item>
     </plurals>
     <string name="sound_clips_title">آوازیں</string>
     <string name="sound_clip_delete">%1$s کا کلپ حذف کرو</string>
@@ -394,7 +394,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">اپنی گھڑی پر Phase Wake کھولو</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">مرحلہ %1$d از %2$d</string>
     <string name="onb_welcome_title">Phase Wake میں خوش آمدید</string>
-    <string name="onb_welcome_text">جب تمہاری نیند ہلکی ہو، Phase Wake تمہیں تمہاری ونڈو کے اندر جگاتا ہے۔ گھڑی پیمائش کرتی ہے، فون بھی ساتھ بجتا ہے۔</string>
+    <string name="onb_welcome_text">جیسے ہی تم بے چین ہونے لگو، Phase Wake تمہیں جاگنے کی ونڈو کے اندر جگاتا ہے – اس وقت غالباً تمہاری نیند ہلکی ہوتی ہے۔ زیادہ سے زیادہ ٹھیک ہدف کے وقت پر۔ گھڑی پیمائش کرتی ہے، فون بھی ساتھ بجتا ہے۔</string>
     <string name="onb_privacy">تمہارا ڈیٹا تمہاری ڈیوائسز پر ہی رہتا ہے۔</string>
     <string name="onb_watch_title">اپنی گھڑی منسلک کرو</string>
     <string name="onb_watch_ok">تمہاری گھڑی منسلک ہے۔</string>

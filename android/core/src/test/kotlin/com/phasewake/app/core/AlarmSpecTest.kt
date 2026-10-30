@@ -20,7 +20,8 @@ class AlarmSpecTest {
         assertFailsWith<IllegalArgumentException> { AlarmSpec(id = "a", hour = 7, minute = -1) }
         assertFailsWith<IllegalArgumentException> { alarm().copy(sleepDurationMinutes = 721) }
         assertFailsWith<IllegalArgumentException> { AlarmSpec(id = "", hour = 7, minute = 0) }
-        assertEquals(AlarmSpec.MAX_WINDOW_MINUTES, alarm().windowMinutes)
+        // Neue Wecker: 20 Min; gespeicherte tragen ihr Fenster selbst (CodecTest.storedWindowIgnoresDefault).
+        assertEquals(20, alarm().windowMinutes)
     }
 
     @Test
@@ -29,7 +30,7 @@ class AlarmSpecTest {
         assertTrue(exact.isExact)
         assertEquals(AlarmSpec.MEASURE_MINUTES, exact.measureWindowMinutes)
         assertFalse(alarm().isExact)
-        assertEquals(30, alarm().measureWindowMinutes)
+        assertEquals(20, alarm().measureWindowMinutes)
         assertEquals(10, alarm().copy(windowMinutes = 10).measureWindowMinutes)
         // Zwischen 0 und 10 gibt es nichts.
         assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 5) }

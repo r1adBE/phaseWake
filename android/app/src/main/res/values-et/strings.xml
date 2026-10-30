@@ -309,15 +309,15 @@
     <string name="sound_rec_default">Uute ööde jaoks sees</string>
     <string name="sound_rec_default_hint">Algab, kui avad Phase Wake’i alates magamamineku ajast (ilma äratuseta alates kl 21). Ainult lühikesed klipid; need jäävad sinu telefoni ja kustutatakse 7 päeva pärast.</string>
     <string name="sound_type_snore">Võimalik norskamine</string>
-    <string name="sound_type_talk">Rääkimine</string>
+    <string name="sound_type_talk">Võimalik rääkimine</string>
     <string name="sound_type_other">Muu heli</string>
     <plurals name="sound_summary">
         <item quantity="one">Võimalik norskamine: %1$s (%2$d klipp)</item>
         <item quantity="other">Võimalik norskamine: %1$s (%2$d klippi)</item>
     </plurals>
     <plurals name="sound_summary_talk">
-        <item quantity="one">Rääkimine: %1$d klipp</item>
-        <item quantity="other">Rääkimine: %1$d klippi</item>
+        <item quantity="one">Võimalik rääkimine: %1$d klipp</item>
+        <item quantity="other">Võimalik rääkimine: %1$d klippi</item>
     </plurals>
     <string name="sound_clips_title">Helid</string>
     <string name="sound_clip_delete">Kustuta klipp %1$s</string>
@@ -395,7 +395,7 @@
     <string name="watch_open_app" tools:ignore="UnusedResources">Ava Phase Wake oma kellas</string>
     <string name="onb_step" tools:ignore="PluralsCandidate">Samm %1$d/%2$d</string>
     <string name="onb_welcome_title">Tere tulemast Phase Wake’i</string>
-    <string name="onb_welcome_text">Phase Wake äratab sind akna sees, kui su uni on kerge. Kell mõõdab, telefon heliseb ka.</string>
+    <string name="onb_welcome_text">Phase Wake äratab sind äratusakna sees kohe, kui su uni muutub rahutuks – siis on su uni tõenäoliselt kerge. Hiljemalt täpselt sihtajal. Kell mõõdab, telefon heliseb ka.</string>
     <string name="onb_privacy">Sinu andmed jäävad sinu seadmetesse.</string>
     <string name="onb_watch_title">Ühenda kell</string>
     <string name="onb_watch_ok">Kell on ühendatud.</string>
