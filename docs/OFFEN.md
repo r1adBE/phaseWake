@@ -12,6 +12,7 @@ Stand 30.10.2026, Phase Wake 16.2.2 (Build 41). Erledigtes wandert nach [ENTSCHE
    - Grenzfälle: `home_no_alarm_title` «Im richtigen Moment aufwachen», `health_rationale` «…den Weckmoment zu prüfen», README «Abgleich mit den Schlafphasen».
 2. **Widget mit Details von heute** (Mo 02.11., 18:00): z. B. letzte Nacht mit Schlafdauer, geweckt um, Grund, Befinden.
 3. **Schalter «Wecker auf dem Sperrbildschirm» in die Sicherung** aufnehmen (heute nicht gesichert, nach dem Wiederherstellen an).
+3a. **Nacht-Check-Karte «Vor dem Schlafen prüfen»: das ✕ schliesst nichts** (gemeldet von r1AD, 30.10.). Es ist nur das Status-Symbol «nicht bereit», sieht aber wie ein Schliessen-Knopf aus. Vorschlag: Symbol durch ⚠ ersetzen (Android + iPhone) – oder die Karte bis zum nächsten Check wegtippbar machen.
 
 ## Vor dem Store-Start
 
