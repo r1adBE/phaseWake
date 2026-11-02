@@ -31,7 +31,7 @@
 
     <string name="reason_light">Nemirno – verjetno lahek spanec</string>
     <string name="reason_awake">Že pokonci</string>
-    <string name="reason_deadline">Lahek spanec ni zaznan</string>
+    <string name="reason_deadline">V oknu ni bilo pravega trenutka</string>
     <string name="reason_exact">Natanko ob ciljnem času</string>
     <string name="reason_short_night">Kratka noč – šele ob ciljnem času</string>
     <string name="woke_early">%1$d min pred ciljnim časom · %2$s</string>
@@ -54,6 +54,7 @@
     <string name="editor_latest">Najpozneje</string>
     <string name="editor_sleep_duration">Spanec: %1$s</string>
     <string name="editor_sleep_hint">Šteje od trenutka, ko zaspiš. Ura to zazna samodejno; tapni »Lahko noč« na uri, da začne takoj.</string>
+    <string name="editor_sleep_wear_only">Način trajanja spanca deluje samo z uro Galaxy Watch. Z uro Apple Watch te ta budilka zbudi v svojem običajnem oknu do ciljnega časa.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Zbudi te med %1$s in %2$s</string>
     <string name="editor_window_exact">Natanko</string>
@@ -79,7 +80,7 @@
     <string name="history_health_live">Iz aplikacije %1$s. Spremembe in izbrise, narejene tam, Phase Wake prevzame samodejno.</string>
     <string name="history_health_live_unknown">Iz tvojih zdravstvenih podatkov. Spremembe in izbrise, narejene tam, Phase Wake prevzame samodejno.</string>
     <string name="history_average">Ø %1$d min prej</string>
-    <string name="history_light_share">%1$d %% v lahkem spancu</string>
+    <string name="history_light_share">%1$d %% zbujeno prej ob nemiru</string>
     <string name="history_export">Izvozi anonimno</string>
     <string name="history_export_subject">Noči Phase Wake (anonimno)</string>
 
@@ -136,10 +137,10 @@
     <string name="action_cancel">Prekliči</string>
     <string name="editor_advice_title">Nasvet: večje okno</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">V %1$d od zadnje %2$d noči v oknu ni bilo lahkega spanca. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
-        <item quantity="two">V %1$d od zadnjih %2$d noči v oknu ni bilo lahkega spanca. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
-        <item quantity="few">V %1$d od zadnjih %2$d noči v oknu ni bilo lahkega spanca. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
-        <item quantity="other">V %1$d od zadnjih %2$d noči v oknu ni bilo lahkega spanca. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
+        <item quantity="one">V %1$d od zadnje %2$d noči v oknu ni bilo pravega trenutka. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
+        <item quantity="two">V %1$d od zadnjih %2$d noči v oknu ni bilo pravega trenutka. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
+        <item quantity="few">V %1$d od zadnjih %2$d noči v oknu ni bilo pravega trenutka. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
+        <item quantity="other">V %1$d od zadnjih %2$d noči v oknu ni bilo pravega trenutka. S %3$d min te bo ura pogosteje zbudila ob pravem trenutku.</item>
     </plurals>
     <string name="editor_advice_apply">Uporabi %1$d min</string>
     <string name="channel_sunrise">Sončni vzhod</string>
@@ -165,6 +166,9 @@
     <string name="check_ready">Pripravljeno za nocoj</string>
     <string name="check_ready_text">Ura povezana, budilke dovoljene. Tapni za podrobnosti.</string>
     <string name="check_not_ready">Preveri pred spanjem</string>
+    <string name="check_not_ready_icon">Ni pripravljeno</string>
+    <string name="check_silent_switch_title">Rezervna budilka pred iOS 26</string>
+    <string name="check_silent_switch_text">Pred iOS 26 je rezervna budilka obvestilo: stikalo za tihi način jo utiša. Pusti zvok vklopljen ali posodobi na iOS 26.</string>
     <string name="check_watch">Ura povezana</string>
     <string name="check_watch_problem">Ura ni dosegljiva. Nosi jo, pusti Bluetooth vklopljen in enkrat odpri Phase Wake na uri.</string>
     <string name="check_notifications">Obvestila dovoljena</string>
@@ -211,10 +215,10 @@
     <string name="settings_support">Podpri Phase Wake</string>
     <string name="settings_support_text">Phase Wake je brezplačen, odprtokoden in brez oglasov. Če ti je všeč, lahko podpreš njegov razvoj.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noč brez lahkega spanca</item>
-        <item quantity="two">%1$d noči brez lahkega spanca</item>
-        <item quantity="few">%1$d noči brez lahkega spanca</item>
-        <item quantity="other">%1$d noči brez lahkega spanca</item>
+        <item quantity="one">%1$d noč brez pravega trenutka</item>
+        <item quantity="two">%1$d noči brez pravega trenutka</item>
+        <item quantity="few">%1$d noči brez pravega trenutka</item>
+        <item quantity="other">%1$d noči brez pravega trenutka</item>
     </plurals>
     <string name="hint_gaps">V meritvi so bile vrzeli. Se je ura ponoči polnila ali je bila sneta?</string>
     <string name="hint_heart">Srčnega utripa ni bilo. Ponoči nosi uro malo bolj tesno.</string>

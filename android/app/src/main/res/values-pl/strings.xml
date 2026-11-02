@@ -30,7 +30,7 @@
 
     <string name="reason_light">Niespokojnie – pewnie lekki sen</string>
     <string name="reason_awake">Już nie śpisz</string>
-    <string name="reason_deadline">Nie wykryto płytkiego snu</string>
+    <string name="reason_deadline">Brak dobrego momentu w oknie</string>
     <string name="reason_exact">Dokładnie o czasie docelowym</string>
     <string name="reason_short_night">Krótka noc – dopiero o czasie docelowym</string>
     <string name="woke_early">%1$d min przed czasem docelowym · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Najpóźniej</string>
     <string name="editor_sleep_duration">Sen: %1$s</string>
     <string name="editor_sleep_hint">Liczy od zaśnięcia. Zegarek wykrywa to automatycznie; dotknij „Dobranoc” na zegarku, aby zacząć od razu.</string>
+    <string name="editor_sleep_wear_only">Tryb czasu snu działa tylko z zegarkiem Galaxy Watch. Z Apple Watch ten budzik budzi cię w swoim zwykłym oknie do czasu docelowego.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Obudzi cię między %1$s a %2$s</string>
     <string name="editor_window_exact">Dokładnie</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Z aplikacji %1$s. Zmiany i usunięcia wprowadzone tam Phase Wake przejmuje automatycznie.</string>
     <string name="history_health_live_unknown">Z twoich danych zdrowotnych. Zmiany i usunięcia wprowadzone tam Phase Wake przejmuje automatycznie.</string>
     <string name="history_average">Ø %1$d min wcześniej</string>
-    <string name="history_light_share">%1$d %% w lekkim śnie</string>
+    <string name="history_light_share">%1$d %% obudzeń wcześniej przy niepokoju</string>
     <string name="history_export">Eksportuj anonimowo</string>
     <string name="history_export_subject">Noce Phase Wake (anonimowo)</string>
 
@@ -135,10 +136,10 @@
     <string name="action_cancel">Anuluj</string>
     <string name="editor_advice_title">Wskazówka: większe okno</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">W %1$d z ostatniej %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
-        <item quantity="few">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
-        <item quantity="many">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
-        <item quantity="other">W %1$d z ostatnich %2$d nocy w oknie nie było lekkiego snu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="one">W %1$d z ostatniej %2$d nocy w oknie nie było dobrego momentu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="few">W %1$d z ostatnich %2$d nocy w oknie nie było dobrego momentu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="many">W %1$d z ostatnich %2$d nocy w oknie nie było dobrego momentu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
+        <item quantity="other">W %1$d z ostatnich %2$d nocy w oknie nie było dobrego momentu. Przy %3$d min częściej obudzisz się w dobrym momencie.</item>
     </plurals>
     <string name="editor_advice_apply">Użyj %1$d min</string>
     <string name="channel_sunrise">Wschód słońca</string>
@@ -164,6 +165,9 @@
     <string name="check_ready">Gotowe na noc</string>
     <string name="check_ready_text">Zegarek połączony, budziki dozwolone. Dotknij, aby zobaczyć szczegóły.</string>
     <string name="check_not_ready">Sprawdź przed snem</string>
+    <string name="check_not_ready_icon">Nie gotowe</string>
+    <string name="check_silent_switch_title">Budzik zapasowy przed iOS 26</string>
+    <string name="check_silent_switch_text">Przed iOS 26 budzik zapasowy jest powiadomieniem: przełącznik wyciszenia go wycisza. Zostaw włączony dźwięk albo zaktualizuj do iOS 26.</string>
     <string name="check_watch">Zegarek połączony</string>
     <string name="check_watch_problem">Zegarek jest niedostępny. Załóż go, zostaw włączony Bluetooth i raz otwórz Phase Wake na zegarku.</string>
     <string name="check_notifications">Powiadomienia dozwolone</string>
@@ -210,10 +214,10 @@
     <string name="settings_support">Wesprzyj Phase Wake</string>
     <string name="settings_support_text">Phase Wake jest darmowy, open source i bez reklam. Jeśli ci się podoba, możesz wesprzeć jego rozwój.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noc bez lekkiego snu</item>
-        <item quantity="few">%1$d noce bez lekkiego snu</item>
-        <item quantity="many">%1$d nocy bez lekkiego snu</item>
-        <item quantity="other">%1$d nocy bez lekkiego snu</item>
+        <item quantity="one">%1$d noc bez dobrego momentu</item>
+        <item quantity="few">%1$d noce bez dobrego momentu</item>
+        <item quantity="many">%1$d nocy bez dobrego momentu</item>
+        <item quantity="other">%1$d nocy bez dobrego momentu</item>
     </plurals>
     <string name="hint_gaps">Pomiar miał luki. Czy zegarek się ładował lub był zdjęty w nocy?</string>
     <string name="hint_heart">Brakowało tętna. Noś zegarek w nocy nieco ciaśniej.</string>

@@ -28,7 +28,7 @@
 
     <string name="reason_light">Huzursuz – muhtemelen hafif uyku</string>
     <string name="reason_awake">Zaten uyanık</string>
-    <string name="reason_deadline">Hafif uyku algılanmadı</string>
+    <string name="reason_deadline">Aralıkta uygun an yoktu</string>
     <string name="reason_exact">Tam hedef saatte</string>
     <string name="reason_short_night">Kısa gece – ancak hedef saatte</string>
     <string name="woke_early">Hedeften %1$d dk önce · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">En geç</string>
     <string name="editor_sleep_duration">Uyku: %1$s</string>
     <string name="editor_sleep_hint">Uykuya daldığın andan itibaren sayar. Saatin bunu otomatik algılar; hemen başlatmak için saatte “İyi geceler”e dokun.</string>
+    <string name="editor_sleep_wear_only">Uyku süresi modu yalnızca Galaxy Watch ile çalışır. Apple Watch ile bu alarm seni normal aralığında hedef saate kadar uyandırır.</string>
     <string name="editor_window">Aralık: %1$d dk</string>
     <string name="editor_window_hint">%1$s ile %2$s arasında uyandırır</string>
     <string name="editor_window_exact">Tam</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Kaynak: %1$s. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
     <string name="history_health_live_unknown">Kaynak: sağlık verilerin. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
     <string name="history_average">Ø %1$d dk erken</string>
-    <string name="history_light_share">%%%1$d hafif uykuda</string>
+    <string name="history_light_share">%%%1$d huzursuzlanınca erken uyandırıldı</string>
     <string name="history_export">Anonim dışa aktar</string>
     <string name="history_export_subject">Phase Wake geceleri (anonim)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">İptal</string>
     <string name="editor_advice_title">İpucu: daha geniş bir aralık</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
-        <item quantity="other">Son %2$d gecenin %1$d tanesinde aralıkta hafif uyku yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
+        <item quantity="one">Son %2$d gecenin %1$d tanesinde aralıkta uygun an yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
+        <item quantity="other">Son %2$d gecenin %1$d tanesinde aralıkta uygun an yoktu. %3$d dk ile daha sık uygun bir anda uyanırsın.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d dk kullan</string>
     <string name="channel_sunrise">Gün doğumu</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Bu gece hazır</string>
     <string name="check_ready_text">Saat bağlı, alarmlara izin verildi. Ayrıntılar için dokun.</string>
     <string name="check_not_ready">Uyumadan önce kontrol et</string>
+    <string name="check_not_ready_icon">Hazır değil</string>
+    <string name="check_silent_switch_title">iOS 26 öncesi yedek alarm</string>
+    <string name="check_silent_switch_text">iOS 26 öncesinde yedek alarm bir bildirimdir: sessiz anahtarı onu sessize alır. Sesi açık bırak veya iOS 26’ya güncelle.</string>
     <string name="check_watch">Saat bağlı</string>
     <string name="check_watch_problem">Saatine ulaşılamıyor. Tak, Bluetooth’u açık tut ve saatte Phase Wake’i bir kez aç.</string>
     <string name="check_notifications">Bildirimlere izin verildi</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Phase Wake’i destekle</string>
     <string name="settings_support_text">Phase Wake ücretsiz, açık kaynaklı ve reklamsız. Beğendiysen geliştirilmesini destekleyebilirsin.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d gece hafif uyku yok</item>
-        <item quantity="other">%1$d gece hafif uyku yok</item>
+        <item quantity="one">%1$d gece uygun an yok</item>
+        <item quantity="other">%1$d gece uygun an yok</item>
     </plurals>
     <string name="hint_gaps">Ölçümde boşluklar vardı. Saat geceleri şarjda mıydı yoksa çıkarılmış mıydı?</string>
     <string name="hint_heart">Nabız verisi eksikti. Saati geceleri biraz daha sıkı tak.</string>

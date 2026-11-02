@@ -29,7 +29,7 @@
 
     <string name="reason_light">Agitato – probabilmente sonno leggero</string>
     <string name="reason_awake">Già sveglio</string>
-    <string name="reason_deadline">Nessun sonno leggero rilevato</string>
+    <string name="reason_deadline">Nessun momento giusto nella finestra</string>
     <string name="reason_exact">Esattamente all’orario obiettivo</string>
     <string name="reason_short_night">Notte breve – solo all’orario obiettivo</string>
     <string name="woke_early">%1$d min prima dell\'orario obiettivo · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">Al più tardi</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
     <string name="editor_sleep_hint">Conta da quando ti addormenti. Lo smartwatch lo rileva in automatico; tocca «Buonanotte» sullo smartwatch per iniziare subito.</string>
+    <string name="editor_sleep_wear_only">La modalità durata del sonno funziona solo con un Galaxy Watch. Con un Apple Watch questa sveglia ti sveglia nella sua finestra normale fino all’orario obiettivo.</string>
     <string name="editor_window">Finestra: %1$d min</string>
     <string name="editor_window_hint">Ti sveglia tra le %1$s e le %2$s</string>
     <string name="editor_window_exact">Esatto</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">Da %1$s. Phase Wake applica automaticamente le modifiche e le eliminazioni fatte lì.</string>
     <string name="history_health_live_unknown">Dai tuoi dati di salute. Phase Wake applica automaticamente le modifiche e le eliminazioni fatte lì.</string>
     <string name="history_average">Ø %1$d min prima</string>
-    <string name="history_light_share">%1$d %% nel sonno leggero</string>
+    <string name="history_light_share">%1$d %% svegliati prima per agitazione</string>
     <string name="history_export">Esporta in forma anonima</string>
     <string name="history_export_subject">Notti Phase Wake (anonime)</string>
 
@@ -134,9 +135,9 @@
     <string name="action_cancel">Annulla</string>
     <string name="editor_advice_title">Consiglio: una finestra più ampia</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">In %1$d dell’ultima notte (%2$d) non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
-        <item quantity="many">In %1$d delle ultime %2$d notti non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
-        <item quantity="other">In %1$d delle ultime %2$d notti non c’era sonno leggero nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+        <item quantity="one">In %1$d dell’ultima notte (%2$d) non c’era un momento giusto nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+        <item quantity="many">In %1$d delle ultime %2$d notti non c’era un momento giusto nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
+        <item quantity="other">In %1$d delle ultime %2$d notti non c’era un momento giusto nella finestra. Con %3$d min ti sveglierai più spesso al momento giusto.</item>
     </plurals>
     <string name="editor_advice_apply">Usa %1$d min</string>
     <string name="channel_sunrise">Alba</string>
@@ -161,6 +162,9 @@
     <string name="check_ready">Pronto per stanotte</string>
     <string name="check_ready_text">Orologio connesso, sveglie consentite. Tocca per i dettagli.</string>
     <string name="check_not_ready">Controlla prima di dormire</string>
+    <string name="check_not_ready_icon">Non pronto</string>
+    <string name="check_silent_switch_title">Sveglia di riserva prima di iOS 26</string>
+    <string name="check_silent_switch_text">Prima di iOS 26 la sveglia di riserva è una notifica: l’interruttore silenzioso la rende muta. Lascia il suono attivo o aggiorna a iOS 26.</string>
     <string name="check_watch">Orologio connesso</string>
     <string name="check_watch_problem">Il tuo orologio non è raggiungibile. Indossalo, tieni attivo il Bluetooth e apri Phase Wake sull’orologio una volta.</string>
     <string name="check_notifications">Notifiche consentite</string>
@@ -207,9 +211,9 @@
     <string name="settings_support">Sostieni Phase Wake</string>
     <string name="settings_support_text">Phase Wake è gratuita, open source e senza pubblicità. Se ti piace, puoi sostenerne lo sviluppo.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d notte senza sonno leggero</item>
-        <item quantity="many">%1$d notti senza sonno leggero</item>
-        <item quantity="other">%1$d notti senza sonno leggero</item>
+        <item quantity="one">%1$d notte senza un momento giusto</item>
+        <item quantity="many">%1$d notti senza un momento giusto</item>
+        <item quantity="other">%1$d notti senza un momento giusto</item>
     </plurals>
     <string name="hint_gaps">La misurazione aveva delle lacune. L\'orologio era in carica o tolto di notte?</string>
     <string name="hint_heart">Mancava la frequenza cardiaca. Porta l\'orologio un po\' più stretto di notte.</string>

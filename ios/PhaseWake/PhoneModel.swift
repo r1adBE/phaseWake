@@ -141,6 +141,7 @@ final class PhoneModel {
     func add(night: NightRecord) {
         storage.add(night)
         nights = storage.nights()
+        PhoneWidgetSync.publishNight(self)
         // Früh geweckt: Die nächste Nacht beginnt jetzt, die Erinnerung richtet sich danach.
         Task { await replanBedtime() }
         Task { await replanWeekly() }
@@ -149,6 +150,7 @@ final class PhoneModel {
     func setFeeling(_ feeling: Int, for night: NightRecord) {
         storage.setFeeling(feeling, alarmId: night.alarmId, windowStart: night.windowStart)
         nights = storage.nights()
+        PhoneWidgetSync.publishNight(self)
         Task { await replanWeekly() }
     }
 
@@ -391,9 +393,4 @@ extension PhoneModel {
     func replanWeekly() async {
         await weekly.reschedule(model: self)
     }
-}
-
-extension SleepNote {
-    /// Textschlüssel wie Android («note_caffeine» …).
-    var textKey: String { "note_" + rawValue.lowercased() }
 }

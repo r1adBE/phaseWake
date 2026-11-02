@@ -34945,6 +34945,454 @@
         }
       }
     },
+    "check_not_ready_icon": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie gereed nie"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ዝግጁ አይደለም"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غير جاهز"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazır deyil"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не е готово"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রস্তুত নয়"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nije spremno"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No està a punt"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nepřipraveno"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke klar"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht bereit"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν είναι έτοιμο"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not ready"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No está listo"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pole valmis"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ez dago prest"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آماده نیست"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ei valmis"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi pa handa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas prêt"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Níl sé réidh"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non está listo"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તૈયાર નથી"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא מוכן"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तैयार नहीं"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nije spremno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nincs kész"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Պատրաստ չէ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belum siap"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekki tilbúið"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non pronto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "準備未完了"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მზად არ არის"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дайын емес"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "មិនទាន់រួចរាល់"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಿದ್ಧವಾಗಿಲ್ಲ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "준비 안 됨"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຍັງບໍ່ພ້ອມ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neparuošta"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nav gatavs"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не е подготвено"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "തയ്യാറല്ല"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бэлэн биш"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तयार नाही"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belum sedia"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အဆင်သင့်မဖြစ်သေး"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke klar"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तयार छैन"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet klaar"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤਿਆਰ ਨਹੀਂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie gotowe"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não está pronto"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não está pronto"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu e gata"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не готово"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සූදානම් නැත"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nepripravené"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ni pripravljeno"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jo gati"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Није спремно"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte redo"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haiko tayari"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தயாராக இல்லை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సిద్ధంగా లేదు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ยังไม่พร้อม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazır değil"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не готово"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تیار نہیں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayyor emas"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chưa sẵn sàng"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未準備好"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未就绪"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未就緒"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akukalungi"
+          }
+        }
+      }
+    },
     "check_notifications": {
       "localizations": {
         "af": {
@@ -36733,6 +37181,902 @@
           "stringUnit": {
             "state": "translated",
             "value": "Iwashi lixhunyiwe, ama-alamu avunyelwe. Thepha ukuze uthole imininingwane."
+          }
+        }
+      }
+    },
+    "check_silent_switch_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voor iOS 26 is die rugsteunwekker ’n kennisgewing: die stilskakelaar maak dit stil. Hou die klank aan of dateer op na iOS 26."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከiOS 26 በፊት ተጠባባቂ ማንቂያው ማሳወቂያ ነው፦ የድምፅ ማጥፊያ ማብሪያው ጸጥ ያደርገዋል። ድምፁን ያብሩት ወይም ወደ iOS 26 ያዘምኑ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبل iOS 26 يكون المنبّه الاحتياطي إشعارًا: مفتاح الصامت يكتم صوته. أبقِ الصوت مفعّلًا أو حدّث إلى iOS 26."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-dan əvvəl ehtiyat siqnal bildirişdir: səssiz açarı onu susdurur. Səsi açıq saxla və ya iOS 26-ya yenilə."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Преди iOS 26 резервният будилник е известие: превключвателят за тих режим го заглушава. Остави звука включен или обнови до iOS 26."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-এর আগে ব্যাকআপ অ্যালার্ম একটি নোটিফিকেশন: সাইলেন্ট সুইচ এটিকে নিঃশব্দ করে দেয়। শব্দ চালু রাখো বা iOS 26-এ আপডেট করো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prije iOS-a 26 rezervni alarm je obavijest: prekidač za tišinu ga utišava. Ostavi zvuk uključen ili ažuriraj na iOS 26."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abans d’iOS 26, l’alarma de reserva és una notificació: l’interruptor de silenci la silencia. Deixa el so activat o actualitza a iOS 26."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Před iOS 26 je záložní budík oznámení: přepínač ztlumení ho umlčí. Nech zvuk zapnutý nebo aktualizuj na iOS 26."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Før iOS 26 er reservealarmen en notifikation: lydløs-knappen gør den lydløs. Lad lyden være slået til, eller opdater til iOS 26."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Lass den Ton an oder aktualisiere auf iOS 26."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πριν το iOS 26 το εφεδρικό ξυπνητήρι είναι ειδοποίηση: ο διακόπτης σίγασης το κάνει αθόρυβο. Άφησε τον ήχο ανοιχτό ή κάνε ενημέρωση στο iOS 26."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before iOS 26, the backup alarm is a notification: the silent switch mutes it. Keep the sound on or update to iOS 26."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes de iOS 26, la alarma de respaldo es una notificación: el interruptor de silencio la silencia. Deja el sonido activado o actualiza a iOS 26."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enne iOS 26 on varuäratus teavitus: vaikse režiimi lüliti teeb selle hääletuks. Jäta heli sisse või uuenda iOS 26-le."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 baino lehen, ordezko alarma jakinarazpen bat da: isiltasun-etengailuak isildu egiten du. Utzi soinua aktibatuta edo eguneratu iOS 26ra."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پیش از iOS 26 زنگ پشتیبان یک اعلان است: کلید بی‌صدا آن را بی‌صدا می‌کند. صدا را روشن نگه دار یا به iOS 26 به‌روزرسانی کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ennen iOS 26:ta varaherätys on ilmoitus: äänetön-kytkin mykistää sen. Pidä äänet päällä tai päivitä iOS 26:een."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bago ang iOS 26, notification ang backup na alarm: pinapatahimik ito ng silent switch. Panatilihing naka-on ang tunog o mag-update sa iOS 26."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant iOS 26, l’alarme de secours est une notification : le bouton silencieux la rend muette. Laisse le son activé ou passe à iOS 26."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roimh iOS 26, is fógra é an t-aláram cúltaca: cuireann an lasc chiúin ina thost é. Fág an fhuaim air nó nuashonraigh go iOS 26."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes de iOS 26, a alarma de reserva é unha notificación: o interruptor de silencio silénciaa. Deixa o son activado ou actualiza a iOS 26."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 પહેલાં બેકઅપ એલાર્મ એક સૂચના છે: સાયલન્ટ સ્વિચ તેને શાંત કરી દે છે. અવાજ ચાલુ રાખો અથવા iOS 26 પર અપડેટ કરો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לפני iOS 26 מעורר הגיבוי הוא התראה: מתג ההשתקה משתיק אותו. כדאי להשאיר את הצליל פועל או לעדכן ל-iOS 26."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 से पहले बैकअप अलार्म एक सूचना है: साइलेंट स्विच उसे खामोश कर देता है। आवाज़ चालू रखो या iOS 26 पर अपडेट करो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prije iOS-a 26 rezervni alarm je obavijest: prekidač za tišinu ga utišava. Ostavi zvuk uključen ili ažuriraj na iOS 26."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 előtt a tartalék ébresztő értesítés: a némítókapcsoló elnémítja. Hagyd bekapcsolva a hangot, vagy frissíts iOS 26-ra."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-ից առաջ պահուստային զարթուցիչը ծանուցում է․ անձայն ռեժիմի փոխանջատիչը լռեցնում է այն։ Ձայնը միացված թող կամ թարմացրու iOS 26-ի։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sebelum iOS 26, alarm cadangan berupa notifikasi: sakelar senyap membuatnya tanpa suara. Biarkan suara tetap aktif atau perbarui ke iOS 26."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fyrir iOS 26 er varavekjarinn tilkynning: hljóðlausi rofinn þaggar hann. Hafðu hljóðið á eða uppfærðu í iOS 26."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima di iOS 26 la sveglia di riserva è una notifica: l’interruttore silenzioso la rende muta. Lascia il suono attivo o aggiorna a iOS 26."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 より前では、バックアップアラームは通知です。消音スイッチで音が出なくなります。サウンドをオンのままにするか、iOS 26 にアップデートしてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-მდე სარეზერვო მაღვიძარა შეტყობინებაა: უხმო რეჟიმის გადამრთველი მას ადუმებს. დატოვე ხმა ჩართული ან განაახლე iOS 26-მდე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-ға дейін қосалқы оятқыш хабарландыру болып табылады: дыбыссыз режим қосқышы оны үнсіз етеді. Дыбысты қосулы қалдыр немесе iOS 26-ға жаңарт."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "មុន iOS 26 ម៉ោងរោទ៍បម្រុងគឺជាការជូនដំណឹង៖ កុងតាក់ស្ងាត់ធ្វើឱ្យវាគ្មានសំឡេង។ ទុកសំឡេងឱ្យបើក ឬដំឡើងទៅ iOS 26។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಒಂದು ಅಧಿಸೂಚನೆ: ಸೈಲೆಂಟ್ ಸ್ವಿಚ್ ಅದನ್ನು ನಿಶ್ಶಬ್ದಗೊಳಿಸುತ್ತದೆ. ಧ್ವನಿಯನ್ನು ಆನ್‌ನಲ್ಲಿಡಿ ಅಥವಾ iOS 26 ಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 이전에는 백업 알람이 알림이에요. 무음 스위치를 켜면 소리가 나지 않아요. 소리를 켜 두거나 iOS 26으로 업데이트하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ກ່ອນ iOS 26 ໂມງປຸກສຳຮອງເປັນການແຈ້ງເຕືອນ: ສະວິດປິດສຽງຈະເຮັດໃຫ້ມັນງຽບ. ເປີດສຽງໄວ້ ຫຼື ອັບເດດເປັນ iOS 26."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iki iOS 26 atsarginis žadintuvas yra pranešimas: tylos jungiklis jį nutildo. Palik garsą įjungtą arba atnaujink į iOS 26."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirms iOS 26 rezerves modinātājs ir paziņojums: klusuma slēdzis to apklusina. Atstāj skaņu ieslēgtu vai atjaunini uz iOS 26."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пред iOS 26 резервниот аларм е известување: прекинувачот за тивок режим го стишува. Остави го звукот вклучен или ажурирај на iOS 26."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-ന് മുമ്പ് ബാക്കപ്പ് അലാറം ഒരു അറിയിപ്പാണ്: സൈലന്റ് സ്വിച്ച് അതിനെ നിശ്ശബ്ദമാക്കും. ശബ്ദം ഓണാക്കി വയ്ക്കുക അല്ലെങ്കിൽ iOS 26-ലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-аас өмнө нөөц сэрүүлэг нь мэдэгдэл байдаг: дуугүй горимын унтраалга түүнийг дуугүй болгоно. Дууг асаалттай үлдээ эсвэл iOS 26 руу шинэчил."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 पूर्वी बॅकअप अलार्म ही एक सूचना असते: सायलेंट स्विच तिला शांत करतो. आवाज चालू ठेवा किंवा iOS 26 वर अपडेट करा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sebelum iOS 26, penggera sandaran ialah pemberitahuan: suis senyap menyenyapkannya. Biarkan bunyi dihidupkan atau kemas kini ke iOS 26."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 မတိုင်မီ အရန်နှိုးစက်သည် အသိပေးချက်တစ်ခုဖြစ်သည်- အသံပိတ်ခလုတ်က ၎င်းကို အသံတိတ်စေသည်။ အသံကို ဖွင့်ထားပါ သို့မဟုတ် iOS 26 သို့ အပ်ဒိတ်လုပ်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Før iOS 26 er reservealarmen et varsel: lydløsbryteren demper den. La lyden være på, eller oppdater til iOS 26."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 अघि ब्याकअप अलार्म एउटा सूचना हो: साइलेन्ट स्विचले यसलाई मौन बनाउँछ। आवाज खुला राख वा iOS 26 मा अपडेट गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vóór iOS 26 is de reservewekker een melding: de stilteschakelaar maakt hem geluidloos. Laat het geluid aan of werk bij naar iOS 26."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ ਇੱਕ ਸੂਚਨਾ ਹੈ: ਸਾਈਲੈਂਟ ਸਵਿੱਚ ਇਸਨੂੰ ਚੁੱਪ ਕਰ ਦਿੰਦਾ ਹੈ। ਆਵਾਜ਼ ਚਾਲੂ ਰੱਖੋ ਜਾਂ iOS 26 ’ਤੇ ਅੱਪਡੇਟ ਕਰੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przed iOS 26 budzik zapasowy jest powiadomieniem: przełącznik wyciszenia go wycisza. Zostaw włączony dźwięk albo zaktualizuj do iOS 26."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes do iOS 26, o alarme reserva é uma notificação: a chave de silêncio o deixa mudo. Mantenha o som ligado ou atualize para o iOS 26."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes do iOS 26, o alarme de reserva é uma notificação: o interruptor de silêncio silencia-o. Mantém o som ligado ou atualiza para o iOS 26."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Înainte de iOS 26, alarma de rezervă este o notificare: comutatorul de silențios o face mută. Lasă sunetul pornit sau actualizează la iOS 26."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "До iOS 26 резервный будильник — это уведомление: переключатель беззвучного режима делает его беззвучным. Оставь звук включённым или обнови iOS до 26."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ට පෙර උපස්ථ එලාමය දැනුම්දීමකි: නිහඬ ස්විචය එය නිහඬ කරයි. ශබ්දය සක්‍රියව තබන්න හෝ iOS 26 වෙත යාවත්කාලීන කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pred iOS 26 je záložný budík upozornenie: prepínač tichého režimu ho stlmí. Nechaj zvuk zapnutý alebo aktualizuj na iOS 26."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pred iOS 26 je rezervna budilka obvestilo: stikalo za tihi način jo utiša. Pusti zvok vklopljen ali posodobi na iOS 26."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para iOS 26, alarmi rezervë është një njoftim: çelësi i heshtjes e hesht. Mbaje zërin aktiv ose përditëso në iOS 26."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пре iOS-а 26 резервни аларм је обавештење: прекидач за тишину га утишава. Остави звук укључен или ажурирај на iOS 26."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Före iOS 26 är reservlarmet en notis: ljudlös-reglaget tystar det. Låt ljudet vara på eller uppdatera till iOS 26."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kabla ya iOS 26, kengele ya akiba ni arifa: swichi ya kimya huinyamazisha. Acha sauti ikiwa imewashwa au sasisha hadi iOS 26."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-க்கு முன் மாற்று அலாரம் ஒரு அறிவிப்பு: சைலண்ட் சுவிட்ச் அதை ஒலியில்லாமல் ஆக்கும். ஒலியை இயக்கத்திலேயே வையுங்கள் அல்லது iOS 26-க்குப் புதுப்பியுங்கள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 కి ముందు బ్యాకప్ అలారం ఒక నోటిఫికేషన్: సైలెంట్ స్విచ్ దాన్ని నిశ్శబ్దం చేస్తుంది. సౌండ్‌ను ఆన్‌లో ఉంచండి లేదా iOS 26 కి అప్‌డేట్ చేయండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ก่อน iOS 26 นาฬิกาปลุกสำรองเป็นการแจ้งเตือน: สวิตช์ปิดเสียงจะทำให้ไม่มีเสียง เปิดเสียงไว้หรืออัปเดตเป็น iOS 26"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 öncesinde yedek alarm bir bildirimdir: sessiz anahtarı onu sessize alır. Sesi açık bırak veya iOS 26’ya güncelle."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "До iOS 26 резервний будильник — це сповіщення: перемикач беззвучного режиму вимикає його звук. Залиш звук увімкненим або онови до iOS 26."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 سے پہلے بیک اپ الارم ایک اطلاع ہے: سائلنٹ سوئچ اسے خاموش کر دیتا ہے۔ آواز آن رکھو یا iOS 26 پر اپ ڈیٹ کرو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 dan oldin zaxira budilnik bildirishnoma hisoblanadi: ovozsiz rejim tugmasi uni ovozsiz qiladi. Ovozni yoqiq qoldir yoki iOS 26 ga yangila."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trước iOS 26, báo thức dự phòng là một thông báo: công tắc im lặng sẽ làm nó không kêu. Hãy để bật âm thanh hoặc cập nhật lên iOS 26."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "喺 iOS 26 之前，備用鬧鐘係一則通知：靜音掣會令佢冇聲。請保持鈴聲開啟，或更新至 iOS 26。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iOS 26 之前，备用闹钟是一条通知：静音开关会让它没有声音。请保持铃声开启，或更新到 iOS 26。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iOS 26 之前，備用鬧鐘是一則通知：靜音開關會讓它沒有聲音。請保持鈴聲開啟，或更新至 iOS 26。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngaphambi kwe-iOS 26, i-alamu yokwesekwa iyisaziso: inkinobho yokuthula iyayithulisa. Shiya umsindo uvuliwe noma buyekeza ku-iOS 26."
+          }
+        }
+      }
+    },
+    "check_silent_switch_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rugsteunwekker voor iOS 26"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከiOS 26 በፊት ተጠባባቂ ማንቂያ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبّه الاحتياطي قبل iOS 26"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-dan əvvəl ehtiyat siqnal"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервен будилник преди iOS 26"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-এর আগে ব্যাকআপ অ্যালার্ম"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervni alarm prije iOS-a 26"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma de reserva abans d’iOS 26"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záložní budík před iOS 26"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservealarm før iOS 26"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zweitwecker vor iOS 26"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Εφεδρικό ξυπνητήρι πριν το iOS 26"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup alarm before iOS 26"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma de respaldo antes de iOS 26"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varuäratus enne iOS 26"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordezko alarma iOS 26 baino lehen"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ پشتیبان پیش از iOS 26"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varaherätys ennen iOS 26:ta"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup na alarm bago ang iOS 26"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme de secours avant iOS 26"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aláram cúltaca roimh iOS 26"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma de reserva antes de iOS 26"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 પહેલાં બેકઅપ એલાર્મ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מעורר גיבוי לפני iOS 26"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 से पहले बैकअप अलार्म"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervni alarm prije iOS-a 26"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tartalék ébresztő iOS 26 előtt"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Պահուստային զարթուցիչ iOS 26-ից առաջ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm cadangan sebelum iOS 26"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varavekjari fyrir iOS 26"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglia di riserva prima di iOS 26"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 より前のバックアップアラーム"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სარეზერვო მაღვიძარა iOS 26-მდე"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-ға дейінгі қосалқы оятқыш"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងរោទ៍បម្រុងមុន iOS 26"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 이전 백업 알람"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງປຸກສຳຮອງກ່ອນ iOS 26"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atsarginis žadintuvas iki iOS 26"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezerves modinātājs pirms iOS 26"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервен аларм пред iOS 26"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-ന് മുമ്പുള്ള ബാക്കപ്പ് അലാറം"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-аас өмнөх нөөц сэрүүлэг"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 पूर्वी बॅकअप अलार्म"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera sandaran sebelum iOS 26"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 မတိုင်မီ အရန်နှိုးစက်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservealarm før iOS 26"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 अघिको ब्याकअप अलार्म"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservewekker vóór iOS 26"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budzik zapasowy przed iOS 26"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme reserva antes do iOS 26"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme de reserva antes do iOS 26"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmă de rezervă înainte de iOS 26"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервный будильник до iOS 26"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ට පෙර උපස්ථ එලාමය"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záložný budík pred iOS 26"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervna budilka pred iOS 26"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmi rezervë para iOS 26"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервни аларм пре iOS-а 26"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservlarm före iOS 26"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kengele ya akiba kabla ya iOS 26"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26-க்கு முன் மாற்று அலாரம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 కి ముందు బ్యాకప్ అలారం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาปลุกสำรองก่อน iOS 26"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 öncesi yedek alarm"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервний будильник до iOS 26"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 سے پہلے بیک اپ الارم"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 dan oldingi zaxira budilnik"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Báo thức dự phòng trước iOS 26"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 之前的備用鬧鐘"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 之前的备用闹钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 之前的備用鬧鐘"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-alamu yokwesekwa ngaphambi kwe-iOS 26"
           }
         }
       }
@@ -60180,79 +61524,79 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليالٍ لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevila žádná vhodná chvíle. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní raibh codladh éadrom san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
+            "value": "Ní raibh nóiméad maith san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per %1$lld iš paskutinių %2$lld naktų lange nebuvo lengvo miego. Su %3$lld min dažniau pabusi tinkamu metu."
+            "value": "Per %1$lld iš paskutinių %2$lld naktų lange nebuvo tinkamo momento. Su %3$lld min dažniau pabusi tinkamu metu."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było dobrego momentu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "În %1$lld din ultimele %2$lld nopți nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+            "value": "În %1$lld din ultimele %2$lld nopți nu a fost niciun moment bun în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld из последних %2$lld ночей в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+            "value": "В %1$lld из последних %2$lld ночей в окне не было удачного момента. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledných %2$lld nocí nebol v okne ľahký spánok. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
+            "value": "V %1$lld z posledných %2$lld nocí nebola v okne vhodná chvíľa. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo lahkega spanca. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
+            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo pravega trenutka. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld од последње %2$lld ноћи у интервалу није било лаганог сна. Са %3$lld мин чешће ћеш се будити у добром тренутку."
+            "value": "У %1$lld од последње %2$lld ноћи у интервалу није било доброг тренутка. Са %3$lld мин чешће ћеш се будити у добром тренутку."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld з останніх %2$lld ночей у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+            "value": "У %1$lld з останніх %2$lld ночей у вікні не було слушного моменту. З %3$lld хв ти частіше прокидатимешся у слушний момент."
           }
         }
       }
@@ -60262,85 +61606,85 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de les últimes %2$lld nits no hi va haver son lleuger a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
+            "value": "En %1$lld de les últimes %2$lld nits no hi va haver cap bon moment a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevila žádná vhodná chvíle. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de las últimas %2$lld noches no hubo sueño ligero dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
+            "value": "En %1$lld de las últimas %2$lld noches no hubo un buen momento dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de bon moment dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní raibh codladh éadrom san fhuinneog i %1$lld as na %2$lld n-oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
+            "value": "Ní raibh nóiméad maith san fhuinneog i %1$lld as na %2$lld n-oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld delle ultime %2$lld notti non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+            "value": "In %1$lld delle ultime %2$lld notti non c’era un momento giusto nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per %1$lld iš paskutinių %2$lld nakties lange nebuvo lengvo miego. Su %3$lld min dažniau pabusi tinkamu metu."
+            "value": "Per %1$lld iš paskutinių %2$lld nakties lange nebuvo tinkamo momento. Su %3$lld min dažniau pabusi tinkamu metu."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było dobrego momentu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
+            "value": "Em %1$lld das últimas %2$lld noites não houve um bom momento na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
+            "value": "Em %1$lld das últimas %2$lld noites não houve um bom momento na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld из последних %2$lld ночей в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+            "value": "В %1$lld из последних %2$lld ночей в окне не было удачного момента. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledných %2$lld noci nebol v okne ľahký spánok. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
+            "value": "V %1$lld z posledných %2$lld noci nebola v okne vhodná chvíľa. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld з останніх %2$lld ночей у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+            "value": "У %1$lld з останніх %2$lld ночей у вікні не було слушного моменту. З %3$lld хв ти частіше прокидатимешся у слушний момент."
           }
         }
       }
@@ -60350,373 +61694,373 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld van die laaste %2$lld nag was daar geen ligte slaap in die venster nie. Met %3$lld min word jy meer dikwels op ’n goeie oomblik wakker."
+            "value": "In %1$lld van die laaste %2$lld nag was daar geen goeie oomblik in die venster nie. Met %3$lld min word jy meer dikwels op ’n goeie oomblik wakker."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ካለፉት %2$lld ሌሊት ውስጥ በ%1$lld ሌሊት በክልሉ ውስጥ ቀላል እንቅልፍ አልነበረም። በ%3$lld ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።"
+            "value": "ካለፉት %2$lld ሌሊት ውስጥ በ%1$lld ሌሊት በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም። በ%3$lld ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son %2$lld gecənin %1$lld gecəsində pəncərədə yüngül yuxu olmayıb. %3$lld dəq ilə daha tez-tez doğru anda oyanacaqsan."
+            "value": "Son %2$lld gecənin %1$lld gecəsində pəncərədə doğru an olmayıb. %3$lld dəq ilə daha tez-tez doğru anda oyanacaqsan."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld от последната %2$lld нощ нямаше лек сън в прозореца. С %3$lld мин по-често ще се будиш в добър момент."
+            "value": "В %1$lld от последната %2$lld нощ нямаше добър момент в прозореца. С %3$lld мин по-често ще се будиш в добър момент."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "গত %2$lldটি রাতের %1$lldটিতে সময়সীমার মধ্যে হালকা ঘুম ছিল না। %3$lld মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।"
+            "value": "গত %2$lldটি রাতের %1$lldটিতে সময়সীমার মধ্যে ভালো মুহূর্ত ছিল না। %3$lld মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de l’última %2$lld nit no hi va haver son lleuger a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
+            "value": "En %1$lld de l’última %2$lld nit no hi va haver cap bon moment a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z poslední %2$lld noci se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+            "value": "V %1$lld z poslední %2$lld noci se v okně neobjevila žádná vhodná chvíle. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "I %1$lld af den seneste %2$lld nat var der ingen let søvn i vinduet. Med %3$lld min vågner du oftere på et godt tidspunkt."
+            "value": "I %1$lld af den seneste %2$lld nat var der intet godt tidspunkt i vinduet. Med %3$lld min vågner du oftere på et godt tidspunkt."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld der letzten %2$lld Nacht kam kein leichter Schlaf ins Fenster. Mit %3$lld Min erwischst du öfter einen guten Moment."
+            "value": "In %1$lld der letzten %2$lld Nacht kam kein guter Moment ins Fenster. Mit %3$lld Min erwischst du öfter einen guten Moment."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Σε %1$lld από την τελευταία %2$lld νύχτα δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$lld λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή."
+            "value": "Σε %1$lld από την τελευταία %2$lld νύχτα δεν υπήρχε κατάλληλη στιγμή στο παράθυρο. Με %3$lld λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld of the last %2$lld night there was no light sleep in the window. With %3$lld min you’ll more often wake at a good moment."
+            "value": "In %1$lld of the last %2$lld night there was no good moment in the window. With %3$lld min you’ll more often wake at a good moment."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de la última noche (%2$lld) no hubo sueño ligero dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
+            "value": "En %1$lld de la última noche (%2$lld) no hubo un buen momento dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Viimasest %2$lld ööst %1$lld ööl polnud aknas kerget und. %3$lld minutiga ärkad sagedamini heal hetkel."
+            "value": "Viimasest %2$lld ööst %1$lld ööl polnud aknas head hetke. %3$lld minutiga ärkad sagedamini heal hetkel."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Azken %2$lld gauetik %1$lld gauetan ez zen lo arinik izan leihoan. %3$lld minutuarekin maizago esnatuko zara une onean."
+            "value": "Azken %2$lld gauetik %1$lld gauetan ez zen une onik izan leihoan. %3$lld minutuarekin maizago esnatuko zara une onean."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "در %1$lld شب از %2$lld شب اخیر، در بازه خواب سبک نبود. با %3$lld دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی."
+            "value": "در %1$lld شب از %2$lld شب اخیر، در بازه لحظهٔ مناسبی نبود. با %3$lld دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld viimeisestä %2$lld yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$lld min, heräät useammin hyvällä hetkellä."
+            "value": "%1$lld viimeisestä %2$lld yöstä ikkunassa ei ollut hyvää hetkeä. Kun ikkuna on %3$lld min, heräät useammin hyvällä hetkellä."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sa %1$lld sa huling %2$lld gabi, walang mababaw na tulog sa window. Sa %3$lld min, mas madalas kang magigising sa magandang sandali."
+            "value": "Sa %1$lld sa huling %2$lld gabi, walang magandang sandali sa window. Sa %3$lld min, mas madalas kang magigising sa magandang sandali."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans %1$lld de la dernière nuit (%2$lld), il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+            "value": "Dans %1$lld de la dernière nuit (%2$lld), il n’y avait pas de bon moment dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní raibh codladh éadrom san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
+            "value": "Ní raibh nóiméad maith san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld da última %2$lld noite non houbo sono lixeiro na xanela. Con %3$lld min espertarás máis veces nun bo momento."
+            "value": "En %1$lld da última %2$lld noite non houbo un bo momento na xanela. Con %3$lld min espertarás máis veces nun bo momento."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "છેલ્લી %2$lld રાતમાંથી %1$lld રાતે સમયગાળામાં હળવી ઊંઘ નહોતી. %3$lld મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો."
+            "value": "છેલ્લી %2$lld રાતમાંથી %1$lld રાતે સમયગાળામાં યોગ્ય ક્ષણ નહોતી. %3$lld મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ב-%1$lld מתוך הלילה האחרון (%2$lld) לא הייתה שינה קלה בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
+            "value": "ב-%1$lld מתוך הלילה האחרון (%2$lld) לא היה רגע טוב בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पिछली %2$lld रात में से %1$lld रात में विंडो के दौरान हल्की नींद नहीं आई। %3$lld मिनट से तुम अक्सर सही समय पर जागोगे।"
+            "value": "पिछली %2$lld रात में से %1$lld रात में विंडो के दौरान सही पल नहीं आया। %3$lld मिनट से तुम अक्सर सही समय पर जागोगे।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednje %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az utolsó %2$lld éjszakából %1$lld alkalommal nem volt könnyű alvás az ablakban. %3$lld perccel gyakrabban ébredsz jó pillanatban."
+            "value": "Az utolsó %2$lld éjszakából %1$lld alkalommal nem volt jó pillanat az ablakban. %3$lld perccel gyakrabban ébredsz jó pillanatban."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Վերջին %2$lld գիշերից %1$lld-ում պատուհանում թեթև քուն չի եղել։ %3$lld ր-ով ավելի հաճախ կարթնանաս հարմար պահին։"
+            "value": "Վերջին %2$lld գիշերից %1$lld-ում պատուհանում հարմար պահ չի եղել։ %3$lld ր-ով ավելի հաճախ կարթնանաս հարմար պահին։"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Í %1$lld af síðustu %2$lld nótt var enginn léttur svefn í glugganum. Með %3$lld mín vaknarðu oftar á góðu augnabliki."
+            "value": "Í %1$lld af síðustu %2$lld nótt var ekkert gott augnablik í glugganum. Með %3$lld mín vaknarðu oftar á góðu augnabliki."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld dell’ultima notte (%2$lld) non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+            "value": "In %1$lld dell’ultima notte (%2$lld) non c’era un momento giusto nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ბოლო %2$lld ღამიდან %1$lld-ში ფანჯარაში მსუბუქი ძილი არ იყო. %3$lld წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში."
+            "value": "ბოლო %2$lld ღამიდან %1$lld-ში ფანჯარაში კარგი მომენტი არ იყო. %3$lld წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Соңғы %2$lld түннің %1$lld түнінде терезеде жеңіл ұйқы болмады. %3$lld минутпен жиірек дәл кезінде оянасың."
+            "value": "Соңғы %2$lld түннің %1$lld түнінде терезеде қолайлы сәт болмады. %3$lld минутпен жиірек дәл кезінде оянасың."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಕಳೆದ %2$lld ರಾತ್ರಿಯಲ್ಲಿ %1$lld ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಹಗುರ ನಿದ್ರೆ ಇರಲಿಲ್ಲ. %3$lld ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ."
+            "value": "ಕಳೆದ %2$lld ರಾತ್ರಿಯಲ್ಲಿ %1$lld ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ. %3$lld ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per %1$lld iš paskutinės %2$lld nakties lange nebuvo lengvo miego. Su %3$lld min dažniau pabusi tinkamu metu."
+            "value": "Per %1$lld iš paskutinės %2$lld nakties lange nebuvo tinkamo momento. Su %3$lld min dažniau pabusi tinkamu metu."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld no pēdējās %2$lld nakts logā nebija viegla miega. Ar %3$lld min biežāk pamodīsies labā brīdī."
+            "value": "%1$lld no pēdējās %2$lld nakts logā nebija laba brīža. Ar %3$lld min biežāk pamodīsies labā brīdī."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Во %1$lld од последната %2$lld ноќ немаше лесен сон во прозорецот. Со %3$lld мин почесто ќе се будиш во добар миг."
+            "value": "Во %1$lld од последната %2$lld ноќ немаше добар миг во прозорецот. Со %3$lld мин почесто ќе се будиш во добар миг."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "കഴിഞ്ഞ %2$lld രാത്രിയിൽ %1$lld എണ്ണത്തിൽ സമയപരിധിയിൽ നേരിയ ഉറക്കമുണ്ടായില്ല. %3$lld മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും."
+            "value": "കഴിഞ്ഞ %2$lld രാത്രിയിൽ %1$lld എണ്ണത്തിൽ സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല. %3$lld മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сүүлийн %2$lld шөнийн %1$lld-д нь хугацаанд хөнгөн нойр байгаагүй. %3$lld минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ."
+            "value": "Сүүлийн %2$lld шөнийн %1$lld-д нь хугацаанд тохиромжтой мөч байгаагүй. %3$lld минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "मागील %2$lld रात्रीपैकी %1$lld रात्री कालावधीत हलकी झोप नव्हती. %3$lld मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल."
+            "value": "मागील %2$lld रात्रीपैकी %1$lld रात्री कालावधीत योग्य क्षण नव्हता. %3$lld मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "I %1$lld av den siste %2$lld natten var det ingen lett søvn i vinduet. Med %3$lld min våkner du oftere på et godt tidspunkt."
+            "value": "I %1$lld av den siste %2$lld natten var det ikke noe godt tidspunkt i vinduet. Med %3$lld min våkner du oftere på et godt tidspunkt."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "पछिल्ला %2$lld रातमध्ये %1$lld रात अवधिभित्र हल्का निद्रा भएन। %3$lld मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।"
+            "value": "पछिल्ला %2$lld रातमध्ये %1$lld रात अवधिभित्र राम्रो क्षण आएन। %3$lld मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld van de laatste %2$lld nacht zat er geen lichte slaap in het venster. Met %3$lld min word je vaker op een goed moment wakker."
+            "value": "In %1$lld van de laatste %2$lld nacht zat er geen goed moment in het venster. Met %3$lld min word je vaker op een goed moment wakker."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਪਿਛਲੀ %2$lld ਰਾਤ ਵਿੱਚੋਂ %1$lld ਰਾਤ ਮਿਆਦ ਵਿੱਚ ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਸੀ। %3$lld ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।"
+            "value": "ਪਿਛਲੀ %2$lld ਰਾਤ ਵਿੱਚੋਂ %1$lld ਰਾਤ ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ। %3$lld ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "W %1$lld z ostatniej %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+            "value": "W %1$lld z ostatniej %2$lld nocy w oknie nie było dobrego momentu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld de %2$lld noite recente não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
+            "value": "Em %1$lld de %2$lld noite recente não houve um bom momento na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld de %2$lld noite recente não houve sono leve na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
+            "value": "Em %1$lld de %2$lld noite recente não houve um bom momento na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "În %1$lld din %2$lld noapte recentă nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+            "value": "În %1$lld din %2$lld noapte recentă nu a fost niciun moment bun în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld из последних %2$lld ночи в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+            "value": "В %1$lld из последних %2$lld ночи в окне не было удачного момента. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "අවසන් රාත්‍රි %2$lld න් %1$lld ක පරාසය තුළ සැහැල්ලු නින්දක් නොතිබුණි. මිනිත්තු %3$lld ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත."
+            "value": "අවසන් රාත්‍රි %2$lld න් %1$lld ක පරාසය තුළ හොඳ මොහොතක් නොතිබුණි. මිනිත්තු %3$lld ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z poslednej %2$lld noci nebol v okne ľahký spánok. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
+            "value": "V %1$lld z poslednej %2$lld noci nebola v okne vhodná chvíľa. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld od zadnje %2$lld noči v oknu ni bilo lahkega spanca. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
+            "value": "V %1$lld od zadnje %2$lld noči v oknu ni bilo pravega trenutka. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Në %1$lld nga %2$lld nata e fundit nuk pati gjumë të lehtë në interval. Me %3$lld min do të zgjohesh më shpesh në një moment të mirë."
+            "value": "Në %1$lld nga %2$lld nata e fundit nuk pati moment të mirë në interval. Me %3$lld min do të zgjohesh më shpesh në një moment të mirë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld од последње %2$lld ноћи у интервалу није било лаганог сна. Са %3$lld мин чешће ћеш се будити у добром тренутку."
+            "value": "У %1$lld од последње %2$lld ноћи у интервалу није било доброг тренутка. Са %3$lld мин чешће ћеш се будити у добром тренутку."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under %1$lld av den senaste %2$lld natten fanns ingen lätt sömn i fönstret. Med %3$lld min vaknar du oftare vid ett bra tillfälle."
+            "value": "Under %1$lld av den senaste %2$lld natten fanns inget bra tillfälle i fönstret. Med %3$lld min vaknar du oftare vid ett bra tillfälle."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Katika %1$lld kati ya usiku %2$lld uliopita hakukuwa na usingizi mwepesi ndani ya kipindi. Ukiwa na dak %3$lld utaamka mara nyingi zaidi wakati mzuri."
+            "value": "Katika %1$lld kati ya usiku %2$lld uliopita hakukuwa na wakati mzuri ndani ya kipindi. Ukiwa na dak %3$lld utaamka mara nyingi zaidi wakati mzuri."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "கடந்த %2$lld இரவில் %1$lld இல் வரம்புக்குள் லேசான தூக்கம் இல்லை. %3$lld நிமி. வைத்தால் அடிக்கடி நல்ல தருணத்தில் எழுவீர்கள்."
+            "value": "கடந்த %2$lld இரவில் %1$lld இல் வரம்புக்குள் நல்ல தருணம் இல்லை. %3$lld நிமி. வைத்தால் அடிக்கடி நல்ல தருணத்தில் எழுவீர்கள்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "గత %2$lld రాత్రిలో %1$lld రాత్రి వ్యవధిలో తేలికపాటి నిద్ర లేదు. %3$lld ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు."
+            "value": "గత %2$lld రాత్రిలో %1$lld రాత్రి వ్యవధిలో సరైన క్షణం లేదు. %3$lld ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son %2$lld gecenin %1$lld tanesinde aralıkta hafif uyku yoktu. %3$lld dk ile daha sık uygun bir anda uyanırsın."
+            "value": "Son %2$lld gecenin %1$lld tanesinde aralıkta uygun an yoktu. %3$lld dk ile daha sık uygun bir anda uyanırsın."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld з останніх %2$lld ночі у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+            "value": "У %1$lld з останніх %2$lld ночі у вікні не було слушного моменту. З %3$lld хв ти частіше прокидатимешся у слушний момент."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "پچھلی %2$lld رات میں سے %1$lld میں ونڈو کے اندر ہلکی نیند نہیں تھی۔ %3$lld منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔"
+            "value": "پچھلی %2$lld رات میں سے %1$lld میں ونڈو کے اندر اچھا لمحہ نہیں تھا۔ %3$lld منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oxirgi %2$lld tundan %1$lld tasida oraliqda yengil uyqu boʻlmadi. %3$lld daqiqa bilan koʻproq qulay paytda uygʻonasan."
+            "value": "Oxirgi %2$lld tundan %1$lld tasida oraliqda qulay payt boʻlmadi. %3$lld daqiqa bilan koʻproq qulay paytda uygʻonasan."
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ebusuku obungu-%1$lld kobungu-%2$lld bokugcina bekungekho ubuthongo obulula esikhaleni. Nge-%3$lld min uzovuka kaningi ngesikhathi esihle."
+            "value": "Ebusuku obungu-%1$lld kobungu-%2$lld bokugcina bekungekho isikhathi esihle esikhaleni. Nge-%3$lld min uzovuka kaningi ngesikhathi esihle."
           }
         }
       }
@@ -60726,445 +62070,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld van die laaste %2$lld nagte was daar geen ligte slaap in die venster nie. Met %3$lld min word jy meer dikwels op ’n goeie oomblik wakker."
+            "value": "In %1$lld van die laaste %2$lld nagte was daar geen goeie oomblik in die venster nie. Met %3$lld min word jy meer dikwels op ’n goeie oomblik wakker."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ካለፉት %2$lld ሌሊቶች ውስጥ በ%1$lld ሌሊቶች በክልሉ ውስጥ ቀላል እንቅልፍ አልነበረም። በ%3$lld ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።"
+            "value": "ካለፉት %2$lld ሌሊቶች ውስጥ በ%1$lld ሌሊቶች በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም። በ%3$lld ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son %2$lld gecənin %1$lld gecəsində pəncərədə yüngül yuxu olmayıb. %3$lld dəq ilə daha tez-tez doğru anda oyanacaqsan."
+            "value": "Son %2$lld gecənin %1$lld gecəsində pəncərədə doğru an olmayıb. %3$lld dəq ilə daha tez-tez doğru anda oyanacaqsan."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld от последните %2$lld нощи нямаше лек сън в прозореца. С %3$lld мин по-често ще се будиш в добър момент."
+            "value": "В %1$lld от последните %2$lld нощи нямаше добър момент в прозореца. С %3$lld мин по-често ще се будиш в добър момент."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "গত %2$lldটি রাতের %1$lldটিতে সময়সীমার মধ্যে হালকা ঘুম ছিল না। %3$lld মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।"
+            "value": "গত %2$lldটি রাতের %1$lldটিতে সময়সীমার মধ্যে ভালো মুহূর্ত ছিল না। %3$lld মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednjih %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednjih %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de les últimes %2$lld nits no hi va haver son lleuger a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
+            "value": "En %1$lld de les últimes %2$lld nits no hi va haver cap bon moment a la finestra. Amb %3$lld min et despertaràs més sovint en un bon moment."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevil žádný lehký spánek. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
+            "value": "V %1$lld z posledních %2$lld nocí se v okně neobjevila žádná vhodná chvíle. S %3$lld min se budeš častěji budit ve vhodnou chvíli."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "I %1$lld af de seneste %2$lld nætter var der ingen let søvn i vinduet. Med %3$lld min vågner du oftere på et godt tidspunkt."
+            "value": "I %1$lld af de seneste %2$lld nætter var der intet godt tidspunkt i vinduet. Med %3$lld min vågner du oftere på et godt tidspunkt."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld der letzten %2$lld Nächte kam kein leichter Schlaf ins Fenster. Mit %3$lld Min erwischst du öfter einen guten Moment."
+            "value": "In %1$lld der letzten %2$lld Nächte kam kein guter Moment ins Fenster. Mit %3$lld Min erwischst du öfter einen guten Moment."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Σε %1$lld από τις τελευταίες %2$lld νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$lld λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή."
+            "value": "Σε %1$lld από τις τελευταίες %2$lld νύχτες δεν υπήρχε κατάλληλη στιγμή στο παράθυρο. Με %3$lld λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld of the last %2$lld nights there was no light sleep in the window. With %3$lld min you’ll more often wake at a good moment."
+            "value": "In %1$lld of the last %2$lld nights there was no good moment in the window. With %3$lld min you’ll more often wake at a good moment."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld de las últimas %2$lld noches no hubo sueño ligero dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
+            "value": "En %1$lld de las últimas %2$lld noches no hubo un buen momento dentro de la ventana. Con %3$lld min te despertarás más a menudo en un buen momento."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Viimasest %2$lld ööst %1$lld ööl polnud aknas kerget und. %3$lld minutiga ärkad sagedamini heal hetkel."
+            "value": "Viimasest %2$lld ööst %1$lld ööl polnud aknas head hetke. %3$lld minutiga ärkad sagedamini heal hetkel."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Azken %2$lld gauetatik %1$lld gauetan ez zen lo arinik izan leihoan. %3$lld minutuarekin maizago esnatuko zara une onean."
+            "value": "Azken %2$lld gauetatik %1$lld gauetan ez zen une onik izan leihoan. %3$lld minutuarekin maizago esnatuko zara une onean."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "در %1$lld شب از %2$lld شب اخیر، در بازه خواب سبک نبود. با %3$lld دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی."
+            "value": "در %1$lld شب از %2$lld شب اخیر، در بازه لحظهٔ مناسبی نبود. با %3$lld دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld viimeisestä %2$lld yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$lld min, heräät useammin hyvällä hetkellä."
+            "value": "%1$lld viimeisestä %2$lld yöstä ikkunassa ei ollut hyvää hetkeä. Kun ikkuna on %3$lld min, heräät useammin hyvällä hetkellä."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sa %1$lld sa huling %2$lld gabi, walang mababaw na tulog sa window. Sa %3$lld min, mas madalas kang magigising sa magandang sandali."
+            "value": "Sa %1$lld sa huling %2$lld gabi, walang magandang sandali sa window. Sa %3$lld min, mas madalas kang magigising sa magandang sandali."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
+            "value": "Dans %1$lld des %2$lld dernières nuits, il n’y avait pas de bon moment dans la fenêtre. Avec %3$lld min, tu te réveilleras plus souvent au bon moment."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní raibh codladh éadrom san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
+            "value": "Ní raibh nóiméad maith san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "En %1$lld das últimas %2$lld noites non houbo sono lixeiro na xanela. Con %3$lld min espertarás máis veces nun bo momento."
+            "value": "En %1$lld das últimas %2$lld noites non houbo un bo momento na xanela. Con %3$lld min espertarás máis veces nun bo momento."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "છેલ્લી %2$lld રાતોમાંથી %1$lld રાતે સમયગાળામાં હળવી ઊંઘ નહોતી. %3$lld મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો."
+            "value": "છેલ્લી %2$lld રાતોમાંથી %1$lld રાતે સમયગાળામાં યોગ્ય ક્ષણ નહોતી. %3$lld મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ב-%1$lld מתוך %2$lld הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
+            "value": "ב-%1$lld מתוך %2$lld הלילות האחרונים לא היה רגע טוב בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पिछली %2$lld रातों में से %1$lld रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$lld मिनट से तुम अक्सर सही समय पर जागोगे।"
+            "value": "पिछली %2$lld रातों में से %1$lld रातों में विंडो के दौरान सही पल नहीं आया। %3$lld मिनट से तुम अक्सर सही समय पर जागोगे।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "U %1$lld od posljednjih %2$lld noći u intervalu nije bilo laganog sna. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
+            "value": "U %1$lld od posljednjih %2$lld noći u intervalu nije bilo dobrog trenutka. S %3$lld min češće ćeš se probuditi u dobrom trenutku."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az utolsó %2$lld éjszakából %1$lld alkalommal nem volt könnyű alvás az ablakban. %3$lld perccel gyakrabban ébredsz jó pillanatban."
+            "value": "Az utolsó %2$lld éjszakából %1$lld alkalommal nem volt jó pillanat az ablakban. %3$lld perccel gyakrabban ébredsz jó pillanatban."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Վերջին %2$lld գիշերից %1$lld-ում պատուհանում թեթև քուն չի եղել։ %3$lld ր-ով ավելի հաճախ կարթնանաս հարմար պահին։"
+            "value": "Վերջին %2$lld գիշերից %1$lld-ում պատուհանում հարմար պահ չի եղել։ %3$lld ր-ով ավելի հաճախ կարթնանաս հարմար պահին։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pada %1$lld dari %2$lld malam terakhir, tidak ada tidur ringan di dalam jendela. Dengan %3$lld mnt, kamu lebih sering bangun di saat yang tepat."
+            "value": "Pada %1$lld dari %2$lld malam terakhir, tidak ada saat yang tepat di dalam jendela. Dengan %3$lld mnt, kamu lebih sering bangun di saat yang tepat."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Í %1$lld af síðustu %2$lld nóttum var enginn léttur svefn í glugganum. Með %3$lld mín vaknarðu oftar á góðu augnabliki."
+            "value": "Í %1$lld af síðustu %2$lld nóttum var ekkert gott augnablik í glugganum. Með %3$lld mín vaknarðu oftar á góðu augnabliki."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld delle ultime %2$lld notti non c’era sonno leggero nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
+            "value": "In %1$lld delle ultime %2$lld notti non c’era un momento giusto nella finestra. Con %3$lld min ti sveglierai più spesso al momento giusto."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "直近 %2$lld 日のうち %1$lld 日は、ウィンドウ内に浅い眠りがありませんでした。%3$lld 分にすると、よりよいタイミングで起きやすくなります。"
+            "value": "直近 %2$lld 日のうち %1$lld 日は、ウィンドウ内によいタイミングがありませんでした。%3$lld 分にすると、よりよいタイミングで起きやすくなります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ბოლო %2$lld ღამიდან %1$lld-ში ფანჯარაში მსუბუქი ძილი არ იყო. %3$lld წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში."
+            "value": "ბოლო %2$lld ღამიდან %1$lld-ში ფანჯარაში კარგი მომენტი არ იყო. %3$lld წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Соңғы %2$lld түннің %1$lld түнінде терезеде жеңіл ұйқы болмады. %3$lld минутпен жиірек дәл кезінде оянасың."
+            "value": "Соңғы %2$lld түннің %1$lld түнінде терезеде қолайлы сәт болмады. %3$lld минутпен жиірек дәл кезінде оянасың."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ក្នុង %1$lld នៃ %2$lld យប់ចុងក្រោយ គ្មានដំណេកស្រាលក្នុងចន្លោះពេលទេ។ ជាមួយ %3$lld នាទី អ្នកនឹងភ្ញាក់នៅពេលល្អញឹកញាប់ជាង។"
+            "value": "ក្នុង %1$lld នៃ %2$lld យប់ចុងក្រោយ គ្មានពេលល្អក្នុងចន្លោះពេលទេ។ ជាមួយ %3$lld នាទី អ្នកនឹងភ្ញាក់នៅពេលល្អញឹកញាប់ជាង។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಕಳೆದ %2$lld ರಾತ್ರಿಗಳಲ್ಲಿ %1$lld ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಹಗುರ ನಿದ್ರೆ ಇರಲಿಲ್ಲ. %3$lld ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ."
+            "value": "ಕಳೆದ %2$lld ರಾತ್ರಿಗಳಲ್ಲಿ %1$lld ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ. %3$lld ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "최근 %2$lld일 중 %1$lld일은 구간 안에 얕은 잠이 없었어요. %3$lld분으로 하면 좋은 타이밍에 깰 가능성이 높아져요."
+            "value": "최근 %2$lld일 중 %1$lld일은 구간 안에 좋은 타이밍이 없었어요. %3$lld분으로 하면 좋은 타이밍에 깰 가능성이 높아져요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ໃນ %1$lld ຈາກ %2$lld ຄືນຜ່ານມາ ບໍ່ມີການຫຼັບຕື້ນໃນຊ່ວງເວລາ ດ້ວຍ %3$lld ນາທີ ເຈົ້າຈະຕື່ນໃນເວລາທີ່ດີເລື້ອຍຂຶ້ນ"
+            "value": "ໃນ %1$lld ຈາກ %2$lld ຄືນຜ່ານມາ ບໍ່ມີເວລາທີ່ດີໃນຊ່ວງເວລາ ດ້ວຍ %3$lld ນາທີ ເຈົ້າຈະຕື່ນໃນເວລາທີ່ດີເລື້ອຍຂຶ້ນ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per %1$lld iš paskutinių %2$lld naktų lange nebuvo lengvo miego. Su %3$lld min dažniau pabusi tinkamu metu."
+            "value": "Per %1$lld iš paskutinių %2$lld naktų lange nebuvo tinkamo momento. Su %3$lld min dažniau pabusi tinkamu metu."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld no pēdējām %2$lld naktīm logā nebija viegla miega. Ar %3$lld min biežāk pamodīsies labā brīdī."
+            "value": "%1$lld no pēdējām %2$lld naktīm logā nebija laba brīža. Ar %3$lld min biežāk pamodīsies labā brīdī."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Во %1$lld од последните %2$lld ноќи немаше лесен сон во прозорецот. Со %3$lld мин почесто ќе се будиш во добар миг."
+            "value": "Во %1$lld од последните %2$lld ноќи немаше добар миг во прозорецот. Со %3$lld мин почесто ќе се будиш во добар миг."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "കഴിഞ്ഞ %2$lld രാത്രികളിൽ %1$lld എണ്ണത്തിൽ സമയപരിധിയിൽ നേരിയ ഉറക്കമുണ്ടായില്ല. %3$lld മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും."
+            "value": "കഴിഞ്ഞ %2$lld രാത്രികളിൽ %1$lld എണ്ണത്തിൽ സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല. %3$lld മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сүүлийн %2$lld шөнийн %1$lld-д нь хугацаанд хөнгөн нойр байгаагүй. %3$lld минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ."
+            "value": "Сүүлийн %2$lld шөнийн %1$lld-д нь хугацаанд тохиромжтой мөч байгаагүй. %3$lld минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "मागील %2$lld रात्रींपैकी %1$lld रात्री कालावधीत हलकी झोप नव्हती. %3$lld मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल."
+            "value": "मागील %2$lld रात्रींपैकी %1$lld रात्री कालावधीत योग्य क्षण नव्हता. %3$lld मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dalam %1$lld daripada %2$lld malam terakhir, tiada tidur ringan dalam tetingkap. Dengan %3$lld min, kamu lebih kerap bangun pada saat yang sesuai."
+            "value": "Dalam %1$lld daripada %2$lld malam terakhir, tiada saat yang sesuai dalam tetingkap. Dengan %3$lld min, kamu lebih kerap bangun pada saat yang sesuai."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "နောက်ဆုံး %2$lld ညတွင် %1$lld ည၌ အချိန်အပိုင်းအတွင်း အိပ်ရေးပေါ့ မရှိခဲ့ပါ။ %3$lld မိနစ်ဆိုလျှင် ကောင်းသောအချိန်တွင် ပိုမကြာခဏ နိုးမည်။"
+            "value": "နောက်ဆုံး %2$lld ညတွင် %1$lld ည၌ အချိန်အပိုင်းအတွင်း ကောင်းသောအချိန် မရှိခဲ့ပါ။ %3$lld မိနစ်ဆိုလျှင် ကောင်းသောအချိန်တွင် ပိုမကြာခဏ နိုးမည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "I %1$lld av de siste %2$lld nettene var det ingen lett søvn i vinduet. Med %3$lld min våkner du oftere på et godt tidspunkt."
+            "value": "I %1$lld av de siste %2$lld nettene var det ikke noe godt tidspunkt i vinduet. Med %3$lld min våkner du oftere på et godt tidspunkt."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "पछिल्ला %2$lld रातमध्ये %1$lld रात अवधिभित्र हल्का निद्रा भएन। %3$lld मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।"
+            "value": "पछिल्ला %2$lld रातमध्ये %1$lld रात अवधिभित्र राम्रो क्षण आएन। %3$lld मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "In %1$lld van de laatste %2$lld nachten zat er geen lichte slaap in het venster. Met %3$lld min word je vaker op een goed moment wakker."
+            "value": "In %1$lld van de laatste %2$lld nachten zat er geen goed moment in het venster. Met %3$lld min word je vaker op een goed moment wakker."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਪਿਛਲੀਆਂ %2$lld ਰਾਤਾਂ ਵਿੱਚੋਂ %1$lld ਰਾਤਾਂ ਮਿਆਦ ਵਿੱਚ ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਸੀ। %3$lld ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।"
+            "value": "ਪਿਛਲੀਆਂ %2$lld ਰਾਤਾਂ ਵਿੱਚੋਂ %1$lld ਰਾਤਾਂ ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ। %3$lld ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było lekkiego snu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
+            "value": "W %1$lld z ostatnich %2$lld nocy w oknie nie było dobrego momentu. Przy %3$lld min częściej obudzisz się w dobrym momencie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
+            "value": "Em %1$lld das últimas %2$lld noites não houve um bom momento na janela. Com %3$lld min, você vai acordar mais vezes num bom momento."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Em %1$lld das últimas %2$lld noites não houve sono leve na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
+            "value": "Em %1$lld das últimas %2$lld noites não houve um bom momento na janela. Com %3$lld min, vais acordar mais vezes num bom momento."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "În %1$lld din ultimele %2$lld de nopți nu a fost somn ușor în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
+            "value": "În %1$lld din ultimele %2$lld de nopți nu a fost niciun moment bun în fereastră. Cu %3$lld min te vei trezi mai des într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В %1$lld из последних %2$lld ночи в окне не было лёгкого сна. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
+            "value": "В %1$lld из последних %2$lld ночи в окне не было удачного момента. С %3$lld мин ты чаще будешь просыпаться в удачный момент."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "අවසන් රාත්‍රි %2$lld න් %1$lld ක පරාසය තුළ සැහැල්ලු නින්දක් නොතිබුණි. මිනිත්තු %3$lld ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත."
+            "value": "අවසන් රාත්‍රි %2$lld න් %1$lld ක පරාසය තුළ හොඳ මොහොතක් නොතිබුණි. මිනිත්තු %3$lld ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld z posledných %2$lld nocí nebol v okne ľahký spánok. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
+            "value": "V %1$lld z posledných %2$lld nocí nebola v okne vhodná chvíľa. S %3$lld min ťa budík častejšie zobudí v dobrej chvíli."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo lahkega spanca. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
+            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo pravega trenutka. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Në %1$lld nga %2$lld netët e fundit nuk pati gjumë të lehtë në interval. Me %3$lld min do të zgjohesh më shpesh në një moment të mirë."
+            "value": "Në %1$lld nga %2$lld netët e fundit nuk pati moment të mirë në interval. Me %3$lld min do të zgjohesh më shpesh në një moment të mirë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld од последњих %2$lld ноћи у интервалу није било лаганог сна. Са %3$lld мин чешће ћеш се будити у добром тренутку."
+            "value": "У %1$lld од последњих %2$lld ноћи у интервалу није било доброг тренутка. Са %3$lld мин чешће ћеш се будити у добром тренутку."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under %1$lld av de senaste %2$lld nätterna fanns ingen lätt sömn i fönstret. Med %3$lld min vaknar du oftare vid ett bra tillfälle."
+            "value": "Under %1$lld av de senaste %2$lld nätterna fanns inget bra tillfälle i fönstret. Med %3$lld min vaknar du oftare vid ett bra tillfälle."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Katika %1$lld kati ya usiku %2$lld uliopita hakukuwa na usingizi mwepesi ndani ya kipindi. Ukiwa na dak %3$lld utaamka mara nyingi zaidi wakati mzuri."
+            "value": "Katika %1$lld kati ya usiku %2$lld uliopita hakukuwa na wakati mzuri ndani ya kipindi. Ukiwa na dak %3$lld utaamka mara nyingi zaidi wakati mzuri."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "கடந்த %2$lld இரவுகளில் %1$lld இல் வரம்புக்குள் லேசான தூக்கம் இல்லை. %3$lld நிமி. வைத்தால் அடிக்கடி நல்ல தருணத்தில் எழுவீர்கள்."
+            "value": "கடந்த %2$lld இரவுகளில் %1$lld இல் வரம்புக்குள் நல்ல தருணம் இல்லை. %3$lld நிமி. வைத்தால் அடிக்கடி நல்ல தருணத்தில் எழுவீர்கள்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "గత %2$lld రాత్రుల్లో %1$lld రాత్రులు వ్యవధిలో తేలికపాటి నిద్ర లేదు. %3$lld ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు."
+            "value": "గత %2$lld రాత్రుల్లో %1$lld రాత్రులు వ్యవధిలో సరైన క్షణం లేదు. %3$lld ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ใน %1$lld จาก %2$lld คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$lld นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น"
+            "value": "ใน %1$lld จาก %2$lld คืนล่าสุด ไม่มีจังหวะที่ดีในช่วงเวลาปลุก หากตั้งเป็น %3$lld นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son %2$lld gecenin %1$lld tanesinde aralıkta hafif uyku yoktu. %3$lld dk ile daha sık uygun bir anda uyanırsın."
+            "value": "Son %2$lld gecenin %1$lld tanesinde aralıkta uygun an yoktu. %3$lld dk ile daha sık uygun bir anda uyanırsın."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "У %1$lld з останніх %2$lld ночі у вікні не було легкого сну. З %3$lld хв ти частіше прокидатимешся у слушний момент."
+            "value": "У %1$lld з останніх %2$lld ночі у вікні не було слушного моменту. З %3$lld хв ти частіше прокидатимешся у слушний момент."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "پچھلی %2$lld راتوں میں سے %1$lld میں ونڈو کے اندر ہلکی نیند نہیں تھی۔ %3$lld منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔"
+            "value": "پچھلی %2$lld راتوں میں سے %1$lld میں ونڈو کے اندر اچھا لمحہ نہیں تھا۔ %3$lld منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oxirgi %2$lld tundan %1$lld tasida oraliqda yengil uyqu boʻlmadi. %3$lld daqiqa bilan koʻproq qulay paytda uygʻonasan."
+            "value": "Oxirgi %2$lld tundan %1$lld tasida oraliqda qulay payt boʻlmadi. %3$lld daqiqa bilan koʻproq qulay paytda uygʻonasan."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trong %1$lld trong %2$lld đêm gần nhất, khung giờ không có giấc ngủ nhẹ. Với %3$lld phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn."
+            "value": "Trong %1$lld trong %2$lld đêm gần nhất, khung giờ không có thời điểm tốt. Với %3$lld phút, bạn sẽ thức dậy đúng lúc thường xuyên hơn."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近 %2$lld 晚中，有 %1$lld 晚喚醒時段內沒有淺睡。改為 %3$lld 分鐘，你會更常在合適的時刻醒來。"
+            "value": "最近 %2$lld 晚中，有 %1$lld 晚喚醒時段內沒有合適的時刻。改為 %3$lld 分鐘，你會更常在合適的時刻醒來。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在最近 %2$lld 个夜晚中，有 %1$lld 个夜晚窗口内没有浅睡。设为 %3$lld 分钟，你会更容易在合适的时刻醒来。"
+            "value": "在最近 %2$lld 个夜晚中，有 %1$lld 个夜晚窗口内没有合适的时刻。设为 %3$lld 分钟，你会更容易在合适的时刻醒来。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在最近 %2$lld 個夜晚中，有 %1$lld 個夜晚喚醒時段內沒有淺眠。設為 %3$lld 分鐘，你會更容易在合適的時刻醒來。"
+            "value": "在最近 %2$lld 個夜晚中，有 %1$lld 個夜晚喚醒時段內沒有合適的時刻。設為 %3$lld 分鐘，你會更容易在合適的時刻醒來。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ebusuku obungu-%1$lld kobungu-%2$lld bokugcina bekungekho ubuthongo obulula esikhaleni. Nge-%3$lld min uzovuka kaningi ngesikhathi esihle."
+            "value": "Ebusuku obungu-%1$lld kobungu-%2$lld bokugcina bekungekho isikhathi esihle esikhaleni. Nge-%3$lld min uzovuka kaningi ngesikhathi esihle."
           }
         }
       }
@@ -61174,25 +62518,25 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليلتين لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلتين لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní raibh codladh éadrom san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
+            "value": "Ní raibh nóiméad maith san fhuinneog i %1$lld as na %2$lld oíche dheireanacha. Le %3$lld nóim, is minice a dhúiseoidh tú ag nóiméad maith."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ב-%1$lld מתוך %2$lld הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
+            "value": "ב-%1$lld מתוך %2$lld הלילות האחרונים לא היה רגע טוב בחלון. עם %3$lld דק׳ יהיו יותר התעוררויות ברגע טוב."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo lahkega spanca. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
+            "value": "V %1$lld od zadnjih %2$lld noči v oknu ni bilo pravega trenutka. S %3$lld min te bo ura pogosteje zbudila ob pravem trenutku."
           }
         }
       }
@@ -61202,13 +62546,13 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في %1$lld من آخر %2$lld ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
+            "value": "في %1$lld من آخر %2$lld ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$lld دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld no pēdējām %2$lld naktīm logā nebija viegla miega. Ar %3$lld min biežāk pamodīsies labā brīdī."
+            "value": "%1$lld no pēdējām %2$lld naktīm logā nebija laba brīža. Ar %3$lld min biežāk pamodīsies labā brīdī."
           }
         }
       }
@@ -72409,6 +73753,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ibala kusukela lapho ulala. Iwashi lakho likubona ngokuzenzakalelayo; thepha “Ulale kahle” ewashini ukuze uqale ngokushesha."
+          }
+        }
+      }
+    },
+    "editor_sleep_wear_only": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die slaapduur-modus werk net met ’n Galaxy Watch. Met ’n Apple Watch maak hierdie wekker jou in sy gewone venster tot by die teikentyd wakker."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የእንቅልፍ ቆይታ ሁነታ የሚሰራው በGalaxy Watch ብቻ ነው። በApple Watch ይህ ማንቂያ በተለመደው ክልሉ እስከ ታለመው ሰዓት ድረስ ይቀሰቅስዎታል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وضع مدة النوم يعمل فقط مع Galaxy Watch. مع Apple Watch يوقظك هذا المنبّه في نافذته العادية حتى الوقت المستهدف."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxu müddəti rejimi yalnız Galaxy Watch ilə işləyir. Apple Watch ilə bu siqnal səni adi pəncərəsində hədəf vaxtına qədər oyadır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режимът по продължителност на съня работи само с Galaxy Watch. С Apple Watch този будилник те буди в обичайния си прозорец до целевия час."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমের সময়কাল মোড শুধু Galaxy Watch-এ কাজ করে। Apple Watch-এ এই অ্যালার্ম তোমাকে স্বাভাবিক সময়সীমায় লক্ষ্য সময় পর্যন্ত জাগাবে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El mode de durada del son només funciona amb un Galaxy Watch. Amb un Apple Watch, aquesta alarma et desperta dins la seva finestra normal fins a l’hora objectiu."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Režim délky spánku funguje jen s hodinkami Galaxy Watch. S Apple Watch tě tento budík vzbudí v běžném okně do cílového času."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnlængde-tilstanden virker kun med et Galaxy Watch. Med et Apple Watch vækker denne alarm dig i sit normale vindue frem til ønsket tid."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Einschlaf-Modus wirkt nur mit einer Galaxy Watch. Mit der Apple Watch weckt dieser Wecker im normalen Fenster bis zur Zielzeit."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η λειτουργία διάρκειας ύπνου δουλεύει μόνο με Galaxy Watch. Με Apple Watch αυτό το ξυπνητήρι σε ξυπνά στο κανονικό του παράθυρο έως την ώρα στόχο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep mode only works with a Galaxy Watch. With an Apple Watch, this alarm wakes you in its normal window up to the target time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El modo de duración del sueño solo funciona con un Galaxy Watch. Con un Apple Watch, esta alarma te despierta en su ventana normal hasta la hora objetivo."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une kestuse režiim töötab ainult Galaxy Watchiga. Apple Watchiga äratab see äratus sind tavalises aknas kuni sihtajani."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo-iraupenaren modua Galaxy Watch batekin bakarrik dabil. Apple Watch batekin, alarma honek ohiko leihoan esnatzen zaitu, helburuko ordura arte."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حالت مدت خواب فقط با Galaxy Watch کار می‌کند. با Apple Watch این زنگ تو را در بازهٔ معمولش تا زمان هدف بیدار می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unen pituus -tila toimii vain Galaxy Watchin kanssa. Apple Watchin kanssa tämä herätys herättää sinut tavallisessa ikkunassaan tavoiteaikaan mennessä."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gumagana lang ang mode na haba ng tulog sa Galaxy Watch. Sa Apple Watch, gigisingin ka ng alarm na ito sa karaniwang window nito hanggang sa target na oras."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mode durée de sommeil ne fonctionne qu’avec une Galaxy Watch. Avec une Apple Watch, cette alarme te réveille dans sa fenêtre habituelle jusqu’à l’heure cible."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ní oibríonn an mód fad codlata ach le Galaxy Watch. Le Apple Watch, dúiseoidh an t-aláram seo thú ina ghnáthfhuinneog go dtí an sprioc-am."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O modo de duración do sono só funciona cun Galaxy Watch. Cun Apple Watch, esta alarma espértate na súa xanela normal ata a hora obxectivo."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘના સમયનો મોડ ફક્ત Galaxy Watch સાથે કામ કરે છે. Apple Watch સાથે આ એલાર્મ તમને તેના સામાન્ય સમયગાળામાં લક્ષ્ય સમય સુધીમાં જગાડે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מצב משך שינה פועל רק עם Galaxy Watch. עם Apple Watch המעורר הזה מעיר בחלון הרגיל שלו עד שעת היעד."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद की अवधि वाला मोड सिर्फ़ Galaxy Watch के साथ काम करता है। Apple Watch के साथ यह अलार्म तुम्हें अपनी सामान्य विंडो में लक्ष्य समय तक जगाता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az alvásidő mód csak Galaxy Watch-csal működik. Apple Watch-csal ez az ébresztő a szokásos ablakában, legkésőbb a célidőben ébreszt."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնի տևողության ռեժիմն աշխատում է միայն Galaxy Watch-ով։ Apple Watch-ով այս զարթուցիչը քեզ արթնացնում է իր սովորական պատուհանում՝ մինչև նպատակային ժամը։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode lama tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, alarm ini membangunkanmu di jendela biasanya hingga waktu target."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svefnlengdarstilling virkar aðeins með Galaxy Watch. Með Apple Watch vekur þessi vekjari þig í venjulegum glugga sínum fram að markmiðstíma."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La modalità durata del sonno funziona solo con un Galaxy Watch. Con un Apple Watch questa sveglia ti sveglia nella sua finestra normale fino all’orario obiettivo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠時間モードは Galaxy Watch でのみ使えます。Apple Watch では、このアラームは通常のウィンドウ内で目標時刻までに起こします。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ძილის ხანგრძლივობის რეჟიმი მუშაობს მხოლოდ Galaxy Watch-თან. Apple Watch-თან ეს მაღვიძარა გაღვიძებს ჩვეულ ფანჯარაში სამიზნე დრომდე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйқы ұзақтығы режимі тек Galaxy Watch-пен жұмыс істейді. Apple Watch-пен бұл оятқыш сені әдеттегі терезесінде мақсатты уақытқа дейін оятады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "របៀបរយៈពេលដេកដំណើរការតែជាមួយ Galaxy Watch ប៉ុណ្ណោះ។ ជាមួយ Apple Watch ម៉ោងរោទ៍នេះដាស់អ្នកក្នុងចន្លោះពេលធម្មតារបស់វា រហូតដល់ម៉ោងគោលដៅ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆಯ ಅವಧಿ ಮೋಡ್ Galaxy Watch ಜೊತೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ. Apple Watch ಜೊತೆ ಈ ಅಲಾರಾಂ ತನ್ನ ಸಾಮಾನ್ಯ ಅವಧಿಯಲ್ಲಿ ಗುರಿ ಸಮಯದೊಳಗೆ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수면 시간 모드는 Galaxy Watch에서만 작동해요. Apple Watch에서는 이 알람이 평소 구간 안에서 목표 시각까지 깨워요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂໝດໄລຍະນອນໃຊ້ໄດ້ກັບ Galaxy Watch ເທົ່ານັ້ນ. ກັບ Apple Watch ໂມງປຸກນີ້ຈະປຸກເຈົ້າໃນຊ່ວງເວລາປົກກະຕິຂອງມັນຈົນຮອດເວລາເປົ້າໝາຍ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miego trukmės režimas veikia tik su Galaxy Watch. Su Apple Watch šis žadintuvas pažadins tave įprastame lange iki tikslinio laiko."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miega ilguma režīms darbojas tikai ar Galaxy Watch. Ar Apple Watch šis modinātājs tevi modina savā parastajā logā līdz mērķa laikam."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режимот по траење на сонот работи само со Galaxy Watch. Со Apple Watch овој аларм те буди во својот вообичаен прозорец до целното време."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറക്ക ദൈർഘ്യ മോഡ് Galaxy Watch-ൽ മാത്രമേ പ്രവർത്തിക്കൂ. Apple Watch-ൽ ഈ അലാറം അതിന്റെ സാധാരണ സമയപരിധിയിൽ ലക്ഷ്യ സമയം വരെ നിങ്ങളെ ഉണർത്തും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нойрны үргэлжлэх хугацааны горим зөвхөн Galaxy Watch-тай ажилладаг. Apple Watch-тай бол энэ сэрүүлэг ердийн хугацаандаа зорилтот цаг хүртэл сэрээнэ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपेच्या कालावधीचा मोड फक्त Galaxy Watch सोबत चालतो. Apple Watch सोबत हा अलार्म तुम्हाला त्याच्या नेहमीच्या कालावधीत लक्ष्य वेळेपर्यंत उठवतो."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mod tempoh tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, penggera ini membangunkan awak dalam tetingkap biasanya hingga waktu sasaran."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ချိန်ကြာမြင့်မှု မုဒ်သည် Galaxy Watch ဖြင့်သာ အလုပ်လုပ်သည်။ Apple Watch ဖြင့်ဆိုလျှင် ဤနှိုးစက်သည် ပုံမှန်အချိန်အပိုင်းအတွင်း ပစ်မှတ်အချိန်အထိ နှိုးမည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnlengde-modusen virker bare med en Galaxy Watch. Med en Apple Watch vekker denne alarmen deg i sitt vanlige vindu frem til ønsket tid."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निद्राको अवधि मोड Galaxy Watch सँग मात्र चल्छ। Apple Watch सँग यो अलार्मले तिमीलाई आफ्नो सामान्य अवधिभित्र लक्षित समयसम्म ब्युँझाउँछ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De slaapduurmodus werkt alleen met een Galaxy Watch. Met een Apple Watch wekt deze wekker je in zijn gewone venster tot de doeltijd."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੀਂਦ ਦੀ ਮਿਆਦ ਵਾਲਾ ਮੋਡ ਸਿਰਫ਼ Galaxy Watch ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ। Apple Watch ਨਾਲ ਇਹ ਅਲਾਰਮ ਤੁਹਾਨੂੰ ਆਪਣੀ ਆਮ ਮਿਆਦ ਵਿੱਚ ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੱਕ ਜਗਾਉਂਦਾ ਹੈ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb czasu snu działa tylko z zegarkiem Galaxy Watch. Z Apple Watch ten budzik budzi cię w swoim zwykłym oknie do czasu docelowego."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O modo duração do sono só funciona com um Galaxy Watch. Com um Apple Watch, este alarme acorda você na janela normal até o horário-alvo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O modo duração do sono só funciona com um Galaxy Watch. Com um Apple Watch, este alarme acorda-te na janela normal até à hora-alvo."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modul durata somnului funcționează doar cu un Galaxy Watch. Cu un Apple Watch, această alarmă te trezește în fereastra obișnuită până la ora țintă."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим по длине сна работает только с Galaxy Watch. С Apple Watch этот будильник будит тебя в обычном окне до целевого времени."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දේ කාල ප්‍රකාරය ක්‍රියා කරන්නේ Galaxy Watch සමඟ පමණි. Apple Watch සමඟ මෙම එලාමය එහි සාමාන්‍ය පරාසය තුළ ඉලක්ක වේලාව දක්වා ඔබව අවදි කරයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Režim dĺžky spánku funguje len s hodinkami Galaxy Watch. S Apple Watch ťa tento budík zobudí vo svojom bežnom okne do cieľového času."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Način trajanja spanca deluje samo z uro Galaxy Watch. Z uro Apple Watch te ta budilka zbudi v svojem običajnem oknu do ciljnega časa."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modaliteti i kohëzgjatjes së gjumit funksionon vetëm me Galaxy Watch. Me Apple Watch, ky alarm të zgjon në intervalin e zakonshëm deri në orën e synuar."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим трајања сна ради само са Galaxy Watch-ом. Са Apple Watch-ом те овај аларм буди у свом уобичајеном интервалу до циљног времена."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömnlängdsläget fungerar bara med en Galaxy Watch. Med en Apple Watch väcker det här larmet dig i sitt vanliga fönster fram till önskad tid."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hali ya muda wa kulala hufanya kazi tu na Galaxy Watch. Ukiwa na Apple Watch, kengele hii inakuamsha ndani ya kipindi chake cha kawaida hadi muda lengwa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூக்க நேர பயன்முறை Galaxy Watch உடன் மட்டுமே வேலை செய்யும். Apple Watch உடன் இந்த அலாரம் அதன் வழக்கமான வரம்பில் இலக்கு நேரம் வரை உங்களை எழுப்பும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్ర వ్యవధి మోడ్ Galaxy Watch తో మాత్రమే పనిచేస్తుంది. Apple Watch తో ఈ అలారం దాని సాధారణ వ్యవధిలో లక్ష్య సమయం వరకు మిమ్మల్ని లేపుతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โหมดระยะเวลานอนใช้ได้กับ Galaxy Watch เท่านั้น เมื่อใช้ Apple Watch นาฬิกาปลุกนี้จะปลุกคุณในช่วงเวลาปกติจนถึงเวลาเป้าหมาย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyku süresi modu yalnızca Galaxy Watch ile çalışır. Apple Watch ile bu alarm seni normal aralığında hedef saate kadar uyandırır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим за тривалістю сну працює лише з Galaxy Watch. З Apple Watch цей будильник будить тебе у звичайному вікні до цільового часу."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیند کے دورانیے والا موڈ صرف Galaxy Watch کے ساتھ کام کرتا ہے۔ Apple Watch کے ساتھ یہ الارم تمہیں اپنی عام ونڈو میں ہدف کے وقت تک جگاتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyqu davomiyligi rejimi faqat Galaxy Watch bilan ishlaydi. Apple Watch bilan bu budilnik seni odatiy oraligʻida belgilangan vaqtgacha uygʻotadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ thời lượng ngủ chỉ hoạt động với Galaxy Watch. Với Apple Watch, báo thức này đánh thức bạn trong khung giờ thường lệ, muộn nhất vào giờ mục tiêu."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠時長模式只適用於 Galaxy Watch。配合 Apple Watch 時，此鬧鐘會喺正常時段內、最遲喺目標時間叫醒你。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠时长模式只适用于 Galaxy Watch。搭配 Apple Watch 时，此闹钟会在正常窗口内、最晚在目标时间叫醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠時數模式只適用於 Galaxy Watch。搭配 Apple Watch 時，此鬧鐘會在正常時段內、最晚在目標時間叫醒你。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imodi yobude bokulala isebenza kuphela ne-Galaxy Watch. Ne-Apple Watch, le alamu ikuvusa esikhaleni sayo esivamile kuze kube isikhathi okuhloswe ngaso."
           }
         }
       }
@@ -96424,79 +98216,79 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليالٍ بلا نوم خفيف"
+            "value": "%1$lld ليالٍ بلا لحظة مناسبة"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noći bez laganog sna"
+            "value": "%1$lld noći bez dobrog trenutka"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noci bez lehkého spánku"
+            "value": "%1$lld noci bez vhodné chvíle"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld oíche gan codladh éadrom"
+            "value": "%1$lld oíche gan nóiméad maith"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noći bez laganog sna"
+            "value": "%1$lld noći bez dobrog trenutka"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld naktys be lengvo miego"
+            "value": "%1$lld naktys be tinkamo momento"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noce bez lekkiego snu"
+            "value": "%1$lld noce bez dobrego momentu"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nopți fără somn ușor"
+            "value": "%1$lld nopți fără un moment bun"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночи без лёгкого сна"
+            "value": "%1$lld ночи без удачного момента"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noci bez ľahkého spánku"
+            "value": "%1$lld noci bez vhodnej chvíle"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noči brez lahkega spanca"
+            "value": "%1$lld noči brez pravega trenutka"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ноћи без лаганог сна"
+            "value": "%1$lld ноћи без доброг тренутка"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночі без легкого сну"
+            "value": "%1$lld ночі без слушного моменту"
           }
         }
       }
@@ -96506,85 +98298,85 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليلة بلا نوم خفيف"
+            "value": "%1$lld ليلة بلا لحظة مناسبة"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nits sense son lleuger"
+            "value": "%1$lld nits sense cap bon moment"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nocí bez lehkého spánku"
+            "value": "%1$lld nocí bez vhodné chvíle"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noches sin sueño ligero"
+            "value": "%1$lld noches sin un buen momento"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nuits sans sommeil léger"
+            "value": "%1$lld nuits sans bon moment"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld n-oíche gan codladh éadrom"
+            "value": "%1$lld n-oíche gan nóiméad maith"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld notti senza sonno leggero"
+            "value": "%1$lld notti senza un momento giusto"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nakties be lengvo miego"
+            "value": "%1$lld nakties be tinkamo momento"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nocy bez lekkiego snu"
+            "value": "%1$lld nocy bez dobrego momentu"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noites sem sono leve"
+            "value": "%1$lld noites sem um bom momento"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noites sem sono leve"
+            "value": "%1$lld noites sem um bom momento"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночей без лёгкого сна"
+            "value": "%1$lld ночей без удачного момента"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noci bez ľahkého spánku"
+            "value": "%1$lld noci bez vhodnej chvíle"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночей без легкого сну"
+            "value": "%1$lld ночей без слушного моменту"
           }
         }
       }
@@ -96594,373 +98386,373 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nag sonder ligte slaap"
+            "value": "%1$lld nag sonder ’n goeie oomblik"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ሌሊት ያለ ቀላል እንቅልፍ"
+            "value": "%1$lld ሌሊት ያለ ጥሩ ቅጽበት"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليلة بلا نوم خفيف"
+            "value": "%1$lld ليلة بلا لحظة مناسبة"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yüngül yuxusuz %1$lld gecə"
+            "value": "Doğru an olmayan %1$lld gecə"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld нощ без лек сън"
+            "value": "%1$lld нощ без добър момент"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "হালকা ঘুম ছাড়া %1$lldটি রাত"
+            "value": "ভালো মুহূর্ত ছাড়া %1$lldটি রাত"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noć bez laganog sna"
+            "value": "%1$lld noć bez dobrog trenutka"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nit sense son lleuger"
+            "value": "%1$lld nit sense cap bon moment"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noc bez lehkého spánku"
+            "value": "%1$lld noc bez vhodné chvíle"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nat uden let søvn"
+            "value": "%1$lld nat uden et godt tidspunkt"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Nacht ohne leichten Schlaf"
+            "value": "%1$lld Nacht ohne guten Moment"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld νύχτα χωρίς ελαφρύ ύπνο"
+            "value": "%1$lld νύχτα χωρίς κατάλληλη στιγμή"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld night without light sleep"
+            "value": "%1$lld night without a good moment"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noche sin sueño ligero"
+            "value": "%1$lld noche sin un buen momento"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld öö ilma kerge uneta"
+            "value": "%1$lld öö ilma hea hetketa"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gau %1$lld lo arinik gabe"
+            "value": "Gau %1$lld une onik gabe"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld شب بدون خواب سبک"
+            "value": "%1$lld شب بدون لحظهٔ مناسب"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld yö ilman kevyttä unta"
+            "value": "%1$lld yö ilman hyvää hetkeä"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld gabi na walang mababaw na tulog"
+            "value": "%1$lld gabi na walang magandang sandali"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nuit sans sommeil léger"
+            "value": "%1$lld nuit sans bon moment"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld oíche gan codladh éadrom"
+            "value": "%1$lld oíche gan nóiméad maith"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noite sen sono lixeiro"
+            "value": "%1$lld noite sen un bo momento"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "હળવી ઊંઘ વગરની %1$lld રાત"
+            "value": "યોગ્ય ક્ષણ વગરની %1$lld રાત"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld לילה בלי שינה קלה"
+            "value": "%1$lld לילה בלי רגע טוב"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld रात बिना हल्की नींद के"
+            "value": "%1$lld रात बिना सही पल के"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noć bez laganog sna"
+            "value": "%1$lld noć bez dobrog trenutka"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld éjszaka könnyű alvás nélkül"
+            "value": "%1$lld éjszaka jó pillanat nélkül"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld գիշեր առանց թեթև քնի"
+            "value": "%1$lld գիշեր առանց հարմար պահի"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nótt án létts svefns"
+            "value": "%1$lld nótt án góðs augnabliks"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld notte senza sonno leggero"
+            "value": "%1$lld notte senza un momento giusto"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ღამე მსუბუქი ძილის გარეშე"
+            "value": "%1$lld ღამე კარგი მომენტის გარეშე"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Жеңіл ұйқысыз %1$lld түн"
+            "value": "Қолайлы сәтсіз %1$lld түн"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಹಗುರ ನಿದ್ರೆ ಇಲ್ಲದ %1$lld ರಾತ್ರಿ"
+            "value": "ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$lld ರಾತ್ರಿ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld naktis be lengvo miego"
+            "value": "%1$lld naktis be tinkamo momento"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nakts bez viegla miega"
+            "value": "%1$lld nakts bez laba brīža"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ноќ без лесен сон"
+            "value": "%1$lld ноќ без добар миг"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കമില്ലാത്ത %1$lld രാത്രി"
+            "value": "നല്ല നിമിഷമില്ലാത്ത %1$lld രാത്രി"
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хөнгөн нойргүй %1$lld шөнө"
+            "value": "Тохиромжтой мөчгүй %1$lld шөнө"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld रात्र हलक्या झोपेशिवाय"
+            "value": "%1$lld रात्र योग्य क्षणाशिवाय"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld natt uten lett søvn"
+            "value": "%1$lld natt uten et godt tidspunkt"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्का निद्राबिनाका %1$lld रात"
+            "value": "राम्रो क्षणबिनाका %1$lld रात"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nacht zonder lichte slaap"
+            "value": "%1$lld nacht zonder goed moment"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਹਲਕੀ ਨੀਂਦ ਤੋਂ ਬਿਨਾਂ %1$lld ਰਾਤ"
+            "value": "ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$lld ਰਾਤ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noc bez lekkiego snu"
+            "value": "%1$lld noc bez dobrego momentu"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noite sem sono leve"
+            "value": "%1$lld noite sem um bom momento"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noite sem sono leve"
+            "value": "%1$lld noite sem um bom momento"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noapte fără somn ușor"
+            "value": "%1$lld noapte fără un moment bun"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночь без лёгкого сна"
+            "value": "%1$lld ночь без удачного момента"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සැහැල්ලු නින්ද නැති රාත්‍රි %1$lld"
+            "value": "හොඳ මොහොතක් නැති රාත්‍රි %1$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noc bez ľahkého spánku"
+            "value": "%1$lld noc bez vhodnej chvíle"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noč brez lahkega spanca"
+            "value": "%1$lld noč brez pravega trenutka"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld natë pa gjumë të lehtë"
+            "value": "%1$lld natë pa një moment të mirë"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ноћ без лаганог сна"
+            "value": "%1$lld ноћ без доброг тренутка"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld natt utan lätt sömn"
+            "value": "%1$lld natt utan ett bra tillfälle"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usiku %1$lld bila usingizi mwepesi"
+            "value": "Usiku %1$lld bila wakati mzuri"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "லேசான தூக்கம் இல்லாத %1$lld இரவு"
+            "value": "நல்ல தருணம் இல்லாத %1$lld இரவு"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "తేలికపాటి నిద్ర లేని %1$lld రాత్రి"
+            "value": "సరైన క్షణం లేని %1$lld రాత్రి"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld gece hafif uyku yok"
+            "value": "%1$lld gece uygun an yok"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ніч без легкого сну"
+            "value": "%1$lld ніч без слушного моменту"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld رات ہلکی نیند کے بغیر"
+            "value": "%1$lld رات اچھے لمحے کے بغیر"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyqusiz %1$lld tun"
+            "value": "Qulay paytsiz %1$lld tun"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ubusuku obungu-%1$lld ngaphandle kobuthongo obulula"
+            "value": "Ubusuku obungu-%1$lld ngaphandle kwesikhathi esihle"
           }
         }
       }
@@ -96970,445 +98762,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nagte sonder ligte slaap"
+            "value": "%1$lld nagte sonder ’n goeie oomblik"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ሌሊቶች ያለ ቀላል እንቅልፍ"
+            "value": "%1$lld ሌሊቶች ያለ ጥሩ ቅጽበት"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليلة بلا نوم خفيف"
+            "value": "%1$lld ليلة بلا لحظة مناسبة"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yüngül yuxusuz %1$lld gecə"
+            "value": "Doğru an olmayan %1$lld gecə"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld нощи без лек сън"
+            "value": "%1$lld нощи без добър момент"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "হালকা ঘুম ছাড়া %1$lldটি রাত"
+            "value": "ভালো মুহূর্ত ছাড়া %1$lldটি রাত"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noći bez laganog sna"
+            "value": "%1$lld noći bez dobrog trenutka"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nits sense son lleuger"
+            "value": "%1$lld nits sense cap bon moment"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nocí bez lehkého spánku"
+            "value": "%1$lld nocí bez vhodné chvíle"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nætter uden let søvn"
+            "value": "%1$lld nætter uden et godt tidspunkt"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Nächte ohne leichten Schlaf"
+            "value": "%1$lld Nächte ohne guten Moment"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld νύχτες χωρίς ελαφρύ ύπνο"
+            "value": "%1$lld νύχτες χωρίς κατάλληλη στιγμή"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nights without light sleep"
+            "value": "%1$lld nights without a good moment"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noches sin sueño ligero"
+            "value": "%1$lld noches sin un buen momento"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ööd ilma kerge uneta"
+            "value": "%1$lld ööd ilma hea hetketa"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld gau lo arinik gabe"
+            "value": "%1$lld gau une onik gabe"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld شب بدون خواب سبک"
+            "value": "%1$lld شب بدون لحظهٔ مناسب"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld yötä ilman kevyttä unta"
+            "value": "%1$lld yötä ilman hyvää hetkeä"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld gabi na walang mababaw na tulog"
+            "value": "%1$lld gabi na walang magandang sandali"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nuits sans sommeil léger"
+            "value": "%1$lld nuits sans bon moment"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld oíche gan codladh éadrom"
+            "value": "%1$lld oíche gan nóiméad maith"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noites sen sono lixeiro"
+            "value": "%1$lld noites sen un bo momento"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "હળવી ઊંઘ વગરની %1$lld રાતો"
+            "value": "યોગ્ય ક્ષણ વગરની %1$lld રાતો"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld לילות בלי שינה קלה"
+            "value": "%1$lld לילות בלי רגע טוב"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld रातें बिना हल्की नींद के"
+            "value": "%1$lld रातें बिना सही पल के"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noći bez laganog sna"
+            "value": "%1$lld noći bez dobrog trenutka"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld éjszaka könnyű alvás nélkül"
+            "value": "%1$lld éjszaka jó pillanat nélkül"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld գիշեր առանց թեթև քնի"
+            "value": "%1$lld գիշեր առանց հարմար պահի"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld malam tanpa tidur ringan"
+            "value": "%1$lld malam tanpa saat yang tepat"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nætur án létts svefns"
+            "value": "%1$lld nætur án góðs augnabliks"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld notti senza sonno leggero"
+            "value": "%1$lld notti senza un momento giusto"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 晩連続で浅い睡眠なし"
+            "value": "%1$lld 晩連続でよいタイミングなし"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ღამე მსუბუქი ძილის გარეშე"
+            "value": "%1$lld ღამე კარგი მომენტის გარეშე"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Жеңіл ұйқысыз %1$lld түн"
+            "value": "Қолайлы сәтсіз %1$lld түн"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld យប់គ្មានដំណេកស្រាល"
+            "value": "%1$lld យប់គ្មានពេលល្អ"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಹಗುರ ನಿದ್ರೆ ಇಲ್ಲದ %1$lld ರಾತ್ರಿಗಳು"
+            "value": "ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$lld ರಾತ್ರಿಗಳು"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld일 연속 얕은 잠 없음"
+            "value": "%1$lld일 연속 좋은 타이밍 없음"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ຄືນທີ່ບໍ່ມີການຫຼັບຕື້ນ"
+            "value": "%1$lld ຄືນທີ່ບໍ່ມີເວລາທີ່ດີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld naktų be lengvo miego"
+            "value": "%1$lld naktų be tinkamo momento"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld naktis bez viegla miega"
+            "value": "%1$lld naktis bez laba brīža"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ноќи без лесен сон"
+            "value": "%1$lld ноќи без добар миг"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കമില്ലാത്ത %1$lld രാത്രികൾ"
+            "value": "നല്ല നിമിഷമില്ലാത്ത %1$lld രാത്രികൾ"
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хөнгөн нойргүй %1$lld шөнө"
+            "value": "Тохиромжтой мөчгүй %1$lld шөнө"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld रात्री हलक्या झोपेशिवाय"
+            "value": "%1$lld रात्री योग्य क्षणाशिवाय"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld malam tanpa tidur ringan"
+            "value": "%1$lld malam tanpa saat yang sesuai"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ရေးပေါ့မရှိသော %1$lld ည"
+            "value": "ကောင်းသောအချိန်မရှိသော %1$lld ည"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld netter uten lett søvn"
+            "value": "%1$lld netter uten et godt tidspunkt"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्का निद्राबिनाका %1$lld रात"
+            "value": "राम्रो क्षणबिनाका %1$lld रात"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nachten zonder lichte slaap"
+            "value": "%1$lld nachten zonder goed moment"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਹਲਕੀ ਨੀਂਦ ਤੋਂ ਬਿਨਾਂ %1$lld ਰਾਤਾਂ"
+            "value": "ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$lld ਰਾਤਾਂ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nocy bez lekkiego snu"
+            "value": "%1$lld nocy bez dobrego momentu"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noites sem sono leve"
+            "value": "%1$lld noites sem um bom momento"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noites sem sono leve"
+            "value": "%1$lld noites sem um bom momento"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld de nopți fără somn ușor"
+            "value": "%1$lld de nopți fără un moment bun"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночи без лёгкого сна"
+            "value": "%1$lld ночи без удачного момента"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සැහැල්ලු නින්ද නැති රාත්‍රි %1$lld"
+            "value": "හොඳ මොහොතක් නැති රාත්‍රි %1$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nocí bez ľahkého spánku"
+            "value": "%1$lld nocí bez vhodnej chvíle"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noči brez lahkega spanca"
+            "value": "%1$lld noči brez pravega trenutka"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld net pa gjumë të lehtë"
+            "value": "%1$lld net pa një moment të mirë"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ноћи без лаганог сна"
+            "value": "%1$lld ноћи без доброг тренутка"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nätter utan lätt sömn"
+            "value": "%1$lld nätter utan ett bra tillfälle"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usiku %1$lld bila usingizi mwepesi"
+            "value": "Usiku %1$lld bila wakati mzuri"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "லேசான தூக்கம் இல்லாத %1$lld இரவுகள்"
+            "value": "நல்ல தருணம் இல்லாத %1$lld இரவுகள்"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "తేలికపాటి నిద్ర లేని %1$lld రాత్రులు"
+            "value": "సరైన క్షణం లేని %1$lld రాత్రులు"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld คืนไม่มีช่วงหลับตื้น"
+            "value": "%1$lld คืนไม่มีจังหวะที่ดี"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld gece hafif uyku yok"
+            "value": "%1$lld gece uygun an yok"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ночі без легкого сну"
+            "value": "%1$lld ночі без слушного моменту"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld راتیں ہلکی نیند کے بغیر"
+            "value": "%1$lld راتیں اچھے لمحے کے بغیر"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyqusiz %1$lld tun"
+            "value": "Qulay paytsiz %1$lld tun"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld đêm không có giấc ngủ nông"
+            "value": "%1$lld đêm không có thời điểm tốt"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 晚沒有淺睡"
+            "value": "%1$lld 晚沒有合適的時刻"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "连续 %1$lld 晚没有浅睡"
+            "value": "连续 %1$lld 晚没有合适的时刻"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "連續 %1$lld 晚沒有淺眠"
+            "value": "連續 %1$lld 晚沒有合適的時刻"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ubusuku obungu-%1$lld ngaphandle kobuthongo obulula"
+            "value": "Ubusuku obungu-%1$lld ngaphandle kwesikhathi esihle"
           }
         }
       }
@@ -97418,25 +99210,25 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليلتان بلا نوم خفيف"
+            "value": "%1$lld ليلتان بلا لحظة مناسبة"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld oíche gan codladh éadrom"
+            "value": "%1$lld oíche gan nóiméad maith"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld לילות בלי שינה קלה"
+            "value": "%1$lld לילות בלי רגע טוב"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld noči brez lahkega spanca"
+            "value": "%1$lld noči brez pravega trenutka"
           }
         }
       }
@@ -97446,13 +99238,13 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ليلة بلا نوم خفيف"
+            "value": "%1$lld ليلة بلا لحظة مناسبة"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld naktis bez viegla miega"
+            "value": "%1$lld naktis bez laba brīža"
           }
         }
       }
@@ -104630,445 +106422,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% in ligte slaap"
+            "value": "%1$lld %% vroeër wakker gemaak by onrus"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% በቀላል እንቅልፍ"
+            "value": "%1$lld %% እረፍት ሲያጡ ቀደም ብለው ተቀስቅሰዋል"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% في النوم الخفيف"
+            "value": "%1$lld %% أُوقظوا أبكر عند التململ"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% yüngül yuxuda"
+            "value": "%1$lld %% narahat olanda tez oyadılıb"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% в лек сън"
+            "value": "%1$lld %% събудени по-рано при неспокоен сън"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% হালকা ঘুমে"
+            "value": "%1$lld %% অস্থির হওয়ায় আগে জাগানো হয়েছে"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% u laganom snu"
+            "value": "%1$lld %% ranije probuđeno zbog nemira"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% en son lleuger"
+            "value": "%1$lld %% despertat abans per inquietud"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% v lehkém spánku"
+            "value": "%1$lld %% probuzeno dřív kvůli neklidu"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% i let søvn"
+            "value": "%1$lld %% vækket tidligere ved uro"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% im leichten Schlaf"
+            "value": "%1$lld %% bei Unruhe früher geweckt"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% σε ελαφρύ ύπνο"
+            "value": "%1$lld %% ξύπνησαν νωρίτερα λόγω ανησυχίας"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% in light sleep"
+            "value": "%1$lld %% woken early when restless"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% en sueño ligero"
+            "value": "%1$lld %% despertado antes por inquietud"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% kerges unes"
+            "value": "%1$lld %% äratatud rahutuse korral varem"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%%%1$lld lo arinean"
+            "value": "%%%1$lld lehenago esnatuta ezinegonagatik"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% در خواب سبک"
+            "value": "%1$lld %% با بی‌قراری زودتر بیدار شده"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% kevyessä unessa"
+            "value": "%1$lld %% herätetty aiemmin levottomuuden vuoksi"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% sa mababaw na tulog"
+            "value": "%1$lld %% ginising nang mas maaga kapag di mapakali"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% en sommeil léger"
+            "value": "%1$lld %% réveillés plus tôt en cas d’agitation"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% i gcodladh éadrom"
+            "value": "%1$lld %% dúisithe níos luaithe nuair a bhí tú corrthónach"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% en sono lixeiro"
+            "value": "%1$lld %% espertado antes por inquedanza"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% હળવી ઊંઘમાં"
+            "value": "%1$lld %% બેચેની થતાં વહેલા જગાડ્યા"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% בשינה קלה"
+            "value": "%1$lld %% הוערו מוקדם יותר כשהשינה לא שקטה"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% हल्की नींद में"
+            "value": "%1$lld %% बेचैनी पर पहले जगाए गए"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% u laganom snu"
+            "value": "%1$lld %% ranije probuđeno zbog nemira"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% könnyű alvásban"
+            "value": "%1$lld %% korábban ébresztve nyugtalanság miatt"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% թեթև քնում"
+            "value": "%1$lld %% ավելի շուտ արթնացված անհանգստանալիս"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% dalam tidur ringan"
+            "value": "%1$lld %% dibangunkan lebih awal saat gelisah"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% í léttum svefni"
+            "value": "%1$lld %% vakin fyrr við óróleika"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% nel sonno leggero"
+            "value": "%1$lld %% svegliati prima per agitazione"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "浅い眠り %1$lld %%"
+            "value": "落ち着かない眠りで早めに起床 %1$lld %%"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% მსუბუქ ძილში"
+            "value": "%1$lld %% ადრე გაღვიძებული მოუსვენრობისას"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% жеңіл ұйқыда"
+            "value": "%1$lld %% мазасызданғанда ертерек оятылды"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ក្នុងដំណេកស្រាល"
+            "value": "%1$lld %% ត្រូវបានដាស់មុនពេលដេកមិនស្ងប់"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ"
+            "value": "%1$lld %% ಚಡಪಡಿಸಿದಾಗ ಬೇಗ ಎಬ್ಬಿಸಲಾಗಿದೆ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "얕은 잠에서 %1$lld %%"
+            "value": "뒤척여서 일찍 깬 비율 %1$lld %%"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ໃນຊ່ວງຫຼັບຕື້ນ"
+            "value": "%1$lld %% ຖືກປຸກກ່ອນເມື່ອນອນບໍ່ສະຫງົບ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% lengvo miego metu"
+            "value": "%1$lld %% pažadinta anksčiau dėl nerimo"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% vieglā miegā"
+            "value": "%1$lld %% pamodināti agrāk nemierīgā miegā"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% во лесен сон"
+            "value": "%1$lld %% разбудени порано при немир"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% നേരിയ ഉറക്കത്തിൽ"
+            "value": "%1$lld %% അസ്വസ്ഥരായപ്പോൾ നേരത്തെ ഉണർത്തി"
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% нь хөнгөн нойронд"
+            "value": "%1$lld %% нь тайван бус үед эрт сэрээгдсэн"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% हलक्या झोपेत"
+            "value": "%1$lld %% अस्वस्थ झाल्यावर लवकर उठवले"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% dalam tidur ringan"
+            "value": "%1$lld %% dibangunkan lebih awal bila gelisah"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% အိပ်ရေးပေါ့ချိန်တွင်"
+            "value": "မငြိမ်မသက်ဖြစ်၍ စောနှိုးခံရမှု %1$lld %%"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% i lett søvn"
+            "value": "%1$lld %% vekket tidligere ved uro"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% हल्का निद्रामा"
+            "value": "%1$lld %% छटपटिँदा चाँडै ब्युँझाइयो"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% in lichte slaap"
+            "value": "%1$lld %% eerder gewekt bij onrust"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ"
+            "value": "%1$lld %% ਬੇਚੈਨੀ ’ਤੇ ਪਹਿਲਾਂ ਜਗਾਏ ਗਏ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% w lekkim śnie"
+            "value": "%1$lld %% obudzeń wcześniej przy niepokoju"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% no sono leve"
+            "value": "%1$lld %% acordado antes por agitação"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% em sono leve"
+            "value": "%1$lld %% acordado mais cedo por agitação"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% în somn ușor"
+            "value": "%1$lld %% treziți mai devreme la agitație"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% в лёгком сне"
+            "value": "%1$lld %% разбужено раньше при беспокойном сне"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% සැහැල්ලු නින්දේ"
+            "value": "%1$lld %% නොසන්සුන් වූ විට කලින් අවදි කළා"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% v ľahkom spánku"
+            "value": "%1$lld %% zobudené skôr pri nepokoji"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% v lahkem spancu"
+            "value": "%1$lld %% zbujeno prej ob nemiru"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% në gjumë të lehtë"
+            "value": "%1$lld %% zgjuar më herët kur shqetësohesh"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% у лаганом сну"
+            "value": "%1$lld %% раније пробуђено због немира"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% i lätt sömn"
+            "value": "%1$lld %% väckta tidigare vid oro"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% katika usingizi mwepesi"
+            "value": "%1$lld %% waliamshwa mapema wakikosa utulivu"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% லேசான தூக்கத்தில்"
+            "value": "%1$lld %% அமைதியின்மையால் முன்பே எழுப்பப்பட்டது"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% తేలికపాటి నిద్రలో"
+            "value": "%1$lld %% అశాంతిగా ఉన్నప్పుడు ముందే లేపబడ్డారు"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ในช่วงหลับตื้น"
+            "value": "ปลุกก่อนเพราะนอนกระสับกระส่าย %1$lld %%"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%%%1$lld hafif uykuda"
+            "value": "%%%1$lld huzursuzlanınca erken uyandırıldı"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% у легкому сні"
+            "value": "%1$lld %% розбуджено раніше при неспокійному сні"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ہلکی نیند میں"
+            "value": "%1$lld %% بے چینی پر پہلے جگایا گیا"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% yengil uyquda"
+            "value": "%1$lld %% bezovtalanganda ertaroq uygʻotildi"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% trong giấc ngủ nông"
+            "value": "%1$lld %% được đánh thức sớm khi trằn trọc"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% 在淺睡中"
+            "value": "%1$lld %% 因睡得不安穩而提早叫醒"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% 在浅睡中"
+            "value": "%1$lld %% 因睡得不安稳而提前叫醒"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% 在淺眠中"
+            "value": "%1$lld %% 因睡得不安穩而提早叫醒"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld %% ebuthongweni obulula"
+            "value": "%1$lld %% bavuswe kusenesikhathi uma bengazinzile"
           }
         }
       }
@@ -150162,445 +151954,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geen ligte slaap bespeur nie"
+            "value": "Geen goeie oomblik in die venster nie"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ቀላል እንቅልፍ አልተገኘም"
+            "value": "በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "لم يُرصد نوم خفيف"
+            "value": "لا لحظة مناسبة ضمن النافذة"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yüngül yuxu tapılmadı"
+            "value": "Pəncərədə doğru an olmadı"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Не е открит лек сън"
+            "value": "Няма добър момент в прозореца"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "হালকা ঘুম ধরা পড়েনি"
+            "value": "সময়সীমায় ভালো মুহূর্ত ছিল না"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lagani san nije prepoznat"
+            "value": "Nema dobrog trenutka u intervalu"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "No s’ha detectat son lleuger"
+            "value": "Cap bon moment a la finestra"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lehký spánek nezjištěn"
+            "value": "V okně nebyla vhodná chvíle"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingen let søvn registreret"
+            "value": "Intet godt tidspunkt i vinduet"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein leichter Schlaf erkannt"
+            "value": "Kein guter Moment im Fenster"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Δεν εντοπίστηκε ελαφρύς ύπνος"
+            "value": "Καμία κατάλληλη στιγμή στο παράθυρο"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No light sleep detected"
+            "value": "No good moment in the window"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se detectó sueño ligero"
+            "value": "Ningún buen momento en la ventana"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kerget und ei tuvastatud"
+            "value": "Aknas polnud head hetke"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ez da lo arinik hauteman"
+            "value": "Ez zen une onik izan leihoan"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "خواب سبک تشخیص داده نشد"
+            "value": "در بازه لحظهٔ مناسبی نبود"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kevyttä unta ei havaittu"
+            "value": "Ikkunassa ei ollut hyvää hetkeä"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Walang nakitang mababaw na tulog"
+            "value": "Walang magandang sandali sa window"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aucun sommeil léger détecté"
+            "value": "Aucun bon moment dans la fenêtre"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Níor braitheadh codladh éadrom"
+            "value": "Gan nóiméad maith san fhuinneog"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Non se detectou sono lixeiro"
+            "value": "Ningún bo momento na xanela"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "હળવી ઊંઘ મળી નહીં"
+            "value": "સમયગાળામાં યોગ્ય ક્ષણ નહોતી"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לא זוהתה שינה קלה"
+            "value": "לא היה רגע טוב בחלון"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्की नींद नहीं मिली"
+            "value": "विंडो में सही पल नहीं आया"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lagani san nije prepoznat"
+            "value": "Nema dobrog trenutka u intervalu"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nem észlelt könnyű alvást"
+            "value": "Nem volt jó pillanat az ablakban"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Թեթև քուն չի հայտնաբերվել"
+            "value": "Պատուհանում հարմար պահ չի եղել"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tidur ringan tidak terdeteksi"
+            "value": "Tidak ada saat yang tepat di jendela"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enginn léttur svefn greindist"
+            "value": "Ekkert gott augnablik í glugganum"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nessun sonno leggero rilevato"
+            "value": "Nessun momento giusto nella finestra"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "浅い眠りは検出されず"
+            "value": "ウィンドウ内によいタイミングなし"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "მსუბუქი ძილი ვერ დაფიქსირდა"
+            "value": "ფანჯარაში კარგი მომენტი არ იყო"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Жеңіл ұйқы анықталмады"
+            "value": "Терезеде қолайлы сәт болмады"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "រកមិនឃើញដំណេកស្រាល"
+            "value": "គ្មានពេលល្អក្នុងចន្លោះពេល"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಹಗುರ ನಿದ್ರೆ ಪತ್ತೆಯಾಗಲಿಲ್ಲ"
+            "value": "ಅವಧಿಯಲ್ಲಿ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "얕은 수면이 감지되지 않음"
+            "value": "구간 안에 좋은 타이밍 없음"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ບໍ່ພົບການຫຼັບຕື້ນ"
+            "value": "ບໍ່ມີເວລາທີ່ດີໃນຊ່ວງເວລາ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lengvo miego neaptikta"
+            "value": "Lange nebuvo tinkamo momento"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Viegls miegs netika konstatēts"
+            "value": "Logā nebija laba brīža"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Не е откриен лесен сон"
+            "value": "Немаше добар миг во прозорецот"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കം കണ്ടെത്തിയില്ല"
+            "value": "സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല"
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хөнгөн нойр илрээгүй"
+            "value": "Хугацаанд тохиромжтой мөч байгаагүй"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "हलकी झोप आढळली नाही"
+            "value": "कालावधीत योग्य क्षण नव्हता"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiada tidur ringan dikesan"
+            "value": "Tiada saat yang sesuai dalam tetingkap"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ရေးပေါ့ မတွေ့ပါ"
+            "value": "အချိန်အပိုင်းအတွင်း ကောင်းသောအချိန် မရှိခဲ့ပါ"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingen lett søvn oppdaget"
+            "value": "Ikke noe godt tidspunkt i vinduet"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्का निद्रा भेटिएन"
+            "value": "अवधिभित्र राम्रो क्षण आएन"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geen lichte slaap gedetecteerd"
+            "value": "Geen goed moment in het venster"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਮਿਲੀ"
+            "value": "ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nie wykryto płytkiego snu"
+            "value": "Brak dobrego momentu w oknie"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhum sono leve detectado"
+            "value": "Nenhum bom momento na janela"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhum sono leve detetado"
+            "value": "Nenhum bom momento na janela"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nu s-a detectat somn ușor"
+            "value": "Niciun moment bun în fereastră"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Лёгкий сон не обнаружен"
+            "value": "В окне не было удачного момента"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සැහැල්ලු නින්දක් හමු නොවීය"
+            "value": "පරාසය තුළ හොඳ මොහොතක් නොතිබුණි"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ľahký spánok nezistený"
+            "value": "V okne nebola vhodná chvíľa"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lahek spanec ni zaznan"
+            "value": "V oknu ni bilo pravega trenutka"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nuk u dallua gjumë i lehtë"
+            "value": "Asnjë moment i mirë në interval"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Лагани сан није препознат"
+            "value": "Нема доброг тренутка у интервалу"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingen lätt sömn upptäckt"
+            "value": "Inget bra tillfälle i fönstret"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hakuna usingizi mwepesi uliogunduliwa"
+            "value": "Hakuna wakati mzuri ndani ya kipindi"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "லேசான தூக்கம் கண்டறியப்படவில்லை"
+            "value": "வரம்புக்குள் நல்ல தருணம் இல்லை"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "తేలికపాటి నిద్ర కనిపించలేదు"
+            "value": "వ్యవధిలో సరైన క్షణం లేదు"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ไม่พบช่วงหลับตื้น"
+            "value": "ไม่มีจังหวะที่ดีในช่วงเวลาปลุก"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hafif uyku algılanmadı"
+            "value": "Aralıkta uygun an yoktu"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Легкий сон не виявлено"
+            "value": "У вікні не було слушного моменту"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "ہلکی نیند نہیں ملی"
+            "value": "ونڈو میں اچھا لمحہ نہیں تھا"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyqu aniqlanmadi"
+            "value": "Oraliqda qulay payt boʻlmadi"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Không phát hiện giấc ngủ nông"
+            "value": "Không có thời điểm tốt trong khung giờ"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "未偵測到淺睡"
+            "value": "時段內沒有合適的時刻"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "未检测到浅睡"
+            "value": "窗口内没有合适的时刻"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "未偵測到淺眠"
+            "value": "時段內沒有合適的時刻"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abukho ubuthongo obulula obutholakele"
+            "value": "Asikho isikhathi esihle esikhaleni"
           }
         }
       }

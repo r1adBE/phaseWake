@@ -30,7 +30,7 @@
 
     <string name="reason_light">બેચેન – કદાચ હળવી ઊંઘ</string>
     <string name="reason_awake">પહેલેથી જાગતા</string>
-    <string name="reason_deadline">હળવી ઊંઘ મળી નહીં</string>
+    <string name="reason_deadline">સમયગાળામાં યોગ્ય ક્ષણ નહોતી</string>
     <string name="reason_exact">બરાબર લક્ષ્ય સમયે</string>
     <string name="reason_short_night">ટૂંકી રાત – ફક્ત લક્ષ્ય સમયે</string>
     <string name="woke_early">લક્ષ્યથી %1$d મિ. પહેલાં · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">વધુમાં વધુ</string>
     <string name="editor_sleep_duration">%1$s ઊંઘ</string>
     <string name="editor_sleep_hint">તમે ઊંઘી જાઓ ત્યારથી ગણે છે. ઘડિયાળ તે આપમેળે ઓળખે છે; તરત શરૂ કરવા ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કરો.</string>
+    <string name="editor_sleep_wear_only">ઊંઘના સમયનો મોડ ફક્ત Galaxy Watch સાથે કામ કરે છે. Apple Watch સાથે આ એલાર્મ તમને તેના સામાન્ય સમયગાળામાં લક્ષ્ય સમય સુધીમાં જગાડે છે.</string>
     <string name="editor_window">સમયગાળો: %1$d મિ.</string>
     <string name="editor_window_hint">%1$s અને %2$s વચ્ચે જગાડશે</string>
     <string name="editor_window_exact">ચોક્કસ</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s માંથી. ત્યાં થયેલા ફેરફાર અને કાઢી નાખેલું Phase Wake આપમેળે અપનાવે છે.</string>
     <string name="history_health_live_unknown">તમારા હેલ્થ ડેટામાંથી. ત્યાં થયેલા ફેરફાર અને કાઢી નાખેલું Phase Wake આપમેળે અપનાવે છે.</string>
     <string name="history_average">Ø %1$d મિ. વહેલા</string>
-    <string name="history_light_share">%1$d %% હળવી ઊંઘમાં</string>
+    <string name="history_light_share">%1$d %% બેચેની થતાં વહેલા જગાડ્યા</string>
     <string name="history_export">અનામી રીતે એક્સપોર્ટ કરો</string>
     <string name="history_export_subject">Phase Wake રાતો (અનામી)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">રદ કરો</string>
     <string name="editor_advice_title">ટિપ: મોટો સમયગાળો</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">છેલ્લી %2$d રાતમાંથી %1$d રાતે સમયગાળામાં હળવી ઊંઘ નહોતી. %3$d મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો.</item>
-        <item quantity="other">છેલ્લી %2$d રાતોમાંથી %1$d રાતે સમયગાળામાં હળવી ઊંઘ નહોતી. %3$d મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો.</item>
+        <item quantity="one">છેલ્લી %2$d રાતમાંથી %1$d રાતે સમયગાળામાં યોગ્ય ક્ષણ નહોતી. %3$d મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો.</item>
+        <item quantity="other">છેલ્લી %2$d રાતોમાંથી %1$d રાતે સમયગાળામાં યોગ્ય ક્ષણ નહોતી. %3$d મિ. સાથે તમે વધુ વાર યોગ્ય ક્ષણે જાગશો.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d મિ. વાપરો</string>
     <string name="channel_sunrise">સૂર્યોદય</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">આજની રાત માટે તૈયાર</string>
     <string name="check_ready_text">ઘડિયાળ કનેક્ટ, એલાર્મને મંજૂરી. વિગતો માટે ટૅપ કરો.</string>
     <string name="check_not_ready">સૂતાં પહેલાં તપાસો</string>
+    <string name="check_not_ready_icon">તૈયાર નથી</string>
+    <string name="check_silent_switch_title">iOS 26 પહેલાં બેકઅપ એલાર્મ</string>
+    <string name="check_silent_switch_text">iOS 26 પહેલાં બેકઅપ એલાર્મ એક સૂચના છે: સાયલન્ટ સ્વિચ તેને શાંત કરી દે છે. અવાજ ચાલુ રાખો અથવા iOS 26 પર અપડેટ કરો.</string>
     <string name="check_watch">ઘડિયાળ કનેક્ટ થયેલ</string>
     <string name="check_watch_problem">તમારી ઘડિયાળ સુધી પહોંચાતું નથી. તેને પહેરો, Bluetooth ચાલુ રાખો અને ઘડિયાળ પર એક વાર Phase Wake ખોલો.</string>
     <string name="check_notifications">નોટિફિકેશનને મંજૂરી</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wakeને ટેકો આપો</string>
     <string name="settings_support_text">Phase Wake મફત, ઓપન સોર્સ અને જાહેરાત વગરનું છે. જો તમને ગમે, તો તમે તેના વિકાસમાં ટેકો આપી શકો છો.</string>
     <plurals name="hint_title">
-        <item quantity="one">હળવી ઊંઘ વગરની %1$d રાત</item>
-        <item quantity="other">હળવી ઊંઘ વગરની %1$d રાતો</item>
+        <item quantity="one">યોગ્ય ક્ષણ વગરની %1$d રાત</item>
+        <item quantity="other">યોગ્ય ક્ષણ વગરની %1$d રાતો</item>
     </plurals>
     <string name="hint_gaps">માપમાં ખાલી જગ્યાઓ હતી. શું રાત્રે ઘડિયાળ ચાર્જ થઈ રહી હતી કે બંધ હતી?</string>
     <string name="hint_heart">તમારા હૃદયના ધબકારા મળ્યા નહીં. રાત્રે ઘડિયાળ થોડી કસીને પહેરો.</string>

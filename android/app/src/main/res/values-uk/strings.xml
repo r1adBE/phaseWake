@@ -30,7 +30,7 @@
 
     <string name="reason_light">Неспокійно – імовірно, легкий сон</string>
     <string name="reason_awake">Уже не спиш</string>
-    <string name="reason_deadline">Легкий сон не виявлено</string>
+    <string name="reason_deadline">У вікні не було слушного моменту</string>
     <string name="reason_exact">Точно в цільовий час</string>
     <string name="reason_short_night">Коротка ніч – лише в цільовий час</string>
     <string name="woke_early">за %1$d хв до цілі · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Не пізніше</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
     <string name="editor_sleep_hint">Відлік іде від моменту засинання. Годинник визначає його автоматично; натисни «На добраніч» на годиннику, щоб почати одразу.</string>
+    <string name="editor_sleep_wear_only">Режим за тривалістю сну працює лише з Galaxy Watch. З Apple Watch цей будильник будить тебе у звичайному вікні до цільового часу.</string>
     <string name="editor_window">Вікно: %1$d хв</string>
     <string name="editor_window_hint">Розбудить між %1$s і %2$s</string>
     <string name="editor_window_exact">Точно</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Із застосунку %1$s. Зміни й видалення, зроблені там, Phase Wake враховує автоматично.</string>
     <string name="history_health_live_unknown">З твоїх даних про здоров\'я. Зміни й видалення, зроблені там, Phase Wake враховує автоматично.</string>
     <string name="history_average">Ø на %1$d хв раніше</string>
-    <string name="history_light_share">%1$d %% у легкому сні</string>
+    <string name="history_light_share">%1$d %% розбуджено раніше при неспокійному сні</string>
     <string name="history_export">Експортувати анонімно</string>
     <string name="history_export_subject">Ночі Phase Wake (анонімно)</string>
 
@@ -135,10 +136,10 @@
     <string name="action_cancel">Скасувати</string>
     <string name="editor_advice_title">Порада: ширше вікно</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">У %1$d з останніх %2$d ночі у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
-        <item quantity="few">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
-        <item quantity="many">У %1$d з останніх %2$d ночей у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
-        <item quantity="other">У %1$d з останніх %2$d ночі у вікні не було легкого сну. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="one">У %1$d з останніх %2$d ночі у вікні не було слушного моменту. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="few">У %1$d з останніх %2$d ночей у вікні не було слушного моменту. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="many">У %1$d з останніх %2$d ночей у вікні не було слушного моменту. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
+        <item quantity="other">У %1$d з останніх %2$d ночі у вікні не було слушного моменту. З %3$d хв ти частіше прокидатимешся у слушний момент.</item>
     </plurals>
     <string name="editor_advice_apply">Обрати %1$d хв</string>
     <string name="channel_sunrise">Світанок</string>
@@ -164,6 +165,9 @@
     <string name="check_ready">Готово до ночі</string>
     <string name="check_ready_text">Годинник підключено, будильники дозволено. Торкнися, щоб побачити подробиці.</string>
     <string name="check_not_ready">Перевір перед сном</string>
+    <string name="check_not_ready_icon">Не готово</string>
+    <string name="check_silent_switch_title">Резервний будильник до iOS 26</string>
+    <string name="check_silent_switch_text">До iOS 26 резервний будильник — це сповіщення: перемикач беззвучного режиму вимикає його звук. Залиш звук увімкненим або онови до iOS 26.</string>
     <string name="check_watch">Годинник підключено</string>
     <string name="check_watch_problem">Годинник недоступний. Одягни його, не вимикай Bluetooth і один раз відкрий Phase Wake на годиннику.</string>
     <string name="check_notifications">Сповіщення дозволено</string>
@@ -210,10 +214,10 @@
     <string name="settings_support">Підтримати Phase Wake</string>
     <string name="settings_support_text">Phase Wake безкоштовний, з відкритим кодом і без реклами. Якщо він тобі подобається, можеш підтримати його розробку.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d ніч без легкого сну</item>
-        <item quantity="few">%1$d ночі без легкого сну</item>
-        <item quantity="many">%1$d ночей без легкого сну</item>
-        <item quantity="other">%1$d ночі без легкого сну</item>
+        <item quantity="one">%1$d ніч без слушного моменту</item>
+        <item quantity="few">%1$d ночі без слушного моменту</item>
+        <item quantity="many">%1$d ночей без слушного моменту</item>
+        <item quantity="other">%1$d ночі без слушного моменту</item>
     </plurals>
     <string name="hint_gaps">У вимірюванні були пропуски. Годинник заряджався чи був знятий уночі?</string>
     <string name="hint_heart">Бракувало даних про пульс. Одягай годинник на ніч трохи щільніше.</string>

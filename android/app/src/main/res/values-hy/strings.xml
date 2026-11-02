@@ -25,7 +25,7 @@
     <string name="home_alarms">Քո զարթուցիչները</string>
     <string name="reason_light">Անհանգիստ – հավանաբար թեթև քուն</string>
     <string name="reason_awake">Արդեն արթուն</string>
-    <string name="reason_deadline">Թեթև քուն չի հայտնաբերվել</string>
+    <string name="reason_deadline">Պատուհանում հարմար պահ չի եղել</string>
     <string name="reason_exact">Ճիշտ նպատակային ժամին</string>
     <string name="reason_short_night">Կարճ գիշեր – միայն նպատակային ժամին</string>
     <string name="woke_early">Նպատակային ժամից %1$d ր առաջ · %2$s</string>
@@ -46,6 +46,7 @@
     <string name="editor_latest">Ամենաուշը</string>
     <string name="editor_sleep_duration">Քուն՝ %1$s</string>
     <string name="editor_sleep_hint">Հաշվում է քնելու պահից։ Ժամացույցն այն ինքնաշխատ է ճանաչում. անմիջապես սկսելու համար ժամացույցում հպիր «Բարի գիշեր»։</string>
+    <string name="editor_sleep_wear_only">Քնի տևողության ռեժիմն աշխատում է միայն Galaxy Watch-ով։ Apple Watch-ով այս զարթուցիչը քեզ արթնացնում է իր սովորական պատուհանում՝ մինչև նպատակային ժամը։</string>
     <string name="editor_window">Պատուհան՝ %1$d ր</string>
     <string name="editor_window_hint">Արթնացնում է %1$s-ից մինչև %2$s</string>
     <string name="editor_window_exact">Ճշգրիտ</string>
@@ -70,7 +71,7 @@
     <string name="history_health_live">Աղբյուր՝ %1$s։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
     <string name="history_health_live_unknown">Աղբյուր՝ քո առողջության տվյալներ։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
     <string name="history_average">Ø %1$d ր շուտ</string>
-    <string name="history_light_share">%1$d %% թեթև քնում</string>
+    <string name="history_light_share">%1$d %% ավելի շուտ արթնացված անհանգստանալիս</string>
     <string name="history_export">Արտահանել անանուն</string>
     <string name="history_export_subject">Phase Wake-ի գիշերներ (անանուն)</string>
     <string name="settings_title">Կարգավորումներ</string>
@@ -125,8 +126,8 @@
     <string name="action_cancel">Չեղարկել</string>
     <string name="editor_advice_title">Խորհուրդ՝ ավելի մեծ պատուհան</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Վերջին %2$d գիշերից %1$d-ում պատուհանում թեթև քուն չի եղել։ %3$d ր-ով ավելի հաճախ կարթնանաս հարմար պահին։</item>
-        <item quantity="other">Վերջին %2$d գիշերից %1$d-ում պատուհանում թեթև քուն չի եղել։ %3$d ր-ով ավելի հաճախ կարթնանաս հարմար պահին։</item>
+        <item quantity="one">Վերջին %2$d գիշերից %1$d-ում պատուհանում հարմար պահ չի եղել։ %3$d ր-ով ավելի հաճախ կարթնանաս հարմար պահին։</item>
+        <item quantity="other">Վերջին %2$d գիշերից %1$d-ում պատուհանում հարմար պահ չի եղել։ %3$d ր-ով ավելի հաճախ կարթնանաս հարմար պահին։</item>
     </plurals>
     <string name="editor_advice_apply">Կիրառել %1$d ր</string>
     <string name="channel_sunrise">Արևածագ</string>
@@ -150,6 +151,9 @@
     <string name="check_ready">Պատրաստ է այս գիշերվա համար</string>
     <string name="check_ready_text">Ժամացույցը միացված է, զարթուցիչները թույլատրված են։ Հպիր մանրամասների համար։</string>
     <string name="check_not_ready">Ստուգիր քնելուց առաջ</string>
+    <string name="check_not_ready_icon">Պատրաստ չէ</string>
+    <string name="check_silent_switch_title">Պահուստային զարթուցիչ iOS 26-ից առաջ</string>
+    <string name="check_silent_switch_text">iOS 26-ից առաջ պահուստային զարթուցիչը ծանուցում է․ անձայն ռեժիմի փոխանջատիչը լռեցնում է այն։ Ձայնը միացված թող կամ թարմացրու iOS 26-ի։</string>
     <string name="check_watch">Ժամացույցը միացված է</string>
     <string name="check_watch_problem">Ժամացույցդ հասանելի չէ։ Կրիր այն, Bluetooth-ը միացված պահիր և մեկ անգամ բացիր Phase Wake-ը ժամացույցում։</string>
     <string name="check_notifications">Ծանուցումները թույլատրված են</string>
@@ -196,8 +200,8 @@
     <string name="settings_support">Աջակցել Phase Wake-ին</string>
     <string name="settings_support_text">Phase Wake-ն անվճար է, բաց կոդով և առանց գովազդի։ Եթե դուր է գալիս, կարող ես աջակցել դրա զարգացմանը։</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d գիշեր առանց թեթև քնի</item>
-        <item quantity="other">%1$d գիշեր առանց թեթև քնի</item>
+        <item quantity="one">%1$d գիշեր առանց հարմար պահի</item>
+        <item quantity="other">%1$d գիշեր առանց հարմար պահի</item>
     </plurals>
     <string name="hint_gaps">Չափման մեջ բացեր կային։ Գիշերը ժամացույցը լիցքավորվո՞ւմ էր, թե՞ անջատված էր։</string>
     <string name="hint_heart">Սրտի զարկերը բացակայում էին։ Գիշերը ժամացույցը մի քիչ ավելի ամուր կրիր։</string>

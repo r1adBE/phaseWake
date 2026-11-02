@@ -23,6 +23,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 /** Einstieg der Handy-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). */
@@ -92,6 +93,10 @@ class PhaseWakeApp : Application() {
             if (holidays.refresh()) backup.reschedule()
             // Schlafziel für den Einschlafpunkt auf der Uhr (unverändert: gleiches Paket, die Uhr merkt nichts).
             publishSleepGoal()
+        }
+        // Widget «Details von heute»: neu zeichnen, sobald eine Nacht gespeichert oder das Befinden gesetzt wird.
+        appScope.launch {
+            nights.nights.filterNotNull().collect { com.phasewake.app.widget.NextAlarmWidget.update(this@PhaseWakeApp) }
         }
         // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
         appScope.launch { sounds.cleanup() }

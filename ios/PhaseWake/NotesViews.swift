@@ -226,3 +226,8 @@ private struct CustomNoteRow: View {
         if SleepNotes.cleanName(name).isEmpty { name = note.name } else { model.renameCustomNote(note.id, name) }
     }
 }
+
+extension SleepNote {
+    /// Textschlüssel wie Android («note_caffeine» …).
+    var textKey: String { "note_" + rawValue.lowercased() }
+}

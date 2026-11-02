@@ -25,7 +25,7 @@
     <string name="home_alarms">Siqnalların</string>
     <string name="reason_light">Narahat – yəqin ki, yüngül yuxu</string>
     <string name="reason_awake">Artıq oyaq</string>
-    <string name="reason_deadline">Yüngül yuxu tapılmadı</string>
+    <string name="reason_deadline">Pəncərədə doğru an olmadı</string>
     <string name="reason_exact">Düz hədəf vaxtında</string>
     <string name="reason_short_night">Qısa gecə – yalnız hədəf vaxtında</string>
     <string name="woke_early">Hədəfdən %1$d dəq əvvəl · %2$s</string>
@@ -46,6 +46,7 @@
     <string name="editor_latest">Ən gec</string>
     <string name="editor_sleep_duration">Yuxu: %1$s</string>
     <string name="editor_sleep_hint">Yuxuya getdiyin andan sayır. Saatın bunu avtomatik aşkarlayır; dərhal başlamaq üçün saatda “Gecən xeyrə” düyməsinə toxun.</string>
+    <string name="editor_sleep_wear_only">Yuxu müddəti rejimi yalnız Galaxy Watch ilə işləyir. Apple Watch ilə bu siqnal səni adi pəncərəsində hədəf vaxtına qədər oyadır.</string>
     <string name="editor_window">Pəncərə: %1$d dəq</string>
     <string name="editor_window_hint">%1$s ilə %2$s arasında oyadır</string>
     <string name="editor_window_exact">Dəqiq</string>
@@ -70,7 +71,7 @@
     <string name="history_health_live">Mənbə: %1$s. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
     <string name="history_health_live_unknown">Mənbə: sağlamlıq məlumatların. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
     <string name="history_average">Ø %1$d dəq tez</string>
-    <string name="history_light_share">%1$d %% yüngül yuxuda</string>
+    <string name="history_light_share">%1$d %% narahat olanda tez oyadılıb</string>
     <string name="history_export">Anonim ixrac et</string>
     <string name="history_export_subject">Phase Wake gecələri (anonim)</string>
     <string name="settings_title">Ayarlar</string>
@@ -125,8 +126,8 @@
     <string name="action_cancel">Ləğv et</string>
     <string name="editor_advice_title">Məsləhət: daha böyük pəncərə</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Son %2$d gecənin %1$d gecəsində pəncərədə yüngül yuxu olmayıb. %3$d dəq ilə daha tez-tez doğru anda oyanacaqsan.</item>
-        <item quantity="other">Son %2$d gecənin %1$d gecəsində pəncərədə yüngül yuxu olmayıb. %3$d dəq ilə daha tez-tez doğru anda oyanacaqsan.</item>
+        <item quantity="one">Son %2$d gecənin %1$d gecəsində pəncərədə doğru an olmayıb. %3$d dəq ilə daha tez-tez doğru anda oyanacaqsan.</item>
+        <item quantity="other">Son %2$d gecənin %1$d gecəsində pəncərədə doğru an olmayıb. %3$d dəq ilə daha tez-tez doğru anda oyanacaqsan.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d dəq tətbiq et</string>
     <string name="channel_sunrise">Gündoğumu</string>
@@ -150,6 +151,9 @@
     <string name="check_ready">Bu gecəyə hazırdır</string>
     <string name="check_ready_text">Saat qoşulub, siqnallara icazə var. Təfərrüat üçün toxun.</string>
     <string name="check_not_ready">Yatmazdan əvvəl yoxla</string>
+    <string name="check_not_ready_icon">Hazır deyil</string>
+    <string name="check_silent_switch_title">iOS 26-dan əvvəl ehtiyat siqnal</string>
+    <string name="check_silent_switch_text">iOS 26-dan əvvəl ehtiyat siqnal bildirişdir: səssiz açarı onu susdurur. Səsi açıq saxla və ya iOS 26-ya yenilə.</string>
     <string name="check_watch">Saat qoşulub</string>
     <string name="check_watch_problem">Saatın əlçatan deyil. Onu tax, Bluetooth-u açıq saxla və saatda Phase Wake-i bir dəfə aç.</string>
     <string name="check_notifications">Bildirişlərə icazə var</string>
@@ -196,8 +200,8 @@
     <string name="settings_support">Phase Wake-ə dəstək ol</string>
     <string name="settings_support_text">Phase Wake pulsuz, açıq mənbəlidir və reklamsızdır. Xoşuna gəlirsə, inkişafına dəstək ola bilərsən.</string>
     <plurals name="hint_title">
-        <item quantity="one">Yüngül yuxusuz %1$d gecə</item>
-        <item quantity="other">Yüngül yuxusuz %1$d gecə</item>
+        <item quantity="one">Doğru an olmayan %1$d gecə</item>
+        <item quantity="other">Doğru an olmayan %1$d gecə</item>
     </plurals>
     <string name="hint_gaps">Ölçmədə boşluqlar olub. Saat gecə şarjda idi, yoxsa sönülü?</string>
     <string name="hint_heart">Nəbzin yox idi. Gecə saatı bir az daha sıx tax.</string>

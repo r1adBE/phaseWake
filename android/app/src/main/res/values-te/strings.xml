@@ -30,7 +30,7 @@
 
     <string name="reason_light">అశాంతి – బహుశా తేలికపాటి నిద్ర</string>
     <string name="reason_awake">ముందే మేల్కొన్నారు</string>
-    <string name="reason_deadline">తేలికపాటి నిద్ర కనిపించలేదు</string>
+    <string name="reason_deadline">వ్యవధిలో సరైన క్షణం లేదు</string>
     <string name="reason_exact">సరిగ్గా లక్ష్య సమయానికి</string>
     <string name="reason_short_night">చిన్న రాత్రి – లక్ష్య సమయానికే</string>
     <string name="woke_early">లక్ష్యానికి %1$d ని. ముందు · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">గరిష్ఠంగా</string>
     <string name="editor_sleep_duration">%1$s నిద్ర</string>
     <string name="editor_sleep_hint">మీరు నిద్రపోయినప్పటి నుంచి లెక్కిస్తుంది. వాచ్ దాన్ని ఆటోమేటిక్‌గా గుర్తిస్తుంది; వెంటనే మొదలుపెట్టడానికి వాచ్‌లో “శుభ రాత్రి” నొక్కండి.</string>
+    <string name="editor_sleep_wear_only">నిద్ర వ్యవధి మోడ్ Galaxy Watch తో మాత్రమే పనిచేస్తుంది. Apple Watch తో ఈ అలారం దాని సాధారణ వ్యవధిలో లక్ష్య సమయం వరకు మిమ్మల్ని లేపుతుంది.</string>
     <string name="editor_window">వ్యవధి: %1$d ని.</string>
     <string name="editor_window_hint">%1$s, %2$s మధ్య లేపుతుంది</string>
     <string name="editor_window_exact">కచ్చితంగా</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s నుండి. అక్కడ చేసిన మార్పులు, తొలగింపులను Phase Wake ఆటోమేటిక్‌గా అనుసరిస్తుంది.</string>
     <string name="history_health_live_unknown">మీ హెల్త్ డేటా నుండి. అక్కడ చేసిన మార్పులు, తొలగింపులను Phase Wake ఆటోమేటిక్‌గా అనుసరిస్తుంది.</string>
     <string name="history_average">Ø %1$d ని. ముందుగా</string>
-    <string name="history_light_share">%1$d %% తేలికపాటి నిద్రలో</string>
+    <string name="history_light_share">%1$d %% అశాంతిగా ఉన్నప్పుడు ముందే లేపబడ్డారు</string>
     <string name="history_export">అనామకంగా ఎగుమతి చేయండి</string>
     <string name="history_export_subject">Phase Wake రాత్రులు (అనామకం)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">రద్దు చేయండి</string>
     <string name="editor_advice_title">చిట్కా: పెద్ద వ్యవధి</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">గత %2$d రాత్రిలో %1$d రాత్రి వ్యవధిలో తేలికపాటి నిద్ర లేదు. %3$d ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు.</item>
-        <item quantity="other">గత %2$d రాత్రుల్లో %1$d రాత్రులు వ్యవధిలో తేలికపాటి నిద్ర లేదు. %3$d ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు.</item>
+        <item quantity="one">గత %2$d రాత్రిలో %1$d రాత్రి వ్యవధిలో సరైన క్షణం లేదు. %3$d ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు.</item>
+        <item quantity="other">గత %2$d రాత్రుల్లో %1$d రాత్రులు వ్యవధిలో సరైన క్షణం లేదు. %3$d ని.తో మీరు ఎక్కువసార్లు సరైన క్షణంలో మేల్కొంటారు.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d ని. వాడండి</string>
     <string name="channel_sunrise">సూర్యోదయం</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">ఈ రాత్రికి సిద్ధం</string>
     <string name="check_ready_text">వాచ్ కనెక్ట్ అయింది, అలారాలకు అనుమతి ఉంది. వివరాలకు నొక్కండి.</string>
     <string name="check_not_ready">నిద్రపోయే ముందు తనిఖీ చేయండి</string>
+    <string name="check_not_ready_icon">సిద్ధంగా లేదు</string>
+    <string name="check_silent_switch_title">iOS 26 కి ముందు బ్యాకప్ అలారం</string>
+    <string name="check_silent_switch_text">iOS 26 కి ముందు బ్యాకప్ అలారం ఒక నోటిఫికేషన్: సైలెంట్ స్విచ్ దాన్ని నిశ్శబ్దం చేస్తుంది. సౌండ్‌ను ఆన్‌లో ఉంచండి లేదా iOS 26 కి అప్‌డేట్ చేయండి.</string>
     <string name="check_watch">వాచ్ కనెక్ట్ అయింది</string>
     <string name="check_watch_problem">మీ వాచ్ అందుబాటులో లేదు. దాన్ని పెట్టుకోండి, బ్లూటూత్ ఆన్‌లో ఉంచండి, వాచ్‌లో ఒకసారి Phase Wake తెరవండి.</string>
     <string name="check_notifications">నోటిఫికేషన్‌లకు అనుమతి ఉంది</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wakeకి మద్దతు ఇవ్వండి</string>
     <string name="settings_support_text">Phase Wake ఉచితం, ఓపెన్ సోర్స్, ప్రకటనలు లేవు. మీకు నచ్చితే, దాని అభివృద్ధికి మద్దతు ఇవ్వవచ్చు.</string>
     <plurals name="hint_title">
-        <item quantity="one">తేలికపాటి నిద్ర లేని %1$d రాత్రి</item>
-        <item quantity="other">తేలికపాటి నిద్ర లేని %1$d రాత్రులు</item>
+        <item quantity="one">సరైన క్షణం లేని %1$d రాత్రి</item>
+        <item quantity="other">సరైన క్షణం లేని %1$d రాత్రులు</item>
     </plurals>
     <string name="hint_gaps">కొలతలో ఖాళీలు ఉన్నాయి. రాత్రి వాచ్ ఛార్జ్ అవుతోందా లేదా ఆఫ్‌లో ఉందా?</string>
     <string name="hint_heart">మీ గుండె వేగం అందలేదు. రాత్రి వాచ్‌ను కొంచెం బిగుతుగా పెట్టుకోండి.</string>

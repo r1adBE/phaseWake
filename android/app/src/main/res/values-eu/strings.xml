@@ -30,7 +30,7 @@
 
     <string name="reason_light">Urduri – seguru asko lo arina</string>
     <string name="reason_awake">Esna zeunden</string>
-    <string name="reason_deadline">Ez da lo arinik hauteman</string>
+    <string name="reason_deadline">Ez zen une onik izan leihoan</string>
     <string name="reason_exact">Helburuko orduan bertan</string>
     <string name="reason_short_night">Gau laburra – helburuko orduan bakarrik</string>
     <string name="woke_early">Helburua baino %1$d min lehenago · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Beranduenez</string>
     <string name="editor_sleep_duration">Lo egin: %1$s</string>
     <string name="editor_sleep_hint">Lokartzen zarenetik kontatzen du. Erlojuak automatikoki hautematen du; sakatu «Gabon» erlojuan berehala hasteko.</string>
+    <string name="editor_sleep_wear_only">Lo-iraupenaren modua Galaxy Watch batekin bakarrik dabil. Apple Watch batekin, alarma honek ohiko leihoan esnatzen zaitu, helburuko ordura arte.</string>
     <string name="editor_window">Leihoa: %1$d min</string>
     <string name="editor_window_hint">%1$s eta %2$s artean esnatuko zaitu</string>
     <string name="editor_window_exact">Zehatz</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Iturria: %1$s. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_health_live_unknown">Iturria: zure osasun-datuak. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_average">Ø %1$d min lehenago</string>
-    <string name="history_light_share">%%%1$d lo arinean</string>
+    <string name="history_light_share">%%%1$d lehenago esnatuta ezinegonagatik</string>
     <string name="history_export">Esportatu modu anonimoan</string>
     <string name="history_export_subject">Phase Wake gauak (anonimoak)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Utzi</string>
     <string name="editor_advice_title">Aholkua: leiho handiagoa</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Azken %2$d gauetik %1$d gauetan ez zen lo arinik izan leihoan. %3$d minutuarekin maizago esnatuko zara une onean.</item>
-        <item quantity="other">Azken %2$d gauetatik %1$d gauetan ez zen lo arinik izan leihoan. %3$d minutuarekin maizago esnatuko zara une onean.</item>
+        <item quantity="one">Azken %2$d gauetik %1$d gauetan ez zen une onik izan leihoan. %3$d minutuarekin maizago esnatuko zara une onean.</item>
+        <item quantity="other">Azken %2$d gauetatik %1$d gauetan ez zen une onik izan leihoan. %3$d minutuarekin maizago esnatuko zara une onean.</item>
     </plurals>
     <string name="editor_advice_apply">Erabili %1$d min</string>
     <string name="channel_sunrise">Egunsentia</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Gaurko gauerako prest</string>
     <string name="check_ready_text">Erlojua konektatuta, alarmak baimenduta. Sakatu xehetasunetarako.</string>
     <string name="check_not_ready">Egiaztatu lo egin aurretik</string>
+    <string name="check_not_ready_icon">Ez dago prest</string>
+    <string name="check_silent_switch_title">Ordezko alarma iOS 26 baino lehen</string>
+    <string name="check_silent_switch_text">iOS 26 baino lehen, ordezko alarma jakinarazpen bat da: isiltasun-etengailuak isildu egiten du. Utzi soinua aktibatuta edo eguneratu iOS 26ra.</string>
     <string name="check_watch">Erlojua konektatuta</string>
     <string name="check_watch_problem">Ezin da erlojura iritsi. Jantzi, utzi Bluetootha aktibatuta eta ireki Phase Wake erlojuan behin.</string>
     <string name="check_notifications">Jakinarazpenak baimenduta</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Lagundu Phase Wake</string>
     <string name="settings_support_text">Phase Wake doakoa da, kode irekikoa eta iragarkirik gabea. Gustatzen bazaizu, garapena babes dezakezu.</string>
     <plurals name="hint_title">
-        <item quantity="one">Gau %1$d lo arinik gabe</item>
-        <item quantity="other">%1$d gau lo arinik gabe</item>
+        <item quantity="one">Gau %1$d une onik gabe</item>
+        <item quantity="other">%1$d gau une onik gabe</item>
     </plurals>
     <string name="hint_gaps">Hutsuneak egon ziren neurketan. Kargatzen edo itzalita zegoen erlojua gauean?</string>
     <string name="hint_heart">Bihotz-maiztasuna falta zen. Jantzi erlojua pixka bat estuago gauean.</string>

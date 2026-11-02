@@ -29,7 +29,7 @@
 
     <string name="reason_light">بے چین – شاید ہلکی نیند</string>
     <string name="reason_awake">پہلے سے جاگ رہے تھے</string>
-    <string name="reason_deadline">ہلکی نیند نہیں ملی</string>
+    <string name="reason_deadline">ونڈو میں اچھا لمحہ نہیں تھا</string>
     <string name="reason_exact">عین ہدف کے وقت پر</string>
     <string name="reason_short_night">مختصر رات – صرف ہدف کے وقت پر</string>
     <string name="woke_early">ہدف سے %1$d منٹ پہلے · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">زیادہ سے زیادہ</string>
     <string name="editor_sleep_duration">%1$s نیند</string>
     <string name="editor_sleep_hint">تمہارے سونے کے وقت سے گنتی ہوتی ہے۔ گھڑی اسے خود پہچان لیتی ہے؛ فوراً شروع کرنے کے لیے گھڑی پر “شب بخیر” پر ٹیپ کرو۔</string>
+    <string name="editor_sleep_wear_only">نیند کے دورانیے والا موڈ صرف Galaxy Watch کے ساتھ کام کرتا ہے۔ Apple Watch کے ساتھ یہ الارم تمہیں اپنی عام ونڈو میں ہدف کے وقت تک جگاتا ہے۔</string>
     <string name="editor_window">ونڈو: %1$d منٹ</string>
     <string name="editor_window_hint">%1$s اور %2$s کے درمیان جگاتا ہے</string>
     <string name="editor_window_exact">عین وقت</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">%1$s سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
     <string name="history_health_live_unknown">تمہارے صحت کے ڈیٹا سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
     <string name="history_average">اوسطاً %1$d منٹ پہلے</string>
-    <string name="history_light_share">%1$d %% ہلکی نیند میں</string>
+    <string name="history_light_share">%1$d %% بے چینی پر پہلے جگایا گیا</string>
     <string name="history_export">گمنام طور پر ایکسپورٹ کرو</string>
     <string name="history_export_subject">Phase Wake کی راتیں (گمنام)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">منسوخ</string>
     <string name="editor_advice_title">مشورہ: بڑی ونڈو</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">پچھلی %2$d رات میں سے %1$d میں ونڈو کے اندر ہلکی نیند نہیں تھی۔ %3$d منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔</item>
-        <item quantity="other">پچھلی %2$d راتوں میں سے %1$d میں ونڈو کے اندر ہلکی نیند نہیں تھی۔ %3$d منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔</item>
+        <item quantity="one">پچھلی %2$d رات میں سے %1$d میں ونڈو کے اندر اچھا لمحہ نہیں تھا۔ %3$d منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔</item>
+        <item quantity="other">پچھلی %2$d راتوں میں سے %1$d میں ونڈو کے اندر اچھا لمحہ نہیں تھا۔ %3$d منٹ کے ساتھ تم زیادہ تر اچھے لمحے پر جاگو گے۔</item>
     </plurals>
     <string name="editor_advice_apply">%1$d منٹ رکھو</string>
     <string name="channel_sunrise">طلوعِ آفتاب</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">آج رات کے لیے تیار</string>
     <string name="check_ready_text">گھڑی منسلک، الارم کی اجازت ہے۔ تفصیل کے لیے ٹیپ کرو۔</string>
     <string name="check_not_ready">سونے سے پہلے دیکھ لو</string>
+    <string name="check_not_ready_icon">تیار نہیں</string>
+    <string name="check_silent_switch_title">iOS 26 سے پہلے بیک اپ الارم</string>
+    <string name="check_silent_switch_text">iOS 26 سے پہلے بیک اپ الارم ایک اطلاع ہے: سائلنٹ سوئچ اسے خاموش کر دیتا ہے۔ آواز آن رکھو یا iOS 26 پر اپ ڈیٹ کرو۔</string>
     <string name="check_watch">گھڑی منسلک</string>
     <string name="check_watch_problem">تمہاری گھڑی سے رابطہ نہیں ہو رہا۔ اسے پہنو، Bluetooth آن رکھو اور گھڑی پر ایک بار Phase Wake کھولو۔</string>
     <string name="check_notifications">اطلاعات کی اجازت ہے</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Phase Wake کی مدد کرو</string>
     <string name="settings_support_text">Phase Wake مفت، اوپن سورس اور اشتہارات کے بغیر ہے۔ اگر پسند آئے تو اس کی تیاری میں مدد کر سکتے ہو۔</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d رات ہلکی نیند کے بغیر</item>
-        <item quantity="other">%1$d راتیں ہلکی نیند کے بغیر</item>
+        <item quantity="one">%1$d رات اچھے لمحے کے بغیر</item>
+        <item quantity="other">%1$d راتیں اچھے لمحے کے بغیر</item>
     </plurals>
     <string name="hint_gaps">پیمائش میں خلا تھے۔ کیا رات کو گھڑی چارج ہو رہی تھی یا اتری ہوئی تھی؟</string>
     <string name="hint_heart">تمہاری دل کی دھڑکن نہیں ملی۔ رات کو گھڑی تھوڑی کس کر پہنو۔</string>

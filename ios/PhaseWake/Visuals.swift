@@ -85,9 +85,8 @@ extension NightRecord {
     var wasExact: Bool { reason == .exact }
 }
 
-/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern»;
-/// zu spät geweckt: «3 Min nach der Zielzeit · …».
-func nightSummary(_ night: NightRecord) -> String {
+/// Zeitpunkt und Grund: «12 Min vor der Zielzeit · Leichter Schlaf»; zu spät geweckt: «3 Min nach der Zielzeit · …».
+func wakeTiming(_ night: NightRecord) -> String {
     let reason = reasonText(night.reason)
     let timing: String = if night.minutesBeforeTarget > 0 {
         L("woke_early", night.minutesBeforeTarget, reason)
@@ -96,6 +95,12 @@ func nightSummary(_ night: NightRecord) -> String {
     } else {
         L("woke_on_time", reason)
     }
+    return timing
+}
+
+/// Kurzfassung einer Nacht: «12 Min vor der Zielzeit · Leichter Schlaf · ohne Schlummern»;
+/// zu spät geweckt: «3 Min nach der Zielzeit · …».
+func nightSummary(_ night: NightRecord) -> String {
     let snooze = night.snoozes == 0 ? L("no_snooze") : L("snoozed_times", night.snoozes)
-    return "\(timing) · \(snooze)"
+    return "\(wakeTiming(night)) · \(snooze)"
 }

@@ -30,7 +30,7 @@
 
     <string name="reason_light">Inquedo – probablemente sono lixeiro</string>
     <string name="reason_awake">Xa esperto</string>
-    <string name="reason_deadline">Non se detectou sono lixeiro</string>
+    <string name="reason_deadline">Ningún bo momento na xanela</string>
     <string name="reason_exact">Xusto á hora prevista</string>
     <string name="reason_short_night">Noite curta – só á hora prevista</string>
     <string name="woke_early">%1$d min antes da hora · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Como moi tarde</string>
     <string name="editor_sleep_duration">Durmir %1$s</string>
     <string name="editor_sleep_hint">Conta desde que adormeces. O reloxo detéctao automaticamente; toca «Boas noites» no reloxo para comezar xa.</string>
+    <string name="editor_sleep_wear_only">O modo de duración do sono só funciona cun Galaxy Watch. Cun Apple Watch, esta alarma espértate na súa xanela normal ata a hora obxectivo.</string>
     <string name="editor_window">Xanela: %1$d min</string>
     <string name="editor_window_hint">Espértate entre as %1$s e as %2$s</string>
     <string name="editor_window_exact">Exacto</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">De %1$s. Phase Wake aplica automaticamente os cambios e as eliminacións que fagas alí.</string>
     <string name="history_health_live_unknown">Dos teus datos de saúde. Phase Wake aplica automaticamente os cambios e as eliminacións que fagas alí.</string>
     <string name="history_average">Ø %1$d min antes</string>
-    <string name="history_light_share">%1$d %% en sono lixeiro</string>
+    <string name="history_light_share">%1$d %% espertado antes por inquedanza</string>
     <string name="history_export">Exportar de forma anónima</string>
     <string name="history_export_subject">Noites de Phase Wake (anónimas)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Cancelar</string>
     <string name="editor_advice_title">Consello: unha xanela maior</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">En %1$d da última %2$d noite non houbo sono lixeiro na xanela. Con %3$d min espertarás máis veces nun bo momento.</item>
-        <item quantity="other">En %1$d das últimas %2$d noites non houbo sono lixeiro na xanela. Con %3$d min espertarás máis veces nun bo momento.</item>
+        <item quantity="one">En %1$d da última %2$d noite non houbo un bo momento na xanela. Con %3$d min espertarás máis veces nun bo momento.</item>
+        <item quantity="other">En %1$d das últimas %2$d noites non houbo un bo momento na xanela. Con %3$d min espertarás máis veces nun bo momento.</item>
     </plurals>
     <string name="editor_advice_apply">Usar %1$d min</string>
     <string name="channel_sunrise">Amencer</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Listo para esta noite</string>
     <string name="check_ready_text">Reloxo conectado, alarmas permitidas. Toca para ver detalles.</string>
     <string name="check_not_ready">Comproba antes de durmir</string>
+    <string name="check_not_ready_icon">Non está listo</string>
+    <string name="check_silent_switch_title">Alarma de reserva antes de iOS 26</string>
+    <string name="check_silent_switch_text">Antes de iOS 26, a alarma de reserva é unha notificación: o interruptor de silencio silénciaa. Deixa o son activado ou actualiza a iOS 26.</string>
     <string name="check_watch">Reloxo conectado</string>
     <string name="check_watch_problem">Non se pode acceder ao reloxo. Pono, deixa o Bluetooth activado e abre Phase Wake no reloxo unha vez.</string>
     <string name="check_notifications">Notificacións permitidas</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Apoiar Phase Wake</string>
     <string name="settings_support_text">Phase Wake é gratuíto, de código aberto e sen anuncios. Se che gusta, podes apoiar o seu desenvolvemento.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noite sen sono lixeiro</item>
-        <item quantity="other">%1$d noites sen sono lixeiro</item>
+        <item quantity="one">%1$d noite sen un bo momento</item>
+        <item quantity="other">%1$d noites sen un bo momento</item>
     </plurals>
     <string name="hint_gaps">Houbo ocos na medición. Estaba o reloxo cargando ou apagado pola noite?</string>
     <string name="hint_heart">Faltou o pulso. Pon o reloxo un pouco máis axustado pola noite.</string>

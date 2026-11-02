@@ -28,7 +28,7 @@
 
     <string name="reason_light">ناآرام – احتمالاً خواب سبک</string>
     <string name="reason_awake">از قبل بیدار</string>
-    <string name="reason_deadline">خواب سبک تشخیص داده نشد</string>
+    <string name="reason_deadline">در بازه لحظهٔ مناسبی نبود</string>
     <string name="reason_exact">دقیقاً در زمان هدف</string>
     <string name="reason_short_night">شب کوتاه – فقط در زمان هدف</string>
     <string name="woke_early">%1$d دق قبل از زمان هدف · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">حداکثر</string>
     <string name="editor_sleep_duration">%1$s خواب</string>
     <string name="editor_sleep_hint">از لحظهٔ به خواب رفتنت شمرده می‌شود. ساعتت آن را خودکار تشخیص می‌دهد؛ برای شروع فوری، روی ساعت «شب بخیر» را بزن.</string>
+    <string name="editor_sleep_wear_only">حالت مدت خواب فقط با Galaxy Watch کار می‌کند. با Apple Watch این زنگ تو را در بازهٔ معمولش تا زمان هدف بیدار می‌کند.</string>
     <string name="editor_window">بازه: %1$d دق</string>
     <string name="editor_window_hint">بین %1$s و %2$s بیدارت می‌کند</string>
     <string name="editor_window_exact">دقیق</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">از %1$s. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
     <string name="history_health_live_unknown">از داده‌های سلامت تو. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
     <string name="history_average">میانگین: %1$d دق زودتر</string>
-    <string name="history_light_share">%1$d %% در خواب سبک</string>
+    <string name="history_light_share">%1$d %% با بی‌قراری زودتر بیدار شده</string>
     <string name="history_export">خروجی ناشناس</string>
     <string name="history_export_subject">شب‌های Phase Wake (ناشناس)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">لغو</string>
     <string name="editor_advice_title">نکته: بازه‌ی بزرگ‌تر</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
-        <item quantity="other">در %1$d شب از %2$d شب اخیر، در بازه خواب سبک نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
+        <item quantity="one">در %1$d شب از %2$d شب اخیر، در بازه لحظهٔ مناسبی نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
+        <item quantity="other">در %1$d شب از %2$d شب اخیر، در بازه لحظهٔ مناسبی نبود. با %3$d دقیقه بیشتر در لحظه‌ای مناسب بیدار می‌شوی.</item>
     </plurals>
     <string name="editor_advice_apply">استفاده از %1$d دقیقه</string>
     <string name="channel_sunrise">طلوع خورشید</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">آماده برای امشب</string>
     <string name="check_ready_text">ساعت متصل است و هشدارها مجاز است. برای جزئیات بزن.</string>
     <string name="check_not_ready">قبل از خواب بررسی کن</string>
+    <string name="check_not_ready_icon">آماده نیست</string>
+    <string name="check_silent_switch_title">زنگ پشتیبان پیش از iOS 26</string>
+    <string name="check_silent_switch_text">پیش از iOS 26 زنگ پشتیبان یک اعلان است: کلید بی‌صدا آن را بی‌صدا می‌کند. صدا را روشن نگه دار یا به iOS 26 به‌روزرسانی کن.</string>
     <string name="check_watch">ساعت متصل است</string>
     <string name="check_watch_problem">به ساعتت دسترسی ندارم. آن را ببند، Bluetooth را روشن نگه دار و یک بار Phase Wake را روی ساعت باز کن.</string>
     <string name="check_notifications">اعلان‌ها مجاز است</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">از Phase Wake حمایت کن</string>
     <string name="settings_support_text">Phase Wake رایگان، متن‌باز و بدون تبلیغ است. اگر دوستش داری، می‌توانی از توسعه‌اش حمایت کنی.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d شب بدون خواب سبک</item>
-        <item quantity="other">%1$d شب بدون خواب سبک</item>
+        <item quantity="one">%1$d شب بدون لحظهٔ مناسب</item>
+        <item quantity="other">%1$d شب بدون لحظهٔ مناسب</item>
     </plurals>
     <string name="hint_gaps">اندازه‌گیری وقفه داشت. ساعت شب شارژ بود یا از مچ درآمده بود؟</string>
     <string name="hint_heart">ضربان قلب ثبت نشده بود. شب‌ها ساعت را کمی محکم‌تر ببند.</string>

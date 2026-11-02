@@ -28,7 +28,7 @@
 
     <string name="reason_light">Ανησυχία – μάλλον ελαφρύς ύπνος</string>
     <string name="reason_awake">Ήδη σε εγρήγορση</string>
-    <string name="reason_deadline">Δεν εντοπίστηκε ελαφρύς ύπνος</string>
+    <string name="reason_deadline">Καμία κατάλληλη στιγμή στο παράθυρο</string>
     <string name="reason_exact">Ακριβώς στην ώρα στόχου</string>
     <string name="reason_short_night">Σύντομη νύχτα – μόνο στην ώρα στόχου</string>
     <string name="woke_early">%1$d λ. πριν τον στόχο · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">Το αργότερο</string>
     <string name="editor_sleep_duration">Ύπνος: %1$s</string>
     <string name="editor_sleep_hint">Μετράει από τη στιγμή που αποκοιμιέσαι. Το ρολόι το αναγνωρίζει αυτόματα· πάτα «Καληνύχτα» στο ρολόι για να ξεκινήσει αμέσως.</string>
+    <string name="editor_sleep_wear_only">Η λειτουργία διάρκειας ύπνου δουλεύει μόνο με Galaxy Watch. Με Apple Watch αυτό το ξυπνητήρι σε ξυπνά στο κανονικό του παράθυρο έως την ώρα στόχο.</string>
     <string name="editor_window">Παράθυρο: %1$d λ.</string>
     <string name="editor_window_hint">Σε ξυπνά ανάμεσα σε %1$s και %2$s</string>
     <string name="editor_window_exact">Ακριβώς</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Από %1$s. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
     <string name="history_health_live_unknown">Από τα δεδομένα υγείας σου. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
     <string name="history_average">Ø %1$d λ. νωρίτερα</string>
-    <string name="history_light_share">%1$d %% σε ελαφρύ ύπνο</string>
+    <string name="history_light_share">%1$d %% ξύπνησαν νωρίτερα λόγω ανησυχίας</string>
     <string name="history_export">Ανώνυμη εξαγωγή</string>
     <string name="history_export_subject">Νύχτες Phase Wake (ανώνυμα)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">Ακύρωση</string>
     <string name="editor_advice_title">Συμβουλή: μεγαλύτερο παράθυρο</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Σε %1$d από την τελευταία %2$d νύχτα δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
-        <item quantity="other">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε ελαφρύς ύπνος στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
+        <item quantity="one">Σε %1$d από την τελευταία %2$d νύχτα δεν υπήρχε κατάλληλη στιγμή στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
+        <item quantity="other">Σε %1$d από τις τελευταίες %2$d νύχτες δεν υπήρχε κατάλληλη στιγμή στο παράθυρο. Με %3$d λεπτά θα ξυπνάς πιο συχνά την κατάλληλη στιγμή.</item>
     </plurals>
     <string name="editor_advice_apply">Χρήση %1$d λεπτών</string>
     <string name="channel_sunrise">Ανατολή ηλίου</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Έτοιμο για απόψε</string>
     <string name="check_ready_text">Το ρολόι είναι συνδεδεμένο, τα ξυπνητήρια επιτρέπονται. Πάτα για λεπτομέρειες.</string>
     <string name="check_not_ready">Έλεγξε πριν κοιμηθείς</string>
+    <string name="check_not_ready_icon">Δεν είναι έτοιμο</string>
+    <string name="check_silent_switch_title">Εφεδρικό ξυπνητήρι πριν το iOS 26</string>
+    <string name="check_silent_switch_text">Πριν το iOS 26 το εφεδρικό ξυπνητήρι είναι ειδοποίηση: ο διακόπτης σίγασης το κάνει αθόρυβο. Άφησε τον ήχο ανοιχτό ή κάνε ενημέρωση στο iOS 26.</string>
     <string name="check_watch">Το ρολόι είναι συνδεδεμένο</string>
     <string name="check_watch_problem">Το ρολόι σου δεν είναι προσβάσιμο. Φόρεσέ το, κράτα το Bluetooth ενεργό και άνοιξε το Phase Wake στο ρολόι μία φορά.</string>
     <string name="check_notifications">Οι ειδοποιήσεις επιτρέπονται</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Στήριξε το Phase Wake</string>
     <string name="settings_support_text">Το Phase Wake είναι δωρεάν, ανοιχτού κώδικα και χωρίς διαφημίσεις. Αν σου αρέσει, μπορείς να στηρίξεις την ανάπτυξή του.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d νύχτα χωρίς ελαφρύ ύπνο</item>
-        <item quantity="other">%1$d νύχτες χωρίς ελαφρύ ύπνο</item>
+        <item quantity="one">%1$d νύχτα χωρίς κατάλληλη στιγμή</item>
+        <item quantity="other">%1$d νύχτες χωρίς κατάλληλη στιγμή</item>
     </plurals>
     <string name="hint_gaps">Η μέτρηση είχε κενά. Το ρολόι φόρτιζε ή ήταν βγαλμένο τη νύχτα;</string>
     <string name="hint_heart">Έλειπε ο παλμός. Φόρα το ρολόι λίγο πιο σφιχτά τη νύχτα.</string>

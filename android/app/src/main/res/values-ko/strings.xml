@@ -27,7 +27,7 @@
 
     <string name="reason_light">뒤척임 – 얕은 잠일 가능성</string>
     <string name="reason_awake">이미 깨어 있음</string>
-    <string name="reason_deadline">얕은 수면이 감지되지 않음</string>
+    <string name="reason_deadline">구간 안에 좋은 타이밍 없음</string>
     <string name="reason_exact">목표 시간에 정확히</string>
     <string name="reason_short_night">짧은 밤 – 목표 시간에만</string>
     <string name="woke_early">목표 %1$d분 전 · %2$s</string>
@@ -50,6 +50,7 @@
     <string name="editor_latest">늦어도</string>
     <string name="editor_sleep_duration">%1$s 자기</string>
     <string name="editor_sleep_hint">잠든 순간부터 계산해요. 워치가 자동으로 감지하며, 바로 시작하려면 워치에서 “잘 자요”를 탭하세요.</string>
+    <string name="editor_sleep_wear_only">수면 시간 모드는 Galaxy Watch에서만 작동해요. Apple Watch에서는 이 알람이 평소 구간 안에서 목표 시각까지 깨워요.</string>
     <string name="editor_window">범위: %1$d분</string>
     <string name="editor_window_hint">%1$s~%2$s 사이에 깨워요</string>
     <string name="editor_window_exact">정확히</string>
@@ -75,7 +76,7 @@
     <string name="history_health_live">출처: %1$s. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
     <string name="history_health_live_unknown">출처: 내 건강 데이터. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
     <string name="history_average">평균 %1$d분 일찍</string>
-    <string name="history_light_share">얕은 잠에서 %1$d %%</string>
+    <string name="history_light_share">뒤척여서 일찍 깬 비율 %1$d %%</string>
     <string name="history_export">익명으로 내보내기</string>
     <string name="history_export_subject">Phase Wake 수면 기록 (익명)</string>
 
@@ -132,7 +133,7 @@
     <string name="action_cancel">취소</string>
     <string name="editor_advice_title">팁: 더 넓은 구간</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">최근 %2$d일 중 %1$d일은 구간 안에 얕은 잠이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</item>
+        <item quantity="other">최근 %2$d일 중 %1$d일은 구간 안에 좋은 타이밍이 없었어요. %3$d분으로 하면 좋은 타이밍에 깰 가능성이 높아져요.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d분 사용</string>
     <string name="channel_sunrise">일출</string>
@@ -155,6 +156,9 @@
     <string name="check_ready">오늘 밤 준비 완료</string>
     <string name="check_ready_text">워치 연결됨, 알람 허용됨. 탭하면 자세히 볼 수 있어요.</string>
     <string name="check_not_ready">자기 전에 확인하세요</string>
+    <string name="check_not_ready_icon">준비 안 됨</string>
+    <string name="check_silent_switch_title">iOS 26 이전 백업 알람</string>
+    <string name="check_silent_switch_text">iOS 26 이전에는 백업 알람이 알림이에요. 무음 스위치를 켜면 소리가 나지 않아요. 소리를 켜 두거나 iOS 26으로 업데이트하세요.</string>
     <string name="check_watch">워치 연결됨</string>
     <string name="check_watch_problem">워치에 연결할 수 없어요. 워치를 착용하고 Bluetooth를 켠 뒤, 워치에서 Phase Wake를 한 번 열어 주세요.</string>
     <string name="check_notifications">알림 허용됨</string>
@@ -201,7 +205,7 @@
     <string name="settings_support">Phase Wake 후원하기</string>
     <string name="settings_support_text">Phase Wake는 무료 오픈 소스이고 광고도 없어요. 마음에 든다면 개발을 후원할 수 있어요.</string>
     <plurals name="hint_title">
-        <item quantity="other">%1$d일 연속 얕은 잠 없음</item>
+        <item quantity="other">%1$d일 연속 좋은 타이밍 없음</item>
     </plurals>
     <string name="hint_gaps">측정이 끊긴 구간이 있었어요. 밤에 워치를 충전 중이거나 벗어 두지 않았나요?</string>
     <string name="hint_heart">심박수가 없었어요. 밤에는 워치를 조금 더 꽉 착용해 보세요.</string>

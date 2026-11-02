@@ -29,7 +29,7 @@
 
     <string name="reason_light">Неспокойно – вероятно лек сън</string>
     <string name="reason_awake">Вече на крак</string>
-    <string name="reason_deadline">Не е открит лек сън</string>
+    <string name="reason_deadline">Няма добър момент в прозореца</string>
     <string name="reason_exact">Точно в целевия час</string>
     <string name="reason_short_night">Кратка нощ – чак в целевия час</string>
     <string name="woke_early">%1$d мин преди целевия час · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">Най-късно</string>
     <string name="editor_sleep_duration">Сън: %1$s</string>
     <string name="editor_sleep_hint">Отброява се от заспиването. Часовникът го разпознава автоматично; докосни „Лека нощ“ на часовника, за да започне веднага.</string>
+    <string name="editor_sleep_wear_only">Режимът по продължителност на съня работи само с Galaxy Watch. С Apple Watch този будилник те буди в обичайния си прозорец до целевия час.</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
     <string name="editor_window_hint">Събужда те между %1$s и %2$s</string>
     <string name="editor_window_exact">Точно</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">От %1$s. Phase Wake прилага автоматично промените и изтриванията там.</string>
     <string name="history_health_live_unknown">От твоите здравни данни. Phase Wake прилага автоматично промените и изтриванията там.</string>
     <string name="history_average">Ø %1$d мин по-рано</string>
-    <string name="history_light_share">%1$d %% в лек сън</string>
+    <string name="history_light_share">%1$d %% събудени по-рано при неспокоен сън</string>
     <string name="history_export">Анонимен експорт</string>
     <string name="history_export_subject">Нощи в Phase Wake (анонимно)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">Отказ</string>
     <string name="editor_advice_title">Съвет: по-голям прозорец</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">В %1$d от последната %2$d нощ нямаше лек сън в прозореца. С %3$d мин по-често ще се будиш в добър момент.</item>
-        <item quantity="other">В %1$d от последните %2$d нощи нямаше лек сън в прозореца. С %3$d мин по-често ще се будиш в добър момент.</item>
+        <item quantity="one">В %1$d от последната %2$d нощ нямаше добър момент в прозореца. С %3$d мин по-често ще се будиш в добър момент.</item>
+        <item quantity="other">В %1$d от последните %2$d нощи нямаше добър момент в прозореца. С %3$d мин по-често ще се будиш в добър момент.</item>
     </plurals>
     <string name="editor_advice_apply">Използвай %1$d мин</string>
     <string name="channel_sunrise">Изгрев</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">Готово за нощта</string>
     <string name="check_ready_text">Часовникът е свързан, будилниците са разрешени. Докосни за подробности.</string>
     <string name="check_not_ready">Провери преди сън</string>
+    <string name="check_not_ready_icon">Не е готово</string>
+    <string name="check_silent_switch_title">Резервен будилник преди iOS 26</string>
+    <string name="check_silent_switch_text">Преди iOS 26 резервният будилник е известие: превключвателят за тих режим го заглушава. Остави звука включен или обнови до iOS 26.</string>
     <string name="check_watch">Часовникът е свързан</string>
     <string name="check_watch_problem">Часовникът не е достъпен. Носи го, остави Bluetooth включен и отвори веднъж Phase Wake на часовника.</string>
     <string name="check_notifications">Известията са разрешени</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Подкрепи Phase Wake</string>
     <string name="settings_support_text">Phase Wake е безплатно, с отворен код и без реклами. Ако ти харесва, можеш да подкрепиш разработката.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d нощ без лек сън</item>
-        <item quantity="other">%1$d нощи без лек сън</item>
+        <item quantity="one">%1$d нощ без добър момент</item>
+        <item quantity="other">%1$d нощи без добър момент</item>
     </plurals>
     <string name="hint_gaps">В измерването имаше пропуски. Зареждаше ли се часовникът през нощта, или беше свален?</string>
     <string name="hint_heart">Пулсът липсваше. Носи часовника малко по-стегнато през нощта.</string>

@@ -204,6 +204,14 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
         val list = nights ?: return@LaunchedEffect
         if (data.weeklyReview) app.weekly.prepare(list, sleeps, data.notes, data.sleepGoal, data.customNotes, feelings)
     }
+    // Widget «Details von heute»: Schlafdauer der jüngsten eigenen Nacht ablegen (wie Verlauf und Detailseite).
+    // Nur mit geladenen Daten, damit die leere Anfangsliste den Wert nicht kurz löscht.
+    LaunchedEffect(health, nights, sleeps) {
+        val last = nights?.maxByOrNull { it.wokeAt } ?: return@LaunchedEffect
+        if (health != HealthState.CONNECTED || sleeps.isEmpty()) return@LaunchedEffect
+        val night = SleepNotes.nightDate(last, zone)
+        com.phasewake.app.widget.NextAlarmWidget.saveAsleep(app, night, NoteEffect.asleepByNight(sleeps, zone)[night])
+    }
     return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly, history)
 }
 

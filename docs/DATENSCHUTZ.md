@@ -1,6 +1,6 @@
 # Datenschutzerklärung Phase Wake
 
-Stand: 29. Oktober 2026 · [English version below](#privacy-policy-phase-wake)
+Stand: 2. November 2026 · [English version below](#privacy-policy-phase-wake)
 
 ## Kurz
 
@@ -26,8 +26,12 @@ E-Mail: riad.work@outlook.com
 | Abendroutine (deine Punkte und was du abgehakt hast) | Checkliste, Durchschnitt in den Trends | nur Handy | 90 Abende; «Verlauf löschen» entfernt die Haken |
 | Land und Region der Feiertage, daraus die Feiertage der nächsten 400 Tage | «An Feiertagen nicht wecken» | Handy, die Tage auch Uhr | bis du die Wahl änderst |
 | Zuordnung als Begleit-App der Uhr: Bluetooth-Adresse der Uhr (nur Android, nur wenn du «Als Begleit-App verbinden» bestätigst); zum Anbieten der Uhr liest Phase Wake dabei einmal die gekoppelten Bluetooth-Geräte (Recht «Geräte in der Nähe») und speichert davon nichts | Weckbildschirm auch bei benutztem Handy nach vorn bringen | nur Handy, gespeichert vom System, nicht von Phase Wake | bis du die Zuordnung in den Einstellungen des Systems entfernst oder Phase Wake deinstallierst |
-| Diagnose-Protokoll (Zeiten und Arten von Ereignissen wie «geplant», «geklingelt», «gestoppt», Akkustand; keine Namen, keine Messwerte) | Fehlersuche, nur auf Wunsch angezeigt und geteilt | Handy und Uhr, je lokal | höchstens 7 Tage bzw. 500 Einträge; «Leeren» löscht es |
-| Verschlüsselte Sicherung (Wecker, Verlauf, Notizen, Abendroutine, Einstellungen samt Zeitpunkt von «Verlauf löschen»; ohne Geräusche und Gesundheitsdaten) | Sichern und Wiederherstellen | nur dort, wo du die Datei speicherst; mit deinem Passwort verschlüsselt | bis du die Datei löschst |
+| Diagnose-Protokoll (Zeiten und Arten von Ereignissen wie «geplant», «geklingelt», «gestoppt», dazu Uhrzeiten wie Einschlafzeit, Weckfenster und Zielzeit, Weckgrund, Akkustand; keine Namen, keine Bewegungs- oder Pulswerte) | Fehlersuche, nur auf Wunsch angezeigt und geteilt | Handy und Uhr, je lokal | höchstens 7 Tage bzw. 500 Einträge; «Leeren» löscht es |
+| Verschlüsselte Sicherung (`.pwbak`: Wecker, deine eigenen Nächte samt Bewegung und Puls je Epoche von 30 Sekunden, Notizen und Befinden, Abendroutine, Einstellungen samt Zeitpunkt von «Verlauf löschen»; keine Daten aus Health Connect bzw. Apple Health, keine Tonausschnitte) | Sichern und Wiederherstellen | nur dort, wo du die Datei speicherst; mit deinem Passwort verschlüsselt | bis du die Datei löschst |
+
+**Sicherung des Systems:** Auf Android nimmt Phase Wake nichts in die Cloud-Sicherung oder die Übertragung auf ein neues Gerät auf. Auf dem iPhone liegen Verlauf, Notizen, Befinden und Diagnose-Protokoll in einem Ordner, den Phase Wake von der iCloud-Sicherung ausnimmt; Wecker und Einstellungen (z. B. Schlafziel, Bettzeit-Erinnerung) kommen wie bei anderen Apps in die iCloud-Sicherung des iPhones, falls du sie nutzt.
+
+**Sperrbildschirm:** Die leise Mitteilung «Nächster Wecker» (Android, abends) zeigt auf dem gesperrten Bildschirm nur ihren Titel; Weckfenster und Nacht-Check erst, wenn das Handy entsperrt ist.
 
 ## Mikrofon
 
@@ -55,7 +59,7 @@ Da wir keine Daten von dir erhalten, gibt es bei uns nichts einzusehen, zu beric
 
 # Privacy policy Phase Wake
 
-As of 29 October 2026
+As of 2 November 2026
 
 Phase Wake processes all data only on your phone and your watch. There is no account, no server, no advertising and no analytics. We receive no data from you.
 
@@ -69,4 +73,4 @@ Phone and watch exchange alarms and nights directly via the operating system’s
 
 Motion, heart rate and sleep stages are health data. They are used only for waking you and improving detection on your device. You can revoke access to Health Connect or Apple Health at any time in your system settings.
 
-**Microphone (optional):** only if you turn on “Record sounds”, and only while recording runs (on Android shown by a notification you can stop it from, on iPhone by the system’s microphone indicator; it ends at the latest 30 minutes after your alarm). Only the loudness is analysed continuously; only short clips of loud sounds (at most 10 seconds) are stored. Whether a clip is snoring, talking or another sound is recognised by a model on the phone. Clips stay in the app’s private folder, are not included in backups or the CSV export, are never transmitted and are deleted after 7 days: on Android automatically once a day, on iPhone the next time you open the app or start a recording (iOS does not let the app run in the background for this). Your evening routine (items and ticks) also stays on the phone only. The country and region you choose for holidays (and the holidays of the next 400 days, also sent to your watch), and a local diagnostics log (times and kinds of events such as “scheduled”, “rang”, “stopped”, battery level; no names, no measurements; at most 7 days or 500 entries) stay on your devices; the log is only shown and shared if you unlock and share it yourself. An encrypted backup (alarms, history, notes, routine, settings; no sound clips, no health data) is stored only where you save the file, encrypted with your password. To delete everything, uninstall the app; you can also clear the history in the app. Questions: riad.work@outlook.com.
+**Microphone (optional):** only if you turn on “Record sounds”, and only while recording runs (on Android shown by a notification you can stop it from, on iPhone by the system’s microphone indicator; it ends at the latest 30 minutes after your alarm). Only the loudness is analysed continuously; only short clips of loud sounds (at most 10 seconds) are stored. Whether a clip is snoring, talking or another sound is recognised by a model on the phone. Clips stay in the app’s private folder, are not included in backups or the CSV export, are never transmitted and are deleted after 7 days: on Android automatically once a day, on iPhone the next time you open the app or start a recording (iOS does not let the app run in the background for this). Your evening routine (items and ticks) also stays on the phone only. The country and region you choose for holidays (and the holidays of the next 400 days, also sent to your watch), and a local diagnostics log (times and kinds of events such as “scheduled”, “rang”, “stopped”, plus clock times such as when you fell asleep, the wake window and target time, the wake reason and battery level; no names, no motion or heart-rate values; at most 7 days or 500 entries) stay on your devices; the log is only shown and shared if you unlock and share it yourself. An encrypted backup (`.pwbak`: alarms, your own nights including motion and heart rate per 30-second epoch, notes and feelings, routine, settings; no data from Health Connect or Apple Health, no sound clips) is stored only where you save the file, encrypted with your password. System backups: on Android nothing goes into the cloud backup or device transfer; on iPhone the history, notes, feelings and diagnostics log are excluded from the iCloud backup, while alarms and settings (e.g. sleep goal) are included in your iPhone’s iCloud backup if you use it. The quiet “Next alarm” notification (Android, evenings) shows only its title on the locked screen; the wake window and night check appear only once the phone is unlocked. To delete everything, uninstall the app; you can also clear the history in the app. Questions: riad.work@outlook.com.

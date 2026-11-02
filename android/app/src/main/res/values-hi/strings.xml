@@ -28,7 +28,7 @@
 
     <string name="reason_light">बेचैन – शायद हल्की नींद</string>
     <string name="reason_awake">पहले से जागे</string>
-    <string name="reason_deadline">हल्की नींद नहीं मिली</string>
+    <string name="reason_deadline">विंडो में सही पल नहीं आया</string>
     <string name="reason_exact">ठीक लक्ष्य समय पर</string>
     <string name="reason_short_night">छोटी रात – सिर्फ़ लक्ष्य समय पर</string>
     <string name="woke_early">लक्ष्य से %1$d मि. पहले · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">अधिकतम</string>
     <string name="editor_sleep_duration">%1$s सोना</string>
     <string name="editor_sleep_hint">सोने के समय से गिनती होती है। घड़ी इसे अपने आप पहचान लेती है; तुरंत शुरू करने के लिए घड़ी पर “शुभ रात्रि” दबाओ।</string>
+    <string name="editor_sleep_wear_only">नींद की अवधि वाला मोड सिर्फ़ Galaxy Watch के साथ काम करता है। Apple Watch के साथ यह अलार्म तुम्हें अपनी सामान्य विंडो में लक्ष्य समय तक जगाता है।</string>
     <string name="editor_window">विंडो: %1$d मि.</string>
     <string name="editor_window_hint">%1$s और %2$s के बीच जगाएगा</string>
     <string name="editor_window_exact">ठीक समय</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">%1$s से। वहाँ किए गए बदलाव और हटाना Phase Wake अपने-आप अपनाता है।</string>
     <string name="history_health_live_unknown">तुम्हारे हेल्थ डेटा से। वहाँ किए गए बदलाव और हटाना Phase Wake अपने-आप अपनाता है।</string>
     <string name="history_average">औसत: %1$d मि. पहले</string>
-    <string name="history_light_share">%1$d %% हल्की नींद में</string>
+    <string name="history_light_share">%1$d %% बेचैनी पर पहले जगाए गए</string>
     <string name="history_export">गुमनाम एक्सपोर्ट</string>
     <string name="history_export_subject">Phase Wake रातें (गुमनाम)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">रद्द करें</string>
     <string name="editor_advice_title">सुझाव: बड़ी विंडो</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">पिछली %2$d रात में से %1$d रात में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
-        <item quantity="other">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान हल्की नींद नहीं आई। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
+        <item quantity="one">पिछली %2$d रात में से %1$d रात में विंडो के दौरान सही पल नहीं आया। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
+        <item quantity="other">पिछली %2$d रातों में से %1$d रातों में विंडो के दौरान सही पल नहीं आया। %3$d मिनट से तुम अक्सर सही समय पर जागोगे।</item>
     </plurals>
     <string name="editor_advice_apply">%1$d मिनट इस्तेमाल करें</string>
     <string name="channel_sunrise">सूर्योदय</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">आज रात के लिए तैयार</string>
     <string name="check_ready_text">वॉच कनेक्टेड है, अलार्म की अनुमति है। विवरण के लिए टैप करें।</string>
     <string name="check_not_ready">सोने से पहले जाँचें</string>
+    <string name="check_not_ready_icon">तैयार नहीं</string>
+    <string name="check_silent_switch_title">iOS 26 से पहले बैकअप अलार्म</string>
+    <string name="check_silent_switch_text">iOS 26 से पहले बैकअप अलार्म एक सूचना है: साइलेंट स्विच उसे खामोश कर देता है। आवाज़ चालू रखो या iOS 26 पर अपडेट करो।</string>
     <string name="check_watch">वॉच कनेक्टेड है</string>
     <string name="check_watch_problem">आपकी वॉच तक पहुँचा नहीं जा सकता। उसे पहनें, Bluetooth चालू रखें और वॉच पर एक बार Phase Wake खोलें।</string>
     <string name="check_notifications">सूचनाओं की अनुमति है</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Phase Wake का समर्थन करें</string>
     <string name="settings_support_text">Phase Wake मुफ़्त, ओपन सोर्स और विज्ञापन-रहित है। अगर यह आपको पसंद है, तो आप इसके विकास का समर्थन कर सकते हैं।</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d रात बिना हल्की नींद के</item>
-        <item quantity="other">%1$d रातें बिना हल्की नींद के</item>
+        <item quantity="one">%1$d रात बिना सही पल के</item>
+        <item quantity="other">%1$d रातें बिना सही पल के</item>
     </plurals>
     <string name="hint_gaps">माप में कुछ अंतराल थे। क्या रात में घड़ी चार्ज हो रही थी या उतारी हुई थी?</string>
     <string name="hint_heart">हृदय गति का डेटा नहीं मिला। रात में घड़ी को थोड़ा कसकर पहनें।</string>

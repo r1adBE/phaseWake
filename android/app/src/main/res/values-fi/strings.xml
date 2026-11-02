@@ -28,7 +28,7 @@
 
     <string name="reason_light">Levoton – luultavasti kevyttä unta</string>
     <string name="reason_awake">Jo hereillä</string>
-    <string name="reason_deadline">Kevyttä unta ei havaittu</string>
+    <string name="reason_deadline">Ikkunassa ei ollut hyvää hetkeä</string>
     <string name="reason_exact">Täsmälleen tavoiteaikana</string>
     <string name="reason_short_night">Lyhyt yö – vasta tavoiteaikana</string>
     <string name="woke_early">%1$d min ennen tavoiteaikaa · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">Viimeistään</string>
     <string name="editor_sleep_duration">Nuku %1$s</string>
     <string name="editor_sleep_hint">Laskee nukahtamisesta alkaen. Kello tunnistaa sen automaattisesti; napauta kellossa ”Hyvää yötä”, niin se alkaa heti.</string>
+    <string name="editor_sleep_wear_only">Unen pituus -tila toimii vain Galaxy Watchin kanssa. Apple Watchin kanssa tämä herätys herättää sinut tavallisessa ikkunassaan tavoiteaikaan mennessä.</string>
     <string name="editor_window">Aikaikkuna: %1$d min</string>
     <string name="editor_window_hint">Herättää aikavälillä %1$s – %2$s</string>
     <string name="editor_window_exact">Tarkka</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Lähde: %1$s. Phase Wake ottaa siellä tehdyt muutokset ja poistot automaattisesti huomioon.</string>
     <string name="history_health_live_unknown">Lähde: terveystietosi. Phase Wake ottaa siellä tehdyt muutokset ja poistot automaattisesti huomioon.</string>
     <string name="history_average">Ø %1$d min aiemmin</string>
-    <string name="history_light_share">%1$d %% kevyessä unessa</string>
+    <string name="history_light_share">%1$d %% herätetty aiemmin levottomuuden vuoksi</string>
     <string name="history_export">Vie anonyymisti</string>
     <string name="history_export_subject">Phase Wake -yöt (anonyymi)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">Peruuta</string>
     <string name="editor_advice_title">Vinkki: isompi ikkuna</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
-        <item quantity="other">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut kevyttä unta. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
+        <item quantity="one">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut hyvää hetkeä. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
+        <item quantity="other">%1$d viimeisestä %2$d yöstä ikkunassa ei ollut hyvää hetkeä. Kun ikkuna on %3$d min, heräät useammin hyvällä hetkellä.</item>
     </plurals>
     <string name="editor_advice_apply">Käytä %1$d min</string>
     <string name="channel_sunrise">Auringonnousu</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Valmiina tähän yöhön</string>
     <string name="check_ready_text">Kello on yhdistetty, herätykset sallittu. Napauta nähdäksesi lisätiedot.</string>
     <string name="check_not_ready">Tarkista ennen nukkumaanmenoa</string>
+    <string name="check_not_ready_icon">Ei valmis</string>
+    <string name="check_silent_switch_title">Varaherätys ennen iOS 26:ta</string>
+    <string name="check_silent_switch_text">Ennen iOS 26:ta varaherätys on ilmoitus: äänetön-kytkin mykistää sen. Pidä äänet päällä tai päivitä iOS 26:een.</string>
     <string name="check_watch">Kello yhdistetty</string>
     <string name="check_watch_problem">Kelloasi ei tavoiteta. Pidä se ranteessa, pidä Bluetooth päällä ja avaa Phase Wake kellossa kerran.</string>
     <string name="check_notifications">Ilmoitukset sallittu</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Tue Phase Wakea</string>
     <string name="settings_support_text">Phase Wake on ilmainen, avoimen lähdekoodin ja mainokseton. Jos pidät siitä, voit tukea sen kehitystä.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d yö ilman kevyttä unta</item>
-        <item quantity="other">%1$d yötä ilman kevyttä unta</item>
+        <item quantity="one">%1$d yö ilman hyvää hetkeä</item>
+        <item quantity="other">%1$d yötä ilman hyvää hetkeä</item>
     </plurals>
     <string name="hint_gaps">Mittauksessa oli aukkoja. Latautuiko kello yöllä vai oliko se pois ranteesta?</string>
     <string name="hint_heart">Syke puuttui. Pidä kelloa yöllä hieman tiukemmin.</string>

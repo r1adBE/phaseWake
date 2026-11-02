@@ -25,7 +25,7 @@
     <string name="home_alarms">შენი მაღვიძარები</string>
     <string name="reason_light">მოუსვენარი – ალბათ მსუბუქი ძილი</string>
     <string name="reason_awake">უკვე ფხიზლად</string>
-    <string name="reason_deadline">მსუბუქი ძილი ვერ დაფიქსირდა</string>
+    <string name="reason_deadline">ფანჯარაში კარგი მომენტი არ იყო</string>
     <string name="reason_exact">ზუსტად სამიზნე დროს</string>
     <string name="reason_short_night">მოკლე ღამე – მხოლოდ სამიზნე დროს</string>
     <string name="woke_early">სამიზნემდე %1$d წთ-ით ადრე · %2$s</string>
@@ -46,6 +46,7 @@
     <string name="editor_latest">არაუგვიანეს</string>
     <string name="editor_sleep_duration">ძილი: %1$s</string>
     <string name="editor_sleep_hint">ითვლის ჩაძინების მომენტიდან. საათი ამას ავტომატურად ცნობს; დაუყოვნებლივ დასაწყებად შეეხე საათზე „ძილი ნებისა“.</string>
+    <string name="editor_sleep_wear_only">ძილის ხანგრძლივობის რეჟიმი მუშაობს მხოლოდ Galaxy Watch-თან. Apple Watch-თან ეს მაღვიძარა გაღვიძებს ჩვეულ ფანჯარაში სამიზნე დრომდე.</string>
     <string name="editor_window">ფანჯარა: %1$d წთ</string>
     <string name="editor_window_hint">გაგაღვიძებს %1$s – %2$s შუალედში</string>
     <string name="editor_window_exact">ზუსტად</string>
@@ -70,7 +71,7 @@
     <string name="history_health_live">წყარო: %1$s. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
     <string name="history_health_live_unknown">წყარო: შენი ჯანმრთელობის მონაცემები. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
     <string name="history_average">Ø %1$d წთ-ით ადრე</string>
-    <string name="history_light_share">%1$d %% მსუბუქ ძილში</string>
+    <string name="history_light_share">%1$d %% ადრე გაღვიძებული მოუსვენრობისას</string>
     <string name="history_export">ანონიმური ექსპორტი</string>
     <string name="history_export_subject">Phase Wake-ის ღამეები (ანონიმური)</string>
     <string name="settings_title">პარამეტრები</string>
@@ -125,8 +126,8 @@
     <string name="action_cancel">გაუქმება</string>
     <string name="editor_advice_title">რჩევა: უფრო დიდი ფანჯარა</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">ბოლო %2$d ღამიდან %1$d-ში ფანჯარაში მსუბუქი ძილი არ იყო. %3$d წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში.</item>
-        <item quantity="other">ბოლო %2$d ღამიდან %1$d-ში ფანჯარაში მსუბუქი ძილი არ იყო. %3$d წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში.</item>
+        <item quantity="one">ბოლო %2$d ღამიდან %1$d-ში ფანჯარაში კარგი მომენტი არ იყო. %3$d წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში.</item>
+        <item quantity="other">ბოლო %2$d ღამიდან %1$d-ში ფანჯარაში კარგი მომენტი არ იყო. %3$d წთ-ით უფრო ხშირად გაიღვიძებ კარგ მომენტში.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d წთ-ის გამოყენება</string>
     <string name="channel_sunrise">მზის ამოსვლა</string>
@@ -150,6 +151,9 @@
     <string name="check_ready">მზადაა ამაღამ</string>
     <string name="check_ready_text">საათი დაკავშირებულია, მაღვიძარები დაშვებულია. შეეხე დეტალებისთვის.</string>
     <string name="check_not_ready">შეამოწმე დაძინებამდე</string>
+    <string name="check_not_ready_icon">მზად არ არის</string>
+    <string name="check_silent_switch_title">სარეზერვო მაღვიძარა iOS 26-მდე</string>
+    <string name="check_silent_switch_text">iOS 26-მდე სარეზერვო მაღვიძარა შეტყობინებაა: უხმო რეჟიმის გადამრთველი მას ადუმებს. დატოვე ხმა ჩართული ან განაახლე iOS 26-მდე.</string>
     <string name="check_watch">საათი დაკავშირებულია</string>
     <string name="check_watch_problem">საათი მიუწვდომელია. გაიკეთე, Bluetooth ჩართული დატოვე და ერთხელ გახსენი Phase Wake საათზე.</string>
     <string name="check_notifications">შეტყობინებები დაშვებულია</string>
@@ -196,8 +200,8 @@
     <string name="settings_support">Phase Wake-ის მხარდაჭერა</string>
     <string name="settings_support_text">Phase Wake უფასოა, ღია კოდით და რეკლამის გარეშე. თუ მოგწონს, შეგიძლია მისი განვითარება მხარი დაუჭირო.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d ღამე მსუბუქი ძილის გარეშე</item>
-        <item quantity="other">%1$d ღამე მსუბუქი ძილის გარეშე</item>
+        <item quantity="one">%1$d ღამე კარგი მომენტის გარეშე</item>
+        <item quantity="other">%1$d ღამე კარგი მომენტის გარეშე</item>
     </plurals>
     <string name="hint_gaps">გაზომვაში ხარვეზები იყო. ღამით საათი იტენებოდა ან გამორთული იყო?</string>
     <string name="hint_heart">პულსი არ იყო. ღამით საათი ცოტა უფრო მჭიდროდ გაიკეთე.</string>

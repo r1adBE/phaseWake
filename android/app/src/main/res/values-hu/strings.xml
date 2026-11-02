@@ -28,7 +28,7 @@
 
     <string name="reason_light">Nyugtalan – valószínűleg könnyű alvás</string>
     <string name="reason_awake">Már ébren</string>
-    <string name="reason_deadline">Nem észlelt könnyű alvást</string>
+    <string name="reason_deadline">Nem volt jó pillanat az ablakban</string>
     <string name="reason_exact">Pontosan célidőben</string>
     <string name="reason_short_night">Rövid éjszaka – csak célidőben</string>
     <string name="woke_early">%1$d p a célidő előtt · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">Legkésőbb</string>
     <string name="editor_sleep_duration">Alvás: %1$s</string>
     <string name="editor_sleep_hint">Az elalvástól számít. Az óra automatikusan felismeri; koppints az órán a „Jó éjszakát” gombra, és azonnal indul.</string>
+    <string name="editor_sleep_wear_only">Az alvásidő mód csak Galaxy Watch-csal működik. Apple Watch-csal ez az ébresztő a szokásos ablakában, legkésőbb a célidőben ébreszt.</string>
     <string name="editor_window">Időablak: %1$d p</string>
     <string name="editor_window_hint">%1$s és %2$s között ébreszt</string>
     <string name="editor_window_exact">Pontos</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Forrás: %1$s. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_health_live_unknown">Forrás: az egészségügyi adataid. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_average">Ø %1$d p korábban</string>
-    <string name="history_light_share">%1$d %% könnyű alvásban</string>
+    <string name="history_light_share">%1$d %% korábban ébresztve nyugtalanság miatt</string>
     <string name="history_export">Exportálás névtelenül</string>
     <string name="history_export_subject">Phase Wake éjszakák (névtelen)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">Mégse</string>
     <string name="editor_advice_title">Tipp: nagyobb ablak</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
-        <item quantity="other">Az utolsó %2$d éjszakából %1$d alkalommal nem volt könnyű alvás az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
+        <item quantity="one">Az utolsó %2$d éjszakából %1$d alkalommal nem volt jó pillanat az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
+        <item quantity="other">Az utolsó %2$d éjszakából %1$d alkalommal nem volt jó pillanat az ablakban. %3$d perccel gyakrabban ébredsz jó pillanatban.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d perc használata</string>
     <string name="channel_sunrise">Napfelkelte</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Készen áll a mai éjszakára</string>
     <string name="check_ready_text">Az óra csatlakoztatva, az ébresztők engedélyezve. Koppints a részletekért.</string>
     <string name="check_not_ready">Ellenőrizd lefekvés előtt</string>
+    <string name="check_not_ready_icon">Nincs kész</string>
+    <string name="check_silent_switch_title">Tartalék ébresztő iOS 26 előtt</string>
+    <string name="check_silent_switch_text">iOS 26 előtt a tartalék ébresztő értesítés: a némítókapcsoló elnémítja. Hagyd bekapcsolva a hangot, vagy frissíts iOS 26-ra.</string>
     <string name="check_watch">Óra csatlakoztatva</string>
     <string name="check_watch_problem">Az órád nem érhető el. Vedd fel, tartsd bekapcsolva a Bluetooth-t, és nyisd meg egyszer a Phase Wake-et az órán.</string>
     <string name="check_notifications">Értesítések engedélyezve</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Támogasd a Phase Wake-et</string>
     <string name="settings_support_text">A Phase Wake ingyenes, nyílt forráskódú és reklámmentes. Ha tetszik, támogathatod a fejlesztését.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d éjszaka könnyű alvás nélkül</item>
-        <item quantity="other">%1$d éjszaka könnyű alvás nélkül</item>
+        <item quantity="one">%1$d éjszaka jó pillanat nélkül</item>
+        <item quantity="other">%1$d éjszaka jó pillanat nélkül</item>
     </plurals>
     <string name="hint_gaps">A mérésben hiányok voltak. Az óra töltődött, vagy le volt véve éjjel?</string>
     <string name="hint_heart">Hiányzott a pulzus. Viseld éjjel kicsit szorosabban az órát.</string>

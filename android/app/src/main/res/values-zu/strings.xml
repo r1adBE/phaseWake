@@ -30,7 +30,7 @@
 
     <string name="reason_light">Ukungaphumuli – mhlawumbe ubuthongo obulula</string>
     <string name="reason_awake">Ubusuvukile</string>
-    <string name="reason_deadline">Abukho ubuthongo obulula obutholakele</string>
+    <string name="reason_deadline">Asikho isikhathi esihle esikhaleni</string>
     <string name="reason_exact">Ngqo ngesikhathi esihlosiwe</string>
     <string name="reason_short_night">Ubusuku obufushane – ngesikhathi esihlosiwe kuphela</string>
     <string name="woke_early">%1$d min ngaphambi kwesikhathi · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Kamuva kakhulu</string>
     <string name="editor_sleep_duration">Lala %1$s</string>
     <string name="editor_sleep_hint">Ibala kusukela lapho ulala. Iwashi lakho likubona ngokuzenzakalelayo; thepha “Ulale kahle” ewashini ukuze uqale ngokushesha.</string>
+    <string name="editor_sleep_wear_only">Imodi yobude bokulala isebenza kuphela ne-Galaxy Watch. Ne-Apple Watch, le alamu ikuvusa esikhaleni sayo esivamile kuze kube isikhathi okuhloswe ngaso.</string>
     <string name="editor_window">Isikhala: %1$d min</string>
     <string name="editor_window_hint">Ikuvusa phakathi kuka-%1$s no-%2$s</string>
     <string name="editor_window_exact">Ngqo</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Kusuka ku-%1$s. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
     <string name="history_health_live_unknown">Kusuka kudatha yakho yezempilo. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
     <string name="history_average">Ø %1$d min ngaphambili</string>
-    <string name="history_light_share">%1$d %% ebuthongweni obulula</string>
+    <string name="history_light_share">%1$d %% bavuswe kusenesikhathi uma bengazinzile</string>
     <string name="history_export">Thumela ngaphandle ngokungaziwa</string>
     <string name="history_export_subject">Ubusuku be-Phase Wake (ngokungaziwa)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Khansela</string>
     <string name="editor_advice_title">Ithiphu: isikhala esikhulu</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Ebusuku obungu-%1$d kobungu-%2$d bokugcina bekungekho ubuthongo obulula esikhaleni. Nge-%3$d min uzovuka kaningi ngesikhathi esihle.</item>
-        <item quantity="other">Ebusuku obungu-%1$d kobungu-%2$d bokugcina bekungekho ubuthongo obulula esikhaleni. Nge-%3$d min uzovuka kaningi ngesikhathi esihle.</item>
+        <item quantity="one">Ebusuku obungu-%1$d kobungu-%2$d bokugcina bekungekho isikhathi esihle esikhaleni. Nge-%3$d min uzovuka kaningi ngesikhathi esihle.</item>
+        <item quantity="other">Ebusuku obungu-%1$d kobungu-%2$d bokugcina bekungekho isikhathi esihle esikhaleni. Nge-%3$d min uzovuka kaningi ngesikhathi esihle.</item>
     </plurals>
     <string name="editor_advice_apply">Sebenzisa %1$d min</string>
     <string name="channel_sunrise">Ukuphuma kwelanga</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Kulungele namuhla ebusuku</string>
     <string name="check_ready_text">Iwashi lixhunyiwe, ama-alamu avunyelwe. Thepha ukuze uthole imininingwane.</string>
     <string name="check_not_ready">Hlola ngaphambi kokulala</string>
+    <string name="check_not_ready_icon">Akukalungi</string>
+    <string name="check_silent_switch_title">I-alamu yokwesekwa ngaphambi kwe-iOS 26</string>
+    <string name="check_silent_switch_text">Ngaphambi kwe-iOS 26, i-alamu yokwesekwa iyisaziso: inkinobho yokuthula iyayithulisa. Shiya umsindo uvuliwe noma buyekeza ku-iOS 26.</string>
     <string name="check_watch">Iwashi lixhunyiwe</string>
     <string name="check_watch_problem">Iwashi lakho alifinyeleleki. Lifake, gcina i-Bluetooth ivuliwe bese uvula i-Phase Wake ewashini kanye.</string>
     <string name="check_notifications">Izaziso zivunyelwe</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Sekela i-Phase Wake</string>
     <string name="settings_support_text">I-Phase Wake imahhala, ingumthombo ovulekile futhi ayinazo izikhangiso. Uma uyithanda, ungasekela ukuthuthukiswa kwayo.</string>
     <plurals name="hint_title">
-        <item quantity="one">Ubusuku obungu-%1$d ngaphandle kobuthongo obulula</item>
-        <item quantity="other">Ubusuku obungu-%1$d ngaphandle kobuthongo obulula</item>
+        <item quantity="one">Ubusuku obungu-%1$d ngaphandle kwesikhathi esihle</item>
+        <item quantity="other">Ubusuku obungu-%1$d ngaphandle kwesikhathi esihle</item>
     </plurals>
     <string name="hint_gaps">Bekunezikhala ekulinganiseni. Ingabe iwashi belishaja noma belivaliwe ebusuku?</string>
     <string name="hint_heart">Ukushaya kwenhliziyo yakho bekungekho. Faka iwashi liqine kancane ebusuku.</string>

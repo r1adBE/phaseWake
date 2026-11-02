@@ -27,7 +27,7 @@
 
     <string name="reason_light">睡得不安穩 – 可能是淺眠</string>
     <string name="reason_awake">已經醒了</string>
-    <string name="reason_deadline">未偵測到淺眠</string>
+    <string name="reason_deadline">時段內沒有合適的時刻</string>
     <string name="reason_exact">準時在目標時間</string>
     <string name="reason_short_night">睡眠較短 – 到目標時間才叫醒</string>
     <string name="woke_early">比目標提早 %1$d 分鐘 · %2$s</string>
@@ -50,6 +50,7 @@
     <string name="editor_latest">最晚</string>
     <string name="editor_sleep_duration">睡 %1$s</string>
     <string name="editor_sleep_hint">從你入睡時開始計時。手錶會自動辨識；在手錶上點選「晚安」即可立即開始。</string>
+    <string name="editor_sleep_wear_only">睡眠時數模式只適用於 Galaxy Watch。搭配 Apple Watch 時，此鬧鐘會在正常時段內、最晚在目標時間叫醒你。</string>
     <string name="editor_window">喚醒時段：%1$d 分鐘</string>
     <string name="editor_window_hint">在 %1$s 到 %2$s 之間叫醒你</string>
     <string name="editor_window_exact">準時</string>
@@ -75,7 +76,7 @@
     <string name="history_health_live">來自%1$s。你在那裡所做的變更和刪除，Phase Wake 會自動同步。</string>
     <string name="history_health_live_unknown">來自你的健康資料。你在那裡所做的變更和刪除，Phase Wake 會自動同步。</string>
     <string name="history_average">平均提早 %1$d 分鐘</string>
-    <string name="history_light_share">%1$d %% 在淺眠中</string>
+    <string name="history_light_share">%1$d %% 因睡得不安穩而提早叫醒</string>
     <string name="history_export">匿名匯出</string>
     <string name="history_export_subject">Phase Wake 睡眠紀錄（匿名）</string>
 
@@ -132,7 +133,7 @@
     <string name="action_cancel">取消</string>
     <string name="editor_advice_title">提示：加長喚醒時段</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">在最近 %2$d 個夜晚中，有 %1$d 個夜晚喚醒時段內沒有淺眠。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</item>
+        <item quantity="other">在最近 %2$d 個夜晚中，有 %1$d 個夜晚喚醒時段內沒有合適的時刻。設為 %3$d 分鐘，你會更容易在合適的時刻醒來。</item>
     </plurals>
     <string name="editor_advice_apply">使用 %1$d 分鐘</string>
     <string name="channel_sunrise">日出</string>
@@ -155,6 +156,9 @@
     <string name="check_ready">今晚已就緒</string>
     <string name="check_ready_text">手錶已連線，鬧鐘已允許。點一下查看詳情。</string>
     <string name="check_not_ready">睡前請檢查</string>
+    <string name="check_not_ready_icon">尚未就緒</string>
+    <string name="check_silent_switch_title">iOS 26 之前的備用鬧鐘</string>
+    <string name="check_silent_switch_text">在 iOS 26 之前，備用鬧鐘是一則通知：靜音開關會讓它沒有聲音。請保持鈴聲開啟，或更新至 iOS 26。</string>
     <string name="check_watch">手錶已連線</string>
     <string name="check_watch_problem">無法連線到你的手錶。請戴上手錶，保持 Bluetooth 開啟，並在手錶上開啟一次 Phase Wake。</string>
     <string name="check_notifications">通知已允許</string>
@@ -201,7 +205,7 @@
     <string name="settings_support">支持 Phase Wake</string>
     <string name="settings_support_text">Phase Wake 免費、開源且沒有廣告。如果你喜歡它，可以支持它的開發。</string>
     <plurals name="hint_title">
-        <item quantity="other">連續 %1$d 晚沒有淺眠</item>
+        <item quantity="other">連續 %1$d 晚沒有合適的時刻</item>
     </plurals>
     <string name="hint_gaps">測量有中斷。夜裡手錶是在充電還是沒有配戴？</string>
     <string name="hint_heart">缺少心率資料。夜裡把手錶戴緊一點。</string>

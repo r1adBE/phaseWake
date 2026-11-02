@@ -28,7 +28,7 @@
 
     <string name="reason_light">မငြိမ်မသက် – အိပ်ရေးပေါ့ ဖြစ်နိုင်</string>
     <string name="reason_awake">နိုးနေပြီ</string>
-    <string name="reason_deadline">အိပ်ရေးပေါ့ မတွေ့ပါ</string>
+    <string name="reason_deadline">အချိန်အပိုင်းအတွင်း ကောင်းသောအချိန် မရှိခဲ့ပါ</string>
     <string name="reason_exact">ပစ်မှတ်အချိန်တိတိတွင်</string>
     <string name="reason_short_night">ညတို – ပစ်မှတ်အချိန်မှသာ</string>
     <string name="woke_early">ပစ်မှတ်ထက် %1$d မိနစ် စော · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">အနောက်ကျဆုံး</string>
     <string name="editor_sleep_duration">%1$s အိပ်မည်</string>
     <string name="editor_sleep_hint">အိပ်ပျော်ချိန်မှစ၍ ရေတွက်သည်။ နာရီက အလိုအလျောက် သိရှိသည်၊ ချက်ချင်းစရန် နာရီပေါ်တွင် “ကောင်းသောညပါ” ကို တို့ပါ။</string>
+    <string name="editor_sleep_wear_only">အိပ်ချိန်ကြာမြင့်မှု မုဒ်သည် Galaxy Watch ဖြင့်သာ အလုပ်လုပ်သည်။ Apple Watch ဖြင့်ဆိုလျှင် ဤနှိုးစက်သည် ပုံမှန်အချိန်အပိုင်းအတွင်း ပစ်မှတ်အချိန်အထိ နှိုးမည်။</string>
     <string name="editor_window">အချိန်အပိုင်း- %1$d မိနစ်</string>
     <string name="editor_window_hint">%1$s နှင့် %2$s ကြားတွင် နှိုးမည်</string>
     <string name="editor_window_exact">တိတိ</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">%1$s မှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_health_live_unknown">သင့်ကျန်းမာရေးဒေတာမှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_average">Ø %1$d မိနစ် စော</string>
-    <string name="history_light_share">%1$d %% အိပ်ရေးပေါ့ချိန်တွင်</string>
+    <string name="history_light_share">မငြိမ်မသက်ဖြစ်၍ စောနှိုးခံရမှု %1$d %%</string>
     <string name="history_export">အမည်မဖော်ဘဲ ထုတ်ယူရန်</string>
     <string name="history_export_subject">Phase Wake ညများ (အမည်မဖော်)</string>
 
@@ -133,7 +134,7 @@
     <string name="action_cancel">မလုပ်တော့ပါ</string>
     <string name="editor_advice_title">အကြံ- ပိုကြီးသော အချိန်အပိုင်း</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">နောက်ဆုံး %2$d ညတွင် %1$d ည၌ အချိန်အပိုင်းအတွင်း အိပ်ရေးပေါ့ မရှိခဲ့ပါ။ %3$d မိနစ်ဆိုလျှင် ကောင်းသောအချိန်တွင် ပိုမကြာခဏ နိုးမည်။</item>
+        <item quantity="other">နောက်ဆုံး %2$d ညတွင် %1$d ည၌ အချိန်အပိုင်းအတွင်း ကောင်းသောအချိန် မရှိခဲ့ပါ။ %3$d မိနစ်ဆိုလျှင် ကောင်းသောအချိန်တွင် ပိုမကြာခဏ နိုးမည်။</item>
     </plurals>
     <string name="editor_advice_apply">%1$d မိနစ် သုံးရန်</string>
     <string name="channel_sunrise">နေထွက်</string>
@@ -156,6 +157,9 @@
     <string name="check_ready">ယနေ့ညအတွက် အသင့်</string>
     <string name="check_ready_text">နာရီ ချိတ်ဆက်ပြီး၊ နှိုးစက်များ ခွင့်ပြုပြီး။ အသေးစိတ်အတွက် တို့ပါ။</string>
     <string name="check_not_ready">မအိပ်မီ စစ်ဆေးပါ</string>
+    <string name="check_not_ready_icon">အဆင်သင့်မဖြစ်သေး</string>
+    <string name="check_silent_switch_title">iOS 26 မတိုင်မီ အရန်နှိုးစက်</string>
+    <string name="check_silent_switch_text">iOS 26 မတိုင်မီ အရန်နှိုးစက်သည် အသိပေးချက်တစ်ခုဖြစ်သည်- အသံပိတ်ခလုတ်က ၎င်းကို အသံတိတ်စေသည်။ အသံကို ဖွင့်ထားပါ သို့မဟုတ် iOS 26 သို့ အပ်ဒိတ်လုပ်ပါ။</string>
     <string name="check_watch">နာရီ ချိတ်ဆက်ထားသည်</string>
     <string name="check_watch_problem">နာရီကို ဆက်သွယ်၍ မရပါ။ ဝတ်ထားပါ၊ Bluetooth ဖွင့်ထားပြီး နာရီပေါ်တွင် Phase Wake ကို တစ်ကြိမ် ဖွင့်ပါ။</string>
     <string name="check_notifications">အကြောင်းကြားချက်များ ခွင့်ပြုထားသည်</string>
@@ -202,7 +206,7 @@
     <string name="settings_support">Phase Wake ကို ထောက်ပံ့ရန်</string>
     <string name="settings_support_text">Phase Wake သည် အခမဲ့၊ open source ဖြစ်ပြီး ကြော်ငြာမရှိပါ။ နှစ်သက်လျှင် ဖွံ့ဖြိုးမှုကို ထောက်ပံ့နိုင်သည်။</string>
     <plurals name="hint_title">
-        <item quantity="other">အိပ်ရေးပေါ့မရှိသော %1$d ည</item>
+        <item quantity="other">ကောင်းသောအချိန်မရှိသော %1$d ည</item>
     </plurals>
     <string name="hint_gaps">တိုင်းတာမှုတွင် ကွက်လပ်များ ရှိခဲ့သည်။ ညဘက် နာရီ အားသွင်းနေသလား သို့မဟုတ် ပိတ်ထားသလား။</string>
     <string name="hint_heart">နှလုံးခုန်နှုန်း မရခဲ့ပါ။ ညဘက် နာရီကို နည်းနည်း ပိုကျပ်ကျပ် ဝတ်ပါ။</string>

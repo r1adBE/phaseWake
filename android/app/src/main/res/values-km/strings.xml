@@ -28,7 +28,7 @@
 
     <string name="reason_light">មិនស្ងប់ – ប្រហែលជាដំណេកស្រាល</string>
     <string name="reason_awake">ភ្ញាក់រួចហើយ</string>
-    <string name="reason_deadline">រកមិនឃើញដំណេកស្រាល</string>
+    <string name="reason_deadline">គ្មានពេលល្អក្នុងចន្លោះពេល</string>
     <string name="reason_exact">ត្រូវម៉ោងគោលដៅពិតប្រាកដ</string>
     <string name="reason_short_night">យប់ខ្លី – ត្រឹមម៉ោងគោលដៅប៉ុណ្ណោះ</string>
     <string name="woke_early">%1$d នាទីមុនម៉ោងគោលដៅ · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">យឺតបំផុត</string>
     <string name="editor_sleep_duration">ដេក %1$s</string>
     <string name="editor_sleep_hint">រាប់ចាប់ពីពេលអ្នកលង់លក់។ នាឡិការកឃើញដោយស្វ័យប្រវត្តិ ចុច «រាត្រីសួស្តី» លើនាឡិកាដើម្បីចាប់ផ្ដើមភ្លាម។</string>
+    <string name="editor_sleep_wear_only">របៀបរយៈពេលដេកដំណើរការតែជាមួយ Galaxy Watch ប៉ុណ្ណោះ។ ជាមួយ Apple Watch ម៉ោងរោទ៍នេះដាស់អ្នកក្នុងចន្លោះពេលធម្មតារបស់វា រហូតដល់ម៉ោងគោលដៅ។</string>
     <string name="editor_window">ចន្លោះពេល៖ %1$d នាទី</string>
     <string name="editor_window_hint">ដាស់ចន្លោះ %1$s ដល់ %2$s</string>
     <string name="editor_window_exact">ពិតប្រាកដ</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">ពី %1$s។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
     <string name="history_health_live_unknown">ពីទិន្នន័យសុខភាពរបស់អ្នក។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
     <string name="history_average">Ø មុន %1$d នាទី</string>
-    <string name="history_light_share">%1$d %% ក្នុងដំណេកស្រាល</string>
+    <string name="history_light_share">%1$d %% ត្រូវបានដាស់មុនពេលដេកមិនស្ងប់</string>
     <string name="history_export">នាំចេញដោយអនាមិក</string>
     <string name="history_export_subject">យប់ Phase Wake (អនាមិក)</string>
 
@@ -133,7 +134,7 @@
     <string name="action_cancel">បោះបង់</string>
     <string name="editor_advice_title">គន្លឹះ៖ ចន្លោះពេលធំជាងនេះ</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">ក្នុង %1$d នៃ %2$d យប់ចុងក្រោយ គ្មានដំណេកស្រាលក្នុងចន្លោះពេលទេ។ ជាមួយ %3$d នាទី អ្នកនឹងភ្ញាក់នៅពេលល្អញឹកញាប់ជាង។</item>
+        <item quantity="other">ក្នុង %1$d នៃ %2$d យប់ចុងក្រោយ គ្មានពេលល្អក្នុងចន្លោះពេលទេ។ ជាមួយ %3$d នាទី អ្នកនឹងភ្ញាក់នៅពេលល្អញឹកញាប់ជាង។</item>
     </plurals>
     <string name="editor_advice_apply">ប្រើ %1$d នាទី</string>
     <string name="channel_sunrise">ថ្ងៃរះ</string>
@@ -156,6 +157,9 @@
     <string name="check_ready">រួចរាល់សម្រាប់យប់នេះ</string>
     <string name="check_ready_text">នាឡិកាបានភ្ជាប់ ម៉ោងរោទ៍បានអនុញ្ញាត។ ចុចដើម្បីមើលព័ត៌មានលម្អិត។</string>
     <string name="check_not_ready">ពិនិត្យមុនពេលដេក</string>
+    <string name="check_not_ready_icon">មិនទាន់រួចរាល់</string>
+    <string name="check_silent_switch_title">ម៉ោងរោទ៍បម្រុងមុន iOS 26</string>
+    <string name="check_silent_switch_text">មុន iOS 26 ម៉ោងរោទ៍បម្រុងគឺជាការជូនដំណឹង៖ កុងតាក់ស្ងាត់ធ្វើឱ្យវាគ្មានសំឡេង។ ទុកសំឡេងឱ្យបើក ឬដំឡើងទៅ iOS 26។</string>
     <string name="check_watch">នាឡិកាបានភ្ជាប់</string>
     <string name="check_watch_problem">មិនអាចភ្ជាប់ទៅនាឡិកាបានទេ។ ពាក់វា បើក Bluetooth ហើយបើក Phase Wake លើនាឡិកាម្ដង។</string>
     <string name="check_notifications">ការជូនដំណឹងបានអនុញ្ញាត</string>
@@ -202,7 +206,7 @@
     <string name="settings_support">គាំទ្រ Phase Wake</string>
     <string name="settings_support_text">Phase Wake ឥតគិតថ្លៃ កូដចំហ និងគ្មានពាណិជ្ជកម្ម។ បើអ្នកចូលចិត្ត អ្នកអាចគាំទ្រការអភិវឌ្ឍវា។</string>
     <plurals name="hint_title">
-        <item quantity="other">%1$d យប់គ្មានដំណេកស្រាល</item>
+        <item quantity="other">%1$d យប់គ្មានពេលល្អ</item>
     </plurals>
     <string name="hint_gaps">ការវាស់មានចន្លោះ។ តើនាឡិកាកំពុងសាក ឬបិទនៅពេលយប់ឬ?</string>
     <string name="hint_heart">គ្មានចង្វាក់បេះដូង។ ពាក់នាឡិកាឲ្យតឹងបន្តិចនៅពេលយប់។</string>

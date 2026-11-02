@@ -30,7 +30,7 @@
 
     <string name="reason_light">बेचैन – सम्भवतः हल्का निद्रा</string>
     <string name="reason_awake">पहिल्यै ब्युँझिसकेको</string>
-    <string name="reason_deadline">हल्का निद्रा भेटिएन</string>
+    <string name="reason_deadline">अवधिभित्र राम्रो क्षण आएन</string>
     <string name="reason_exact">ठ्याक्कै लक्षित समयमा</string>
     <string name="reason_short_night">छोटो रात – लक्षित समयमा मात्र</string>
     <string name="woke_early">लक्षित समयभन्दा %1$d मि. अघि · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">बढीमा</string>
     <string name="editor_sleep_duration">%1$s सुत</string>
     <string name="editor_sleep_hint">तिमी निदाएदेखि गनिन्छ। घडीले यो आफैँ पत्ता लगाउँछ; तुरुन्तै सुरु गर्न घडीमा “शुभ रात्रि” थिच।</string>
+    <string name="editor_sleep_wear_only">निद्राको अवधि मोड Galaxy Watch सँग मात्र चल्छ। Apple Watch सँग यो अलार्मले तिमीलाई आफ्नो सामान्य अवधिभित्र लक्षित समयसम्म ब्युँझाउँछ।</string>
     <string name="editor_window">अवधि: %1$d मि.</string>
     <string name="editor_window_hint">%1$s र %2$s बीच ब्युँझाउँछ</string>
     <string name="editor_window_exact">ठ्याक्कै</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s बाट। त्यहाँ गरिएका परिवर्तन र मेटाइहरू Phase Wake ले आफैँ लागू गर्छ।</string>
     <string name="history_health_live_unknown">तिम्रो स्वास्थ्य डेटाबाट। त्यहाँ गरिएका परिवर्तन र मेटाइहरू Phase Wake ले आफैँ लागू गर्छ।</string>
     <string name="history_average">Ø %1$d मि. चाँडो</string>
-    <string name="history_light_share">%1$d %% हल्का निद्रामा</string>
+    <string name="history_light_share">%1$d %% छटपटिँदा चाँडै ब्युँझाइयो</string>
     <string name="history_export">गुमनाम रूपमा निर्यात</string>
     <string name="history_export_subject">Phase Wake रातहरू (गुमनाम)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">रद्द गर</string>
     <string name="editor_advice_title">सुझाव: अलि लामो अवधि</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">पछिल्ला %2$d रातमध्ये %1$d रात अवधिभित्र हल्का निद्रा भएन। %3$d मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।</item>
-        <item quantity="other">पछिल्ला %2$d रातमध्ये %1$d रात अवधिभित्र हल्का निद्रा भएन। %3$d मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।</item>
+        <item quantity="one">पछिल्ला %2$d रातमध्ये %1$d रात अवधिभित्र राम्रो क्षण आएन। %3$d मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।</item>
+        <item quantity="other">पछिल्ला %2$d रातमध्ये %1$d रात अवधिभित्र राम्रो क्षण आएन। %3$d मिनेट राख्दा तिमी धेरैपटक राम्रो क्षणमा ब्युँझनेछौ।</item>
     </plurals>
     <string name="editor_advice_apply">%1$d मि. प्रयोग गर</string>
     <string name="channel_sunrise">सूर्योदय</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">आज रातका लागि तयार</string>
     <string name="check_ready_text">घडी जोडिएको छ, अलार्मलाई अनुमति छ। विवरणका लागि थिच।</string>
     <string name="check_not_ready">सुत्नुअघि जाँच</string>
+    <string name="check_not_ready_icon">तयार छैन</string>
+    <string name="check_silent_switch_title">iOS 26 अघिको ब्याकअप अलार्म</string>
+    <string name="check_silent_switch_text">iOS 26 अघि ब्याकअप अलार्म एउटा सूचना हो: साइलेन्ट स्विचले यसलाई मौन बनाउँछ। आवाज खुला राख वा iOS 26 मा अपडेट गर।</string>
     <string name="check_watch">घडी जोडिएको छ</string>
     <string name="check_watch_problem">तिम्रो घडीसम्म पुग्न सकिएन। घडी लगाऊ, Bluetooth अन राख र घडीमा एक पटक Phase Wake खोल।</string>
     <string name="check_notifications">सूचनालाई अनुमति छ</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wake लाई सहयोग गर</string>
     <string name="settings_support_text">Phase Wake निःशुल्क, खुला स्रोत र विज्ञापनरहित छ। मन पर्छ भने, तिमी यसको विकासलाई सहयोग गर्न सक्छौ।</string>
     <plurals name="hint_title">
-        <item quantity="one">हल्का निद्राबिनाका %1$d रात</item>
-        <item quantity="other">हल्का निद्राबिनाका %1$d रात</item>
+        <item quantity="one">राम्रो क्षणबिनाका %1$d रात</item>
+        <item quantity="other">राम्रो क्षणबिनाका %1$d रात</item>
     </plurals>
     <string name="hint_gaps">मापनमा खाली ठाउँ थिए। राति घडी चार्ज हुँदै थियो वा फुकालिएको थियो?</string>
     <string name="hint_heart">तिम्रो मुटुको धड्कन थिएन। राति घडी अलि कसेर लगाऊ।</string>

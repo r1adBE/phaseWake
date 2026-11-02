@@ -29,7 +29,7 @@
 
     <string name="reason_light">חוסר שקט – כנראה שינה קלה</string>
     <string name="reason_awake">כבר ערים</string>
-    <string name="reason_deadline">לא זוהתה שינה קלה</string>
+    <string name="reason_deadline">לא היה רגע טוב בחלון</string>
     <string name="reason_exact">בדיוק בשעת היעד</string>
     <string name="reason_short_night">לילה קצר – רק בשעת היעד</string>
     <string name="woke_early">%1$d דק׳ לפני היעד · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">לכל המאוחר</string>
     <string name="editor_sleep_duration">לישון %1$s</string>
     <string name="editor_sleep_hint">הספירה מתחילה מההירדמות. השעון מזהה זאת אוטומטית; הקישו על “לילה טוב” בשעון כדי להתחיל מיד.</string>
+    <string name="editor_sleep_wear_only">מצב משך שינה פועל רק עם Galaxy Watch. עם Apple Watch המעורר הזה מעיר בחלון הרגיל שלו עד שעת היעד.</string>
     <string name="editor_window">חלון: %1$d דק׳</string>
     <string name="editor_window_hint">יעיר אתכם בין %1$s ל-%2$s</string>
     <string name="editor_window_exact">בדיוק</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">מ־%1$s. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
     <string name="history_health_live_unknown">מנתוני הבריאות שלכם. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
     <string name="history_average">ממוצע: %1$d דק׳ מוקדם יותר</string>
-    <string name="history_light_share">%1$d %% בשינה קלה</string>
+    <string name="history_light_share">%1$d %% הוערו מוקדם יותר כשהשינה לא שקטה</string>
     <string name="history_export">ייצוא אנונימי</string>
     <string name="history_export_subject">לילות Phase Wake (אנונימי)</string>
 
@@ -134,9 +135,9 @@
     <string name="action_cancel">ביטול</string>
     <string name="editor_advice_title">טיפ: חלון גדול יותר</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">ב-%1$d מתוך הלילה האחרון (%2$d) לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
-        <item quantity="two">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
-        <item quantity="other">ב-%1$d מתוך %2$d הלילות האחרונים לא הייתה שינה קלה בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+        <item quantity="one">ב-%1$d מתוך הלילה האחרון (%2$d) לא היה רגע טוב בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+        <item quantity="two">ב-%1$d מתוך %2$d הלילות האחרונים לא היה רגע טוב בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
+        <item quantity="other">ב-%1$d מתוך %2$d הלילות האחרונים לא היה רגע טוב בחלון. עם %3$d דק׳ יהיו יותר התעוררויות ברגע טוב.</item>
     </plurals>
     <string name="editor_advice_apply">שימוש ב-%1$d דק׳</string>
     <string name="channel_sunrise">זריחה</string>
@@ -161,6 +162,9 @@
     <string name="check_ready">מוכנים ללילה</string>
     <string name="check_ready_text">השעון מחובר, ההתראות מאושרות. הקישו לפרטים.</string>
     <string name="check_not_ready">בדקו לפני השינה</string>
+    <string name="check_not_ready_icon">לא מוכן</string>
+    <string name="check_silent_switch_title">מעורר גיבוי לפני iOS 26</string>
+    <string name="check_silent_switch_text">לפני iOS 26 מעורר הגיבוי הוא התראה: מתג ההשתקה משתיק אותו. כדאי להשאיר את הצליל פועל או לעדכן ל-iOS 26.</string>
     <string name="check_watch">השעון מחובר</string>
     <string name="check_watch_problem">אי אפשר להגיע לשעון שלכם. ענדו אותו, השאירו את ה-Bluetooth פעיל ופתחו את Phase Wake בשעון פעם אחת.</string>
     <string name="check_notifications">הרשאת התראות ניתנה</string>
@@ -207,9 +211,9 @@
     <string name="settings_support">תמכו ב-Phase Wake</string>
     <string name="settings_support_text">Phase Wake חינמית, בקוד פתוח וללא פרסומות. אם היא מוצאת חן בעיניכם, אפשר לתמוך בפיתוח שלה.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d לילה בלי שינה קלה</item>
-        <item quantity="two">%1$d לילות בלי שינה קלה</item>
-        <item quantity="other">%1$d לילות בלי שינה קלה</item>
+        <item quantity="one">%1$d לילה בלי רגע טוב</item>
+        <item quantity="two">%1$d לילות בלי רגע טוב</item>
+        <item quantity="other">%1$d לילות בלי רגע טוב</item>
     </plurals>
     <string name="hint_gaps">במדידה היו חוסרים. השעון היה בטעינה או לא על היד בלילה?</string>
     <string name="hint_heart">הדופק לא נמדד. מומלץ לענוד את השעון קצת יותר הדוק בלילה.</string>

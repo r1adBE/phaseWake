@@ -242,7 +242,7 @@ internal fun isMorningOf(night: NightRecord, now: Instant, zone: ZoneId): Boolea
 }
 
 /** Bis zu dieser Stunde (Ortszeit) steht der Morgenbericht zuerst. */
-private const val MORNING_FIRST_UNTIL_HOUR = 12
+internal const val MORNING_FIRST_UNTIL_HOUR = 12
 
 /** Höchstens so viele Wecker: Die Uhr führt ohnehin nur eine Nacht zugleich, und die Liste bleibt übersichtlich. */
 internal const val MAX_ALARMS = 8

@@ -29,7 +29,7 @@
 
     <string name="reason_light">Agité – sans doute sommeil léger</string>
     <string name="reason_awake">Déjà éveillé</string>
-    <string name="reason_deadline">Aucun sommeil léger détecté</string>
+    <string name="reason_deadline">Aucun bon moment dans la fenêtre</string>
     <string name="reason_exact">Pile à l’heure cible</string>
     <string name="reason_short_night">Nuit courte – seulement à l’heure cible</string>
     <string name="woke_early">%1$d min avant l\'heure cible · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">Au plus tard</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
     <string name="editor_sleep_hint">Compte à partir de l’endormissement. Ta montre le détecte automatiquement ; appuie sur « Bonne nuit » sur la montre pour démarrer tout de suite.</string>
+    <string name="editor_sleep_wear_only">Le mode durée de sommeil ne fonctionne qu’avec une Galaxy Watch. Avec une Apple Watch, cette alarme te réveille dans sa fenêtre habituelle jusqu’à l’heure cible.</string>
     <string name="editor_window">Plage : %1$d min</string>
     <string name="editor_window_hint">Te réveille entre %1$s et %2$s</string>
     <string name="editor_window_exact">Exact</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">Via %1$s. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
     <string name="history_health_live_unknown">Via tes données santé. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
     <string name="history_average">Ø %1$d min plus tôt</string>
-    <string name="history_light_share">%1$d %% en sommeil léger</string>
+    <string name="history_light_share">%1$d %% réveillés plus tôt en cas d’agitation</string>
     <string name="history_export">Exporter anonymement</string>
     <string name="history_export_subject">Nuits Phase Wake (anonyme)</string>
 
@@ -134,9 +135,9 @@
     <string name="action_cancel">Annuler</string>
     <string name="editor_advice_title">Astuce : une fenêtre plus large</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Dans %1$d de la dernière nuit (%2$d), il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
-        <item quantity="many">Dans %1$d des %2$d dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
-        <item quantity="other">Dans %1$d des %2$d dernières nuits, il n’y avait pas de sommeil léger dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
+        <item quantity="one">Dans %1$d de la dernière nuit (%2$d), il n’y avait pas de bon moment dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
+        <item quantity="many">Dans %1$d des %2$d dernières nuits, il n’y avait pas de bon moment dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
+        <item quantity="other">Dans %1$d des %2$d dernières nuits, il n’y avait pas de bon moment dans la fenêtre. Avec %3$d min, tu te réveilleras plus souvent au bon moment.</item>
     </plurals>
     <string name="editor_advice_apply">Utiliser %1$d min</string>
     <string name="channel_sunrise">Lever de soleil</string>
@@ -161,6 +162,9 @@
     <string name="check_ready">Prêt pour cette nuit</string>
     <string name="check_ready_text">Montre connectée, alarmes autorisées. Touche pour voir les détails.</string>
     <string name="check_not_ready">À vérifier avant de dormir</string>
+    <string name="check_not_ready_icon">Pas prêt</string>
+    <string name="check_silent_switch_title">Alarme de secours avant iOS 26</string>
+    <string name="check_silent_switch_text">Avant iOS 26, l’alarme de secours est une notification : le bouton silencieux la rend muette. Laisse le son activé ou passe à iOS 26.</string>
     <string name="check_watch">Montre connectée</string>
     <string name="check_watch_problem">Ta montre est injoignable. Mets-la au poignet, garde le Bluetooth activé et ouvre Phase Wake une fois sur la montre.</string>
     <string name="check_notifications">Notifications autorisées</string>
@@ -207,9 +211,9 @@
     <string name="settings_support">Soutenir Phase Wake</string>
     <string name="settings_support_text">Phase Wake est gratuite, open source et sans publicité. Si elle te plaît, tu peux soutenir son développement.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d nuit sans sommeil léger</item>
-        <item quantity="many">%1$d nuits sans sommeil léger</item>
-        <item quantity="other">%1$d nuits sans sommeil léger</item>
+        <item quantity="one">%1$d nuit sans bon moment</item>
+        <item quantity="many">%1$d nuits sans bon moment</item>
+        <item quantity="other">%1$d nuits sans bon moment</item>
     </plurals>
     <string name="hint_gaps">La mesure comportait des trous. La montre était-elle en charge ou retirée la nuit ?</string>
     <string name="hint_heart">Le pouls était absent. Serre un peu plus ta montre la nuit.</string>

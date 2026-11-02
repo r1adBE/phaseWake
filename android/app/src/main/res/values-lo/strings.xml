@@ -28,7 +28,7 @@
 
     <string name="reason_light">ບໍ່ສະຫງົບ – ອາດເປັນການຫຼັບຕື້ນ</string>
     <string name="reason_awake">ຕື່ນແລ້ວ</string>
-    <string name="reason_deadline">ບໍ່ພົບການຫຼັບຕື້ນ</string>
+    <string name="reason_deadline">ບໍ່ມີເວລາທີ່ດີໃນຊ່ວງເວລາ</string>
     <string name="reason_exact">ຕົງເວລາເປົ້າໝາຍພໍດີ</string>
     <string name="reason_short_night">ຄືນສັ້ນ – ສະເພາະເວລາເປົ້າໝາຍ</string>
     <string name="woke_early">ກ່ອນເວລາເປົ້າໝາຍ %1$d ນາທີ · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">ຊ້າສຸດ</string>
     <string name="editor_sleep_duration">ນອນ %1$s</string>
     <string name="editor_sleep_hint">ນັບຕັ້ງແຕ່ເຈົ້າຫຼັບ ໂມງກວດພົບໄດ້ເອງ; ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງເພື່ອເລີ່ມທັນທີ</string>
+    <string name="editor_sleep_wear_only">ໂໝດໄລຍະນອນໃຊ້ໄດ້ກັບ Galaxy Watch ເທົ່ານັ້ນ. ກັບ Apple Watch ໂມງປຸກນີ້ຈະປຸກເຈົ້າໃນຊ່ວງເວລາປົກກະຕິຂອງມັນຈົນຮອດເວລາເປົ້າໝາຍ.</string>
     <string name="editor_window">ຊ່ວງເວລາ: %1$d ນາທີ</string>
     <string name="editor_window_hint">ປຸກເຈົ້າລະຫວ່າງ %1$s ຫາ %2$s</string>
     <string name="editor_window_exact">ພໍດີ</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">ຈາກ %1$s. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_health_live_unknown">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_average">Ø ກ່ອນ %1$d ນາທີ</string>
-    <string name="history_light_share">%1$d %% ໃນຊ່ວງຫຼັບຕື້ນ</string>
+    <string name="history_light_share">%1$d %% ຖືກປຸກກ່ອນເມື່ອນອນບໍ່ສະຫງົບ</string>
     <string name="history_export">ສົ່ງອອກແບບບໍ່ລະບຸຕົວຕົນ</string>
     <string name="history_export_subject">ຄືນ Phase Wake (ບໍ່ລະບຸຕົວຕົນ)</string>
 
@@ -133,7 +134,7 @@
     <string name="action_cancel">ຍົກເລີກ</string>
     <string name="editor_advice_title">ຄຳແນະນຳ: ຊ່ວງເວລາທີ່ກວ້າງຂຶ້ນ</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">ໃນ %1$d ຈາກ %2$d ຄືນຜ່ານມາ ບໍ່ມີການຫຼັບຕື້ນໃນຊ່ວງເວລາ ດ້ວຍ %3$d ນາທີ ເຈົ້າຈະຕື່ນໃນເວລາທີ່ດີເລື້ອຍຂຶ້ນ</item>
+        <item quantity="other">ໃນ %1$d ຈາກ %2$d ຄືນຜ່ານມາ ບໍ່ມີເວລາທີ່ດີໃນຊ່ວງເວລາ ດ້ວຍ %3$d ນາທີ ເຈົ້າຈະຕື່ນໃນເວລາທີ່ດີເລື້ອຍຂຶ້ນ</item>
     </plurals>
     <string name="editor_advice_apply">ໃຊ້ %1$d ນາທີ</string>
     <string name="channel_sunrise">ຕາເວັນຂຶ້ນ</string>
@@ -156,6 +157,9 @@
     <string name="check_ready">ພ້ອມສຳລັບຄືນນີ້</string>
     <string name="check_ready_text">ເຊື່ອມຕໍ່ໂມງແລ້ວ ອະນຸຍາດໂມງປຸກແລ້ວ ແຕະເພື່ອເບິ່ງລາຍລະອຽດ</string>
     <string name="check_not_ready">ກວດກ່ອນນອນ</string>
+    <string name="check_not_ready_icon">ຍັງບໍ່ພ້ອມ</string>
+    <string name="check_silent_switch_title">ໂມງປຸກສຳຮອງກ່ອນ iOS 26</string>
+    <string name="check_silent_switch_text">ກ່ອນ iOS 26 ໂມງປຸກສຳຮອງເປັນການແຈ້ງເຕືອນ: ສະວິດປິດສຽງຈະເຮັດໃຫ້ມັນງຽບ. ເປີດສຽງໄວ້ ຫຼື ອັບເດດເປັນ iOS 26.</string>
     <string name="check_watch">ເຊື່ອມຕໍ່ໂມງແລ້ວ</string>
     <string name="check_watch_problem">ບໍ່ສາມາດເຊື່ອມຫາໂມງໄດ້ ໃສ່ໂມງໄວ້ ເປີດ Bluetooth ແລະ ເປີດ Phase Wake ຢູ່ໂມງໜຶ່ງເທື່ອ</string>
     <string name="check_notifications">ອະນຸຍາດການແຈ້ງເຕືອນແລ້ວ</string>
@@ -202,7 +206,7 @@
     <string name="settings_support">ສະໜັບສະໜູນ Phase Wake</string>
     <string name="settings_support_text">Phase Wake ຟຣີ ເປັນໂອເພັນຊອດ ແລະ ບໍ່ມີໂຄສະນາ ຖ້າເຈົ້າມັກ ເຈົ້າສາມາດສະໜັບສະໜູນການພັດທະນາໄດ້</string>
     <plurals name="hint_title">
-        <item quantity="other">%1$d ຄືນທີ່ບໍ່ມີການຫຼັບຕື້ນ</item>
+        <item quantity="other">%1$d ຄືນທີ່ບໍ່ມີເວລາທີ່ດີ</item>
     </plurals>
     <string name="hint_gaps">ການວັດແທກຂາດເປັນຊ່ວງ ໂມງກຳລັງສາກ ຫຼື ປິດຢູ່ໃນຕອນກາງຄືນບໍ?</string>
     <string name="hint_heart">ບໍ່ມີອັດຕາການເຕັ້ນຫົວໃຈ ໃສ່ໂມງໃຫ້ແໜ້ນຂຶ້ນໜ້ອຍໜຶ່ງໃນຕອນກາງຄືນ</string>

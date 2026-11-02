@@ -30,7 +30,7 @@
 
     <string name="reason_light">Órólegur – líklega léttur svefn</string>
     <string name="reason_awake">Þegar vakandi</string>
-    <string name="reason_deadline">Enginn léttur svefn greindist</string>
+    <string name="reason_deadline">Ekkert gott augnablik í glugganum</string>
     <string name="reason_exact">Nákvæmlega á markmiðstíma</string>
     <string name="reason_short_night">Stutt nótt – aðeins á markmiðstíma</string>
     <string name="woke_early">%1$d mín fyrir markmið · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Í síðasta lagi</string>
     <string name="editor_sleep_duration">Sofa í %1$s</string>
     <string name="editor_sleep_hint">Telur frá því að þú sofnar. Úrið greinir það sjálfkrafa; ýttu á „Góða nótt“ á úrinu til að byrja strax.</string>
+    <string name="editor_sleep_wear_only">Svefnlengdarstilling virkar aðeins með Galaxy Watch. Með Apple Watch vekur þessi vekjari þig í venjulegum glugga sínum fram að markmiðstíma.</string>
     <string name="editor_window">Gluggi: %1$d mín</string>
     <string name="editor_window_hint">Vekur þig milli %1$s og %2$s</string>
     <string name="editor_window_exact">Nákvæmt</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Frá %1$s. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
     <string name="history_health_live_unknown">Úr heilsugögnunum þínum. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
     <string name="history_average">Ø %1$d mín fyrr</string>
-    <string name="history_light_share">%1$d %% í léttum svefni</string>
+    <string name="history_light_share">%1$d %% vakin fyrr við óróleika</string>
     <string name="history_export">Flytja út nafnlaust</string>
     <string name="history_export_subject">Phase Wake-nætur (nafnlaust)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Hætta við</string>
     <string name="editor_advice_title">Ábending: stærri gluggi</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Í %1$d af síðustu %2$d nótt var enginn léttur svefn í glugganum. Með %3$d mín vaknarðu oftar á góðu augnabliki.</item>
-        <item quantity="other">Í %1$d af síðustu %2$d nóttum var enginn léttur svefn í glugganum. Með %3$d mín vaknarðu oftar á góðu augnabliki.</item>
+        <item quantity="one">Í %1$d af síðustu %2$d nótt var ekkert gott augnablik í glugganum. Með %3$d mín vaknarðu oftar á góðu augnabliki.</item>
+        <item quantity="other">Í %1$d af síðustu %2$d nóttum var ekkert gott augnablik í glugganum. Með %3$d mín vaknarðu oftar á góðu augnabliki.</item>
     </plurals>
     <string name="editor_advice_apply">Nota %1$d mín</string>
     <string name="channel_sunrise">Sólarupprás</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Tilbúið fyrir nóttina</string>
     <string name="check_ready_text">Úr tengt, vekjarar leyfðir. Ýttu fyrir nánar.</string>
     <string name="check_not_ready">Athugaðu fyrir svefninn</string>
+    <string name="check_not_ready_icon">Ekki tilbúið</string>
+    <string name="check_silent_switch_title">Varavekjari fyrir iOS 26</string>
+    <string name="check_silent_switch_text">Fyrir iOS 26 er varavekjarinn tilkynning: hljóðlausi rofinn þaggar hann. Hafðu hljóðið á eða uppfærðu í iOS 26.</string>
     <string name="check_watch">Úr tengt</string>
     <string name="check_watch_problem">Ekki næst í úrið. Hafðu það á þér, hafðu kveikt á Bluetooth og opnaðu Phase Wake einu sinni á úrinu.</string>
     <string name="check_notifications">Tilkynningar leyfðar</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Styðja Phase Wake</string>
     <string name="settings_support_text">Phase Wake er ókeypis, opinn hugbúnaður og án auglýsinga. Ef þér líkar það geturðu stutt þróunina.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d nótt án létts svefns</item>
-        <item quantity="other">%1$d nætur án létts svefns</item>
+        <item quantity="one">%1$d nótt án góðs augnabliks</item>
+        <item quantity="other">%1$d nætur án góðs augnabliks</item>
     </plurals>
     <string name="hint_gaps">Það voru göt í mælingunni. Var úrið í hleðslu eða slökkt á því um nóttina?</string>
     <string name="hint_heart">Púlsinn vantaði. Hafðu úrið aðeins þéttar á þér á nóttunni.</string>

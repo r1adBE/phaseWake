@@ -30,7 +30,7 @@
 
     <string name="reason_light">Беспокойно – вероятно, лёгкий сон</string>
     <string name="reason_awake">Уже не спишь</string>
-    <string name="reason_deadline">Лёгкий сон не обнаружен</string>
+    <string name="reason_deadline">В окне не было удачного момента</string>
     <string name="reason_exact">Точно в целевое время</string>
     <string name="reason_short_night">Короткая ночь – только в целевое время</string>
     <string name="woke_early">за %1$d мин до цели · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Не позже</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
     <string name="editor_sleep_hint">Отсчёт идёт с момента засыпания. Часы определяют его автоматически; нажми «Спокойной ночи» на часах, чтобы начать сразу.</string>
+    <string name="editor_sleep_wear_only">Режим по длине сна работает только с Galaxy Watch. С Apple Watch этот будильник будит тебя в обычном окне до целевого времени.</string>
     <string name="editor_window">Окно: %1$d мин</string>
     <string name="editor_window_hint">Разбудит между %1$s и %2$s</string>
     <string name="editor_window_exact">Точно</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Из приложения %1$s. Изменения и удаления, сделанные там, Phase Wake учитывает автоматически.</string>
     <string name="history_health_live_unknown">Из твоих данных о здоровье. Изменения и удаления, сделанные там, Phase Wake учитывает автоматически.</string>
     <string name="history_average">Ø на %1$d мин раньше</string>
-    <string name="history_light_share">%1$d %% в лёгком сне</string>
+    <string name="history_light_share">%1$d %% разбужено раньше при беспокойном сне</string>
     <string name="history_export">Экспорт без личных данных</string>
     <string name="history_export_subject">Ночи Phase Wake (анонимно)</string>
 
@@ -135,10 +136,10 @@
     <string name="action_cancel">Отмена</string>
     <string name="editor_advice_title">Совет: окно побольше</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">В %1$d из последних %2$d ночи в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
-        <item quantity="few">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
-        <item quantity="many">В %1$d из последних %2$d ночей в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
-        <item quantity="other">В %1$d из последних %2$d ночи в окне не было лёгкого сна. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="one">В %1$d из последних %2$d ночи в окне не было удачного момента. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="few">В %1$d из последних %2$d ночей в окне не было удачного момента. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="many">В %1$d из последних %2$d ночей в окне не было удачного момента. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
+        <item quantity="other">В %1$d из последних %2$d ночи в окне не было удачного момента. С %3$d мин ты чаще будешь просыпаться в удачный момент.</item>
     </plurals>
     <string name="editor_advice_apply">Выбрать %1$d мин</string>
     <string name="channel_sunrise">Рассвет</string>
@@ -164,6 +165,9 @@
     <string name="check_ready">Всё готово к ночи</string>
     <string name="check_ready_text">Часы подключены, будильники разрешены. Нажми, чтобы узнать подробности.</string>
     <string name="check_not_ready">Проверь перед сном</string>
+    <string name="check_not_ready_icon">Не готово</string>
+    <string name="check_silent_switch_title">Резервный будильник до iOS 26</string>
+    <string name="check_silent_switch_text">До iOS 26 резервный будильник — это уведомление: переключатель беззвучного режима делает его беззвучным. Оставь звук включённым или обнови iOS до 26.</string>
     <string name="check_watch">Часы подключены</string>
     <string name="check_watch_problem">Часы недоступны. Надень их, не выключай Bluetooth и один раз открой Phase Wake на часах.</string>
     <string name="check_notifications">Уведомления разрешены</string>
@@ -210,10 +214,10 @@
     <string name="settings_support">Поддержать Phase Wake</string>
     <string name="settings_support_text">Phase Wake бесплатный, с открытым кодом и без рекламы. Если он тебе нравится, можешь поддержать его разработку.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d ночь без лёгкого сна</item>
-        <item quantity="few">%1$d ночи без лёгкого сна</item>
-        <item quantity="many">%1$d ночей без лёгкого сна</item>
-        <item quantity="other">%1$d ночи без лёгкого сна</item>
+        <item quantity="one">%1$d ночь без удачного момента</item>
+        <item quantity="few">%1$d ночи без удачного момента</item>
+        <item quantity="many">%1$d ночей без удачного момента</item>
+        <item quantity="other">%1$d ночи без удачного момента</item>
     </plurals>
     <string name="hint_gaps">В измерении были пропуски. Часы заряжались или были сняты ночью?</string>
     <string name="hint_heart">Не хватало данных о пульсе. Надевай часы на ночь чуть плотнее.</string>

@@ -93,6 +93,7 @@ struct HistoryView: View {
         health = await model.health.sessions()
         sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
         allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
+        PhoneWidgetSync.publishAsleep(model, sleeps: sleeps)
         loaded = true
     }
 

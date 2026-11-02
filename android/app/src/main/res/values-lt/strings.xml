@@ -32,7 +32,7 @@
 
     <string name="reason_light">Neramus – tikriausiai lengvas miegas</string>
     <string name="reason_awake">Jau nemiegojai</string>
-    <string name="reason_deadline">Lengvo miego neaptikta</string>
+    <string name="reason_deadline">Lange nebuvo tinkamo momento</string>
     <string name="reason_exact">Tiksliai tiksliniu laiku</string>
     <string name="reason_short_night">Trumpa naktis – tik tiksliniu laiku</string>
     <string name="woke_early">%1$d min prieš tikslinį laiką · %2$s</string>
@@ -55,6 +55,7 @@
     <string name="editor_latest">Vėliausiai</string>
     <string name="editor_sleep_duration">Miegoti %1$s</string>
     <string name="editor_sleep_hint">Skaičiuojama nuo užmigimo. Laikrodis tai atpažįsta automatiškai; bakstelėk laikrodyje „Labanakt“, kad pradėtum iškart.</string>
+    <string name="editor_sleep_wear_only">Miego trukmės režimas veikia tik su Galaxy Watch. Su Apple Watch šis žadintuvas pažadins tave įprastame lange iki tikslinio laiko.</string>
     <string name="editor_window">Langas: %1$d min</string>
     <string name="editor_window_hint">Pažadins nuo %1$s iki %2$s</string>
     <string name="editor_window_exact">Tiksliai</string>
@@ -80,7 +81,7 @@
     <string name="history_health_live">Iš programos %1$s. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
     <string name="history_health_live_unknown">Iš tavo sveikatos duomenų. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
     <string name="history_average">Ø %1$d min anksčiau</string>
-    <string name="history_light_share">%1$d %% lengvo miego metu</string>
+    <string name="history_light_share">%1$d %% pažadinta anksčiau dėl nerimo</string>
     <string name="history_export">Eksportuoti anonimiškai</string>
     <string name="history_export_subject">Phase Wake naktys (anonimiškai)</string>
 
@@ -137,10 +138,10 @@
     <string name="action_cancel">Atšaukti</string>
     <string name="editor_advice_title">Patarimas: didesnis langas</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Per %1$d iš paskutinės %2$d nakties lange nebuvo lengvo miego. Su %3$d min dažniau pabusi tinkamu metu.</item>
-        <item quantity="few">Per %1$d iš paskutinių %2$d naktų lange nebuvo lengvo miego. Su %3$d min dažniau pabusi tinkamu metu.</item>
-        <item quantity="many">Per %1$d iš paskutinių %2$d nakties lange nebuvo lengvo miego. Su %3$d min dažniau pabusi tinkamu metu.</item>
-        <item quantity="other">Per %1$d iš paskutinių %2$d naktų lange nebuvo lengvo miego. Su %3$d min dažniau pabusi tinkamu metu.</item>
+        <item quantity="one">Per %1$d iš paskutinės %2$d nakties lange nebuvo tinkamo momento. Su %3$d min dažniau pabusi tinkamu metu.</item>
+        <item quantity="few">Per %1$d iš paskutinių %2$d naktų lange nebuvo tinkamo momento. Su %3$d min dažniau pabusi tinkamu metu.</item>
+        <item quantity="many">Per %1$d iš paskutinių %2$d nakties lange nebuvo tinkamo momento. Su %3$d min dažniau pabusi tinkamu metu.</item>
+        <item quantity="other">Per %1$d iš paskutinių %2$d naktų lange nebuvo tinkamo momento. Su %3$d min dažniau pabusi tinkamu metu.</item>
     </plurals>
     <string name="editor_advice_apply">Naudoti %1$d min</string>
     <string name="channel_sunrise">Saulėtekis</string>
@@ -166,6 +167,9 @@
     <string name="check_ready">Pasiruošta šiai nakčiai</string>
     <string name="check_ready_text">Laikrodis prijungtas, žadintuvai leidžiami. Bakstelėk, kad matytum daugiau.</string>
     <string name="check_not_ready">Patikrink prieš miegą</string>
+    <string name="check_not_ready_icon">Neparuošta</string>
+    <string name="check_silent_switch_title">Atsarginis žadintuvas iki iOS 26</string>
+    <string name="check_silent_switch_text">Iki iOS 26 atsarginis žadintuvas yra pranešimas: tylos jungiklis jį nutildo. Palik garsą įjungtą arba atnaujink į iOS 26.</string>
     <string name="check_watch">Laikrodis prijungtas</string>
     <string name="check_watch_problem">Laikrodis nepasiekiamas. Užsidėk jį, palik įjungtą Bluetooth ir vieną kartą atidaryk Phase Wake laikrodyje.</string>
     <string name="check_notifications">Pranešimai leidžiami</string>
@@ -212,10 +216,10 @@
     <string name="settings_support">Paremk Phase Wake</string>
     <string name="settings_support_text">Phase Wake yra nemokama, atvirojo kodo ir be reklamų. Jei patinka, gali paremti jos kūrimą.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d naktis be lengvo miego</item>
-        <item quantity="few">%1$d naktys be lengvo miego</item>
-        <item quantity="many">%1$d nakties be lengvo miego</item>
-        <item quantity="other">%1$d naktų be lengvo miego</item>
+        <item quantity="one">%1$d naktis be tinkamo momento</item>
+        <item quantity="few">%1$d naktys be tinkamo momento</item>
+        <item quantity="many">%1$d nakties be tinkamo momento</item>
+        <item quantity="other">%1$d naktų be tinkamo momento</item>
     </plurals>
     <string name="hint_gaps">Matavime buvo spragų. Ar naktį laikrodis krovėsi ar buvo išjungtas?</string>
     <string name="hint_heart">Trūko pulso duomenų. Naktį užsisek laikrodį šiek tiek tvirčiau.</string>

@@ -30,7 +30,7 @@
 
     <string name="reason_light">Тайван бус – магадгүй хөнгөн нойр</string>
     <string name="reason_awake">Аль хэдийн сэрүүн</string>
-    <string name="reason_deadline">Хөнгөн нойр илрээгүй</string>
+    <string name="reason_deadline">Хугацаанд тохиромжтой мөч байгаагүй</string>
     <string name="reason_exact">Яг зорилтот цагт</string>
     <string name="reason_short_night">Богино шөнө – зөвхөн зорилтот цагт</string>
     <string name="woke_early">Зорилтот цагаас %1$d мин өмнө · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Хамгийн оройдоо</string>
     <string name="editor_sleep_duration">Нойр: %1$s</string>
     <string name="editor_sleep_hint">Унтсан цагаас чинь тоолно. Цаг үүнийг автоматаар илрүүлнэ; шууд эхлүүлэхийн тулд цаган дээрээ «Сайхан амраарай»-г дар.</string>
+    <string name="editor_sleep_wear_only">Нойрны үргэлжлэх хугацааны горим зөвхөн Galaxy Watch-тай ажилладаг. Apple Watch-тай бол энэ сэрүүлэг ердийн хугацаандаа зорилтот цаг хүртэл сэрээнэ.</string>
     <string name="editor_window">Хугацаа: %1$d мин</string>
     <string name="editor_window_hint">Чамайг %1$s – %2$s хооронд сэрээнэ</string>
     <string name="editor_window_exact">Яг</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Эх сурвалж: %1$s. Тэнд хийсэн өөрчлөлт, устгалыг Phase Wake автоматаар хүлээн авна.</string>
     <string name="history_health_live_unknown">Эх сурвалж: чиний эрүүл мэндийн өгөгдөл. Тэнд хийсэн өөрчлөлт, устгалыг Phase Wake автоматаар хүлээн авна.</string>
     <string name="history_average">Ø %1$d мин эрт</string>
-    <string name="history_light_share">%1$d %% нь хөнгөн нойронд</string>
+    <string name="history_light_share">%1$d %% нь тайван бус үед эрт сэрээгдсэн</string>
     <string name="history_export">Нэргүйгээр экспортлох</string>
     <string name="history_export_subject">Phase Wake шөнүүд (нэргүй)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Цуцлах</string>
     <string name="editor_advice_title">Зөвлөгөө: илүү урт хугацаа</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Сүүлийн %2$d шөнийн %1$d-д нь хугацаанд хөнгөн нойр байгаагүй. %3$d минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ.</item>
-        <item quantity="other">Сүүлийн %2$d шөнийн %1$d-д нь хугацаанд хөнгөн нойр байгаагүй. %3$d минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ.</item>
+        <item quantity="one">Сүүлийн %2$d шөнийн %1$d-д нь хугацаанд тохиромжтой мөч байгаагүй. %3$d минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ.</item>
+        <item quantity="other">Сүүлийн %2$d шөнийн %1$d-д нь хугацаанд тохиромжтой мөч байгаагүй. %3$d минуттай бол илүү олон удаа тохиромжтой мөчид сэрнэ.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d мин ашиглах</string>
     <string name="channel_sunrise">Нар мандах</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Өнөө шөнөд бэлэн</string>
     <string name="check_ready_text">Цаг холбогдсон, сэрүүлэг зөвшөөрөгдсөн. Дэлгэрэнгүйг харахын тулд дар.</string>
     <string name="check_not_ready">Унтахаасаа өмнө шалга</string>
+    <string name="check_not_ready_icon">Бэлэн биш</string>
+    <string name="check_silent_switch_title">iOS 26-аас өмнөх нөөц сэрүүлэг</string>
+    <string name="check_silent_switch_text">iOS 26-аас өмнө нөөц сэрүүлэг нь мэдэгдэл байдаг: дуугүй горимын унтраалга түүнийг дуугүй болгоно. Дууг асаалттай үлдээ эсвэл iOS 26 руу шинэчил.</string>
     <string name="check_watch">Цаг холбогдсон</string>
     <string name="check_watch_problem">Цагтай чинь холбогдож чадахгүй байна. Цагаа зүүж, Bluetooth-ээ асаалттай байлгаад цаган дээрээ Phase Wake-ийг нэг удаа нээ.</string>
     <string name="check_notifications">Мэдэгдэл зөвшөөрөгдсөн</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wake-ийг дэмжих</string>
     <string name="settings_support_text">Phase Wake үнэгүй, нээлттэй эх, зар сурталчилгаагүй. Таалагдвал хөгжүүлэлтийг нь дэмжиж болно.</string>
     <plurals name="hint_title">
-        <item quantity="one">Хөнгөн нойргүй %1$d шөнө</item>
-        <item quantity="other">Хөнгөн нойргүй %1$d шөнө</item>
+        <item quantity="one">Тохиромжтой мөчгүй %1$d шөнө</item>
+        <item quantity="other">Тохиромжтой мөчгүй %1$d шөнө</item>
     </plurals>
     <string name="hint_gaps">Хэмжилтэд тасалдал байсан. Шөнө цаг цэнэглэгдэж эсвэл тайлагдсан байсан уу?</string>
     <string name="hint_heart">Зүрхний цохилт чинь байхгүй байсан. Шөнө цагаа арай чанга зүү.</string>

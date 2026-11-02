@@ -30,7 +30,7 @@
 
     <string name="reason_light">නොසන්සුන් – බොහෝවිට සැහැල්ලු නින්ද</string>
     <string name="reason_awake">දැනටමත් අවදියි</string>
-    <string name="reason_deadline">සැහැල්ලු නින්දක් හමු නොවීය</string>
+    <string name="reason_deadline">පරාසය තුළ හොඳ මොහොතක් නොතිබුණි</string>
     <string name="reason_exact">හරියටම ඉලක්ක වේලාවට</string>
     <string name="reason_short_night">කෙටි රාත්‍රිය – ඉලක්ක වේලාවට පමණයි</string>
     <string name="woke_early">ඉලක්ක වේලාවට මිනි. %1$d කට පෙර · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">උපරිම</string>
     <string name="editor_sleep_duration">නින්ද %1$s</string>
     <string name="editor_sleep_hint">ඔබ නින්දට ගිය මොහොතේ සිට ගණන් කරයි. ඔරලෝසුව එය ස්වයංක්‍රීයව හඳුනා ගනී; වහාම ආරම්භ කිරීමට ඔරලෝසුවේ “සුබ රාත්‍රියක්” තට්ටු කරන්න.</string>
+    <string name="editor_sleep_wear_only">නින්දේ කාල ප්‍රකාරය ක්‍රියා කරන්නේ Galaxy Watch සමඟ පමණි. Apple Watch සමඟ මෙම එලාමය එහි සාමාන්‍ය පරාසය තුළ ඉලක්ක වේලාව දක්වා ඔබව අවදි කරයි.</string>
     <string name="editor_window">පරාසය: මිනි. %1$d</string>
     <string name="editor_window_hint">%1$s සහ %2$s අතර ඔබව අවදි කරයි</string>
     <string name="editor_window_exact">හරියටම</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
     <string name="history_health_live_unknown">ඔබේ සෞඛ්‍ය දත්ත වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
     <string name="history_average">Ø මිනි. %1$d කලින්</string>
-    <string name="history_light_share">%1$d %% සැහැල්ලු නින්දේ</string>
+    <string name="history_light_share">%1$d %% නොසන්සුන් වූ විට කලින් අවදි කළා</string>
     <string name="history_export">නිර්නාමිකව අපනයනය</string>
     <string name="history_export_subject">Phase Wake රාත්‍රි (නිර්නාමික)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">අවලංගු කරන්න</string>
     <string name="editor_advice_title">ඉඟිය: විශාල පරාසයක්</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">අවසන් රාත්‍රි %2$d න් %1$d ක පරාසය තුළ සැහැල්ලු නින්දක් නොතිබුණි. මිනිත්තු %3$d ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත.</item>
-        <item quantity="other">අවසන් රාත්‍රි %2$d න් %1$d ක පරාසය තුළ සැහැල්ලු නින්දක් නොතිබුණි. මිනිත්තු %3$d ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත.</item>
+        <item quantity="one">අවසන් රාත්‍රි %2$d න් %1$d ක පරාසය තුළ හොඳ මොහොතක් නොතිබුණි. මිනිත්තු %3$d ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත.</item>
+        <item quantity="other">අවසන් රාත්‍රි %2$d න් %1$d ක පරාසය තුළ හොඳ මොහොතක් නොතිබුණි. මිනිත්තු %3$d ක් සමඟ ඔබ නිතර හොඳ මොහොතක අවදි වනු ඇත.</item>
     </plurals>
     <string name="editor_advice_apply">මිනි. %1$d භාවිත කරන්න</string>
     <string name="channel_sunrise">හිරු උදාව</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">අද රාත්‍රියට සූදානම්</string>
     <string name="check_ready_text">ඔරලෝසුව සම්බන්ධයි, එලාමවලට ඉඩ ඇත. විස්තර සඳහා තට්ටු කරන්න.</string>
     <string name="check_not_ready">නිදා ගැනීමට පෙර පරීක්ෂා කරන්න</string>
+    <string name="check_not_ready_icon">සූදානම් නැත</string>
+    <string name="check_silent_switch_title">iOS 26 ට පෙර උපස්ථ එලාමය</string>
+    <string name="check_silent_switch_text">iOS 26 ට පෙර උපස්ථ එලාමය දැනුම්දීමකි: නිහඬ ස්විචය එය නිහඬ කරයි. ශබ්දය සක්‍රියව තබන්න හෝ iOS 26 වෙත යාවත්කාලීන කරන්න.</string>
     <string name="check_watch">ඔරලෝසුව සම්බන්ධයි</string>
     <string name="check_watch_problem">ඔබේ ඔරලෝසුවට ළඟා විය නොහැක. එය පැළඳ, Bluetooth සක්‍රියව තබා ඔරලෝසුවේ Phase Wake එක් වරක් විවෘත කරන්න.</string>
     <string name="check_notifications">දැනුම්දීම්වලට ඉඩ ඇත</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wake ට සහාය වන්න</string>
     <string name="settings_support_text">Phase Wake නොමිලේ, විවෘත මූලාශ්‍ර සහ දැන්වීම් රහිතයි. ඔබ කැමති නම්, එහි සංවර්ධනයට සහාය විය හැක.</string>
     <plurals name="hint_title">
-        <item quantity="one">සැහැල්ලු නින්ද නැති රාත්‍රි %1$d</item>
-        <item quantity="other">සැහැල්ලු නින්ද නැති රාත්‍රි %1$d</item>
+        <item quantity="one">හොඳ මොහොතක් නැති රාත්‍රි %1$d</item>
+        <item quantity="other">හොඳ මොහොතක් නැති රාත්‍රි %1$d</item>
     </plurals>
     <string name="hint_gaps">මිනුමේ හිඩැස් තිබුණි. රාත්‍රියේ ඔරලෝසුව ආරෝපණය වෙමින් හෝ ගලවා තිබුණාද?</string>
     <string name="hint_heart">ඔබේ හෘද ස්පන්දනය නොතිබුණි. රාත්‍රියේ ඔරලෝසුව ටිකක් තදින් පළඳින්න.</string>

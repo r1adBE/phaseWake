@@ -28,7 +28,7 @@
 
     <string name="reason_light">Onrustig – waarschijnlijk lichte slaap</string>
     <string name="reason_awake">Al wakker</string>
-    <string name="reason_deadline">Geen lichte slaap gedetecteerd</string>
+    <string name="reason_deadline">Geen goed moment in het venster</string>
     <string name="reason_exact">Precies op de doeltijd</string>
     <string name="reason_short_night">Korte nacht – pas op de doeltijd</string>
     <string name="woke_early">%1$d min voor de doeltijd · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">Uiterlijk</string>
     <string name="editor_sleep_duration">%1$s slapen</string>
     <string name="editor_sleep_hint">Telt vanaf het moment dat je in slaap valt. Je horloge herkent het automatisch; tik op het horloge op “Welterusten” om meteen te starten.</string>
+    <string name="editor_sleep_wear_only">De slaapduurmodus werkt alleen met een Galaxy Watch. Met een Apple Watch wekt deze wekker je in zijn gewone venster tot de doeltijd.</string>
     <string name="editor_window">Venster: %1$d min</string>
     <string name="editor_window_hint">Wekt je tussen %1$s en %2$s</string>
     <string name="editor_window_exact">Precies</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Uit %1$s. Phase Wake neemt wijzigingen en verwijderingen daar automatisch over.</string>
     <string name="history_health_live_unknown">Uit je gezondheidsgegevens. Phase Wake neemt wijzigingen en verwijderingen daar automatisch over.</string>
     <string name="history_average">Ø %1$d min eerder</string>
-    <string name="history_light_share">%1$d %% in lichte slaap</string>
+    <string name="history_light_share">%1$d %% eerder gewekt bij onrust</string>
     <string name="history_export">Anoniem exporteren</string>
     <string name="history_export_subject">Phase Wake-nachten (anoniem)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">Annuleren</string>
     <string name="editor_advice_title">Tip: een groter venster</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">In %1$d van de laatste %2$d nacht zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
-        <item quantity="other">In %1$d van de laatste %2$d nachten zat er geen lichte slaap in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
+        <item quantity="one">In %1$d van de laatste %2$d nacht zat er geen goed moment in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
+        <item quantity="other">In %1$d van de laatste %2$d nachten zat er geen goed moment in het venster. Met %3$d min word je vaker op een goed moment wakker.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d min gebruiken</string>
     <string name="channel_sunrise">Zonsopgang</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Klaar voor vannacht</string>
     <string name="check_ready_text">Horloge verbonden, wekkers toegestaan. Tik voor details.</string>
     <string name="check_not_ready">Controleer voor het slapengaan</string>
+    <string name="check_not_ready_icon">Niet klaar</string>
+    <string name="check_silent_switch_title">Reservewekker vóór iOS 26</string>
+    <string name="check_silent_switch_text">Vóór iOS 26 is de reservewekker een melding: de stilteschakelaar maakt hem geluidloos. Laat het geluid aan of werk bij naar iOS 26.</string>
     <string name="check_watch">Horloge verbonden</string>
     <string name="check_watch_problem">Je horloge is niet bereikbaar. Draag het, laat Bluetooth aan en open Phase Wake één keer op het horloge.</string>
     <string name="check_notifications">Meldingen toegestaan</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Steun Phase Wake</string>
     <string name="settings_support_text">Phase Wake is gratis, open source en heeft geen advertenties. Als je de app leuk vindt, kun je de ontwikkeling steunen.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d nacht zonder lichte slaap</item>
-        <item quantity="other">%1$d nachten zonder lichte slaap</item>
+        <item quantity="one">%1$d nacht zonder goed moment</item>
+        <item quantity="other">%1$d nachten zonder goed moment</item>
     </plurals>
     <string name="hint_gaps">De meting had hiaten. Was het horloge \'s nachts aan het opladen of af?</string>
     <string name="hint_heart">Je hartslag ontbrak. Draag het horloge \'s nachts wat strakker.</string>

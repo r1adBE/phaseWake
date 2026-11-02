@@ -2,6 +2,7 @@ import SwiftUI
 import WidgetKit
 
 /// Inhalt des iPhone-Widgets je Grösse. Der Nacht-Check zeigt Zeichen und Text, nie nur Farbe.
+/// Am Weckmorgen bis 12 Uhr zeigt der Home-Bildschirm die letzte Nacht; der Sperrbildschirm bleibt beim nächsten Wecker.
 struct PhoneAlarmView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.colorScheme) private var scheme
@@ -41,8 +42,31 @@ struct PhoneAlarmView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         default:
-            home
+            if let night = entry.night { lastNight(night) } else { home }
         }
+    }
+
+    /// «Letzte Nacht»: gross «Geweckt um 6:42», darunter Zeitpunkt und Grund, dann Schlafdauer und Befinden in
+    /// einer Zeile («7 h 41 min · Befinden: Gut»); was fehlt, entfällt (wie Android).
+    private func lastNight(_ night: PhoneWidgetSnapshot.LastNight) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Label(L("home_last_night"), systemImage: "sun.horizon.fill")
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(Brand.accent(scheme))
+            Spacer(minLength: 0)
+            Text(L("night_woke", Format.time(night.wokeAt)))
+                .font(.system(size: family == .systemSmall ? 20 : 26, weight: .bold, design: .rounded))
+                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+                .foregroundStyle(PhoneWidgetPalette.text(scheme))
+            Text(night.reason).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
+            let details = [night.asleepMinutes.map { Format.duration(minutes: $0) }, night.feeling].compactMap { $0 }
+            if !details.isEmpty {
+                Text(details.joined(separator: " · ")).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 
     /// Rund auf dem Sperrbildschirm: Symbol und Zielzeit (bei «Genau» ein Wecker-Symbol statt des Monds).

@@ -33,7 +33,7 @@
 
     <string name="reason_light">Corrach – codladh éadrom is dócha</string>
     <string name="reason_awake">I do dhúiseacht cheana</string>
-    <string name="reason_deadline">Níor braitheadh codladh éadrom</string>
+    <string name="reason_deadline">Gan nóiméad maith san fhuinneog</string>
     <string name="reason_exact">Díreach ag an spriocam</string>
     <string name="reason_short_night">Oíche ghearr – ag an spriocam amháin</string>
     <string name="woke_early">%1$d nóim roimh an sprioc · %2$s</string>
@@ -56,6 +56,7 @@
     <string name="editor_latest">Ar a dhéanaí</string>
     <string name="editor_sleep_duration">Codladh %1$s</string>
     <string name="editor_sleep_hint">Áirítear ón am a thiteann tú i do chodladh. Aithníonn an t-uaireadóir é go huathoibríoch; tapáil “Oíche mhaith” ar an uaireadóir chun tosú láithreach.</string>
+    <string name="editor_sleep_wear_only">Ní oibríonn an mód fad codlata ach le Galaxy Watch. Le Apple Watch, dúiseoidh an t-aláram seo thú ina ghnáthfhuinneog go dtí an sprioc-am.</string>
     <string name="editor_window">Fuinneog: %1$d nóim</string>
     <string name="editor_window_hint">Dúiseoidh sé thú idir %1$s agus %2$s</string>
     <string name="editor_window_exact">Beacht</string>
@@ -81,7 +82,7 @@
     <string name="history_health_live">Ó %1$s. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
     <string name="history_health_live_unknown">Ó do shonraí sláinte. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
     <string name="history_average">Ø %1$d nóim níos luaithe</string>
-    <string name="history_light_share">%1$d %% i gcodladh éadrom</string>
+    <string name="history_light_share">%1$d %% dúisithe níos luaithe nuair a bhí tú corrthónach</string>
     <string name="history_export">Easpórtáil gan ainm</string>
     <string name="history_export_subject">Oícheanta Phase Wake (gan ainm)</string>
 
@@ -138,11 +139,11 @@
     <string name="action_cancel">Cealaigh</string>
     <string name="editor_advice_title">Leid: fuinneog níos mó</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Ní raibh codladh éadrom san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
-        <item quantity="two">Ní raibh codladh éadrom san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
-        <item quantity="few">Ní raibh codladh éadrom san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
-        <item quantity="many">Ní raibh codladh éadrom san fhuinneog i %1$d as na %2$d n-oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
-        <item quantity="other">Ní raibh codladh éadrom san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
+        <item quantity="one">Ní raibh nóiméad maith san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
+        <item quantity="two">Ní raibh nóiméad maith san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
+        <item quantity="few">Ní raibh nóiméad maith san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
+        <item quantity="many">Ní raibh nóiméad maith san fhuinneog i %1$d as na %2$d n-oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
+        <item quantity="other">Ní raibh nóiméad maith san fhuinneog i %1$d as na %2$d oíche dheireanacha. Le %3$d nóim, is minice a dhúiseoidh tú ag nóiméad maith.</item>
     </plurals>
     <string name="editor_advice_apply">Úsáid %1$d nóim</string>
     <string name="channel_sunrise">Éirí gréine</string>
@@ -169,6 +170,9 @@
     <string name="check_ready">Réidh don oíche anocht</string>
     <string name="check_ready_text">Uaireadóir ceangailte, aláraim ceadaithe. Tapáil le haghaidh sonraí.</string>
     <string name="check_not_ready">Seiceáil roimh chodladh</string>
+    <string name="check_not_ready_icon">Níl sé réidh</string>
+    <string name="check_silent_switch_title">Aláram cúltaca roimh iOS 26</string>
+    <string name="check_silent_switch_text">Roimh iOS 26, is fógra é an t-aláram cúltaca: cuireann an lasc chiúin ina thost é. Fág an fhuaim air nó nuashonraigh go iOS 26.</string>
     <string name="check_watch">Uaireadóir ceangailte</string>
     <string name="check_watch_problem">Ní féidir teacht ar d’uaireadóir. Caith é, coinnigh Bluetooth ar siúl agus oscail Phase Wake ar an uaireadóir uair amháin.</string>
     <string name="check_notifications">Fógraí ceadaithe</string>
@@ -215,11 +219,11 @@
     <string name="settings_support">Tacaigh le Phase Wake</string>
     <string name="settings_support_text">Tá Phase Wake saor in aisce, foinse oscailte agus gan fógraí. Más maith leat é, is féidir leat tacú lena fhorbairt.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d oíche gan codladh éadrom</item>
-        <item quantity="two">%1$d oíche gan codladh éadrom</item>
-        <item quantity="few">%1$d oíche gan codladh éadrom</item>
-        <item quantity="many">%1$d n-oíche gan codladh éadrom</item>
-        <item quantity="other">%1$d oíche gan codladh éadrom</item>
+        <item quantity="one">%1$d oíche gan nóiméad maith</item>
+        <item quantity="two">%1$d oíche gan nóiméad maith</item>
+        <item quantity="few">%1$d oíche gan nóiméad maith</item>
+        <item quantity="many">%1$d n-oíche gan nóiméad maith</item>
+        <item quantity="other">%1$d oíche gan nóiméad maith</item>
     </plurals>
     <string name="hint_gaps">Bhí bearnaí sa tomhas. An raibh an t-uaireadóir á luchtú nó múchta san oíche?</string>
     <string name="hint_heart">Bhí do ráta croí in easnamh. Caith an t-uaireadóir beagán níos teanna san oíche.</string>

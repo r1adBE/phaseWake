@@ -4,7 +4,7 @@ import WidgetKit
 /// iPhone-Widget «Nächster Wecker»: Weckfenster, Tag und Nacht-Check (✓ bzw. ! mit der ersten offenen
 /// Prüfung) auf dem Home- und dem Sperrbildschirm (rund, rechteckig, in einer Zeile). Liest den Stand, den die
 /// App in der App-Gruppe ablegt (``PhoneWidgetSnapshot``); Antippen öffnet die App. Gleicher Inhalt wie das
-/// Android-Widget.
+/// Android-Widget, auch «Details von heute»: am Weckmorgen bis 12 Uhr auf dem Home-Bildschirm die letzte Nacht.
 @main
 struct PhaseWakePhoneWidgets: WidgetBundle {
     var body: some Widget { PhoneNextAlarmWidget() }
@@ -15,10 +15,12 @@ struct PhoneAlarmEntry: TimelineEntry {
     let date: Date
     let plan: PhoneWidgetSnapshot.Plan?
     let issue: String?
+    /// Am Weckmorgen bis 12 Uhr die letzte Nacht (nur Home-Bildschirm); sonst `nil`.
+    var night: PhoneWidgetSnapshot.LastNight? = nil
 }
 
-/// Zeitleiste: ein Eintrag jetzt und einer nach jeder kommenden Zielzeit, damit nach dem Wecken von
-/// selbst der nächste Wecker erscheint.
+/// Zeitleiste: ein Eintrag jetzt, einer nach jeder kommenden Zielzeit, damit nach dem Wecken von selbst der
+/// nächste Wecker erscheint, und einer um 12 Uhr am Weckmorgen (dann endet «Letzte Nacht»).
 struct PhoneAlarmProvider: TimelineProvider {
     func placeholder(in context: Context) -> PhoneAlarmEntry {
         let target = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date()) ?? Date()
@@ -32,14 +34,16 @@ struct PhoneAlarmProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<PhoneAlarmEntry>) -> Void) {
         let now = Date()
         let snapshot = PhoneWidgetSnapshot.load()
-        let switches = (snapshot?.plans ?? []).map { $0.target.addingTimeInterval(60) }.filter { $0 > now }
+        let noon = snapshot?.morningEnd().map { [$0] } ?? []
+        let switches = ((snapshot?.plans ?? []).map { $0.target.addingTimeInterval(60) } + noon).filter { $0 > now }.sorted()
         let entries = [entry(at: now, snapshot: snapshot)] + switches.map { entry(at: $0, snapshot: snapshot) }
         // Spätestens nach 30 Minuten neu lesen (wie Android); die App lädt bei Änderungen ohnehin neu.
         completion(Timeline(entries: entries, policy: .after(now.addingTimeInterval(30 * 60))))
     }
 
     private func entry(at date: Date, snapshot: PhoneWidgetSnapshot?) -> PhoneAlarmEntry {
-        PhoneAlarmEntry(date: date, plan: snapshot?.next(after: date), issue: snapshot?.issue)
+        PhoneAlarmEntry(date: date, plan: snapshot?.next(after: date), issue: snapshot?.issue,
+                        night: snapshot?.morningNight(at: date))
     }
 }
 

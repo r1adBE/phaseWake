@@ -29,7 +29,7 @@
 
     <string name="reason_light">Agitat – probabil somn ușor</string>
     <string name="reason_awake">Deja treaz</string>
-    <string name="reason_deadline">Nu s-a detectat somn ușor</string>
+    <string name="reason_deadline">Niciun moment bun în fereastră</string>
     <string name="reason_exact">Exact la ora țintă</string>
     <string name="reason_short_night">Noapte scurtă – abia la ora țintă</string>
     <string name="woke_early">%1$d min înainte de ora țintă · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">Cel târziu</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
     <string name="editor_sleep_hint">Numără de când adormi. Ceasul detectează automat; atinge „Noapte bună” pe ceas ca să înceapă imediat.</string>
+    <string name="editor_sleep_wear_only">Modul durata somnului funcționează doar cu un Galaxy Watch. Cu un Apple Watch, această alarmă te trezește în fereastra obișnuită până la ora țintă.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Te trezește între %1$s și %2$s</string>
     <string name="editor_window_exact">Exact</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">Din %1$s. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_health_live_unknown">Din datele tale de sănătate. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_average">Ø %1$d min mai devreme</string>
-    <string name="history_light_share">%1$d %% în somn ușor</string>
+    <string name="history_light_share">%1$d %% treziți mai devreme la agitație</string>
     <string name="history_export">Exportă anonim</string>
     <string name="history_export_subject">Nopți Phase Wake (anonim)</string>
 
@@ -134,9 +135,9 @@
     <string name="action_cancel">Anulează</string>
     <string name="editor_advice_title">Sfat: o fereastră mai mare</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">În %1$d din %2$d noapte recentă nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
-        <item quantity="few">În %1$d din ultimele %2$d nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
-        <item quantity="other">În %1$d din ultimele %2$d de nopți nu a fost somn ușor în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+        <item quantity="one">În %1$d din %2$d noapte recentă nu a fost niciun moment bun în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+        <item quantity="few">În %1$d din ultimele %2$d nopți nu a fost niciun moment bun în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
+        <item quantity="other">În %1$d din ultimele %2$d de nopți nu a fost niciun moment bun în fereastră. Cu %3$d min te vei trezi mai des într-un moment bun.</item>
     </plurals>
     <string name="editor_advice_apply">Folosește %1$d min</string>
     <string name="channel_sunrise">Răsărit</string>
@@ -161,6 +162,9 @@
     <string name="check_ready">Gata pentru noapte</string>
     <string name="check_ready_text">Ceas conectat, alarme permise. Atinge pentru detalii.</string>
     <string name="check_not_ready">Verifică înainte de culcare</string>
+    <string name="check_not_ready_icon">Nu e gata</string>
+    <string name="check_silent_switch_title">Alarmă de rezervă înainte de iOS 26</string>
+    <string name="check_silent_switch_text">Înainte de iOS 26, alarma de rezervă este o notificare: comutatorul de silențios o face mută. Lasă sunetul pornit sau actualizează la iOS 26.</string>
     <string name="check_watch">Ceas conectat</string>
     <string name="check_watch_problem">Ceasul nu este accesibil. Poartă-l, ține Bluetooth pornit și deschide Phase Wake pe ceas o dată.</string>
     <string name="check_notifications">Notificări permise</string>
@@ -207,9 +211,9 @@
     <string name="settings_support">Susține Phase Wake</string>
     <string name="settings_support_text">Phase Wake este gratuit, open source și fără reclame. Dacă îți place, poți susține dezvoltarea.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noapte fără somn ușor</item>
-        <item quantity="few">%1$d nopți fără somn ușor</item>
-        <item quantity="other">%1$d de nopți fără somn ușor</item>
+        <item quantity="one">%1$d noapte fără un moment bun</item>
+        <item quantity="few">%1$d nopți fără un moment bun</item>
+        <item quantity="other">%1$d de nopți fără un moment bun</item>
     </plurals>
     <string name="hint_gaps">Măsurătoarea a avut goluri. Ceasul se încărca sau era scos noaptea?</string>
     <string name="hint_heart">Lipsea pulsul. Poartă ceasul puțin mai strâns noaptea.</string>

@@ -31,7 +31,7 @@
 
     <string name="reason_light">Nemirno – vjerojatno lagani san</string>
     <string name="reason_awake">Već ne spavaš</string>
-    <string name="reason_deadline">Lagani san nije prepoznat</string>
+    <string name="reason_deadline">Nema dobrog trenutka u intervalu</string>
     <string name="reason_exact">Točno u ciljno vrijeme</string>
     <string name="reason_short_night">Kratka noć – tek u ciljno vrijeme</string>
     <string name="woke_early">%1$d min prije ciljnog vremena · %2$s</string>
@@ -54,6 +54,7 @@
     <string name="editor_latest">Najkasnije</string>
     <string name="editor_sleep_duration">Spavaj %1$s</string>
     <string name="editor_sleep_hint">Broji od trenutka kad zaspiš. Sat to prepoznaje automatski; dodirni „Laku noć“ na satu da odmah počne.</string>
+    <string name="editor_sleep_wear_only">Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Budi te između %1$s i %2$s</string>
     <string name="editor_window_exact">Točno</string>
@@ -79,7 +80,7 @@
     <string name="history_health_live">Iz aplikacije %1$s. Phase Wake automatski preuzima izmjene i brisanja napravljena tamo.</string>
     <string name="history_health_live_unknown">Iz tvojih zdravstvenih podataka. Phase Wake automatski preuzima izmjene i brisanja napravljena tamo.</string>
     <string name="history_average">Ø %1$d min ranije</string>
-    <string name="history_light_share">%1$d %% u laganom snu</string>
+    <string name="history_light_share">%1$d %% ranije probuđeno zbog nemira</string>
     <string name="history_export">Izvezi anonimno</string>
     <string name="history_export_subject">Phase Wake – noći (anonimno)</string>
 
@@ -136,9 +137,9 @@
     <string name="action_cancel">Odustani</string>
     <string name="editor_advice_title">Savjet: veći interval</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">U %1$d od posljednje %2$d noći u intervalu nije bilo laganog sna. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
-        <item quantity="few">U %1$d od posljednje %2$d noći u intervalu nije bilo laganog sna. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
-        <item quantity="other">U %1$d od posljednjih %2$d noći u intervalu nije bilo laganog sna. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
+        <item quantity="one">U %1$d od posljednje %2$d noći u intervalu nije bilo dobrog trenutka. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
+        <item quantity="few">U %1$d od posljednje %2$d noći u intervalu nije bilo dobrog trenutka. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
+        <item quantity="other">U %1$d od posljednjih %2$d noći u intervalu nije bilo dobrog trenutka. S %3$d min češće ćeš se probuditi u dobrom trenutku.</item>
     </plurals>
     <string name="editor_advice_apply">Koristi %1$d min</string>
     <string name="channel_sunrise">Izlazak sunca</string>
@@ -163,6 +164,9 @@
     <string name="check_ready">Spremno za noćas</string>
     <string name="check_ready_text">Sat povezan, alarmi dopušteni. Dodirni za detalje.</string>
     <string name="check_not_ready">Provjeri prije spavanja</string>
+    <string name="check_not_ready_icon">Nije spremno</string>
+    <string name="check_silent_switch_title">Rezervni alarm prije iOS-a 26</string>
+    <string name="check_silent_switch_text">Prije iOS-a 26 rezervni alarm je obavijest: prekidač za tišinu ga utišava. Ostavi zvuk uključen ili ažuriraj na iOS 26.</string>
     <string name="check_watch">Sat povezan</string>
     <string name="check_watch_problem">Sat nije dostupan. Nosi ga, drži Bluetooth uključen i jednom otvori Phase Wake na satu.</string>
     <string name="check_notifications">Obavijesti dopuštene</string>
@@ -209,9 +213,9 @@
     <string name="settings_support">Podrži Phase Wake</string>
     <string name="settings_support_text">Phase Wake je besplatan, otvorenog koda i bez oglasa. Ako ti se sviđa, možeš podržati njegov razvoj.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noć bez laganog sna</item>
-        <item quantity="few">%1$d noći bez laganog sna</item>
-        <item quantity="other">%1$d noći bez laganog sna</item>
+        <item quantity="one">%1$d noć bez dobrog trenutka</item>
+        <item quantity="few">%1$d noći bez dobrog trenutka</item>
+        <item quantity="other">%1$d noći bez dobrog trenutka</item>
     </plurals>
     <string name="hint_gaps">U mjerenju je bilo praznina. Je li se sat noću punio ili je bio skinut?</string>
     <string name="hint_heart">Nedostajao je puls. Noću nosi sat malo čvršće.</string>

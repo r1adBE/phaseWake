@@ -30,7 +30,7 @@
 
     <string name="reason_light">Bezovta – ehtimol yengil uyqu</string>
     <string name="reason_awake">Allaqachon uygʻoq</string>
-    <string name="reason_deadline">Yengil uyqu aniqlanmadi</string>
+    <string name="reason_deadline">Oraliqda qulay payt boʻlmadi</string>
     <string name="reason_exact">Aynan belgilangan vaqtda</string>
     <string name="reason_short_night">Qisqa tun – faqat belgilangan vaqtda</string>
     <string name="woke_early">Belgilangan vaqtdan %1$d daq oldin · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Eng kechi</string>
     <string name="editor_sleep_duration">Uyqu: %1$s</string>
     <string name="editor_sleep_hint">Uxlab qolganingdan boshlab hisoblaydi. Soat buni avtomatik aniqlaydi; darhol boshlash uchun soatda «Xayrli tun» tugmasini bos.</string>
+    <string name="editor_sleep_wear_only">Uyqu davomiyligi rejimi faqat Galaxy Watch bilan ishlaydi. Apple Watch bilan bu budilnik seni odatiy oraligʻida belgilangan vaqtgacha uygʻotadi.</string>
     <string name="editor_window">Oraliq: %1$d daq</string>
     <string name="editor_window_hint">Seni %1$s va %2$s oraligʻida uygʻotadi</string>
     <string name="editor_window_exact">Aniq</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Manba: %1$s. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
     <string name="history_health_live_unknown">Manba: sogʻliq maʼlumotlaring. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
     <string name="history_average">Ø %1$d daq ertaroq</string>
-    <string name="history_light_share">%1$d %% yengil uyquda</string>
+    <string name="history_light_share">%1$d %% bezovtalanganda ertaroq uygʻotildi</string>
     <string name="history_export">Anonim eksport qilish</string>
     <string name="history_export_subject">Phase Wake tunlari (anonim)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">Bekor qilish</string>
     <string name="editor_advice_title">Maslahat: kengroq oraliq</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Oxirgi %2$d tundan %1$d tasida oraliqda yengil uyqu boʻlmadi. %3$d daqiqa bilan koʻproq qulay paytda uygʻonasan.</item>
-        <item quantity="other">Oxirgi %2$d tundan %1$d tasida oraliqda yengil uyqu boʻlmadi. %3$d daqiqa bilan koʻproq qulay paytda uygʻonasan.</item>
+        <item quantity="one">Oxirgi %2$d tundan %1$d tasida oraliqda qulay payt boʻlmadi. %3$d daqiqa bilan koʻproq qulay paytda uygʻonasan.</item>
+        <item quantity="other">Oxirgi %2$d tundan %1$d tasida oraliqda qulay payt boʻlmadi. %3$d daqiqa bilan koʻproq qulay paytda uygʻonasan.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d daq ishlatish</string>
     <string name="channel_sunrise">Quyosh chiqishi</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">Bu tunga tayyor</string>
     <string name="check_ready_text">Soat ulangan, budilniklarga ruxsat bor. Batafsil uchun bos.</string>
     <string name="check_not_ready">Uxlashdan oldin tekshir</string>
+    <string name="check_not_ready_icon">Tayyor emas</string>
+    <string name="check_silent_switch_title">iOS 26 dan oldingi zaxira budilnik</string>
+    <string name="check_silent_switch_text">iOS 26 dan oldin zaxira budilnik bildirishnoma hisoblanadi: ovozsiz rejim tugmasi uni ovozsiz qiladi. Ovozni yoqiq qoldir yoki iOS 26 ga yangila.</string>
     <string name="check_watch">Soat ulangan</string>
     <string name="check_watch_problem">Soatingga ulanib boʻlmayapti. Uni taq, Bluetoothʼni yoqiq qoldir va soatda Phase Wakeʼni bir marta och.</string>
     <string name="check_notifications">Bildirishnomalarga ruxsat bor</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wakeʼni qoʻllab-quvvatlash</string>
     <string name="settings_support_text">Phase Wake bepul, ochiq kodli va reklamasiz. Yoqsa, uning rivojini qoʻllab-quvvatlashing mumkin.</string>
     <plurals name="hint_title">
-        <item quantity="one">Yengil uyqusiz %1$d tun</item>
-        <item quantity="other">Yengil uyqusiz %1$d tun</item>
+        <item quantity="one">Qulay paytsiz %1$d tun</item>
+        <item quantity="other">Qulay paytsiz %1$d tun</item>
     </plurals>
     <string name="hint_gaps">Oʻlchovda uzilishlar boʻldi. Soat tunda quvvatlanayotgan yoki yechilgan edimi?</string>
     <string name="hint_heart">Yurak urishing yoʻq edi. Tunda soatni biroz mahkamroq taq.</string>

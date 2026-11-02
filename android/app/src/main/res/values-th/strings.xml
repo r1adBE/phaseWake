@@ -27,7 +27,7 @@
 
     <string name="reason_light">กระสับกระส่าย – น่าจะหลับตื้น</string>
     <string name="reason_awake">ตื่นอยู่แล้ว</string>
-    <string name="reason_deadline">ไม่พบช่วงหลับตื้น</string>
+    <string name="reason_deadline">ไม่มีจังหวะที่ดีในช่วงเวลาปลุก</string>
     <string name="reason_exact">ตรงเวลาเป้าหมายพอดี</string>
     <string name="reason_short_night">คืนสั้น – ปลุกตอนเวลาเป้าหมายเท่านั้น</string>
     <string name="woke_early">ก่อนเป้าหมาย %1$d นาที · %2$s</string>
@@ -50,6 +50,7 @@
     <string name="editor_latest">ช้าที่สุด</string>
     <string name="editor_sleep_duration">นอน %1$s</string>
     <string name="editor_sleep_hint">นับตั้งแต่คุณหลับ นาฬิกาตรวจจับได้เอง แตะ “ราตรีสวัสดิ์” บนนาฬิกาเพื่อเริ่มทันที</string>
+    <string name="editor_sleep_wear_only">โหมดระยะเวลานอนใช้ได้กับ Galaxy Watch เท่านั้น เมื่อใช้ Apple Watch นาฬิกาปลุกนี้จะปลุกคุณในช่วงเวลาปกติจนถึงเวลาเป้าหมาย</string>
     <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
     <string name="editor_window_hint">ปลุกคุณระหว่าง %1$s ถึง %2$s</string>
     <string name="editor_window_exact">ตรงเวลา</string>
@@ -75,7 +76,7 @@
     <string name="history_health_live">จาก %1$s การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
     <string name="history_health_live_unknown">จากข้อมูลสุขภาพของคุณ การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
     <string name="history_average">เฉลี่ยเร็วขึ้น %1$d นาที</string>
-    <string name="history_light_share">%1$d %% ในช่วงหลับตื้น</string>
+    <string name="history_light_share">ปลุกก่อนเพราะนอนกระสับกระส่าย %1$d %%</string>
     <string name="history_export">ส่งออกแบบไม่ระบุตัวตน</string>
     <string name="history_export_subject">บันทึกการนอน Phase Wake (ไม่ระบุตัวตน)</string>
 
@@ -132,7 +133,7 @@
     <string name="action_cancel">ยกเลิก</string>
     <string name="editor_advice_title">เคล็ดลับ: ช่วงเวลาที่กว้างขึ้น</string>
     <plurals name="editor_advice_text">
-        <item quantity="other">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีช่วงหลับตื้นในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</item>
+        <item quantity="other">ใน %1$d จาก %2$d คืนล่าสุด ไม่มีจังหวะที่ดีในช่วงเวลาปลุก หากตั้งเป็น %3$d นาที จะตื่นในจังหวะที่ดีได้บ่อยขึ้น</item>
     </plurals>
     <string name="editor_advice_apply">ใช้ %1$d นาที</string>
     <string name="channel_sunrise">พระอาทิตย์ขึ้น</string>
@@ -155,6 +156,9 @@
     <string name="check_ready">พร้อมสำหรับคืนนี้</string>
     <string name="check_ready_text">เชื่อมต่อนาฬิกาแล้ว อนุญาตการปลุกแล้ว แตะเพื่อดูรายละเอียด</string>
     <string name="check_not_ready">ตรวจสอบก่อนนอน</string>
+    <string name="check_not_ready_icon">ยังไม่พร้อม</string>
+    <string name="check_silent_switch_title">นาฬิกาปลุกสำรองก่อน iOS 26</string>
+    <string name="check_silent_switch_text">ก่อน iOS 26 นาฬิกาปลุกสำรองเป็นการแจ้งเตือน: สวิตช์ปิดเสียงจะทำให้ไม่มีเสียง เปิดเสียงไว้หรืออัปเดตเป็น iOS 26</string>
     <string name="check_watch">เชื่อมต่อนาฬิกาแล้ว</string>
     <string name="check_watch_problem">ติดต่อนาฬิกาของคุณไม่ได้ ให้สวมนาฬิกา เปิด Bluetooth ไว้ และเปิด Phase Wake บนนาฬิกาสักครั้ง</string>
     <string name="check_notifications">อนุญาตการแจ้งเตือนแล้ว</string>
@@ -201,7 +205,7 @@
     <string name="settings_support">สนับสนุน Phase Wake</string>
     <string name="settings_support_text">Phase Wake ใช้ฟรี เป็นโอเพนซอร์ส และไม่มีโฆษณา หากคุณชอบ คุณสามารถสนับสนุนการพัฒนาได้</string>
     <plurals name="hint_title">
-        <item quantity="other">%1$d คืนไม่มีช่วงหลับตื้น</item>
+        <item quantity="other">%1$d คืนไม่มีจังหวะที่ดี</item>
     </plurals>
     <string name="hint_gaps">การวัดมีช่วงที่ขาดหายไป นาฬิกาชาร์จอยู่หรือถอดออกตอนกลางคืนหรือเปล่า</string>
     <string name="hint_heart">ไม่มีข้อมูลอัตราการเต้นของหัวใจ ลองสวมนาฬิกาให้กระชับขึ้นอีกนิดตอนกลางคืน</string>

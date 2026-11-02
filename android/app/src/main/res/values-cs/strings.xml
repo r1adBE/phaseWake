@@ -30,7 +30,7 @@
 
     <string name="reason_light">Neklid – nejspíš lehký spánek</string>
     <string name="reason_awake">Už vzhůru</string>
-    <string name="reason_deadline">Lehký spánek nezjištěn</string>
+    <string name="reason_deadline">V okně nebyla vhodná chvíle</string>
     <string name="reason_exact">Přesně v cílový čas</string>
     <string name="reason_short_night">Krátká noc – až v cílový čas</string>
     <string name="woke_early">%1$d min před cílovým časem · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Nejpozději</string>
     <string name="editor_sleep_duration">Spánek: %1$s</string>
     <string name="editor_sleep_hint">Počítá se od usnutí. Hodinky ho poznají automaticky; klepnutím na „Dobrou noc“ na hodinkách začneš hned.</string>
+    <string name="editor_sleep_wear_only">Režim délky spánku funguje jen s hodinkami Galaxy Watch. S Apple Watch tě tento budík vzbudí v běžném okně do cílového času.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Probudí tě mezi %1$s a %2$s</string>
     <string name="editor_window_exact">Přesně</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">Z aplikace %1$s. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
     <string name="history_health_live_unknown">Z tvých zdravotních dat. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
     <string name="history_average">Ø %1$d min dřív</string>
-    <string name="history_light_share">%1$d %% v lehkém spánku</string>
+    <string name="history_light_share">%1$d %% probuzeno dřív kvůli neklidu</string>
     <string name="history_export">Exportovat anonymně</string>
     <string name="history_export_subject">Noci Phase Wake (anonymně)</string>
 
@@ -135,10 +136,10 @@
     <string name="action_cancel">Zrušit</string>
     <string name="editor_advice_title">Tip: větší okno</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">V %1$d z poslední %2$d noci se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
-        <item quantity="few">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
-        <item quantity="many">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
-        <item quantity="other">V %1$d z posledních %2$d nocí se v okně neobjevil žádný lehký spánek. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="one">V %1$d z poslední %2$d noci se v okně neobjevila žádná vhodná chvíle. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="few">V %1$d z posledních %2$d nocí se v okně neobjevila žádná vhodná chvíle. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="many">V %1$d z posledních %2$d nocí se v okně neobjevila žádná vhodná chvíle. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
+        <item quantity="other">V %1$d z posledních %2$d nocí se v okně neobjevila žádná vhodná chvíle. S %3$d min se budeš častěji budit ve vhodnou chvíli.</item>
     </plurals>
     <string name="editor_advice_apply">Použít %1$d min</string>
     <string name="channel_sunrise">Východ slunce</string>
@@ -164,6 +165,9 @@
     <string name="check_ready">Připraveno na dnešní noc</string>
     <string name="check_ready_text">Hodinky jsou připojené, budíky povolené. Klepnutím zobrazíš podrobnosti.</string>
     <string name="check_not_ready">Zkontroluj před spaním</string>
+    <string name="check_not_ready_icon">Nepřipraveno</string>
+    <string name="check_silent_switch_title">Záložní budík před iOS 26</string>
+    <string name="check_silent_switch_text">Před iOS 26 je záložní budík oznámení: přepínač ztlumení ho umlčí. Nech zvuk zapnutý nebo aktualizuj na iOS 26.</string>
     <string name="check_watch">Hodinky jsou připojené</string>
     <string name="check_watch_problem">Hodinky nejsou dostupné. Nasaď si je, nech zapnuté Bluetooth a jednou na hodinkách otevři Phase Wake.</string>
     <string name="check_notifications">Oznámení povolena</string>
@@ -210,10 +214,10 @@
     <string name="settings_support">Podpořit Phase Wake</string>
     <string name="settings_support_text">Phase Wake je zdarma, open source a bez reklam. Pokud se ti líbí, můžeš podpořit jeho vývoj.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d noc bez lehkého spánku</item>
-        <item quantity="few">%1$d noci bez lehkého spánku</item>
-        <item quantity="many">%1$d nocí bez lehkého spánku</item>
-        <item quantity="other">%1$d nocí bez lehkého spánku</item>
+        <item quantity="one">%1$d noc bez vhodné chvíle</item>
+        <item quantity="few">%1$d noci bez vhodné chvíle</item>
+        <item quantity="many">%1$d nocí bez vhodné chvíle</item>
+        <item quantity="other">%1$d nocí bez vhodné chvíle</item>
     </plurals>
     <string name="hint_gaps">Měření mělo mezery. Nabíjely se hodinky přes noc, nebo byly sundané?</string>
     <string name="hint_heart">Chyběl tep. Noste hodinky v noci o něco těsněji.</string>

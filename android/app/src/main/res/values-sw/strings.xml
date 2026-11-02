@@ -29,7 +29,7 @@
 
     <string name="reason_light">Kutotulia – huenda usingizi mwepesi</string>
     <string name="reason_awake">Ulikuwa macho tayari</string>
-    <string name="reason_deadline">Hakuna usingizi mwepesi uliogunduliwa</string>
+    <string name="reason_deadline">Hakuna wakati mzuri ndani ya kipindi</string>
     <string name="reason_exact">Hasa kwa muda lengwa</string>
     <string name="reason_short_night">Usiku mfupi – kwa muda lengwa tu</string>
     <string name="woke_early">Dak %1$d kabla ya muda lengwa · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">Muda wa mwisho</string>
     <string name="editor_sleep_duration">Lala kwa %1$s</string>
     <string name="editor_sleep_hint">Huhesabu tangu unapolala. Saa yako hulitambua kiotomatiki; gusa “Usiku mwema” kwenye saa ili kuanza mara moja.</string>
+    <string name="editor_sleep_wear_only">Hali ya muda wa kulala hufanya kazi tu na Galaxy Watch. Ukiwa na Apple Watch, kengele hii inakuamsha ndani ya kipindi chake cha kawaida hadi muda lengwa.</string>
     <string name="editor_window">Kipindi: dak %1$d</string>
     <string name="editor_window_hint">Inakuamsha kati ya %1$s na %2$s</string>
     <string name="editor_window_exact">Hasa</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">Kutoka %1$s. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
     <string name="history_health_live_unknown">Kutoka data yako ya afya. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
     <string name="history_average">Wastani dak %1$d mapema</string>
-    <string name="history_light_share">%1$d %% katika usingizi mwepesi</string>
+    <string name="history_light_share">%1$d %% waliamshwa mapema wakikosa utulivu</string>
     <string name="history_export">Hamisha bila kutambulisha</string>
     <string name="history_export_subject">Usiku wa Phase Wake (bila utambulisho)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">Ghairi</string>
     <string name="editor_advice_title">Kidokezo: kipindi kirefu zaidi</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Katika %1$d kati ya usiku %2$d uliopita hakukuwa na usingizi mwepesi ndani ya kipindi. Ukiwa na dak %3$d utaamka mara nyingi zaidi wakati mzuri.</item>
-        <item quantity="other">Katika %1$d kati ya usiku %2$d uliopita hakukuwa na usingizi mwepesi ndani ya kipindi. Ukiwa na dak %3$d utaamka mara nyingi zaidi wakati mzuri.</item>
+        <item quantity="one">Katika %1$d kati ya usiku %2$d uliopita hakukuwa na wakati mzuri ndani ya kipindi. Ukiwa na dak %3$d utaamka mara nyingi zaidi wakati mzuri.</item>
+        <item quantity="other">Katika %1$d kati ya usiku %2$d uliopita hakukuwa na wakati mzuri ndani ya kipindi. Ukiwa na dak %3$d utaamka mara nyingi zaidi wakati mzuri.</item>
     </plurals>
     <string name="editor_advice_apply">Tumia dak %1$d</string>
     <string name="channel_sunrise">Macheo</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">Tayari kwa usiku huu</string>
     <string name="check_ready_text">Saa imeunganishwa, kengele zimeruhusiwa. Gusa kwa maelezo.</string>
     <string name="check_not_ready">Kagua kabla ya kulala</string>
+    <string name="check_not_ready_icon">Haiko tayari</string>
+    <string name="check_silent_switch_title">Kengele ya akiba kabla ya iOS 26</string>
+    <string name="check_silent_switch_text">Kabla ya iOS 26, kengele ya akiba ni arifa: swichi ya kimya huinyamazisha. Acha sauti ikiwa imewashwa au sasisha hadi iOS 26.</string>
     <string name="check_watch">Saa imeunganishwa</string>
     <string name="check_watch_problem">Saa yako haipatikani. Ivae, acha Bluetooth ikiwa imewashwa na ufungue Phase Wake kwenye saa mara moja.</string>
     <string name="check_notifications">Arifa zimeruhusiwa</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Saidia Phase Wake</string>
     <string name="settings_support_text">Phase Wake ni bure, huria na haina matangazo. Ukiipenda, unaweza kusaidia uendelezaji wake.</string>
     <plurals name="hint_title">
-        <item quantity="one">Usiku %1$d bila usingizi mwepesi</item>
-        <item quantity="other">Usiku %1$d bila usingizi mwepesi</item>
+        <item quantity="one">Usiku %1$d bila wakati mzuri</item>
+        <item quantity="other">Usiku %1$d bila wakati mzuri</item>
     </plurals>
     <string name="hint_gaps">Kulikuwa na mapengo katika kipimo. Je, saa ilikuwa ikichajiwa au uliivua usiku?</string>
     <string name="hint_heart">Mapigo yako ya moyo hayakupatikana. Vaa saa ikubane kidogo zaidi usiku.</string>

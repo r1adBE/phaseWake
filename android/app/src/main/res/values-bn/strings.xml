@@ -29,7 +29,7 @@
 
     <string name="reason_light">অস্থির – সম্ভবত হালকা ঘুম</string>
     <string name="reason_awake">আগেই জেগে ছিলে</string>
-    <string name="reason_deadline">হালকা ঘুম ধরা পড়েনি</string>
+    <string name="reason_deadline">সময়সীমায় ভালো মুহূর্ত ছিল না</string>
     <string name="reason_exact">ঠিক লক্ষ্য সময়ে</string>
     <string name="reason_short_night">ছোট রাত – কেবল লক্ষ্য সময়ে</string>
     <string name="woke_early">লক্ষ্যের %1$d মি. আগে · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">সর্বশেষ</string>
     <string name="editor_sleep_duration">%1$s ঘুম</string>
     <string name="editor_sleep_hint">ঘুমিয়ে পড়ার সময় থেকে গোনা হয়। ঘড়ি নিজেই তা শনাক্ত করে; এখনই শুরু করতে ঘড়িতে “শুভরাত্রি” ট্যাপ করো।</string>
+    <string name="editor_sleep_wear_only">ঘুমের সময়কাল মোড শুধু Galaxy Watch-এ কাজ করে। Apple Watch-এ এই অ্যালার্ম তোমাকে স্বাভাবিক সময়সীমায় লক্ষ্য সময় পর্যন্ত জাগাবে।</string>
     <string name="editor_window">সময়সীমা: %1$d মি.</string>
     <string name="editor_window_hint">%1$s থেকে %2$s-এর মধ্যে জাগাবে</string>
     <string name="editor_window_exact">ঠিক সময়ে</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">%1$s থেকে। সেখানে করা বদল ও মুছে ফেলা Phase Wake নিজে থেকেই মেনে নেয়।</string>
     <string name="history_health_live_unknown">তোমার স্বাস্থ্য ডেটা থেকে। সেখানে করা বদল ও মুছে ফেলা Phase Wake নিজে থেকেই মেনে নেয়।</string>
     <string name="history_average">গড়ে %1$d মি. আগে</string>
-    <string name="history_light_share">%1$d %% হালকা ঘুমে</string>
+    <string name="history_light_share">%1$d %% অস্থির হওয়ায় আগে জাগানো হয়েছে</string>
     <string name="history_export">বেনামে এক্সপোর্ট করো</string>
     <string name="history_export_subject">Phase Wake-এর রাতগুলো (বেনামে)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">বাতিল</string>
     <string name="editor_advice_title">পরামর্শ: বড় সময়সীমা</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">গত %2$dটি রাতের %1$dটিতে সময়সীমার মধ্যে হালকা ঘুম ছিল না। %3$d মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।</item>
-        <item quantity="other">গত %2$dটি রাতের %1$dটিতে সময়সীমার মধ্যে হালকা ঘুম ছিল না। %3$d মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।</item>
+        <item quantity="one">গত %2$dটি রাতের %1$dটিতে সময়সীমার মধ্যে ভালো মুহূর্ত ছিল না। %3$d মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।</item>
+        <item quantity="other">গত %2$dটি রাতের %1$dটিতে সময়সীমার মধ্যে ভালো মুহূর্ত ছিল না। %3$d মি. নিলে আরও প্রায়ই ভালো মুহূর্তে জাগবে।</item>
     </plurals>
     <string name="editor_advice_apply">%1$d মি. নাও</string>
     <string name="channel_sunrise">সূর্যোদয়</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">আজ রাতের জন্য তৈরি</string>
     <string name="check_ready_text">ঘড়ি সংযুক্ত, অ্যালার্মের অনুমতি আছে। বিস্তারিত দেখতে ট্যাপ করো।</string>
     <string name="check_not_ready">ঘুমানোর আগে দেখে নাও</string>
+    <string name="check_not_ready_icon">প্রস্তুত নয়</string>
+    <string name="check_silent_switch_title">iOS 26-এর আগে ব্যাকআপ অ্যালার্ম</string>
+    <string name="check_silent_switch_text">iOS 26-এর আগে ব্যাকআপ অ্যালার্ম একটি নোটিফিকেশন: সাইলেন্ট সুইচ এটিকে নিঃশব্দ করে দেয়। শব্দ চালু রাখো বা iOS 26-এ আপডেট করো।</string>
     <string name="check_watch">ঘড়ি সংযুক্ত</string>
     <string name="check_watch_problem">তোমার ঘড়ির সঙ্গে যোগাযোগ হচ্ছে না। ঘড়িটা পরো, Bluetooth চালু রাখো আর ঘড়িতে একবার Phase Wake খোলো।</string>
     <string name="check_notifications">বিজ্ঞপ্তির অনুমতি আছে</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Phase Wake-কে সমর্থন করো</string>
     <string name="settings_support_text">Phase Wake বিনামূল্যে, ওপেন সোর্স আর বিজ্ঞাপনমুক্ত। ভালো লাগলে এর উন্নয়নে সমর্থন দিতে পারো।</string>
     <plurals name="hint_title">
-        <item quantity="one">হালকা ঘুম ছাড়া %1$dটি রাত</item>
-        <item quantity="other">হালকা ঘুম ছাড়া %1$dটি রাত</item>
+        <item quantity="one">ভালো মুহূর্ত ছাড়া %1$dটি রাত</item>
+        <item quantity="other">ভালো মুহূর্ত ছাড়া %1$dটি রাত</item>
     </plurals>
     <string name="hint_gaps">মাপে ফাঁক ছিল। রাতে কি ঘড়ি চার্জে ছিল বা খোলা ছিল?</string>
     <string name="hint_heart">তোমার হৃদস্পন্দন পাওয়া যায়নি। রাতে ঘড়িটা একটু টাইট করে পরো।</string>

@@ -29,7 +29,7 @@
 
     <string name="reason_light">ಅಶಾಂತ – ಬಹುಶಃ ಹಗುರ ನಿದ್ರೆ</string>
     <string name="reason_awake">ಈಗಾಗಲೇ ಎಚ್ಚರ</string>
-    <string name="reason_deadline">ಹಗುರ ನಿದ್ರೆ ಪತ್ತೆಯಾಗಲಿಲ್ಲ</string>
+    <string name="reason_deadline">ಅವಧಿಯಲ್ಲಿ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ</string>
     <string name="reason_exact">ಸರಿಯಾಗಿ ಗುರಿ ಸಮಯದಲ್ಲಿ</string>
     <string name="reason_short_night">ಕಡಿಮೆ ರಾತ್ರಿ – ಗುರಿ ಸಮಯದಲ್ಲಿ ಮಾತ್ರ</string>
     <string name="woke_early">ಗುರಿಗಿಂತ %1$d ನಿಮಿ. ಮೊದಲು · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">ತಡವೆಂದರೆ</string>
     <string name="editor_sleep_duration">%1$s ನಿದ್ರೆ</string>
     <string name="editor_sleep_hint">ನೀವು ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸುತ್ತದೆ. ವಾಚ್ ಅದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಗುರುತಿಸುತ್ತದೆ; ಕೂಡಲೇ ಶುರು ಮಾಡಲು ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="editor_sleep_wear_only">ನಿದ್ರೆಯ ಅವಧಿ ಮೋಡ್ Galaxy Watch ಜೊತೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ. Apple Watch ಜೊತೆ ಈ ಅಲಾರಾಂ ತನ್ನ ಸಾಮಾನ್ಯ ಅವಧಿಯಲ್ಲಿ ಗುರಿ ಸಮಯದೊಳಗೆ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="editor_window">ಅವಧಿ: %1$d ನಿಮಿ.</string>
     <string name="editor_window_hint">%1$s ಮತ್ತು %2$s ನಡುವೆ ಎಬ್ಬಿಸುತ್ತದೆ</string>
     <string name="editor_window_exact">ನಿಖರ</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">%1$s ನಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
     <string name="history_health_live_unknown">ನಿಮ್ಮ ಆರೋಗ್ಯ ಡೇಟಾದಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
     <string name="history_average">Ø %1$d ನಿಮಿ. ಮುಂಚೆ</string>
-    <string name="history_light_share">%1$d %% ಹಗುರ ನಿದ್ರೆಯಲ್ಲಿ</string>
+    <string name="history_light_share">%1$d %% ಚಡಪಡಿಸಿದಾಗ ಬೇಗ ಎಬ್ಬಿಸಲಾಗಿದೆ</string>
     <string name="history_export">ಅನಾಮಧೇಯವಾಗಿ ರಫ್ತು ಮಾಡಿ</string>
     <string name="history_export_subject">Phase Wake ರಾತ್ರಿಗಳು (ಅನಾಮಧೇಯ)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="editor_advice_title">ಸಲಹೆ: ದೊಡ್ಡ ಅವಧಿ</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">ಕಳೆದ %2$d ರಾತ್ರಿಯಲ್ಲಿ %1$d ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಹಗುರ ನಿದ್ರೆ ಇರಲಿಲ್ಲ. %3$d ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ.</item>
-        <item quantity="other">ಕಳೆದ %2$d ರಾತ್ರಿಗಳಲ್ಲಿ %1$d ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಹಗುರ ನಿದ್ರೆ ಇರಲಿಲ್ಲ. %3$d ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ.</item>
+        <item quantity="one">ಕಳೆದ %2$d ರಾತ್ರಿಯಲ್ಲಿ %1$d ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ. %3$d ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ.</item>
+        <item quantity="other">ಕಳೆದ %2$d ರಾತ್ರಿಗಳಲ್ಲಿ %1$d ರಲ್ಲಿ ಅವಧಿಯೊಳಗೆ ಒಳ್ಳೆಯ ಕ್ಷಣ ಇರಲಿಲ್ಲ. %3$d ನಿಮಿ. ಇದ್ದರೆ ಹೆಚ್ಚಾಗಿ ಒಳ್ಳೆಯ ಕ್ಷಣದಲ್ಲಿ ಏಳುತ್ತೀರಿ.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d ನಿಮಿ. ಬಳಸಿ</string>
     <string name="channel_sunrise">ಸೂರ್ಯೋದಯ</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">ಇಂದು ರಾತ್ರಿಗೆ ಸಿದ್ಧ</string>
     <string name="check_ready_text">ವಾಚ್ ಸಂಪರ್ಕಗೊಂಡಿದೆ, ಅಲಾರಾಂಗಳಿಗೆ ಅನುಮತಿ ಇದೆ. ವಿವರಗಳಿಗೆ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="check_not_ready">ಮಲಗುವ ಮೊದಲು ಪರಿಶೀಲಿಸಿ</string>
+    <string name="check_not_ready_icon">ಸಿದ್ಧವಾಗಿಲ್ಲ</string>
+    <string name="check_silent_switch_title">iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ</string>
+    <string name="check_silent_switch_text">iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಒಂದು ಅಧಿಸೂಚನೆ: ಸೈಲೆಂಟ್ ಸ್ವಿಚ್ ಅದನ್ನು ನಿಶ್ಶಬ್ದಗೊಳಿಸುತ್ತದೆ. ಧ್ವನಿಯನ್ನು ಆನ್‌ನಲ್ಲಿಡಿ ಅಥವಾ iOS 26 ಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
     <string name="check_watch">ವಾಚ್ ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
     <string name="check_watch_problem">ನಿಮ್ಮ ವಾಚ್ ತಲುಪುತ್ತಿಲ್ಲ. ಅದನ್ನು ಧರಿಸಿ, Bluetooth ಆನ್ ಇಡಿ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅನ್ನು ಒಮ್ಮೆ ತೆರೆಯಿರಿ.</string>
     <string name="check_notifications">ಅಧಿಸೂಚನೆಗಳಿಗೆ ಅನುಮತಿ ಇದೆ</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Phase Wake ಅನ್ನು ಬೆಂಬಲಿಸಿ</string>
     <string name="settings_support_text">Phase Wake ಉಚಿತ, ಓಪನ್ ಸೋರ್ಸ್ ಮತ್ತು ಜಾಹೀರಾತುಗಳಿಲ್ಲ. ಇಷ್ಟವಾದರೆ, ಅದರ ಅಭಿವೃದ್ಧಿಯನ್ನು ಬೆಂಬಲಿಸಬಹುದು.</string>
     <plurals name="hint_title">
-        <item quantity="one">ಹಗುರ ನಿದ್ರೆ ಇಲ್ಲದ %1$d ರಾತ್ರಿ</item>
-        <item quantity="other">ಹಗುರ ನಿದ್ರೆ ಇಲ್ಲದ %1$d ರಾತ್ರಿಗಳು</item>
+        <item quantity="one">ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$d ರಾತ್ರಿ</item>
+        <item quantity="other">ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$d ರಾತ್ರಿಗಳು</item>
     </plurals>
     <string name="hint_gaps">ಅಳತೆಯಲ್ಲಿ ಅಂತರಗಳಿದ್ದವು. ರಾತ್ರಿ ವಾಚ್ ಚಾರ್ಜ್ ಆಗುತ್ತಿತ್ತೇ ಅಥವಾ ಆಫ್ ಆಗಿತ್ತೇ?</string>
     <string name="hint_heart">ನಿಮ್ಮ ಹೃದಯ ಬಡಿತ ಸಿಗಲಿಲ್ಲ. ರಾತ್ರಿ ವಾಚ್ ಅನ್ನು ಸ್ವಲ್ಪ ಬಿಗಿಯಾಗಿ ಧರಿಸಿ.</string>

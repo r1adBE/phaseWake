@@ -25,7 +25,7 @@
     <string name="home_alarms">Оятқыштарың</string>
     <string name="reason_light">Мазасыз – мүмкін жеңіл ұйқы</string>
     <string name="reason_awake">Онсыз да ояу</string>
-    <string name="reason_deadline">Жеңіл ұйқы анықталмады</string>
+    <string name="reason_deadline">Терезеде қолайлы сәт болмады</string>
     <string name="reason_exact">Дәл мақсатты уақытта</string>
     <string name="reason_short_night">Қысқа түн – тек мақсатты уақытта</string>
     <string name="woke_early">Мақсатты уақыттан %1$d мин бұрын · %2$s</string>
@@ -46,6 +46,7 @@
     <string name="editor_latest">Ең кеші</string>
     <string name="editor_sleep_duration">Ұйқы: %1$s</string>
     <string name="editor_sleep_hint">Ұйықтап кеткен сәттен бастап санайды. Сағат оны автоматты түрде анықтайды; бірден бастау үшін сағаттағы «Қайырлы түн» түймесін түрт.</string>
+    <string name="editor_sleep_wear_only">Ұйқы ұзақтығы режимі тек Galaxy Watch-пен жұмыс істейді. Apple Watch-пен бұл оятқыш сені әдеттегі терезесінде мақсатты уақытқа дейін оятады.</string>
     <string name="editor_window">Терезе: %1$d мин</string>
     <string name="editor_window_hint">%1$s мен %2$s аралығында оятады</string>
     <string name="editor_window_exact">Дәл</string>
@@ -70,7 +71,7 @@
     <string name="history_health_live">Дереккөз: %1$s. Ондағы өзгерістер мен жоюларды Phase Wake автоматты түрде қабылдайды.</string>
     <string name="history_health_live_unknown">Дереккөз: денсаулық деректерің. Ондағы өзгерістер мен жоюларды Phase Wake автоматты түрде қабылдайды.</string>
     <string name="history_average">Ø %1$d мин ертерек</string>
-    <string name="history_light_share">%1$d %% жеңіл ұйқыда</string>
+    <string name="history_light_share">%1$d %% мазасызданғанда ертерек оятылды</string>
     <string name="history_export">Анонимді экспорттау</string>
     <string name="history_export_subject">Phase Wake түндері (анонимді)</string>
     <string name="settings_title">Параметрлер</string>
@@ -125,8 +126,8 @@
     <string name="action_cancel">Бас тарту</string>
     <string name="editor_advice_title">Кеңес: терезені үлкейт</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">Соңғы %2$d түннің %1$d түнінде терезеде жеңіл ұйқы болмады. %3$d минутпен жиірек дәл кезінде оянасың.</item>
-        <item quantity="other">Соңғы %2$d түннің %1$d түнінде терезеде жеңіл ұйқы болмады. %3$d минутпен жиірек дәл кезінде оянасың.</item>
+        <item quantity="one">Соңғы %2$d түннің %1$d түнінде терезеде қолайлы сәт болмады. %3$d минутпен жиірек дәл кезінде оянасың.</item>
+        <item quantity="other">Соңғы %2$d түннің %1$d түнінде терезеде қолайлы сәт болмады. %3$d минутпен жиірек дәл кезінде оянасың.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d мин қолдану</string>
     <string name="channel_sunrise">Күннің шығуы</string>
@@ -150,6 +151,9 @@
     <string name="check_ready">Бүгінгі түнге дайын</string>
     <string name="check_ready_text">Сағат қосылған, оятқыштарға рұқсат бар. Толығырақ көру үшін түрт.</string>
     <string name="check_not_ready">Ұйықтар алдында тексер</string>
+    <string name="check_not_ready_icon">Дайын емес</string>
+    <string name="check_silent_switch_title">iOS 26-ға дейінгі қосалқы оятқыш</string>
+    <string name="check_silent_switch_text">iOS 26-ға дейін қосалқы оятқыш хабарландыру болып табылады: дыбыссыз режим қосқышы оны үнсіз етеді. Дыбысты қосулы қалдыр немесе iOS 26-ға жаңарт.</string>
     <string name="check_watch">Сағат қосылған</string>
     <string name="check_watch_problem">Сағатың қолжетімсіз. Оны тағып ал, Bluetooth-ты қосулы ұста және сағатта Phase Wake-ті бір рет аш.</string>
     <string name="check_notifications">Хабарландыруларға рұқсат бар</string>
@@ -196,8 +200,8 @@
     <string name="settings_support">Phase Wake-ті қолдау</string>
     <string name="settings_support_text">Phase Wake тегін, ашық бастапқы кодты және жарнамасыз. Ұнаса, оның дамуын қолдай аласың.</string>
     <plurals name="hint_title">
-        <item quantity="one">Жеңіл ұйқысыз %1$d түн</item>
-        <item quantity="other">Жеңіл ұйқысыз %1$d түн</item>
+        <item quantity="one">Қолайлы сәтсіз %1$d түн</item>
+        <item quantity="other">Қолайлы сәтсіз %1$d түн</item>
     </plurals>
     <string name="hint_gaps">Өлшеуде олқылықтар болды. Түнде сағат зарядталып тұрды ма, әлде өшірулі болды ма?</string>
     <string name="hint_heart">Жүрек соғысы болмады. Түнде сағатты сәл қаттырақ тақ.</string>

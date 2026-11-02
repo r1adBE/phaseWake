@@ -188,9 +188,10 @@ internal fun NightCheckCard(
                     .then(if (ready) Modifier.clickable(role = Role.Button) { expanded = !expanded } else Modifier)
                     .semantics { if (ready) stateDescription = readyText },
             ) {
+                // Nicht bereit: Warndreieck (kein ✕, das wie ein Schliessen-Knopf aussieht), immer mit Text, nie nur Farbe.
                 Icon(
-                    painterResource(if (ready) R.drawable.ic_check else R.drawable.ic_close),
-                    contentDescription = null,
+                    painterResource(if (ready) R.drawable.ic_check else R.drawable.ic_warning),
+                    contentDescription = if (ready) null else stringResource(R.string.check_not_ready_icon),
                     tint = if (ready) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
                     modifier = Modifier.size(20.dp),
                 )

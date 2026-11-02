@@ -28,7 +28,7 @@
 
     <string name="reason_light">Uroligt – sandsynligvis let søvn</string>
     <string name="reason_awake">Allerede vågen</string>
-    <string name="reason_deadline">Ingen let søvn registreret</string>
+    <string name="reason_deadline">Intet godt tidspunkt i vinduet</string>
     <string name="reason_exact">Præcis på ønsket tid</string>
     <string name="reason_short_night">Kort nat – først på ønsket tid</string>
     <string name="woke_early">%1$d min før ønsket tid · %2$s</string>
@@ -51,6 +51,7 @@
     <string name="editor_latest">Senest</string>
     <string name="editor_sleep_duration">Sov i %1$s</string>
     <string name="editor_sleep_hint">Tæller fra du falder i søvn. Uret registrerer det automatisk; tryk på »Godnat« på uret for at starte med det samme.</string>
+    <string name="editor_sleep_wear_only">Søvnlængde-tilstanden virker kun med et Galaxy Watch. Med et Apple Watch vækker denne alarm dig i sit normale vindue frem til ønsket tid.</string>
     <string name="editor_window">Vindue: %1$d min</string>
     <string name="editor_window_hint">Vækker dig mellem %1$s og %2$s</string>
     <string name="editor_window_exact">Præcis</string>
@@ -76,7 +77,7 @@
     <string name="history_health_live">Fra %1$s. Phase Wake overtager automatisk ændringer og sletninger dér.</string>
     <string name="history_health_live_unknown">Fra dine sundhedsdata. Phase Wake overtager automatisk ændringer og sletninger dér.</string>
     <string name="history_average">Ø %1$d min tidligere</string>
-    <string name="history_light_share">%1$d %% i let søvn</string>
+    <string name="history_light_share">%1$d %% vækket tidligere ved uro</string>
     <string name="history_export">Eksportér anonymt</string>
     <string name="history_export_subject">Phase Wake-nætter (anonymt)</string>
 
@@ -133,8 +134,8 @@
     <string name="action_cancel">Annuller</string>
     <string name="editor_advice_title">Tip: et større vindue</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">I %1$d af den seneste %2$d nat var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
-        <item quantity="other">I %1$d af de seneste %2$d nætter var der ingen let søvn i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
+        <item quantity="one">I %1$d af den seneste %2$d nat var der intet godt tidspunkt i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
+        <item quantity="other">I %1$d af de seneste %2$d nætter var der intet godt tidspunkt i vinduet. Med %3$d min vågner du oftere på et godt tidspunkt.</item>
     </plurals>
     <string name="editor_advice_apply">Brug %1$d min</string>
     <string name="channel_sunrise">Solopgang</string>
@@ -158,6 +159,9 @@
     <string name="check_ready">Klar til i nat</string>
     <string name="check_ready_text">Uret er forbundet, alarmer er tilladt. Tryk for detaljer.</string>
     <string name="check_not_ready">Tjek før du sover</string>
+    <string name="check_not_ready_icon">Ikke klar</string>
+    <string name="check_silent_switch_title">Reservealarm før iOS 26</string>
+    <string name="check_silent_switch_text">Før iOS 26 er reservealarmen en notifikation: lydløs-knappen gør den lydløs. Lad lyden være slået til, eller opdater til iOS 26.</string>
     <string name="check_watch">Uret er forbundet</string>
     <string name="check_watch_problem">Dit ur kan ikke nås. Tag det på, hold Bluetooth slået til, og åbn Phase Wake på uret én gang.</string>
     <string name="check_notifications">Notifikationer er tilladt</string>
@@ -204,8 +208,8 @@
     <string name="settings_support">Støt Phase Wake</string>
     <string name="settings_support_text">Phase Wake er gratis, open source og uden reklamer. Hvis du kan lide den, kan du støtte udviklingen.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d nat uden let søvn</item>
-        <item quantity="other">%1$d nætter uden let søvn</item>
+        <item quantity="one">%1$d nat uden et godt tidspunkt</item>
+        <item quantity="other">%1$d nætter uden et godt tidspunkt</item>
     </plurals>
     <string name="hint_gaps">Målingen havde huller. Var uret på opladeren eller taget af om natten?</string>
     <string name="hint_heart">Pulsen manglede. Bær uret lidt strammere om natten.</string>

@@ -31,7 +31,7 @@
 
     <string name="reason_light">Restless – likely light sleep</string>
     <string name="reason_awake">Already awake</string>
-    <string name="reason_deadline">No light sleep detected</string>
+    <string name="reason_deadline">No good moment in the window</string>
     <string name="reason_exact">Right at the target time</string>
     <string name="reason_short_night">Short night – woke at the target time</string>
     <string name="woke_early">%1$d min before target · %2$s</string>
@@ -54,6 +54,7 @@
     <string name="editor_latest">At the latest</string>
     <string name="editor_sleep_duration">Sleep for %1$s</string>
     <string name="editor_sleep_hint">Counts from when you fall asleep. Your watch detects it automatically; tap “Good night” on the watch to start right away.</string>
+    <string name="editor_sleep_wear_only" tools:ignore="UnusedResources">Sleep mode only works with a Galaxy Watch. With an Apple Watch, this alarm wakes you in its normal window up to the target time.</string>
     <string name="editor_window">Window: %1$d min</string>
     <string name="editor_window_hint">Wakes you between %1$s and %2$s</string>
     <string name="editor_window_exact">Exact</string>
@@ -80,7 +81,7 @@
     <string name="history_health_live_unknown">From your health data. Phase Wake applies changes and deletions made there automatically.</string>
     <string name="health_samsung" translatable="false">Samsung Health</string>
     <string name="history_average">Ø %1$d min early</string>
-    <string name="history_light_share">%1$d %% in light sleep</string>
+    <string name="history_light_share">%1$d %% woken early when restless</string>
     <string name="history_export">Export anonymously</string>
     <string name="history_export_subject">Phase Wake nights (anonymous)</string>
 
@@ -137,8 +138,8 @@
     <string name="action_cancel">Cancel</string>
     <string name="editor_advice_title">Tip: a larger window</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">In %1$d of the last %2$d night there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</item>
-        <item quantity="other">In %1$d of the last %2$d nights there was no light sleep in the window. With %3$d min you’ll more often wake at a good moment.</item>
+        <item quantity="one">In %1$d of the last %2$d night there was no good moment in the window. With %3$d min you’ll more often wake at a good moment.</item>
+        <item quantity="other">In %1$d of the last %2$d nights there was no good moment in the window. With %3$d min you’ll more often wake at a good moment.</item>
     </plurals>
     <string name="editor_advice_apply">Use %1$d min</string>
     <string name="channel_sunrise">Sunrise</string>
@@ -162,6 +163,9 @@
     <string name="check_ready">Ready for tonight</string>
     <string name="check_ready_text">Watch connected, alarms allowed. Tap for details.</string>
     <string name="check_not_ready">Check before you sleep</string>
+    <string name="check_not_ready_icon">Not ready</string>
+    <string name="check_silent_switch_title" tools:ignore="UnusedResources">Backup alarm before iOS 26</string>
+    <string name="check_silent_switch_text" tools:ignore="UnusedResources">Before iOS 26, the backup alarm is a notification: the silent switch mutes it. Keep the sound on or update to iOS 26.</string>
     <string name="check_watch">Watch connected</string>
     <string name="check_watch_problem">Your watch isn’t reachable. Wear it, keep Bluetooth on and open Phase Wake on the watch once.</string>
     <string name="check_notifications">Notifications allowed</string>
@@ -208,8 +212,8 @@
     <string name="settings_support">Support Phase Wake</string>
     <string name="settings_support_text">Phase Wake is free, open source and has no ads. If you like it, you can support its development.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d night without light sleep</item>
-        <item quantity="other">%1$d nights without light sleep</item>
+        <item quantity="one">%1$d night without a good moment</item>
+        <item quantity="other">%1$d nights without a good moment</item>
     </plurals>
     <string name="hint_gaps">There were gaps in the measurement. Was the watch charging or off at night?</string>
     <string name="hint_heart">Your heart rate was missing. Wear the watch a little tighter at night.</string>

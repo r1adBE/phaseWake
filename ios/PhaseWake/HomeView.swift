@@ -101,10 +101,15 @@ struct HomeView: View {
             }
             .background(scheme == .dark ? Color.clear : Brand.paper)
             .task(id: scenePhase) {
-                // Bei jedem Öffnen und danach jede halbe Minute prüfen.
+                // Bei jedem Öffnen und danach jede halbe Minute prüfen; die Schlafdauer fürs Widget nur beim Öffnen.
+                var opened = true
                 while scenePhase == .active, !Task.isCancelled {
                     failedChecks = await NightCheck.collect()
                     PhoneWidgetSync.publish(model, failed: failedChecks)
+                    if opened {
+                        opened = false
+                        await PhoneWidgetSync.refreshAsleep(model)
+                    }
                     // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst starten.
                     await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))

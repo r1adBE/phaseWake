@@ -31,7 +31,7 @@
 
     <string name="reason_light">Nemierīgs – droši vien viegls miegs</string>
     <string name="reason_awake">Jau nomodā</string>
-    <string name="reason_deadline">Viegls miegs netika konstatēts</string>
+    <string name="reason_deadline">Logā nebija laba brīža</string>
     <string name="reason_exact">Tieši mērķa laikā</string>
     <string name="reason_short_night">Īsa nakts – tikai mērķa laikā</string>
     <string name="woke_early">%1$d min pirms mērķa laika · %2$s</string>
@@ -54,6 +54,7 @@
     <string name="editor_latest">Vēlākais</string>
     <string name="editor_sleep_duration">Gulēt %1$s</string>
     <string name="editor_sleep_hint">Skaita no aizmigšanas brīža. Pulkstenis to nosaka automātiski; pieskaries pulkstenī „Ar labu nakti“, lai sāktu uzreiz.</string>
+    <string name="editor_sleep_wear_only">Miega ilguma režīms darbojas tikai ar Galaxy Watch. Ar Apple Watch šis modinātājs tevi modina savā parastajā logā līdz mērķa laikam.</string>
     <string name="editor_window">Logs: %1$d min</string>
     <string name="editor_window_hint">Modina no %1$s līdz %2$s</string>
     <string name="editor_window_exact">Precīzi</string>
@@ -79,7 +80,7 @@
     <string name="history_health_live">No lietotnes %1$s. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_health_live_unknown">No taviem veselības datiem. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_average">Ø %1$d min agrāk</string>
-    <string name="history_light_share">%1$d %% vieglā miegā</string>
+    <string name="history_light_share">%1$d %% pamodināti agrāk nemierīgā miegā</string>
     <string name="history_export">Eksportēt anonīmi</string>
     <string name="history_export_subject">Phase Wake naktis (anonīmi)</string>
 
@@ -136,9 +137,9 @@
     <string name="action_cancel">Atcelt</string>
     <string name="editor_advice_title">Padoms: lielāks logs</string>
     <plurals name="editor_advice_text">
-        <item quantity="zero">%1$d no pēdējām %2$d naktīm logā nebija viegla miega. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
-        <item quantity="one">%1$d no pēdējās %2$d nakts logā nebija viegla miega. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
-        <item quantity="other">%1$d no pēdējām %2$d naktīm logā nebija viegla miega. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
+        <item quantity="zero">%1$d no pēdējām %2$d naktīm logā nebija laba brīža. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
+        <item quantity="one">%1$d no pēdējās %2$d nakts logā nebija laba brīža. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
+        <item quantity="other">%1$d no pēdējām %2$d naktīm logā nebija laba brīža. Ar %3$d min biežāk pamodīsies labā brīdī.</item>
     </plurals>
     <string name="editor_advice_apply">Izmantot %1$d min</string>
     <string name="channel_sunrise">Saullēkts</string>
@@ -163,6 +164,9 @@
     <string name="check_ready">Gatavs šai naktij</string>
     <string name="check_ready_text">Pulkstenis savienots, modinātāji atļauti. Pieskaries, lai redzētu sīkāk.</string>
     <string name="check_not_ready">Pārbaudi pirms gulētiešanas</string>
+    <string name="check_not_ready_icon">Nav gatavs</string>
+    <string name="check_silent_switch_title">Rezerves modinātājs pirms iOS 26</string>
+    <string name="check_silent_switch_text">Pirms iOS 26 rezerves modinātājs ir paziņojums: klusuma slēdzis to apklusina. Atstāj skaņu ieslēgtu vai atjaunini uz iOS 26.</string>
     <string name="check_watch">Pulkstenis savienots</string>
     <string name="check_watch_problem">Pulkstenis nav sasniedzams. Uzliec to, atstāj ieslēgtu Bluetooth un vienreiz atver Phase Wake pulkstenī.</string>
     <string name="check_notifications">Paziņojumi atļauti</string>
@@ -209,9 +213,9 @@
     <string name="settings_support">Atbalsti Phase Wake</string>
     <string name="settings_support_text">Phase Wake ir bezmaksas, ar atvērtu kodu un bez reklāmām. Ja tev patīk, vari atbalstīt tās izstrādi.</string>
     <plurals name="hint_title">
-        <item quantity="zero">%1$d naktis bez viegla miega</item>
-        <item quantity="one">%1$d nakts bez viegla miega</item>
-        <item quantity="other">%1$d naktis bez viegla miega</item>
+        <item quantity="zero">%1$d naktis bez laba brīža</item>
+        <item quantity="one">%1$d nakts bez laba brīža</item>
+        <item quantity="other">%1$d naktis bez laba brīža</item>
     </plurals>
     <string name="hint_gaps">Mērījumā bija pārtraukumi. Vai pulkstenis naktī lādējās vai bija izslēgts?</string>
     <string name="hint_heart">Trūka pulsa. Naktī nēsā pulksteni nedaudz ciešāk.</string>

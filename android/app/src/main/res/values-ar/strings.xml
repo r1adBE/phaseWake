@@ -32,7 +32,7 @@
 
     <string name="reason_light">قلِق – غالبًا نوم خفيف</string>
     <string name="reason_awake">مستيقظ بالفعل</string>
-    <string name="reason_deadline">لم يُرصد نوم خفيف</string>
+    <string name="reason_deadline">لا لحظة مناسبة ضمن النافذة</string>
     <string name="reason_exact">في الموعد المحدد تمامًا</string>
     <string name="reason_short_night">ليلة قصيرة – في الموعد المحدد فقط</string>
     <string name="woke_early">قبل الموعد بـ %1$d د · %2$s</string>
@@ -55,6 +55,7 @@
     <string name="editor_latest">بحدّ أقصى</string>
     <string name="editor_sleep_duration">النوم لمدة %1$s</string>
     <string name="editor_sleep_hint">يبدأ العدّ من لحظة نومكم. تكتشف ساعتكم ذلك تلقائيًا؛ اضغطوا على “ليلة سعيدة” في الساعة للبدء فورًا.</string>
+    <string name="editor_sleep_wear_only">وضع مدة النوم يعمل فقط مع Galaxy Watch. مع Apple Watch يوقظك هذا المنبّه في نافذته العادية حتى الوقت المستهدف.</string>
     <string name="editor_window">النافذة: %1$d د</string>
     <string name="editor_window_hint">يوقظك بين %1$s و%2$s</string>
     <string name="editor_window_exact">بالضبط</string>
@@ -80,7 +81,7 @@
     <string name="history_health_live">من %1$s. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
     <string name="history_health_live_unknown">من بياناتك الصحية. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
     <string name="history_average">المتوسط: قبل الموعد بـ %1$d د</string>
-    <string name="history_light_share">%1$d %% في النوم الخفيف</string>
+    <string name="history_light_share">%1$d %% أُوقظوا أبكر عند التململ</string>
     <string name="history_export">تصدير مجهول الهوية</string>
     <string name="history_export_subject">ليالي Phase Wake (مجهولة الهوية)</string>
 
@@ -137,12 +138,12 @@
     <string name="action_cancel">إلغاء</string>
     <string name="editor_advice_title">نصيحة: نافذة أوسع</string>
     <plurals name="editor_advice_text">
-        <item quantity="zero">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
-        <item quantity="one">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
-        <item quantity="two">في %1$d من آخر %2$d ليلتين لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
-        <item quantity="few">في %1$d من آخر %2$d ليالٍ لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
-        <item quantity="many">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
-        <item quantity="other">في %1$d من آخر %2$d ليلة لم يظهر نوم خفيف ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="zero">في %1$d من آخر %2$d ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="one">في %1$d من آخر %2$d ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="two">في %1$d من آخر %2$d ليلتين لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="few">في %1$d من آخر %2$d ليالٍ لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="many">في %1$d من آخر %2$d ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
+        <item quantity="other">في %1$d من آخر %2$d ليلة لم تظهر لحظة مناسبة ضمن النافذة. مع %3$d دقيقة تزداد فرص الاستيقاظ في لحظة مناسبة.</item>
     </plurals>
     <string name="editor_advice_apply">استخدام %1$d دقيقة</string>
     <string name="channel_sunrise">شروق الشمس</string>
@@ -170,6 +171,9 @@
     <string name="check_ready">جاهز لهذه الليلة</string>
     <string name="check_ready_text">الساعة متصلة والمنبهات مسموحة. اضغط للتفاصيل.</string>
     <string name="check_not_ready">تحقق قبل النوم</string>
+    <string name="check_not_ready_icon">غير جاهز</string>
+    <string name="check_silent_switch_title">المنبّه الاحتياطي قبل iOS 26</string>
+    <string name="check_silent_switch_text">قبل iOS 26 يكون المنبّه الاحتياطي إشعارًا: مفتاح الصامت يكتم صوته. أبقِ الصوت مفعّلًا أو حدّث إلى iOS 26.</string>
     <string name="check_watch">الساعة متصلة</string>
     <string name="check_watch_problem">تعذر الوصول إلى ساعتك. ارتدِها، وأبقِ Bluetooth قيد التشغيل، وافتح Phase Wake على الساعة مرة واحدة.</string>
     <string name="check_notifications">الإشعارات مسموحة</string>
@@ -216,12 +220,12 @@
     <string name="settings_support">ادعم Phase Wake</string>
     <string name="settings_support_text">Phase Wake مجاني ومفتوح المصدر وبلا إعلانات. إن أعجبك، يمكنك دعم تطويره.</string>
     <plurals name="hint_title">
-        <item quantity="zero">%1$d ليلة بلا نوم خفيف</item>
-        <item quantity="one">%1$d ليلة بلا نوم خفيف</item>
-        <item quantity="two">%1$d ليلتان بلا نوم خفيف</item>
-        <item quantity="few">%1$d ليالٍ بلا نوم خفيف</item>
-        <item quantity="many">%1$d ليلة بلا نوم خفيف</item>
-        <item quantity="other">%1$d ليلة بلا نوم خفيف</item>
+        <item quantity="zero">%1$d ليلة بلا لحظة مناسبة</item>
+        <item quantity="one">%1$d ليلة بلا لحظة مناسبة</item>
+        <item quantity="two">%1$d ليلتان بلا لحظة مناسبة</item>
+        <item quantity="few">%1$d ليالٍ بلا لحظة مناسبة</item>
+        <item quantity="many">%1$d ليلة بلا لحظة مناسبة</item>
+        <item quantity="other">%1$d ليلة بلا لحظة مناسبة</item>
     </plurals>
     <string name="hint_gaps">كانت هناك فجوات في القياس. هل كانت الساعة قيد الشحن أو غير مرتدية ليلًا؟</string>
     <string name="hint_heart">كان معدل النبض مفقودًا. يُفضَّل ارتداء الساعة بإحكام أكبر ليلًا.</string>

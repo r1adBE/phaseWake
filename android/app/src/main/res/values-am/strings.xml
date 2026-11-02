@@ -30,7 +30,7 @@
 
     <string name="reason_light">እረፍት የለሽ – ምናልባት ቀላል እንቅልፍ</string>
     <string name="reason_awake">ቀድሞውኑ ነቅተው ነበር</string>
-    <string name="reason_deadline">ቀላል እንቅልፍ አልተገኘም</string>
+    <string name="reason_deadline">በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም</string>
     <string name="reason_exact">በትክክል በታለመው ሰዓት</string>
     <string name="reason_short_night">አጭር ሌሊት – በታለመው ሰዓት ብቻ</string>
     <string name="woke_early">ከታለመው ሰዓት %1$d ደቂቃ በፊት · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">ቢዘገይ</string>
     <string name="editor_sleep_duration">ለ%1$s ይተኙ</string>
     <string name="editor_sleep_hint">ከተኙበት ጊዜ ጀምሮ ይቆጥራል። ሰዓትዎ በራስ-ሰር ይለየዋል፤ ወዲያውኑ ለመጀመር በሰዓቱ ላይ «ደህና እደሩ»ን ይንኩ።</string>
+    <string name="editor_sleep_wear_only">የእንቅልፍ ቆይታ ሁነታ የሚሰራው በGalaxy Watch ብቻ ነው። በApple Watch ይህ ማንቂያ በተለመደው ክልሉ እስከ ታለመው ሰዓት ድረስ ይቀሰቅስዎታል።</string>
     <string name="editor_window">ክልል: %1$d ደቂቃ</string>
     <string name="editor_window_hint">በ%1$s እና በ%2$s መካከል ይቀሰቅስዎታል</string>
     <string name="editor_window_exact">በትክክል</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">ከ%1$s። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_health_live_unknown">ከጤና ውሂብዎ። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_average">Ø %1$d ደቂቃ ቀደም ብሎ</string>
-    <string name="history_light_share">%1$d %% በቀላል እንቅልፍ</string>
+    <string name="history_light_share">%1$d %% እረፍት ሲያጡ ቀደም ብለው ተቀስቅሰዋል</string>
     <string name="history_export">ማንነትን ሳይገልጹ ወደ ውጭ ላክ</string>
     <string name="history_export_subject">የPhase Wake ሌሊቶች (ማንነት ሳይገለጽ)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">ይቅር</string>
     <string name="editor_advice_title">ጠቃሚ ምክር: ሰፋ ያለ ክልል</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">ካለፉት %2$d ሌሊት ውስጥ በ%1$d ሌሊት በክልሉ ውስጥ ቀላል እንቅልፍ አልነበረም። በ%3$d ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።</item>
-        <item quantity="other">ካለፉት %2$d ሌሊቶች ውስጥ በ%1$d ሌሊቶች በክልሉ ውስጥ ቀላል እንቅልፍ አልነበረም። በ%3$d ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።</item>
+        <item quantity="one">ካለፉት %2$d ሌሊት ውስጥ በ%1$d ሌሊት በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም። በ%3$d ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።</item>
+        <item quantity="other">ካለፉት %2$d ሌሊቶች ውስጥ በ%1$d ሌሊቶች በክልሉ ውስጥ ጥሩ ቅጽበት አልነበረም። በ%3$d ደቂቃ ብዙ ጊዜ በጥሩ ቅጽበት ይነቃሉ።</item>
     </plurals>
     <string name="editor_advice_apply">%1$d ደቂቃ ተጠቀም</string>
     <string name="channel_sunrise">የፀሐይ መውጫ</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">ለዛሬ ማታ ዝግጁ</string>
     <string name="check_ready_text">ሰዓት ተገናኝቷል፣ ማንቂያዎች ተፈቅደዋል። ለዝርዝሮች ይንኩ።</string>
     <string name="check_not_ready">ከመተኛትዎ በፊት ያረጋግጡ</string>
+    <string name="check_not_ready_icon">ዝግጁ አይደለም</string>
+    <string name="check_silent_switch_title">ከiOS 26 በፊት ተጠባባቂ ማንቂያ</string>
+    <string name="check_silent_switch_text">ከiOS 26 በፊት ተጠባባቂ ማንቂያው ማሳወቂያ ነው፦ የድምፅ ማጥፊያ ማብሪያው ጸጥ ያደርገዋል። ድምፁን ያብሩት ወይም ወደ iOS 26 ያዘምኑ።</string>
     <string name="check_watch">ሰዓት ተገናኝቷል</string>
     <string name="check_watch_problem">ሰዓትዎ ሊደረስበት አልቻለም። ያድርጉት፣ Bluetooth እንደበራ ያቆዩ እና Phase Wakeን በሰዓቱ ላይ አንድ ጊዜ ይክፈቱ።</string>
     <string name="check_notifications">ማሳወቂያዎች ተፈቅደዋል</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wakeን ይደግፉ</string>
     <string name="settings_support_text">Phase Wake ነፃ፣ ክፍት ምንጭ እና ማስታወቂያ የሌለው ነው። ከወደዱት፣ እድገቱን መደገፍ ይችላሉ።</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d ሌሊት ያለ ቀላል እንቅልፍ</item>
-        <item quantity="other">%1$d ሌሊቶች ያለ ቀላል እንቅልፍ</item>
+        <item quantity="one">%1$d ሌሊት ያለ ጥሩ ቅጽበት</item>
+        <item quantity="other">%1$d ሌሊቶች ያለ ጥሩ ቅጽበት</item>
     </plurals>
     <string name="hint_gaps">በልኬቱ ውስጥ ክፍተቶች ነበሩ። ሰዓቱ ማታ ኃይል እየሞላ ወይም ጠፍቶ ነበር?</string>
     <string name="hint_heart">የልብ ምትዎ አልነበረም። ማታ ሰዓቱን ትንሽ አጥብቀው ያድርጉት።</string>

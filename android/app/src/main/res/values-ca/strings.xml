@@ -30,7 +30,7 @@
 
     <string name="reason_light">Inquiet – probablement son lleuger</string>
     <string name="reason_awake">Ja no dormies</string>
-    <string name="reason_deadline">No s’ha detectat son lleuger</string>
+    <string name="reason_deadline">Cap bon moment a la finestra</string>
     <string name="reason_exact">Just a l’hora objectiu</string>
     <string name="reason_short_night">Nit curta – només a l’hora objectiu</string>
     <string name="woke_early">%1$d min abans de l’hora objectiu · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">Com a tard</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
     <string name="editor_sleep_hint">Compta des que t’adorms. El rellotge ho detecta automàticament; toca «Bona nit» al rellotge per començar ara mateix.</string>
+    <string name="editor_sleep_wear_only">El mode de durada del son només funciona amb un Galaxy Watch. Amb un Apple Watch, aquesta alarma et desperta dins la seva finestra normal fins a l’hora objectiu.</string>
     <string name="editor_window">Finestra: %1$d min</string>
     <string name="editor_window_hint">Et desperta entre les %1$s i les %2$s</string>
     <string name="editor_window_exact">Exacte</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">De %1$s. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
     <string name="history_health_live_unknown">De les teves dades de salut. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
     <string name="history_average">Ø %1$d min abans</string>
-    <string name="history_light_share">%1$d %% en son lleuger</string>
+    <string name="history_light_share">%1$d %% despertat abans per inquietud</string>
     <string name="history_export">Exporta de manera anònima</string>
     <string name="history_export_subject">Nits de Phase Wake (anònimes)</string>
 
@@ -135,9 +136,9 @@
     <string name="action_cancel">Cancel·la</string>
     <string name="editor_advice_title">Consell: una finestra més gran</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">En %1$d de l’última %2$d nit no hi va haver son lleuger a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
-        <item quantity="many">En %1$d de les últimes %2$d nits no hi va haver son lleuger a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
-        <item quantity="other">En %1$d de les últimes %2$d nits no hi va haver son lleuger a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
+        <item quantity="one">En %1$d de l’última %2$d nit no hi va haver cap bon moment a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
+        <item quantity="many">En %1$d de les últimes %2$d nits no hi va haver cap bon moment a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
+        <item quantity="other">En %1$d de les últimes %2$d nits no hi va haver cap bon moment a la finestra. Amb %3$d min et despertaràs més sovint en un bon moment.</item>
     </plurals>
     <string name="editor_advice_apply">Usa %1$d min</string>
     <string name="channel_sunrise">Sortida del sol</string>
@@ -162,6 +163,9 @@
     <string name="check_ready">A punt per a aquesta nit</string>
     <string name="check_ready_text">Rellotge connectat, alarmes permeses. Toca per veure’n els detalls.</string>
     <string name="check_not_ready">Revisa-ho abans de dormir</string>
+    <string name="check_not_ready_icon">No està a punt</string>
+    <string name="check_silent_switch_title">Alarma de reserva abans d’iOS 26</string>
+    <string name="check_silent_switch_text">Abans d’iOS 26, l’alarma de reserva és una notificació: l’interruptor de silenci la silencia. Deixa el so activat o actualitza a iOS 26.</string>
     <string name="check_watch">Rellotge connectat</string>
     <string name="check_watch_problem">No es pot connectar amb el rellotge. Porta’l posat, mantén el Bluetooth activat i obre Phase Wake al rellotge una vegada.</string>
     <string name="check_notifications">Notificacions permeses</string>
@@ -208,9 +212,9 @@
     <string name="settings_support">Dona suport a Phase Wake</string>
     <string name="settings_support_text">Phase Wake és gratuït, de codi obert i sense anuncis. Si t’agrada, pots donar suport al seu desenvolupament.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d nit sense son lleuger</item>
-        <item quantity="many">%1$d nits sense son lleuger</item>
-        <item quantity="other">%1$d nits sense son lleuger</item>
+        <item quantity="one">%1$d nit sense cap bon moment</item>
+        <item quantity="many">%1$d nits sense cap bon moment</item>
+        <item quantity="other">%1$d nits sense cap bon moment</item>
     </plurals>
     <string name="hint_gaps">Hi va haver buits en la mesura. El rellotge es carregava o te l’havies tret durant la nit?</string>
     <string name="hint_heart">Faltava la freqüència cardíaca. A la nit, porta el rellotge una mica més ajustat.</string>

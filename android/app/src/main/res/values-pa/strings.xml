@@ -30,7 +30,7 @@
 
     <string name="reason_light">ਬੇਚੈਨ – ਸ਼ਾਇਦ ਹਲਕੀ ਨੀਂਦ</string>
     <string name="reason_awake">ਪਹਿਲਾਂ ਹੀ ਜਾਗੇ</string>
-    <string name="reason_deadline">ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਮਿਲੀ</string>
+    <string name="reason_deadline">ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ</string>
     <string name="reason_exact">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ</string>
     <string name="reason_short_night">ਛੋਟੀ ਰਾਤ – ਸਿਰਫ਼ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ</string>
     <string name="woke_early">ਟੀਚੇ ਤੋਂ %1$d ਮਿੰ. ਪਹਿਲਾਂ · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">ਵੱਧ ਤੋਂ ਵੱਧ</string>
     <string name="editor_sleep_duration">%1$s ਨੀਂਦ</string>
     <string name="editor_sleep_hint">ਤੁਹਾਡੇ ਸੌਂ ਜਾਣ ਤੋਂ ਗਿਣਦਾ ਹੈ। ਘੜੀ ਇਸਨੂੰ ਆਪਣੇ-ਆਪ ਪਛਾਣਦੀ ਹੈ; ਤੁਰੰਤ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ’ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="editor_sleep_wear_only">ਨੀਂਦ ਦੀ ਮਿਆਦ ਵਾਲਾ ਮੋਡ ਸਿਰਫ਼ Galaxy Watch ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ। Apple Watch ਨਾਲ ਇਹ ਅਲਾਰਮ ਤੁਹਾਨੂੰ ਆਪਣੀ ਆਮ ਮਿਆਦ ਵਿੱਚ ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੱਕ ਜਗਾਉਂਦਾ ਹੈ।</string>
     <string name="editor_window">ਮਿਆਦ: %1$d ਮਿੰ.</string>
     <string name="editor_window_hint">%1$s ਅਤੇ %2$s ਵਿਚਕਾਰ ਜਗਾਏਗਾ</string>
     <string name="editor_window_exact">ਸਹੀ ਸਮਾਂ</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
     <string name="history_health_live_unknown">ਤੁਹਾਡੇ ਸਿਹਤ ਡਾਟੇ ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
     <string name="history_average">Ø %1$d ਮਿੰ. ਪਹਿਲਾਂ</string>
-    <string name="history_light_share">%1$d %% ਹਲਕੀ ਨੀਂਦ ਵਿੱਚ</string>
+    <string name="history_light_share">%1$d %% ਬੇਚੈਨੀ ’ਤੇ ਪਹਿਲਾਂ ਜਗਾਏ ਗਏ</string>
     <string name="history_export">ਗੁਮਨਾਮ ਤੌਰ ’ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="history_export_subject">Phase Wake ਰਾਤਾਂ (ਗੁਮਨਾਮ)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">ਰੱਦ ਕਰੋ</string>
     <string name="editor_advice_title">ਸੁਝਾਅ: ਲੰਮੀ ਮਿਆਦ</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">ਪਿਛਲੀ %2$d ਰਾਤ ਵਿੱਚੋਂ %1$d ਰਾਤ ਮਿਆਦ ਵਿੱਚ ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਸੀ। %3$d ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।</item>
-        <item quantity="other">ਪਿਛਲੀਆਂ %2$d ਰਾਤਾਂ ਵਿੱਚੋਂ %1$d ਰਾਤਾਂ ਮਿਆਦ ਵਿੱਚ ਹਲਕੀ ਨੀਂਦ ਨਹੀਂ ਸੀ। %3$d ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।</item>
+        <item quantity="one">ਪਿਛਲੀ %2$d ਰਾਤ ਵਿੱਚੋਂ %1$d ਰਾਤ ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ। %3$d ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।</item>
+        <item quantity="other">ਪਿਛਲੀਆਂ %2$d ਰਾਤਾਂ ਵਿੱਚੋਂ %1$d ਰਾਤਾਂ ਮਿਆਦ ਵਿੱਚ ਸਹੀ ਪਲ ਨਹੀਂ ਸੀ। %3$d ਮਿੰ. ਨਾਲ ਤੁਸੀਂ ਵੱਧ ਵਾਰ ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋਗੇ।</item>
     </plurals>
     <string name="editor_advice_apply">%1$d ਮਿੰ. ਵਰਤੋ</string>
     <string name="channel_sunrise">ਸੂਰਜ ਚੜ੍ਹਨਾ</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">ਅੱਜ ਰਾਤ ਲਈ ਤਿਆਰ</string>
     <string name="check_ready_text">ਘੜੀ ਕਨੈਕਟ, ਅਲਾਰਮਾਂ ਦੀ ਇਜਾਜ਼ਤ। ਵੇਰਵਿਆਂ ਲਈ ਟੈਪ ਕਰੋ।</string>
     <string name="check_not_ready">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਜਾਂਚੋ</string>
+    <string name="check_not_ready_icon">ਤਿਆਰ ਨਹੀਂ</string>
+    <string name="check_silent_switch_title">iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ</string>
+    <string name="check_silent_switch_text">iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ ਇੱਕ ਸੂਚਨਾ ਹੈ: ਸਾਈਲੈਂਟ ਸਵਿੱਚ ਇਸਨੂੰ ਚੁੱਪ ਕਰ ਦਿੰਦਾ ਹੈ। ਆਵਾਜ਼ ਚਾਲੂ ਰੱਖੋ ਜਾਂ iOS 26 ’ਤੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
     <string name="check_watch">ਘੜੀ ਕਨੈਕਟ ਹੈ</string>
     <string name="check_watch_problem">ਤੁਹਾਡੀ ਘੜੀ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੋ ਰਿਹਾ। ਇਸ ਨੂੰ ਪਹਿਨੋ, ਬਲੂਟੁੱਥ ਚਾਲੂ ਰੱਖੋ ਅਤੇ ਘੜੀ ’ਤੇ ਇੱਕ ਵਾਰ Phase Wake ਖੋਲ੍ਹੋ।</string>
     <string name="check_notifications">ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wake ਦਾ ਸਮਰਥਨ ਕਰੋ</string>
     <string name="settings_support_text">Phase Wake ਮੁਫ਼ਤ, ਓਪਨ ਸੋਰਸ ਅਤੇ ਇਸ਼ਤਿਹਾਰਾਂ ਤੋਂ ਬਿਨਾਂ ਹੈ। ਜੇ ਤੁਹਾਨੂੰ ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਇਸ ਦੇ ਵਿਕਾਸ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <plurals name="hint_title">
-        <item quantity="one">ਹਲਕੀ ਨੀਂਦ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤ</item>
-        <item quantity="other">ਹਲਕੀ ਨੀਂਦ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤਾਂ</item>
+        <item quantity="one">ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤ</item>
+        <item quantity="other">ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤਾਂ</item>
     </plurals>
     <string name="hint_gaps">ਮਾਪ ਵਿੱਚ ਖੱਪੇ ਸਨ। ਕੀ ਰਾਤ ਨੂੰ ਘੜੀ ਚਾਰਜ ਹੋ ਰਹੀ ਸੀ ਜਾਂ ਬੰਦ ਸੀ?</string>
     <string name="hint_heart">ਤੁਹਾਡੀ ਦਿਲ ਦੀ ਧੜਕਣ ਨਹੀਂ ਮਿਲੀ। ਰਾਤ ਨੂੰ ਘੜੀ ਥੋੜ੍ਹੀ ਕੱਸ ਕੇ ਪਹਿਨੋ।</string>

@@ -30,7 +30,7 @@
 
     <string name="reason_light">अस्वस्थ – बहुधा हलकी झोप</string>
     <string name="reason_awake">आधीच जागे</string>
-    <string name="reason_deadline">हलकी झोप आढळली नाही</string>
+    <string name="reason_deadline">कालावधीत योग्य क्षण नव्हता</string>
     <string name="reason_exact">अगदी लक्ष्य वेळेवर</string>
     <string name="reason_short_night">लहान रात्र – फक्त लक्ष्य वेळेवर</string>
     <string name="woke_early">लक्ष्यापूर्वी %1$d मि. · %2$s</string>
@@ -53,6 +53,7 @@
     <string name="editor_latest">जास्तीत जास्त</string>
     <string name="editor_sleep_duration">%1$s झोप</string>
     <string name="editor_sleep_hint">तुम्हाला झोप लागल्यापासून मोजते. घड्याळ ते आपोआप ओळखते; लगेच सुरू करण्यासाठी घड्याळावर “शुभ रात्री” वर टॅप करा.</string>
+    <string name="editor_sleep_wear_only">झोपेच्या कालावधीचा मोड फक्त Galaxy Watch सोबत चालतो. Apple Watch सोबत हा अलार्म तुम्हाला त्याच्या नेहमीच्या कालावधीत लक्ष्य वेळेपर्यंत उठवतो.</string>
     <string name="editor_window">कालावधी: %1$d मि.</string>
     <string name="editor_window_hint">%1$s ते %2$s दरम्यान उठवेल</string>
     <string name="editor_window_exact">अचूक</string>
@@ -78,7 +79,7 @@
     <string name="history_health_live">%1$s मधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
     <string name="history_health_live_unknown">तुमच्या हेल्थ डेटामधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
     <string name="history_average">Ø %1$d मि. लवकर</string>
-    <string name="history_light_share">%1$d %% हलक्या झोपेत</string>
+    <string name="history_light_share">%1$d %% अस्वस्थ झाल्यावर लवकर उठवले</string>
     <string name="history_export">निनावी एक्सपोर्ट करा</string>
     <string name="history_export_subject">Phase Wake रात्री (निनावी)</string>
 
@@ -135,8 +136,8 @@
     <string name="action_cancel">रद्द करा</string>
     <string name="editor_advice_title">टीप: मोठा कालावधी</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">मागील %2$d रात्रीपैकी %1$d रात्री कालावधीत हलकी झोप नव्हती. %3$d मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल.</item>
-        <item quantity="other">मागील %2$d रात्रींपैकी %1$d रात्री कालावधीत हलकी झोप नव्हती. %3$d मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल.</item>
+        <item quantity="one">मागील %2$d रात्रीपैकी %1$d रात्री कालावधीत योग्य क्षण नव्हता. %3$d मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल.</item>
+        <item quantity="other">मागील %2$d रात्रींपैकी %1$d रात्री कालावधीत योग्य क्षण नव्हता. %3$d मि. ठेवल्यास तुम्ही अधिक वेळा योग्य क्षणी उठाल.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d मि. वापरा</string>
     <string name="channel_sunrise">सूर्योदय</string>
@@ -160,6 +161,9 @@
     <string name="check_ready">आजच्या रात्रीसाठी तयार</string>
     <string name="check_ready_text">घड्याळ जोडलेले, अलार्मना परवानगी. तपशिलासाठी टॅप करा.</string>
     <string name="check_not_ready">झोपण्यापूर्वी तपासा</string>
+    <string name="check_not_ready_icon">तयार नाही</string>
+    <string name="check_silent_switch_title">iOS 26 पूर्वी बॅकअप अलार्म</string>
+    <string name="check_silent_switch_text">iOS 26 पूर्वी बॅकअप अलार्म ही एक सूचना असते: सायलेंट स्विच तिला शांत करतो. आवाज चालू ठेवा किंवा iOS 26 वर अपडेट करा.</string>
     <string name="check_watch">घड्याळ जोडलेले</string>
     <string name="check_watch_problem">तुमचे घड्याळ पोहोचण्यायोग्य नाही. ते घाला, ब्लूटूथ चालू ठेवा आणि घड्याळावर एकदा Phase Wake उघडा.</string>
     <string name="check_notifications">सूचनांना परवानगी</string>
@@ -206,8 +210,8 @@
     <string name="settings_support">Phase Wake ला पाठिंबा द्या</string>
     <string name="settings_support_text">Phase Wake मोफत, ओपन सोर्स आणि जाहिरातमुक्त आहे. आवडल्यास, तुम्ही त्याच्या विकासाला पाठिंबा देऊ शकता.</string>
     <plurals name="hint_title">
-        <item quantity="one">%1$d रात्र हलक्या झोपेशिवाय</item>
-        <item quantity="other">%1$d रात्री हलक्या झोपेशिवाय</item>
+        <item quantity="one">%1$d रात्र योग्य क्षणाशिवाय</item>
+        <item quantity="other">%1$d रात्री योग्य क्षणाशिवाय</item>
     </plurals>
     <string name="hint_gaps">मोजमापात खंड होते. रात्री घड्याळ चार्ज होत होते की बंद होते?</string>
     <string name="hint_heart">तुमची हृदयगती मिळाली नाही. रात्री घड्याळ थोडे घट्ट घाला.</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Widget «Nächster Wecker»: Fenster gross, darunter Tag und Nacht-Check (Symbol und Text, nie nur Farbe). -->
+<!-- Widget «Nächster Wecker»: Fenster gross, darunter Tag und Nacht-Check (Symbol und Text, nie nur Farbe).
+     Am Weckmorgen bis 12 Uhr dieselben Zeilen für die letzte Nacht: Titel, «Geweckt um …», Grund, Schlafdauer · Befinden. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_root"
@@ -32,7 +33,8 @@
         android:id="@+id/widget_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@color/widget_text_secondary"
         android:textSize="13sp" />
 

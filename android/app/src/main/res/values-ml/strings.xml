@@ -29,7 +29,7 @@
 
     <string name="reason_light">അസ്വസ്ഥം – മിക്കവാറും നേരിയ ഉറക്കം</string>
     <string name="reason_awake">നേരത്തേ ഉണർന്നിരുന്നു</string>
-    <string name="reason_deadline">നേരിയ ഉറക്കം കണ്ടെത്തിയില്ല</string>
+    <string name="reason_deadline">സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല</string>
     <string name="reason_exact">കൃത്യമായി ലക്ഷ്യസമയത്ത്</string>
     <string name="reason_short_night">ചെറിയ രാത്രി – ലക്ഷ്യസമയത്ത് മാത്രം</string>
     <string name="woke_early">ലക്ഷ്യത്തിന് %1$d മി. മുമ്പ് · %2$s</string>
@@ -52,6 +52,7 @@
     <string name="editor_latest">പരമാവധി</string>
     <string name="editor_sleep_duration">%1$s ഉറക്കം</string>
     <string name="editor_sleep_hint">ഉറങ്ങിത്തുടങ്ങുമ്പോൾ മുതൽ എണ്ണുന്നു. വാച്ച് അത് സ്വയം തിരിച്ചറിയും; ഉടൻ തുടങ്ങാൻ വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക.</string>
+    <string name="editor_sleep_wear_only">ഉറക്ക ദൈർഘ്യ മോഡ് Galaxy Watch-ൽ മാത്രമേ പ്രവർത്തിക്കൂ. Apple Watch-ൽ ഈ അലാറം അതിന്റെ സാധാരണ സമയപരിധിയിൽ ലക്ഷ്യ സമയം വരെ നിങ്ങളെ ഉണർത്തും.</string>
     <string name="editor_window">സമയപരിധി: %1$d മി.</string>
     <string name="editor_window_hint">%1$s മുതൽ %2$s വരെയുള്ള സമയത്ത് ഉണർത്തും</string>
     <string name="editor_window_exact">കൃത്യം</string>
@@ -77,7 +78,7 @@
     <string name="history_health_live">%1$s-ൽ നിന്ന്. അവിടെ വരുത്തുന്ന മാറ്റങ്ങളും ഇല്ലാതാക്കലുകളും Phase Wake സ്വയമേവ സ്വീകരിക്കുന്നു.</string>
     <string name="history_health_live_unknown">നിങ്ങളുടെ ആരോഗ്യ ഡാറ്റയിൽ നിന്ന്. അവിടെ വരുത്തുന്ന മാറ്റങ്ങളും ഇല്ലാതാക്കലുകളും Phase Wake സ്വയമേവ സ്വീകരിക്കുന്നു.</string>
     <string name="history_average">Ø %1$d മി. നേരത്തേ</string>
-    <string name="history_light_share">%1$d %% നേരിയ ഉറക്കത്തിൽ</string>
+    <string name="history_light_share">%1$d %% അസ്വസ്ഥരായപ്പോൾ നേരത്തെ ഉണർത്തി</string>
     <string name="history_export">അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
     <string name="history_export_subject">Phase Wake രാത്രികൾ (അജ്ഞാതം)</string>
 
@@ -134,8 +135,8 @@
     <string name="action_cancel">റദ്ദാക്കുക</string>
     <string name="editor_advice_title">നുറുങ്ങ്: വലിയ സമയപരിധി</string>
     <plurals name="editor_advice_text">
-        <item quantity="one">കഴിഞ്ഞ %2$d രാത്രിയിൽ %1$d എണ്ണത്തിൽ സമയപരിധിയിൽ നേരിയ ഉറക്കമുണ്ടായില്ല. %3$d മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും.</item>
-        <item quantity="other">കഴിഞ്ഞ %2$d രാത്രികളിൽ %1$d എണ്ണത്തിൽ സമയപരിധിയിൽ നേരിയ ഉറക്കമുണ്ടായില്ല. %3$d മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും.</item>
+        <item quantity="one">കഴിഞ്ഞ %2$d രാത്രിയിൽ %1$d എണ്ണത്തിൽ സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല. %3$d മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും.</item>
+        <item quantity="other">കഴിഞ്ഞ %2$d രാത്രികളിൽ %1$d എണ്ണത്തിൽ സമയപരിധിയിൽ നല്ല നിമിഷമുണ്ടായില്ല. %3$d മി. ആണെങ്കിൽ കൂടുതൽ തവണ നല്ല നിമിഷത്തിൽ ഉണരും.</item>
     </plurals>
     <string name="editor_advice_apply">%1$d മി. ഉപയോഗിക്കുക</string>
     <string name="channel_sunrise">സൂര്യോദയം</string>
@@ -159,6 +160,9 @@
     <string name="check_ready">ഇന്ന് രാത്രിക്ക് തയ്യാർ</string>
     <string name="check_ready_text">വാച്ച് കണക്റ്റ് ചെയ്‌തു, അലാറങ്ങൾ അനുവദിച്ചു. വിശദാംശങ്ങൾക്ക് ടാപ്പ് ചെയ്യുക.</string>
     <string name="check_not_ready">ഉറങ്ങും മുമ്പ് പരിശോധിക്കുക</string>
+    <string name="check_not_ready_icon">തയ്യാറല്ല</string>
+    <string name="check_silent_switch_title">iOS 26-ന് മുമ്പുള്ള ബാക്കപ്പ് അലാറം</string>
+    <string name="check_silent_switch_text">iOS 26-ന് മുമ്പ് ബാക്കപ്പ് അലാറം ഒരു അറിയിപ്പാണ്: സൈലന്റ് സ്വിച്ച് അതിനെ നിശ്ശബ്ദമാക്കും. ശബ്ദം ഓണാക്കി വയ്ക്കുക അല്ലെങ്കിൽ iOS 26-ലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക.</string>
     <string name="check_watch">വാച്ച് കണക്റ്റ് ചെയ്‌തു</string>
     <string name="check_watch_problem">വാച്ചുമായി ബന്ധപ്പെടാനാകുന്നില്ല. അത് ധരിക്കുക, Bluetooth ഓണാക്കി വയ്ക്കുക, വാച്ചിൽ Phase Wake ഒരിക്കൽ തുറക്കുക.</string>
     <string name="check_notifications">അറിയിപ്പുകൾ അനുവദിച്ചു</string>
@@ -205,8 +209,8 @@
     <string name="settings_support">Phase Wake-നെ പിന്തുണയ്ക്കുക</string>
     <string name="settings_support_text">Phase Wake സൗജന്യവും ഓപ്പൺ സോഴ്‌സും പരസ്യരഹിതവുമാണ്. ഇഷ്ടപ്പെട്ടെങ്കിൽ, വികസനത്തെ പിന്തുണയ്ക്കാം.</string>
     <plurals name="hint_title">
-        <item quantity="one">നേരിയ ഉറക്കമില്ലാത്ത %1$d രാത്രി</item>
-        <item quantity="other">നേരിയ ഉറക്കമില്ലാത്ത %1$d രാത്രികൾ</item>
+        <item quantity="one">നല്ല നിമിഷമില്ലാത്ത %1$d രാത്രി</item>
+        <item quantity="other">നല്ല നിമിഷമില്ലാത്ത %1$d രാത്രികൾ</item>
     </plurals>
     <string name="hint_gaps">അളവിൽ വിടവുകളുണ്ടായിരുന്നു. രാത്രി വാച്ച് ചാർജിങ്ങിലോ ഓഫിലോ ആയിരുന്നോ?</string>
     <string name="hint_heart">ഹൃദയമിടിപ്പ് ലഭിച്ചില്ല. രാത്രി വാച്ച് അൽപം മുറുക്കി ധരിക്കുക.</string>
