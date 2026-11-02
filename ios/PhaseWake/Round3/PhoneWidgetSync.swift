@@ -18,7 +18,7 @@ enum PhoneWidgetSync {
                                exact: alarm?.isExact == true))
             from = plan.target.addingTimeInterval(1)
         }
-        let snapshot = PhoneWidgetSnapshot(plans: plans, issue: failed.first?.title ?? "")
+        let snapshot = PhoneWidgetSnapshot(plans: plans, issue: failed.first { !$0.isAdvisory }?.title ?? "")
         if snapshot.save() { WidgetCenter.shared.reloadTimelines(ofKind: PhoneWidgetSnapshot.kind) }
     }
 }

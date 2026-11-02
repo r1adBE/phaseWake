@@ -87,9 +87,17 @@ class PhaseWakeWear : Application() {
         Notifications.createChannels(this)
         diag.log(if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT, "app start battery ${batteryPercent()}")
         // Nachholen, was das Handy schon abgelegt hat (Wecker, «Verlauf löschen»), falls eine Änderung
-        // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar.
+        // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar. Danach immer neu
+        // planen: Nach «Beenden erzwingen» oder einem Prozessende sind die Alarme weg, und nicht jeder Prozessstart
+        // kommt über die Startseite (Kachel, Komplikation, Data Layer). Eine laufende Nacht bleibt dabei unberührt.
         if (DirectBoot.isUnlocked(this)) {
-            appScope.launch { if (PhoneCatchUp.run(this@PhaseWakeWear)) scheduler.reschedule() }
+            appScope.launch {
+                try {
+                    PhoneCatchUp.run(this@PhaseWakeWear)
+                } finally {
+                    scheduler.reschedule()
+                }
+            }
         }
         // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat. Nur
         // solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an); sonst beim Neuplanen.

@@ -324,7 +324,8 @@ private struct AlarmRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(alarm.sleepDurationMinutes.map { L("alarm_after_sleep", Format.duration(minutes: $0)) } ?? Format.window(alarm))
+                // Einschlaf-Modus wirkt auf Apple nicht (nur Galaxy Watch): immer das normale Fenster.
+                Text(Format.window(alarm))
                     .font(Fonts.manrope(22, .bold, relativeTo: .title2))
                     .foregroundStyle(alarm.enabled ? .primary : .secondary)
                 Text(details).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
@@ -381,7 +382,6 @@ private struct AlarmRow: View {
 
     private var details: String {
         var parts = [Format.days(alarm)]
-        if alarm.sleepDurationMinutes != nil { parts.append(L("alarm_latest", Format.time(hour: alarm.hour, minute: alarm.minute))) }
         if !alarm.label.isEmpty { parts.append(alarm.label) }
         return parts.joined(separator: " · ")
     }

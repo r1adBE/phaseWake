@@ -75,9 +75,9 @@ struct OnboardingView: View {
     /// Stand der Uhr wie im Nacht-Check: gekoppelt, App installiert.
     @ViewBuilder private var watchStatus: some View {
         if failed.contains(.watch) {
-            Label(PhoneCheck.watch.problem, systemImage: "xmark.circle")
+            Label(PhoneCheck.watch.problem, systemImage: "exclamationmark.triangle")
         } else if failed.contains(.watchApp) {
-            Label(PhoneCheck.watchApp.problem, systemImage: "xmark.circle")
+            Label(PhoneCheck.watchApp.problem, systemImage: "exclamationmark.triangle")
         } else {
             Label(L("onb_watch_ok"), systemImage: "checkmark.circle")
         }

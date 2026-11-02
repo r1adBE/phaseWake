@@ -123,6 +123,14 @@ class HealthHistoryTest {
     }
 
     @Test
+    fun minutesRoundDown() {
+        // Gegenstück zu Swift: knapp unter 180 Minuten bleiben 179 (ein Nap), genau 180 sind eine Nacht.
+        val start = t("2026-10-02T12:00:00Z")
+        assertEquals(179, HealthSession(start, start.plusSeconds(3 * 3600).minusNanos(400_000)).durationMinutes)
+        assertEquals(180, HealthSession(start, start.plusSeconds(3 * 3600)).durationMinutes)
+    }
+
+    @Test
     fun napIsDropped() {
         val nap = HealthSession(t("2026-10-02T12:00:00Z"), t("2026-10-02T14:59:00Z"))
         val three = HealthSession(t("2026-10-03T12:00:00Z"), t("2026-10-03T15:00:00Z"))

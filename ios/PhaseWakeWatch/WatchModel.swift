@@ -17,11 +17,15 @@ final class WatchModel {
     /// Probewecker oder Powernap, der statt des nächsten Weckers gilt; nie im Verlauf (`Transient`).
     private(set) var transient: TransientPlan?
     private static let transientKey = "transientPlan"
+    /// Zeitraum der zuletzt beendeten Nacht(en) für das Nachholen (`AlarmSchedule.missedPlan`), wie auf Wear OS.
+    private(set) var catchUp: CatchUpWindow?
+    private static let catchUpKey = "catchUpWindow"
 
     private init() {
         alarms = storage.snapshot().alarms
         sleepGoal = storage.sleepGoal
         transient = UserDefaults.standard.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
+        catchUp = UserDefaults.standard.data(forKey: Self.catchUpKey).flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
@@ -35,8 +39,27 @@ final class WatchModel {
     var plan: WakePlan? { Transient.choose(real: realPlan, transient: transient, now: now) }
 
     /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
+    /// Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst (`missedPlan`).
     var realPlan: WakePlan? {
-        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: storage.doneUntil, calendar: .current, holidays: storage.holidays.dates)
+        let done = storage.doneUntil
+        let holidays = storage.holidays.dates
+        return AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .current, holidays: holidays)
+            ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .current, holidays: holidays)
+    }
+
+    /// Nachzuholender Wecker (Zielzeit schon vorbei), sonst `nil`: Er klingelt gleich, ohne Messung.
+    var missedPlan: WakePlan? {
+        AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: Date(), doneUntil: storage.doneUntil, calendar: .current,
+                                 holidays: storage.holidays.dates)
+    }
+
+    /// Eine Nacht, die geweckt hat, ist zu Ende (vor dem Ausschalten eines Einmal-Weckers aufrufen): Zeitraum ab ihrem
+    /// Fensterbeginn bis jetzt samt den Weckern merken, die darin fällig wurden – sie werden gleich nachgeholt.
+    func noteNightEnded(windowStart: Date) {
+        let window = AlarmSchedule.catchUpAfter(catchUp, windowStart: windowStart, until: Date(), specs: storage.snapshot().alarms,
+                                                calendar: .current, holidays: storage.holidays.dates)
+        catchUp = window
+        UserDefaults.standard.set(try? JSONEncoder().encode(window), forKey: Self.catchUpKey)
     }
 
     /// Warum ein neuer Probewecker oder Powernap jetzt nicht geht: Fenster läuft, Nacht misst, klingelt oder

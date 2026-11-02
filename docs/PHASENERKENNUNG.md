@@ -93,9 +93,9 @@ Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr
 Sensorwerte werden über ihren eigenen Zeitstempel (monotone Uhr) einer Epoche zugeordnet, nicht über den Zeitpunkt, an dem sie bei der App ankommen. So darf der Sensor Werte gebündelt liefern.
 
 - Epoche *k* umfasst die Zeitstempel von Fensterbeginn + *k*·30 s (einschliesslich) bis Fensterbeginn + (*k*+1)·30 s (ausschliesslich).
-- Werte vor dem Fensterbeginn, Werte für eine bereits abgeschlossene Epoche und Werte mehr als 24 Stunden (2880 Epochen) nach Fensterbeginn (Zeitsprung der Sensoruhr) werden verworfen.
+- Werte vor dem Fensterbeginn, Werte für eine bereits abgeschlossene Epoche und Werte nach Epoche 2880 (Zeitsprung der Sensoruhr) werden verworfen. Epoche 2880 beginnt genau 24 Stunden nach Fensterbeginn und gilt noch; verworfen wird ab Fensterbeginn + 24 Std. 30 s.
 - Ein Wert für eine spätere Epoche schliesst die laufende und alle dazwischen liegenden ab; dazwischen liegende Epochen ohne Werte sind leer.
-- Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende länger als die Bündelungs-Verzögerung plus 2 s zurückliegt.
+- Liefert der Sensor nichts, schliesst ein Zeitgeber Epochen ab, deren Ende mindestens die Bündelungs-Verzögerung plus 2 s zurückliegt (Ende ≤ jetzt − Nachfrist; genau auf der Grenze wird schon abgeschlossen).
 - Galaxy Watch: Die Bewegung kommt gebündelt bis 10 s verspätet, der Puls sofort. Die Uhr hält deshalb jeden Pulswert zurück, bis Bewegungswerte mit gleichem oder späterem Zeitstempel da sind (höchstens Bündelungs-Verzögerung plus 2 s). Sonst schlösse ein früher Pulswert die Epoche, bevor ihre Bewegung da ist. Die Regel oben bleibt gleich.
 - Apple Watch: Die Smart-Alarm-Sitzung (höchstens 30 Min) beginnt bei max(Fensterbeginn, Zielzeit − 25 Min). Epochen davor bleiben leer und zählen nicht für die Erkennung.
 

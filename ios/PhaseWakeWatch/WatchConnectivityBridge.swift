@@ -70,12 +70,14 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Sofort, wenn das iPhone erreichbar ist; sonst zugestellt, sobald es das wieder ist.
     /// Mit Zielzeit der Nacht und Sendezeit: Das iPhone verwirft ein verspätetes «klingeln» und setzt
-    /// die Sicherung genau für diese Nacht aus.
-    func send(command: String, alarmId: String = "", target: Date? = nil, snoozesLeft: Int? = nil) {
+    /// die Sicherung genau für diese Nacht aus. `snoozeUntil` nur bei «stop» nach dem Schlummern: Das iPhone stellt
+    /// dann eine Sicherung kurz nach dem Schlummer-Ende, statt die Nacht als beendet zu nehmen.
+    func send(command: String, alarmId: String = "", target: Date? = nil, snoozesLeft: Int? = nil, snoozeUntil: Date? = nil) {
         var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.alarms: alarmId,
                                       SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
         if let target { payload[SyncKeys.target] = Int64(target.timeIntervalSince1970 * 1000) }
         if let snoozesLeft { payload[SyncKeys.snoozesLeft] = Int64(snoozesLeft) }
+        if let snoozeUntil { payload[SyncKeys.snoozeUntil] = Int64(snoozeUntil.timeIntervalSince1970 * 1000) }
         if WCSession.default.isReachable {
             WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
         } else {

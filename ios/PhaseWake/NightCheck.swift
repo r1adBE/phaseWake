@@ -10,6 +10,8 @@ import AlarmKit
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
     case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
+    /// Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Nur ein Hinweis.
+    case silentSwitch
 
     var title: String {
         switch self {
@@ -21,6 +23,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
+        case .silentSwitch: L("check_silent_switch_title")
         }
     }
 
@@ -34,10 +37,14 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
+        case .silentSwitch: L("check_silent_switch_text")
         }
     }
 
     var canFix: Bool { self == .alarms || self == .notifications }
+
+    /// Nur ein Hinweis (nicht rot, «bereit» bleibt): Er lässt sich nicht beheben, nur beachten.
+    var isAdvisory: Bool { self == .silentSwitch }
 }
 
 @MainActor
@@ -76,7 +83,16 @@ enum NightCheck {
         if UIDevice.current.batteryState == .unplugged, level >= 0, level * 100 < Float(lowBatteryPercent) {
             failed.append(.battery)
         }
+        if !hasAlarmKit { failed.append(.silentSwitch) }
         return failed
+    }
+
+    /// Ob der Zweitwecker über AlarmKit klingelt (ab iOS 26) und nicht als Mitteilung.
+    private static var hasAlarmKit: Bool {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) { return true }
+        #endif
+        return false
     }
 
     /// Ab iOS 26 klingelt der Zweitwecker über AlarmKit; davor prüft nur der Mitteilungs-Check.
@@ -115,7 +131,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery, .silentSwitch:
             break
         }
     }
@@ -125,23 +141,27 @@ enum NightCheck {
     }
 }
 
-/// Karte auf der Startseite: knapp, wenn alles stimmt; sonst jede offene Prüfung mit Knopf.
+/// Karte auf der Startseite: knapp, wenn alles stimmt; sonst jede offene Prüfung mit Knopf. Hinweise
+/// (`isAdvisory`) stehen dabei, ohne die Karte rot zu machen.
 struct NightCheckCard: View {
     let failed: [PhoneCheck]
     let onFix: (PhoneCheck) -> Void
     @State private var expanded = false
     @Environment(\.colorScheme) private var scheme
 
+    /// Prüfungen, die das Wecken gefährden (ohne Hinweise).
+    private var blocking: [PhoneCheck] { failed.filter { !$0.isAdvisory } }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Button { if failed.isEmpty { withAnimation { expanded.toggle() } } } label: {
+            Button { if blocking.isEmpty { withAnimation { expanded.toggle() } } } label: {
                 HStack(spacing: 12) {
-                    Image(systemName: failed.isEmpty ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
-                        .foregroundStyle(failed.isEmpty ? Brand.accent(scheme) : .red)
+                    Image(systemName: blocking.isEmpty ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
+                        .foregroundStyle(blocking.isEmpty ? Brand.accent(scheme) : .red)
                         .font(.title3)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(L(failed.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                        if failed.isEmpty {
+                        Text(L(blocking.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                        if blocking.isEmpty {
                             Text(L("check_ready_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
                         }
                     }
@@ -149,16 +169,18 @@ struct NightCheckCard: View {
                 }
             }
             .buttonStyle(.plain)
-            .disabled(!failed.isEmpty)
-            if failed.isEmpty && expanded {
+            .disabled(!blocking.isEmpty)
+            if blocking.isEmpty && expanded {
                 ForEach([PhoneCheck.watch, .watchApp, .alarms, .battery], id: \.self) { check in
                     Label(check.title, systemImage: "checkmark").font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                 }
             }
             ForEach(failed, id: \.self) { check in
                 HStack(alignment: .center) {
-                    // Zeichen statt nur Farbe (WCAG 1.4.1): ✗ = offen, wie Android.
-                    Image(systemName: "xmark.circle").foregroundStyle(.red).accessibilityHidden(true)
+                    // Zeichen statt nur Farbe (WCAG 1.4.1): ⚠ = offen, wie Android; ⓘ = nur ein Hinweis.
+                    Image(systemName: check.isAdvisory ? "info.circle" : "exclamationmark.triangle")
+                        .foregroundStyle(check.isAdvisory ? Brand.secondaryText(scheme) : .red)
+                        .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(check.title).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
                         Text(check.problem).font(Fonts.manrope(14, relativeTo: .subheadline))
@@ -176,7 +198,7 @@ struct NightCheckCard: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(failed.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
+        .background(blocking.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
         .padding(.horizontal, 16)
     }
 }

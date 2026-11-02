@@ -52,6 +52,11 @@ android {
         noCompress += "tflite"
     }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        // Robolectric liest das zusammengeführte Manifest und die Ressourcen.
+        unitTests.isIncludeAndroidResources = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -75,6 +80,10 @@ dependencies {
     implementation(libs.compose.animation)
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
+
+    // Entscheidungen des Zweitweckers (Nachfrist, Ablösen, «stop», Schlummern) in Unit-Tests; Robolectric nur zum Testen.
+    testImplementation(kotlin("test-junit"))
+    testImplementation(libs.robolectric)
 
     screenshotTestImplementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.compose.ui.tooling)

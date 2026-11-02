@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -16,6 +17,7 @@ import androidx.wear.tiles.TileService
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.CatchUpWindow
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
@@ -31,7 +33,6 @@ import com.phasewake.app.wear.wearApp
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
-import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -46,9 +47,9 @@ import kotlinx.coroutines.sync.withLock
  * Mehrere Wecker am selben Morgen (z. B. 6:50 und 7:00): Die Uhr führt immer nur eine Nacht. Klingelt
  * oder schlummert eine Nacht, bleiben ihre Alarme stehen und kein anderer Wecker wird geplant; seine
  * Zielzeit geht dabei aber nicht verloren. Endet die Nacht, gilt jede Zielzeit, die in der Zwischenzeit
- * fällig wurde und noch nicht erledigt ist, als verpasst ([CATCH_UP_FROM], nur Wecker, die dabei schon
- * eingeschaltet waren: [CATCH_UP_IDS]): Dieser Wecker klingelt
- * gleich danach (ohne Messung, sein Fenster ist vorbei). Liegt seine Zielzeit noch vorn, misst er den
+ * fällig wurde und noch nicht erledigt ist, als verpasst ([CatchUpWindow], gespeichert unter [CATCH_UP_FROM]; nur
+ * Wecker, die dabei schon eingeschaltet waren; Regeln im Kern: [AlarmSchedule.missedPlan], gleich auf der Apple Watch):
+ * Dieser Wecker klingelt gleich danach (ohne Messung, sein Fenster ist vorbei). Liegt seine Zielzeit noch vorn, misst er den
  * Rest seines Fensters wie gewohnt. Bewusst kein Zusammenlegen mit dem laufenden Wecken: Jeder
  * eingeschaltete Wecker klingelt sichtbar für sich (eigener Name, Ton, Schlummern, Nacht im Verlauf).
  */
@@ -92,12 +93,11 @@ class AlarmScheduler(
         // Eine schon beendete Nacht nicht noch einmal beginnen (früh geweckt, Zielzeit liegt noch vorn).
         // Pro Wecker: Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
         val done = doneUntil(prefs)
-        val busy = busyRange(prefs, now)
         val days = holidays.current()
-        return alarms.current().alarms.mapNotNull { spec ->
-            val doneAt = done[spec.id] ?: Instant.EPOCH
-            missedPlan(spec, busy, doneAt, now, zone, days) ?: AlarmSchedule.nextPlan(spec, maxOf(now, doneAt), zone, days)
-        }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+        val specs = alarms.current().alarms
+        // Verpasst, während eine andere Nacht lief: gleich nachholen; sonst der nächste Termin.
+        return AlarmSchedule.missedPlan(specs, catchUpWindow(prefs), now, zone, days, done)
+            ?: AlarmSchedule.earliestPlan(specs, now, zone, days, done)
     }
 
     /** Pro Wecker erledigt bis (für «Nächstes Mal überspringen» nach frühem Wecken). */
@@ -110,28 +110,11 @@ class AlarmScheduler(
         return merged
     }
 
-    /** Zeitraum der zuletzt beendeten Nacht(en) und die Wecker, die darin fällig wurden. */
-    private class CatchUp(val from: Instant, val until: Instant, val alarmIds: Set<String>)
-
-    /**
-     * Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief ([busy]), und der noch
-     * nicht erledigt ist: Plan mit dieser (vergangenen) Zielzeit, damit er gleich klingelt statt erst
-     * am nächsten Tag. Nur Wecker, die schon beim Ende der Nacht eingeschaltet waren
-     * ([CatchUp.alarmIds]); ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich.
-     * Sonst `null`.
-     */
-    private fun missedPlan(spec: AlarmSpec, busy: CatchUp?, done: Instant, now: Instant, zone: java.time.ZoneId, days: Set<LocalDate>): WakePlan? {
-        if (busy == null || spec.id !in busy.alarmIds) return null
-        val target = AlarmSchedule.nextTarget(spec, maxOf(busy.from, done), zone, days) ?: return null
-        if (target.isAfter(busy.until) || target.isAfter(now)) return null
-        return AlarmSchedule.planAt(spec, target)
-    }
-
-    /** Zeitraum der zuletzt beendeten Nacht(en), solange er für das Nachholen gilt. */
-    private fun busyRange(prefs: Preferences, now: Instant): CatchUp? {
+    /** Gespeicherter Zeitraum der zuletzt beendeten Nacht(en) für das Nachholen; `null`, wenn keiner. */
+    private fun catchUpWindow(prefs: Preferences): CatchUpWindow? {
         val from = prefs[CATCH_UP_FROM]?.let(Instant::ofEpochMilli) ?: return null
         val until = prefs[CATCH_UP_UNTIL]?.let(Instant::ofEpochMilli) ?: return null
-        return if (now.isAfter(until.plus(CATCH_UP_VALID))) null else CatchUp(from, until, prefs[CATCH_UP_IDS].orEmpty())
+        return CatchUpWindow(from, until, prefs[CATCH_UP_IDS].orEmpty())
     }
 
     /**
@@ -144,19 +127,10 @@ class AlarmScheduler(
         val specs = alarms.current().alarms
         val days = holidays.current()
         store.edit { prefs ->
-            val oldFrom = prefs[CATCH_UP_FROM]
-            val oldUntil = prefs[CATCH_UP_UNTIL]
-            val start = windowStart.toEpochMilli()
-            val end = until.toEpochMilli()
-            val extend = oldFrom != null && oldUntil != null && start <= oldUntil
-            val from = if (extend) minOf(oldFrom, start) else start
-            val to = if (extend) maxOf(oldUntil, end) else end
-            prefs[CATCH_UP_FROM] = from
-            prefs[CATCH_UP_UNTIL] = to
-            val due = specs.filter { spec ->
-                AlarmSchedule.nextTarget(spec, Instant.ofEpochMilli(from), zone, days)?.let { !it.isAfter(Instant.ofEpochMilli(to)) } == true
-            }.map { it.id }.toSet()
-            prefs[CATCH_UP_IDS] = if (extend) prefs[CATCH_UP_IDS].orEmpty() + due else due
+            val next = AlarmSchedule.catchUpAfter(catchUpWindow(prefs), windowStart, until, specs, zone, days)
+            prefs[CATCH_UP_FROM] = next.from.toEpochMilli()
+            prefs[CATCH_UP_UNTIL] = next.until.toEpochMilli()
+            prefs[CATCH_UP_IDS] = next.alarmIds
         }
     }
 
@@ -327,19 +301,13 @@ class AlarmScheduler(
         private val LEGACY_DONE_UNTIL = longPreferencesKey("night_done_until")
         private val DONE_UNTIL_BY_ALARM = stringPreferencesKey("night_done_until_by_alarm")
 
-        /** Zeitraum der zuletzt beendeten Nacht(en), siehe Klassenbeschreibung. */
+        /** Zeitraum der zuletzt beendeten Nacht(en) ([CatchUpWindow]), siehe Klassenbeschreibung. */
         private val CATCH_UP_FROM = longPreferencesKey("catch_up_from")
         private val CATCH_UP_UNTIL = longPreferencesKey("catch_up_until")
         private val CATCH_UP_IDS = stringSetPreferencesKey("catch_up_ids")
 
         /** Am Handy beendet ohne Zielzeit: so weit zurück wird die Nacht gesucht (Fenster, Klingeln, Schlummern). */
         private val PHONE_STOP_LOOKBACK: Duration = Duration.ofHours(2)
-
-        /**
-         * So lange nach dem Ende der Nacht wird noch nachgeholt. Danach nicht mehr: Sonst klänge ein
-         * Wecker, der Stunden später wieder eingeschaltet wird, sofort für einen längst vergangenen Morgen.
-         */
-        private val CATCH_UP_VALID: Duration = Duration.ofMinutes(10)
 
         /** So oft prüft ein Alarm, ob «Gute Nacht» noch misst, und startet es sonst neu. */
         private val GOOD_NIGHT_CHECK_INTERVAL: Duration = Duration.ofMinutes(15)
@@ -387,14 +355,25 @@ class AlarmScheduler(
 
         /**
          * `setAlarmClock` statt `setExact`: Das System behandelt es als Wecker (zeigt ihn an, weckt aus
-         * dem Ruhezustand und erlaubt den Start des Messdienstes aus dem Hintergrund).
+         * dem Ruhezustand und erlaubt den Start des Messdienstes aus dem Hintergrund). Ohne Recht für exakte Alarme
+         * (entziehbar auf Android 12/12L) oder bei einer [SecurityException] ungenau statt gar nicht, wie der
+         * Zweitwecker am Handy: Sonst bräche [reschedule] ab, und Fenster und Zielzeit wären beide weg.
          */
         private fun setAlarmClock(context: Context, at: Instant, operation: PendingIntent) {
-            val show = PendingIntent.getActivity(
-                context, REQUEST_SHOW, Intent(context, MainActivity::class.java),
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-            )
-            context.getSystemService(AlarmManager::class.java).setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
+            val manager = context.getSystemService(AlarmManager::class.java)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || manager.canScheduleExactAlarms()) {
+                val show = PendingIntent.getActivity(
+                    context, REQUEST_SHOW, Intent(context, MainActivity::class.java),
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+                )
+                try {
+                    manager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
+                    return
+                } catch (e: SecurityException) {
+                    Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
+                }
+            }
+            manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)
         }
     }
 }

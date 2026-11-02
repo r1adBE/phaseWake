@@ -21,6 +21,33 @@ public struct WakePlan: Equatable, Sendable {
     }
 }
 
+/// Zeitraum der zuletzt beendeten Nacht(en) auf der Uhr, für das Nachholen (``AlarmSchedule/missedPlan(_:catchUp:now:doneUntil:calendar:holidays:)``):
+/// von `from` (Fensterbeginn) bis `until` (Ende). `alarmIds`: die eingeschalteten Wecker, deren Zielzeit in diesen
+/// Zeitraum fiel – nur diese werden nachgeholt; ein danach neu angelegter oder eingeschalteter klingelt nicht
+/// nachträglich. Identisch zu `CatchUpWindow` (Kotlin).
+public struct CatchUpWindow: Equatable, Sendable, Codable {
+    /// So lange nach dem Ende der Nacht wird noch nachgeholt (10 Minuten). Danach nicht mehr: Sonst klänge ein Wecker,
+    /// der Stunden später wieder eingeschaltet wird, sofort für einen längst vergangenen Morgen.
+    public static let valid: TimeInterval = 10 * 60
+
+    /// Beginn: Fensterbeginn der ersten Nacht.
+    public let from: Date
+    /// Ende der letzten Nacht.
+    public let until: Date
+    /// Wecker, die nachgeholt werden dürfen.
+    public let alarmIds: Set<String>
+
+    /// Erzeugt einen Zeitraum.
+    public init(from: Date, until: Date, alarmIds: Set<String>) {
+        self.from = from
+        self.until = until
+        self.alarmIds = alarmIds
+    }
+
+    /// Ob noch nachgeholt wird: höchstens ``valid`` nach `until`.
+    public func isValid(now: Date) -> Bool { now <= until.addingTimeInterval(Self.valid) }
+}
+
 /// Berechnet, wann ein Wecker das nächste Mal fällig ist. Identisch zu `AlarmSchedule` (Kotlin).
 ///
 /// Feiertage kommen als Nachtdaten «yyyy-MM-dd» (Datum der Zielzeit im Kalender), wie `LocalDate` in Kotlin.
@@ -76,6 +103,51 @@ public enum AlarmSchedule {
                                     holidays: Set<String> = []) -> WakePlan? {
         specs.compactMap { nextPlan($0, now: searchFrom(now, doneUntil[$0.id]), calendar: calendar, holidays: holidays) }
             .min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
+    }
+
+    /// Nachfrist eines schon geplanten Zweitweckers: Liegt `now` in [`plannedTarget`, `plannedTarget` + `grace`) und ist
+    /// `plannedTarget` noch ein gültiger Termin von `spec` (eingeschaltet, Zeit unverändert, nicht übersprungen, kein
+    /// Feiertag: `nextTarget(spec, plannedTarget − 1 ms) == plannedTarget`) und nicht ausgesetzt (`suppressedUntil` vor
+    /// der Zielzeit), bleibt dieser Plan. Sonst `nil`. `nextTarget` sucht nur nach `now`; ohne diese Prüfung fiele die
+    /// Sicherung weg, wenn in der Nachfrist neu geplant wird (Kaltstart der App). Mit `grace` 0 nie. Wie Kotlin.
+    public static func inGrace(_ spec: AlarmSpec, plannedTarget: Date?, now: Date, grace: TimeInterval, calendar: Calendar,
+                               holidays: Set<String> = [], suppressedUntil: Date? = nil) -> WakePlan? {
+        guard let target = plannedTarget, target <= now, target.addingTimeInterval(grace) > now else { return nil }
+        if let suppressedUntil, suppressedUntil >= target { return nil }
+        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar, holidays: holidays),
+              millis(next) == millis(target) else { return nil }
+        return plan(spec, target: target)
+    }
+
+    /// Nachholen nach einer Nacht der Uhr: Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief
+    /// (`catchUp`, solange ``CatchUpWindow/isValid(now:)``), und der noch nicht erledigt ist (`doneUntil`): Plan mit
+    /// dieser (vergangenen) Zielzeit, damit er gleich klingelt statt erst am nächsten Tag. Nur Wecker aus
+    /// `catchUp.alarmIds`. Mehrere: die früheste Zielzeit, bei Gleichstand die kleinere Kennung. Sonst `nil`.
+    /// Ohne Nachholen gilt `earliestPlan` mit denselben Werten. Wie Kotlin.
+    public static func missedPlan(_ specs: [AlarmSpec], catchUp: CatchUpWindow?, now: Date, doneUntil: [String: Date] = [:],
+                                  calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
+        guard let catchUp, catchUp.isValid(now: now) else { return nil }
+        return specs.filter { catchUp.alarmIds.contains($0.id) }.compactMap { spec -> WakePlan? in
+            let from = max(catchUp.from, doneUntil[spec.id] ?? .distantPast)
+            guard let target = nextTarget(spec, now: from, calendar: calendar, holidays: holidays),
+                  target <= catchUp.until, target <= now else { return nil }
+            return plan(spec, target: target)
+        }.min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
+    }
+
+    /// Eine Nacht, die geweckt hat, ist zu Ende: Zeitraum von ihrem Fensterbeginn `windowStart` bis `until` samt den
+    /// eingeschalteten Weckern aus `specs`, deren Zielzeit hineinfiel. Schliesst eine nachgeholte Nacht direkt an
+    /// `previous` an (beginnt nicht nach dessen Ende), wird der Zeitraum verlängert und die Kennungen bleiben (drei
+    /// Wecker hintereinander). Wie Kotlin.
+    public static func catchUpAfter(_ previous: CatchUpWindow?, windowStart: Date, until: Date, specs: [AlarmSpec],
+                                    calendar: Calendar, holidays: Set<String> = []) -> CatchUpWindow {
+        let joined = previous.flatMap { windowStart <= $0.until ? $0 : nil }
+        let from = joined.map { min($0.from, windowStart) } ?? windowStart
+        let to = joined.map { max($0.until, until) } ?? until
+        let due = specs.filter { spec in
+            nextTarget(spec, now: from, calendar: calendar, holidays: holidays).map { $0 <= to } ?? false
+        }.map(\.id)
+        return CatchUpWindow(from: from, until: to, alarmIds: (joined?.alarmIds ?? []).union(due))
     }
 
     /// «Nächstes Mal überspringen»: `skipUntil` = Wandzeit (`wallMillis`) der nächsten Zielzeit nach allen Regeln

@@ -38,7 +38,10 @@ class BackupException(
  *
  * Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8) mit [ITERATIONS] Runden, 256 Bit. NFC,
  * damit «ü» als ein Zeichen oder als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt. Verfahren:
- * AES-256-GCM ohne zusätzliche Daten. 210 000 Runden: Empfehlung von OWASP (2023) für PBKDF2-SHA256.
+ * AES-256-GCM ohne zusätzliche Daten. 210 000 Runden: Das ist die Zahl von OWASP (2023) für PBKDF2-HMAC-SHA512; für
+ * SHA-256 empfiehlt OWASP 600 000. Bewusst so belassen, damit bestehende Sicherungen lesbar bleiben: Die Runden stehen
+ * nicht in der Datei, der Kopf [MAGIC] («PWBK1») trägt die Formatversion. Mehr Runden hiessen ein neues Format «PWBK2»
+ * (Lesen beider Köpfe), nicht eine geänderte Zahl hier. Swift (`Backup.swift`) gleich.
  */
 object BackupFile {
     /** Kopf der Datei, Formatversion 1. */
@@ -164,12 +167,17 @@ data class BackupSettings(
      * bleiben ausgeblendet ([HealthHistory.visible]). `null` = nie gelöscht.
      */
     val historyClearedAt: Long? = null,
+    /**
+     * Mitteilung «Nächster Wecker» auf dem Sperrbildschirm an (Android, Schalter «Wecker auf dem Sperrbildschirm»).
+     * Fehlt der Schlüssel (ältere Sicherung, Apple ohne diese Mitteilung), gilt die Vorgabe `true`.
+     */
+    val nextAlarmNotice: Boolean = true,
 )
 
 /**
  * Inhalt einer Sicherung: die gespeicherten Texte in ihren eigenen Formaten (Wecker, Nächte, Notizen,
- * Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne
- * Gesundheitsdaten (die Nächte aus anderen Apps selbst bleiben dort).
+ * Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Die eigenen Nächte enthalten Bewegung und
+ * Puls je Epoche. Ohne Geräusch-Ausschnitte und ohne die Schlafsitzungen aus Health Connect / HealthKit (die bleiben dort).
  */
 data class BackupPayload(
     /** Erstellt (ms seit 1970). */

@@ -8,7 +8,10 @@ import SwiftUI
 final class PhoneModel {
     static let shared = PhoneModel()
 
-    let storage = PhaseWakeStorage()
+    /// Wecker in `UserDefaults`, Nächte im von der Sicherung ausgenommenen Ordner (`PrivateFiles`).
+    let storage = PhaseWakeStorage(directory: PrivateFiles.adopt(["nights.v1"]))
+    /// Notizen und Befinden, ebenfalls ausgenommen (nicht in `UserDefaults`).
+    let privateNotes = PrivateNotes()
     let backup = BackupAlarm()
     let health = HealthSleep()
     private(set) var alarms: [AlarmSpec] = []
@@ -89,9 +92,9 @@ final class PhoneModel {
     func loadState() {
         alarms = storage.snapshot().alarms
         nights = storage.nights()
-        notes = storage.notes()
-        customNotes = storage.customNotes()
-        healthFeelings = storage.healthFeelings()
+        notes = privateNotes.notes()
+        customNotes = privateNotes.customNotes()
+        healthFeelings = privateNotes.healthFeelings()
         let defaults = UserDefaults.standard
         let goal = defaults.integer(forKey: Self.sleepGoalKey)
         sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
@@ -151,7 +154,7 @@ final class PhoneModel {
 
     /// Befinden zur Nacht aus einer anderen App (Nachtdatum `nightDate`), nur bei Phase Wake gespeichert.
     func setHealthFeeling(_ feeling: Int, nightDate: String) {
-        healthFeelings = storage.setHealthFeeling(feeling, nightDate: nightDate)
+        healthFeelings = privateNotes.setHealthFeeling(feeling, nightDate: nightDate)
         Task { await replanWeekly() }
     }
 
@@ -163,8 +166,9 @@ final class PhoneModel {
 
     /// Am iPhone gestoppt oder geschlummert, während es mit der Uhr klingelt: Die Uhr macht mit (wie Android).
     func phoneRingEnded(snooze: Bool) async {
+        let night = backup.currentRingNight
         await backup.stopRinging()
-        if snooze { await backup.snoozeSafety() }
+        if snooze { await backup.snoozeSafety(night: night) }
         PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
     }
 
@@ -200,7 +204,7 @@ final class PhoneModel {
         storage.clearNights()
         nights = []
         // Notizen und das Befinden zu Nächten aus anderen Apps gehören zum Verlauf und gehen mit.
-        storage.clearNotes()
+        privateNotes.clearNotes()
         notes = [:]
         healthFeelings = [:]
         // Ebenso die Haken der Abendroutine und die Geräusch-Ausschnitte.
@@ -230,7 +234,7 @@ final class PhoneModel {
     }
 
     func toggleNote(_ id: String, nightDate: String) {
-        notes = storage.setNotes(SleepNotes.toggle(id, in: notes[nightDate] ?? []), nightDate: nightDate)
+        notes = privateNotes.setNotes(SleepNotes.toggle(id, in: notes[nightDate] ?? []), nightDate: nightDate)
     }
 
     /// Name zur Kennung: feste Notizen übersetzt, eigene mit ihrem Namen; `nil` = unbekannt.
@@ -257,8 +261,8 @@ final class PhoneModel {
     func deleteCustomNote(_ id: String) { setCustom(customNotes.filter { $0.id != id }) }
 
     private func setCustom(_ list: [CustomNote]) {
-        storage.setCustomNotes(list)
-        customNotes = storage.customNotes()
+        privateNotes.setCustomNotes(list)
+        customNotes = privateNotes.customNotes()
     }
 
     // MARK: Schlafziel und Bettzeit
@@ -387,11 +391,6 @@ extension PhoneModel {
     func replanWeekly() async {
         await weekly.reschedule(model: self)
     }
-}
-
-/// Reiter der App.
-enum AppTab: Hashable {
-    case alarms, history, settings
 }
 
 extension SleepNote {

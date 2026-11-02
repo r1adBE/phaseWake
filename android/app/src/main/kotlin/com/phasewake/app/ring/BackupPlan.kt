@@ -1,9 +1,7 @@
 package com.phasewake.app.ring
 
 import androidx.datastore.preferences.core.edit
-import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.DiagKind
-import com.phasewake.app.core.WakePlan
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm.Companion.GRACE
 import com.phasewake.app.ring.BackupAlarm.Companion.PLANNED_ID
@@ -12,7 +10,6 @@ import com.phasewake.app.ring.BackupAlarm.Companion.SUPPRESSED
 import com.phasewake.app.ring.BackupAlarm.Companion.decodeSuppressed
 import java.time.Duration
 import java.time.Instant
-import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 
 // Planen des Zweitweckers: nächster Wecker mit Handy-Wecker, dazu Probewecker oder Powernap.
@@ -24,8 +21,9 @@ import kotlinx.coroutines.flow.first
  */
 internal suspend fun BackupAlarm.planBackup() {
     rescheduleSunrise()
-    // Eine Schlummer-Sicherung ist unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
+    // Schlummer-Sicherung und Schlummern am Handy sind unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
     SnoozeSafety.restore(context)
+    PhoneSnooze.restore(context)
     alarmManager.cancel(pending())
     val app = context.phoneApp
     val holidays = app.holidays.store.current()
@@ -37,15 +35,11 @@ internal suspend fun BackupAlarm.planBackup() {
     val current = now()
     // Ohne Uhr (nie eine gemeldet): das Handy ist der Wecker und klingelt pünktlich zur Zielzeit.
     val grace = if (sync.watchReady() == null) Duration.ZERO else GRACE
-    val upcoming = backups.mapNotNull { spec ->
-        AlarmSchedule.nextPlan(spec, maxOf(current, suppressed[spec.id] ?: Instant.EPOCH), zone, holidays)
-    }
     // Probewecker oder Powernap: eigener Plan, auch in der Nachfrist (er kommt nicht wieder).
-    val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan?.takeIf { plan ->
-        plan.target.plus(grace).isAfter(current) && (suppressed[plan.alarmId] ?: Instant.EPOCH) < plan.target
-    }
-    val plan = (upcoming + listOfNotNull(inGrace(backups, prefs[PLANNED_ID], prefs[PLANNED_TARGET], suppressed, grace, holidays), transient))
-        .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+    val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan
+    // In der Nachfrist eines schon geplanten Zweitweckers (z. B. beim Prozessstart) bleibt er bestehen.
+    val plannedTarget = prefs[PLANNED_TARGET]?.let(Instant::ofEpochMilli)
+    val plan = RingRules.backupPlan(backups, transient, prefs[PLANNED_ID], plannedTarget, suppressed, current, grace, zone, holidays)
     if (plan == null) {
         if (prefs[PLANNED_ID] != null) store.edit { it.remove(PLANNED_ID); it.remove(PLANNED_TARGET) }
         BackupDirectBoot.clear(context)
@@ -62,27 +56,6 @@ internal suspend fun BackupAlarm.planBackup() {
     setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
     // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen.
     BackupDirectBoot.save(context, at, plan.alarmId, plan.target)
-}
-
-/**
- * Läuft gerade die Nachfrist eines schon geplanten Zweitweckers, bleibt er bestehen (Neuplanen zwischen
- * Zielzeit und Zielzeit + Nachfrist, z. B. beim Prozessstart). Sonst `null`.
- */
-private fun BackupAlarm.inGrace(
-    backups: List<com.phasewake.app.core.AlarmSpec>,
-    id: String?,
-    targetMs: Long?,
-    suppressed: Map<String, Instant>,
-    grace: Duration,
-    holidays: Set<LocalDate>,
-): WakePlan? {
-    val spec = backups.firstOrNull { it.id == id } ?: return null
-    val target = Instant.ofEpochMilli(targetMs ?: 0L)
-    val current = now()
-    val valid = !target.isAfter(current) && target.plus(grace).isAfter(current) &&
-        AlarmSchedule.nextTarget(spec, target.minusMillis(1), zone, holidays) == target &&
-        (suppressed[spec.id] ?: Instant.EPOCH) < target
-    return if (valid) AlarmSchedule.planAt(spec, target) else null
 }
 
 /** Geplante Zielzeit des Zweitweckers (für die Diagnose); `null`, wenn keiner geplant ist. */

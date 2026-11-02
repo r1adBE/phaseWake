@@ -3,6 +3,7 @@ package com.phasewake.app.ring
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm.Companion.ACTION
 import com.phasewake.app.ring.BackupAlarm.Companion.ACTION_SNOOZE_SAFETY
@@ -19,29 +20,34 @@ import kotlinx.coroutines.launch
 internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
     val alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID)
     val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
-    when (intent.action) {
+    val done = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0)
+    // Ob dieses Wecken klingelt (neu oder als Ablösung eines laufenden); nur dann gilt die Nacht als geweckt.
+    val rings = when (intent.action) {
         // Mit Zielzeit (nur der Zweitwecker selbst): Beim Beenden am Handy erfährt die Uhr, welche Nacht.
-        ACTION -> PhoneRingService.ring(context, alarmId, target = target, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+        ACTION -> PhoneRingService.ring(context, alarmId, target = target, snoozesDone = done).rings
         // Die Uhr hat sich nach dem Schlummern nicht mehr gemeldet: das Handy klingelt selbst.
         ACTION_SNOOZE_SAFETY -> {
             SnoozeSafety.clear(context)
-            PhoneRingService.ring(context, alarmId, snoozesDone = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0))
+            val started = PhoneRingService.ring(context, alarmId, snoozesDone = done).rings
             // Vor dem ersten Entsperren: der abgelegte Zweitwecker bleibt, wie er ist.
             if (!isUnlocked(context)) return
+            started
         }
         ACTION_WATCH_RING -> {
             val left = if (intent.hasExtra(PhoneRingService.EXTRA_SNOOZES_LEFT)) intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 0) else null
             PhoneRingService.ring(context, alarmId, fromWatch = true, target = target, snoozesLeft = left)
             return
         }
-        ACTION_SUNRISE -> Unit // unten, nach dem Merken
+        ACTION_SUNRISE -> false // unten, nach dem Merken
         else -> return
     }
     // Vor dem ersten Entsperren (Neustart in der Nacht) sind Wecker und Einstellungen nicht lesbar.
     if (!isUnlocked(context)) {
+        // Ende des Schlummerns am Handy (ohne Zielzeit): der abgelegte Zweitwecker bleibt, wie er ist.
+        if (intent.action == ACTION && target == null) return
         BackupDirectBoot.clear(context)
         // Nach dem Entsperren nachholen: Nacht aussetzen, Einmal-Wecker ausschalten.
-        if (intent.action == ACTION && alarmId != null && target != null) BackupDirectBoot.markRang(context, alarmId, target)
+        if (intent.action == ACTION && alarmId != null && target != null && rings) BackupDirectBoot.markRang(context, alarmId, target)
         return
     }
     val pending = goAsync()
@@ -50,10 +56,11 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
         try {
             BackupDirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
             if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
-            // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns.
-            if (intent.action == ACTION && target != null) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
+            // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns; und nur, wenn er klingelt.
+            if (intent.action == ACTION && target != null && rings) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
+            if (intent.action == ACTION && !rings) app.diag.log(DiagKind.RING, "phone backup not started")
             // Die Uhr hat diese Nacht nicht beendet: einen Einmal-Wecker schaltet dann das Handy aus.
-            if (intent.action == ACTION_SNOOZE_SAFETY) app.backup.disableOneShot(alarmId)
+            if (intent.action == ACTION_SNOOZE_SAFETY && rings) app.backup.disableOneShot(alarmId)
             app.backup.reschedule()
         } finally {
             pending.finish()
@@ -67,6 +74,7 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     if (!isUnlocked(context)) {
         BackupDirectBoot.restore(context)
         SnoozeSafety.restore(context)
+        PhoneSnooze.restore(context)
         return
     }
     val pending = goAsync()

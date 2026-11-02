@@ -102,3 +102,49 @@ internal object SnoozeSafety {
         setExact(context, maxOf(saved.at, current.plus(FORWARD_DELAY)), showPending(context), safetyPending(context, saved.alarmId, saved.snoozesDone))
     }
 }
+
+/**
+ * Schlummern am Handy allein (Zweitwecker oder Probewecker ohne Uhr) im geräteverschlüsselten Speicher: Der Alarm
+ * zum Schlummer-Ende ([BackupAlarm.snoozeUntil]) fehlt nach einem Neustart, die Nacht gilt aber schon seit dem ersten
+ * Klingeln als geweckt. Wie [SnoozeSafety] neu gestellt in [BackupAlarm.planBackup] und bei (LOCKED_)BOOT_COMPLETED,
+ * auch vor dem ersten Entsperren. Gelöscht, sobald es wieder klingelt oder am Handy beendet wird ([BackupAlarm.cancelSnooze]).
+ */
+internal object PhoneSnooze {
+    private const val FILE = "backup_phone_snooze"
+    private const val KEY_AT = "at"
+    private const val KEY_ID = "alarmId"
+    private const val KEY_DONE = "snoozesDone"
+
+    /** Schlummer-Ende [at] des Weckers [alarmId] nach [snoozesDone] Runden. */
+    data class Saved(val at: Instant, val alarmId: String?, val snoozesDone: Int)
+
+    private fun prefs(context: Context) =
+        context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
+
+    fun save(context: Context, saved: Saved) {
+        prefs(context).edit { putLong(KEY_AT, saved.at.toEpochMilli()); putString(KEY_ID, saved.alarmId); putInt(KEY_DONE, saved.snoozesDone) }
+    }
+
+    fun load(context: Context): Saved? {
+        val prefs = prefs(context)
+        if (!prefs.contains(KEY_AT)) return null
+        return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0))
+    }
+
+    fun clear(context: Context) {
+        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE) }
+    }
+
+    /**
+     * Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen, aber nicht
+     * Stunden später (Probewecker und Powernap: nur 60 s, sonst [MISSED_DURING_BOOT]). [now]: für Tests.
+     */
+    fun restore(context: Context, now: Instant = Instant.now()) {
+        val saved = load(context) ?: return
+        if (!Transient.catchesUpAfterBoot(saved.alarmId.orEmpty(), saved.at, now, MISSED_DURING_BOOT)) {
+            clear(context)
+            return
+        }
+        setExact(context, maxOf(saved.at, now.plus(FORWARD_DELAY)), showPending(context), snoozePending(context, saved.alarmId, saved.snoozesDone))
+    }
+}

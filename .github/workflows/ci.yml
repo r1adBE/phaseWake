@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Abdeckung

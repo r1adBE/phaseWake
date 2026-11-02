@@ -54,10 +54,10 @@ public enum SleepSounds {
     }
 
     /// Wann die Klänge enden: nach dem Timer, spätestens beim Beginn des nächsten Weckfensters
-    /// (sie sollen das Wecken nie überdecken). `nil` = ohne Ende.
+    /// (sie sollen das Wecken nie überdecken); läuft das Fenster schon, sofort (`start`). `nil` = ohne Ende. Wie Kotlin.
     public static func stopAt(start: Date, timerMinutes: Int?, nextWindowStart: Date?) -> Date? {
         let timerEnd = timerMinutes.map { start.addingTimeInterval(TimeInterval($0 * 60)) }
-        switch (timerEnd, nextWindowStart) {
+        switch (timerEnd, nextWindowStart.map { max($0, start) }) {
         case let (t?, w?): return min(t, w)
         case let (t?, nil): return t
         case let (nil, w?): return w

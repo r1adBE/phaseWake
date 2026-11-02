@@ -114,6 +114,7 @@ class SleepSoundsTest {
         assertNull(SleepSounds.stopAt(start, null, null))
         // Läuft das Weckfenster schon, enden die Klänge sofort.
         assertEquals(start, SleepSounds.stopAt(start, 15, start.minusSeconds(60)))
+        assertEquals(start, SleepSounds.stopAt(start, null, start.minusSeconds(60)))
     }
 
     @Test

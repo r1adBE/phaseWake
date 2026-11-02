@@ -24,6 +24,24 @@ data class WakePlan(
 )
 
 /**
+ * Zeitraum der zuletzt beendeten Nacht(en) auf der Uhr, für das Nachholen ([AlarmSchedule.missedPlan]): von [from]
+ * (Fensterbeginn) bis [until] (Ende). [alarmIds]: die eingeschalteten Wecker, deren Zielzeit in diesen Zeitraum
+ * fiel – nur diese werden nachgeholt; ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich.
+ */
+data class CatchUpWindow(val from: Instant, val until: Instant, val alarmIds: Set<String>) {
+    /** Ob noch nachgeholt wird: höchstens [VALID] nach [until]. */
+    fun isValid(now: Instant): Boolean = !now.isAfter(until.plus(VALID))
+
+    companion object {
+        /**
+         * So lange nach dem Ende der Nacht wird noch nachgeholt. Danach nicht mehr: Sonst klänge ein Wecker, der
+         * Stunden später wieder eingeschaltet wird, sofort für einen längst vergangenen Morgen.
+         */
+        val VALID: Duration = Duration.ofMinutes(10)
+    }
+}
+
+/**
  * Berechnet, wann ein Wecker das nächste Mal fällig ist.
  *
  * Sommer- und Winterzeit: Fällt die Zielzeit in die übersprungene Stunde, wird sie um die Länge der
@@ -110,6 +128,73 @@ object AlarmSchedule {
     ): WakePlan? =
         specs.mapNotNull { nextPlan(it, searchFrom(now, doneUntil[it.id]), zone, holidays) }
             .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+
+    /**
+     * Nachfrist eines schon geplanten Zweitweckers: Liegt [now] in [plannedTarget, plannedTarget + [grace]) und ist
+     * [plannedTarget] noch ein gültiger Termin von [spec] (eingeschaltet, Zeit unverändert, nicht übersprungen, kein
+     * Feiertag: `nextTarget(spec, plannedTarget − 1 ms) == plannedTarget`) und nicht ausgesetzt ([suppressedUntil]
+     * vor der Zielzeit), bleibt dieser Plan. Sonst `null`. [nextTarget] sucht nur nach [now]; ohne diese Prüfung
+     * fiele die Sicherung weg, wenn in der Nachfrist neu geplant wird (Prozessstart, Kaltstart der App). Mit
+     * [grace] null nie.
+     */
+    fun inGrace(
+        spec: AlarmSpec,
+        plannedTarget: Instant?,
+        now: Instant,
+        grace: Duration,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        suppressedUntil: Instant? = null,
+    ): WakePlan? {
+        val target = plannedTarget ?: return null
+        if (target.isAfter(now) || !target.plus(grace).isAfter(now)) return null
+        if (suppressedUntil != null && !suppressedUntil.isBefore(target)) return null
+        if (nextTarget(spec, target.minusMillis(1), zone, holidays) != target) return null
+        return planAt(spec, target)
+    }
+
+    /**
+     * Nachholen nach einer Nacht der Uhr: Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief
+     * ([catchUp], solange [CatchUpWindow.isValid]), und der noch nicht erledigt ist ([doneUntil]): Plan mit dieser
+     * (vergangenen) Zielzeit, damit er gleich klingelt statt erst am nächsten Tag. Nur Wecker aus
+     * [CatchUpWindow.alarmIds]. Mehrere: die früheste Zielzeit, bei Gleichstand die kleinere Kennung. Sonst `null`.
+     * Ohne Nachholen gilt [earliestPlan] mit denselben Werten.
+     */
+    fun missedPlan(
+        specs: Collection<AlarmSpec>,
+        catchUp: CatchUpWindow?,
+        now: Instant,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+        doneUntil: Map<String, Instant> = emptyMap(),
+    ): WakePlan? {
+        if (catchUp == null || !catchUp.isValid(now)) return null
+        return specs.filter { it.id in catchUp.alarmIds }.mapNotNull { spec ->
+            val target = nextTarget(spec, maxOf(catchUp.from, doneUntil[spec.id] ?: Instant.EPOCH), zone, holidays)
+            target?.takeIf { !it.isAfter(catchUp.until) && !it.isAfter(now) }?.let { planAt(spec, it) }
+        }.minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+    }
+
+    /**
+     * Eine Nacht, die geweckt hat, ist zu Ende: Zeitraum von ihrem Fensterbeginn [windowStart] bis [until] samt den
+     * eingeschalteten Wecker aus [specs], deren Zielzeit hineinfiel. Schliesst eine nachgeholte Nacht direkt an
+     * [previous] an (beginnt nicht nach dessen Ende), wird der Zeitraum verlängert und die Kennungen bleiben
+     * (drei Wecker hintereinander).
+     */
+    fun catchUpAfter(
+        previous: CatchUpWindow?,
+        windowStart: Instant,
+        until: Instant,
+        specs: Collection<AlarmSpec>,
+        zone: ZoneId,
+        holidays: Set<LocalDate> = emptySet(),
+    ): CatchUpWindow {
+        val joined = previous?.takeIf { !windowStart.isAfter(it.until) }
+        val from = joined?.let { minOf(it.from, windowStart) } ?: windowStart
+        val to = joined?.let { maxOf(it.until, until) } ?: until
+        val due = specs.filter { spec -> nextTarget(spec, from, zone, holidays)?.let { !it.isAfter(to) } == true }.map { it.id }.toSet()
+        return CatchUpWindow(from, to, joined?.alarmIds.orEmpty() + due)
+    }
 
     /** Ab wann gesucht wird: [now], oder [doneUntil], wenn das später ist (eine erledigte Nacht zählt nicht). */
     private fun searchFrom(now: Instant, doneUntil: Instant?): Instant =

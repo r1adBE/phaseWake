@@ -204,6 +204,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             holidayCountry = prefs[HOLIDAY_COUNTRY].orEmpty(),
             holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
             historyClearedAt = prefs[HISTORY_CLEARED_AT],
+            nextAlarmNotice = prefs[NEXT_ALARM_NOTICE] ?: true,
         )
     }
 
@@ -220,6 +221,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             it[HOLIDAY_REGION] = settings.holidayRegion
             val cleared = settings.historyClearedAt
             if (cleared == null) it.remove(HISTORY_CLEARED_AT) else it[HISTORY_CLEARED_AT] = cleared
+            it[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
         }
     }
 

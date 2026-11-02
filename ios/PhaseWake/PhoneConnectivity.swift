@@ -59,6 +59,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     func session(_ session: WCSession, activationDidCompleteWith state: WCSessionActivationState, error: Error?) {
         guard state == .activated else { return }
+        // Gekoppelt und App installiert? Bestimmt die Nachfrist des Zweitweckers (ohne Uhr 0 s).
+        BackupAlarm.noteWatchState(session)
         receive(context: session.receivedApplicationContext)
         Task { @MainActor in
             PhoneModel.shared.publishToWatch()
@@ -73,6 +75,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     func sessionDidDeactivate(_ session: WCSession) {
         // Uhr gewechselt: neue Sitzung aktivieren.
         WCSession.default.activate()
+    }
+
+    /// Uhr gekoppelt oder entkoppelt, App auf der Uhr installiert oder entfernt: Nachfrist des Zweitweckers anpassen.
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        BackupAlarm.noteWatchState(session)
     }
 
     func session(_ session: WCSession, didReceiveApplicationContext context: [String: Any]) {
@@ -101,6 +108,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         // Zielzeit der Nacht und Sendezeit; ältere Uhr-Versionen schicken sie nicht.
         let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         let sentAt = message[SyncKeys.sentAt] as? Int64
+        // Älter als 2 Minuten (nachgereicht, z. B. per `transferUserInfo`): klingelt bzw. stoppt nicht mehr.
+        let stale = sentAt.map { Int64(Date().timeIntervalSince1970 * 1000) - $0 > SyncKeys.maxRingAgeMs } ?? false
+        // Nur bei «stop» nach dem Schlummern auf der Uhr; ältere Uhren schicken es nie.
+        let snoozeUntil = (message[SyncKeys.snoozeUntil] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         let snoozesLeft = (message[SyncKeys.snoozesLeft] as? Int64).map { Int($0) } ?? 0
         let id = message[SyncKeys.id] as? String
         let payload = message[SyncKeys.payload] as? String
@@ -108,21 +119,31 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let model = PhoneModel.shared
             switch command {
             case SyncKeys.ring:
-                if let sentAt, Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs {
+                if stale {
                     // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln, nur diese Nacht als erledigt merken.
                     DiagStore.shared.log(.suppressed, "late ring")
                     await model.backup.watchHandled(alarmId: alarmId, target: target)
                 } else {
                     model.watchRang()
                     DiagStore.shared.log(.ring, "watch rang, phone too")
-                    let ring = await model.backup.ringNow(alarm: model.ringSpec(alarmId), target: target, snoozesLeft: snoozesLeft)
+                    let ring = await model.backup.ringNow(alarmId: alarmId, alarm: model.ringSpec(alarmId), target: target,
+                                                          snoozesLeft: snoozesLeft)
                     await model.transient.watchRang(alarmId, phoneRing: ring)
                 }
             case SyncKeys.stop:
-                DiagStore.shared.log(.stop, "from watch")
-                await model.backup.stopRinging()
+                let night = RingNight(alarmId: alarmId, target: target)
+                if stale {
+                    // Ein spätes «stop» träfe sonst ein Klingeln, das inzwischen zu einer anderen Nacht gehört.
+                    DiagStore.shared.log(.suppressed, "late stop")
+                } else {
+                    DiagStore.shared.log(.stop, snoozeUntil == nil ? "from watch" : "watch snoozed")
+                    // Nur das Klingeln dieser Nacht; ein zweiter Wecker klingelt weiter.
+                    await model.backup.stopRinging(night: night, snoozed: snoozeUntil != nil)
+                }
+                // Geschlummert: Sicherung kurz nach dem Schlummer-Ende, die Nacht läuft weiter.
+                if let snoozeUntil { await model.backup.watchSnoozed(night: night, until: snoozeUntil) }
                 await model.backup.watchHandled(alarmId: alarmId, target: target)
-                await model.transient.stopArrived(alarmId)
+                if snoozeUntil == nil { await model.transient.stopArrived(alarmId) }
             case SyncKeys.testAck:
                 model.transient.received(id)
             case SyncKeys.nap:

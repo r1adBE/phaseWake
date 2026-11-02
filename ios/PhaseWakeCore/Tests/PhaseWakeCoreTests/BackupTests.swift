@@ -81,6 +81,15 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings.historyClearedAt, 1_790_000_000_000)
     }
 
+    func testBackupKeepsNextAlarmNotice() throws {
+        // Fehlt der Schlüssel (ältere Sicherung, Testvektor), bleibt die Mitteilung an.
+        XCTAssertTrue(try BackupPayload.fromJson(try testdata("backup-v1.json")).settings.nextAlarmNotice)
+        var p = payload
+        XCTAssertTrue(p.toJson().contains(#""nextAlarmNotice":true"#))
+        p.settings.nextAlarmNotice = false
+        XCTAssertFalse(try BackupPayload.fromJson(p.toJson()).settings.nextAlarmNotice)
+    }
+
     func testBackupKeepsHealthFeelings() throws {
         var rated = payload
         rated.healthFeelings = "2026-10-01|4\n2026-10-02|2"

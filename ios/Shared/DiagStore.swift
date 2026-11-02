@@ -21,8 +21,10 @@ final class DiagStore: @unchecked Sendable {
     /// Nur auf `queue` gelesen und geschrieben.
     private var cache: [DiagEntry]?
 
+    /// `directory` = Ordner des Protokolls; Standard ist der von der Sicherung ausgenommene `PrivateFiles.directory`
+    /// (ein Protokoll früherer Versionen aus Application Support wird dorthin übernommen).
     init(directory: URL? = nil) {
-        let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let dir = directory ?? PrivateFiles.adopt(["diag.v1"])
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         url = dir.appendingPathComponent("diag.v1")
     }

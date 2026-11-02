@@ -19,11 +19,15 @@ public struct BackupSettings: Equatable, Sendable {
     /// Zeitpunkt von «Verlauf löschen» (ms seit 1970); Fremd-Nächte, die nicht danach enden, bleiben ausgeblendet
     /// (``HealthHistory/visible(_:clearedAt:)``). `nil` = nie gelöscht.
     public var historyClearedAt: Int64?
+    /// Mitteilung «Nächster Wecker» auf dem Sperrbildschirm an (nur Android, Schalter «Wecker auf dem Sperrbildschirm»).
+    /// Das iPhone hat diese Mitteilung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel
+    /// (ältere Sicherung), gilt die Vorgabe `true`.
+    public var nextAlarmNotice: Bool
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
                 soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "",
-                historyClearedAt: Int64? = nil) {
+                historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true) {
         self.sleepGoal = sleepGoal
         self.bedtimeReminder = bedtimeReminder
         self.weeklyReview = weeklyReview
@@ -32,12 +36,14 @@ public struct BackupSettings: Equatable, Sendable {
         self.holidayCountry = holidayCountry
         self.holidayRegion = holidayRegion
         self.historyClearedAt = historyClearedAt
+        self.nextAlarmNotice = nextAlarmNotice
     }
 }
 
 /// Inhalt einer Sicherung: die gespeicherten Texte in ihren eigenen Formaten (Wecker, Nächte, Notizen,
-/// Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Ohne Geräusch-Ausschnitte und ohne
-/// Gesundheitsdaten (die Nächte aus anderen Apps selbst bleiben dort). Identisch zu Kotlin.
+/// Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Die eigenen Nächte enthalten Bewegung und
+/// Puls je Epoche. Ohne Geräusch-Ausschnitte und ohne die Schlafsitzungen aus Health Connect / HealthKit (die bleiben
+/// dort). Identisch zu Kotlin.
 public struct BackupPayload: Equatable, Sendable {
     /// Wert von «format».
     public static let format = "phasewake-backup"
@@ -90,6 +96,7 @@ public struct BackupPayload: Equatable, Sendable {
                 "soundRecDefault": s.soundRecDefault, "theme": s.theme, "holidayCountry": s.holidayCountry,
                 "holidayRegion": s.holidayRegion,
                 "historyClearedAt": s.historyClearedAt.map { NSNumber(value: $0) as Any } ?? NSNull(),
+                "nextAlarmNotice": s.nextAlarmNotice,
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
@@ -127,7 +134,8 @@ public struct BackupPayload: Equatable, Sendable {
                 theme: s["theme"] as? String ?? d.theme,
                 holidayCountry: s["holidayCountry"] as? String ?? d.holidayCountry,
                 holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion,
-                historyClearedAt: integer(s["historyClearedAt"])
+                historyClearedAt: integer(s["historyClearedAt"]),
+                nextAlarmNotice: bool(s["nextAlarmNotice"]) ?? d.nextAlarmNotice
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""
         )

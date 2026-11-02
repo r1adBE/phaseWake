@@ -67,7 +67,9 @@ extension SmartAlarm {
         // Rückfall auch fürs Schlummern (unter der Kennung dieser Nacht): falls die neue Sitzung nicht startet.
         scheduleFallback(at: until.addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
         save()
-        WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: plan.alarmId, target: nightPlan?.target)
+        // Mit Schlummer-Ende: Das iPhone hört auf zu klingeln, behält die Nacht aber und stellt 90 s nach dem
+        // Schlummer-Ende eine eigene Sicherung (falls die neue Sitzung nicht startet).
+        WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: plan.alarmId, target: nightPlan?.target, snoozeUntil: until)
     }
 
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
@@ -113,6 +115,8 @@ extension SmartAlarm {
             model.storage.add(night)
             // Diese Nacht ist erledigt: nicht noch einmal planen, auch wenn die Zielzeit noch vorn liegt.
             model.storage.markDone(alarmId: nightPlan.alarmId, until: nightPlan.target)
+            // Wecker, die während dieser Nacht fällig wurden, gleich nachholen (wie Wear OS).
+            model.noteNightEnded(windowStart: nightPlan.windowStart)
             WatchConnectivityBridge.shared.send(night: night)
         }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }

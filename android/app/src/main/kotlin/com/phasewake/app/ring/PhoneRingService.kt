@@ -3,17 +3,9 @@ package com.phasewake.app.ring
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.media.AudioAttributes
-import android.media.MediaPlayer
-import android.media.RingtoneManager
-import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.os.VibrationAttributes
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.os.VibratorManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.phasewake.app.core.DiagKind
@@ -40,25 +32,7 @@ import kotlinx.coroutines.launch
 class PhoneRingService : Service() {
 
     private val handler = Handler(Looper.getMainLooper())
-    private var player: MediaPlayer? = null
-    private var volume = 0f
-
-    /** Beim Lösen der Weckaufgabe leiser ([TYPING_VOLUME]), nach [TYPING_IDLE_MS] ohne Eingabe wieder voll. */
-    private var duck = 1f
-    private val unduck = Runnable {
-        duck = 1f
-        applyVolume()
-    }
-    private var lastAlarmId: String? = null
-    private var lastTarget: Long? = null
-
-    private val fadeIn = object : Runnable {
-        override fun run() {
-            volume = (volume + FADE_STEP).coerceAtMost(1f)
-            applyVolume()
-            if (volume < 1f) handler.postDelayed(this, FADE_INTERVAL_MS)
-        }
-    }
+    private val sound by lazy { PhoneRingSound(this, handler) }
 
     private val timeout = Runnable { onTimeout() }
     private val alert by lazy { PhoneRingAlert(this, handler) }
@@ -77,12 +51,7 @@ class PhoneRingService : Service() {
             ACTION_STOP -> stop(notifyWatch = true)
             ACTION_STOP_SILENT -> stop(notifyWatch = false)
             ACTION_SNOOZE -> snooze()
-            ACTION_TYPING -> if (state.value is State.Ringing) {
-                duck = TYPING_VOLUME
-                applyVolume()
-                handler.removeCallbacks(unduck)
-                handler.postDelayed(unduck, TYPING_IDLE_MS)
-            }
+            ACTION_TYPING -> if (state.value is State.Ringing) sound.duckForTyping()
             ACTION_TASK_SHOWN -> taskShown()
         }
         return START_NOT_STICKY
@@ -100,22 +69,34 @@ class PhoneRingService : Service() {
      * Schlummer-Runden: Bei der Uhr zählt deren Angabe [watchSnoozesLeft] (ältere Uhren schicken keine:
      * dann der Zähler im Prozess), beim Handy allein [snoozesDone] aus dem Schlummer-Alarm. So stimmt
      * die Zahl auch, wenn der Dienst zwischendurch beendet wurde.
+     *
+     * Klingelt schon eine andere Nacht (zwei Wecker kurz nacheinander), löst diese sie ab ([RingRules.Incoming.TAKE_OVER]):
+     * Kennung, Zielzeit, Ton und Aufgabe wechseln, die erste Nacht gilt als geweckt (sie hat schon geklingelt). So
+     * bleibt kein Wecker stumm und keiner wird still als erledigt geführt.
      */
     private fun start(alarmId: String?, fromWatch: Boolean, target: Long?, watchSnoozesLeft: Int?, snoozesDone: Int) {
         phoneApp.backup.cancelSnooze()
         // Einschlafklänge überdecken nie das Wecken (enden sonst schon zu Beginn des Weckfensters).
         com.phasewake.app.sounds.SleepSoundService.stop(this)
-        alert.post(newRound = state.value !is State.Ringing)
         val ringing = state.value as? State.Ringing
-        if (ringing != null) {
+        val incoming = RingRules.incoming(ringing != null, alarmId, target, lastAlarmId, lastTarget)
+        if (ringing != null && incoming == RingRules.Incoming.SAME_NIGHT) {
+            alert.post(newRound = false)
             // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
             // Restzahl der Uhr übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
-            if (fromWatch && watchSnoozesLeft != null && RingMessage(alarmId, target).sameNight(lastAlarmId, lastTarget)) {
+            if (fromWatch && watchSnoozesLeft != null) {
                 state.value = ringing.copy(fromWatch = true, snoozesLeft = watchSnoozesLeft.coerceIn(0, Snooze.MAX_COUNT))
                 if (lastAlarmId == null) lastAlarmId = alarmId
                 if (lastTarget == null) lastTarget = target
             }
             return
+        }
+        alert.post(newRound = true)
+        if (ringing != null) {
+            // Ablösen: Ton, Erinnerungen und Zeitgrenze der ersten Nacht enden; eine Aufgabe der Uhr ist hier weg.
+            taskGone(ringing)
+            release()
+            state.value = State.Idle
         }
         val afterSnooze = state.value is State.Snoozed
         if (afterSnooze) state.value = State.Idle
@@ -135,7 +116,8 @@ class PhoneRingService : Service() {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
             val unlocked = BackupAlarm.isUnlocked(this@PhoneRingService)
             val spec = if (unlocked) phoneApp.specFor(alarmId) else null
-            phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch" else "phone backup")
+            val took = if (ringing != null) " (took over)" else ""
+            phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch$took" else "phone backup$took")
             if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, java.time.Instant.now())
             // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
             val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
@@ -152,7 +134,7 @@ class PhoneRingService : Service() {
                 PhoneAlert.OFF -> if (sunrise == Sunrise.OFF) stop(notifyWatch = false)
                 PhoneAlert.VIBRATE -> vibrate()
                 PhoneAlert.SOUND -> {
-                    playSound(spec?.sound.orEmpty())
+                    if (state.value is State.Ringing) sound.play(spec?.sound.orEmpty())
                     vibrate()
                 }
             }
@@ -245,67 +227,14 @@ class PhoneRingService : Service() {
         phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_GONE, message) }
     }
 
-    private fun playSound(chosen: String) {
-        if (state.value !is State.Ringing) return
-        val default = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
-            ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        // Gewählter Weckton zuerst (eigener aus res/raw oder Systemton); ist er nicht abspielbar (gelöscht,
-        // kein Zugriff), der Standard-Weckton.
-        val candidates = listOfNotNull(WakeTones.resolve(this, chosen), default).distinct()
-        for (uri in candidates) {
-            try {
-                player = MediaPlayer().apply {
-                    setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                    setDataSource(this@PhoneRingService, uri)
-                    isLooping = true
-                    setVolume(0f, 0f)
-                    prepare()
-                    start()
-                }
-                volume = 0f
-                handler.post(fadeIn)
-                return
-            } catch (e: Exception) {
-                player?.release()
-                player = null
-                Log.w(TAG, "Weckton $uri nicht abspielbar", e)
-            }
-        }
-    }
-
-    private fun applyVolume() {
-        player?.setVolume(volume * duck, volume * duck)
-    }
-
-    private fun vibrator(): Vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        getSystemService(VibratorManager::class.java).defaultVibrator
-    } else {
-        @Suppress("DEPRECATION") // Vor Android 12 der einzige Weg.
-        getSystemService(Vibrator::class.java)
-    }
-
     private fun vibrate() {
-        if (state.value !is State.Ringing) return
-        val vibrator = vibrator()
-        val effect = VibrationEffect.createWaveform(longArrayOf(0, 500, 1000), 0)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            vibrator.vibrate(effect, VibrationAttributes.createForUsage(VibrationAttributes.USAGE_ALARM))
-        } else {
-            @Suppress("DEPRECATION") // Vor Android 13 nur so als Wecker-Vibration markierbar.
-            vibrator.vibrate(effect, AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build())
-        }
+        if (state.value is State.Ringing) sound.vibrate()
     }
 
     private fun release() {
         handler.removeCallbacksAndMessages(null)
         alert.stop()
-        duck = 1f
-        player?.run {
-            runCatching { stop() }
-            release()
-        }
-        player = null
-        vibrator().cancel()
+        sound.release()
     }
 
     /** Zustand für den Weckbildschirm. */
@@ -335,8 +264,6 @@ class PhoneRingService : Service() {
 
         /** Der Weckbildschirm zeigt gerade die Aufgabe: der Uhr bestätigen ([DataLayer.PATH_TASK_SHOWN]). */
         const val ACTION_TASK_SHOWN = "com.phasewake.app.ring.TASK_SHOWN"
-        private const val TYPING_VOLUME = 0.5f
-        private const val TYPING_IDLE_MS = 10_000L
         const val EXTRA_ALARM_ID = "alarmId"
         /** Zielzeit der Nacht in Millisekunden (nur Zweitwecker und Weckmeldung der Uhr). */
         const val EXTRA_TARGET = "target"
@@ -345,12 +272,24 @@ class PhoneRingService : Service() {
         /** Bisherige Schlummer-Runden des Handys allein (aus dem Schlummer-Alarm). */
         const val EXTRA_SNOOZES_DONE = "snoozesDone"
         private const val EXTRA_FROM_WATCH = "fromWatch"
-        private const val FADE_STEP = 0.05f
-        private const val FADE_INTERVAL_MS = 1500L
         private const val TIMEOUT_MS = 10 * 60_000L
 
         private val state = MutableStateFlow<State>(State.Idle)
         val ringState: StateFlow<State> = state.asStateFlow()
+
+        /** Nacht, die klingelt oder geschlummert ist (Kennung, Zielzeit); im Prozess, damit «stop» der Uhr sie prüfen kann. */
+        @Volatile
+        private var lastAlarmId: String? = null
+
+        @Volatile
+        private var lastTarget: Long? = null
+
+        /**
+         * Ob ein «stop» der Uhr ([message]) das Klingeln oder Schlummern hier beendet ([RingRules.stopApplies]): nur
+         * für die Nacht, die gerade läuft, und nicht verspätet zugestellt.
+         */
+        fun stopsRing(message: RingMessage, nowMs: Long): Boolean =
+            RingRules.stopApplies(message, nowMs, state.value != State.Idle, lastAlarmId, lastTarget)
 
         /**
          * Schlummer-Runden einer älteren Uhr (schickt keine Zahl mit): über Neustarts des Dienstes
@@ -364,7 +303,11 @@ class PhoneRingService : Service() {
 
         private const val LEGACY_SNOOZE_RESET_MS = 30 * 60_000L
 
-        /** @return ob der Dienst starten durfte (aus dem Hintergrund ohne Wecker-Alarm ab Android 12 nicht immer). */
+        /**
+         * Klingeln für Wecker [alarmId] ([RingResult]): neu, als Ablösung oder Fortsetzung eines laufenden Klingelns,
+         * oder abgelehnt, wenn der Dienst nicht starten durfte (aus dem Hintergrund ohne Wecker-Alarm ab Android 12 nicht
+         * immer). Nur bei [RingResult.rings] gilt die Nacht als geweckt.
+         */
         fun ring(
             context: Context,
             alarmId: String?,
@@ -372,7 +315,8 @@ class PhoneRingService : Service() {
             target: Long? = null,
             snoozesLeft: Int? = null,
             snoozesDone: Int = 0,
-        ): Boolean {
+        ): RingResult {
+            val ringing = state.value is State.Ringing
             val intent = Intent(context, PhoneRingService::class.java)
                 .setAction(ACTION_RING)
                 .putExtra(EXTRA_ALARM_ID, alarmId)
@@ -380,7 +324,7 @@ class PhoneRingService : Service() {
                 .putExtra(EXTRA_SNOOZES_DONE, snoozesDone)
             if (target != null) intent.putExtra(EXTRA_TARGET, target)
             if (snoozesLeft != null) intent.putExtra(EXTRA_SNOOZES_LEFT, snoozesLeft)
-            return try {
+            val started = try {
                 ContextCompat.startForegroundService(context, intent)
                 true
             } catch (e: IllegalStateException) {
@@ -388,6 +332,7 @@ class PhoneRingService : Service() {
                 Log.w(TAG, "Weckdienst durfte nicht starten", e)
                 false
             }
+            return RingRules.result(started, ringing)
         }
 
         fun command(context: Context, action: String) {

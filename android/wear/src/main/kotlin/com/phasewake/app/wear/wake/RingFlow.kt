@@ -47,12 +47,29 @@ internal fun WakeService.ring() {
     postRinging(n, "ring")
     escalation.start(withSound = watchSound(n))
     handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
+    armResume(n, now)
     saveProgress(n)
 
     app.diag.log(DiagKind.RING, "watch ${n.reason ?: WakeReason.DEADLINE}")
     // Immer melden: Das Handy entscheidet selbst (Zweitwecker, Sonnenaufgang, Unterdrückung der Sicherung).
     sendRing(n)
 }
+
+/**
+ * Stirbt der Prozess mitten im Klingeln, ist der Zielzeit-Alarm schon zugestellt und nichts startet den Dienst neu.
+ * Darum beim Klingeln ein Alarm wie nach dem Schlummern: kurz nach der Zeitgrenze des Klingelns ([RING_TIMEOUT_MS] plus
+ * [RESUME_MARGIN]; bis dahin schlummert oder endet die Runde im laufenden Prozess). Auch vor dem ersten Entsperren nach
+ * einem Neustart ([DirectBoot.saveRingAt]). Schlummern ersetzt ihn (gleicher Alarm), das Ende der Nacht hebt ihn auf
+ * ([AlarmScheduler.cancelDeadlineAndSnooze]).
+ */
+private fun WakeService.armResume(n: Night, now: Instant) {
+    val at = now.plusMillis(RING_TIMEOUT_MS).plus(RESUME_MARGIN)
+    AlarmScheduler.setSnoozeEnd(this, n.plan, at)
+    DirectBoot.saveRingAt(this, n.plan, at)
+}
+
+/** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze des Klingelns: Der Ablauf im Prozess kommt immer zuerst. */
+private val RESUME_MARGIN: Duration = Duration.ofSeconds(30)
 
 internal fun WakeService.ringingNotification(n: Night) =
     Notifications.ringing(this, reasonText(n.reason ?: WakeReason.DEADLINE), snoozesLeft(n))

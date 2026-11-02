@@ -10,8 +10,6 @@ struct EditorView: View {
     @State private var time = Date()
     @State private var window = Double(AlarmSpec.defaultWindowMinutes)
     @State private var days: Set<Weekday> = [.monday, .tuesday, .wednesday, .thursday, .friday]
-    @State private var sleepMode = false
-    @State private var sleepMinutes = 450.0
     @State private var phone = PhoneAlert.sound
     @State private var watchSound = false
     @State private var label = ""
@@ -30,19 +28,20 @@ struct EditorView: View {
         NavigationStack {
             Form {
                 // Einschlaf-Modus gibt es auf Apple nicht: Die Smart-Alarm-Sitzung der Apple Watch
-                // läuft höchstens 30 Minuten und kann die Nacht nicht ab «Gute Nacht» begleiten.
-                Section(L(sleepMode ? "editor_latest" : "editor_target")) {
+                // läuft höchstens 30 Minuten und kann die Nacht nicht ab «Gute Nacht» begleiten. Die Uhrzeit
+                // ist darum immer die Zielzeit des normalen Fensters.
+                Section(L("editor_target")) {
                     DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                         .frame(maxWidth: .infinity)
                 }
 
-                if sleepMode {
+                // Auf Android gesetzt (Sicherung, Galaxy Watch): nur anzeigen, beim Speichern unverändert behalten.
+                if let minutes = existing?.sleepDurationMinutes {
                     Section {
-                        Text(L("editor_sleep_duration", Format.duration(minutes: Int(sleepMinutes))))
-                        Slider(value: $sleepMinutes, in: 240...600, step: 15)
-                        Text(L("editor_sleep_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Text(L("editor_sleep_duration", Format.duration(minutes: minutes)))
+                        Text(L("editor_sleep_wear_only")).font(.footnote).foregroundStyle(.secondary)
                     }
                 }
 
@@ -69,7 +68,7 @@ struct EditorView: View {
                     .controlSize(.large)
                     if Int(window) == AlarmSpec.exactWindow {
                         Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
-                    } else if !sleepMode {
+                    } else {
                         Text(L("editor_window_hint", Format.time(time.addingTimeInterval(-window * 60)), Format.time(time)))
                             .font(.footnote).foregroundStyle(.secondary)
                     }
@@ -236,8 +235,6 @@ struct EditorView: View {
         time = Calendar.current.date(from: DateComponents(hour: existing.hour, minute: existing.minute)) ?? Date()
         window = Double(existing.windowMinutes)
         days = existing.days
-        sleepMode = existing.sleepDurationMinutes != nil
-        sleepMinutes = Double(existing.sleepDurationMinutes ?? 450)
         phone = existing.phone == .off ? .off : .sound
         watchSound = existing.watchSound
         label = existing.label
@@ -259,7 +256,8 @@ struct EditorView: View {
             enabled: true,
             phone: phone,
             watchSound: watchSound,
-            sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
+            // Einschlaf-Modus wirkt nur mit einer Galaxy Watch: vorhandenen Wert behalten, neu = aus.
+            sleepDurationMinutes: existing?.sleepDurationMinutes,
             sound: sound,
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
             sunrise: sunrise,

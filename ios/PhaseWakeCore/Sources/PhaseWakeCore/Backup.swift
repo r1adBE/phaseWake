@@ -31,8 +31,10 @@ public struct BackupError: Error, Equatable, Sendable {
 ///
 /// Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8) mit `iterations` Runden, 256 Bit (CommonCrypto).
 /// NFC, damit «ü» als ein Zeichen oder als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt.
-/// Verfahren: AES-256-GCM ohne zusätzliche Daten (CryptoKit). 210 000 Runden: Empfehlung von OWASP (2023)
-/// für PBKDF2-SHA256. Identisch zu `BackupFile` (Kotlin).
+/// Verfahren: AES-256-GCM ohne zusätzliche Daten (CryptoKit). 210 000 Runden: Das ist die Zahl von OWASP (2023) für
+/// PBKDF2-HMAC-SHA512; für SHA-256 empfiehlt OWASP 600 000. Bewusst so belassen, damit bestehende Sicherungen lesbar
+/// bleiben: Die Runden stehen nicht in der Datei, der Kopf `magic` («PWBK1») trägt die Formatversion. Mehr Runden
+/// hiessen ein neues Format «PWBK2» (Lesen beider Köpfe), nicht eine geänderte Zahl hier. Identisch zu `BackupFile` (Kotlin).
 public enum BackupFile {
     /// Kopf der Datei «PWBK1», Formatversion 1.
     public static let magic = Data("PWBK1".utf8)

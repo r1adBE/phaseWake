@@ -35,6 +35,9 @@ import kotlinx.coroutines.sync.withLock
  * ist (geweckt, gestoppt), der Wecker aus, gelöscht oder übersprungen ist, spätestens [KEEP_AFTER] nach der
  * Zielzeit. Neu geplant mit dem Zweitwecker (Wecker geändert, Neustart, Zeit/Zeitzone) und bei jedem Nacht-Check;
  * dazwischen weckt ein eigener, ungenauer Alarm (zum Zeigen und zum Wegräumen).
+ *
+ * Privat ([NotificationCompat.VISIBILITY_PRIVATE]): Auf dem gesperrten Bildschirm steht nur «Nächster Wecker», ohne
+ * Fenster und ohne Text (öffentliche Fassung); Weckzeit und Nacht-Check erst nach dem Entsperren.
  */
 class NextAlarmNotice(private val context: Context, private val now: () -> Instant = Instant::now) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
@@ -80,7 +83,8 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             .setContentText(text)
             .setCategory(NotificationCompat.CATEGORY_STATUS)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
+            .setPublicVersion(publicVersion())
             .setOngoing(true)
             .setSilent(true)
             .setOnlyAlertOnce(true)
@@ -92,6 +96,14 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             .build()
         manager.notify(NOTIFICATION_ID, notification)
     }
+
+    /** Fassung für den gesperrten Bildschirm: nur der Titel «Nächster Wecker», keine Weckzeit, kein Text. */
+    private fun publicVersion(): Notification = NotificationCompat.Builder(context, CHANNEL)
+        .setSmallIcon(R.drawable.ic_stat_moon)
+        .setContentTitle(context.getString(R.string.widget_name))
+        .setCategory(NotificationCompat.CATEGORY_STATUS)
+        .setShowWhen(false)
+        .build()
 
     private fun pending(): PendingIntent = PendingIntent.getBroadcast(
         context, REQUEST_CODE, Intent(context, Receiver::class.java).setAction(ACTION),
@@ -117,11 +129,12 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
     companion object {
         /**
          * Kanal mit normaler Wichtigkeit, aber ohne Ton: Android und One UI blenden Mitteilungen niedriger Wichtigkeit
-         * («lautlos») auf dem Sperrbildschirm standardmässig aus. Die Wichtigkeit eines Kanals lässt sich nicht
-         * nachträglich anheben, darum neue Kennung; der alte Kanal [OLD_CHANNEL] wird gelöscht.
+         * («lautlos») auf dem Sperrbildschirm standardmässig aus. Wichtigkeit und Sichtbarkeit auf dem Sperrbildschirm
+         * lassen sich nach dem Anlegen nicht mehr ändern, darum je eine neue Kennung (jetzt privat); die alten Kanäle
+         * [OLD_CHANNELS] werden gelöscht.
          */
-        const val CHANNEL = "next_alarm_lock"
-        private const val OLD_CHANNEL = "next_alarm"
+        const val CHANNEL = "next_alarm_private"
+        private val OLD_CHANNELS = listOf("next_alarm", "next_alarm_lock")
         private const val NOTIFICATION_ID = 8
         private const val REQUEST_CODE = 9
         private const val ACTION = "com.phasewake.app.action.NEXT_ALARM_NOTICE"
@@ -153,16 +166,16 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             app.appScope.launch { app.nextAlarm.reschedule() }
         }
 
-        /** Kanal ohne Ton, Vibration und App-Symbol-Punkt; auf dem Sperrbildschirm ganz sichtbar. */
+        /** Kanal ohne Ton, Vibration und App-Symbol-Punkt; auf dem Sperrbildschirm nur die öffentliche Fassung. */
         fun createChannel(context: Context) {
             val notifications = context.getSystemService(NotificationManager::class.java)
-            notifications.deleteNotificationChannel(OLD_CHANNEL)
+            OLD_CHANNELS.forEach(notifications::deleteNotificationChannel)
             notifications.createNotificationChannel(
                 NotificationChannel(CHANNEL, context.getString(R.string.widget_name), NotificationManager.IMPORTANCE_DEFAULT).apply {
                     setSound(null, null)
                     enableVibration(false)
                     setShowBadge(false)
-                    lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+                    lockscreenVisibility = Notification.VISIBILITY_PRIVATE
                 },
             )
         }

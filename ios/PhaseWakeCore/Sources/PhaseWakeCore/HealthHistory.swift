@@ -70,9 +70,10 @@ public struct HealthSession: Equatable, Sendable {
     /// Phasen auf die Sitzung zugeschnitten, nach Beginn sortiert.
     private var clipped: [StageSpan] { StageCheck.clip(stages, from: start, to: end) }
 
-    /// Ganze Millisekunden von `from` bis `to` (wie `Instant`), nie negativ.
+    /// Ganze Millisekunden von `from` bis `to`, abgerundet wie `Duration.toMillis` in Kotlin (HealthKit-Zeiten sind nicht
+    /// immer ganze Millisekunden; aufgerundet würde eine Sitzung knapp unter 180 Minuten hier eine Nacht), nie negativ.
     private static func millis(_ from: Date, _ to: Date) -> Int64 {
-        max(0, Int64((to.timeIntervalSince(from) * 1000).rounded()))
+        max(0, Int64((to.timeIntervalSince(from) * 1000).rounded(.down)))
     }
 
     private static func minutes(_ millis: Int64) -> Int { Int(millis / 60_000) }

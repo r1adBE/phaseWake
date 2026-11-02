@@ -69,9 +69,18 @@ class PhoneListenerService : WearableListenerService() {
             DataLayer.PATH_DIAG_LOG -> WatchReport.received(event.data)
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
+                val nowMs = System.currentTimeMillis()
+                // Verspätet zugestellt (älter als 2 Minuten, wie auf dem iPhone): ändert nichts mehr.
+                if (message.isStale(nowMs)) {
+                    runBlocking { app.diag.log(DiagKind.STOP, "from watch (stale, ignored)") }
+                    return
+                }
+                // Nur die Nacht, die hier klingelt oder schlummert, verstummt; ein «stop» einer anderen Nacht
+                // (zwei Wecker kurz nacheinander) lässt das Klingeln des späteren Weckers weiterlaufen.
+                val own = PhoneRingService.stopsRing(message, nowMs)
                 // Restzahl vor dem Verstummen: für die Sicherung, falls die Uhr nach dem Schlummern ausfällt.
-                val left = (PhoneRingService.ringState.value as? PhoneRingService.State.Ringing)?.snoozesLeft
-                PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
+                val left = (PhoneRingService.ringState.value as? PhoneRingService.State.Ringing)?.snoozesLeft?.takeIf { own }
+                if (own) PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
                 // Die Uhr schickt «stop» auch beim Schlummern (mit Schlummer-Ende); einen Einmal-Wecker schaltet sie selbst aus.
                 runBlocking { app.backup.watchStopped(message, left) }
             }

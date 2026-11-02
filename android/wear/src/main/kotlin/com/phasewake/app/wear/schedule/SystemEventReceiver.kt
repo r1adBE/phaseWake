@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.schedule
 
+import android.app.AlarmManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -13,7 +14,8 @@ import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.launch
 
 /**
- * Plant nach Neustart, App-Update und Zeit- oder Zeitzonenwechsel neu; Alarme gehen dabei verloren bzw. verschieben sich.
+ * Plant nach Neustart, App-Update, Zeit- oder Zeitzonenwechsel und erteiltem Recht für exakte Alarme neu; Alarme gehen
+ * dabei verloren, verschieben sich oder standen nur ungenau.
  * Vor dem ersten Entsperren (Direct Boot) nur den abgelegten Wecker aus [DirectBoot]; der Speicher der App ist dann nicht lesbar.
  */
 class SystemEventReceiver : BroadcastReceiver() {
@@ -67,6 +69,7 @@ class SystemEventReceiver : BroadcastReceiver() {
             Intent.ACTION_MY_PACKAGE_REPLACED,
             Intent.ACTION_TIME_CHANGED,
             Intent.ACTION_TIMEZONE_CHANGED,
+            AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED,
         )
     }
 }

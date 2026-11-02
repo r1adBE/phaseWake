@@ -105,6 +105,14 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(HealthSession(start: s.end, end: s.start).durationMinutes, 0)
     }
 
+    func testMinutesRoundDownLikeKotlin() {
+        // HealthKit-Zeiten sind nicht immer ganze Millisekunden: 179 min 59,9996 s bleiben 179 Minuten (ein Nap).
+        let start = t("2026-10-02T12:00:00Z")
+        let almost = HealthSession(start: start, end: start.addingTimeInterval(3 * 3600 - 0.0004))
+        XCTAssertEqual(almost.durationMinutes, 179)
+        XCTAssertEqual(HealthSession(start: start, end: start.addingTimeInterval(3 * 3600)).durationMinutes, 180)
+    }
+
     func testNapIsDropped() {
         let nap = HealthSession(start: t("2026-10-02T12:00:00Z"), end: t("2026-10-02T14:59:00Z"))
         let three = HealthSession(start: t("2026-10-03T12:00:00Z"), end: t("2026-10-03T15:00:00Z"))

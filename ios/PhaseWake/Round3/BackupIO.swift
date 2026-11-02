@@ -71,9 +71,9 @@ enum BackupIO {
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
         storage.mutate { _ in Array(alarms.prefix(PhoneModel.maxAlarms)) }
         storage.replaceNights(payload.nights.compactMap { try? Codec.decodeNight($0) })
-        storage.replaceNotes(SleepNotes.decode(payload.notes))
-        storage.setCustomNotes(SleepNotes.decodeCustom(payload.customNotes))
-        storage.replaceHealthFeelings(HealthFeelings.decode(payload.healthFeelings))
+        model.privateNotes.replaceNotes(SleepNotes.decode(payload.notes))
+        model.privateNotes.setCustomNotes(SleepNotes.decodeCustom(payload.customNotes))
+        model.privateNotes.replaceHealthFeelings(HealthFeelings.decode(payload.healthFeelings))
         let defaults = UserDefaults.standard
         defaults.set(payload.routineItems, forKey: PhoneModel.routineItemsKey)
         defaults.set(payload.routineTicks, forKey: PhoneModel.routineTicksKey)

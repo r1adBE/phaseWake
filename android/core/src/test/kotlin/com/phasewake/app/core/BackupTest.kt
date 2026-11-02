@@ -99,6 +99,15 @@ class BackupTest {
     }
 
     @Test
+    fun backupKeepsNextAlarmNotice() {
+        // Fehlt der Schlüssel (ältere Sicherung, Testvektor), bleibt die Mitteilung an.
+        assertTrue(BackupPayload.fromJson(File(testdata, "backup-v1.json").readText().trim()).settings.nextAlarmNotice)
+        assertTrue("\"nextAlarmNotice\":true" in payload.toJson())
+        val off = payload.copy(settings = payload.settings.copy(nextAlarmNotice = false))
+        assertFalse(BackupPayload.fromJson(off.toJson()).settings.nextAlarmNotice)
+    }
+
+    @Test
     fun backupKeepsHealthFeelings() {
         val rated = payload.copy(healthFeelings = "2026-10-01|4\n2026-10-02|2")
         assertTrue("\"healthFeelings\":\"2026-10-01|4\\n2026-10-02|2\"" in rated.toJson())

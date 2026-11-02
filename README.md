@@ -40,7 +40,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Gewohnheiten**: «Regelmässig ins Bett: N von 7 Abenden», Serien mit erreichtem Schlafziel, Wochenrückblick am Sonntag (Option) und eine eigene Abendroutine zum Abhaken
 - **Weckaufgabe** (Option pro Wecker, Android): Zum Beenden 3 Rechenaufgaben am Handy lösen statt halten; Schlummern geht ohne Aufgabe
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
-- **Gleicht ab**: Ab der dritten Nacht werden die Schwellen an deine Bewegungswerte angepasst.
+- **Gleicht ab**: Nach drei aufgezeichneten Nächten werden die Schwellen an deine Bewegungswerte angepasst, also ab der vierten Nacht.
 - **Genau** (Option pro Wecker): ohne Weckfenster, klingelt genau zur Zielzeit; die Uhr misst trotzdem für den Verlauf
 - **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr erst zur Zielzeit; dein Einschlafen erkennt sie dafür automatisch
 - **Kachel und Komplikation** auf der Uhr

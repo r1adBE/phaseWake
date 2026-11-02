@@ -124,7 +124,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         }
         // Rückfall je unter eigener Kennung: Ein Probewecker oder Powernap ersetzt nie den des echten Weckers, der
         // daneben für dessen nächste Nacht stehen bleibt – auch wenn der vorübergehende Plan nie sauber endet.
-        scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
+        // Ein nachgeholter Wecker (Zielzeit vorbei) bekommt die Frist ab jetzt, damit seine Sitzung zuerst weckt.
+        scheduleFallback(at: max(plan.target, Date()).addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
         if Transient.kindOf(plan.alarmId) != nil { keepRealFallback() }
         let active = WKApplication.shared().applicationState == .active
         if !active, keepsRealSession(for: plan) { return }
@@ -207,7 +208,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             removeFallback([Self.fallbackId])
             return
         }
-        scheduleFallback(at: real.target.addingTimeInterval(Self.fallbackDelay))
+        scheduleFallback(at: max(real.target, Date()).addingTimeInterval(Self.fallbackDelay))
         // Diagnose: einmal je Zielzeit, nicht bei jedem Neuplanen.
         guard keptFallback != real.target else { return }
         keptFallback = real.target
@@ -265,18 +266,15 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     // MARK: Rückfall
 
+    /// Weck-Mitteilung zu `date` unter der Kennung `id` (ersetzt eine gleichnamige). Zu Kalenderzeit ohne Zeitzone
+    /// (`LocalTrigger`): Nach einem Zeitzonenwechsel weckt sie zur selben Ortszeit, auch wenn die App nicht läuft.
     func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId) {
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_reason_deadline")
         content.sound = .default
         content.interruptionLevel = .timeSensitive
-        let interval = max(1, date.timeIntervalSinceNow)
-        let request = UNNotificationRequest(
-            identifier: id,
-            content: content,
-            trigger: UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-        )
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: LocalTrigger.at(date))
         UNUserNotificationCenter.current().add(request)
     }
 
