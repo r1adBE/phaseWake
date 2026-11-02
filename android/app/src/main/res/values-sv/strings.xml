@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Inte redo</string>
     <string name="check_silent_switch_title">Reservlarm före iOS 26</string>
     <string name="check_silent_switch_text">Före iOS 26 är reservlarmet en notis: ljudlös-reglaget tystar det. Låt ljudet vara på eller uppdatera till iOS 26.</string>
+    <string name="check_backup_horizon_title">Reservlarmen tar snart slut</string>
+    <string name="check_backup_horizon_text">Öppna Phase Wake så att din iPhone kan ställa nästa larm.</string>
     <string name="check_watch">Klockan ansluten</string>
     <string name="check_watch_problem">Klockan går inte att nå. Ta på den, låt Bluetooth vara på och öppna Phase Wake på klockan en gång.</string>
     <string name="check_notifications">Aviseringar tillåtna</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Öppna</string>
     <string name="restore_wrong_password">Fel lösenord eller ingen Phase Wake-kopia. Inget har ändrats.</string>
     <string name="restore_unreadable">Filen kunde inte läsas. Inget ändrades.</string>
+    <string name="restore_failed">Återställningen misslyckades. Inget ändrades.</string>
     <string name="restore_preview">Alarm: %1$d · Nätter: %2$d · Dagar med anteckningar: %3$d</string>
     <string name="restore_confirm_title">Ersätta data?</string>
     <string name="restore_confirm_text">Alarm, historik, anteckningar och inställningar på den här telefonen ersätts av kopian.</string>

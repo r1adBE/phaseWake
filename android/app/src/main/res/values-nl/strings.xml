@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Niet klaar</string>
     <string name="check_silent_switch_title">Reservewekker vóór iOS 26</string>
     <string name="check_silent_switch_text">Vóór iOS 26 is de reservewekker een melding: de stilteschakelaar maakt hem geluidloos. Laat het geluid aan of werk bij naar iOS 26.</string>
+    <string name="check_backup_horizon_title">Reservewekkers raken bijna op</string>
+    <string name="check_backup_horizon_text">Open Phase Wake zodat je iPhone de volgende wekkers kan instellen.</string>
     <string name="check_watch">Horloge verbonden</string>
     <string name="check_watch_problem">Je horloge is niet bereikbaar. Draag het, laat Bluetooth aan en open Phase Wake één keer op het horloge.</string>
     <string name="check_notifications">Meldingen toegestaan</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Openen</string>
     <string name="restore_wrong_password">Verkeerd wachtwoord of geen Phase Wake-back-up. Er is niets gewijzigd.</string>
     <string name="restore_unreadable">Het bestand kon niet worden gelezen. Er is niets gewijzigd.</string>
+    <string name="restore_failed">Herstellen is mislukt. Er is niets gewijzigd.</string>
     <string name="restore_preview">Wekkers: %1$d · Nachten: %2$d · Dagen met notities: %3$d</string>
     <string name="restore_confirm_title">Gegevens vervangen?</string>
     <string name="restore_confirm_text">Wekkers, geschiedenis, notities en instellingen op deze telefoon worden vervangen door de back-up.</string>

@@ -71,6 +71,8 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 
 Fertige Testversion für Android-Handy und Galaxy Watch: [Releases → test](https://github.com/r1adBE/phaseWake/releases/tag/test). Anleitung Schritt für Schritt: [docs/TESTEN.md](docs/TESTEN.md).
 
+Die Testversion ist ein Debug-Build, signiert mit dem öffentlichen Test-Schlüssel aus `android/testing/` – nur zum Testen gedacht: Jeder kann eine App mit demselben Schlüssel bauen, und ein Debug-Build lässt sich am Gerät untersuchen. Die Versionen in den Stores werden mit einem privaten Schlüssel signiert. Testversion und Store-Version lassen sich darum nicht übereinander installieren; vorher die Testversion deinstallieren (und eine Sicherung anlegen).
+
 ## Bauen
 
 Android (JDK 21):
@@ -89,7 +91,7 @@ open ../PhaseWake.xcodeproj
 
 Die Texte der Apple-Apps entstehen aus den Android-Texten: `python3 .github/scripts/gen-xcstrings.py`.
 
-Modell für «Geräusche in der Nacht» (Android): YAMNet von MediaPipe, nicht im Repository. Gradle lädt es beim ersten Bauen nach `android/app/src/main/assets/yamnet.tflite` (Quelle: `https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite`).
+Modell für «Geräusche in der Nacht» (Android): YAMNet von MediaPipe, nicht im Repository. Gradle lädt es beim ersten Bauen nach `android/app/src/main/assets/yamnet.tflite` (Quelle: `https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite`). Der Build prüft die Datei mit SHA-256 (Wert in `android/app/build.gradle.kts`) und bricht bei einer anderen Datei ab.
 
 Ohne Modell baut und läuft die App ebenfalls; aufgenommene Geräusche gelten dann alle als «anderes Geräusch».
 

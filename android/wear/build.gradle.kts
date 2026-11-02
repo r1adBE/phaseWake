@@ -85,6 +85,13 @@ dependencies {
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.kotlinx.coroutines.play.services)
 
+    // Sicherheit (Review K-01, OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
+    // anheben, nichts zusätzlich einbinden.
+    constraints {
+        implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }
+        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") { because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)") }
+    }
+
     // Planung der Uhr (Einschlaf-Messung, Direct Boot, Wiederaufnahme) in Unit-Tests; Robolectric nur zum Testen.
     testImplementation(kotlin("test-junit"))
     testImplementation(libs.kotlinx.coroutines.test)

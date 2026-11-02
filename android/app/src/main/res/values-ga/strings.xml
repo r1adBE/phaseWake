@@ -173,6 +173,8 @@
     <string name="check_not_ready_icon">Níl sé réidh</string>
     <string name="check_silent_switch_title">Aláram cúltaca roimh iOS 26</string>
     <string name="check_silent_switch_text">Roimh iOS 26, is fógra é an t-aláram cúltaca: cuireann an lasc chiúin ina thost é. Fág an fhuaim air nó nuashonraigh go iOS 26.</string>
+    <string name="check_backup_horizon_title">Aláraim chúltaca ag rith amach</string>
+    <string name="check_backup_horizon_text">Oscail Phase Wake ionas gur féidir le d’iPhone na chéad aláraim eile a shocrú.</string>
     <string name="check_watch">Uaireadóir ceangailte</string>
     <string name="check_watch_problem">Ní féidir teacht ar d’uaireadóir. Caith é, coinnigh Bluetooth ar siúl agus oscail Phase Wake ar an uaireadóir uair amháin.</string>
     <string name="check_notifications">Fógraí ceadaithe</string>
@@ -497,6 +499,7 @@
     <string name="restore_open">Oscail</string>
     <string name="restore_wrong_password">Pasfhocal mícheart nó ní cúltaca Phase Wake é. Níor athraíodh aon rud.</string>
     <string name="restore_unreadable">Níorbh fhéidir an comhad a léamh. Níor athraíodh aon rud.</string>
+    <string name="restore_failed">Theip ar an athchóiriú. Níor athraíodh aon rud.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Aláraim: %1$d · Oícheanta: %2$d · Laethanta le nótaí: %3$d</string>
     <string name="restore_confirm_title">Sonraí a athsholáthar?</string>
     <string name="restore_confirm_text">Cuirfear an cúltaca in ionad na n-aláram, na staire, na nótaí agus na socruithe ar an bhfón seo.</string>

@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">לא מוכן</string>
     <string name="check_silent_switch_title">מעורר גיבוי לפני iOS 26</string>
     <string name="check_silent_switch_text">לפני iOS 26 מעורר הגיבוי הוא התראה: מתג ההשתקה משתיק אותו. כדאי להשאיר את הצליל פועל או לעדכן ל-iOS 26.</string>
+    <string name="check_backup_horizon_title">מעוררי הגיבוי עומדים להיגמר</string>
+    <string name="check_backup_horizon_text">פתח את Phase Wake כדי שה-iPhone יגדיר את המעוררים הבאים.</string>
     <string name="check_watch">השעון מחובר</string>
     <string name="check_watch_problem">אי אפשר להגיע לשעון שלכם. ענדו אותו, השאירו את ה-Bluetooth פעיל ופתחו את Phase Wake בשעון פעם אחת.</string>
     <string name="check_notifications">הרשאת התראות ניתנה</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">פתיחה</string>
     <string name="restore_wrong_password">סיסמה שגויה או שזה לא גיבוי של Phase Wake. דבר לא השתנה.</string>
     <string name="restore_unreadable">לא ניתן היה לקרוא את הקובץ. שום דבר לא שונה.</string>
+    <string name="restore_failed">השחזור נכשל. שום דבר לא שונה.</string>
     <string name="restore_preview">השכמות: %1$d · לילות: %2$d · ימים עם הערות: %3$d</string>
     <string name="restore_confirm_title">להחליף את הנתונים?</string>
     <string name="restore_confirm_text">ההשכמות, ההיסטוריה, ההערות וההגדרות בטלפון הזה יוחלפו בגיבוי.</string>

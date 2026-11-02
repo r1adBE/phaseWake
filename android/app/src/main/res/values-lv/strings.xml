@@ -167,6 +167,8 @@
     <string name="check_not_ready_icon">Nav gatavs</string>
     <string name="check_silent_switch_title">Rezerves modinātājs pirms iOS 26</string>
     <string name="check_silent_switch_text">Pirms iOS 26 rezerves modinātājs ir paziņojums: klusuma slēdzis to apklusina. Atstāj skaņu ieslēgtu vai atjaunini uz iOS 26.</string>
+    <string name="check_backup_horizon_title">Rezerves modinātāji drīz beigsies</string>
+    <string name="check_backup_horizon_text">Atver Phase Wake, lai iPhone iestatītu nākamos modinātājus.</string>
     <string name="check_watch">Pulkstenis savienots</string>
     <string name="check_watch_problem">Pulkstenis nav sasniedzams. Uzliec to, atstāj ieslēgtu Bluetooth un vienreiz atver Phase Wake pulkstenī.</string>
     <string name="check_notifications">Paziņojumi atļauti</string>
@@ -471,6 +473,7 @@
     <string name="restore_open">Atvērt</string>
     <string name="restore_wrong_password">Nepareiza parole vai tas nav Phase Wake dublējums. Nekas netika mainīts.</string>
     <string name="restore_unreadable">Neizdevās nolasīt failu. Nekas netika mainīts.</string>
+    <string name="restore_failed">Atjaunošana neizdevās. Nekas netika mainīts.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Modinātāji: %1$d · Naktis: %2$d · Dienas ar piezīmēm: %3$d</string>
     <string name="restore_confirm_title">Aizstāt datus?</string>
     <string name="restore_confirm_text">Modinātāji, vēsture, piezīmes un iestatījumi šajā tālrunī tiks aizstāti ar dublējumu.</string>

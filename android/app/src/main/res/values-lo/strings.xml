@@ -160,6 +160,8 @@
     <string name="check_not_ready_icon">ຍັງບໍ່ພ້ອມ</string>
     <string name="check_silent_switch_title">ໂມງປຸກສຳຮອງກ່ອນ iOS 26</string>
     <string name="check_silent_switch_text">ກ່ອນ iOS 26 ໂມງປຸກສຳຮອງເປັນການແຈ້ງເຕືອນ: ສະວິດປິດສຽງຈະເຮັດໃຫ້ມັນງຽບ. ເປີດສຽງໄວ້ ຫຼື ອັບເດດເປັນ iOS 26.</string>
+    <string name="check_backup_horizon_title">ໂມງປຸກສຳຮອງໃກ້ໝົດແລ້ວ</string>
+    <string name="check_backup_horizon_text">ເປີດ Phase Wake ເພື່ອໃຫ້ iPhone ຕັ້ງໂມງປຸກຕໍ່ໄປ</string>
     <string name="check_watch">ເຊື່ອມຕໍ່ໂມງແລ້ວ</string>
     <string name="check_watch_problem">ບໍ່ສາມາດເຊື່ອມຫາໂມງໄດ້ ໃສ່ໂມງໄວ້ ເປີດ Bluetooth ແລະ ເປີດ Phase Wake ຢູ່ໂມງໜຶ່ງເທື່ອ</string>
     <string name="check_notifications">ອະນຸຍາດການແຈ້ງເຕືອນແລ້ວ</string>
@@ -444,6 +446,7 @@
     <string name="restore_open">ເປີດ</string>
     <string name="restore_wrong_password">ລະຫັດຜ່ານຜິດ ຫຼື ບໍ່ແມ່ນໄຟລ໌ສຳຮອງ Phase Wake ບໍ່ມີຫຍັງປ່ຽນແປງ</string>
     <string name="restore_unreadable">ອ່ານໄຟລ໌ບໍ່ໄດ້ ບໍ່ມີຫຍັງປ່ຽນແປງ</string>
+    <string name="restore_failed">ກູ້ຄືນບໍ່ສຳເລັດ ບໍ່ມີຫຍັງປ່ຽນແປງ</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">ໂມງປຸກ: %1$d · ຄືນ: %2$d · ມື້ທີ່ມີບັນທຶກ: %3$d</string>
     <string name="restore_confirm_title">ແທນທີ່ຂໍ້ມູນບໍ?</string>
     <string name="restore_confirm_text">ໂມງປຸກ ປະຫວັດ ບັນທຶກ ແລະ ການຕັ້ງຄ່າໃນໂທລະສັບນີ້ ຈະຖືກແທນທີ່ດ້ວຍໄຟລ໌ສຳຮອງ</string>

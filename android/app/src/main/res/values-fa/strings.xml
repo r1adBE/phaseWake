@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">آماده نیست</string>
     <string name="check_silent_switch_title">زنگ پشتیبان پیش از iOS 26</string>
     <string name="check_silent_switch_text">پیش از iOS 26 زنگ پشتیبان یک اعلان است: کلید بی‌صدا آن را بی‌صدا می‌کند. صدا را روشن نگه دار یا به iOS 26 به‌روزرسانی کن.</string>
+    <string name="check_backup_horizon_title">زنگ‌های پشتیبان به‌زودی تمام می‌شوند</string>
+    <string name="check_backup_horizon_text">Phase Wake را باز کن تا iPhone زنگ‌های بعدی را تنظیم کند.</string>
     <string name="check_watch">ساعت متصل است</string>
     <string name="check_watch_problem">به ساعتت دسترسی ندارم. آن را ببند، Bluetooth را روشن نگه دار و یک بار Phase Wake را روی ساعت باز کن.</string>
     <string name="check_notifications">اعلان‌ها مجاز است</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">باز کردن</string>
     <string name="restore_wrong_password">گذرواژه اشتباه است یا این پشتیبان Phase Wake نیست. چیزی تغییر نکرد.</string>
     <string name="restore_unreadable">فایل خوانده نشد. چیزی تغییر نکرد.</string>
+    <string name="restore_failed">بازیابی ناموفق بود. چیزی تغییر نکرد.</string>
     <string name="restore_preview">زنگ‌ها: %1$d · شب‌ها: %2$d · روزهای دارای یادداشت: %3$d</string>
     <string name="restore_confirm_title">داده‌ها جایگزین شوند؟</string>
     <string name="restore_confirm_text">زنگ‌ها، سابقه، یادداشت‌ها و تنظیمات این گوشی با پشتیبان جایگزین می‌شوند.</string>

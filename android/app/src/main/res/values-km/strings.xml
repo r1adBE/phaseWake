@@ -160,6 +160,8 @@
     <string name="check_not_ready_icon">មិនទាន់រួចរាល់</string>
     <string name="check_silent_switch_title">ម៉ោងរោទ៍បម្រុងមុន iOS 26</string>
     <string name="check_silent_switch_text">មុន iOS 26 ម៉ោងរោទ៍បម្រុងគឺជាការជូនដំណឹង៖ កុងតាក់ស្ងាត់ធ្វើឱ្យវាគ្មានសំឡេង។ ទុកសំឡេងឱ្យបើក ឬដំឡើងទៅ iOS 26។</string>
+    <string name="check_backup_horizon_title">ម៉ោងរោទ៍បម្រុងជិតអស់ហើយ</string>
+    <string name="check_backup_horizon_text">បើក Phase Wake ដើម្បីឱ្យ iPhone កំណត់ម៉ោងរោទ៍បន្ទាប់។</string>
     <string name="check_watch">នាឡិកាបានភ្ជាប់</string>
     <string name="check_watch_problem">មិនអាចភ្ជាប់ទៅនាឡិកាបានទេ។ ពាក់វា បើក Bluetooth ហើយបើក Phase Wake លើនាឡិកាម្ដង។</string>
     <string name="check_notifications">ការជូនដំណឹងបានអនុញ្ញាត</string>
@@ -444,6 +446,7 @@
     <string name="restore_open">បើក</string>
     <string name="restore_wrong_password">ពាក្យសម្ងាត់ខុស ឬមិនមែនជាការបម្រុងទុក Phase Wake។ គ្មានអ្វីត្រូវបានប្ដូរទេ។</string>
     <string name="restore_unreadable">មិនអាចអានឯកសារបានទេ។ គ្មានអ្វីត្រូវបានប្ដូរទេ។</string>
+    <string name="restore_failed">ការស្ដារបានបរាជ័យ។ គ្មានអ្វីត្រូវបានប្ដូរទេ។</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">ម៉ោងរោទ៍៖ %1$d · យប់៖ %2$d · ថ្ងៃមានកំណត់ចំណាំ៖ %3$d</string>
     <string name="restore_confirm_title">ជំនួសទិន្នន័យ?</string>
     <string name="restore_confirm_text">ម៉ោងរោទ៍ ប្រវត្តិ កំណត់ចំណាំ និងការកំណត់លើទូរសព្ទនេះ នឹងត្រូវជំនួសដោយការបម្រុងទុក។</string>

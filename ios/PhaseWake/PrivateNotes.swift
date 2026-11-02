@@ -26,10 +26,15 @@ final class PrivateNotes: @unchecked Sendable {
     private let directory: URL
     private static let logger = Logger(subsystem: "com.phasewake.app", category: "PrivateNotes")
 
-    /// Erzeugt den Speicher in `directory` und übernimmt alte Stände aus `defaults`.
-    init(directory: URL = PrivateFiles.directory, defaults: UserDefaults = .standard) {
+    /// Namen aller Dateien im Ordner (für das Wiederherstellen in einem Schritt, `BackupIO`).
+    static let fileNames = File.allCases.map(\.rawValue)
+
+    /// Erzeugt den Speicher in `directory` und übernimmt alte Stände aus `defaults`; `nil` = nichts übernehmen
+    /// (Vorbereiten einer Wiederherstellung in einem eigenen Ordner).
+    init(directory: URL = PrivateFiles.directory, defaults: UserDefaults? = .standard) {
         self.directory = directory
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        guard let defaults else { return }
         for file in File.allCases {
             guard let text = defaults.string(forKey: file.legacyKey) else { continue }
             // Schon eine Datei vorhanden: Sie ist neuer. Sonst nur löschen, wenn das Schreiben geklappt hat.

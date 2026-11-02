@@ -169,6 +169,8 @@
     <string name="check_not_ready_icon">Ni pripravljeno</string>
     <string name="check_silent_switch_title">Rezervna budilka pred iOS 26</string>
     <string name="check_silent_switch_text">Pred iOS 26 je rezervna budilka obvestilo: stikalo za tihi način jo utiša. Pusti zvok vklopljen ali posodobi na iOS 26.</string>
+    <string name="check_backup_horizon_title">Rezervnih budilk bo kmalu zmanjkalo</string>
+    <string name="check_backup_horizon_text">Odpri Phase Wake, da iPhone nastavi naslednje budilke.</string>
     <string name="check_watch">Ura povezana</string>
     <string name="check_watch_problem">Ura ni dosegljiva. Nosi jo, pusti Bluetooth vklopljen in enkrat odpri Phase Wake na uri.</string>
     <string name="check_notifications">Obvestila dovoljena</string>
@@ -483,6 +485,7 @@
     <string name="restore_open">Odpri</string>
     <string name="restore_wrong_password">Napačno geslo ali to ni varnostna kopija Phase Wake. Nič ni bilo spremenjeno.</string>
     <string name="restore_unreadable">Datoteke ni bilo mogoče prebrati. Nič ni bilo spremenjeno.</string>
+    <string name="restore_failed">Obnovitev ni uspela. Nič ni bilo spremenjeno.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Budilke: %1$d · Noči: %2$d · Dnevi z opombami: %3$d</string>
     <string name="restore_confirm_title">Zamenjaj podatke?</string>
     <string name="restore_confirm_text">Budilke, zgodovino, opombe in nastavitve na tem telefonu bo nadomestila varnostna kopija.</string>

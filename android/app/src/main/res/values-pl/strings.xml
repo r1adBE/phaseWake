@@ -168,6 +168,8 @@
     <string name="check_not_ready_icon">Nie gotowe</string>
     <string name="check_silent_switch_title">Budzik zapasowy przed iOS 26</string>
     <string name="check_silent_switch_text">Przed iOS 26 budzik zapasowy jest powiadomieniem: przełącznik wyciszenia go wycisza. Zostaw włączony dźwięk albo zaktualizuj do iOS 26.</string>
+    <string name="check_backup_horizon_title">Budziki zapasowe wkrótce się skończą</string>
+    <string name="check_backup_horizon_text">Otwórz Phase Wake, aby iPhone ustawił kolejne budziki.</string>
     <string name="check_watch">Zegarek połączony</string>
     <string name="check_watch_problem">Zegarek jest niedostępny. Załóż go, zostaw włączony Bluetooth i raz otwórz Phase Wake na zegarku.</string>
     <string name="check_notifications">Powiadomienia dozwolone</string>
@@ -481,6 +483,7 @@
     <string name="restore_open">Otwórz</string>
     <string name="restore_wrong_password">Złe hasło lub to nie jest kopia Phase Wake. Nic nie zostało zmienione.</string>
     <string name="restore_unreadable">Nie udało się odczytać pliku. Nic nie zostało zmienione.</string>
+    <string name="restore_failed">Przywracanie nie powiodło się. Nic nie zostało zmienione.</string>
     <string name="restore_preview">Budziki: %1$d · Noce: %2$d · Dni z notatkami: %3$d</string>
     <string name="restore_confirm_title">Zastąpić dane?</string>
     <string name="restore_confirm_text">Budziki, historia, notatki i ustawienia na tym telefonie zostaną zastąpione kopią.</string>

@@ -170,6 +170,8 @@
     <string name="check_not_ready_icon">Neparuošta</string>
     <string name="check_silent_switch_title">Atsarginis žadintuvas iki iOS 26</string>
     <string name="check_silent_switch_text">Iki iOS 26 atsarginis žadintuvas yra pranešimas: tylos jungiklis jį nutildo. Palik garsą įjungtą arba atnaujink į iOS 26.</string>
+    <string name="check_backup_horizon_title">Atsarginiai žadintuvai greitai baigsis</string>
+    <string name="check_backup_horizon_text">Atidaryk Phase Wake, kad iPhone nustatytų kitus žadintuvus.</string>
     <string name="check_watch">Laikrodis prijungtas</string>
     <string name="check_watch_problem">Laikrodis nepasiekiamas. Užsidėk jį, palik įjungtą Bluetooth ir vieną kartą atidaryk Phase Wake laikrodyje.</string>
     <string name="check_notifications">Pranešimai leidžiami</string>
@@ -484,6 +486,7 @@
     <string name="restore_open">Atidaryti</string>
     <string name="restore_wrong_password">Neteisingas slaptažodis arba tai ne Phase Wake atsarginė kopija. Niekas nepakeista.</string>
     <string name="restore_unreadable">Nepavyko nuskaityti failo. Niekas nepakeista.</string>
+    <string name="restore_failed">Atkurti nepavyko. Niekas nepakeista.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Žadintuvai: %1$d · Naktys: %2$d · Dienos su pastabomis: %3$d</string>
     <string name="restore_confirm_title">Pakeisti duomenis?</string>
     <string name="restore_confirm_text">Žadintuvai, istorija, pastabos ir nustatymai šiame telefone bus pakeisti atsarginės kopijos duomenimis.</string>

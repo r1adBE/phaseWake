@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">準備未完了</string>
     <string name="check_silent_switch_title">iOS 26 より前のバックアップアラーム</string>
     <string name="check_silent_switch_text">iOS 26 より前では、バックアップアラームは通知です。消音スイッチで音が出なくなります。サウンドをオンのままにするか、iOS 26 にアップデートしてください。</string>
+    <string name="check_backup_horizon_title">バックアップアラームが残りわずか</string>
+    <string name="check_backup_horizon_text">iPhone が次のアラームを設定できるよう、Phase Wake を開いてください。</string>
     <string name="check_watch">ウォッチ接続済み</string>
     <string name="check_watch_problem">ウォッチに接続できません。ウォッチを装着し、Bluetoothをオンにして、ウォッチでPhase Wakeを一度開いてください。</string>
     <string name="check_notifications">通知が許可されています</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">開く</string>
     <string name="restore_wrong_password">パスワードが違うか、Phase Wakeのバックアップではありません。何も変更されていません。</string>
     <string name="restore_unreadable">ファイルを読み込めませんでした。何も変更されていません。</string>
+    <string name="restore_failed">復元できませんでした。何も変更されていません。</string>
     <string name="restore_preview">アラーム: %1$d · 夜: %2$d · メモのある日: %3$d</string>
     <string name="restore_confirm_title">データを置き換えますか？</string>
     <string name="restore_confirm_text">このスマホのアラーム、履歴、メモ、設定がバックアップで置き換えられます。</string>

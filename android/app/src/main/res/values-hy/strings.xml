@@ -154,6 +154,8 @@
     <string name="check_not_ready_icon">Պատրաստ չէ</string>
     <string name="check_silent_switch_title">Պահուստային զարթուցիչ iOS 26-ից առաջ</string>
     <string name="check_silent_switch_text">iOS 26-ից առաջ պահուստային զարթուցիչը ծանուցում է․ անձայն ռեժիմի փոխանջատիչը լռեցնում է այն։ Ձայնը միացված թող կամ թարմացրու iOS 26-ի։</string>
+    <string name="check_backup_horizon_title">Պահուստային զարթուցիչները շուտով կվերջանան</string>
+    <string name="check_backup_horizon_text">Բացիր Phase Wake-ը, որպեսզի iPhone-ը սահմանի հաջորդ զարթուցիչները։</string>
     <string name="check_watch">Ժամացույցը միացված է</string>
     <string name="check_watch_problem">Ժամացույցդ հասանելի չէ։ Կրիր այն, Bluetooth-ը միացված պահիր և մեկ անգամ բացիր Phase Wake-ը ժամացույցում։</string>
     <string name="check_notifications">Ծանուցումները թույլատրված են</string>
@@ -443,6 +445,7 @@
     <string name="restore_open">Բացել</string>
     <string name="restore_wrong_password">Սխալ գաղտնաբառ կամ սա Phase Wake-ի պատճեն չէ։ Ոչինչ չի փոխվել։</string>
     <string name="restore_unreadable">Չհաջողվեց կարդալ ֆայլը։ Ոչինչ չի փոխվել։</string>
+    <string name="restore_failed">Վերականգնումը ձախողվեց։ Ոչինչ չի փոխվել։</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Զարթուցիչներ՝ %1$d · Գիշերներ՝ %2$d · Նշումներով օրեր՝ %3$d</string>
     <string name="restore_confirm_title">Փոխարինե՞լ տվյալները</string>
     <string name="restore_confirm_text">Այս հեռախոսի զարթուցիչները, պատմությունը, նշումները և կարգավորումները կփոխարինվեն պահուստային պատճենով։</string>

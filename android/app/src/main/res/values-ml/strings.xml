@@ -163,6 +163,8 @@
     <string name="check_not_ready_icon">തയ്യാറല്ല</string>
     <string name="check_silent_switch_title">iOS 26-ന് മുമ്പുള്ള ബാക്കപ്പ് അലാറം</string>
     <string name="check_silent_switch_text">iOS 26-ന് മുമ്പ് ബാക്കപ്പ് അലാറം ഒരു അറിയിപ്പാണ്: സൈലന്റ് സ്വിച്ച് അതിനെ നിശ്ശബ്ദമാക്കും. ശബ്ദം ഓണാക്കി വയ്ക്കുക അല്ലെങ്കിൽ iOS 26-ലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക.</string>
+    <string name="check_backup_horizon_title">ബാക്കപ്പ് അലാറങ്ങൾ ഉടൻ തീരും</string>
+    <string name="check_backup_horizon_text">നിങ്ങളുടെ iPhone അടുത്ത അലാറങ്ങൾ സജ്ജമാക്കാൻ Phase Wake തുറക്കുക.</string>
     <string name="check_watch">വാച്ച് കണക്റ്റ് ചെയ്‌തു</string>
     <string name="check_watch_problem">വാച്ചുമായി ബന്ധപ്പെടാനാകുന്നില്ല. അത് ധരിക്കുക, Bluetooth ഓണാക്കി വയ്ക്കുക, വാച്ചിൽ Phase Wake ഒരിക്കൽ തുറക്കുക.</string>
     <string name="check_notifications">അറിയിപ്പുകൾ അനുവദിച്ചു</string>
@@ -457,6 +459,7 @@
     <string name="restore_open">തുറക്കുക</string>
     <string name="restore_wrong_password">തെറ്റായ പാസ്‌വേഡ്, അല്ലെങ്കിൽ ഇത് Phase Wake ബാക്കപ്പ് അല്ല. ഒന്നും മാറ്റിയിട്ടില്ല.</string>
     <string name="restore_unreadable">ഫയൽ വായിക്കാനായില്ല. ഒന്നും മാറ്റിയിട്ടില്ല.</string>
+    <string name="restore_failed">പുനഃസ്ഥാപിക്കൽ പരാജയപ്പെട്ടു. ഒന്നും മാറ്റിയിട്ടില്ല.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">അലാറങ്ങൾ: %1$d · രാത്രികൾ: %2$d · കുറിപ്പുള്ള ദിവസങ്ങൾ: %3$d</string>
     <string name="restore_confirm_title">ഡാറ്റ മാറ്റിസ്ഥാപിക്കണോ?</string>
     <string name="restore_confirm_text">ഈ ഫോണിലെ അലാറങ്ങൾ, ചരിത്രം, കുറിപ്പുകൾ, ക്രമീകരണം എന്നിവ ബാക്കപ്പ് കൊണ്ട് മാറ്റിസ്ഥാപിക്കും.</string>

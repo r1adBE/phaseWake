@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Не е подготвено</string>
     <string name="check_silent_switch_title">Резервен аларм пред iOS 26</string>
     <string name="check_silent_switch_text">Пред iOS 26 резервниот аларм е известување: прекинувачот за тивок режим го стишува. Остави го звукот вклучен или ажурирај на iOS 26.</string>
+    <string name="check_backup_horizon_title">Резервните аларми наскоро ќе снемаат</string>
+    <string name="check_backup_horizon_text">Отвори го Phase Wake за iPhone да ги постави следните аларми.</string>
     <string name="check_watch">Часовникот е поврзан</string>
     <string name="check_watch_problem">Часовникот не е достапен. Носи го, остави го Bluetooth вклучен и еднаш отвори го Phase Wake на часовникот.</string>
     <string name="check_notifications">Известувањата се дозволени</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Отвори</string>
     <string name="restore_wrong_password">Погрешна лозинка или не е копија од Phase Wake. Ништо не е променето.</string>
     <string name="restore_unreadable">Датотеката не може да се прочита. Ништо не е променето.</string>
+    <string name="restore_failed">Враќањето не успеа. Ништо не е променето.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Аларми: %1$d · Ноќи: %2$d · Денови со белешки: %3$d</string>
     <string name="restore_confirm_title">Да се заменат податоците?</string>
     <string name="restore_confirm_text">Алармите, историјата, белешките и поставките на овој телефон ќе бидат заменети со копијата.</string>

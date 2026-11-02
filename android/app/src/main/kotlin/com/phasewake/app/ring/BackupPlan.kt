@@ -54,9 +54,14 @@ internal suspend fun BackupAlarm.planBackup() {
     }
     val at = plan.target.plus(grace)
     setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
-    // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen.
-    BackupDirectBoot.save(context, at, plan.alarmId, plan.target)
+    // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen, samt den folgenden Zweitweckern
+    // (klingelt einer vor dem Entsperren, stellt BackupDirectBoot.advance den nächsten).
+    val following = RingRules.directBootPlans(plan, backups, transient, suppressed, grace, GRACE, zone, holidays, DIRECT_BOOT_PLANS)
+    BackupDirectBoot.save(context, following.map { BackupDirectBoot.Entry(it.target.plus(grace), it.alarmId, it.target) })
 }
+
+/** So viele Zweitwecker liegen für die Zeit vor dem ersten Entsperren bereit (mehrere Wecker über gut zwei Tage). */
+private const val DIRECT_BOOT_PLANS = 6
 
 /** Geplante Zielzeit des Zweitweckers (für die Diagnose); `null`, wenn keiner geplant ist. */
 internal suspend fun BackupAlarm.plannedTarget(): Instant? =

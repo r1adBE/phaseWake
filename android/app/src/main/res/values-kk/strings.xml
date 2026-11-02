@@ -154,6 +154,8 @@
     <string name="check_not_ready_icon">Дайын емес</string>
     <string name="check_silent_switch_title">iOS 26-ға дейінгі қосалқы оятқыш</string>
     <string name="check_silent_switch_text">iOS 26-ға дейін қосалқы оятқыш хабарландыру болып табылады: дыбыссыз режим қосқышы оны үнсіз етеді. Дыбысты қосулы қалдыр немесе iOS 26-ға жаңарт.</string>
+    <string name="check_backup_horizon_title">Қосалқы оятқыштар жақында бітеді</string>
+    <string name="check_backup_horizon_text">iPhone келесі оятқыштарды қоюы үшін Phase Wake қолданбасын аш.</string>
     <string name="check_watch">Сағат қосылған</string>
     <string name="check_watch_problem">Сағатың қолжетімсіз. Оны тағып ал, Bluetooth-ты қосулы ұста және сағатта Phase Wake-ті бір рет аш.</string>
     <string name="check_notifications">Хабарландыруларға рұқсат бар</string>
@@ -443,6 +445,7 @@
     <string name="restore_open">Ашу</string>
     <string name="restore_wrong_password">Құпиясөз қате немесе бұл Phase Wake көшірмесі емес. Ешнәрсе өзгерген жоқ.</string>
     <string name="restore_unreadable">Файлды оқу мүмкін болмады. Ешнәрсе өзгерген жоқ.</string>
+    <string name="restore_failed">Қалпына келтіру сәтсіз болды. Ешнәрсе өзгерген жоқ.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Оятқыштар: %1$d · Түндер: %2$d · Жазбалы күндер: %3$d</string>
     <string name="restore_confirm_title">Деректерді ауыстыру керек пе?</string>
     <string name="restore_confirm_text">Бұл телефондағы оятқыштар, тарих, жазбалар мен параметрлер сақтық көшірмемен ауыстырылады.</string>

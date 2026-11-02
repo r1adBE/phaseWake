@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Ei valmis</string>
     <string name="check_silent_switch_title">Varaherätys ennen iOS 26:ta</string>
     <string name="check_silent_switch_text">Ennen iOS 26:ta varaherätys on ilmoitus: äänetön-kytkin mykistää sen. Pidä äänet päällä tai päivitä iOS 26:een.</string>
+    <string name="check_backup_horizon_title">Varaherätykset loppuvat pian</string>
+    <string name="check_backup_horizon_text">Avaa Phase Wake, jotta iPhone voi asettaa seuraavat herätykset.</string>
     <string name="check_watch">Kello yhdistetty</string>
     <string name="check_watch_problem">Kelloasi ei tavoiteta. Pidä se ranteessa, pidä Bluetooth päällä ja avaa Phase Wake kellossa kerran.</string>
     <string name="check_notifications">Ilmoitukset sallittu</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Avaa</string>
     <string name="restore_wrong_password">Väärä salasana tai ei Phase Wake -varmuuskopio. Mitään ei muutettu.</string>
     <string name="restore_unreadable">Tiedostoa ei voitu lukea. Mitään ei muutettu.</string>
+    <string name="restore_failed">Palautus epäonnistui. Mitään ei muutettu.</string>
     <string name="restore_preview">Herätykset: %1$d · Yöt: %2$d · Päivät, joilla muistiinpanoja: %3$d</string>
     <string name="restore_confirm_title">Korvataanko tiedot?</string>
     <string name="restore_confirm_text">Tämän puhelimen herätykset, historia, muistiinpanot ja asetukset korvataan varmuuskopiolla.</string>

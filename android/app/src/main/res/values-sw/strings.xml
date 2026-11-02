@@ -163,6 +163,8 @@
     <string name="check_not_ready_icon">Haiko tayari</string>
     <string name="check_silent_switch_title">Kengele ya akiba kabla ya iOS 26</string>
     <string name="check_silent_switch_text">Kabla ya iOS 26, kengele ya akiba ni arifa: swichi ya kimya huinyamazisha. Acha sauti ikiwa imewashwa au sasisha hadi iOS 26.</string>
+    <string name="check_backup_horizon_title">Kengele za akiba zinakaribia kuisha</string>
+    <string name="check_backup_horizon_text">Fungua Phase Wake ili iPhone yako iweke kengele zinazofuata.</string>
     <string name="check_watch">Saa imeunganishwa</string>
     <string name="check_watch_problem">Saa yako haipatikani. Ivae, acha Bluetooth ikiwa imewashwa na ufungue Phase Wake kwenye saa mara moja.</string>
     <string name="check_notifications">Arifa zimeruhusiwa</string>
@@ -457,6 +459,7 @@
     <string name="restore_open">Fungua</string>
     <string name="restore_wrong_password">Nenosiri si sahihi au si nakala ya Phase Wake. Hakuna kilichobadilishwa.</string>
     <string name="restore_unreadable">Imeshindwa kusoma faili. Hakuna kilichobadilishwa.</string>
+    <string name="restore_failed">Imeshindwa kurejesha. Hakuna kilichobadilishwa.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Kengele: %1$d · Usiku: %2$d · Siku zenye madokezo: %3$d</string>
     <string name="restore_confirm_title">Badilisha data?</string>
     <string name="restore_confirm_text">Kengele, historia, madokezo na mipangilio kwenye simu hii vitabadilishwa na nakala.</string>

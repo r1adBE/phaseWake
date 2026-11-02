@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">尚未就緒</string>
     <string name="check_silent_switch_title">iOS 26 之前的備用鬧鐘</string>
     <string name="check_silent_switch_text">在 iOS 26 之前，備用鬧鐘是一則通知：靜音開關會讓它沒有聲音。請保持鈴聲開啟，或更新至 iOS 26。</string>
+    <string name="check_backup_horizon_title">備用鬧鐘即將用完</string>
+    <string name="check_backup_horizon_text">打開 Phase Wake，讓 iPhone 設定接下來的鬧鐘。</string>
     <string name="check_watch">手錶已連線</string>
     <string name="check_watch_problem">無法連線到你的手錶。請戴上手錶，保持 Bluetooth 開啟，並在手錶上開啟一次 Phase Wake。</string>
     <string name="check_notifications">通知已允許</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">開啟</string>
     <string name="restore_wrong_password">密碼錯誤或不是 Phase Wake 備份。沒有任何變更。</string>
     <string name="restore_unreadable">無法讀取該檔案。未做任何變更。</string>
+    <string name="restore_failed">還原失敗。未做任何變更。</string>
     <string name="restore_preview">鬧鐘：%1$d · 夜晚：%2$d · 有筆記的天數：%3$d</string>
     <string name="restore_confirm_title">要取代資料嗎？</string>
     <string name="restore_confirm_text">這支手機上的鬧鐘、紀錄、筆記和設定將被備份取代。</string>

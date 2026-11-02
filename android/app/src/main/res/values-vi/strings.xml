@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">Chưa sẵn sàng</string>
     <string name="check_silent_switch_title">Báo thức dự phòng trước iOS 26</string>
     <string name="check_silent_switch_text">Trước iOS 26, báo thức dự phòng là một thông báo: công tắc im lặng sẽ làm nó không kêu. Hãy để bật âm thanh hoặc cập nhật lên iOS 26.</string>
+    <string name="check_backup_horizon_title">Sắp hết báo thức dự phòng</string>
+    <string name="check_backup_horizon_text">Mở Phase Wake để iPhone đặt các báo thức tiếp theo.</string>
     <string name="check_watch">Đã kết nối đồng hồ</string>
     <string name="check_watch_problem">Không thể kết nối với đồng hồ. Hãy đeo đồng hồ, bật Bluetooth và mở Phase Wake trên đồng hồ một lần.</string>
     <string name="check_notifications">Đã cho phép thông báo</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">Mở</string>
     <string name="restore_wrong_password">Sai mật khẩu hoặc không phải bản sao lưu Phase Wake. Không có gì thay đổi.</string>
     <string name="restore_unreadable">Không thể đọc tệp. Không có gì thay đổi.</string>
+    <string name="restore_failed">Khôi phục không thành công. Không có gì thay đổi.</string>
     <string name="restore_preview">Báo thức: %1$d · Đêm: %2$d · Ngày có ghi chú: %3$d</string>
     <string name="restore_confirm_title">Thay thế dữ liệu?</string>
     <string name="restore_confirm_text">Báo thức, lịch sử, ghi chú và cài đặt trên điện thoại này sẽ được thay bằng bản sao lưu.</string>

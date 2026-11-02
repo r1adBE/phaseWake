@@ -19,6 +19,9 @@ playServicesWearable = "20.0.1"
 screenshot = "0.0.1-alpha16"
 mediapipe = "0.10.32"
 robolectric = "4.14.1"
+# Nur als Constraint (Review K-01): hebt transitive Versionen mit bekannten Schwachstellen an, bindet nichts zusätzlich ein.
+guava = "33.4.8-android"
+protobufJavalite = "4.31.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

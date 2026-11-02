@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.util.Log
+import androidx.datastore.preferences.core.edit
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.core.BackupException
 import com.phasewake.app.core.BackupFile
@@ -12,11 +13,14 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CodecException
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.SleepNotes
+import com.phasewake.app.shared.AlarmSnapshot
+import com.phasewake.app.shared.phaseWakeStore
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.security.SecureRandom
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 
 /** Vorschau vor dem Ersetzen: Anzahl Wecker, Nächte und Tage mit Notizen. */
@@ -118,8 +122,35 @@ object BackupManager {
         return BackupPreview(payload, alarms, payload.nights.size, SleepNotes.decode(payload.notes).size)
     }
 
-    /** Ersetzt alle Daten durch [payload] und gleicht mit der Uhr ab. Unlesbare Nächte fallen weg. */
-    suspend fun restore(app: PhaseWakeApp, payload: BackupPayload) {
+    /**
+     * Ersetzt alle Daten durch [payload] in einem Schritt und gleicht danach mit der Uhr ab. Unlesbare Nächte fallen weg.
+     * Erst wird alles gelesen; dann die Nächte (eigene Datei, atomar) und Wecker, Notizen, Abendroutine und
+     * Einstellungen in einem einzigen `edit` des DataStore (atomar). Scheitert dieses, kommen die alten Nächte zurück:
+     * Es bleibt der alte oder der neue Stand, nie eine Mischung.
+     * @return ob ersetzt wurde; `false` = nichts geändert (Meldung `restore_failed`).
+     */
+    suspend fun restore(app: PhaseWakeApp, payload: BackupPayload): Boolean {
+        val snapshot = try {
+            swap(app, payload)
+        } catch (e: Exception) {
+            if (e is CancellationException) throw e
+            Log.w(TAG, "Wiederherstellen fehlgeschlagen, alter Stand bleibt", e)
+            app.diag.log(DiagKind.ERROR, "restore failed")
+            return false
+        }
+        app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
+        app.sync.publishAlarms(snapshot)
+        app.holidays.refresh(force = true)
+        app.publishSleepGoal()
+        app.publishAutoOnset()
+        // Plant auch Bettzeit-Erinnerung und Wochenrückblick nach den neuen Einstellungen.
+        app.backup.reschedule()
+        return true
+    }
+
+    /** Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. */
+    private suspend fun swap(app: PhaseWakeApp, payload: BackupPayload): AlarmSnapshot {
+        val alarms = Codec.decodeAlarms(payload.alarms)
         val nights = payload.nights.mapNotNull { text ->
             try {
                 Codec.decodeNight(text)
@@ -128,17 +159,21 @@ object BackupManager {
                 null
             }
         }
+        val before = app.nights.load()
         app.nights.replaceAll(nights)
-        app.notes.restore(payload.notes, payload.customNotes, payload.healthFeelings)
-        app.routine.restore(payload.routineItems, payload.routineTicks)
-        app.settings.restore(payload.settings)
-        val snapshot = app.alarms.replaceAll(Codec.decodeAlarms(payload.alarms))
-        app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
-        app.sync.publishAlarms(snapshot)
-        app.holidays.refresh(force = true)
-        app.publishSleepGoal()
-        app.publishAutoOnset()
-        // Plant auch Bettzeit-Erinnerung und Wochenrückblick nach den neuen Einstellungen.
-        app.backup.reschedule()
+        try {
+            lateinit var snapshot: AlarmSnapshot
+            app.phaseWakeStore.edit { prefs ->
+                app.notes.restoreInto(prefs, payload.notes, payload.customNotes, payload.healthFeelings)
+                app.routine.restoreInto(prefs, payload.routineItems, payload.routineTicks)
+                app.settings.restoreInto(prefs, payload.settings)
+                snapshot = app.alarms.replaceAllIn(prefs, alarms)
+            }
+            return snapshot
+        } catch (e: Exception) {
+            // Auch bei einem Abbruch: die alten Nächte zurück, damit der Stand zusammenpasst.
+            withContext(NonCancellable) { app.nights.replaceAll(before) }
+            throw e
+        }
     }
 }

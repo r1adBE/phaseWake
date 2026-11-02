@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Nie gereed nie</string>
     <string name="check_silent_switch_title">Rugsteunwekker voor iOS 26</string>
     <string name="check_silent_switch_text">Voor iOS 26 is die rugsteunwekker ’n kennisgewing: die stilskakelaar maak dit stil. Hou die klank aan of dateer op na iOS 26.</string>
+    <string name="check_backup_horizon_title">Rugsteunwekkers raak binnekort op</string>
+    <string name="check_backup_horizon_text">Maak Phase Wake oop sodat jou iPhone die volgende wekkers kan stel.</string>
     <string name="check_watch">Horlosie gekoppel</string>
     <string name="check_watch_problem">Jou horlosie is nie bereikbaar nie. Dra dit, hou Bluetooth aan en maak Phase Wake een keer op die horlosie oop.</string>
     <string name="check_notifications">Kennisgewings toegelaat</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Maak oop</string>
     <string name="restore_wrong_password">Verkeerde wagwoord of nie ’n Phase Wake-rugsteun nie. Niks is verander nie.</string>
     <string name="restore_unreadable">Kon nie die lêer lees nie. Niks is verander nie.</string>
+    <string name="restore_failed">Herstel het misluk. Niks is verander nie.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Wekkers: %1$d · Nagte: %2$d · Dae met notas: %3$d</string>
     <string name="restore_confirm_title">Vervang data?</string>
     <string name="restore_confirm_text">Wekkers, geskiedenis, notas en instellings op hierdie foon sal deur die rugsteun vervang word.</string>

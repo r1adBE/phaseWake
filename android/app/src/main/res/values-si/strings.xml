@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">සූදානම් නැත</string>
     <string name="check_silent_switch_title">iOS 26 ට පෙර උපස්ථ එලාමය</string>
     <string name="check_silent_switch_text">iOS 26 ට පෙර උපස්ථ එලාමය දැනුම්දීමකි: නිහඬ ස්විචය එය නිහඬ කරයි. ශබ්දය සක්‍රියව තබන්න හෝ iOS 26 වෙත යාවත්කාලීන කරන්න.</string>
+    <string name="check_backup_horizon_title">උපස්ථ එලාම ඉක්මනින් අවසන් වේ</string>
+    <string name="check_backup_horizon_text">ඔබේ iPhone එකට ඊළඟ එලාම සැකසීමට Phase Wake විවෘත කරන්න.</string>
     <string name="check_watch">ඔරලෝසුව සම්බන්ධයි</string>
     <string name="check_watch_problem">ඔබේ ඔරලෝසුවට ළඟා විය නොහැක. එය පැළඳ, Bluetooth සක්‍රියව තබා ඔරලෝසුවේ Phase Wake එක් වරක් විවෘත කරන්න.</string>
     <string name="check_notifications">දැනුම්දීම්වලට ඉඩ ඇත</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">විවෘත කරන්න</string>
     <string name="restore_wrong_password">මුරපදය වැරදියි, නැතහොත් මෙය Phase Wake උපස්ථයක් නොවේ. කිසිවක් වෙනස් නොකළා.</string>
     <string name="restore_unreadable">ගොනුව කියවීමට නොහැකි විය. කිසිවක් වෙනස් නොකළා.</string>
+    <string name="restore_failed">ප්‍රතිසාධනය අසාර්ථක විය. කිසිවක් වෙනස් නොකළා.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">එලාම: %1$d · රාත්‍රි: %2$d · සටහන් සහිත දින: %3$d</string>
     <string name="restore_confirm_title">දත්ත ප්‍රතිස්ථාපනය කරන්නද?</string>
     <string name="restore_confirm_text">මෙම දුරකථනයේ එලාම, ඉතිහාසය, සටහන් සහ සැකසීම් උපස්ථයෙන් ප්‍රතිස්ථාපනය වේ.</string>

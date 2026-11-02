@@ -6,439 +6,439 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake meet jou hartklop in die wekvenster om ligte slaap te herken."
+            "value": "Phase Wake meet jou beweging en hartklop in die wekvenster om jou op ’n goeie oomblik wakker te maak."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ቀላል እንቅልፍን ለመለየት በመቀስቀሻ ክልሉ ውስጥ የልብ ምትዎን ይለካል።"
+            "value": "Phase Wake በጥሩ ጊዜ ለመቀስቀስዎ በመቀስቀሻ ክልሉ ውስጥ እንቅስቃሴዎን እና የልብ ምትዎን ይለካል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يقيس Phase Wake معدل نبضات القلب خلال فترة الاستيقاظ لاكتشاف النوم الخفيف."
+            "value": "يقيس Phase Wake حركتك ومعدل نبضات قلبك خلال فترة الاستيقاظ ليوقظك في لحظة مناسبة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake yüngül yuxunu tanımaq üçün oyanma pəncərəsində nəbzini ölçür."
+            "value": "Phase Wake səni yaxşı anda oyatmaq üçün oyanma pəncərəsində hərəkətini və nəbzini ölçür."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake измерва пулса ти в прозореца за събуждане, за да разпознае лекия сън."
+            "value": "Phase Wake измерва движенията и пулса ти в прозореца за събуждане, за да те събуди в подходящ момент."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "হালকা ঘুম চিনতে Phase Wake জাগানোর সময়সীমায় তোমার হৃদস্পন্দন মাপে।"
+            "value": "ভালো মুহূর্তে তোমাকে জাগাতে Phase Wake জাগানোর সময়সীমায় তোমার নড়াচড়া ও হৃদস্পন্দন মাপে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mjeri tvoj puls u intervalu buđenja kako bi prepoznao lagani san."
+            "value": "Phase Wake mjeri tvoje pokrete i puls u intervalu buđenja kako bi te probudio u dobrom trenutku."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mesura la teva freqüència cardíaca durant la finestra de despertar per detectar el son lleuger."
+            "value": "Phase Wake mesura el teu moviment i la teva freqüència cardíaca durant la finestra de despertar per despertar-te en un bon moment."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake měří tvůj srdeční tep během okna buzení, aby rozpoznal lehký spánek."
+            "value": "Phase Wake měří tvůj pohyb a srdeční tep během okna buzení, aby tě probudil ve vhodnou chvíli."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake måler din puls i vækningsvinduet for at registrere let søvn."
+            "value": "Phase Wake måler din bevægelse og puls i vækningsvinduet for at vække dig i et godt øjeblik."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake misst im Weckfenster deinen Puls, um leichten Schlaf zu erkennen."
+            "value": "Phase Wake misst Bewegung und Puls in deinem Weckfenster, um dich in einem guten Moment zu wecken."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το Phase Wake μετρά τον καρδιακό σου ρυθμό κατά το παράθυρο αφύπνισης για να εντοπίσει τον ελαφρύ ύπνο."
+            "value": "Το Phase Wake μετρά την κίνηση και τον καρδιακό σου ρυθμό κατά το παράθυρο αφύπνισης, για να σε ξυπνήσει την κατάλληλη στιγμή."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mide tu frecuencia cardíaca durante la ventana de despertar para detectar el sueño ligero."
+            "value": "Phase Wake mide tu movimiento y tu frecuencia cardíaca durante la ventana de despertar para despertarte en un buen momento."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mõõdab äratusaknas sinu pulssi, et tuvastada kerget und."
+            "value": "Phase Wake mõõdab äratusaknas sinu liikumist ja pulssi, et äratada sind heal hetkel."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-k zure bihotz-maiztasuna neurtzen du esnatze-leihoan, lo arina hautemateko."
+            "value": "Phase Wake-k zure mugimendua eta bihotz-maiztasuna neurtzen ditu esnatze-leihoan, une egokian esnatzeko."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake در بازه بیدارسازی ضربان قلبت را اندازه می‌گیرد تا خواب سبک را تشخیص دهد."
+            "value": "Phase Wake در بازه بیدارسازی حرکت و ضربان قلبت را اندازه می‌گیرد تا در لحظهٔ مناسبی بیدارت کند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mittaa sykettäsi heräämisikkunan aikana tunnistaakseen kevyen unen."
+            "value": "Phase Wake mittaa liikettäsi ja sykettäsi heräämisikkunan aikana herättääkseen sinut sopivalla hetkellä."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinusukat ng Phase Wake ang heart rate mo sa window ng paggising para ma-detect ang mababaw na tulog."
+            "value": "Sinusukat ng Phase Wake ang galaw at heart rate mo sa window ng paggising para gisingin ka sa magandang sandali."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mesure ta fréquence cardiaque pendant la fenêtre de réveil pour détecter le sommeil léger."
+            "value": "Phase Wake mesure tes mouvements et ta fréquence cardiaque pendant la fenêtre de réveil pour te réveiller au bon moment."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tomhaiseann Phase Wake do ráta croí san fhuinneog dhúisithe chun codladh éadrom a bhrath."
+            "value": "Tomhaiseann Phase Wake do ghluaiseacht agus do ráta croí san fhuinneog dhúisithe chun tú a dhúiseacht ag nóiméad maith."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mide o teu pulso na xanela de espertar para detectar o sono lixeiro."
+            "value": "Phase Wake mide o teu movemento e o teu pulso na xanela de espertar para espertarte nun bo momento."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "હળવી ઊંઘ ઓળખવા Phase Wake જગાડવાના સમયગાળામાં તમારા હૃદયના ધબકારા માપે છે."
+            "value": "સારી ક્ષણે તમને જગાડવા Phase Wake જગાડવાના સમયગાળામાં તમારું હલનચલન અને હૃદયના ધબકારા માપે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "‏Phase Wake מודד את הדופק שלך בחלון ההתעוררות כדי לזהות שינה קלה."
+            "value": "‏Phase Wake מודד את התנועה והדופק שלך בחלון ההתעוררות כדי להעיר אותך ברגע טוב."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake हल्की नींद पहचानने के लिए जागने की अवधि में तुम्हारी हृदय गति मापता है।"
+            "value": "Phase Wake तुम्हें सही पल पर जगाने के लिए जागने की अवधि में तुम्हारी गतिविधि और हृदय गति मापता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mjeri tvoj puls u intervalu buđenja kako bi prepoznao lagani san."
+            "value": "Phase Wake mjeri tvoje pokrete i puls u intervalu buđenja kako bi te probudio u dobrom trenutku."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Phase Wake az ébresztési ablak alatt méri a pulzusodat, hogy felismerje a könnyű alvást."
+            "value": "A Phase Wake az ébresztési ablak alatt méri a mozgásodat és a pulzusodat, hogy jó pillanatban ébresszen fel."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ը արթնացման պատուհանում չափում է սրտի զարկերդ՝ թեթև քունը ճանաչելու համար։"
+            "value": "Phase Wake-ը արթնացման պատուհանում չափում է շարժումներդ և սրտի զարկերդ՝ քեզ հարմար պահի արթնացնելու համար։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mengukur detak jantungmu selama jendela bangun untuk mendeteksi tidur ringan."
+            "value": "Phase Wake mengukur gerakan dan detak jantungmu selama jendela bangun untuk membangunkanmu di saat yang tepat."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mælir púlsinn þinn í vakningarglugganum til að greina léttan svefn."
+            "value": "Phase Wake mælir hreyfingu þína og púls í vakningarglugganum til að vekja þig á góðu augnabliki."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake misura la tua frequenza cardiaca durante la finestra di risveglio per rilevare il sonno leggero."
+            "value": "Phase Wake misura i tuoi movimenti e la tua frequenza cardiaca durante la finestra di risveglio per svegliarti in un buon momento."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wakeは、浅い眠りを検出するため、起床ウィンドウ中の心拍数を測定します。"
+            "value": "Phase Wakeは、良いタイミングで起こすため、起床ウィンドウ中の動きと心拍数を測定します。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake გაღვიძების ფანჯარაში ზომავს შენს პულსს, რათა მსუბუქი ძილი ამოიცნოს."
+            "value": "Phase Wake გაღვიძების ფანჯარაში ზომავს შენს მოძრაობასა და პულსს, რათა კარგ მომენტში გაგაღვიძოს."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Жеңіл ұйқыны тану үшін Phase Wake ояту терезесінде жүрек соғысыңды өлшейді."
+            "value": "Сені қолайлы сәтте ояту үшін Phase Wake ояту терезесінде қозғалысың мен жүрек соғысыңды өлшейді."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake វាស់ចង្វាក់បេះដូងរបស់អ្នកក្នុងចន្លោះពេលដាស់ ដើម្បីរកឃើញដំណេកស្រាល។"
+            "value": "Phase Wake វាស់ចលនា និងចង្វាក់បេះដូងរបស់អ្នកក្នុងចន្លោះពេលដាស់ ដើម្បីដាស់អ្នកនៅពេលល្អ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಹಗುರ ನಿದ್ರೆಯನ್ನು ಪತ್ತೆಹಚ್ಚಲು Phase Wake ಎಚ್ಚರಿಸುವ ಅವಧಿಯಲ್ಲಿ ನಿಮ್ಮ ಹೃದಯ ಬಡಿತವನ್ನು ಅಳೆಯುತ್ತದೆ."
+            "value": "ಸೂಕ್ತ ಕ್ಷಣದಲ್ಲಿ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಲು Phase Wake ಎಚ್ಚರಿಸುವ ಅವಧಿಯಲ್ಲಿ ನಿಮ್ಮ ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತವನ್ನು ಅಳೆಯುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake는 얕은 잠을 감지하기 위해 기상 구간 동안 심박수를 측정합니다."
+            "value": "Phase Wake는 좋은 순간에 깨우기 위해 기상 구간 동안 움직임과 심박수를 측정합니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ວັດແທກອັດຕາການເຕັ້ນຫົວໃຈຂອງເຈົ້າໃນຊ່ວງເວລາປຸກ ເພື່ອກວດຈັບການຫຼັບຕື້ນ"
+            "value": "Phase Wake ວັດແທກການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຫົວໃຈຂອງເຈົ້າໃນຊ່ວງເວລາປຸກ ເພື່ອປຸກເຈົ້າໃນຈັງຫວະທີ່ດີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake žadinimo lange matuoja tavo pulsą, kad aptiktų lengvą miegą."
+            "value": "Phase Wake žadinimo lange matuoja tavo judesius ir pulsą, kad pažadintų tave tinkamą akimirką."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake modināšanas logā mēra tavu pulsu, lai konstatētu vieglu miegu."
+            "value": "Phase Wake modināšanas logā mēra tavas kustības un pulsu, lai pamodinātu tevi piemērotā brīdī."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake го мери твојот пулс во прозорецот за будење за да препознае лесен сон."
+            "value": "Phase Wake ги мери твоите движења и пулс во прозорецот за будење за да те разбуди во добар момент."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കം കണ്ടെത്താൻ Phase Wake ഉണർത്തൽ സമയപരിധിയിൽ നിങ്ങളുടെ ഹൃദയമിടിപ്പ് അളക്കുന്നു."
+            "value": "നല്ല നിമിഷത്തിൽ നിങ്ങളെ ഉണർത്താൻ Phase Wake ഉണർത്തൽ സമയപരിധിയിൽ നിങ്ങളുടെ ചലനവും ഹൃദയമിടിപ്പും അളക്കുന്നു."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хөнгөн нойрыг илрүүлэхийн тулд Phase Wake сэрээх хугацаанд зүрхний цохилтыг чинь хэмжинэ."
+            "value": "Чамайг тохиромжтой мөчид сэрээхийн тулд Phase Wake сэрээх хугацаанд хөдөлгөөн болон зүрхний цохилтыг чинь хэмжинэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "हलकी झोप ओळखण्यासाठी Phase Wake उठवण्याच्या कालावधीत तुमची हृदयगती मोजते."
+            "value": "तुम्हाला योग्य क्षणी उठवण्यासाठी Phase Wake उठवण्याच्या कालावधीत तुमची हालचाल आणि हृदयगती मोजते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mengukur kadar denyutan jantungmu semasa tetingkap bangun untuk mengesan tidur ringan."
+            "value": "Phase Wake mengukur pergerakan dan kadar denyutan jantungmu semasa tetingkap bangun untuk mengejutkanmu pada saat yang sesuai."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ရေးပေါ့ကို သိရှိရန် Phase Wake သည် နှိုးချိန်အပိုင်းအတွင်း သင့်နှလုံးခုန်နှုန်းကို တိုင်းတာသည်။"
+            "value": "သင့်တော်သည့်အချိန်တွင် နှိုးရန် Phase Wake သည် နှိုးချိန်အပိုင်းအတွင်း သင့်လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်းကို တိုင်းတာသည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake måler pulsen din i våknevinduet for å oppdage lett søvn."
+            "value": "Phase Wake måler bevegelsene og pulsen din i våknevinduet for å vekke deg i et godt øyeblikk."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्का निद्रा पहिचान गर्न Phase Wake ले ब्युँझाउने अवधिमा तिम्रो मुटुको धड्कन मापन गर्छ।"
+            "value": "तिमीलाई राम्रो पलमा ब्युँझाउन Phase Wake ले ब्युँझाउने अवधिमा तिम्रो चाल र मुटुको धड्कन मापन गर्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake meet je hartslag tijdens het wekvenster om lichte slaap te herkennen."
+            "value": "Phase Wake meet je beweging en hartslag tijdens het wekvenster om je op een goed moment te wekken."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਹਲਕੀ ਨੀਂਦ ਪਛਾਣਨ ਲਈ Phase Wake ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਤੁਹਾਡੀ ਦਿਲ ਦੀ ਧੜਕਣ ਮਾਪਦਾ ਹੈ।"
+            "value": "ਤੁਹਾਨੂੰ ਸਹੀ ਪਲ ’ਤੇ ਜਗਾਉਣ ਲਈ Phase Wake ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ ਮਾਪਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mierzy twoje tętno w oknie budzenia, aby wykryć lekki sen."
+            "value": "Phase Wake mierzy twój ruch i tętno w oknie budzenia, aby obudzić cię w dobrym momencie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake mede seus batimentos cardíacos durante a janela de despertar para detectar o sono leve."
+            "value": "O Phase Wake mede seus movimentos e batimentos cardíacos durante a janela de despertar para acordar você em um bom momento."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake mede a tua frequência cardíaca durante a janela de despertar para detetar o sono leve."
+            "value": "O Phase Wake mede os teus movimentos e a tua frequência cardíaca durante a janela de despertar para te acordar num bom momento."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake îți măsoară pulsul în intervalul de trezire pentru a detecta somnul ușor."
+            "value": "Phase Wake îți măsoară mișcările și pulsul în intervalul de trezire ca să te trezească într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake измеряет твой пульс в окне пробуждения, чтобы определить лёгкий сон."
+            "value": "Phase Wake измеряет твои движения и пульс в окне пробуждения, чтобы разбудить тебя в подходящий момент."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සැහැල්ලු නින්ද හඳුනා ගැනීමට Phase Wake අවදි පරාසය තුළ ඔබේ හෘද ස්පන්දනය මනියි."
+            "value": "හොඳ මොහොතක ඔබව අවදි කිරීමට Phase Wake අවදි පරාසය තුළ ඔබේ චලනය සහ හෘද ස්පන්දනය මනියි."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake v okne budenia meria tvoj tep, aby rozpoznal ľahký spánok."
+            "value": "Phase Wake v okne budenia meria tvoj pohyb a tep, aby ťa zobudil vo vhodnej chvíli."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake v oknu bujenja meri tvoj srčni utrip, da zazna lahek spanec."
+            "value": "Phase Wake v oknu bujenja meri tvoje gibanje in srčni utrip, da te zbudi ob pravem trenutku."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mat pulsin tënd gjatë intervalit të zgjimit për të dalluar gjumin e lehtë."
+            "value": "Phase Wake mat lëvizjen dhe pulsin tënd gjatë intervalit të zgjimit për të të zgjuar në një moment të mirë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake мери твој пулс у интервалу буђења да би препознао лагани сан."
+            "value": "Phase Wake мери твоје покрете и пулс у интервалу буђења да би те пробудио у добром тренутку."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mäter din puls under väckningsfönstret för att upptäcka lätt sömn."
+            "value": "Phase Wake mäter dina rörelser och din puls under väckningsfönstret för att väcka dig vid ett bra tillfälle."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake hupima mapigo yako ya moyo katika kipindi cha kuamka ili kugundua usingizi mwepesi."
+            "value": "Phase Wake hupima mwendo wako na mapigo yako ya moyo katika kipindi cha kuamka ili ikuamshe wakati mzuri."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "லேசான தூக்கத்தைக் கண்டறிய, Phase Wake எழுப்பும் வரம்பில் உங்கள் இதயத் துடிப்பை அளவிடும்."
+            "value": "நல்ல தருணத்தில் உங்களை எழுப்ப, Phase Wake எழுப்பும் வரம்பில் உங்கள் அசைவையும் இதயத் துடிப்பையும் அளவிடும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "తేలికపాటి నిద్రను గుర్తించడానికి Phase Wake నిద్రలేపే వ్యవధిలో మీ గుండె వేగాన్ని కొలుస్తుంది."
+            "value": "మంచి క్షణంలో మిమ్మల్ని లేపడానికి Phase Wake నిద్రలేపే వ్యవధిలో మీ కదలికను, గుండె వేగాన్ని కొలుస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake วัดอัตราการเต้นของหัวใจของคุณในช่วงเวลาปลุก เพื่อตรวจจับการหลับตื้น"
+            "value": "Phase Wake วัดการเคลื่อนไหวและอัตราการเต้นของหัวใจของคุณในช่วงเวลาปลุก เพื่อปลุกคุณในจังหวะที่ดี"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake, hafif uykuyu algılamak için uyanma aralığında kalp atış hızını ölçer."
+            "value": "Phase Wake, seni iyi bir anda uyandırmak için uyanma aralığında hareketlerini ve kalp atış hızını ölçer."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake вимірює твій пульс у вікні пробудження, щоб виявити легкий сон."
+            "value": "Phase Wake вимірює твої рухи й пульс у вікні пробудження, щоб розбудити тебе в слушну мить."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "ہلکی نیند پہچاننے کے لیے Phase Wake جاگنے کی ونڈو میں تمہاری دل کی دھڑکن ناپتا ہے۔"
+            "value": "تمہیں اچھے لمحے پر جگانے کے لیے Phase Wake جاگنے کی ونڈو میں تمہاری حرکت اور دل کی دھڑکن ناپتا ہے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyquni aniqlash uchun Phase Wake uygʻotish oraligʻida yurak urishingni oʻlchaydi."
+            "value": "Seni yaxshi lahzada uygʻotish uchun Phase Wake uygʻotish oraligʻida harakating va yurak urishingni oʻlchaydi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake đo nhịp tim của bạn trong khung giờ thức dậy để phát hiện giấc ngủ nông."
+            "value": "Phase Wake đo chuyển động và nhịp tim của bạn trong khung giờ thức dậy để đánh thức bạn vào thời điểm tốt."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 會在喚醒時段內測量你的心率，以偵測淺睡。"
+            "value": "Phase Wake 會在喚醒時段內測量你的動作和心率，以便在合適的時機喚醒你。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake会在唤醒时段内测量你的心率，以检测浅睡。"
+            "value": "Phase Wake会在唤醒时段内测量你的动作和心率，以便在合适的时机唤醒你。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake會在喚醒時段內測量你的心率，以偵測淺眠。"
+            "value": "Phase Wake會在喚醒時段內測量你的動作和心率，以便在合適的時機喚醒你。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-Phase Wake ilinganisa ukushaya kwenhliziyo yakho esikhaleni sokuvuka ukuze ibone ubuthongo obulula."
+            "value": "I-Phase Wake ilinganisa ukunyakaza kwakho nokushaya kwenhliziyo yakho esikhaleni sokuvuka ukuze ikuvuse ngesikhathi esihle."
           }
         }
       }
@@ -448,439 +448,439 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake meet jou beweging in die wekvenster om ligte slaap te herken."
+            "value": "Phase Wake meet jou beweging en hartklop in die wekvenster om jou op ’n goeie oomblik wakker te maak."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ቀላል እንቅልፍን ለመለየት በመቀስቀሻ ክልሉ ውስጥ እንቅስቃሴዎን ይለካል።"
+            "value": "Phase Wake በጥሩ ጊዜ ለመቀስቀስዎ በመቀስቀሻ ክልሉ ውስጥ እንቅስቃሴዎን እና የልብ ምትዎን ይለካል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يقيس Phase Wake حركتك خلال فترة الاستيقاظ لاكتشاف النوم الخفيف."
+            "value": "يقيس Phase Wake حركتك ومعدل نبضات قلبك خلال فترة الاستيقاظ ليوقظك في لحظة مناسبة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake yüngül yuxunu tanımaq üçün oyanma pəncərəsində hərəkətini ölçür."
+            "value": "Phase Wake səni yaxşı anda oyatmaq üçün oyanma pəncərəsində hərəkətini və nəbzini ölçür."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake измерва движенията ти в прозореца за събуждане, за да разпознае лекия сън."
+            "value": "Phase Wake измерва движенията и пулса ти в прозореца за събуждане, за да те събуди в подходящ момент."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "হালকা ঘুম চিনতে Phase Wake জাগানোর সময়সীমায় তোমার নড়াচড়া মাপে।"
+            "value": "ভালো মুহূর্তে তোমাকে জাগাতে Phase Wake জাগানোর সময়সীমায় তোমার নড়াচড়া ও হৃদস্পন্দন মাপে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mjeri tvoje pokrete u intervalu buđenja kako bi prepoznao lagani san."
+            "value": "Phase Wake mjeri tvoje pokrete i puls u intervalu buđenja kako bi te probudio u dobrom trenutku."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mesura el teu moviment durant la finestra de despertar per detectar el son lleuger."
+            "value": "Phase Wake mesura el teu moviment i la teva freqüència cardíaca durant la finestra de despertar per despertar-te en un bon moment."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake měří tvůj pohyb během okna buzení, aby rozpoznal lehký spánek."
+            "value": "Phase Wake měří tvůj pohyb a srdeční tep během okna buzení, aby tě probudil ve vhodnou chvíli."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake måler din bevægelse i vækningsvinduet for at registrere let søvn."
+            "value": "Phase Wake måler din bevægelse og puls i vækningsvinduet for at vække dig i et godt øjeblik."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake misst im Weckfenster deine Bewegung, um leichten Schlaf zu erkennen."
+            "value": "Phase Wake misst Bewegung und Puls in deinem Weckfenster, um dich in einem guten Moment zu wecken."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το Phase Wake μετρά την κίνησή σου κατά το παράθυρο αφύπνισης για να εντοπίσει τον ελαφρύ ύπνο."
+            "value": "Το Phase Wake μετρά την κίνηση και τον καρδιακό σου ρυθμό κατά το παράθυρο αφύπνισης, για να σε ξυπνήσει την κατάλληλη στιγμή."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mide tu movimiento durante la ventana de despertar para detectar el sueño ligero."
+            "value": "Phase Wake mide tu movimiento y tu frecuencia cardíaca durante la ventana de despertar para despertarte en un buen momento."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mõõdab äratusaknas sinu liikumist, et tuvastada kerget und."
+            "value": "Phase Wake mõõdab äratusaknas sinu liikumist ja pulssi, et äratada sind heal hetkel."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-k zure mugimendua neurtzen du esnatze-leihoan, lo arina hautemateko."
+            "value": "Phase Wake-k zure mugimendua eta bihotz-maiztasuna neurtzen ditu esnatze-leihoan, une egokian esnatzeko."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake در بازه بیدارسازی حرکتت را اندازه می‌گیرد تا خواب سبک را تشخیص دهد."
+            "value": "Phase Wake در بازه بیدارسازی حرکت و ضربان قلبت را اندازه می‌گیرد تا در لحظهٔ مناسبی بیدارت کند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mittaa liikettäsi heräämisikkunan aikana tunnistaakseen kevyen unen."
+            "value": "Phase Wake mittaa liikettäsi ja sykettäsi heräämisikkunan aikana herättääkseen sinut sopivalla hetkellä."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinusukat ng Phase Wake ang galaw mo sa window ng paggising para ma-detect ang mababaw na tulog."
+            "value": "Sinusukat ng Phase Wake ang galaw at heart rate mo sa window ng paggising para gisingin ka sa magandang sandali."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mesure tes mouvements pendant la fenêtre de réveil pour détecter le sommeil léger."
+            "value": "Phase Wake mesure tes mouvements et ta fréquence cardiaque pendant la fenêtre de réveil pour te réveiller au bon moment."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tomhaiseann Phase Wake do ghluaiseacht san fhuinneog dhúisithe chun codladh éadrom a bhrath."
+            "value": "Tomhaiseann Phase Wake do ghluaiseacht agus do ráta croí san fhuinneog dhúisithe chun tú a dhúiseacht ag nóiméad maith."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mide o teu movemento na xanela de espertar para detectar o sono lixeiro."
+            "value": "Phase Wake mide o teu movemento e o teu pulso na xanela de espertar para espertarte nun bo momento."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "હળવી ઊંઘ ઓળખવા Phase Wake જગાડવાના સમયગાળામાં તમારું હલનચલન માપે છે."
+            "value": "સારી ક્ષણે તમને જગાડવા Phase Wake જગાડવાના સમયગાળામાં તમારું હલનચલન અને હૃદયના ધબકારા માપે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "‏Phase Wake מודד את התנועה שלך בחלון ההתעוררות כדי לזהות שינה קלה."
+            "value": "‏Phase Wake מודד את התנועה והדופק שלך בחלון ההתעוררות כדי להעיר אותך ברגע טוב."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake हल्की नींद पहचानने के लिए जागने की अवधि में तुम्हारी गतिविधि मापता है।"
+            "value": "Phase Wake तुम्हें सही पल पर जगाने के लिए जागने की अवधि में तुम्हारी गतिविधि और हृदय गति मापता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mjeri tvoje pokrete u intervalu buđenja kako bi prepoznao lagani san."
+            "value": "Phase Wake mjeri tvoje pokrete i puls u intervalu buđenja kako bi te probudio u dobrom trenutku."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Phase Wake az ébresztési ablak alatt méri a mozgásodat, hogy felismerje a könnyű alvást."
+            "value": "A Phase Wake az ébresztési ablak alatt méri a mozgásodat és a pulzusodat, hogy jó pillanatban ébresszen fel."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ը արթնացման պատուհանում չափում է շարժումներդ՝ թեթև քունը ճանաչելու համար։"
+            "value": "Phase Wake-ը արթնացման պատուհանում չափում է շարժումներդ և սրտի զարկերդ՝ քեզ հարմար պահի արթնացնելու համար։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mengukur gerakanmu selama jendela bangun untuk mendeteksi tidur ringan."
+            "value": "Phase Wake mengukur gerakan dan detak jantungmu selama jendela bangun untuk membangunkanmu di saat yang tepat."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mælir hreyfingu þína í vakningarglugganum til að greina léttan svefn."
+            "value": "Phase Wake mælir hreyfingu þína og púls í vakningarglugganum til að vekja þig á góðu augnabliki."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake misura i tuoi movimenti durante la finestra di risveglio per rilevare il sonno leggero."
+            "value": "Phase Wake misura i tuoi movimenti e la tua frequenza cardiaca durante la finestra di risveglio per svegliarti in un buon momento."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wakeは、浅い眠りを検出するため、起床ウィンドウ中の動きを測定します。"
+            "value": "Phase Wakeは、良いタイミングで起こすため、起床ウィンドウ中の動きと心拍数を測定します。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake გაღვიძების ფანჯარაში ზომავს შენს მოძრაობას, რათა მსუბუქი ძილი ამოიცნოს."
+            "value": "Phase Wake გაღვიძების ფანჯარაში ზომავს შენს მოძრაობასა და პულსს, რათა კარგ მომენტში გაგაღვიძოს."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Жеңіл ұйқыны тану үшін Phase Wake ояту терезесінде қозғалысыңды өлшейді."
+            "value": "Сені қолайлы сәтте ояту үшін Phase Wake ояту терезесінде қозғалысың мен жүрек соғысыңды өлшейді."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake វាស់ចលនារបស់អ្នកក្នុងចន្លោះពេលដាស់ ដើម្បីរកឃើញដំណេកស្រាល។"
+            "value": "Phase Wake វាស់ចលនា និងចង្វាក់បេះដូងរបស់អ្នកក្នុងចន្លោះពេលដាស់ ដើម្បីដាស់អ្នកនៅពេលល្អ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಹಗುರ ನಿದ್ರೆಯನ್ನು ಪತ್ತೆಹಚ್ಚಲು Phase Wake ಎಚ್ಚರಿಸುವ ಅವಧಿಯಲ್ಲಿ ನಿಮ್ಮ ಚಲನೆಯನ್ನು ಅಳೆಯುತ್ತದೆ."
+            "value": "ಸೂಕ್ತ ಕ್ಷಣದಲ್ಲಿ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಲು Phase Wake ಎಚ್ಚರಿಸುವ ಅವಧಿಯಲ್ಲಿ ನಿಮ್ಮ ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತವನ್ನು ಅಳೆಯುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake는 얕은 잠을 감지하기 위해 기상 구간 동안 움직임을 측정합니다."
+            "value": "Phase Wake는 좋은 순간에 깨우기 위해 기상 구간 동안 움직임과 심박수를 측정합니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ວັດແທກການເຄື່ອນໄຫວຂອງເຈົ້າໃນຊ່ວງເວລາປຸກ ເພື່ອກວດຈັບການຫຼັບຕື້ນ"
+            "value": "Phase Wake ວັດແທກການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຫົວໃຈຂອງເຈົ້າໃນຊ່ວງເວລາປຸກ ເພື່ອປຸກເຈົ້າໃນຈັງຫວະທີ່ດີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake žadinimo lange matuoja tavo judesius, kad aptiktų lengvą miegą."
+            "value": "Phase Wake žadinimo lange matuoja tavo judesius ir pulsą, kad pažadintų tave tinkamą akimirką."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake modināšanas logā mēra tavas kustības, lai konstatētu vieglu miegu."
+            "value": "Phase Wake modināšanas logā mēra tavas kustības un pulsu, lai pamodinātu tevi piemērotā brīdī."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake го мери твоето движење во прозорецот за будење за да препознае лесен сон."
+            "value": "Phase Wake ги мери твоите движења и пулс во прозорецот за будење за да те разбуди во добар момент."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നേരിയ ഉറക്കം കണ്ടെത്താൻ Phase Wake ഉണർത്തൽ സമയപരിധിയിൽ നിങ്ങളുടെ ചലനം അളക്കുന്നു."
+            "value": "നല്ല നിമിഷത്തിൽ നിങ്ങളെ ഉണർത്താൻ Phase Wake ഉണർത്തൽ സമയപരിധിയിൽ നിങ്ങളുടെ ചലനവും ഹൃദയമിടിപ്പും അളക്കുന്നു."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хөнгөн нойрыг илрүүлэхийн тулд Phase Wake сэрээх хугацаанд хөдөлгөөнийг чинь хэмжинэ."
+            "value": "Чамайг тохиромжтой мөчид сэрээхийн тулд Phase Wake сэрээх хугацаанд хөдөлгөөн болон зүрхний цохилтыг чинь хэмжинэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "हलकी झोप ओळखण्यासाठी Phase Wake उठवण्याच्या कालावधीत तुमची हालचाल मोजते."
+            "value": "तुम्हाला योग्य क्षणी उठवण्यासाठी Phase Wake उठवण्याच्या कालावधीत तुमची हालचाल आणि हृदयगती मोजते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mengukur pergerakanmu semasa tetingkap bangun untuk mengesan tidur ringan."
+            "value": "Phase Wake mengukur pergerakan dan kadar denyutan jantungmu semasa tetingkap bangun untuk mengejutkanmu pada saat yang sesuai."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ရေးပေါ့ကို သိရှိရန် Phase Wake သည် နှိုးချိန်အပိုင်းအတွင်း သင့်လှုပ်ရှားမှုကို တိုင်းတာသည်။"
+            "value": "သင့်တော်သည့်အချိန်တွင် နှိုးရန် Phase Wake သည် နှိုးချိန်အပိုင်းအတွင်း သင့်လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်းကို တိုင်းတာသည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake måler bevegelsene dine i våknevinduet for å oppdage lett søvn."
+            "value": "Phase Wake måler bevegelsene og pulsen din i våknevinduet for å vekke deg i et godt øyeblikk."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "हल्का निद्रा पहिचान गर्न Phase Wake ले ब्युँझाउने अवधिमा तिम्रो चाल मापन गर्छ।"
+            "value": "तिमीलाई राम्रो पलमा ब्युँझाउन Phase Wake ले ब्युँझाउने अवधिमा तिम्रो चाल र मुटुको धड्कन मापन गर्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake meet je beweging tijdens het wekvenster om lichte slaap te herkennen."
+            "value": "Phase Wake meet je beweging en hartslag tijdens het wekvenster om je op een goed moment te wekken."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਹਲਕੀ ਨੀਂਦ ਪਛਾਣਨ ਲਈ Phase Wake ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਮਾਪਦਾ ਹੈ।"
+            "value": "ਤੁਹਾਨੂੰ ਸਹੀ ਪਲ ’ਤੇ ਜਗਾਉਣ ਲਈ Phase Wake ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ ਮਾਪਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mierzy twój ruch w oknie budzenia, aby wykryć lekki sen."
+            "value": "Phase Wake mierzy twój ruch i tętno w oknie budzenia, aby obudzić cię w dobrym momencie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake mede seus movimentos durante a janela de despertar para detectar o sono leve."
+            "value": "O Phase Wake mede seus movimentos e batimentos cardíacos durante a janela de despertar para acordar você em um bom momento."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Phase Wake mede os teus movimentos durante a janela de despertar para detetar o sono leve."
+            "value": "O Phase Wake mede os teus movimentos e a tua frequência cardíaca durante a janela de despertar para te acordar num bom momento."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake îți măsoară mișcările în intervalul de trezire pentru a detecta somnul ușor."
+            "value": "Phase Wake îți măsoară mișcările și pulsul în intervalul de trezire ca să te trezească într-un moment bun."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake измеряет твои движения в окне пробуждения, чтобы определить лёгкий сон."
+            "value": "Phase Wake измеряет твои движения и пульс в окне пробуждения, чтобы разбудить тебя в подходящий момент."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "සැහැල්ලු නින්ද හඳුනා ගැනීමට Phase Wake අවදි පරාසය තුළ ඔබේ චලනය මනියි."
+            "value": "හොඳ මොහොතක ඔබව අවදි කිරීමට Phase Wake අවදි පරාසය තුළ ඔබේ චලනය සහ හෘද ස්පන්දනය මනියි."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake v okne budenia meria tvoj pohyb, aby rozpoznal ľahký spánok."
+            "value": "Phase Wake v okne budenia meria tvoj pohyb a tep, aby ťa zobudil vo vhodnej chvíli."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake v oknu bujenja meri tvoje gibanje, da zazna lahek spanec."
+            "value": "Phase Wake v oknu bujenja meri tvoje gibanje in srčni utrip, da te zbudi ob pravem trenutku."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mat lëvizjen tënde gjatë intervalit të zgjimit për të dalluar gjumin e lehtë."
+            "value": "Phase Wake mat lëvizjen dhe pulsin tënd gjatë intervalit të zgjimit për të të zgjuar në një moment të mirë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake мери твоје покрете у интервалу буђења да би препознао лагани сан."
+            "value": "Phase Wake мери твоје покрете и пулс у интервалу буђења да би те пробудио у добром тренутку."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake mäter dina rörelser under väckningsfönstret för att upptäcka lätt sömn."
+            "value": "Phase Wake mäter dina rörelser och din puls under väckningsfönstret för att väcka dig vid ett bra tillfälle."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake hupima mwendo wako katika kipindi cha kuamka ili kugundua usingizi mwepesi."
+            "value": "Phase Wake hupima mwendo wako na mapigo yako ya moyo katika kipindi cha kuamka ili ikuamshe wakati mzuri."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "லேசான தூக்கத்தைக் கண்டறிய, Phase Wake எழுப்பும் வரம்பில் உங்கள் அசைவை அளவிடும்."
+            "value": "நல்ல தருணத்தில் உங்களை எழுப்ப, Phase Wake எழுப்பும் வரம்பில் உங்கள் அசைவையும் இதயத் துடிப்பையும் அளவிடும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "తేలికపాటి నిద్రను గుర్తించడానికి Phase Wake నిద్రలేపే వ్యవధిలో మీ కదలికను కొలుస్తుంది."
+            "value": "మంచి క్షణంలో మిమ్మల్ని లేపడానికి Phase Wake నిద్రలేపే వ్యవధిలో మీ కదలికను, గుండె వేగాన్ని కొలుస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake วัดการเคลื่อนไหวของคุณในช่วงเวลาปลุก เพื่อตรวจจับการหลับตื้น"
+            "value": "Phase Wake วัดการเคลื่อนไหวและอัตราการเต้นของหัวใจของคุณในช่วงเวลาปลุก เพื่อปลุกคุณในจังหวะที่ดี"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake, hafif uykuyu algılamak için uyanma aralığında hareketlerini ölçer."
+            "value": "Phase Wake, seni iyi bir anda uyandırmak için uyanma aralığında hareketlerini ve kalp atış hızını ölçer."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake вимірює твої рухи у вікні пробудження, щоб виявити легкий сон."
+            "value": "Phase Wake вимірює твої рухи й пульс у вікні пробудження, щоб розбудити тебе в слушну мить."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "ہلکی نیند پہچاننے کے لیے Phase Wake جاگنے کی ونڈو میں تمہاری حرکت ناپتا ہے۔"
+            "value": "تمہیں اچھے لمحے پر جگانے کے لیے Phase Wake جاگنے کی ونڈو میں تمہاری حرکت اور دل کی دھڑکن ناپتا ہے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yengil uyquni aniqlash uchun Phase Wake uygʻotish oraligʻida harakatingni oʻlchaydi."
+            "value": "Seni yaxshi lahzada uygʻotish uchun Phase Wake uygʻotish oraligʻida harakating va yurak urishingni oʻlchaydi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake đo chuyển động của bạn trong khung giờ thức dậy để phát hiện giấc ngủ nông."
+            "value": "Phase Wake đo chuyển động và nhịp tim của bạn trong khung giờ thức dậy để đánh thức bạn vào thời điểm tốt."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 會在喚醒時段內測量你的動作，以偵測淺睡。"
+            "value": "Phase Wake 會在喚醒時段內測量你的動作和心率，以便在合適的時機喚醒你。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake会在唤醒时段内测量你的动作，以检测浅睡。"
+            "value": "Phase Wake会在唤醒时段内测量你的动作和心率，以便在合适的时机唤醒你。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake會在喚醒時段內測量你的動作，以偵測淺眠。"
+            "value": "Phase Wake會在喚醒時段內測量你的動作和心率，以便在合適的時機喚醒你。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-Phase Wake ilinganisa ukunyakaza kwakho esikhaleni sokuvuka ukuze ibone ubuthongo obulula."
+            "value": "I-Phase Wake ilinganisa ukunyakaza kwakho nokushaya kwenhliziyo yakho esikhaleni sokuvuka ukuze ikuvuse ngesikhathi esihle."
           }
         }
       }

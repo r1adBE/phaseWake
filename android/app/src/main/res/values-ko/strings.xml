@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">준비 안 됨</string>
     <string name="check_silent_switch_title">iOS 26 이전 백업 알람</string>
     <string name="check_silent_switch_text">iOS 26 이전에는 백업 알람이 알림이에요. 무음 스위치를 켜면 소리가 나지 않아요. 소리를 켜 두거나 iOS 26으로 업데이트하세요.</string>
+    <string name="check_backup_horizon_title">백업 알람이 곧 소진돼요</string>
+    <string name="check_backup_horizon_text">iPhone이 다음 알람을 설정할 수 있도록 Phase Wake를 여세요.</string>
     <string name="check_watch">워치 연결됨</string>
     <string name="check_watch_problem">워치에 연결할 수 없어요. 워치를 착용하고 Bluetooth를 켠 뒤, 워치에서 Phase Wake를 한 번 열어 주세요.</string>
     <string name="check_notifications">알림 허용됨</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">열기</string>
     <string name="restore_wrong_password">비밀번호가 틀렸거나 Phase Wake 백업이 아니에요. 아무것도 바뀌지 않았어요.</string>
     <string name="restore_unreadable">파일을 읽을 수 없어요. 아무것도 변경되지 않았어요.</string>
+    <string name="restore_failed">복원하지 못했어요. 아무것도 변경되지 않았어요.</string>
     <string name="restore_preview">알람: %1$d · 밤: %2$d · 메모 있는 날: %3$d</string>
     <string name="restore_confirm_title">데이터를 바꿀까요?</string>
     <string name="restore_confirm_text">이 휴대폰의 알람, 기록, 메모, 설정이 백업으로 바뀌어요.</string>

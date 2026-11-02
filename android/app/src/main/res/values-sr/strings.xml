@@ -167,6 +167,8 @@
     <string name="check_not_ready_icon">Није спремно</string>
     <string name="check_silent_switch_title">Резервни аларм пре iOS-а 26</string>
     <string name="check_silent_switch_text">Пре iOS-а 26 резервни аларм је обавештење: прекидач за тишину га утишава. Остави звук укључен или ажурирај на iOS 26.</string>
+    <string name="check_backup_horizon_title">Резервни аларми ускоро истичу</string>
+    <string name="check_backup_horizon_text">Отвори Phase Wake како би iPhone поставио следеће аларме.</string>
     <string name="check_watch">Сат повезан</string>
     <string name="check_watch_problem">Сат није доступан. Носи га, држи Bluetooth укључен и једном отвори Phase Wake на сату.</string>
     <string name="check_notifications">Обавештења дозвољена</string>
@@ -471,6 +473,7 @@
     <string name="restore_open">Отвори</string>
     <string name="restore_wrong_password">Погрешна лозинка или ово није резервна копија апликације Phase Wake. Ништа није промењено.</string>
     <string name="restore_unreadable">Датотеку није могуће прочитати. Ништа није промењено.</string>
+    <string name="restore_failed">Враћање није успело. Ништа није промењено.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Аларми: %1$d · Ноћи: %2$d · Дани са белешкама: %3$d</string>
     <string name="restore_confirm_title">Заменити податке?</string>
     <string name="restore_confirm_text">Аларми, историја, белешке и подешавања на овом телефону биће замењени резервном копијом.</string>

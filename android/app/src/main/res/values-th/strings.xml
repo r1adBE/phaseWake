@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">ยังไม่พร้อม</string>
     <string name="check_silent_switch_title">นาฬิกาปลุกสำรองก่อน iOS 26</string>
     <string name="check_silent_switch_text">ก่อน iOS 26 นาฬิกาปลุกสำรองเป็นการแจ้งเตือน: สวิตช์ปิดเสียงจะทำให้ไม่มีเสียง เปิดเสียงไว้หรืออัปเดตเป็น iOS 26</string>
+    <string name="check_backup_horizon_title">นาฬิกาปลุกสำรองใกล้หมดแล้ว</string>
+    <string name="check_backup_horizon_text">เปิด Phase Wake เพื่อให้ iPhone ตั้งนาฬิกาปลุกครั้งถัดไป</string>
     <string name="check_watch">เชื่อมต่อนาฬิกาแล้ว</string>
     <string name="check_watch_problem">ติดต่อนาฬิกาของคุณไม่ได้ ให้สวมนาฬิกา เปิด Bluetooth ไว้ และเปิด Phase Wake บนนาฬิกาสักครั้ง</string>
     <string name="check_notifications">อนุญาตการแจ้งเตือนแล้ว</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">เปิด</string>
     <string name="restore_wrong_password">รหัสผ่านผิดหรือไม่ใช่ข้อมูลสำรองของ Phase Wake ไม่มีอะไรเปลี่ยน</string>
     <string name="restore_unreadable">อ่านไฟล์ไม่ได้ ไม่มีการเปลี่ยนแปลงใดๆ</string>
+    <string name="restore_failed">กู้คืนไม่สำเร็จ ไม่มีการเปลี่ยนแปลงใดๆ</string>
     <string name="restore_preview">การปลุก: %1$d · คืน: %2$d · วันที่มีบันทึก: %3$d</string>
     <string name="restore_confirm_title">แทนที่ข้อมูลไหม</string>
     <string name="restore_confirm_text">การปลุก ประวัติ บันทึก และการตั้งค่าในโทรศัพท์นี้จะถูกแทนที่ด้วยข้อมูลสำรอง</string>

@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Nincs kész</string>
     <string name="check_silent_switch_title">Tartalék ébresztő iOS 26 előtt</string>
     <string name="check_silent_switch_text">iOS 26 előtt a tartalék ébresztő értesítés: a némítókapcsoló elnémítja. Hagyd bekapcsolva a hangot, vagy frissíts iOS 26-ra.</string>
+    <string name="check_backup_horizon_title">Hamarosan elfogynak a tartalék ébresztők</string>
+    <string name="check_backup_horizon_text">Nyisd meg a Phase Wake-et, hogy az iPhone beállíthassa a következő ébresztőket.</string>
     <string name="check_watch">Óra csatlakoztatva</string>
     <string name="check_watch_problem">Az órád nem érhető el. Vedd fel, tartsd bekapcsolva a Bluetooth-t, és nyisd meg egyszer a Phase Wake-et az órán.</string>
     <string name="check_notifications">Értesítések engedélyezve</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Megnyitás</string>
     <string name="restore_wrong_password">Hibás jelszó, vagy nem Phase Wake-mentés. Semmi sem változott.</string>
     <string name="restore_unreadable">A fájlt nem sikerült beolvasni. Semmi sem változott.</string>
+    <string name="restore_failed">A visszaállítás nem sikerült. Semmi sem változott.</string>
     <string name="restore_preview">Ébresztők: %1$d · Éjszakák: %2$d · Jegyzetes napok: %3$d</string>
     <string name="restore_confirm_title">Lecseréled az adatokat?</string>
     <string name="restore_confirm_text">A telefon ébresztőit, előzményeit, jegyzeteit és beállításait a mentés váltja fel.</string>

@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Hindi pa handa</string>
     <string name="check_silent_switch_title">Backup na alarm bago ang iOS 26</string>
     <string name="check_silent_switch_text">Bago ang iOS 26, notification ang backup na alarm: pinapatahimik ito ng silent switch. Panatilihing naka-on ang tunog o mag-update sa iOS 26.</string>
+    <string name="check_backup_horizon_title">Paubos na ang mga backup na alarm</string>
+    <string name="check_backup_horizon_text">Buksan ang Phase Wake para maitakda ng iPhone mo ang mga susunod na alarm.</string>
     <string name="check_watch">Nakakonekta ang relo</string>
     <string name="check_watch_problem">Hindi maabot ang relo mo. Isuot ito, panatilihing naka-on ang Bluetooth, at buksan nang isang beses ang Phase Wake sa relo.</string>
     <string name="check_notifications">Pinapayagan ang mga notification</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Buksan</string>
     <string name="restore_wrong_password">Maling password o hindi ito backup ng Phase Wake. Walang binago.</string>
     <string name="restore_unreadable">Hindi mabasa ang file. Walang binago.</string>
+    <string name="restore_failed">Hindi na-restore. Walang binago.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Mga alarm: %1$d · Mga gabi: %2$d · Mga araw na may tala: %3$d</string>
     <string name="restore_confirm_title">Palitan ang data?</string>
     <string name="restore_confirm_text">Papalitan ng backup ang mga alarm, kasaysayan, tala, at setting sa teleponong ito.</string>

@@ -138,8 +138,9 @@ internal fun ColumnScope.BackupRows() {
                 preview = null
                 DeviceAuth.confirm(context, res.getString(R.string.auth_restore)) {
                     app.appScope.launch {
-                        BackupManager.restore(app, found.payload)
-                        scope.launch { toast(R.string.restore_done) }
+                        // In einem Schritt: scheitert es, bleibt der alte Stand (restore_failed).
+                        val done = BackupManager.restore(app, found.payload)
+                        scope.launch { toast(if (done) R.string.restore_done else R.string.restore_failed) }
                     }
                 }
             },

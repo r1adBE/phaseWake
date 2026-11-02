@@ -52,10 +52,10 @@ class WatchListenerService : WearableListenerService() {
             if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
             // Einschlafpunkt und Beginn der automatischen Einschlaf-Messung: neu planen.
             val newGoal = sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)
-            if (newGoal) app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal?.first}")
+            if (newGoal) app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal.first}")
             // Schalter der Einschlaf-Messung: Alarm der Messung stellen oder aufheben.
             val newOnset = autoOnset != null && app.autoOnset.setIfNewer(autoOnset.first, autoOnset.second)
-            if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset?.first}")
+            if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset.first}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {

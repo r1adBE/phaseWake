@@ -54,6 +54,9 @@ public struct BackupPayload: Equatable, Sendable {
     public static let format = "phasewake-backup"
     /// Wert von «version»; neuere Versionen werden gelesen, soweit die Schlüssel bekannt sind.
     public static let version = 1
+    /// Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer: ``CodecError``,
+    /// geprüft vor `JSONSerialization`. Identisch zu `BackupJson.MAX_DEPTH` (Kotlin).
+    public static let maxDepth = 64
 
     /// Erstellt (ms seit 1970).
     public var createdAt: Int64
@@ -111,8 +114,10 @@ public struct BackupPayload: Equatable, Sendable {
     }
 
     /// Liest `toJson`. Unbekannte Schlüssel werden ignoriert, fehlende ergeben die Vorgaben.
-    /// - Throws: ``CodecError`` bei kaputtem JSON, ohne Objekt, mit falschem «format» oder ohne Wecker.
+    /// - Throws: ``CodecError`` bei kaputtem oder zu tief verschachteltem JSON, ohne Objekt, mit falschem «format» oder
+    ///   ohne Wecker.
     public static func fromJson(_ text: String) throws -> BackupPayload {
+        guard depth(of: text) <= maxDepth else { throw CodecError(description: "Mehr als \(maxDepth) Stufen verschachtelt") }
         let parsed: Any
         do {
             parsed = try JSONSerialization.jsonObject(with: Data(text.utf8))
@@ -146,6 +151,39 @@ public struct BackupPayload: Equatable, Sendable {
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""
         )
+    }
+
+    /// Tiefste Verschachtelung von `{` und `[` ausserhalb von Texten (Escapes in Texten übersprungen). Zählt nur;
+    /// ob das JSON gültig ist, prüft danach `JSONSerialization`.
+    private static func depth(of text: String) -> Int {
+        var deepest = 0
+        var level = 0
+        var inString = false
+        var escaped = false
+        for byte in text.utf8 {
+            if inString {
+                if escaped {
+                    escaped = false
+                } else if byte == UInt8(ascii: "\\") {
+                    escaped = true
+                } else if byte == UInt8(ascii: "\"") {
+                    inString = false
+                }
+                continue
+            }
+            switch byte {
+            case UInt8(ascii: "\""):
+                inString = true
+            case UInt8(ascii: "{"), UInt8(ascii: "["):
+                level += 1
+                deepest = max(deepest, level)
+            case UInt8(ascii: "}"), UInt8(ascii: "]"):
+                level -= 1
+            default:
+                break
+            }
+        }
+        return deepest
     }
 
     /// Ganze Zahl wie Kotlin (`Long`): kein Wahrheitswert und kein echter Bruch.

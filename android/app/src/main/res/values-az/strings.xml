@@ -154,6 +154,8 @@
     <string name="check_not_ready_icon">Hazır deyil</string>
     <string name="check_silent_switch_title">iOS 26-dan əvvəl ehtiyat siqnal</string>
     <string name="check_silent_switch_text">iOS 26-dan əvvəl ehtiyat siqnal bildirişdir: səssiz açarı onu susdurur. Səsi açıq saxla və ya iOS 26-ya yenilə.</string>
+    <string name="check_backup_horizon_title">Ehtiyat siqnallar tezliklə bitir</string>
+    <string name="check_backup_horizon_text">iPhone növbəti siqnalları qursun deyə Phase Wake-i açın.</string>
     <string name="check_watch">Saat qoşulub</string>
     <string name="check_watch_problem">Saatın əlçatan deyil. Onu tax, Bluetooth-u açıq saxla və saatda Phase Wake-i bir dəfə aç.</string>
     <string name="check_notifications">Bildirişlərə icazə var</string>
@@ -443,6 +445,7 @@
     <string name="restore_open">Aç</string>
     <string name="restore_wrong_password">Parol səhvdir və ya bu, Phase Wake nüsxəsi deyil. Heç nə dəyişmədi.</string>
     <string name="restore_unreadable">Faylı oxumaq olmadı. Heç nə dəyişmədi.</string>
+    <string name="restore_failed">Bərpa alınmadı. Heç nə dəyişmədi.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Siqnallar: %1$d · Gecələr: %2$d · Qeydli günlər: %3$d</string>
     <string name="restore_confirm_title">Məlumatlar əvəz edilsin?</string>
     <string name="restore_confirm_text">Bu telefondakı siqnallar, tarixçə, qeydlər və ayarlar ehtiyat nüsxə ilə əvəz ediləcək.</string>

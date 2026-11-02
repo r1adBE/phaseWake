@@ -12,6 +12,12 @@ object BackupJson {
     /** Wert von «version»; neuere Versionen werden gelesen, soweit die Schlüssel bekannt sind. */
     const val VERSION: Int = 1
 
+    /**
+     * Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer: [CodecException]
+     * statt eines Stapelüberlaufs bei einer manipulierten Datei. Swift (`BackupJson.swift`) gleich.
+     */
+    const val MAX_DEPTH: Int = 64
+
     /** Schreibt [payload] als JSON-Objekt. */
     fun write(payload: BackupPayload): String {
         val s = payload.settings
@@ -30,7 +36,7 @@ object BackupJson {
         return buildString { value(root) }
     }
 
-    /** Liest [write]. Kein Objekt, falsches «format» oder kaputtes JSON: [CodecException]. */
+    /** Liest [write]. Kein Objekt, falsches «format», kaputtes oder zu tief verschachteltes JSON: [CodecException]. */
     fun read(text: String): BackupPayload {
         val root = JsonReader(text).document() as? Map<*, *> ?: throw CodecException("Kein JSON-Objekt")
         if (root["format"] != FORMAT) throw CodecException("Keine Phase-Wake-Sicherung")
@@ -106,6 +112,7 @@ object BackupJson {
     /** Liest ein JSON-Dokument; Zahlen werden zu [Long] (Brüche zu [Double]). */
     private class JsonReader(private val text: String) {
         private var pos = 0
+        private var depth = 0
 
         fun document(): Any? {
             val v = value()
@@ -118,14 +125,20 @@ object BackupJson {
             skipSpace()
             if (pos >= text.length) fail("Unerwartetes Ende")
             return when (text[pos]) {
-                '{' -> obj()
-                '[' -> list()
+                '{' -> nested { obj() }
+                '[' -> nested { list() }
                 '"' -> string()
                 't' -> literal("true", true)
                 'f' -> literal("false", false)
                 'n' -> literal("null", null)
                 else -> number()
             }
+        }
+
+        /** Ein Objekt oder eine Liste eine Stufe tiefer; mehr als [MAX_DEPTH] Stufen: Fehler. */
+        private inline fun <T> nested(read: () -> T): T {
+            if (++depth > MAX_DEPTH) fail("Mehr als $MAX_DEPTH Stufen verschachtelt")
+            return read().also { depth-- }
         }
 
         private fun obj(): Map<String, Any?> {

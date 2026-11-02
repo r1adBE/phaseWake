@@ -169,6 +169,8 @@
     <string name="check_not_ready_icon">Nepripravené</string>
     <string name="check_silent_switch_title">Záložný budík pred iOS 26</string>
     <string name="check_silent_switch_text">Pred iOS 26 je záložný budík upozornenie: prepínač tichého režimu ho stlmí. Nechaj zvuk zapnutý alebo aktualizuj na iOS 26.</string>
+    <string name="check_backup_horizon_title">Záložné budíky čoskoro dôjdu</string>
+    <string name="check_backup_horizon_text">Otvor Phase Wake, aby iPhone mohol nastaviť ďalšie budíky.</string>
     <string name="check_watch">Hodinky pripojené</string>
     <string name="check_watch_problem">Hodinky nie sú dostupné. Nos ich, nechaj zapnutý Bluetooth a raz otvor Phase Wake v hodinkách.</string>
     <string name="check_notifications">Upozornenia povolené</string>
@@ -483,6 +485,7 @@
     <string name="restore_open">Otvoriť</string>
     <string name="restore_wrong_password">Nesprávne heslo alebo to nie je záloha Phase Wake. Nič sa nezmenilo.</string>
     <string name="restore_unreadable">Súbor sa nepodarilo prečítať. Nič sa nezmenilo.</string>
+    <string name="restore_failed">Obnovenie zlyhalo. Nič sa nezmenilo.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Budíky: %1$d · Noci: %2$d · Dni s poznámkami: %3$d</string>
     <string name="restore_confirm_title">Nahradiť údaje?</string>
     <string name="restore_confirm_text">Budíky, história, poznámky a nastavenia v tomto telefóne sa nahradia zálohou.</string>

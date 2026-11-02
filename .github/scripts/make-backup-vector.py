@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Erzeugt die Testvektoren der verschlüsselten Sicherung (shared/testdata/backup-v1*.*).
+"""Erzeugt die Testvektoren der verschlüsselten Sicherung (shared/testdata/backup-v1*.*, backup-v2*.*).
 
 Unabhängig von den Apps (Python «cryptography»): Beide Kerne (Kotlin und Swift) müssen diese Datei mit dem
 Passwort entschlüsseln und denselben Inhalt lesen. Format siehe docs/KONZEPT.md, Abschnitt «Sichern».
 Salz und Nonce sind hier fest, damit der Vektor reproduzierbar ist; die Apps nehmen echte Zufallswerte.
 Der Schlüssel kommt aus dem Passwort in Unicode-NFC. Der zweite Vektor (backup-v1-nfc.*) hat ein Passwort mit «ä€»,
 in der Passwort-Datei absichtlich als NFD geschrieben: Beide Kerne müssen vor der Ableitung normalisieren.
+Formatversionen: «PWBK1» mit 210 000 Runden (nur noch gelesen) und «PWBK2» mit 600 000 Runden (wird geschrieben);
+backup-v2*.pwbak.b64 hat denselben Klartext und dieselben Passwörter wie backup-v1*.
 
 Aufruf: python3 .github/scripts/make-backup-vector.py [--check]
 """
@@ -21,8 +23,8 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / "shared/testdata"
-MAGIC = b"PWBK1"
-ITERATIONS = 210_000
+# Formatversion: Kopf und Runden von PBKDF2.
+FORMATS = {"v1": (b"PWBK1", 210_000), "v2": (b"PWBK2", 600_000)}
 PASSWORD = "Mondlicht-2026"
 PASSWORD_NFC = "Mondlicht-\u00e4\u20ac-2026"
 SALT = bytes(range(16))
@@ -54,11 +56,12 @@ PAYLOAD = {
 }
 
 
-def seal(plain: bytes, password: str) -> bytes:
-    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=SALT, iterations=ITERATIONS)
+def seal(plain: bytes, password: str, version: str) -> bytes:
+    magic, iterations = FORMATS[version]
+    kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=SALT, iterations=iterations)
     key = kdf.derive(unicodedata.normalize("NFC", password).encode("utf-8"))
     sealed = AESGCM(key).encrypt(NONCE, plain, None)  # Geheimtext | Tag (16), ohne zusätzliche Daten
-    return MAGIC + SALT + NONCE + sealed
+    return magic + SALT + NONCE + sealed
 
 
 def build() -> dict[str, bytes]:
@@ -67,9 +70,11 @@ def build() -> dict[str, bytes]:
     return {
         "backup-v1.json": plain + b"\n",
         "backup-v1.password": PASSWORD.encode("utf-8") + b"\n",
-        "backup-v1.pwbak.b64": base64.b64encode(seal(plain, PASSWORD)) + b"\n",
+        "backup-v1.pwbak.b64": base64.b64encode(seal(plain, PASSWORD, "v1")) + b"\n",
         "backup-v1-nfc.password": nfd.encode("utf-8") + b"\n",
-        "backup-v1-nfc.pwbak.b64": base64.b64encode(seal(plain, nfd)) + b"\n",
+        "backup-v1-nfc.pwbak.b64": base64.b64encode(seal(plain, nfd, "v1")) + b"\n",
+        "backup-v2.pwbak.b64": base64.b64encode(seal(plain, PASSWORD, "v2")) + b"\n",
+        "backup-v2-nfc.pwbak.b64": base64.b64encode(seal(plain, nfd, "v2")) + b"\n",
     }
 
 

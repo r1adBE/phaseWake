@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Jo gati</string>
     <string name="check_silent_switch_title">Alarmi rezervë para iOS 26</string>
     <string name="check_silent_switch_text">Para iOS 26, alarmi rezervë është një njoftim: çelësi i heshtjes e hesht. Mbaje zërin aktiv ose përditëso në iOS 26.</string>
+    <string name="check_backup_horizon_title">Alarmet rezervë po mbarojnë</string>
+    <string name="check_backup_horizon_text">Hap Phase Wake që iPhone të vendosë alarmet e radhës.</string>
     <string name="check_watch">Ora e lidhur</string>
     <string name="check_watch_problem">Ora jote nuk arrihet. Vendose në dorë, mbaje Bluetooth-in të ndezur dhe hap një herë Phase Wake në orë.</string>
     <string name="check_notifications">Njoftimet të lejuara</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Hap</string>
     <string name="restore_wrong_password">Fjalëkalim i gabuar ose nuk është kopje rezervë e Phase Wake. Asgjë nuk u ndryshua.</string>
     <string name="restore_unreadable">Skedari nuk u lexua dot. Asgjë nuk u ndryshua.</string>
+    <string name="restore_failed">Rikthimi dështoi. Asgjë nuk u ndryshua.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Alarme: %1$d · Net: %2$d · Ditë me shënime: %3$d</string>
     <string name="restore_confirm_title">Të zëvendësohen të dhënat?</string>
     <string name="restore_confirm_text">Alarmet, historiku, shënimet dhe cilësimet në këtë telefon do të zëvendësohen me kopjen rezervë.</string>

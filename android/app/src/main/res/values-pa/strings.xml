@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">ਤਿਆਰ ਨਹੀਂ</string>
     <string name="check_silent_switch_title">iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ</string>
     <string name="check_silent_switch_text">iOS 26 ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ ਇੱਕ ਸੂਚਨਾ ਹੈ: ਸਾਈਲੈਂਟ ਸਵਿੱਚ ਇਸਨੂੰ ਚੁੱਪ ਕਰ ਦਿੰਦਾ ਹੈ। ਆਵਾਜ਼ ਚਾਲੂ ਰੱਖੋ ਜਾਂ iOS 26 ’ਤੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
+    <string name="check_backup_horizon_title">ਬੈਕਅੱਪ ਅਲਾਰਮ ਜਲਦੀ ਖਤਮ ਹੋਣਗੇ</string>
+    <string name="check_backup_horizon_text">Phase Wake ਖੋਲ੍ਹੋ ਤਾਂ ਜੋ ਤੁਹਾਡਾ iPhone ਅਗਲੇ ਅਲਾਰਮ ਸੈੱਟ ਕਰ ਸਕੇ।</string>
     <string name="check_watch">ਘੜੀ ਕਨੈਕਟ ਹੈ</string>
     <string name="check_watch_problem">ਤੁਹਾਡੀ ਘੜੀ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੋ ਰਿਹਾ। ਇਸ ਨੂੰ ਪਹਿਨੋ, ਬਲੂਟੁੱਥ ਚਾਲੂ ਰੱਖੋ ਅਤੇ ਘੜੀ ’ਤੇ ਇੱਕ ਵਾਰ Phase Wake ਖੋਲ੍ਹੋ।</string>
     <string name="check_notifications">ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">ਖੋਲ੍ਹੋ</string>
     <string name="restore_wrong_password">ਗ਼ਲਤ ਪਾਸਵਰਡ ਜਾਂ ਇਹ Phase Wake ਬੈਕਅੱਪ ਨਹੀਂ ਹੈ। ਕੁਝ ਵੀ ਨਹੀਂ ਬਦਲਿਆ।</string>
     <string name="restore_unreadable">ਫ਼ਾਈਲ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਕੁਝ ਵੀ ਨਹੀਂ ਬਦਲਿਆ।</string>
+    <string name="restore_failed">ਮੁੜ-ਬਹਾਲੀ ਅਸਫਲ ਰਹੀ। ਕੁਝ ਵੀ ਨਹੀਂ ਬਦਲਿਆ।</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">ਅਲਾਰਮ: %1$d · ਰਾਤਾਂ: %2$d · ਨੋਟਾਂ ਵਾਲੇ ਦਿਨ: %3$d</string>
     <string name="restore_confirm_title">ਡਾਟਾ ਬਦਲਣਾ ਹੈ?</string>
     <string name="restore_confirm_text">ਇਸ ਫ਼ੋਨ ’ਤੇ ਅਲਾਰਮਾਂ, ਇਤਿਹਾਸ, ਨੋਟਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਦੀ ਥਾਂ ਬੈਕਅੱਪ ਵਾਲਾ ਡਾਟਾ ਆ ਜਾਵੇਗਾ।</string>

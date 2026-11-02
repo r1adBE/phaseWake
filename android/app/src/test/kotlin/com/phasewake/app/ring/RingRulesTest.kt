@@ -96,4 +96,20 @@ class RingRulesTest {
         // Ältere Uhr ohne Kennung und Sendezeit: wie bisher.
         assertTrue(RingRules.stopApplies(RingMessage(null), now, active = true, currentId = "a", currentTarget = 1L))
     }
+
+    @Test
+    fun directBootKeepsFollowingBackups() {
+        // Zwei Wecker am Morgen (06:30 täglich, 07:00 einmalig): nach dem ersten der zweite, dann der nächste Tag.
+        val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())
+        val once = alarm("o", 7, 0)
+        val first = plan(listOf(daily, once), at("2026-10-28T01:00"))!!
+        val plans = RingRules.directBootPlans(first, listOf(daily, once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
+        assertEquals(
+            listOf("d" to at("2026-10-28T06:30"), "o" to at("2026-10-28T07:00"), "d" to at("2026-10-29T06:30"), "d" to at("2026-10-30T06:30")),
+            plans.map { it.alarmId to it.target },
+        )
+        // Der Einmal-Wecker kommt nach seinem Klingeln nicht wieder; ohne weitere Wecker endet die Liste.
+        val onlyOnce = RingRules.directBootPlans(plan(listOf(once), at("2026-10-28T01:00"))!!, listOf(once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
+        assertEquals(listOf(at("2026-10-28T07:00")), onlyOnce.map { it.target })
+    }
 }

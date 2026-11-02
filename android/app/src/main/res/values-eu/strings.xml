@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Ez dago prest</string>
     <string name="check_silent_switch_title">Ordezko alarma iOS 26 baino lehen</string>
     <string name="check_silent_switch_text">iOS 26 baino lehen, ordezko alarma jakinarazpen bat da: isiltasun-etengailuak isildu egiten du. Utzi soinua aktibatuta edo eguneratu iOS 26ra.</string>
+    <string name="check_backup_horizon_title">Ordezko alarmak laster amaituko dira</string>
+    <string name="check_backup_horizon_text">Ireki Phase Wake, iPhoneak hurrengo alarmak ezar ditzan.</string>
     <string name="check_watch">Erlojua konektatuta</string>
     <string name="check_watch_problem">Ezin da erlojura iritsi. Jantzi, utzi Bluetootha aktibatuta eta ireki Phase Wake erlojuan behin.</string>
     <string name="check_notifications">Jakinarazpenak baimenduta</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Ireki</string>
     <string name="restore_wrong_password">Pasahitz okerra edo ez da Phase Wake babeskopia bat. Ez da ezer aldatu.</string>
     <string name="restore_unreadable">Ezin izan da fitxategia irakurri. Ez da ezer aldatu.</string>
+    <string name="restore_failed">Ezin izan da leheneratu. Ez da ezer aldatu.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Alarmak: %1$d · Gauak: %2$d · Oharrak dituzten egunak: %3$d</string>
     <string name="restore_confirm_title">Datuak ordeztu?</string>
     <string name="restore_confirm_text">Telefono honetako alarmak, historia, oharrak eta ezarpenak babeskopiakoekin ordeztuko dira.</string>

@@ -166,6 +166,8 @@
     <string name="check_not_ready_icon">No està a punt</string>
     <string name="check_silent_switch_title">Alarma de reserva abans d’iOS 26</string>
     <string name="check_silent_switch_text">Abans d’iOS 26, l’alarma de reserva és una notificació: l’interruptor de silenci la silencia. Deixa el so activat o actualitza a iOS 26.</string>
+    <string name="check_backup_horizon_title">Les alarmes de reserva s’acaben aviat</string>
+    <string name="check_backup_horizon_text">Obre Phase Wake perquè l’iPhone pugui programar les properes alarmes.</string>
     <string name="check_watch">Rellotge connectat</string>
     <string name="check_watch_problem">No es pot connectar amb el rellotge. Porta’l posat, mantén el Bluetooth activat i obre Phase Wake al rellotge una vegada.</string>
     <string name="check_notifications">Notificacions permeses</string>
@@ -470,6 +472,7 @@
     <string name="restore_open">Obre</string>
     <string name="restore_wrong_password">Contrasenya incorrecta o no és una còpia de Phase Wake. No s’ha canviat res.</string>
     <string name="restore_unreadable">No s’ha pogut llegir el fitxer. No s’ha canviat res.</string>
+    <string name="restore_failed">No s’ha pogut restaurar. No s’ha canviat res.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Alarmes: %1$d · Nits: %2$d · Dies amb notes: %3$d</string>
     <string name="restore_confirm_title">Vols substituir les dades?</string>
     <string name="restore_confirm_text">La còpia substituirà les alarmes, l’historial, les notes i la configuració d’aquest telèfon.</string>

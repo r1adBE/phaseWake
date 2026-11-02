@@ -1,6 +1,7 @@
 package com.phasewake.app.habits
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -50,16 +51,14 @@ class RoutineRepository(private val store: DataStore<Preferences>) {
     /** Gespeicherte Texte (Punkte oder `null` = nie geändert, Haken) für die Sicherung. */
     suspend fun raw(): Pair<String?, String> = store.data.first().let { it[ITEMS] to it[TICKS].orEmpty() }
 
-    /** Ersetzt Punkte und Haken (Wiederherstellen); `null` = die Vorschläge. */
-    suspend fun restore(items: String?, ticks: String) {
-        store.edit {
-            if (items == null) {
-                it.remove(ITEMS)
-            } else {
-                it[ITEMS] = Routine.encodeItems(Routine.decodeItems(items))
-            }
-            it[TICKS] = Routine.encodeTicks(Routine.decodeTicks(ticks))
+    /** Ersetzt Punkte und Haken in [prefs] (Wiederherstellen in einem Schritt); `null` = die Vorschläge. */
+    fun restoreInto(prefs: MutablePreferences, items: String?, ticks: String) {
+        if (items == null) {
+            prefs.remove(ITEMS)
+        } else {
+            prefs[ITEMS] = Routine.encodeItems(Routine.decodeItems(items))
         }
+        prefs[TICKS] = Routine.encodeTicks(Routine.decodeTicks(ticks))
     }
 
     private companion object {

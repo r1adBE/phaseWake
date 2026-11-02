@@ -120,7 +120,10 @@ class SoundStore(context: Context) {
         withContext(Dispatchers.IO) { file.delete() }
     }
 
-    /** Tägliches Aufräumen, auch wenn die App nicht geöffnet wird. Nicht exportiert: nur der eigene Alarm. */
+    /**
+     * Tägliches Aufräumen (Geräusche, geteilter CSV-Export), auch wenn die App nicht geöffnet wird. Nicht exportiert:
+     * nur der eigene Alarm.
+     */
     class CleanupReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action != ACTION_CLEANUP || !BackupAlarm.isUnlocked(context)) return
@@ -129,6 +132,8 @@ class SoundStore(context: Context) {
             app.appScope.launch {
                 try {
                     app.sounds.cleanup()
+                    // Ein geteilter CSV-Export bleibt nicht im Cache liegen (siehe Export.KEEP).
+                    com.phasewake.app.ui.history.Export.cleanup(app)
                 } finally {
                     pending.finish()
                 }

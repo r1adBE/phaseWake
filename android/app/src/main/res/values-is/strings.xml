@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Ekki tilbúið</string>
     <string name="check_silent_switch_title">Varavekjari fyrir iOS 26</string>
     <string name="check_silent_switch_text">Fyrir iOS 26 er varavekjarinn tilkynning: hljóðlausi rofinn þaggar hann. Hafðu hljóðið á eða uppfærðu í iOS 26.</string>
+    <string name="check_backup_horizon_title">Varavekjarar klárast brátt</string>
+    <string name="check_backup_horizon_text">Opnaðu Phase Wake svo iPhone geti stillt næstu vekjara.</string>
     <string name="check_watch">Úr tengt</string>
     <string name="check_watch_problem">Ekki næst í úrið. Hafðu það á þér, hafðu kveikt á Bluetooth og opnaðu Phase Wake einu sinni á úrinu.</string>
     <string name="check_notifications">Tilkynningar leyfðar</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Opna</string>
     <string name="restore_wrong_password">Rangt lykilorð eða ekki Phase Wake-afrit. Engu var breytt.</string>
     <string name="restore_unreadable">Ekki tókst að lesa skrána. Engu var breytt.</string>
+    <string name="restore_failed">Endurheimt mistókst. Engu var breytt.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Vekjarar: %1$d · Nætur: %2$d · Dagar með athugasemdum: %3$d</string>
     <string name="restore_confirm_title">Skipta út gögnum?</string>
     <string name="restore_confirm_text">Vekjurum, ferli, athugasemdum og stillingum í þessum síma verður skipt út fyrir afritið.</string>

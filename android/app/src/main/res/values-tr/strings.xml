@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Hazır değil</string>
     <string name="check_silent_switch_title">iOS 26 öncesi yedek alarm</string>
     <string name="check_silent_switch_text">iOS 26 öncesinde yedek alarm bir bildirimdir: sessiz anahtarı onu sessize alır. Sesi açık bırak veya iOS 26’ya güncelle.</string>
+    <string name="check_backup_horizon_title">Yedek alarmlar yakında bitiyor</string>
+    <string name="check_backup_horizon_text">iPhone’un sonraki alarmları kurabilmesi için Phase Wake’i aç.</string>
     <string name="check_watch">Saat bağlı</string>
     <string name="check_watch_problem">Saatine ulaşılamıyor. Tak, Bluetooth’u açık tut ve saatte Phase Wake’i bir kez aç.</string>
     <string name="check_notifications">Bildirimlere izin verildi</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Aç</string>
     <string name="restore_wrong_password">Yanlış şifre veya Phase Wake yedeği değil. Hiçbir şey değişmedi.</string>
     <string name="restore_unreadable">Dosya okunamadı. Hiçbir şey değiştirilmedi.</string>
+    <string name="restore_failed">Geri yükleme başarısız oldu. Hiçbir şey değiştirilmedi.</string>
     <string name="restore_preview">Alarmlar: %1$d · Geceler: %2$d · Notlu günler: %3$d</string>
     <string name="restore_confirm_title">Veriler değiştirilsin mi?</string>
     <string name="restore_confirm_text">Bu telefondaki alarmlar, geçmiş, notlar ve ayarlar yedekle değiştirilecek.</string>

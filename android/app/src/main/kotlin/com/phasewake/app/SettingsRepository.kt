@@ -1,6 +1,7 @@
 package com.phasewake.app
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -229,23 +230,24 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         )
     }
 
-    /** Übernimmt die Einstellungen einer Sicherung; ein unbekanntes Design wird «System». */
-    suspend fun restore(settings: BackupSettings) {
-        store.edit {
-            it[SLEEP_GOAL] = SleepGoal.clamp(settings.sleepGoal)
-            it[SLEEP_GOAL_AT] = Instant.now().toEpochMilli()
-            it[BEDTIME_REMINDER] = settings.bedtimeReminder
-            it[WEEKLY_REVIEW] = settings.weeklyReview
-            it[SOUND_REC_DEFAULT] = settings.soundRecDefault
-            it[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
-            it[HOLIDAY_COUNTRY] = settings.holidayCountry
-            it[HOLIDAY_REGION] = settings.holidayRegion
-            val cleared = settings.historyClearedAt
-            if (cleared == null) it.remove(HISTORY_CLEARED_AT) else it[HISTORY_CLEARED_AT] = cleared
-            it[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
-            it[AUTO_ONSET] = settings.autoOnset
-            it[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
-        }
+    /**
+     * Übernimmt die Einstellungen einer Sicherung in [prefs] (Wiederherstellen in einem Schritt); ein unbekanntes Design
+     * wird «System».
+     */
+    fun restoreInto(prefs: MutablePreferences, settings: BackupSettings) {
+        prefs[SLEEP_GOAL] = SleepGoal.clamp(settings.sleepGoal)
+        prefs[SLEEP_GOAL_AT] = Instant.now().toEpochMilli()
+        prefs[BEDTIME_REMINDER] = settings.bedtimeReminder
+        prefs[WEEKLY_REVIEW] = settings.weeklyReview
+        prefs[SOUND_REC_DEFAULT] = settings.soundRecDefault
+        prefs[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
+        prefs[HOLIDAY_COUNTRY] = settings.holidayCountry
+        prefs[HOLIDAY_REGION] = settings.holidayRegion
+        val cleared = settings.historyClearedAt
+        if (cleared == null) prefs.remove(HISTORY_CLEARED_AT) else prefs[HISTORY_CLEARED_AT] = cleared
+        prefs[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
+        prefs[AUTO_ONSET] = settings.autoOnset
+        prefs[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
     }
 
     private companion object {

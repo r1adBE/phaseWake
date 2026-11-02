@@ -45,8 +45,22 @@ class BackupTest {
         assertEquals("Spät gegessen «Pizza»", SleepNotes.decodeCustom(p.customNotes).single().name)
         assertEquals("Tee \"Kamille\"", Routine.decodeItems(p.routineItems)[1].text)
         assertEquals(BackupSettings(480, true, false, true, "DARK", "CH", "BE"), p.settings)
-        // Dasselbe mit den Werten des Vektors verschlüsselt ergibt (bis auf den Inhalt) dieselbe Datei.
-        assertContentEquals(file, BackupFile.encrypt(plain, password, salt, nonce))
+        // Geschrieben wird Formatversion 2: mit den Werten des Vektors genau die Datei backup-v2.
+        val v2 = Base64.getDecoder().decode(File(testdata, "backup-v2.pwbak.b64").readText().trim())
+        assertContentEquals(v2, BackupFile.encrypt(plain, password, salt, nonce))
+        assertContentEquals(plain, BackupFile.decrypt(v2, password))
+    }
+
+    @Test
+    fun headerSelectsRounds() {
+        // «PWBK1» liest mit 210 000, «PWBK2» mit 600 000 Runden: derselbe Inhalt unter dem anderen Kopf passt nicht.
+        val password = File(testdata, "backup-v1.password").readText().trim()
+        val v1 = Base64.getDecoder().decode(File(testdata, "backup-v1.pwbak.b64").readText().trim())
+        assertContentEquals("PWBK1".encodeToByteArray(), v1.copyOfRange(0, 5))
+        val relabelled = BackupFile.MAGIC + v1.copyOfRange(BackupFile.MAGIC_V1.size, v1.size)
+        assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(relabelled, password) }.reason)
+        assertEquals(600_000, BackupFile.ITERATIONS)
+        assertEquals(210_000, BackupFile.ITERATIONS_V1)
     }
 
     @Test
@@ -58,7 +72,9 @@ class BackupTest {
         val expected = File(testdata, "backup-v1.json").readText().trim()
         assertEquals(expected, BackupFile.decrypt(file, nfd).decodeToString())
         assertEquals(expected, BackupFile.decrypt(file, "Mondlicht-\u00e4€-2026").decodeToString())
-        assertContentEquals(file, BackupFile.encrypt(expected.encodeToByteArray(), "Mondlicht-\u00e4€-2026", salt, nonce))
+        val v2 = Base64.getDecoder().decode(File(testdata, "backup-v2-nfc.pwbak.b64").readText().trim())
+        assertContentEquals(v2, BackupFile.encrypt(expected.encodeToByteArray(), "Mondlicht-\u00e4€-2026", salt, nonce))
+        assertEquals(expected, BackupFile.decrypt(v2, nfd).decodeToString())
     }
 
     @Test
@@ -165,5 +181,18 @@ class BackupTest {
             """{format:1}""", """{"format":"phasewake-backup","alarms":"x","n":[1 2]}""", """{"a":"\""",
         )
         for (text in bad) assertFailsWith<CodecException> { BackupPayload.fromJson(text) }
+    }
+
+    @Test
+    fun jsonDepthIsLimited() {
+        // Das Objekt selbst ist Stufe 1; mit 63 Listen darin genau [BackupJson.MAX_DEPTH] = 64 Stufen.
+        fun nested(lists: Int) = """{"format":"phasewake-backup","alarms":"x","n":${"[".repeat(lists)}${"]".repeat(lists)}}"""
+        assertEquals(64, BackupJson.MAX_DEPTH)
+        assertEquals("x", BackupPayload.fromJson(nested(63)).alarms)
+        assertFailsWith<CodecException> { BackupPayload.fromJson(nested(64)) }
+        // Klammern in Texten zählen nicht.
+        assertEquals("[[[", BackupPayload.fromJson("""{"format":"phasewake-backup","alarms":"[[[","n":[[]]}""").alarms)
+        // Sehr tief: Fehler statt Stapelüberlauf.
+        assertFailsWith<CodecException> { BackupPayload.fromJson("[".repeat(100_000)) }
     }
 }

@@ -160,6 +160,8 @@
     <string name="check_not_ready_icon">အဆင်သင့်မဖြစ်သေး</string>
     <string name="check_silent_switch_title">iOS 26 မတိုင်မီ အရန်နှိုးစက်</string>
     <string name="check_silent_switch_text">iOS 26 မတိုင်မီ အရန်နှိုးစက်သည် အသိပေးချက်တစ်ခုဖြစ်သည်- အသံပိတ်ခလုတ်က ၎င်းကို အသံတိတ်စေသည်။ အသံကို ဖွင့်ထားပါ သို့မဟုတ် iOS 26 သို့ အပ်ဒိတ်လုပ်ပါ။</string>
+    <string name="check_backup_horizon_title">အရန်နှိုးစက်များ မကြာမီ ကုန်တော့မည်</string>
+    <string name="check_backup_horizon_text">iPhone က နောက်နှိုးစက်များ သတ်မှတ်နိုင်ရန် Phase Wake ကို ဖွင့်ပါ။</string>
     <string name="check_watch">နာရီ ချိတ်ဆက်ထားသည်</string>
     <string name="check_watch_problem">နာရီကို ဆက်သွယ်၍ မရပါ။ ဝတ်ထားပါ၊ Bluetooth ဖွင့်ထားပြီး နာရီပေါ်တွင် Phase Wake ကို တစ်ကြိမ် ဖွင့်ပါ။</string>
     <string name="check_notifications">အကြောင်းကြားချက်များ ခွင့်ပြုထားသည်</string>
@@ -444,6 +446,7 @@
     <string name="restore_open">ဖွင့်ရန်</string>
     <string name="restore_wrong_password">စကားဝှက် မှားနေသည် သို့မဟုတ် Phase Wake အရန်ဖိုင် မဟုတ်ပါ။ ဘာမှ မပြောင်းလဲပါ။</string>
     <string name="restore_unreadable">ဖိုင်ကို ဖတ်၍ မရပါ။ ဘာမှ မပြောင်းလဲပါ။</string>
+    <string name="restore_failed">ပြန်ယူခြင်း မအောင်မြင်ပါ။ ဘာမှ မပြောင်းလဲပါ။</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">နှိုးစက်- %1$d · ည- %2$d · မှတ်စုပါသောရက်- %3$d</string>
     <string name="restore_confirm_title">ဒေတာ အစားထိုးမလား။</string>
     <string name="restore_confirm_text">ဤဖုန်းပေါ်ရှိ နှိုးစက်၊ မှတ်တမ်း၊ မှတ်စုနှင့် ဆက်တင်များကို အရန်ဖိုင်ဖြင့် အစားထိုးမည်။</string>

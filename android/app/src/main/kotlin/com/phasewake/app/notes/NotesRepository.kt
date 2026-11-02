@@ -1,6 +1,7 @@
 package com.phasewake.app.notes
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -87,14 +88,13 @@ class NotesRepository(private val store: DataStore<Preferences>) {
 
     /**
      * Ersetzt Notizen, eigene Notizen und das Befinden zu Nächten aus anderen Apps (Wiederherstellen); unlesbare
-     * Zeilen fallen beim Lesen weg, eine ältere Sicherung ohne Befinden leert es.
+     * Zeilen fallen beim Lesen weg, eine ältere Sicherung ohne Befinden leert es. Schreibt in [prefs], damit das
+     * Wiederherstellen alles in einem Schritt speichert (`BackupManager.restore`).
      */
-    suspend fun restore(notes: String, custom: String, healthFeelings: String) {
-        store.edit {
-            it[NOTES] = SleepNotes.encode(SleepNotes.decode(notes))
-            it[CUSTOM] = SleepNotes.encodeCustom(SleepNotes.decodeCustom(custom))
-            it[HEALTH_FEELINGS] = HealthFeelings.encode(HealthFeelings.decode(healthFeelings))
-        }
+    fun restoreInto(prefs: MutablePreferences, notes: String, custom: String, healthFeelings: String) {
+        prefs[NOTES] = SleepNotes.encode(SleepNotes.decode(notes))
+        prefs[CUSTOM] = SleepNotes.encodeCustom(SleepNotes.decodeCustom(custom))
+        prefs[HEALTH_FEELINGS] = HealthFeelings.encode(HealthFeelings.decode(healthFeelings))
     }
 
     private companion object {

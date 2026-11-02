@@ -2,6 +2,7 @@ package com.phasewake.app.shared
 
 import android.util.Log
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
@@ -56,14 +57,20 @@ class AlarmRepository(
      */
     suspend fun replaceAll(alarms: List<AlarmSpec>): AlarmSnapshot {
         lateinit var result: AlarmSnapshot
-        store.edit { prefs ->
-            val sorted = alarms.distinctBy { it.id }.sortedWith(ORDER)
-            val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
-            prefs[ALARMS] = Codec.encodeAlarms(sorted)
-            prefs[UPDATED_AT] = stamp
-            result = AlarmSnapshot(sorted, stamp)
-        }
+        store.edit { prefs -> result = replaceAllIn(prefs, alarms) }
         return result
+    }
+
+    /**
+     * Wie [replaceAll], aber in [prefs] eines laufenden `edit` desselben Speichers: Das Wiederherstellen schreibt
+     * Wecker, Notizen und Einstellungen in einem Schritt (alles oder nichts). @return neuer Stand.
+     */
+    fun replaceAllIn(prefs: MutablePreferences, alarms: List<AlarmSpec>): AlarmSnapshot {
+        val sorted = alarms.distinctBy { it.id }.sortedWith(ORDER)
+        val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
+        prefs[ALARMS] = Codec.encodeAlarms(sorted)
+        prefs[UPDATED_AT] = stamp
+        return AlarmSnapshot(sorted, stamp)
     }
 
     /** Übernimmt den Stand der Gegenseite, falls er neuer ist. @return ob übernommen wurde. */

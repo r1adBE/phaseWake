@@ -133,12 +133,15 @@ private struct RestoreSheet: View {
     @State private var wrong = false
     @State private var busy = false
     @State private var confirm = false
+    @State private var failed = false
 
     var body: some View {
         NavigationStack {
             Form {
                 SecureField(L("backup_password"), text: $password).textContentType(.password)
                 if wrong { Text(L("restore_wrong_password")).font(.footnote).foregroundStyle(.red) }
+                // Schreiben gescheitert (z. B. Speicher voll): Alles ist zurückgesetzt, nichts geändert.
+                if failed { Text(L("restore_failed")).font(.footnote).foregroundStyle(.red) }
                 if busy { ProgressView(L("backup_busy")) }
                 if let payload {
                     let c = BackupIO.counts(payload)
@@ -175,7 +178,13 @@ private struct RestoreSheet: View {
 
     private func replace() async {
         guard let payload, await DeviceAuth.confirm(reason: L("auth_restore")) else { return }
-        BackupIO.apply(payload, to: model)
+        do {
+            try BackupIO.apply(payload, to: model)
+        } catch {
+            failed = true
+            DiagStore.shared.log(.error, "restore failed, nothing changed: \(error.localizedDescription)")
+            return
+        }
         dismiss()
         onDone()
     }

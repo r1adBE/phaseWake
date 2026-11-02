@@ -163,6 +163,8 @@
     <string name="check_not_ready_icon">تیار نہیں</string>
     <string name="check_silent_switch_title">iOS 26 سے پہلے بیک اپ الارم</string>
     <string name="check_silent_switch_text">iOS 26 سے پہلے بیک اپ الارم ایک اطلاع ہے: سائلنٹ سوئچ اسے خاموش کر دیتا ہے۔ آواز آن رکھو یا iOS 26 پر اپ ڈیٹ کرو۔</string>
+    <string name="check_backup_horizon_title">بیک اپ الارم جلد ختم ہونے والے ہیں</string>
+    <string name="check_backup_horizon_text">Phase Wake کھولیں تاکہ آپ کا iPhone اگلے الارم سیٹ کر سکے۔</string>
     <string name="check_watch">گھڑی منسلک</string>
     <string name="check_watch_problem">تمہاری گھڑی سے رابطہ نہیں ہو رہا۔ اسے پہنو، Bluetooth آن رکھو اور گھڑی پر ایک بار Phase Wake کھولو۔</string>
     <string name="check_notifications">اطلاعات کی اجازت ہے</string>
@@ -457,6 +459,7 @@
     <string name="restore_open">کھولو</string>
     <string name="restore_wrong_password">غلط پاس ورڈ یا یہ Phase Wake کا بیک اپ نہیں۔ کچھ نہیں بدلا گیا۔</string>
     <string name="restore_unreadable">فائل پڑھی نہیں جا سکی۔ کچھ نہیں بدلا گیا۔</string>
+    <string name="restore_failed">بحالی ناکام رہی۔ کچھ نہیں بدلا گیا۔</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">الارم: %1$d · راتیں: %2$d · نوٹس والے دن: %3$d</string>
     <string name="restore_confirm_title">ڈیٹا تبدیل کریں؟</string>
     <string name="restore_confirm_text">اس فون پر الارم، تاریخچہ، نوٹس اور ترتیبات بیک اپ سے تبدیل ہو جائیں گے۔</string>

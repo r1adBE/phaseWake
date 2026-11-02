@@ -6,6 +6,9 @@ Die aktuellen Nächte sind synthetisch und decken je einen Regelfall ab. Echte, 
 
 ## Sicherung
 
-`backup-v1.pwbak.b64` ist eine verschlüsselte Sicherung (Base64), `backup-v1.password` ihr Passwort und `backup-v1.json`
-der Klartext. Erzeugt mit `python3 .github/scripts/make-backup-vector.py` (Python «cryptography», feste Werte für Salz und
-Nonce); `--check` prüft, ob die Dateien aktuell sind. Beide Kerne müssen die Datei entschlüsseln und denselben Inhalt lesen.
+`backup-v1.pwbak.b64` ist eine verschlüsselte Sicherung (Base64) im alten Format «PWBK1» (210 000 Runden, wird nur noch
+gelesen), `backup-v2.pwbak.b64` derselbe Inhalt im aktuellen Format «PWBK2» (600 000 Runden, wird geschrieben);
+`backup-v1.password` ist das Passwort beider Dateien und `backup-v1.json` der Klartext. `backup-v1-nfc.*` und
+`backup-v2-nfc.pwbak.b64` prüfen dasselbe mit einem Passwort in NFD. Erzeugt mit
+`python3 .github/scripts/make-backup-vector.py` (Python «cryptography», feste Werte für Salz und Nonce); `--check` prüft,
+ob die Dateien aktuell sind. Beide Kerne müssen alle Dateien entschlüsseln und denselben Inhalt lesen.

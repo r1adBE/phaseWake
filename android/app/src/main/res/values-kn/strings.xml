@@ -163,6 +163,8 @@
     <string name="check_not_ready_icon">ಸಿದ್ಧವಾಗಿಲ್ಲ</string>
     <string name="check_silent_switch_title">iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ</string>
     <string name="check_silent_switch_text">iOS 26 ಕ್ಕಿಂತ ಮೊದಲು ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಒಂದು ಅಧಿಸೂಚನೆ: ಸೈಲೆಂಟ್ ಸ್ವಿಚ್ ಅದನ್ನು ನಿಶ್ಶಬ್ದಗೊಳಿಸುತ್ತದೆ. ಧ್ವನಿಯನ್ನು ಆನ್‌ನಲ್ಲಿಡಿ ಅಥವಾ iOS 26 ಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
+    <string name="check_backup_horizon_title">ಬ್ಯಾಕಪ್ ಅಲಾರಾಂಗಳು ಬೇಗ ಮುಗಿಯಲಿವೆ</string>
+    <string name="check_backup_horizon_text">ನಿಮ್ಮ iPhone ಮುಂದಿನ ಅಲಾರಾಂಗಳನ್ನು ಹೊಂದಿಸಲು Phase Wake ತೆರೆಯಿರಿ.</string>
     <string name="check_watch">ವಾಚ್ ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
     <string name="check_watch_problem">ನಿಮ್ಮ ವಾಚ್ ತಲುಪುತ್ತಿಲ್ಲ. ಅದನ್ನು ಧರಿಸಿ, Bluetooth ಆನ್ ಇಡಿ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅನ್ನು ಒಮ್ಮೆ ತೆರೆಯಿರಿ.</string>
     <string name="check_notifications">ಅಧಿಸೂಚನೆಗಳಿಗೆ ಅನುಮತಿ ಇದೆ</string>
@@ -457,6 +459,7 @@
     <string name="restore_open">ತೆರೆಯಿರಿ</string>
     <string name="restore_wrong_password">ತಪ್ಪು ಪಾಸ್‌ವರ್ಡ್ ಅಥವಾ ಇದು Phase Wake ಬ್ಯಾಕಪ್ ಅಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.</string>
     <string name="restore_unreadable">ಫೈಲ್ ಓದಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.</string>
+    <string name="restore_failed">ಮರುಸ್ಥಾಪನೆ ವಿಫಲವಾಯಿತು. ಏನೂ ಬದಲಾಗಿಲ್ಲ.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">ಅಲಾರಾಂಗಳು: %1$d · ರಾತ್ರಿಗಳು: %2$d · ಟಿಪ್ಪಣಿಗಳಿರುವ ದಿನಗಳು: %3$d</string>
     <string name="restore_confirm_title">ಡೇಟಾ ಬದಲಿಸಬೇಕೇ?</string>
     <string name="restore_confirm_text">ಈ ಫೋನ್‌ನಲ್ಲಿರುವ ಅಲಾರಾಂಗಳು, ಇತಿಹಾಸ, ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬ್ಯಾಕಪ್‌ನಿಂದ ಬದಲಿಸಲಾಗುತ್ತದೆ.</string>

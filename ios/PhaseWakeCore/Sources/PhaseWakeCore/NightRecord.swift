@@ -46,7 +46,7 @@ public struct NightRecord: Equatable, Sendable {
     public var minutesAfterTarget: Int { max(0, Int(wokeAt.timeIntervalSince(target) / 60)) }
 }
 
-/// Aufbewahrung und anonymer Export. Identisch zu `NightHistory` (Kotlin).
+/// Aufbewahrung und CSV-Export. Identisch zu `NightHistory` (Kotlin).
 public enum NightHistory {
     /// Höchstens so viele Nächte bleiben gespeichert (rund drei Monate); ältere fallen weg.
     public static let maxNights = 90
@@ -72,7 +72,8 @@ public enum NightHistory {
         trim(nights).map { $0.epochs.map(\.motion) }
     }
 
-    /// Anonymer CSV-Export: gleiche Spalten und Zahlenformate wie Android. Die Spalte `notes` steht
+    /// CSV-Export ohne Kennungen und Datumsangaben, aber mit Bewegungs- und Pulsreihen (nicht anonym im engeren Sinn):
+    /// gleiche Spalten und Zahlenformate wie Android. Die Spalte `notes` steht
     /// zuletzt, damit ältere Leser weiter funktionieren: Notizen je Nachtdatum (siehe `SleepNotes`),
     /// mit «;» getrennt, eigene nur als «custom».
     public static func exportCsv(_ nights: [NightRecord], notes: [String: [String]] = [:], calendar: Calendar = .current) -> String {

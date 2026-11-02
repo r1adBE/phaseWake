@@ -166,6 +166,8 @@
     <string name="check_not_ready_icon">Not ready</string>
     <string name="check_silent_switch_title" tools:ignore="UnusedResources">Backup alarm before iOS 26</string>
     <string name="check_silent_switch_text" tools:ignore="UnusedResources">Before iOS 26, the backup alarm is a notification: the silent switch mutes it. Keep the sound on or update to iOS 26.</string>
+    <string name="check_backup_horizon_title" tools:ignore="UnusedResources">Backup alarms running out</string>
+    <string name="check_backup_horizon_text" tools:ignore="UnusedResources">Open Phase Wake so your iPhone can set the next alarms.</string>
     <string name="check_watch">Watch connected</string>
     <string name="check_watch_problem">Your watch isn’t reachable. Wear it, keep Bluetooth on and open Phase Wake on the watch once.</string>
     <string name="check_notifications">Notifications allowed</string>
@@ -485,6 +487,7 @@
     <string name="restore_open">Open</string>
     <string name="restore_wrong_password">Wrong password or not a Phase Wake backup. Nothing was changed.</string>
     <string name="restore_unreadable">Couldn’t read the file. Nothing was changed.</string>
+    <string name="restore_failed">Restore failed. Nothing was changed.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Alarms: %1$d · Nights: %2$d · Days with notes: %3$d</string>
     <string name="restore_confirm_title">Replace data?</string>
     <string name="restore_confirm_text">Alarms, history, notes and settings on this phone will be replaced by the backup.</string>

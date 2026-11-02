@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">Pas prêt</string>
     <string name="check_silent_switch_title">Alarme de secours avant iOS 26</string>
     <string name="check_silent_switch_text">Avant iOS 26, l’alarme de secours est une notification : le bouton silencieux la rend muette. Laisse le son activé ou passe à iOS 26.</string>
+    <string name="check_backup_horizon_title">Bientôt plus d’alarmes de secours</string>
+    <string name="check_backup_horizon_text">Ouvre Phase Wake pour que ton iPhone programme les prochaines alarmes.</string>
     <string name="check_watch">Montre connectée</string>
     <string name="check_watch_problem">Ta montre est injoignable. Mets-la au poignet, garde le Bluetooth activé et ouvre Phase Wake une fois sur la montre.</string>
     <string name="check_notifications">Notifications autorisées</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">Ouvrir</string>
     <string name="restore_wrong_password">Mot de passe incorrect ou pas une sauvegarde Phase Wake. Rien n’a été modifié.</string>
     <string name="restore_unreadable">Impossible de lire le fichier. Rien n’a été modifié.</string>
+    <string name="restore_failed">La restauration a échoué. Rien n’a été modifié.</string>
     <string name="restore_preview">Réveils : %1$d · Nuits : %2$d · Jours avec notes : %3$d</string>
     <string name="restore_confirm_title">Remplacer les données ?</string>
     <string name="restore_confirm_text">Les réveils, l’historique, les notes et les réglages de ce téléphone seront remplacés par la sauvegarde.</string>

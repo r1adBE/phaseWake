@@ -34,18 +34,21 @@ class BackupException(
 
 /**
  * Verschlüsselte Sicherungsdatei (`.pwbak`), auf Android und Apple gleich:
- * `MAGIC | Salz (16) | Nonce (12) | Geheimtext | Prüfsumme (16)`.
+ * `Kopf | Salz (16) | Nonce (12) | Geheimtext | Prüfsumme (16)`.
  *
- * Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8) mit [ITERATIONS] Runden, 256 Bit. NFC,
- * damit «ü» als ein Zeichen oder als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt. Verfahren:
- * AES-256-GCM ohne zusätzliche Daten. 210 000 Runden: Das ist die Zahl von OWASP (2023) für PBKDF2-HMAC-SHA512; für
- * SHA-256 empfiehlt OWASP 600 000. Bewusst so belassen, damit bestehende Sicherungen lesbar bleiben: Die Runden stehen
- * nicht in der Datei, der Kopf [MAGIC] («PWBK1») trägt die Formatversion. Mehr Runden hiessen ein neues Format «PWBK2»
- * (Lesen beider Köpfe), nicht eine geänderte Zahl hier. Swift (`Backup.swift`) gleich.
+ * Schlüssel: PBKDF2-HMAC-SHA256 über das Passwort (Unicode NFC, UTF-8), 256 Bit. NFC, damit «ü» als ein Zeichen oder
+ * als «u» plus Trema (je nach Tastatur) denselben Schlüssel ergibt. Verfahren: AES-256-GCM ohne zusätzliche Daten.
+ * Die Runden stehen nicht in der Datei, der Kopf trägt die Formatversion:
+ * - «PWBK2» ([MAGIC], geschrieben): [ITERATIONS] = 600 000 Runden, die Zahl von OWASP (2023) für PBKDF2-HMAC-SHA256.
+ * - «PWBK1» ([MAGIC_V1], nur gelesen): [ITERATIONS_V1] = 210 000 Runden (ältere Sicherungen bleiben lesbar).
+ * Swift (`Backup.swift`) gleich.
  */
 object BackupFile {
-    /** Kopf der Datei, Formatversion 1. */
-    val MAGIC: ByteArray = "PWBK1".toByteArray(StandardCharsets.US_ASCII)
+    /** Kopf der Datei, Formatversion 2 (wird geschrieben). */
+    val MAGIC: ByteArray = "PWBK2".toByteArray(StandardCharsets.US_ASCII)
+
+    /** Kopf der Formatversion 1 (nur noch gelesen). */
+    val MAGIC_V1: ByteArray = "PWBK1".toByteArray(StandardCharsets.US_ASCII)
 
     /** Länge des Salzes in Byte. */
     const val SALT_BYTES: Int = 16
@@ -56,8 +59,11 @@ object BackupFile {
     /** Länge der Prüfsumme (GCM-Tag) in Byte. */
     const val TAG_BYTES: Int = 16
 
-    /** Runden von PBKDF2. */
-    const val ITERATIONS: Int = 210_000
+    /** Runden von PBKDF2 für [MAGIC] (Formatversion 2). */
+    const val ITERATIONS: Int = 600_000
+
+    /** Runden von PBKDF2 für [MAGIC_V1] (Formatversion 1). */
+    const val ITERATIONS_V1: Int = 210_000
 
     /** Schlüssellänge in Bit (AES-256). */
     const val KEY_BITS: Int = 256
@@ -101,28 +107,38 @@ object BackupFile {
     }
 
     /**
-     * Verschlüsselt [plain] mit [password]; [salt] und [nonce] kommen vom Aufrufer (zufällig, im Test fest).
+     * Verschlüsselt [plain] mit [password] im Format [MAGIC] ([ITERATIONS] Runden); [salt] und [nonce] kommen vom
+     * Aufrufer (zufällig, im Test fest).
      * Ein zu kurzes Passwort ([passwordOk]) wirft [IllegalArgumentException]: Nie eine Sicherung mit leerem Passwort.
      */
     fun encrypt(plain: ByteArray, password: String, salt: ByteArray, nonce: ByteArray): ByteArray {
         require(salt.size == SALT_BYTES && nonce.size == NONCE_BYTES) { "Salz oder Nonce mit falscher Länge" }
         require(passwordOk(password)) { "Passwort zu kurz" }
         val cipher = Cipher.getInstance(TRANSFORMATION)
-        cipher.init(Cipher.ENCRYPT_MODE, key(password, salt), GCMParameterSpec(TAG_BYTES * 8, nonce))
+        cipher.init(Cipher.ENCRYPT_MODE, key(password, salt, ITERATIONS), GCMParameterSpec(TAG_BYTES * 8, nonce))
         return MAGIC + salt + nonce + cipher.doFinal(plain)
     }
 
-    /** Entschlüsselt eine Datei aus [encrypt]. Fremde Datei oder falsches Passwort: [BackupException]. */
+    /**
+     * Entschlüsselt eine Datei aus [encrypt] (Kopf [MAGIC]) oder eine ältere mit [MAGIC_V1]. Fremde Datei oder falsches
+     * Passwort: [BackupException].
+     */
     fun decrypt(file: ByteArray, password: String): ByteArray {
         val head = MAGIC.size + SALT_BYTES + NONCE_BYTES
-        if (file.size < head + TAG_BYTES || !file.copyOfRange(0, MAGIC.size).contentEquals(MAGIC)) {
+        val magic = if (file.size >= MAGIC.size) file.copyOfRange(0, MAGIC.size) else ByteArray(0)
+        val iterations = when {
+            magic.contentEquals(MAGIC) -> ITERATIONS
+            magic.contentEquals(MAGIC_V1) -> ITERATIONS_V1
+            else -> 0
+        }
+        if (file.size < head + TAG_BYTES || iterations == 0) {
             throw BackupException(BackupException.Reason.NOT_A_BACKUP, "Keine Phase-Wake-Sicherung")
         }
         val salt = file.copyOfRange(MAGIC.size, MAGIC.size + SALT_BYTES)
         val nonce = file.copyOfRange(MAGIC.size + SALT_BYTES, head)
         return try {
             val cipher = Cipher.getInstance(TRANSFORMATION)
-            cipher.init(Cipher.DECRYPT_MODE, key(password, salt), GCMParameterSpec(TAG_BYTES * 8, nonce))
+            cipher.init(Cipher.DECRYPT_MODE, key(password, salt, iterations), GCMParameterSpec(TAG_BYTES * 8, nonce))
             cipher.doFinal(file, head, file.size - head)
         } catch (e: AEADBadTagException) {
             throw BackupException(BackupException.Reason.WRONG_PASSWORD, "Passwort falsch oder Datei verändert", e)
@@ -135,8 +151,8 @@ object BackupFile {
 
     private fun normalize(password: String): String = Normalizer.normalize(password, Normalizer.Form.NFC)
 
-    private fun key(password: String, salt: ByteArray): SecretKeySpec {
-        val spec = PBEKeySpec(normalize(password).toCharArray(), salt, ITERATIONS, KEY_BITS)
+    private fun key(password: String, salt: ByteArray, iterations: Int): SecretKeySpec {
+        val spec = PBEKeySpec(normalize(password).toCharArray(), salt, iterations, KEY_BITS)
         try {
             val bytes = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(spec).encoded
             return SecretKeySpec(bytes, "AES")

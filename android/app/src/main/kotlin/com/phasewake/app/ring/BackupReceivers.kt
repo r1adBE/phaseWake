@@ -45,16 +45,17 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
     if (!isUnlocked(context)) {
         // Ende des Schlummerns am Handy (ohne Zielzeit): der abgelegte Zweitwecker bleibt, wie er ist.
         if (intent.action == ACTION && target == null) return
-        BackupDirectBoot.clear(context)
         // Nach dem Entsperren nachholen: Nacht aussetzen, Einmal-Wecker ausschalten.
         if (intent.action == ACTION && alarmId != null && target != null && rings) BackupDirectBoot.markRang(context, alarmId, target)
+        // Den nächsten abgelegten Zweitwecker stellen (zweiter Wecker am Morgen, nächste Nacht).
+        if (intent.action == ACTION) BackupDirectBoot.advance(context, alarmId, target)
         return
     }
     val pending = goAsync()
     val app = context.phoneApp
     app.appScope.launch {
         try {
-            BackupDirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
+            BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
             if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
             // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns; und nur, wenn er klingelt.
             if (intent.action == ACTION && target != null && rings) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
@@ -81,7 +82,7 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     val app = context.phoneApp
     app.appScope.launch {
         try {
-            BackupDirectBoot.takeRang(context)?.let { (id, at) -> app.backup.backupRang(id, at) }
+            BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
             app.backup.reschedule()
         } finally {
             pending.finish()

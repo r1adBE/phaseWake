@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">Non pronto</string>
     <string name="check_silent_switch_title">Sveglia di riserva prima di iOS 26</string>
     <string name="check_silent_switch_text">Prima di iOS 26 la sveglia di riserva è una notifica: l’interruttore silenzioso la rende muta. Lascia il suono attivo o aggiorna a iOS 26.</string>
+    <string name="check_backup_horizon_title">Sveglie di riserva quasi esaurite</string>
+    <string name="check_backup_horizon_text">Apri Phase Wake perché l’iPhone imposti le prossime sveglie.</string>
     <string name="check_watch">Orologio connesso</string>
     <string name="check_watch_problem">Il tuo orologio non è raggiungibile. Indossalo, tieni attivo il Bluetooth e apri Phase Wake sull’orologio una volta.</string>
     <string name="check_notifications">Notifiche consentite</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">Apri</string>
     <string name="restore_wrong_password">Password errata o file non di Phase Wake. Nulla è stato modificato.</string>
     <string name="restore_unreadable">Impossibile leggere il file. Non è stato modificato nulla.</string>
+    <string name="restore_failed">Ripristino non riuscito. Non è stato modificato nulla.</string>
     <string name="restore_preview">Sveglie: %1$d · Notti: %2$d · Giorni con note: %3$d</string>
     <string name="restore_confirm_title">Sostituire i dati?</string>
     <string name="restore_confirm_text">Sveglie, cronologia, note e impostazioni su questo telefono saranno sostituite dal backup.</string>

@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Akukalungi</string>
     <string name="check_silent_switch_title">I-alamu yokwesekwa ngaphambi kwe-iOS 26</string>
     <string name="check_silent_switch_text">Ngaphambi kwe-iOS 26, i-alamu yokwesekwa iyisaziso: inkinobho yokuthula iyayithulisa. Shiya umsindo uvuliwe noma buyekeza ku-iOS 26.</string>
+    <string name="check_backup_horizon_title">Ama-alamu okwesekwa azophela maduze</string>
+    <string name="check_backup_horizon_text">Vula i-Phase Wake ukuze i-iPhone yakho isethe ama-alamu alandelayo.</string>
     <string name="check_watch">Iwashi lixhunyiwe</string>
     <string name="check_watch_problem">Iwashi lakho alifinyeleleki. Lifake, gcina i-Bluetooth ivuliwe bese uvula i-Phase Wake ewashini kanye.</string>
     <string name="check_notifications">Izaziso zivunyelwe</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Vula</string>
     <string name="restore_wrong_password">Iphasiwedi engalungile noma akuyona ikhophi ye-Phase Wake. Akukho okushintshiwe.</string>
     <string name="restore_unreadable">Ayikwazanga ukufunda ifayela. Akukho okushintshiwe.</string>
+    <string name="restore_failed">Ukubuyisela kwehlulekile. Akukho okushintshiwe.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Ama-alamu: %1$d · Ubusuku: %2$d · Izinsuku ezinamanothi: %3$d</string>
     <string name="restore_confirm_title">Shintsha idatha?</string>
     <string name="restore_confirm_text">Ama-alamu, umlando, amanothi nezilungiselelo kule foni kuzoshintshwa yikhophi yasenqolobaneni.</string>

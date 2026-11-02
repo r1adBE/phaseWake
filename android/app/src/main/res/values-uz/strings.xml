@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Tayyor emas</string>
     <string name="check_silent_switch_title">iOS 26 dan oldingi zaxira budilnik</string>
     <string name="check_silent_switch_text">iOS 26 dan oldin zaxira budilnik bildirishnoma hisoblanadi: ovozsiz rejim tugmasi uni ovozsiz qiladi. Ovozni yoqiq qoldir yoki iOS 26 ga yangila.</string>
+    <string name="check_backup_horizon_title">Zaxira budilniklar tez orada tugaydi</string>
+    <string name="check_backup_horizon_text">iPhone keyingi budilniklarni qoʻyishi uchun Phase Wake’ni oching.</string>
     <string name="check_watch">Soat ulangan</string>
     <string name="check_watch_problem">Soatingga ulanib boʻlmayapti. Uni taq, Bluetoothʼni yoqiq qoldir va soatda Phase Wakeʼni bir marta och.</string>
     <string name="check_notifications">Bildirishnomalarga ruxsat bor</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Ochish</string>
     <string name="restore_wrong_password">Parol notoʻgʻri yoki bu Phase Wake zaxira nusxasi emas. Hech narsa oʻzgartirilmadi.</string>
     <string name="restore_unreadable">Faylni oʻqib boʻlmadi. Hech narsa oʻzgartirilmadi.</string>
+    <string name="restore_failed">Tiklab boʻlmadi. Hech narsa oʻzgartirilmadi.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Budilniklar: %1$d · Tunlar: %2$d · Qaydli kunlar: %3$d</string>
     <string name="restore_confirm_title">Maʼlumotlar almashtirilsinmi?</string>
     <string name="restore_confirm_text">Bu telefondagi budilniklar, tarix, qaydlar va sozlamalar zaxira nusxadagilar bilan almashtiriladi.</string>

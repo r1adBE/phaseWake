@@ -69,8 +69,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val giveUpAt = latest?.minus(ONSET_GIVE_UP)
         // Nur für die kommende Nacht: liegt die Weckzeit weiter weg, zeigt die Startseite einen Hinweis.
         // Automatisch: auch ohne Schlafdauer, aber nicht mehr im Weckfenster und nicht zweimal in derselben Nacht.
-        val windowBegun = latest != null && spec != null &&
-            !Instant.now().isBefore(AlarmSchedule.planAt(spec, latest).windowStart)
+        val plan = spec?.let { s -> latest?.let { AlarmSchedule.planAt(s, it) } }
+        val windowBegun = plan != null && !Instant.now().isBefore(plan.windowStart)
         val alreadyDone = automatic && latest != null && app.onsets.isDone(alarmId, latest)
         if (spec == null || (duration == null && !automatic) || latest == null || giveUpAt == null ||
             Duration.between(since, latest) > GOOD_NIGHT_MAX_AHEAD || !Instant.now().isBefore(giveUpAt) ||

@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Бэлэн биш</string>
     <string name="check_silent_switch_title">iOS 26-аас өмнөх нөөц сэрүүлэг</string>
     <string name="check_silent_switch_text">iOS 26-аас өмнө нөөц сэрүүлэг нь мэдэгдэл байдаг: дуугүй горимын унтраалга түүнийг дуугүй болгоно. Дууг асаалттай үлдээ эсвэл iOS 26 руу шинэчил.</string>
+    <string name="check_backup_horizon_title">Нөөц сэрүүлэг удахгүй дуусна</string>
+    <string name="check_backup_horizon_text">iPhone дараагийн сэрүүлгүүдийг тохируулахын тулд Phase Wake-г нээ.</string>
     <string name="check_watch">Цаг холбогдсон</string>
     <string name="check_watch_problem">Цагтай чинь холбогдож чадахгүй байна. Цагаа зүүж, Bluetooth-ээ асаалттай байлгаад цаган дээрээ Phase Wake-ийг нэг удаа нээ.</string>
     <string name="check_notifications">Мэдэгдэл зөвшөөрөгдсөн</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Нээх</string>
     <string name="restore_wrong_password">Нууц үг буруу эсвэл Phase Wake-ийн нөөц биш. Юу ч өөрчлөгдсөнгүй.</string>
     <string name="restore_unreadable">Файлыг уншиж чадсангүй. Юу ч өөрчлөгдсөнгүй.</string>
+    <string name="restore_failed">Сэргээж чадсангүй. Юу ч өөрчлөгдсөнгүй.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Сэрүүлэг: %1$d · Шөнө: %2$d · Тэмдэглэлтэй өдөр: %3$d</string>
     <string name="restore_confirm_title">Өгөгдлийг солих уу?</string>
     <string name="restore_confirm_text">Энэ утсан дээрх сэрүүлэг, түүх, тэмдэглэл, тохиргоог нөөцөөр солино.</string>

@@ -81,6 +81,13 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
 
+    // Sicherheit (Review K-01, OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
+    // anheben, nichts zusätzlich einbinden.
+    constraints {
+        implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }
+        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") { because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)") }
+    }
+
     // Entscheidungen des Zweitweckers (Nachfrist, Ablösen, «stop», Schlummern) in Unit-Tests; Robolectric nur zum Testen.
     testImplementation(kotlin("test-junit"))
     testImplementation(libs.robolectric)
@@ -92,32 +99,73 @@ dependencies {
 // Geräusch-Modell YAMNet (Apache-2.0) beim ersten Bauen laden; liegt nicht im Repo.
 // Ohne Netz baut die Debug-App trotzdem (nur Warnung): Geräusche gelten dann als «Anderes Geräusch».
 // Ein Release bricht ohne Modell ab (checkYamnet), damit keine App ohne Einordnung ausgeliefert wird.
+// Prüfsumme: Eine geladene oder vorhandene Datei mit anderem SHA-256 bricht jeden Build ab (Review K-02).
 val yamnetModel: File = layout.projectDirectory.file("src/main/assets/yamnet.tflite").asFile
+
+// SHA-256 von yamnet.tflite (float32/1, 4 126 810 Byte), aus den bisherigen CI-Builds (assets/yamnet.tflite im APK).
+val yamnetSha256 = "4d8b4a53282dc83ef04e3e7dbc4fbc98082e34e44ed798e16c3a0cdd4c584faf"
 val downloadYamnet = tasks.register("downloadYamnet") {
-    description = "Lädt yamnet.tflite, falls es fehlt."
+    description = "Lädt yamnet.tflite, falls es fehlt, und prüft die Prüfsumme."
     val target = yamnetModel
+    val expected = yamnetSha256
     outputs.file(target)
     onlyIf { !target.exists() }
     doLast {
-        try {
-            target.parentFile.mkdirs()
+        target.parentFile.mkdirs()
+        val temp = File(target.parentFile, "yamnet.tflite.part")
+        val loaded = try {
             val url = URI("https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite").toURL()
-            val temp = File(target.parentFile, "yamnet.tflite.part")
             url.openStream().use { input -> temp.outputStream().use { output -> input.copyTo(output) } }
-            if (!temp.renameTo(target)) temp.delete()
+            true
         } catch (e: Exception) {
+            temp.delete()
             logger.warn("yamnet.tflite nicht geladen (${e.message}); Geräusche werden nicht eingeordnet.")
+            false
+        }
+        if (loaded) {
+            // Ausserhalb des try: Eine veränderte Datei ist kein Netzfehler und bricht den Build ab.
+            val digest = java.security.MessageDigest.getInstance("SHA-256")
+            temp.inputStream().use { input ->
+                val buffer = ByteArray(64 * 1024)
+                while (true) {
+                    val read = input.read(buffer)
+                    if (read < 0) break
+                    digest.update(buffer, 0, read)
+                }
+            }
+            val actual = digest.digest().joinToString("") { "%02x".format(it) }
+            if (actual != expected) {
+                val size = temp.length()
+                temp.delete()
+                throw GradleException("yamnet.tflite: SHA-256 $actual statt $expected ($size Byte). Datei verworfen, Build abgebrochen.")
+            }
+            if (!temp.renameTo(target)) temp.delete()
         }
     }
 }
 tasks.named("preBuild") { dependsOn(downloadYamnet) }
 val checkYamnet = tasks.register("checkYamnet") {
-    description = "Bricht ab, wenn yamnet.tflite fehlt (nur für Release-Builds)."
+    description = "Bricht ab, wenn yamnet.tflite fehlt oder eine andere Prüfsumme hat (nur für Release-Builds)."
     val target = yamnetModel
+    val expected = yamnetSha256
     dependsOn(downloadYamnet)
     doLast {
         if (!target.isFile || target.length() == 0L) {
             throw GradleException("yamnet.tflite fehlt in src/main/assets (Download fehlgeschlagen?). Release ohne Modell abgebrochen, siehe README.")
+        }
+        // Auch eine schon vorhandene Datei (lokal liegen geblieben) muss stimmen.
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+        target.inputStream().use { input ->
+            val buffer = ByteArray(64 * 1024)
+            while (true) {
+                val read = input.read(buffer)
+                if (read < 0) break
+                digest.update(buffer, 0, read)
+            }
+        }
+        val actual = digest.digest().joinToString("") { "%02x".format(it) }
+        if (actual != expected) {
+            throw GradleException("yamnet.tflite: SHA-256 $actual statt $expected. Datei löschen und neu bauen (lädt neu), siehe README.")
         }
     }
 }

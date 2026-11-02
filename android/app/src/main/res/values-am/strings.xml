@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">ዝግጁ አይደለም</string>
     <string name="check_silent_switch_title">ከiOS 26 በፊት ተጠባባቂ ማንቂያ</string>
     <string name="check_silent_switch_text">ከiOS 26 በፊት ተጠባባቂ ማንቂያው ማሳወቂያ ነው፦ የድምፅ ማጥፊያ ማብሪያው ጸጥ ያደርገዋል። ድምፁን ያብሩት ወይም ወደ iOS 26 ያዘምኑ።</string>
+    <string name="check_backup_horizon_title">ተጠባባቂ ማንቂያዎች ሊያልቁ ነው</string>
+    <string name="check_backup_horizon_text">iPhoneዎ ቀጣዮቹን ማንቂያዎች እንዲያዘጋጅ Phase Wakeን ይክፈቱ።</string>
     <string name="check_watch">ሰዓት ተገናኝቷል</string>
     <string name="check_watch_problem">ሰዓትዎ ሊደረስበት አልቻለም። ያድርጉት፣ Bluetooth እንደበራ ያቆዩ እና Phase Wakeን በሰዓቱ ላይ አንድ ጊዜ ይክፈቱ።</string>
     <string name="check_notifications">ማሳወቂያዎች ተፈቅደዋል</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">ክፈት</string>
     <string name="restore_wrong_password">የተሳሳተ የይለፍ ቃል ወይም የPhase Wake ምትኬ አይደለም። ምንም አልተቀየረም።</string>
     <string name="restore_unreadable">ፋይሉን ማንበብ አልተቻለም። ምንም አልተቀየረም።</string>
+    <string name="restore_failed">መመለስ አልተሳካም። ምንም አልተቀየረም።</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">ማንቂያዎች: %1$d · ሌሊቶች: %2$d · ማስታወሻ ያላቸው ቀናት: %3$d</string>
     <string name="restore_confirm_title">ውሂብ ይተካ?</string>
     <string name="restore_confirm_text">በዚህ ስልክ ላይ ያሉ ማንቂያዎች፣ ታሪክ፣ ማስታወሻዎች እና ቅንብሮች በምትኬው ይተካሉ።</string>

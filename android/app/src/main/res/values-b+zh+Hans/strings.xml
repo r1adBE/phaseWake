@@ -159,6 +159,8 @@
     <string name="check_not_ready_icon">未就绪</string>
     <string name="check_silent_switch_title">iOS 26 之前的备用闹钟</string>
     <string name="check_silent_switch_text">在 iOS 26 之前，备用闹钟是一条通知：静音开关会让它没有声音。请保持铃声开启，或更新到 iOS 26。</string>
+    <string name="check_backup_horizon_title">备用闹钟即将用完</string>
+    <string name="check_backup_horizon_text">打开 Phase Wake，让 iPhone 设置接下来的闹钟。</string>
     <string name="check_watch">手表已连接</string>
     <string name="check_watch_problem">无法连接到你的手表。请戴上手表，保持 Bluetooth 开启，并在手表上打开一次 Phase Wake。</string>
     <string name="check_notifications">通知已允许</string>
@@ -442,6 +444,7 @@
     <string name="restore_open">打开</string>
     <string name="restore_wrong_password">密码错误或不是 Phase Wake 备份。没有任何更改。</string>
     <string name="restore_unreadable">无法读取该文件。未做任何更改。</string>
+    <string name="restore_failed">恢复失败。未做任何更改。</string>
     <string name="restore_preview">闹钟：%1$d · 夜晚：%2$d · 有笔记的天数：%3$d</string>
     <string name="restore_confirm_title">替换数据？</string>
     <string name="restore_confirm_text">此手机上的闹钟、记录、笔记和设置将被备份替换。</string>

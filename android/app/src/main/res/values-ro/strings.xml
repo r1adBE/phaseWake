@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">Nu e gata</string>
     <string name="check_silent_switch_title">Alarmă de rezervă înainte de iOS 26</string>
     <string name="check_silent_switch_text">Înainte de iOS 26, alarma de rezervă este o notificare: comutatorul de silențios o face mută. Lasă sunetul pornit sau actualizează la iOS 26.</string>
+    <string name="check_backup_horizon_title">Alarmele de rezervă se termină curând</string>
+    <string name="check_backup_horizon_text">Deschide Phase Wake ca iPhone-ul să seteze următoarele alarme.</string>
     <string name="check_watch">Ceas conectat</string>
     <string name="check_watch_problem">Ceasul nu este accesibil. Poartă-l, ține Bluetooth pornit și deschide Phase Wake pe ceas o dată.</string>
     <string name="check_notifications">Notificări permise</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">Deschide</string>
     <string name="restore_wrong_password">Parolă greșită sau nu e o copie Phase Wake. Nu s-a schimbat nimic.</string>
     <string name="restore_unreadable">Fișierul nu a putut fi citit. Nu s-a modificat nimic.</string>
+    <string name="restore_failed">Restaurarea a eșuat. Nu s-a modificat nimic.</string>
     <string name="restore_preview">Alarme: %1$d · Nopți: %2$d · Zile cu notițe: %3$d</string>
     <string name="restore_confirm_title">Înlocuiești datele?</string>
     <string name="restore_confirm_text">Alarmele, istoricul, notițele și setările de pe acest telefon vor fi înlocuite de copie.</string>

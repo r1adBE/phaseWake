@@ -97,4 +97,33 @@ internal object RingRules {
         }
         return (upcoming + listOfNotNull(inGrace, extra)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
+
+    /**
+     * Zweitwecker ab [first] für die Zeit vor dem ersten Entsperren (nur dann ist allein der geräteverschlüsselte Speicher
+     * lesbar): [first] und danach die folgenden, jeweils als hätte der vorige geklungen – seine Nacht bis Zielzeit +
+     * [pause] ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Höchstens [count] Einträge.
+     */
+    fun directBootPlans(
+        first: WakePlan,
+        backups: List<AlarmSpec>,
+        transient: WakePlan?,
+        suppressed: Map<String, Instant>,
+        grace: Duration,
+        pause: Duration,
+        zone: ZoneId,
+        holidays: Set<LocalDate>,
+        count: Int,
+    ): List<WakePlan> {
+        val plans = mutableListOf(first)
+        var specs = backups
+        var paused = suppressed
+        while (plans.size < count) {
+            val last = plans.last()
+            val until = last.target.plus(pause)
+            paused = paused + (last.alarmId to maxOf(paused[last.alarmId] ?: Instant.EPOCH, until))
+            specs = specs.filterNot { it.id == last.alarmId && it.isOneShot }
+            plans += backupPlan(specs, transient, null, null, paused, last.target, grace, zone, holidays) ?: break
+        }
+        return plans
+    }
 }

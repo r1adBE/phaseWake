@@ -154,6 +154,8 @@
     <string name="check_not_ready_icon">მზად არ არის</string>
     <string name="check_silent_switch_title">სარეზერვო მაღვიძარა iOS 26-მდე</string>
     <string name="check_silent_switch_text">iOS 26-მდე სარეზერვო მაღვიძარა შეტყობინებაა: უხმო რეჟიმის გადამრთველი მას ადუმებს. დატოვე ხმა ჩართული ან განაახლე iOS 26-მდე.</string>
+    <string name="check_backup_horizon_title">სარეზერვო მაღვიძარები მალე ამოიწურება</string>
+    <string name="check_backup_horizon_text">გახსენი Phase Wake, რომ iPhone-მა შემდეგი მაღვიძარები დააყენოს.</string>
     <string name="check_watch">საათი დაკავშირებულია</string>
     <string name="check_watch_problem">საათი მიუწვდომელია. გაიკეთე, Bluetooth ჩართული დატოვე და ერთხელ გახსენი Phase Wake საათზე.</string>
     <string name="check_notifications">შეტყობინებები დაშვებულია</string>
@@ -443,6 +445,7 @@
     <string name="restore_open">გახსნა</string>
     <string name="restore_wrong_password">პაროლი არასწორია ან ეს Phase Wake-ის ასლი არ არის. არაფერი შეცვლილა.</string>
     <string name="restore_unreadable">ფაილის წაკითხვა ვერ მოხერხდა. არაფერი შეცვლილა.</string>
+    <string name="restore_failed">აღდგენა ვერ მოხერხდა. არაფერი შეცვლილა.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">მაღვიძარები: %1$d · ღამეები: %2$d · დღეები შენიშვნებით: %3$d</string>
     <string name="restore_confirm_title">ჩავანაცვლოთ მონაცემები?</string>
     <string name="restore_confirm_text">ამ ტელეფონზე მაღვიძარები, ისტორია, შენიშვნები და პარამეტრები სარეზერვო ასლით ჩანაცვლდება.</string>

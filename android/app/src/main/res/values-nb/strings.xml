@@ -162,6 +162,8 @@
     <string name="check_not_ready_icon">Ikke klar</string>
     <string name="check_silent_switch_title">Reservealarm før iOS 26</string>
     <string name="check_silent_switch_text">Før iOS 26 er reservealarmen et varsel: lydløsbryteren demper den. La lyden være på, eller oppdater til iOS 26.</string>
+    <string name="check_backup_horizon_title">Reservealarmene tar snart slutt</string>
+    <string name="check_backup_horizon_text">Åpne Phase Wake så iPhonen kan stille de neste alarmene.</string>
     <string name="check_watch">Klokken er tilkoblet</string>
     <string name="check_watch_problem">Klokken er ikke tilgjengelig. Ha den på deg, la Bluetooth stå på og åpne Phase Wake på klokken én gang.</string>
     <string name="check_notifications">Varsler er tillatt</string>
@@ -455,6 +457,7 @@
     <string name="restore_open">Åpne</string>
     <string name="restore_wrong_password">Feil passord eller ikke en Phase Wake-kopi. Ingenting er endret.</string>
     <string name="restore_unreadable">Filen kunne ikke leses. Ingenting ble endret.</string>
+    <string name="restore_failed">Gjenopprettingen mislyktes. Ingenting ble endret.</string>
     <string name="restore_preview">Alarmer: %1$d · Netter: %2$d · Dager med notater: %3$d</string>
     <string name="restore_confirm_title">Erstatte data?</string>
     <string name="restore_confirm_text">Alarmer, historikk, notater og innstillinger på denne telefonen erstattes av kopien.</string>

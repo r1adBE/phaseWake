@@ -52,9 +52,9 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 
 | Bereich | Mindestabdeckung (Zeilen) | Prüfung |
 |---|---|---|
-| Kotlin-Kern `android/core` | **90 %** | Kover, CI |
-| Swift-Kern `PhaseWakeCore` | **90 %** | `swift test --enable-code-coverage` + `.github/scripts/coverage_swift.py` |
-| `android/shared` (Formate, Nachrichten) | **70 %** | Kover, CI |
+| Kotlin-Kern `android/core` | **90 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
+| Swift-Kern `PhaseWakeCore` | **90 %** | `swift test --enable-code-coverage` + `.github/scripts/coverage_check.py`, CI |
+| `android/shared` (Formate, Nachrichten) | **70 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund) | Workflow «Bildschirmfotos» |
 
 - **Gleiche Fälle in beiden Kernen:** Ein Kern-Test in Kotlin hat sein Gegenstück in Swift mit denselben Eingaben

@@ -168,6 +168,8 @@
     <string name="check_not_ready_icon">Не готово</string>
     <string name="check_silent_switch_title">Резервний будильник до iOS 26</string>
     <string name="check_silent_switch_text">До iOS 26 резервний будильник — це сповіщення: перемикач беззвучного режиму вимикає його звук. Залиш звук увімкненим або онови до iOS 26.</string>
+    <string name="check_backup_horizon_title">Резервні будильники скоро закінчаться</string>
+    <string name="check_backup_horizon_text">Відкрий Phase Wake, щоб iPhone поставив наступні будильники.</string>
     <string name="check_watch">Годинник підключено</string>
     <string name="check_watch_problem">Годинник недоступний. Одягни його, не вимикай Bluetooth і один раз відкрий Phase Wake на годиннику.</string>
     <string name="check_notifications">Сповіщення дозволено</string>
@@ -481,6 +483,7 @@
     <string name="restore_open">Відкрити</string>
     <string name="restore_wrong_password">Неправильний пароль або це не копія Phase Wake. Нічого не змінено.</string>
     <string name="restore_unreadable">Не вдалося прочитати файл. Нічого не змінено.</string>
+    <string name="restore_failed">Не вдалося відновити. Нічого не змінено.</string>
     <string name="restore_preview">Будильники: %1$d · Ночі: %2$d · Дні з нотатками: %3$d</string>
     <string name="restore_confirm_title">Замінити дані?</string>
     <string name="restore_confirm_text">Будильники, історію, нотатки й налаштування на цьому телефоні буде замінено копією.</string>

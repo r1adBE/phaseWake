@@ -163,6 +163,8 @@
     <string name="check_not_ready_icon">தயாராக இல்லை</string>
     <string name="check_silent_switch_title">iOS 26-க்கு முன் மாற்று அலாரம்</string>
     <string name="check_silent_switch_text">iOS 26-க்கு முன் மாற்று அலாரம் ஒரு அறிவிப்பு: சைலண்ட் சுவிட்ச் அதை ஒலியில்லாமல் ஆக்கும். ஒலியை இயக்கத்திலேயே வையுங்கள் அல்லது iOS 26-க்குப் புதுப்பியுங்கள்.</string>
+    <string name="check_backup_horizon_title">மாற்று அலாரங்கள் விரைவில் தீரும்</string>
+    <string name="check_backup_horizon_text">உங்கள் iPhone அடுத்த அலாரங்களை அமைக்க Phase Wake-ஐத் திறக்கவும்.</string>
     <string name="check_watch">வாட்ச் இணைக்கப்பட்டது</string>
     <string name="check_watch_problem">உங்கள் வாட்ச்சை அணுக முடியவில்லை. அதை அணிந்து, Bluetooth ஐ ஆனில் வைத்து, வாட்ச்சில் ஒருமுறை Phase Wake ஐத் திறவுங்கள்.</string>
     <string name="check_notifications">அறிவிப்புகள் அனுமதிக்கப்பட்டன</string>
@@ -457,6 +459,7 @@
     <string name="restore_open">திற</string>
     <string name="restore_wrong_password">தவறான கடவுச்சொல் அல்லது இது Phase Wake காப்புப்பிரதி அல்ல. எதுவும் மாற்றப்படவில்லை.</string>
     <string name="restore_unreadable">கோப்பைப் படிக்க முடியவில்லை. எதுவும் மாற்றப்படவில்லை.</string>
+    <string name="restore_failed">மீட்டமைப்பு தோல்வியடைந்தது. எதுவும் மாற்றப்படவில்லை.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">அலாரங்கள்: %1$d · இரவுகள்: %2$d · குறிப்புள்ள நாட்கள்: %3$d</string>
     <string name="restore_confirm_title">தரவை மாற்றவா?</string>
     <string name="restore_confirm_text">இந்த ஃபோனில் உள்ள அலாரங்கள், வரலாறு, குறிப்புகள், அமைப்புகள் காப்புப்பிரதியால் மாற்றப்படும்.</string>

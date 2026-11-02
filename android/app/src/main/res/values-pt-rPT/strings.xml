@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">Não está pronto</string>
     <string name="check_silent_switch_title">Alarme de reserva antes do iOS 26</string>
     <string name="check_silent_switch_text">Antes do iOS 26, o alarme de reserva é uma notificação: o interruptor de silêncio silencia-o. Mantém o som ligado ou atualiza para o iOS 26.</string>
+    <string name="check_backup_horizon_title">Alarmes de reserva a acabar</string>
+    <string name="check_backup_horizon_text">Abre o Phase Wake para que o iPhone defina os próximos alarmes.</string>
     <string name="check_watch">Relógio ligado</string>
     <string name="check_watch_problem">O relógio não está acessível. Usa-o, mantém o Bluetooth ativado e abre o Phase Wake no relógio uma vez.</string>
     <string name="check_notifications">Notificações permitidas</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">Abrir</string>
     <string name="restore_wrong_password">Palavra-passe errada ou não é uma cópia do Phase Wake. Nada foi alterado.</string>
     <string name="restore_unreadable">Não foi possível ler o ficheiro. Nada foi alterado.</string>
+    <string name="restore_failed">O restauro falhou. Nada foi alterado.</string>
     <string name="restore_preview">Alarmes: %1$d · Noites: %2$d · Dias com notas: %3$d</string>
     <string name="restore_confirm_title">Substituir os dados?</string>
     <string name="restore_confirm_text">Os alarmes, o histórico, as notas e as definições deste telemóvel serão substituídos pela cópia.</string>

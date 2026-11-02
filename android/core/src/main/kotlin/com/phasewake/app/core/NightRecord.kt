@@ -42,7 +42,7 @@ data class NightRecord(
     }
 }
 
-/** Aufbewahrung und anonymer Export des Verlaufs. */
+/** Aufbewahrung und CSV-Export des Verlaufs. */
 object NightHistory {
     /** Höchstens so viele Nächte bleiben gespeichert (rund drei Monate); ältere fallen bei [trim] weg. */
     const val MAX_NIGHTS: Int = 90
@@ -67,7 +67,8 @@ object NightHistory {
         trim(nights).map { night -> night.epochs.map { it.motion } }
 
     /**
-     * Anonymer CSV-Export: keine Kennungen, keine Datums- oder Uhrzeitangaben, nur relative Werte.
+     * CSV-Export ohne Kennungen und ohne Datums- oder Uhrzeitangaben, nur relative Werte; mit Bewegungs- und Pulsreihen
+     * je Nacht, darum nicht anonym im engeren Sinn.
      * Nächte werden durchnummeriert (1 = älteste). Dezimalpunkt, Komma als Trenner.
      * Letzte Spalte `notes`: Schlafnotizen der Nacht mit «;» getrennt, eigene nur als «custom»
      * (am Ende angefügt, damit ältere Leser weiter funktionieren).

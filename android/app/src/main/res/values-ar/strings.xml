@@ -174,6 +174,8 @@
     <string name="check_not_ready_icon">غير جاهز</string>
     <string name="check_silent_switch_title">المنبّه الاحتياطي قبل iOS 26</string>
     <string name="check_silent_switch_text">قبل iOS 26 يكون المنبّه الاحتياطي إشعارًا: مفتاح الصامت يكتم صوته. أبقِ الصوت مفعّلًا أو حدّث إلى iOS 26.</string>
+    <string name="check_backup_horizon_title">المنبّهات الاحتياطية توشك على النفاد</string>
+    <string name="check_backup_horizon_text">افتح Phase Wake ليضبط iPhone المنبّهات التالية.</string>
     <string name="check_watch">الساعة متصلة</string>
     <string name="check_watch_problem">تعذر الوصول إلى ساعتك. ارتدِها، وأبقِ Bluetooth قيد التشغيل، وافتح Phase Wake على الساعة مرة واحدة.</string>
     <string name="check_notifications">الإشعارات مسموحة</string>
@@ -507,6 +509,7 @@
     <string name="restore_open">فتح</string>
     <string name="restore_wrong_password">كلمة مرور خاطئة أو ليست نسخة من Phase Wake. لم يتغير شيء.</string>
     <string name="restore_unreadable">تعذّرت قراءة الملف. لم يتغيّر شيء.</string>
+    <string name="restore_failed">فشلت الاستعادة. لم يتغيّر شيء.</string>
     <string name="restore_preview">المنبّهات: %1$d · الليالي: %2$d · أيام بملاحظات: %3$d</string>
     <string name="restore_confirm_title">استبدال البيانات؟</string>
     <string name="restore_confirm_text">ستُستبدل المنبّهات والسجل والملاحظات والإعدادات على هذا الهاتف بالنسخة.</string>

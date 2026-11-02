@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">તૈયાર નથી</string>
     <string name="check_silent_switch_title">iOS 26 પહેલાં બેકઅપ એલાર્મ</string>
     <string name="check_silent_switch_text">iOS 26 પહેલાં બેકઅપ એલાર્મ એક સૂચના છે: સાયલન્ટ સ્વિચ તેને શાંત કરી દે છે. અવાજ ચાલુ રાખો અથવા iOS 26 પર અપડેટ કરો.</string>
+    <string name="check_backup_horizon_title">બેકઅપ એલાર્મ જલ્દી પૂરા થશે</string>
+    <string name="check_backup_horizon_text">Phase Wake ખોલો, જેથી તમારો iPhone આગળના એલાર્મ સેટ કરી શકે.</string>
     <string name="check_watch">ઘડિયાળ કનેક્ટ થયેલ</string>
     <string name="check_watch_problem">તમારી ઘડિયાળ સુધી પહોંચાતું નથી. તેને પહેરો, Bluetooth ચાલુ રાખો અને ઘડિયાળ પર એક વાર Phase Wake ખોલો.</string>
     <string name="check_notifications">નોટિફિકેશનને મંજૂરી</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">ખોલો</string>
     <string name="restore_wrong_password">ખોટો પાસવર્ડ અથવા આ Phase Wake બેકઅપ નથી. કંઈ બદલાયું નથી.</string>
     <string name="restore_unreadable">ફાઇલ વાંચી શકાઈ નહીં. કંઈ બદલાયું નથી.</string>
+    <string name="restore_failed">રિસ્ટોર નિષ્ફળ ગયું. કંઈ બદલાયું નથી.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">એલાર્મ: %1$d · રાતો: %2$d · નોંધવાળા દિવસો: %3$d</string>
     <string name="restore_confirm_title">ડેટા બદલવો છે?</string>
     <string name="restore_confirm_text">આ ફોન પરના એલાર્મ, ઇતિહાસ, નોંધો અને સેટિંગની જગ્યાએ બેકઅપનો ડેટા આવશે.</string>

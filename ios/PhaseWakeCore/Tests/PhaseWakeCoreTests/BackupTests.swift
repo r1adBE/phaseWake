@@ -38,8 +38,21 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(Routine.decodeItems(p.routineItems).first { $0.id == "custom:9a" }?.text, "Tee \"Kamille\"")
         XCTAssertEqual(p.settings, BackupSettings(sleepGoal: 480, bedtimeReminder: true, weeklyReview: false, soundRecDefault: true,
                                                   theme: "DARK", holidayCountry: "CH", holidayRegion: "BE"))
-        // Dasselbe mit den Werten des Vektors verschlüsselt ergibt dieselbe Datei.
-        XCTAssertEqual(try BackupFile.encrypt(plain, password: password, salt: salt, nonce: nonce), file)
+        // Geschrieben wird Formatversion 2: mit den Werten des Vektors genau die Datei backup-v2.
+        let v2 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v2.pwbak.b64")))
+        XCTAssertEqual(try BackupFile.encrypt(plain, password: password, salt: salt, nonce: nonce), v2)
+        XCTAssertEqual(try BackupFile.decrypt(v2, password: password), plain)
+    }
+
+    func testHeaderSelectsRounds() throws {
+        // «PWBK1» liest mit 210 000, «PWBK2» mit 600 000 Runden: derselbe Inhalt unter dem anderen Kopf passt nicht.
+        let password = try testdata("backup-v1.password")
+        let v1 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v1.pwbak.b64")))
+        XCTAssertEqual(v1.prefix(5), Data("PWBK1".utf8))
+        let relabelled = BackupFile.magic + v1.dropFirst(BackupFile.magicV1.count)
+        XCTAssertThrowsError(try BackupFile.decrypt(relabelled, password: password)) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+        XCTAssertEqual(BackupFile.iterations, 600_000)
+        XCTAssertEqual(BackupFile.iterationsV1, 210_000)
     }
 
     func testUnicodePasswordIsNormalised() throws {
@@ -51,7 +64,9 @@ final class BackupTests: XCTestCase {
         let expected = try testdata("backup-v1.json")
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: nfd), as: UTF8.self), expected)
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: "Mondlicht-\u{e4}€-2026"), as: UTF8.self), expected)
-        XCTAssertEqual(try BackupFile.encrypt(Data(expected.utf8), password: "Mondlicht-\u{e4}€-2026", salt: salt, nonce: nonce), file)
+        let v2 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v2-nfc.pwbak.b64")))
+        XCTAssertEqual(try BackupFile.encrypt(Data(expected.utf8), password: "Mondlicht-\u{e4}€-2026", salt: salt, nonce: nonce), v2)
+        XCTAssertEqual(String(decoding: try BackupFile.decrypt(v2, password: nfd), as: UTF8.self), expected)
     }
 
     func testShortPasswordIsRefused() {
@@ -143,5 +158,20 @@ final class BackupTests: XCTestCase {
             #"{format:1}"#, #"{"format":"phasewake-backup","alarms":"x","n":[1 2]}"#, #"{"a":"\""#,
         ]
         for text in bad { XCTAssertThrowsError(try BackupPayload.fromJson(text), text) }
+    }
+
+    func testJsonDepthIsLimited() throws {
+        // Das Objekt selbst ist Stufe 1; mit 63 Listen darin genau `maxDepth` = 64 Stufen.
+        func nested(_ lists: Int) -> String {
+            #"{"format":"phasewake-backup","alarms":"x","n":"# + String(repeating: "[", count: lists)
+                + String(repeating: "]", count: lists) + "}"
+        }
+        XCTAssertEqual(BackupPayload.maxDepth, 64)
+        XCTAssertEqual(try BackupPayload.fromJson(nested(63)).alarms, "x")
+        XCTAssertThrowsError(try BackupPayload.fromJson(nested(64)))
+        // Klammern in Texten zählen nicht.
+        XCTAssertEqual(try BackupPayload.fromJson(#"{"format":"phasewake-backup","alarms":"[[[","n":[[]]}"#).alarms, "[[[")
+        // Sehr tief: Fehler statt Absturz.
+        XCTAssertThrowsError(try BackupPayload.fromJson(String(repeating: "[", count: 100_000)))
     }
 }

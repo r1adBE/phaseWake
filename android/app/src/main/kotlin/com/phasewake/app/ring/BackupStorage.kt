@@ -14,50 +14,95 @@ import java.time.Instant
 // Geräteverschlüsselter Speicher des Zweitweckers: auch vor dem ersten Entsperren lesbar.
 
 /**
- * Nächster Zweitwecker im geräteverschlüsselten Speicher: Startet das Handy nachts neu, ist bis
- * zum ersten Entsperren nur dieser lesbar. Beim Entsperren plant [BackupAlarm.SystemReceiver] alles neu.
+ * Die nächsten Zweitwecker im geräteverschlüsselten Speicher: Startet das Handy nachts neu, ist bis zum ersten
+ * Entsperren nur dieser lesbar. Gestellt ist immer nur der früheste; klingelt er vor dem Entsperren, stellt [advance]
+ * den nächsten (auch für eine zweite Nacht oder einen zweiten Wecker am selben Morgen). Beim Entsperren plant
+ * [BackupAlarm.SystemReceiver] alles neu.
  */
 internal object BackupDirectBoot {
     private const val FILE = "backup_direct_boot"
+    private const val KEY_PLANS = "plans"
+    private const val KEY_RANG = "rang"
+
+    // Ältere Versionen: nur ein Eintrag bzw. ein Weckvorgang (beim Lesen noch berücksichtigt).
     private const val KEY_AT = "at"
     private const val KEY_ID = "alarmId"
     private const val KEY_TARGET = "target"
     private const val KEY_RANG_ID = "rangId"
     private const val KEY_RANG_TARGET = "rangTarget"
 
+    /** Ein abgelegter Zweitwecker: klingelt um [at] für den Wecker [alarmId] mit der Zielzeit [target]. */
+    data class Entry(val at: Instant, val alarmId: String, val target: Instant)
+
     private fun prefs(context: Context) =
         context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
-    fun save(context: Context, at: Instant, alarmId: String, target: Instant) {
-        prefs(context).edit { putLong(KEY_AT, at.toEpochMilli()); putString(KEY_ID, alarmId); putLong(KEY_TARGET, target.toEpochMilli()) }
+    /** Legt [entries] ab (früheste zuerst), Zeile «at|target|kennung». */
+    fun save(context: Context, entries: List<Entry>) {
+        val text = entries.sortedBy { it.at }.joinToString("\n") { "${it.at.toEpochMilli()}|${it.target.toEpochMilli()}|${it.alarmId}" }
+        prefs(context).edit { putString(KEY_PLANS, text); remove(KEY_AT); remove(KEY_ID); remove(KEY_TARGET) }
+    }
+
+    /** Abgelegte Zweitwecker, früheste zuerst; unlesbare Zeilen fallen weg. */
+    fun load(context: Context): List<Entry> {
+        val prefs = prefs(context)
+        val text = prefs.getString(KEY_PLANS, null)
+        if (text == null) {
+            val id = prefs.getString(KEY_ID, null) ?: return emptyList()
+            return listOf(Entry(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), id, Instant.ofEpochMilli(prefs.getLong(KEY_TARGET, 0L))))
+        }
+        return text.lines().mapNotNull { line ->
+            val parts = line.split('|', limit = 3)
+            val at = parts.getOrNull(0)?.toLongOrNull() ?: return@mapNotNull null
+            val target = parts.getOrNull(1)?.toLongOrNull() ?: return@mapNotNull null
+            val id = parts.getOrNull(2)?.takeIf { it.isNotEmpty() } ?: return@mapNotNull null
+            Entry(Instant.ofEpochMilli(at), id, Instant.ofEpochMilli(target))
+        }.sortedBy { it.at }
     }
 
     fun clear(context: Context) {
-        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_TARGET) }
+        prefs(context).edit { remove(KEY_PLANS); remove(KEY_AT); remove(KEY_ID); remove(KEY_TARGET) }
     }
 
-    /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken. */
+    /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken (mehrere, falls es länger dauert). */
     fun markRang(context: Context, alarmId: String, target: Long) {
-        prefs(context).edit { putString(KEY_RANG_ID, alarmId); putLong(KEY_RANG_TARGET, target) }
+        val prefs = prefs(context)
+        val rang = BackupAlarm.decodeSuppressed(prefs.getString(KEY_RANG, null)) + (alarmId to Instant.ofEpochMilli(target))
+        prefs.edit { putString(KEY_RANG, BackupAlarm.encodeSuppressed(rang)) }
     }
 
-    /** Gemerkten Weckvorgang einmal abholen. */
-    fun takeRang(context: Context): Pair<String, Instant>? {
+    /** Gemerkte Weckvorgänge einmal abholen (je Wecker der letzte). */
+    fun takeRang(context: Context): List<Pair<String, Instant>> {
         val prefs = prefs(context)
-        val id = prefs.getString(KEY_RANG_ID, null) ?: return null
-        val target = Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L))
-        prefs.edit { remove(KEY_RANG_ID); remove(KEY_RANG_TARGET) }
-        return id to target
+        val rang = BackupAlarm.decodeSuppressed(prefs.getString(KEY_RANG, null)).toList().toMutableList()
+        prefs.getString(KEY_RANG_ID, null)?.let { rang += it to Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L)) }
+        if (rang.isNotEmpty()) prefs.edit { remove(KEY_RANG); remove(KEY_RANG_ID); remove(KEY_RANG_TARGET) }
+        return rang
     }
 
-    fun restore(context: Context) {
-        val prefs = prefs(context)
-        val at = Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L))
-        val current = Instant.now()
-        // Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später (Probewecker und Powernap: nur 60 s).
-        if (!Transient.catchesUpAfterBoot(prefs.getString(KEY_ID, null).orEmpty(), at, current, MISSED_DURING_BOOT)) return
-        val target = prefs.getLong(KEY_TARGET, 0L).takeIf { it > 0L }?.let(Instant::ofEpochMilli)
-        setExact(context, maxOf(at, current.plus(FORWARD_DELAY)), showPending(context), backupPending(context, prefs.getString(KEY_ID, null), target))
+    /**
+     * Der Zweitwecker [alarmId]/[target] hat vor dem Entsperren ausgelöst: diesen und alle früheren Einträge
+     * entfernen und den nächsten stellen.
+     */
+    fun advance(context: Context, alarmId: String?, target: Long?, now: Instant = Instant.now()) {
+        val fired = target?.let(Instant::ofEpochMilli)
+        val rest = load(context).filterNot { entry ->
+            (entry.alarmId == alarmId && entry.target == fired) || (fired != null && entry.target.isBefore(fired))
+        }
+        save(context, rest)
+        restore(context, now)
+    }
+
+    /**
+     * Stellt den frühesten abgelegten Zweitwecker. Während des Neustarts verpasst: noch nachholen, aber nicht Stunden
+     * später (Probewecker und Powernap: nur 60 s); zu alte Einträge fallen weg. [now]: für Tests.
+     */
+    fun restore(context: Context, now: Instant = Instant.now()) {
+        val entries = load(context)
+        val due = entries.filter { Transient.catchesUpAfterBoot(it.alarmId, it.at, now, MISSED_DURING_BOOT) }
+        if (due.size != entries.size) save(context, due)
+        val next = due.firstOrNull() ?: return
+        setExact(context, maxOf(next.at, now.plus(FORWARD_DELAY)), showPending(context), backupPending(context, next.alarmId, next.target))
     }
 }
 

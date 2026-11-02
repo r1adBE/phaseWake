@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">సిద్ధంగా లేదు</string>
     <string name="check_silent_switch_title">iOS 26 కి ముందు బ్యాకప్ అలారం</string>
     <string name="check_silent_switch_text">iOS 26 కి ముందు బ్యాకప్ అలారం ఒక నోటిఫికేషన్: సైలెంట్ స్విచ్ దాన్ని నిశ్శబ్దం చేస్తుంది. సౌండ్‌ను ఆన్‌లో ఉంచండి లేదా iOS 26 కి అప్‌డేట్ చేయండి.</string>
+    <string name="check_backup_horizon_title">బ్యాకప్ అలారాలు త్వరలో అయిపోతాయి</string>
+    <string name="check_backup_horizon_text">మీ iPhone తదుపరి అలారాలను సెట్ చేయడానికి Phase Wake తెరవండి.</string>
     <string name="check_watch">వాచ్ కనెక్ట్ అయింది</string>
     <string name="check_watch_problem">మీ వాచ్ అందుబాటులో లేదు. దాన్ని పెట్టుకోండి, బ్లూటూత్ ఆన్‌లో ఉంచండి, వాచ్‌లో ఒకసారి Phase Wake తెరవండి.</string>
     <string name="check_notifications">నోటిఫికేషన్‌లకు అనుమతి ఉంది</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">తెరవండి</string>
     <string name="restore_wrong_password">తప్పు పాస్‌వర్డ్ లేదా ఇది Phase Wake బ్యాకప్ కాదు. ఏమీ మారలేదు.</string>
     <string name="restore_unreadable">ఫైల్‌ను చదవలేకపోయాం. ఏమీ మారలేదు.</string>
+    <string name="restore_failed">పునరుద్ధరణ విఫలమైంది. ఏమీ మారలేదు.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">అలారాలు: %1$d · రాత్రులు: %2$d · గమనికలున్న రోజులు: %3$d</string>
     <string name="restore_confirm_title">డేటాను మార్చాలా?</string>
     <string name="restore_confirm_text">ఈ ఫోన్‌లోని అలారాలు, చరిత్ర, గమనికలు, సెట్టింగ్‌ల స్థానంలో బ్యాకప్‌లోని డేటా వస్తుంది.</string>

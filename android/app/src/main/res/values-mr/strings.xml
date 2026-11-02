@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">तयार नाही</string>
     <string name="check_silent_switch_title">iOS 26 पूर्वी बॅकअप अलार्म</string>
     <string name="check_silent_switch_text">iOS 26 पूर्वी बॅकअप अलार्म ही एक सूचना असते: सायलेंट स्विच तिला शांत करतो. आवाज चालू ठेवा किंवा iOS 26 वर अपडेट करा.</string>
+    <string name="check_backup_horizon_title">बॅकअप अलार्म लवकरच संपतील</string>
+    <string name="check_backup_horizon_text">तुमचा iPhone पुढील अलार्म सेट करू शकेल म्हणून Phase Wake उघडा.</string>
     <string name="check_watch">घड्याळ जोडलेले</string>
     <string name="check_watch_problem">तुमचे घड्याळ पोहोचण्यायोग्य नाही. ते घाला, ब्लूटूथ चालू ठेवा आणि घड्याळावर एकदा Phase Wake उघडा.</string>
     <string name="check_notifications">सूचनांना परवानगी</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">उघडा</string>
     <string name="restore_wrong_password">चुकीचा पासवर्ड किंवा हा Phase Wake बॅकअप नाही. काहीही बदलले नाही.</string>
     <string name="restore_unreadable">फाइल वाचता आली नाही. काहीही बदलले नाही.</string>
+    <string name="restore_failed">पुनर्संचयित करणे अयशस्वी झाले. काहीही बदलले नाही.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">अलार्म: %1$d · रात्री: %2$d · नोंदी असलेले दिवस: %3$d</string>
     <string name="restore_confirm_title">डेटा बदलायचा?</string>
     <string name="restore_confirm_text">या फोनवरील अलार्म, इतिहास, नोंदी आणि सेटिंग्जच्या जागी बॅकअपमधील डेटा येईल.</string>

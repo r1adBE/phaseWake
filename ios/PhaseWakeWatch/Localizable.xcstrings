@@ -8513,6 +8513,902 @@
         }
       }
     },
+    "auto_onset_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Van 1 uur voor slaaptyd meet jou horlosie kortliks beweging totdat jy aan die slaap raak. Slegs Galaxy Watch."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ ሰዓትህ እስክትተኛ ድረስ እንቅስቃሴን በአጭሩ ይለካል። Galaxy Watch ብቻ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من ساعة قبل موعد النوم تقيس ساعتك الحركة لفترة قصيرة حتى تغفو. Galaxy Watch فقط."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma vaxtından 1 saat əvvəldən saatın yuxuya gedənə qədər hərəkəti qısa müddət ölçür. Yalnız Galaxy Watch."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От 1 час преди лягане часовникът ти измерва за кратко движението, докато заспиш. Само Galaxy Watch."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমানোর সময়ের ১ ঘণ্টা আগে থেকে তুমি ঘুমিয়ে না পড়া পর্যন্ত তোমার ঘড়ি অল্প সময় নড়াচড়া মাপে। শুধু Galaxy Watch।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 sat prije vremena za spavanje sat kratko mjeri pokrete dok ne zaspiš. Samo Galaxy Watch."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des d'1 hora abans d'anar a dormir, el rellotge mesura breument el moviment fins que t'adorms. Només Galaxy Watch."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 hodiny před časem spánku hodinky krátce měří pohyb, dokud neusneš. Pouze Galaxy Watch."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra 1 time før sengetid måler dit ur kort bevægelse, indtil du falder i søvn. Kun Galaxy Watch."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Uhr misst ab 1 Std. vor der Bettzeit kurz die Bewegung, bis du eingeschlafen bist. Nur Galaxy Watch."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Από 1 ώρα πριν από την ώρα ύπνου το ρολόι σου μετρά σύντομα την κίνηση μέχρι να αποκοιμηθείς. Μόνο Galaxy Watch."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From 1 hour before bedtime your watch briefly measures movement until you fall asleep. Galaxy Watch only."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde 1 hora antes de acostarte, tu reloj mide brevemente el movimiento hasta que te duermes. Solo Galaxy Watch."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alates 1 tund enne magamaminekut mõõdab kell lühidalt liikumist, kuni sa uinud. Ainult Galaxy Watch."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oheratzeko ordua baino ordubete lehenagotik, erlojuak mugimendua neurtzen du laburki lo hartu arte. Galaxy Watch soilik."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از ۱ ساعت قبل از وقت خواب، ساعتت کوتاه حرکت را اندازه می‌گیرد تا به خواب بروی. فقط Galaxy Watch."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kello mittaa lyhyesti liikettä 1 tunti ennen nukkumaanmenoaikaa, kunnes nukahdat. Vain Galaxy Watch."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula 1 oras bago ang oras ng pagtulog, saglit na sinusukat ng relo mo ang galaw hanggang makatulog ka. Galaxy Watch lang."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dès 1 h avant le coucher, ta montre mesure brièvement les mouvements jusqu'à ce que tu t'endormes. Galaxy Watch uniquement."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ó uair an chloig roimh am codlata, tomhaiseann d'uaireadóir gluaiseacht go hachomair go dtí go dtiteann tú i do chodladh. Galaxy Watch amháin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde 1 hora antes de deitarte, o reloxo mide brevemente o movemento ata que adormeces. Só Galaxy Watch."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂવાના સમયના 1 કલાક પહેલાંથી તું ઊંઘી ન જાય ત્યાં સુધી તારી ઘડિયાળ થોડા સમય માટે હલનચલન માપે છે. ફક્ત Galaxy Watch."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משעה לפני שעת השינה השעון מודד לזמן קצר את התנועה עד שתירדם. Galaxy Watch בלבד."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने के समय से 1 घंटा पहले से, जब तक तुम सो नहीं जाते, तुम्हारी घड़ी थोड़ी देर हलचल मापती है। सिर्फ़ Galaxy Watch।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 sat prije vremena za spavanje sat kratko mjeri pokrete dok ne zaspiš. Samo Galaxy Watch."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lefekvés előtt 1 órától az órád röviden méri a mozgást, amíg el nem alszol. Csak Galaxy Watch."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնելու ժամից 1 ժամ առաջ ժամացույցդ կարճ ժամանակով չափում է շարժումը, մինչև քնես։ Միայն Galaxy Watch։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai 1 jam sebelum waktu tidur, jam tanganmu mengukur gerakan sebentar sampai kamu tertidur. Hanya Galaxy Watch."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frá 1 klst. fyrir háttatíma mælir úrið hreyfingu stuttlega þar til þú sofnar. Aðeins Galaxy Watch."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da 1 ora prima di andare a letto, l'orologio misura brevemente il movimento finché non ti addormenti. Solo Galaxy Watch."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就寝時刻の1時間前から、眠りにつくまでウォッチが短時間だけ動きを測定します。Galaxy Watchのみ。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაძინების დრომდე 1 საათით ადრე საათი მოკლედ ზომავს მოძრაობას, სანამ ჩაგეძინება. მხოლოდ Galaxy Watch."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйқы уақытынан 1 сағат бұрын сағатың ұйықтап кеткенге дейін қозғалысты қысқа өлшейді. Тек Galaxy Watch."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចាប់ពី 1 ម៉ោងមុនម៉ោងចូលគេង នាឡិការបស់អ្នកវាស់ចលនាមួយរយៈខ្លី រហូតដល់អ្នកដេកលក់។ សម្រាប់ Galaxy Watch តែប៉ុណ្ណោះ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮಲಗುವ ಸಮಯಕ್ಕೆ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನೀನು ನಿದ್ರಿಸುವವರೆಗೆ ನಿನ್ನ ವಾಚ್ ಸ್ವಲ್ಪ ಸಮಯ ಚಲನೆಯನ್ನು ಅಳೆಯುತ್ತದೆ. Galaxy Watch ಮಾತ್ರ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "취침 시간 1시간 전부터 잠들 때까지 워치가 잠깐 움직임을 측정해요. Galaxy Watch 전용."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ ໂມງຂອງເຈົ້າຈະວັດການເຄື່ອນໄຫວໄລຍະສັ້ນໆຈົນກວ່າເຈົ້າຈະນອນຫຼັບ. ສະເພາະ Galaxy Watch."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuo 1 val. prieš miego laiką laikrodis trumpai matuoja judesį, kol užmiegi. Tik Galaxy Watch."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No 1 stundas pirms gulētiešanas pulkstenis īsi mēra kustības, līdz tu aizmiedz. Tikai Galaxy Watch."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од 1 час пред спиење часовникот накратко го мери движењето додека не заспиеш. Само Galaxy Watch."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങാനുള്ള സമയത്തിന് 1 മണിക്കൂർ മുമ്പ് മുതൽ നീ ഉറങ്ങുന്നതുവരെ നിന്റെ വാച്ച് ചലനം അൽപനേരം അളക്കും. Galaxy Watch മാത്രം."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтах цагаас 1 цагийн өмнөөс чамайг унтах хүртэл цаг чинь хөдөлгөөнийг богино хугацаанд хэмждэг. Зөвхөн Galaxy Watch."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपण्याच्या वेळेच्या 1 तास आधीपासून तुला झोप लागेपर्यंत तुझे घड्याळ थोडा वेळ हालचाल मोजते. फक्त Galaxy Watch."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai 1 jam sebelum waktu tidur, jam tangan awak mengukur pergerakan seketika sehingga awak tertidur. Galaxy Watch sahaja."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ချိန်မတိုင်မီ 1 နာရီမှစ၍ သင်အိပ်ပျော်သည်အထိ နာရီက လှုပ်ရှားမှုကို ခဏတာ တိုင်းတာသည်။ Galaxy Watch သာ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra 1 time før leggetid måler klokken kort bevegelse til du sovner. Kun Galaxy Watch."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुत्ने समयभन्दा १ घण्टा अघिदेखि तिमी ननिदाउञ्जेल तिम्रो घडीले केही बेर चाल नाप्छ। Galaxy Watch मात्र।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanaf 1 uur voor bedtijd meet je horloge kort je beweging tot je in slaap valt. Alleen Galaxy Watch."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ, ਜਦ ਤੱਕ ਤੂੰ ਸੌਂ ਨਹੀਂ ਜਾਂਦਾ, ਤੇਰੀ ਘੜੀ ਥੋੜ੍ਹੀ ਦੇਰ ਹਿਲਜੁਲ ਮਾਪਦੀ ਹੈ। ਸਿਰਫ਼ Galaxy Watch।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 godziny przed porą snu zegarek krótko mierzy ruch, aż zaśniesz. Tylko Galaxy Watch."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir de 1 hora antes de dormir, seu relógio mede o movimento por pouco tempo até você adormecer. Só Galaxy Watch."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir de 1 hora antes de deitar, o relógio mede brevemente o movimento até adormeceres. Só Galaxy Watch."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cu 1 oră înainte de culcare, ceasul măsoară scurt mișcarea până adormi. Doar Galaxy Watch."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За 1 час до отхода ко сну часы ненадолго измеряют движение, пока ты не уснёшь. Только Galaxy Watch."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යන වේලාවට පැය 1කට පෙර සිට ඔබ නින්දට යන තුරු ඔරලෝසුව කෙටි වේලාවක් චලනය මනියි. Galaxy Watch පමණි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 hodiny pred časom spánku hodinky krátko merajú pohyb, kým nezaspíš. Iba Galaxy Watch."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 ure pred spanjem ura na kratko meri gibanje, dokler ne zaspiš. Samo Galaxy Watch."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nga 1 orë para kohës së gjumit, ora mat shkurt lëvizjen derisa të të zërë gjumi. Vetëm Galaxy Watch."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од 1 сат пре времена за спавање сат кратко мери покрете док не заспиш. Само Galaxy Watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från 1 timme före läggdags mäter klockan kort rörelse tills du somnar. Endast Galaxy Watch."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuanzia saa 1 kabla ya wakati wa kulala, saa yako hupima mwendo kwa muda mfupi hadi upate usingizi. Galaxy Watch pekee."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்கும் நேரத்திற்கு 1 மணிநேரம் முன்பிருந்து நீ தூங்கும் வரை உன் வாட்ச் சிறிது நேரம் அசைவை அளவிடும். Galaxy Watch மட்டும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రవేళకు 1 గంట ముందు నుంచి నువ్వు నిద్రపోయే వరకు నీ వాచ్ కొద్దిసేపు కదలికను కొలుస్తుంది. Galaxy Watch మాత్రమే."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน นาฬิกาจะวัดการเคลื่อนไหวสั้นๆ จนกว่าคุณจะหลับ เฉพาะ Galaxy Watch"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma saatinden 1 saat önce başlayarak saatin, uykuya dalana kadar hareketi kısa süre ölçer. Yalnızca Galaxy Watch."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За 1 годину до сну годинник ненадовго вимірює рух, доки ти не заснеш. Лише Galaxy Watch."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے کے وقت سے 1 گھنٹہ پہلے سے، جب تک تم سو نہ جاؤ، تمہاری گھڑی تھوڑی دیر حرکت ناپتی ہے۔ صرف Galaxy Watch۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlash vaqtidan 1 soat oldin boshlab soating uxlab qolguningcha harakatni qisqa vaqt o‘lchaydi. Faqat Galaxy Watch."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ 1 giờ trước giờ đi ngủ, đồng hồ đo chuyển động trong thời gian ngắn cho đến khi bạn ngủ. Chỉ Galaxy Watch."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由就寢時間前 1 小時起，手錶會短暫量度動作，直至你入睡。只限 Galaxy Watch。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从就寝时间前 1 小时起，手表会短暂测量动作，直到你入睡。仅限 Galaxy Watch。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從就寢時間前 1 小時起，手錶會短暫測量動作，直到你入睡。僅限 Galaxy Watch。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kusukela ehoreni elingu-1 ngaphambi kwesikhathi sokulala, iwashi lakho likala ukunyakaza isikhashana uze ulale. I-Galaxy Watch kuphela."
+          }
+        }
+      }
+    },
+    "auto_onset_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bespeur outomaties wanneer jy aan die slaap raak"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንቅልፍ መውሰድን በራስ-ሰር ለይ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اكتشاف النوم تلقائيًا"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxuya getməyi avtomatik aşkar et"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматично разпознаване на заспиването"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমিয়ে পড়া স্বয়ংক্রিয়ভাবে শনাক্ত করো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatski prepoznaj uspavljivanje"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detecta automàticament quan t'adorms"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automaticky rozpoznat usnutí"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrér automatisk, når du falder i søvn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einschlafen automatisch erkennen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτόματος εντοπισμός αποκοίμισης"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detect falling asleep automatically"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detectar automáticamente cuándo te duermes"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuvasta uinumine automaatselt"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loak hartzea automatikoki hauteman"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تشخیص خودکار به خواب رفتن"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunnista nukahtaminen automaattisesti"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Awtomatikong tukuyin ang pagkakatulog"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détecter l'endormissement automatiquement"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Braith titim i do chodladh go huathoibríoch"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detectar automaticamente cando adormeces"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘ આવવાનું આપમેળે ઓળખો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "זיהוי הירדמות אוטומטי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सो जाने का अपने आप पता लगाओ"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatski prepoznaj uspavljivanje"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elalvás automatikus felismerése"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ինքնաշխատ հայտնաբերել քնելը"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deteksi saat tertidur secara otomatis"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Greina sjálfkrafa þegar þú sofnar"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rileva automaticamente l'addormentamento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入眠を自動で検出"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩაძინების ავტომატური ამოცნობა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтап кетуді автоматты түрде анықтау"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រកឃើញការដេកលក់ដោយស្វ័យប្រវត្តិ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠드는 시점 자동 감지"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatiškai atpažinti užmigimą"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automātiski noteikt aizmigšanu"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматски препознај заспивање"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങിപ്പോകുന്നത് സ്വയമേവ കണ്ടെത്തുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтаж эхлэхийг автоматаар илрүүлэх"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोप लागणे आपोआप ओळखा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kesan bila awak tertidur secara automatik"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ပျော်သွားခြင်းကို အလိုအလျောက် သိရှိရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrer automatisk når du sovner"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निदाएको आफैँ पत्ता लगाऊ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inslapen automatisch herkennen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਂ ਜਾਣ ਦਾ ਆਪਣੇ-ਆਪ ਪਤਾ ਲਗਾਓ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatycznie wykrywaj zasypianie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detectar automaticamente quando você adormece"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detetar automaticamente quando adormeces"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detectează automat adormirea"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматически определять засыпание"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යාම ස්වයංක්‍රීයව හඳුනාගන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automaticky rozpoznať zaspávanie"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Samodejno zaznaj uspavanje"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dallo automatikisht kur fle"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аутоматски препознај заспивање"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Känn av automatiskt när du somnar"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambua kiotomatiki unaposinzia"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்குவதைத் தானாகக் கண்டறி"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రపోవడాన్ని ఆటోమేటిక్‌గా గుర్తించు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตรวจจับการหลับโดยอัตโนมัติ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuya dalmayı otomatik algıla"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоматично визначати засинання"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سو جانے کا خودکار طور پر پتا لگائیں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlab qolishni avtomatik aniqlash"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự động nhận biết khi bạn ngủ thiếp đi"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動偵測入睡"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动检测入睡"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動偵測入睡"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bona ngokuzenzakalela lapho ulala"
+          }
+        }
+      }
+    },
     "backup_busy": {
       "localizations": {
         "af": {
@@ -30013,6 +30909,902 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vumela"
+          }
+        }
+      }
+    },
+    "check_backup_horizon_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maak Phase Wake oop sodat jou iPhone die volgende wekkers kan stel."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneዎ ቀጣዮቹን ማንቂያዎች እንዲያዘጋጅ Phase Wakeን ይክፈቱ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح Phase Wake ليضبط iPhone المنبّهات التالية."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone növbəti siqnalları qursun deyə Phase Wake-i açın."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори Phase Wake, за да може iPhone да настрои следващите будилници."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake খুলুন, যাতে আপনার iPhone পরের অ্যালার্মগুলো সেট করতে পারে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori Phase Wake kako bi iPhone postavio sljedeće alarme."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obre Phase Wake perquè l’iPhone pugui programar les properes alarmes."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevři Phase Wake, aby iPhone mohl nastavit další budíky."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn Phase Wake, så din iPhone kan indstille de næste alarmer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Phase Wake, damit das iPhone die nächsten Wecker stellt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιξε το Phase Wake, ώστε το iPhone να ορίσει τα επόμενα ξυπνητήρια."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake so your iPhone can set the next alarms."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake para que tu iPhone programe las próximas alarmas."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ava Phase Wake, et iPhone saaks järgmised äratused seada."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ireki Phase Wake, iPhoneak hurrengo alarmak ezar ditzan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake را باز کن تا iPhone زنگ‌های بعدی را تنظیم کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa Phase Wake, jotta iPhone voi asettaa seuraavat herätykset."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buksan ang Phase Wake para maitakda ng iPhone mo ang mga susunod na alarm."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Phase Wake pour que ton iPhone programme les prochaines alarmes."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscail Phase Wake ionas gur féidir le d’iPhone na chéad aláraim eile a shocrú."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake para que o iPhone programe as próximas alarmas."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ખોલો, જેથી તમારો iPhone આગળના એલાર્મ સેટ કરી શકે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתח את Phase Wake כדי שה-iPhone יגדיר את המעוררים הבאים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake खोलें, ताकि आपका iPhone अगले अलार्म सेट कर सके।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori Phase Wake kako bi iPhone postavio sljedeće alarme."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyisd meg a Phase Wake-et, hogy az iPhone beállíthassa a következő ébresztőket."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Բացիր Phase Wake-ը, որպեսզի iPhone-ը սահմանի հաջորդ զարթուցիչները։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake agar iPhone dapat menyetel alarm berikutnya."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opnaðu Phase Wake svo iPhone geti stillt næstu vekjara."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Phase Wake perché l’iPhone imposti le prossime sveglie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone が次のアラームを設定できるよう、Phase Wake を開いてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გახსენი Phase Wake, რომ iPhone-მა შემდეგი მაღვიძარები დააყენოს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone келесі оятқыштарды қоюы үшін Phase Wake қолданбасын аш."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក Phase Wake ដើម្បីឱ្យ iPhone កំណត់ម៉ោងរោទ៍បន្ទាប់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ iPhone ಮುಂದಿನ ಅಲಾರಾಂಗಳನ್ನು ಹೊಂದಿಸಲು Phase Wake ತೆರೆಯಿರಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone이 다음 알람을 설정할 수 있도록 Phase Wake를 여세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດ Phase Wake ເພື່ອໃຫ້ iPhone ຕັ້ງໂມງປຸກຕໍ່ໄປ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atidaryk Phase Wake, kad iPhone nustatytų kitus žadintuvus."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atver Phase Wake, lai iPhone iestatītu nākamos modinātājus."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори го Phase Wake за iPhone да ги постави следните аларми."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിങ്ങളുടെ iPhone അടുത്ത അലാറങ്ങൾ സജ്ജമാക്കാൻ Phase Wake തുറക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone дараагийн сэрүүлгүүдийг тохируулахын тулд Phase Wake-г нээ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचा iPhone पुढील अलार्म सेट करू शकेल म्हणून Phase Wake उघडा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake supaya iPhone anda dapat menetapkan penggera seterusnya."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone က နောက်နှိုးစက်များ သတ်မှတ်နိုင်ရန် Phase Wake ကို ဖွင့်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Phase Wake så iPhonen kan stille de neste alarmene."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तपाईंको iPhone ले अर्को अलार्महरू सेट गर्न सकोस् भनेर Phase Wake खोल्नुहोस्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake zodat je iPhone de volgende wekkers kan instellen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ਖੋਲ੍ਹੋ ਤਾਂ ਜੋ ਤੁਹਾਡਾ iPhone ਅਗਲੇ ਅਲਾਰਮ ਸੈੱਟ ਕਰ ਸਕੇ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz Phase Wake, aby iPhone ustawił kolejne budziki."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Phase Wake para que o iPhone defina os próximos alarmes."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Phase Wake para que o iPhone defina os próximos alarmes."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide Phase Wake ca iPhone-ul să seteze următoarele alarme."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открой Phase Wake, чтобы iPhone поставил следующие будильники."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ iPhone එකට ඊළඟ එලාම සැකසීමට Phase Wake විවෘත කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvor Phase Wake, aby iPhone mohol nastaviť ďalšie budíky."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odpri Phase Wake, da iPhone nastavi naslednje budilke."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hap Phase Wake që iPhone të vendosë alarmet e radhës."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори Phase Wake како би iPhone поставио следеће аларме."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Phase Wake så att din iPhone kan ställa nästa larm."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fungua Phase Wake ili iPhone yako iweke kengele zinazofuata."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் iPhone அடுத்த அலாரங்களை அமைக்க Phase Wake-ஐத் திறக்கவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ iPhone తదుపరి అలారాలను సెట్ చేయడానికి Phase Wake తెరవండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Phase Wake เพื่อให้ iPhone ตั้งนาฬิกาปลุกครั้งถัดไป"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone’un sonraki alarmları kurabilmesi için Phase Wake’i aç."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрий Phase Wake, щоб iPhone поставив наступні будильники."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake کھولیں تاکہ آپ کا iPhone اگلے الارم سیٹ کر سکے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone keyingi budilniklarni qoʻyishi uchun Phase Wake’ni oching."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Phase Wake để iPhone đặt các báo thức tiếp theo."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打開 Phase Wake，讓 iPhone 設定接下來的鬧鐘。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Phase Wake，让 iPhone 设置接下来的闹钟。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打開 Phase Wake，讓 iPhone 設定接下來的鬧鐘。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vula i-Phase Wake ukuze i-iPhone yakho isethe ama-alamu alandelayo."
+          }
+        }
+      }
+    },
+    "check_backup_horizon_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rugsteunwekkers raak binnekort op"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ተጠባባቂ ማንቂያዎች ሊያልቁ ነው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبّهات الاحتياطية توشك على النفاد"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ehtiyat siqnallar tezliklə bitir"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервните будилници скоро свършват"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ব্যাকআপ অ্যালার্ম শীঘ্রই শেষ হবে"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervni alarmi uskoro ističu"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les alarmes de reserva s’acaben aviat"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záložní budíky brzy dojdou"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservealarmerne slipper snart op"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zweitwecker bald aufgebraucht"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τα εφεδρικά ξυπνητήρια τελειώνουν σύντομα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup alarms running out"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se acaban las alarmas de respaldo"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varuäratused saavad varsti otsa"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordezko alarmak laster amaituko dira"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ‌های پشتیبان به‌زودی تمام می‌شوند"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varaherätykset loppuvat pian"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paubos na ang mga backup na alarm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bientôt plus d’alarmes de secours"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aláraim chúltaca ag rith amach"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As alarmas de reserva acábanse pronto"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "બેકઅપ એલાર્મ જલ્દી પૂરા થશે"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מעוררי הגיבוי עומדים להיגמר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बैकअप अलार्म जल्द खत्म होंगे"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervni alarmi uskoro ističu"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamarosan elfogynak a tartalék ébresztők"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Պահուստային զարթուցիչները շուտով կվերջանան"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm cadangan segera habis"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varavekjarar klárast brátt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglie di riserva quasi esaurite"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックアップアラームが残りわずか"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სარეზერვო მაღვიძარები მალე ამოიწურება"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қосалқы оятқыштар жақында бітеді"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងរោទ៍បម្រុងជិតអស់ហើយ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಬ್ಯಾಕಪ್ ಅಲಾರಾಂಗಳು ಬೇಗ ಮುಗಿಯಲಿವೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백업 알람이 곧 소진돼요"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງປຸກສຳຮອງໃກ້ໝົດແລ້ວ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atsarginiai žadintuvai greitai baigsis"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezerves modinātāji drīz beigsies"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервните аларми наскоро ќе снемаат"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ബാക്കപ്പ് അലാറങ്ങൾ ഉടൻ തീരും"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нөөц сэрүүлэг удахгүй дуусна"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बॅकअप अलार्म लवकरच संपतील"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera sandaran hampir habis"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အရန်နှိုးစက်များ မကြာမီ ကုန်တော့မည်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservealarmene tar snart slutt"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्याकअप अलार्म छिट्टै सकिँदैछन्"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservewekkers raken bijna op"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੈਕਅੱਪ ਅਲਾਰਮ ਜਲਦੀ ਖਤਮ ਹੋਣਗੇ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budziki zapasowe wkrótce się skończą"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmes reserva acabando"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmes de reserva a acabar"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmele de rezervă se termină curând"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервные будильники скоро закончатся"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "උපස්ථ එලාම ඉක්මනින් අවසන් වේ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záložné budíky čoskoro dôjdu"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezervnih budilk bo kmalu zmanjkalo"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmet rezervë po mbarojnë"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервни аларми ускоро истичу"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservlarmen tar snart slut"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kengele za akiba zinakaribia kuisha"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மாற்று அலாரங்கள் விரைவில் தீரும்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "బ్యాకప్ అలారాలు త్వరలో అయిపోతాయి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาปลุกสำรองใกล้หมดแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek alarmlar yakında bitiyor"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервні будильники скоро закінчаться"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیک اپ الارم جلد ختم ہونے والے ہیں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaxira budilniklar tez orada tugaydi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sắp hết báo thức dự phòng"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "後備鬧鐘快將用完"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "备用闹钟即将用完"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備用鬧鐘即將用完"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ama-alamu okwesekwa azophela maduze"
           }
         }
       }
@@ -166729,6 +168521,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kubuyiselwe."
+          }
+        }
+      }
+    },
+    "restore_failed": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herstel het misluk. Niks is verander nie."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "መመለስ አልተሳካም። ምንም አልተቀየረም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشلت الاستعادة. لم يتغيّر شيء."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bərpa alınmadı. Heç nə dəyişmədi."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Възстановяването не бе успешно. Нищо не е променено."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পুনরুদ্ধার ব্যর্থ হয়েছে। কিছুই বদলানো হয়নি।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraćanje nije uspjelo. Ništa nije promijenjeno."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No s’ha pogut restaurar. No s’ha canviat res."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obnovení se nezdařilo. Nic se nezměnilo."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gendannelsen mislykkedes. Intet blev ændret."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiederherstellen ist fehlgeschlagen. Nichts wurde geändert."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η επαναφορά απέτυχε. Δεν άλλαξε τίποτα."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore failed. Nothing was changed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo restaurar. No se ha cambiado nada."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taastamine ebaõnnestus. Midagi ei muudetud."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ezin izan da leheneratu. Ez da ezer aldatu."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بازیابی ناموفق بود. چیزی تغییر نکرد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palautus epäonnistui. Mitään ei muutettu."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi na-restore. Walang binago."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La restauration a échoué. Rien n’a été modifié."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theip ar an athchóiriú. Níor athraíodh aon rud."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non se puido restaurar. Non se cambiou nada."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "રિસ્ટોર નિષ્ફળ ગયું. કંઈ બદલાયું નથી."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השחזור נכשל. שום דבר לא שונה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वापस लाना विफल रहा। कुछ भी नहीं बदला गया।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraćanje nije uspjelo. Ništa nije promijenjeno."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A visszaállítás nem sikerült. Semmi sem változott."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Վերականգնումը ձախողվեց։ Ոչինչ չի փոխվել։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pemulihan gagal. Tidak ada yang diubah."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endurheimt mistókst. Engu var breytt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripristino non riuscito. Non è stato modificato nulla."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "復元できませんでした。何も変更されていません。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "აღდგენა ვერ მოხერხდა. არაფერი შეცვლილა."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қалпына келтіру сәтсіз болды. Ешнәрсе өзгерген жоқ."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការស្ដារបានបរាជ័យ។ គ្មានអ្វីត្រូវបានប្ដូរទេ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮರುಸ್ಥಾಪನೆ ವಿಫಲವಾಯಿತು. ಏನೂ ಬದಲಾಗಿಲ್ಲ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "복원하지 못했어요. 아무것도 변경되지 않았어요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ກູ້ຄືນບໍ່ສຳເລັດ ບໍ່ມີຫຍັງປ່ຽນແປງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atkurti nepavyko. Niekas nepakeista."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atjaunošana neizdevās. Nekas netika mainīts."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Враќањето не успеа. Ништо не е променето."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പുനഃസ്ഥാപിക്കൽ പരാജയപ്പെട്ടു. ഒന്നും മാറ്റിയിട്ടില്ല."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэргээж чадсангүй. Юу ч өөрчлөгдсөнгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुनर्संचयित करणे अयशस्वी झाले. काहीही बदलले नाही."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pemulihan gagal. Tiada apa-apa yang diubah."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ပြန်ယူခြင်း မအောင်မြင်ပါ။ ဘာမှ မပြောင်းလဲပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjenopprettingen mislyktes. Ingenting ble endret."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुनर्स्थापना असफल भयो। केही पनि बदलिएन।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herstellen is mislukt. Er is niets gewijzigd."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੁੜ-ਬਹਾਲੀ ਅਸਫਲ ਰਹੀ। ਕੁਝ ਵੀ ਨਹੀਂ ਬਦਲਿਆ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przywracanie nie powiodło się. Nic nie zostało zmienione."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falha ao restaurar. Nada foi alterado."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O restauro falhou. Nada foi alterado."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurarea a eșuat. Nu s-a modificat nimic."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось восстановить. Ничего не изменено."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ප්‍රතිසාධනය අසාර්ථක විය. කිසිවක් වෙනස් නොකළා."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obnovenie zlyhalo. Nič sa nezmenilo."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obnovitev ni uspela. Nič ni bilo spremenjeno."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rikthimi dështoi. Asgjë nuk u ndryshua."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Враћање није успело. Ништа није промењено."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställningen misslyckades. Inget ändrades."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imeshindwa kurejesha. Hakuna kilichobadilishwa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மீட்டமைப்பு தோல்வியடைந்தது. எதுவும் மாற்றப்படவில்லை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పునరుద్ధరణ విఫలమైంది. ఏమీ మారలేదు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "กู้คืนไม่สำเร็จ ไม่มีการเปลี่ยนแปลงใดๆ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri yükleme başarısız oldu. Hiçbir şey değiştirilmedi."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося відновити. Нічого не змінено."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بحالی ناکام رہی۔ کچھ نہیں بدلا گیا۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiklab boʻlmadi. Hech narsa oʻzgartirilmadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khôi phục không thành công. Không có gì thay đổi."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還原失敗。沒有作出任何更改。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复失败。未做任何更改。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還原失敗。未做任何變更。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukubuyisela kwehlulekile. Akukho okushintshiwe."
           }
         }
       }

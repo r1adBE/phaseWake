@@ -165,6 +165,8 @@
     <string name="check_not_ready_icon">No está listo</string>
     <string name="check_silent_switch_title">Alarma de respaldo antes de iOS 26</string>
     <string name="check_silent_switch_text">Antes de iOS 26, la alarma de respaldo es una notificación: el interruptor de silencio la silencia. Deja el sonido activado o actualiza a iOS 26.</string>
+    <string name="check_backup_horizon_title">Se acaban las alarmas de respaldo</string>
+    <string name="check_backup_horizon_text">Abre Phase Wake para que tu iPhone programe las próximas alarmas.</string>
     <string name="check_watch">Reloj conectado</string>
     <string name="check_watch_problem">No se puede acceder a tu reloj. Póntelo, mantén el Bluetooth activado y abre Phase Wake en el reloj una vez.</string>
     <string name="check_notifications">Notificaciones permitidas</string>
@@ -468,6 +470,7 @@
     <string name="restore_open">Abrir</string>
     <string name="restore_wrong_password">Contraseña incorrecta o no es una copia de Phase Wake. No se ha cambiado nada.</string>
     <string name="restore_unreadable">No se pudo leer el archivo. No se ha cambiado nada.</string>
+    <string name="restore_failed">No se pudo restaurar. No se ha cambiado nada.</string>
     <string name="restore_preview">Alarmas: %1$d · Noches: %2$d · Días con notas: %3$d</string>
     <string name="restore_confirm_title">¿Reemplazar los datos?</string>
     <string name="restore_confirm_text">Las alarmas, el historial, las notas y los ajustes de este teléfono se reemplazarán por la copia.</string>

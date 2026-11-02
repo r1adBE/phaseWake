@@ -164,6 +164,8 @@
     <string name="check_not_ready_icon">Pole valmis</string>
     <string name="check_silent_switch_title">Varuäratus enne iOS 26</string>
     <string name="check_silent_switch_text">Enne iOS 26 on varuäratus teavitus: vaikse režiimi lüliti teeb selle hääletuks. Jäta heli sisse või uuenda iOS 26-le.</string>
+    <string name="check_backup_horizon_title">Varuäratused saavad varsti otsa</string>
+    <string name="check_backup_horizon_text">Ava Phase Wake, et iPhone saaks järgmised äratused seada.</string>
     <string name="check_watch">Kell ühendatud</string>
     <string name="check_watch_problem">Kell pole kättesaadav. Kanna seda, hoia Bluetooth sees ja ava Phase Wake kellas üks kord.</string>
     <string name="check_notifications">Märguanded lubatud</string>
@@ -458,6 +460,7 @@
     <string name="restore_open">Ava</string>
     <string name="restore_wrong_password">Vale parool või pole see Phase Wake’i varukoopia. Midagi ei muudetud.</string>
     <string name="restore_unreadable">Faili ei õnnestunud lugeda. Midagi ei muudetud.</string>
+    <string name="restore_failed">Taastamine ebaõnnestus. Midagi ei muudetud.</string>
     <string name="restore_preview" tools:ignore="PluralsCandidate">Äratused: %1$d · Ööd: %2$d · Märkmetega päevad: %3$d</string>
     <string name="restore_confirm_title">Kas asendada andmed?</string>
     <string name="restore_confirm_text">Selle telefoni äratused, ajalugu, märkmed ja seaded asendatakse varukoopiaga.</string>
