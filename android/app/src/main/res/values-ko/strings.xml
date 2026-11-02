@@ -174,7 +174,7 @@
     <string name="check_companion_problem">연결하지 않으면 휴대폰을 사용하는 동안 알람이 위쪽 알림으로만 표시돼요.</string>
     <string name="companion_failed">워치를 찾지 못했어요. 워치가 연결되어 있고 블루투스가 켜져 있는지 확인한 뒤 다시 시도해 주세요.</string>
     <string name="check_exact_alarms">정확한 알람 허용됨</string>
-    <string name="check_exact_alarms_problem">보조 알람이 제시간에 울리도록 알람 및 리마인더를 허용해 주세요.</string>
+    <string name="check_exact_alarms_problem">알람 및 리마인더를 허용해 주세요. 이 권한이 없으면 보조 알람이 아예 울리지 않을 수 있습니다.</string>
     <string name="check_dnd">방해 금지 모드에서도 알람이 울려요</string>
     <string name="check_battery">휴대폰 배터리</string>
     <string name="check_battery_problem">%1$d %% 미만 – 예비 알람이 울릴 수 있도록 휴대폰을 충전해 주세요.</string>

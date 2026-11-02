@@ -3,7 +3,7 @@ Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tad
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
 • Sat mjeri samo tijekom intervala buđenja: štedi bateriju.
-• Vibracija na zapešću, po želji i sa zvukom – iPhone zvoni kao rezervni alarm ako nešto pođe po zlu.
+• Vibracija na zapešću – po želji zvoni i iPhone, a i kao rezervni alarm ako nešto pođe po zlu.
 • Drži za zaustavljanje, odgodi do 3 puta.
 
 Napravljeno da se ne uspavaš

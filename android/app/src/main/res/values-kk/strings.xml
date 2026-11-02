@@ -169,7 +169,7 @@
     <string name="check_companion_problem">Әйтпесе телефонды қолданып отырғанда оятқыш тек жоғарыда хабарландыру ретінде көрінеді.</string>
     <string name="companion_failed">Сағат табылмады. Оның қосылғанын және Bluetooth қосулы екенін тексеріп, қайталап көр.</string>
     <string name="check_exact_alarms">Дәл оятқыштарға рұқсат бар</string>
-    <string name="check_exact_alarms_problem">Қосалқы оятқыш уақытында шырылдауы үшін «Оятқыштар мен еске салғыштарға» рұқсат бер.</string>
+    <string name="check_exact_alarms_problem">«Оятқыштар мен еске салғыштарға» рұқсат бер – бұл рұқсатсыз қосалқы оятқыш мүлде шырылдамауы мүмкін.</string>
     <string name="check_dnd">«Мазаламау» оятқыштарды өткізеді</string>
     <string name="check_battery">Телефон батареясы</string>
     <string name="check_battery_problem">%1$d %%-дан төмен – қосалқы оятқыш шырылдай алуы үшін телефонды зарядта.</string>

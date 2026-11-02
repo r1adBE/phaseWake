@@ -39,12 +39,34 @@ final class WatchModel {
     var plan: WakePlan? { Transient.choose(real: realPlan, transient: transient, now: now) }
 
     /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
-    /// Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst (`missedPlan`).
+    /// Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst (`missedPlan`);
+    /// danach eine Nacht, deren Zielzeit da ist, die aber noch nicht geweckt hat (`pendingNight`).
     var realPlan: WakePlan? {
         let done = storage.doneUntil
         let holidays = storage.holidays.dates
         return AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+            ?? pendingNight
             ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+    }
+
+    /// Die Nacht, auf die die Uhr wartet (Sitzung geplant oder nicht planbar), wenn ihre Zielzeit schon da ist und sie
+    /// weder geweckt hat noch erledigt ist – bis `SmartAlarm.ringLimit` danach (`WatchRules.pendingNight`). Ohne
+    /// gemerkten Plan (Ruhezustand, z. B. nach einem Neustart der App) nur bis zum Rückfall (`WatchRules.unwokenNight`).
+    /// Sie bleibt der Plan: Sonst ersetzte ein Neuplanen kurz nach der Zielzeit (App im Vordergrund, Wecker vom
+    /// iPhone, Zeitzone) ihren Rückfall durch den der nächsten Nacht, und sie weckte gar nicht. Sonst `nil`.
+    var pendingNight: WakePlan? {
+        let done = storage.doneUntil
+        let holidays = storage.holidays.dates
+        switch SmartAlarm.shared.phase {
+        case .waiting(let plan), .scheduled(let plan):
+            return WatchRules.pendingNight(plan, specs: alarms, now: now, doneUntil: done, ringLimit: SmartAlarm.ringLimit,
+                                           calendar: .gregorianLocal, holidays: holidays)
+        case .idle:
+            return WatchRules.unwokenNight(specs: alarms, now: now, doneUntil: done, delay: SmartAlarm.fallbackDelay,
+                                           calendar: .gregorianLocal, holidays: holidays)
+        case .measuring, .ringing, .snoozed:
+            return nil
+        }
     }
 
     /// Nachzuholender Wecker (Zielzeit schon vorbei), sonst `nil`: Er klingelt gleich, ohne Messung.

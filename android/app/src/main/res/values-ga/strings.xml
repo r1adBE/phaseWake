@@ -188,7 +188,7 @@
     <string name="check_companion_problem">Murach seo, agus tú ag úsáid an fhóin, ní thaispeántar an t-aláram ach mar fhógra ag an mbarr.</string>
     <string name="companion_failed">Níor aimsíodh uaireadóir. Seiceáil go bhfuil sé ceangailte agus Bluetooth air, agus bain triail eile as.</string>
     <string name="check_exact_alarms">Aláraim chruinne ceadaithe</string>
-    <string name="check_exact_alarms_problem">Ceadaigh “Aláraim &amp; meabhrúcháin” ionas go mbuailfidh an t-aláram cúltaca in am.</string>
+    <string name="check_exact_alarms_problem">Ceadaigh “Aláraim &amp; meabhrúcháin” – gan an cead seo, b’fhéidir nach mbuailfidh an t-aláram cúltaca ar chor ar bith.</string>
     <string name="check_dnd">Ligeann “Ná Cuir Isteach Orm” aláraim tríd</string>
     <string name="check_battery">Ceallra an fhóin</string>
     <string name="check_battery_problem">Faoi %1$d %% – luchtaigh do fhón ionas gur féidir leis an aláram cúltaca bualadh.</string>

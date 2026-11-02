@@ -174,7 +174,7 @@
     <string name="check_companion_problem">否则在你使用手机时，闹钟只会以通知形式显示在顶部。</string>
     <string name="companion_failed">未找到手表。请检查手表是否已连接、蓝牙是否已开启，然后重试。</string>
     <string name="check_exact_alarms">已允许精确闹钟</string>
-    <string name="check_exact_alarms_problem">请允许“闹钟和提醒”，这样备用闹钟才能准时响起。</string>
+    <string name="check_exact_alarms_problem">请允许“闹钟和提醒”——没有这项权限，备用闹钟可能根本不会响。</string>
     <string name="check_dnd">勿扰模式允许闹钟</string>
     <string name="check_battery">手机电量</string>
     <string name="check_battery_problem">低于 %1$d %% – 请给手机充电，以便备用闹钟能够响铃。</string>

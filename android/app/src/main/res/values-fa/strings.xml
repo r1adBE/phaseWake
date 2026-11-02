@@ -177,7 +177,7 @@
     <string name="check_companion_problem">در غیر این صورت، وقتی از گوشی استفاده می‌کنی، زنگ فقط به‌صورت اعلان در بالا نمایش داده می‌شود.</string>
     <string name="companion_failed">ساعتی پیدا نشد. بررسی کن که متصل باشد و بلوتوث روشن باشد، بعد دوباره امتحان کن.</string>
     <string name="check_exact_alarms">زنگ‌های دقیق مجاز است</string>
-    <string name="check_exact_alarms_problem">زنگ‌ها و یادآوری‌ها را مجاز کن تا زنگ پشتیبان سر وقت به صدا درآید.</string>
+    <string name="check_exact_alarms_problem">زنگ‌ها و یادآوری‌ها را مجاز کن – بدون این اجازه ممکن است زنگ پشتیبان اصلاً به صدا درنیاید.</string>
     <string name="check_dnd">مزاحم نشوید، زنگ‌ها را عبور می‌دهد</string>
     <string name="check_battery">باتری گوشی</string>
     <string name="check_battery_problem">کمتر از %1$d %% – گوشی را شارژ کن تا زنگ پشتیبان بتواند زنگ بزند.</string>

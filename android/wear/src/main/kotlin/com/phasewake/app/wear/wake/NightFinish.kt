@@ -10,6 +10,7 @@ import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
@@ -63,6 +64,7 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     finishing++
     app.appScope.launch {
         var disabled: AlarmSnapshot? = null
+        var cleared: WakePlan? = null
         try {
             // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
             val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
@@ -73,7 +75,10 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
                 runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
             }
             if (transient) runStep("Vorübergehenden Plan löschen") { app.transient.clear(n.plan.alarmId) }
-            runStep("Einschlaf-Ausnahme löschen") { app.onsetOverride.clear() }
+            runStep("Einschlaf-Ausnahme löschen") {
+                cleared = app.onsetOverride.get()
+                app.onsetOverride.clear()
+            }
             runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
             if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
             if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
@@ -87,6 +92,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
         // Senden darf das Ende des Dienstes überdauern; die Daten liegen schon lokal.
         if (record != null) app.sync.publishNight(record)
         disabled?.let { app.sync.publishAlarms(it) }
+        // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Review H-1; Meldung ohne frühere Zielzeit).
+        cleared?.let { app.sync.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) }
     }
 }
 

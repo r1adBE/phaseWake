@@ -3,7 +3,7 @@ Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – tak
 Kako deluje
 • Izberi čas bujenja in okno (do 30 min), nadeni si uro, spi.
 • Ura meri samo v oknu bujenja: varčuje z baterijo.
-• Vibriranje na zapestju, po želji z zvokom – iPhone zvoni kot rezervna budilka, če gre kaj narobe.
+• Vibriranje na zapestju – po želji zvoni tudi iPhone, in kot rezervna budilka, če gre kaj narobe.
 • Pridrži za ustavitev, dremež do 3-krat.
 
 Da ne prespiš budilke

@@ -185,7 +185,7 @@
     <string name="check_companion_problem">Kitaip, kai naudojiesi telefonu, žadintuvas rodomas tik kaip pranešimas viršuje.</string>
     <string name="companion_failed">Laikrodis nerastas. Patikrink, ar jis prijungtas ir ar įjungtas „Bluetooth“, ir bandyk dar kartą.</string>
     <string name="check_exact_alarms">Tikslūs žadintuvai leidžiami</string>
-    <string name="check_exact_alarms_problem">Leisk „Žadintuvai ir priminimai“, kad atsarginis žadintuvas suskambėtų laiku.</string>
+    <string name="check_exact_alarms_problem">Leisk „Žadintuvai ir priminimai“ – be šio leidimo atsarginis žadintuvas gali visai neskambėti.</string>
     <string name="check_dnd">„Netrukdyti“ praleidžia žadintuvus</string>
     <string name="check_battery">Telefono baterija</string>
     <string name="check_battery_problem">Mažiau nei %1$d %% – įkrauk telefoną, kad atsarginis žadintuvas galėtų skambėti.</string>

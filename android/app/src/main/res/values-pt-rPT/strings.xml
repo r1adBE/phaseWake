@@ -180,7 +180,7 @@
     <string name="check_companion_problem">Caso contrário, enquanto usas o telemóvel, o alarme aparece só como notificação no topo.</string>
     <string name="companion_failed">Nenhum relógio encontrado. Verifica se está ligado e se o Bluetooth está ativo e tenta novamente.</string>
     <string name="check_exact_alarms">Alarmes exatos permitidos</string>
-    <string name="check_exact_alarms_problem">Permite alarmes e lembretes para que o alarme de reserva toque à hora certa.</string>
+    <string name="check_exact_alarms_problem">Permite alarmes e lembretes – sem esta autorização, o alarme de reserva pode nem tocar.</string>
     <string name="check_dnd">Não incomodar deixa passar os alarmes</string>
     <string name="check_battery">Bateria do telemóvel</string>
     <string name="check_battery_problem">Abaixo de %1$d %% – carrega o telemóvel para que o alarme de reserva possa tocar.</string>

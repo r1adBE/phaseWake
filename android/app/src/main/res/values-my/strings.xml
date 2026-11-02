@@ -175,7 +175,7 @@
     <string name="check_companion_problem">မဟုတ်ပါက ဖုန်းသုံးနေစဉ် နှိုးစက်သည် အပေါ်ရှိ အကြောင်းကြားချက်အဖြစ်သာ ပေါ်ပါသည်။</string>
     <string name="companion_failed">နာရီ မတွေ့ပါ။ ချိတ်ဆက်ထားခြင်းနှင့် Bluetooth ဖွင့်ထားခြင်း ရှိမရှိ စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။</string>
     <string name="check_exact_alarms">တိကျသော နှိုးစက်များ ခွင့်ပြုထားသည်</string>
-    <string name="check_exact_alarms_problem">အရန်နှိုးစက် အချိန်မှန်မြည်စေရန် “နှိုးစက်များ &amp; သတိပေးချက်များ” ကို ခွင့်ပြုပါ။</string>
+    <string name="check_exact_alarms_problem">“နှိုးစက်များ &amp; သတိပေးချက်များ” ကို ခွင့်ပြုပါ – ဤခွင့်ပြုချက်မရှိလျှင် အရန်နှိုးစက် လုံးဝမမြည်နိုင်ပါ။</string>
     <string name="check_dnd">မနှောင့်ယှက်ရ က နှိုးစက်များကို ခွင့်ပြုသည်</string>
     <string name="check_battery">ဖုန်းဘက်ထရီ</string>
     <string name="check_battery_problem">%1$d %% အောက် – အရန်နှိုးစက် မြည်နိုင်ရန် ဖုန်းကို အားသွင်းပါ။</string>

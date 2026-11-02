@@ -124,9 +124,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             switch command {
             case SyncKeys.ring:
                 if stale {
-                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln, nur diese Nacht als erledigt merken.
-                    DiagStore.shared.log(.suppressed, "late ring")
-                    await model.backup.watchHandled(alarmId: alarmId, target: target)
+                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung dieser
+                    // Nacht bleibt (Entscheid r1AD): Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
+                    DiagStore.shared.log(.suppressed, "late ring, backup kept")
                 } else {
                     model.watchRang()
                     DiagStore.shared.log(.ring, "watch rang, phone too")

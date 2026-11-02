@@ -182,7 +182,7 @@
     <string name="check_companion_problem">Dok koristiš telefon, alarm se inače prikazuje samo kao obavijest na vrhu.</string>
     <string name="companion_failed">Sat nije pronađen. Provjeri je li povezan i je li Bluetooth uključen pa pokušaj ponovno.</string>
     <string name="check_exact_alarms">Točni alarmi dopušteni</string>
-    <string name="check_exact_alarms_problem">Dopusti „Alarmi i podsjetnici“ kako bi rezervni alarm zvonio na vrijeme.</string>
+    <string name="check_exact_alarms_problem">Dopusti „Alarmi i podsjetnici“ – bez ovog dopuštenja rezervni alarm možda uopće neće zvoniti.</string>
     <string name="check_dnd">„Ne uznemiravaj“ propušta alarme</string>
     <string name="check_battery">Baterija telefona</string>
     <string name="check_battery_problem">Ispod %1$d %% – napuni telefon kako bi rezervni alarm mogao zvoniti.</string>

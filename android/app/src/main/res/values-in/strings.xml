@@ -174,7 +174,7 @@
     <string name="check_companion_problem">Jika tidak, saat kamu memakai ponsel, alarm hanya muncul sebagai notifikasi di atas.</string>
     <string name="companion_failed">Jam tangan tidak ditemukan. Periksa apakah sudah terhubung dan Bluetooth aktif, lalu coba lagi.</string>
     <string name="check_exact_alarms">Alarm tepat waktu diizinkan</string>
-    <string name="check_exact_alarms_problem">Izinkan alarm &amp; pengingat agar alarm cadangan berbunyi tepat waktu.</string>
+    <string name="check_exact_alarms_problem">Izinkan alarm &amp; pengingat – tanpa izin ini, alarm cadangan mungkin tidak berbunyi sama sekali.</string>
     <string name="check_dnd">Jangan Ganggu meloloskan alarm</string>
     <string name="check_battery">Baterai ponsel</string>
     <string name="check_battery_problem">Di bawah %1$d %% – isi daya ponselmu agar alarm cadangan bisa berbunyi.</string>

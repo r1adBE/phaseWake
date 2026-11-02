@@ -179,7 +179,7 @@
     <string name="check_companion_problem">नाहीतर फोन वापरत असताना अलार्म फक्त वर सूचना म्हणून दिसतो.</string>
     <string name="companion_failed">घड्याळ सापडले नाही. ते जोडलेले आहे आणि ब्लूटूथ चालू आहे का ते तपासा, मग पुन्हा प्रयत्न करा.</string>
     <string name="check_exact_alarms">अचूक अलार्मना परवानगी</string>
-    <string name="check_exact_alarms_problem">बॅकअप अलार्म वेळेवर वाजावा म्हणून “अलार्म आणि रिमाइंडर” ला परवानगी द्या.</string>
+    <string name="check_exact_alarms_problem">“अलार्म आणि रिमाइंडर” ला परवानगी द्या – या परवानगीशिवाय बॅकअप अलार्म कदाचित वाजणारच नाही.</string>
     <string name="check_dnd">“व्यत्यय आणू नका” अलार्म वाजू देते</string>
     <string name="check_battery">फोनची बॅटरी</string>
     <string name="check_battery_problem">%1$d %% पेक्षा कमी – बॅकअप अलार्म वाजू शकेल म्हणून फोन चार्ज करा.</string>

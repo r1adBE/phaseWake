@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Инаку, додека го користиш телефонот, алармот се појавува само како известување горе.</string>
     <string name="companion_failed">Не е пронајден часовник. Провери дали е поврзан и дали Bluetooth е вклучен, па обиди се повторно.</string>
     <string name="check_exact_alarms">Точните аларми се дозволени</string>
-    <string name="check_exact_alarms_problem">Дозволи „Аларми и потсетници“ за резервниот аларм да ѕвони навреме.</string>
+    <string name="check_exact_alarms_problem">Дозволи „Аларми и потсетници“ – без оваа дозвола резервниот аларм можеби воопшто нема да ѕвони.</string>
     <string name="check_dnd">„Не вознемирувај“ ги пропушта алармите</string>
     <string name="check_battery">Батерија на телефонот</string>
     <string name="check_battery_problem">Под %1$d %% – полни го телефонот за резервниот аларм да може да ѕвони.</string>

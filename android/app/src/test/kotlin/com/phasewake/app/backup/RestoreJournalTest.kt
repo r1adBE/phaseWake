@@ -60,6 +60,11 @@ class RestoreJournalTest {
         // Das `edit` hatte die Kennung schon geschrieben: der neue Stand ist vollständig.
         assertEquals(RestoreJournal.Outcome.FINISHED, journal.recover("t2", NightRepository(nightsFile)))
         assertEquals(restored, NightRepository(nightsFile).load())
+        // Die Marke bleibt bis nach dem Abgleich mit der Uhr (Review N-3): Endet der Prozess vorher, wieder FINISHED.
+        assertEquals("t2", journal.pendingToken())
+        assertEquals(RestoreJournal.Outcome.FINISHED, RestoreJournal(dir).recover("t2", NightRepository(nightsFile)))
+        assertEquals(restored, NightRepository(nightsFile).load())
+        journal.finish()
         assertNull(journal.pendingToken())
     }
 

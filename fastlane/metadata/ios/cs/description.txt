@@ -3,7 +3,7 @@ Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek nekli
 Jak to funguje
 • Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
 • Hodinky měří jen v okně buzení: šetří baterii.
-• Vibrace na zápěstí, na přání se zvukem – iPhone zvoní jako záložní budík, kdyby se něco pokazilo.
+• Vibrace na zápěstí – na přání zvoní i iPhone, a jako záložní budík, kdyby se něco pokazilo.
 • Podržením zastavíš, odložit můžeš až 3×.
 
 Navrženo proti zaspání

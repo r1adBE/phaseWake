@@ -126,8 +126,13 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         }
         // Rückfall je unter eigener Kennung: Ein Probewecker oder Powernap ersetzt nie den des echten Weckers, der
         // daneben für dessen nächste Nacht stehen bleibt – auch wenn der vorübergehende Plan nie sauber endet.
-        // Ein nachgeholter Wecker (Zielzeit vorbei) bekommt die Frist ab jetzt, damit seine Sitzung zuerst weckt.
-        scheduleFallback(at: max(plan.target, Date()).addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
+        // Ein nachgeholter Wecker (Zielzeit vorbei) bekommt die Frist ab jetzt, damit seine Sitzung zuerst weckt; eine
+        // ausstehende Nacht (`WatchModel.pendingNight`) behält ihren Rückfall (`WatchRules.fallbackDate`).
+        let now = Date()
+        let pending = plan == WatchModel.shared.pendingNight
+        if let at = WatchRules.fallbackDate(plan, pending: pending, now: now, delay: Self.fallbackDelay) {
+            scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId))
+        }
         if Transient.kindOf(plan.alarmId) != nil { keepRealFallback() }
         let active = WKApplication.shared().applicationState == .active
         if !active, keepsRealSession(for: plan) { return }
@@ -135,11 +140,15 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
         let start = Self.sessionStart(plan)
         let tooEarly = start.timeIntervalSinceNow > Self.maxLeadTime
-        guard active, !tooEarly else {
+        // Eine ausstehende Nacht startet ihre Sitzung nur, bis ihr Rückfall fällig ist; danach wartet sie auf ihn.
+        let startsNow = WatchRules.startsSession(plan, pending: pending, now: now, delay: Self.fallbackDelay)
+        guard active, !tooEarly, startsNow else {
             // Eine schon geplante Sitzung für einen anderen Plan ist überholt.
             if case .scheduled(let current) = phase, current != plan { invalidateSession() }
             if case .scheduled = phase, session != nil, !tooEarly { return }
-            if phase != .waiting(plan) { DiagStore.shared.log(.scheduled, "waiting \(Format.time(plan.target)) active \(active)") }
+            if phase != .waiting(plan) {
+                DiagStore.shared.log(.scheduled, "waiting \(Format.time(plan.target)) active \(active)\(pending ? " pending" : "")")
+            }
             phase = .waiting(plan)
             publishArmed()
             return

@@ -177,7 +177,7 @@
     <string name="check_companion_problem">Αλλιώς, όσο χρησιμοποιείς το κινητό, το ξυπνητήρι εμφανίζεται μόνο ως ειδοποίηση επάνω.</string>
     <string name="companion_failed">Δεν βρέθηκε ρολόι. Έλεγξε ότι είναι συνδεδεμένο και ότι το Bluetooth είναι ενεργό και δοκίμασε ξανά.</string>
     <string name="check_exact_alarms">Επιτρέπονται ακριβή ξυπνητήρια</string>
-    <string name="check_exact_alarms_problem">Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις, ώστε το εφεδρικό ξυπνητήρι να χτυπά στην ώρα του.</string>
+    <string name="check_exact_alarms_problem">Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις – χωρίς αυτή την άδεια το εφεδρικό ξυπνητήρι μπορεί να μη χτυπήσει καθόλου.</string>
     <string name="check_dnd">Το «Μην ενοχλείτε» επιτρέπει ξυπνητήρια</string>
     <string name="check_battery">Μπαταρία κινητού</string>
     <string name="check_battery_problem">Κάτω από %1$d %% – φόρτισε το κινητό σου, ώστε να μπορεί να χτυπήσει το εφεδρικό ξυπνητήρι.</string>

@@ -3,7 +3,7 @@ Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann sc
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
 • Die Uhr misst nur im Weckfenster: schont den Akku.
-• Vibration am Handgelenk, auf Wunsch mit Ton – das iPhone klingelt als Zweitwecker mit, falls etwas schiefgeht.
+• Vibration am Handgelenk – auf Wunsch klingelt das iPhone mit, und als Zweitwecker, falls etwas schiefgeht.
 • Zum Stoppen halten, schlummern bis 3×.
 
 Gemacht, damit du nicht verschläfst

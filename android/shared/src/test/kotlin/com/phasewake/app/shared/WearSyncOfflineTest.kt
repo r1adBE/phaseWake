@@ -44,6 +44,7 @@ class WearSyncOfflineTest {
         tolerant { sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP) }
         tolerant { sync.publishTransientCancel(DataLayer.CAPABILITY_WATCH, "nap-1") }
         tolerant { sync.publishOnsetShift(OnsetShift("a", 2_000L, 1_000L, 1L)) }
+        tolerant { sync.deleteOnsetShift() }
     }
 
     @Test
@@ -58,6 +59,7 @@ class WearSyncOfflineTest {
         tolerant { sync.fetchSleepGoal() }
         tolerant { sync.fetchAutoOnset() }
         tolerant { sync.fetchNights() }
+        tolerant { sync.fetchOnsetShift() }
         tolerant { sync.nodesWithout(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.isReachable(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.connectedNames() }

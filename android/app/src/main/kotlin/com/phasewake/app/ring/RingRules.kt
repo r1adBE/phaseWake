@@ -120,6 +120,23 @@ internal object RingRules {
         active && !message.isStale(nowMs) && message.sameNight(currentId, currentTarget)
 
     /**
+     * Ohne Meldung der Uhr so lange (Review N-5): keine Uhr mehr gekoppelt oder getragen. Eine Uhr in Gebrauch meldet
+     * ihren Status mindestens stündlich, sobald sie neu plant.
+     */
+    val WATCH_GONE: Duration = Duration.ofDays(7)
+
+    /**
+     * Nachfrist des Zweitweckers: [grace], solange eine Uhr da ist; 0 (pünktlich zur Zielzeit, das Handy ist der Wecker),
+     * wenn ihr Status ([watchSeenAtMs], «zuletzt gesehen») fehlt oder älter als [WATCH_GONE] ist (Review N-5, wie das
+     * iPhone ohne gekoppelte Uhr). Eine Meldung aus der «Zukunft» (Uhrzeit zurückgestellt) gilt als da.
+     */
+    fun backupGrace(watchSeenAtMs: Long?, nowMs: Long, grace: Duration): Duration =
+        if (watchSeenAtMs == null || nowMs - watchSeenAtMs > WATCH_GONE.toMillis()) Duration.ZERO else grace
+
+    /** Ob ein «klingeln» der Uhr den Zweitwecker dieser Nacht aussetzt: nur, wenn es nicht veraltet ist (Review LATE). */
+    fun ringPausesBackup(message: RingMessage, nowMs: Long): Boolean = !message.isStale(nowMs)
+
+    /**
      * Zweitwecker, der als Nächstes gilt: der früheste von
      * - dem nächsten Termin jedes Weckers in [backups] (erst nach [suppressed], siehe [BackupAlarm.watchHandled]),
      * - dem schon geplanten Zweitwecker [plannedId]/[plannedTarget], solange seine Nachfrist läuft ([AlarmSchedule.inGrace]),

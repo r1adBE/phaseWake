@@ -183,7 +183,7 @@
     <string name="check_companion_problem">Иначе, пока ты пользуешься телефоном, будильник показывается только как уведомление вверху.</string>
     <string name="companion_failed">Часы не найдены. Проверь, что они подключены и Bluetooth включён, и попробуй ещё раз.</string>
     <string name="check_exact_alarms">Точные будильники разрешены</string>
-    <string name="check_exact_alarms_problem">Разреши будильники и напоминания, чтобы резервный будильник звонил вовремя.</string>
+    <string name="check_exact_alarms_problem">Разреши будильники и напоминания – без этого разрешения резервный будильник может вообще не зазвонить.</string>
     <string name="check_dnd">Режим «Не беспокоить» пропускает будильники</string>
     <string name="check_battery">Заряд телефона</string>
     <string name="check_battery_problem">Ниже %1$d %% – поставь телефон на зарядку, чтобы резервный будильник смог зазвонить.</string>

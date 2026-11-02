@@ -182,7 +182,7 @@
     <string name="check_companion_problem">Citādi, kamēr izmanto tālruni, modinātājs parādās tikai kā paziņojums augšā.</string>
     <string name="companion_failed">Pulkstenis netika atrasts. Pārbaudi, vai tas ir savienots un Bluetooth ir ieslēgts, un mēģini vēlreiz.</string>
     <string name="check_exact_alarms">Precīzi modinātāji atļauti</string>
-    <string name="check_exact_alarms_problem">Atļauj „Signāli un atgādinājumi“, lai rezerves modinātājs zvanītu laikā.</string>
+    <string name="check_exact_alarms_problem">Atļauj „Signāli un atgādinājumi“ – bez šīs atļaujas rezerves modinātājs var nemaz nezvanīt.</string>
     <string name="check_dnd">„Netraucēt“ laiž cauri modinātājus</string>
     <string name="check_battery">Tālruņa akumulators</string>
     <string name="check_battery_problem">Zem %1$d %% – uzlādē tālruni, lai rezerves modinātājs varētu zvanīt.</string>

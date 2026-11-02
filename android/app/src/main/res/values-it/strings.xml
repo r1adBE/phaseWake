@@ -180,7 +180,7 @@
     <string name="check_companion_problem">Altrimenti, mentre usi il telefono, la sveglia compare solo come notifica in alto.</string>
     <string name="companion_failed">Nessun orologio trovato. Controlla che sia collegato e che il Bluetooth sia attivo, poi riprova.</string>
     <string name="check_exact_alarms">Sveglie esatte consentite</string>
-    <string name="check_exact_alarms_problem">Consenti sveglie e promemoria perché la sveglia di riserva suoni puntuale.</string>
+    <string name="check_exact_alarms_problem">Consenti sveglie e promemoria: senza questa autorizzazione la sveglia di riserva potrebbe non suonare affatto.</string>
     <string name="check_dnd">Non disturbare lascia passare le sveglie</string>
     <string name="check_battery">Batteria del telefono</string>
     <string name="check_battery_problem">Sotto il %1$d %% – ricarica il telefono perché la sveglia di riserva possa suonare.</string>

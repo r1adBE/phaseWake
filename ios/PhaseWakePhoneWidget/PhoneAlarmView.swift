@@ -62,7 +62,9 @@ struct PhoneAlarmView: View {
             Text(night.reason).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
             let details = [night.asleepMinutes.map { Format.duration(minutes: $0) }, night.feeling].compactMap { $0 }
             if !details.isEmpty {
+                // Schlafdauer und Befinden sind Gesundheitsdaten: auf dem gesperrten Gerät verdeckt.
                 Text(details.joined(separator: " · ")).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
+                    .privacySensitive()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

@@ -174,7 +174,7 @@
     <string name="check_companion_problem">มิฉะนั้น ขณะที่คุณใช้โทรศัพท์ นาฬิกาปลุกจะแสดงเป็นการแจ้งเตือนด้านบนเท่านั้น</string>
     <string name="companion_failed">ไม่พบนาฬิกา ตรวจสอบว่าเชื่อมต่ออยู่และเปิดบลูทูธแล้ว จากนั้นลองอีกครั้ง</string>
     <string name="check_exact_alarms">อนุญาตการปลุกที่แม่นยำแล้ว</string>
-    <string name="check_exact_alarms_problem">อนุญาตการปลุกและการช่วยเตือนเพื่อให้นาฬิกาปลุกสำรองดังตรงเวลา</string>
+    <string name="check_exact_alarms_problem">อนุญาตการปลุกและการช่วยเตือน – หากไม่มีสิทธิ์นี้ นาฬิกาปลุกสำรองอาจไม่ดังเลย</string>
     <string name="check_dnd">โหมดห้ามรบกวนยังให้นาฬิกาปลุกดังได้</string>
     <string name="check_battery">แบตเตอรี่โทรศัพท์</string>
     <string name="check_battery_problem">ต่ำกว่า %1$d %% – ชาร์จโทรศัพท์เพื่อให้นาฬิกาปลุกสำรองดังได้</string>

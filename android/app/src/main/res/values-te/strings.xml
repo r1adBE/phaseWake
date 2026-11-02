@@ -179,7 +179,7 @@
     <string name="check_companion_problem">లేకపోతే ఫోన్ వాడుతున్నప్పుడు అలారం పైన నోటిఫికేషన్‌గా మాత్రమే కనిపిస్తుంది.</string>
     <string name="companion_failed">వాచ్ కనిపించలేదు. అది కనెక్ట్ అయి ఉందో, బ్లూటూత్ ఆన్‌లో ఉందో చూసి మళ్లీ ప్రయత్నించండి.</string>
     <string name="check_exact_alarms">ఖచ్చితమైన అలారాలకు అనుమతి ఉంది</string>
-    <string name="check_exact_alarms_problem">బ్యాకప్ అలారం సమయానికి మోగేలా “అలారాలు &amp; రిమైండర్‌లు”ను అనుమతించండి.</string>
+    <string name="check_exact_alarms_problem">“అలారాలు &amp; రిమైండర్‌లు”ను అనుమతించండి – ఈ అనుమతి లేకుంటే బ్యాకప్ అలారం అసలు మోగకపోవచ్చు.</string>
     <string name="check_dnd">“అంతరాయం కలిగించవద్దు” అలారాలను మోగనిస్తుంది</string>
     <string name="check_battery">ఫోన్ బ్యాటరీ</string>
     <string name="check_battery_problem">%1$d %% కంటే తక్కువ – బ్యాకప్ అలారం మోగగలిగేలా ఫోన్ ఛార్జ్ చేయండి.</string>

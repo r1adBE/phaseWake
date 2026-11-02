@@ -178,7 +178,7 @@
     <string name="check_companion_problem">নইলে ফোন ব্যবহার করার সময় অ্যালার্ম শুধু উপরে একটি বিজ্ঞপ্তি হিসেবে দেখা যায়।</string>
     <string name="companion_failed">কোনো ঘড়ি পাওয়া যায়নি। ঘড়ি সংযুক্ত আছে আর ব্লুটুথ চালু আছে কিনা দেখো, তারপর আবার চেষ্টা করো।</string>
     <string name="check_exact_alarms">সঠিক সময়ের অ্যালার্মের অনুমতি আছে</string>
-    <string name="check_exact_alarms_problem">“অ্যালার্ম ও রিমাইন্ডার”-এর অনুমতি দাও, যাতে ব্যাকআপ অ্যালার্ম ঠিক সময়ে বাজে।</string>
+    <string name="check_exact_alarms_problem">“অ্যালার্ম ও রিমাইন্ডার”-এর অনুমতি দাও – এই অনুমতি ছাড়া ব্যাকআপ অ্যালার্ম হয়তো একেবারেই বাজবে না।</string>
     <string name="check_dnd">“বিরক্ত করবে না” অ্যালার্ম বাজতে দেয়</string>
     <string name="check_battery">ফোনের ব্যাটারি</string>
     <string name="check_battery_problem">%1$d %%-এর নিচে – ফোন চার্জ দাও, যাতে ব্যাকআপ অ্যালার্ম বাজতে পারে।</string>

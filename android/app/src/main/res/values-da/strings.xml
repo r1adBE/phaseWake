@@ -177,7 +177,7 @@
     <string name="check_companion_problem">Mens du bruger telefonen, vises alarmen ellers kun som en notifikation øverst.</string>
     <string name="companion_failed">Intet ur fundet. Tjek, at det er forbundet, og at Bluetooth er slået til, og prøv igen.</string>
     <string name="check_exact_alarms">Præcise alarmer tilladt</string>
-    <string name="check_exact_alarms_problem">Tillad alarmer og påmindelser, så reservealarmen ringer til tiden.</string>
+    <string name="check_exact_alarms_problem">Tillad alarmer og påmindelser – uden denne tilladelse ringer reservealarmen måske slet ikke.</string>
     <string name="check_dnd">Forstyr ikke lader alarmer igennem</string>
     <string name="check_battery">Telefonens batteri</string>
     <string name="check_battery_problem">Under %1$d %% – oplad din telefon, så backup-alarmen kan ringe.</string>

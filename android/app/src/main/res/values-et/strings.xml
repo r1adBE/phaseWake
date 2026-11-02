@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Muidu kuvatakse äratus telefoni kasutamise ajal ainult teavitusena üleval.</string>
     <string name="companion_failed">Kella ei leitud. Kontrolli, et see on ühendatud ja Bluetooth on sees, ning proovi uuesti.</string>
     <string name="check_exact_alarms">Täpsed äratused lubatud</string>
-    <string name="check_exact_alarms_problem">Luba „Äratused ja meeldetuletused“, et varuäratus heliseks õigel ajal.</string>
+    <string name="check_exact_alarms_problem">Luba „Äratused ja meeldetuletused“ – ilma selle loata ei pruugi varuäratus üldse helista.</string>
     <string name="check_dnd">„Mitte segada“ laseb äratused läbi</string>
     <string name="check_battery">Telefoni aku</string>
     <string name="check_battery_problem">Alla %1$d %% – lae telefoni, et varuäratus saaks heliseda.</string>

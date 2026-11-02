@@ -180,7 +180,7 @@
     <string name="check_companion_problem">אחרת, בזמן שימוש בטלפון השעון המעורר מופיע רק כהתראה למעלה.</string>
     <string name="companion_failed">לא נמצא שעון. בדקו שהוא מחובר ושה-Bluetooth פועל, ונסו שוב.</string>
     <string name="check_exact_alarms">שעונים מעוררים מדויקים מאושרים</string>
-    <string name="check_exact_alarms_problem">אשרו שעונים מעוררים ותזכורות כדי שהשעון המעורר הגיבוי יצלצל בזמן.</string>
+    <string name="check_exact_alarms_problem">אשרו שעונים מעוררים ותזכורות – בלי ההרשאה הזו ייתכן שהשעון המעורר הגיבוי לא יצלצל בכלל.</string>
     <string name="check_dnd">״נא לא להפריע״ מאפשר שעונים מעוררים</string>
     <string name="check_battery">סוללת הטלפון</string>
     <string name="check_battery_problem">מתחת ל-%1$d %% – טענו את הטלפון כדי שהשעון המעורר לגיבוי יוכל לצלצל.</string>

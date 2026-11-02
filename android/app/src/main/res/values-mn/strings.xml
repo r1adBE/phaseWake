@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Эс бөгөөс утсаа ашиглаж байхад сэрүүлэг зөвхөн дээд талд мэдэгдэл болж харагдана.</string>
     <string name="companion_failed">Цаг олдсонгүй. Холбогдсон эсэх, Bluetooth асаалттай эсэхийг шалгаад дахин оролд.</string>
     <string name="check_exact_alarms">Нарийн сэрүүлэг зөвшөөрөгдсөн</string>
-    <string name="check_exact_alarms_problem">Нөөц сэрүүлэг цагтаа дуугарахын тулд «Сэрүүлэг ба сануулга»-ыг зөвшөөр.</string>
+    <string name="check_exact_alarms_problem">«Сэрүүлэг ба сануулга»-ыг зөвшөөр – энэ зөвшөөрөлгүйгээр нөөц сэрүүлэг огт дуугарахгүй байж магадгүй.</string>
     <string name="check_dnd">«Бүү саад бол» сэрүүлгийг нэвтрүүлнэ</string>
     <string name="check_battery">Утасны батарей</string>
     <string name="check_battery_problem">%1$d %%-иас бага – нөөц сэрүүлэг дуугарч чадахын тулд утсаа цэнэглэ.</string>

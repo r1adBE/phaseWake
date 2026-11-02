@@ -180,7 +180,7 @@
     <string name="check_companion_problem">Sinon, quand tu utilises ton téléphone, l’alarme ne s’affiche qu’en notification en haut.</string>
     <string name="companion_failed">Aucune montre trouvée. Vérifie qu’elle est connectée et que le Bluetooth est activé, puis réessaie.</string>
     <string name="check_exact_alarms">Alarmes exactes autorisées</string>
-    <string name="check_exact_alarms_problem">Autorise les alarmes et rappels pour que l’alarme de secours sonne à l’heure.</string>
+    <string name="check_exact_alarms_problem">Autorise les alarmes et rappels : sans cette autorisation, l’alarme de secours risque de ne pas sonner du tout.</string>
     <string name="check_dnd">Ne pas déranger laisse passer les alarmes</string>
     <string name="check_battery">Batterie du téléphone</string>
     <string name="check_battery_problem">Moins de %1$d %% – recharge ton téléphone pour que l’alarme de secours puisse sonner.</string>

@@ -1,10 +1,11 @@
 # Offene Punkte
 
-Stand 02.11.2026, Phase Wake 16.2.2 (Build 42). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 02.11.2026, Phase Wake 16.2.2 (Build 45). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
 - Entschieden mit r1AD: ehrliche Texte statt «leichter Schlaf» (`reason_deadline`, `history_light_share`, `hint_title`, `editor_advice_text`), Warnung «Zweitwecker vor iOS 26» im Nacht-Check, Hinweis im iPhone-Editor zum Einschlaf-Modus, ⚠ statt ✕ in der Nacht-Check-Karte, Widget «Details von heute».
+- Review Build 45 (Android): Einschlaf-Zielzeit nach jedem Einschlafen ans Handy (H-1), Start-Arbeiten nach dem Entsperren (M-1), Tests für Planen und Klingeln am Handy (M-2), PLAY.md zu den Vordergrund-Diensten (M-3), Einschlaf-Zielzeit beim Start abholen und danach löschen (N-1), DATENSCHUTZ.md (N-2), Marke des Wiederherstellens (N-3), Warnung ohne exakte Alarme (N-4), Nachfrist nach Uhr (N-5), verspätetes «klingeln» (LATE). `lintRelease` nicht zusätzlich: `assembleRelease` prüft schon mit Lint-Vital (N-6).
 - Review Build 43 (Android): Guava 33.7.2 (K-01), Kotlin-Warnung im Test (K-04), Klingeln am Handy nimmt nach einem Prozessende wieder auf (K-06), Einschlaf-Modus auch für den Zweitwecker am Handy (K-07), CSV-Export im Hintergrund (K-09), Nacht-Check «Uhr-App veraltet» (O-04), Wiederherstellen mit Marke gegen Prozessende (K-03), Tests für Klingeln am Handy und Planen/Wecken der Uhr (W-01).
 - Audit 31.10.: K1 (Nachfrist), K2 (zwei Wecker am Handy), N1 («stop» der Uhr), H2 (Schlummern am Handy nach Neustart), H4 (Klingeln der Galaxy Watch nach Prozessende), H5/M6 (exakte Alarme der Uhr), H6 (zweiter Wecker während einer Nacht), Mitteilung «Nächster Wecker» privat, PBKDF2-Kommentar, Rundung und Einschlafklänge (Parität), iOS-Verlauf, Notizen und Diagnose ausserhalb der iCloud-Sicherung, DATENSCHUTZ.md (Inhalt der `.pwbak`, Diagnoseprotokoll, iCloud, Sperrbildschirm).
 

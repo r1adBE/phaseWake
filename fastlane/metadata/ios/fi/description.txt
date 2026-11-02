@@ -3,7 +3,7 @@ Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu l
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
 • Kello mittaa vain aikaikkunan aikana: säästää akkua.
-• Värinä ranteessa, halutessasi äänen kanssa – iPhone soi varaherätyksenä, jos jokin menee pieleen.
+• Värinä ranteessa – halutessasi myös iPhone soi, ja varaherätyksenä, jos jokin menee pieleen.
 • Pysäytä pitämällä painettuna, torkuta enintään 3 kertaa.
 
 Tehty, ettet nuku pommiin

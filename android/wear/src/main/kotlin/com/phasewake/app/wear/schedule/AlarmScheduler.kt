@@ -201,7 +201,8 @@ class AlarmScheduler(
             // Der abgelegte Eintrag ist das ausstehende Wecken; der neue Plan folgt danach.
             DirectBoot.saveNext(context, plan, spec)
         }
-        setDeadline(context, plan)
+        // Zielzeit aus der Entscheidung (Review M-2: dieselbe Regel, die ScheduleRulesTest prüft).
+        setDeadlineAt(context, plan, decision.deadlineAt ?: plan.target)
         // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
         // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
         val start = decision.windowAt ?: plan.windowStart

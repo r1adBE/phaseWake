@@ -77,6 +77,22 @@ class WearSync(context: Context) {
         dataClient.putDataItem(OnsetShift.request(shift)).await()
     }
 
+    /** Handy: neueste abgelegte frühere Zielzeit der Uhr (Review N-1, auch nach einem Prozessende); `null`, wenn keine da ist. */
+    suspend fun fetchOnsetShift(): OnsetShift? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_ONSET_SHIFT).build()).await()
+        try {
+            items.mapNotNull { OnsetShift.read(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.at }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
+    /** Handy: entfernt die frühere Zielzeit nach ihrer Nacht aus dem Data Layer (Datensparsamkeit). */
+    suspend fun deleteOnsetShift() = delete(Uri.Builder().scheme("wear").path(DataLayer.PATH_ONSET_SHIFT).build())
+
     /** Handy: zuletzt gemeldeter Status der Uhr; `null`, wenn sie noch nie etwas gemeldet hat. */
     suspend fun watchReady(): Boolean? = readStatus { readReady(it) }
 

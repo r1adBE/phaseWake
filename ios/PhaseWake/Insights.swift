@@ -1,5 +1,6 @@
 import PhaseWakeCore
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// Befinden, Datenqualität und Trends – gleiche Texte und Regeln wie Android.
 func feelingName(_ feeling: Int) -> String { L("feeling_\(min(5, max(1, feeling)))") }
@@ -152,9 +153,42 @@ struct TrendsCard: View {
     private func decimal(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(1))) }
 }
 
-/// Verlauf als echte .csv-Datei zum Teilen (nicht als Text).
-func exportFile(_ nights: [NightRecord], notes: [String: [String]]) -> URL {
-    let url = FileManager.default.temporaryDirectory.appendingPathComponent("phasewake-nights.csv")
-    try? NightHistory.exportCsv(nights, notes: notes).write(to: url, atomically: true, encoding: .utf8)
-    return url
+/// Verlauf als echte .csv-Datei zum Teilen (nicht als Text), für `ShareLink(item:)`. Die Datei mit Bewegungs- und
+/// Pulsreihen entsteht erst, wenn wirklich geteilt wird – im Hintergrund, nicht bei jedem Neuzeichnen der Ansicht –, in
+/// einem eigenen Ordner der temporären Dateien. Der wird beim nächsten Teilen und beim nächsten Start der App geleert
+/// (`cleanUp`), damit die Daten nicht liegen bleiben.
+struct NightsExport: Transferable, Sendable {
+    let nights: [NightRecord]
+    let notes: [String: [String]]
+
+    /// Name der geteilten Datei.
+    private static let fileName = "phasewake-nights.csv"
+
+    /// Ordner der Exporte in den temporären Dateien.
+    private static var directory: URL {
+        FileManager.default.temporaryDirectory.appendingPathComponent("export", isDirectory: true)
+    }
+
+    static var transferRepresentation: some TransferRepresentation {
+        FileRepresentation(exportedContentType: .commaSeparatedText) { export in
+            SentTransferredFile(try export.write())
+        }
+    }
+
+    /// Schreibt die Datei (alte Exporte vorher weg) und gibt sie zurück.
+    private func write() throws -> URL {
+        Self.cleanUp()
+        let folder = Self.directory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let url = folder.appendingPathComponent(Self.fileName)
+        try NightHistory.exportCsv(nights, notes: notes).write(to: url, atomically: true, encoding: .utf8)
+        return url
+    }
+
+    /// Entfernt alle Exporte, auch die Datei früherer Versionen direkt in den temporären Dateien.
+    static func cleanUp() {
+        let manager = FileManager.default
+        try? manager.removeItem(at: directory)
+        try? manager.removeItem(at: manager.temporaryDirectory.appendingPathComponent(fileName))
+    }
 }

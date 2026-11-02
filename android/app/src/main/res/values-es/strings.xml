@@ -180,7 +180,7 @@
     <string name="check_companion_problem">Si no, mientras usas el teléfono, la alarma solo aparece como notificación arriba.</string>
     <string name="companion_failed">No se encontró ningún reloj. Comprueba que esté conectado y que el Bluetooth esté activado, y vuelve a intentarlo.</string>
     <string name="check_exact_alarms">Alarmas exactas permitidas</string>
-    <string name="check_exact_alarms_problem">Permite alarmas y recordatorios para que la alarma de respaldo suene a tiempo.</string>
+    <string name="check_exact_alarms_problem">Permite alarmas y recordatorios: sin este permiso, puede que la alarma de respaldo no suene.</string>
     <string name="check_dnd">No molestar deja pasar las alarmas</string>
     <string name="check_battery">Batería del teléfono</string>
     <string name="check_battery_problem">Menos del %1$d %% – carga tu teléfono para que la alarma de respaldo pueda sonar.</string>

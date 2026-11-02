@@ -180,7 +180,7 @@
     <string name="check_companion_problem">Altfel, cât timp folosești telefonul, alarma apare doar ca notificare sus.</string>
     <string name="companion_failed">Niciun ceas găsit. Verifică dacă e conectat și dacă Bluetooth e pornit, apoi încearcă din nou.</string>
     <string name="check_exact_alarms">Alarme exacte permise</string>
-    <string name="check_exact_alarms_problem">Permite alarmele și mementourile pentru ca alarma de rezervă să sune la timp.</string>
+    <string name="check_exact_alarms_problem">Permite alarmele și mementourile – fără această permisiune, alarma de rezervă s-ar putea să nu sune deloc.</string>
     <string name="check_dnd">Nu deranja lasă alarmele să treacă</string>
     <string name="check_battery">Bateria telefonului</string>
     <string name="check_battery_problem">Sub %1$d %% – încarcă telefonul ca alarma de rezervă să poată suna.</string>

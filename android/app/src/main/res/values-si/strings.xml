@@ -179,7 +179,7 @@
     <string name="check_companion_problem">නැතහොත් දුරකථනය භාවිත කරන අතරතුර එලාමය ඉහළින් දැනුම්දීමක් ලෙස පමණක් පෙනේ.</string>
     <string name="companion_failed">ඔරලෝසුවක් හමු නොවීය. එය සම්බන්ධදැයි සහ බ්ලූටූත් ක්‍රියාත්මකදැයි පරීක්ෂා කර නැවත උත්සාහ කරන්න.</string>
     <string name="check_exact_alarms">නිශ්චිත එලාමවලට ඉඩ ඇත</string>
-    <string name="check_exact_alarms_problem">උපස්ථ එලාමය නියමිත වේලාවට නාද වීමට “එලාම සහ සිහිකැඳවීම්” වලට ඉඩ දෙන්න.</string>
+    <string name="check_exact_alarms_problem">“එලාම සහ සිහිකැඳවීම්” වලට ඉඩ දෙන්න – මෙම අවසරය නොමැතිව උපස්ථ එලාමය කිසිසේත් නාද නොවිය හැක.</string>
     <string name="check_dnd">“බාධා නොකරන්න” එලාමවලට ඉඩ දෙයි</string>
     <string name="check_battery">දුරකථන බැටරිය</string>
     <string name="check_battery_problem">%1$d %% ට අඩුයි – උපස්ථ එලාමය නාද වීමට දුරකථනය ආරෝපණය කරන්න.</string>

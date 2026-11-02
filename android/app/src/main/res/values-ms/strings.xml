@@ -174,7 +174,7 @@
     <string name="check_companion_problem">Jika tidak, semasa awak menggunakan telefon, penggera hanya dipaparkan sebagai pemberitahuan di atas.</string>
     <string name="companion_failed">Tiada jam tangan ditemui. Semak sama ada ia disambungkan dan Bluetooth dihidupkan, kemudian cuba lagi.</string>
     <string name="check_exact_alarms">Penggera tepat dibenarkan</string>
-    <string name="check_exact_alarms_problem">Benarkan penggera &amp; peringatan supaya penggera sandaran berbunyi tepat pada masanya.</string>
+    <string name="check_exact_alarms_problem">Benarkan penggera &amp; peringatan – tanpa kebenaran ini, penggera sandaran mungkin tidak berbunyi langsung.</string>
     <string name="check_dnd">Jangan Ganggu membenarkan penggera</string>
     <string name="check_battery">Bateri telefon</string>
     <string name="check_battery_problem">Kurang daripada %1$d %% – cas telefon awak supaya penggera sandaran boleh berdering.</string>

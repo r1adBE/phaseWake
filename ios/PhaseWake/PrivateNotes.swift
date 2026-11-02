@@ -2,8 +2,8 @@ import Foundation
 import os
 import PhaseWakeCore
 
-/// Schlafnotizen, eigene Notizen und Befinden zu Nächten aus anderen Apps (nur iPhone): als Dateien im von der
-/// Sicherung ausgenommenen Ordner (`PrivateFiles`) statt in `UserDefaults`, das mit der iCloud-Sicherung ginge.
+/// Schlafnotizen, eigene Notizen, Befinden zu Nächten aus anderen Apps und die Abendroutine (nur iPhone): als Dateien
+/// im von der Sicherung ausgenommenen Ordner (`PrivateFiles`) statt in `UserDefaults`, das mit der iCloud-Sicherung ginge.
 /// Gleiche Formate und Regeln wie die Notiz-Funktionen von `PhaseWakeStorage`. Stände früherer Versionen werden
 /// beim Erzeugen einmal aus `UserDefaults` übernommen und dort gelöscht.
 final class PrivateNotes: @unchecked Sendable {
@@ -11,13 +11,20 @@ final class PrivateNotes: @unchecked Sendable {
         case notes = "notes.v1"
         case custom = "custom-notes.v1"
         case feelings = "health-feelings.v1"
+        /// Punkte der Abendroutine (`Routine.encodeItems`); keine Datei = nie geändert, es gelten die Vorschläge.
+        case routineItems = "routine-items.v1"
+        /// Haken der Abendroutine je Nachtdatum (`Routine.encodeTicks`).
+        case routineTicks = "routine-ticks.v1"
 
-        /// Schlüssel in `UserDefaults` bis Version 16.2 (`PhaseWakeStorage`).
+        /// Schlüssel in `UserDefaults` früherer Versionen: Notizen bis 16.2 (`PhaseWakeStorage`), Abendroutine bis
+        /// Build 45 (`PhoneModel`).
         var legacyKey: String {
             switch self {
             case .notes: "sleepNotes"
             case .custom: "customNotes"
             case .feelings: "healthFeelings"
+            case .routineItems: "routineItems"
+            case .routineTicks: "routineTicks"
             }
         }
     }
@@ -26,8 +33,9 @@ final class PrivateNotes: @unchecked Sendable {
     private let directory: URL
     private static let logger = Logger(subsystem: "com.phasewake.app", category: "PrivateNotes")
 
-    /// Namen aller Dateien im Ordner (für das Wiederherstellen in einem Schritt, `BackupIO`).
-    static let fileNames = File.allCases.map(\.rawValue)
+    /// Namen der Dateien, die das Wiederherstellen in einem Schritt tauscht (`BackupIO.stage`). Die Abendroutine nicht:
+    /// Sie folgt wie bisher mit den Einstellungen (`BackupIO.applySettings`), damit «nie geändert» erhalten bleibt.
+    static let fileNames = [File.notes, .custom, .feelings].map(\.rawValue)
 
     /// Erzeugt den Speicher in `directory` und übernimmt alte Stände aus `defaults`; `nil` = nichts übernehmen
     /// (Vorbereiten einer Wiederherstellung in einem eigenen Ordner).
@@ -114,6 +122,32 @@ final class PrivateNotes: @unchecked Sendable {
         let text = HealthFeelings.encode(feelings)
         write(text, to: .feelings)
         return HealthFeelings.decode(text)
+    }
+
+    // MARK: Abendroutine
+
+    /// Gespeicherte Punkte der Abendroutine als Text (`Routine.encodeItems`); `nil` = nie geändert (Vorschläge).
+    func routineItemsText() -> String? {
+        lock.lock(); defer { lock.unlock() }
+        return read(.routineItems)
+    }
+
+    /// Speichert die Punkte als Text (`Routine.encodeItems`); `nil` = zurück zu den Vorschlägen (Wiederherstellen).
+    func setRoutineItemsText(_ text: String?) {
+        lock.lock(); defer { lock.unlock() }
+        if let text { write(text, to: .routineItems) } else { remove(.routineItems) }
+    }
+
+    /// Haken der Abendroutine je Nachtdatum.
+    func routineTicks() -> [String: [String]] {
+        lock.lock(); defer { lock.unlock() }
+        return Routine.decodeTicks(read(.routineTicks))
+    }
+
+    /// Speichert die Haken (`Routine.encodeTicks`); leer = Datei entfernen (Verlauf gelöscht).
+    func setRoutineTicks(_ ticks: [String: [String]]) {
+        lock.lock(); defer { lock.unlock() }
+        if ticks.isEmpty { remove(.routineTicks) } else { write(Routine.encodeTicks(ticks), to: .routineTicks) }
     }
 
     // MARK: Dateien

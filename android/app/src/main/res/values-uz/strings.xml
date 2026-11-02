@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Aks holda telefondan foydalanayotganingda budilnik faqat yuqorida bildirishnoma sifatida chiqadi.</string>
     <string name="companion_failed">Soat topilmadi. Ulanganini va Bluetooth yoqilganini tekshir, keyin qayta urinib ko‘r.</string>
     <string name="check_exact_alarms">Aniq budilniklarga ruxsat bor</string>
-    <string name="check_exact_alarms_problem">Zaxira budilnik oʻz vaqtida jiringlashi uchun «Signal va eslatmalar»ga ruxsat ber.</string>
+    <string name="check_exact_alarms_problem">«Signal va eslatmalar»ga ruxsat ber – bu ruxsatsiz zaxira budilnik umuman jiringlamasligi mumkin.</string>
     <string name="check_dnd">«Bezovta qilinmasin» budilniklarni oʻtkazadi</string>
     <string name="check_battery">Telefon batareyasi</string>
     <string name="check_battery_problem">%1$d %% dan kam – zaxira budilnik jiringlay olishi uchun telefoningni quvvatla.</string>

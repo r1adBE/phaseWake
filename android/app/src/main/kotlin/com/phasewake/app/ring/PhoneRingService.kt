@@ -117,7 +117,7 @@ class PhoneRingService : Service() {
             val spec = if (unlocked) phoneApp.specFor(alarmId) else null
             val took = if (ringing != null) " (took over)" else ""
             phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch$took" else "phone backup$took")
-            if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, java.time.Instant.now())
+            if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, now())
             // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
             val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
             // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
@@ -147,9 +147,9 @@ class PhoneRingService : Service() {
         if (ringing.fromWatch) {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
             legacySnoozes = done
-            legacySnoozedAt = System.currentTimeMillis()
+            legacySnoozedAt = clock()
             val alarmId = lastAlarmId
-            val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+            val safetyAt = Snooze.nextRing(now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
             phoneApp.appScope.launch {
                 // Zuerst die eigene Sicherung: Erreicht die Bitte die Uhr nicht oder klingelt sie danach
                 // nicht wieder, klingelt das Handy kurz nach dem Schlummer-Ende selbst.
@@ -163,7 +163,7 @@ class PhoneRingService : Service() {
         } else {
             state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise, wakeTask = ringing.wakeTask)
             // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
-            phoneApp.backup.snoozeUntil(Snooze.nextRing(java.time.Instant.now()), lastAlarmId, done)
+            phoneApp.backup.snoozeUntil(Snooze.nextRing(now()), lastAlarmId, done)
         }
     }
 
@@ -175,7 +175,7 @@ class PhoneRingService : Service() {
      * ([BackupAlarm.cancelSnooze]).
      */
     private fun armResume(fromWatch: Boolean, alarmId: String?, snoozesDone: Int) {
-        val at = RingRules.resumeAt(fromWatch, System.currentTimeMillis()) ?: return
+        val at = RingRules.resumeAt(fromWatch, clock()) ?: return
         phoneApp.backup.snoozeUntil(java.time.Instant.ofEpochMilli(at), alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT))
     }
 
@@ -197,7 +197,7 @@ class PhoneRingService : Service() {
             RingRules.Timeout.STOP_WITH_SAFETY -> {
                 val alarmId = lastAlarmId
                 val done = RingRules.snoozeDone(ringing?.snoozesLeft ?: 0) ?: Snooze.MAX_COUNT
-                val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+                val safetyAt = Snooze.nextRing(now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
                 phoneApp.appScope.launch { phoneApp.backup.snoozeSafety(alarmId, safetyAt, done) }
             }
             RingRules.Timeout.STOP -> Unit
@@ -317,8 +317,14 @@ class PhoneRingService : Service() {
         private var legacySnoozes = 0
         private var legacySnoozedAt = 0L
 
+        /** Uhrzeit für Schlummern und Wiederaufnahme (ms); in Tests fest (Review M-2). */
+        @Volatile
+        internal var clock: () -> Long = System::currentTimeMillis
+
+        private fun now(): java.time.Instant = java.time.Instant.ofEpochMilli(clock())
+
         private fun legacyWatchSnoozes(): Int =
-            if (System.currentTimeMillis() - legacySnoozedAt > LEGACY_SNOOZE_RESET_MS) 0 else legacySnoozes
+            if (clock() - legacySnoozedAt > LEGACY_SNOOZE_RESET_MS) 0 else legacySnoozes
 
         private const val LEGACY_SNOOZE_RESET_MS = 30 * 60_000L
 

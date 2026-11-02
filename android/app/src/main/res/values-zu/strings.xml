@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Uma kungenjalo, ngesikhathi usebenzisa ifoni, i-alamu ivela kuphela njengesaziso phezulu.</string>
     <string name="companion_failed">Alikho iwashi elitholakele. Hlola ukuthi lixhunyiwe futhi i-Bluetooth ivuliwe, bese uzama futhi.</string>
     <string name="check_exact_alarms">Ama-alamu anembile avunyelwe</string>
-    <string name="check_exact_alarms_problem">Vumela ama-alamu &amp; izikhumbuzi ukuze i-alamu yokwesekwa ikhale ngesikhathi.</string>
+    <string name="check_exact_alarms_problem">Vumela ama-alamu &amp; izikhumbuzi – ngaphandle kwale mvume, i-alamu yokwesekwa ingase ingakhali nhlobo.</string>
     <string name="check_dnd">Ungaphazamisi uvumela ama-alamu</string>
     <string name="check_battery">Ibhethri lefoni</string>
     <string name="check_battery_problem">Ngaphansi kuka-%1$d %% – shaja ifoni yakho ukuze i-alamu yokwesekwa ikwazi ukukhala.</string>

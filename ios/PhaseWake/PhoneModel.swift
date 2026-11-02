@@ -30,7 +30,7 @@ final class PhoneModel {
     private(set) var soundRecDefault = false
     /// Wahl für eine bestimmte Nacht (Nachtdatum, an/aus), falls selbst gewählt oder gestoppt.
     private(set) var soundRecChoice: (night: String, on: Bool)?
-    /// Abendroutine: Punkte und Haken je Nachtdatum.
+    /// Abendroutine: Punkte und Haken je Nachtdatum (in `privateNotes`, nicht in der iCloud-Sicherung).
     private(set) var routineItems: [RoutineItem] = Routine.defaults
     private(set) var routineTicks: [String: [String]] = [:]
     /// Wochenrückblick am Sonntag um 18 Uhr, Standard aus.
@@ -38,8 +38,6 @@ final class PhoneModel {
     // Schlüssel auch für Sichern und Wiederherstellen (`BackupIO`).
     static let soundRecDefaultKey = "soundRecDefault"
     private static let soundRecNightKey = "soundRecNight"
-    static let routineItemsKey = "routineItems"
-    static let routineTicksKey = "routineTicks"
     static let weeklyKey = "weeklyReview"
     /// «Verlauf löschen» (ms seit 1970): Nächte aus Apple Health, die nicht danach enden, bleiben ausgeblendet.
     private(set) var historyClearedAt: Date?
@@ -107,8 +105,8 @@ final class PhoneModel {
             let parts = text.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
             if parts.count == 2, NightDate.isValid(parts[0]) { soundRecChoice = (night: parts[0], on: parts[1] == "1") }
         }
-        routineItems = Routine.decodeItems(defaults.string(forKey: Self.routineItemsKey))
-        routineTicks = Routine.decodeTicks(defaults.string(forKey: Self.routineTicksKey))
+        routineItems = Routine.decodeItems(privateNotes.routineItemsText())
+        routineTicks = privateNotes.routineTicks()
         weeklyReview = defaults.bool(forKey: Self.weeklyKey)
         historyClearedAt = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber).map { Date(timeIntervalSince1970: $0.doubleValue / 1000) }
     }
@@ -214,7 +212,7 @@ final class PhoneModel {
         healthFeelings = [:]
         // Ebenso die Haken der Abendroutine und die Geräusch-Ausschnitte.
         routineTicks = [:]
-        UserDefaults.standard.removeObject(forKey: Self.routineTicksKey)
+        privateNotes.setRoutineTicks([:])
         recorder.deleteEverything()
         // Nächte aus Apple Health lassen sich nicht löschen, nur ausblenden (`HealthHistory.visible`).
         let now = Date()
@@ -360,7 +358,7 @@ extension PhoneModel {
 
     private func setRoutineItems(_ items: [RoutineItem]) {
         let text = Routine.encodeItems(items)
-        UserDefaults.standard.set(text, forKey: Self.routineItemsKey)
+        privateNotes.setRoutineItemsText(text)
         routineItems = Routine.decodeItems(text)
     }
 
@@ -368,7 +366,7 @@ extension PhoneModel {
 
     func toggleRoutine(_ id: String, night: String) {
         routineTicks = Routine.toggle(routineTicks, date: night, id: id)
-        UserDefaults.standard.set(Routine.encodeTicks(routineTicks), forKey: Self.routineTicksKey)
+        privateNotes.setRoutineTicks(routineTicks)
     }
 
     /// Anzeigename: Vorschläge übersetzt, eigene mit ihrem Text.

@@ -14,7 +14,8 @@ import java.time.Instant
  *
  * Die Uhr legt sie als Datenpaket ab ([DataLayer.PATH_ONSET_SHIFT]), nicht nur als Nachricht: So kommt sie auch an,
  * wenn das Handy gerade nicht erreichbar ist. Das Handy merkt sie sich und stellt den Zweitwecker dieser Nacht auf die
- * frühere Zielzeit ([applyTo]); nach der Nacht fällt sie weg ([expired]).
+ * frühere Zielzeit ([applyTo]); nach der Nacht fällt sie weg ([expired]). Eine neuere Meldung ohne frühere Zielzeit
+ * (Zielzeit nicht vor der eingestellten, z. B. [cancel]) hebt sie auf.
  */
 data class OnsetShift(val alarmId: String, val original: Long, val target: Long, val at: Long) {
 
@@ -37,6 +38,12 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
     fun encode(): String = listOf(Uri.encode(alarmId), original, target, at).joinToString("|")
 
     companion object {
+        /**
+         * Meldung ohne frühere Zielzeit (Review H-1): Die Uhr hat ihre Ausnahme [plan] gelöscht. Neuer als die gemerkte,
+         * ersetzt sie diese am Handy; [applyTo] lässt sie aus (nicht früher), es gilt wieder die eingestellte Zeit.
+         */
+        fun cancel(plan: WakePlan, at: Long): OnsetShift = plan.target.toEpochMilli().let { OnsetShift(plan.alarmId, it, it, at) }
+
         /** Liest [encode]; `null`, wenn leer oder unlesbar. */
         fun decode(text: String?): OnsetShift? {
             val f = text?.split("|")?.takeIf { it.size >= 4 } ?: return null

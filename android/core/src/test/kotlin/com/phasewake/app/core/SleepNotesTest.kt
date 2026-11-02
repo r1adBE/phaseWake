@@ -170,7 +170,7 @@ class SleepNotesTest {
     }
 
     @Test
-    fun sameNightDateCountsOnceAndHealthNightsMapByEnd() {
+    fun sameNightDateCountsOnceAndHealthNightsMapByMidpoint() {
         // Zwei Wecker am selben Morgen: eine Nacht, das Befinden der zuletzt geweckten zählt.
         val first = night(0, 1)
         val second = first.copy(alarmId = "b", windowStart = first.windowStart.plusSeconds(1800), wokeAt = first.wokeAt.plusSeconds(1800), feeling = 5)
@@ -182,6 +182,10 @@ class SleepNotesTest {
 
         val sleeps = listOf(SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:30"), 420), SleepSummary(at("2026-10-28T13:00"), at("2026-10-28T16:30"), 200))
         assertEquals(mapOf(day to 420L, day.plusDays(1) to 200L), NoteEffect.asleepByNight(sleeps, zone))
+        // Mitte und Ende ergeben verschiedene Daten (spät aufgewacht): es zählt die Mitte, also der Abend davor.
+        val late = SleepSummary(at("2026-10-28T02:42"), at("2026-10-28T12:50"), 570)
+        assertEquals(day.plusDays(1), SleepNotes.nightDate(late.end, zone), "über das Ende wäre es der 28.")
+        assertEquals(mapOf(day to 570L), NoteEffect.asleepByNight(listOf(late), zone))
     }
 
     @Test

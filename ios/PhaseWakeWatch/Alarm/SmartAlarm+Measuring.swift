@@ -16,8 +16,9 @@ extension SmartAlarm {
         // Plan bei geschlossener App nicht verdrängt hat (`keepsRealSession`).
         let candidates = [model.plan, model.realPlan].compactMap { $0 }
         let matching: WakePlan? = if let plan { candidates.contains(plan) ? plan : nil } else { model.plan }
-        // Ein nachgeholter Wecker (Zielzeit schon vorbei) gilt trotzdem: Er klingelt sofort (`beginMeasuring`).
-        let missed = matching != nil && matching == model.missedPlan
+        // Ein nachgeholter Wecker oder eine ausstehende Nacht (Zielzeit schon vorbei) gilt trotzdem: Er klingelt
+        // sofort (`beginMeasuring`).
+        let missed = matching != nil && (matching == model.missedPlan || matching == model.pendingNight)
         guard let current = matching,
               now >= Self.sessionStart(current).addingTimeInterval(-Self.startTolerance),
               missed || now < current.target.addingTimeInterval(Self.fallbackDelay) else {

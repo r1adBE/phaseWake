@@ -114,7 +114,7 @@ struct HistoryView: View {
 
     private var export: some View {
         VStack(spacing: 0) {
-            ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
+            ShareLink(item: NightsExport(nights: model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
                 Label(L("history_export"), systemImage: "square.and.arrow.up")
             }
             .padding(.top)

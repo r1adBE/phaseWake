@@ -177,7 +177,7 @@
     <string name="check_companion_problem">Benutzt du gerade das Handy, erscheint der Wecker sonst nur als Mitteilung oben.</string>
     <string name="companion_failed">Keine Uhr gefunden. Prüfe, ob sie verbunden und Bluetooth an ist, und versuch es noch einmal.</string>
     <string name="check_exact_alarms">Exakte Wecker erlaubt</string>
-    <string name="check_exact_alarms_problem">Erlaube «Wecker und Erinnerungen», damit der Zweitwecker pünktlich klingelt.</string>
+    <string name="check_exact_alarms_problem">Erlaube «Wecker und Erinnerungen» – ohne dieses Recht klingelt der Zweitwecker womöglich nicht.</string>
     <string name="check_dnd">«Nicht stören» lässt Wecker durch</string>
     <string name="check_battery">Akku des Handys</string>
     <string name="check_battery_problem">Unter %1$d %% – lade das Handy, damit der Zweitwecker sicher klingelt.</string>

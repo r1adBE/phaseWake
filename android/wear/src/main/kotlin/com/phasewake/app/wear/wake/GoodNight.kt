@@ -98,7 +98,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
 
 /**
  * Eingeschlafen um [asleep] (Wecker [spec], eingestellte Weckzeit [latest]): Einschlafzeit merken. Mit Schlafdauer gilt
- * Einschlafzeit + Schlafdauer als Ausnahme für diese Nacht, auch für den Zweitwecker am Handy ([OnsetShift]).
+ * Einschlafzeit + Schlafdauer als Ausnahme für diese Nacht, auch für den Zweitwecker am Handy ([OnsetShift]; ohne
+ * frühere Zielzeit hebt die Meldung dort eine frühere auf).
  * «Gute Nacht» endet, neu planen.
  */
 private fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Instant) {
@@ -115,8 +116,9 @@ private fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Insta
         app.onsets.set(spec.id, latest, asleep)
         if (plan != null) app.onsetOverride.set(plan)
         // Auch der Zweitwecker am Handy klingelt diese Nacht früher (Review K-07): als Paket, kommt also auch an,
-        // wenn das Handy gerade nicht erreichbar ist.
-        if (plan != null && plan.target.isBefore(latest)) {
+        // wenn das Handy gerade nicht erreichbar ist. Nach jedem Einschlafen mit Schlafdauer, auch ohne frühere Zielzeit
+        // (Review H-1): Ein zweites «Gute Nacht» ersetzt so eine frühere Meldung, statt dass das Handy bei ihr bleibt.
+        if (plan != null) {
             app.sync.publishOnsetShift(OnsetShift(spec.id, latest.toEpochMilli(), plan.target.toEpochMilli(), System.currentTimeMillis()))
         }
         app.scheduler.reschedule()

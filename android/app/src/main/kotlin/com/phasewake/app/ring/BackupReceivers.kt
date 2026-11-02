@@ -80,6 +80,8 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     }
     val pending = goAsync()
     val app = context.phoneApp
+    // Startete der Prozess vor dem Entsperren, holt er hier dessen Start-Arbeiten nach (Review M-1; sonst nichts).
+    app.initUnlocked()
     app.appScope.launch {
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }

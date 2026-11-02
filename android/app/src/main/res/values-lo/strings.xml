@@ -175,7 +175,7 @@
     <string name="check_companion_problem">ຖ້າບໍ່ດັ່ງນັ້ນ ຂະນະທີ່ເຈົ້າໃຊ້ໂທລະສັບ ໂມງປຸກຈະສະແດງເປັນການແຈ້ງເຕືອນຢູ່ທາງເທິງເທົ່ານັ້ນ</string>
     <string name="companion_failed">ບໍ່ພົບໂມງ. ກວດເບິ່ງວ່າໂມງເຊື່ອມຕໍ່ຢູ່ ແລະ Bluetooth ເປີດຢູ່ ແລ້ວລອງໃໝ່</string>
     <string name="check_exact_alarms">ອະນຸຍາດໂມງປຸກແບບແນ່ນອນແລ້ວ</string>
-    <string name="check_exact_alarms_problem">ອະນຸຍາດ “ໂມງປຸກ &amp; ການແຈ້ງເຕືອນ” ເພື່ອໃຫ້ໂມງປຸກສຳຮອງດັງຕົງເວລາ</string>
+    <string name="check_exact_alarms_problem">ອະນຸຍາດ “ໂມງປຸກ &amp; ການແຈ້ງເຕືອນ” – ຖ້າບໍ່ມີສິດນີ້ ໂມງປຸກສຳຮອງອາດຈະບໍ່ດັງເລີຍ</string>
     <string name="check_dnd">“ຫ້າມລົບກວນ” ປ່ອຍໃຫ້ໂມງປຸກດັງ</string>
     <string name="check_battery">ແບັດເຕີຣີໂທລະສັບ</string>
     <string name="check_battery_problem">ຕ່ຳກວ່າ %1$d %% – ສາກໂທລະສັບ ເພື່ອໃຫ້ໂມງປຸກສຳຮອງດັງໄດ້</string>

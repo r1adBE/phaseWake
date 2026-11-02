@@ -135,10 +135,10 @@ internal object SnoozeSafety {
         prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE) }
     }
 
-    /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. */
-    fun restore(context: Context) {
+    /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. [now]: für Tests. */
+    fun restore(context: Context, now: Instant = Instant.now()) {
         val saved = load(context) ?: return
-        val current = Instant.now()
+        val current = now
         // Wie beim Zweitwecker: Probewecker und Powernap nur 60 s nach dem Schlummer-Ende, sonst 30 Min.
         if (!Transient.catchesUpAfterBoot(saved.alarmId.orEmpty(), saved.at, current, MISSED_DURING_BOOT)) {
             clear(context)

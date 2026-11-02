@@ -178,7 +178,7 @@
     <string name="check_companion_problem">Иначе, докато използваш телефона, будилникът се показва само като известие горе.</string>
     <string name="companion_failed">Не е намерен часовник. Провери дали е свързан и Bluetooth е включен, после опитай отново.</string>
     <string name="check_exact_alarms">Точните будилници са разрешени</string>
-    <string name="check_exact_alarms_problem">Разреши „Будилници и напомняния“, за да звънне резервният будилник навреме.</string>
+    <string name="check_exact_alarms_problem">Разреши „Будилници и напомняния“ – без това разрешение резервният будилник може изобщо да не звънне.</string>
     <string name="check_dnd">„Не безпокойте“ пропуска будилниците</string>
     <string name="check_battery">Батерия на телефона</string>
     <string name="check_battery_problem">Под %1$d %% – зареди телефона, за да може резервният будилник да звънне.</string>

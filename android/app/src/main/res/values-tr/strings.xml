@@ -177,7 +177,7 @@
     <string name="check_companion_problem">Aksi halde telefonu kullanırken alarm yalnızca üstte bir bildirim olarak görünür.</string>
     <string name="companion_failed">Saat bulunamadı. Bağlı olduğunu ve Bluetooth\'un açık olduğunu kontrol et, sonra tekrar dene.</string>
     <string name="check_exact_alarms">Tam zamanlı alarmlara izin verildi</string>
-    <string name="check_exact_alarms_problem">Yedek alarmın zamanında çalması için alarmlara ve hatırlatıcılara izin ver.</string>
+    <string name="check_exact_alarms_problem">Alarmlara ve hatırlatıcılara izin ver – bu izin olmadan yedek alarm hiç çalmayabilir.</string>
     <string name="check_dnd">Rahatsız Etme alarmların çalmasına izin veriyor</string>
     <string name="check_battery">Telefon pili</string>
     <string name="check_battery_problem">Pil %1$d %% altında – yedek alarmın çalabilmesi için telefonunu şarj et.</string>

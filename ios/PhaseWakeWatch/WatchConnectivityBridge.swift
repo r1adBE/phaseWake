@@ -66,32 +66,50 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
+    @MainActor
     func send(night: NightRecord) {
-        WCSession.default.transferUserInfo([SyncKeys.night: Codec.encodeNight(night)])
+        deliver([SyncKeys.night: Codec.encodeNight(night)], userInfoOnly: true)
     }
 
     /// Sofort, wenn das iPhone erreichbar ist; sonst zugestellt, sobald es das wieder ist.
     /// Mit Zielzeit der Nacht und Sendezeit: Das iPhone verwirft ein verspätetes «klingeln» und setzt
     /// die Sicherung genau für diese Nacht aus. `snoozeUntil` nur bei «stop» nach dem Schlummern: Das iPhone stellt
     /// dann eine Sicherung kurz nach dem Schlummer-Ende, statt die Nacht als beendet zu nehmen.
+    @MainActor
     func send(command: String, alarmId: String = "", target: Date? = nil, snoozesLeft: Int? = nil, snoozeUntil: Date? = nil) {
         var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.alarms: alarmId,
                                       SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
         if let target { payload[SyncKeys.target] = Int64(target.timeIntervalSince1970 * 1000) }
         if let snoozesLeft { payload[SyncKeys.snoozesLeft] = Int64(snoozesLeft) }
         if let snoozeUntil { payload[SyncKeys.snoozeUntil] = Int64(snoozeUntil.timeIntervalSince1970 * 1000) }
-        if WCSession.default.isReachable {
-            WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
-        } else {
-            WCSession.default.transferUserInfo(payload)
-        }
+        deliver(payload)
     }
 
     /// Befehl mit Inhalt (Powernap, Abbruch, Bestätigung des Probeweckers); sofort oder nachgereicht.
+    @MainActor
     func send(command: String, extra: [String: String]) {
         var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
         for (key, value) in extra { payload[key] = value }
-        if WCSession.default.isReachable {
+        deliver(payload)
+    }
+
+    /// Was vor der Aktivierung anfiel (z. B. App für eine Sitzung im Hintergrund gestartet und gleich geklingelt): Vorher
+    /// verwirft WatchConnectivity Nachrichten und Benutzerdaten bzw. wirft einen Fehler. Geht nach `activationDidComplete`
+    /// raus, wie auf dem iPhone (`PhoneConnectivity.pending`). Nur auf dem Main-Thread.
+    private var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
+
+    /// Sofort als Nachricht, wenn das iPhone erreichbar ist (bei einem Fehler als Benutzerdaten), sonst als Benutzerdaten;
+    /// `userInfoOnly` immer als Benutzerdaten (Nächte). Vor der Aktivierung gemerkt (`pending`). Die Sendezeit bleibt
+    /// die ursprüngliche: Das iPhone verwirft ein zu spätes «klingeln» selbst.
+    @MainActor
+    private func deliver(_ payload: [String: Any], userInfoOnly: Bool = false) {
+        guard WCSession.isSupported() else { return }
+        guard WCSession.default.activationState == .activated else {
+            pending.append((payload: payload, userInfoOnly: userInfoOnly))
+            if WCSession.default.delegate == nil { activate() }
+            return
+        }
+        if !userInfoOnly, WCSession.default.isReachable {
             WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
         } else {
             WCSession.default.transferUserInfo(payload)
@@ -103,8 +121,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     func session(_ session: WCSession, activationDidCompleteWith state: WCSessionActivationState, error: Error?) {
         guard state == .activated else { return }
         receive(session.receivedApplicationContext)
-        // `context` wird auf dem Main-Thread geschrieben.
-        DispatchQueue.main.async { self.sendContext() }
+        // `context` und `pending` werden auf dem Main-Thread geschrieben.
+        Task { @MainActor in
+            self.sendContext()
+            let queued = self.pending
+            self.pending = []
+            for item in queued { self.deliver(item.payload, userInfoOnly: item.userInfoOnly) }
+        }
     }
 
     func session(_ session: WCSession, didReceiveApplicationContext context: [String: Any]) {

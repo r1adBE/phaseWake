@@ -179,7 +179,7 @@
     <string name="check_companion_problem">नत्र फोन चलाइरहेको बेला अलार्म माथि सूचनाका रूपमा मात्र देखिन्छ।</string>
     <string name="companion_failed">कुनै घडी फेला परेन। घडी जोडिएको र ब्लुटुथ खुला छ कि छैन जाँच, अनि फेरि प्रयास गर।</string>
     <string name="check_exact_alarms">सटीक अलार्मलाई अनुमति छ</string>
-    <string name="check_exact_alarms_problem">ब्याकअप अलार्म समयमै बजोस् भन्नका लागि “अलार्म र रिमाइन्डर” लाई अनुमति देऊ।</string>
+    <string name="check_exact_alarms_problem">“अलार्म र रिमाइन्डर” लाई अनुमति देऊ – यो अनुमतिबिना ब्याकअप अलार्म बज्दै नबज्न सक्छ।</string>
     <string name="check_dnd">“बाधा नपुर्‍याउनुहोस्” ले अलार्म बज्न दिन्छ</string>
     <string name="check_battery">फोनको ब्याट्री</string>
     <string name="check_battery_problem">%1$d %% भन्दा कम – ब्याकअप अलार्म बज्न सकोस् भनेर फोन चार्ज गर।</string>

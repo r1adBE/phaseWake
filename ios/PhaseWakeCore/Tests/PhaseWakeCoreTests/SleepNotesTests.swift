@@ -173,6 +173,17 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(effects[0].avgFeelingWith, (5.0 + 3 + 3) / 3, accuracy: 1e-9)
     }
 
+    func testHealthNightsMapByMidpoint() {
+        // Wie Kotlin (sameNightDateCountsOnceAndHealthNightsMapByMidpoint): Schlafdauer je Nachtdatum über die Mitte.
+        let sleeps = [SleepSummary(start: at("2026-10-27T23:00"), end: at("2026-10-28T06:30"), asleepMinutes: 420),
+                      SleepSummary(start: at("2026-10-28T13:00"), end: at("2026-10-28T16:30"), asleepMinutes: 200)]
+        XCTAssertEqual(NoteEffect.asleepByNight(sleeps, calendar: zurich), ["2026-10-27": 420, "2026-10-28": 200])
+        // Mitte und Ende ergeben verschiedene Daten (spät aufgewacht): es zählt die Mitte, also der Abend davor.
+        let late = SleepSummary(start: at("2026-10-28T02:42"), end: at("2026-10-28T12:50"), asleepMinutes: 570)
+        XCTAssertEqual(SleepNotes.nightDate(late.end, calendar: zurich), "2026-10-28")
+        XCTAssertEqual(NoteEffect.asleepByNight([late], calendar: zurich), ["2026-10-27": 570])
+    }
+
     func testSmallDeltaIsNotVisible() {
         let e = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.4, avgFeelingWithout: 3, avgAsleepWith: nil, avgAsleepWithout: nil)
         XCTAssertFalse(e.isVisible)

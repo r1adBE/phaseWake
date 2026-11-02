@@ -179,7 +179,7 @@
     <string name="check_companion_problem">ስልክዎን እየተጠቀሙ ሳሉ፣ ያለዚህ ማንቂያው ከላይ እንደ ማሳወቂያ ብቻ ይታያል።</string>
     <string name="companion_failed">ምንም ሰዓት አልተገኘም። መገናኘቱንና ብሉቱዝ መብራቱን ያረጋግጡ፣ ከዚያ እንደገና ይሞክሩ።</string>
     <string name="check_exact_alarms">ትክክለኛ ማንቂያዎች ተፈቅደዋል</string>
-    <string name="check_exact_alarms_problem">ተጠባባቂ ማንቂያው በሰዓቱ እንዲደውል ማንቂያዎች &amp; አስታዋሾችን ይፍቀዱ።</string>
+    <string name="check_exact_alarms_problem">ማንቂያዎች &amp; አስታዋሾችን ይፍቀዱ – ያለዚህ ፍቃድ ተጠባባቂ ማንቂያው ጭራሽ ላይደውል ይችላል።</string>
     <string name="check_dnd">አትረብሽ ማንቂያዎችን ያሳልፋል</string>
     <string name="check_battery">የስልክ ባትሪ</string>
     <string name="check_battery_problem">ከ%1$d %% በታች – ተጠባባቂ ማንቂያው መደወል እንዲችል ስልክዎን ኃይል ይሙሉ።</string>

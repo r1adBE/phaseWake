@@ -179,7 +179,7 @@
     <string name="check_companion_problem">નહીં તો ફોન વાપરતા હો ત્યારે એલાર્મ ફક્ત ઉપર સૂચના તરીકે દેખાય છે.</string>
     <string name="companion_failed">કોઈ ઘડિયાળ મળી નથી. તે કનેક્ટ છે અને બ્લૂટૂથ ચાલુ છે કે નહીં તે તપાસો, પછી ફરી પ્રયાસ કરો.</string>
     <string name="check_exact_alarms">ચોક્કસ એલાર્મને મંજૂરી</string>
-    <string name="check_exact_alarms_problem">બેકઅપ એલાર્મ સમયસર વાગે તે માટે “એલાર્મ અને રિમાઇન્ડર”ને મંજૂરી આપો.</string>
+    <string name="check_exact_alarms_problem">“એલાર્મ અને રિમાઇન્ડર”ને મંજૂરી આપો – આ પરવાનગી વિના બેકઅપ એલાર્મ કદાચ વાગે જ નહીં.</string>
     <string name="check_dnd">“ખલેલ પાડશો નહીં” એલાર્મ વાગવા દે છે</string>
     <string name="check_battery">ફોનની બૅટરી</string>
     <string name="check_battery_problem">%1$d %%થી ઓછી – બેકઅપ એલાર્મ વાગી શકે તે માટે ફોન ચાર્જ કરો.</string>

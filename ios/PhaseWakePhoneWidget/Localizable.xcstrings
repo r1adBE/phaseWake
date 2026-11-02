@@ -34950,445 +34950,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laat wekkers & herinneringe toe sodat die rugsteunwekker betyds lui."
+            "value": "Laat wekkers & herinneringe toe – daarsonder lui die rugsteunwekker dalk glad nie."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ተጠባባቂ ማንቂያው በሰዓቱ እንዲደውል ማንቂያዎች & አስታዋሾችን ይፍቀዱ።"
+            "value": "ማንቂያዎች & አስታዋሾችን ይፍቀዱ – ያለዚህ ፍቃድ ተጠባባቂ ማንቂያው ጭራሽ ላይደውል ይችላል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اسمح بالمنبهات والتذكيرات ليرنّ المنبه الاحتياطي في الوقت المحدد."
+            "value": "اسمح بالمنبهات والتذكيرات – بدون هذا الإذن قد لا يرنّ المنبه الاحتياطي إطلاقًا."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ehtiyat siqnal vaxtında çalsın deyə “Siqnallar və xatırlatmalar”a icazə ver."
+            "value": "“Siqnallar və xatırlatmalar”a icazə ver – bu icazə olmadan ehtiyat siqnal heç çalmaya bilər."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Разреши „Будилници и напомняния“, за да звънне резервният будилник навреме."
+            "value": "Разреши „Будилници и напомняния“ – без това разрешение резервният будилник може изобщо да не звънне."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "“অ্যালার্ম ও রিমাইন্ডার”-এর অনুমতি দাও, যাতে ব্যাকআপ অ্যালার্ম ঠিক সময়ে বাজে।"
+            "value": "“অ্যালার্ম ও রিমাইন্ডার”-এর অনুমতি দাও – এই অনুমতি ছাড়া ব্যাকআপ অ্যালার্ম হয়তো একেবারেই বাজবে না।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dozvoli „Alarmi i podsjetnici“ kako bi rezervni alarm zvonio na vrijeme."
+            "value": "Dozvoli „Alarmi i podsjetnici“ – bez ovog odobrenja rezervni alarm možda uopće neće zvoniti."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permet «Alarmes i recordatoris» perquè l’alarma de reserva soni a l’hora."
+            "value": "Permet «Alarmes i recordatoris»: sense aquest permís, potser l’alarma de reserva no sonarà gens."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Povol budíky a připomenutí, aby záložní budík zazvonil včas."
+            "value": "Povol budíky a připomenutí – bez tohoto oprávnění záložní budík možná vůbec nezazvoní."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillad alarmer og påmindelser, så reservealarmen ringer til tiden."
+            "value": "Tillad alarmer og påmindelser – uden denne tilladelse ringer reservealarmen måske slet ikke."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erlaube «Wecker und Erinnerungen», damit der Zweitwecker pünktlich klingelt."
+            "value": "Erlaube «Wecker und Erinnerungen» – ohne dieses Recht klingelt der Zweitwecker womöglich nicht."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις, ώστε το εφεδρικό ξυπνητήρι να χτυπά στην ώρα του."
+            "value": "Επίτρεψε τα ξυπνητήρια και τις υπενθυμίσεις – χωρίς αυτή την άδεια το εφεδρικό ξυπνητήρι μπορεί να μη χτυπήσει καθόλου."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Allow alarms & reminders so the backup alarm rings on time."
+            "value": "Allow alarms & reminders – without it, the backup alarm may not ring at all."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permite alarmas y recordatorios para que la alarma de respaldo suene a tiempo."
+            "value": "Permite alarmas y recordatorios: sin este permiso, puede que la alarma de respaldo no suene."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Luba „Äratused ja meeldetuletused“, et varuäratus heliseks õigel ajal."
+            "value": "Luba „Äratused ja meeldetuletused“ – ilma selle loata ei pruugi varuäratus üldse helista."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baimendu «Alarmak eta abisuak», ordezko alarmak garaiz jo dezan."
+            "value": "Baimendu «Alarmak eta abisuak»: baimen hori gabe, baliteke ordezko alarmak ez jotzea."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "زنگ‌ها و یادآوری‌ها را مجاز کن تا زنگ پشتیبان سر وقت به صدا درآید."
+            "value": "زنگ‌ها و یادآوری‌ها را مجاز کن – بدون این اجازه ممکن است زنگ پشتیبان اصلاً به صدا درنیاید."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salli herätykset ja muistutukset, jotta varaherätys soi ajallaan."
+            "value": "Salli herätykset ja muistutukset – ilman tätä lupaa varaherätys ei ehkä soi lainkaan."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Payagan ang “Mga alarm at paalala” para tumunog sa oras ang backup na alarm."
+            "value": "Payagan ang “Mga alarm at paalala” – kung wala ito, baka hindi talaga tumunog ang backup na alarm."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Autorise les alarmes et rappels pour que l’alarme de secours sonne à l’heure."
+            "value": "Autorise les alarmes et rappels : sans cette autorisation, l’alarme de secours risque de ne pas sonner du tout."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceadaigh “Aláraim & meabhrúcháin” ionas go mbuailfidh an t-aláram cúltaca in am."
+            "value": "Ceadaigh “Aláraim & meabhrúcháin” – gan an cead seo, b’fhéidir nach mbuailfidh an t-aláram cúltaca ar chor ar bith."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permite «Alarmas e recordatorios» para que a alarma de reserva soe á hora."
+            "value": "Permite «Alarmas e recordatorios»: sen este permiso, pode que a alarma de reserva non soe."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "બેકઅપ એલાર્મ સમયસર વાગે તે માટે “એલાર્મ અને રિમાઇન્ડર”ને મંજૂરી આપો."
+            "value": "“એલાર્મ અને રિમાઇન્ડર”ને મંજૂરી આપો – આ પરવાનગી વિના બેકઅપ એલાર્મ કદાચ વાગે જ નહીં."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "אשרו שעונים מעוררים ותזכורות כדי שהשעון המעורר הגיבוי יצלצל בזמן."
+            "value": "אשרו שעונים מעוררים ותזכורות – בלי ההרשאה הזו ייתכן שהשעון המעורר הגיבוי לא יצלצל בכלל."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अलार्म और रिमाइंडर की अनुमति दें ताकि बैकअप अलार्म समय पर बजे।"
+            "value": "अलार्म और रिमाइंडर की अनुमति दें – इस अनुमति के बिना बैकअप अलार्म शायद बजे ही नहीं।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopusti „Alarmi i podsjetnici“ kako bi rezervni alarm zvonio na vrijeme."
+            "value": "Dopusti „Alarmi i podsjetnici“ – bez ovog dopuštenja rezervni alarm možda uopće neće zvoniti."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Engedélyezd az ébresztéseket és emlékeztetőket, hogy a tartalék ébresztés pontosan szóljon."
+            "value": "Engedélyezd az ébresztéseket és emlékeztetőket – enélkül a tartalék ébresztés talán egyáltalán nem szólal meg."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Թույլատրիր «Զարթուցիչներ և հիշեցումներ», որպեսզի պահուստային զարթուցիչը ժամանակին զանգի։"
+            "value": "Թույլատրիր «Զարթուցիչներ և հիշեցումներ» – առանց այս թույլտվության պահուստային զարթուցիչը կարող է ընդհանրապես չզանգել։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izinkan alarm & pengingat agar alarm cadangan berbunyi tepat waktu."
+            "value": "Izinkan alarm & pengingat – tanpa izin ini, alarm cadangan mungkin tidak berbunyi sama sekali."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Leyfðu „Vekjarar og áminningar“ svo varavekjarinn hringi á réttum tíma."
+            "value": "Leyfðu „Vekjarar og áminningar“ – án þessarar heimildar hringir varavekjarinn hugsanlega alls ekki."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consenti sveglie e promemoria perché la sveglia di riserva suoni puntuale."
+            "value": "Consenti sveglie e promemoria: senza questa autorizzazione la sveglia di riserva potrebbe non suonare affatto."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "予備のアラームが時間どおりに鳴るよう、「アラームとリマインダー」を許可してください。"
+            "value": "「アラームとリマインダー」を許可してください。許可がないと、予備のアラームが鳴らないことがあります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "დაუშვი „მაღვიძარები და შეხსენებები“, რომ სარეზერვო მაღვიძარამ დროზე დარეკოს."
+            "value": "დაუშვი „მაღვიძარები და შეხსენებები“ – ამ ნებართვის გარეშე სარეზერვო მაღვიძარამ შეიძლება საერთოდ არ დარეკოს."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Қосалқы оятқыш уақытында шырылдауы үшін «Оятқыштар мен еске салғыштарға» рұқсат бер."
+            "value": "«Оятқыштар мен еске салғыштарға» рұқсат бер – бұл рұқсатсыз қосалқы оятқыш мүлде шырылдамауы мүмкін."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "អនុញ្ញាត «ម៉ោងរោទ៍ & ការរំលឹក» ដើម្បីឲ្យម៉ោងរោទ៍បម្រុងរោទ៍ទាន់ពេល។"
+            "value": "អនុញ្ញាត «ម៉ោងរោទ៍ & ការរំលឹក» – បើគ្មានការអនុញ្ញាតនេះ ម៉ោងរោទ៍បម្រុងប្រហែលជាមិនរោទ៍សោះ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ರಿಂಗ್ ಆಗಲು ಅಲಾರಾಂಗಳು & ಜ್ಞಾಪನೆಗಳನ್ನು ಅನುಮತಿಸಿ."
+            "value": "ಅಲಾರಾಂಗಳು & ಜ್ಞಾಪನೆಗಳನ್ನು ಅನುಮತಿಸಿ – ಈ ಅನುಮತಿ ಇಲ್ಲದೆ ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ರಿಂಗ್ ಆಗದೇ ಇರಬಹುದು."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "보조 알람이 제시간에 울리도록 알람 및 리마인더를 허용해 주세요."
+            "value": "알람 및 리마인더를 허용해 주세요. 이 권한이 없으면 보조 알람이 아예 울리지 않을 수 있습니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ອະນຸຍາດ “ໂມງປຸກ & ການແຈ້ງເຕືອນ” ເພື່ອໃຫ້ໂມງປຸກສຳຮອງດັງຕົງເວລາ"
+            "value": "ອະນຸຍາດ “ໂມງປຸກ & ການແຈ້ງເຕືອນ” – ຖ້າບໍ່ມີສິດນີ້ ໂມງປຸກສຳຮອງອາດຈະບໍ່ດັງເລີຍ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Leisk „Žadintuvai ir priminimai“, kad atsarginis žadintuvas suskambėtų laiku."
+            "value": "Leisk „Žadintuvai ir priminimai“ – be šio leidimo atsarginis žadintuvas gali visai neskambėti."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atļauj „Signāli un atgādinājumi“, lai rezerves modinātājs zvanītu laikā."
+            "value": "Atļauj „Signāli un atgādinājumi“ – bez šīs atļaujas rezerves modinātājs var nemaz nezvanīt."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дозволи „Аларми и потсетници“ за резервниот аларм да ѕвони навреме."
+            "value": "Дозволи „Аларми и потсетници“ – без оваа дозвола резервниот аларм можеби воопшто нема да ѕвони."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ബാക്കപ്പ് അലാറം കൃത്യസമയത്ത് അടിക്കാൻ അലാറങ്ങളും & റിമൈൻഡറുകളും അനുവദിക്കുക."
+            "value": "അലാറങ്ങളും & റിമൈൻഡറുകളും അനുവദിക്കുക – ഈ അനുമതിയില്ലെങ്കിൽ ബാക്കപ്പ് അലാറം അടിക്കാതിരിക്കാം."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нөөц сэрүүлэг цагтаа дуугарахын тулд «Сэрүүлэг ба сануулга»-ыг зөвшөөр."
+            "value": "«Сэрүүлэг ба сануулга»-ыг зөвшөөр – энэ зөвшөөрөлгүйгээр нөөц сэрүүлэг огт дуугарахгүй байж магадгүй."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "बॅकअप अलार्म वेळेवर वाजावा म्हणून “अलार्म आणि रिमाइंडर” ला परवानगी द्या."
+            "value": "“अलार्म आणि रिमाइंडर” ला परवानगी द्या – या परवानगीशिवाय बॅकअप अलार्म कदाचित वाजणारच नाही."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Benarkan penggera & peringatan supaya penggera sandaran berbunyi tepat pada masanya."
+            "value": "Benarkan penggera & peringatan – tanpa kebenaran ini, penggera sandaran mungkin tidak berbunyi langsung."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အရန်နှိုးစက် အချိန်မှန်မြည်စေရန် “နှိုးစက်များ & သတိပေးချက်များ” ကို ခွင့်ပြုပါ။"
+            "value": "“နှိုးစက်များ & သတိပေးချက်များ” ကို ခွင့်ပြုပါ – ဤခွင့်ပြုချက်မရှိလျှင် အရန်နှိုးစက် လုံးဝမမြည်နိုင်ပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillat alarmer og påminnelser slik at reservealarmen ringer i tide."
+            "value": "Tillat alarmer og påminnelser – uten denne tillatelsen ringer reservealarmen kanskje ikke i det hele tatt."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "ब्याकअप अलार्म समयमै बजोस् भन्नका लागि “अलार्म र रिमाइन्डर” लाई अनुमति देऊ।"
+            "value": "“अलार्म र रिमाइन्डर” लाई अनुमति देऊ – यो अनुमतिबिना ब्याकअप अलार्म बज्दै नबज्न सक्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sta wekkers en herinneringen toe zodat de reservewekker op tijd afgaat."
+            "value": "Sta wekkers en herinneringen toe – zonder deze toestemming gaat de reservewekker misschien helemaal niet af."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "“ਅਲਾਰਮ ਅਤੇ ਰਿਮਾਈਂਡਰ” ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ ਤਾਂ ਜੋ ਬੈਕਅੱਪ ਅਲਾਰਮ ਸਮੇਂ ਸਿਰ ਵੱਜੇ।"
+            "value": "“ਅਲਾਰਮ ਅਤੇ ਰਿਮਾਈਂਡਰ” ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ – ਇਸ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ ਬੈਕਅੱਪ ਅਲਾਰਮ ਸ਼ਾਇਦ ਵੱਜੇ ਹੀ ਨਾ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zezwól na alarmy i przypomnienia, aby zapasowy budzik zadzwonił na czas."
+            "value": "Zezwól na alarmy i przypomnienia – bez tego uprawnienia zapasowy budzik może w ogóle nie zadzwonić."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permita alarmes e lembretes para que o alarme reserva toque na hora certa."
+            "value": "Permita alarmes e lembretes – sem essa permissão, o alarme reserva pode nem tocar."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permite alarmes e lembretes para que o alarme de reserva toque à hora certa."
+            "value": "Permite alarmes e lembretes – sem esta autorização, o alarme de reserva pode nem tocar."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permite alarmele și mementourile pentru ca alarma de rezervă să sune la timp."
+            "value": "Permite alarmele și mementourile – fără această permisiune, alarma de rezervă s-ar putea să nu sune deloc."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Разреши будильники и напоминания, чтобы резервный будильник звонил вовремя."
+            "value": "Разреши будильники и напоминания – без этого разрешения резервный будильник может вообще не зазвонить."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "උපස්ථ එලාමය නියමිත වේලාවට නාද වීමට “එලාම සහ සිහිකැඳවීම්” වලට ඉඩ දෙන්න."
+            "value": "“එලාම සහ සිහිකැඳවීම්” වලට ඉඩ දෙන්න – මෙම අවසරය නොමැතිව උපස්ථ එලාමය කිසිසේත් නාද නොවිය හැක."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Povoľ „Budíky a pripomenutia“, aby záložný budík zazvonil načas."
+            "value": "Povoľ „Budíky a pripomenutia“ – bez tohto povolenia záložný budík možno vôbec nezazvoní."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dovoli »Budilke in opomniki«, da rezervna budilka zazvoni pravočasno."
+            "value": "Dovoli »Budilke in opomniki« – brez tega dovoljenja rezervna budilka morda sploh ne bo zazvonila."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lejo „Alarmet dhe rikujtuesit“, që alarmi rezervë të bjerë në kohë."
+            "value": "Lejo „Alarmet dhe rikujtuesit“ – pa këtë leje, alarmi rezervë mund të mos bjerë fare."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дозволи „Аларми и подсетници“ да би резервни аларм звонио на време."
+            "value": "Дозволи „Аларми и подсетници“ – без ове дозволе резервни аларм можда уопште неће звонити."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tillåt alarm och påminnelser så att reservalarmet ringer i tid."
+            "value": "Tillåt alarm och påminnelser – utan den här behörigheten ringer reservalarmet kanske inte alls."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ruhusu “Kengele na vikumbusho” ili kengele ya akiba ilie kwa wakati."
+            "value": "Ruhusu “Kengele na vikumbusho” – bila ruhusa hii, kengele ya akiba huenda isilie kabisa."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "மாற்று அலாரம் சரியான நேரத்தில் ஒலிக்க “அலாரங்களும் நினைவூட்டல்களும்” என்பதை அனுமதியுங்கள்."
+            "value": "“அலாரங்களும் நினைவூட்டல்களும்” என்பதை அனுமதியுங்கள் – இந்த அனுமதி இல்லாமல் மாற்று அலாரம் ஒலிக்காமலே போகலாம்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "బ్యాకప్ అలారం సమయానికి మోగేలా “అలారాలు & రిమైండర్‌లు”ను అనుమతించండి."
+            "value": "“అలారాలు & రిమైండర్‌లు”ను అనుమతించండి – ఈ అనుమతి లేకుంటే బ్యాకప్ అలారం అసలు మోగకపోవచ్చు."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "อนุญาตการปลุกและการช่วยเตือนเพื่อให้นาฬิกาปลุกสำรองดังตรงเวลา"
+            "value": "อนุญาตการปลุกและการช่วยเตือน – หากไม่มีสิทธิ์นี้ นาฬิกาปลุกสำรองอาจไม่ดังเลย"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yedek alarmın zamanında çalması için alarmlara ve hatırlatıcılara izin ver."
+            "value": "Alarmlara ve hatırlatıcılara izin ver – bu izin olmadan yedek alarm hiç çalmayabilir."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дозволь будильники й нагадування, щоб резервний будильник дзвонив вчасно."
+            "value": "Дозволь будильники й нагадування – без цього дозволу резервний будильник може взагалі не задзвонити."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "“الارمز اور یاد دہانیاں” کی اجازت دو تاکہ بیک اپ الارم وقت پر بجے۔"
+            "value": "“الارمز اور یاد دہانیاں” کی اجازت دو – اس اجازت کے بغیر بیک اپ الارم شاید بالکل نہ بجے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zaxira budilnik oʻz vaqtida jiringlashi uchun «Signal va eslatmalar»ga ruxsat ber."
+            "value": "«Signal va eslatmalar»ga ruxsat ber – bu ruxsatsiz zaxira budilnik umuman jiringlamasligi mumkin."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hãy cho phép báo thức và lời nhắc để báo thức dự phòng reo đúng giờ."
+            "value": "Hãy cho phép báo thức và lời nhắc – nếu không có quyền này, báo thức dự phòng có thể hoàn toàn không reo."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "請允許「鬧鐘和提醒」，讓備用鬧鐘準時響鬧。"
+            "value": "請允許「鬧鐘和提醒」——冇呢個權限，備用鬧鐘可能完全唔會響。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请允许“闹钟和提醒”，这样备用闹钟才能准时响起。"
+            "value": "请允许“闹钟和提醒”——没有这项权限，备用闹钟可能根本不会响。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "請允許「鬧鐘與提醒」，這樣備用鬧鐘才能準時響起。"
+            "value": "請允許「鬧鐘與提醒」——沒有這項權限，備用鬧鐘可能根本不會響。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vumela ama-alamu & izikhumbuzi ukuze i-alamu yokwesekwa ikhale ngesikhathi."
+            "value": "Vumela ama-alamu & izikhumbuzi – ngaphandle kwale mvume, i-alamu yokwesekwa ingase ingakhali nhlobo."
           }
         }
       }

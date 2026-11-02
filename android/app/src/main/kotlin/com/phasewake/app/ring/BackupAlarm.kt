@@ -46,6 +46,8 @@ class BackupAlarm(
     internal val store: DataStore<Preferences>,
     internal val sync: com.phasewake.app.shared.WearSync,
     internal val now: () -> Instant = Instant::now,
+    /** «Zuletzt gesehen» der Uhr in ms ([com.phasewake.app.shared.WearSync.watchSeenAt]); in Tests fest. */
+    internal val watchSeenAt: suspend () -> Long? = { sync.watchSeenAt() },
 ) {
     internal val alarmManager = context.getSystemService(AlarmManager::class.java)
 
@@ -89,7 +91,7 @@ class BackupAlarm(
 
     /**
      * Die Uhr meldet den Weckmoment: mitklingeln und den Zweitwecker dieser Nacht aussetzen.
-     * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr.
+     * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr und setzt nichts aus.
      */
     suspend fun watchRang(message: RingMessage) {
         // Die Uhr weckt: Einschlafklänge enden immer, auch wenn das Handy selbst still bleibt (Weckart «Aus»).
@@ -110,7 +112,9 @@ class BackupAlarm(
         }
         context.phoneApp.diag.log(DiagKind.RING, "watch rang${if (message.isStale(now().toEpochMilli())) " (stale)" else ""}")
         context.phoneApp.testRuns.record(message.alarmId, TestStep.WATCH_RANG, now())
-        watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+        // Ein veraltetes «klingeln» setzt den Zweitwecker nicht aus (Review LATE): Ob die Uhr wirklich geweckt hat, ist
+        // offen; der Zweitwecker dieser Nacht bleibt. Ein «stop» oder die Nacht der Uhr setzt ihn weiterhin aus.
+        if (RingRules.ringPausesBackup(message, now().toEpochMilli())) watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
     }
 
     /**
@@ -276,7 +280,7 @@ class BackupAlarm(
 
     /**
      * Exakt planen; mit [show] als Wecker (Sperrbildschirm zeigt ihn), sonst still. Ohne Recht für
-     * exakte Alarme (Android 12/12L, entziehbar) ungenau statt gar nicht.
+     * exakte Alarme (Android 12/12L, entziehbar) ungenau statt gar nicht – siehe [setExact].
      */
     internal fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) = setExact(context, at, show, operation)
 
@@ -373,6 +377,9 @@ class BackupAlarm(
                     Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
                 }
             }
+            // Nur ein Notbehelf (Review N-4): Ein ungenauer Alarm kommt womöglich später und darf den Weckdienst nicht
+            // sicher in den Vordergrund starten (dann REJECTED, es klingelt nichts). Darum warnt der Nacht-Check rot
+            // (Check.EXACT_ALARMS): Ohne dieses Recht klingelt der Zweitwecker womöglich nicht.
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)
         }
 

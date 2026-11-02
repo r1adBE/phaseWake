@@ -177,7 +177,7 @@
     <string name="check_companion_problem">Ellers vises alarmen bare som et varsel øverst mens du bruker telefonen.</string>
     <string name="companion_failed">Fant ingen klokke. Sjekk at den er tilkoblet og at Bluetooth er på, og prøv igjen.</string>
     <string name="check_exact_alarms">Nøyaktige alarmer tillatt</string>
-    <string name="check_exact_alarms_problem">Tillat alarmer og påminnelser slik at reservealarmen ringer i tide.</string>
+    <string name="check_exact_alarms_problem">Tillat alarmer og påminnelser – uten denne tillatelsen ringer reservealarmen kanskje ikke i det hele tatt.</string>
     <string name="check_dnd">Ikke forstyrr slipper gjennom alarmer</string>
     <string name="check_battery">Telefonbatteri</string>
     <string name="check_battery_problem">Under %1$d %% – lad telefonen slik at reservealarmen kan ringe.</string>

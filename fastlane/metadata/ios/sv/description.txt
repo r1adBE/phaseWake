@@ -3,7 +3,7 @@ Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir oroli
 Så fungerar det
 • Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
 • Klockan mäter bara under väckningsfönstret: skonsamt för batteriet.
-• Vibration på handleden, med ljud om du vill – iPhone ringer som reservlarm om något går fel.
+• Vibration på handleden – iPhone ringer med om du vill, och som reservlarm om något går fel.
 • Håll in för att stänga av, snooze upp till 3 gånger.
 
 Gjord för att du inte ska försova dig

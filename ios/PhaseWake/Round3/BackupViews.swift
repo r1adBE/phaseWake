@@ -41,14 +41,16 @@ struct BackupSection: View {
             let access = url.startAccessingSecurityScopedResource()
             defer { if access { url.stopAccessingSecurityScopedResource() } }
             do {
-                // Grösse zuerst: Eine versehentlich gewählte grosse Datei (Video) wird nicht ganz gelesen.
-                let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
-                guard Int64(size) <= BackupFile.maxFileBytes else {
+                // Eine versehentlich gewählte grosse Datei (Video) wird nicht ganz gelesen: Grösse zuerst, und weil
+                // sie nicht immer bekannt ist (Anbieter in «Dateien»), höchstens bis zur Grenze lesen.
+                let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize
+                guard let data = try Self.read(url, knownSize: size) else {
                     message = L("restore_unreadable")
-                    DiagStore.shared.log(.error, "backup too large: \(size) bytes")
+                    let known = size.map { String($0) + " bytes" } ?? "size unknown"
+                    DiagStore.shared.log(.error, "backup too large: \(known)")
                     return
                 }
-                restoreFile = try Data(contentsOf: url)
+                restoreFile = data
             } catch {
                 // Nicht lesbar (z. B. in iCloud noch nicht geladen, kein Zugriff): kein Passwortfehler.
                 message = L("restore_unreadable")
@@ -62,6 +64,21 @@ struct BackupSection: View {
 
     private var fileName: String {
         L("backup_file_name", SleepNotes.dateString(Date(), calendar: .gregorianLocal))
+    }
+
+    /// Liest die Datei in Stücken von 1 MiB, höchstens `BackupFile.maxFileBytes`. - Returns: Inhalt, oder `nil`, wenn
+    /// sie grösser ist (laut `knownSize` oder beim Lesen bemerkt). - Throws: wenn sie nicht lesbar ist.
+    private static func read(_ url: URL, knownSize: Int?) throws -> Data? {
+        let limit = Int(BackupFile.maxFileBytes)
+        if let knownSize, knownSize > limit { return nil }
+        let handle = try FileHandle(forReadingFrom: url)
+        defer { try? handle.close() }
+        var data = Data()
+        while let chunk = try handle.read(upToCount: 1024 * 1024), !chunk.isEmpty {
+            data.append(chunk)
+            if data.count > limit { return nil }
+        }
+        return data
     }
 }
 

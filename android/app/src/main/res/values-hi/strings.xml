@@ -177,7 +177,7 @@
     <string name="check_companion_problem">वरना फ़ोन इस्तेमाल करते समय अलार्म सिर्फ़ ऊपर एक सूचना के रूप में दिखता है।</string>
     <string name="companion_failed">कोई वॉच नहीं मिली। देखें कि वह जुड़ी है और ब्लूटूथ चालू है, फिर दोबारा कोशिश करें।</string>
     <string name="check_exact_alarms">सटीक अलार्म की अनुमति है</string>
-    <string name="check_exact_alarms_problem">अलार्म और रिमाइंडर की अनुमति दें ताकि बैकअप अलार्म समय पर बजे।</string>
+    <string name="check_exact_alarms_problem">अलार्म और रिमाइंडर की अनुमति दें – इस अनुमति के बिना बैकअप अलार्म शायद बजे ही नहीं।</string>
     <string name="check_dnd">डू नॉट डिस्टर्ब में अलार्म की अनुमति है</string>
     <string name="check_battery">फ़ोन की बैटरी</string>
     <string name="check_battery_problem">%1$d %% से कम – अपना फ़ोन चार्ज करें ताकि बैकअप अलार्म बज सके।</string>

@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Bestela, telefonoa erabiltzen ari zarenean, alarma goiko jakinarazpen gisa bakarrik agertzen da.</string>
     <string name="companion_failed">Ez da erlojurik aurkitu. Egiaztatu konektatuta dagoela eta Bluetootha aktibatuta dagoela, eta saiatu berriro.</string>
     <string name="check_exact_alarms">Alarma zehatzak baimenduta</string>
-    <string name="check_exact_alarms_problem">Baimendu «Alarmak eta abisuak», ordezko alarmak garaiz jo dezan.</string>
+    <string name="check_exact_alarms_problem">Baimendu «Alarmak eta abisuak»: baimen hori gabe, baliteke ordezko alarmak ez jotzea.</string>
     <string name="check_dnd">«Ez molestatu» moduak alarmak uzten ditu</string>
     <string name="check_battery">Telefonoaren bateria</string>
     <string name="check_battery_problem">%%%1$d baino gutxiago – kargatu telefonoa, ordezko alarmak jo ahal izan dezan.</string>

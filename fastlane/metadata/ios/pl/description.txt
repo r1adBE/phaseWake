@@ -3,7 +3,7 @@ Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokoj
 Jak to działa
 • Wybierz godzinę budzenia i okno (do 30 min), załóż zegarek, śpij.
 • Zegarek mierzy tylko w oknie budzenia: oszczędza baterię.
-• Wibracje na nadgarstku, na życzenie z dźwiękiem – iPhone dzwoni jako budzik zapasowy, gdyby coś poszło nie tak.
+• Wibracje na nadgarstku – na życzenie dzwoni też iPhone, a jako budzik zapasowy, gdyby coś poszło nie tak.
 • Przytrzymaj, aby wyłączyć; drzemka do 3 razy.
 
 Zaprojektowany, żeby nie zaspać

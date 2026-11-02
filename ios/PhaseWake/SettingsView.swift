@@ -50,7 +50,7 @@ struct SettingsView: View {
                 }
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
-                    ShareLink(item: exportFile(model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
+                    ShareLink(item: NightsExport(nights: model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
                         Text(L("settings_export"))
                     }
                     .disabled(model.nights.isEmpty)

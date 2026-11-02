@@ -11,6 +11,8 @@ struct PhaseWakeApp: App {
     init() {
         Fonts.register()
         PhoneConnectivity.shared.activate()
+        // Exportierte CSV-Datei vom letzten Teilen (Bewegungs- und Pulsreihen) nicht liegen lassen.
+        NightsExport.cleanUp()
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
         // Wiederherstellen beim letzten Mal abgebrochen (App beendet): zu Ende führen oder zurückholen, bevor
         // etwas mit Weckern und Verlauf rechnet.

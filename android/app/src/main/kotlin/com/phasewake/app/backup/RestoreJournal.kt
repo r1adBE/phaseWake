@@ -14,8 +14,9 @@ import kotlinx.coroutines.withContext
  *
  * Darum vor dem Tauschen: zuerst eine Kopie der alten Nächte ([copy]), dann eine Marke mit einer Kennung ([begin]),
  * beides im App-Speicher [dir] neben den Nächten. Das `edit` des DataStore schreibt dieselbe Kennung mit. Nach dem
- * Erfolg fallen Marke und Kopie weg ([finish]). Liegt beim nächsten Start noch eine Marke, entscheidet [recover]:
- * Kennung im DataStore = der neue Stand ist vollständig, nur aufräumen; sonst die alten Nächte zurück.
+ * Erfolg und dem angestossenen Abgleich mit der Uhr fallen Marke und Kopie weg ([finish]). Liegt beim nächsten Start
+ * noch eine Marke, entscheidet [recover]: Kennung im DataStore = der neue Stand ist vollständig (Abgleich nachholen,
+ * dann [finish]); sonst die alten Nächte zurück.
  */
 internal class RestoreJournal(dir: File) {
     private val marker = AtomicFile(File(dir, "restore.pending"))
@@ -27,7 +28,10 @@ internal class RestoreJournal(dir: File) {
         /** Kein unterbrochenes Wiederherstellen. */
         NONE,
 
-        /** Der neue Stand war vollständig geschrieben: nur aufgeräumt (Abgleich mit der Uhr folgt). */
+        /**
+         * Der neue Stand war vollständig geschrieben. Die Marke bleibt, bis der Aufrufer den Abgleich mit der Uhr
+         * angestossen hat und [finish] aufruft: Endet der Prozess vorher, holt der nächste Start den Abgleich nach.
+         */
         FINISHED,
 
         /** Unterbrochen vor dem DataStore: die alten Nächte sind zurück, der alte Stand gilt. */
@@ -67,7 +71,8 @@ internal class RestoreJournal(dir: File) {
     /**
      * Beim Start nach einem Prozessende: [committedToken] ist die Kennung, die das letzte `edit` des DataStore
      * geschrieben hat. Stimmt sie mit der Marke überein, ist der neue Stand vollständig; sonst kommen die alten Nächte
-     * aus der Kopie zurück nach [nights] (der DataStore hat den alten Stand noch). Danach ist aufgeräumt.
+     * aus der Kopie zurück nach [nights] (der DataStore hat den alten Stand noch). Danach ist aufgeräumt, ausser bei
+     * [Outcome.FINISHED]: Dort ruft der Aufrufer [finish] erst nach dem Abgleich mit der Uhr auf (Review N-3).
      */
     suspend fun recover(committedToken: String?, nights: NightRepository): Outcome {
         val token = pendingToken()
@@ -76,10 +81,7 @@ internal class RestoreJournal(dir: File) {
             finish()
             return Outcome.NONE
         }
-        if (token == committedToken) {
-            finish()
-            return Outcome.FINISHED
-        }
+        if (token == committedToken) return Outcome.FINISHED
         // Ohne Kopie (darf nicht vorkommen, sie wird vor der Marke geschrieben) die Nächte nicht leeren.
         if (withContext(Dispatchers.IO) { copyFile.exists() }) nights.replaceAll(copy.load())
         finish()

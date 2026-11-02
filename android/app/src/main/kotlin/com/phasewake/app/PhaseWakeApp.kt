@@ -1,7 +1,11 @@
 package com.phasewake.app
 
 import android.app.Application
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import androidx.core.content.ContextCompat
 import com.phasewake.app.health.HealthSleep
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ring.RingNotifications
@@ -18,6 +22,7 @@ import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import java.io.File
+import java.util.concurrent.atomic.AtomicBoolean
 import android.util.Log
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -26,8 +31,11 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
-/** Einstieg der Handy-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). */
-class PhaseWakeApp : Application() {
+/**
+ * Einstieg der Handy-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek). Offen nur für Tests, die
+ * [initUnlocked] weglassen (Robolectric, ohne Start-Arbeiten im Hintergrund).
+ */
+open class PhaseWakeApp : Application() {
 
     val appScope = CoroutineScope(
         SupervisorJob() + Dispatchers.Default + CoroutineExceptionHandler { _, e ->
@@ -72,12 +80,27 @@ class PhaseWakeApp : Application() {
         com.phasewake.app.sounds.SleepSoundService.createChannel(this)
         com.phasewake.app.sounds.SoundRecorderService.createChannel(this)
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
-        // nicht lesbar; neu geplant wird beim Entsperren (BOOT_COMPLETED).
+        // nicht lesbar. Der Prozess lebt nach dem Entsperren weiter: dann [initUnlocked] nachholen (Review M-1).
         if (!BackupAlarm.isUnlocked(this)) {
             diag.log(DiagKind.DIRECT_BOOT, "app start locked")
+            awaitUnlock()
             return
         }
         diag.log(DiagKind.BOOT, "app start")
+        initUnlocked()
+    }
+
+    /** Ob [initUnlocked] in diesem Prozess schon lief. */
+    private val unlockedDone = AtomicBoolean(false)
+
+    /**
+     * Start-Arbeiten, die den entsperrten Speicher brauchen: unterbrochenes Wiederherstellen abschliessen, von der Uhr
+     * abholen, neu planen, Widget, Geräusch-Ausschnitte aufräumen (täglich). Einmal pro Prozess, sobald entsperrt: beim
+     * Start, nach dem Entsperren ([awaitUnlock]) und bei BOOT_COMPLETED ([com.phasewake.app.ring.onBackupSystemEvent]).
+     * Vor dem Entsperren und bei jedem weiteren Aufruf: nichts.
+     */
+    open fun initUnlocked() {
+        if (!BackupAlarm.isUnlocked(this) || !unlockedDone.compareAndSet(false, true)) return
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
         appScope.launch {
@@ -96,6 +119,8 @@ class PhaseWakeApp : Application() {
                 nights.add(night)
                 sync.delete(uri)
             }
+            // Frühere Zielzeit des Einschlaf-Modus, falls ihre Meldung verpasst wurde (z. B. nach «Beenden erzwingen»).
+            sync.fetchOnsetShift()?.let { backup.onsetShiftReceived(it) }
             backup.reschedule()
             // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
             if (holidays.refresh()) backup.reschedule()
@@ -111,6 +136,28 @@ class PhaseWakeApp : Application() {
         // Geräusche: Abgelaufenes beim Start löschen, danach täglich.
         appScope.launch { sounds.cleanup() }
         com.phasewake.app.sounds.SoundStore.scheduleCleanup(this)
+    }
+
+    /**
+     * Gestartet vor dem ersten Entsperren: auf das Entsperren warten (nur im laufenden Prozess; endet er vorher, startet
+     * der nächste entsperrt). Danach [initUnlocked]. Auch wenn das Entsperren zwischen Prüfen und Anmelden fiel.
+     */
+    private fun awaitUnlock() {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (intent.action != Intent.ACTION_USER_UNLOCKED) return
+                try {
+                    unregisterReceiver(this)
+                } catch (e: IllegalArgumentException) {
+                    Log.w("PhaseWakeApp", "Empfänger schon abgemeldet", e)
+                }
+                diag.log(DiagKind.BOOT, "app unlocked")
+                initUnlocked()
+            }
+        }
+        // Systemmeldung: kommt auch bei einem nicht exportierten Empfänger an.
+        ContextCompat.registerReceiver(this, receiver, IntentFilter(Intent.ACTION_USER_UNLOCKED), ContextCompat.RECEIVER_NOT_EXPORTED)
+        initUnlocked()
     }
 
     /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */

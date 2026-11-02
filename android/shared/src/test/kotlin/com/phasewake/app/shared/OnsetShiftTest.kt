@@ -55,6 +55,17 @@ class OnsetShiftTest {
     }
 
     @Test
+    fun messageWithoutEarlierTargetLeavesThePlan() {
+        // Zweites Einschlafen, Zielzeit auf der eingestellten (Review H-1), oder Ausnahme gelöscht ([OnsetShift.cancel]).
+        val night = Instant.parse("2026-11-03T01:00:00Z")
+        assertSame(plan, shift.copy(target = configured.toEpochMilli(), at = 2_000L).applyTo(plan, night, grace))
+        val cancel = OnsetShift.cancel(WakePlan("a|b", earlier.minus(Duration.ofMinutes(30)), earlier), 3_000L)
+        assertEquals(OnsetShift("a|b", earlier.toEpochMilli(), earlier.toEpochMilli(), 3_000L), cancel)
+        assertSame(plan, cancel.applyTo(plan, night, grace))
+        assertTrue(cancel.at > shift.at, "ersetzt die gemerkte")
+    }
+
+    @Test
     fun afterEarlierTargetAndGraceTheConfiguredTimeIsTheLateBackup() {
         // In der Nachfrist der früheren Zielzeit (z. B. Prozessstart): sie gilt weiter.
         assertEquals(earlier, shift.applyTo(plan, earlier.plus(Duration.ofMinutes(1)), grace).target)

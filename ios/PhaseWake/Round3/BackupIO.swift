@@ -26,7 +26,7 @@ enum BackupIO {
             notes: SleepNotes.encode(model.notes),
             customNotes: SleepNotes.encodeCustom(model.customNotes),
             // Nie geändert: `nil`, dann gelten nach dem Wiederherstellen die Vorschläge.
-            routineItems: defaults.string(forKey: PhoneModel.routineItemsKey),
+            routineItems: model.privateNotes.routineItemsText(),
             routineTicks: Routine.encodeTicks(model.routineTicks),
             settings: BackupSettings(
                 sleepGoal: model.sleepGoal, bedtimeReminder: model.bedtimeReminder, weeklyReview: model.weeklyReview,
@@ -74,9 +74,9 @@ enum BackupIO {
 
     /// Ersetzt Wecker, Verlauf, Notizen (samt Befinden zu Nächten aus anderen Apps), Abendroutine und Einstellungen
     /// in einem Schritt; danach geht alles an die Uhr. Zuerst entstehen Verlauf und Notizen als Dateien im
-    /// Arbeitsordner von ``RestoreJournal`` und werden dann getauscht. Wecker und Einstellungen liegen in
-    /// `UserDefaults`, dessen Schreiben nicht scheitert; sie folgen erst nach dem gelungenen Tausch
-    /// (``applySettings(_:to:)``). Ab dem Merker (``RestoreJournal/begin(_:payload:)``) übersteht die
+    /// Arbeitsordner von ``RestoreJournal`` und werden dann getauscht. Wecker und Einstellungen (in `UserDefaults`,
+    /// dessen Schreiben nicht scheitert) sowie die Abendroutine (kleine Dateien in `PrivateFiles`) folgen erst nach dem
+    /// gelungenen Tausch (``applySettings(_:to:)``, wiederholbar). Ab dem Merker (``RestoreJournal/begin(_:payload:)``) übersteht die
     /// Wiederherstellung auch ein Ende der App: Der nächste Start führt sie zu Ende oder holt den alten Stand zurück.
     /// - Throws: wenn eine Datei nicht geschrieben oder getauscht werden konnte; dann ist nichts geändert (ein nicht
     ///   ganz gelungenes Zurückholen holt der nächste Start nach). Ebenso, solange eine frühere Wiederherstellung offen ist.
@@ -109,9 +109,10 @@ enum BackupIO {
     static func applySettings(_ payload: BackupPayload, to model: PhoneModel) {
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
         model.storage.mutate { _ in Array(alarms.prefix(PhoneModel.maxAlarms)) }
+        // Abendroutine als Dateien in `PrivateFiles` (nicht in der iCloud-Sicherung); ohne Punkte die Vorschläge.
+        model.privateNotes.setRoutineItemsText(payload.routineItems)
+        model.privateNotes.setRoutineTicks(Routine.decodeTicks(payload.routineTicks))
         let defaults = UserDefaults.standard
-        defaults.set(payload.routineItems, forKey: PhoneModel.routineItemsKey)
-        defaults.set(payload.routineTicks, forKey: PhoneModel.routineTicksKey)
         let s = payload.settings
         defaults.set(SleepGoal.clamp(s.sleepGoal), forKey: PhoneModel.sleepGoalKey)
         defaults.set(s.bedtimeReminder, forKey: PhoneModel.bedtimeKey)

@@ -8,7 +8,6 @@ import com.phasewake.app.ring.BackupAlarm.Companion.PLANNED_ID
 import com.phasewake.app.ring.BackupAlarm.Companion.PLANNED_TARGET
 import com.phasewake.app.ring.BackupAlarm.Companion.SUPPRESSED
 import com.phasewake.app.ring.BackupAlarm.Companion.decodeSuppressed
-import java.time.Duration
 import java.time.Instant
 import kotlinx.coroutines.flow.first
 
@@ -21,9 +20,10 @@ import kotlinx.coroutines.flow.first
  */
 internal suspend fun BackupAlarm.planBackup() {
     rescheduleSunrise()
+    val current = now()
     // Schlummer-Sicherung und Schlummern am Handy sind unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
-    SnoozeSafety.restore(context)
-    PhoneSnooze.restore(context)
+    SnoozeSafety.restore(context, current)
+    PhoneSnooze.restore(context, current)
     alarmManager.cancel(pending())
     val app = context.phoneApp
     val holidays = app.holidays.store.current()
@@ -32,9 +32,8 @@ internal suspend fun BackupAlarm.planBackup() {
     // Hat die Uhr eine Nacht übernommen oder klingelte der Zweitwecker schon, gilt für diesen
     // Wecker erst die nächste Nacht danach. Andere Wecker bleiben unberührt.
     val suppressed = decodeSuppressed(prefs[SUPPRESSED])
-    val current = now()
-    // Ohne Uhr (nie eine gemeldet): das Handy ist der Wecker und klingelt pünktlich zur Zielzeit.
-    val grace = if (sync.watchReady() == null) Duration.ZERO else GRACE
+    // Ohne Uhr (nie oder seit einer Woche keine gemeldet, Review N-5): das Handy ist der Wecker und klingelt pünktlich.
+    val grace = RingRules.backupGrace(watchSeenAt(), current.toEpochMilli(), GRACE)
     // Probewecker oder Powernap: eigener Plan, auch in der Nachfrist (er kommt nicht wieder).
     val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan
     // In der Nachfrist eines schon geplanten Zweitweckers (z. B. beim Prozessstart) bleibt er bestehen.

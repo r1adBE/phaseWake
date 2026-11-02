@@ -146,6 +146,7 @@ object BackupManager {
         }
         app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
         afterRestore(app, snapshot)
+        finishJournal(app)
         return true
     }
 
@@ -160,6 +161,7 @@ object BackupManager {
             RestoreJournal.Outcome.FINISHED -> {
                 app.diag.log(DiagKind.SYNC, "restore finished after restart")
                 afterRestore(app, app.alarms.current())
+                finishJournal(app)
             }
             RestoreJournal.Outcome.ROLLED_BACK -> app.diag.log(DiagKind.ERROR, "restore rolled back after restart")
         }
@@ -175,7 +177,23 @@ object BackupManager {
         app.backup.reschedule()
     }
 
-    /** Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. */
+    /**
+     * Neuer Stand vollständig und Abgleich mit der Uhr angestossen: Marke und Kopie weg (Review N-3: erst jetzt, sonst
+     * fehlte nach einem Prozessende während [afterRestore] der Abgleich). Scheitert das Löschen, holt der nächste Start
+     * den Abgleich nach, ohne zurückzusetzen.
+     */
+    private suspend fun finishJournal(app: PhaseWakeApp) {
+        try {
+            withContext(NonCancellable) { RestoreJournal(app.filesDir).finish() }
+        } catch (e: IOException) {
+            Log.w(TAG, "Marke des Wiederherstellens nicht gelöscht", e)
+        }
+    }
+
+    /**
+     * Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. Die Marke bleibt
+     * liegen ([finishJournal] nach dem Abgleich mit der Uhr).
+     */
     private suspend fun swap(app: PhaseWakeApp, payload: BackupPayload): AlarmSnapshot {
         val alarms = Codec.decodeAlarms(payload.alarms)
         val nights = payload.nights.mapNotNull { text ->
@@ -208,12 +226,6 @@ object BackupManager {
                 journal.finish()
             }
             throw e
-        }
-        // Neuer Stand vollständig: Marke und Kopie weg (scheitert das, räumt der nächste Start auf, ohne zurückzusetzen).
-        try {
-            withContext(NonCancellable) { journal.finish() }
-        } catch (e: IOException) {
-            Log.w(TAG, "Marke des Wiederherstellens nicht gelöscht", e)
         }
         return snapshot
     }

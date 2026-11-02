@@ -183,7 +183,9 @@ struct CustomNotesSection: View {
                 CustomNoteRow(note: note)
             }
             .onDelete { offsets in
-                for index in offsets { model.deleteCustomNote(model.customNotes[index].id) }
+                // Erst die Kennungen sammeln: Jedes Löschen verschiebt die Liste, die Positionen stimmten danach nicht mehr.
+                let ids = offsets.map { model.customNotes[$0].id }
+                for id in ids { model.deleteCustomNote(id) }
             }
             Button(L("notes_custom_add")) { newName = ""; adding = true }
                 .disabled(!model.canAddCustomNote)

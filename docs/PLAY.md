@@ -35,12 +35,13 @@ Ruhemodus des Geräts. Die Alarme erscheinen im System als Wecker (Uhrzeit in de
 **Vollbild-Benachrichtigung (`USE_FULL_SCREEN_INTENT`).** Nur beim Wecken: Der Weckbildschirm mit «Schlummern» und
 «Beenden» erscheint auch bei gesperrtem Handy bzw. dunkler Uhr. Keine anderen Vollbild-Meldungen.
 
-**Vordergrund-Dienst «systemExempted» (Handy und Uhr).** Läuft nur, während ein Wecker klingelt (Handy: Zweitwecker
-oder Weiterleitung der Uhr; Uhr: Wecken ohne Messung, wenn Sensorrechte fehlen). Er hält Ton, Vibration und
+**Vordergrund-Dienst «systemExempted» (Handy und Uhr).** Läuft nur, während ein Wecker klingelt oder schlummert
+(Handy: Zweitwecker oder Weiterleitung der Uhr; Uhr: bei jedem Klingeln und Schlummern, dazu im Weckfenster, wenn nicht
+gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne Sensorrechte). Er hält Ton, Vibration und
 Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
 
-**Vordergrund-Dienst «health» (Uhr).** Läuft nur im Weckfenster (10–30 Minuten vor der Zielzeit) und auf Wunsch kurz
-am Abend bis zum Einschlafen. Er liest Bewegung (Beschleunigungssensor) und Puls, um einen leichten Schlafmoment zum
+**Vordergrund-Dienst «health» (Uhr).** Läuft nur im Weckfenster (10–30 Minuten vor der Zielzeit) und kurz am Abend
+bis zum Einschlafen (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar). Er liest Bewegung (Beschleunigungssensor) und Puls, um einen leichten Schlafmoment zum
 Wecken zu finden. Die Messung zeigt eine laufende Benachrichtigung und endet mit dem Wecken.
 
 **Vordergrund-Dienst «mediaPlayback» (Handy).** Einschlafklänge (Rauschen, Regen, Meer …), die du startest; mit
@@ -87,13 +88,15 @@ alarms are shown by the system as alarm clocks (time in the status bar).
 **Full-screen intent (`USE_FULL_SCREEN_INTENT`).** Only when an alarm rings: the alarm screen with “Snooze” and “Stop”
 appears even when the phone is locked or the watch screen is off. No other full-screen notifications.
 
-**Foreground service type “systemExempted” (phone and watch).** Runs only while an alarm rings (phone: backup alarm
-or forwarded watch alarm; watch: waking without measuring when sensor permissions are missing). It keeps sound,
+**Foreground service type “systemExempted” (phone and watch).** Runs only while an alarm rings or is snoozed (phone:
+backup alarm or forwarded watch alarm; watch: on every ring and snooze, plus during the wake window when measuring is not
+possible – before the first unlock after a restart or without sensor permissions). It keeps sound,
 vibration and the alarm screen alive until the user stops or snoozes. This type is intended for alarm clock apps
 holding `USE_EXACT_ALARM`.
 
 **Foreground service type “health” (watch).** Runs only during the wake window (10–30 minutes before the target time)
-and, if enabled, briefly in the evening until the user falls asleep. It reads movement (accelerometer) and heart rate to
+and briefly in the evening until the user falls asleep (falling-asleep measurement, on by default, can be switched off in
+the settings). It reads movement (accelerometer) and heart rate to
 find a light-sleep moment to wake the user. A notification is shown while measuring; it ends when the user wakes.
 
 **Foreground service type “mediaPlayback” (phone).** Sleep sounds (noise, rain, sea …) started by the user, with a media

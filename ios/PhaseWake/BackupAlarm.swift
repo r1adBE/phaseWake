@@ -80,7 +80,7 @@ final class BackupAlarm {
             return !planned.contains { $0.slot.alarmId == spec.id && $0.slot.fireAt > now }
         }
         for spec in expired { PhoneModel.shared.setEnabled(spec, false) }
-        var skip = Set(expired.map(\.id))
+        let skip = Set(expired.map(\.id))
         let eligible = alarms.filter(\.phoneBackup)
         var wanted: [BackupSlot] = []
         for entry in planned where entry.slot.fireAt > now {
@@ -90,20 +90,12 @@ final class BackupAlarm {
                                         holidays: holidays, suppressedUntil: suppressed[spec.id]) != nil else { continue }
             wanted.append(entry.slot)
         }
-        var from = now
-        var nights = 0
-        let until = now.addingTimeInterval(Self.horizon)
-        while nights < Self.maxSlots {
-            guard let plan = AlarmSchedule.earliestPlan(eligible.filter { !skip.contains($0.id) }, now: from,
-                                                        doneUntil: suppressed, calendar: .gregorianLocal, holidays: holidays),
-                  plan.target <= until else { break }
-            from = plan.target
-            if let first = firstTargets[plan.alarmId] {
-                // Einmalig: nur das erste Vorkommen. Ist es ausgesetzt, folgt keine weitere Nacht.
-                skip.insert(plan.alarmId)
-                if plan.target != first { continue }
-            }
-            nights += 1
+        // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung.
+        let nightPlans = BackupPlan.nights(eligible, now: now, until: now.addingTimeInterval(Self.horizon), maxNights: Self.maxSlots,
+                                           suppressed: suppressed, firstTargets: firstTargets, skip: skip,
+                                           calendar: .gregorianLocal, holidays: holidays)
+        let nights = nightPlans.count
+        for plan in nightPlans {
             let sound = alarms.first { $0.id == plan.alarmId }?.sound ?? ""
             wanted.append(BackupSlot(alarmId: plan.alarmId, target: plan.target, fireAt: plan.target.addingTimeInterval(grace), sound: sound))
         }

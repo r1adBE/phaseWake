@@ -179,7 +179,7 @@
     <string name="check_companion_problem">Përndryshe, ndërsa përdor telefonin, alarmi shfaqet vetëm si njoftim lart.</string>
     <string name="companion_failed">Nuk u gjet asnjë orë. Kontrollo që të jetë e lidhur dhe që Bluetooth të jetë i aktivizuar, pastaj provo përsëri.</string>
     <string name="check_exact_alarms">Alarmet e sakta të lejuara</string>
-    <string name="check_exact_alarms_problem">Lejo „Alarmet dhe rikujtuesit“, që alarmi rezervë të bjerë në kohë.</string>
+    <string name="check_exact_alarms_problem">Lejo „Alarmet dhe rikujtuesit“ – pa këtë leje, alarmi rezervë mund të mos bjerë fare.</string>
     <string name="check_dnd">„Mos shqetëso“ i lejon alarmet</string>
     <string name="check_battery">Bateria e telefonit</string>
     <string name="check_battery_problem">Nën %1$d %% – karikoje telefonin, që alarmi rezervë të mund të bjerë.</string>
