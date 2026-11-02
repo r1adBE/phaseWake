@@ -14,6 +14,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.Codec
+import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.WearSync
 import java.time.Clock
 import java.time.Duration
@@ -37,8 +38,9 @@ internal class WatchStatus(
 
     /**
      * Sendet den Status, aber nur bei Bedarf: Bereitschaft geändert, Akkustand um mindestens
-     * [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne die Felder je Weckerzeile
-     * dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde «aktualisieren»).
+     * [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne die Felder je Weckerzeile bzw.
+     * den Verbindungs-Stand dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde
+     * «aktualisieren»).
      * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
      */
     suspend fun publish(): Unit = lock.withLock {
@@ -48,16 +50,18 @@ internal class WatchStatus(
         val prefs = store.data.first()
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
-        val due = prefs[SENT_READY] != ready || prefs[SENT_FIELDS] != Codec.ALARM_FIELDS ||
+        val due = prefs[SENT_READY] != ready || prefs[SENT_FIELDS] != Codec.ALARM_FIELDS || prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
-        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist.
+        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
+        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04).
         if (!sync.publishWatchReady(ready, battery)) return@withLock
         store.edit {
             it[SENT_READY] = ready
             it[SENT_AT] = now
             it[SENT_FIELDS] = Codec.ALARM_FIELDS
+            it[SENT_PROTOCOL] = DataLayer.PROTOCOL
             if (battery != null) it[SENT_BATTERY] = battery else it.remove(SENT_BATTERY)
         }
     }
@@ -83,6 +87,7 @@ internal class WatchStatus(
         private val SENT_BATTERY = intPreferencesKey("status_sent_battery")
         private val SENT_AT = longPreferencesKey("status_sent_at")
         private val SENT_FIELDS = intPreferencesKey("status_sent_alarm_fields")
+        private val SENT_PROTOCOL = intPreferencesKey("status_sent_protocol")
         private const val BATTERY_STEP = 5
         private val MAX_AGE: Duration = Duration.ofHours(1)
 

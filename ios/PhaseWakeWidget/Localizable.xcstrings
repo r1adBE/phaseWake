@@ -45249,6 +45249,902 @@
         }
       }
     },
+    "check_watch_outdated_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dateer Phase Wake op jou horlosie op sodat elke wekker lui soos gestel."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እያንዳንዱ ማንቂያ እንደተቀናበረው እንዲደውል በሰዓትዎ ላይ Phase Wakeን ያዘምኑ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حدّث Phase Wake على الساعة حتى يرنّ كل منبّه كما ضبطته."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hər siqnal qurduğun kimi çalsın deyə saatında Phase Wake-i yenilə."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Актуализирай Phase Wake на часовника, за да звъни всеки будилник както е настроен."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "প্রতিটি অ্যালার্ম যেভাবে সেট করা সেভাবে বাজাতে তোমার ঘড়িতে Phase Wake আপডেট করো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ažuriraj Phase Wake na satu kako bi svaki alarm zvonio kako je podešen."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualitza Phase Wake al rellotge perquè cada alarma soni tal com l’has configurat."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualizuj Phase Wake v hodinkách, aby každý budík zvonil tak, jak je nastavený."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opdater Phase Wake på uret, så hver alarm ringer som indstillet."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisiere Phase Wake auf der Uhr, damit alle Wecker wie eingestellt klingeln."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ενημέρωσε το Phase Wake στο ρολόι, ώστε κάθε αφύπνιση να χτυπά όπως τη ρύθμισες."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update Phase Wake on your watch so every alarm rings as set."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualiza Phase Wake en el reloj para que cada alarma suene como la configuraste."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uuenda Phase Wake’i kellas, et iga äratus heliseks nii, nagu seadistatud."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eguneratu Phase Wake erlojuan, alarma bakoitzak ezarri bezala jo dezan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake را روی ساعت به‌روز کن تا هر زنگ همان‌طور که تنظیم کرده‌ای به صدا درآید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Päivitä Phase Wake kellossa, jotta jokainen herätys soi asetetulla tavalla."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-update ang Phase Wake sa relo mo para tumunog ang bawat alarm gaya ng itinakda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mets à jour Phase Wake sur la montre pour que chaque réveil sonne comme prévu."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuashonraigh Phase Wake ar d’uaireadóir ionas go mbuailfidh gach aláram mar a shocraigh tú é."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualiza Phase Wake no reloxo para que cada alarma soe tal como a configuraches."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "દરેક એલાર્મ સેટ કર્યા મુજબ વાગે તે માટે તમારી ઘડિયાળ પર Phase Wake અપડેટ કરો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עדכנו את Phase Wake בשעון כדי שכל השכמה תצלצל כפי שהוגדרה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर Phase Wake अपडेट करें, ताकि हर अलार्म सेट किए अनुसार बजे।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ažuriraj Phase Wake na satu kako bi svaki alarm zvonio kako je postavljen."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frissítsd a Phase Wake-et az órán, hogy minden ébresztő a beállítás szerint szóljon."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Թարմացրու Phase Wake-ը ժամացույցում, որպեսզի ամեն զարթուցիչ զնգա այնպես, ինչպես կարգավորել ես։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perbarui Phase Wake di jam tangan agar setiap alarm berbunyi sesuai pengaturan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppfærðu Phase Wake á úrinu svo hver vekjari hringi eins og hann er stilltur."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiorna Phase Wake sull’orologio, così ogni sveglia suona come l’hai impostata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのアラームが設定どおりに鳴るよう、ウォッチのPhase Wakeを更新してください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "განაახლე Phase Wake საათზე, რომ ყველა მაღვიძარამ ისე დარეკოს, როგორც დააყენე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Әр оятқыш орнатылғандай шырылдауы үшін сағаттағы Phase Wake-ті жаңарт."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ធ្វើបច្ចុប្បន្នភាព Phase Wake លើនាឡិការបស់អ្នក ដើម្បីឱ្យម៉ោងរោទ៍នីមួយៗរោទ៍តាមការកំណត់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಪ್ರತಿ ಅಲಾರಾಂ ಹೊಂದಿಸಿದಂತೆಯೇ ಮೊಳಗಲು ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅಪ್‌ಡೇಟ್ ಮಾಡಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 알람이 설정한 대로 울리도록 워치의 Phase Wake를 업데이트해 주세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ອັບເດດ Phase Wake ຢູ່ໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ທຸກໂມງປຸກດັງຕາມທີ່ຕັ້ງໄວ້."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atnaujink Phase Wake laikrodyje, kad kiekvienas žadintuvas skambėtų taip, kaip nustatytas."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atjaunini Phase Wake pulkstenī, lai katrs modinātājs zvanītu, kā iestatīts."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ажурирај го Phase Wake на часовникот за секој аларм да ѕвони како што е поставен."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഓരോ അലാറവും സജ്ജമാക്കിയതുപോലെ മുഴങ്ങാൻ വാച്ചിലെ Phase Wake അപ്‌ഡേറ്റ് ചെയ്യുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэрүүлэг бүр тохируулсан ёсоороо дуугарахын тулд цаган дээрх Phase Wake-ийг шинэчил."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रत्येक अलार्म सेट केल्याप्रमाणे वाजावा म्हणून तुमच्या घड्याळावर Phase Wake अपडेट करा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kemas kini Phase Wake pada jam tangan supaya setiap penggera berbunyi seperti yang ditetapkan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နှိုးစက်တိုင်း သတ်မှတ်ထားသည့်အတိုင်း မြည်စေရန် နာရီပေါ်ရှိ Phase Wake ကို အပ်ဒိတ်လုပ်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppdater Phase Wake på klokken, så hver alarm ringer som innstilt."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हरेक अलार्म सेट गरेअनुसार बजोस् भनेर घडीमा Phase Wake अपडेट गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Werk Phase Wake op het horloge bij, zodat elke wekker afgaat zoals ingesteld."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਰ ਅਲਾਰਮ ਸੈੱਟ ਕੀਤੇ ਮੁਤਾਬਕ ਵੱਜੇ, ਇਸ ਲਈ ਆਪਣੀ ਘੜੀ ’ਤੇ Phase Wake ਅੱਪਡੇਟ ਕਰੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaktualizuj Phase Wake na zegarku, aby każdy budzik dzwonił tak, jak go ustawiono."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualize o Phase Wake no relógio para que cada alarme toque como configurado."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualiza o Phase Wake no relógio para que cada alarme toque como o configuraste."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizează Phase Wake pe ceas, ca fiecare alarmă să sune așa cum ai setat-o."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обнови Phase Wake на часах, чтобы каждый будильник звонил так, как настроен."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සෑම එලාමයක්ම සැකසූ ලෙසම නාද වීමට ඔරලෝසුවේ Phase Wake යාවත්කාලීන කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualizuj Phase Wake v hodinkách, aby každý budík zvonil tak, ako je nastavený."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posodobi Phase Wake na uri, da bo vsaka budilka zvonila tako, kot je nastavljena."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Përditëso Phase Wake në orë, që çdo alarm të bjerë ashtu siç e ke caktuar."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ажурирај Phase Wake на сату да би сваки аларм звонио онако како је подешен."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppdatera Phase Wake på klockan så att varje alarm ringer som inställt."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sasisha Phase Wake kwenye saa yako ili kila kengele ilie kama ulivyoiweka."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஒவ்வொரு அலாரமும் அமைத்தபடியே ஒலிக்க, உங்கள் வாட்ச்சில் Phase Wake ஐப் புதுப்பியுங்கள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రతి అలారం సెట్ చేసినట్టే మోగేలా మీ వాచ్‌లో Phase Wake అప్‌డేట్ చేయండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อัปเดต Phase Wake บนนาฬิกาเพื่อให้ทุกการปลุกดังตามที่ตั้งไว้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her alarm ayarladığın gibi çalsın diye saatteki Phase Wake’i güncelle."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Онови Phase Wake на годиннику, щоб кожен будильник дзвонив так, як налаштовано."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اپنی گھڑی پر Phase Wake اپ ڈیٹ کرو تاکہ ہر الارم ویسے ہی بجے جیسے سیٹ کیا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har bir budilnik sozlanganidek jiringlashi uchun soatingdagi Phase Wakeʼni yangila."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cập nhật Phase Wake trên đồng hồ để mọi báo thức đều reo đúng như đã đặt."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請更新手錶上的 Phase Wake，讓每個鬧鐘都按設定響起。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请更新手表上的 Phase Wake，让每个闹钟都按设置响起。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請更新手錶上的 Phase Wake，讓每個鬧鐘都按設定響起。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buyekeza i-Phase Wake ewashini lakho ukuze i-alamu ngayinye ikhale njengoba uyisethile."
+          }
+        }
+      }
+    },
+    "check_watch_outdated_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horlosie-app is verouderd"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የሰዓት መተግበሪያው ጊዜው ያለፈበት ነው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تطبيق الساعة قديم"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat tətbiqi köhnədir"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приложението на часовника е остаряло"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়ির অ্যাপ পুরোনো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacija na satu je zastarjela"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’app del rellotge no està al dia"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikace v hodinkách je zastaralá"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ur-appen er forældet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uhr-App veraltet"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η εφαρμογή του ρολογιού είναι παλιά"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch app out of date"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App del reloj desactualizada"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kella rakendus on aegunud"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlojuko aplikazioa zaharkituta dago"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برنامهٔ ساعت قدیمی است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellon sovellus on vanhentunut"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luma na ang app sa relo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App de la montre obsolète"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tá aip an uaireadóra as dáta"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A app do reloxo está desactualizada"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળની ઍપ જૂની છે"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפליקציית השעון לא מעודכנת"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच ऐप पुराना है"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacija na satu je zastarjela"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elavult az óra alkalmazása"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույցի հավելվածը հնացած է"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikasi jam tangan sudah usang"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Úraforritið er úrelt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App dell’orologio non aggiornata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチのアプリが古くなっています"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათის აპი მოძველებულია"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағат қолданбасы ескірген"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កម្មវិធីលើនាឡិកាហួសសម័យ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್ ಆ್ಯಪ್ ಹಳೆಯದಾಗಿದೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치 앱이 오래된 버전이에요"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ແອັບໃນໂມງລ້າສະໄໝແລ້ວ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laikrodžio programėlė pasenusi"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulksteņa lietotne ir novecojusi"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Апликацијата на часовникот е застарена"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ച് ആപ്പ് പഴയതാണ്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цагны апп хуучирсан"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळावरील ॲप जुने आहे"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apl jam tangan sudah lapuk"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီအက်ပ် ဗားရှင်းဟောင်းနေသည်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokke-appen er utdatert"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीको एप पुरानो छ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horloge-app verouderd"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ਵਾਲੀ ਐਪ ਪੁਰਾਣੀ ਹੈ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacja na zegarku jest nieaktualna"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App do relógio desatualizado"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App do relógio desatualizada"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicația de pe ceas este învechită"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приложение на часах устарело"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසු යෙදුම යල් පැන ගොස් ඇත"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikácia v hodinkách je zastaraná"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacija na uri je zastarela"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikacioni në orë është i vjetër"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Апликација на сату је застарела"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockappen är inaktuell"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programu ya saa imepitwa na wakati"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வாட்ச் ஆப் பழையது"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్ యాప్ పాతబడింది"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "แอปบนนาฬิกาเป็นเวอร์ชันเก่า"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat uygulaması eski"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Застосунок на годиннику застарів"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی کی ایپ پرانی ہے"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soatdagi ilova eskirgan"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ứng dụng trên đồng hồ đã cũ"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶 App 版本過舊"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表应用版本过旧"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶 App 版本過舊"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-app yewashi indala"
+          }
+        }
+      }
+    },
     "check_watch_problem": {
       "localizations": {
         "af": {

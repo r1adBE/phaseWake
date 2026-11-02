@@ -32,20 +32,28 @@ object Export {
 
     private const val DIR = "export"
 
+    /**
+     * Schreibt die Datei im Hintergrund (Review K-09: Text bauen und Schreiben nicht auf dem Hauptthread) und öffnet
+     * danach die Teilen-Auswahl. Hält die Activity nicht fest: nur die App und der schon gelesene Betreff.
+     */
     fun share(context: Context, nights: List<NightRecord>, notes: Map<java.time.LocalDate, List<String>> = emptyMap()) {
-        val dir = File(context.cacheDir, DIR).apply { mkdirs() }
-        val file = File(dir, "phasewake-nights.csv")
-        file.writeText(NightHistory.exportCsv(nights, notes, java.time.ZoneId.systemDefault()))
-        val uri = FileProvider.getUriForFile(context, "${context.packageName}.export", file)
-        val send = Intent(Intent.ACTION_SEND)
-            .setType("text/csv")
-            .putExtra(Intent.EXTRA_STREAM, uri)
-            .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.history_export_subject))
-            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        context.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        // Nach [KEEP] löschen; endet der Prozess vorher, räumen das tägliche Aufräumen oder der nächste Start auf.
         val app = context.phoneApp
-        app.appScope.launch {
+        val subject = context.getString(R.string.history_export_subject)
+        val zone = java.time.ZoneId.systemDefault()
+        app.appScope.launch(Dispatchers.Main) {
+            val uri = withContext(Dispatchers.IO) {
+                val dir = File(app.cacheDir, DIR).apply { mkdirs() }
+                val file = File(dir, "phasewake-nights.csv")
+                file.writeText(NightHistory.exportCsv(nights, notes, zone))
+                FileProvider.getUriForFile(app, "${app.packageName}.export", file)
+            }
+            val send = Intent(Intent.ACTION_SEND)
+                .setType("text/csv")
+                .putExtra(Intent.EXTRA_STREAM, uri)
+                .putExtra(Intent.EXTRA_SUBJECT, subject)
+                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            app.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            // Nach [KEEP] löschen; endet der Prozess vorher, räumen das tägliche Aufräumen oder der nächste Start auf.
             delay(KEEP.toMillis())
             cleanup(app)
         }

@@ -73,23 +73,40 @@ enum BackupIO {
     }
 
     /// Ersetzt Wecker, Verlauf, Notizen (samt Befinden zu Nächten aus anderen Apps), Abendroutine und Einstellungen
-    /// in einem Schritt; danach geht alles an die Uhr. Zuerst entstehen Verlauf und Notizen als Dateien in einem
-    /// eigenen Ordner und werden dann getauscht (``exchange(_:from:to:rollback:)``). Wecker und Einstellungen liegen in
-    /// `UserDefaults`, dessen Schreiben nicht scheitert; sie folgen erst nach dem gelungenen Tausch.
-    /// - Throws: wenn eine Datei nicht geschrieben oder getauscht werden konnte; dann ist nichts geändert.
+    /// in einem Schritt; danach geht alles an die Uhr. Zuerst entstehen Verlauf und Notizen als Dateien im
+    /// Arbeitsordner von ``RestoreJournal`` und werden dann getauscht. Wecker und Einstellungen liegen in
+    /// `UserDefaults`, dessen Schreiben nicht scheitert; sie folgen erst nach dem gelungenen Tausch
+    /// (``applySettings(_:to:)``). Ab dem Merker (``RestoreJournal/begin(_:payload:)``) übersteht die
+    /// Wiederherstellung auch ein Ende der App: Der nächste Start führt sie zu Ende oder holt den alten Stand zurück.
+    /// - Throws: wenn eine Datei nicht geschrieben oder getauscht werden konnte; dann ist nichts geändert (ein nicht
+    ///   ganz gelungenes Zurückholen holt der nächste Start nach). Ebenso, solange eine frühere Wiederherstellung offen ist.
     static func apply(_ payload: BackupPayload, to model: PhoneModel) throws {
-        let manager = FileManager.default
-        let live = PrivateFiles.directory
-        // Arbeitsordner im selben Volume wie die Dateien: Tauschen ist dann ein atomares Umbenennen.
-        let work = try manager.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: live, create: true)
-        defer { try? manager.removeItem(at: work) }
-        let staging = work.appendingPathComponent("staging", isDirectory: true)
-        let rollback = work.appendingPathComponent("rollback", isDirectory: true)
-        try manager.createDirectory(at: staging, withIntermediateDirectories: true)
-        try manager.createDirectory(at: rollback, withIntermediateDirectories: true)
-        let names = try stage(payload, in: staging)
-        try exchange(names, from: staging, to: live, rollback: rollback)
+        // Eine abgebrochene frühere Wiederherstellung zuerst abschliessen; bleibt sie offen, wirft `prepare`.
+        RestoreJournal.recover(model: model)
+        try RestoreJournal.prepare()
+        let marker: RestoreJournal.Marker
+        do {
+            let names = try stage(payload, in: RestoreJournal.staging)
+            marker = try RestoreJournal.copyLive(names)
+            try RestoreJournal.begin(marker, payload: payload)
+        } catch {
+            // Vor dem Merker ist nichts getauscht: Reste weg, der bisherige Stand bleibt.
+            RestoreJournal.finish()
+            throw error
+        }
+        do {
+            try RestoreJournal.swap(marker)
+        } catch {
+            RestoreJournal.rollBack(marker, model: model)
+            throw error
+        }
+        applySettings(payload, to: model)
+        RestoreJournal.finish()
+    }
 
+    /// Wecker, Abendroutine und Einstellungen aus der Sicherung übernehmen, Stand neu laden und an die Uhr geben.
+    /// Wiederholbar (auch nach einem Abbruch beim nächsten Start, ``RestoreJournal/recover(model:)``).
+    static func applySettings(_ payload: BackupPayload, to model: PhoneModel) {
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
         model.storage.mutate { _ in Array(alarms.prefix(PhoneModel.maxAlarms)) }
         let defaults = UserDefaults.standard
@@ -129,49 +146,6 @@ enum BackupIO {
             throw CocoaError(.fileWriteUnknown, userInfo: [NSFilePathErrorKey: name])
         }
         return names
-    }
-
-    /// Tauscht die Dateien `names` aus `staging` nach `live`, je Datei atomar. Vorher kommen Kopien der bisherigen
-    /// Dateien nach `rollback` (auf APFS ein Klon ohne zusätzlichen Platz); scheitert ein Tausch, werden die schon
-    /// getauschten aus den Kopien zurückgeholt (nur Umbenennen) oder, wenn es sie vorher nicht gab, entfernt.
-    /// - Throws: wenn eine Kopie oder ein Tausch scheitert; die bisherigen Dateien sind dann wieder da.
-    private static func exchange(_ names: [String], from staging: URL, to live: URL, rollback: URL) throws {
-        let manager = FileManager.default
-        var existed: Set<String> = []
-        for name in names where manager.fileExists(atPath: live.appendingPathComponent(name).path) {
-            try manager.copyItem(at: live.appendingPathComponent(name), to: rollback.appendingPathComponent(name))
-            existed.insert(name)
-        }
-        var swapped: [String] = []
-        do {
-            for name in names {
-                try place(staging.appendingPathComponent(name), at: live.appendingPathComponent(name), replacing: existed.contains(name))
-                swapped.append(name)
-            }
-        } catch {
-            for name in swapped.reversed() {
-                let target = live.appendingPathComponent(name)
-                do {
-                    if existed.contains(name) {
-                        try place(rollback.appendingPathComponent(name), at: target, replacing: true)
-                    } else {
-                        try manager.removeItem(at: target)
-                    }
-                } catch let rollbackError {
-                    DiagStore.shared.log(.error, "restore rollback \(name): \(rollbackError.localizedDescription)")
-                }
-            }
-            throw error
-        }
-    }
-
-    /// Setzt `source` an die Stelle von `target`: atomar ersetzen oder, ohne bisherige Datei, verschieben.
-    private static func place(_ source: URL, at target: URL, replacing: Bool) throws {
-        if replacing {
-            _ = try FileManager.default.replaceItemAt(target, withItemAt: source)
-        } else {
-            try FileManager.default.moveItem(at: source, to: target)
-        }
     }
 }
 

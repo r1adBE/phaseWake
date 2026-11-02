@@ -500,6 +500,8 @@
     <string name="transient_alarm_soon">Vekkevinduet ditt starter allerede før.</string>
     <string name="check_watch_update">Oppdater Phase Wake på klokken</string>
     <string name="check_watch_update_problem">Frem til da hopper ikke klokken over noen alarmer og vekker deg også på helligdager.</string>
+    <string name="check_watch_outdated_title">Klokke-appen er utdatert</string>
+    <string name="check_watch_outdated_text">Oppdater Phase Wake på klokken, så hver alarm ringer som innstilt.</string>
     <string name="watch_store_opened">Play Store er åpnet på klokken – ta en titt.</string>
     <string name="watch_store_failed">Kunne ikke åpne Play Store på klokken. Er den tilkoblet?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

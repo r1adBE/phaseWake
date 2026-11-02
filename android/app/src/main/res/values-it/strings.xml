@@ -514,6 +514,8 @@
     <string name="transient_alarm_soon">La finestra della tua sveglia inizia prima.</string>
     <string name="check_watch_update">Aggiorna Phase Wake sull\'orologio</string>
     <string name="check_watch_update_problem">Fino ad allora l\'orologio non salta nessuna sveglia e ti sveglia anche nei festivi.</string>
+    <string name="check_watch_outdated_title">App dell’orologio non aggiornata</string>
+    <string name="check_watch_outdated_text">Aggiorna Phase Wake sull’orologio, così ogni sveglia suona come l’hai impostata.</string>
     <string name="watch_store_opened">Play Store aperto sull\'orologio – dacci un\'occhiata.</string>
     <string name="watch_store_failed">Impossibile aprire il Play Store sull\'orologio. È connesso?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -75,6 +75,13 @@ enum class Check(
      * weckt dann trotzdem. Nicht in der Bereit-Liste; das Handy blendet beides aus, bis die Uhr aktualisiert ist.
      */
     WATCH_UPDATE(R.string.check_watch_update, R.string.check_watch_update_problem, null, inReadyList = false),
+
+    /**
+     * Phase Wake auf der Uhr hat einen älteren Verbindungs-Stand als das Handy (Review O-04, `WearSync.watchOutdated`):
+     * Eine ältere Uhr kann neue Weckarten (z. B. «Genau») verwerfen. Nur ohne [WATCH_UPDATE] (das sagt schon mehr);
+     * nicht in der Bereit-Liste: ohne bekannte Uhr gibt es nichts zu prüfen.
+     */
+    WATCH_OUTDATED(R.string.check_watch_outdated_title, R.string.check_watch_outdated_text, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
 
@@ -110,7 +117,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchKnowsSkip] (Version der Uhr).
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt), [watchKnowsSkip] und [watchOutdated] (Version der Uhr).
          */
         fun collect(
             context: Context,
@@ -119,6 +126,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchBattery: Int? = null,
             watchAppMissing: Boolean = false,
             watchKnowsSkip: Boolean = true,
+            watchOutdated: Boolean = false,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -127,7 +135,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     watchReady == false -> add(Check.WATCH_SETUP)
                 }
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
-                if (!watchKnowsSkip) add(Check.WATCH_UPDATE)
+                if (!watchKnowsSkip) add(Check.WATCH_UPDATE) else if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&

@@ -500,6 +500,8 @@
     <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
     <string name="check_watch_update">Frissítsd a Phase Wake-et az órán</string>
     <string name="check_watch_update_problem">Addig az óra nem hagy ki ébresztést, és ünnepnapokon is felébreszt.</string>
+    <string name="check_watch_outdated_title">Elavult az óra alkalmazása</string>
+    <string name="check_watch_outdated_text">Frissítsd a Phase Wake-et az órán, hogy minden ébresztő a beállítás szerint szóljon.</string>
     <string name="watch_store_opened">A Play Store megnyílt az órán – nézz rá.</string>
     <string name="watch_store_failed">Nem sikerült megnyitni a Play Store-t az órán. Csatlakoztatva van?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -4,11 +4,12 @@ set -euo pipefail
 google=https://dl.google.com/dl/android/maven2
 central=https://repo1.maven.org/maven2
 latest() {
-  local repo=$1 coord=$2
+  # Drittes Argument (optional): nur Versionen, die auf dieses Muster passen (z. B. Guava nur «-android»).
+  local repo=$1 coord=$2 only=${3:-.}
   local path="${coord%%:*}"; path="${path//./\/}/${coord##*:}"
   local v
   v=$(curl -fsSL "$repo/$path/maven-metadata.xml" | grep -o '<version>[^<]*</version>' | sed 's/<[^>]*>//g' \
-    | grep -viE 'alpha|beta|rc|dev|eap|-m[0-9]' | sort -V | tail -1) || v="?"
+    | grep -viE 'alpha|beta|rc|dev|eap|-m[0-9]' | grep -E -- "$only" | sort -V | tail -1) || v="?"
   printf '%-60s %s\n' "$coord" "$v"
 }
 latest $google com.android.tools.build:gradle
@@ -41,7 +42,7 @@ latest $central org.jetbrains.kotlinx:kotlinx-coroutines-test
 latest $central org.jetbrains.kotlinx:kover-gradle-plugin
 latest $central org.robolectric:robolectric
 # Nur Constraints (Review K-01): Versionen mit -android bzw. ohne Endung.
-latest $central com.google.guava:guava
+latest $central com.google.guava:guava '-android$'
 latest $central com.google.protobuf:protobuf-javalite
 latest $central junit:junit
 # Auch Vorabversionen (manche Werkzeuge gibt es nur so):

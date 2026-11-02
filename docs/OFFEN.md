@@ -5,6 +5,7 @@ Stand 02.11.2026, Phase Wake 16.2.2 (Build 42). Erledigtes wandert nach [ENTSCHE
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
 - Entschieden mit r1AD: ehrliche Texte statt «leichter Schlaf» (`reason_deadline`, `history_light_share`, `hint_title`, `editor_advice_text`), Warnung «Zweitwecker vor iOS 26» im Nacht-Check, Hinweis im iPhone-Editor zum Einschlaf-Modus, ⚠ statt ✕ in der Nacht-Check-Karte, Widget «Details von heute».
+- Review Build 43 (Android): Guava 33.7.2 (K-01), Kotlin-Warnung im Test (K-04), Klingeln am Handy nimmt nach einem Prozessende wieder auf (K-06), Einschlaf-Modus auch für den Zweitwecker am Handy (K-07), CSV-Export im Hintergrund (K-09), Nacht-Check «Uhr-App veraltet» (O-04), Wiederherstellen mit Marke gegen Prozessende (K-03), Tests für Klingeln am Handy und Planen/Wecken der Uhr (W-01).
 - Audit 31.10.: K1 (Nachfrist), K2 (zwei Wecker am Handy), N1 («stop» der Uhr), H2 (Schlummern am Handy nach Neustart), H4 (Klingeln der Galaxy Watch nach Prozessende), H5/M6 (exakte Alarme der Uhr), H6 (zweiter Wecker während einer Nacht), Mitteilung «Nächster Wecker» privat, PBKDF2-Kommentar, Rundung und Einschlafklänge (Parität), iOS-Verlauf, Notizen und Diagnose ausserhalb der iCloud-Sicherung, DATENSCHUTZ.md (Inhalt der `.pwbak`, Diagnoseprotokoll, iCloud, Sperrbildschirm).
 
 ## Noch offen aus dem Audit 31.10.
@@ -12,8 +13,8 @@ Stand 02.11.2026, Phase Wake 16.2.2 (Build 42). Erledigtes wandert nach [ENTSCHE
 1. **iOS: Einstellungen in der iCloud-Sicherung.** Wecker und Einstellungen (z. B. Schlafziel) liegen in `UserDefaults` und gehen mit; so steht es jetzt auch in DATENSCHUTZ.md. Offen, ob sie ebenfalls ausgenommen werden sollen.
 2. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
 3. **AlarmKit: feste Uhrzeit nach einer Reise.** Nach einem Zeitzonenwechsel ohne App-Start bleibt der Zweitwecker auf der alten Zeit.
-4. **Android: Klingel-Dienst des Handys nicht sticky** (`PhoneRingService`); beendet das System den Prozess, endet das Klingeln.
-5. **Einschlaf-Modus (Galaxy Watch):** Die frühere Zielzeit gilt nur auf der Uhr; der Zweitwecker am Handy bleibt auf der eingestellten Zeit (M1).
+4. **Android: Handy-Klingeln, während die Uhr führt** (`PhoneRingService`). Führt das Handy allein, nimmt ein Alarm kurz nach der Zeitgrenze das Klingeln nach einem Prozessende wieder auf. Führt die Uhr und endet der Prozess des Handys, verstummt nur das Handy; die Uhr klingelt weiter und hat ihren eigenen Wiederaufnahme-Alarm.
+5. **Lint-Parsermeldung ohne Datei (Review K-05):** Quelle hier nicht gefunden (ohne Android-SDK kein Lint-Lauf; alle XML-Dateien sind wohlgeformt, UTF-8 ohne BOM). Die CI zeigt solche Meldungen jetzt mit der Gradle-Aufgabe davor (Hinweis «XML-Parsermeldungen»); danach Quelle beheben.
 6. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen.
 
 Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fensters nicht (watchOS-Grenze, entschieden); `ACTIVITY_RECOGNITION` auf der Uhr wird für den Vordergrunddienst «Gesundheit» gebraucht; ENTSCHEIDE.md ±45 Min. (Trend-Hinweis) und ±30 Min. (Regelmässigkeit) sind zwei verschiedene Regeln.
@@ -39,7 +40,7 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 ## Bekannte Grenzen
 
 16. Apple Watch misst nur die letzten 25 Min. vor der Zielzeit; Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
-17. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem).
+17. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem). Der Nacht-Check am Handy warnt jetzt («Uhr-App veraltet», Review O-04).
 
 ## Aufräumen
 

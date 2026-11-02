@@ -7,7 +7,6 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
-import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.core.WakeTask
@@ -57,25 +56,22 @@ internal fun WakeService.ring() {
 
 /**
  * Stirbt der Prozess mitten im Klingeln, ist der Zielzeit-Alarm schon zugestellt und nichts startet den Dienst neu.
- * Darum beim Klingeln ein Alarm wie nach dem Schlummern: kurz nach der Zeitgrenze des Klingelns ([RING_TIMEOUT_MS] plus
- * [RESUME_MARGIN]; bis dahin schlummert oder endet die Runde im laufenden Prozess). Auch vor dem ersten Entsperren nach
+ * Darum beim Klingeln ein Alarm wie nach dem Schlummern: kurz nach der Zeitgrenze des Klingelns ([WakeRules.resumeAt];
+ * bis dahin schlummert oder endet die Runde im laufenden Prozess). Auch vor dem ersten Entsperren nach
  * einem Neustart ([DirectBoot.saveRingAt]). Schlummern ersetzt ihn (gleicher Alarm), das Ende der Nacht hebt ihn auf
  * ([AlarmScheduler.cancelDeadlineAndSnooze]).
  */
 private fun WakeService.armResume(n: Night, now: Instant) {
-    val at = now.plusMillis(RING_TIMEOUT_MS).plus(RESUME_MARGIN)
+    val at = WakeRules.resumeAt(now)
     AlarmScheduler.setSnoozeEnd(this, n.plan, at)
     DirectBoot.saveRingAt(this, n.plan, at)
 }
-
-/** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze des Klingelns: Der Ablauf im Prozess kommt immer zuerst. */
-private val RESUME_MARGIN: Duration = Duration.ofSeconds(30)
 
 internal fun WakeService.ringingNotification(n: Night) =
     Notifications.ringing(this, reasonText(n.reason ?: WakeReason.DEADLINE), snoozesLeft(n))
 
 /** Verbleibende Schlummer-Runden; beim Probewecker keine (er prüft genau einen Weckvorgang). */
-internal fun snoozesLeft(n: Night): Int = if (Transient.allowsSnooze(n.plan.alarmId)) Snooze.MAX_COUNT - n.snoozes else 0
+internal fun snoozesLeft(n: Night): Int = WakeRules.snoozesLeft(n.plan.alarmId, n.snoozes)
 
 /** Meldet dem Handy «klingeln» mit Zielzeit, Sendezeit und verbleibenden Schlummer-Runden. */
 internal fun WakeService.sendRing(n: Night) {
@@ -208,7 +204,10 @@ internal fun WakeService.onRingTimeout() {
     val n = night ?: return
     if (n.phase != Phase.RINGING) return
     // Das Handy klingelt als Sicherung weiter: niemand hat reagiert.
-    if (snoozesLeft(n) > 0) snooze(notifyPhone = false) else dismiss(notifyPhone = false)
+    when (WakeRules.timeout(snoozesLeft(n))) {
+        WakeRules.Timeout.SNOOZE -> snooze(notifyPhone = false)
+        WakeRules.Timeout.DISMISS -> dismiss(notifyPhone = false)
+    }
 }
 
 /** Sicherheitsnetz: Die Nacht läuft weit über die Zielzeit hinaus. Beenden statt endlos messen oder klingeln. */

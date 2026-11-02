@@ -44,7 +44,7 @@ class BackupDirectBootTest {
     fun afterRingingTheNextOneIsSet() {
         BackupDirectBoot.save(context, listOf(entry("a", first), entry("b", second), entry("a", nextDay)))
         BackupDirectBoot.restore(context, now = first.minus(Duration.ofHours(1)))
-        assertEquals(first.plus(grace).toEpochMilli(), alarms.nextScheduledAlarm?.triggerAtMs)
+        assertEquals(first.plus(grace).toEpochMilli(), alarms.peekNextScheduledAlarm()?.triggerAtMs)
         // Der erste klingelt vor dem Entsperren: der zweite Wecker am selben Morgen steht.
         BackupDirectBoot.advance(context, "a", first.toEpochMilli(), now = first.plus(grace))
         assertEquals(listOf(entry("b", second), entry("a", nextDay)), BackupDirectBoot.load(context))

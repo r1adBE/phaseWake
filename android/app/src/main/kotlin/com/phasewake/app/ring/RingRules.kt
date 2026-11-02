@@ -2,6 +2,8 @@ package com.phasewake.app.ring
 
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Snooze
+import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.RingMessage
 import java.time.Duration
@@ -53,6 +55,54 @@ internal object RingRules {
         RingMessage(alarmId, target).sameNight(currentId, currentTarget) -> Incoming.SAME_NIGHT
         else -> Incoming.TAKE_OVER
     }
+
+    /** Zeitgrenze einer Klingel-Runde am Handy: Danach schlummert oder endet sie ([timeout]). */
+    const val TIMEOUT_MS = 10 * 60_000L
+
+    /** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze: Der Ablauf im Prozess kommt immer zuerst. */
+    const val RESUME_MARGIN_MS = 30_000L
+
+    /** Was die Zeitgrenze einer Klingel-Runde am Handy auslöst ([PhoneRingService]). */
+    enum class Timeout {
+        /** Das Handy führt die Nacht und hat noch Runden: selbst schlummern (wie die Uhr). */
+        SNOOZE,
+
+        /** Die Uhr führt und hat noch Runden (sie schlummert selbst): Handy still, eigene Sicherung nach dem Schlummer-Ende. */
+        STOP_WITH_SAFETY,
+
+        /** Letzte Runde oder nichts klingelt: beenden. */
+        STOP,
+    }
+
+    /** Zeitgrenze erreicht, während [ringing] mit [snoozesLeft] Runden klingelt ([fromWatch]: die Uhr führt). */
+    fun timeout(ringing: Boolean, fromWatch: Boolean, snoozesLeft: Int): Timeout = when {
+        !ringing || snoozesLeft <= 0 -> Timeout.STOP
+        fromWatch -> Timeout.STOP_WITH_SAFETY
+        else -> Timeout.SNOOZE
+    }
+
+    /**
+     * Schlummer-Runden einer neuen Klingel-Runde: Probewecker keine; führt die Uhr, zählt ihre Angabe [watchSnoozesLeft]
+     * (ältere Uhren schicken keine: [legacyWatchSnoozes] aus dem Prozess); führt das Handy, allein [snoozesDone] aus dem
+     * Schlummer- bzw. Wiederaufnahme-Alarm (übersteht ein Prozessende).
+     */
+    fun snoozesLeft(alarmId: String?, fromWatch: Boolean, watchSnoozesLeft: Int?, legacyWatchSnoozes: Int, snoozesDone: Int): Int {
+        val left = when {
+            !Transient.allowsSnooze(alarmId) -> 0
+            fromWatch -> watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes)
+            else -> Snooze.MAX_COUNT - snoozesDone
+        }
+        return left.coerceIn(0, Snooze.MAX_COUNT)
+    }
+
+    /** Bisherige Runden nach dem Schlummern einer Runde mit [snoozesLeft]; `null`, wenn keine Runde mehr bleibt. */
+    fun snoozeDone(snoozesLeft: Int): Int? = if (snoozesLeft <= 0) null else Snooze.MAX_COUNT - snoozesLeft + 1
+
+    /**
+     * Wiederaufnahme-Alarm einer Klingel-Runde ab [nowMs]: nur wenn das Handy führt ([fromWatch] = false; sonst hat die
+     * Uhr ihren eigenen), kurz nach der Zeitgrenze. Stirbt der Prozess, klingelt es damit wieder; `null` = keiner.
+     */
+    fun resumeAt(fromWatch: Boolean, nowMs: Long): Long? = if (fromWatch) null else nowMs + TIMEOUT_MS + RESUME_MARGIN_MS
 
     /** Ergebnis von [PhoneRingService.ring]: [started] = Dienst durfte starten, [ringing] = es klingelte schon. */
     fun result(started: Boolean, ringing: Boolean): RingResult = when {

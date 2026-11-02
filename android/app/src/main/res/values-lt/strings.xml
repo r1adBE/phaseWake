@@ -531,6 +531,8 @@
     <string name="transient_alarm_soon">Tavo žadinimo langas prasideda anksčiau.</string>
     <string name="check_watch_update">Atnaujink Phase Wake laikrodyje</string>
     <string name="check_watch_update_problem">Iki tol laikrodis nepraleis žadintuvų ir žadins tave net per šventes.</string>
+    <string name="check_watch_outdated_title">Laikrodžio programėlė pasenusi</string>
+    <string name="check_watch_outdated_text">Atnaujink Phase Wake laikrodyje, kad kiekvienas žadintuvas skambėtų taip, kaip nustatytas.</string>
     <string name="watch_store_opened">Play Store atidaryta laikrodyje – pažiūrėk į jį.</string>
     <string name="watch_store_failed">Nepavyko atidaryti Play Store laikrodyje. Ar jis prijungtas?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

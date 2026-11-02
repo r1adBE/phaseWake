@@ -195,8 +195,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             battery = (percent: Int(percent), at: Date(timeIntervalSince1970: Double(at) / 1000))
         }
         let level = battery
+        // Stand der Verbindung; fehlt er (ältere Uhr), gilt er als unbekannt und der Nacht-Check warnt nicht.
+        let version = (context[SyncKeys.watchProtocol] as? Int64).map { Int($0) }
         if !context.isEmpty {
-            Task { @MainActor in PhoneModel.shared.setWatchBattery(level) }
+            Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version) }
         }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,

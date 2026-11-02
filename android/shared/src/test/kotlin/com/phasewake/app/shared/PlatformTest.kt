@@ -144,6 +144,9 @@ class PlatformTest {
         assertFalse(WearSync.readReady(noBattery))
         assertNull(WearSync.readBattery(noBattery, 10_000L, 1_000L))
         assertNull(WearSync.readSeenAt(DataMap()))
+        // Verbindungs-Stand der Uhr (Review O-04): immer mitgeschickt, ohne Angabe 0 (ältere Uhr).
+        assertEquals(DataLayer.PROTOCOL, WearSync.readProtocol(noBattery))
+        assertEquals(0, WearSync.readProtocol(DataMap().apply { putBoolean(DataLayer.KEY_READY, true) }))
 
         val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
         assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))
@@ -164,5 +167,14 @@ class PlatformTest {
         val clear = WearSync.clearRequest(77L)
         assertEquals(DataLayer.PATH_CLEAR_HISTORY, clear.uri.path)
         assertEquals(77L, DataMap.fromByteArray(clear.data!!).getLong(DataLayer.KEY_UPDATED_AT))
+    }
+
+    @Test
+    fun olderWatchIsOutdated() {
+        assertTrue(WearSync.watchOutdated(1, own = 2))
+        assertTrue(WearSync.watchOutdated(WearSync.readProtocol(DataMap())), "Status ohne Angabe: ältere Uhr")
+        assertFalse(WearSync.watchOutdated(DataLayer.PROTOCOL), "gleicher Stand")
+        assertFalse(WearSync.watchOutdated(3, own = 2), "Uhr neuer als das Handy")
+        assertFalse(WearSync.watchOutdated(null), "keine Uhr bekannt")
     }
 }

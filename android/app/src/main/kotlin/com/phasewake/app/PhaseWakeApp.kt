@@ -81,6 +81,14 @@ class PhaseWakeApp : Application() {
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
         appScope.launch {
+            // Ein Wiederherstellen, das ein Prozessende unterbrochen hat, abschliessen oder zurücksetzen (Review K-03).
+            // Ein Fehler dabei hält das Planen unten nicht auf.
+            try {
+                com.phasewake.app.backup.BackupManager.recover(this@PhaseWakeApp)
+            } catch (e: Exception) {
+                if (e is kotlinx.coroutines.CancellationException) throw e
+                Log.w("PhaseWakeApp", "Unterbrochenes Wiederherstellen nicht geprüft", e)
+            }
             // Was die Uhr schon hat, abholen: Wecker und Nächte (z. B. Uhr-App vor der Handy-App
             // installiert). Die Nacht-Pakete werden danach gelöscht, wie beim normalen Empfang.
             sync.fetchAlarms()?.let { alarms.applyRemote(it) }

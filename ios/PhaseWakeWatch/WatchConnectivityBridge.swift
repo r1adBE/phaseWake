@@ -41,6 +41,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
         // Formatfähigkeit: Das iPhone erkennt so eine ältere Uhr ohne Überspringen und Feiertage.
         context[SyncKeys.alarmFields] = Int64(Codec.alarmFields)
+        // Stand der Verbindung: Das iPhone erkennt so eine ältere Uhr-App (Nacht-Check «Uhr-App veraltet»).
+        context[SyncKeys.watchProtocol] = Int64(WatchProtocol.current)
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
         if device.batteryState == .unplugged, device.batteryLevel >= 0 {

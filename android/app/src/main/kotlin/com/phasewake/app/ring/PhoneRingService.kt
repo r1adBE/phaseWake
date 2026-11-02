@@ -13,7 +13,6 @@ import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.TestStep
-import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.DataLayer
@@ -91,7 +90,7 @@ class PhoneRingService : Service() {
                 if (lastTarget == null) lastTarget = target
             }
             // Führt weiter das Handy: Wiederaufnahme-Alarm neu stellen (oben aufgehoben).
-            (state.value as? State.Ringing)?.takeIf { !it.fromWatch }?.let { armResume(lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft) }
+            (state.value as? State.Ringing)?.let { armResume(it.fromWatch, lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft) }
             return
         }
         alert.post(newRound = true)
@@ -104,15 +103,11 @@ class PhoneRingService : Service() {
         val afterSnooze = state.value is State.Snoozed
         if (afterSnooze) state.value = State.Idle
         // Probewecker: ohne Schlummern (er prüft genau einen Weckvorgang).
-        val left = when {
-            !Transient.allowsSnooze(alarmId) -> 0
-            fromWatch -> watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes())
-            else -> Snooze.MAX_COUNT - snoozesDone
-        }
-        state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
+        val left = RingRules.snoozesLeft(alarmId, fromWatch, watchSnoozesLeft, legacyWatchSnoozes(), snoozesDone)
+        state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left)
         alert.show(if (fromWatch) "with watch" else "backup")
-        handler.postDelayed(timeout, TIMEOUT_MS)
-        if (!fromWatch) armResume(alarmId, snoozesDone)
+        handler.postDelayed(timeout, RingRules.TIMEOUT_MS)
+        armResume(fromWatch, alarmId, snoozesDone)
         // Nach dem Schlummern am Handy kommt keine Zielzeit mit: die der ersten Runde behalten.
         lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
         lastAlarmId = alarmId
@@ -147,8 +142,7 @@ class PhoneRingService : Service() {
 
     private fun snooze() {
         val ringing = state.value as? State.Ringing ?: return
-        if (ringing.snoozesLeft <= 0) return
-        val done = Snooze.MAX_COUNT - ringing.snoozesLeft + 1
+        val done = RingRules.snoozeDone(ringing.snoozesLeft) ?: return
         release()
         if (ringing.fromWatch) {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
@@ -175,13 +169,14 @@ class PhoneRingService : Service() {
 
     /**
      * Stirbt der Prozess mitten im Klingeln des Handys (ohne Uhr), startet nichts das Klingeln neu. Darum wie auf der Uhr
-     * ein Alarm kurz nach der Zeitgrenze ([TIMEOUT_MS] plus [RESUME_MARGIN_MS]; bis dahin schlummert oder endet die Runde
-     * im laufenden Prozess), abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart).
-     * Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf ([BackupAlarm.cancelSnooze]).
+     * ein Alarm kurz nach der Zeitgrenze ([RingRules.resumeAt]; bis dahin schlummert oder endet die Runde im laufenden
+     * Prozess), abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart). Führt die Uhr
+     * ([fromWatch]), keiner: Sie hat ihren eigenen. Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf
+     * ([BackupAlarm.cancelSnooze]).
      */
-    private fun armResume(alarmId: String?, snoozesDone: Int) {
-        val at = java.time.Instant.now().plusMillis(TIMEOUT_MS + RESUME_MARGIN_MS)
-        phoneApp.backup.snoozeUntil(at, alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT))
+    private fun armResume(fromWatch: Boolean, alarmId: String?, snoozesDone: Int) {
+        val at = RingRules.resumeAt(fromWatch, System.currentTimeMillis()) ?: return
+        phoneApp.backup.snoozeUntil(java.time.Instant.ofEpochMilli(at), alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT))
     }
 
     /**
@@ -193,16 +188,19 @@ class PhoneRingService : Service() {
      */
     private fun onTimeout() {
         val ringing = state.value as? State.Ringing
-        if (ringing != null && !ringing.fromWatch && ringing.snoozesLeft > 0) {
-            phoneApp.diag.log(DiagKind.SNOOZE, "phone timeout")
-            snooze()
-            return
-        }
-        if (ringing != null && ringing.fromWatch && ringing.snoozesLeft > 0) {
-            val alarmId = lastAlarmId
-            val done = Snooze.MAX_COUNT - ringing.snoozesLeft + 1
-            val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
-            phoneApp.appScope.launch { phoneApp.backup.snoozeSafety(alarmId, safetyAt, done) }
+        when (RingRules.timeout(ringing != null, ringing?.fromWatch == true, ringing?.snoozesLeft ?: 0)) {
+            RingRules.Timeout.SNOOZE -> {
+                phoneApp.diag.log(DiagKind.SNOOZE, "phone timeout")
+                snooze()
+                return
+            }
+            RingRules.Timeout.STOP_WITH_SAFETY -> {
+                val alarmId = lastAlarmId
+                val done = RingRules.snoozeDone(ringing?.snoozesLeft ?: 0) ?: Snooze.MAX_COUNT
+                val safetyAt = Snooze.nextRing(java.time.Instant.now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+                phoneApp.appScope.launch { phoneApp.backup.snoozeSafety(alarmId, safetyAt, done) }
+            }
+            RingRules.Timeout.STOP -> Unit
         }
         stop(notifyWatch = false)
     }
@@ -294,10 +292,6 @@ class PhoneRingService : Service() {
         /** Bisherige Schlummer-Runden des Handys allein (aus dem Schlummer-Alarm). */
         const val EXTRA_SNOOZES_DONE = "snoozesDone"
         private const val EXTRA_FROM_WATCH = "fromWatch"
-        private const val TIMEOUT_MS = 10 * 60_000L
-
-        /** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze: Der Ablauf im Prozess kommt immer zuerst. */
-        private const val RESUME_MARGIN_MS = 30_000L
 
         private val state = MutableStateFlow<State>(State.Idle)
         val ringState: StateFlow<State> = state.asStateFlow()

@@ -10,6 +10,8 @@ import AlarmKit
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
     case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
+    /// Uhr-App älter als die iPhone-App (`WatchProtocol`); nur, wenn `watchUpdate` nicht schon greift.
+    case watchOutdated
     /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
     case backupHorizon
     /// Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Nur ein Hinweis.
@@ -22,6 +24,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchArm: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
         case .watchUpdate: L("check_watch_update")
+        case .watchOutdated: L("check_watch_outdated_title")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -37,6 +40,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchArm: L("check_watch_arm_problem")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
         case .watchUpdate: L("check_watch_update_problem")
+        case .watchOutdated: L("check_watch_outdated_text")
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -77,8 +81,13 @@ enum NightCheck {
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
             }
-            // Ältere Uhr-App: überspringt keine Termine und weckt an Feiertagen.
-            if !model.watchKnowsSkip { failed.append(.watchUpdate) }
+            // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
+            // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
+            if !model.watchKnowsSkip {
+                failed.append(.watchUpdate)
+            } else if WatchProtocol.isOutdated(watch: model.watchProtocol) {
+                failed.append(.watchOutdated)
+            }
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
@@ -136,7 +145,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery, .backupHorizon, .silentSwitch:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch:
             break
         }
     }

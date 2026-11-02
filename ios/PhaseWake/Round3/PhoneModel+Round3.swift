@@ -51,6 +51,8 @@ extension PhoneModel {
     /// Beim Öffnen: neuer Tag → Feiertage neu auflösen (plant dabei alles neu); sonst die Sicherung nachziehen, damit
     /// sie wieder `BackupAlarm.horizon` weit reicht (der Abgleich lässt Unverändertes stehen).
     func becameActive() {
+        // Nachholen, falls es beim Start nicht ging (Merker vor dem ersten Entsperren nicht lesbar).
+        RestoreJournal.recover(model: self)
         if holidays.refresh() {
             holidaysChanged()
         } else {

@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.wear.wake.WakeRules
 import java.time.Duration
 import java.time.Instant
 import org.junit.Before
@@ -93,7 +94,8 @@ class DirectBootTest {
     @Test
     fun resumeAlarmWhileRingingAndCancel() {
         // Wie beim Klingeln (RingFlow.armResume): Alarm kurz nach der Zeitgrenze, auch für einen Neustart abgelegt.
-        val resume = now.plus(Duration.ofMinutes(10)).plusSeconds(30)
+        val resume = WakeRules.resumeAt(now)
+        assertEquals(now.plus(Duration.ofMinutes(10)).plusSeconds(30), resume)
         AlarmScheduler.setSnoozeEnd(context, plan, resume)
         DirectBoot.saveRingAt(context, plan, resume)
         assertEquals(listOf(resume.toEpochMilli()), alarms.scheduledAlarms.map { it.triggerAtMs })

@@ -68,6 +68,16 @@ object DataLayer {
     const val KEY_ALARM_FIELDS = "alarmFields"
 
     /**
+     * Stand der Verbindung Handy ↔ Uhr (Review O-04), wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das
+     * Handy schickt, nicht mehr wie eingestellt umsetzt (z. B. die Weckart «Genau»). Die Uhr meldet ihren Stand im
+     * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check (`WearSync.watchOutdated`).
+     */
+    const val PROTOCOL = 1
+
+    /** [PROTOCOL] der Uhr im selben Paket wie [KEY_READY]; fehlt bei Uhren vor dieser Angabe (gilt dann als 0). */
+    const val KEY_PROTOCOL = "protocol"
+
+    /**
      * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
      * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
      */
@@ -108,6 +118,15 @@ object DataLayer {
      */
     const val PATH_AUTO_ONSET = "/phasewake/auto-onset"
     const val KEY_AUTO_ONSET = "autoOnset"
+
+    /**
+     * Datenpaket Uhr → Handy: frühere Zielzeit einer Nacht aus dem Einschlaf-Modus (`OnsetShift`, Review K-07);
+     * Schlüssel [KEY_TEXT] (Kennung), [KEY_ORIGINAL_TARGET], [KEY_TARGET] (ms) und [KEY_UPDATED_AT]. Ein Paket, damit es
+     * auch ein gerade nicht erreichbares Handy erreicht; der Zweitwecker dieser Nacht klingelt dann ebenfalls früher.
+     */
+    const val PATH_ONSET_SHIFT = "/phasewake/onset-shift"
+    const val KEY_ORIGINAL_TARGET = "originalTarget"
+    const val KEY_TARGET = "target"
 
     /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
     const val PATH_DIAG_REQUEST = "/phasewake/diag-request"

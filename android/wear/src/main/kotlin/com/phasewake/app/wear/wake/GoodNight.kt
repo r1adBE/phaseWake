@@ -7,6 +7,7 @@ import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.NightHistory
+import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.GOOD_NIGHT_MAX_AHEAD
@@ -97,7 +98,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
 
 /**
  * Eingeschlafen um [asleep] (Wecker [spec], eingestellte Weckzeit [latest]): Einschlafzeit merken. Mit Schlafdauer gilt
- * Einschlafzeit + Schlafdauer als Ausnahme für diese Nacht. «Gute Nacht» endet, neu planen.
+ * Einschlafzeit + Schlafdauer als Ausnahme für diese Nacht, auch für den Zweitwecker am Handy ([OnsetShift]).
+ * «Gute Nacht» endet, neu planen.
  */
 private fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Instant) {
     val duration = spec.sleepDurationMinutes
@@ -112,6 +114,11 @@ private fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Insta
     app.appScope.launch {
         app.onsets.set(spec.id, latest, asleep)
         if (plan != null) app.onsetOverride.set(plan)
+        // Auch der Zweitwecker am Handy klingelt diese Nacht früher (Review K-07): als Paket, kommt also auch an,
+        // wenn das Handy gerade nicht erreichbar ist.
+        if (plan != null && plan.target.isBefore(latest)) {
+            app.sync.publishOnsetShift(OnsetShift(spec.id, latest.toEpochMilli(), plan.target.toEpochMilli(), System.currentTimeMillis()))
+        }
         app.scheduler.reschedule()
     }
     stopIfIdle()

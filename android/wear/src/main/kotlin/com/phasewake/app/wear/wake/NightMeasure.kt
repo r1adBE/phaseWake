@@ -12,7 +12,6 @@ import com.phasewake.app.core.ShortNight
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
-import com.phasewake.app.core.WakeReason
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.NIGHT_HARD_LIMIT
@@ -38,7 +37,7 @@ import kotlinx.coroutines.launch
  */
 internal fun WakeService.adopt(plan: WakePlan): Boolean {
     val current = night
-    if (current != null && current.plan != plan && current.phase != Phase.MEASURING) {
+    if (current != null && !WakeRules.adopts(current.plan, current.phase == Phase.MEASURING, plan)) {
         Log.i(TAG, "Wecker ${plan.alarmId} wartet, bis Wecker ${current.plan.alarmId} beendet ist")
         return false
     }
@@ -197,11 +196,7 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 internal fun WakeService.onDeadline() {
     val n = night ?: return
     if (n.phase == Phase.MEASURING) {
-        n.reason = when {
-            n.exact -> WakeReason.EXACT
-            n.earlyBlocked -> WakeReason.SHORT_NIGHT
-            else -> n.detector.finish().reason
-        }
+        n.reason = WakeRules.deadlineReason(n.exact, n.earlyBlocked) { n.detector.finish().reason }
         ring()
     }
 }

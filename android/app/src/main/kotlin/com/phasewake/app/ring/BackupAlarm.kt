@@ -227,7 +227,10 @@ class BackupAlarm(
     internal suspend fun backupRang(alarmId: String?, target: Instant?) {
         if (alarmId == null) return
         if (target != null) {
-            suppress(mapOf(alarmId to target.plus(GRACE)))
+            // Zur früheren Zielzeit des Einschlaf-Modus geklingelt (Review K-07): die eingestellte Zeit derselben Nacht
+            // gilt ebenfalls als erledigt, sonst klingelte der Zweitwecker dann noch einmal.
+            val spec = alarms.current().alarms.firstOrNull { it.id == alarmId }
+            suppress(mapOf(alarmId to nightTarget(spec, target, now()).plus(GRACE)))
             // Für [watchRang]: Holt die Uhr diese Nacht später nach, nicht noch einmal klingeln.
             val keepAfter = now().minus(Duration.ofDays(1))
             store.edit { prefs ->

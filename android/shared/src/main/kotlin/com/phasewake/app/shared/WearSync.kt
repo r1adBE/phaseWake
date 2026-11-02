@@ -72,6 +72,11 @@ class WearSync(context: Context) {
         return stored
     }
 
+    /** Uhr: frühere Zielzeit aus dem Einschlaf-Modus ans Handy, als Paket ([OnsetShift], Review K-07). */
+    suspend fun publishOnsetShift(shift: OnsetShift) = guarded("Einschlaf-Zielzeit senden") {
+        dataClient.putDataItem(OnsetShift.request(shift)).await()
+    }
+
     /** Handy: zuletzt gemeldeter Status der Uhr; `null`, wenn sie noch nie etwas gemeldet hat. */
     suspend fun watchReady(): Boolean? = readStatus { readReady(it) }
 
@@ -87,6 +92,12 @@ class WearSync(context: Context) {
      * gemeldet hat oder die Wear-Dienste fehlen.
      */
     suspend fun watchAlarmFields(): Int? = readStatus { readAlarmFields(it) }
+
+    /**
+     * Handy: Verbindungs-Stand der Uhr-App ([readProtocol]); `null`, wenn sie noch nie einen Status gemeldet hat oder die
+     * Wear-Dienste fehlen.
+     */
+    suspend fun watchProtocol(): Int? = readStatus { readProtocol(it) }
 
     /** Kennungen der Geräte, die ein Status-Paket ([DataLayer.PATH_WATCH_STATUS]) geschrieben haben. */
     private suspend fun statusNodes(): Set<String> {
@@ -283,10 +294,14 @@ class WearSync(context: Context) {
                 dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
             }.asPutDataRequest()
 
-        /** Status-Paket der Uhr mit den Feldern je Weckerzeile dieser Version; [battery] fehlt, wenn unbekannt. */
+        /**
+         * Status-Paket der Uhr mit den Feldern je Weckerzeile und dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser
+         * Version; [battery] fehlt, wenn unbekannt.
+         */
         fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
             if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
             dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
         }.asPutDataRequest().setUrgent()
@@ -342,6 +357,15 @@ class WearSync(context: Context) {
 
         /** Felder je Weckerzeile aus dem Status-Paket; ohne Angabe (ältere Uhr) 0. */
         fun readAlarmFields(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_ALARM_FIELDS)) map.getInt(DataLayer.KEY_ALARM_FIELDS) else 0
+
+        /** Verbindungs-Stand der Uhr aus dem Status-Paket; ohne Angabe (Uhr vor dieser Angabe) 0. */
+        fun readProtocol(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0
+
+        /**
+         * Ob die Uhr-App älter ist als die Handy-App (Review O-04): ihr Verbindungs-Stand [watchProtocol] ist kleiner als
+         * [own]. `null` (keine Uhr bekannt) warnt nicht; ein Status ohne Angabe stammt von einer älteren Uhr.
+         */
+        fun watchOutdated(watchProtocol: Int?, own: Int = DataLayer.PROTOCOL): Boolean = watchProtocol != null && watchProtocol < own
 
         /** Zeitpunkt des Status-Pakets (ms); `null` ohne Angabe. */
         fun readSeenAt(map: DataMap): Long? = map.getLong(DataLayer.KEY_UPDATED_AT).takeIf { it > 0 }

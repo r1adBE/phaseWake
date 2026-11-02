@@ -12,11 +12,9 @@ import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
-import com.phasewake.app.wear.wake.WakeService.Companion.GOOD_NIGHT_MAX_AHEAD
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
 import com.phasewake.app.wear.wake.WakeService.Companion.activePlan
 import com.phasewake.app.wear.wake.WakeService.Companion.measuringPlan
-import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 import kotlin.coroutines.cancellation.CancellationException
@@ -107,8 +105,7 @@ private fun WakeService.finishLocked(plan: WakePlan, rang: Boolean, notifyPhone:
  */
 private fun WakeService.doneUntil(plan: WakePlan, spec: AlarmSpec?): Instant {
     val nominal = spec?.let { AlarmSchedule.nextTarget(it, plan.target.minusMillis(1), ZoneId.systemDefault()) }
-        ?: return plan.target
-    return if (nominal.isAfter(plan.target) && Duration.between(plan.target, nominal) <= GOOD_NIGHT_MAX_AHEAD) nominal else plan.target
+    return WakeRules.doneUntil(plan.target, nominal)
 }
 
 /** Führt einen Schritt des Abschlusses aus; ein Fehler wird geloggt und ergibt `null`. */

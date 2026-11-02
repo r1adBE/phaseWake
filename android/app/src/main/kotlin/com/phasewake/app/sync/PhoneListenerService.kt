@@ -6,7 +6,9 @@ import com.phasewake.app.phoneApp
 import com.phasewake.app.transient.Transients
 import com.phasewake.app.diag.WatchReport
 import com.phasewake.app.ring.PhoneRingService
+import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.google.android.gms.wearable.DataEvent
@@ -43,6 +45,11 @@ class PhoneListenerService : WearableListenerService() {
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)
             }
+            // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
+            changed.filter { it.uri.path == DataLayer.PATH_ONSET_SHIFT }
+                .mapNotNull { OnsetShift.read(DataMapItem.fromDataItem(it).dataMap) }
+                .maxByOrNull { it.at }
+                ?.let { app.backup.onsetShiftReceived(it) }
             // Abbruch auf der Uhr, während das Handy nicht erreichbar war: nachgeliefert als Paket.
             changed.filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
                 .mapNotNull { WearSync.readTransientCancel(DataMapItem.fromDataItem(it).dataMap) }

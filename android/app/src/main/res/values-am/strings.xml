@@ -503,6 +503,8 @@
     <string name="transient_alarm_soon">የመቀስቀሻ ክልልዎ ከዚያ በፊት ይጀምራል።</string>
     <string name="check_watch_update">በሰዓትዎ ላይ Phase Wakeን ያዘምኑ</string>
     <string name="check_watch_update_problem">እስከዚያ ድረስ ሰዓትዎ ማንቂያዎችን አይዘልም፣ በበዓላትም ይቀሰቅስዎታል።</string>
+    <string name="check_watch_outdated_title">የሰዓት መተግበሪያው ጊዜው ያለፈበት ነው</string>
+    <string name="check_watch_outdated_text">እያንዳንዱ ማንቂያ እንደተቀናበረው እንዲደውል በሰዓትዎ ላይ Phase Wakeን ያዘምኑ።</string>
     <string name="watch_store_opened">Play Store በሰዓትዎ ላይ ተከፍቷል – እባክዎ ይመልከቱት።</string>
     <string name="watch_store_failed">Play Storeን በሰዓትዎ ላይ መክፈት አልተቻለም። ሰዓቱ ተገናኝቷል?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

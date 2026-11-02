@@ -12,6 +12,9 @@ struct PhaseWakeApp: App {
         Fonts.register()
         PhoneConnectivity.shared.activate()
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
+        // Wiederherstellen beim letzten Mal abgebrochen (App beendet): zu Ende führen oder zurückholen, bevor
+        // etwas mit Weckern und Verlauf rechnet.
+        RestoreJournal.recover(model: PhoneModel.shared)
         // Zeitzone seit dem letzten Planen gewechselt (Reise, App nicht offen; auch beim Start im Hintergrund):
         // AlarmKit-Alarme stehen auf festen Zeitpunkten, also auf die neue Ortszeit neu planen.
         Task { @MainActor in await PhoneModel.shared.backup.replanIfZoneChanged(PhoneModel.shared.alarms) }

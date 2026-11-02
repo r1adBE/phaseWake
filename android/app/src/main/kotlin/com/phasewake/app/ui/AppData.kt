@@ -47,6 +47,7 @@ import com.phasewake.app.core.Streak
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.WearSync
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.sounds.SoundRecorderService
 import com.phasewake.app.ui.history.HabitLines
@@ -342,6 +343,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
             while (true) {
                 missingOn = app.sync.nodesWithout(DataLayer.CAPABILITY_WATCH)
                 knowsSkip = Codec.watchKnowsSkip(app.sync.watchAlarmFields())
+                val outdated = WearSync.watchOutdated(app.sync.watchProtocol())
                 check = NightCheckState.collect(
                     context,
                     app.sync.isReachable(DataLayer.CAPABILITY_WATCH),
@@ -349,6 +351,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     app.sync.watchBattery(),
                     watchAppMissing = missingOn.isNotEmpty(),
                     watchKnowsSkip = knowsSkip,
+                    watchOutdated = outdated,
                 )
                 check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
                 delay(NIGHT_CHECK_INTERVAL_MS)

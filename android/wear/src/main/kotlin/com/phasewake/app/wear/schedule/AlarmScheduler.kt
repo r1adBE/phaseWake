@@ -152,15 +152,17 @@ class AlarmScheduler(
         reschedule()
     }
 
-    /** Plant neu nach dem aktuellen Stand der Wecker. @return der geplante Plan oder `null`. */
+    /** Plant neu nach dem aktuellen Stand der Wecker ([ScheduleRules.decide]). @return der geplante Plan oder `null`. */
     suspend fun reschedule(): WakePlan? = rescheduleLock.withLock {
         val now = clock().instant()
         val plan = nextPlan()
+        // Nur abfragen, wenn keine Nacht läuft (sonst bleibt ohnehin alles stehen).
+        val running = WakeService.activePlan?.takeIf { WakeService.measuringPlan == null }
+        val pending = if (running == null) pendingRing(now) else null
+        val decision = ScheduleRules.decide(plan, WakeService.measuringPlan, WakeService.activePlan, pending, now)
 
         // Läuft eine Messung für einen Plan, der nicht mehr gilt (Wecker aus, gelöscht, verschoben): beenden.
-        WakeService.measuringPlan?.let { running ->
-            if (running != plan) WakeService.command(context, WakeService.ACTION_CANCEL)
-        }
+        if (decision.cancelMeasuring) WakeService.command(context, WakeService.ACTION_CANCEL)
 
         refreshSurfaces()
         publishStatus()
@@ -168,17 +170,17 @@ class AlarmScheduler(
 
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme (Schlummer-Ende) nicht anfassen und
         // keinen anderen Wecker starten, der sie ablösen würde. Ihr Ende plant neu und holt nach.
-        WakeService.activePlan?.takeIf { WakeService.measuringPlan == null }?.let { active ->
-            Log.i(TAG, "Nacht ${active.alarmId} läuft noch, plane danach")
+        if (decision.keepRunning) {
+            Log.i(TAG, "Nacht ${running?.alarmId} läuft noch, plane danach")
             return@withLock null
         }
 
         // Vor einem Neustart geschlummert oder die Zielzeit während des Neustarts verpasst: Dieses
         // Wecken bleibt stehen (Schlummer-Alarm), statt dass das Neuplanen es auf morgen verschiebt.
-        val pendingRing = pendingRing(now)?.takeIf { it.plan != plan }
-        if (pendingRing != null) {
+        val pendingRing = pending?.takeIf { decision.pendingRingAt != null }
+        if (pendingRing != null && decision.pendingRingAt != null) {
             Log.i(TAG, "Wecken ${pendingRing.plan.alarmId} von vor dem Neustart bleibt: ${pendingRing.at}")
-            setSnoozeEnd(context, pendingRing.plan, maxOf(pendingRing.at, now.plus(IMMEDIATE)))
+            setSnoozeEnd(context, pendingRing.plan, decision.pendingRingAt)
         }
 
         cancel(context, REQUEST_WINDOW, AlarmReceiver.ACTION_WINDOW_START)
@@ -202,25 +204,22 @@ class AlarmScheduler(
         setDeadline(context, plan)
         // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
         // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
-        val start = maxOf(plan.windowStart, now.plus(IMMEDIATE))
+        val start = decision.windowAt ?: plan.windowStart
         setAlarmClock(context, start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
         Log.i(TAG, "Geplant: Fenster ${plan.windowStart} bis ${plan.target}")
         plan
     }
 
     /**
-     * Abgelegtes Wecken aus [DirectBoot], das noch aussteht: geschlummert (Schlummer-Ende nach der
-     * Zielzeit) oder Zielzeit vorbei, Nacht nicht erledigt, Wecker noch eingeschaltet und noch nachzuholen
-     * ([DirectBoot.catchesUp]: Probewecker und Powernap nur 60 s). Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
+     * Abgelegtes Wecken aus [DirectBoot], das noch aussteht ([ScheduleRules.pendingRing]; [DirectBoot.catchesUp]:
+     * Probewecker und Powernap nur 60 s). Nur aufrufen, wenn keine Nacht läuft. Sonst `null`.
      */
     private suspend fun pendingRing(now: Instant): DirectBoot.Saved? {
         val saved = DirectBoot.load(context) ?: return null
-        val late = saved.at.isAfter(saved.plan.target) || !saved.plan.target.isAfter(now)
-        if (!late || !DirectBoot.catchesUp(saved, now)) return null
-        val done = doneUntil(store.data.first())[saved.plan.alarmId]
-        if (done != null && !done.isBefore(saved.plan.target)) return null
-        if (alarms.current().alarms.none { it.id == saved.plan.alarmId && it.enabled } && transient.specFor(saved.plan.alarmId) == null) return null
-        return saved
+        val id = saved.plan.alarmId
+        val exists = alarms.current().alarms.any { it.id == id && it.enabled } || transient.specFor(id) != null
+        val done = doneUntil(store.data.first())[id]
+        return saved.takeIf { ScheduleRules.pendingRing(it, now, DirectBoot.catchesUp(it, now), done, exists) }
     }
 
     /** Der Plan nach [plan]: dessen Wecker erst nach seiner Zielzeit, die übrigen wie gewohnt. */
@@ -297,7 +296,6 @@ class AlarmScheduler(
         private const val REQUEST_SNOOZE = 3
         private const val REQUEST_SHOW = 4
         private const val REQUEST_GOOD_NIGHT_CHECK = 5
-        private val IMMEDIATE: Duration = Duration.ofSeconds(1)
         private val LEGACY_DONE_UNTIL = longPreferencesKey("night_done_until")
         private val DONE_UNTIL_BY_ALARM = stringPreferencesKey("night_done_until_by_alarm")
 

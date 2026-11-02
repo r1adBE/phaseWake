@@ -502,6 +502,8 @@
     <string name="transient_alarm_soon">Kipindi chako cha kuamka kinaanza kabla ya hapo.</string>
     <string name="check_watch_update">Sasisha Phase Wake kwenye saa yako</string>
     <string name="check_watch_update_problem">Hadi wakati huo, saa yako haitaruka kengele na itakuamsha pia siku za sikukuu.</string>
+    <string name="check_watch_outdated_title">Programu ya saa imepitwa na wakati</string>
+    <string name="check_watch_outdated_text">Sasisha Phase Wake kwenye saa yako ili kila kengele ilie kama ulivyoiweka.</string>
     <string name="watch_store_opened">Play Store imefunguliwa kwenye saa yako – iangalie.</string>
     <string name="watch_store_failed">Imeshindwa kufungua Play Store kwenye saa yako. Je, imeunganishwa?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

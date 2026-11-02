@@ -63,6 +63,8 @@ final class PhoneModel {
     private(set) var watchAlarmFields: Int?
     /// Akkustand der Apple Watch in Prozent, wie zuletzt gemeldet, und Zeitpunkt der Messung.
     private var watchBatteryLevel: (percent: Int, at: Date)?
+    /// Stand der Verbindung, den die Uhr-App meldet (`WatchProtocol`); `nil` = unbekannt (ältere Uhr, noch kein Kontext).
+    private(set) var watchProtocol: Int?
 
     /// Höchstens so viele Wecker (wie Android): Die Uhr führt ohnehin nur die nächste Nacht.
     static let maxAlarms = 8
@@ -194,7 +196,7 @@ final class PhoneModel {
     /// Ob die Uhr Überspringen und Feiertage beachtet; sonst blendet das iPhone beides aus (Nacht-Check meldet es).
     var watchKnowsSkip: Bool { Codec.watchKnowsSkip(watchAlarmFields) }
 
-    func setWatchBattery(_ level: (percent: Int, at: Date)?) { watchBatteryLevel = level }
+    func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?) { (watchBatteryLevel, watchProtocol) = (battery, version) }
 
     /// Akkustand der Uhr; `nil`, wenn unbekannt oder älter als 6 Stunden.
     func watchBattery(now: Date = Date()) -> Int? {

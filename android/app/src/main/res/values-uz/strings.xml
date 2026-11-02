@@ -503,6 +503,8 @@
     <string name="transient_alarm_soon">Uygʻotish oraligʻing undan oldin boshlanadi.</string>
     <string name="check_watch_update">Soatingdagi Phase Wakeʼni yangila</string>
     <string name="check_watch_update_problem">Shungacha soating budilniklarni oʻtkazib yubormaydi va bayramlarda ham uygʻotadi.</string>
+    <string name="check_watch_outdated_title">Soatdagi ilova eskirgan</string>
+    <string name="check_watch_outdated_text">Har bir budilnik sozlanganidek jiringlashi uchun soatingdagi Phase Wakeʼni yangila.</string>
     <string name="watch_store_opened">Play Store soatingda ochildi – unga qarab chiq.</string>
     <string name="watch_store_failed">Play Store soatingda ochilmadi. Soat ulanganmi?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

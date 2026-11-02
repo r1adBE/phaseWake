@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.DocumentsContract
 import android.util.Log
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.core.BackupException
 import com.phasewake.app.core.BackupFile
@@ -21,6 +22,7 @@ import java.security.SecureRandom
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 /** Vorschau vor dem Ersetzen: Anzahl Wecker, Nächte und Tage mit Notizen. */
@@ -34,6 +36,9 @@ data class BackupPreview(val payload: BackupPayload, val alarms: Int, val nights
 object BackupManager {
     private const val TAG = "BackupManager"
     private val random = SecureRandom()
+
+    /** Kennung des letzten Wiederherstellens, im selben `edit` wie die Daten geschrieben ([RestoreJournal]). */
+    private val RESTORE_TOKEN = stringPreferencesKey("restore_token")
 
     /** Schreibt eine verschlüsselte Sicherung nach [uri]. @return ob es geklappt hat. */
     suspend fun create(context: Context, app: PhaseWakeApp, uri: Uri, password: String): Boolean = try {
@@ -126,7 +131,8 @@ object BackupManager {
      * Ersetzt alle Daten durch [payload] in einem Schritt und gleicht danach mit der Uhr ab. Unlesbare Nächte fallen weg.
      * Erst wird alles gelesen; dann die Nächte (eigene Datei, atomar) und Wecker, Notizen, Abendroutine und
      * Einstellungen in einem einzigen `edit` des DataStore (atomar). Scheitert dieses, kommen die alten Nächte zurück:
-     * Es bleibt der alte oder der neue Stand, nie eine Mischung.
+     * Es bleibt der alte oder der neue Stand, nie eine Mischung. Endet der Prozess mittendrin, entscheidet [recover]
+     * beim nächsten Start ([RestoreJournal]).
      * @return ob ersetzt wurde; `false` = nichts geändert (Meldung `restore_failed`).
      */
     suspend fun restore(app: PhaseWakeApp, payload: BackupPayload): Boolean {
@@ -139,13 +145,34 @@ object BackupManager {
             return false
         }
         app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
+        afterRestore(app, snapshot)
+        return true
+    }
+
+    /**
+     * Beim Start der App (Review K-03): Endete der Prozess während eines Wiederherstellens, gilt danach der neue Stand
+     * (DataStore schon geschrieben: Abgleich mit der Uhr nachholen) oder wieder der alte (alte Nächte zurück).
+     */
+    suspend fun recover(app: PhaseWakeApp) {
+        val committed = app.phaseWakeStore.data.first()[RESTORE_TOKEN]
+        when (RestoreJournal(app.filesDir).recover(committed, app.nights)) {
+            RestoreJournal.Outcome.NONE -> Unit
+            RestoreJournal.Outcome.FINISHED -> {
+                app.diag.log(DiagKind.SYNC, "restore finished after restart")
+                afterRestore(app, app.alarms.current())
+            }
+            RestoreJournal.Outcome.ROLLED_BACK -> app.diag.log(DiagKind.ERROR, "restore rolled back after restart")
+        }
+    }
+
+    /** Nach dem Ersetzen: Wecker, Feiertage, Schlafziel und Einschlaf-Messung an die Uhr, alles neu planen. */
+    private suspend fun afterRestore(app: PhaseWakeApp, snapshot: AlarmSnapshot) {
         app.sync.publishAlarms(snapshot)
         app.holidays.refresh(force = true)
         app.publishSleepGoal()
         app.publishAutoOnset()
         // Plant auch Bettzeit-Erinnerung und Wochenrückblick nach den neuen Einstellungen.
         app.backup.reschedule()
-        return true
     }
 
     /** Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. */
@@ -160,20 +187,34 @@ object BackupManager {
             }
         }
         val before = app.nights.load()
-        app.nights.replaceAll(nights)
+        // Erst Kopie und Marke (übersteht ein Prozessende), dann tauschen; die Kennung geht mit ins `edit`.
+        val journal = RestoreJournal(app.filesDir)
+        val token = java.util.UUID.randomUUID().toString()
+        journal.begin(token, before)
+        lateinit var snapshot: AlarmSnapshot
         try {
-            lateinit var snapshot: AlarmSnapshot
+            app.nights.replaceAll(nights)
             app.phaseWakeStore.edit { prefs ->
                 app.notes.restoreInto(prefs, payload.notes, payload.customNotes, payload.healthFeelings)
                 app.routine.restoreInto(prefs, payload.routineItems, payload.routineTicks)
                 app.settings.restoreInto(prefs, payload.settings)
                 snapshot = app.alarms.replaceAllIn(prefs, alarms)
+                prefs[RESTORE_TOKEN] = token
             }
-            return snapshot
         } catch (e: Exception) {
-            // Auch bei einem Abbruch: die alten Nächte zurück, damit der Stand zusammenpasst.
-            withContext(NonCancellable) { app.nights.replaceAll(before) }
+            // Auch bei einem Abbruch: die alten Nächte zurück, damit der Stand zusammenpasst; dann erst die Kopie weg.
+            withContext(NonCancellable) {
+                app.nights.replaceAll(before)
+                journal.finish()
+            }
             throw e
         }
+        // Neuer Stand vollständig: Marke und Kopie weg (scheitert das, räumt der nächste Start auf, ohne zurückzusetzen).
+        try {
+            withContext(NonCancellable) { journal.finish() }
+        } catch (e: IOException) {
+            Log.w(TAG, "Marke des Wiederherstellens nicht gelöscht", e)
+        }
+        return snapshot
     }
 }

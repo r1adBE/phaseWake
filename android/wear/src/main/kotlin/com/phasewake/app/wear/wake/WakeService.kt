@@ -268,13 +268,13 @@ class WakeService : LifecycleService() {
         internal val ONSET_GIVE_UP: Duration = Duration.ofMinutes(15)
 
         /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
-        val GOOD_NIGHT_MAX_AHEAD: Duration = Duration.ofHours(16)
+        val GOOD_NIGHT_MAX_AHEAD: Duration = WakeRules.GOOD_NIGHT_MAX_AHEAD
 
         /** Spätestens so lange nach der Zielzeit endet eine Nacht (4 × 10 Min Klingeln + 3 × 5 Min Schlummern passen gut hinein). */
         internal val NIGHT_HARD_LIMIT: Duration = Duration.ofHours(2)
 
         /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
-        internal const val RING_TIMEOUT_MS = 10 * 60_000L
+        internal const val RING_TIMEOUT_MS = WakeRules.RING_TIMEOUT_MS
         internal const val WAKE_LOCK_MARGIN_MS = 20 * 60_000L
 
         /** Läuft der Dienst gerade? Befehle ohne Plan gehen nur an einen laufenden Dienst. */
