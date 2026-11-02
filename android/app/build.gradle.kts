@@ -1,4 +1,5 @@
 import java.net.URI
+import java.security.MessageDigest
 
 plugins {
     alias(libs.plugins.android.application)
@@ -124,7 +125,7 @@ val downloadYamnet = tasks.register("downloadYamnet") {
         }
         if (loaded) {
             // Ausserhalb des try: Eine veränderte Datei ist kein Netzfehler und bricht den Build ab.
-            val digest = java.security.MessageDigest.getInstance("SHA-256")
+            val digest = MessageDigest.getInstance("SHA-256")
             temp.inputStream().use { input ->
                 val buffer = ByteArray(64 * 1024)
                 while (true) {
@@ -154,7 +155,7 @@ val checkYamnet = tasks.register("checkYamnet") {
             throw GradleException("yamnet.tflite fehlt in src/main/assets (Download fehlgeschlagen?). Release ohne Modell abgebrochen, siehe README.")
         }
         // Auch eine schon vorhandene Datei (lokal liegen geblieben) muss stimmen.
-        val digest = java.security.MessageDigest.getInstance("SHA-256")
+        val digest = MessageDigest.getInstance("SHA-256")
         target.inputStream().use { input ->
             val buffer = ByteArray(64 * 1024)
             while (true) {
