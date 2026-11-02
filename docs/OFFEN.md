@@ -1,6 +1,6 @@
 # Offene Punkte
 
-Stand 02.11.2026, Phase Wake 16.2.2 (Build 41). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 02.11.2026, Phase Wake 16.2.2 (Build 42). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -13,11 +13,13 @@ Stand 02.11.2026, Phase Wake 16.2.2 (Build 41). Erledigtes wandert nach [ENTSCHE
 2. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
 3. **AlarmKit: feste Uhrzeit nach einer Reise.** Nach einem Zeitzonenwechsel ohne App-Start bleibt der Zweitwecker auf der alten Zeit.
 4. **Android: Klingel-Dienst des Handys nicht sticky** (`PhoneRingService`); beendet das System den Prozess, endet das Klingeln.
-5. Weitere Punkte des Audits, die hier noch nicht als erledigt belegt sind (prüfen, sonst nach ENTSCHEIDE.md): Einschlaf-Modus verschiebt nur die Uhr, nicht den Zweitwecker am Handy; Schlummern auf der Apple Watch beendet die Nacht auf dem iPhone; Apple-Sitzung misst die ersten 5 Min. nicht; Force-Stop auf der Uhr; `backupRang` vor dem Klingeln; README «ab der dritten Nacht»; `versionCode` ohne CI = 1; `ACTIVITY_RECOGNITION` auf der Uhr; Epochen-Abschluss in PHASENERKENNUNG.md; ENTSCHEIDE.md ±45 vs. 30 Min.
+5. **Einschlaf-Modus (Galaxy Watch):** Die frühere Zielzeit gilt nur auf der Uhr; der Zweitwecker am Handy bleibt auf der eingestellten Zeit (M1).
+6. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen.
+
+Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fensters nicht (watchOS-Grenze, entschieden); `ACTIVITY_RECOGNITION` auf der Uhr wird für den Vordergrunddienst «Gesundheit» gebraucht; ENTSCHEIDE.md ±45 Min. (Trend-Hinweis) und ±30 Min. (Regelmässigkeit) sind zwei verschiedene Regeln.
 
 ## Zum Entscheiden (r1AD)
 
-6. **Schalter «Wecker auf dem Sperrbildschirm» in die Sicherung** aufnehmen (heute nicht gesichert, nach dem Wiederherstellen an).
 7. Grenzfälle der ehrlichen Texte: `home_no_alarm_title` «Im richtigen Moment aufwachen», `health_rationale` «…den Weckmoment zu prüfen», README «Abgleich mit den Schlafphasen».
 
 ## Vor dem Store-Start
