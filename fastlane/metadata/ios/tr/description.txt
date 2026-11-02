@@ -9,7 +9,7 @@ Nasıl çalışır
 Uyuyakalmaman için tasarlandı
 • Yatmadan önce gece kontrolü: saat bağlı, izinler verilmiş, pil yeterli.
 • Alarmı test et: “2 dakika sonra test et”, adım adım sonuçla.
-• iPhone'daki yedek alarm Rahatsız Etme ve Uyku odağında da çalar.
+• iOS 26'dan itibaren iPhone'daki yedek alarm Rahatsız Etme ve Uyku odağında da çalar.
 • Bir sonrakini atla ve tatillerde uyandırma – 150'den fazla ülke ve bölgeleri için tatiller, internetsiz.
 
 Daha iyi uyu

@@ -9,7 +9,7 @@ Så fungerar det
 Gjord för att du inte ska försova dig
 • Nattkontroll före sänggåendet: klocka ansluten, behörigheter givna, tillräckligt med batteri.
 • Testa väckarklockan: ”Testa om 2 minuter” med resultat steg för steg.
-• Reservlarmet på iPhone ringer även i Stör ej och i fokusläget Sömn.
+• Från iOS 26 ringer reservlarmet på iPhone även i Stör ej och i fokusläget Sömn.
 • Hoppa över nästa gång och väck inte på helgdagar – helgdagar för över 150 länder och deras regioner, offline.
 
 Sov bättre

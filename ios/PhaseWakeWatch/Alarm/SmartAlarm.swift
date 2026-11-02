@@ -82,6 +82,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var deadline: Timer?
     /// Beginn des Klingelns, für die Steigerung der Vibration.
     @ObservationIgnored var hapticStart = Date()
+    /// Vibration bei offener App, wenn ohne laufende Sitzung geklingelt wird (Rückfall, `fallbackArrived`).
+    @ObservationIgnored var fallbackHaptic: Timer?
     /// Zielzeit, für die `keepRealFallback` zuletzt protokolliert hat.
     @ObservationIgnored private var keptFallback: Date?
 

@@ -9,7 +9,7 @@ Cómo funciona
 Para que no se te pase la hora
 • Revisión nocturna antes de dormir: reloj conectado, permisos concedidos, batería suficiente.
 • Alarma de prueba “Probar en 2 minutos” con resultado paso a paso.
-• La alarma de respaldo del iPhone suena incluso con No molestar y el modo de concentración Dormir.
+• Desde iOS 26, la alarma de respaldo del iPhone suena incluso con No molestar y el modo de concentración Dormir.
 • Saltar la próxima vez y no despertar en días festivos – días festivos de más de 150 países y sus regiones, sin conexión.
 
 Duerme mejor

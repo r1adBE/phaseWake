@@ -29,6 +29,8 @@ struct PhaseWakeApp: App {
                 // Start: Protokoll, Feiertage laden, Sicherung, Erinnerungen und laufende Probewecker.
                 .task { await model.startUp() }
         }
+        // Zweitwecker im Hintergrund nachziehen (angemeldet beim Öffnen, `BackupRefresh.submit`).
+        .backgroundTask(.appRefresh(BackupRefresh.identifier)) { await BackupRefresh.run() }
     }
 }
 

@@ -36,6 +36,10 @@ class WatchListenerService : WearableListenerService() {
             .filter { it.uri.path == DataLayer.PATH_SLEEP_GOAL }
             .map { WearSync.readSleepGoal(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.second }
+        val autoOnset = changed
+            .filter { it.uri.path == DataLayer.PATH_AUTO_ONSET }
+            .map { WearSync.readAutoOnset(DataMapItem.fromDataItem(it).dataMap) }
+            .maxByOrNull { it.second }
         // Abbruch am Handy, während die Uhr nicht erreichbar war: nachgeliefert als Paket.
         val cancelled = changed
             .filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
@@ -49,6 +53,9 @@ class WatchListenerService : WearableListenerService() {
             // Einschlafpunkt und Beginn der automatischen Einschlaf-Messung: neu planen.
             val newGoal = sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)
             if (newGoal) app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal?.first}")
+            // Schalter der Einschlaf-Messung: Alarm der Messung stellen oder aufheben.
+            val newOnset = autoOnset != null && app.autoOnset.setIfNewer(autoOnset.first, autoOnset.second)
+            if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset?.first}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {
@@ -58,7 +65,7 @@ class WatchListenerService : WearableListenerService() {
             }
             val newAlarms = remote != null && app.alarms.applyRemote(remote)
             if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
-            if (newAlarms || newHolidays || newGoal) app.scheduler.reschedule()
+            if (newAlarms || newHolidays || newGoal || newOnset) app.scheduler.reschedule()
         }
     }
 

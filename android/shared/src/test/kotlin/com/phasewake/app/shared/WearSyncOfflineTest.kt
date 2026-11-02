@@ -37,6 +37,7 @@ class WearSyncOfflineTest {
         tolerant { sync.publishWatchReady(true, 50) }
         tolerant { sync.publishHolidays(HolidayList("CH", emptySet()), 1L) }
         tolerant { sync.publishSleepGoal(480, 1L) }
+        tolerant { sync.publishAutoOnset(false, 1L) }
         tolerant { sync.clearHistoryEverywhere() }
         tolerant { sync.deleteNights() }
         tolerant { sync.delete(Uri.parse("wear://*/night")) }
@@ -53,6 +54,7 @@ class WearSyncOfflineTest {
         tolerant { sync.watchAlarmFields() }
         tolerant { sync.fetchHolidays() }
         tolerant { sync.fetchSleepGoal() }
+        tolerant { sync.fetchAutoOnset() }
         tolerant { sync.fetchNights() }
         tolerant { sync.nodesWithout(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.isReachable(DataLayer.CAPABILITY_WATCH) }

@@ -130,10 +130,18 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         // Verspätet zugestelltes Stopp oder Schlummern vom iPhone träfe sonst eine spätere Nacht.
         if command != SyncKeys.clearHistory, let sentAt = message[SyncKeys.sentAt] as? Int64,
            Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs { return }
+        // Nacht des iPhone-Alarms (fehlt bei älteren iPhone-Versionen): Stopp oder Schlummern nur für dieselbe Nacht.
+        let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
+        let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         Task { @MainActor in
+            let alarm = SmartAlarm.shared
+            if command == SyncKeys.stop || command == SyncKeys.snooze, !alarm.isThisNight(alarmId: alarmId, target: target) {
+                DiagStore.shared.log(.suppressed, "phone \(command) for other night")
+                return
+            }
             switch command {
-            case SyncKeys.stop: SmartAlarm.shared.dismiss(notifyPhone: false)
-            case SyncKeys.snooze: SmartAlarm.shared.snoozeFromPhone()
+            case SyncKeys.stop: alarm.dismiss(notifyPhone: false)
+            case SyncKeys.snooze: alarm.snoozeFromPhone()
             case SyncKeys.clearHistory: WatchModel.shared.storage.clearNights()
             default: break
             }

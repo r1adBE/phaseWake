@@ -9,7 +9,7 @@ Com funciona
 Perquè no se t’enganxin els llençols
 • Control nocturn abans de dormir: rellotge connectat, permisos concedits, bateria prou carregada.
 • Alarma de prova «Prova d’aquí a 2 minuts» amb el resultat pas a pas.
-• L’alarma de reserva de l’iPhone sona fins i tot amb «No molestis» i amb la concentració Son.
+• A partir d’iOS 26, l’alarma de reserva de l’iPhone sona fins i tot amb «No molestis» i amb la concentració Son.
 • Omet la propera vegada i no despertis els festius – festius de més de 150 països i les seves regions, sense connexió.
 
 Dorm millor

@@ -2,7 +2,7 @@ Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si
 
 Come funziona
 • Scegli l’orario della sveglia e la finestra (fino a 30 min), indossa l’orologio, dormi.
-• L’orologio misura solo durante la finestra di risveglio: risparmia batteria.
+• L’orologio misura durante la finestra di risveglio e, la sera, per poco finché non ti addormenti – così risparmia batteria.
 • Vibrazione al polso, con suono se vuoi – il telefono suona come sveglia di riserva nel caso qualcosa vada storto.
 • Tieni premuto per fermare, posticipa fino a 3 volte.
 

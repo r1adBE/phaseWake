@@ -648,8 +648,8 @@
 				SWIFT_VERSION = 5.0;
 				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your heart rate during the wake window to detect light sleep.";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement during the wake window to detect light sleep.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment.";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;
@@ -678,8 +678,8 @@
 				SWIFT_VERSION = 5.0;
 				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your heart rate during the wake window to detect light sleep.";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement during the wake window to detect light sleep.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment.";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;

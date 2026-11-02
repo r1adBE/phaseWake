@@ -2,7 +2,7 @@ Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann sc
 
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
-• Die Uhr misst nur im Weckfenster: schont den Akku.
+• Die Uhr misst im Weckfenster und abends kurz bis zum Einschlafen – das schont den Akku.
 • Vibration am Handgelenk, auf Wunsch mit Ton – das Handy klingelt als Zweitwecker mit, falls etwas schiefgeht.
 • Zum Stoppen halten, schlummern bis 3×.
 

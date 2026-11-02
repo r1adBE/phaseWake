@@ -119,7 +119,7 @@ final class HolidayStore {
     @discardableResult
     func refresh(now: Date = Date()) -> Bool {
         guard let database else { return false }
-        let fresh = database.dates(country: country, region: region, today: NightDate.today(now, calendar: .current))
+        let fresh = database.dates(country: country, region: region, today: NightDate.today(now, calendar: .gregorianLocal))
         guard fresh != dates else { return false }
         dates = fresh
         return true

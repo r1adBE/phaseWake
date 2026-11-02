@@ -325,6 +325,8 @@
     <string name="weekly_toggle">每周日 18:00 推送一周总结。</string>
     <string name="next_alarm_notif_title">锁屏上的闹钟</string>
     <string name="next_alarm_notif_hint">从傍晚起显示静默通知，含唤醒时段和夜间检查。</string>
+    <string name="auto_onset_title">自动检测入睡</string>
+    <string name="auto_onset_hint">从就寝时间前 1 小时起，手表会短暂测量动作，直到你入睡。仅限 Galaxy Watch。</string>
     <string name="weekly_notification_title">你的一周</string>
     <string name="weekly_notification_text">Ø 睡眠 %1$s · 睡眠目标 %2$d/7 · 规律 %3$d/7 · 感觉 %4$s</string>
     <string name="weekly_notification_feeling">本周 Ø 感觉：%1$s</string>

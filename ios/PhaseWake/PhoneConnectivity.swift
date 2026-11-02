@@ -33,12 +33,16 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     private var pending: [[String: Any]] = []
 
     /// Sofort, wenn die Uhr erreichbar ist; sonst zugestellt, sobald sie es wieder ist.
-    /// `extra`: Inhalt des Befehls (Plan, Kennung), siehe `SyncKeys`.
+    /// `extra`: Inhalt des Befehls (Plan, Kennung), siehe `SyncKeys`. `night`: Nacht, zu der «stop» bzw. «schlummern»
+    /// gehört (Kennung in `SyncKeys.alarms`, Zielzeit in ms in `SyncKeys.target`, wie die Uhr sie schickt); die Uhr
+    /// folgt nur, wenn sie gerade dieselbe Nacht weckt.
     @MainActor
-    func send(command: String, extra: [String: String] = [:]) {
+    func send(command: String, extra: [String: String] = [:], night: RingNight? = nil) {
         guard WCSession.isSupported() else { return }
         var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
         for (key, value) in extra { payload[key] = value }
+        if let alarmId = night?.alarmId { payload[SyncKeys.alarms] = alarmId }
+        if let targetMs = night?.targetMs { payload[SyncKeys.target] = targetMs }
         guard WCSession.default.activationState == .activated else {
             pending.append(payload)
             if WCSession.default.delegate == nil { activate() }

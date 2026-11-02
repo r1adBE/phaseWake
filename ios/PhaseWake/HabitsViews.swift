@@ -70,7 +70,7 @@ struct RoutineSection: View {
 /// Schlaf-Streifen, hier weglassen.
 @MainActor
 func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool, regularShown: Bool = false, now: Date = Date()) -> [String] {
-    let calendar = Calendar.current
+    let calendar = Calendar.gregorianLocal
     let today = SleepNotes.nightDate(now, calendar: calendar)
     var lines: [String] = []
     if healthConnected {

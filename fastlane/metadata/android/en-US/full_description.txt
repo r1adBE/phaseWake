@@ -2,7 +2,7 @@ Phase Wake wakes you within your wake window as soon as you get restless – tha
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
-• The watch only measures during the wake window: easy on the battery.
+• The watch measures during the wake window and briefly in the evening until you fall asleep – easy on the battery.
 • Vibration on your wrist, with sound if you like – your phone rings as a backup alarm in case anything goes wrong.
 • Hold to stop, snooze up to 3 times.
 

@@ -325,6 +325,8 @@
     <string name="weekly_toggle">ทุกวันอาทิตย์ 18:00 แจ้งเตือนสรุปสัปดาห์ของคุณ</string>
     <string name="next_alarm_notif_title">การปลุกบนหน้าจอล็อก</string>
     <string name="next_alarm_notif_hint">การแจ้งเตือนแบบเงียบตั้งแต่ช่วงเย็น พร้อมช่วงเวลาปลุกและการตรวจก่อนนอน</string>
+    <string name="auto_onset_title">ตรวจจับการหลับโดยอัตโนมัติ</string>
+    <string name="auto_onset_hint">ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน นาฬิกาจะวัดการเคลื่อนไหวสั้นๆ จนกว่าคุณจะหลับ เฉพาะ Galaxy Watch</string>
     <string name="weekly_notification_title">สัปดาห์ของคุณ</string>
     <string name="weekly_notification_text">Ø นอน %1$s · เป้าหมาย %2$d/7 · สม่ำเสมอ %3$d/7 · ความรู้สึก %4$s</string>
     <string name="weekly_notification_feeling">Ø ความรู้สึกสัปดาห์นี้: %1$s</string>

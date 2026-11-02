@@ -360,6 +360,8 @@
     <string name="weekly_toggle">V nedeľu o 18:00 upozornenie o tvojom týždni.</string>
     <string name="next_alarm_notif_title">Budík na uzamknutej obrazovke</string>
     <string name="next_alarm_notif_hint">Tiché upozornenie od večera s oknom budenia a nočnou kontrolou.</string>
+    <string name="auto_onset_title">Automaticky rozpoznať zaspávanie</string>
+    <string name="auto_onset_hint">Od 1 hodiny pred časom spánku hodinky krátko merajú pohyb, kým nezaspíš. Iba Galaxy Watch.</string>
     <string name="weekly_notification_title">Tvoj týždeň</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s spánku · cieľ spánku %2$d/7 · pravidelne do postele %3$d/7 · pocit %4$s</string>
     <string name="weekly_notification_feeling">Ø pocit tento týždeň: %1$s</string>

@@ -61,7 +61,7 @@ struct BackupSection: View {
     }
 
     private var fileName: String {
-        L("backup_file_name", SleepNotes.dateString(Date(), calendar: .current))
+        L("backup_file_name", SleepNotes.dateString(Date(), calendar: .gregorianLocal))
     }
 }
 

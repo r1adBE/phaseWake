@@ -2,7 +2,7 @@ Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir oroli
 
 Så fungerar det
 • Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
-• Klockan mäter bara under väckningsfönstret: skonsamt för batteriet.
+• Klockan mäter under väckningsfönstret och kort på kvällen tills du somnar – skonsamt för batteriet.
 • Vibration på handleden, med ljud om du vill – mobilen ringer som reservlarm om något går fel.
 • Håll in för att stänga av, snooze upp till 3 gånger.
 

@@ -336,6 +336,8 @@
     <string name="weekly_toggle">ہر اتوار شام 6 بجے تمہارے ہفتے کے بارے میں ایک اطلاع۔</string>
     <string name="next_alarm_notif_title">لاک اسکرین پر الارم</string>
     <string name="next_alarm_notif_hint">شام سے جاگنے کی ونڈو اور رات کے چیک کے ساتھ خاموش اطلاع۔</string>
+    <string name="auto_onset_title">سو جانے کا خودکار طور پر پتا لگائیں</string>
+    <string name="auto_onset_hint">سونے کے وقت سے 1 گھنٹہ پہلے سے، جب تک تم سو نہ جاؤ، تمہاری گھڑی تھوڑی دیر حرکت ناپتی ہے۔ صرف Galaxy Watch۔</string>
     <string name="weekly_notification_title">تمہارا ہفتہ</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">اوسطاً %1$s نیند · نیند کا ہدف %2$d/7 · باقاعدہ سونا %3$d/7 · کیفیت %4$s</string>
     <string name="weekly_notification_feeling">اس ہفتے اوسط کیفیت: %1$s</string>

@@ -33,7 +33,7 @@ final class BedtimeReminder {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.nightsAhead).map(Self.identifier))
         guard enabled else { return }
-        let calendar = Calendar.current
+        let calendar = Calendar.gregorianLocal
         var from = Date()
         for index in 0..<Self.nightsAhead {
             guard let reminder = Bedtime.next(alarms, from: from, calendar: calendar, goalMinutes: goalMinutes, holidays: holidays) else { break }
@@ -46,7 +46,8 @@ final class BedtimeReminder {
                              Format.duration(minutes: goalMinutes),
                              Format.time(reminder.target))
             content.sound = .default
-            let parts = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: reminder.at)
+            // Auslöser im Kalender des Geräts: Er liest die Komponenten in diesem (ohne Angabe des Kalenders).
+            let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: reminder.at)
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
             try? await center.add(UNNotificationRequest(identifier: Self.identifier(index), content: content, trigger: trigger))
         }

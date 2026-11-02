@@ -9,7 +9,7 @@ How it works
 Built so you don't oversleep
 • Night check before bed: watch connected, permissions granted, battery high enough.
 • Test alarm "Test in 2 minutes" with a step-by-step result.
-• The backup alarm on your iPhone rings even with Do Not Disturb and the Sleep Focus.
+• From iOS 26, the backup alarm on your iPhone rings even with Do Not Disturb and the Sleep Focus.
 • Skip next time and don't wake on public holidays – holidays for more than 150 countries and their regions, offline.
 
 Sleep better

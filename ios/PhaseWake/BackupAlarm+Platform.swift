@@ -26,7 +26,10 @@ extension BackupAlarm {
     /// Verwirft einen gestellten iPhone-Alarm (AlarmKit und Mitteilung, je nachdem, was gestellt wurde).
     func cancelAlarm(_ id: UUID) {
         #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) { try? AlarmManager.shared.cancel(id: id) }
+        if #available(iOS 26.0, *) {
+            stoppedByApp.insert(id)
+            try? AlarmManager.shared.cancel(id: id)
+        }
         #endif
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
@@ -48,9 +51,11 @@ extension BackupAlarm {
             let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop,
                                                 secondaryButton: snooze, secondaryButtonBehavior: behavior)
             let attributes = AlarmAttributes<PhaseWakeAlarm>(presentation: AlarmPresentation(alert: alert), tintColor: Brand.accentLight)
-            // Nur beim Mitklingeln geht Stopp bzw. Schlummern an die Uhr; eine Sicherung klingelt ohne Uhr und
-            // schlummert auf dem iPhone selbst (`BackupSnoozeIntent`).
-            let stopIntent: (any LiveActivityIntent)? = fromWatch ? StopRingIntent(alarmId: id.uuidString) : nil
+            // Beim Mitklingeln gehen Stopp und Schlummern an die Uhr. Eine Sicherung klingelt ohne Uhr: Ihr Stopp beendet
+            // die Uhr nur für dieselbe Nacht (`BackupStopIntent`); sie schlummert auf dem iPhone selbst (`BackupSnoozeIntent`).
+            let stopIntent: any LiveActivityIntent = fromWatch
+                ? StopRingIntent(alarmId: id.uuidString)
+                : BackupStopIntent(alarmId: id.uuidString)
             let snoozeIntent: (any LiveActivityIntent)?
             if snooze == nil {
                 snoozeIntent = nil
@@ -112,6 +117,26 @@ struct StopRingIntent: LiveActivityIntent {
         guard PhoneModel.shared.backup.isCurrentRing(alarmId) else { return .result() }
         PhoneModel.shared.transient.phoneAlerted(alarmId)
         await PhoneModel.shared.phoneRingEnded(snooze: false)
+        return .result()
+    }
+}
+
+/// «Stopp» an einer Sicherung (klingelt ohne Uhr): Die Uhr hört für dieselbe Nacht auch auf (`BackupAlarm.backupStopped`).
+@available(iOS 26.0, *)
+struct BackupStopIntent: LiveActivityIntent {
+    static let title: LocalizedStringResource = "ring_stop"
+    static let isDiscoverable = false
+
+    @Parameter(title: "Alarm")
+    var alarmId: String
+
+    init() { alarmId = "" }
+    init(alarmId: String) { self.alarmId = alarmId }
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        PhoneModel.shared.transient.phoneAlerted(alarmId)
+        PhoneModel.shared.backup.backupStopped(alarmId)
         return .result()
     }
 }

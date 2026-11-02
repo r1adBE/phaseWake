@@ -23,11 +23,15 @@ public struct BackupSettings: Equatable, Sendable {
     /// Das iPhone hat diese Mitteilung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel
     /// (ältere Sicherung), gilt die Vorgabe `true`.
     public var nextAlarmNotice: Bool
+    /// Einschlaf-Messung am Abend an (nur Galaxy Watch, Schalter «Einschlafen automatisch erkennen»). Das iPhone hat
+    /// diese Messung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel (ältere Sicherung),
+    /// gilt die Vorgabe `true`.
+    public var autoOnset: Bool
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
                 soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "",
-                historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true) {
+                historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true, autoOnset: Bool = true) {
         self.sleepGoal = sleepGoal
         self.bedtimeReminder = bedtimeReminder
         self.weeklyReview = weeklyReview
@@ -37,6 +41,7 @@ public struct BackupSettings: Equatable, Sendable {
         self.holidayRegion = holidayRegion
         self.historyClearedAt = historyClearedAt
         self.nextAlarmNotice = nextAlarmNotice
+        self.autoOnset = autoOnset
     }
 }
 
@@ -97,6 +102,7 @@ public struct BackupPayload: Equatable, Sendable {
                 "holidayRegion": s.holidayRegion,
                 "historyClearedAt": s.historyClearedAt.map { NSNumber(value: $0) as Any } ?? NSNull(),
                 "nextAlarmNotice": s.nextAlarmNotice,
+                "autoOnset": s.autoOnset,
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
@@ -135,7 +141,8 @@ public struct BackupPayload: Equatable, Sendable {
                 holidayCountry: s["holidayCountry"] as? String ?? d.holidayCountry,
                 holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion,
                 historyClearedAt: integer(s["historyClearedAt"]),
-                nextAlarmNotice: bool(s["nextAlarmNotice"]) ?? d.nextAlarmNotice
+                nextAlarmNotice: bool(s["nextAlarmNotice"]) ?? d.nextAlarmNotice,
+                autoOnset: bool(s["autoOnset"]) ?? d.autoOnset
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""
         )

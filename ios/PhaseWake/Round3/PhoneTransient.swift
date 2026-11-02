@@ -52,7 +52,7 @@ final class PhoneTransient {
     func startTest() async {
         let model = PhoneModel.shared
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
-        let plan = Transient.test(base: base, now: Date(), calendar: .current, uuid: UUID().uuidString.lowercased())
+        let plan = Transient.test(base: base, now: Date(), calendar: .gregorianLocal, uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
         test = plan
         run = TestRun(id: plan.plan.alarmId, target: plan.plan.target, phoneAlert: plan.spec.phone)
@@ -84,7 +84,7 @@ final class PhoneTransient {
     func startNap(minutes: Int) async {
         let model = PhoneModel.shared
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
-        let plan = Transient.nap(base: base, now: Date(), calendar: .current, minutes: minutes, uuid: UUID().uuidString.lowercased())
+        let plan = Transient.nap(base: base, now: Date(), calendar: .gregorianLocal, minutes: minutes, uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
         nap = plan
         waitingForWatch = !(WCSession.isSupported() && WCSession.default.isReachable)

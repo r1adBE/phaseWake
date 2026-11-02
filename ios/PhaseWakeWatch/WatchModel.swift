@@ -43,13 +43,13 @@ final class WatchModel {
     var realPlan: WakePlan? {
         let done = storage.doneUntil
         let holidays = storage.holidays.dates
-        return AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .current, holidays: holidays)
-            ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .current, holidays: holidays)
+        return AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+            ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
     }
 
     /// Nachzuholender Wecker (Zielzeit schon vorbei), sonst `nil`: Er klingelt gleich, ohne Messung.
     var missedPlan: WakePlan? {
-        AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: Date(), doneUntil: storage.doneUntil, calendar: .current,
+        AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: Date(), doneUntil: storage.doneUntil, calendar: .gregorianLocal,
                                  holidays: storage.holidays.dates)
     }
 
@@ -57,7 +57,7 @@ final class WatchModel {
     /// Fensterbeginn bis jetzt samt den Weckern merken, die darin fällig wurden – sie werden gleich nachgeholt.
     func noteNightEnded(windowStart: Date) {
         let window = AlarmSchedule.catchUpAfter(catchUp, windowStart: windowStart, until: Date(), specs: storage.snapshot().alarms,
-                                                calendar: .current, holidays: storage.holidays.dates)
+                                                calendar: .gregorianLocal, holidays: storage.holidays.dates)
         catchUp = window
         UserDefaults.standard.set(try? JSONEncoder().encode(window), forKey: Self.catchUpKey)
     }
@@ -110,8 +110,9 @@ final class WatchModel {
         SmartAlarm.shared.removeFallback([SmartAlarm.transientFallbackId])
     }
 
-    /// Nach dem Ende eines vorübergehenden Plans neu planen. Bei geschlossener App lässt watchOS die Sitzung der
-    /// Nacht nicht planen: dann eine Mitteilung «Öffne Phase Wake auf der Uhr» (der Rückfall steht trotzdem).
+    /// Nach dem Ende einer Nacht (echter Wecker, Probewecker oder Powernap) neu planen. Bei geschlossener App lässt
+    /// watchOS die Sitzung der nächsten Nacht nicht planen: dann eine Mitteilung «Öffne Phase Wake auf der Uhr» (der
+    /// Rückfall steht trotzdem).
     func transientEnded() {
         reschedule()
         if case .waiting(let next) = SmartAlarm.shared.phase, Transient.kindOf(next.alarmId) == nil {
@@ -123,7 +124,7 @@ final class WatchModel {
     /// - Returns: der Grund, wenn er nicht geht (Hinweis im Dialog); sonst `nil`.
     func startNap(minutes: Int) -> TransientConflict? {
         let next = realPlan
-        let nap = Transient.nap(base: alarms.first { $0.id == next?.alarmId }, now: Date(), calendar: .current,
+        let nap = Transient.nap(base: alarms.first { $0.id == next?.alarmId }, now: Date(), calendar: .gregorianLocal,
                                 minutes: minutes, uuid: UUID().uuidString.lowercased())
         if let reason = conflict(nap) { return reason }
         startTransient(nap)
@@ -185,7 +186,7 @@ final class WatchModel {
             var merged = old.map { $0.editedOnWatch(from: draft) } ?? draft
             if let old {
                 merged = merged.with(skipUntil: AlarmSchedule.editedSkip(old: old, edited: merged, requested: skip, now: now, doneUntil: done,
-                                                                         calendar: .current, holidays: holidays))
+                                                                         calendar: .gregorianLocal, holidays: holidays))
             }
             if let i = list.firstIndex(where: { $0.id == draft.id }) {
                 list[i] = merged

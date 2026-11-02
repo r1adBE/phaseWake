@@ -9,7 +9,7 @@ Como funciona
 Feito para não perderes a hora
 • Verificação noturna antes de dormir: relógio ligado, permissões concedidas, bateria suficiente.
 • Testar o alarme: «Testar em 2 minutos», com resultado passo a passo.
-• O alarme de reserva no iPhone toca mesmo com Não incomodar e no foco Dormir.
+• A partir do iOS 26, o alarme de reserva no iPhone toca mesmo com Não incomodar e no foco Dormir.
 • Saltar na próxima vez e não acordar em feriados – feriados de mais de 150 países e respetivas regiões, sem internet.
 
 Dorme melhor

@@ -20,7 +20,7 @@ struct HypnogramCard: View {
         }.joined(separator: " · ")
     }
 
-    private var nightDate: String { SleepNotes.nightDate(of: night, calendar: .current) }
+    private var nightDate: String { SleepNotes.nightDate(of: night, calendar: .gregorianLocal) }
 
     private var timeline: StageTimeline {
         StageTimeline(start: h.start, totalMinutes: h.totalMinutes, steps: h.steps,

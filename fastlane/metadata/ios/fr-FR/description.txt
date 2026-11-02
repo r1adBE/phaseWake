@@ -9,7 +9,7 @@ Comment ça marche
 Conçu pour que tu ne rates pas ton réveil
 • Contrôle de nuit avant de dormir : montre connectée, autorisations accordées, batterie suffisante.
 • Réveil test « Tester dans 2 minutes » avec résultat étape par étape.
-• L’alarme de secours de ton iPhone sonne même avec Ne pas déranger et le mode de concentration Sommeil.
+• À partir d’iOS 26, l’alarme de secours de ton iPhone sonne même avec Ne pas déranger et le mode de concentration Sommeil.
 • Sauter la prochaine fois et ne pas réveiller les jours fériés – jours fériés de plus de 150 pays et de leurs régions, hors ligne.
 
 Mieux dormir

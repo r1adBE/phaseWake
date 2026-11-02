@@ -9,7 +9,7 @@ Zo werkt het
 Gemaakt zodat je je niet verslaapt
 • Nachtcheck voor het slapengaan: horloge verbonden, rechten verleend, batterij vol genoeg.
 • Testwekker ‘Testen over 2 minuten’ met stap-voor-stap-resultaat.
-• De reservewekker op je iPhone gaat ook af bij Niet storen en met de focus Slaap.
+• Vanaf iOS 26 gaat de reservewekker op je iPhone ook af bij Niet storen en met de focus Slaap.
 • Volgende keer overslaan en niet wekken op feestdagen – feestdagen voor meer dan 150 landen en hun regio’s, offline.
 
 Beter slapen

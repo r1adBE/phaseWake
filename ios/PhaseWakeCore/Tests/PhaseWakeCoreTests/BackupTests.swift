@@ -90,6 +90,15 @@ final class BackupTests: XCTestCase {
         XCTAssertFalse(try BackupPayload.fromJson(p.toJson()).settings.nextAlarmNotice)
     }
 
+    func testBackupKeepsAutoOnset() throws {
+        // Fehlt der Schlüssel (ältere Sicherung, Testvektor), bleibt die Einschlaf-Messung an.
+        XCTAssertTrue(try BackupPayload.fromJson(try testdata("backup-v1.json")).settings.autoOnset)
+        var p = payload
+        XCTAssertTrue(p.toJson().contains(#""autoOnset":true"#))
+        p.settings.autoOnset = false
+        XCTAssertFalse(try BackupPayload.fromJson(p.toJson()).settings.autoOnset)
+    }
+
     func testBackupKeepsHealthFeelings() throws {
         var rated = payload
         rated.healthFeelings = "2026-10-01|4\n2026-10-02|2"

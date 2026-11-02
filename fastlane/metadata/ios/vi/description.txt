@@ -9,7 +9,7 @@ Cách hoạt động
 Để bạn không ngủ quên
 • Kiểm tra ban đêm trước khi ngủ: đồng hồ đã kết nối, đã cấp quyền, pin đủ.
 • Thử báo thức “Thử sau 2 phút” với kết quả từng bước.
-• Báo thức dự phòng trên iPhone vẫn đổ chuông khi bật Không làm phiền và chế độ tập trung Ngủ.
+• Từ iOS 26, báo thức dự phòng trên iPhone vẫn đổ chuông khi bật Không làm phiền và chế độ tập trung Ngủ.
 • Bỏ qua lần tới và không đánh thức vào ngày lễ – ngày lễ của hơn 150 quốc gia và khu vực, không cần internet.
 
 Ngủ ngon hơn

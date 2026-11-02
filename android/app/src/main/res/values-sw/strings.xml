@@ -336,6 +336,8 @@
     <string name="weekly_toggle">Kila Jumapili saa 12 jioni, arifa kuhusu wiki yako.</string>
     <string name="next_alarm_notif_title">Kengele kwenye skrini iliyofungwa</string>
     <string name="next_alarm_notif_hint">Arifa kimya kuanzia jioni yenye dirisha la kuamka na ukaguzi wa usiku.</string>
+    <string name="auto_onset_title">Tambua kiotomatiki unaposinzia</string>
+    <string name="auto_onset_hint">Kuanzia saa 1 kabla ya wakati wa kulala, saa yako hupima mwendo kwa muda mfupi hadi upate usingizi. Galaxy Watch pekee.</string>
     <string name="weekly_notification_title">Wiki yako</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Wastani %1$s za usingizi · lengo %2$d/7 · kulala kwa kawaida %3$d/7 · hali %4$s</string>
     <string name="weekly_notification_feeling">Wastani wa hali wiki hii: %1$s</string>

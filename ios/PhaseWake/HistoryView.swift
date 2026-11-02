@@ -45,7 +45,7 @@ struct HistoryView: View {
                         }
                         if !model.nights.isEmpty { stats }
                         TrendsCard(
-                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .current, health: feelings),
+                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .gregorianLocal, health: feelings),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
                             onConnectHealth: { connectHealth() },
@@ -53,12 +53,12 @@ struct HistoryView: View {
                             covered: charts.covered
                         )
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight,
-                                                                    health: feelings, calendar: .current))
+                                                                    health: feelings, calendar: .gregorianLocal))
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
                                 NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) }) {
-                                    path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .current), night: night).key)
+                                    path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .gregorianLocal), night: night).key)
                                 }
                             case .health(let session, let date):
                                 HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date],
@@ -91,8 +91,8 @@ struct HistoryView: View {
             return
         }
         health = await model.health.sessions()
-        sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
-        allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
+        sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
+        allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
         PhoneWidgetSync.publishAsleep(model, sleeps: sleeps)
         loaded = true
     }
@@ -133,13 +133,13 @@ struct HistoryView: View {
         return HistoryChartsData.of(
             nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
             nextTarget: model.nextPlan(now: now)?.target,
-            goalMinutes: model.sleepGoal, now: now, calendar: .current, health: feelings
+            goalMinutes: model.sleepGoal, now: now, calendar: .gregorianLocal, health: feelings
         )
     }
 
     /// Verlauf aus eigenen Nächten und Nächten aus Apple Health, neueste zuerst (`HealthHistory.merge`).
     private var items: [HistoryItem] {
-        HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt, calendar: .current)
+        HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
     }
 
     /// Nächte (neueste zuerst) und dazwischen nach Zeit die Karten nur mit Geräuschen (Nachtdaten ohne Nacht).
@@ -162,13 +162,13 @@ struct HistoryView: View {
     }
 
     /// Geschlafene Minuten je Nachtdatum (Mitte der Nacht, wie Diagramme und Android); bei zwei Einträgen der längere.
-    private var asleepByNight: [String: Int] { NoteEffect.asleepByNight(sleeps, calendar: .current) }
+    private var asleepByNight: [String: Int] { NoteEffect.asleepByNight(sleeps, calendar: .gregorianLocal) }
 
     /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
     private func weekly(_ feelings: [HealthFeeling]) -> WeeklySummary? {
-        let today = NightDate.today(Date(), calendar: .current)
+        let today = NightDate.today(Date(), calendar: .gregorianLocal)
         guard WeeklySummary.cardVisible(today: today) else { return nil }
-        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .current,
+        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .gregorianLocal,
                                        goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today), health: feelings)
         return summary.hasData ? summary : nil
     }
@@ -177,7 +177,7 @@ struct HistoryView: View {
     private var goalWeek: (reached: Int, total: Int)? {
         let weekAgo = Date().addingTimeInterval(-7 * 86_400)
         // Nachtdatum über die Mitte der Nacht, wie Android (`SleepGoal.nightsOf`).
-        let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .current)
+        let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .gregorianLocal)
         let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
         return status.total > 0 ? status : nil
     }
@@ -254,9 +254,9 @@ private struct NightCard: View {
             Button(action: onOpen) { summary }
                 .buttonStyle(.plain)
                 .accessibilityHint(L("night_open"))
-            NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
+            NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
                              title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
-            NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+            NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
                               title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
         .card()

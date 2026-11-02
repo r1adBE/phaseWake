@@ -26,7 +26,8 @@ import kotlinx.coroutines.flow.first
  * Sie endet beim erkannten Einschlafen oder 15 Min vor der Zielzeit. Im Einschlaf-Modus legt sie die Zielzeit fest
  * (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte ([OnsetStore]).
  *
- * Geplant bei jedem Neuplanen ([AlarmScheduler.reschedule]): Neustart, geänderte Wecker, Schlafziel.
+ * Geplant bei jedem Neuplanen ([AlarmScheduler.reschedule]): Neustart, geänderte Wecker, Schlafziel, Schalter am Handy
+ * («Einschlafen automatisch erkennen», [com.phasewake.app.shared.AutoOnsetStore]); nur, wenn er an ist.
  */
 object AutoOnset {
     /** Aktion des Alarms an [AlarmReceiver]. */
@@ -58,7 +59,8 @@ object AutoOnset {
         val spec = plan?.let { p -> app.alarms.current().alarms.firstOrNull { it.id == p.alarmId } }
         val done = plan != null && app.onsets.isDone(plan.alarmId, plan.target)
         val goal = app.sleepGoal.minutes.first()
-        val at = startAt(plan, spec, goal, now, done)
+        // Schalter am Handy aus: kein Alarm, ein gestellter wird aufgehoben.
+        val at = if (app.autoOnset.enabled.first()) startAt(plan, spec, goal, now, done) else null
         if (plan == null || at == null) {
             context.getSystemService(AlarmManager::class.java).cancel(pending(context, null))
             return

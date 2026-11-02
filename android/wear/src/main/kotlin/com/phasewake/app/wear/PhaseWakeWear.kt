@@ -12,6 +12,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.AutoOnsetStore
 import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
@@ -68,6 +69,9 @@ class PhaseWakeWear : Application() {
 
     /** Schlafziel vom Handy: Einschlafpunkt auf dem Ring, automatische Einschlaf-Messung; ohne Handy der Standard. */
     val sleepGoal by lazy { SleepGoalStore(phaseWakeStore) }
+
+    /** Schalter «Einschlafen automatisch erkennen» vom Handy; ohne Handy an. */
+    val autoOnset by lazy { AutoOnsetStore(phaseWakeStore) }
 
     /** Probewecker oder Powernap, der gerade gilt. */
     val transient by lazy { TransientStore(phaseWakeStore) }

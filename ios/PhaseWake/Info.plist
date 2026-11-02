@@ -2,10 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Einschlafklänge und die Geräusch-Aufnahme laufen weiter, wenn der Bildschirm aus ist. Die übrigen Einträge erzeugt Xcode (INFOPLIST_KEY_*). -->
+	<!-- Einschlafklänge und die Geräusch-Aufnahme laufen weiter, wenn der Bildschirm aus ist; «fetch» weckt die App ab und zu kurz, damit der Zweitwecker weit genug voraus steht (BackupRefresh). Die übrigen Einträge erzeugt Xcode (INFOPLIST_KEY_*). -->
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>fetch</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.phasewake.app.backupRefresh</string>
 	</array>
 </dict>
 </plist>

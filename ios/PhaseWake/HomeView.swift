@@ -44,8 +44,8 @@ struct HomeView: View {
                                 }
                                 // Abends bis zum Weckfenster: Notizen für die kommende Nacht.
                                 let next = model.nextPlan(now: context.date)
-                                let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .current)
-                                let tonight = SleepNotes.nightDate(context.date, calendar: .current)
+                                let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .gregorianLocal)
+                                let tonight = SleepNotes.nightDate(context.date, calendar: .gregorianLocal)
                                 if evening {
                                     TonightNotesCard(nightDate: tonight)
                                     RoutineCard(night: tonight)
@@ -58,7 +58,7 @@ struct HomeView: View {
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
                                 // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
-                                let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .current)] } ?? [])
+                                let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .gregorianLocal)] } ?? [])
                                 if let sounds = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded).first,
                                    context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,
                                    !(evening && tonight == sounds.night) {
@@ -223,7 +223,7 @@ struct HomeView: View {
 
     /// Feiertag, an dem ein Wecker sonst geweckt hätte, bis zum nächsten Wecken («Do 30.10.: Feiertag – nicht geweckt»).
     private func skippedHoliday(now: Date) -> String? {
-        AlarmSchedule.holidayNote(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .current, holidays: model.holidays.dates)
+        AlarmSchedule.holidayNote(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .gregorianLocal, holidays: model.holidays.dates)
     }
 
     private func greetingKey(_ now: Date) -> String {
@@ -310,10 +310,10 @@ private struct LastNightCard: View {
                 FeelingPicker(onPick: onFeeling).padding(.top, 8)
             }
             if isMorning {
-                NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .current),
+                NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
                                  title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
                     .padding(.top, 4)
-                NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .current),
+                NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
                                   title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
             }
         }
@@ -371,11 +371,11 @@ private struct AlarmRow: View {
     }
 
     /// Übersprungener Termin «yyyy-MM-dd», solange er bevorsteht.
-    private var skipped: String? { AlarmSchedule.skippedDate(alarm, now: Date(), calendar: .current) }
+    private var skipped: String? { AlarmSchedule.skippedDate(alarm, now: Date(), calendar: .gregorianLocal) }
 
     /// «Do 30.10. überspringen»: der Tag, den der Menüpunkt trifft (nach früh geweckter Nacht der nächste).
     private var skipTitle: String {
-        AlarmSchedule.nextSkipDate(alarm, now: Date(), doneUntil: model.doneUntil[alarm.id], calendar: .current,
+        AlarmSchedule.nextSkipDate(alarm, now: Date(), doneUntil: model.doneUntil[alarm.id], calendar: .gregorianLocal,
                                    holidays: model.holidays.dates)
             .map { L("alarm_skip_on", Format.shortDay($0)) } ?? L("alarm_skip")
     }

@@ -27,7 +27,7 @@ extension PhoneModel {
     /// (Zielzeit noch vorn) trifft es den nächsten Termin, nicht den erledigten heutigen.
     func setSkipped(_ alarm: AlarmSpec, _ skipped: Bool) {
         let updated = skipped
-            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .current, holidays: holidays.dates)
+            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .gregorianLocal, holidays: holidays.dates)
             : AlarmSchedule.undoSkip(alarm)
         upsert(updated)
     }
@@ -48,8 +48,14 @@ extension PhoneModel {
         await transient.restore()
     }
 
-    /// Beim Öffnen: neuer Tag → Feiertage neu auflösen.
+    /// Beim Öffnen: neuer Tag → Feiertage neu auflösen (plant dabei alles neu); sonst die Sicherung nachziehen, damit
+    /// sie wieder `BackupAlarm.horizon` weit reicht (der Abgleich lässt Unverändertes stehen).
     func becameActive() {
-        if holidays.refresh() { holidaysChanged() }
+        if holidays.refresh() {
+            holidaysChanged()
+        } else {
+            Task { await backup.reschedule(alarms) }
+        }
+        BackupRefresh.submit()
     }
 }

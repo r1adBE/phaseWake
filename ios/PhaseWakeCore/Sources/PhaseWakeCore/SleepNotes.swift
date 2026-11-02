@@ -82,9 +82,12 @@ public enum SleepNotes {
         nightDate(from: session.start, to: session.end, calendar: calendar)
     }
 
-    /// Kalenderdatum «yyyy-MM-dd» von `date` im Kalender (Ortszeit) mit vierstelligem Jahr.
+    /// Kalenderdatum «yyyy-MM-dd» von `date` in der Zeitzone des Kalenders mit vierstelligem Jahr – immer gregorianisch
+    /// (wie `LocalDate` in Kotlin): Ein buddhistischer oder japanischer Kalender des Geräts ergäbe sonst ein anderes
+    /// Jahr, und Nachtdaten, Notizen und Feiertage passten nicht mehr zusammen.
     public static func dateString(_ date: Date, calendar: Calendar) -> String {
-        let c = calendar.dateComponents([.year, .month, .day], from: date)
+        let gregorian = calendar.identifier == .gregorian ? calendar : Calendar.gregorian(in: calendar.timeZone)
+        let c = gregorian.dateComponents([.year, .month, .day], from: date)
         func pad(_ value: Int?, _ width: Int) -> String {
             let text = String(value ?? 0)
             return String(repeating: "0", count: max(0, width - text.count)) + text
@@ -241,5 +244,24 @@ public struct NoteEffect: Equatable, Sendable {
             )
         }
         return effects.sorted { abs($0.delta) != abs($1.delta) ? abs($0.delta) > abs($1.delta) : $0.noteId < $1.noteId }
+    }
+}
+
+/// Gregorianische Kalender für Nachtdaten und Feiertage (wie `LocalDate` in Kotlin).
+public extension Calendar {
+    /// Gregorianischer Kalender in der aktuellen Zeitzone (folgt einem Wechsel), mit der Sprache des Geräts: für
+    /// Nachtdaten, Feiertage und Weckzeiten. `Calendar.current` kann buddhistisch oder japanisch sein; die Daten
+    /// «yyyy-MM-dd» sind aber gregorianisch, wie auf Android.
+    static var gregorianLocal: Calendar {
+        var calendar = gregorian(in: .autoupdatingCurrent)
+        calendar.locale = .autoupdatingCurrent
+        return calendar
+    }
+
+    /// Gregorianischer Kalender in der Zeitzone `zone`.
+    static func gregorian(in zone: TimeZone) -> Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = zone
+        return calendar
     }
 }

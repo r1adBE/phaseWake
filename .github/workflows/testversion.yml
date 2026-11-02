@@ -2,10 +2,12 @@ name: Testversion
 
 # Baut Handy- und Uhr-App und legt sie als Vorabversion «test» auf GitHub ab:
 # https://github.com/r1adBE/phaseWake/releases/tag/test
+# Nur nach grüner CI auf main (genau der geprüfte Stand); von Hand jederzeit.
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
-    paths: [android/**, .github/workflows/testversion.yml]
   workflow_dispatch:
 
 permissions:
@@ -17,9 +19,16 @@ concurrency:
 
 jobs:
   build:
+    # Nur nach einem Push auf main mit erfolgreicher CI (keine Pull Requests, keine roten Läufe).
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
+    env:
+      # Der von der CI geprüfte Stand; von Hand der aktuelle.
+      BUILD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.BUILD_SHA }}
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -49,11 +58,11 @@ jobs:
           gh release delete test --cleanup-tag --yes || true
           git push origin :refs/tags/test || true
           cat > notes.md <<NOTES
-          Testversion ${{ github.run_number }} aus Stand \`${GITHUB_SHA::7}\` – automatisch gebaut, nicht für den Alltag.
+          Testversion ${{ github.run_number }} aus Stand \`${BUILD_SHA::7}\` – automatisch gebaut, nicht für den Alltag.
 
           - **PhaseWake-Handy.apk**: auf dem Android-Handy öffnen und installieren.
           - **PhaseWake-Uhr.apk**: auf die Galaxy Watch mit \`adb install -r PhaseWake-Uhr.apk\` (Anleitung: docs/TESTEN.md).
           NOTES
           gh release create test PhaseWake-Handy.apk PhaseWake-Uhr.apk \
-            --prerelease --target "$GITHUB_SHA" \
+            --prerelease --target "$BUILD_SHA" \
             --title "Testversion ${{ github.run_number }}" --notes-file notes.md

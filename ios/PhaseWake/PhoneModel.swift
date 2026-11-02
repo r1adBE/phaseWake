@@ -113,7 +113,7 @@ final class PhoneModel {
 
     /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen.
     func nextPlan(now: Date = Date()) -> WakePlan? {
-        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .current, holidays: holidays.dates)
+        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .gregorianLocal, holidays: holidays.dates)
     }
 
     func upsert(_ spec: AlarmSpec) {
@@ -171,7 +171,8 @@ final class PhoneModel {
         let night = backup.currentRingNight
         await backup.stopRinging()
         if snooze { await backup.snoozeSafety(night: night) }
-        PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop)
+        // Mit der Nacht: Die Uhr folgt nur, wenn sie dieselbe Nacht weckt (nicht etwa schon einen zweiten Wecker).
+        PhoneConnectivity.shared.send(command: snooze ? SyncKeys.snooze : SyncKeys.stop, night: night)
     }
 
     /// Pro Wecker erledigt bis: Zielzeit einer Nacht, die die Uhr schon abgeschlossen hat, obwohl sie noch vorn liegt
@@ -319,12 +320,12 @@ extension PhoneModel {
     func autoStartSoundRec(now: Date = Date()) async {
         guard !recorder.running, recorder.permissionGranted else { return }
         let plan = nextPlan(now: now)
-        let night = SleepNotes.nightDate(now, calendar: .current)
+        let night = SleepNotes.nightDate(now, calendar: .gregorianLocal)
         if let choice = soundRecChoice, choice.night == night {
-            guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .current) else { return }
+            guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .gregorianLocal) else { return }
         } else {
             guard soundRecDefault,
-                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .current, windowStart: plan?.windowStart) else { return }
+                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .gregorianLocal, windowStart: plan?.windowStart) else { return }
         }
         await recorder.start(nextAlarmTarget: plan?.target)
     }

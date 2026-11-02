@@ -81,6 +81,9 @@ fun SettingsScreen(
     /** Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm (Standard an). */
     nextAlarmNotice: Boolean = true,
     onNextAlarmNotice: (Boolean) -> Unit = {},
+    /** Einschlaf-Messung am Abend auf der Galaxy Watch (Standard an). */
+    autoOnset: Boolean = true,
+    onAutoOnset: (Boolean) -> Unit = {},
     soundRecDefault: Boolean = false,
     onSoundRecDefault: (Boolean) -> Unit = {},
     routineItems: List<RoutineItem> = emptyList(),
@@ -147,6 +150,7 @@ fun SettingsScreen(
             }
             SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
             SwitchRow(stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint), nextAlarmNotice, onNextAlarmNotice)
+            SwitchRow(stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset, onAutoOnset)
         }
 
         extras.onTest?.let { TestGroup(it) }

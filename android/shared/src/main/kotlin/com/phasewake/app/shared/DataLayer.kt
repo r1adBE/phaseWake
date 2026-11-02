@@ -102,6 +102,13 @@ object DataLayer {
     const val PATH_SLEEP_GOAL = "/phasewake/sleep-goal"
     const val KEY_SLEEP_GOAL = "sleepGoalMinutes"
 
+    /**
+     * Datenpaket Handy → Uhr: Schalter «Einschlafen automatisch erkennen» ([KEY_AUTO_ONSET]) mit [KEY_UPDATED_AT]
+     * (Zeitpunkt der Änderung am Handy). Ohne Paket oder Schlüssel gilt auf der Uhr «an».
+     */
+    const val PATH_AUTO_ONSET = "/phasewake/auto-onset"
+    const val KEY_AUTO_ONSET = "autoOnset"
+
     /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
     const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
 

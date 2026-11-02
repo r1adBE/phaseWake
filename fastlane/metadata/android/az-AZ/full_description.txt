@@ -2,7 +2,7 @@ Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində o
 
 Necə işləyir
 • Oyanma vaxtını və pəncərəni (30 dəq-yə qədər) seç, saatını tax, yat.
-• Saat yalnız oyanma pəncərəsində ölçür: batareyaya qənaət edir.
+• Saat oyanma pəncərəsində və axşam yuxuya gedənə qədər qısa müddət ölçür – bu, batareyaya qənaət edir.
 • Biləyində vibrasiya, istəsən səslə – nəsə səhv getsə, telefonun ehtiyat siqnal kimi çalır.
 • Dayandırmaq üçün saxla, 3 dəfəyə qədər təxirə sal.
 

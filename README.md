@@ -28,7 +28,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
-- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Vibration + Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton
+- **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Vibration + Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton – ab iOS 26 als Wecker, der auch bei «Nicht stören» und im Schlaf-Fokus klingelt, davor als Mitteilung
 - **Wecktöne**, die leise beginnen: Morgenvögel, Glockenspiel, Sanfter Gong, Harfe oder ein Klingelton des Systems
 - **Sonnenaufgang** (Option) auf dem Handy und/oder der Galaxy Watch: Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf Apple nur auf dem iPhone, im Nachttisch-Modus
 - **Schlummern** 5 Minuten, höchstens 3×
@@ -42,7 +42,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional Abgleich mit den Schlafphasen aus Health Connect bzw. Apple Health
 - **Gleicht ab**: Nach drei aufgezeichneten Nächten werden die Schwellen an deine Bewegungswerte angepasst, also ab der vierten Nacht.
 - **Genau** (Option pro Wecker): ohne Weckfenster, klingelt genau zur Zielzeit; die Uhr misst trotzdem für den Verlauf
-- **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr erst zur Zielzeit; dein Einschlafen erkennt sie dafür automatisch
+- **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr erst zur Zielzeit; dein Einschlafen erkennt sie dafür automatisch: Ab 1 Stunde vor der Bettzeit misst sie kurz die Bewegung, bis du eingeschlafen bist (standardmässig ein, abschaltbar in den Einstellungen)
 - **Kachel und Komplikation** auf der Uhr
 - **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
 - **74 Sprachen**

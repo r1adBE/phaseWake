@@ -9,7 +9,7 @@ Ako to funguje
 Proti zaspatiu
 • Nočná kontrola pred spaním: hodinky pripojené, povolenia udelené, batéria dostatočne nabitá.
 • Skúšobný budík „Vyskúšať o 2 minúty“ s výsledkom krok za krokom.
-• Záložný budík v iPhone zvoní aj v režime Nerušiť a v režime sústredenia Spánok.
+• Od iOS 26 záložný budík v iPhone zvoní aj v režime Nerušiť a v režime sústredenia Spánok.
 • Nabudúce preskočiť a nebudiť počas sviatkov – sviatky pre viac ako 150 krajín a ich regióny, offline.
 
 Lepší spánok

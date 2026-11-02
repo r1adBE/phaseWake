@@ -163,9 +163,9 @@ struct WatchEditorView: View {
         guard let draft, !draft.isOneShot else { return nil }
         let now = Date()
         let saved = AlarmSchedule.editedSkip(old: start, edited: draft, requested: skipRequest, now: now,
-                                             doneUntil: model.storage.doneUntil[start.id], calendar: .current,
+                                             doneUntil: model.storage.doneUntil[start.id], calendar: .gregorianLocal,
                                              holidays: model.storage.holidays.dates)
-        return AlarmSchedule.skippedDate(draft.with(skipUntil: saved), now: now, calendar: .current)
+        return AlarmSchedule.skippedDate(draft.with(skipUntil: saved), now: now, calendar: .gregorianLocal)
     }
 
     private func save() {

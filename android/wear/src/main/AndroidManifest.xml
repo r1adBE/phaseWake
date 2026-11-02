@@ -25,6 +25,12 @@
     <!-- Wecker-App: exakte Alarme ohne Rückfrage (ab Android 13), davor über SCHEDULE_EXACT_ALARM. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+    <!--
+        Kein Internet (wie am Handy): Bibliotheken können diese Rechte beim Zusammenführen der Manifeste einbringen.
+        Hier ausdrücklich entfernt; der Austausch mit dem Handy läuft über die Wear-Dienste (Data Layer).
+    -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
 
     <application
         android:name=".PhaseWakeWear"

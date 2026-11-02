@@ -5,6 +5,7 @@ Aufruf aus android/ nach `assembleRelease`: release_check.py
 Gelesen wird das zusammengeführte Release-Manifest jeder App. Fehler, wenn
 - die App als debuggable markiert ist,
 - eine Vorschau- oder Test-Activity enthalten ist (z. B. PreviewActivity aus ui-tooling),
+- die App Netzzugriff anfordert (INTERNET oder ACCESS_NETWORK_STATE, z. B. über eine Bibliothek eingeschleppt),
 - für eine App kein Release-Manifest gefunden wird (Build fehlte).
 """
 import glob
@@ -14,6 +15,8 @@ import xml.etree.ElementTree as ET
 NS = "{http://schemas.android.com/apk/res/android}"
 APPS = ("app", "wear")
 FORBIDDEN = ("PreviewActivity", "ComponentActivity", "TestActivity")
+# Phase Wake arbeitet ohne Netz; die Manifeste entfernen diese Rechte mit tools:node="remove".
+NETWORK = ("android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE")
 
 
 def manifest(app):
@@ -27,7 +30,12 @@ def check(app):
     if path is None:
         return [f"{app}: kein Release-Manifest gefunden (assembleRelease gelaufen?)"]
     errors = []
-    application = ET.parse(path).getroot().find("application")
+    root = ET.parse(path).getroot()
+    for permission in root.iter("uses-permission"):
+        name = permission.get(NS + "name", "")
+        if name in NETWORK:
+            errors.append(f"{app}: Release fordert {name} an")
+    application = root.find("application")
     if application is not None and application.get(NS + "debuggable") == "true":
         errors.append(f"{app}: Release-Build ist debuggable")
     for activity in application.findall("activity") if application is not None else []:
@@ -42,7 +50,7 @@ def main():
     for e in errors:
         print(f"::error title=Store-Build::{e}")
     if not errors:
-        print("::notice title=Store-Build::Handy und Uhr: Release ohne debuggable und ohne Vorschau-Activity")
+        print("::notice title=Store-Build::Handy und Uhr: Release ohne debuggable, ohne Vorschau-Activity und ohne Netzzugriff")
     return 1 if errors else 0
 
 

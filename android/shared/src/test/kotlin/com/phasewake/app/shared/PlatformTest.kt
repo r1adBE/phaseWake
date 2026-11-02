@@ -114,6 +114,8 @@ class PlatformTest {
             putLong(DataLayer.KEY_UPDATED_AT, 3L)
         }
         assertEquals(SleepGoal.MIN_MINUTES to 3L, WearSync.readSleepGoal(tooShort))
+        // Einschlaf-Messung: ohne Angabe (ältere Handys) an.
+        assertEquals(true to 0L, WearSync.readAutoOnset(DataMap()))
     }
 
     @Test
@@ -149,6 +151,10 @@ class PlatformTest {
         assertEquals(DataLayer.PATH_SLEEP_GOAL, goal.uri.path)
         assertTrue(goal.isUrgent)
         assertEquals(495 to 8L, WearSync.readSleepGoal(DataMap.fromByteArray(goal.data!!)))
+        val onset = WearSync.autoOnsetRequest(false, 6L)
+        assertEquals(DataLayer.PATH_AUTO_ONSET, onset.uri.path)
+        assertTrue(onset.isUrgent)
+        assertEquals(false to 6L, WearSync.readAutoOnset(DataMap.fromByteArray(onset.data!!)))
         val cancel = WearSync.transientCancelRequest("nap-1", 5L)
         assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)
         assertTrue(cancel.isUrgent)

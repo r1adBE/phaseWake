@@ -105,6 +105,23 @@ class StoresTest {
     }
 
     @Test
+    fun autoOnsetStoreTakesOnlyNewer() = runTest {
+        val store = AutoOnsetStore(MemoryStore())
+        // Uhr ohne Handy: an.
+        assertTrue(store.enabled.first())
+        assertTrue(store.setIfNewer(false, 10L))
+        assertFalse(store.enabled.first())
+        // Älter oder gleich alt: bleibt.
+        assertFalse(store.setIfNewer(true, 10L))
+        assertFalse(store.setIfNewer(true, 5L))
+        assertFalse(store.enabled.first())
+        // Neuer, aber gleich: gespeichert, keine Änderung.
+        assertFalse(store.setIfNewer(false, 11L))
+        assertTrue(store.setIfNewer(true, 12L))
+        assertTrue(store.enabled.first())
+    }
+
+    @Test
     fun testRunStoreRecordsOnlyItsTest() = runTest {
         val store = TestRunStore(MemoryStore())
         assertNull(store.current())

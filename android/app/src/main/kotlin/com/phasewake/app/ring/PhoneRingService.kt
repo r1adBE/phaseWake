@@ -85,10 +85,13 @@ class PhoneRingService : Service() {
             // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
             // Restzahl der Uhr übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
             if (fromWatch && watchSnoozesLeft != null) {
+                // Die Uhr führt nun: Sie hat ihren eigenen Wiederaufnahme-Alarm (der des Handys ist oben schon aufgehoben).
                 state.value = ringing.copy(fromWatch = true, snoozesLeft = watchSnoozesLeft.coerceIn(0, Snooze.MAX_COUNT))
                 if (lastAlarmId == null) lastAlarmId = alarmId
                 if (lastTarget == null) lastTarget = target
             }
+            // Führt weiter das Handy: Wiederaufnahme-Alarm neu stellen (oben aufgehoben).
+            (state.value as? State.Ringing)?.takeIf { !it.fromWatch }?.let { armResume(lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft) }
             return
         }
         alert.post(newRound = true)
@@ -109,6 +112,7 @@ class PhoneRingService : Service() {
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left.coerceIn(0, Snooze.MAX_COUNT))
         alert.show(if (fromWatch) "with watch" else "backup")
         handler.postDelayed(timeout, TIMEOUT_MS)
+        if (!fromWatch) armResume(alarmId, snoozesDone)
         // Nach dem Schlummern am Handy kommt keine Zielzeit mit: die der ersten Runde behalten.
         lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
         lastAlarmId = alarmId
@@ -170,12 +174,30 @@ class PhoneRingService : Service() {
     }
 
     /**
+     * Stirbt der Prozess mitten im Klingeln des Handys (ohne Uhr), startet nichts das Klingeln neu. Darum wie auf der Uhr
+     * ein Alarm kurz nach der Zeitgrenze ([TIMEOUT_MS] plus [RESUME_MARGIN_MS]; bis dahin schlummert oder endet die Runde
+     * im laufenden Prozess), abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart).
+     * Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf ([BackupAlarm.cancelSnooze]).
+     */
+    private fun armResume(alarmId: String?, snoozesDone: Int) {
+        val at = java.time.Instant.now().plusMillis(TIMEOUT_MS + RESUME_MARGIN_MS)
+        phoneApp.backup.snoozeUntil(at, alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT))
+    }
+
+    /**
      * Niemand hat reagiert. Führt die Uhr die Nacht und hat sie noch Runden, schlummert sie von selbst
      * (ohne «stop» ans Handy): dann wie beim Schlummern auf der Uhr eine eigene Sicherung kurz nach dem
      * Schlummer-Ende, falls die Uhr danach nicht wieder klingelt. Ein neues «klingeln» hebt sie auf.
+     * Führt das Handy (ohne Uhr), schlummert es wie die Uhr von selbst, solange Runden bleiben; erst
+     * die letzte Zeitgrenze beendet.
      */
     private fun onTimeout() {
         val ringing = state.value as? State.Ringing
+        if (ringing != null && !ringing.fromWatch && ringing.snoozesLeft > 0) {
+            phoneApp.diag.log(DiagKind.SNOOZE, "phone timeout")
+            snooze()
+            return
+        }
         if (ringing != null && ringing.fromWatch && ringing.snoozesLeft > 0) {
             val alarmId = lastAlarmId
             val done = Snooze.MAX_COUNT - ringing.snoozesLeft + 1
@@ -273,6 +295,9 @@ class PhoneRingService : Service() {
         const val EXTRA_SNOOZES_DONE = "snoozesDone"
         private const val EXTRA_FROM_WATCH = "fromWatch"
         private const val TIMEOUT_MS = 10 * 60_000L
+
+        /** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze: Der Ablauf im Prozess kommt immer zuerst. */
+        private const val RESUME_MARGIN_MS = 30_000L
 
         private val state = MutableStateFlow<State>(State.Idle)
         val ringState: StateFlow<State> = state.asStateFlow()

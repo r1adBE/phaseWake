@@ -121,6 +121,32 @@ extension BackupAlarm {
         pruneRingNights()
     }
 
+    // MARK: Nacht-Check
+
+    /// So knapp darf die Sicherung werden, bevor der Nacht-Check warnt.
+    nonisolated static let shortHorizon: TimeInterval = 48 * 3600
+
+    /// Ob die Sicherung bald aufgebraucht ist (Nacht-Check, rot): Ein eingeschalteter Wecker mit Zweitwecker hat noch
+    /// einen Termin, aber es ist keine Sicherung gestellt, oder die letzte klingelt in weniger als `shortHorizon` und
+    /// danach folgt noch ein Termin eines wiederholten Weckers (einmalige haben nach ihrem ersten keinen mehr). Dann hat
+    /// iOS die App zu lange nicht geweckt; Öffnen plant wieder `horizon` weit. Wartet die laufende Neuplanung ab.
+    func horizonShort(_ alarms: [AlarmSpec], now: Date = Date()) async -> Bool {
+        await settled()
+        let eligible = alarms.filter(\.phoneBackup)
+        let holidays = PhoneModel.shared.holidays.dates
+        let suppressed = suppressedUntil()
+        func hasPlan(_ specs: [AlarmSpec], after from: Date) -> Bool {
+            AlarmSchedule.earliestPlan(specs, now: from, doneUntil: suppressed, calendar: .gregorianLocal, holidays: holidays) != nil
+        }
+        let planned = plannedBackups
+        guard let last = planned.filter({ $0.slot.fireAt > now }).max(by: { $0.slot.fireAt < $1.slot.fireAt }) else {
+            // Ein einmaliger Wecker, dessen Sicherung schon geklingelt hat, schaltet sich gleich aus: zählt nicht.
+            return hasPlan(eligible.filter { spec in !spec.isOneShot || !planned.contains { $0.slot.alarmId == spec.id } }, after: now)
+        }
+        guard last.slot.fireAt.timeIntervalSince(now) < Self.shortHorizon else { return false }
+        return hasPlan(eligible.filter { !$0.isOneShot }, after: last.slot.target)
+    }
+
     /// Kennungen, die noch gestellt sind: AlarmKit-Alarme (ab iOS 26) und wartende Mitteilungen.
     private func pendingIds() async -> Set<UUID> {
         var ids = Set<UUID>()

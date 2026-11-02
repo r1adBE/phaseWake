@@ -9,7 +9,7 @@ Come funziona
 Fatto perché tu non perda la sveglia
 • Controllo notturno prima di dormire: orologio connesso, autorizzazioni concesse, batteria sufficiente.
 • Sveglia di prova «Prova tra 2 minuti» con esito passo per passo.
-• La sveglia di riserva sull’iPhone suona anche con Non disturbare e con la full immersion Riposo.
+• Da iOS 26, la sveglia di riserva sull’iPhone suona anche con Non disturbare e con la full immersion Riposo.
 • Salta la prossima volta e non svegliare nei festivi – festivi di oltre 150 paesi e delle loro regioni, offline.
 
 Dormi meglio

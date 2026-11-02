@@ -337,6 +337,8 @@
     <string name="weekly_toggle">Á sunnudögum kl. 18, tilkynning um vikuna þína.</string>
     <string name="next_alarm_notif_title">Vekjari á lásskjá</string>
     <string name="next_alarm_notif_hint">Hljóðlaus tilkynning frá kvöldi með vökuglugga og næturathugun.</string>
+    <string name="auto_onset_title">Greina sjálfkrafa þegar þú sofnar</string>
+    <string name="auto_onset_hint">Frá 1 klst. fyrir háttatíma mælir úrið hreyfingu stuttlega þar til þú sofnar. Aðeins Galaxy Watch.</string>
     <string name="weekly_notification_title">Vikan þín</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s svefn · svefnmarkmið %2$d/7 · reglulegur háttatími %3$d/7 · líðan %4$s</string>
     <string name="weekly_notification_feeling">Ø líðan þessa viku: %1$s</string>

@@ -9,7 +9,7 @@ Jak to działa
 Zaprojektowany, żeby nie zaspać
 • Kontrola nocy przed snem: zegarek połączony, uprawnienia nadane, bateria wystarczająco naładowana.
 • Testuj budzik: „Testuj za 2 minuty” z wynikiem krok po kroku.
-• Budzik zapasowy na iPhonie dzwoni także w trybie Nie przeszkadzać i w trybie skupienia Sen.
+• Od iOS 26 budzik zapasowy na iPhonie dzwoni także w trybie Nie przeszkadzać i w trybie skupienia Sen.
 • Pomiń następnym razem i nie budź w święta – święta dla ponad 150 krajów i ich regionów, bez internetu.
 
 Lepszy sen

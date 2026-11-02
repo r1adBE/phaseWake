@@ -325,6 +325,8 @@
     <string name="weekly_toggle">일요일 오후 6시에 한 주 요약 알림을 받아요.</string>
     <string name="next_alarm_notif_title">잠금 화면에 알람 표시</string>
     <string name="next_alarm_notif_hint">저녁부터 기상 구간과 밤 점검을 무음 알림으로 보여 줍니다.</string>
+    <string name="auto_onset_title">잠드는 시점 자동 감지</string>
+    <string name="auto_onset_hint">취침 시간 1시간 전부터 잠들 때까지 워치가 잠깐 움직임을 측정해요. Galaxy Watch 전용.</string>
     <string name="weekly_notification_title">이번 주</string>
     <string name="weekly_notification_text">Ø 수면 %1$s · 수면 목표 %2$d/7 · 규칙적 %3$d/7 · 기분 %4$s</string>
     <string name="weekly_notification_feeling">이번 주 Ø 기분: %1$s</string>

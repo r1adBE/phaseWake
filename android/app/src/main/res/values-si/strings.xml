@@ -337,6 +337,8 @@
     <string name="weekly_toggle">ඉරිදා සවස 6 ට ඔබේ සතිය ගැන දැනුම්දීමක්.</string>
     <string name="next_alarm_notif_title">අගුළු තිරයේ එලාමය</string>
     <string name="next_alarm_notif_hint">සවස සිට අවදි වීමේ කාල පරාසය සහ රාත්‍රී පරීක්ෂාව සමඟ නිහඬ දැනුම්දීමක්.</string>
+    <string name="auto_onset_title">නින්දට යාම ස්වයංක්‍රීයව හඳුනාගන්න</string>
+    <string name="auto_onset_hint">නින්දට යන වේලාවට පැය 1කට පෙර සිට ඔබ නින්දට යන තුරු ඔරලෝසුව කෙටි වේලාවක් චලනය මනියි. Galaxy Watch පමණි.</string>
     <string name="weekly_notification_title">ඔබේ සතිය</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø නින්ද %1$s · නින්දේ ඉලක්කය %2$d/7 · නිතිපතා නින්ද %3$d/7 · හැඟීම %4$s</string>
     <string name="weekly_notification_feeling">මෙම සතියේ Ø හැඟීම: %1$s</string>

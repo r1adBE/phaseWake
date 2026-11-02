@@ -52,6 +52,26 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         return stamp
     }
 
+    /** Einschlaf-Messung am Abend auf der Galaxy Watch an oder aus (Standard an); geht mit Zeitpunkt an die Uhr. */
+    val autoOnset: Flow<Boolean> = store.data.map { it[AUTO_ONSET] ?: true }
+
+    suspend fun setAutoOnset(enabled: Boolean) {
+        store.edit {
+            it[AUTO_ONSET] = enabled
+            it[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
+        }
+    }
+
+    /** Stand des Schalters mit Zeitpunkt der letzten Änderung (ms) für die Uhr; fehlt er, wird jetzt einer gesetzt (wie [sleepGoalStamp]). */
+    suspend fun autoOnsetStamped(): Pair<Boolean, Long> {
+        var result = true to 0L
+        store.edit { prefs ->
+            val stamp = prefs[AUTO_ONSET_AT] ?: Instant.now().toEpochMilli().also { prefs[AUTO_ONSET_AT] = it }
+            result = (prefs[AUTO_ONSET] ?: true) to stamp
+        }
+        return result
+    }
+
     /** Bettzeit-Erinnerung an oder aus (Standard aus). */
     val bedtimeReminder: Flow<Boolean> = store.data.map { it[BEDTIME_REMINDER] ?: false }
 
@@ -205,6 +225,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
             historyClearedAt = prefs[HISTORY_CLEARED_AT],
             nextAlarmNotice = prefs[NEXT_ALARM_NOTICE] ?: true,
+            autoOnset = prefs[AUTO_ONSET] ?: true,
         )
     }
 
@@ -222,6 +243,8 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             val cleared = settings.historyClearedAt
             if (cleared == null) it.remove(HISTORY_CLEARED_AT) else it[HISTORY_CLEARED_AT] = cleared
             it[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
+            it[AUTO_ONSET] = settings.autoOnset
+            it[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
         }
     }
 
@@ -242,6 +265,8 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")
         val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
         val NEXT_ALARM_NOTICE = booleanPreferencesKey("next_alarm_notice")
+        val AUTO_ONSET = booleanPreferencesKey("auto_onset")
+        val AUTO_ONSET_AT = longPreferencesKey("auto_onset_updated_at")
         val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
         val SOUND = stringPreferencesKey("sleep_sound")
         val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")

@@ -9,7 +9,7 @@ Jak to funguje
 Navrženo proti zaspání
 • Noční kontrola před spaním: hodinky připojené, oprávnění udělená, baterie dost nabitá.
 • Zkušební budík „Vyzkoušet za 2 minuty“ s výsledkem krok za krokem.
-• Záložní budík v iPhonu zvoní i v režimu Nerušit a v režimu soustředění Spánek.
+• Od iOS 26 zvoní záložní budík v iPhonu i v režimu Nerušit a v režimu soustředění Spánek.
 • Příště přeskočit a nebudit o svátcích – svátky pro více než 150 zemí a jejich regiony, offline.
 
 Lepší spánek

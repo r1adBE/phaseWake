@@ -96,7 +96,7 @@ final class ClipProcessor: @unchecked Sendable {
                 guard let clip = finished, clip.onsetMs == onsetMs else { continue }
                 finished = nil
                 let at = startedAt.addingTimeInterval(TimeInterval(onsetMs) / 1000)
-                onClip(SoundClip(night: SoundEvents.nightDate(at, calendar: .current), at: at, type: clip.type,
+                onClip(SoundClip(night: SoundEvents.nightDate(at, calendar: .gregorianLocal), at: at, type: clip.type,
                                  durationMs: durationMs, peakDb: Int(peakDb.rounded()), file: clip.file))
             }
         }

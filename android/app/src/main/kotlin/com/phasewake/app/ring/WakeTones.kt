@@ -35,6 +35,9 @@ object WakeTones {
     fun uri(context: Context, tone: Tone): Uri =
         "${ContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/${tone.raw}".toUri()
 
+    /** Letzte Rückfallebene beim Klingeln: «Vögel» liegt in der App selbst und ist immer da (auch vor dem Entsperren). */
+    fun lastResort(context: Context): Uri = uri(context, ALL.first { it.key == DEFAULT })
+
     /** Abspielbare Adresse zu [sound]: eigener Ton, Systemton oder `null` (= Standard-Weckton). */
     fun resolve(context: Context, sound: String): Uri? =
         find(sound)?.let { uri(context, it) } ?: sound.ifEmpty { null }?.toUri()

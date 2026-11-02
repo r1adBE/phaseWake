@@ -324,6 +324,8 @@
     <string name="weekly_toggle">Կիրակի օրերը ժամը 18:00-ին՝ ծանուցում քո շաբաթվա մասին։</string>
     <string name="next_alarm_notif_title">Զարթուցիչը կողպէկրանին</string>
     <string name="next_alarm_notif_hint">Լուռ ծանուցում երեկոյից՝ արթնացման պատուհանով և գիշերային ստուգումով։</string>
+    <string name="auto_onset_title">Ինքնաշխատ հայտնաբերել քնելը</string>
+    <string name="auto_onset_hint">Քնելու ժամից 1 ժամ առաջ ժամացույցդ կարճ ժամանակով չափում է շարժումը, մինչև քնես։ Միայն Galaxy Watch։</string>
     <string name="weekly_notification_title">Քո շաբաթը</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s քուն · քնի նպատակ %2$d/7 · կանոնավոր քնելու ժամ %3$d/7 · ինքնազգացում %4$s</string>
     <string name="weekly_notification_feeling">Ø ինքնազգացումն այս շաբաթ՝ %1$s</string>

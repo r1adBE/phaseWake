@@ -33,6 +33,54 @@ extension SmartAlarm {
         sendRing()
     }
 
+    /// Ein Rückfall-Wecker (`id`, `phasewake.fallback…`) kommt bei offener App an oder wird angetippt. Hat die Sitzung
+    /// seiner Nacht nicht geweckt (geplant, wartend oder messend nach der Zielzeit, Schlummer-Sitzung nicht gestartet),
+    /// klingelt die Uhr jetzt selbst: Weckbildschirm mit Stopp und Schlummern, die Nacht wird wie sonst abgeschlossen.
+    /// Gehört er zu einer anderen Nacht (Probewecker neben dem echten Wecker, abgebrochene Sitzung), nur vibrieren.
+    func fallbackArrived(_ id: String) {
+        let now = Date()
+        // Zielzeit da, aber höchstens `ringLimit` zurück (ein alter Rückfall, spät angetippt, weckt nicht mehr).
+        func due(_ night: WakePlan) -> Bool {
+            Self.fallbackKey(for: night.alarmId) == id && night.target <= now && now < night.target.addingTimeInterval(Self.ringLimit)
+        }
+        switch phase {
+        case .snoozed(let until, _) where Self.fallbackKey(for: nightPlan?.alarmId) == id && until <= now:
+            ring(reason)
+        case .measuring(let night) where Self.fallbackKey(for: night.alarmId) == id:
+            ring(targetReason())
+        case .waiting(let night) where due(night), .scheduled(let night) where due(night):
+            invalidateSession()
+            plan = night
+            nightPlan = night
+            spec = WatchModel.shared.spec(for: night.alarmId)
+            epochs = []
+            firstRing = nil
+            snoozes = 0
+            DiagStore.shared.log(.ring, "fallback without session")
+            ring(.deadline)
+        default:
+            break
+        }
+        guard phase.isRinging, session?.state != .running else {
+            if !phase.isRinging { WKInterfaceDevice.current().play(.notification) }
+            return
+        }
+        // Ohne laufende Sitzung vibriert `notifyUser` nicht: solange die App offen ist und es klingelt, selbst vibrieren.
+        fallbackHaptic?.invalidate()
+        WKInterfaceDevice.current().play(.notification)
+        fallbackHaptic = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                guard let self else { return }
+                guard self.phase.isRinging else {
+                    self.fallbackHaptic?.invalidate()
+                    self.fallbackHaptic = nil
+                    return
+                }
+                WKInterfaceDevice.current().play(.notification)
+            }
+        }
+    }
+
     /// «klingeln» ans iPhone, mit Zielzeit der Nacht und verbleibenden Schlummer-Runden.
     func sendRing() {
         guard let alarmId = nightPlan?.alarmId ?? plan?.alarmId else { return }
@@ -43,6 +91,15 @@ extension SmartAlarm {
     /// Verbleibende Schlummer-Runden; der Probewecker prüft genau einen Weckvorgang und schlummert nie.
     var snoozesLeft: Int {
         Transient.allowsSnooze(nightPlan?.alarmId ?? plan?.alarmId) ? Snooze.maxCount - snoozes : 0
+    }
+
+    /// Ob «stop» bzw. «schlummern» vom iPhone zu der Nacht gehört, die hier klingelt oder schlummert: gleiche Kennung
+    /// und Zielzeit (auf 1 s genau; Millisekunden werden unterwegs gekürzt). Fehlende Angaben (ältere iPhone-Version)
+    /// widersprechen nicht. So beendet der Zweitwecker einer anderen Nacht diese hier nicht.
+    func isThisNight(alarmId: String?, target: Date?) -> Bool {
+        if let alarmId, let own = nightPlan?.alarmId ?? plan?.alarmId, alarmId != own { return false }
+        if let target, let own = nightPlan?.target, abs(target.timeIntervalSince(own)) >= 1 { return false }
+        return true
     }
 
     /// Schlummern am iPhone gewählt: wie auf der Uhr. Geht es nicht mehr, klingelt das iPhone weiter.
@@ -130,7 +187,8 @@ extension SmartAlarm {
         nightPlan = nil
         spec = nil
         clearSaved()
-        // Nach einem vorübergehenden Plan die Nacht wieder planen (bei geschlossener App: Bitte, sie zu öffnen).
-        if transient { model.transientEnded() } else { model.reschedule() }
+        // Nächste Nacht planen; bei geschlossener App (z. B. am iPhone gestoppt) die Bitte, sie zu öffnen – nach einer
+        // echten Nacht wie nach Probewecker und Powernap.
+        model.transientEnded()
     }
 }

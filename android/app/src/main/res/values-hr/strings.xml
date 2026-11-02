@@ -349,6 +349,8 @@
     <string name="weekly_toggle">Nedjeljom u 18:00 obavijest o tvom tjednu.</string>
     <string name="next_alarm_notif_title">Alarm na zaključanom zaslonu</string>
     <string name="next_alarm_notif_hint">Tiha obavijest od večeri s prozorom buđenja i noćnom provjerom.</string>
+    <string name="auto_onset_title">Automatski prepoznaj uspavljivanje</string>
+    <string name="auto_onset_hint">Od 1 sat prije vremena za spavanje sat kratko mjeri pokrete dok ne zaspiš. Samo Galaxy Watch.</string>
     <string name="weekly_notification_title">Tvoj tjedan</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s sna · cilj %2$d/7 · redovito %3$d/7 · osjećaj %4$s</string>
     <string name="weekly_notification_feeling">Ø osjećaj ovaj tjedan: %1$s</string>

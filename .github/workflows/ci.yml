@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :wear:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Abdeckung
@@ -120,11 +120,27 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Neuestes Xcode wählen
+      - name: Neuestes Xcode wählen (keine Beta)
+        shell: bash
         run: |
-          xcode=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          set -o pipefail
+          xcode=$(ls -d /Applications/Xcode_*.app | grep -viE 'beta|_rc|release.?candidate' | sort -V | tail -1)
+          [ -n "$xcode" ] || { echo "::error title=Xcode::Kein Xcode ohne Beta gefunden"; exit 1; }
           sudo xcode-select -s "$xcode"
           xcodebuild -version
+      - name: SDK prüfen (AlarmKit braucht iOS 26)
+        shell: bash
+        run: |
+          set -o pipefail
+          # Gewähltes Xcode nochmals prüfen (auch wenn die Wahl oben geändert wird): keine Beta, kein Release Candidate.
+          selected=$(xcode-select -p)
+          if echo "$selected" | grep -qiE 'beta|_rc|release.?candidate'; then echo "::error title=Xcode::Beta-Xcode gewählt ($selected)"; exit 1; fi
+          sdk=$(xcrun --sdk iphoneos --show-sdk-version)
+          if [[ ! "$sdk" =~ ^[0-9]+ ]] || [ "${sdk%%.*}" -lt 26 ]; then echo "::error title=SDK::iOS-SDK $sdk ohne AlarmKit (mindestens 26)"; exit 1; fi
+          if [ ! -d "$(xcrun --sdk iphoneos --show-sdk-path)/System/Library/Frameworks/AlarmKit.framework" ]; then
+            echo "::error title=SDK::AlarmKit fehlt im iOS-SDK $sdk"; exit 1
+          fi
+          echo "iOS-SDK $sdk mit AlarmKit ($selected)"
       - name: iPhone-App (mit eingebetteter Watch-App) bauen
         shell: bash
         run: |

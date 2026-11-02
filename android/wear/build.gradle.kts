@@ -48,6 +48,11 @@ android {
     // Sprachliste für die Sprachwahl pro App (Android 13+) automatisch aus den Ressourcen.
     androidResources { generateLocaleConfig = true }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        // Robolectric liest das zusammengeführte Manifest und die Ressourcen.
+        unitTests.isIncludeAndroidResources = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -79,6 +84,11 @@ dependencies {
     implementation(libs.health.services)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.kotlinx.coroutines.play.services)
+
+    // Planung der Uhr (Einschlaf-Messung, Direct Boot, Wiederaufnahme) in Unit-Tests; Robolectric nur zum Testen.
+    testImplementation(kotlin("test-junit"))
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
 
     screenshotTestImplementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.compose.ui.tooling)

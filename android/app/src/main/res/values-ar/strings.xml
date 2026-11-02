@@ -385,6 +385,8 @@
     <string name="weekly_toggle">يوم الأحد الساعة 18:00 إشعار عن أسبوعك.</string>
     <string name="next_alarm_notif_title">المنبّه على شاشة القفل</string>
     <string name="next_alarm_notif_hint">إشعار صامت من المساء مع نافذة الاستيقاظ وفحص الليل.</string>
+    <string name="auto_onset_title">اكتشاف النوم تلقائيًا</string>
+    <string name="auto_onset_hint">من ساعة قبل موعد النوم تقيس ساعتك الحركة لفترة قصيرة حتى تغفو. Galaxy Watch فقط.</string>
     <string name="weekly_notification_title">أسبوعك</string>
     <string name="weekly_notification_text">متوسط Ø %1$s نوم · هدف النوم %2$d/7 · منتظم %3$d/7 · الشعور %4$s</string>
     <string name="weekly_notification_feeling">متوسط Ø الشعور هذا الأسبوع: %1$s</string>

@@ -33,8 +33,11 @@ final class BackupAlarm {
     /// Klingelt die Uhr nach dem Schlummern nicht wieder (Sitzung nicht gestartet): dann das iPhone
     /// (wie `RingMessage.SNOOZE_SAFETY_MS` auf Android).
     private static let snoozeSafetyDelay: TimeInterval = 90
-    /// So viele Nächte im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird.
-    private static let nightsAhead = 3
+    /// So weit im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird (14 Tage).
+    static let horizon: TimeInterval = 14 * 24 * 3600
+    /// Höchstens so viele Sicherungen: Vor iOS 26 sind es Mitteilungen, und iOS behält nur 64 wartende je App
+    /// (dazu kommen Bettzeit-Erinnerungen, Wochenrückblick, Schlummern und Probewecker).
+    private static let maxSlots = 40
     /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
     private var ringingId: UUID? {
         get { storedId(Self.ringingKey) }
@@ -42,6 +45,9 @@ final class BackupAlarm {
     }
     /// Neuplanungen laufen nacheinander, nie verschränkt (sonst blieben Alarme ohne gemerkte Kennung).
     private var queue: Task<Void, Never>?
+    /// Von der App selbst gestoppte oder verworfene Alarme (Befehl der Uhr, Neuplanen): Ihr Stopp-Intent schickt nichts
+    /// an die Uhr (`backupStopped`). Nur im Speicher, wie der Intent im selben Prozess läuft.
+    var stoppedByApp: Set<UUID> = []
 
     /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker.
     func reschedule(_ alarms: [AlarmSpec]) async {
@@ -53,6 +59,9 @@ final class BackupAlarm {
         queue = task
         await task.value
     }
+
+    /// Wartet, bis die laufende Neuplanung fertig ist (Nacht-Check liest danach die gestellten Sicherungen).
+    func settled() async { await queue?.value }
 
     /// Bestimmt die gewünschten Sicherungen und gleicht sie mit den gestellten ab (`apply`), statt alles zu löschen:
     /// Eine Sicherung, deren Zielzeit vorbei ist, deren Nachfrist aber noch läuft, bleibt (`AlarmSchedule.inGrace`) –
@@ -77,15 +86,17 @@ final class BackupAlarm {
         for entry in planned where entry.slot.fireAt > now {
             guard let spec = eligible.first(where: { $0.id == entry.slot.alarmId }), !skip.contains(spec.id),
                   AlarmSchedule.inGrace(spec, plannedTarget: entry.slot.target, now: now,
-                                        grace: entry.slot.fireAt.timeIntervalSince(entry.slot.target), calendar: .current,
+                                        grace: entry.slot.fireAt.timeIntervalSince(entry.slot.target), calendar: .gregorianLocal,
                                         holidays: holidays, suppressedUntil: suppressed[spec.id]) != nil else { continue }
             wanted.append(entry.slot)
         }
         var from = now
         var nights = 0
-        while nights < Self.nightsAhead {
+        let until = now.addingTimeInterval(Self.horizon)
+        while nights < Self.maxSlots {
             guard let plan = AlarmSchedule.earliestPlan(eligible.filter { !skip.contains($0.id) }, now: from,
-                                                        doneUntil: suppressed, calendar: .current, holidays: holidays) else { break }
+                                                        doneUntil: suppressed, calendar: .gregorianLocal, holidays: holidays),
+                  plan.target <= until else { break }
             from = plan.target
             if let first = firstTargets[plan.alarmId] {
                 // Einmalig: nur das erste Vorkommen. Ist es ausgesetzt, folgt keine weitere Nacht.
@@ -101,15 +112,19 @@ final class BackupAlarm {
     }
 
     /// Zielzeit des ersten Vorkommens je eingeschaltetem einmaligem Wecker, gemerkt ab dem ersten Planen.
-    /// Neu berechnet, wenn sich Uhrzeit oder Zeitzone ändern; ausgeschaltete Wecker fallen heraus.
+    /// Neu berechnet, wenn sich die Uhrzeit ändert; ausgeschaltete Wecker fallen heraus. Der Schlüssel enthält keine
+    /// Zeitzone: Ist die gemerkte Zielzeit schon da, bleibt sie (fester Zeitpunkt) – nach einer Reise klingelt der
+    /// Wecker sonst am nächsten Tag nochmals. Liegt sie noch vorn, folgt sie der Ortszeit wie auf der Uhr.
     private func oneShotTargets(_ alarms: [AlarmSpec], now: Date) -> [String: Date] {
         let stored = UserDefaults.standard.dictionary(forKey: Self.oneShotKey) as? [String: Double] ?? [:]
         var keep: [String: Double] = [:]
         var targets: [String: Date] = [:]
         for spec in alarms where spec.isOneShot && spec.enabled {
-            let key = "\(spec.id)|\(spec.hour):\(spec.minute)|\(TimeZone.current.identifier)"
-            guard let target = stored[key].map(Date.init(timeIntervalSince1970:))
-                ?? AlarmSchedule.nextTarget(spec, now: now, calendar: .current) else { continue }
+            let key = "\(spec.id)|\(spec.hour):\(spec.minute)"
+            // Früher mit Zeitzone gemerkt («…|Europe/Zurich»): weiter gelten lassen.
+            let raw = stored[key] ?? stored.first { $0.key.hasPrefix(key + "|") }?.value
+            let reached = raw.map(Date.init(timeIntervalSince1970:)).flatMap { $0 <= now ? $0 : nil }
+            guard let target = reached ?? AlarmSchedule.nextTarget(spec, now: now, calendar: .gregorianLocal) else { continue }
             keep[key] = target.timeIntervalSince1970
             targets[spec.id] = target
         }
@@ -146,7 +161,7 @@ final class BackupAlarm {
         let spec = alarms.first { $0.id == alarmId }
         let window = TimeInterval(AlarmSpec.maxWindowMinutes * 60)
         let nightTarget = target
-            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .current,
+            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .gregorianLocal,
                                                     holidays: PhoneModel.shared.holidays.dates) }
             ?? now.addingTimeInterval(window)
         let until = nightTarget.addingTimeInterval(Self.grace)
@@ -192,7 +207,10 @@ final class BackupAlarm {
                 // Noch nicht klingelnd (geplant in 2 s): verwerfen.
                 try? AlarmManager.shared.cancel(id: id)
             }
-            for alarm in alerting { try? AlarmManager.shared.stop(id: alarm.id) }
+            for alarm in alerting {
+                stoppedByApp.insert(alarm.id)
+                try? AlarmManager.shared.stop(id: alarm.id)
+            }
             return
         }
         #endif
@@ -260,7 +278,10 @@ final class BackupAlarm {
     func backupSnoozed(_ alarmId: String, snoozesLeft: Int) async {
         guard let id = UUID(uuidString: alarmId) else { return }
         #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) { try? AlarmManager.shared.stop(id: id) }
+        if #available(iOS 26.0, *) {
+            stoppedByApp.insert(id)
+            try? AlarmManager.shared.stop(id: id)
+        }
         #endif
         let tone = plannedBackups.first { $0.id == id }?.slot.sound
             ?? (storedId(Self.backupSnoozeKey) == id ? UserDefaults.standard.string(forKey: Self.backupSnoozeToneKey) : nil)
@@ -272,6 +293,15 @@ final class BackupAlarm {
         setNight(snoozedNight, for: next)
         await schedule(id: next, at: Snooze.nextRing(Date()), snoozesLeft: max(0, snoozesLeft - 1), tone: tone.flatMap(WakeTone.init(rawValue:)))
         DiagStore.shared.log(.snooze, "phone backup, \(max(0, snoozesLeft - 1)) left")
+    }
+
+    /// «Stopp» an einer Sicherung, die ohne Uhr klingelt (nur ab iOS 26): Die Uhr hört für dieselbe Nacht auch auf (sie
+    /// klingelt etwa über ihren Rückfall oder schlummert noch). Hat die App den Alarm selbst gestoppt, nichts senden;
+    /// ohne gemerkte Nacht auch nicht (sonst träfe es jede Nacht der Uhr).
+    func backupStopped(_ alarmId: String) {
+        guard let id = UUID(uuidString: alarmId), stoppedByApp.remove(id) == nil, let night = night(for: id) else { return }
+        DiagStore.shared.log(.stop, "phone backup, watch too")
+        PhoneConnectivity.shared.send(command: SyncKeys.stop, night: night)
     }
 
     private func cancelBackupSnooze() {

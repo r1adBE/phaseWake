@@ -9,7 +9,7 @@ Cum funcționează
 Gândit ca să nu dormi peste ora de trezire
 • Verificarea de noapte înainte de culcare: ceas conectat, permisiuni acordate, baterie suficientă.
 • Testează alarma: „Testează în 2 minute”, cu rezultat pas cu pas.
-• Alarma de rezervă de pe iPhone sună și în modul Nu deranja și în modul de concentrare Somn.
+• Începând cu iOS 26, alarma de rezervă de pe iPhone sună și în modul Nu deranja și în modul de concentrare Somn.
 • Sari data viitoare și nu trezi în sărbători – sărbători pentru peste 150 de țări și regiunile lor, fără internet.
 
 Dormi mai bine

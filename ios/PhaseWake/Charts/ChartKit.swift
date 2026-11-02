@@ -25,7 +25,7 @@ let chartHeight: CGFloat = 168
 func morning(_ night: String) -> Date {
     let parts = NightDate.adding(1, to: night).split(separator: "-").compactMap { Int($0) }
     guard parts.count == 3 else { return Date() }
-    return Calendar.current.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12)) ?? Date()
+    return Calendar.gregorianLocal.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12)) ?? Date()
 }
 
 /// «28. Okt.»

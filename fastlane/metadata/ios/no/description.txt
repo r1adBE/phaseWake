@@ -9,7 +9,7 @@ Slik fungerer det
 Laget så du ikke forsover deg
 • Nattsjekk før leggetid: klokka tilkoblet, tillatelser gitt, nok batteri.
 • Testalarm «Test om 2 minutter» med resultat steg for steg.
-• Reservealarmen på iPhone ringer også med Ikke forstyrr og Søvn-fokuset.
+• Fra iOS 26 ringer reservealarmen på iPhone også med Ikke forstyrr og Søvn-fokuset.
 • Hopp over neste gang, og ikke vekk på helligdager – helligdager for over 150 land og deres regioner, uten nett.
 
 Sov bedre

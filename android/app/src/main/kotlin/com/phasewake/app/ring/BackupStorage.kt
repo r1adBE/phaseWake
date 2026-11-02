@@ -108,6 +108,7 @@ internal object SnoozeSafety {
  * zum Schlummer-Ende ([BackupAlarm.snoozeUntil]) fehlt nach einem Neustart, die Nacht gilt aber schon seit dem ersten
  * Klingeln als geweckt. Wie [SnoozeSafety] neu gestellt in [BackupAlarm.planBackup] und bei (LOCKED_)BOOT_COMPLETED,
  * auch vor dem ersten Entsperren. Gelöscht, sobald es wieder klingelt oder am Handy beendet wird ([BackupAlarm.cancelSnooze]).
+ * Derselbe Eintrag dient beim Klingeln des Handys als Wiederaufnahme nach einem Prozessende ([PhoneRingService]).
  */
 internal object PhoneSnooze {
     private const val FILE = "backup_phone_snooze"

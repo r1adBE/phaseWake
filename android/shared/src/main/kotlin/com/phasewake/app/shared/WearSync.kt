@@ -147,6 +147,24 @@ class WearSync(context: Context) {
         null
     }
 
+    /** Handy: Schalter der Einschlaf-Messung am Abend mit Zeitpunkt der Änderung an die Uhren, als Paket wie das Schlafziel. */
+    suspend fun publishAutoOnset(enabled: Boolean, updatedAt: Long) = guarded("Einschlaf-Messung senden") {
+        dataClient.putDataItem(autoOnsetRequest(enabled, updatedAt)).await()
+    }
+
+    /** Uhr: zuletzt abgelegter Schalter der Einschlaf-Messung mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    suspend fun fetchAutoOnset(): Pair<Boolean, Long>? = try {
+        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_AUTO_ONSET).build()).await()
+        try {
+            items.map { readAutoOnset(DataMapItem.fromDataItem(it).dataMap) }.maxByOrNull { it.second }
+        } finally {
+            items.release()
+        }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
+    }
+
     /**
      * Probewecker oder Powernap [alarmId] abgebrochen: als Nachricht (sofort) und als Datenpaket (auch für ein gerade
      * nicht erreichbares Gerät, das sonst zur alten Zielzeit klingelte). [capability]: die Gegenseite.
@@ -298,6 +316,16 @@ class WearSync(context: Context) {
         /** Liest ein Schlafziel-Paket: Minuten (mit [SleepGoal.clamp]; ohne Angabe der Standard) und Zeitpunkt. */
         fun readSleepGoal(map: DataMap): Pair<Int, Long> =
             SleepGoal.clamp(map.getInt(DataLayer.KEY_SLEEP_GOAL, SleepGoal.DEFAULT_MINUTES)) to map.getLong(DataLayer.KEY_UPDATED_AT)
+
+        /** Paket des Schalters der Einschlaf-Messung für die Uhren (dringend wie das Schlafziel). */
+        fun autoOnsetRequest(enabled: Boolean, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_AUTO_ONSET).apply {
+            dataMap.putBoolean(DataLayer.KEY_AUTO_ONSET, enabled)
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
+        }.asPutDataRequest().setUrgent()
+
+        /** Liest ein Paket des Schalters: an oder aus (ohne Angabe «an») und Zeitpunkt. */
+        fun readAutoOnset(map: DataMap): Pair<Boolean, Long> =
+            map.getBoolean(DataLayer.KEY_AUTO_ONSET, true) to map.getLong(DataLayer.KEY_UPDATED_AT)
 
         /** Paket «Verlauf löschen» mit Zeitpunkt. */
         fun clearRequest(nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {

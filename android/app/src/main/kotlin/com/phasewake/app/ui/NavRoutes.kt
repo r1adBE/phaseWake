@@ -271,6 +271,13 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
                 app.nextAlarm.reschedule()
             }
         },
+        autoOnset = data.autoOnset,
+        onAutoOnset = { enabled ->
+            app.appScope.launch {
+                app.settings.setAutoOnset(enabled)
+                app.publishAutoOnset()
+            }
+        },
         soundRecDefault = state.soundRec.default,
         onSoundRecDefault = state.soundRec.onDefault,
         routineItems = data.routineItems,

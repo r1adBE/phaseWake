@@ -32,7 +32,7 @@ final class WeeklyReview {
         }
         // Gesperrt sind die Gesundheitsdaten nicht lesbar: den bisher geplanten Text lieber stehen lassen.
         guard UIApplication.shared.isProtectedDataAvailable else { return }
-        let calendar = Calendar.current
+        let calendar = Calendar.gregorianLocal
         guard let at = WeeklySummary.nextNotification(after: Date(), calendar: calendar) else { return }
         let health = await model.health.sessions()
         let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
@@ -50,7 +50,8 @@ final class WeeklyReview {
         content.title = L("weekly_notification_title")
         content.body = ([weeklyText(summary)] + [weeklyNoteLine(summary, model: model)].compactMap { $0 }).joined(separator: "\n")
         content.sound = .default
-        let parts = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: at)
+        // Auslöser im Kalender des Geräts: Er liest die Komponenten in diesem (ohne Angabe des Kalenders).
+        let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at)
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
         try? await center.add(UNNotificationRequest(identifier: Self.identifier, content: content, trigger: trigger))
     }

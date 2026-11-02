@@ -100,6 +100,8 @@ internal class AppData(
     val doneUntil: Map<String, Instant> = emptyMap(),
     /** Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps; nur bei Phase Wake gespeichert. */
     val healthFeelings: Map<LocalDate, Int> = emptyMap(),
+    /** Einschlaf-Messung am Abend auf der Galaxy Watch an (Schalter in den Einstellungen). */
+    val autoOnset: Boolean = true,
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -130,10 +132,11 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val diagnostics by app.settings.diagnostics.collectAsStateWithLifecycle(initialValue = false)
     val doneUntil by app.backup.doneUntilFlow.collectAsStateWithLifecycle(initialValue = emptyMap())
     val healthFeelings by app.notes.healthFeelings.collectAsStateWithLifecycle(initialValue = emptyMap())
+    val autoOnset by app.settings.autoOnset.collectAsStateWithLifecycle(initialValue = true)
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
-        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings,
+        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings, autoOnset = autoOnset,
     )
 }
 

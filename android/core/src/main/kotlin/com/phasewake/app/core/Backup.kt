@@ -172,6 +172,11 @@ data class BackupSettings(
      * Fehlt der Schlüssel (ältere Sicherung, Apple ohne diese Mitteilung), gilt die Vorgabe `true`.
      */
     val nextAlarmNotice: Boolean = true,
+    /**
+     * Einschlaf-Messung am Abend an (Galaxy Watch, Schalter «Einschlafen automatisch erkennen»). Fehlt der Schlüssel
+     * (ältere Sicherung, Apple ohne diese Messung), gilt die Vorgabe `true`.
+     */
+    val autoOnset: Boolean = true,
 )
 
 /**

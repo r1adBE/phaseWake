@@ -102,7 +102,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
 private fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Instant) {
     val duration = spec.sleepDurationMinutes
     val plan = duration?.let { AlarmSchedule.planAt(spec, AlarmSchedule.sleepTarget(asleep, it, latest)) }
-    Log.i(TAG, "Eingeschlafen $asleep, Zielzeit ${plan?.target ?: latest}")
+    // Ohne Uhrzeiten: Schlafdaten gehören nicht ins Systemprotokoll (logcat), nur ins eigene Diagnose-Protokoll.
+    Log.i(TAG, "Eingeschlafen erkannt${if (plan != null) ", Zielzeit festgelegt" else ""}")
     onset?.stop()
     onset = null
     onsetNight = null

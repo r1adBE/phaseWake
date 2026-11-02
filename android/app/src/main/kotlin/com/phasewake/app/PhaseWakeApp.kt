@@ -93,6 +93,8 @@ class PhaseWakeApp : Application() {
             if (holidays.refresh()) backup.reschedule()
             // Schlafziel für den Einschlafpunkt auf der Uhr (unverändert: gleiches Paket, die Uhr merkt nichts).
             publishSleepGoal()
+            // Schalter der Einschlaf-Messung am Abend (ebenso unverändert, wenn nichts geändert wurde).
+            publishAutoOnset()
         }
         // Widget «Details von heute»: neu zeichnen, sobald eine Nacht gespeichert oder das Befinden gesetzt wird.
         appScope.launch {
@@ -106,6 +108,12 @@ class PhaseWakeApp : Application() {
     /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
     suspend fun publishSleepGoal() {
         sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp())
+    }
+
+    /** Schickt den Schalter der Einschlaf-Messung an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
+    suspend fun publishAutoOnset() {
+        val (enabled, stamp) = settings.autoOnsetStamped()
+        sync.publishAutoOnset(enabled, stamp)
     }
 
     /** Speichert eine Änderung an den Weckern, schickt sie an die Uhr und plant den Zweitwecker neu. */

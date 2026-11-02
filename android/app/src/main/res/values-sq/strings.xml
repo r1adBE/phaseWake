@@ -337,6 +337,8 @@
     <string name="weekly_toggle">Të dielave në orën 18:00, një njoftim për javën tënde.</string>
     <string name="next_alarm_notif_title">Alarmi në ekranin e kyçjes</string>
     <string name="next_alarm_notif_hint">Njoftim i heshtur që nga mbrëmja me dritaren e zgjimit dhe kontrollin e natës.</string>
+    <string name="auto_onset_title">Dallo automatikisht kur fle</string>
+    <string name="auto_onset_hint">Nga 1 orë para kohës së gjumit, ora mat shkurt lëvizjen derisa të të zërë gjumi. Vetëm Galaxy Watch.</string>
     <string name="weekly_notification_title">Java jote</string>
     <string name="weekly_notification_text" tools:ignore="PluralsCandidate">Ø %1$s gjumë · objektivi %2$d/7 · orar i rregullt %3$d/7 · gjendja %4$s</string>
     <string name="weekly_notification_feeling">Ø gjendja këtë javë: %1$s</string>

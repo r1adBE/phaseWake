@@ -9,7 +9,7 @@ Kako radi
 Napravljeno da se ne uspavaš
 • Noćna provjera prije spavanja: sat povezan, dopuštenja dana, baterija dovoljno puna.
 • Probni alarm „Testiraj za 2 minute“ s rezultatom korak po korak.
-• Rezervni alarm na iPhoneu zvoni i uz „Ne uznemiravaj“ i u fokusu Spavanje.
+• Od iOS-a 26 rezervni alarm na iPhoneu zvoni i uz „Ne uznemiravaj“ i u fokusu Spavanje.
 • Preskoči sljedeći put i ne budi na praznike – praznici za više od 150 zemalja i njihove regije, bez interneta.
 
 Spavaj bolje

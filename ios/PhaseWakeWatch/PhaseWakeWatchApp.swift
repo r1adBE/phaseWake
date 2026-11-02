@@ -1,5 +1,6 @@
 import PhaseWakeCore
 import SwiftUI
+import UserNotifications
 import WatchKit
 
 /// Einstieg der Uhr-App.
@@ -22,6 +23,8 @@ struct PhaseWakeWatchApp: App {
 /// Nimmt geplante Smart-Alarm-Sitzungen entgegen, wenn das System die App dafür startet.
 final class AppDelegate: NSObject, WKApplicationDelegate {
     func applicationDidFinishLaunching() {
+        // Vor dem Ende des Starts setzen: Sonst geht ein Tipp, der die App startet, verloren.
+        UNUserNotificationCenter.current().delegate = WatchNotificationRouter.shared
         WatchConnectivityBridge.shared.activate()
     }
 

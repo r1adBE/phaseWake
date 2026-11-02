@@ -9,7 +9,7 @@ Kako deluje
 Da ne prespiš budilke
 • Nočni pregled pred spanjem: ura povezana, dovoljenja podeljena, baterija dovolj polna.
 • Preizkusna budilka »Preizkusi čez 2 minuti« z rezultatom po korakih.
-• Rezervna budilka na iPhonu zvoni tudi v načinu »Ne moti« in v fokusu Spanje.
+• Od iOS 26 naprej rezervna budilka na iPhonu zvoni tudi v načinu »Ne moti« in v fokusu Spanje.
 • Naslednjič preskoči in ob praznikih ne budi – prazniki za več kot 150 držav in njihove regije, brez interneta.
 
 Boljši spanec

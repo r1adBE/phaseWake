@@ -10,6 +10,8 @@ import AlarmKit
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
     case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
+    /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
+    case backupHorizon
     /// Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Nur ein Hinweis.
     case silentSwitch
 
@@ -23,6 +25,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
+        case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
         }
     }
@@ -37,6 +40,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
+        case .backupHorizon: L("check_backup_horizon_text")
         case .silentSwitch: L("check_silent_switch_text")
         }
     }
@@ -78,6 +82,7 @@ enum NightCheck {
         }
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
+        if await model.backup.horizonShort(model.alarms) { failed.append(.backupHorizon) }
         UIDevice.current.isBatteryMonitoringEnabled = true
         let level = UIDevice.current.batteryLevel
         if UIDevice.current.batteryState == .unplugged, level >= 0, level * 100 < Float(lowBatteryPercent) {
@@ -131,7 +136,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery, .silentSwitch:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .battery, .backupHorizon, .silentSwitch:
             break
         }
     }

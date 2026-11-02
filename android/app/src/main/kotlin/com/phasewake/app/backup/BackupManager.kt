@@ -137,6 +137,7 @@ object BackupManager {
         app.sync.publishAlarms(snapshot)
         app.holidays.refresh(force = true)
         app.publishSleepGoal()
+        app.publishAutoOnset()
         // Plant auch Bettzeit-Erinnerung und Wochenrückblick nach den neuen Einstellungen.
         app.backup.reschedule()
     }

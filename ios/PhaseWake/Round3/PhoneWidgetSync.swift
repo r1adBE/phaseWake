@@ -40,7 +40,7 @@ enum PhoneWidgetSync {
         guard UserDefaults.standard.bool(forKey: "healthRequested"), UIApplication.shared.isProtectedDataAvailable,
               PhoneWidgetSnapshot.load()?.morningNight(at: now) != nil else { return }
         let health = await model.health.sessions(now: now)
-        publishAsleep(model, sleeps: HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .current))
+        publishAsleep(model, sleeps: HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal))
     }
 
     /// Legt die Schlafdauer der jüngsten Nacht aus `sleeps` (schon geladene Nächte aus Apple Health) ab, gleiche
@@ -48,7 +48,7 @@ enum PhoneWidgetSync {
     static func publishAsleep(_ model: PhoneModel, sleeps: [SleepSummary]) {
         guard var snapshot = PhoneWidgetSnapshot.load(), var stored = snapshot.lastNight,
               let night = latest(model), night.wokeAt == stored.wokeAt else { return }
-        let calendar = Calendar.current
+        let calendar = Calendar.gregorianLocal
         stored.asleepMinutes = NoteEffect.asleepByNight(sleeps, calendar: calendar)[SleepNotes.nightDate(of: night, calendar: calendar)]
         snapshot.lastNight = stored
         if snapshot.save() { WidgetCenter.shared.reloadTimelines(ofKind: PhoneWidgetSnapshot.kind) }

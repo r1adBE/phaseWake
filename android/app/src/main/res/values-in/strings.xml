@@ -325,6 +325,8 @@
     <string name="weekly_toggle">Setiap Minggu pukul 18.00, notifikasi tentang minggumu.</string>
     <string name="next_alarm_notif_title">Alarm di layar kunci</string>
     <string name="next_alarm_notif_hint">Notifikasi senyap sejak malam dengan rentang bangun dan pemeriksaan malam.</string>
+    <string name="auto_onset_title">Deteksi saat tertidur secara otomatis</string>
+    <string name="auto_onset_hint">Mulai 1 jam sebelum waktu tidur, jam tanganmu mengukur gerakan sebentar sampai kamu tertidur. Hanya Galaxy Watch.</string>
     <string name="weekly_notification_title">Minggumu</string>
     <string name="weekly_notification_text">Ø tidur %1$s · target %2$d/7 · teratur %3$d/7 · perasaan %4$s</string>
     <string name="weekly_notification_feeling">Ø perasaan minggu ini: %1$s</string>
