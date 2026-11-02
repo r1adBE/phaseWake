@@ -43,7 +43,7 @@ object SleepGoal {
 
     /** Nächte aus der Gesundheits-App als (Nachtdatum, Minuten) für [weekStatus]. */
     fun nightsOf(sleeps: List<SleepSummary>, zone: ZoneId): List<Pair<LocalDate, Long>> =
-        sleeps.map { SleepNotes.nightDate(it.end, zone) to it.asleepMinutes }
+        sleeps.map { SleepNotes.nightDate(it, zone) to it.asleepMinutes }
 }
 
 /**

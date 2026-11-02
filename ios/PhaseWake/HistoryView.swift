@@ -160,13 +160,8 @@ struct HistoryView: View {
         return out
     }
 
-    /// Geschlafene Minuten je Nachtdatum (Einschlafen − 12 h ergibt den Abend); bei zwei Einträgen der längere.
-    private var asleepByNight: [String: Int] {
-        sleeps.reduce(into: [:]) { out, sleep in
-            let date = SleepNotes.nightDate(sleep.start, calendar: .current)
-            out[date] = max(out[date] ?? 0, sleep.asleepMinutes)
-        }
-    }
+    /// Geschlafene Minuten je Nachtdatum (Mitte der Nacht, wie Diagramme und Android); bei zwei Einträgen der längere.
+    private var asleepByNight: [String: Int] { NoteEffect.asleepByNight(sleeps, calendar: .current) }
 
     /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
     private func weekly(_ feelings: [HealthFeeling]) -> WeeklySummary? {
@@ -180,7 +175,7 @@ struct HistoryView: View {
     /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
     private var goalWeek: (reached: Int, total: Int)? {
         let weekAgo = Date().addingTimeInterval(-7 * 86_400)
-        // Nachtdatum nach dem Ende der Nacht, wie Android (`SleepGoal.nightsOf`).
+        // Nachtdatum über die Mitte der Nacht, wie Android (`SleepGoal.nightsOf`).
         let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .current)
         let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
         return status.total > 0 ? status : nil

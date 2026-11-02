@@ -29,6 +29,27 @@ class SleepNotesTest {
     }
 
     @Test
+    fun healthNightDateUsesMidpoint() {
+        fun date(from: String, to: String) = SleepNotes.nightDate(at(from), at(to), zone)
+        val oct31 = LocalDate.of(2026, 10, 31)
+        // Samsung-Health-Nacht 02:42–12:50: Abend des 31. Oktober (Morgen 1. November). Über das Ende wäre es der 1.
+        assertEquals(oct31, date("2026-11-01T02:42", "2026-11-01T12:50"))
+        assertEquals(oct31.plusDays(1), SleepNotes.nightDate(at("2026-11-01T12:50"), zone))
+        assertEquals(day, date("2026-10-27T23:00", "2026-10-28T07:00"))
+        assertEquals(day, date("2026-10-27T21:00", "2026-10-28T05:00"))
+        assertEquals(day, date("2026-10-28T01:00", "2026-10-28T13:30"))
+        assertEquals(day, date("2026-10-27T19:00", "2026-10-28T03:00"))
+        // Zeitumstellung: Ende der Sommerzeit am 25. Oktober, Beginn am 29. März 2026.
+        assertEquals(LocalDate.of(2026, 10, 24), date("2026-10-24T23:00", "2026-10-25T07:00"))
+        assertEquals(LocalDate.of(2026, 10, 24), date("2026-10-25T03:30", "2026-10-25T12:40"))
+        assertEquals(LocalDate.of(2026, 3, 28), date("2026-03-28T23:00", "2026-03-29T07:00"))
+        assertEquals(LocalDate.of(2026, 3, 28), date("2026-03-29T01:30", "2026-03-29T13:10"))
+        // Nacht für Diagramme und Sitzung im Verlauf: dieselbe Regel.
+        assertEquals(oct31, SleepNotes.nightDate(SleepSummary(at("2026-11-01T02:42"), at("2026-11-01T12:50"), 0), zone))
+        assertEquals(oct31, SleepNotes.nightDate(HealthSession(at("2026-11-01T02:42"), at("2026-11-01T12:50")), zone))
+    }
+
+    @Test
     fun entryVisibleFromEveningUntilWindow() {
         val window = at("2026-10-28T06:00")
         assertFalse(SleepNotes.entryVisible(at("2026-10-27T16:59"), zone, window))

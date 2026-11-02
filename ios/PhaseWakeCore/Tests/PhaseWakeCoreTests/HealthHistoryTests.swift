@@ -32,6 +32,40 @@ final class HealthHistoryTests: XCTestCase {
         HealthHistory.merge(nights: nights, sessions: sessions, clearedAt: clearedAt, calendar: calendar)
     }
 
+    /// Samsung-Health-Nacht vom 1. November 02:42–12:50 Ortszeit (CET): 11 Min. wach, 60 Phasen à 9 Min. 30 s
+    /// (570 Min. Schlaf), 27 Min. wach. Je Phase abgerundet hätte das Diagramm 30 Minuten weniger gezeigt.
+    private var lateNight: HealthSession {
+        let first = t("2026-11-01T01:53:00Z")
+        let kinds: [SleepStage] = [.light, .deep, .light, .rem]
+        let middle = (0..<60).map { i in
+            StageSpan(start: first.addingTimeInterval(Double(i) * 570), end: first.addingTimeInterval(Double(i + 1) * 570), stage: kinds[i % kinds.count])
+        }
+        return HealthSession(start: t("2026-11-01T01:42:00Z"), end: t("2026-11-01T11:50:00Z"),
+                             stages: [span("2026-11-01T01:42:00Z", "2026-11-01T01:53:00Z", .awake)] + middle
+                                 + [span("2026-11-01T11:23:00Z", "2026-11-01T11:50:00Z", .awake)],
+                             source: "com.sec.android.app.shealth")
+    }
+
+    func testLateWakeUpSameNightAndTotalEverywhere() {
+        XCTAssertEqual(lateNight.asleepMinutes, 570)
+        XCTAssertEqual(StageStats.forSession(lateNight)?.asleepMinutes, 570)
+        let sleeps = HealthHistory.summaries([lateNight], clearedAt: nil, calendar: calendar)
+        XCTAssertEqual(sleeps.map(\.asleepMinutes), [570])
+        // Verlauf und Detailseite: Nacht vom 31. Oktober (Morgen 1. November).
+        XCTAssertEqual(merge([], [lateNight]).map(\.date), ["2026-10-31"])
+        // Diagramme: dasselbe Nachtdatum, dieselbe Dauer («today» = Nachtdatum am Morgen des 2. November).
+        let durations = ChartData.durations(sleeps, calendar: calendar, today: "2026-11-01", goalMinutes: 480)
+        XCTAssertEqual(durations?.bars.last?.date, "2026-10-31")
+        XCTAssertEqual(durations?.bars.last?.asleepMinutes, 570)
+        let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-01", nextTarget: nil, goalMinutes: 480)
+        XCTAssertEqual(bars?.bars.last?.date, "2026-10-31")
+        XCTAssertEqual(bars?.bars.last?.hasData, true)
+        XCTAssertEqual(NoteEffect.asleepByNight(sleeps, calendar: calendar), ["2026-10-31": 570])
+        XCTAssertEqual(SleepGoal.nightsOf(sleeps, calendar: calendar).map(\.date), ["2026-10-31"])
+        XCTAssertEqual(SleepGoal.nightsOf(sleeps, calendar: calendar).map(\.asleepMinutes), [570])
+        XCTAssertEqual(Regularity.bedtimes(of: sleeps, calendar: calendar).map(\.date), ["2026-10-31"])
+    }
+
     func testSessionMetrics() {
         XCTAssertEqual(full.durationMinutes, 480)
         XCTAssertEqual(full.asleepMinutes, 435)

@@ -33,9 +33,9 @@ public enum SleepGoal {
     }
 
     /// Nächte aus der Gesundheits-App als (Nachtdatum «yyyy-MM-dd», geschlafene Minuten) für `weekStatus`.
-    /// Das Nachtdatum richtet sich nach dem Ende der Nacht (wie Kotlin).
+    /// Das Nachtdatum richtet sich nach der Mitte der Nacht (`SleepNotes.nightDate(of:)`, wie Kotlin).
     public static func nightsOf(_ sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, asleepMinutes: Int)] {
-        sleeps.map { (date: SleepNotes.nightDate($0.end, calendar: calendar), asleepMinutes: $0.asleepMinutes) }
+        sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), asleepMinutes: $0.asleepMinutes) }
     }
 }
 

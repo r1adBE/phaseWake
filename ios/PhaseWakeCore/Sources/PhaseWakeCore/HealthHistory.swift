@@ -91,7 +91,7 @@ public enum HistoryKind: String, Sendable {
 public struct HistoryItem: Equatable, Sendable {
     /// Art des Eintrags.
     public let kind: HistoryKind
-    /// Nachtdatum «yyyy-MM-dd»: `SleepNotes.nightDate(of:)` der Nacht bzw. `SleepNotes.nightDate` des Sitzungsendes.
+    /// Nachtdatum «yyyy-MM-dd»: `SleepNotes.nightDate(of:)` der Nacht bzw. der Sitzung (über ihre Mitte).
     public let date: String
     /// Eigene Nacht bei ``HistoryKind/phaseWake``.
     public let night: NightRecord?
@@ -147,12 +147,12 @@ public enum HealthHistory {
     public static func merge(nights: [NightRecord], sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HistoryItem] {
         let ownDates = Set(nights.map { SleepNotes.nightDate(of: $0, calendar: calendar) })
         let candidates = countedNights(sessions, clearedAt: clearedAt, calendar: calendar).filter { session in
-            !ownDates.contains(SleepNotes.nightDate(session.end, calendar: calendar))
+            !ownDates.contains(SleepNotes.nightDate(of: session, calendar: calendar))
                 && !nights.contains { session.start < $0.wokeAt && session.end > $0.windowStart }
         }
         var best: [String: HealthSession] = [:]
         for session in candidates {
-            let date = SleepNotes.nightDate(session.end, calendar: calendar)
+            let date = SleepNotes.nightDate(of: session, calendar: calendar)
             if let current = best[date], !preferred(session, over: current) { continue }
             best[date] = session
         }
@@ -188,7 +188,9 @@ public enum HealthHistory {
     /// eine Sitzung ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer.
     public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
         SleepSummary.group(countedNights(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { session in
-            session.stages.isEmpty ? [StageSpan(start: session.start, end: session.end, stage: .unknown)] : session.stages
+            // Auf die Sitzung zugeschnitten wie in der Detailseite (`HealthSession.asleepMinutes`).
+            session.stages.isEmpty ? [StageSpan(start: session.start, end: session.end, stage: .unknown)]
+                : StageCheck.clip(session.stages, from: session.start, to: session.end)
         })
     }
 

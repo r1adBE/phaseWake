@@ -59,6 +59,17 @@ class InsightsTest {
     }
 
     @Test
+    fun groupSumsMillisBeforeRounding() {
+        // Drei Phasen à 10 Min. 30 s: 31 Minuten (je Phase abgerundet wären es 30).
+        val spans = listOf(
+            span("2026-10-27T01:00:00", "2026-10-27T01:10:30", SleepStage.LIGHT),
+            span("2026-10-27T01:10:30", "2026-10-27T01:21:00", SleepStage.DEEP),
+            span("2026-10-27T01:21:00", "2026-10-27T01:31:30", SleepStage.REM),
+        )
+        assertEquals(listOf(31L), SleepSummary.group(spans).map { it.asleepMinutes })
+    }
+
+    @Test
     fun trendsCompareWeeksAndNeedEnoughNights() {
         val now = Instant.parse("2026-10-28T08:00:00Z")
         fun sleep(daysAgo: Long, minutes: Long, bedHour: Int, bedMinute: Int): SleepSummary {

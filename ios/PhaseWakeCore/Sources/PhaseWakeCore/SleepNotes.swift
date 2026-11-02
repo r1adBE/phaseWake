@@ -64,6 +64,24 @@ public enum SleepNotes {
         nightDate(night.windowStart, calendar: calendar)
     }
 
+    /// Nachtdatum eines Schlafs aus der Gesundheits-App von `start` bis `end`: über seine Mitte
+    /// (start + (end − start) / 2, dann − 12 h). So gehören späte Aufwachzeiten nach Mittag (02:42–12:50)
+    /// wie frühe Bettzeiten (21:00–05:00) zum Abend, an dem die Nacht beginnt. Die eine Regel für Verlauf,
+    /// Detailseite, Diagramme, Schlafziel, Serien und Notizen. Identisch zu Kotlin.
+    public static func nightDate(from start: Date, to end: Date, calendar: Calendar) -> String {
+        nightDate(start.addingTimeInterval(end.timeIntervalSince(start) / 2), calendar: calendar)
+    }
+
+    /// Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte (``nightDate(from:to:calendar:)``).
+    public static func nightDate(of sleep: SleepSummary, calendar: Calendar) -> String {
+        nightDate(from: sleep.start, to: sleep.end, calendar: calendar)
+    }
+
+    /// Nachtdatum einer Sitzung im Verlauf: über ihre Mitte (``nightDate(from:to:calendar:)``).
+    public static func nightDate(of session: HealthSession, calendar: Calendar) -> String {
+        nightDate(from: session.start, to: session.end, calendar: calendar)
+    }
+
     /// Kalenderdatum «yyyy-MM-dd» von `date` im Kalender (Ortszeit) mit vierstelligem Jahr.
     public static func dateString(_ date: Date, calendar: Calendar) -> String {
         let c = calendar.dateComponents([.year, .month, .day], from: date)

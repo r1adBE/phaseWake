@@ -82,7 +82,7 @@ enum class HistoryKind {
 data class HistoryItem(
     /** Art des Eintrags. */
     val kind: HistoryKind,
-    /** Nachtdatum ([SleepNotes.nightDate]): eigene Nacht über den Fensterbeginn, Sitzung über ihr Ende. */
+    /** Nachtdatum ([SleepNotes.nightDate]): eigene Nacht über den Fensterbeginn, Sitzung über ihre Mitte. */
     val date: LocalDate,
     /** Die eigene Nacht bei [HistoryKind.PHASE_WAKE]. */
     val night: NightRecord? = null,
@@ -138,8 +138,8 @@ object HealthHistory {
     fun merge(nights: List<NightRecord>, sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HistoryItem> {
         val ownDates = nights.map { SleepNotes.nightDate(it, zone) }.toSet()
         val foreign = nights(sessions, clearedAt, zone)
-            .filter { s -> SleepNotes.nightDate(s.end, zone) !in ownDates && nights.none { s.start.isBefore(it.wokeAt) && s.end.isAfter(it.windowStart) } }
-            .groupBy { SleepNotes.nightDate(it.end, zone) }
+            .filter { s -> SleepNotes.nightDate(s, zone) !in ownDates && nights.none { s.start.isBefore(it.wokeAt) && s.end.isAfter(it.windowStart) } }
+            .groupBy { SleepNotes.nightDate(it, zone) }
             .map { (date, list) -> HistoryItem(HistoryKind.HEALTH, date, session = list.sortedWith(preferred).first()) }
         val own = nights.map { HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(it, zone), night = it) }
         return (own + foreign).sortedWith(newestFirst)
@@ -178,7 +178,10 @@ object HealthHistory {
      * Eine Sitzung ohne Phasen zählt als Schlaf über ihre ganze Dauer.
      */
     fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> = SleepSummary.group(
-        nights(sessions, clearedAt, zone).flatMap { s -> s.stages.ifEmpty { listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN)) } },
+        nights(sessions, clearedAt, zone).flatMap { s ->
+            // Auf die Sitzung zugeschnitten wie in der Detailseite ([HealthSession.asleepMinutes]).
+            if (s.stages.isEmpty()) listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN)) else StageCheck.clip(s.stages, s.start, s.end)
+        },
     )
 
     private val preferred: Comparator<HealthSession> =

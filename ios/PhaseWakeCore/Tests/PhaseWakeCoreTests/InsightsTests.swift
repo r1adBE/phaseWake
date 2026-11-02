@@ -48,6 +48,15 @@ final class InsightsTests: XCTestCase {
         XCTAssertEqual(SleepSummary.group([span("2026-10-27T01:00", "2026-10-27T07:00", .awake)]), [])
     }
 
+    func testGroupSumsMillisBeforeRounding() {
+        // Drei Phasen à 10 Min. 30 s: 31 Minuten (je Phase abgerundet wären es 30).
+        let first = at("2026-10-27T01:00")
+        let spans = [SleepStage.light, .deep, .rem].enumerated().map { i, stage in
+            StageSpan(start: first.addingTimeInterval(Double(i) * 630), end: first.addingTimeInterval(Double(i + 1) * 630), stage: stage)
+        }
+        XCTAssertEqual(SleepSummary.group(spans).map(\.asleepMinutes), [31])
+    }
+
     func testTrendsCompareWeeksAndNeedEnoughNights() {
         let now = ISO8601DateFormatter().date(from: "2026-10-28T08:00:00Z")!
         func sleep(_ daysAgo: Double, _ minutes: Int, _ bedHour: Int, _ bedMinute: Int) -> SleepSummary {

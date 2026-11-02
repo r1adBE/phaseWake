@@ -38,6 +38,43 @@ class HealthHistoryTest {
         "com.sec.android.app.shealth",
     )
 
+    /**
+     * Samsung-Health-Nacht vom 1. November 02:42–12:50 Ortszeit (CET): 11 Min. wach, 60 Phasen à 9 Min. 30 s
+     * (570 Min. Schlaf), 27 Min. wach. Je Phase abgerundet hätte das Diagramm 30 Minuten weniger gezeigt.
+     */
+    private val lateNight = HealthSession(
+        t("2026-11-01T01:42:00Z"), t("2026-11-01T11:50:00Z"),
+        buildList {
+            add(span("2026-11-01T01:42:00Z", "2026-11-01T01:53:00Z", SleepStage.AWAKE))
+            val first = t("2026-11-01T01:53:00Z")
+            val stages = listOf(SleepStage.LIGHT, SleepStage.DEEP, SleepStage.LIGHT, SleepStage.REM)
+            for (i in 0 until 60) add(StageSpan(first.plusSeconds(i * 570L), first.plusSeconds((i + 1) * 570L), stages[i % stages.size]))
+            add(span("2026-11-01T11:23:00Z", "2026-11-01T11:50:00Z", SleepStage.AWAKE))
+        },
+        "com.sec.android.app.shealth",
+    )
+
+    @Test
+    fun lateWakeUpSameNightAndTotalEverywhere() {
+        val oct31 = java.time.LocalDate.of(2026, 10, 31)
+        assertEquals(570, lateNight.asleepMinutes)
+        assertEquals(570, StageStats.forSession(lateNight)!!.asleepMinutes)
+        val sleeps = HealthHistory.summaries(listOf(lateNight), null, zone)
+        assertEquals(listOf(570L), sleeps.map { it.asleepMinutes })
+        // Verlauf und Detailseite: Nacht vom 31. Oktober (Morgen 1. November).
+        assertEquals(listOf(oct31), HealthHistory.merge(emptyList(), listOf(lateNight), null, zone).map { it.date })
+        // Diagramme: dasselbe Nachtdatum, dieselbe Dauer ("today" = Nachtdatum am Morgen des 2. November).
+        val today = oct31.plusDays(1)
+        val durations = ChartData.durations(sleeps, zone, today, goalMinutes = 480)!!
+        assertEquals(oct31 to 570L, durations.bars.last().let { it.date to it.asleepMinutes })
+        val bars = ChartData.sleepBars(sleeps, zone, today, nextTarget = null, goalMinutes = 480)!!
+        assertEquals(oct31, bars.bars.last().date)
+        assertTrue(bars.bars.last().hasData)
+        assertEquals(mapOf(oct31 to 570L), NoteEffect.asleepByNight(sleeps, zone))
+        assertEquals(listOf(oct31 to 570L), SleepGoal.nightsOf(sleeps, zone))
+        assertEquals(listOf(oct31), Regularity.bedtimesOf(sleeps, zone).map { it.first })
+    }
+
     @Test
     fun sessionMetrics() {
         assertEquals(480, full.durationMinutes)

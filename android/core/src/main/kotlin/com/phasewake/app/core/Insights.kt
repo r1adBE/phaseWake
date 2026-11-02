@@ -49,7 +49,7 @@ object NightQuality {
  * Eine ganze Nacht laut Gesundheits-App: von der ersten bis zur letzten Phase.
  *
  * @property start Beginn der ersten Schlafphase (ungefähr die Einschlafzeit).
- * @property asleepMinutes Summe aller Phasen ausser «wach».
+ * @property asleepMinutes Summe aller Phasen ausser «wach» (Millisekunden summiert, dann auf ganze Minuten abgerundet).
  */
 data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long) {
     companion object {
@@ -70,7 +70,9 @@ data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes:
             return groups.mapNotNull { group ->
                 val asleep = group.filter { it.stage != SleepStage.AWAKE }
                 if (asleep.isEmpty()) return@mapNotNull null
-                val minutes = asleep.sumOf { Duration.between(it.start, it.end).toMinutes() }
+                // Millisekunden erst summieren, dann abrunden – wie die Detailseite ([HealthSession.asleepMinutes]);
+                // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
+                val minutes = asleep.sumOf { Duration.between(it.start, it.end).toMillis() } / StageStats.MS_PER_MINUTE
                 SleepSummary(asleep.minOf { it.start }, group.maxOf { it.end }, minutes)
             }
         }

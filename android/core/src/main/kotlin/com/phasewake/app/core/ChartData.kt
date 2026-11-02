@@ -184,7 +184,7 @@ object ChartData {
         goalMinutes: Int,
         nights: Int = NIGHTS,
     ): SleepBars? {
-        val longest = sleeps.groupBy { SleepNotes.nightDate(it.end, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
+        val longest = sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
         val last = lastDate(longest.keys, today)
         val bars = range(last, nights).map { date ->
             val sleep = longest[date] ?: return@map SleepBar(date, null, null)

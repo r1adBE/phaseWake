@@ -34,6 +34,27 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.nightDate(of: night("2026-10-28T06:00", feeling: nil), calendar: zurich), "2026-10-27")
     }
 
+    func testHealthNightDateUsesMidpoint() {
+        func date(_ from: String, _ to: String) -> String { SleepNotes.nightDate(from: at(from), to: at(to), calendar: zurich) }
+        // Samsung-Health-Nacht 02:42–12:50: Abend des 31. Oktober (Morgen 1. November). Über das Ende wäre es der 1.
+        XCTAssertEqual(date("2026-11-01T02:42", "2026-11-01T12:50"), "2026-10-31")
+        XCTAssertEqual(SleepNotes.nightDate(at("2026-11-01T12:50"), calendar: zurich), "2026-11-01")
+        XCTAssertEqual(date("2026-10-27T23:00", "2026-10-28T07:00"), "2026-10-27")
+        XCTAssertEqual(date("2026-10-27T21:00", "2026-10-28T05:00"), "2026-10-27")
+        XCTAssertEqual(date("2026-10-28T01:00", "2026-10-28T13:30"), "2026-10-27")
+        XCTAssertEqual(date("2026-10-27T19:00", "2026-10-28T03:00"), "2026-10-27")
+        // Zeitumstellung: Ende der Sommerzeit am 25. Oktober, Beginn am 29. März 2026.
+        XCTAssertEqual(date("2026-10-24T23:00", "2026-10-25T07:00"), "2026-10-24")
+        XCTAssertEqual(date("2026-10-25T03:30", "2026-10-25T12:40"), "2026-10-24")
+        XCTAssertEqual(date("2026-03-28T23:00", "2026-03-29T07:00"), "2026-03-28")
+        XCTAssertEqual(date("2026-03-29T01:30", "2026-03-29T13:10"), "2026-03-28")
+        // Nacht für Diagramme und Sitzung im Verlauf: dieselbe Regel.
+        XCTAssertEqual(SleepNotes.nightDate(of: SleepSummary(start: at("2026-11-01T02:42"), end: at("2026-11-01T12:50"), asleepMinutes: 0),
+                                            calendar: zurich), "2026-10-31")
+        XCTAssertEqual(SleepNotes.nightDate(of: HealthSession(start: at("2026-11-01T02:42"), end: at("2026-11-01T12:50")), calendar: zurich),
+                       "2026-10-31")
+    }
+
     func testEntryVisibleFromEveningUntilWindow() {
         let window = at("2026-10-29T06:00")
         XCTAssertFalse(SleepNotes.entryVisible(now: at("2026-10-28T16:59"), nextWindowStart: window, calendar: zurich))

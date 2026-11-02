@@ -37,11 +37,11 @@ public enum NightDate {
 }
 
 extension NoteEffect {
-    /// Schlafdauer je Nachtdatum aus der Gesundheits-App: Nachtdatum über das Ende der Nacht; mehrere
-    /// Nächte am selben Datum → die längste. Identisch zu `NoteEffect.asleepByNight` (Kotlin).
+    /// Schlafdauer je Nachtdatum aus der Gesundheits-App: Nachtdatum über die Mitte der Nacht
+    /// (`SleepNotes.nightDate(of:)`); mehrere Nächte am selben Datum → die längste. Identisch zu `NoteEffect.asleepByNight` (Kotlin).
     public static func asleepByNight(_ sleeps: [SleepSummary], calendar: Calendar) -> [String: Int] {
         sleeps.reduce(into: [:]) { out, sleep in
-            let date = SleepNotes.nightDate(sleep.end, calendar: calendar)
+            let date = SleepNotes.nightDate(of: sleep, calendar: calendar)
             out[date] = max(out[date] ?? Int.min, sleep.asleepMinutes)
         }
     }
@@ -60,7 +60,7 @@ public enum Regularity {
 
     /// Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App.
     public static func bedtimes(of sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, start: Date)] {
-        sleeps.map { (date: SleepNotes.nightDate($0.end, calendar: calendar), start: $0.start) }
+        sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), start: $0.start) }
     }
 
     /// (regelmässig, gezählt) für die 7 Nachtdaten bis `until` (einschliesslich), gemessen am Median der

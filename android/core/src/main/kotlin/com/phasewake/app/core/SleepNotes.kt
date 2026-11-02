@@ -72,13 +72,28 @@ object SleepNotes {
 
     /**
      * Nachtdatum eines Zeitpunkts: lokales Datum von [at] − 12 h. Für eine Nacht aus dem Verlauf
-     * gilt ihr Fensterbeginn, für eine Nacht aus der Gesundheits-App ihr Ende, für «jetzt» die
-     * aktuelle Zeit (18:00 und 02:00 gehören zum selben Abend).
+     * gilt ihr Fensterbeginn, für eine Nacht aus der Gesundheits-App ihre Mitte (siehe unten), für
+     * «jetzt» die aktuelle Zeit (18:00 und 02:00 gehören zum selben Abend).
      */
     fun nightDate(at: Instant, zone: ZoneId): LocalDate = at.minus(NIGHT_SHIFT).atZone(zone).toLocalDate()
 
     /** Nachtdatum einer Uhr-Nacht: über ihren Fensterbeginn. */
     fun nightDate(night: NightRecord, zone: ZoneId): LocalDate = nightDate(night.windowStart, zone)
+
+    /**
+     * Nachtdatum eines Schlafs aus der Gesundheits-App von [start] bis [end]: über seine Mitte
+     * (start + (end − start) / 2, dann − 12 h). So gehören späte Aufwachzeiten nach Mittag (02:42–12:50)
+     * wie frühe Bettzeiten (21:00–05:00) zum Abend, an dem die Nacht beginnt. Die eine Regel für Verlauf,
+     * Detailseite, Diagramme, Schlafziel, Serien und Notizen. Gleich in Swift.
+     */
+    fun nightDate(start: Instant, end: Instant, zone: ZoneId): LocalDate =
+        nightDate(start.plus(Duration.between(start, end).dividedBy(2)), zone)
+
+    /** Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende). */
+    fun nightDate(sleep: SleepSummary, zone: ZoneId): LocalDate = nightDate(sleep.start, sleep.end, zone)
+
+    /** Nachtdatum einer Sitzung im Verlauf: über ihre Mitte ([nightDate] mit Beginn und Ende). */
+    fun nightDate(session: HealthSession, zone: ZoneId): LocalDate = nightDate(session.start, session.end, zone)
 
     /**
      * Ob die Startseite nach den Notizen für die kommende Nacht fragt: ab 17:00 des Abends bis zum
@@ -219,10 +234,10 @@ data class NoteEffect(
         }
 
         /**
-         * Schlafdauer je Nachtdatum aus der Gesundheits-App: Nachtdatum über das Ende der Nacht;
-         * mehrere Nächte am selben Datum → die längste.
+         * Schlafdauer je Nachtdatum aus der Gesundheits-App: Nachtdatum über die Mitte der Nacht
+         * ([SleepNotes.nightDate]); mehrere Nächte am selben Datum → die längste.
          */
         fun asleepByNight(sleeps: List<SleepSummary>, zone: ZoneId): Map<LocalDate, Long> =
-            sleeps.groupBy { SleepNotes.nightDate(it.end, zone) }.mapValues { (_, list) -> list.maxOf { it.asleepMinutes } }
+            sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxOf { it.asleepMinutes } }
     }
 }

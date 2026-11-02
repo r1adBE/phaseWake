@@ -235,7 +235,7 @@ public enum ChartData {
                                  goalMinutes: Int, nights: Int = ChartData.nights) -> SleepBars? {
         var longest: [String: SleepSummary] = [:]
         for sleep in sleeps {
-            let date = SleepNotes.nightDate(sleep.end, calendar: calendar)
+            let date = SleepNotes.nightDate(of: sleep, calendar: calendar)
             // Wie `maxBy` in Kotlin: bei Gleichstand der erste.
             if let current = longest[date], current.asleepMinutes >= sleep.asleepMinutes { continue }
             longest[date] = sleep

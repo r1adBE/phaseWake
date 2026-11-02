@@ -24,7 +24,7 @@ object Regularity {
 
     /** Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App. */
     fun bedtimesOf(sleeps: List<SleepSummary>, zone: ZoneId): List<Pair<LocalDate, Instant>> =
-        sleeps.map { SleepNotes.nightDate(it.end, zone) to it.start }
+        sleeps.map { SleepNotes.nightDate(it, zone) to it.start }
 
     /**
      * (regelmässig, gezählt) für die [WEEK_NIGHTS] Nachtdaten bis [until] (einschliesslich), gemessen

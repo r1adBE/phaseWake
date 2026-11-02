@@ -30,7 +30,7 @@ public struct SleepSummary: Equatable, Sendable {
     public let start: Date
     /// Ende der letzten Phase der Nacht (auch «wach»).
     public let end: Date
-    /// Geschlafene Minuten (alle Phasen ausser «wach», je Phase ganze Minuten abgerundet).
+    /// Geschlafene Minuten (alle Phasen ausser «wach»; Millisekunden summiert, dann auf ganze Minuten abgerundet).
     public let asleepMinutes: Int
 
     /// Erzeugt eine Nacht; `start` liegt vor `end`.
@@ -56,8 +56,9 @@ public struct SleepSummary: Equatable, Sendable {
         return groups.compactMap { group in
             let asleep = group.filter { $0.stage != .awake }
             guard let start = asleep.map(\.start).min(), let end = group.map(\.end).max() else { return nil }
-            // Ganze Minuten je Phase, wie `Duration.toMinutes()`.
-            let minutes = asleep.reduce(0) { $0 + Int($1.end.timeIntervalSince($1.start) / 60) }
+            // Millisekunden erst summieren, dann abrunden – wie die Detailseite (`HealthSession.asleepMinutes`);
+            // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
+            let minutes = StageStats.minutes(asleep.reduce(Int64(0)) { $0 + StageStats.millis($1.start, $1.end) })
             return SleepSummary(start: start, end: end, asleepMinutes: minutes)
         }
     }
