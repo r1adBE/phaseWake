@@ -107318,121 +107318,121 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voer anoniem uit"
+            "value": "Voer sonder naam uit"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ማንነትን ሳይገልጹ ወደ ውጭ ላክ"
+            "value": "ያለ ስም ወደ ውጭ ላክ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تصدير مجهول الهوية"
+            "value": "تصدير بدون اسم"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonim ixrac et"
+            "value": "Adsız ixrac et"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Анонимен експорт"
+            "value": "Експорт без име"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "বেনামে এক্সপোর্ট করো"
+            "value": "নাম ছাড়া এক্সপোর্ট করো"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izvezi anonimno"
+            "value": "Izvezi bez imena"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exporta de manera anònima"
+            "value": "Exporta sense nom"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportovat anonymně"
+            "value": "Exportovat bez jména"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportér anonymt"
+            "value": "Eksportér uden navn"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonym exportieren"
+            "value": "Ohne Namen exportieren"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ανώνυμη εξαγωγή"
+            "value": "Εξαγωγή χωρίς όνομα"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Export anonymously"
+            "value": "Export without name"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar de forma anónima"
+            "value": "Exportar sin nombre"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekspordi anonüümselt"
+            "value": "Ekspordi ilma nimeta"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esportatu modu anonimoan"
+            "value": "Esportatu izenik gabe"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "خروجی ناشناس"
+            "value": "خروجی بدون نام"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vie anonyymisti"
+            "value": "Vie ilman nimeä"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-export nang anonymous"
+            "value": "I-export nang walang pangalan"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exporter anonymement"
+            "value": "Exporter sans nom"
           }
         },
         "ga": {
@@ -107444,127 +107444,127 @@
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar de forma anónima"
+            "value": "Exportar sen nome"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "અનામી રીતે એક્સપોર્ટ કરો"
+            "value": "નામ વગર એક્સપોર્ટ કરો"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ייצוא אנונימי"
+            "value": "ייצוא ללא שם"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "गुमनाम एक्सपोर्ट"
+            "value": "बिना नाम के एक्सपोर्ट"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izvezi anonimno"
+            "value": "Izvezi bez imena"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportálás névtelenül"
+            "value": "Exportálás név nélkül"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Արտահանել անանուն"
+            "value": "Արտահանել առանց անվան"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekspor anonim"
+            "value": "Ekspor tanpa nama"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Flytja út nafnlaust"
+            "value": "Flytja út án nafns"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esporta in forma anonima"
+            "value": "Esporta senza nome"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名でエクスポート"
+            "value": "名前なしでエクスポート"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ანონიმური ექსპორტი"
+            "value": "ექსპორტი სახელის გარეშე"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Анонимді экспорттау"
+            "value": "Есімсіз экспорттау"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "នាំចេញដោយអនាមិក"
+            "value": "នាំចេញដោយគ្មានឈ្មោះ"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಅನಾಮಧೇಯವಾಗಿ ರಫ್ತು ಮಾಡಿ"
+            "value": "ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "익명으로 내보내기"
+            "value": "이름 없이 내보내기"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ສົ່ງອອກແບບບໍ່ລະບຸຕົວຕົນ"
+            "value": "ສົ່ງອອກໂດຍບໍ່ມີຊື່"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportuoti anonimiškai"
+            "value": "Eksportuoti be vardo"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportēt anonīmi"
+            "value": "Eksportēt bez vārda"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Извези анонимно"
+            "value": "Извези без име"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക"
+            "value": "പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക"
           }
         },
         "mn": {
@@ -107576,7 +107576,7 @@
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "निनावी एक्सपोर्ट करा"
+            "value": "नावाशिवाय एक्सपोर्ट करा"
           }
         },
         "ms": {
@@ -107588,175 +107588,175 @@
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အမည်မဖော်ဘဲ ထုတ်ယူရန်"
+            "value": "အမည်မပါဘဲ ထုတ်ယူရန်"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksporter anonymt"
+            "value": "Eksporter uten navn"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "गुमनाम रूपमा निर्यात"
+            "value": "नाम बिना निर्यात"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anoniem exporteren"
+            "value": "Exporteren zonder naam"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਗੁਮਨਾਮ ਤੌਰ ’ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ"
+            "value": "ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportuj anonimowo"
+            "value": "Eksportuj bez imienia"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar anonimamente"
+            "value": "Exportar sem nome"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar anonimamente"
+            "value": "Exportar sem nome"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportă anonim"
+            "value": "Exportă fără nume"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Экспорт без личных данных"
+            "value": "Экспорт без имени"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "නිර්නාමිකව අපනයනය"
+            "value": "නමක් නොමැතිව අපනයනය"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportovať anonymne"
+            "value": "Exportovať bez mena"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izvozi anonimno"
+            "value": "Izvozi brez imena"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksporto anonimisht"
+            "value": "Eksporto pa emër"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Извези анонимно"
+            "value": "Извези без имена"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportera anonymt"
+            "value": "Exportera utan namn"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hamisha bila kutambulisha"
+            "value": "Hamisha bila jina"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "அநாமதேயமாக ஏற்றுமதி செய்"
+            "value": "பெயர் இல்லாமல் ஏற்றுமதி செய்"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "అనామకంగా ఎగుమతి చేయండి"
+            "value": "పేరు లేకుండా ఎగుమతి చేయండి"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ส่งออกแบบไม่ระบุตัวตน"
+            "value": "ส่งออกโดยไม่มีชื่อ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonim dışa aktar"
+            "value": "İsimsiz dışa aktar"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Експортувати анонімно"
+            "value": "Експортувати без імені"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "گمنام طور پر ایکسپورٹ کرو"
+            "value": "نام کے بغیر ایکسپورٹ کرو"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonim eksport qilish"
+            "value": "Ismsiz eksport qilish"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Xuất ẩn danh"
+            "value": "Xuất không kèm tên"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名匯出"
+            "value": "不含姓名匯出"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名导出"
+            "value": "不含姓名导出"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名匯出"
+            "value": "不含姓名匯出"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thumela ngaphandle ngokungaziwa"
+            "value": "Thumela ngaphandle kwegama"
           }
         }
       }
@@ -107766,121 +107766,121 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-nagte (anoniem)"
+            "value": "Phase Wake-nagte (sonder naam)"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "የPhase Wake ሌሊቶች (ማንነት ሳይገለጽ)"
+            "value": "የPhase Wake ሌሊቶች (ያለ ስም)"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "ليالي Phase Wake (مجهولة الهوية)"
+            "value": "ليالي Phase Wake (بدون اسم)"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake gecələri (anonim)"
+            "value": "Phase Wake gecələri (adsız)"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нощи в Phase Wake (анонимно)"
+            "value": "Нощи в Phase Wake (без име)"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-এর রাতগুলো (বেনামে)"
+            "value": "Phase Wake-এর রাতগুলো (নাম ছাড়া)"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake – noći (anonimno)"
+            "value": "Phase Wake – noći (bez imena)"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nits de Phase Wake (anònimes)"
+            "value": "Nits de Phase Wake (sense nom)"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noci Phase Wake (anonymně)"
+            "value": "Noci Phase Wake (bez jména)"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-nætter (anonymt)"
+            "value": "Phase Wake-nætter (uden navn)"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase-Wake-Nächte (anonym)"
+            "value": "Phase-Wake-Nächte (ohne Namen)"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Νύχτες Phase Wake (ανώνυμα)"
+            "value": "Νύχτες Phase Wake (χωρίς όνομα)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake nights (anonymous)"
+            "value": "Phase Wake nights (without name)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noches de Phase Wake (anónimo)"
+            "value": "Noches de Phase Wake (sin nombre)"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake’i ööd (anonüümne)"
+            "value": "Phase Wake’i ööd (ilma nimeta)"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake gauak (anonimoak)"
+            "value": "Phase Wake gauak (izenik gabe)"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "شب‌های Phase Wake (ناشناس)"
+            "value": "شب‌های Phase Wake (بدون نام)"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake -yöt (anonyymi)"
+            "value": "Phase Wake -yöt (ilman nimeä)"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mga gabi sa Phase Wake (anonymous)"
+            "value": "Mga gabi sa Phase Wake (walang pangalan)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nuits Phase Wake (anonyme)"
+            "value": "Nuits Phase Wake (sans nom)"
           }
         },
         "ga": {
@@ -107892,127 +107892,127 @@
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites de Phase Wake (anónimas)"
+            "value": "Noites de Phase Wake (sen nome)"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake રાતો (અનામી)"
+            "value": "Phase Wake રાતો (નામ વગર)"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לילות Phase Wake (אנונימי)"
+            "value": "לילות Phase Wake (ללא שם)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake रातें (गुमनाम)"
+            "value": "Phase Wake रातें (बिना नाम के)"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake – noći (anonimno)"
+            "value": "Phase Wake – noći (bez imena)"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake éjszakák (névtelen)"
+            "value": "Phase Wake éjszakák (név nélkül)"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ի գիշերներ (անանուն)"
+            "value": "Phase Wake-ի գիշերներ (առանց անվան)"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Malam Phase Wake (anonim)"
+            "value": "Malam Phase Wake (tanpa nama)"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-nætur (nafnlaust)"
+            "value": "Phase Wake-nætur (án nafns)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notti Phase Wake (anonime)"
+            "value": "Notti Phase Wake (senza nome)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wakeの睡眠記録(匿名)"
+            "value": "Phase Wakeの睡眠記録(名前なし)"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-ის ღამეები (ანონიმური)"
+            "value": "Phase Wake-ის ღამეები (სახელის გარეშე)"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake түндері (анонимді)"
+            "value": "Phase Wake түндері (есімсіз)"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "យប់ Phase Wake (អនាមិក)"
+            "value": "យប់ Phase Wake (គ្មានឈ្មោះ)"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ರಾತ್ರಿಗಳು (ಅನಾಮಧೇಯ)"
+            "value": "Phase Wake ರಾತ್ರಿಗಳು (ಹೆಸರಿಲ್ಲದೆ)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 수면 기록 (익명)"
+            "value": "Phase Wake 수면 기록 (이름 없음)"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ຄືນ Phase Wake (ບໍ່ລະບຸຕົວຕົນ)"
+            "value": "ຄືນ Phase Wake (ບໍ່ມີຊື່)"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake naktys (anonimiškai)"
+            "value": "Phase Wake naktys (be vardo)"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake naktis (anonīmi)"
+            "value": "Phase Wake naktis (bez vārda)"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ноќи од Phase Wake (анонимно)"
+            "value": "Ноќи од Phase Wake (без име)"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake രാത്രികൾ (അജ്ഞാതം)"
+            "value": "Phase Wake രാത്രികൾ (പേരില്ലാതെ)"
           }
         },
         "mn": {
@@ -108024,7 +108024,7 @@
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake रात्री (निनावी)"
+            "value": "Phase Wake रात्री (नावाशिवाय)"
           }
         },
         "ms": {
@@ -108036,175 +108036,175 @@
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ညများ (အမည်မဖော်)"
+            "value": "Phase Wake ညများ (အမည်မပါ)"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-netter (anonymt)"
+            "value": "Phase Wake-netter (uten navn)"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake रातहरू (गुमनाम)"
+            "value": "Phase Wake रातहरू (नाम बिना)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-nachten (anoniem)"
+            "value": "Phase Wake-nachten (zonder naam)"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake ਰਾਤਾਂ (ਗੁਮਨਾਮ)"
+            "value": "Phase Wake ਰਾਤਾਂ (ਨਾਮ ਤੋਂ ਬਿਨਾਂ)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noce Phase Wake (anonimowo)"
+            "value": "Noce Phase Wake (bez imienia)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites do Phase Wake (anônimo)"
+            "value": "Noites do Phase Wake (sem nome)"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites do Phase Wake (anónimo)"
+            "value": "Noites do Phase Wake (sem nome)"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nopți Phase Wake (anonim)"
+            "value": "Nopți Phase Wake (fără nume)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ночи Phase Wake (анонимно)"
+            "value": "Ночи Phase Wake (без имени)"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake රාත්‍රි (නිර්නාමික)"
+            "value": "Phase Wake රාත්‍රි (නමක් නොමැතිව)"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noci Phase Wake (anonymne)"
+            "value": "Noci Phase Wake (bez mena)"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noči Phase Wake (anonimno)"
+            "value": "Noči Phase Wake (brez imena)"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Netët e Phase Wake (anonime)"
+            "value": "Netët e Phase Wake (pa emër)"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake – ноћи (анонимно)"
+            "value": "Phase Wake – ноћи (без имена)"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake-nätter (anonymt)"
+            "value": "Phase Wake-nätter (utan namn)"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usiku wa Phase Wake (bila utambulisho)"
+            "value": "Usiku wa Phase Wake (bila jina)"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake இரவுகள் (அநாமதேயம்)"
+            "value": "Phase Wake இரவுகள் (பெயர் இல்லாமல்)"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake రాత్రులు (అనామకం)"
+            "value": "Phase Wake రాత్రులు (పేరు లేకుండా)"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "บันทึกการนอน Phase Wake (ไม่ระบุตัวตน)"
+            "value": "บันทึกการนอน Phase Wake (ไม่มีชื่อ)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake geceleri (anonim)"
+            "value": "Phase Wake geceleri (isimsiz)"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ночі Phase Wake (анонімно)"
+            "value": "Ночі Phase Wake (без імені)"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake کی راتیں (گمنام)"
+            "value": "Phase Wake کی راتیں (نام کے بغیر)"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake tunlari (anonim)"
+            "value": "Phase Wake tunlari (ismsiz)"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Các đêm ngủ Phase Wake (ẩn danh)"
+            "value": "Các đêm ngủ Phase Wake (không kèm tên)"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 睡眠記錄（匿名）"
+            "value": "Phase Wake 睡眠記錄（不含姓名）"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 睡眠记录（匿名）"
+            "value": "Phase Wake 睡眠记录（不含姓名）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phase Wake 睡眠紀錄（匿名）"
+            "value": "Phase Wake 睡眠紀錄（不含姓名）"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ubusuku be-Phase Wake (ngokungaziwa)"
+            "value": "Ubusuku be-Phase Wake (ngaphandle kwegama)"
           }
         }
       }
@@ -183456,121 +183456,121 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voer nagte anoniem uit"
+            "value": "Voer nagte sonder naam uit"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ሌሊቶችን ማንነት ሳይገልጹ ወደ ውጭ ላክ"
+            "value": "ሌሊቶችን ያለ ስም ወደ ውጭ ላክ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تصدير الليالي دون هوية"
+            "value": "تصدير الليالي بدون اسم"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gecələri anonim ixrac et"
+            "value": "Gecələri adsız ixrac et"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Анонимен експорт на нощите"
+            "value": "Експорт на нощите без име"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "রাতগুলো বেনামে এক্সপোর্ট করো"
+            "value": "রাতগুলো নাম ছাড়া এক্সপোর্ট করো"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izvezi noći anonimno"
+            "value": "Izvezi noći bez imena"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exporta les nits de manera anònima"
+            "value": "Exporta les nits sense nom"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportovat noci anonymně"
+            "value": "Exportovat noci bez jména"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportér nætter anonymt"
+            "value": "Eksportér nætter uden navn"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nächte anonym exportieren"
+            "value": "Nächte ohne Namen exportieren"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ανώνυμη εξαγωγή νυχτών"
+            "value": "Εξαγωγή νυχτών χωρίς όνομα"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Export nights anonymously"
+            "value": "Export nights without name"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar noches de forma anónima"
+            "value": "Exportar noches sin nombre"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekspordi ööd anonüümselt"
+            "value": "Ekspordi ööd ilma nimeta"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esportatu gauak modu anonimoan"
+            "value": "Esportatu gauak izenik gabe"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "خروجی ناشناس از شب‌ها"
+            "value": "خروجی شب‌ها بدون نام"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vie yöt anonyymisti"
+            "value": "Vie yöt ilman nimeä"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "I-export ang mga gabi nang anonymous"
+            "value": "I-export ang mga gabi nang walang pangalan"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exporter les nuits anonymement"
+            "value": "Exporter les nuits sans nom"
           }
         },
         "ga": {
@@ -183582,127 +183582,127 @@
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar noites de forma anónima"
+            "value": "Exportar noites sen nome"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "રાતો અનામી રીતે એક્સપોર્ટ કરો"
+            "value": "રાતો નામ વગર એક્સપોર્ટ કરો"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "ייצוא לילות באופן אנונימי"
+            "value": "ייצוא לילות ללא שם"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रातें गुमनाम एक्सपोर्ट करो"
+            "value": "रातें बिना नाम के एक्सपोर्ट करो"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Izvezi noći anonimno"
+            "value": "Izvezi noći bez imena"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Éjszakák névtelen exportja"
+            "value": "Éjszakák exportja név nélkül"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Արտահանել գիշերները անանուն"
+            "value": "Արտահանել գիշերները առանց անվան"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekspor malam secara anonim"
+            "value": "Ekspor malam tanpa nama"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Flytja nætur út nafnlaust"
+            "value": "Flytja nætur út án nafns"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esporta le notti in forma anonima"
+            "value": "Esporta le notti senza nome"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠記録を匿名でエクスポート"
+            "value": "睡眠記録を名前なしでエクスポート"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ღამეების ანონიმური ექსპორტი"
+            "value": "ღამეების ექსპორტი სახელის გარეშე"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Түндерді анонимді экспорттау"
+            "value": "Түндерді есімсіз экспорттау"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "នាំចេញយប់ដោយអនាមិក"
+            "value": "នាំចេញយប់ដោយគ្មានឈ្មោះ"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ರಾತ್ರಿಗಳನ್ನು ಅನಾಮಧೇಯವಾಗಿ ರಫ್ತು ಮಾಡಿ"
+            "value": "ರಾತ್ರಿಗಳನ್ನು ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수면 기록 익명으로 내보내기"
+            "value": "수면 기록 이름 없이 내보내기"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ສົ່ງອອກຄືນແບບບໍ່ລະບຸຕົວຕົນ"
+            "value": "ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportuoti naktis anonimiškai"
+            "value": "Eksportuoti naktis be vardo"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportēt naktis anonīmi"
+            "value": "Eksportēt naktis bez vārda"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Извези ноќи анонимно"
+            "value": "Извези ноќи без име"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "രാത്രികൾ അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക"
+            "value": "രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക"
           }
         },
         "mn": {
@@ -183714,7 +183714,7 @@
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "रात्री निनावी एक्सपोर्ट करा"
+            "value": "रात्री नावाशिवाय एक्सपोर्ट करा"
           }
         },
         "ms": {
@@ -183726,175 +183726,175 @@
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "ညများကို အမည်မဖော်ဘဲ ထုတ်ယူရန်"
+            "value": "ညများကို အမည်မပါဘဲ ထုတ်ယူရန်"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksporter netter anonymt"
+            "value": "Eksporter netter uten navn"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "रातहरू गुमनाम रूपमा निर्यात गर"
+            "value": "रातहरू नाम बिना निर्यात गर"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nachten anoniem exporteren"
+            "value": "Nachten exporteren zonder naam"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਰਾਤਾਂ ਗੁਮਨਾਮ ਤੌਰ ’ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ"
+            "value": "ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksportuj noce anonimowo"
+            "value": "Eksportuj noce bez imienia"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar noites anonimamente"
+            "value": "Exportar noites sem nome"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportar noites anonimamente"
+            "value": "Exportar noites sem nome"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportă nopțile anonim"
+            "value": "Exportă nopțile fără nume"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Анонимный экспорт ночей"
+            "value": "Экспорт ночей без имени"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "රාත්‍රි නිර්නාමිකව අපනයනය කරන්න"
+            "value": "රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportovať noci anonymne"
+            "value": "Exportovať noci bez mena"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anonimno izvozi noči"
+            "value": "Izvozi noči brez imena"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksporto netët anonimisht"
+            "value": "Eksporto netët pa emër"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Извези ноћи анонимно"
+            "value": "Извези ноћи без имена"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exportera nätter anonymt"
+            "value": "Exportera nätter utan namn"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hamisha usiku bila kutambulisha"
+            "value": "Hamisha usiku bila jina"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "இரவுகளை அநாமதேயமாக ஏற்றுமதி செய்"
+            "value": "இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "రాత్రులను అనామకంగా ఎగుమతి చేయండి"
+            "value": "రాత్రులను పేరు లేకుండా ఎగుమతి చేయండి"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ส่งออกบันทึกการนอนแบบไม่ระบุตัวตน"
+            "value": "ส่งออกบันทึกการนอนโดยไม่มีชื่อ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geceleri anonim dışa aktar"
+            "value": "Geceleri isimsiz dışa aktar"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Анонімний експорт ночей"
+            "value": "Експорт ночей без імені"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "راتیں گمنام طور پر ایکسپورٹ کرو"
+            "value": "راتیں نام کے بغیر ایکسپورٹ کرو"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tunlarni anonim eksport qilish"
+            "value": "Tunlarni ismsiz eksport qilish"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Xuất các đêm ngủ ẩn danh"
+            "value": "Xuất các đêm ngủ không kèm tên"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名匯出睡眠記錄"
+            "value": "不含姓名匯出睡眠記錄"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名导出睡眠记录"
+            "value": "不含姓名导出睡眠记录"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "匿名匯出睡眠紀錄"
+            "value": "不含姓名匯出睡眠紀錄"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thumela ubusuku ngaphandle ngokungaziwa"
+            "value": "Thumela ubusuku ngaphandle kwegama"
           }
         }
       }

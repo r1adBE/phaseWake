@@ -76,7 +76,7 @@ motion,hr
 - Danach die Kopfzeile `motion,hr` und eine Zeile pro Epoche; leeres Feld = leer.
 - Die Nächte gelten mit den Startwerten.
 
-Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte, anonym exportierte Nächte kommen dazu, sobald es sie gibt.
+Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte, ohne Namen exportierte Nächte kommen dazu, sobald es sie gibt.
 
 ## 6. Einschlaf-Modus
 

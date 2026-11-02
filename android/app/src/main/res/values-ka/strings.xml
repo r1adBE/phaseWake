@@ -72,8 +72,8 @@
     <string name="history_health_live_unknown">წყარო: შენი ჯანმრთელობის მონაცემები. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
     <string name="history_average">Ø %1$d წთ-ით ადრე</string>
     <string name="history_light_share">%1$d %% ადრე გაღვიძებული მოუსვენრობისას</string>
-    <string name="history_export">ანონიმური ექსპორტი</string>
-    <string name="history_export_subject">Phase Wake-ის ღამეები (ანონიმური)</string>
+    <string name="history_export">ექსპორტი სახელის გარეშე</string>
+    <string name="history_export_subject">Phase Wake-ის ღამეები (სახელის გარეშე)</string>
     <string name="settings_title">პარამეტრები</string>
     <string name="settings_theme">იერსახე</string>
     <string name="settings_theme_system">სისტემური</string>
@@ -81,7 +81,7 @@
     <string name="settings_theme_dark">მუქი</string>
     <string name="settings_data">შენი მონაცემები</string>
     <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი.</string>
-    <string name="settings_export">ღამეების ანონიმური ექსპორტი</string>
+    <string name="settings_export">ღამეების ექსპორტი სახელის გარეშე</string>
     <string name="settings_export_hint">დაგვეხმარე ამოცნობის გაუმჯობესებაში: CSV სახელების, თარიღებისა და მოწყობილობის ID-ების გარეშე.</string>
     <string name="settings_about">აპის შესახებ</string>
     <string name="settings_open_source">ღია კოდი GitHub-ზე</string>

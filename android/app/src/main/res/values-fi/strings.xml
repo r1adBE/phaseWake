@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">Lähde: terveystietosi. Phase Wake ottaa siellä tehdyt muutokset ja poistot automaattisesti huomioon.</string>
     <string name="history_average">Ø %1$d min aiemmin</string>
     <string name="history_light_share">%1$d %% herätetty aiemmin levottomuuden vuoksi</string>
-    <string name="history_export">Vie anonyymisti</string>
-    <string name="history_export_subject">Phase Wake -yöt (anonyymi)</string>
+    <string name="history_export">Vie ilman nimeä</string>
+    <string name="history_export_subject">Phase Wake -yöt (ilman nimeä)</string>
 
     <string name="settings_title">Asetukset</string>
     <string name="settings_theme">Ulkoasu</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">Tumma</string>
     <string name="settings_data">Tietosi</string>
     <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa.</string>
-    <string name="settings_export">Vie yöt anonyymisti</string>
+    <string name="settings_export">Vie yöt ilman nimeä</string>
     <string name="settings_export_hint">Auta parantamaan tunnistusta: CSV ilman nimiä, päivämääriä tai laitetunnisteita.</string>
     <string name="settings_about">Tietoja</string>
     <string name="settings_open_source">Avoin lähdekoodi GitHubissa</string>

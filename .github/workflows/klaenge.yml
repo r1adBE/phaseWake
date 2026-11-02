@@ -82,11 +82,13 @@ jobs:
           git config user.email "r1adBE@users.noreply.github.com"
           git fetch origin
           git checkout -B klaenge origin/main
-          mkdir -p android/app/src/main/res/raw ios/PhaseWake/Sounds
+          mkdir -p android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
           cp out/*.m4a android/app/src/main/res/raw/
+          # Die Uhr braucht nur «Vögel» als letzte Rückfallebene des Wecktons.
+          cp out/wake_birds.m4a android/wear/src/main/res/raw/
           cp out/sound_*.m4a ios/PhaseWake/Sounds/
           cp out/tones/*.caf ios/PhaseWake/Sounds/
-          git add android/app/src/main/res/raw ios/PhaseWake/Sounds
+          git add android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
           git commit -m "Einschlafklänge (Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach; CC0) und Wecktöne (Glockenspiel, Gong, Harfe, Morgenvögel)"
           git push -f origin klaenge
       - name: Fehler anzeigen

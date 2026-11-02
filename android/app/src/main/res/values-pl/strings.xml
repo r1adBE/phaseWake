@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Z twoich danych zdrowotnych. Zmiany i usunięcia wprowadzone tam Phase Wake przejmuje automatycznie.</string>
     <string name="history_average">Ø %1$d min wcześniej</string>
     <string name="history_light_share">%1$d %% obudzeń wcześniej przy niepokoju</string>
-    <string name="history_export">Eksportuj anonimowo</string>
-    <string name="history_export_subject">Noce Phase Wake (anonimowo)</string>
+    <string name="history_export">Eksportuj bez imienia</string>
+    <string name="history_export_subject">Noce Phase Wake (bez imienia)</string>
 
     <string name="settings_title">Ustawienia</string>
     <string name="settings_theme">Wygląd</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Ciemny</string>
     <string name="settings_data">Twoje dane</string>
     <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia.</string>
-    <string name="settings_export">Eksportuj noce anonimowo</string>
+    <string name="settings_export">Eksportuj noce bez imienia</string>
     <string name="settings_export_hint">Pomóż ulepszyć wykrywanie: CSV bez imion, dat i identyfikatorów urządzeń.</string>
     <string name="settings_about">O aplikacji</string>
     <string name="settings_open_source">Open source na GitHub</string>

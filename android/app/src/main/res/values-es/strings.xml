@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">De tus datos de salud. Phase Wake aplica automáticamente los cambios y eliminaciones que hagas allí.</string>
     <string name="history_average">Ø %1$d min antes</string>
     <string name="history_light_share">%1$d %% despertado antes por inquietud</string>
-    <string name="history_export">Exportar de forma anónima</string>
-    <string name="history_export_subject">Noches de Phase Wake (anónimo)</string>
+    <string name="history_export">Exportar sin nombre</string>
+    <string name="history_export_subject">Noches de Phase Wake (sin nombre)</string>
 
     <string name="settings_title">Ajustes</string>
     <string name="settings_theme">Apariencia</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">Oscuro</string>
     <string name="settings_data">Tus datos</string>
     <string name="settings_data_text">Todo se queda en tu móvil y tu reloj. Sin cuenta, sin servidor, sin seguimiento.</string>
-    <string name="settings_export">Exportar noches de forma anónima</string>
+    <string name="settings_export">Exportar noches sin nombre</string>
     <string name="settings_export_hint">Ayuda a mejorar la detección: CSV sin nombres, fechas ni ID de dispositivo.</string>
     <string name="settings_about">Acerca de</string>
     <string name="settings_open_source">Código abierto en GitHub</string>

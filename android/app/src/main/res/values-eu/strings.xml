@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Iturria: zure osasun-datuak. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_average">Ø %1$d min lehenago</string>
     <string name="history_light_share">%%%1$d lehenago esnatuta ezinegonagatik</string>
-    <string name="history_export">Esportatu modu anonimoan</string>
-    <string name="history_export_subject">Phase Wake gauak (anonimoak)</string>
+    <string name="history_export">Esportatu izenik gabe</string>
+    <string name="history_export_subject">Phase Wake gauak (izenik gabe)</string>
 
     <string name="settings_title">Ezarpenak</string>
     <string name="settings_theme">Itxura</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Iluna</string>
     <string name="settings_data">Zure datuak</string>
     <string name="settings_data_text">Dena telefonoan eta erlojuan geratzen da. Konturik, zerbitzaririk eta jarraipenik gabe.</string>
-    <string name="settings_export">Esportatu gauak modu anonimoan</string>
+    <string name="settings_export">Esportatu gauak izenik gabe</string>
     <string name="settings_export_hint">Lagundu hautematea hobetzen: CSV bat izenik, datarik eta gailu-IDrik gabe.</string>
     <string name="settings_about">Honi buruz</string>
     <string name="settings_open_source">Kode irekia GitHub-en</string>

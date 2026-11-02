@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">നിങ്ങളുടെ ആരോഗ്യ ഡാറ്റയിൽ നിന്ന്. അവിടെ വരുത്തുന്ന മാറ്റങ്ങളും ഇല്ലാതാക്കലുകളും Phase Wake സ്വയമേവ സ്വീകരിക്കുന്നു.</string>
     <string name="history_average">Ø %1$d മി. നേരത്തേ</string>
     <string name="history_light_share">%1$d %% അസ്വസ്ഥരായപ്പോൾ നേരത്തെ ഉണർത്തി</string>
-    <string name="history_export">അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <string name="history_export_subject">Phase Wake രാത്രികൾ (അജ്ഞാതം)</string>
+    <string name="history_export">പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
+    <string name="history_export_subject">Phase Wake രാത്രികൾ (പേരില്ലാതെ)</string>
 
     <string name="settings_title">ക്രമീകരണം</string>
     <string name="settings_theme">രൂപം</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">ഡാർക്ക്</string>
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
     <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല.</string>
-    <string name="settings_export">രാത്രികൾ അജ്ഞാതമായി എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
+    <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
     <string name="settings_export_hint">കണ്ടെത്തൽ മെച്ചപ്പെടുത്താൻ സഹായിക്കൂ: പേരോ തീയതിയോ ഉപകരണ ID-യോ ഇല്ലാത്ത CSV.</string>
     <string name="settings_about">വിവരം</string>
     <string name="settings_open_source">GitHub-ൽ ഓപ്പൺ സോഴ്‌സ്</string>

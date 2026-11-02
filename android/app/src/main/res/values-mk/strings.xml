@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Од твоите здравствени податоци. Phase Wake автоматски ги презема промените и бришењата направени таму.</string>
     <string name="history_average">Ø %1$d мин порано</string>
     <string name="history_light_share">%1$d %% разбудени порано при немир</string>
-    <string name="history_export">Извези анонимно</string>
-    <string name="history_export_subject">Ноќи од Phase Wake (анонимно)</string>
+    <string name="history_export">Извези без име</string>
+    <string name="history_export_subject">Ноќи од Phase Wake (без име)</string>
 
     <string name="settings_title">Поставки</string>
     <string name="settings_theme">Изглед</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_data">Твоите податоци</string>
     <string name="settings_data_text">Сè останува на телефонот и часовникот. Без сметка, без сервер, без следење.</string>
-    <string name="settings_export">Извези ноќи анонимно</string>
+    <string name="settings_export">Извези ноќи без име</string>
     <string name="settings_export_hint">Помогни да се подобри препознавањето: CSV без имиња, датуми или ID на уреди.</string>
     <string name="settings_about">За апликацијата</string>
     <string name="settings_open_source">Отворен код на GitHub</string>

@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Kusuka kudatha yakho yezempilo. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
     <string name="history_average">Ø %1$d min ngaphambili</string>
     <string name="history_light_share">%1$d %% bavuswe kusenesikhathi uma bengazinzile</string>
-    <string name="history_export">Thumela ngaphandle ngokungaziwa</string>
-    <string name="history_export_subject">Ubusuku be-Phase Wake (ngokungaziwa)</string>
+    <string name="history_export">Thumela ngaphandle kwegama</string>
+    <string name="history_export_subject">Ubusuku be-Phase Wake (ngaphandle kwegama)</string>
 
     <string name="settings_title">Izilungiselelo</string>
     <string name="settings_theme">Ukubukeka</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Okumnyama</string>
     <string name="settings_data">Idatha yakho</string>
     <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa.</string>
-    <string name="settings_export">Thumela ubusuku ngaphandle ngokungaziwa</string>
+    <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
     <string name="settings_export_hint">Siza ukuthuthukisa ukutholwa: i-CSV ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
     <string name="settings_about">Mayelana</string>
     <string name="settings_open_source">Umthombo ovulekile ku-GitHub</string>

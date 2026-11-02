@@ -82,8 +82,8 @@
     <string name="history_health_live_unknown">من بياناتك الصحية. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
     <string name="history_average">المتوسط: قبل الموعد بـ %1$d د</string>
     <string name="history_light_share">%1$d %% أُوقظوا أبكر عند التململ</string>
-    <string name="history_export">تصدير مجهول الهوية</string>
-    <string name="history_export_subject">ليالي Phase Wake (مجهولة الهوية)</string>
+    <string name="history_export">تصدير بدون اسم</string>
+    <string name="history_export_subject">ليالي Phase Wake (بدون اسم)</string>
 
     <string name="settings_title">الإعدادات</string>
     <string name="settings_theme">المظهر</string>
@@ -92,7 +92,7 @@
     <string name="settings_theme_dark">داكن</string>
     <string name="settings_data">بياناتك</string>
     <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع.</string>
-    <string name="settings_export">تصدير الليالي دون هوية</string>
+    <string name="settings_export">تصدير الليالي بدون اسم</string>
     <string name="settings_export_hint">ساهموا في تحسين الرصد: ملف CSV بلا أسماء أو تواريخ أو معرّفات أجهزة.</string>
     <string name="settings_about">حول</string>
     <string name="settings_open_source">مفتوح المصدر على GitHub</string>

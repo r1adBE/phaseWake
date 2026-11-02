@@ -77,8 +77,8 @@
     <string name="history_health_live_unknown">来自你的健康数据。你在那里所做的更改和删除，Phase Wake 会自动同步。</string>
     <string name="history_average">平均提前 %1$d 分钟</string>
     <string name="history_light_share">%1$d %% 因睡得不安稳而提前叫醒</string>
-    <string name="history_export">匿名导出</string>
-    <string name="history_export_subject">Phase Wake 睡眠记录（匿名）</string>
+    <string name="history_export">不含姓名导出</string>
+    <string name="history_export_subject">Phase Wake 睡眠记录（不含姓名）</string>
 
     <string name="settings_title">设置</string>
     <string name="settings_theme">外观</string>
@@ -87,7 +87,7 @@
     <string name="settings_theme_dark">深色</string>
     <string name="settings_data">你的数据</string>
     <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。</string>
-    <string name="settings_export">匿名导出睡眠记录</string>
+    <string name="settings_export">不含姓名导出睡眠记录</string>
     <string name="settings_export_hint">帮助改进检测：CSV 文件不含姓名、日期或设备 ID。</string>
     <string name="settings_about">关于</string>
     <string name="settings_open_source">GitHub 上的开源项目</string>

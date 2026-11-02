@@ -77,8 +77,8 @@
     <string name="history_health_live_unknown">จากข้อมูลสุขภาพของคุณ การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
     <string name="history_average">เฉลี่ยเร็วขึ้น %1$d นาที</string>
     <string name="history_light_share">ปลุกก่อนเพราะนอนกระสับกระส่าย %1$d %%</string>
-    <string name="history_export">ส่งออกแบบไม่ระบุตัวตน</string>
-    <string name="history_export_subject">บันทึกการนอน Phase Wake (ไม่ระบุตัวตน)</string>
+    <string name="history_export">ส่งออกโดยไม่มีชื่อ</string>
+    <string name="history_export_subject">บันทึกการนอน Phase Wake (ไม่มีชื่อ)</string>
 
     <string name="settings_title">ตั้งค่า</string>
     <string name="settings_theme">รูปลักษณ์</string>
@@ -87,7 +87,7 @@
     <string name="settings_theme_dark">มืด</string>
     <string name="settings_data">ข้อมูลของคุณ</string>
     <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม</string>
-    <string name="settings_export">ส่งออกบันทึกการนอนแบบไม่ระบุตัวตน</string>
+    <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
     <string name="settings_export_hint">ช่วยพัฒนาการตรวจจับ: ไฟล์ CSV ที่ไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
     <string name="settings_about">เกี่ยวกับ</string>
     <string name="settings_open_source">โอเพนซอร์สบน GitHub</string>

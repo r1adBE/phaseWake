@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Z tvých zdravotních dat. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
     <string name="history_average">Ø %1$d min dřív</string>
     <string name="history_light_share">%1$d %% probuzeno dřív kvůli neklidu</string>
-    <string name="history_export">Exportovat anonymně</string>
-    <string name="history_export_subject">Noci Phase Wake (anonymně)</string>
+    <string name="history_export">Exportovat bez jména</string>
+    <string name="history_export_subject">Noci Phase Wake (bez jména)</string>
 
     <string name="settings_title">Nastavení</string>
     <string name="settings_theme">Vzhled</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Tmavý</string>
     <string name="settings_data">Tvoje data</string>
     <string name="settings_data_text">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování.</string>
-    <string name="settings_export">Exportovat noci anonymně</string>
+    <string name="settings_export">Exportovat noci bez jména</string>
     <string name="settings_export_hint">Pomoz vylepšit rozpoznávání: CSV bez jmen, dat a ID zařízení.</string>
     <string name="settings_about">O aplikaci</string>
     <string name="settings_open_source">Open source na GitHub</string>

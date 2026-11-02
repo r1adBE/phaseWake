@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">သင့်ကျန်းမာရေးဒေတာမှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_average">Ø %1$d မိနစ် စော</string>
     <string name="history_light_share">မငြိမ်မသက်ဖြစ်၍ စောနှိုးခံရမှု %1$d %%</string>
-    <string name="history_export">အမည်မဖော်ဘဲ ထုတ်ယူရန်</string>
-    <string name="history_export_subject">Phase Wake ညများ (အမည်မဖော်)</string>
+    <string name="history_export">အမည်မပါဘဲ ထုတ်ယူရန်</string>
+    <string name="history_export_subject">Phase Wake ညများ (အမည်မပါ)</string>
 
     <string name="settings_title">ဆက်တင်များ</string>
     <string name="settings_theme">အသွင်အပြင်</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">အမှောင်</string>
     <string name="settings_data">သင့်ဒေတာ</string>
     <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။</string>
-    <string name="settings_export">ညများကို အမည်မဖော်ဘဲ ထုတ်ယူရန်</string>
+    <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
     <string name="settings_export_hint">ရှာဖွေမှု ပိုကောင်းအောင် ကူညီပါ- အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါသော CSV။</string>
     <string name="settings_about">အကြောင်း</string>
     <string name="settings_open_source">GitHub ပေါ်ရှိ open source</string>

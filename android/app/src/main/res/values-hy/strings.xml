@@ -72,8 +72,8 @@
     <string name="history_health_live_unknown">Աղբյուր՝ քո առողջության տվյալներ։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
     <string name="history_average">Ø %1$d ր շուտ</string>
     <string name="history_light_share">%1$d %% ավելի շուտ արթնացված անհանգստանալիս</string>
-    <string name="history_export">Արտահանել անանուն</string>
-    <string name="history_export_subject">Phase Wake-ի գիշերներ (անանուն)</string>
+    <string name="history_export">Արտահանել առանց անվան</string>
+    <string name="history_export_subject">Phase Wake-ի գիշերներ (առանց անվան)</string>
     <string name="settings_title">Կարգավորումներ</string>
     <string name="settings_theme">Տեսք</string>
     <string name="settings_theme_system">Համակարգային</string>
@@ -81,7 +81,7 @@
     <string name="settings_theme_dark">Մուգ</string>
     <string name="settings_data">Քո տվյալները</string>
     <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։</string>
-    <string name="settings_export">Արտահանել գիշերները անանուն</string>
+    <string name="settings_export">Արտահանել գիշերները առանց անվան</string>
     <string name="settings_export_hint">Օգնիր բարելավել հայտնաբերումը՝ CSV առանց անունների, ամսաթվերի և սարքի ID-ների։</string>
     <string name="settings_about">Հավելվածի մասին</string>
     <string name="settings_open_source">Բաց կոդ GitHub-ում</string>

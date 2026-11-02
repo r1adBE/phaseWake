@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.wake
 
+import android.content.ContentResolver
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -12,10 +13,13 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
+import androidx.core.net.toUri
+import com.phasewake.app.wear.R
 
 /**
  * Weckvibration in drei Stufen: sanft, deutlich, anhaltend – je eine Minute, die letzte bleibt.
- * Optional dazu der Weckton der Uhr, der in 30 Sekunden von leise auf voll ansteigt.
+ * Optional dazu der Weckton der Uhr, der in 30 Sekunden von leise auf voll ansteigt; spielt der System-Weckton nicht,
+ * als letzte Rückfallebene «Vögel» aus der Uhr-App (wie am Handy).
  * Läuft als Wecker (nicht als Mitteilung) und damit auch im Bettzeit- oder Nicht-stören-Modus.
  */
 class Escalation(private val context: Context) {
@@ -79,28 +83,36 @@ class Escalation(private val context: Context) {
     }
 
     private fun playSound() {
-        val uri = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM)
+        val default = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM)
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-            ?: return
-        try {
-            player = MediaPlayer().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build(),
-                )
-                setDataSource(context, uri)
-                isLooping = true
-                setVolume(0f, 0f)
-                prepare()
-                start()
+        // «Vögel» liegt in der Uhr-App selbst und ist immer da (auch vor dem ersten Entsperren).
+        val birds = "${ContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/${R.raw.wake_birds}".toUri()
+        for (uri in listOfNotNull(default, birds)) {
+            val candidate = MediaPlayer()
+            try {
+                candidate.apply {
+                    setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_ALARM)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                            .build(),
+                    )
+                    setDataSource(context, uri)
+                    isLooping = true
+                    setVolume(0f, 0f)
+                    prepare()
+                    start()
+                }
+                player = candidate
+                volume = 0f
+                handler.post(fadeIn)
+                return
+            } catch (e: Exception) {
+                candidate.release()
+                Log.w("Escalation", "Weckton $uri der Uhr nicht abspielbar", e)
             }
-            volume = 0f
-            handler.post(fadeIn)
-        } catch (e: Exception) {
-            Log.w("Escalation", "Weckton der Uhr nicht abspielbar, nur Vibration", e)
         }
+        Log.w("Escalation", "Kein Weckton abspielbar, nur Vibration")
     }
 
     private fun play() {

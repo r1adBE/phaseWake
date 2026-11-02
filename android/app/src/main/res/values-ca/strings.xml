@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">De les teves dades de salut. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
     <string name="history_average">Ø %1$d min abans</string>
     <string name="history_light_share">%1$d %% despertat abans per inquietud</string>
-    <string name="history_export">Exporta de manera anònima</string>
-    <string name="history_export_subject">Nits de Phase Wake (anònimes)</string>
+    <string name="history_export">Exporta sense nom</string>
+    <string name="history_export_subject">Nits de Phase Wake (sense nom)</string>
 
     <string name="settings_title">Configuració</string>
     <string name="settings_theme">Aparença</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Fosc</string>
     <string name="settings_data">Les teves dades</string>
     <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment.</string>
-    <string name="settings_export">Exporta les nits de manera anònima</string>
+    <string name="settings_export">Exporta les nits sense nom</string>
     <string name="settings_export_hint">Ajuda a millorar la detecció: CSV sense noms, dates ni identificadors de dispositiu.</string>
     <string name="settings_about">Quant a</string>
     <string name="settings_open_source">Codi obert a GitHub</string>

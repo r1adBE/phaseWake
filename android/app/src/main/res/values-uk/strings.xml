@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">З твоїх даних про здоров\'я. Зміни й видалення, зроблені там, Phase Wake враховує автоматично.</string>
     <string name="history_average">Ø на %1$d хв раніше</string>
     <string name="history_light_share">%1$d %% розбуджено раніше при неспокійному сні</string>
-    <string name="history_export">Експортувати анонімно</string>
-    <string name="history_export_subject">Ночі Phase Wake (анонімно)</string>
+    <string name="history_export">Експортувати без імені</string>
+    <string name="history_export_subject">Ночі Phase Wake (без імені)</string>
 
     <string name="settings_title">Налаштування</string>
     <string name="settings_theme">Вигляд</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_data">Твої дані</string>
     <string name="settings_data_text">Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження.</string>
-    <string name="settings_export">Анонімний експорт ночей</string>
+    <string name="settings_export">Експорт ночей без імені</string>
     <string name="settings_export_hint">Допоможи покращити розпізнавання: CSV без імен, дат та ідентифікаторів пристроїв.</string>
     <string name="settings_about">Про застосунок</string>
     <string name="settings_open_source">Відкритий код на GitHub</string>

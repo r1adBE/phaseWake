@@ -72,8 +72,8 @@
     <string name="history_health_live_unknown">Дереккөз: денсаулық деректерің. Ондағы өзгерістер мен жоюларды Phase Wake автоматты түрде қабылдайды.</string>
     <string name="history_average">Ø %1$d мин ертерек</string>
     <string name="history_light_share">%1$d %% мазасызданғанда ертерек оятылды</string>
-    <string name="history_export">Анонимді экспорттау</string>
-    <string name="history_export_subject">Phase Wake түндері (анонимді)</string>
+    <string name="history_export">Есімсіз экспорттау</string>
+    <string name="history_export_subject">Phase Wake түндері (есімсіз)</string>
     <string name="settings_title">Параметрлер</string>
     <string name="settings_theme">Сыртқы түрі</string>
     <string name="settings_theme_system">Жүйелік</string>
@@ -81,7 +81,7 @@
     <string name="settings_theme_dark">Қараңғы</string>
     <string name="settings_data">Деректерің</string>
     <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ.</string>
-    <string name="settings_export">Түндерді анонимді экспорттау</string>
+    <string name="settings_export">Түндерді есімсіз экспорттау</string>
     <string name="settings_export_hint">Анықтауды жақсартуға көмектес: атаусыз, күнсіз және құрылғы ID-сіз CSV.</string>
     <string name="settings_about">Қолданба туралы</string>
     <string name="settings_open_source">GitHub-тағы ашық бастапқы код</string>

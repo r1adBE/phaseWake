@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">તમારા હેલ્થ ડેટામાંથી. ત્યાં થયેલા ફેરફાર અને કાઢી નાખેલું Phase Wake આપમેળે અપનાવે છે.</string>
     <string name="history_average">Ø %1$d મિ. વહેલા</string>
     <string name="history_light_share">%1$d %% બેચેની થતાં વહેલા જગાડ્યા</string>
-    <string name="history_export">અનામી રીતે એક્સપોર્ટ કરો</string>
-    <string name="history_export_subject">Phase Wake રાતો (અનામી)</string>
+    <string name="history_export">નામ વગર એક્સપોર્ટ કરો</string>
+    <string name="history_export_subject">Phase Wake રાતો (નામ વગર)</string>
 
     <string name="settings_title">સેટિંગ</string>
     <string name="settings_theme">દેખાવ</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">ઘેરો</string>
     <string name="settings_data">તમારો ડેટા</string>
     <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં.</string>
-    <string name="settings_export">રાતો અનામી રીતે એક્સપોર્ટ કરો</string>
+    <string name="settings_export">રાતો નામ વગર એક્સપોર્ટ કરો</string>
     <string name="settings_export_hint">ઓળખ સુધારવામાં મદદ કરો: નામ, તારીખ કે ડિવાઇસ ID વગરની CSV.</string>
     <string name="settings_about">વિશે</string>
     <string name="settings_open_source">GitHub પર ઓપન સોર્સ</string>

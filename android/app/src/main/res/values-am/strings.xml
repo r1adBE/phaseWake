@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">ከጤና ውሂብዎ። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_average">Ø %1$d ደቂቃ ቀደም ብሎ</string>
     <string name="history_light_share">%1$d %% እረፍት ሲያጡ ቀደም ብለው ተቀስቅሰዋል</string>
-    <string name="history_export">ማንነትን ሳይገልጹ ወደ ውጭ ላክ</string>
-    <string name="history_export_subject">የPhase Wake ሌሊቶች (ማንነት ሳይገለጽ)</string>
+    <string name="history_export">ያለ ስም ወደ ውጭ ላክ</string>
+    <string name="history_export_subject">የPhase Wake ሌሊቶች (ያለ ስም)</string>
 
     <string name="settings_title">ቅንብሮች</string>
     <string name="settings_theme">መልክ</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">ጨለማ</string>
     <string name="settings_data">የእርስዎ ውሂብ</string>
     <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም።</string>
-    <string name="settings_export">ሌሊቶችን ማንነት ሳይገልጹ ወደ ውጭ ላክ</string>
+    <string name="settings_export">ሌሊቶችን ያለ ስም ወደ ውጭ ላክ</string>
     <string name="settings_export_hint">ማወቂያውን ለማሻሻል ያግዙ፦ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ የሌለው CSV።</string>
     <string name="settings_about">ስለ</string>
     <string name="settings_open_source">በGitHub ላይ ክፍት ምንጭ</string>

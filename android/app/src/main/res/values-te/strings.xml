@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">మీ హెల్త్ డేటా నుండి. అక్కడ చేసిన మార్పులు, తొలగింపులను Phase Wake ఆటోమేటిక్‌గా అనుసరిస్తుంది.</string>
     <string name="history_average">Ø %1$d ని. ముందుగా</string>
     <string name="history_light_share">%1$d %% అశాంతిగా ఉన్నప్పుడు ముందే లేపబడ్డారు</string>
-    <string name="history_export">అనామకంగా ఎగుమతి చేయండి</string>
-    <string name="history_export_subject">Phase Wake రాత్రులు (అనామకం)</string>
+    <string name="history_export">పేరు లేకుండా ఎగుమతి చేయండి</string>
+    <string name="history_export_subject">Phase Wake రాత్రులు (పేరు లేకుండా)</string>
 
     <string name="settings_title">సెట్టింగ్‌లు</string>
     <string name="settings_theme">రూపం</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">ముదురు</string>
     <string name="settings_data">మీ డేటా</string>
     <string name="settings_data_text">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు.</string>
-    <string name="settings_export">రాత్రులను అనామకంగా ఎగుమతి చేయండి</string>
+    <string name="settings_export">రాత్రులను పేరు లేకుండా ఎగుమతి చేయండి</string>
     <string name="settings_export_hint">గుర్తింపును మెరుగుపరచడంలో సాయపడండి: పేర్లు, తేదీలు లేదా పరికర IDలు లేని CSV.</string>
     <string name="settings_about">గురించి</string>
     <string name="settings_open_source">GitHubలో ఓపెన్ సోర్స్</string>

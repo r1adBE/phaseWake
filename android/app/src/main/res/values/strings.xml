@@ -82,8 +82,8 @@
     <string name="health_samsung" translatable="false">Samsung Health</string>
     <string name="history_average">Ø %1$d min early</string>
     <string name="history_light_share">%1$d %% woken early when restless</string>
-    <string name="history_export">Export anonymously</string>
-    <string name="history_export_subject">Phase Wake nights (anonymous)</string>
+    <string name="history_export">Export without name</string>
+    <string name="history_export_subject">Phase Wake nights (without name)</string>
 
     <string name="settings_title">Settings</string>
     <string name="settings_theme">Appearance</string>
@@ -92,7 +92,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_data">Your data</string>
     <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking.</string>
-    <string name="settings_export">Export nights anonymously</string>
+    <string name="settings_export">Export nights without name</string>
     <string name="settings_export_hint">Help improve detection: CSV without names, dates or device IDs.</string>
     <string name="settings_about">About</string>
     <string name="settings_open_source">Open source on GitHub</string>

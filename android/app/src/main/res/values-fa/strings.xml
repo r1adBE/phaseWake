@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">از داده‌های سلامت تو. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
     <string name="history_average">میانگین: %1$d دق زودتر</string>
     <string name="history_light_share">%1$d %% با بی‌قراری زودتر بیدار شده</string>
-    <string name="history_export">خروجی ناشناس</string>
-    <string name="history_export_subject">شب‌های Phase Wake (ناشناس)</string>
+    <string name="history_export">خروجی بدون نام</string>
+    <string name="history_export_subject">شب‌های Phase Wake (بدون نام)</string>
 
     <string name="settings_title">تنظیمات</string>
     <string name="settings_theme">ظاهر</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">تیره</string>
     <string name="settings_data">داده‌های تو</string>
     <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی.</string>
-    <string name="settings_export">خروجی ناشناس از شب‌ها</string>
+    <string name="settings_export">خروجی شب‌ها بدون نام</string>
     <string name="settings_export_hint">به بهتر شدن تشخیص کمک کن: فایل CSV بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
     <string name="settings_about">دربارهٔ برنامه</string>
     <string name="settings_open_source">متن‌باز در GitHub</string>

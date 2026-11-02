@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">Kutoka data yako ya afya. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
     <string name="history_average">Wastani dak %1$d mapema</string>
     <string name="history_light_share">%1$d %% waliamshwa mapema wakikosa utulivu</string>
-    <string name="history_export">Hamisha bila kutambulisha</string>
-    <string name="history_export_subject">Usiku wa Phase Wake (bila utambulisho)</string>
+    <string name="history_export">Hamisha bila jina</string>
+    <string name="history_export_subject">Usiku wa Phase Wake (bila jina)</string>
 
     <string name="settings_title">Mipangilio</string>
     <string name="settings_theme">Mwonekano</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">Giza</string>
     <string name="settings_data">Data yako</string>
     <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji.</string>
-    <string name="settings_export">Hamisha usiku bila kutambulisha</string>
+    <string name="settings_export">Hamisha usiku bila jina</string>
     <string name="settings_export_hint">Saidia kuboresha utambuzi: CSV bila majina, tarehe wala vitambulisho vya kifaa.</string>
     <string name="settings_about">Kuhusu</string>
     <string name="settings_open_source">Programu huria kwenye GitHub</string>

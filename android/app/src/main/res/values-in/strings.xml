@@ -77,8 +77,8 @@
     <string name="history_health_live_unknown">Dari data kesehatanmu. Phase Wake otomatis mengikuti perubahan dan penghapusan di sana.</string>
     <string name="history_average">Rata-rata %1$d mnt lebih awal</string>
     <string name="history_light_share">%1$d %% dibangunkan lebih awal saat gelisah</string>
-    <string name="history_export">Ekspor anonim</string>
-    <string name="history_export_subject">Malam Phase Wake (anonim)</string>
+    <string name="history_export">Ekspor tanpa nama</string>
+    <string name="history_export_subject">Malam Phase Wake (tanpa nama)</string>
 
     <string name="settings_title">Pengaturan</string>
     <string name="settings_theme">Tampilan</string>
@@ -87,7 +87,7 @@
     <string name="settings_theme_dark">Gelap</string>
     <string name="settings_data">Datamu</string>
     <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan.</string>
-    <string name="settings_export">Ekspor malam secara anonim</string>
+    <string name="settings_export">Ekspor malam tanpa nama</string>
     <string name="settings_export_hint">Bantu tingkatkan deteksi: CSV tanpa nama, tanggal, atau ID perangkat.</string>
     <string name="settings_about">Tentang</string>
     <string name="settings_open_source">Open source di GitHub</string>

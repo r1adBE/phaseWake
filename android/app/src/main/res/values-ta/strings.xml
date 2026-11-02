@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">உங்கள் ஆரோக்கியத் தரவிலிருந்து. அங்கே செய்யும் மாற்றங்களையும் நீக்கங்களையும் Phase Wake தானாகவே ஏற்கிறது.</string>
     <string name="history_average">சராசரி %1$d நிமி. முன்னதாக</string>
     <string name="history_light_share">%1$d %% அமைதியின்மையால் முன்பே எழுப்பப்பட்டது</string>
-    <string name="history_export">அநாமதேயமாக ஏற்றுமதி செய்</string>
-    <string name="history_export_subject">Phase Wake இரவுகள் (அநாமதேயம்)</string>
+    <string name="history_export">பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
+    <string name="history_export_subject">Phase Wake இரவுகள் (பெயர் இல்லாமல்)</string>
 
     <string name="settings_title">அமைப்புகள்</string>
     <string name="settings_theme">தோற்றம்</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">இருள்</string>
     <string name="settings_data">உங்கள் தரவு</string>
     <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை.</string>
-    <string name="settings_export">இரவுகளை அநாமதேயமாக ஏற்றுமதி செய்</string>
+    <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
     <string name="settings_export_hint">கண்டறிதலை மேம்படுத்த உதவுங்கள்: பெயர், தேதி, சாதன ID இல்லாத CSV.</string>
     <string name="settings_about">அறிமுகம்</string>
     <string name="settings_open_source">GitHub இல் திறந்த மூலம்</string>

@@ -51,21 +51,21 @@ internal class PhoneRingSound(private val service: Service, private val handler:
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         val candidates = listOfNotNull(WakeTones.resolve(service, chosen), default, WakeTones.lastResort(service)).distinct()
         for (uri in candidates) {
+            // Erst nach erfolgreichem Start übernehmen; scheitert der Start, wird genau dieser Player freigegeben.
+            val candidate = MediaPlayer()
             try {
-                player = MediaPlayer().apply {
-                    setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                    setDataSource(service, uri)
-                    isLooping = true
-                    setVolume(0f, 0f)
-                    prepare()
-                    start()
-                }
+                candidate.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                candidate.setDataSource(service, uri)
+                candidate.isLooping = true
+                candidate.setVolume(0f, 0f)
+                candidate.prepare()
+                candidate.start()
+                player = candidate
                 volume = 0f
                 handler.post(fadeIn)
                 return
             } catch (e: Exception) {
-                player?.release()
-                player = null
+                candidate.release()
                 Log.w(TAG, "Weckton $uri nicht abspielbar", e)
             }
         }

@@ -51,7 +51,7 @@ Die Erkennungsregel ist offen dokumentiert: [docs/PHASENERKENNUNG.md](docs/PHASE
 
 ## Datenschutz
 
-Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Auswertung. Wer helfen will, die Erkennung zu verbessern, kann seine Nächte freiwillig als anonyme CSV-Datei exportieren.
+Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Auswertung. Wer helfen will, die Erkennung zu verbessern, kann seine Nächte freiwillig als CSV-Datei ohne Namen exportieren. Die Datei enthält je Nacht die Bewegungs- und Pulsreihen, aber keinen Namen, kein Konto, kein Datum und keine Gerätekennung.
 
 ## Aufbau
 

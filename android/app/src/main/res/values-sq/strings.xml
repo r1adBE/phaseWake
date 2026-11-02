@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Nga të dhënat e tua të shëndetit. Phase Wake i zbaton automatikisht ndryshimet dhe fshirjet e bëra atje.</string>
     <string name="history_average">Ø %1$d min më herët</string>
     <string name="history_light_share">%1$d %% zgjuar më herët kur shqetësohesh</string>
-    <string name="history_export">Eksporto anonimisht</string>
-    <string name="history_export_subject">Netët e Phase Wake (anonime)</string>
+    <string name="history_export">Eksporto pa emër</string>
+    <string name="history_export_subject">Netët e Phase Wake (pa emër)</string>
 
     <string name="settings_title">Cilësimet</string>
     <string name="settings_theme">Pamja</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">E errët</string>
     <string name="settings_data">Të dhënat e tua</string>
     <string name="settings_data_text">Gjithçka mbetet në telefon dhe në orë. Pa llogari, pa server, pa gjurmim.</string>
-    <string name="settings_export">Eksporto netët anonimisht</string>
+    <string name="settings_export">Eksporto netët pa emër</string>
     <string name="settings_export_hint">Ndihmo të përmirësohet dallimi: CSV pa emra, data ose ID pajisjesh.</string>
     <string name="settings_about">Rreth aplikacionit</string>
     <string name="settings_open_source">Me burim të hapur në GitHub</string>

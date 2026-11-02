@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">Fra dine sundhedsdata. Phase Wake overtager automatisk ændringer og sletninger dér.</string>
     <string name="history_average">Ø %1$d min tidligere</string>
     <string name="history_light_share">%1$d %% vækket tidligere ved uro</string>
-    <string name="history_export">Eksportér anonymt</string>
-    <string name="history_export_subject">Phase Wake-nætter (anonymt)</string>
+    <string name="history_export">Eksportér uden navn</string>
+    <string name="history_export_subject">Phase Wake-nætter (uden navn)</string>
 
     <string name="settings_title">Indstillinger</string>
     <string name="settings_theme">Udseende</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">Mørk</string>
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing.</string>
-    <string name="settings_export">Eksportér nætter anonymt</string>
+    <string name="settings_export">Eksportér nætter uden navn</string>
     <string name="settings_export_hint">Hjælp med at forbedre registreringen: CSV uden navne, datoer eller enheds-id.</string>
     <string name="settings_about">Om</string>
     <string name="settings_open_source">Open source på GitHub</string>

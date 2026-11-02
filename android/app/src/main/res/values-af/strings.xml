@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Uit jou gesondheidsdata. Phase Wake neem veranderinge en skrappings daar outomaties oor.</string>
     <string name="history_average">Ø %1$d min vroeër</string>
     <string name="history_light_share">%1$d %% vroeër wakker gemaak by onrus</string>
-    <string name="history_export">Voer anoniem uit</string>
-    <string name="history_export_subject">Phase Wake-nagte (anoniem)</string>
+    <string name="history_export">Voer sonder naam uit</string>
+    <string name="history_export_subject">Phase Wake-nagte (sonder naam)</string>
 
     <string name="settings_title">Instellings</string>
     <string name="settings_theme">Voorkoms</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_data">Jou data</string>
     <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie.</string>
-    <string name="settings_export">Voer nagte anoniem uit</string>
+    <string name="settings_export">Voer nagte sonder naam uit</string>
     <string name="settings_export_hint">Help om die bespeuring te verbeter: CSV sonder name, datums of toestel-ID’s.</string>
     <string name="settings_about">Meer oor</string>
     <string name="settings_open_source">Oopbron op GitHub</string>

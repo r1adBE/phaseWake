@@ -72,8 +72,8 @@
     <string name="history_health_live_unknown">Mənbə: sağlamlıq məlumatların. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
     <string name="history_average">Ø %1$d dəq tez</string>
     <string name="history_light_share">%1$d %% narahat olanda tez oyadılıb</string>
-    <string name="history_export">Anonim ixrac et</string>
-    <string name="history_export_subject">Phase Wake gecələri (anonim)</string>
+    <string name="history_export">Adsız ixrac et</string>
+    <string name="history_export_subject">Phase Wake gecələri (adsız)</string>
     <string name="settings_title">Ayarlar</string>
     <string name="settings_theme">Görünüş</string>
     <string name="settings_theme_system">Sistem</string>
@@ -81,7 +81,7 @@
     <string name="settings_theme_dark">Tünd</string>
     <string name="settings_data">Məlumatların</string>
     <string name="settings_data_text">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox.</string>
-    <string name="settings_export">Gecələri anonim ixrac et</string>
+    <string name="settings_export">Gecələri adsız ixrac et</string>
     <string name="settings_export_hint">Aşkarlamanı yaxşılaşdırmağa kömək et: adsız, tarixsiz və cihaz ID-siz CSV.</string>
     <string name="settings_about">Haqqında</string>
     <string name="settings_open_source">GitHub-da açıq mənbə</string>

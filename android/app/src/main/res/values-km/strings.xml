@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">ពីទិន្នន័យសុខភាពរបស់អ្នក។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
     <string name="history_average">Ø មុន %1$d នាទី</string>
     <string name="history_light_share">%1$d %% ត្រូវបានដាស់មុនពេលដេកមិនស្ងប់</string>
-    <string name="history_export">នាំចេញដោយអនាមិក</string>
-    <string name="history_export_subject">យប់ Phase Wake (អនាមិក)</string>
+    <string name="history_export">នាំចេញដោយគ្មានឈ្មោះ</string>
+    <string name="history_export_subject">យប់ Phase Wake (គ្មានឈ្មោះ)</string>
 
     <string name="settings_title">ការកំណត់</string>
     <string name="settings_theme">រូបរាង</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">ងងឹត</string>
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
     <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។</string>
-    <string name="settings_export">នាំចេញយប់ដោយអនាមិក</string>
+    <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
     <string name="settings_export_hint">ជួយកែលម្អការរកឃើញ៖ CSV គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍។</string>
     <string name="settings_about">អំពី</string>
     <string name="settings_open_source">កូដចំហលើ GitHub</string>

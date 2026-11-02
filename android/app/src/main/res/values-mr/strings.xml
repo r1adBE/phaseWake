@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">तुमच्या हेल्थ डेटामधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
     <string name="history_average">Ø %1$d मि. लवकर</string>
     <string name="history_light_share">%1$d %% अस्वस्थ झाल्यावर लवकर उठवले</string>
-    <string name="history_export">निनावी एक्सपोर्ट करा</string>
-    <string name="history_export_subject">Phase Wake रात्री (निनावी)</string>
+    <string name="history_export">नावाशिवाय एक्सपोर्ट करा</string>
+    <string name="history_export_subject">Phase Wake रात्री (नावाशिवाय)</string>
 
     <string name="settings_title">सेटिंग्ज</string>
     <string name="settings_theme">स्वरूप</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">गडद</string>
     <string name="settings_data">तुमचा डेटा</string>
     <string name="settings_data_text">सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही.</string>
-    <string name="settings_export">रात्री निनावी एक्सपोर्ट करा</string>
+    <string name="settings_export">रात्री नावाशिवाय एक्सपोर्ट करा</string>
     <string name="settings_export_hint">ओळख सुधारायला मदत करा: नावे, तारखा किंवा डिव्हाइस आयडी नसलेली CSV.</string>
     <string name="settings_about">माहिती</string>
     <string name="settings_open_source">GitHub वर ओपन सोर्स</string>

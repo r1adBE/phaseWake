@@ -81,8 +81,8 @@
     <string name="history_health_live_unknown">Iz tvojih zdravstvenih podataka. Phase Wake automatski preuzima izmjene i brisanja napravljena tamo.</string>
     <string name="history_average">Ø %1$d min ranije</string>
     <string name="history_light_share">%1$d %% ranije probuđeno zbog nemira</string>
-    <string name="history_export">Izvezi anonimno</string>
-    <string name="history_export_subject">Phase Wake – noći (anonimno)</string>
+    <string name="history_export">Izvezi bez imena</string>
+    <string name="history_export_subject">Phase Wake – noći (bez imena)</string>
 
     <string name="settings_title">Postavke</string>
     <string name="settings_theme">Izgled</string>
@@ -91,7 +91,7 @@
     <string name="settings_theme_dark">Tamno</string>
     <string name="settings_data">Tvoji podaci</string>
     <string name="settings_data_text">Sve ostaje na tvom telefonu i satu. Bez računa, bez poslužitelja, bez praćenja.</string>
-    <string name="settings_export">Izvezi noći anonimno</string>
+    <string name="settings_export">Izvezi noći bez imena</string>
     <string name="settings_export_hint">Pomozi poboljšati prepoznavanje: CSV bez imena, datuma i ID-ova uređaja.</string>
     <string name="settings_about">O aplikaciji</string>
     <string name="settings_open_source">Otvoreni kod na GitHubu</string>

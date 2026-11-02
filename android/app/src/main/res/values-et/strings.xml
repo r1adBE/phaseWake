@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Allikas: sinu terviseandmed. Phase Wake võtab sealsed muudatused ja kustutamised automaatselt üle.</string>
     <string name="history_average">Ø %1$d min varem</string>
     <string name="history_light_share">%1$d %% äratatud rahutuse korral varem</string>
-    <string name="history_export">Ekspordi anonüümselt</string>
-    <string name="history_export_subject">Phase Wake’i ööd (anonüümne)</string>
+    <string name="history_export">Ekspordi ilma nimeta</string>
+    <string name="history_export_subject">Phase Wake’i ööd (ilma nimeta)</string>
 
     <string name="settings_title">Seaded</string>
     <string name="settings_theme">Välimus</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Tume</string>
     <string name="settings_data">Sinu andmed</string>
     <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist.</string>
-    <string name="settings_export">Ekspordi ööd anonüümselt</string>
+    <string name="settings_export">Ekspordi ööd ilma nimeta</string>
     <string name="settings_export_hint">Aita tuvastust parandada: CSV ilma nimede, kuupäevade ja seadme ID-deta.</string>
     <string name="settings_about">Teave</string>
     <string name="settings_open_source">Avatud lähtekood GitHubis</string>

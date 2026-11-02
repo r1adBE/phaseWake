@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Úr heilsugögnunum þínum. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
     <string name="history_average">Ø %1$d mín fyrr</string>
     <string name="history_light_share">%1$d %% vakin fyrr við óróleika</string>
-    <string name="history_export">Flytja út nafnlaust</string>
-    <string name="history_export_subject">Phase Wake-nætur (nafnlaust)</string>
+    <string name="history_export">Flytja út án nafns</string>
+    <string name="history_export_subject">Phase Wake-nætur (án nafns)</string>
 
     <string name="settings_title">Stillingar</string>
     <string name="settings_theme">Útlit</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Dökkt</string>
     <string name="settings_data">Gögnin þín</string>
     <string name="settings_data_text">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning.</string>
-    <string name="settings_export">Flytja nætur út nafnlaust</string>
+    <string name="settings_export">Flytja nætur út án nafns</string>
     <string name="settings_export_hint">Hjálpaðu til við að bæta greininguna: CSV án nafna, dagsetninga eða tækjaauðkenna.</string>
     <string name="settings_about">Um forritið</string>
     <string name="settings_open_source">Opinn hugbúnaður á GitHub</string>

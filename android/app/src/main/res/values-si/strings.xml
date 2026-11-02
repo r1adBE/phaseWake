@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">ඔබේ සෞඛ්‍ය දත්ත වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
     <string name="history_average">Ø මිනි. %1$d කලින්</string>
     <string name="history_light_share">%1$d %% නොසන්සුන් වූ විට කලින් අවදි කළා</string>
-    <string name="history_export">නිර්නාමිකව අපනයනය</string>
-    <string name="history_export_subject">Phase Wake රාත්‍රි (නිර්නාමික)</string>
+    <string name="history_export">නමක් නොමැතිව අපනයනය</string>
+    <string name="history_export_subject">Phase Wake රාත්‍රි (නමක් නොමැතිව)</string>
 
     <string name="settings_title">සැකසීම්</string>
     <string name="settings_theme">පෙනුම</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">අඳුරු</string>
     <string name="settings_data">ඔබේ දත්ත</string>
     <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත.</string>
-    <string name="settings_export">රාත්‍රි නිර්නාමිකව අපනයනය කරන්න</string>
+    <string name="settings_export">රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න</string>
     <string name="settings_export_hint">හඳුනාගැනීම වැඩිදියුණු කිරීමට උදව් කරන්න: නම්, දින හෝ උපාංග ID නැති CSV.</string>
     <string name="settings_about">පිළිබඳ</string>
     <string name="settings_open_source">GitHub හි විවෘත මූලාශ්‍ර</string>

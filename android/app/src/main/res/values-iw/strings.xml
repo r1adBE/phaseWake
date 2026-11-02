@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">מנתוני הבריאות שלכם. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
     <string name="history_average">ממוצע: %1$d דק׳ מוקדם יותר</string>
     <string name="history_light_share">%1$d %% הוערו מוקדם יותר כשהשינה לא שקטה</string>
-    <string name="history_export">ייצוא אנונימי</string>
-    <string name="history_export_subject">לילות Phase Wake (אנונימי)</string>
+    <string name="history_export">ייצוא ללא שם</string>
+    <string name="history_export_subject">לילות Phase Wake (ללא שם)</string>
 
     <string name="settings_title">הגדרות</string>
     <string name="settings_theme">מראה</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">כהה</string>
     <string name="settings_data">הנתונים שלכם</string>
     <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב.</string>
-    <string name="settings_export">ייצוא לילות באופן אנונימי</string>
+    <string name="settings_export">ייצוא לילות ללא שם</string>
     <string name="settings_export_hint">עזרו לשפר את הזיהוי: קובץ CSV בלי שמות, תאריכים או מזהי מכשיר.</string>
     <string name="settings_about">אודות</string>
     <string name="settings_open_source">קוד פתוח ב-GitHub</string>

@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">Uit je gezondheidsgegevens. Phase Wake neemt wijzigingen en verwijderingen daar automatisch over.</string>
     <string name="history_average">Ø %1$d min eerder</string>
     <string name="history_light_share">%1$d %% eerder gewekt bij onrust</string>
-    <string name="history_export">Anoniem exporteren</string>
-    <string name="history_export_subject">Phase Wake-nachten (anoniem)</string>
+    <string name="history_export">Exporteren zonder naam</string>
+    <string name="history_export_subject">Phase Wake-nachten (zonder naam)</string>
 
     <string name="settings_title">Instellingen</string>
     <string name="settings_theme">Weergave</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_data">Je gegevens</string>
     <string name="settings_data_text">Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking.</string>
-    <string name="settings_export">Nachten anoniem exporteren</string>
+    <string name="settings_export">Nachten exporteren zonder naam</string>
     <string name="settings_export_hint">Help de herkenning te verbeteren: CSV zonder namen, datums of apparaat-ID\'s.</string>
     <string name="settings_about">Over</string>
     <string name="settings_open_source">Open source op GitHub</string>

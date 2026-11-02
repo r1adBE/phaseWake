@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_average">Ø ກ່ອນ %1$d ນາທີ</string>
     <string name="history_light_share">%1$d %% ຖືກປຸກກ່ອນເມື່ອນອນບໍ່ສະຫງົບ</string>
-    <string name="history_export">ສົ່ງອອກແບບບໍ່ລະບຸຕົວຕົນ</string>
-    <string name="history_export_subject">ຄືນ Phase Wake (ບໍ່ລະບຸຕົວຕົນ)</string>
+    <string name="history_export">ສົ່ງອອກໂດຍບໍ່ມີຊື່</string>
+    <string name="history_export_subject">ຄືນ Phase Wake (ບໍ່ມີຊື່)</string>
 
     <string name="settings_title">ການຕັ້ງຄ່າ</string>
     <string name="settings_theme">ໜ້າຕາ</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">ມືດ</string>
     <string name="settings_data">ຂໍ້ມູນຂອງເຈົ້າ</string>
     <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ</string>
-    <string name="settings_export">ສົ່ງອອກຄືນແບບບໍ່ລະບຸຕົວຕົນ</string>
+    <string name="settings_export">ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່</string>
     <string name="settings_export_hint">ຊ່ວຍປັບປຸງການກວດຈັບ: CSV ທີ່ບໍ່ມີຊື່ ວັນທີ ຫຼື ID ອຸປະກອນ</string>
     <string name="settings_about">ກ່ຽວກັບ</string>
     <string name="settings_open_source">ໂອເພັນຊອດຢູ່ GitHub</string>

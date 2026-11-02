@@ -81,8 +81,8 @@
     <string name="history_health_live_unknown">No taviem veselības datiem. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_average">Ø %1$d min agrāk</string>
     <string name="history_light_share">%1$d %% pamodināti agrāk nemierīgā miegā</string>
-    <string name="history_export">Eksportēt anonīmi</string>
-    <string name="history_export_subject">Phase Wake naktis (anonīmi)</string>
+    <string name="history_export">Eksportēt bez vārda</string>
+    <string name="history_export_subject">Phase Wake naktis (bez vārda)</string>
 
     <string name="settings_title">Iestatījumi</string>
     <string name="settings_theme">Izskats</string>
@@ -91,7 +91,7 @@
     <string name="settings_theme_dark">Tumšs</string>
     <string name="settings_data">Tavi dati</string>
     <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas.</string>
-    <string name="settings_export">Eksportēt naktis anonīmi</string>
+    <string name="settings_export">Eksportēt naktis bez vārda</string>
     <string name="settings_export_hint">Palīdzi uzlabot noteikšanu: CSV bez vārdiem, datumiem un ierīču ID.</string>
     <string name="settings_about">Par lietotni</string>
     <string name="settings_open_source">Atvērtais kods vietnē GitHub</string>

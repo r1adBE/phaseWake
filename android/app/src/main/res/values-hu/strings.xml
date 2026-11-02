@@ -78,8 +78,8 @@
     <string name="history_health_live_unknown">Forrás: az egészségügyi adataid. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_average">Ø %1$d p korábban</string>
     <string name="history_light_share">%1$d %% korábban ébresztve nyugtalanság miatt</string>
-    <string name="history_export">Exportálás névtelenül</string>
-    <string name="history_export_subject">Phase Wake éjszakák (névtelen)</string>
+    <string name="history_export">Exportálás név nélkül</string>
+    <string name="history_export_subject">Phase Wake éjszakák (név nélkül)</string>
 
     <string name="settings_title">Beállítások</string>
     <string name="settings_theme">Megjelenés</string>
@@ -88,7 +88,7 @@
     <string name="settings_theme_dark">Sötét</string>
     <string name="settings_data">Adataid</string>
     <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés.</string>
-    <string name="settings_export">Éjszakák névtelen exportja</string>
+    <string name="settings_export">Éjszakák exportja név nélkül</string>
     <string name="settings_export_hint">Segíts a felismerés javításában: CSV nevek, dátumok és eszközazonosítók nélkül.</string>
     <string name="settings_about">Névjegy</string>
     <string name="settings_open_source">Nyílt forráskód a GitHubon</string>

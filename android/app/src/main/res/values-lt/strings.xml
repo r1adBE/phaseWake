@@ -82,8 +82,8 @@
     <string name="history_health_live_unknown">Iš tavo sveikatos duomenų. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
     <string name="history_average">Ø %1$d min anksčiau</string>
     <string name="history_light_share">%1$d %% pažadinta anksčiau dėl nerimo</string>
-    <string name="history_export">Eksportuoti anonimiškai</string>
-    <string name="history_export_subject">Phase Wake naktys (anonimiškai)</string>
+    <string name="history_export">Eksportuoti be vardo</string>
+    <string name="history_export_subject">Phase Wake naktys (be vardo)</string>
 
     <string name="settings_title">Nustatymai</string>
     <string name="settings_theme">Išvaizda</string>
@@ -92,7 +92,7 @@
     <string name="settings_theme_dark">Tamsi</string>
     <string name="settings_data">Tavo duomenys</string>
     <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo.</string>
-    <string name="settings_export">Eksportuoti naktis anonimiškai</string>
+    <string name="settings_export">Eksportuoti naktis be vardo</string>
     <string name="settings_export_hint">Padėk tobulinti aptikimą: CSV be vardų, datų ir įrenginių ID.</string>
     <string name="settings_about">Apie</string>
     <string name="settings_open_source">Atvirasis kodas GitHub</string>

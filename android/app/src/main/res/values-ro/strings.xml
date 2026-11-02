@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">Din datele tale de sănătate. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_average">Ø %1$d min mai devreme</string>
     <string name="history_light_share">%1$d %% treziți mai devreme la agitație</string>
-    <string name="history_export">Exportă anonim</string>
-    <string name="history_export_subject">Nopți Phase Wake (anonim)</string>
+    <string name="history_export">Exportă fără nume</string>
+    <string name="history_export_subject">Nopți Phase Wake (fără nume)</string>
 
     <string name="settings_title">Setări</string>
     <string name="settings_theme">Aspect</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">Întunecat</string>
     <string name="settings_data">Datele tale</string>
     <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire.</string>
-    <string name="settings_export">Exportă nopțile anonim</string>
+    <string name="settings_export">Exportă nopțile fără nume</string>
     <string name="settings_export_hint">Ajută la îmbunătățirea detectării: CSV fără nume, date sau ID-uri de dispozitiv.</string>
     <string name="settings_about">Despre</string>
     <string name="settings_open_source">Open source pe GitHub</string>

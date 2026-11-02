@@ -77,8 +77,8 @@
     <string name="history_health_live_unknown">Từ dữ liệu sức khỏe của bạn. Phase Wake tự động cập nhật theo các thay đổi và xóa ở đó.</string>
     <string name="history_average">TB sớm %1$d phút</string>
     <string name="history_light_share">%1$d %% được đánh thức sớm khi trằn trọc</string>
-    <string name="history_export">Xuất ẩn danh</string>
-    <string name="history_export_subject">Các đêm ngủ Phase Wake (ẩn danh)</string>
+    <string name="history_export">Xuất không kèm tên</string>
+    <string name="history_export_subject">Các đêm ngủ Phase Wake (không kèm tên)</string>
 
     <string name="settings_title">Cài đặt</string>
     <string name="settings_theme">Giao diện</string>
@@ -87,7 +87,7 @@
     <string name="settings_theme_dark">Tối</string>
     <string name="settings_data">Dữ liệu của bạn</string>
     <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi.</string>
-    <string name="settings_export">Xuất các đêm ngủ ẩn danh</string>
+    <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
     <string name="settings_export_hint">Giúp cải thiện khả năng nhận diện: tệp CSV không chứa tên, ngày hay mã thiết bị.</string>
     <string name="settings_about">Giới thiệu</string>
     <string name="settings_open_source">Mã nguồn mở trên GitHub</string>

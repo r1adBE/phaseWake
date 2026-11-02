@@ -79,8 +79,8 @@
     <string name="history_health_live_unknown">تمہارے صحت کے ڈیٹا سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
     <string name="history_average">اوسطاً %1$d منٹ پہلے</string>
     <string name="history_light_share">%1$d %% بے چینی پر پہلے جگایا گیا</string>
-    <string name="history_export">گمنام طور پر ایکسپورٹ کرو</string>
-    <string name="history_export_subject">Phase Wake کی راتیں (گمنام)</string>
+    <string name="history_export">نام کے بغیر ایکسپورٹ کرو</string>
+    <string name="history_export_subject">Phase Wake کی راتیں (نام کے بغیر)</string>
 
     <string name="settings_title">ترتیبات</string>
     <string name="settings_theme">ظاہری شکل</string>
@@ -89,7 +89,7 @@
     <string name="settings_theme_dark">گہرا</string>
     <string name="settings_data">تمہارا ڈیٹا</string>
     <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔</string>
-    <string name="settings_export">راتیں گمنام طور پر ایکسپورٹ کرو</string>
+    <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
     <string name="settings_export_hint">پہچان بہتر بنانے میں مدد کرو: نام، تاریخ یا ڈیوائس آئی ڈی کے بغیر CSV۔</string>
     <string name="settings_about">تعارف</string>
     <string name="settings_open_source">GitHub پر اوپن سورس</string>

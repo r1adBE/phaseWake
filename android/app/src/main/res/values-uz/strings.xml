@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Manba: sogʻliq maʼlumotlaring. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
     <string name="history_average">Ø %1$d daq ertaroq</string>
     <string name="history_light_share">%1$d %% bezovtalanganda ertaroq uygʻotildi</string>
-    <string name="history_export">Anonim eksport qilish</string>
-    <string name="history_export_subject">Phase Wake tunlari (anonim)</string>
+    <string name="history_export">Ismsiz eksport qilish</string>
+    <string name="history_export_subject">Phase Wake tunlari (ismsiz)</string>
 
     <string name="settings_title">Sozlamalar</string>
     <string name="settings_theme">Koʻrinish</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Qorongʻi</string>
     <string name="settings_data">Maʼlumotlaring</string>
     <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq.</string>
-    <string name="settings_export">Tunlarni anonim eksport qilish</string>
+    <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
     <string name="settings_export_hint">Aniqlashni yaxshilashga yordam ber: nomlar, sanalar va qurilma IDlarisiz CSV.</string>
     <string name="settings_about">Ilova haqida</string>
     <string name="settings_open_source">GitHubʼda ochiq kodli</string>

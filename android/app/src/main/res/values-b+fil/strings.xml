@@ -80,8 +80,8 @@
     <string name="history_health_live_unknown">Mula sa health data mo. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
     <string name="history_average">Ø %1$d min nang maaga</string>
     <string name="history_light_share">%1$d %% ginising nang mas maaga kapag di mapakali</string>
-    <string name="history_export">I-export nang anonymous</string>
-    <string name="history_export_subject">Mga gabi sa Phase Wake (anonymous)</string>
+    <string name="history_export">I-export nang walang pangalan</string>
+    <string name="history_export_subject">Mga gabi sa Phase Wake (walang pangalan)</string>
 
     <string name="settings_title">Mga setting</string>
     <string name="settings_theme">Hitsura</string>
@@ -90,7 +90,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_data">Ang data mo</string>
     <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking.</string>
-    <string name="settings_export">I-export ang mga gabi nang anonymous</string>
+    <string name="settings_export">I-export ang mga gabi nang walang pangalan</string>
     <string name="settings_export_hint">Tumulong na pahusayin ang pag-detect: CSV na walang pangalan, petsa, o ID ng device.</string>
     <string name="settings_about">Tungkol dito</string>
     <string name="settings_open_source">Open source sa GitHub</string>
