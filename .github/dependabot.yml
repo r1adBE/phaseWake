@@ -1,0 +1,12 @@
+# Vorschläge für Updates als Pull Requests (nur Hinweise; gemergt wird nach grüner CI von Hand).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: gradle
+    directory: /android
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
