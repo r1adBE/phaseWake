@@ -63,6 +63,13 @@ android {
     }
 }
 
+// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+kotlin {
+    compilerOptions {
+        allWarningsAsErrors = true
+    }
+}
+
 dependencies {
     implementation(project(":shared"))
     implementation(libs.androidx.core.ktx)

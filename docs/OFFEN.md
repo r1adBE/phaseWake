@@ -1,6 +1,6 @@
 # Offene Punkte
 
-Stand 02.11.2026, Phase Wake 16.2.2 (Build 45). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 03.11.2026, Phase Wake 16.2.2, Build 47 (App wie Build 46). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -15,7 +15,6 @@ Stand 02.11.2026, Phase Wake 16.2.2 (Build 45). Erledigtes wandert nach [ENTSCHE
 2. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
 3. **AlarmKit: feste Uhrzeit nach einer Reise.** Nach einem Zeitzonenwechsel ohne App-Start bleibt der Zweitwecker auf der alten Zeit.
 4. **Android: Handy-Klingeln, während die Uhr führt** (`PhoneRingService`). Führt das Handy allein, nimmt ein Alarm kurz nach der Zeitgrenze das Klingeln nach einem Prozessende wieder auf. Führt die Uhr und endet der Prozess des Handys, verstummt nur das Handy; die Uhr klingelt weiter und hat ihren eigenen Wiederaufnahme-Alarm.
-5. **Lint-Parsermeldung ohne Datei (Review K-05):** Quelle hier nicht gefunden (ohne Android-SDK kein Lint-Lauf; alle XML-Dateien sind wohlgeformt, UTF-8 ohne BOM). Die CI zeigt solche Meldungen jetzt mit der Gradle-Aufgabe davor (Hinweis «XML-Parsermeldungen»); danach Quelle beheben.
 6. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen.
 
 Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fensters nicht (watchOS-Grenze, entschieden); `ACTIVITY_RECOGNITION` auf der Uhr wird für den Vordergrunddienst «Gesundheit» gebraucht; ENTSCHEIDE.md ±45 Min. (Trend-Hinweis) und ±30 Min. (Regelmässigkeit) sind zwei verschiedene Regeln.

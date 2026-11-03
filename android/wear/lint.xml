@@ -4,4 +4,9 @@
     <issue id="Typos">
         <ignore path="src/main/res/values-de/strings.xml" />
     </issue>
+    <!-- Phase Wake ist kein Watch Face: diese Prüfungen lesen jede Datei in res/raw als XML und scheitern am
+         Weckton wake_birds.m4a («Content is not allowed in prolog»). -->
+    <issue id="WatchFaceFormatMissingVersion" severity="ignore" />
+    <issue id="WatchFaceFormatInvalidVersion" severity="ignore" />
+    <issue id="WatchFaceFormatDeclaresHasNoCode" severity="ignore" />
 </lint>

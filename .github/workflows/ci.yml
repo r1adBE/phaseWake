@@ -73,7 +73,8 @@ jobs:
           # XML-Parsermeldungen ohne Datei (Review K-05) mit der Gradle-Aufgabe davor, damit die Quelle sichtbar wird.
           xp=$(awk '/^> Task /{t=$3} /\[(Fatal Error|Error|Warning)\] *:|not allowed in prolog|Premature end of file|XML document structures/{print t " " $0}' build.log | sort -u)
           n=$(printf '%s\n' "$xp" | grep -c .)
-          [ "$n" -eq 0 ] || echo "::warning title=XML-Parsermeldungen ($n)::$(printf '%s\n' "$xp" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"
+          # Seit der Ursache (Watch-Face-Prüfungen auf res/raw, siehe wear/lint.xml) bricht eine solche Meldung den Lauf ab.
+          [ "$n" -eq 0 ] || { echo "::error title=XML-Parsermeldungen ($n)::$(printf '%s\n' "$xp" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"; exit 1; }
           exit 0
       - name: Lint-Befunde
         if: failure()

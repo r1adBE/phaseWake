@@ -39,9 +39,10 @@ import kotlinx.coroutines.launch
  * Einstieg der Uhr-App: hält die wenigen gemeinsamen Objekte (bewusst ohne DI-Bibliothek).
  *
  * Läuft auch vor dem ersten Entsperren (Direct Boot): Dann keines der Objekte mit Speicher anfassen
- * (Wecker, Nächte, DataStore), siehe [com.phasewake.app.wear.schedule.DirectBoot].
+ * (Wecker, Nächte, DataStore), siehe [com.phasewake.app.wear.schedule.DirectBoot]. Offen nur für Robolectric-Tests,
+ * die [catchUpAndReschedule] weglassen (sonst plante es neben dem geprüften Weckdienst).
  */
-class PhaseWakeWear : Application() {
+open class PhaseWakeWear : Application() {
 
     /** Lebt so lange wie der Prozess; für Arbeit, die eine Activity oder einen Empfänger überdauert. */
     val appScope = CoroutineScope(
@@ -94,15 +95,7 @@ class PhaseWakeWear : Application() {
         // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar. Danach immer neu
         // planen: Nach «Beenden erzwingen» oder einem Prozessende sind die Alarme weg, und nicht jeder Prozessstart
         // kommt über die Startseite (Kachel, Komplikation, Data Layer). Eine laufende Nacht bleibt dabei unberührt.
-        if (DirectBoot.isUnlocked(this)) {
-            appScope.launch {
-                try {
-                    PhoneCatchUp.run(this@PhaseWakeWear)
-                } finally {
-                    scheduler.reschedule()
-                }
-            }
-        }
+        if (DirectBoot.isUnlocked(this)) catchUpAndReschedule()
         // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat. Nur
         // solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an); sonst beim Neuplanen.
         ContextCompat.registerReceiver(
@@ -119,6 +112,17 @@ class PhaseWakeWear : Application() {
             },
             ContextCompat.RECEIVER_NOT_EXPORTED,
         )
+    }
+
+    /** Beim Start nach dem Entsperren: vom Handy nachholen, danach immer neu planen (im Hintergrund). */
+    internal open fun catchUpAndReschedule() {
+        appScope.launch {
+            try {
+                PhoneCatchUp.run(this@PhaseWakeWear)
+            } finally {
+                scheduler.reschedule()
+            }
+        }
     }
 }
 

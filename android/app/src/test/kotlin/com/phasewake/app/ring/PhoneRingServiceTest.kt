@@ -58,7 +58,9 @@ class PhoneRingServiceTest {
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
         assertEquals(PhoneSnooze.Saved(resumeAt, "a", 0), PhoneSnooze.load(context))
         // Zweiter Wecker «b» löst ab: aufgehoben und für «b» neu gestellt, wieder alle Runden.
-        service.withIntent(ringIntent("b", now.plus(Duration.ofMinutes(30)))).startCommand(0, 2)
+        // Zweiter Start desselben Dienstes mit neuem Auftrag (ohne das veraltete `withIntent`, Review K-14).
+        service.get().onStartCommand(ringIntent("b", now.plus(Duration.ofMinutes(30))), 0, 2)
+        shadowOf(Looper.getMainLooper()).idle()
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
         assertEquals(PhoneSnooze.Saved(resumeAt, "b", 0), PhoneSnooze.load(context))
         // Niemand reagiert: Zeitgrenze → selbst schlummern, Schlummer-Ende ersetzt die Wiederaufnahme.

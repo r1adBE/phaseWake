@@ -32,6 +32,13 @@ android {
     }
 }
 
+// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+kotlin {
+    compilerOptions {
+        allWarningsAsErrors = true
+    }
+}
+
 dependencies {
     api(project(":core"))
     api(libs.kotlinx.coroutines.android)
