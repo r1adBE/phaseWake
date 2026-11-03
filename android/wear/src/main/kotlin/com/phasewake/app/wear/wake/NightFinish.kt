@@ -93,7 +93,7 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
         if (record != null) app.sync.publishNight(record)
         disabled?.let { app.sync.publishAlarms(it) }
         // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Review H-1; Meldung ohne frühere Zielzeit).
-        cleared?.let { app.sync.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) }
+        cleared?.let { app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) }
     }
 }
 

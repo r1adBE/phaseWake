@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :wear:testDebugUnitTest :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Schwachstellen der Abhängigkeiten (OSV)
@@ -51,6 +51,9 @@ jobs:
         run: |
           python3 ../.github/scripts/coverage_check.py "Kotlin-Kern" 90 core/build/reports/jacoco/test/jacocoTestReport.xml
           python3 ../.github/scripts/coverage_check.py "Android shared" 70 $(find shared/build/reports/coverage -name "*.xml" | head -1)
+          # Handy und Uhr: nur zur Information, ohne Mindestwert (Review K-10).
+          python3 ../.github/scripts/coverage_check.py "Android Handy" 0 $(find app/build/reports/coverage -name "*.xml" | head -1)
+          python3 ../.github/scripts/coverage_check.py "Android Uhr" 0 $(find wear/build/reports/coverage -name "*.xml" | head -1)
       - name: Fehler als Annotation
         if: failure()
         shell: bash

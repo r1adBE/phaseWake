@@ -73,7 +73,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Ausserhalb des Fensters läuft nichts, ausser nach «Gute Nacht»: dann nur Bewegung, stromsparend gebündelt, bis zum Einschlafen. Kein Hintergrund-Tracking.
 - Beschleunigung mit Batching (`maxReportLatency` 10 s), Display bleibt aus.
 - Puls nur im Fenster, über Health Services statt rohem Sensor.
-- Wakelock nur, solange der Dienst misst oder weckt; nach «Gute Nacht» nur auf Uhren ohne aufweckenden Beschleunigungssensor (höchstens 16 Std.).
+- Wakelock nur, solange der Dienst im Fenster misst oder weckt; in der Einschlaf-Messung (höchstens 2 Std.) nie durchgehend, sondern nur für Stichproben von 60 s alle 5 Min auf Uhren ohne passenden aufweckenden Beschleunigungssensor.
 
 ## Daten und Datenschutz
 

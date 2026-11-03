@@ -23,7 +23,9 @@ import kotlinx.coroutines.flow.first
 /**
  * Automatische Einschlaf-Messung (nur Galaxy Watch, `docs/PHASENERKENNUNG.md`, Abschnitt 8): Für den nächsten
  * gespeicherten Wecker startet ein exakter Alarm 60 Min vor der Bettzeit die stromsparende Messung von «Gute Nacht».
- * Sie endet beim erkannten Einschlafen oder 15 Min vor der Zielzeit. Im Einschlaf-Modus legt sie die Zielzeit fest
+ * Sie endet beim erkannten Einschlafen, spätestens 2 Std. nach ihrem Beginn
+ * ([com.phasewake.app.wear.wake.OnsetMonitor.MAX_DURATION]) und 15 Min vor der Zielzeit; unter [MIN_BATTERY_PERCENT]
+ * Akku beginnt sie nicht ([skipForBattery], Akku-Befund 03.11.2026). Im Einschlaf-Modus legt sie die Zielzeit fest
  * (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte ([OnsetStore]).
  *
  * Geplant bei jedem Neuplanen ([AlarmScheduler.reschedule]): Neustart, geänderte Wecker, Schlafziel, Schalter am Handy
@@ -36,6 +38,12 @@ object AutoOnset {
     private const val REQUEST = 6
     private const val TAG = "AutoOnset"
     private val IMMEDIATE: Duration = Duration.ofSeconds(1)
+
+    /** Unter diesem Akkustand (Prozent) startet die automatische Messung nicht. */
+    const val MIN_BATTERY_PERCENT = 30
+
+    /** Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht. */
+    fun skipForBattery(percent: Int?): Boolean = percent != null && percent < MIN_BATTERY_PERCENT
 
     /**
      * Beginn der Messung für [plan] (Plan des Weckers [spec] ohne Einschlaf-Ausnahme), oder `null`: kein gespeicherter

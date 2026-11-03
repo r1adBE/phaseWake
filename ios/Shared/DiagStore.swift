@@ -35,7 +35,7 @@ final class DiagStore: @unchecked Sendable {
         set { UserDefaults.standard.set(newValue, forKey: Self.unlockedKey) }
     }
 
-    /// Hält ein Ereignis fest. `detail` ohne persönliche Daten (keine Namen, keine Messwerte).
+    /// Hält ein Ereignis fest. `detail` ohne persönliche Daten (keine Namen, keine einzelnen Messwerte – höchstens Kennzahlen wie Mittelwert oder Akku).
     func log(_ kind: DiagKind, _ detail: String = "", at: Date = Date()) {
         let entry = DiagEntry(at: at, device: Self.device, kind: kind, detail: DiagLog.clean(detail))
         queue.async {

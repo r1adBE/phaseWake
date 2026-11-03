@@ -53,7 +53,7 @@ public enum DiagKind: String, CaseIterable, Sendable {
     case other = "OTHER"
 }
 
-/// Ein Eintrag im Diagnose-Protokoll; `detail` ohne persönliche Daten (keine Namen, keine Messwerte).
+/// Ein Eintrag im Diagnose-Protokoll; `detail` ohne persönliche Daten (keine Namen, keine einzelnen Messwerte – höchstens Kennzahlen wie Mittelwert oder Akku).
 public struct DiagEntry: Equatable, Sendable {
     /// Zeitpunkt des Ereignisses.
     public let at: Date

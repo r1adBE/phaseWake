@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Handler
 import android.os.Looper
-import android.os.PowerManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.health.services.client.HealthServices
@@ -26,10 +25,10 @@ import com.phasewake.app.core.EpochAssembler
  * keine Nebenläufigkeit im [EpochAssembler]. Die Last ist gering (gebündelte Werte alle 10 s).
  *
  * @param startNanos Fensterbeginn auf der Uhr `SystemClock.elapsedRealtimeNanos()`.
- * @param lowPower Für die lange Einschlaf-Messung: nur Bewegung, Werte bis 5 Minuten bündeln und
- *   bevorzugt den aufweckenden Sensor nutzen, der die Uhr nur bei vollem Puffer weckt. Hat die Uhr
- *   keinen solchen, wird wie im Fenster kurz gebündelt und die Uhr per Wakelock wach gehalten: Der
- *   gewöhnliche Sensor weckt sie nicht, sein Puffer liefe im Tiefschlaf über (Lücken, nie «eingeschlafen»).
+ * @param lowPower Für die Einschlaf-Messung ([OnsetMonitor]): nur Bewegung. Mit aufweckendem Sensor, dessen Puffer
+ *   mindestens [MIN_WAKE_UP_FIFO] Werte fasst ([continuous]), bündelt er bis 5 Minuten und weckt die Uhr nur bei
+ *   vollem Puffer. Sonst misst [OnsetMonitor] in Stichproben ([pause], [resume]) und hält dafür selbst einen kurzen
+ *   Wakelock: Die Sitzung hält nie einen Wakelock (früher bis 16 Std., Akku-Befund 03.11.2026).
  * @param onEpochs Erhält abgeschlossene Epochen in zeitlicher Reihenfolge.
  */
 class SensorSession(
@@ -45,7 +44,31 @@ class SensorSession(
     private val measureClient by lazy { HealthServices.getClient(context).measureClient }
     private var heartRateRegistered = false
     private var running = false
-    private var wakeLock: PowerManager.WakeLock? = null
+    private var listening = false
+
+    /** Aufweckender Beschleunigungssensor (nur [lowPower]), oder `null`. */
+    private val wakeUpSensor = if (lowPower) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null
+
+    /** Gewählter Beschleunigungssensor, oder `null`, wenn die Uhr keinen hat. */
+    private val accelerometer: Sensor? = wakeUpSensor?.takeIf { it.fifoMaxEventCount >= MIN_WAKE_UP_FIFO }
+        ?: sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+    /**
+     * Ob die Sitzung ohne Wakelock durchgehend messen kann: aufweckender Sensor mit grossem Puffer (nur [lowPower]).
+     * Ohne ihn liefe der Puffer des gewöhnlichen Sensors im Tiefschlaf über; ein kleiner Puffer weckte die Uhr fast
+     * dauernd. Dann misst [OnsetMonitor] in Stichproben.
+     */
+    val continuous: Boolean get() = accelerometer != null && accelerometer === wakeUpSensor
+
+    /** Puffergrösse des aufweckenden Sensors (für das Diagnose-Protokoll); -1 ohne solchen Sensor. */
+    val wakeUpFifo: Int get() = wakeUpSensor?.fifoMaxEventCount ?: -1
+
+    /** Bisher erhaltene Bewegungswerte (für das Diagnose-Protokoll). */
+    var samples: Long = 0L
+        private set
+
+    /** Anzahl abgeschlossener Epochen; die nächste gelieferte Epoche hat diesen Index. */
+    val closedEpochs: Long get() = assembler.currentIndex
 
     /**
      * Nachfrist bis zum Abschliessen einer Epoche = Bündelungs-Verzögerung + 2 s (Regel, Abschnitt 7).
@@ -71,6 +94,7 @@ class SensorSession(
     private val motionListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent) {
             val v = event.values
+            samples++
             releaseHeartRateUntil(event.timestamp)
             lastMotionNanos = maxOf(lastMotionNanos, event.timestamp)
             deliver(assembler.addMotion(event.timestamp, v[0].toDouble(), v[1].toDouble(), v[2].toDouble()))
@@ -107,27 +131,43 @@ class SensorSession(
         }
     }
 
-    fun start() {
+    /**
+     * Startet die Messung. [listen] `false`: Sensor erst mit [resume] anmelden (Stichproben des [OnsetMonitor]).
+     */
+    fun start(listen: Boolean = true) {
         if (running) return
         running = true
-        val wakeUp = if (lowPower) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null
-        val accelerometer = wakeUp ?: sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        // Lange bündeln nur mit dem aufweckenden Sensor; sonst kurz bündeln und die Uhr wach halten.
-        val latency = if (wakeUp != null) LOW_POWER_LATENCY_US else MAX_LATENCY_US
-        graceNanos = (latency.toLong() + GRACE_EXTRA_US) * 1_000L
-        if (accelerometer == null) {
-            Log.w(TAG, "Kein Beschleunigungssensor")
-        } else {
-            if (lowPower && wakeUp == null) {
-                Log.i(TAG, "Kein aufweckender Beschleunigungssensor: kurz bündeln mit Wakelock")
-                wakeLock = context.getSystemService(PowerManager::class.java)
-                    .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:onset")
-                    .apply { acquire(FALLBACK_WAKE_LOCK_MS) }
-            }
-            sensorManager.registerListener(motionListener, accelerometer, SAMPLING_US, latency, handler)
-        }
+        graceNanos = (latencyUs().toLong() + GRACE_EXTRA_US) * 1_000L
+        if (accelerometer == null) Log.w(TAG, "Kein Beschleunigungssensor")
+        if (listen) resume()
         if (!lowPower) registerHeartRate()
         handler.postDelayed(ticker, TICK_MILLIS)
+    }
+
+    /** Meldet den Bewegungssensor (wieder) an; für die Stichproben des [OnsetMonitor]. */
+    fun resume() {
+        val sensor = accelerometer ?: return
+        if (!running || listening) return
+        listening = sensorManager.registerListener(motionListener, sensor, SAMPLING_US, latencyUs(), handler)
+    }
+
+    /** Meldet den Bewegungssensor ab, ohne die Epochen zu verlieren; [resume] misst weiter. */
+    fun pause() {
+        if (!listening) return
+        listening = false
+        sensorManager.unregisterListener(motionListener)
+    }
+
+    /** Schliesst alle Epochen ab, die bis [nanos] enden (Ende einer Stichprobe), und liefert sie. */
+    fun closeUntil(nanos: Long) {
+        if (running) deliver(assembler.advance(nanos, 0L))
+    }
+
+    /** Bündelung: lang durchgehend, gar nicht in Stichproben (sonst kämen Werte erst nach deren Ende), sonst 10 s. */
+    private fun latencyUs(): Int = when {
+        continuous -> LOW_POWER_LATENCY_US
+        lowPower -> 0
+        else -> MAX_LATENCY_US
     }
 
     private fun registerHeartRate() {
@@ -144,14 +184,13 @@ class SensorSession(
         if (!running) return
         running = false
         handler.removeCallbacks(ticker)
+        listening = false
         sensorManager.unregisterListener(motionListener)
         if (heartRateRegistered) {
             measureClient.unregisterMeasureCallbackAsync(DataType.HEART_RATE_BPM, heartRateCallback)
             heartRateRegistered = false
         }
         pendingHeartRate.clear()
-        wakeLock?.takeIf { it.isHeld }?.release()
-        wakeLock = null
     }
 
     /** Puls einreihen (nach Zeit geordnet); schon vorhandene Bewegung bis dahin gibt ihn sofort frei. */
@@ -174,19 +213,22 @@ class SensorSession(
         if (running && epochs.isNotEmpty()) onEpochs(epochs)
     }
 
-    private companion object {
-        const val TAG = "SensorSession"
+    companion object {
+        private const val TAG = "SensorSession"
+
+        /**
+         * Kleinster Puffer des aufweckenden Sensors für die durchgehende Messung: 60 s bei 25 Hz. Ein kleinerer weckte
+         * die Uhr öfter als jede Minute (ohne Puffer bei jedem Wert); dann misst [OnsetMonitor] in Stichproben.
+         */
+        const val MIN_WAKE_UP_FIFO = 1_500
 
         /** 25 Hz, wie in der Regel vorgesehen. */
-        const val SAMPLING_US = 40_000
+        private const val SAMPLING_US = 40_000
 
         /** Werte bis 10 s bündeln: spart Strom, Entscheidung kommt trotzdem rechtzeitig. */
-        const val MAX_LATENCY_US = 10_000_000
-        const val LOW_POWER_LATENCY_US = 300_000_000
-        const val TICK_MILLIS = 10_000L
-        const val GRACE_EXTRA_US = 2_000_000L
-
-        /** Obergrenze des Wakelocks ohne aufweckenden Sensor: so lange darf «Gute Nacht» höchstens warten. */
-        const val FALLBACK_WAKE_LOCK_MS = 16 * 60 * 60_000L
+        private const val MAX_LATENCY_US = 10_000_000
+        private const val LOW_POWER_LATENCY_US = 300_000_000
+        private const val TICK_MILLIS = 10_000L
+        private const val GRACE_EXTRA_US = 2_000_000L
     }
 }

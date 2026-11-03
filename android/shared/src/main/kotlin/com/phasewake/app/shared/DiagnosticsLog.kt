@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.asStateFlow
  * Thread (nie auf dem Hauptthread); ab [DiagLog.MAX_ENTRIES] plus [SLACK] Zeilen wird die Datei gekürzt.
  *
  * Liegt im geräteverschlüsselten Speicher ([forContext]), damit auch Ereignisse vor dem ersten Entsperren
- * (Direct Boot) ankommen. Darum stehen darin nur Zeiten und Arten, keine Namen und keine Messwerte.
+ * (Direct Boot) ankommen. Darum stehen darin nur Zeiten, Arten und Kennzahlen (z. B. mittlere Bewegung, Akku), keine Namen und keine einzelnen Messwerte.
  */
 class DiagnosticsLog(
     private val file: File,

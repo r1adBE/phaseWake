@@ -16,6 +16,7 @@ import com.phasewake.app.shared.AutoOnsetStore
 import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
+import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
@@ -86,6 +87,12 @@ open class PhaseWakeWear : Application() {
 
     /** «Gute Nacht» (gespeichert, überlebt das Ende des Prozesses). */
     val goodNight by lazy { GoodNightState(phaseWakeStore) }
+
+    /**
+     * Frühere Zielzeit aus dem Einschlaf-Modus ans Handy ([OnsetShift], als Paket über [sync]). Offen nur für
+     * Robolectric-Tests, die die Meldung prüfen (dort gibt es keinen Data Layer).
+     */
+    internal open suspend fun publishOnsetShift(shift: OnsetShift) = sync.publishOnsetShift(shift)
 
     override fun onCreate() {
         super.onCreate()
