@@ -90,4 +90,5 @@
     <string name="diag_version">Versioni %1$s</string>
     <string name="transient_alarm_running">Alarmi yt është aktiv tani.</string>
     <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
+    <string name="home_licenses_hint">Licencat: në aplikacionin e telefonit</string>
 </resources>

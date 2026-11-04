@@ -89,4 +89,5 @@
     <string name="diag_version">Versie %1$s</string>
     <string name="transient_alarm_running">Je wekker loopt op dit moment.</string>
     <string name="transient_alarm_soon">Je wekvenster begint al eerder.</string>
+    <string name="home_licenses_hint">Licenties: in de telefoon-app</string>
 </resources>

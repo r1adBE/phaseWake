@@ -90,4 +90,5 @@
     <string name="diag_version">వెర్షన్ %1$s</string>
     <string name="transient_alarm_running">మీ అలారం ప్రస్తుతం నడుస్తోంది.</string>
     <string name="transient_alarm_soon">మీ నిద్రలేపే వ్యవధి దానికంటే ముందే మొదలవుతుంది.</string>
+    <string name="home_licenses_hint">లైసెన్స్‌లు: ఫోన్ యాప్‌లో</string>
 </resources>

@@ -84,4 +84,5 @@
     <string name="diag_version">Տարբերակ %1$s</string>
     <string name="transient_alarm_running">Զարթուցիչդ հենց հիմա աշխատում է։</string>
     <string name="transient_alarm_soon">Զարթուցիչիդ պատուհանը սկսվում է դրանից առաջ։</string>
+    <string name="home_licenses_hint">Լիցենզիաներ՝ հեռախոսի հավելվածում</string>
 </resources>

@@ -84,4 +84,5 @@
     <string name="diag_version">Versiya %1$s</string>
     <string name="transient_alarm_running">Siqnalın elə indi işləyir.</string>
     <string name="transient_alarm_soon">Siqnal pəncərən ondan əvvəl başlayır.</string>
+    <string name="home_licenses_hint">Lisenziyalar: telefon tətbiqində</string>
 </resources>

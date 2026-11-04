@@ -89,4 +89,5 @@
     <string name="diag_version">ورژن %1$s</string>
     <string name="transient_alarm_running">تمہارا الارم ابھی چل رہا ہے۔</string>
     <string name="transient_alarm_soon">تمہاری جاگنے کی ونڈو اس سے پہلے شروع ہوتی ہے۔</string>
+    <string name="home_licenses_hint">لائسنس: فون ایپ میں</string>
 </resources>

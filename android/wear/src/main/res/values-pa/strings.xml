@@ -90,4 +90,5 @@
     <string name="diag_version">ਵਰਜਨ %1$s</string>
     <string name="transient_alarm_running">ਤੁਹਾਡਾ ਅਲਾਰਮ ਇਸ ਵੇਲੇ ਚੱਲ ਰਿਹਾ ਹੈ।</string>
     <string name="transient_alarm_soon">ਤੁਹਾਡੀ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਉਸ ਤੋਂ ਪਹਿਲਾਂ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।</string>
+    <string name="home_licenses_hint">ਲਾਇਸੰਸ: ਫ਼ੋਨ ਐਪ ਵਿੱਚ</string>
 </resources>

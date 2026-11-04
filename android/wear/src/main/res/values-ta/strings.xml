@@ -89,4 +89,5 @@
     <string name="diag_version">பதிப்பு %1$s</string>
     <string name="transient_alarm_running">உங்கள் அலாரம் இப்போது ஒலிக்கிறது.</string>
     <string name="transient_alarm_soon">உங்கள் எழுப்பும் வரம்பு அதற்கு முன்பே தொடங்குகிறது.</string>
+    <string name="home_licenses_hint">உரிமங்கள்: ஃபோன் ஆப்ஸில்</string>
 </resources>

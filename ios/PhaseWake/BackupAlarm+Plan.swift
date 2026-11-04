@@ -105,17 +105,20 @@ extension BackupAlarm {
     /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben (samt ihrer Zone; eine
     /// ältere ohne Zone bekommt die von `wanted`); überholte, die noch nicht geklingelt haben, werden verworfen; fehlende
     /// werden gestellt und sofort einzeln gemerkt. Eine Sicherung, deren Klingelzeit schon da ist, wird nie abgebrochen
-    /// (sie klingelt womöglich gerade).
+    /// (sie klingelt womöglich gerade). Als Mitteilung (vor iOS 26, AlarmKit gescheitert) nach Klingelzeit im Rahmen von
+    /// `NotificationBudget`: Eine bleibende, die näher gerückt ist, bekommt ihre Kette ergänzt; eine fehlende ohne Platz
+    /// wird nicht gestellt und nicht gemerkt (der Nacht-Check sieht dann den kürzeren Vorlauf).
     func apply(_ wanted: [BackupSlot], now: Date) async {
         await cancelLegacyBackups()
-        let present = await pendingIds()
+        let pending = await pendingState()
         var unused = plannedBackups
         var result: [PlannedBackup] = []
+        var matched: [PlannedBackup] = []
         var missing: [BackupSlot] = []
         for slot in wanted {
-            if let i = unused.firstIndex(where: { $0.slot == slot && present.contains($0.id) }) {
+            if let i = unused.firstIndex(where: { $0.slot == slot && pending.present.contains($0.id) }) {
                 let kept = unused.remove(at: i)
-                result.append(kept.slot.zone == nil ? PlannedBackup(id: kept.id, slot: kept.slot.with(zone: slot.zone)) : kept)
+                matched.append(kept.slot.zone == nil ? PlannedBackup(id: kept.id, slot: kept.slot.with(zone: slot.zone)) : kept)
             } else {
                 missing.append(slot)
             }
@@ -127,16 +130,49 @@ extension BackupAlarm {
                 result.append(entry)
             }
         }
+        result += matched
         plannedBackups = result
-        for slot in missing {
-            let id = UUID()
-            // Erst merken, dann stellen: Endet die App dazwischen, geht die Kennung nicht verloren.
-            result.append(PlannedBackup(id: id, slot: slot))
-            plannedBackups = result
-            await schedule(id: id, at: slot.fireAt, snoozesLeft: Snooze.maxCount, tone: WakeTone(rawValue: slot.sound))
+        var budget = NotificationBudget(otherPending: pending.otherNotes)
+        var notes = (slots: 0, chained: 0, dropped: 0)
+        var order: [(slot: BackupSlot, kept: PlannedBackup?)] = matched.map { (slot: $0.slot, kept: Optional($0)) }
+        order += missing.map { (slot: $0, kept: PlannedBackup?.none) }
+        order.sort { $0.slot.fireAt < $1.slot.fireAt }
+        for (slot, kept) in order {
+            var count: Int
+            if let kept {
+                // AlarmKit: kein Platz nötig. Als Mitteilung: Kette ergänzen, falls näher gerückt.
+                guard let have = pending.notes[kept.id] else { continue }
+                count = budget.grant(slot.fireAt, now: now, have: have.count)
+                if count > have.count {
+                    count = await scheduleNotification(id: kept.id, at: slot.fireAt, tone: WakeTone(rawValue: slot.sound),
+                                                       count: count, skip: have)
+                }
+            } else {
+                let id = UUID()
+                // Erst merken, dann stellen: Endet die App dazwischen, geht die Kennung nicht verloren.
+                result.append(PlannedBackup(id: id, slot: slot))
+                plannedBackups = result
+                let placed = await schedule(id: id, at: slot.fireAt, snoozesLeft: Snooze.maxCount, tone: WakeTone(rawValue: slot.sound),
+                                            chain: budget.grant(slot.fireAt, now: now))
+                guard case .notifications(let placedCount) = placed else { continue }
+                count = placedCount
+                if placedCount == 0 {
+                    result.removeAll { $0.id == id }
+                    plannedBackups = result
+                    notes.dropped += 1
+                    continue
+                }
+            }
+            budget.use(count)
+            notes.slots += 1
+            if count >= NotificationChain.count { notes.chained += 1 }
         }
         SettingsFile.phone.set(TimeZone.current.identifier, forKey: Self.zoneKey)
         pruneRingNights()
+        guard notes.slots + notes.dropped > 0 else { return }
+        let total = await UNUserNotificationCenter.current().pendingNotificationRequests().count
+        DiagStore.shared.log(.scheduled, "backup notifications \(notes.slots) slots, \(notes.chained) chained, "
+                             + "\(notes.dropped) without room, pending \(total)")
     }
 
     // MARK: Nacht-Check
@@ -165,18 +201,39 @@ extension BackupAlarm {
         return hasPlan(eligible.filter { !$0.isOneShot }, after: last.slot.target)
     }
 
-    /// Kennungen, die noch gestellt sind: AlarmKit-Alarme (ab iOS 26) und wartende Mitteilungen.
-    private func pendingIds() async -> Set<UUID> {
-        var ids = Set<UUID>()
+    /// Was noch gestellt ist: `present` = Kennungen der AlarmKit-Alarme (ab iOS 26) und wartenden Mitteilungen; `notes`
+    /// = je gemerkter Sicherung die wartenden Mitteilungen ihrer Kette; `otherNotes` = wartende Mitteilungen ohne die
+    /// der gemerkten Sicherungen (für `NotificationBudget`).
+    private func pendingState() async -> (present: Set<UUID>, notes: [UUID: Set<String>], otherNotes: Int) {
+        var present = Set<UUID>()
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            ids.formUnion(((try? AlarmManager.shared.alarms) ?? []).map(\.id))
+            do {
+                let alarms = try AlarmManager.shared.alarms
+                present.formUnion(alarms.map(\.id))
+            } catch {
+                DiagStore.shared.log(.error, "alarmkit list failed \((error as NSError).code)")
+            }
         }
         #endif
         let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-        // Vor iOS 26 eine Kette aus Mitteilungen: Steht noch eine davon, gilt die Sicherung als gestellt.
-        ids.formUnion(requests.compactMap { UUID(uuidString: NotificationChain.baseId($0.identifier)) })
-        return ids
+        let backups = Set(plannedBackups.map(\.id))
+        var notes: [UUID: Set<String>] = [:]
+        var other = 0
+        for request in requests {
+            // Vor iOS 26 eine Kette aus Mitteilungen: Steht noch eine davon, gilt die Sicherung als gestellt.
+            guard let id = UUID(uuidString: NotificationChain.baseId(request.identifier)) else {
+                other += 1
+                continue
+            }
+            present.insert(id)
+            if backups.contains(id) {
+                notes[id, default: []].insert(request.identifier)
+            } else {
+                other += 1
+            }
+        }
+        return (present, notes, other)
     }
 
     /// Bis Version 16.2 nur Kennungen ohne Nacht gemerkt: einmal alle verwerfen, danach gilt `plannedBackups`.

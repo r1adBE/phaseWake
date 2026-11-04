@@ -95,4 +95,5 @@
     <string name="diag_version">Različica %1$s</string>
     <string name="transient_alarm_running">Tvoja budilka je ravno aktivna.</string>
     <string name="transient_alarm_soon">Tvoje okno bujenja se začne že prej.</string>
+    <string name="home_licenses_hint">Licence: v aplikaciji na telefonu</string>
 </resources>

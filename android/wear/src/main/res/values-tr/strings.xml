@@ -89,4 +89,5 @@
     <string name="diag_version">Sürüm %1$s</string>
     <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
     <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
+    <string name="home_licenses_hint">Lisanslar: telefondaki uygulamada</string>
 </resources>

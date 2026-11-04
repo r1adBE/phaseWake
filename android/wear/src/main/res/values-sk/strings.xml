@@ -95,4 +95,5 @@
     <string name="diag_version">Verzia %1$s</string>
     <string name="transient_alarm_running">Tvoj budík práve beží.</string>
     <string name="transient_alarm_soon">Tvoje okno budenia začína už skôr.</string>
+    <string name="home_licenses_hint">Licencie: v aplikácii v telefóne</string>
 </resources>

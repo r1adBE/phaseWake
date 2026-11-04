@@ -86,4 +86,5 @@
     <string name="diag_version">ເວີຊັນ %1$s</string>
     <string name="transient_alarm_running">ໂມງປຸກຂອງເຈົ້າກຳລັງດຳເນີນຢູ່ຕອນນີ້</string>
     <string name="transient_alarm_soon">ຊ່ວງເວລາປຸກຂອງເຈົ້າເລີ່ມກ່ອນນັ້ນ</string>
+    <string name="home_licenses_hint">ໃບອະນຸຍາດ: ໃນແອັບໂທລະສັບ</string>
 </resources>

@@ -90,4 +90,5 @@
     <string name="diag_version">ስሪት %1$s</string>
     <string name="transient_alarm_running">ማንቂያዎ አሁን እየሄደ ነው።</string>
     <string name="transient_alarm_soon">የመቀስቀሻ ክልልዎ ከዚያ በፊት ይጀምራል።</string>
+    <string name="home_licenses_hint">ፈቃዶች፦ በስልኩ መተግበሪያ ውስጥ</string>
 </resources>

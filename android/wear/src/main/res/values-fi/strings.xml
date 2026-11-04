@@ -89,4 +89,5 @@
     <string name="diag_version">Versio %1$s</string>
     <string name="transient_alarm_running">Herätyksesi on juuri käynnissä.</string>
     <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
+    <string name="home_licenses_hint">Lisenssit: puhelimen sovelluksessa</string>
 </resources>

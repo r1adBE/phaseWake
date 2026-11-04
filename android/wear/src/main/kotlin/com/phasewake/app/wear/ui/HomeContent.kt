@@ -142,6 +142,16 @@ internal fun HomeContent(
                         )
                     }
                 }
+                // Die Uhr hat keine eigene Info-Seite: Die Lizenztexte stehen in den Einstellungen der Handy-App.
+                item {
+                    Text(
+                        stringResource(R.string.home_licenses_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Brand.Muted,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
             }
         }
     }

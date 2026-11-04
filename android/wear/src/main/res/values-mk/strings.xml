@@ -90,4 +90,5 @@
     <string name="diag_version">Верзија %1$s</string>
     <string name="transient_alarm_running">Алармот токму сега е активен.</string>
     <string name="transient_alarm_soon">Прозорецот за будење почнува пред тоа.</string>
+    <string name="home_licenses_hint">Лиценци: во апликацијата на телефонот</string>
 </resources>

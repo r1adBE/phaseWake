@@ -89,4 +89,5 @@
     <string name="diag_version">ಆವೃತ್ತಿ %1$s</string>
     <string name="transient_alarm_running">ನಿಮ್ಮ ಅಲಾರಾಂ ಈಗ ನಡೆಯುತ್ತಿದೆ.</string>
     <string name="transient_alarm_soon">ಅದಕ್ಕೂ ಮೊದಲೇ ನಿಮ್ಮ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾಗುತ್ತದೆ.</string>
+    <string name="home_licenses_hint">ಪರವಾನಗಿಗಳು: ಫೋನ್ ಆ್ಯಪ್‌ನಲ್ಲಿ</string>
 </resources>

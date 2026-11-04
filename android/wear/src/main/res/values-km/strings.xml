@@ -86,4 +86,5 @@
     <string name="diag_version">កំណែ %1$s</string>
     <string name="transient_alarm_running">ម៉ោងរោទ៍របស់អ្នកកំពុងដំណើរការឥឡូវនេះ។</string>
     <string name="transient_alarm_soon">ចន្លោះពេលដាស់របស់អ្នកចាប់ផ្ដើមមុននោះ។</string>
+    <string name="home_licenses_hint">អាជ្ញាប័ណ្ណ៖ នៅក្នុងកម្មវិធីលើទូរសព្ទ</string>
 </resources>

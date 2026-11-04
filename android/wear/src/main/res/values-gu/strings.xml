@@ -90,4 +90,5 @@
     <string name="diag_version">વર્ઝન %1$s</string>
     <string name="transient_alarm_running">તમારો એલાર્મ અત્યારે ચાલુ છે.</string>
     <string name="transient_alarm_soon">તમારો જગાડવાનો સમયગાળો તે પહેલાં શરૂ થાય છે.</string>
+    <string name="home_licenses_hint">લાઇસન્સ: ફોનની ઍપમાં</string>
 </resources>

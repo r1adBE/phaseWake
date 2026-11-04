@@ -4,10 +4,20 @@
 // Antwortet Maven Central mit 429 (zu viele Anfragen), scheitern alle Robolectric-Tests einer Klasse («classMethod
 // FAILED»). Hier holt Gradle sie (mit Wiederholung, im Cache der CI), und Robolectric läuft offline.
 //
-// Die Versionen gehören zu Robolectric (DefaultSdkProvider) und zu den SDKs der Tests (@Config(sdk = [33]), [35]); bei
-// einem Robolectric-Update mitziehen, sonst melden die Tests «jar not present».
+// Die Versionen gehören zu Robolectric (DefaultSdkProvider) und zu den SDKs der Tests (@Config(sdk = [33]), [35]).
+// Darum sind sie je Robolectric-Version festgehalten: Steht die Version aus libs.versions.toml nicht in der Liste,
+// bricht Gradle schon beim Konfigurieren mit einem klaren Hinweis ab (statt «jar not present» in den Tests).
 // Je SDK eine eigene Konfiguration: In einer gemeinsamen nähme Gradle vom selben Artefakt nur die höchste Version.
-val robolectricSdks = listOf("13-robolectric-9030017-i7", "15-robolectric-13954326-i7").map { version ->
+val robolectricImagesByVersion = mapOf(
+    "4.17" to listOf("13-robolectric-9030017-i7", "15-robolectric-13954326-i7"),
+)
+val robolectricVersion = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    .findVersion("robolectric").map { it.requiredVersion }.orElse("")
+val robolectricImages = robolectricImagesByVersion[robolectricVersion] ?: throw GradleException(
+    "Robolectric $robolectricVersion: Abbilder in gradle/robolectric.gradle.kts nachführen (robolectricImagesByVersion, " +
+        "Versionen von android-all-instrumented aus DefaultSdkProvider dieser Robolectric-Version, siehe docs/ENTWICKLUNG.md).",
+)
+val robolectricSdks = robolectricImages.map { version ->
     configurations.create("robolectricSdk-$version") {
         isCanBeConsumed = false
         isTransitive = false

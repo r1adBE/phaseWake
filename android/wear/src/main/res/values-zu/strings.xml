@@ -90,4 +90,5 @@
     <string name="diag_version">Inguqulo %1$s</string>
     <string name="transient_alarm_running">I-alamu yakho iyakhala manje.</string>
     <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
+    <string name="home_licenses_hint">Amalayisense: ku-app yefoni</string>
 </resources>

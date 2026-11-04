@@ -90,4 +90,5 @@
     <string name="diag_version">අනුවාදය %1$s</string>
     <string name="transient_alarm_running">ඔබේ එලාමය දැන් ක්‍රියාත්මකයි.</string>
     <string name="transient_alarm_soon">ඔබේ අවදි පරාසය ඊට පෙර ආරම්භ වේ.</string>
+    <string name="home_licenses_hint">බලපත්‍ර: දුරකථන යෙදුමේ</string>
 </resources>

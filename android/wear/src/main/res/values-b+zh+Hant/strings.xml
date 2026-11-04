@@ -86,4 +86,5 @@
     <string name="diag_version">版本 %1$s</string>
     <string name="transient_alarm_running">你的鬧鐘正在進行中。</string>
     <string name="transient_alarm_soon">你的喚醒時段在那之前就開始了。</string>
+    <string name="home_licenses_hint">授權：請見手機 App</string>
 </resources>

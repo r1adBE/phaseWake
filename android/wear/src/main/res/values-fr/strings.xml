@@ -92,4 +92,5 @@
     <string name="diag_version">Version %1$s</string>
     <string name="transient_alarm_running">Ton réveil est en cours en ce moment.</string>
     <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
+    <string name="home_licenses_hint">Licences : dans l’app du téléphone</string>
 </resources>

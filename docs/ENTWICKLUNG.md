@@ -70,6 +70,10 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Fehler zuerst als Test:** Wer einen Fehler behebt, schreibt zuerst den Test, der ihn zeigt.
 - **Tests sind schnell und deterministisch:** keine echte Uhrzeit, kein Zufall ohne festen Startwert, kein Netz.
 - Abdeckung darf nicht sinken; die Grenzen werden nur angehoben.
+- **Robolectric-Abbilder:** `android/gradle/robolectric.gradle.kts` hält je Robolectric-Version die passenden
+  `android-all-instrumented`-Abbilder fest (`robolectricImagesByVersion`). Nach einem Update von `robolectric` in
+  `libs.versions.toml` bricht Gradle beim Konfigurieren ab, bis die neue Version mit ihren Abbildern (aus
+  `DefaultSdkProvider` dieser Version, für die SDKs der Tests) eingetragen ist.
 
 ## 5. Kommentare und Dokumentation
 

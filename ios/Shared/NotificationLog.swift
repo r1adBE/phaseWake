@@ -27,12 +27,15 @@ enum NotificationLog {
         }
     }
 
-    /// Stellt `request`; scheitert es, eine Zeile im Protokoll.
-    static func add(_ request: UNNotificationRequest, _ source: String) async {
+    /// Stellt `request`; scheitert es, eine Zeile im Protokoll. - Returns: ob gestellt.
+    @discardableResult
+    static func add(_ request: UNNotificationRequest, _ source: String) async -> Bool {
         do {
             try await UNUserNotificationCenter.current().add(request)
+            return true
         } catch {
             DiagStore.shared.log(.error, "\(source) notification not set \((error as NSError).code)")
+            return false
         }
     }
 

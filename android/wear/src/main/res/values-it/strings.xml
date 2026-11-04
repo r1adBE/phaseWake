@@ -92,4 +92,5 @@
     <string name="diag_version">Versione %1$s</string>
     <string name="transient_alarm_running">La tua sveglia è in corso proprio ora.</string>
     <string name="transient_alarm_soon">La finestra della tua sveglia inizia prima.</string>
+    <string name="home_licenses_hint">Licenze: nell’app del telefono</string>
 </resources>

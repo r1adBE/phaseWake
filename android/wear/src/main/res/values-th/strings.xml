@@ -86,4 +86,5 @@
     <string name="diag_version">เวอร์ชัน %1$s</string>
     <string name="transient_alarm_running">การปลุกของคุณกำลังทำงานอยู่ตอนนี้</string>
     <string name="transient_alarm_soon">ช่วงเวลาปลุกของคุณเริ่มก่อนหน้านั้น</string>
+    <string name="home_licenses_hint">สัญญาอนุญาต: ในแอปบนโทรศัพท์</string>
 </resources>

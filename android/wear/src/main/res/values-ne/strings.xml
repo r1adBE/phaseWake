@@ -90,4 +90,5 @@
     <string name="diag_version">संस्करण %1$s</string>
     <string name="transient_alarm_running">तिम्रो अलार्म अहिले चलिरहेको छ।</string>
     <string name="transient_alarm_soon">तिम्रो ब्युँझाउने अवधि त्योभन्दा अघि सुरु हुन्छ।</string>
+    <string name="home_licenses_hint">लाइसेन्स: फोनको एपमा</string>
 </resources>

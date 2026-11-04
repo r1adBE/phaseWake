@@ -89,4 +89,5 @@
     <string name="diag_version">Version %1$s</string>
     <string name="transient_alarm_running">Din alarm er i gang lige nu.</string>
     <string name="transient_alarm_soon">Dit vækkevindue starter allerede før.</string>
+    <string name="home_licenses_hint">Licenser: i appen på telefonen</string>
 </resources>

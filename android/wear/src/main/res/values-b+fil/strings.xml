@@ -90,4 +90,5 @@
     <string name="diag_version">Bersyon %1$s</string>
     <string name="transient_alarm_running">Tumatakbo na ngayon ang alarm mo.</string>
     <string name="transient_alarm_soon">Nagsisimula bago noon ang window ng paggising mo.</string>
+    <string name="home_licenses_hint">Mga lisensya: nasa app sa phone</string>
 </resources>

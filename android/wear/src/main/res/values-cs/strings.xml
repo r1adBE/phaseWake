@@ -95,4 +95,5 @@
     <string name="diag_version">Verze %1$s</string>
     <string name="transient_alarm_running">Právě běží tvůj budík.</string>
     <string name="transient_alarm_soon">Okno tvého budíku začíná už dřív.</string>
+    <string name="home_licenses_hint">Licence: v aplikaci v telefonu</string>
 </resources>

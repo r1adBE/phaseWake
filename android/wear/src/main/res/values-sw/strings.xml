@@ -89,4 +89,5 @@
     <string name="diag_version">Toleo %1$s</string>
     <string name="transient_alarm_running">Kengele yako inalia sasa hivi.</string>
     <string name="transient_alarm_soon">Kipindi chako cha kuamka kinaanza kabla ya hapo.</string>
+    <string name="home_licenses_hint">Leseni: kwenye programu ya simu</string>
 </resources>

@@ -89,4 +89,5 @@
     <string name="diag_version">Versjon %1$s</string>
     <string name="transient_alarm_running">Alarmen din er i gang akkurat nå.</string>
     <string name="transient_alarm_soon">Vekkevinduet ditt starter allerede før.</string>
+    <string name="home_licenses_hint">Lisenser: i appen på telefonen</string>
 </resources>

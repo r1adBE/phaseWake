@@ -89,4 +89,5 @@
     <string name="diag_version">പതിപ്പ് %1$s</string>
     <string name="transient_alarm_running">നിങ്ങളുടെ അലാറം ഇപ്പോൾ നടക്കുന്നു.</string>
     <string name="transient_alarm_soon">അതിനു മുമ്പേ ഉണർത്തൽ സമയപരിധി തുടങ്ങും.</string>
+    <string name="home_licenses_hint">ലൈസൻസുകൾ: ഫോൺ ആപ്പിൽ</string>
 </resources>

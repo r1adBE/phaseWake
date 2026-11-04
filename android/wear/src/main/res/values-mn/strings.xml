@@ -90,4 +90,5 @@
     <string name="diag_version">Хувилбар %1$s</string>
     <string name="transient_alarm_running">Сэрүүлэг чинь яг одоо ажиллаж байна.</string>
     <string name="transient_alarm_soon">Сэрээх хугацаа чинь түүнээс өмнө эхэлнэ.</string>
+    <string name="home_licenses_hint">Лиценз: утасны аппд</string>
 </resources>

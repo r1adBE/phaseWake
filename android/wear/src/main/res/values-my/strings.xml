@@ -86,4 +86,5 @@
     <string name="diag_version">ဗားရှင်း %1$s</string>
     <string name="transient_alarm_running">သင့်နှိုးစက် ယခု လည်ပတ်နေသည်။</string>
     <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
+    <string name="home_licenses_hint">လိုင်စင်များ- ဖုန်းအက်ပ်တွင်</string>
 </resources>

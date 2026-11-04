@@ -59,23 +59,52 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Zuletzt protokollierter Stand der Mitteilungen (Diagnose nur bei einer Änderung). Nur auf dem Main-Thread.
     private var loggedNotifications: WatchNotifications?
+    /// Wann der Stand der Mitteilungen zuletzt ans iPhone ging (`publishNotificationStateIfNeeded`). Nur auf dem Main-Thread.
+    private var notificationsSentAt: Date?
+    /// Prüfung beim Planen läuft (nicht doppelt bei mehreren Rückfällen kurz nacheinander). Nur auf dem Main-Thread.
+    private var checkingNotifications = false
+    /// Spätestens nach dieser Zeit geht der Stand beim Planen nochmals ans iPhone, auch unverändert.
+    private static let notificationsResend: TimeInterval = 6 * 3600
+
+    /// Beim Planen einer Nacht (`SmartAlarm.scheduleFallback`): Stand der Mitteilungen ans iPhone, aber nur, wenn er
+    /// sich geändert hat oder zuletzt vor über 6 h ging – sonst bei jedem Neuplanen ein neuer Anwendungskontext.
+    @MainActor
+    func publishNotificationStateIfNeeded() async {
+        guard !checkingNotifications else { return }
+        checkingNotifications = true
+        defer { checkingNotifications = false }
+        let state = await notificationState()
+        let sent = (context[SyncKeys.watchNotifications] as? Int64).flatMap(WatchNotifications.init(rawValue:))
+        if state == sent, let at = notificationsSentAt, Date().timeIntervalSince(at) < Self.notificationsResend { return }
+        publish(notifications: state)
+    }
 
     /// Erlaubnis für Mitteilungen (Rückfall-Wecker) ans iPhone melden (`SyncKeys.watchNotifications`), mit einer Zeile im
     /// Protokoll, wenn sie sich ändert. Noch nicht gefragt: nichts melden, das iPhone warnt dann nicht.
     @MainActor
     func publishNotificationState() async {
+        publish(notifications: await notificationState())
+    }
+
+    /// Stand der Erlaubnis für Mitteilungen; `nil` = noch nicht gefragt.
+    private func notificationState() async -> WatchNotifications? {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
-        let state: WatchNotifications?
         switch settings.authorizationStatus {
         case .authorized:
-            state = settings.timeSensitiveSetting == .disabled ? .notTimeSensitive : .allowed
+            return settings.timeSensitiveSetting == .disabled ? .notTimeSensitive : .allowed
         case .denied, .provisional:
-            state = .blocked
+            return .blocked
         case .notDetermined:
-            state = nil
+            return nil
         @unknown default:
-            state = nil
+            return nil
         }
+    }
+
+    /// Merkt `state` im Anwendungskontext (samt Zeile im Protokoll bei einer Änderung) und sendet ihn.
+    @MainActor
+    private func publish(notifications state: WatchNotifications?) {
+        notificationsSentAt = Date()
         if let state, state != loggedNotifications {
             loggedNotifications = state
             let text = switch state {

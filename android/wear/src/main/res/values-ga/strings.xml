@@ -99,4 +99,5 @@
     <string name="diag_version">Leagan %1$s</string>
     <string name="transient_alarm_running">Tá d’aláram ar siúl faoi láthair.</string>
     <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
+    <string name="home_licenses_hint">Ceadúnais: san aip ar an bhfón</string>
 </resources>

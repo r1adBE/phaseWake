@@ -89,4 +89,5 @@
     <string name="diag_version">Версия %1$s</string>
     <string name="transient_alarm_running">Будилникът ти е активен в момента.</string>
     <string name="transient_alarm_soon">Прозорецът ти за събуждане започва още преди това.</string>
+    <string name="home_licenses_hint">Лицензи: в приложението на телефона</string>
 </resources>

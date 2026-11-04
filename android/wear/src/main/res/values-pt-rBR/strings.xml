@@ -92,4 +92,5 @@
     <string name="diag_version">Versão %1$s</string>
     <string name="transient_alarm_running">Seu alarme está em andamento agora.</string>
     <string name="transient_alarm_soon">A janela do seu alarme começa antes disso.</string>
+    <string name="home_licenses_hint">Licenças: no app do celular</string>
 </resources>

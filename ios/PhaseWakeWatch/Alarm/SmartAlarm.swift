@@ -307,8 +307,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// `fixed`: zum festen Zeitpunkt (`LocalTrigger.fixed`), für eine über eine Reise behaltene Nacht.
     /// Rückfall des echten Weckers (`fallbackId`) und Wecken nach abgebrochener Sitzung (`interruptedId`): eine Kette
     /// aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`), damit eine verschlafene oder weggewischte nicht die
-    /// einzige bleibt. Probewecker und Powernap wecken mit einer.
+    /// einzige bleibt. Probewecker und Powernap wecken mit einer. Der Stand der Erlaubnis für Mitteilungen geht dabei
+    /// ans iPhone (Nacht-Check), höchstens bei einer Änderung oder alle 6 h.
     func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId, fixed: Bool = false) {
+        Task { await WatchConnectivityBridge.shared.publishNotificationStateIfNeeded() }
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_reason_deadline")

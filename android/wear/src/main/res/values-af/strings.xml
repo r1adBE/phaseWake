@@ -90,4 +90,5 @@
     <string name="diag_version">Weergawe %1$s</string>
     <string name="transient_alarm_running">Jou wekker loop nou.</string>
     <string name="transient_alarm_soon">Jou wekvenster begin voor dit.</string>
+    <string name="home_licenses_hint">Lisensies: in die foon-app</string>
 </resources>

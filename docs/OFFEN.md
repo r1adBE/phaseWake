@@ -12,6 +12,8 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 - Review 04.11. e: zweiter Zweitwecker am Handy in der Nachfrist wird nachgeholt (P1).
 - Audit 04.11. (Android): Lizenztexte in der App (M-05), eigene Kennung der Testversion (M-04), verweigerter Start des Weckdienstes der Galaxy Watch (N-05), Tests und Mindestabdeckung für Wecken und Planen (M-06), Liste vor dem ersten Entsperren geordnet (I-05), keine Build-Nummern in Kommentaren (N-06), README zum Wecken je Gerät.
 - Audit 04.11. (Apple): Weckmitteilung als Kette (H-01), Versprechen «spätestens zur Zielzeit» präzisiert (H-01/N-04), Lizenzseite am iPhone (M-05), Mitteilungsrecht der Apple Watch im Nacht-Check (M-03), Pulsdichte und Fehler im Protokoll (M-02, N-03), Keyword (N-08); Testversion heisst «Phase Wake Test».
+- Nachaudit 04.11. (Android): Robolectric-Abbilder je Robolectric-Version geprüft (NEU-04), Hinweis «Lizenzen: in der Handy-App» auf der Galaxy Watch (NEU-06).
+- Nachaudit 04.11. (Apple): Platz für Mitteilungen des Zweitweckers vor iOS 26 (NEU-01/NEU-03), Erlaubnis der Apple Watch auch beim Planen (NEU-02), AlarmKit-Fehler im Protokoll (N-03); Dependabot-PRs #4 und #6 geschlossen (NEU-05).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 

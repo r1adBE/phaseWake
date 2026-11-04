@@ -90,4 +90,5 @@
     <string name="diag_version">Versión %1$s</string>
     <string name="transient_alarm_running">A túa alarma está activa agora mesmo.</string>
     <string name="transient_alarm_soon">A túa xanela de espertar comeza antes.</string>
+    <string name="home_licenses_hint">Licenzas: na app do teléfono</string>
 </resources>

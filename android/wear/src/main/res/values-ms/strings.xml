@@ -86,4 +86,5 @@
     <string name="diag_version">Versi %1$s</string>
     <string name="transient_alarm_running">Penggera awak sedang berjalan sekarang.</string>
     <string name="transient_alarm_soon">Tetingkap penggera awak bermula lebih awal.</string>
+    <string name="home_licenses_hint">Lesen: dalam apl telefon</string>
 </resources>

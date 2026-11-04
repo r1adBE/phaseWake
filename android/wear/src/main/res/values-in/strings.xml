@@ -86,4 +86,5 @@
     <string name="diag_version">Versi %1$s</string>
     <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
     <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
+    <string name="home_licenses_hint">Lisensi: di aplikasi ponsel</string>
 </resources>

@@ -86,4 +86,5 @@
     <string name="diag_version">Phiên bản %1$s</string>
     <string name="transient_alarm_running">Báo thức của bạn đang chạy ngay lúc này.</string>
     <string name="transient_alarm_soon">Khoảng thời gian báo thức của bạn bắt đầu trước đó.</string>
+    <string name="home_licenses_hint">Giấy phép: trong ứng dụng trên điện thoại</string>
 </resources>

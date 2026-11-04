@@ -35,15 +35,9 @@ final class BackupAlarm {
     private static let snoozeSafetyDelay: TimeInterval = 90
     /// So weit im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird (14 Tage).
     static let horizon: TimeInterval = 14 * 24 * 3600
-    /// Höchstens so viele Sicherungen. Vor iOS 26 ist jede eine Kette aus 4 Mitteilungen (`NotificationChain`), und iOS
-    /// behält nur 64 wartende je App: 12 × 4 = 48, dazu Bettzeit-Erinnerungen, Wochenrückblick, Mitklingeln, Schlummern
-    /// und Probewecker. Ab iOS 26 (AlarmKit) 40.
-    private static var maxSlots: Int {
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) { return 40 }
-        #endif
-        return 12
-    }
+    /// Höchstens so viele Sicherungen. Als Mitteilung (vor iOS 26, AlarmKit gescheitert) stellt `apply` davon so viele,
+    /// wie neben den übrigen wartenden Mitteilungen Platz haben (`NotificationBudget`, iOS behält 64 je App).
+    private static let maxSlots = 40
     /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
     private var ringingId: UUID? {
         get { storedId(Self.ringingKey) }

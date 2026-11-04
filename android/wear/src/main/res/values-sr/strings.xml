@@ -93,4 +93,5 @@
     <string name="diag_version">Верзија %1$s</string>
     <string name="transient_alarm_running">Твој аларм је управо активан.</string>
     <string name="transient_alarm_soon">Твој интервал буђења почиње пре тога.</string>
+    <string name="home_licenses_hint">Лиценце: у апликацији на телефону</string>
 </resources>

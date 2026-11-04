@@ -92,4 +92,5 @@
     <string name="diag_version">Versió %1$s</string>
     <string name="transient_alarm_running">La teva alarma està en marxa ara mateix.</string>
     <string name="transient_alarm_soon">La teva finestra de despertar comença abans.</string>
+    <string name="home_licenses_hint">Llicències: a l’app del telèfon</string>
 </resources>

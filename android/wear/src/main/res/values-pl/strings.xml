@@ -95,4 +95,5 @@
     <string name="diag_version">Wersja %1$s</string>
     <string name="transient_alarm_running">Twój budzik właśnie działa.</string>
     <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
+    <string name="home_licenses_hint">Licencje: w aplikacji na telefonie</string>
 </resources>

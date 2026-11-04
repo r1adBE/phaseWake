@@ -84,4 +84,5 @@
     <string name="diag_version">ვერსია %1$s</string>
     <string name="transient_alarm_running">შენი მაღვიძარა ახლა მუშაობს.</string>
     <string name="transient_alarm_soon">შენი მაღვიძარის ფანჯარა მანამდე იწყება.</string>
+    <string name="home_licenses_hint">ლიცენზიები: ტელეფონის აპში</string>
 </resources>

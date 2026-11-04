@@ -92,4 +92,5 @@
     <string name="diag_version">Versiunea %1$s</string>
     <string name="transient_alarm_running">Alarma ta rulează chiar acum.</string>
     <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
+    <string name="home_licenses_hint">Licențe: în aplicația de pe telefon</string>
 </resources>

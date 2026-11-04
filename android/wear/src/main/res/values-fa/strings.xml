@@ -89,4 +89,5 @@
     <string name="diag_version">نسخهٔ %1$s</string>
     <string name="transient_alarm_running">زنگ تو همین حالا در جریان است.</string>
     <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
+    <string name="home_licenses_hint">مجوزها: در برنامهٔ گوشی</string>
 </resources>

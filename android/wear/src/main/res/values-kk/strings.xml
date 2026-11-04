@@ -84,4 +84,5 @@
     <string name="diag_version">Нұсқа %1$s</string>
     <string name="transient_alarm_running">Оятқышың дәл қазір жұмыс істеп тұр.</string>
     <string name="transient_alarm_soon">Оятқыш терезең одан бұрын басталады.</string>
+    <string name="home_licenses_hint">Лицензиялар: телефондағы қолданбада</string>
 </resources>

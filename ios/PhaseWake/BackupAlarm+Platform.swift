@@ -10,17 +10,27 @@ import AppIntents
 extension BackupAlarm {
     // MARK: Plattform
 
+    /// Wie ein iPhone-Alarm gestellt wurde.
+    enum Placement: Equatable {
+        /// Über AlarmKit (ab iOS 26).
+        case alarmKit
+        /// Als Mitteilungen; so viele wurden gestellt (0 = keine, kein Platz).
+        case notifications(Int)
+    }
+
     /// Stellt einen iPhone-Alarm: ab iOS 26 über AlarmKit, sonst (oder wenn AlarmKit scheitert) als zeitkritische
     /// Mitteilung. `tone` = eigener Weckton; `nil` = Standardton des Systems. `snoozesLeft` > 0: Knopf «Schlummern»
-    /// (beim Mitklingeln geht er an die Uhr, sonst schlummert das iPhone selbst, nur mit AlarmKit).
-    func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0, tone: WakeTone? = nil) async {
+    /// (beim Mitklingeln geht er an die Uhr, sonst schlummert das iPhone selbst, nur mit AlarmKit). `chain` = so viele
+    /// Mitteilungen der Kette als Mitteilung (`NotificationBudget`; Standard die ganze Kette).
+    @discardableResult
+    func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0, tone: WakeTone? = nil,
+                  chain: Int = NotificationChain.count) async -> Placement {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone)
-            return
+            return await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone, chain: chain)
         }
         #endif
-        await scheduleNotification(id: id, at: date, tone: tone)
+        return .notifications(await scheduleNotification(id: id, at: date, tone: tone, count: chain))
     }
 
     /// Verwirft einen gestellten iPhone-Alarm (AlarmKit und Mitteilung, je nachdem, was gestellt wurde).
@@ -28,7 +38,14 @@ extension BackupAlarm {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
             stoppedByApp.insert(id)
-            try? AlarmManager.shared.cancel(id: id)
+            do {
+                try AlarmManager.shared.cancel(id: id)
+            } catch {
+                // Kein AlarmKit-Alarm (Mitteilung) oder schon vorbei: normal. Steht er noch, ins Protokoll.
+                if ((try? AlarmManager.shared.alarms) ?? []).contains(where: { $0.id == id }) {
+                    DiagStore.shared.log(.error, "alarmkit cancel failed \((error as NSError).code)")
+                }
+            }
         }
         #endif
         // Vor iOS 26 (oder nach gescheitertem AlarmKit) samt der Kette (`NotificationChain`).
@@ -37,7 +54,8 @@ extension BackupAlarm {
 
     #if canImport(AlarmKit)
     @available(iOS 26.0, *)
-    private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?) async {
+    private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?,
+                                  chain: Int) async -> Placement {
         do {
             if AlarmManager.shared.authorizationState != .authorized {
                 _ = try await AlarmManager.shared.requestAuthorization()
@@ -75,10 +93,11 @@ extension BackupAlarm {
                 sound: sound
             )
             _ = try await AlarmManager.shared.schedule(id: id, configuration: configuration)
+            return .alarmKit
         } catch {
-            // Erlaubnis fehlt oder AlarmKit lehnt ab: als Mitteilung (im Protokoll sichtbar).
+            // Erlaubnis fehlt oder AlarmKit lehnt ab: als Mitteilung (im Protokoll sichtbar), im Rahmen von `chain`.
             DiagStore.shared.log(.error, "alarmkit failed \((error as NSError).code), notification instead")
-            await scheduleNotification(id: id, at: date, tone: tone)
+            return .notifications(await scheduleNotification(id: id, at: date, tone: tone, count: chain))
         }
     }
     #endif
@@ -86,8 +105,14 @@ extension BackupAlarm {
     /// Vor iOS 26: zeitkritische Mitteilung; der Stummschalter macht sie lautlos (Nacht-Check weist darauf hin).
     /// Als Kette aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`, Kennungen «id», «id.1» … «id.3»): Wer
     /// die erste verschläft, wird von der nächsten geweckt. Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt
-    /// einer Reise, auch ohne dass die App läuft. `fixed`: zum festen Zeitpunkt (`pinNotification`).
-    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, fixed: Bool = false) async {
+    /// einer Reise, auch ohne dass die App läuft. `fixed`: zum festen Zeitpunkt (`pinNotification`). `count` = nur die
+    /// ersten so vielen der Kette (`NotificationBudget`), ohne die schon wartenden `skip`. - Returns: wie viele der
+    /// Kette danach stehen (gestellte und `skip`).
+    @discardableResult
+    func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, fixed: Bool = false,
+                              count: Int = NotificationChain.count, skip: Set<String> = []) async -> Int {
+        let members = Array(zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)).prefix(max(0, count)))
+        guard members.contains(where: { !skip.contains($0.0) }) else { return members.count }
         // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
         await NotificationLog.requestPermission("backup")
         let content = UNMutableNotificationContent()
@@ -96,10 +121,14 @@ extension BackupAlarm {
         content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
         content.interruptionLevel = .timeSensitive
         let now = Date()
-        for (member, at) in zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)) {
+        var placed = members.filter { skip.contains($0.0) }.count
+        for (member, at) in members where !skip.contains(member) {
             let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
-            await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup")
+            if await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup") {
+                placed += 1
+            }
         }
+        return placed
     }
 
     /// Vor iOS 26 beim Stopp: die Ketten (`NotificationChain`) des Mitklingel-Alarms `ringing` und jeder schon

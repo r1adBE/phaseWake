@@ -90,4 +90,5 @@
     <string name="diag_version">आवृत्ती %1$s</string>
     <string name="transient_alarm_running">तुमचा अलार्म आत्ता सुरू आहे.</string>
     <string name="transient_alarm_soon">तुमचा उठवण्याचा कालावधी त्याआधीच सुरू होतो.</string>
+    <string name="home_licenses_hint">परवाने: फोनच्या ॲपमध्ये</string>
 </resources>

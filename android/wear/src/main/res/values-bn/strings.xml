@@ -89,4 +89,5 @@
     <string name="diag_version">সংস্করণ %1$s</string>
     <string name="transient_alarm_running">তোমার অ্যালার্ম এখন চলছে।</string>
     <string name="transient_alarm_soon">তোমার জাগানোর সময়সীমা তার আগেই শুরু হয়।</string>
+    <string name="home_licenses_hint">লাইসেন্স: ফোনের অ্যাপে</string>
 </resources>

@@ -89,4 +89,5 @@
     <string name="diag_version">Verzió: %1$s</string>
     <string name="transient_alarm_running">Az ébresztőd éppen most fut.</string>
     <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
+    <string name="home_licenses_hint">Licencek: a telefonos alkalmazásban</string>
 </resources>

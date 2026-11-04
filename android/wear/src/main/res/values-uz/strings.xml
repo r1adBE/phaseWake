@@ -90,4 +90,5 @@
     <string name="diag_version">Versiya %1$s</string>
     <string name="transient_alarm_running">Budilniging hozir ishlayapti.</string>
     <string name="transient_alarm_soon">Uygʻotish oraligʻing undan oldin boshlanadi.</string>
+    <string name="home_licenses_hint">Litsenziyalar: telefondagi ilovada</string>
 </resources>
