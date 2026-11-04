@@ -20,14 +20,14 @@ jobs:
       run:
         working-directory: android
     steps:
-      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
-      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
+      - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
       - name: Upload-Schlüssel bereitstellen
         shell: bash
         env:
@@ -99,7 +99,7 @@ jobs:
           cp app/build/outputs/bundle/release/app-release.aab "$RUNNER_TEMP/aab/PhaseWake-Handy-${{ github.run_number }}.aab"
           cp wear/build/outputs/bundle/release/wear-release.aab "$RUNNER_TEMP/aab/PhaseWake-Uhr-${{ github.run_number }}.aab"
       - name: Bundles ablegen
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: phasewake-store-${{ github.run_number }}
           path: ${{ runner.temp }}/aab/*.aab
