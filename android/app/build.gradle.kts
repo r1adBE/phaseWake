@@ -115,6 +115,8 @@ val checkLicenseCopy = tasks.register("checkLicenseCopy") {
 }
 tasks.named("preBuild") { dependsOn(checkLicenseCopy) }
 
+apply(from = rootProject.file("gradle/robolectric.gradle.kts"))
+
 // Robolectric lädt die Klassen in einer eigenen Umgebung: ohne diese Einstellung zählt JaCoCo sie nicht mit.
 tasks.withType<Test>().configureEach {
     extensions.configure<JacocoTaskExtension> {
