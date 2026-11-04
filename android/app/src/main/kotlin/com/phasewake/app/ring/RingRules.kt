@@ -140,9 +140,12 @@ internal object RingRules {
      * Zweitwecker, der als Nächstes gilt: der früheste von
      * - dem nächsten Termin jedes Weckers in [backups] (erst nach [suppressed], siehe [BackupAlarm.watchHandled]),
      * - dem schon geplanten Zweitwecker [plannedId]/[plannedTarget], solange seine Nachfrist läuft ([AlarmSchedule.inGrace]),
-     * - demselben, wenn sich die Ortszeit seit der Planung in [plannedZone] verschoben hat und sein Fenster läuft ([keptBackup]),
      * - dem Probewecker oder Powernap [transient] (auch in der Nachfrist: er kommt nicht wieder), wenn nicht ausgesetzt.
      * Bei gleicher Zielzeit die kleinere Kennung. `null`, wenn keiner.
+     *
+     * Bleibt die Nacht [planned] über einen Zonenwechsel ([keptBackup]), gilt sie bis zum Klingeln bzw. Aussetzen allein
+     * (neben einem Probewecker oder Powernap): Ein anderer Wecker, dessen neue Ortszeit in ihr Fenster fällt, verdrängt
+     * sie nicht, er folgt danach.
      */
     fun backupPlan(
         backups: List<AlarmSpec>,
@@ -154,41 +157,54 @@ internal object RingRules {
         grace: Duration,
         zone: ZoneId,
         holidays: Set<LocalDate>,
-        plannedZone: ZoneId? = null,
+        planned: PlannedBackup? = null,
     ): WakePlan? {
-        val kept = keptBackup(backups, plannedId, plannedTarget, plannedZone, suppressed, now, grace, zone, holidays)
+        val kept = keptBackup(backups, planned, suppressed, now, grace, zone, holidays)
+        val extra = transient?.takeIf { plan ->
+            plan.target.plus(grace).isAfter(now) && (suppressed[plan.alarmId] ?: Instant.EPOCH) < plan.target
+        }
+        if (kept != null) return listOfNotNull(kept, extra).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
         val upcoming = backups.mapNotNull { spec ->
             AlarmSchedule.nextPlan(spec, maxOf(now, suppressed[spec.id] ?: Instant.EPOCH), zone, holidays)
         }
         val inGrace = backups.firstOrNull { it.id == plannedId }
             ?.let { AlarmSchedule.inGrace(it, plannedTarget, now, grace, zone, holidays, suppressed[it.id]) }
-        val extra = transient?.takeIf { plan ->
-            plan.target.plus(grace).isAfter(now) && (suppressed[plan.alarmId] ?: Instant.EPOCH) < plan.target
-        }
-        return (upcoming + listOfNotNull(inGrace, kept, extra)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+        return (upcoming + listOfNotNull(inGrace, extra)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
 
     /**
-     * Zeitzonenwechsel im laufenden Weckfenster (docs/ENTSCHEIDE.md, 04.11.2026): Wurde der geplante Zweitwecker
-     * [plannedId]/[plannedTarget] in der Zone [plannedZone] geplant, hat sich die Ortszeit seitdem verschoben
-     * ([AlarmSchedule.zoneShifted] gegenüber [zone]) und ist er dort eine begonnene
-     * Nacht ([AlarmSchedule.begunNight] mit der Nachfrist [grace], ausgesetzt bis [suppressed]), bleibt er zur geplanten
-     * absoluten Zeit. Sonst `null` (Ortszeit gleich, ohne Zone, Wecker geändert, Fenster noch nicht begonnen).
+     * Geplanter Zweitwecker für [keptBackup]: Wecker [alarmId], eingestellte Zielzeit [target] dieser Nacht (ohne
+     * Einschlaf-Modus), Zone der Planung [zone] (`null` bei älteren Daten) und, wenn die Uhr die Zielzeit vorverlegt hat,
+     * die frühere Zielzeit [earlierTarget] (`OnsetShift`).
+     */
+    data class PlannedBackup(val alarmId: String, val target: Instant, val zone: ZoneId?, val earlierTarget: Instant? = null)
+
+    /**
+     * Zeitzonenwechsel im laufenden Weckfenster (docs/ENTSCHEIDE.md, 04.11.2026): Hat sich die Ortszeit seit der
+     * Planung von [planned] verschoben ([AlarmSchedule.zoneShifted] gegenüber [zone]) und ist dessen eingestellte
+     * Zielzeit in der Zone der Planung eine begonnene Nacht ([AlarmSchedule.begunNight] mit der Nachfrist [grace],
+     * ausgesetzt bis [suppressed]), bleibt sie zur geplanten absoluten Zeit; eine frühere Zielzeit des Einschlaf-Modus
+     * legt der Aufrufer danach wie gewohnt darüber. Mit früherer Zielzeit beginnt die Nacht schon mit deren Fenster
+     * (frühere Zielzeit, höchstens der eingestellte Fensterbeginn, wie `OnsetShift.applyTo`). Sonst `null` (Ortszeit
+     * gleich, ohne Zone, Wecker geändert, Fenster noch nicht begonnen).
      */
     fun keptBackup(
         backups: List<AlarmSpec>,
-        plannedId: String?,
-        plannedTarget: Instant?,
-        plannedZone: ZoneId?,
+        planned: PlannedBackup?,
         suppressed: Map<String, Instant>,
         now: Instant,
         grace: Duration,
         zone: ZoneId,
         holidays: Set<LocalDate>,
     ): WakePlan? {
-        if (plannedZone == null || plannedTarget == null || !AlarmSchedule.zoneShifted(plannedTarget, plannedZone, zone)) return null
-        val spec = backups.firstOrNull { it.id == plannedId } ?: return null
-        return AlarmSchedule.begunNight(spec, plannedTarget, plannedZone, now, grace, holidays, suppressed[spec.id])
+        if (planned == null) return null
+        val plannedZone = planned.zone ?: return null
+        if (!AlarmSchedule.zoneShifted(planned.target, plannedZone, zone)) return null
+        val spec = backups.firstOrNull { it.id == planned.alarmId } ?: return null
+        val windowStart = AlarmSchedule.planAt(spec, planned.target).windowStart
+        val begunFrom = planned.earlierTarget?.let { minOf(windowStart, it) }
+        val at = if (begunFrom != null && !now.isBefore(begunFrom)) maxOf(now, windowStart) else now
+        return AlarmSchedule.begunNight(spec, planned.target, plannedZone, at, grace, holidays, suppressed[spec.id])
     }
 
     /**
