@@ -53,4 +53,13 @@ public enum WatchRules {
     public static func startsSession(_ plan: WakePlan, pending: Bool, now: Date, delay: TimeInterval) -> Bool {
         !pending || now < plan.target.addingTimeInterval(delay)
     }
+
+    /// Ob sich die Ortszeit seit dem Planen der Sitzung verschoben hat (Reise). Die Sitzung startet zu einem festen
+    /// Zeitpunkt, Wecker und Rückfall gelten in Ortszeit. Verglichen wird der Abstand zu UTC an der Zielzeit `target`
+    /// in der Zeitzone beim Planen (`plannedZone`) und in `zone`: Ein Wechsel ohne anderen Abstand (Zürich → Berlin)
+    /// zählt nicht, die Sommerzeit derselben Zone auch nicht. Ohne gemerkte Angabe oder bei unbekannter Zone `false`.
+    public static func zoneShifted(plannedZone: String?, target: Date?, zone: TimeZone) -> Bool {
+        guard let plannedZone, let target, let planned = TimeZone(identifier: plannedZone) else { return false }
+        return planned.secondsFromGMT(for: target) != zone.secondsFromGMT(for: target)
+    }
 }

@@ -91,4 +91,21 @@ final class WatchRulesTests: XCTestCase {
         XCTAssertFalse(WatchRules.startsSession(today, pending: true, now: at(28, 7, 1), delay: delay))
         XCTAssertTrue(WatchRules.startsSession(today, pending: false, now: at(28, 7, 20), delay: delay))
     }
+
+    /// Reise: Nur ein anderer Abstand zu UTC an der Zielzeit zählt als verschoben.
+    func testZoneShiftedOnlyWithOtherOffset() {
+        let target = at(28, 7, 0)
+        func shifted(_ planned: String?, _ now: String, target: Date? = target) -> Bool {
+            WatchRules.zoneShifted(plannedZone: planned, target: target, zone: TimeZone(identifier: now)!)
+        }
+        XCTAssertFalse(shifted("Europe/Zurich", "Europe/Zurich"))
+        XCTAssertFalse(shifted("Europe/Zurich", "Europe/Berlin"), "gleicher Abstand")
+        XCTAssertTrue(shifted("Europe/Zurich", "America/New_York"))
+        XCTAssertTrue(shifted("Europe/Zurich", "Europe/London"))
+        // Sommerzeit derselben Zone (25.10.2026 endet sie): kein Wechsel.
+        XCTAssertFalse(shifted("Europe/Zurich", "Europe/Zurich", target: at(24, 7, 0)))
+        XCTAssertFalse(shifted(nil, "America/New_York"), "nichts gemerkt")
+        XCTAssertFalse(shifted("Europe/Zurich", "America/New_York", target: nil))
+        XCTAssertFalse(shifted("Nowhere/Unknown", "America/New_York"), "unbekannte Zone")
+    }
 }

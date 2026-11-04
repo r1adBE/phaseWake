@@ -1,6 +1,10 @@
 # Offene Punkte
 
-Stand 03.11.2026, Phase Wake 16.2.2, Build 47 (App wie Build 46). Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 04.11.2026, Phase Wake 16.2.2, Build 51. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+
+## Erledigt am 04.11.2026 (Details in ENTSCHEIDE.md)
+
+- Review 04.11.: Verlauf der Apple Watch nicht in der Sicherung, Apple Watch nach einer Reise (einmal wecken, zur Ortszeit), Health Connect im Protokoll ohne App-Namen, CSV-Satz in DATENSCHUTZ.md, Fehler beim Rückfall der Apple Watch im Protokoll.
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 

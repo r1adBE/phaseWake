@@ -27,7 +27,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     func publish(armedTarget: Date?) {
         context[SyncKeys.armedTarget] = Int64((armedTarget?.timeIntervalSince1970 ?? 0) * 1000)
         if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watchShared.snapshot()
+            let snapshot = PhaseWakeStorage.watch.snapshot()
             context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
             context[SyncKeys.updatedAt] = snapshot.updatedAt
         }
@@ -59,7 +59,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// Beim Öffnen der App: Akkustand neu melden, auch wenn sich sonst nichts geändert hat.
     func publishBattery() {
         if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watchShared.snapshot()
+            let snapshot = PhaseWakeStorage.watch.snapshot()
             context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
             context[SyncKeys.updatedAt] = snapshot.updatedAt
         }

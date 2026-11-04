@@ -30,7 +30,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// App-Gruppe der Uhr-App und ihrer Komplikation.
     public static let watchGroup = "group.com.phasewake.app"
 
-    /// Speicher der Uhr: Wecker in der App-Gruppe, damit die Komplikation sie lesen kann.
+    /// Wecker in der App-Gruppe der Uhr, damit die Komplikation sie lesen kann. Die Uhr-App selbst nutzt dieselbe
+    /// Gruppe, legt ihre Nächte aber im von der Sicherung ausgenommenen Ordner ab (`PhaseWakeStorage.watch`).
     public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? .standard)
 
     /// Erzeugt einen Speicher. `directory` = Ordner für die Nächte (Standard: Application Support); Tests geben einen eigenen.

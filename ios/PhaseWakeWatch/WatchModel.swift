@@ -9,7 +9,7 @@ import WidgetKit
 final class WatchModel {
     static let shared = WatchModel()
 
-    let storage = PhaseWakeStorage.watchShared
+    let storage = PhaseWakeStorage.watch
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
     /// Schlafziel vom iPhone in Minuten, nur für den Einschlafpunkt auf dem Ring; ohne iPhone der Standard.

@@ -16,9 +16,26 @@ extension SmartAlarm {
             case .measuring, .ringing:
                 break // läuft schon
             case .idle, .waiting, .scheduled:
+                if self.replansAfterZoneChange(extendedRuntimeSession) { return }
                 self.startNight()
             }
         }
+    }
+
+    /// Reise: Hat sich die Ortszeit seit dem Planen verschoben (`WatchRules.zoneShifted`), startete die Sitzung zur
+    /// alten Zeit, der Rückfall weckt aber zur neuen Ortszeit – es weckte zweimal. Dann neu planen statt messen. Passt
+    /// die Sitzung danach nicht mehr (anderer Plan, App nicht aktiv), endet sie, und es weckt der Rückfall zur Ortszeit.
+    /// - Returns: ob die Sitzung hier endet.
+    func replansAfterZoneChange(_ started: WKExtendedRuntimeSession) -> Bool {
+        let saved = UserDefaults.standard.dictionary(forKey: Self.sessionZoneKey)
+        let target = (saved?["target"] as? Double).map { Date(timeIntervalSince1970: $0) }
+        guard WatchRules.zoneShifted(plannedZone: saved?["zone"] as? String, target: target, zone: .current) else { return false }
+        DiagStore.shared.log(.scheduled, "zone changed since session was planned, replan")
+        UserDefaults.standard.removeObject(forKey: Self.sessionZoneKey)
+        WatchModel.shared.reschedule()
+        if case .scheduled = phase, session === started { return false }
+        if session === started { invalidateSession() }
+        return true
     }
 
     nonisolated func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {

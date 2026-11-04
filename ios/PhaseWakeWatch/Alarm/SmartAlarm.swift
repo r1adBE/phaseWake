@@ -59,7 +59,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let transientFallbackId = "phasewake.fallback.transient"
     /// Mitteilung «Öffne Phase Wake auf der Uhr», wenn die Sitzung der Nacht nur bei offener App planbar ist.
     static let openAppId = "phasewake.openApp"
+    /// Früherer Ort des Klingel-Zustands in `UserDefaults`; wird beim Lesen in die Datei übernommen (`SmartAlarm+State`).
     static let stateKey = "smartAlarmNight"
+    /// Zeitzone und Zielzeit beim Planen der Sitzung, für die Prüfung nach einer Reise (`replansAfterZoneChange`).
+    static let sessionZoneKey = "sessionZone"
 
     /// Zustand der Nacht; gesetzt nur von `SmartAlarm` und seinen Erweiterungen (Dateien `SmartAlarm+…`).
     var phase: Phase = .idle
@@ -164,6 +167,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         session = newSession
         self.plan = plan
         phase = .scheduled(plan)
+        UserDefaults.standard.set(["zone": TimeZone.current.identifier, "target": plan.target.timeIntervalSince1970],
+                                  forKey: Self.sessionZoneKey)
         DiagStore.shared.log(.scheduled, "session \(Format.time(start)) target \(Format.time(plan.target))")
         publishArmed()
     }
@@ -286,7 +291,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         content.sound = .default
         content.interruptionLevel = .timeSensitive
         let request = UNNotificationRequest(identifier: id, content: content, trigger: LocalTrigger.at(date))
-        UNUserNotificationCenter.current().add(request)
+        // Scheitert das Stellen (z. B. Mitteilungen aus), fehlt der Rückfall: im Protokoll sichtbar machen.
+        UNUserNotificationCenter.current().add(request) { error in
+            guard let error else { return }
+            DiagStore.shared.log(.error, "fallback \(id) not set \((error as NSError).code)")
+        }
     }
 
     func removeFallback(_ ids: [String] = [SmartAlarm.fallbackId]) {

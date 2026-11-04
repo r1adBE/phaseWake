@@ -58,9 +58,10 @@ class HealthSleep(private val context: Context) {
                 records += response.records
                 pageToken = response.pageToken
             } while (pageToken != null)
-            // Für die Diagnose: wie viele Sitzungen aus welchen Apps (ohne Zeiten oder Werte).
-            val origins = records.groupingBy { it.metadata.dataOrigin.packageName }.eachCount()
-            diag("health read ${records.size} sessions $origins")
+            // Für die Diagnose: wie viele Sitzungen aus wie vielen Apps, davon von Phase Wake – ohne Zeiten, Werte oder
+            // Namen der Apps (DATENSCHUTZ.md: der Name der Quell-App wird nicht gespeichert).
+            val origins = records.map { it.metadata.dataOrigin.packageName }
+            diag("health read ${records.size} sessions, ${origins.toSet().size} sources, ${origins.count { it == context.packageName }} own")
             records.map { session ->
                 HealthSession(
                     start = session.startTime,
