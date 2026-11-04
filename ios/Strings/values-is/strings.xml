@@ -26,4 +26,6 @@
     <string name="history_empty_no_data_apple">Engin svefngögn frá Apple Health enn. Svefninn þarf að skrá þar, til dæmis með Apple Watch, og Phase Wake þarf að fá að lesa hann í Health-forritinu.</string>
     <string name="backup_health_hint_apple">Nætur úr öðrum forritum (t.d. Apple Health) eru ekki afritaðar – þær haldast þar og birtast aftur um leið og aðgangur er veittur.</string>
     <string name="health_rationale_apple">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Apple Health) vistar. Þau birtast í ferlinum þínum, líka til samanburðar við næturnar sem Phase Wake vakti þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
+    <string name="check_watch_notifications">Tilkynningar á úrinu</string>
+    <string name="check_watch_notifications_problem">Leyfðu tímanæmar tilkynningar frá Phase Wake á Apple Watch-úrinu þínu. Annars getur það ekki vakið þig með tilkynningu þegar engin mæling er í gangi.</string>
 </resources>

@@ -24,4 +24,6 @@
     <string name="history_empty_no_data_apple">Nog geen slaapdata van Apple Health nie. Slaap moet daar aangeteken word, byvoorbeeld deur jou Apple Watch, en Phase Wake moet dit in die Health-app mag lees.</string>
     <string name="backup_health_hint_apple">Nagte uit ander apps (bv. Apple Health) word nie gerugsteun nie – hulle bly daar en verskyn weer sodra toegang gegee is.</string>
     <string name="health_rationale_apple">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Apple Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
+    <string name="check_watch_notifications">Kennisgewings op die horlosie</string>
+    <string name="check_watch_notifications_problem">Laat tydsensitiewe kennisgewings vir Phase Wake op jou Apple Watch toe. Anders kan dit jou nie per kennisgewing wek as geen meting loop nie.</string>
 </resources>

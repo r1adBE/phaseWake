@@ -174,7 +174,8 @@ extension BackupAlarm {
         }
         #endif
         let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-        ids.formUnion(requests.compactMap { UUID(uuidString: $0.identifier) })
+        // Vor iOS 26 eine Kette aus Mitteilungen: Steht noch eine davon, gilt die Sicherung als gestellt.
+        ids.formUnion(requests.compactMap { UUID(uuidString: NotificationChain.baseId($0.identifier)) })
         return ids
     }
 

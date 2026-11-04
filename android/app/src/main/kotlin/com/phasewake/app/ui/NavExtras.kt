@@ -33,6 +33,7 @@ import kotlinx.coroutines.withContext
 internal object ExtraRoutes {
     const val DIAGNOSTICS = "diagnostics"
     const val ONBOARDING = "onboarding"
+    const val LICENSES = "licenses"
 
     /** Detailseite einer Nacht; `key` = [com.phasewake.app.core.HistoryItem.key]. */
     const val NIGHT = "night?key={key}"
@@ -113,6 +114,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
         holidays = holidays.takeIf { countries.isNotEmpty() },
         backup = { BackupRows() },
         onOnboarding = { actions.nav.navigate(ExtraRoutes.ONBOARDING) },
+        onLicenses = { actions.nav.navigate(ExtraRoutes.LICENSES) },
         diagnostics = data.diagnostics,
         onDiagnostics = { actions.nav.navigate(ExtraRoutes.DIAGNOSTICS) },
         onUnlockDiagnostics = { app.appScope.launch { app.settings.setDiagnostics(true) } },

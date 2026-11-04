@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Belum ada data tidur daripada Apple Health. Tidur mesti direkodkan di sana, contohnya oleh Apple Watch awak, dan Phase Wake mesti dibenarkan membacanya dalam app Kesihatan.</string>
     <string name="backup_health_hint_apple">Malam daripada apl lain (cth. Apple Health) tidak disandarkan – ia kekal di sana dan muncul semula sebaik sahaja akses diberikan.</string>
     <string name="health_rationale_apple">Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Apple Health). Data ini dipaparkan dalam sejarah awak, juga untuk dibandingkan dengan malam-malam Phase Wake mengejutkan awak. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak.</string>
+    <string name="check_watch_notifications">Pemberitahuan pada jam tangan</string>
+    <string name="check_watch_notifications_problem">Benarkan pemberitahuan sensitif masa untuk Phase Wake pada Apple Watch awak. Jika tidak, jam tidak dapat membangunkan awak melalui pemberitahuan apabila tiada pengukuran berjalan.</string>
 </resources>

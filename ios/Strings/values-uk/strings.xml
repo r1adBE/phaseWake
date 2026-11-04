@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Даних про сон з Apple Health поки немає. Сон має записуватися там, наприклад твоїм Apple Watch, а Phase Wake потрібно дозволити читати його в застосунку «Здоровʼя».</string>
     <string name="backup_health_hint_apple">Ночі з інших застосунків (напр. Apple Health) не потрапляють до резервної копії – вони залишаються там і знову з\'являться, щойно буде надано доступ.</string>
     <string name="health_rationale_apple">Phase Wake може читати дані про сон, які зберігає твій застосунок для здоров\'я (наприклад, Apple Health). Вони показуються в твоїй історії, зокрема для порівняння з ночами, коли тебе будив Phase Wake. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон.</string>
+    <string name="check_watch_notifications">Сповіщення на годиннику</string>
+    <string name="check_watch_notifications_problem">Дозволь термінові сповіщення Phase Wake на своєму Apple Watch. Інакше годинник не зможе розбудити тебе сповіщенням, коли вимірювання не триває.</string>
 </resources>

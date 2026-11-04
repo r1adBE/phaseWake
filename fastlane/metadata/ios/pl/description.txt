@@ -1,4 +1,4 @@
-Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokojny – wtedy prawdopodobnie śpisz płytko. Najpóźniej dokładnie o czasie docelowym. W tym celu Apple Watch śledzi ruch i tętno. Na Apple Watch Phase Wake mierzy ostatnie 25 minut przed czasem docelowym. Nie rozpozna, czy twoja noc była za krótka.
+Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokojny – wtedy prawdopodobnie śpisz płytko. Najpóźniej o czasie docelowym; jeśli na Apple Watch nie trwa pomiar, około 1 minutę później powiadomieniem. W tym celu Apple Watch śledzi ruch i tętno. Na Apple Watch Phase Wake mierzy ostatnie 25 minut przed czasem docelowym. Nie rozpozna, czy twoja noc była za krótka.
 
 Jak to działa
 • Wybierz godzinę budzenia i okno (do 30 min), załóż zegarek, śpij.
@@ -9,7 +9,7 @@ Jak to działa
 Zaprojektowany, żeby nie zaspać
 • Kontrola nocy przed snem: zegarek połączony, uprawnienia nadane, bateria wystarczająco naładowana.
 • Testuj budzik: „Testuj za 2 minuty” z wynikiem krok po kroku.
-• Od iOS 26 budzik zapasowy na iPhonie dzwoni także w trybie Nie przeszkadzać i w trybie skupienia Sen.
+• Od iOS 26 budzik zapasowy na iPhonie dzwoni także w trybie Nie przeszkadzać i w trybie skupienia Sen. Przed iOS 26 jest to powiadomienie, które wycisza przełącznik wyciszania.
 • Pomiń następnym razem i nie budź w święta – święta dla ponad 150 krajów i ich regionów, bez internetu.
 
 Lepszy sen

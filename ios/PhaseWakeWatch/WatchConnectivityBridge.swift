@@ -1,5 +1,6 @@
 import Foundation
 import PhaseWakeCore
+import UserNotifications
 import WatchConnectivity
 import WatchKit
 
@@ -54,6 +55,42 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             context[SyncKeys.batteryAt] = nil
         }
         try? WCSession.default.updateApplicationContext(context)
+    }
+
+    /// Zuletzt protokollierter Stand der Mitteilungen (Diagnose nur bei einer Änderung). Nur auf dem Main-Thread.
+    private var loggedNotifications: WatchNotifications?
+
+    /// Erlaubnis für Mitteilungen (Rückfall-Wecker) ans iPhone melden (`SyncKeys.watchNotifications`), mit einer Zeile im
+    /// Protokoll, wenn sie sich ändert. Noch nicht gefragt: nichts melden, das iPhone warnt dann nicht.
+    @MainActor
+    func publishNotificationState() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        let state: WatchNotifications?
+        switch settings.authorizationStatus {
+        case .authorized:
+            state = settings.timeSensitiveSetting == .disabled ? .notTimeSensitive : .allowed
+        case .denied, .provisional:
+            state = .blocked
+        case .notDetermined:
+            state = nil
+        @unknown default:
+            state = nil
+        }
+        if let state, state != loggedNotifications {
+            loggedNotifications = state
+            let text = switch state {
+            case .allowed: "allowed"
+            case .blocked: "blocked"
+            case .notTimeSensitive: "not time-sensitive"
+            }
+            DiagStore.shared.log(state.isProblem ? .error : .sync, "notifications \(text)")
+        }
+        if let state {
+            context[SyncKeys.watchNotifications] = state.rawValue
+        } else {
+            context[SyncKeys.watchNotifications] = nil
+        }
+        publishBattery()
     }
 
     /// Beim Öffnen der App: Akkustand neu melden, auch wenn sich sonst nichts geändert hat.

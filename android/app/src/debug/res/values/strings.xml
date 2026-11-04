@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Testversion (Debug, App-ID mit «.test»): eigener Name, damit sie neben der Store-App unterscheidbar ist. -->
+<resources>
+    <string name="app_name" translatable="false">Phase Wake Test</string>
+</resources>

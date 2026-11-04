@@ -5,9 +5,11 @@ extension SmartAlarm {
     // MARK: Wecken
 
     func ring(_ reason: WakeReason) {
-        if phase.isMeasuring { DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs") }
+        logMeasureEnd()
         stopSensors()
-        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem.
+        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung, fallen
+        // nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
+        if session?.state == .running { removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId)) }
         self.reason = reason
         if firstRing == nil { firstRing = Date() }
         phase = .ringing(reason, snoozesLeft: snoozesLeft)
@@ -37,7 +39,9 @@ extension SmartAlarm {
     /// seiner Nacht nicht geweckt (geplant, wartend oder messend nach der Zielzeit, Schlummer-Sitzung nicht gestartet),
     /// klingelt die Uhr jetzt selbst: Weckbildschirm mit Stopp und Schlummern, die Nacht wird wie sonst abgeschlossen.
     /// Gehört er zu einer anderen Nacht (Probewecker neben dem echten Wecker, abgebrochene Sitzung), nur vibrieren.
-    func fallbackArrived(_ id: String) {
+    /// Jede Mitteilung der Kette (`NotificationChain`) gilt wie die erste.
+    func fallbackArrived(_ notificationId: String) {
+        let id = NotificationChain.baseId(notificationId)
         let now = Date()
         // Zielzeit da, aber höchstens `ringLimit` zurück (ein alter Rückfall, spät angetippt, weckt nicht mehr).
         func due(_ night: WakePlan) -> Bool {
@@ -131,11 +135,25 @@ extension SmartAlarm {
 
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
     func dismiss(notifyPhone: Bool = true) {
-        guard phase.isRinging || phase.isSnoozed else { return }
+        guard phase.isRinging || phase.isSnoozed else {
+            // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp (vom iPhone) beendet die Kette.
+            removeInterrupted()
+            return
+        }
         DiagStore.shared.log(.stop, notifyPhone ? "watch" : "phone")
-        // Nur den Rückfall dieser Nacht: Beim Probewecker oder Powernap bleibt der des echten Weckers stehen.
-        removeFallback([Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId), Self.interruptedId])
+        // Nur den Rückfall dieser Nacht: Beim Probewecker oder Powernap bleibt der des echten Weckers stehen. Mit der
+        // ganzen Kette, wartend und schon zugestellt.
+        let ids = [Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId), Self.interruptedId]
+        removeFallback(ids)
+        removeDeliveredFallback(ids)
         finish(notifyPhone: notifyPhone)
+    }
+
+    /// Kette nach abgebrochener Sitzung (`interruptedId`) beenden, wartend und zugestellt: Stopp vom iPhone oder Tipp auf
+    /// eine ihrer Mitteilungen (die Nacht ist dann schon abgeschlossen, es gibt keinen Weckbildschirm mehr).
+    func removeInterrupted() {
+        removeFallback([Self.interruptedId])
+        removeDeliveredFallback([Self.interruptedId])
     }
 
     /// Sitzung weg oder Zeitgrenze erreicht, während geklingelt oder geschlummert wird: per Mitteilung

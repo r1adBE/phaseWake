@@ -1,4 +1,4 @@
-Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Til det følger Apple Watch med på bevegelse og puls. På Apple Watch måler Phase Wake de siste 25 minuttene før ønsket tid. Den kan ikke se om natten din var for kort.
+Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest på ønsket tid; pågår det ingen måling på Apple Watch, omtrent 1 minutt senere med et varsel. Til det følger Apple Watch med på bevegelse og puls. På Apple Watch måler Phase Wake de siste 25 minuttene før ønsket tid. Den kan ikke se om natten din var for kort.
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
@@ -9,7 +9,7 @@ Slik fungerer det
 Laget så du ikke forsover deg
 • Nattsjekk før leggetid: klokka tilkoblet, tillatelser gitt, nok batteri.
 • Testalarm «Test om 2 minutter» med resultat steg for steg.
-• Fra iOS 26 ringer reservealarmen på iPhone også med Ikke forstyrr og Søvn-fokuset.
+• Fra iOS 26 ringer reservealarmen på iPhone også med Ikke forstyrr og Søvn-fokuset. Før iOS 26 er den et varsel som lydløsbryteren demper.
 • Hopp over neste gang, og ikke vekk på helligdager – helligdager for over 150 land og deres regioner, uten nett.
 
 Sov bedre

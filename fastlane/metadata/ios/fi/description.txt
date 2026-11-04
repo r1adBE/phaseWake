@@ -1,4 +1,4 @@
-Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Sitä varten Apple Watch seuraa liikettä ja sykettä. Apple Watchilla Phase Wake mittaa viimeiset 25 minuuttia ennen tavoiteaikaa. Se ei tunnista, jäikö yösi liian lyhyeksi.
+Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään tavoiteaikana; jos Apple Watchilla ei ole mittaus käynnissä, noin 1 minuutin kuluttua ilmoituksella. Sitä varten Apple Watch seuraa liikettä ja sykettä. Apple Watchilla Phase Wake mittaa viimeiset 25 minuuttia ennen tavoiteaikaa. Se ei tunnista, jäikö yösi liian lyhyeksi.
 
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
@@ -9,7 +9,7 @@ Näin se toimii
 Tehty, ettet nuku pommiin
 • Yötarkistus ennen nukkumaanmenoa: kello yhdistetty, luvat annettu, akkua riittävästi.
 • Testiherätys ”Testaa 2 minuutin päästä” ja tulos vaihe vaiheelta.
-• iOS 26:sta alkaen iPhonen varaherätys soi myös Älä häiritse -tilassa ja Nukkuminen-keskittymistilassa.
+• iOS 26:sta alkaen iPhonen varaherätys soi myös Älä häiritse -tilassa ja Nukkuminen-keskittymistilassa. Ennen iOS 26:ta se on ilmoitus, jonka äänetön-kytkin mykistää.
 • Ohita seuraava kerta äläkä herätä juhlapäivinä – juhlapäivät yli 150 maalle ja niiden alueille, ilman internetiä.
 
 Nuku paremmin

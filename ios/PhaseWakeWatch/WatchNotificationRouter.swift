@@ -1,4 +1,5 @@
 import Foundation
+import PhaseWakeCore
 import UserNotifications
 
 /// Mitteilungen der Uhr-App. Ohne diesen Delegate zeigt watchOS eine Mitteilung bei offener App gar nicht – ausgerechnet
@@ -19,10 +20,14 @@ final class WatchNotificationRouter: NSObject, UNUserNotificationCenterDelegate,
         return [.banner, .sound]
     }
 
-    /// Tipp auf einen Rückfall: Weckbildschirm mit Stopp und Schlummern, falls die Sitzung nicht geweckt hat.
+    /// Tipp auf einen Rückfall: Weckbildschirm mit Stopp und Schlummern, falls die Sitzung nicht geweckt hat. Ein Tipp
+    /// auf das Wecken nach abgebrochener Sitzung heisst wach: Der Rest seiner Kette fällt weg.
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let id = response.notification.request.identifier
         guard Self.isFallback(id), response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
-        await MainActor.run { SmartAlarm.shared.fallbackArrived(id) }
+        await MainActor.run {
+            SmartAlarm.shared.fallbackArrived(id)
+            if NotificationChain.baseId(id) == SmartAlarm.interruptedId { SmartAlarm.shared.removeInterrupted() }
+        }
     }
 }

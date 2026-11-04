@@ -33,7 +33,7 @@ extension SettingsFile {
         return file
     }()
 
-    /// Schlüssel, die bis Build 54 in den `UserDefaults` der App-Gruppe lagen (`PhaseWakeStorage`).
+    /// Schlüssel, die in früheren Versionen in den `UserDefaults` der App-Gruppe lagen (`PhaseWakeStorage`).
     static let alarmKeys = ["alarms", "alarmsUpdatedAt", "nightDoneUntilByAlarm", "nightDoneUntil", "holidays", "sleepGoalMinutes"]
 
     /// Merker der laufenden Planung als Datei «session.v1» im ausgenommenen Ordner `PrivateFiles`: Zeitzone des Plans
@@ -46,6 +46,6 @@ extension SettingsFile {
         return file
     }()
 
-    /// Schlüssel, die bis Build 54 in `UserDefaults.standard` der Uhr lagen.
+    /// Schlüssel, die in früheren Versionen in `UserDefaults.standard` der Uhr lagen.
     static let sessionKeys = ["sessionZone", "transientPlan", "catchUpWindow"]
 }

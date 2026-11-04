@@ -35,9 +35,15 @@ final class BackupAlarm {
     private static let snoozeSafetyDelay: TimeInterval = 90
     /// So weit im Voraus steht die Sicherung – auch wenn die App tagelang nicht geöffnet wird (14 Tage).
     static let horizon: TimeInterval = 14 * 24 * 3600
-    /// Höchstens so viele Sicherungen: Vor iOS 26 sind es Mitteilungen, und iOS behält nur 64 wartende je App
-    /// (dazu kommen Bettzeit-Erinnerungen, Wochenrückblick, Schlummern und Probewecker).
-    private static let maxSlots = 40
+    /// Höchstens so viele Sicherungen. Vor iOS 26 ist jede eine Kette aus 4 Mitteilungen (`NotificationChain`), und iOS
+    /// behält nur 64 wartende je App: 12 × 4 = 48, dazu Bettzeit-Erinnerungen, Wochenrückblick, Mitklingeln, Schlummern
+    /// und Probewecker. Ab iOS 26 (AlarmKit) 40.
+    private static var maxSlots: Int {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) { return 40 }
+        #endif
+        return 12
+    }
     /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
     private var ringingId: UUID? {
         get { storedId(Self.ringingKey) }
@@ -237,19 +243,15 @@ final class BackupAlarm {
                 stoppedByApp.insert(alarm.id)
                 try? AlarmManager.shared.stop(id: alarm.id)
             }
-            return
         }
         #endif
-        guard ownsRing, let id else { return }
-        let delivered = await UNUserNotificationCenter.current().deliveredNotifications().map(\.request.identifier)
-        if delivered.contains(id.uuidString) { PhoneModel.shared.transient.phoneAlerted(id.uuidString) }
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id.uuidString])
+        // Vor iOS 26, und ab iOS 26 für Alarme, die nach gescheitertem AlarmKit als Mitteilung kamen.
+        await removeNotificationChains(ringing: ownsRing ? id : nil, night: night)
     }
 
     /// Ob der iPhone-Alarm `id` zur Nacht `night` gehört; `night == nil` (Stopp am iPhone) trifft alles. Ist die Nacht
     /// des Alarms nicht gemerkt, gilt `unknown`.
-    private func belongs(_ id: UUID?, to night: RingNight?, unknown: Bool) -> Bool {
+    func belongs(_ id: UUID?, to night: RingNight?, unknown: Bool) -> Bool {
         guard let id else { return false }
         guard let night else { return true }
         return self.night(for: id).map(night.same) ?? unknown

@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Chưa có dữ liệu giấc ngủ từ Apple Health. Giấc ngủ cần được ghi lại ở đó, ví dụ bằng Apple Watch của bạn, và Phase Wake cần được phép đọc dữ liệu này trong ứng dụng Sức khỏe.</string>
     <string name="backup_health_hint_apple">Các đêm từ ứng dụng khác (vd. Apple Health) không được sao lưu – chúng vẫn ở đó và hiện lại ngay khi bạn cấp quyền truy cập.</string>
     <string name="health_rationale_apple">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Apple Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn, cũng để so sánh với những đêm Phase Wake đã đánh thức bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="check_watch_notifications">Thông báo trên đồng hồ</string>
+    <string name="check_watch_notifications_problem">Hãy cho phép thông báo nhạy cảm về thời gian của Phase Wake trên Apple Watch của bạn. Nếu không, đồng hồ không thể đánh thức bạn bằng thông báo khi không có phép đo nào đang chạy.</string>
 </resources>

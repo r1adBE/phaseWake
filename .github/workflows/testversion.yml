@@ -62,6 +62,8 @@ jobs:
 
           - **PhaseWake-Handy.apk**: auf dem Android-Handy öffnen und installieren.
           - **PhaseWake-Uhr.apk**: auf die Galaxy Watch mit \`adb install -r PhaseWake-Uhr.apk\` (Anleitung: docs/TESTEN.md).
+
+          Eigene Kennung (com.phasewake.app.test): installiert sich neben der Store-Version. Eine ältere Testversion einmal deinstallieren (vorher sichern).
           NOTES
           gh release create test PhaseWake-Handy.apk PhaseWake-Uhr.apk \
             --prerelease --target "$BUILD_SHA" \

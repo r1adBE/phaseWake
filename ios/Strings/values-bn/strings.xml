@@ -24,4 +24,6 @@
     <string name="history_empty_no_data_apple">Apple Health থেকে এখনও ঘুমের কোনো ডেটা নেই। ঘুম সেখানে রেকর্ড হতে হবে, যেমন তোমার Apple Watch দিয়ে, আর Health অ্যাপে Phase Wake-কে তা পড়ার অনুমতি দিতে হবে।</string>
     <string name="backup_health_hint_apple">অন্য অ্যাপের রাত (যেমন Apple Health) ব্যাকআপ হয় না – সেগুলো সেখানেই থাকে এবং অনুমতি দিলে আবার দেখা যায়।</string>
     <string name="health_rationale_apple">তোমার স্বাস্থ্য অ্যাপ (যেমন Apple Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয়, যেসব রাতে Phase Wake তোমাকে জাগিয়েছে সেগুলোর সঙ্গে তুলনার জন্যও। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
+    <string name="check_watch_notifications">ঘড়িতে নোটিফিকেশন</string>
+    <string name="check_watch_notifications_problem">তোমার Apple Watch-এ Phase Wake-এর জন্য সময়-সংবেদনশীল নোটিফিকেশন চালু করো। নইলে কোনো পরিমাপ না চললে ঘড়ি তোমাকে নোটিফিকেশন দিয়ে জাগাতে পারবে না।</string>
 </resources>

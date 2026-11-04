@@ -16,8 +16,8 @@ final class PrivateNotes: @unchecked Sendable {
         /// Haken der Abendroutine je Nachtdatum (`Routine.encodeTicks`).
         case routineTicks = "routine-ticks.v1"
 
-        /// Schlüssel in `UserDefaults` früherer Versionen: Notizen bis 16.2 (`PhaseWakeStorage`), Abendroutine bis
-        /// Build 45 (`PhoneModel`).
+        /// Schlüssel in `UserDefaults` früherer Versionen: Notizen bis 16.2 (`PhaseWakeStorage`),
+        /// Abendroutine (`PhoneModel`).
         var legacyKey: String {
             switch self {
             case .notes: "sleepNotes"

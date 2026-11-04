@@ -26,4 +26,6 @@
     <string name="history_empty_no_data_apple">Apple Healthist pole veel uneandmeid. Uni tuleb seal salvestada, näiteks sinu Apple Watchiga, ja Phase Wake peab saama seda rakenduses Tervis lugeda.</string>
     <string name="backup_health_hint_apple">Teiste rakenduste (nt Apple Health) öid ei varundata – need jäävad sinna ja ilmuvad uuesti, kui juurdepääs on antud.</string>
     <string name="health_rationale_apple">Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Apple Health) salvestab. Neid näidatakse sinu ajaloos, ka võrdluseks öödega, mil Phase Wake sind äratas. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
+    <string name="check_watch_notifications">Märguanded kellas</string>
+    <string name="check_watch_notifications_problem">Luba Phase Wake’ile oma Apple Watchis ajatundlikud märguanded. Muidu ei saa kell sind märguandega äratada, kui mõõtmine ei käi.</string>
 </resources>

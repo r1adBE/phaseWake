@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Apple Healthista ei ole vielä unitietoja. Uni täytyy tallentaa sinne, esimerkiksi Apple Watchillasi, ja Phase Wakella täytyy olla Terveys-apissa lupa lukea se.</string>
     <string name="backup_health_hint_apple">Muiden sovellusten (esim. Apple Health) öitä ei varmuuskopioida – ne pysyvät siellä ja näkyvät taas, kun käyttöoikeus on annettu.</string>
     <string name="health_rationale_apple">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Apple Health) tallentaa. Ne näytetään historiassasi, myös vertailuun öihin, joina Phase Wake herätti sinut. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
+    <string name="check_watch_notifications">Ilmoitukset kellossa</string>
+    <string name="check_watch_notifications_problem">Salli Phase Waken aikasidonnaiset ilmoitukset Apple Watchissasi. Muuten kello ei voi herättää sinua ilmoituksella, kun mittaus ei ole käynnissä.</string>
 </resources>

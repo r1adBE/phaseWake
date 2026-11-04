@@ -26,4 +26,6 @@
     <string name="history_empty_no_data_apple">No sleep data from Apple Health yet. Sleep has to be recorded there, for example by your Apple Watch, and Phase Wake must be allowed to read it in the Health app.</string>
     <string name="backup_health_hint_apple">Nights from other apps (e.g. Apple Health) aren’t backed up – they stay there and show up again once access is granted.</string>
     <string name="health_rationale_apple">Phase Wake can read the sleep data that your health app (for example Apple Health) stores. It is shown in your history, also for comparison with the nights Phase Wake woke you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
+    <string name="check_watch_notifications">Notifications on the watch</string>
+    <string name="check_watch_notifications_problem">Allow time-sensitive notifications for Phase Wake on your Apple Watch. Otherwise it can’t wake you by notification when no measurement is running.</string>
 </resources>

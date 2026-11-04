@@ -52,7 +52,7 @@ Für spätere Testversionen genügen Schritt 6 (`adb connect …`) und Schritt 3
 
 1. Auf dem Handy muss der Nacht-Check **«Bereit für die Nacht»** zeigen.
 2. Wecker auf **jetzt + 15 Minuten** stellen, Fenster **10 Minuten**.
-3. Nach 5 Minuten beginnt die Uhr zu messen (Symbol in der Statusleiste der Uhr). Spätestens zur Zielzeit vibriert sie.
+3. Nach 5 Minuten beginnt die Uhr zu messen (Symbol in der Statusleiste der Uhr). Spätestens zur Zielzeit vibriert sie (Galaxy Watch; die Apple Watch ohne laufende Messung etwa 1 Minute danach per Mitteilung).
 4. Danach auf dem Handy unter «Dein Morgen» das Befinden antippen; im Verlauf steht die Nacht.
 
 Schneller: In den Einstellungen oder auf dem Nacht-Check **«In 2 Minuten testen»**. Die Uhr klingelt nach 2 Minuten (ohne Schlummern, beenden durch Halten), danach zeigt das Handy, was geklappt hat. Der Test erscheint nicht im Verlauf.
@@ -96,5 +96,5 @@ Bei einem Fehler: In den Einstellungen 7× auf die Versionszeile tippen, dann «
 
 ## Hinweise
 
-- Testversionen sind mit einem öffentlichen Test-Schlüssel signiert (`android/testing`). Eine spätere Store-Version lässt sich deshalb nicht darüber installieren: vorher die Testversion deinstallieren.
+- Testversionen sind mit einem öffentlichen Test-Schlüssel signiert (`android/testing`) und haben eine eigene Kennung (`com.phasewake.app.test`): Sie lassen sich neben der Store-Version installieren. Eine ältere Testversion (noch mit der Kennung der Store-Version) einmal auf Handy und Uhr deinstallieren, vorher eine Sicherung anlegen.
 - Kabelloses Debugging nach dem Test wieder ausschalten; es braucht Akku.

@@ -26,4 +26,6 @@
     <string name="history_empty_no_data_apple">Apple Health-ээс одоогоор нойрны өгөгдөл алга. Нойр тэнд бүртгэгдсэн байх ёстой, жишээ нь чиний Apple Watch-аар, мөн Phase Wake-д Health апп дээр үүнийг унших зөвшөөрөл өгсөн байх ёстой.</string>
     <string name="backup_health_hint_apple">Бусад аппын шөнүүд (жишээ нь Apple Health) нөөцлөгдөхгүй – тэнд хэвээр үлдэж, зөвшөөрөл өгмөгц дахин харагдана.</string>
     <string name="health_rationale_apple">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Apple Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд Phase Wake чамайг сэрээсэн шөнүүдтэй харьцуулахад ч ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
+    <string name="check_watch_notifications">Цаган дээрх мэдэгдэл</string>
+    <string name="check_watch_notifications_problem">Apple Watch дээрээ Phase Wake-ийн цаг хугацааны чухал мэдэгдлийг зөвшөөр. Эс бөгөөс хэмжилт явагдахгүй үед цаг чамайг мэдэгдлээр сэрээж чадахгүй.</string>
 </resources>

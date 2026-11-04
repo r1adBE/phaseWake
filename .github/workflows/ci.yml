@@ -51,9 +51,14 @@ jobs:
         run: |
           python3 ../.github/scripts/coverage_check.py "Kotlin-Kern" 90 core/build/reports/jacoco/test/jacocoTestReport.xml
           python3 ../.github/scripts/coverage_check.py "Android shared" 70 $(find shared/build/reports/coverage -name "*.xml" | head -1)
-          # Handy und Uhr: nur zur Information, ohne Mindestwert (Review K-10).
-          python3 ../.github/scripts/coverage_check.py "Android Handy" 0 $(find app/build/reports/coverage -name "*.xml" | head -1)
-          python3 ../.github/scripts/coverage_check.py "Android Uhr" 0 $(find wear/build/reports/coverage -name "*.xml" | head -1)
+          # Handy und Uhr gesamt: nur zur Information (Review K-10). Wecken und Planen je Paket mit Mindestwert (Audit M-06).
+          app_report=$(find app/build/reports/coverage -name "*.xml" | head -1)
+          wear_report=$(find wear/build/reports/coverage -name "*.xml" | head -1)
+          python3 ../.github/scripts/coverage_check.py "Android Handy" 0 "$app_report"
+          python3 ../.github/scripts/coverage_check.py "Android Uhr" 0 "$wear_report"
+          python3 ../.github/scripts/coverage_check.py "Handy Zweitwecker (ring)" 70 --package com/phasewake/app/ring "$app_report"
+          python3 ../.github/scripts/coverage_check.py "Uhr Wecken (wake)" 70 --package com/phasewake/app/wear/wake "$wear_report"
+          python3 ../.github/scripts/coverage_check.py "Uhr Planen (schedule)" 70 --package com/phasewake/app/wear/schedule "$wear_report"
       - name: Fehler als Annotation
         if: failure()
         shell: bash

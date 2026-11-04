@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Apple Health-ից դեռ քնի տվյալներ չկան։ Քունը պետք է գրանցվի այնտեղ, օրինակ՝ քո Apple Watch-ով, և Phase Wake-ին պետք է թույլատրվի կարդալ այն Health հավելվածում։</string>
     <string name="backup_health_hint_apple">Այլ հավելվածների գիշերները (օր.՝ Apple Health) չեն պահուստավորվում – դրանք մնում են այնտեղ և նորից երևում են, երբ թույլտվությունը տրվի։</string>
     <string name="health_rationale_apple">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Apple Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ, նաև համեմատելու համար այն գիշերների հետ, երբ քեզ արթնացրել է Phase Wake-ը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
+    <string name="check_watch_notifications">Ծանուցումներ ժամացույցում</string>
+    <string name="check_watch_notifications_problem">Թույլատրիր Phase Wake-ի ժամանակազգայուն ծանուցումները քո Apple Watch-ում։ Այլապես այն չի կարող քեզ ծանուցմամբ արթնացնել, երբ չափում չի ընթանում։</string>
 </resources>

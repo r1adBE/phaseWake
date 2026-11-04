@@ -46,6 +46,11 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - Produktivcode liest keine Build-Nummer (`versionCode`, `longVersionCode`, `CFBundleVersion`) und enthält keine
   Versions- oder Build-Literale. Die Versionsbezeichnung (`versionName`, `CFBundleShortVersionString`) darf nur die
   Einstellungsseite anzeigen.
+- Kennung: Store-Version `com.phasewake.app`, Testversionen (Debug) von Handy und Uhr `com.phasewake.app.test`
+  (gleich auf beiden, Pflicht für den Data Layer). Die Testversion installiert sich neben der Store-Version; eine
+  ältere Testversion mit der Store-Kennung einmal deinstallieren (Daten vorher als `.pwbak` sichern). Im Code nie die
+  Kennung ausschreiben, sondern `${applicationId}` bzw. `context.packageName`; `release_check.py` prüft die Kennung
+  des Release-Builds. Namespace bleibt `com.phasewake.app`.
 - Verhalten hängt nie von der eigenen Version ab. Formate tragen ihre eigene Formatversion (z. B. `phasewake-alarms 1`)
   und lesen ältere Stände tolerant.
 
@@ -56,7 +61,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | Kotlin-Kern `android/core` | **90 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Swift-Kern `PhaseWakeCore` | **90 %** | `swift test --enable-code-coverage` + `.github/scripts/coverage_check.py`, CI |
 | `android/shared` (Formate, Nachrichten) | **70 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
-| Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
+| Zweitwecker am Handy (`android/app`, Paket `ring`), Wecken und Planen der Uhr (`android/wear`, Pakete `wake` und `schedule`) | **70 %** je Paket | JaCoCo + `.github/scripts/coverage_check.py --package`, CI |
+| übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund) | Workflow «Bildschirmfotos» |
 
 - **Gleiche Fälle in beiden Kernen:** Ein Kern-Test in Kotlin hat sein Gegenstück in Swift mit denselben Eingaben

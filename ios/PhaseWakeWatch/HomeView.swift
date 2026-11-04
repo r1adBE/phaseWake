@@ -94,6 +94,8 @@ struct HomeView: View {
             if phase == .active {
                 model.reschedule()
                 WatchConnectivityBridge.shared.publishBattery()
+                // Erlaubnis der Mitteilungen kann sich in den Einstellungen geändert haben.
+                Task { await WatchConnectivityBridge.shared.publishNotificationState() }
             }
         }
         .onAppear {

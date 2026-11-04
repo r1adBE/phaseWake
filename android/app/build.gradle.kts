@@ -53,6 +53,9 @@ android {
         // Abdeckung der Unit-Tests, nur zur Information in der CI (Bericht: createDebugUnitTestCoverageReport).
         debug {
             enableUnitTestCoverage = true
+            // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
+            // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
+            applicationIdSuffix = ".test"
         }
         release {
             isMinifyEnabled = true
@@ -92,6 +95,25 @@ kotlin {
         allWarningsAsErrors = true
     }
 }
+
+// Lizenztexte aus licenses/ (eine Quelle für Android und iPhone) als Assets ins APK; «Über» → «Lizenzen» zeigt sie.
+androidComponents {
+    onVariants { variant -> variant.sources.assets?.addStaticSourceDirectory(rootProject.file("../licenses").path) }
+}
+
+// licenses/MIT-phasewake.txt ist eine Kopie von LICENSE: weicht sie ab, bricht der Build ab (eine Lizenz, ein Text).
+val checkLicenseCopy = tasks.register("checkLicenseCopy") {
+    description = "Prüft, dass licenses/MIT-phasewake.txt gleich LICENSE ist."
+    val original = rootProject.file("../LICENSE")
+    val copy = rootProject.file("../licenses/MIT-phasewake.txt")
+    inputs.files(original, copy)
+    doLast {
+        if (!copy.isFile || !original.readBytes().contentEquals(copy.readBytes())) {
+            throw GradleException("licenses/MIT-phasewake.txt weicht von LICENSE ab: LICENSE nach licenses/MIT-phasewake.txt kopieren.")
+        }
+    }
+}
+tasks.named("preBuild") { dependsOn(checkLicenseCopy) }
 
 // Robolectric lädt die Klassen in einer eigenen Umgebung: ohne diese Einstellung zählt JaCoCo sie nicht mit.
 tasks.withType<Test>().configureEach {

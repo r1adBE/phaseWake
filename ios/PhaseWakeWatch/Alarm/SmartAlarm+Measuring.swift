@@ -88,6 +88,7 @@ extension SmartAlarm {
     }
 
     func cancelMeasuring() {
+        logMeasureEnd(" cancelled")
         stopSensors()
         invalidateSession()
         phase = .idle
@@ -137,6 +138,14 @@ extension SmartAlarm {
                 return
             }
         }
+    }
+
+    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M»),
+    /// ohne Messwerte. Nur während der Messung (`measuring`); `note` ergänzt den Grund (z. B. abgebrochen).
+    func logMeasureEnd(_ note: String = "") {
+        guard phase.isMeasuring else { return }
+        let withHeartRate = epochs.filter { $0.heartRate != nil }.count
+        DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count)\(note)")
     }
 
     /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.

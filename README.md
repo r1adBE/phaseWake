@@ -4,7 +4,7 @@
 
 <p align="center">
 Schlafphasenwecker für <b>Galaxy Watch</b> und <b>Apple Watch</b>.<br>
-Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit.<br>
+Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens zur Zielzeit (Apple Watch ohne laufende Messung etwa 1 Minute danach).<br>
 Open Source · ohne Konto · ohne Server · ohne Abo<br>
 <sub>Stand: in Entwicklung, noch nicht in den Stores.</sub>
 </p>
@@ -24,7 +24,7 @@ Open Source · ohne Konto · ohne Server · ohne Abo<br>
 
 ## So funktioniert es
 
-Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald du unruhig wirst, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Spätestens zur Zielzeit weckt sie immer.
+Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald du unruhig wirst, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Die Galaxy Watch weckt spätestens zur Zielzeit; die Apple Watch ohne laufende Messung spätestens etwa 1 Minute danach per Mitteilung. Vor iOS 26 ist der Zweitwecker am iPhone eine Mitteilung (der Stummschalter macht sie lautlos).
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
@@ -71,7 +71,7 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 
 Fertige Testversion für Android-Handy und Galaxy Watch: [Releases → test](https://github.com/r1adBE/phaseWake/releases/tag/test). Anleitung Schritt für Schritt: [docs/TESTEN.md](docs/TESTEN.md).
 
-Die Testversion ist ein Debug-Build, signiert mit dem öffentlichen Test-Schlüssel aus `android/testing/` – nur zum Testen gedacht: Jeder kann eine App mit demselben Schlüssel bauen, und ein Debug-Build lässt sich am Gerät untersuchen. Die Versionen in den Stores werden mit einem privaten Schlüssel signiert. Testversion und Store-Version lassen sich darum nicht übereinander installieren; vorher die Testversion deinstallieren (und eine Sicherung anlegen).
+Die Testversion ist ein Debug-Build, signiert mit dem öffentlichen Test-Schlüssel aus `android/testing/` – nur zum Testen gedacht: Jeder kann eine App mit demselben Schlüssel bauen, und ein Debug-Build lässt sich am Gerät untersuchen. Die Versionen in den Stores werden mit einem privaten Schlüssel signiert. Die Testversion hat eine eigene Kennung (`com.phasewake.app.test`) und lässt sich neben der Store-Version installieren. Eine ältere Testversion (noch mit der Kennung der Store-Version) einmal deinstallieren, vorher eine Sicherung anlegen.
 
 ## Bauen
 

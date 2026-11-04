@@ -45249,6 +45249,902 @@
         }
       }
     },
+    "check_watch_notifications": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kennisgewings op die horlosie"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "በሰዓቱ ላይ ማሳወቂያዎች"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإشعارات على الساعة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatda bildirişlər"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Известия на часовника"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়িতে নোটিফিকেশন"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obavještenja na satu"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificacions al rellotge"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oznámení na hodinkách"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifikationer på uret"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitteilungen auf der Uhr"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ειδοποιήσεις στο ρολόι"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications on the watch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones en el reloj"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Märguanded kellas"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jakinarazpenak erlojuan"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعلان‌ها روی ساعت"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ilmoitukset kellossa"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga notification sa relo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications sur la montre"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fógraí ar an uaireadóir"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificacións no reloxo"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળ પર સૂચનાઓ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התראות בשעון"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच पर सूचनाएँ"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obavijesti na satu"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Értesítések az órán"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ծանուցումներ ժամացույցում"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifikasi di jam tangan"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilkynningar á úrinu"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifiche sull’orologio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチの通知"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შეტყობინებები საათზე"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағаттағы хабарландырулар"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការជូនដំណឹងនៅលើនាឡិកា"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치 알림"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການແຈ້ງເຕືອນໃນໂມງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pranešimai laikrodyje"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paziņojumi pulkstenī"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Известувања на часовникот"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിലെ അറിയിപ്പുകൾ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цаган дээрх мэдэгдэл"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळावर सूचना"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pemberitahuan pada jam tangan"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီပေါ်ရှိ အသိပေးချက်များ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsler på klokken"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीमा सूचनाहरू"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meldingen op het horloge"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ’ਤੇ ਸੂਚਨਾਵਾਂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Powiadomienia na zegarku"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificações no relógio"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificações no relógio"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificări pe ceas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уведомления на часах"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවේ දැනුම්දීම්"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upozornenia na hodinkách"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obvestila na uri"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Njoftimet në orë"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обавештења на сату"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notiser på klockan"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arifa kwenye saa"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வாட்ச்சில் அறிவிப்புகள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్‌లో నోటిఫికేషన్‌లు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การแจ้งเตือนบนนาฬิกา"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatteki bildirimler"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сповіщення на годиннику"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی پر اطلاعات"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soatdagi bildirishnomalar"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông báo trên đồng hồ"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶上的通知"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表上的通知"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶上的通知"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izaziso ewashini"
+          }
+        }
+      }
+    },
+    "check_watch_notifications_problem": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laat tydsensitiewe kennisgewings vir Phase Wake op jou Apple Watch toe. Anders kan dit jou nie per kennisgewing wek as geen meting loop nie."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "በApple Watchህ ላይ ለPhase Wake ጊዜ-ተኮር ማሳወቂያዎችን ፍቀድ። አለበለዚያ ልኬት በማይካሄድበት ጊዜ በማሳወቂያ ሊያነቃህ አይችልም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسمح بالإشعارات الحساسة للوقت لتطبيق Phase Wake على Apple Watch. وإلا فلن تتمكن من إيقاظك بإشعار عندما لا يكون هناك قياس جارٍ."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch-da Phase Wake üçün vaxta həssas bildirişlərə icazə ver. Əks halda ölçmə getmədikdə saat səni bildirişlə oyada bilməz."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разреши известията с времева чувствителност за Phase Wake на своя Apple Watch. Иначе той не може да те събуди с известие, когато не тече измерване."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার Apple Watch-এ Phase Wake-এর জন্য সময়-সংবেদনশীল নোটিফিকেশন চালু করো। নইলে কোনো পরিমাপ না চললে ঘড়ি তোমাকে নোটিফিকেশন দিয়ে জাগাতে পারবে না।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dozvoli vremenski osjetljiva obavještenja za Phase Wake na svom Apple Watchu. U suprotnom te ne može probuditi obavještenjem kada mjerenje ne teče."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet les notificacions urgents de Phase Wake a l’Apple Watch. Si no, no et pot despertar amb una notificació quan no hi ha cap mesura en curs."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povol pro Phase Wake na Apple Watch časově citlivá oznámení. Jinak tě hodinky nemohou probudit oznámením, když neběží měření."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillad tidsfølsomme notifikationer fra Phase Wake på dit Apple Watch. Ellers kan uret ikke vække dig med en notifikation, når der ikke kører en måling."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube zeitkritische Mitteilungen von Phase Wake auf deiner Apple Watch. Sonst kann sie dich ohne laufende Messung nicht per Mitteilung wecken."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επίτρεψε τις χρονικά ευαίσθητες ειδοποιήσεις του Phase Wake στο Apple Watch σου. Αλλιώς δεν μπορεί να σε ξυπνήσει με ειδοποίηση όταν δεν γίνεται μέτρηση."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow time-sensitive notifications for Phase Wake on your Apple Watch. Otherwise it can’t wake you by notification when no measurement is running."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite las notificaciones urgentes de Phase Wake en tu Apple Watch. Si no, no puede despertarte con una notificación cuando no hay ninguna medición en curso."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luba Phase Wake’ile oma Apple Watchis ajatundlikud märguanded. Muidu ei saa kell sind märguandega äratada, kui mõõtmine ei käi."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baimendu Phase Wake-ren jakinarazpen premiazkoak zure Apple Watchean. Bestela, ezin zaitu jakinarazpen batekin esnatu neurketarik ez dagoenean."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعلان‌های حساس به زمان را برای Phase Wake روی Apple Watch خود مجاز کن. وگرنه وقتی اندازه‌گیری‌ای در جریان نیست، نمی‌تواند با اعلان بیدارت کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salli Phase Waken aikasidonnaiset ilmoitukset Apple Watchissasi. Muuten kello ei voi herättää sinua ilmoituksella, kun mittaus ei ole käynnissä."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Payagan ang mga time-sensitive na notification para sa Phase Wake sa iyong Apple Watch. Kung hindi, hindi ka nito magigising gamit ang notification kapag walang tumatakbong pagsukat."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorise les notifications urgentes de Phase Wake sur ton Apple Watch. Sinon, elle ne peut pas te réveiller par une notification quand aucune mesure n’est en cours."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceadaigh fógraí atá íogair ó thaobh ama de do Phase Wake ar do Apple Watch. Murach sin, ní féidir leis tú a dhúiseacht le fógra nuair nach bhfuil tomhas ar siúl."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite as notificacións urxentes de Phase Wake no teu Apple Watch. Se non, non pode espertarte cunha notificación cando non hai ningunha medición en curso."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારી Apple Watch પર Phase Wake માટે સમય-સંવેદનશીલ સૂચનાઓની મંજૂરી આપો. નહીંતર માપન ચાલુ ન હોય ત્યારે તે તમને સૂચના દ્વારા જગાડી શકશે નહીં."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפשרו התראות רגישות לזמן עבור Phase Wake ב-Apple Watch שלכם. אחרת הוא לא יוכל להעיר אתכם בהתראה כשאין מדידה פעילה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी Apple Watch पर Phase Wake के लिए समय-संवेदी सूचनाओं की अनुमति दें। वरना माप न चलने पर वॉच आपको सूचना से नहीं जगा सकती।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopusti vremenski osjetljive obavijesti za Phase Wake na svom Apple Watchu. Inače te ne može probuditi obaviješću kad mjerenje ne teče."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engedélyezd a Phase Wake időérzékeny értesítéseit az Apple Watchodon. Különben nem tud értesítéssel ébreszteni, ha nem fut mérés."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Թույլատրիր Phase Wake-ի ժամանակազգայուն ծանուցումները քո Apple Watch-ում։ Այլապես այն չի կարող քեզ ծանուցմամբ արթնացնել, երբ չափում չի ընթանում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izinkan notifikasi peka waktu untuk Phase Wake di Apple Watch-mu. Jika tidak, jam tidak bisa membangunkanmu lewat notifikasi saat tidak ada pengukuran yang berjalan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leyfðu tímanæmar tilkynningar frá Phase Wake á Apple Watch-úrinu þínu. Annars getur það ekki vakið þig með tilkynningu þegar engin mæling er í gangi."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consenti le notifiche urgenti di Phase Wake sul tuo Apple Watch. Altrimenti non può svegliarti con una notifica quando non è in corso una misurazione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple WatchでPhase Wakeの即時通知を許可してください。許可しないと、計測が行われていないときに通知で起こせません。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაუშვი Phase Wake-ის დროზე მგრძნობიარე შეტყობინებები შენს Apple Watch-ზე. თორემ, როცა გაზომვა არ მიმდინარეობს, საათი შეტყობინებით ვერ გაგაღვიძებს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch-та Phase Wake үшін уақытқа сезімтал хабарландыруларға рұқсат бер. Әйтпесе өлшеу жүрмей тұрғанда сағат сені хабарландырумен оята алмайды."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "អនុញ្ញាតការជូនដំណឹងដែលពាក់ព័ន្ធនឹងពេលវេលាសម្រាប់ Phase Wake នៅលើ Apple Watch របស់អ្នក។ បើមិនដូច្នោះទេ វាមិនអាចដាស់អ្នកដោយការជូនដំណឹងបានទេ នៅពេលគ្មានការវាស់កំពុងដំណើរការ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ Apple Watch ನಲ್ಲಿ Phase Wake ಗಾಗಿ ಸಮಯ-ಸೂಕ್ಷ್ಮ ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅಳತೆ ನಡೆಯದಿದ್ದಾಗ ಅದು ನಿಮ್ಮನ್ನು ಅಧಿಸೂಚನೆಯ ಮೂಲಕ ಎಬ್ಬಿಸಲಾರದು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch에서 Phase Wake의 시간 민감 알림을 허용해 주세요. 그렇지 않으면 측정이 진행되지 않을 때 알림으로 깨울 수 없어요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ອະນຸຍາດການແຈ້ງເຕືອນທີ່ສຳຄັນຕໍ່ເວລາສຳລັບ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າ. ບໍ່ດັ່ງນັ້ນ ມັນຈະປຸກເຈົ້າດ້ວຍການແຈ້ງເຕືອນບໍ່ໄດ້ ເມື່ອບໍ່ມີການວັດແທກ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leisk Phase Wake rodyti laikui jautrius pranešimus tavo Apple Watch. Kitaip laikrodis negalės tavęs pažadinti pranešimu, kai nevyksta matavimas."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atļauj Phase Wake laikjutīgos paziņojumus savā Apple Watch. Citādi tas nevarēs tevi pamodināt ar paziņojumu, kad mērījums nenotiek."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дозволи временски чувствителни известувања за Phase Wake на својот Apple Watch. Инаку не може да те разбуди со известување кога не тече мерење."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch-ൽ Phase Wake-ന് സമയബന്ധിത അറിയിപ്പുകൾ അനുവദിക്കുക. അല്ലെങ്കിൽ അളക്കൽ നടക്കാത്തപ്പോൾ അതിന് നിങ്ങളെ അറിയിപ്പിലൂടെ ഉണർത്താനാവില്ല."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch дээрээ Phase Wake-ийн цаг хугацааны чухал мэдэгдлийг зөвшөөр. Эс бөгөөс хэмжилт явагдахгүй үед цаг чамайг мэдэгдлээр сэрээж чадахгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमच्या Apple Watch वर Phase Wake साठी वेळ-संवेदनशील सूचनांना परवानगी द्या. नाहीतर मोजमाप चालू नसताना ते तुम्हाला सूचनेद्वारे उठवू शकणार नाही."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benarkan pemberitahuan sensitif masa untuk Phase Wake pada Apple Watch awak. Jika tidak, jam tidak dapat membangunkan awak melalui pemberitahuan apabila tiada pengukuran berjalan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch ပေါ်တွင် Phase Wake အတွက် အချိန်အရေးကြီး အသိပေးချက်များကို ခွင့်ပြုပါ။ မဟုတ်ပါက တိုင်းတာမှု မလုပ်ဆောင်နေချိန်တွင် အသိပေးချက်ဖြင့် နှိုး၍ မရပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillat tidssensitive varsler fra Phase Wake på Apple Watch. Ellers kan klokken ikke vekke deg med et varsel når ingen måling pågår."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आफ्नो Apple Watch मा Phase Wake का लागि समय-संवेदनशील सूचनाहरूलाई अनुमति देऊ। नत्र मापन नचलिरहेको बेला घडीले तिमीलाई सूचनाबाट उठाउन सक्दैन।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sta tijdgevoelige meldingen van Phase Wake toe op je Apple Watch. Anders kan hij je niet met een melding wekken als er geen meting loopt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਲਈ ਸਮਾਂ-ਸੰਵੇਦਨਸ਼ੀਲ ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ। ਨਹੀਂ ਤਾਂ ਮਾਪ ਨਾ ਚੱਲਦੇ ਸਮੇਂ ਇਹ ਤੁਹਾਨੂੰ ਸੂਚਨਾ ਰਾਹੀਂ ਨਹੀਂ ਜਗਾ ਸਕਦੀ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zezwól na powiadomienia wrażliwe na czas od Phase Wake na swoim Apple Watch. W przeciwnym razie zegarek nie obudzi cię powiadomieniem, gdy nie trwa pomiar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permita as notificações sensíveis ao tempo do Phase Wake no seu Apple Watch. Senão, ele não consegue acordar você com uma notificação quando nenhuma medição está em andamento."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite as notificações urgentes do Phase Wake no teu Apple Watch. Caso contrário, não te consegue acordar com uma notificação quando não está nenhuma medição em curso."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite notificările urgente de la Phase Wake pe Apple Watch-ul tău. Altfel, ceasul nu te poate trezi printr-o notificare când nu rulează nicio măsurare."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разреши срочные уведомления Phase Wake на своих Apple Watch. Иначе часы не смогут разбудить тебя уведомлением, когда измерение не идёт."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ Apple Watch හි Phase Wake සඳහා කාල-සංවේදී දැනුම්දීම්වලට ඉඩ දෙන්න. එසේ නොමැති නම් මැනීමක් සිදු නොවන විට එයට ඔබව දැනුම්දීමකින් අවදි කළ නොහැක."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Povoľ pre Phase Wake na Apple Watch časovo citlivé upozornenia. Inak ťa hodinky nemôžu zobudiť upozornením, keď neprebieha meranie."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dovoli časovno občutljiva obvestila za Phase Wake na svoji uri Apple Watch. Sicer te ne more zbuditi z obvestilom, ko meritev ne teče."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lejo njoftimet me ndjeshmëri kohore për Phase Wake në Apple Watch-in tënd. Përndryshe ora nuk mund të të zgjojë me njoftim kur nuk po kryhet asnjë matje."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дозволи временски осетљива обавештења за Phase Wake на свом Apple Watch-у. Иначе те не може пробудити обавештењем када мерење не тече."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillåt tidskänsliga notiser från Phase Wake på din Apple Watch. Annars kan klockan inte väcka dig med en notis när ingen mätning pågår."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhusu arifa zinazozingatia muda kwa Phase Wake kwenye Apple Watch yako. La sivyo, haiwezi kukuamsha kwa arifa wakati hakuna kipimo kinachoendelea."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உங்கள் Apple Watch இல் Phase Wake க்கு நேர முக்கிய அறிவிப்புகளை அனுமதியுங்கள். இல்லையெனில் அளவீடு நடக்காதபோது அது உங்களை அறிவிப்பின் மூலம் எழுப்ப முடியாது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ Apple Watchలో Phase Wake కోసం సమయ-సున్నితమైన నోటిఫికేషన్‌లను అనుమతించండి. లేకపోతే కొలత జరగనప్పుడు అది మిమ్మల్ని నోటిఫికేషన్‌తో లేపలేదు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "อนุญาตการแจ้งเตือนที่มีผลต่อเวลาสำหรับ Phase Wake บน Apple Watch ของคุณ มิฉะนั้นนาฬิกาจะปลุกคุณด้วยการแจ้งเตือนไม่ได้เมื่อไม่มีการวัดอยู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch’unda Phase Wake için zamana duyarlı bildirimlere izin ver. Aksi halde ölçüm yapılmıyorken saat seni bildirimle uyandıramaz."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дозволь термінові сповіщення Phase Wake на своєму Apple Watch. Інакше годинник не зможе розбудити тебе сповіщенням, коли вимірювання не триває."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اپنی Apple Watch پر Phase Wake کے لیے وقت کی حساس اطلاعات کی اجازت دو۔ ورنہ پیمائش نہ چل رہی ہو تو گھڑی تمہیں اطلاع سے نہیں جگا سکتی۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watchʼingda Phase Wake uchun vaqtga sezgir bildirishnomalarga ruxsat ber. Aks holda oʻlchov ketmayotganda soat seni bildirishnoma bilan uygʻota olmaydi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy cho phép thông báo nhạy cảm về thời gian của Phase Wake trên Apple Watch của bạn. Nếu không, đồng hồ không thể đánh thức bạn bằng thông báo khi không có phép đo nào đang chạy."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在 Apple Watch 上允許 Phase Wake 傳送時效性通知。否則，在沒有進行測量時，手錶無法透過通知叫醒你。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在 Apple Watch 上允许 Phase Wake 发送时间敏感通知。否则，在没有进行测量时，手表无法通过通知叫醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在 Apple Watch 上允許 Phase Wake 傳送時效性通知。否則，在沒有進行測量時，手錶無法透過通知叫醒你。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vumela izaziso ezibucayi ngesikhathi ze-Phase Wake ku-Apple Watch yakho. Uma kungenjalo, ayikwazi ukukuvusa ngesaziso uma kungekho kukala okuqhubekayo."
+          }
+        }
+      }
+    },
     "check_watch_outdated_text": {
       "localizations": {
         "af": {

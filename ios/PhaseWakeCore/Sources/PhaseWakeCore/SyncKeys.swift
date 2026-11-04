@@ -61,4 +61,21 @@ public enum SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der
     /// Schlüssel bei einem Kontext, der sonst von der Uhr stammt, ist es eine ältere Uhr (zählt als 0).
     public static let alarmFields = "alarmFields"
+    /// Uhr → iPhone im Anwendungskontext: Erlaubnis für Mitteilungen auf der Uhr (`WatchNotifications.rawValue`), für
+    /// den Rückfall-Wecker. Fehlt bei älteren Uhr-Versionen und solange die Uhr noch nicht gefragt hat (dann keine Warnung).
+    public static let watchNotifications = "watchNotifications"
+}
+
+/// Erlaubnis für Mitteilungen auf der Apple Watch, wie die Uhr sie dem iPhone meldet (`SyncKeys.watchNotifications`).
+/// Ohne sie weckt der Rückfall nicht, wenn die Messung der Nacht nicht läuft. Nur Apple.
+public enum WatchNotifications: Int64, Sendable {
+    /// Nicht erlaubt (abgelehnt oder nur «Ohne Ton zustellen»).
+    case blocked = 0
+    /// Erlaubt, auch zeitkritisch.
+    case allowed = 1
+    /// Erlaubt, aber «Zeitkritische Mitteilungen» aus: Ein Fokus wie «Schlafen» hält den Rückfall zurück.
+    case notTimeSensitive = 2
+
+    /// Ob das iPhone im Nacht-Check warnt.
+    public var isProblem: Bool { self != .allowed }
 }

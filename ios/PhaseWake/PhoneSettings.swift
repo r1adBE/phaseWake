@@ -15,7 +15,7 @@ extension SettingsFile {
     /// Name der Datei im Ordner `PrivateFiles`.
     static let fileName = "settings.v1"
 
-    /// Schlüssel, die bis Build 54 in `UserDefaults.standard` lagen. In `UserDefaults` bleiben nur technische
+    /// Schlüssel, die in früheren Versionen in `UserDefaults.standard` lagen. In `UserDefaults` bleiben nur technische
     /// Merker ohne persönliche Angaben: `onboardingDone`, `healthRequested`, `diagUnlocked`, `diagWatchSeen`.
     static let movedKeys = [
         // Wecker, erledigte Nächte, Feiertage, Schlafziel (`PhaseWakeStorage`)

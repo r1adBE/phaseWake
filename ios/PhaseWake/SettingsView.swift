@@ -66,7 +66,8 @@ struct SettingsView: View {
                         Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)
                     }
                     Button(L("settings_onboarding")) { onboardingDone = false }
-                    Text(L("settings_licenses_text_apple") + "\n" + L("settings_license_holidays")).font(.footnote).foregroundStyle(.secondary)
+                    // Lizenzen mit vollem Text je Bestandteil (`LicensesView`).
+                    NavigationLink(L("settings_licenses")) { LicensesView() }
                     DiagVersionRow(unlocked: $diagUnlocked)
                     if diagUnlocked {
                         NavigationLink(L("diag_title")) { DiagView(unlocked: $diagUnlocked) }

@@ -1,4 +1,4 @@
-Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje natanko ob ciljnem času. Za to Apple Watch spremlja gibanje in srčni utrip. Na uri Apple Watch Phase Wake meri zadnjih 25 minut pred ciljnim časom. Ne more prepoznati, ali je bila tvoja noč prekratka.
+Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje ob ciljnem času; če na uri Apple Watch meritev ne teče, približno 1 minuto pozneje z obvestilom. Za to Apple Watch spremlja gibanje in srčni utrip. Na uri Apple Watch Phase Wake meri zadnjih 25 minut pred ciljnim časom. Ne more prepoznati, ali je bila tvoja noč prekratka.
 
 Kako deluje
 • Izberi čas bujenja in okno (do 30 min), nadeni si uro, spi.
@@ -9,7 +9,7 @@ Kako deluje
 Da ne prespiš budilke
 • Nočni pregled pred spanjem: ura povezana, dovoljenja podeljena, baterija dovolj polna.
 • Preizkusna budilka »Preizkusi čez 2 minuti« z rezultatom po korakih.
-• Od iOS 26 naprej rezervna budilka na iPhonu zvoni tudi v načinu »Ne moti« in v fokusu Spanje.
+• Od iOS 26 naprej rezervna budilka na iPhonu zvoni tudi v načinu »Ne moti« in v fokusu Spanje. Pred iOS 26 je to obvestilo, ki ga stikalo za utišanje utiša.
 • Naslednjič preskoči in ob praznikih ne budi – prazniki za več kot 150 držav in njihove regije, brez interneta.
 
 Boljši spanec

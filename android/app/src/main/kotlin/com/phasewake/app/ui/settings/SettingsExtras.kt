@@ -48,6 +48,8 @@ class SettingsExtras(
     val backup: @Composable ColumnScope.() -> Unit = {},
     /** «Einrichtung wiederholen»; `null` = keine Zeile. */
     val onOnboarding: (() -> Unit)? = null,
+    /** «Lizenzen» öffnet die Volltexte; `null` = nur die Kurzfassung (Bildschirmfotos). */
+    val onLicenses: (() -> Unit)? = null,
     /** Diagnose freigeschaltet: Zeile «Diagnose» unter «Über». */
     val diagnostics: Boolean = false,
     val onDiagnostics: () -> Unit = {},

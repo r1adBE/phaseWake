@@ -1,4 +1,4 @@
-A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb pontosan a célidőben. Ehhez az Apple Watch figyeli a mozgást és a pulzust. Apple Watchon a Phase Wake a célidő előtti utolsó 25 percet méri. Azt nem ismeri fel, hogy túl rövid volt-e az éjszakád.
+A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb a célidőben; ha az Apple Watchon nem fut mérés, körülbelül 1 perccel később értesítéssel. Ehhez az Apple Watch figyeli a mozgást és a pulzust. Apple Watchon a Phase Wake a célidő előtti utolsó 25 percet méri. Azt nem ismeri fel, hogy túl rövid volt-e az éjszakád.
 
 Így működik
 • Válaszd ki az ébresztési időt és az időablakot (legfeljebb 30 perc), vedd fel az órát, aludj.
@@ -9,7 +9,7 @@ A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel –
 Hogy ne aludj el
 • Éjszakai ellenőrzés lefekvés előtt: óra csatlakoztatva, engedélyek megadva, elég akkumulátor.
 • Próbaébresztés „Teszt 2 perc múlva” lépésenkénti eredménnyel.
-• iOS 26-tól az iPhone tartalék ébresztője Ne zavarjanak és Alvás fókusz mellett is megszólal.
+• iOS 26-tól az iPhone tartalék ébresztője Ne zavarjanak és Alvás fókusz mellett is megszólal. iOS 26 előtt ez egy értesítés, amelyet a némítókapcsoló elnémít.
 • Következő alkalom kihagyása, ünnepnapokon nincs ébresztés – több mint 150 ország és régióik ünnepnapjai, internet nélkül.
 
 Aludj jobban

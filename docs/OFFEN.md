@@ -10,6 +10,8 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 - Runde 04.11. d: Handy-Klingeln nimmt nach einem Prozessende auch wieder auf, wenn die Uhr führt (früher Punkt 4); Store-Build für Google Play über die CI (Workflow «Store-Build», Upload-Schlüssel, Anleitung in PLAY.md); Grenzfälle der ehrlichen Texte (früher Punkt 6); iPhone: Wecker und Einstellungen nicht mehr in der iCloud-Sicherung (früher Punkt 1).
 - Apple Watch: Wecker und Einstellungen nicht mehr in der Sicherung (früher Punkt 1); in der Sicherung der Uhr bleiben nur technische Merker.
 - Review 04.11. e: zweiter Zweitwecker am Handy in der Nachfrist wird nachgeholt (P1).
+- Audit 04.11. (Android): Lizenztexte in der App (M-05), eigene Kennung der Testversion (M-04), verweigerter Start des Weckdienstes der Galaxy Watch (N-05), Tests und Mindestabdeckung für Wecken und Planen (M-06), Liste vor dem ersten Entsperren geordnet (I-05), keine Build-Nummern in Kommentaren (N-06), README zum Wecken je Gerät.
+- Audit 04.11. (Apple): Weckmitteilung als Kette (H-01), Versprechen «spätestens zur Zielzeit» präzisiert (H-01/N-04), Lizenzseite am iPhone (M-05), Mitteilungsrecht der Apple Watch im Nacht-Check (M-03), Pulsdichte und Fehler im Protokoll (M-02, N-03), Keyword (N-08); Testversion heisst «Phase Wake Test».
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -20,7 +22,7 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 
 ## Noch offen aus dem Audit 31.10.
 
-1. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
+1. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit, seit 04.11. als Kette von 4 Mitteilungen). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
 2. **AlarmKit: feste Uhrzeit nach einer Reise.** Nach einem Zeitzonenwechsel ohne App-Start bleibt der Zweitwecker auf der alten Zeit.
 3. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen (Android: Workflow «Store-Build»).
 

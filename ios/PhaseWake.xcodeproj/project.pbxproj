@@ -116,6 +116,18 @@
 			);
 			target = A1F0C0DE000000000000000B /* PhaseWakePhoneWidget */;
 		};
+		A1F0C0DE0000000000000012 /* Exceptions for "licenses" folder in "PhaseWake" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Apache-2.0.txt,
+				BSD-3-protobuf.txt,
+				MIT-checker-framework.txt,
+				NOTICE-kotlin.txt,
+				NOTICE-mediapipe.txt,
+				NOTICE-play-services.txt,
+			);
+			target = 778130C49534A4D32801D13D /* PhaseWake */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -125,6 +137,7 @@
 		48B3E5AA3956423BE92D6AA1 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; path = Resources; sourceTree = "<group>"; };
 		F1A370516F16A91DEBE885E5 /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; path = Shared; sourceTree = "<group>"; };
 		A1F0C0DE0000000000000007 /* PhaseWakePhoneWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A1F0C0DE0000000000000006 /* Exceptions for "PhaseWakePhoneWidget" folder in "PhaseWakePhoneWidget" target */, ); path = PhaseWakePhoneWidget; sourceTree = "<group>"; };
+		A1F0C0DE0000000000000011 /* licenses */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A1F0C0DE0000000000000012 /* Exceptions for "licenses" folder in "PhaseWake" target */, ); name = licenses; path = ../licenses; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +185,7 @@
 				A1F0C0DE0000000000000007 /* PhaseWakePhoneWidget */,
 				48B3E5AA3956423BE92D6AA1 /* Resources */,
 				F1A370516F16A91DEBE885E5 /* Shared */,
+				A1F0C0DE0000000000000011 /* licenses */,
 				86024CAD1E83101D97359D73 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -235,6 +249,7 @@
 				CF1A2C9B05526F3AE4CD0F35 /* PhaseWake */,
 				48B3E5AA3956423BE92D6AA1 /* Resources */,
 				F1A370516F16A91DEBE885E5 /* Shared */,
+				A1F0C0DE0000000000000011 /* licenses */,
 			);
 			name = PhaseWake;
 			packageProductDependencies = (

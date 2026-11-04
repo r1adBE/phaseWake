@@ -1,4 +1,4 @@
-Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije točno u ciljno vrijeme. Za to Apple Watch prati pokrete i puls. Na Apple Watchu Phase Wake mjeri posljednjih 25 minuta prije ciljnog vremena. Ne može prepoznati je li tvoja noć bila prekratka.
+Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije u ciljno vrijeme; ako na Apple Watchu ne teče mjerenje, oko 1 minutu kasnije putem obavijesti. Za to Apple Watch prati pokrete i puls. Na Apple Watchu Phase Wake mjeri posljednjih 25 minuta prije ciljnog vremena. Ne može prepoznati je li tvoja noć bila prekratka.
 
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
@@ -9,7 +9,7 @@ Kako radi
 Napravljeno da se ne uspavaš
 • Noćna provjera prije spavanja: sat povezan, dopuštenja dana, baterija dovoljno puna.
 • Probni alarm „Testiraj za 2 minute“ s rezultatom korak po korak.
-• Od iOS-a 26 rezervni alarm na iPhoneu zvoni i uz „Ne uznemiravaj“ i u fokusu Spavanje.
+• Od iOS-a 26 rezervni alarm na iPhoneu zvoni i uz „Ne uznemiravaj“ i u fokusu Spavanje. Prije iOS-a 26 to je obavijest koju prekidač za utišavanje utiša.
 • Preskoči sljedeći put i ne budi na praznike – praznici za više od 150 zemalja i njihove regije, bez interneta.
 
 Spavaj bolje

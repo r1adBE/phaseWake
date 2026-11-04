@@ -1,4 +1,4 @@
-Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest, right on time. To do this, your Apple Watch tracks movement and heart rate. On Apple Watch, Phase Wake measures the last 25 minutes before your target time. It can't tell whether your night was too short.
+Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest at your target time; if no measurement is running on the Apple Watch, about 1 minute later by notification. To do this, your Apple Watch tracks movement and heart rate. On Apple Watch, Phase Wake measures the last 25 minutes before your target time. It can't tell whether your night was too short.
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
@@ -9,7 +9,7 @@ How it works
 Built so you don't oversleep
 • Night check before bed: watch connected, permissions granted, battery high enough.
 • Test alarm "Test in 2 minutes" with a step-by-step result.
-• From iOS 26, the backup alarm on your iPhone rings even with Do Not Disturb and the Sleep Focus.
+• From iOS 26, the backup alarm on your iPhone rings even with Do Not Disturb and the Sleep Focus. Before iOS 26, it's a notification that the silent switch mutes.
 • Skip next time and don't wake on public holidays – holidays for more than 150 countries and their regions, offline.
 
 Sleep better

@@ -1,4 +1,4 @@
-Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit. Dafür achtet deine Apple Watch auf Bewegung und Puls. Auf der Apple Watch misst Phase Wake die letzten 25 Minuten vor der Zielzeit. Ob du in der Nacht zu kurz geschlafen hast, erkennt sie nicht.
+Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens zur Zielzeit; läuft auf der Apple Watch keine Messung, etwa 1 Minute danach per Mitteilung. Dafür achtet deine Apple Watch auf Bewegung und Puls. Auf der Apple Watch misst Phase Wake die letzten 25 Minuten vor der Zielzeit. Ob du in der Nacht zu kurz geschlafen hast, erkennt sie nicht.
 
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
@@ -9,7 +9,7 @@ So funktioniert's
 Gemacht, damit du nicht verschläfst
 • Nacht-Check vor dem Schlafen: Uhr verbunden, Rechte erteilt, Akku voll genug.
 • Probewecker «In 2 Minuten testen» mit Ergebnis Schritt für Schritt.
-• Der Zweitwecker auf dem iPhone klingelt ab iOS 26 auch bei «Nicht stören» und im Schlaf-Fokus.
+• Der Zweitwecker auf dem iPhone klingelt ab iOS 26 auch bei «Nicht stören» und im Schlaf-Fokus. Vor iOS 26 ist er eine Mitteilung, die der Stummschalter lautlos macht.
 • Nächstes Mal überspringen und an Feiertagen nicht wecken – Feiertage für über 150 Länder und ihre Regionen, ohne Internet.
 
 Besser schlafen

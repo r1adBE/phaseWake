@@ -4,7 +4,7 @@ Stand: 28.10.2026.
 
 ## Ziel
 
-Ein Wecker, der in einem Fenster vor der Zielzeit wartet, bis die Uhr eine leichte Schlafphase erkennt, und dann am Handgelenk vibriert. Spätestens zur Zielzeit weckt er immer.
+Ein Wecker, der in einem Fenster vor der Zielzeit wartet, bis die Uhr eine leichte Schlafphase erkennt, und dann am Handgelenk vibriert. Spätestens zur Zielzeit weckt er immer; die Apple Watch ohne laufende Messung etwa 1 Minute danach per Mitteilung, vor iOS 26 ist der Zweitwecker am iPhone eine Mitteilung.
 
 Nicht Ziel: ein vollständiges Schlaf-Staging (Tief/REM/Leicht) wie Samsung Health. phaseWake braucht nur eine Antwort: «Ist jetzt ein guter Moment zum Wecken?»
 

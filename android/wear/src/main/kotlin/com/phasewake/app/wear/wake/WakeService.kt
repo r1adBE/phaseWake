@@ -9,7 +9,6 @@ import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Epoch
@@ -300,31 +299,23 @@ class WakeService : LifecycleService() {
         /** Startet die Messung für [plan] als Vordergrunddienst. */
         fun start(context: Context, plan: WakePlan) {
             Log.i(TAG, "Fenster beginnt: $plan")
-            ContextCompat.startForegroundService(
-                context,
-                AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(ACTION_START), plan),
-            )
+            // Verweigert: nur Diagnose; geweckt wird trotzdem über den Alarm zur Zielzeit.
+            StartRefused.start(context, AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(ACTION_START), plan), plan)
         }
 
         /** Startet «Gute Nacht» für den Schlafdauer-Wecker [alarmId]. */
         fun goodNight(context: Context, alarmId: String) {
-            ContextCompat.startForegroundService(
-                context,
-                Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId),
-            )
+            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId), null)
         }
 
         /** Startet die automatische Einschlaf-Messung für den Wecker [alarmId] (aus [com.phasewake.app.wear.schedule.AutoOnset]). */
         fun autoOnset(context: Context, alarmId: String) {
-            ContextCompat.startForegroundService(
-                context,
-                Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId),
-            )
+            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId), null)
         }
 
         /** Nimmt «Gute Nacht» nach einem Ende des Prozesses wieder auf (aus dem Prüf-Alarm). */
         fun resumeGoodNight(context: Context) {
-            ContextCompat.startForegroundService(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT_RESUME))
+            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT_RESUME), null)
         }
 
         /** Beendet «Gute Nacht»; auch wenn der Dienst nicht mehr läuft, gilt der gespeicherte Stand nicht mehr. */
@@ -346,7 +337,8 @@ class WakeService : LifecycleService() {
             if (remoteTarget != null) intent.putExtra(EXTRA_REMOTE_TARGET, remoteTarget)
             if (plan != null) {
                 AlarmReceiver.putPlan(intent, plan)
-                ContextCompat.startForegroundService(context, intent)
+                // Verweigert das System den Start, erscheint bei Zielzeit und Schlummer-Ende die Weck-Mitteilung direkt.
+                StartRefused.start(context, intent, plan)
             } else if (running) {
                 // Nur an einen laufenden Dienst: Ein Start aus dem Hintergrund wäre verboten und unnötig.
                 context.startService(intent)

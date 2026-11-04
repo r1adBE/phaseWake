@@ -16,6 +16,8 @@ enum PhoneCheck: CaseIterable, Hashable {
     case backupHorizon
     /// Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Nur ein Hinweis.
     case silentSwitch
+    /// Mitteilungen auf der Uhr nicht (zeitkritisch) erlaubt: Ohne laufende Messung weckt dann der Rückfall nicht.
+    case watchNotifications
 
     var title: String {
         switch self {
@@ -30,6 +32,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .battery: L("check_battery")
         case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
+        case .watchNotifications: L("check_watch_notifications")
         }
     }
 
@@ -46,6 +49,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
         case .backupHorizon: L("check_backup_horizon_text")
         case .silentSwitch: L("check_silent_switch_text")
+        case .watchNotifications: L("check_watch_notifications_problem")
         }
     }
 
@@ -81,6 +85,8 @@ enum NightCheck {
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
             }
+            // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
+            if model.watchNotifications?.isProblem == true { failed.append(.watchNotifications) }
             // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
             // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
             if !model.watchKnowsSkip {
@@ -132,7 +138,11 @@ enum NightCheck {
             #if canImport(AlarmKit)
             if #available(iOS 26.0, *) {
                 if AlarmManager.shared.authorizationState == .notDetermined {
-                    _ = try? await AlarmManager.shared.requestAuthorization()
+                    do {
+                        _ = try await AlarmManager.shared.requestAuthorization()
+                    } catch {
+                        NotificationLog.permissionFailed("alarmkit", error)
+                    }
                     return
                 }
             }
@@ -141,11 +151,12 @@ enum NightCheck {
         case .notifications:
             let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
             if status == .notDetermined {
-                _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+                await NotificationLog.requestPermission("night check")
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch:
+        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
+             .watchNotifications:
             break
         }
     }

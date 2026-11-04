@@ -1,4 +1,4 @@
-Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir orolig – då sover du troligen lätt. Senast precis på den inställda tiden. För det håller din Apple Watch koll på rörelse och puls. På Apple Watch mäter Phase Wake de sista 25 minuterna före den inställda tiden. Den kan inte avgöra om din natt var för kort.
+Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir orolig – då sover du troligen lätt. Senast på den inställda tiden; pågår ingen mätning på Apple Watch, ungefär 1 minut senare med en notis. För det håller din Apple Watch koll på rörelse och puls. På Apple Watch mäter Phase Wake de sista 25 minuterna före den inställda tiden. Den kan inte avgöra om din natt var för kort.
 
 Så fungerar det
 • Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
@@ -9,7 +9,7 @@ Så fungerar det
 Gjord för att du inte ska försova dig
 • Nattkontroll före sänggåendet: klocka ansluten, behörigheter givna, tillräckligt med batteri.
 • Testa väckarklockan: ”Testa om 2 minuter” med resultat steg för steg.
-• Från iOS 26 ringer reservlarmet på iPhone även i Stör ej och i fokusläget Sömn.
+• Från iOS 26 ringer reservlarmet på iPhone även i Stör ej och i fokusläget Sömn. Före iOS 26 är det en notis som ljudlös-reglaget tystar.
 • Hoppa över nästa gång och väck inte på helgdagar – helgdagar för över 150 länder och deras regioner, offline.
 
 Sov bättre

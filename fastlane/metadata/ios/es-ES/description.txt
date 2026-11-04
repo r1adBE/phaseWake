@@ -1,4 +1,4 @@
-Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, justo a la hora objetivo. Para ello, tu Apple Watch sigue el movimiento y el pulso. En el Apple Watch, Phase Wake mide los últimos 25 minutos antes de la hora objetivo. No puede saber si tu noche fue demasiado corta.
+Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, a la hora objetivo; si el Apple Watch no está midiendo, alrededor de 1 minuto después con una notificación. Para ello, tu Apple Watch sigue el movimiento y el pulso. En el Apple Watch, Phase Wake mide los últimos 25 minutos antes de la hora objetivo. No puede saber si tu noche fue demasiado corta.
 
 Cómo funciona
 • Elige la hora y la ventana (hasta 30 min), ponte el reloj y duerme.
@@ -9,7 +9,7 @@ Cómo funciona
 Para que no se te peguen las sábanas
 • Revisión nocturna antes de dormir: reloj conectado, permisos concedidos, batería suficiente.
 • Alarma de prueba «Probar en 2 minutos» con resultado paso a paso.
-• Desde iOS 26, la alarma de respaldo del iPhone suena incluso con No molestar y el modo de concentración Dormir.
+• Desde iOS 26, la alarma de respaldo del iPhone suena incluso con No molestar y el modo de concentración Dormir. Antes de iOS 26 es una notificación, y el interruptor de silencio la deja muda.
 • Saltar la próxima vez y no despertar en festivos – festivos de más de 150 países y sus regiones, sin conexión.
 
 Duerme mejor

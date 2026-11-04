@@ -1,4 +1,4 @@
-Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç tam hedef saatte. Bunun için Apple Watch'un hareketi ve nabzı takip eder. Apple Watch'ta Phase Wake hedef saatten önceki son 25 dakikayı ölçer. Gecenin fazla kısa olup olmadığını anlayamaz.
+Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç hedef saatte; Apple Watch'ta ölçüm çalışmıyorsa yaklaşık 1 dakika sonra bildirimle. Bunun için Apple Watch'un hareketi ve nabzı takip eder. Apple Watch'ta Phase Wake hedef saatten önceki son 25 dakikayı ölçer. Gecenin fazla kısa olup olmadığını anlayamaz.
 
 Nasıl çalışır
 • Uyanma saatini ve aralığı seç (30 dk'ya kadar), saatini tak, uyu.
@@ -9,7 +9,7 @@ Nasıl çalışır
 Uyuyakalmaman için tasarlandı
 • Yatmadan önce gece kontrolü: saat bağlı, izinler verilmiş, pil yeterli.
 • Alarmı test et: “2 dakika sonra test et”, adım adım sonuçla.
-• iOS 26'dan itibaren iPhone'daki yedek alarm Rahatsız Etme ve Uyku odağında da çalar.
+• iOS 26'dan itibaren iPhone'daki yedek alarm Rahatsız Etme ve Uyku odağında da çalar. iOS 26'dan önce bu bir bildirimdir ve sessiz anahtarı onu sessize alır.
 • Bir sonrakini atla ve tatillerde uyandırma – 150'den fazla ülke ve bölgeleri için tatiller, internetsiz.
 
 Daha iyi uyu

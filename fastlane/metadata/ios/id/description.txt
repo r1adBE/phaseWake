@@ -1,4 +1,4 @@
-Phase Wake membangunkanmu dalam rentang bangun begitu kamu mulai gelisah – saat itu tidurmu kemungkinan sedang ringan. Paling lambat tepat pada waktu target. Untuk itu, Apple Watch memantau gerakan dan detak jantung. Di Apple Watch, Phase Wake mengukur 25 menit terakhir sebelum waktu target. Jam tidak bisa tahu apakah malammu terlalu singkat.
+Phase Wake membangunkanmu dalam rentang bangun begitu kamu mulai gelisah – saat itu tidurmu kemungkinan sedang ringan. Paling lambat pada waktu target; jika Apple Watch tidak sedang mengukur, sekitar 1 menit kemudian lewat notifikasi. Untuk itu, Apple Watch memantau gerakan dan detak jantung. Di Apple Watch, Phase Wake mengukur 25 menit terakhir sebelum waktu target. Jam tidak bisa tahu apakah malammu terlalu singkat.
 
 Cara kerjanya
 • Pilih waktu bangun dan rentang (hingga 30 mnt), pakai jam tanganmu, lalu tidur.
@@ -9,7 +9,7 @@ Cara kerjanya
 Dibuat agar kamu tidak kesiangan
 • Pemeriksaan malam sebelum tidur: jam terhubung, izin diberikan, baterai cukup.
 • Uji alarm “Uji dalam 2 menit” dengan hasil langkah demi langkah.
-• Mulai iOS 26, alarm cadangan di iPhone tetap berbunyi saat Jangan Ganggu dan Fokus Tidur.
+• Mulai iOS 26, alarm cadangan di iPhone tetap berbunyi saat Jangan Ganggu dan Fokus Tidur. Sebelum iOS 26, alarm ini berupa notifikasi yang dibisukan oleh sakelar senyap.
 • Lewati kali berikutnya dan jangan bangunkan saat hari libur – hari libur untuk lebih dari 150 negara beserta wilayahnya, offline.
 
 Tidur lebih baik

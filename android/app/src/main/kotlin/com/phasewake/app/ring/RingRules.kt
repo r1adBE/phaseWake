@@ -276,7 +276,8 @@ internal object RingRules {
      * kleinere Kennung, wie `BackupPlan.nights` auf dem iPhone). Andere Wecker ab der Zielzeit von [first] (auch auf
      * derselben Minute), nicht ausgesetzte ([suppressed]); jede Nacht gilt als geklungen – bis Zielzeit + [pause]
      * ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu der Probewecker oder Powernap
-     * [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge.
+     * [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge; [first] ist immer
+     * dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first] steht vorne, Audit I-05).
      */
     fun directBootPlans(
         first: WakePlan,
@@ -307,7 +308,8 @@ internal object RingRules {
             plan.alarmId != first.alarmId && plan.target.plus(grace).isAfter(first.target) &&
                 (suppressed[plan.alarmId] ?: Instant.EPOCH) < plan.target
         }
-        val sorted = (following + listOfNotNull(nap)).sortedWith(compareBy({ it.target }, { it.alarmId }))
-        return listOf(first) + sorted.take(count - 1)
+        val order = compareBy<WakePlan>({ it.target }, { it.alarmId })
+        val others = (following + listOfNotNull(nap)).sortedWith(order).take(count - 1)
+        return (others + first).sortedWith(order)
     }
 }

@@ -1,4 +1,4 @@
-Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději přesně v cílový čas. K tomu tvoje Apple Watch sledují pohyb a tep. Na Apple Watch měří Phase Wake posledních 25 minut před cílovým časem. Nepozná, jestli byla tvoje noc příliš krátká.
+Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději v cílový čas; když na Apple Watch neběží měření, asi o 1 minutu později oznámením. K tomu tvoje Apple Watch sledují pohyb a tep. Na Apple Watch měří Phase Wake posledních 25 minut před cílovým časem. Nepozná, jestli byla tvoje noc příliš krátká.
 
 Jak to funguje
 • Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
@@ -9,7 +9,7 @@ Jak to funguje
 Navrženo proti zaspání
 • Noční kontrola před spaním: hodinky připojené, oprávnění udělená, baterie dost nabitá.
 • Zkušební budík „Vyzkoušet za 2 minuty“ s výsledkem krok za krokem.
-• Od iOS 26 zvoní záložní budík v iPhonu i v režimu Nerušit a v režimu soustředění Spánek.
+• Od iOS 26 zvoní záložní budík v iPhonu i v režimu Nerušit a v režimu soustředění Spánek. Před iOS 26 je to oznámení, které ztlumí přepínač tichého režimu.
 • Příště přeskočit a nebudit o svátcích – svátky pro více než 150 zemí a jejich regiony, offline.
 
 Lepší spánek

@@ -53,6 +53,9 @@ android {
         // Abdeckung der Unit-Tests, nur zur Information in der CI (Bericht: createDebugUnitTestCoverageReport).
         debug {
             enableUnitTestCoverage = true
+            // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
+            // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
+            applicationIdSuffix = ".test"
         }
         release {
             isMinifyEnabled = true
@@ -91,6 +94,11 @@ kotlin {
     compilerOptions {
         allWarningsAsErrors = true
     }
+}
+
+// Lizenztexte aus licenses/ (wie auf dem Handy) als Assets auch ins Uhr-APK; angezeigt werden sie in der Handy-App.
+androidComponents {
+    onVariants { variant -> variant.sources.assets?.addStaticSourceDirectory(rootProject.file("../licenses").path) }
 }
 
 // Robolectric lädt die Klassen in einer eigenen Umgebung: ohne diese Einstellung zählt JaCoCo sie nicht mit.

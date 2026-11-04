@@ -247,7 +247,8 @@ final class PhoneTransient {
         concluding = true
         defer { concluding = false }
         if current.seen[.phoneRang] == nil {
-            let delivered = await UNUserNotificationCenter.current().deliveredNotifications().map(\.request.identifier)
+            // Vor iOS 26 eine Kette aus Mitteilungen («id», «id.1» …): zählt über die Kennung der ersten.
+            let delivered = await UNUserNotificationCenter.current().deliveredNotifications().map { NotificationChain.baseId($0.request.identifier) }
             if let id = delivered.first(where: { ringIds.contains($0) }) { phoneAlerted(id) }
         }
         let missing = await NightCheck.collect()

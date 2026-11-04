@@ -26,4 +26,6 @@
     <string name="history_empty_no_data_apple">Apple Health မှ အိပ်စက်မှုဒေတာ မရှိသေးပါ။ အိပ်စက်မှုကို ထိုနေရာတွင် မှတ်တမ်းတင်ရမည် (ဥပမာ Apple Watch ဖြင့်)၊ Health အက်ပ်တွင် Phase Wake ကို ဖတ်ခွင့်ပြုထားရမည်။</string>
     <string name="backup_health_hint_apple">အခြားအက်ပ်များ (ဥပမာ Apple Health) မှ ညများကို အရန်မသိမ်းပါ – ၎င်းတို့သည် ထိုနေရာတွင် ရှိနေပြီး ခွင့်ပြုချက်ပေးသည်နှင့် ပြန်ပေါ်လာမည်။</string>
     <string name="health_rationale_apple">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Apple Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
+    <string name="check_watch_notifications">နာရီပေါ်ရှိ အသိပေးချက်များ</string>
+    <string name="check_watch_notifications_problem">Apple Watch ပေါ်တွင် Phase Wake အတွက် အချိန်အရေးကြီး အသိပေးချက်များကို ခွင့်ပြုပါ။ မဟုတ်ပါက တိုင်းတာမှု မလုပ်ဆောင်နေချိန်တွင် အသိပေးချက်ဖြင့် နှိုး၍ မရပါ။</string>
 </resources>

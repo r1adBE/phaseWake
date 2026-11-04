@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">Apple Health से अभी तक नींद का कोई डेटा नहीं है। नींद वहाँ रिकॉर्ड होनी चाहिए, जैसे आपकी Apple Watch से, और Health ऐप में Phase Wake को उसे पढ़ने की अनुमति होनी चाहिए।</string>
     <string name="backup_health_hint_apple">दूसरे ऐप की रातें (जैसे Apple Health) बैकअप में नहीं जातीं – वे वहीं रहती हैं और अनुमति मिलते ही फिर दिखती हैं।</string>
     <string name="health_rationale_apple">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Apple Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है, उन रातों से तुलना के लिए भी जब Phase Wake ने तुम्हें जगाया। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
+    <string name="check_watch_notifications">वॉच पर सूचनाएँ</string>
+    <string name="check_watch_notifications_problem">अपनी Apple Watch पर Phase Wake के लिए समय-संवेदी सूचनाओं की अनुमति दें। वरना माप न चलने पर वॉच आपको सूचना से नहीं जगा सकती।</string>
 </resources>

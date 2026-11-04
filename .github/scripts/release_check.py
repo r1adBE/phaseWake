@@ -6,6 +6,7 @@ Gelesen wird das zusammengeführte Release-Manifest jeder App. Fehler, wenn
 - die App als debuggable markiert ist,
 - eine Vorschau- oder Test-Activity enthalten ist (z. B. PreviewActivity aus ui-tooling),
 - die App Netzzugriff anfordert (INTERNET oder ACCESS_NETWORK_STATE, z. B. über eine Bibliothek eingeschleppt),
+- die Kennung nicht com.phasewake.app ist (nur Testversionen tragen «.test», Audit M-04),
 - für eine App kein Release-Manifest gefunden wird (Build fehlte).
 """
 import glob
@@ -17,6 +18,8 @@ APPS = ("app", "wear")
 FORBIDDEN = ("PreviewActivity", "ComponentActivity", "TestActivity")
 # Phase Wake arbeitet ohne Netz; die Manifeste entfernen diese Rechte mit tools:node="remove".
 NETWORK = ("android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE")
+# Kennung der Store-Version von Handy und Uhr (Data Layer: beide gleich).
+APP_ID = "com.phasewake.app"
 
 
 def manifest(app):
@@ -31,6 +34,8 @@ def check(app):
         return [f"{app}: kein Release-Manifest gefunden (assembleRelease gelaufen?)"]
     errors = []
     root = ET.parse(path).getroot()
+    if root.get("package") != APP_ID:
+        errors.append(f"{app}: Release-Kennung {root.get('package')} statt {APP_ID}")
     for permission in root.iter("uses-permission"):
         name = permission.get(NS + "name", "")
         if name in NETWORK:
@@ -50,7 +55,7 @@ def main():
     for e in errors:
         print(f"::error title=Store-Build::{e}")
     if not errors:
-        print("::notice title=Store-Build::Handy und Uhr: Release ohne debuggable, ohne Vorschau-Activity und ohne Netzzugriff")
+        print(f"::notice title=Store-Build::Handy und Uhr: Release als {APP_ID}, ohne debuggable, ohne Vorschau-Activity und ohne Netzzugriff")
     return 1 if errors else 0
 
 

@@ -23,4 +23,6 @@
     <string name="history_empty_no_data_apple">עדיין אין נתוני שינה מ-Apple Health. השינה צריכה להירשם שם, למשל על ידי ה-Apple Watch, ו-Phase Wake צריכה הרשאה לקרוא אותה באפליקציית Health.</string>
     <string name="backup_health_hint_apple">לילות מאפליקציות אחרות (למשל Apple Health) לא נכללים בגיבוי – הם נשארים שם ומופיעים שוב ברגע שניתנת הרשאה.</string>
     <string name="health_rationale_apple">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Apple Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
+    <string name="check_watch_notifications">התראות בשעון</string>
+    <string name="check_watch_notifications_problem">אפשרו התראות רגישות לזמן עבור Phase Wake ב-Apple Watch שלכם. אחרת הוא לא יוכל להעיר אתכם בהתראה כשאין מדידה פעילה.</string>
 </resources>

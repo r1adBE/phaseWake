@@ -31,7 +31,8 @@ extension BackupAlarm {
             try? AlarmManager.shared.cancel(id: id)
         }
         #endif
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
+        // Vor iOS 26 (oder nach gescheitertem AlarmKit) samt der Kette (`NotificationChain`).
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.ids(id.uuidString))
     }
 
     #if canImport(AlarmKit)
@@ -75,23 +76,46 @@ extension BackupAlarm {
             )
             _ = try await AlarmManager.shared.schedule(id: id, configuration: configuration)
         } catch {
+            // Erlaubnis fehlt oder AlarmKit lehnt ab: als Mitteilung (im Protokoll sichtbar).
+            DiagStore.shared.log(.error, "alarmkit failed \((error as NSError).code), notification instead")
             await scheduleNotification(id: id, at: date, tone: tone)
         }
     }
     #endif
 
     /// Vor iOS 26: zeitkritische Mitteilung; der Stummschalter macht sie lautlos (Nacht-Check weist darauf hin).
-    /// Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt einer Reise, auch ohne dass die App läuft.
-    /// `trigger` ersetzt den Auslöser zu Kalenderzeit (`pinNotification`).
-    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, trigger: UNNotificationTrigger? = nil) async {
-        let center = UNUserNotificationCenter.current()
-        _ = try? await center.requestAuthorization(options: [.alert, .sound]) // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
+    /// Als Kette aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`, Kennungen «id», «id.1» … «id.3»): Wer
+    /// die erste verschläft, wird von der nächsten geweckt. Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt
+    /// einer Reise, auch ohne dass die App läuft. `fixed`: zum festen Zeitpunkt (`pinNotification`).
+    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, fixed: Bool = false) async {
+        // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
+        await NotificationLog.requestPermission("backup")
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_notification_text")
         content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
         content.interruptionLevel = .timeSensitive
-        try? await center.add(UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger ?? LocalTrigger.at(date)))
+        let now = Date()
+        for (member, at) in zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)) {
+            let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
+            await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup")
+        }
+    }
+
+    /// Vor iOS 26 beim Stopp: die Ketten (`NotificationChain`) des Mitklingel-Alarms `ringing` und jeder schon
+    /// zugestellten Sicherung dieser Nacht (`night`, `nil` = alle) ganz entfernen, wartend und zugestellt – wie ab
+    /// iOS 26 die klingelnden Alarme dieser Nacht gestoppt werden. Der Probewecker zählt, was zugestellt wurde.
+    func removeNotificationChains(ringing: UUID?, night: RingNight?) async {
+        let center = UNUserNotificationCenter.current()
+        let notes = await center.deliveredNotifications()
+        let delivered = Set(notes.compactMap { UUID(uuidString: NotificationChain.baseId($0.request.identifier)) })
+        var ids = delivered.filter { $0 != ringing && belongs($0, to: night, unknown: false) }
+        if let ringing { ids.insert(ringing) }
+        guard !ids.isEmpty else { return }
+        for id in ids where delivered.contains(id) { PhoneModel.shared.transient.phoneAlerted(id.uuidString) }
+        let all = NotificationChain.allIds(ids.map(\.uuidString))
+        center.removePendingNotificationRequests(withIdentifiers: all)
+        center.removeDeliveredNotifications(withIdentifiers: all)
     }
 
     /// Eine über einen Zeitzonenwechsel behaltene Sicherung (`AlarmSchedule.begunNight`) klingelt zur geplanten
@@ -101,8 +125,7 @@ extension BackupAlarm {
         let center = UNUserNotificationCenter.current()
         let pending = await center.pendingNotificationRequests()
         guard pending.contains(where: { $0.identifier == entry.id.uuidString && $0.trigger is UNCalendarNotificationTrigger }) else { return }
-        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound),
-                                   trigger: LocalTrigger.fixed(entry.slot.fireAt))
+        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound), fixed: true)
     }
 }
 

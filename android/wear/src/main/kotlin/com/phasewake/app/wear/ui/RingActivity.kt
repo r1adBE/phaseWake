@@ -64,12 +64,14 @@ import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.RingUi
+import com.phasewake.app.wear.wake.StartRefused
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wake.ringReasonRes
 import com.phasewake.app.wear.wearApp
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /** Weckbildschirm: erscheint über dem Sperrbildschirm, solange es klingelt; beim Schlummern schliesst er sich, ausser er wurde über die Schlummer-Mitteilung geöffnet. */
@@ -78,13 +80,19 @@ class RingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val ringState = wearApp.ringState
+        // Über die Weck-Mitteilung ohne laufenden Dienst (Start verweigert, Audit N-05): Dienst jetzt nachholen.
+        val rescue = savedInstanceState == null && StartRefused.resume(this, intent)
         setContent {
             PhaseWakeTheme {
                 val ui by ringState.ui.collectAsStateWithLifecycle()
                 var rang by rememberSaveable { mutableStateOf(false) }
                 LaunchedEffect(ui) {
                     when (ui) {
-                        RingUi.Idle -> finish()
+                        RingUi.Idle -> {
+                            // Beim Nachholen kurz auf den Dienst warten, sonst schlösse sich der Bildschirm sofort.
+                            if (rescue && !rang) delay(RESCUE_WAIT_MS)
+                            finish()
+                        }
                         is RingUi.Ringing -> {
                             rang = true
                             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -154,6 +162,12 @@ class RingActivity : ComponentActivity() {
         const val VIA_TAP = "tap"
         const val VIA_ALARM = "alarm"
         const val VIA_DIRECT = "direct"
+
+        /** Weck-Mitteilung ohne laufenden Dienst ([StartRefused]). */
+        const val VIA_RESCUE = "rescue"
+
+        /** So lange wartet der nachgeholte Weckbildschirm auf das Klingeln des Dienstes. */
+        private const val RESCUE_WAIT_MS = 10_000L
 
         /** Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert der Dienst ([com.phasewake.app.wear.wake.onRealert]). */
         @Volatile

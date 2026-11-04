@@ -15,7 +15,7 @@ final class BedtimeReminder {
     private var queue: Task<Void, Never>?
 
     func requestPermission() async {
-        _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+        await NotificationLog.requestPermission("bedtime")
     }
 
     func reschedule(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>) async {
@@ -49,7 +49,7 @@ final class BedtimeReminder {
             // Auslöser im Kalender des Geräts: Er liest die Komponenten in diesem (ohne Angabe des Kalenders).
             let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: reminder.at)
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
-            try? await center.add(UNNotificationRequest(identifier: Self.identifier(index), content: content, trigger: trigger))
+            await NotificationLog.add(UNNotificationRequest(identifier: Self.identifier(index), content: content, trigger: trigger), "bedtime")
         }
     }
 }

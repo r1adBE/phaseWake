@@ -28,6 +28,7 @@ final class HealthSleep: @unchecked Sendable {
             try await store.requestAuthorization(toShare: [], read: [type])
             return true
         } catch {
+            NotificationLog.permissionFailed("health", error)
             return false
         }
     }

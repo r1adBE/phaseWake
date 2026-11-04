@@ -24,4 +24,6 @@
     <string name="history_empty_no_data_apple">Ayikho idatha yokulala evela ku-Apple Health okwamanje. Ukulala kufanele kurekhodwe lapho, isibonelo nge-Apple Watch yakho, futhi i-Phase Wake kufanele ivunyelwe ukukufunda ku-app ye-Health.</string>
     <string name="backup_health_hint_apple">Ubusuku obuvela kwamanye ama-app (isb. i-Apple Health) abulondolozwa – buhlala lapho futhi buvele futhi uma sekunikezwe imvume.</string>
     <string name="health_rationale_apple">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Apple Health). Iboniswa emlandweni wakho, futhi ukuze iqhathaniswe nobusuku i-Phase Wake ekuvuse ngabo. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
+    <string name="check_watch_notifications">Izaziso ewashini</string>
+    <string name="check_watch_notifications_problem">Vumela izaziso ezibucayi ngesikhathi ze-Phase Wake ku-Apple Watch yakho. Uma kungenjalo, ayikwazi ukukuvusa ngesaziso uma kungekho kukala okuqhubekayo.</string>
 </resources>

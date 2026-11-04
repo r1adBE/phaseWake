@@ -1,4 +1,4 @@
-Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk precies op je doeltijd. Daarvoor let je Apple Watch op beweging en hartslag. Op de Apple Watch meet Phase Wake de laatste 25 minuten voor je doeltijd. Hij kan niet zien of je nacht te kort was.
+Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk op je doeltijd; loopt er op de Apple Watch geen meting, dan ongeveer 1 minuut later met een melding. Daarvoor let je Apple Watch op beweging en hartslag. Op de Apple Watch meet Phase Wake de laatste 25 minuten voor je doeltijd. Hij kan niet zien of je nacht te kort was.
 
 Zo werkt het
 • Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.
@@ -9,7 +9,7 @@ Zo werkt het
 Gemaakt zodat je je niet verslaapt
 • Nachtcheck voor het slapengaan: horloge verbonden, rechten verleend, batterij vol genoeg.
 • Testwekker ‘Testen over 2 minuten’ met stap-voor-stap-resultaat.
-• Vanaf iOS 26 gaat de reservewekker op je iPhone ook af bij Niet storen en met de focus Slaap.
+• Vanaf iOS 26 gaat de reservewekker op je iPhone ook af bij Niet storen en met de focus Slaap. Vóór iOS 26 is het een melding die de stilteschakelaar dempt.
 • Volgende keer overslaan en niet wekken op feestdagen – feestdagen voor meer dan 150 landen en hun regio’s, offline.
 
 Beter slapen

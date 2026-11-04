@@ -1,4 +1,4 @@
-Phase Wake đánh thức bạn trong khoảng đánh thức ngay khi bạn bắt đầu trằn trọc – lúc đó có lẽ bạn đang ngủ nông. Muộn nhất là đúng giờ mục tiêu. Để làm vậy, Apple Watch theo dõi chuyển động và nhịp tim. Trên Apple Watch, Phase Wake đo 25 phút cuối trước giờ mục tiêu. Đồng hồ không biết được đêm của bạn có quá ngắn hay không.
+Phase Wake đánh thức bạn trong khoảng đánh thức ngay khi bạn bắt đầu trằn trọc – lúc đó có lẽ bạn đang ngủ nông. Muộn nhất là vào giờ mục tiêu; nếu Apple Watch không đang đo, khoảng 1 phút sau bằng thông báo. Để làm vậy, Apple Watch theo dõi chuyển động và nhịp tim. Trên Apple Watch, Phase Wake đo 25 phút cuối trước giờ mục tiêu. Đồng hồ không biết được đêm của bạn có quá ngắn hay không.
 
 Cách hoạt động
 • Chọn giờ thức dậy và khoảng đánh thức (tối đa 30 phút), đeo đồng hồ, đi ngủ.
@@ -9,7 +9,7 @@ Cách hoạt động
 Để bạn không ngủ quên
 • Kiểm tra ban đêm trước khi ngủ: đồng hồ đã kết nối, đã cấp quyền, pin đủ.
 • Thử báo thức “Thử sau 2 phút” với kết quả từng bước.
-• Từ iOS 26, báo thức dự phòng trên iPhone vẫn đổ chuông khi bật Không làm phiền và chế độ tập trung Ngủ.
+• Từ iOS 26, báo thức dự phòng trên iPhone vẫn đổ chuông khi bật Không làm phiền và chế độ tập trung Ngủ. Trước iOS 26, đây là một thông báo và công tắc im lặng sẽ làm nó không phát tiếng.
 • Bỏ qua lần tới và không đánh thức vào ngày lễ – ngày lễ của hơn 150 quốc gia và khu vực, không cần internet.
 
 Ngủ ngon hơn

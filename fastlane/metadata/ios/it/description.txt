@@ -1,4 +1,4 @@
-Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi, esattamente all’orario obiettivo. Per questo il tuo Apple Watch segue movimento e battito cardiaco. Su Apple Watch, Phase Wake misura gli ultimi 25 minuti prima dell’orario obiettivo. Non può capire se la tua notte è stata troppo corta.
+Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi all’orario obiettivo; se sull’Apple Watch non è in corso una misurazione, circa 1 minuto dopo con una notifica. Per questo il tuo Apple Watch segue movimento e battito cardiaco. Su Apple Watch, Phase Wake misura gli ultimi 25 minuti prima dell’orario obiettivo. Non può capire se la tua notte è stata troppo corta.
 
 Come funziona
 • Scegli l’orario della sveglia e la finestra (fino a 30 min), indossa l’orologio, dormi.
@@ -9,7 +9,7 @@ Come funziona
 Fatto perché tu non perda la sveglia
 • Controllo notturno prima di dormire: orologio connesso, autorizzazioni concesse, batteria sufficiente.
 • Sveglia di prova «Prova tra 2 minuti» con esito passo per passo.
-• Da iOS 26, la sveglia di riserva sull’iPhone suona anche con Non disturbare e con la full immersion Riposo.
+• Da iOS 26, la sveglia di riserva sull’iPhone suona anche con Non disturbare e con la full immersion Riposo. Prima di iOS 26 è una notifica, che l’interruttore silenzioso rende muta.
 • Salta la prossima volta e non svegliare nei festivi – festivi di oltre 150 paesi e delle loro regioni, offline.
 
 Dormi meglio

@@ -70,6 +70,7 @@ extension SmartAlarm {
                 self.phase = .waiting(plan)
             case .measuring:
                 // Abgebrochen mitten in der Messung: sofort per Mitteilung wecken.
+                self.logMeasureEnd(" interrupted")
                 self.scheduleFallback(at: Date(), id: Self.interruptedId)
                 self.phase = .idle
             case .ringing, .snoozed:

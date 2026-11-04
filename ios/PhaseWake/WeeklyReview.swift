@@ -53,7 +53,7 @@ final class WeeklyReview {
         // Auslöser im Kalender des Geräts: Er liest die Komponenten in diesem (ohne Angabe des Kalenders).
         let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at)
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
-        try? await center.add(UNNotificationRequest(identifier: Self.identifier, content: content, trigger: trigger))
+        await NotificationLog.add(UNNotificationRequest(identifier: Self.identifier, content: content, trigger: trigger), "weekly")
     }
 }
 
@@ -62,9 +62,14 @@ final class NotificationRouter: NSObject, UNUserNotificationCenterDelegate, @unc
     static let shared = NotificationRouter()
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        let id = response.notification.request.identifier
-        // Zweitwecker vor iOS 26 (Kennung = UUID, siehe `BackupAlarm`): Der Probewecker zählt das Klingeln.
-        if UUID(uuidString: id) != nil { await MainActor.run { PhoneModel.shared.transient.phoneAlerted(id) } }
+        let raw = response.notification.request.identifier
+        // Zweitwecker vor iOS 26 (Kennung = UUID samt Kette «.1» … «.3», siehe `BackupAlarm`): Der Probewecker zählt das
+        // Klingeln. Ein Tipp heisst wach: Die noch folgenden Mitteilungen der Kette fallen weg.
+        let id = NotificationChain.baseId(raw)
+        if UUID(uuidString: id) != nil {
+            center.removePendingNotificationRequests(withIdentifiers: NotificationChain.followingIds(id))
+            await MainActor.run { PhoneModel.shared.transient.phoneAlerted(id) }
+        }
         guard id == WeeklyReview.identifier else { return }
         await MainActor.run { PhoneModel.shared.selectedTab = .history }
     }
@@ -73,7 +78,7 @@ final class NotificationRouter: NSObject, UNUserNotificationCenterDelegate, @unc
     /// Alle anderen Mitteilungen bleiben wie bisher stumm, solange die App offen ist.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async
         -> UNNotificationPresentationOptions {
-        let id = notification.request.identifier
+        let id = NotificationChain.baseId(notification.request.identifier)
         guard UUID(uuidString: id) != nil else { return [] }
         await MainActor.run { PhoneModel.shared.transient.phoneAlerted(id) }
         return [.banner, .list, .sound]

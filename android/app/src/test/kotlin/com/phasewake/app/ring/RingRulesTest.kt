@@ -167,6 +167,19 @@ class RingRulesTest {
         assertEquals(listOf(at("2026-10-28T07:00"), at("2026-10-28T07:00"), at("2026-10-29T07:00"), at("2026-10-29T07:00")), sameList.map { it.target })
     }
 
+    @Test
+    fun directBootListIsOrderedIncludingFirst() {
+        // Powernap mit Zielzeit vor dem ersten Zweitwecker (Nachfrist läuft noch über ihn hinaus): steht vorne (Audit I-05).
+        val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())
+        val first = plan(listOf(daily), at("2026-10-28T01:00"))!!
+        val nap = WakePlan("nap", at("2026-10-28T06:24"), at("2026-10-28T06:29"), exact = true)
+        val plans = RingRules.directBootPlans(first, listOf(daily), nap, emptyMap(), grace, grace, zurich, emptySet(), 3)
+        assertEquals(listOf("nap" to at("2026-10-28T06:29"), "d" to at("2026-10-28T06:30"), "d" to at("2026-10-29T06:30")), plans.map { it.alarmId to it.target })
+        assertEquals(plans.sortedBy { it.target }, plans)
+        // Mit nur zwei Plätzen bleibt der erste Zweitwecker immer dabei.
+        assertEquals(listOf("nap", "d"), RingRules.directBootPlans(first, listOf(daily), nap, emptyMap(), grace, grace, zurich, emptySet(), 2).map { it.alarmId })
+    }
+
     private val tokyo = ZoneId.of("Asia/Tokyo")
     private val windowed = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
     private val zurichSeven = at("2026-11-04T07:00")

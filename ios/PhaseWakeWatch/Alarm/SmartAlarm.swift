@@ -110,12 +110,18 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     // MARK: Berechtigungen
 
-    /// Puls lesen (zweite Stimme der Erkennung) und Mitteilungen (Rückfall) – beim ersten Start fragen.
+    /// Puls lesen (zweite Stimme der Erkennung) und Mitteilungen (Rückfall) – beim ersten Start fragen. Scheitert eine
+    /// Anfrage, steht es im Protokoll; danach geht der Stand der Mitteilungen ans iPhone (Nacht-Check).
     func requestAccess() async {
         if HKHealthStore.isHealthDataAvailable(), let heartRate = HKQuantityType.quantityType(forIdentifier: .heartRate) {
-            try? await health.requestAuthorization(toShare: [], read: [heartRate])
+            do {
+                try await health.requestAuthorization(toShare: [], read: [heartRate])
+            } catch {
+                NotificationLog.permissionFailed("heart rate", error)
+            }
         }
-        _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+        await NotificationLog.requestPermission("watch")
+        await WatchConnectivityBridge.shared.publishNotificationState()
     }
 
     // MARK: Planen
@@ -299,21 +305,43 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Weck-Mitteilung zu `date` unter der Kennung `id` (ersetzt eine gleichnamige). Zu Kalenderzeit ohne Zeitzone
     /// (`LocalTrigger`): Nach einem Zeitzonenwechsel weckt sie zur selben Ortszeit, auch wenn die App nicht läuft.
     /// `fixed`: zum festen Zeitpunkt (`LocalTrigger.fixed`), für eine über eine Reise behaltene Nacht.
+    /// Rückfall des echten Weckers (`fallbackId`) und Wecken nach abgebrochener Sitzung (`interruptedId`): eine Kette
+    /// aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`), damit eine verschlafene oder weggewischte nicht die
+    /// einzige bleibt. Probewecker und Powernap wecken mit einer.
     func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId, fixed: Bool = false) {
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_reason_deadline")
         content.sound = .default
         content.interruptionLevel = .timeSensitive
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: fixed ? LocalTrigger.fixed(date) : LocalTrigger.at(date))
-        // Scheitert das Stellen (z. B. Mitteilungen aus), fehlt der Rückfall: im Protokoll sichtbar machen.
-        UNUserNotificationCenter.current().add(request) { error in
-            guard let error else { return }
-            DiagStore.shared.log(.error, "fallback \(id) not set \((error as NSError).code)")
+        let chained = id == Self.fallbackId || id == Self.interruptedId
+        let ids = chained ? NotificationChain.ids(id) : [id]
+        let dates = chained ? NotificationChain.dates(date) : [date]
+        let now = Date()
+        for (member, at) in zip(ids, dates) {
+            let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
+            let request = UNNotificationRequest(identifier: member, content: content, trigger: trigger)
+            // Scheitert das Stellen (z. B. Mitteilungen aus), fehlt der Rückfall: im Protokoll sichtbar machen.
+            UNUserNotificationCenter.current().add(request) { error in
+                guard let error else { return }
+                DiagStore.shared.log(.error, "fallback \(member) not set \((error as NSError).code)")
+            }
         }
     }
 
+    /// Entfernt die wartenden Rückfälle `ids`, je samt ihrer Kette (`NotificationChain`).
     func removeFallback(_ ids: [String] = [SmartAlarm.fallbackId]) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ids)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.allIds(ids))
+    }
+
+    /// Klingelt die Sitzung selbst, braucht es die noch folgenden Mitteilungen der Kette von `id` nicht mehr. Die
+    /// erste bleibt wie bisher stehen, bis beendet wird: Endet die Sitzung, weckt sie trotzdem.
+    func removeFollowingFallback(_ id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.followingIds(id))
+    }
+
+    /// Nach dem Stopp: auch schon zugestellte Rückfälle `ids` samt Kette aus der Mitteilungszentrale nehmen.
+    func removeDeliveredFallback(_ ids: [String]) {
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: NotificationChain.allIds(ids))
     }
 }
