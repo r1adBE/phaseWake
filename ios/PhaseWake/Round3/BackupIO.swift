@@ -14,10 +14,13 @@ enum BackupIO {
     private static let autoOnsetKey = "backupAutoOnset"
     /// Verlaufsdatei von `PhaseWakeStorage` im Ordner `PrivateFiles`.
     private static let nightsFile = "nights.v1"
+    /// `createdAt` der Sicherung, deren Wecker und Einstellungen in `SettingsFile.phone` stehen (in derselben Datei,
+    /// also nur zusammen mit ihnen gespeichert); vor jedem Wiederherstellen entfernt.
+    private static let restoredKey = "restoredBackupAt"
 
     /// Aktueller Stand als Sicherungsinhalt.
     static func payload(_ model: PhoneModel, now: Date = Date()) -> BackupPayload {
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         let theme = ThemeMode(rawValue: defaults.string(forKey: themeKey) ?? "") ?? .system
         return BackupPayload(
             createdAt: Int64(now.timeIntervalSince1970 * 1000),
@@ -74,10 +77,11 @@ enum BackupIO {
 
     /// Ersetzt Wecker, Verlauf, Notizen (samt Befinden zu Nächten aus anderen Apps), Abendroutine und Einstellungen
     /// in einem Schritt; danach geht alles an die Uhr. Zuerst entstehen Verlauf und Notizen als Dateien im
-    /// Arbeitsordner von ``RestoreJournal`` und werden dann getauscht. Wecker und Einstellungen (in `UserDefaults`,
-    /// dessen Schreiben nicht scheitert) sowie die Abendroutine (kleine Dateien in `PrivateFiles`) folgen erst nach dem
-    /// gelungenen Tausch (``applySettings(_:to:)``, wiederholbar). Ab dem Merker (``RestoreJournal/begin(_:payload:)``) übersteht die
-    /// Wiederherstellung auch ein Ende der App: Der nächste Start führt sie zu Ende oder holt den alten Stand zurück.
+    /// Arbeitsordner von ``RestoreJournal`` und werden dann getauscht. Wecker und Einstellungen (`SettingsFile.phone`)
+    /// sowie die Abendroutine (kleine Dateien in `PrivateFiles`) folgen erst nach dem gelungenen Tausch
+    /// (``applySettings(_:to:)``, wiederholbar); der Merker bleibt, bis auch sie in der Datei stehen. Ab dem Merker
+    /// (``RestoreJournal/begin(_:payload:)``) übersteht die Wiederherstellung auch ein Ende der App: Der nächste Start
+    /// führt sie zu Ende oder holt den alten Stand zurück.
     /// - Throws: wenn eine Datei nicht geschrieben oder getauscht werden konnte; dann ist nichts geändert (ein nicht
     ///   ganz gelungenes Zurückholen holt der nächste Start nach). Ebenso, solange eine frühere Wiederherstellung offen ist.
     static func apply(_ payload: BackupPayload, to model: PhoneModel) throws {
@@ -86,6 +90,9 @@ enum BackupIO {
         try RestoreJournal.prepare()
         let marker: RestoreJournal.Marker
         do {
+            // Merker der letzten Wiederherstellung weg, bevor etwas getauscht wird (danach zeigt er nur diese an).
+            SettingsFile.phone.removeObject(forKey: restoredKey)
+            guard SettingsFile.phone.flush() else { throw CocoaError(.fileWriteOutOfSpace) }
             let names = try stage(payload, in: RestoreJournal.staging)
             marker = try RestoreJournal.copyLive(names)
             try RestoreJournal.begin(marker, payload: payload)
@@ -100,19 +107,22 @@ enum BackupIO {
             RestoreJournal.rollBack(marker, model: model)
             throw error
         }
-        applySettings(payload, to: model)
-        RestoreJournal.finish()
+        // Einstellungen nicht gespeichert (Speicher voll): Sie gelten schon im Speicher; der Merker bleibt, damit der
+        // nächste Start sie aus der Sicherung noch einmal schreibt.
+        if applySettings(payload, to: model) { RestoreJournal.finish() }
     }
 
     /// Wecker, Abendroutine und Einstellungen aus der Sicherung übernehmen, Stand neu laden und an die Uhr geben.
     /// Wiederholbar (auch nach einem Abbruch beim nächsten Start, ``RestoreJournal/recover(model:)``).
-    static func applySettings(_ payload: BackupPayload, to model: PhoneModel) {
+    /// - Returns: ob Wecker und Einstellungen in `SettingsFile.phone` gespeichert sind (sonst später wiederholen).
+    @discardableResult
+    static func applySettings(_ payload: BackupPayload, to model: PhoneModel) -> Bool {
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
         model.storage.mutate { _ in Array(alarms.prefix(PhoneModel.maxAlarms)) }
         // Abendroutine als Dateien in `PrivateFiles` (nicht in der iCloud-Sicherung); ohne Punkte die Vorschläge.
         model.privateNotes.setRoutineItemsText(payload.routineItems)
         model.privateNotes.setRoutineTicks(Routine.decodeTicks(payload.routineTicks))
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         let s = payload.settings
         defaults.set(SleepGoal.clamp(s.sleepGoal), forKey: PhoneModel.sleepGoalKey)
         defaults.set(s.bedtimeReminder, forKey: PhoneModel.bedtimeKey)
@@ -130,7 +140,18 @@ enum BackupIO {
         model.loadState()
         model.holidaysChanged()
         Task { await model.replanWeekly() }
-        DiagStore.shared.log(.sync, "restored \(alarms.count) alarms")
+        // Darstellung neu zeichnen (`PrivateSetting`).
+        PrivateSettingChanges.shared.bump()
+        defaults.set(NSNumber(value: payload.createdAt), forKey: restoredKey)
+        let saved = defaults.flush()
+        DiagStore.shared.log(saved ? DiagKind.sync : .error, saved ? "restored \(alarms.count) alarms" : "restored settings not saved, retry")
+        return saved
+    }
+
+    /// Ob Wecker und Einstellungen dieser Sicherung schon in `SettingsFile.phone` stehen (``restoredKey``), etwa weil
+    /// eine spätere Änderung sie mitgeschrieben hat; dann holt ``RestoreJournal/recover(model:)`` sie nicht noch einmal.
+    static func settingsApplied(_ payload: BackupPayload) -> Bool {
+        (SettingsFile.phone.object(forKey: restoredKey) as? NSNumber)?.int64Value == payload.createdAt
     }
 
     /// Schreibt Verlauf und Notizen der Sicherung als Dateien nach `staging`, mit denselben Regeln wie im Betrieb

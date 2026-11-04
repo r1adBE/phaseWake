@@ -1,0 +1,115 @@
+name: Store-Build
+
+# Baut Handy- und Uhr-App als App Bundle (.aab) für Google Play, signiert mit dem Upload-Schlüssel.
+# Nur von Hand und nur vom Stand auf main; Anleitung: docs/PLAY.md, Abschnitt «Store-Build».
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store
+  cancel-in-progress: false
+
+jobs:
+  bundle:
+    name: App Bundles (Handy, Uhr)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: main
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
+      - name: Upload-Schlüssel bereitstellen
+        shell: bash
+        env:
+          KEYSTORE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          missing=""
+          [ -n "$KEYSTORE_BASE64" ] || missing="$missing PLAY_UPLOAD_KEYSTORE_BASE64"
+          [ -n "$STORE_PASSWORD" ] || missing="$missing PLAY_UPLOAD_STORE_PASSWORD"
+          [ -n "$KEY_ALIAS" ] || missing="$missing PLAY_UPLOAD_KEY_ALIAS"
+          [ -n "$KEY_PASSWORD" ] || missing="$missing PLAY_UPLOAD_KEY_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error title=Store-Build::Secrets fehlen:$missing (Settings → Secrets and variables → Actions, docs/PLAY.md)"
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          [ -s "$RUNNER_TEMP/upload.jks" ] || { echo "::error title=Store-Build::PLAY_UPLOAD_KEYSTORE_BASE64 ergibt keine Datei"; exit 1; }
+      - name: Regeln (Dateigrösse, Build-Nummern, Version)
+        run: |
+          python3 ../.github/scripts/line_limit.py --ci
+          python3 ../.github/scripts/no_build_numbers.py --ci
+          python3 ../.github/scripts/version_check.py
+      - name: App Bundles bauen
+        shell: bash
+        env:
+          # Build-Nummer = Laufnummer dieses Workflows: steigt mit jedem Store-Build (Uhr: 1 000 000 dazu).
+          PHASEWAKE_BUILD: ${{ github.run_number }}
+          PHASEWAKE_UPLOAD_KEYSTORE: ${{ runner.temp }}/upload.jks
+          PHASEWAKE_UPLOAD_STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
+          PHASEWAKE_UPLOAD_KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
+          PHASEWAKE_UPLOAD_KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
+        run: |
+          set -o pipefail
+          # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles.
+          ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee build.log
+      - name: Store-Build prüfen
+        run: python3 ../.github/scripts/release_check.py
+      - name: Signatur der Bundles prüfen
+        shell: bash
+        env:
+          KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
+          STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          # Fingerabdruck des Upload-Schlüssels; jedes Bundle muss genau damit signiert sein. Ausgaben erst in Variablen,
+          # dann prüfen (ein vorzeitig endendes grep in einer Pipe liesse sie mit pipefail scheitern).
+          sha256() { awk '/^[[:space:]]*SHA256:/ { print $2; exit }' <<<"$1"; }
+          expected=$(sha256 "$(keytool -list -v -keystore "$RUNNER_TEMP/upload.jks" -storepass:env STORE_PASSWORD -alias "$KEY_ALIAS")")
+          [ -n "$expected" ] || { echo "::error title=Signatur::Fingerabdruck des Upload-Schlüssels nicht lesbar"; exit 1; }
+          mkdir -p "$RUNNER_TEMP/aab"
+          for module in app wear; do
+            aab="$module/build/outputs/bundle/release/$module-release.aab"
+            [ -f "$aab" ] || { echo "::error title=Signatur::$aab fehlt"; exit 1; }
+            out=$(jarsigner -verify -verbose "$aab" 2>&1 || true)
+            if ! grep -q "^jar verified" <<<"$out"; then
+              echo "::error title=Signatur::$module-release.aab ist nicht signiert"
+              exit 1
+            fi
+            actual=$(sha256 "$(keytool -printcert -jarfile "$aab")")
+            if [ "$actual" != "$expected" ]; then
+              echo "::error title=Signatur::$module-release.aab ist nicht mit dem Upload-Schlüssel signiert"
+              exit 1
+            fi
+            echo "::notice title=Signatur::$module-release.aab mit dem Upload-Schlüssel signiert"
+          done
+          cp app/build/outputs/bundle/release/app-release.aab "$RUNNER_TEMP/aab/PhaseWake-Handy-${{ github.run_number }}.aab"
+          cp wear/build/outputs/bundle/release/wear-release.aab "$RUNNER_TEMP/aab/PhaseWake-Uhr-${{ github.run_number }}.aab"
+      - name: Bundles ablegen
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: phasewake-store-${{ github.run_number }}
+          path: ${{ runner.temp }}/aab/*.aab
+          retention-days: 7
+          if-no-files-found: error
+      - name: Fehler als Annotation
+        if: failure()
+        shell: bash
+        run: '[ -f build.log ] && ../.github/scripts/annotate-errors.sh build.log || true'
+      - name: Upload-Schlüssel löschen
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/upload.jks"

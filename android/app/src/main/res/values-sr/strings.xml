@@ -23,7 +23,7 @@
     <string name="home_next_tomorrow">Сутра</string>
     <string name="home_next_in">Буди те чим ти сан постане немиран · за %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Буди те тачно у циљно време · за %1$s</string>
-    <string name="home_no_alarm_title">Пробуди се у правом тренутку</string>
+    <string name="home_no_alarm_title">Пробуди се нежно у свом интервалу буђења</string>
     <string name="home_no_alarm_text">Подеси време и интервал. Сат те у њему буди чим ти сан постане немиран.</string>
     <string name="home_add_alarm">Нови аларм</string>
     <string name="home_last_night">Прошла ноћ</string>
@@ -104,7 +104,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазе сна из Health Connect-а</string>
-    <string name="health_rationale">Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Samsung Health) чува. Приказују се у твојој историји и користе се за проверу тренутка твог буђења. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
+    <string name="health_rationale">Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Samsung Health) чува. Приказују се у твојој историји, и за поређење са ноћима у којима те је пробудио Phase Wake. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
     <string name="health_connect">Упореди са здравственим подацима</string>
     <string name="health_connect_hint">После буђења чита фазе сна из Health Connect-а да би проверио и побољшао препознавање.</string>
     <string name="health_connected">Повезано</string>

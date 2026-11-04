@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Zítra</string>
     <string name="home_next_in">Budí tě, jakmile je tvůj spánek neklidný · za %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Budí tě přesně v cílový čas · za %1$s</string>
-    <string name="home_no_alarm_title">Probuď se v tu pravou chvíli</string>
+    <string name="home_no_alarm_title">Probuď se jemně ve svém okně buzení</string>
     <string name="home_no_alarm_text">Nastav čas a okno. Hodinky tě v něm vzbudí, jakmile začne být tvůj spánek neklidný.</string>
     <string name="home_add_alarm">Nový budík</string>
     <string name="home_last_night">Minulá noc</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fáze spánku z Health Connect</string>
-    <string name="health_rationale">Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Samsung Health). Zobrazují se v tvé historii a slouží ke kontrole okamžiku, kdy tě budík vzbudil. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
+    <string name="health_rationale">Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Samsung Health). Zobrazují se v tvé historii, i pro srovnání s nocemi, kdy tě vzbudil Phase Wake. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
     <string name="health_connect">Porovnat se zdravotními daty</string>
     <string name="health_connect_hint">Po probuzení načte fáze spánku z Health Connect, aby rozpoznávání ověřil a vylepšil.</string>
     <string name="health_connected">Připojeno</string>

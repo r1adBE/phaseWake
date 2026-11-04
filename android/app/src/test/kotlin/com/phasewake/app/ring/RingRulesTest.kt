@@ -100,6 +100,17 @@ class RingRulesTest {
     }
 
     @Test
+    fun watchEndsPhoneSnoozeOnlyOfItsNight() {
+        // «stop» oder Nacht der Uhr hebt Schlummern bzw. Wiederaufnahme am Handy derselben Nacht auf (04.11.2026).
+        assertTrue(RingRules.watchEndsPhoneSnooze("a", 1L, savedId = "a", savedTarget = 1L))
+        assertFalse(RingRules.watchEndsPhoneSnooze("b", 2L, savedId = "a", savedTarget = 1L), "anderer Wecker")
+        assertFalse(RingRules.watchEndsPhoneSnooze("a", 2L, savedId = "a", savedTarget = 1L), "gleicher Wecker, andere Nacht")
+        // Fehlende Angaben (ältere Einträge, ältere Uhr) widersprechen nicht.
+        assertTrue(RingRules.watchEndsPhoneSnooze("a", 1L, savedId = "a", savedTarget = null))
+        assertTrue(RingRules.watchEndsPhoneSnooze(null, null, savedId = "a", savedTarget = 1L))
+    }
+
+    @Test
     fun directBootKeepsFollowingBackups() {
         // Zwei Wecker am Morgen (06:30 täglich, 07:00 einmalig): nach dem ersten der zweite, dann der nächste Tag.
         val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())

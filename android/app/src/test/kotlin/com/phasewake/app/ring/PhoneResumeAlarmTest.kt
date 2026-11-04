@@ -43,7 +43,7 @@ class PhoneResumeAlarmTest {
     @Test
     fun resumeArmedOnRingReplacedBySnoozeClearedOnStop() {
         // Klingeln (Handy führt): Alarm kurz nach der Zeitgrenze, abgelegt mit den bisherigen Runden.
-        val resume = Instant.ofEpochMilli(RingRules.resumeAt(fromWatch = false, nowMs = now.toEpochMilli())!!)
+        val resume = Instant.ofEpochMilli(RingRules.resumeAt(now.toEpochMilli()))
         backup.snoozeUntil(resume, "a", 0)
         assertEquals(listOf(resume.toEpochMilli()), triggers())
         assertEquals(PhoneSnooze.Saved(resume, "a", 0), PhoneSnooze.load(context))

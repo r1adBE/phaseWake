@@ -29,11 +29,12 @@ internal suspend fun BackupAlarm.snoozeSafety(alarmId: String?, at: Instant, sno
 }
 
 /**
- * Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. [snoozes]: bisherige Runden. Zuerst im
- * geräteverschlüsselten Speicher abgelegt ([PhoneSnooze]), damit das Schlummer-Ende einen Neustart übersteht.
+ * Schlummern am Handy: nach [at] erneut klingeln, auch aus dem Tiefschlaf. [snoozes]: bisherige Runden, [target]:
+ * Zielzeit der Nacht (ms, falls bekannt). Zuerst im geräteverschlüsselten Speicher abgelegt ([PhoneSnooze]), damit das
+ * Schlummer-Ende einen Neustart übersteht.
  */
-internal fun BackupAlarm.snoozeUntil(at: Instant, alarmId: String?, snoozes: Int) {
-    PhoneSnooze.save(context, PhoneSnooze.Saved(at, alarmId, snoozes))
+internal fun BackupAlarm.snoozeUntil(at: Instant, alarmId: String?, snoozes: Int, target: Long? = null) {
+    PhoneSnooze.save(context, PhoneSnooze.Saved(at, alarmId, snoozes, target))
     setAlarm(at, showIntent(), snoozePending(context, alarmId, snoozes))
 }
 
@@ -41,6 +42,16 @@ internal fun BackupAlarm.snoozeUntil(at: Instant, alarmId: String?, snoozes: Int
 internal fun BackupAlarm.cancelSnooze() {
     alarmManager.cancel(snoozePending(context, null, 0))
     PhoneSnooze.clear(context)
+}
+
+/**
+ * Die Uhr hat die Nacht [alarmId]/[target] beendet oder geschlummert («stop», Nacht gemeldet): Schlummern bzw.
+ * Wiederaufnahme am Handy aufheben, wenn sie derselben Nacht gilt ([RingRules.watchEndsPhoneSnooze]). Auch nach einem
+ * Prozessende, wenn im Dienst nichts mehr läuft; so klingelt das Handy danach nicht weiter.
+ */
+internal fun BackupAlarm.cancelSnoozeOf(alarmId: String?, target: Long?) {
+    val saved = PhoneSnooze.load(context) ?: return
+    if (RingRules.watchEndsPhoneSnooze(alarmId, target, saved.alarmId, saved.target)) cancelSnooze()
 }
 
 /**

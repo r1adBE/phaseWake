@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Bukas</string>
     <string name="home_next_in">Gigisingin ka sa sandaling hindi ka na mapakali · sa loob ng %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Gigisingin ka eksakto sa target na oras · sa loob ng %1$s</string>
-    <string name="home_no_alarm_title">Gumising sa tamang sandali</string>
+    <string name="home_no_alarm_title">Gumising nang marahan sa window ng paggising mo</string>
     <string name="home_no_alarm_text">Magtakda ng oras at window. Gigisingin ka ng relo mo sa loob nito sa sandaling hindi ka na mapakali.</string>
     <string name="home_add_alarm">Bagong alarm</string>
     <string name="home_last_night">Kagabi</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Mga yugto ng tulog mula sa Health Connect</string>
-    <string name="health_rationale">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo at ginagamit para tingnan ang sandali ng paggising sa iyo. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
+    <string name="health_rationale">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo, pati para ikumpara sa mga gabing ginising ka ng Phase Wake. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
     <string name="health_connect">Ikumpara sa health data</string>
     <string name="health_connect_hint">Binabasa ang mga yugto ng tulog mula sa Health Connect pagkagising, para tingnan at pahusayin ang pag-detect.</string>
     <string name="health_connected">Nakakonekta</string>

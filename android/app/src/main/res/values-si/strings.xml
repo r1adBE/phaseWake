@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">හෙට</string>
     <string name="home_next_in">නොසන්සුන් වූ වහාම අවදි කරයි · තව %1$s කින්</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">හරියටම ඉලක්ක වේලාවට අවදි කරයි · තව %1$s කින්</string>
-    <string name="home_no_alarm_title">හරියටම නිසි මොහොතේ අවදි වන්න</string>
+    <string name="home_no_alarm_title">ඔබේ අවදි පරාසය තුළ මෘදුව අවදි වන්න</string>
     <string name="home_no_alarm_text">වේලාවක් සහ පරාසයක් සකසන්න. ඔබ නොසන්සුන් වීමට පටන් ගත් වහාම ඔරලෝසුව එම පරාසය තුළ ඔබව අවදි කරයි.</string>
     <string name="home_add_alarm">නව එලාමය</string>
     <string name="home_last_night">ඊයේ රාත්‍රිය</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">පැය %1$d½</string>
     <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
     <string name="health_title">Health Connect වෙතින් නින්දේ අදියර</string>
-    <string name="health_rationale">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර ඔබව අවදි කළ මොහොත පරීක්ෂා කිරීමට භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
+    <string name="health_rationale">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර Phase Wake ඔබව අවදි කළ රාත්‍රී සමඟ සංසන්දනය කිරීමටද භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
     <string name="health_connect">සෞඛ්‍ය දත්ත සමඟ සසඳන්න</string>
     <string name="health_connect_hint">හඳුනාගැනීම පරීක්ෂා කර වැඩිදියුණු කිරීමට, අවදි වූ පසු Health Connect වෙතින් නින්දේ අදියර කියවයි.</string>
     <string name="health_connected">සම්බන්ධයි</string>

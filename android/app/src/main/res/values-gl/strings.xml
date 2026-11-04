@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Mañá</string>
     <string name="home_next_in">Espértate en canto te inquietas · en %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Espértate xusto á hora prevista · en %1$s</string>
-    <string name="home_no_alarm_title">Esperta no momento xusto</string>
+    <string name="home_no_alarm_title">Esperta suavemente na túa xanela de espertar</string>
     <string name="home_no_alarm_text">Escolle unha hora e unha xanela. O reloxo espértate dentro dela en canto te inquietas.</string>
     <string name="home_add_alarm">Nova alarma</string>
     <string name="home_last_night">Onte á noite</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases do sono de Health Connect</string>
-    <string name="health_rationale">Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Samsung Health). Móstranse no teu historial e úsanse para comprobar o momento en que te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono.</string>
+    <string name="health_rationale">Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Samsung Health). Móstranse no teu historial, tamén para comparalos coas noites en que Phase Wake te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono.</string>
     <string name="health_connect">Comparar cos datos de saúde</string>
     <string name="health_connect_hint">Le as fases do sono de Health Connect despois de espertar, para comprobar e mellorar a detección.</string>
     <string name="health_connected">Conectado</string>

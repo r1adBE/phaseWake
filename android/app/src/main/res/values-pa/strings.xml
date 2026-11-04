@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">ਕੱਲ੍ਹ</string>
     <string name="home_next_in">ਬੇਚੈਨ ਹੁੰਦੇ ਹੀ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ਬਿਲਕੁਲ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਜਗਾਏਗਾ · %1$s ਬਾਅਦ</string>
-    <string name="home_no_alarm_title">ਸਹੀ ਪਲ ’ਤੇ ਜਾਗੋ</string>
+    <string name="home_no_alarm_title">ਆਪਣੀ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਵਿੱਚ ਹੌਲੀ-ਹੌਲੀ ਜਾਗੋ</string>
     <string name="home_no_alarm_text">ਸਮਾਂ ਅਤੇ ਮਿਆਦ ਚੁਣੋ। ਜਿਵੇਂ ਹੀ ਤੁਸੀਂ ਬੇਚੈਨ ਹੋਣ ਲੱਗੋਗੇ, ਘੜੀ ਤੁਹਾਨੂੰ ਉਸ ਮਿਆਦ ਵਿੱਚ ਜਗਾ ਦੇਵੇਗੀ।</string>
     <string name="home_add_alarm">ਨਵਾਂ ਅਲਾਰਮ</string>
     <string name="home_last_night">ਪਿਛਲੀ ਰਾਤ</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ ਘੰ.</string>
     <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="health_title">Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ</string>
-    <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾਉਣ ਦਾ ਪਲ ਜਾਂਚਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
+    <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਰਾਤਾਂ ਨਾਲ ਤੁਲਨਾ ਲਈ ਵੀ ਜਦੋਂ Phase Wake ਨੇ ਤੁਹਾਨੂੰ ਜਗਾਇਆ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
     <string name="health_connect">ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
     <string name="health_connect_hint">ਜਾਗਣ ਤੋਂ ਬਾਅਦ Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ, ਪਛਾਣ ਜਾਂਚਣ ਅਤੇ ਸੁਧਾਰਨ ਲਈ।</string>
     <string name="health_connected">ਕਨੈਕਟ ਹੈ</string>

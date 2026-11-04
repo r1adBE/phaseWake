@@ -19,7 +19,7 @@
     <string name="home_next_tomorrow">Besok</string>
     <string name="home_next_in">Membangunkan begitu kamu mulai gelisah · dalam %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Membangunkan tepat pada waktu target · dalam %1$s</string>
-    <string name="home_no_alarm_title">Bangun di saat yang tepat</string>
+    <string name="home_no_alarm_title">Bangun dengan lembut di rentang bangunmu</string>
     <string name="home_no_alarm_text">Atur waktu dan rentang. Jam tanganmu membangunkanmu di dalamnya begitu kamu mulai gelisah.</string>
     <string name="home_add_alarm">Alarm baru</string>
     <string name="home_last_night">Semalam</string>
@@ -100,7 +100,7 @@
     <string name="duration_hours_half">%1$d½ j</string>
     <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
     <string name="health_title">Fase tidur dari Health Connect</string>
-    <string name="health_rationale">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu dan dipakai untuk memeriksa saat kamu dibangunkan. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
+    <string name="health_rationale">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu, juga untuk dibandingkan dengan malam-malam saat Phase Wake membangunkanmu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
     <string name="health_connect">Cocokkan dengan data kesehatan</string>
     <string name="health_connect_hint">Membaca fase tidur dari Health Connect setelah bangun, untuk memeriksa dan meningkatkan deteksi.</string>
     <string name="health_connected">Terhubung</string>

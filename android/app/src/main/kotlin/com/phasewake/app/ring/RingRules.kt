@@ -99,10 +99,26 @@ internal object RingRules {
     fun snoozeDone(snoozesLeft: Int): Int? = if (snoozesLeft <= 0) null else Snooze.MAX_COUNT - snoozesLeft + 1
 
     /**
-     * Wiederaufnahme-Alarm einer Klingel-Runde ab [nowMs]: nur wenn das Handy führt ([fromWatch] = false; sonst hat die
-     * Uhr ihren eigenen), kurz nach der Zeitgrenze. Stirbt der Prozess, klingelt es damit wieder; `null` = keiner.
+     * Wiederaufnahme-Alarm einer Klingel-Runde ab [nowMs], kurz nach der Zeitgrenze: Stirbt der Prozess, klingelt das
+     * Handy damit wieder. Auch wenn die Uhr führt (docs/ENTSCHEIDE.md, 04.11.2026); ihr «stop» (auch beim Schlummern)
+     * und ihre Nacht heben ihn auf ([watchEndsPhoneSnooze]), ein neues «klingeln» stellt ihn neu.
      */
-    fun resumeAt(fromWatch: Boolean, nowMs: Long): Long? = if (fromWatch) null else nowMs + TIMEOUT_MS + RESUME_MARGIN_MS
+    fun resumeAt(nowMs: Long): Long = nowMs + TIMEOUT_MS + RESUME_MARGIN_MS
+
+    /**
+     * Bisherige Runden für den Wiederaufnahme-Alarm einer Runde mit [snoozesLeft]: Führt die Uhr ([fromWatch]), nach
+     * ihrer Restzahl (klingelt es wieder, dann mit den Runden, die der Uhr noch bleiben), sonst [snoozesDone].
+     */
+    fun resumeSnoozesDone(fromWatch: Boolean, snoozesLeft: Int, snoozesDone: Int): Int =
+        (if (fromWatch) Snooze.MAX_COUNT - snoozesLeft else snoozesDone).coerceIn(0, Snooze.MAX_COUNT)
+
+    /**
+     * Ob ein «stop» der Uhr oder ihre gemeldete Nacht ([alarmId]/[target]) das abgelegte Schlummern bzw. die
+     * Wiederaufnahme am Handy ([savedId]/[savedTarget]) aufhebt: nur für dieselbe Nacht ([RingMessage.sameNight], wie
+     * [stopApplies]); fehlende Angaben widersprechen nicht.
+     */
+    fun watchEndsPhoneSnooze(alarmId: String?, target: Long?, savedId: String?, savedTarget: Long?): Boolean =
+        RingMessage(alarmId, target).sameNight(savedId, savedTarget)
 
     /** Ergebnis von [PhoneRingService.ring]: [started] = Dienst durfte starten, [ringing] = es klingelte schon. */
     fun result(started: Boolean, ringing: Boolean): RingResult = when {

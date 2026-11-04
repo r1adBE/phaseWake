@@ -18,7 +18,7 @@
     <string name="home_next_tomorrow">Վաղը</string>
     <string name="home_next_in">Արթնացնում է, հենց որ անհանգիստ ես դառնում · %1$s հետո</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Արթնացնում է ճիշտ նպատակային ժամին · %1$s հետո</string>
-    <string name="home_no_alarm_title">Արթնացիր ճիշտ պահին</string>
+    <string name="home_no_alarm_title">Արթնացիր մեղմ՝ քո արթնացման պատուհանում</string>
     <string name="home_no_alarm_text">Սահմանիր ժամը և պատուհանը։ Ժամացույցդ քեզ կարթնացնի դրա ընթացքում, հենց որ անհանգիստ դառնաս։</string>
     <string name="home_add_alarm">Նոր զարթուցիչ</string>
     <string name="home_last_night">Անցած գիշեր</string>
@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ ժ</string>
     <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="health_title">Քնի փուլերը Health Connect-ից</string>
-    <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ և օգտագործվում են քեզ արթնացնելու պահը ստուգելու համար։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
+    <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ, նաև համեմատելու համար այն գիշերների հետ, երբ քեզ արթնացրել է Phase Wake-ը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
     <string name="health_connect">Համեմատել առողջության տվյալների հետ</string>
     <string name="health_connect_hint">Արթնանալուց հետո կարդում է քնի փուլերը Health Connect-ից՝ հայտնաբերումը ստուգելու և բարելավելու համար։</string>
     <string name="health_connected">Միացված է</string>

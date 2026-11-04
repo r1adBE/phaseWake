@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">Domani</string>
     <string name="home_next_in">Ti sveglia non appena il sonno si fa agitato · tra %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Ti sveglia esattamente all’orario obiettivo · tra %1$s</string>
-    <string name="home_no_alarm_title">Svegliati al momento giusto</string>
+    <string name="home_no_alarm_title">Svegliati dolcemente nella tua finestra di risveglio</string>
     <string name="home_no_alarm_text">Scegli un orario e una finestra. Il tuo smartwatch ti sveglia al suo interno non appena il sonno si fa agitato.</string>
     <string name="home_add_alarm">Nuova sveglia</string>
     <string name="home_last_night">Ultima notte</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fasi del sonno da Health Connect</string>
-    <string name="health_rationale">Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia e servono a verificare il momento del risveglio. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
+    <string name="health_rationale">Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia, anche per confrontarli con le notti in cui ti ha svegliato Phase Wake. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
     <string name="health_connect">Confronta con i dati di salute</string>
     <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
     <string name="health_connected">Connesso</string>

@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Jutro</string>
     <string name="home_next_in">Budzi, gdy tylko sen staje się niespokojny · za %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Budzi dokładnie o czasie docelowym · za %1$s</string>
-    <string name="home_no_alarm_title">Wstań we właściwym momencie</string>
+    <string name="home_no_alarm_title">Budź się łagodnie w swoim oknie budzenia</string>
     <string name="home_no_alarm_text">Ustaw godzinę i okno. Zegarek obudzi cię w nim, gdy tylko twój sen stanie się niespokojny.</string>
     <string name="home_add_alarm">Nowy budzik</string>
     <string name="home_last_night">Ostatnia noc</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ godz.</string>
     <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
     <string name="health_title">Fazy snu z Health Connect</string>
-    <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii i służą do sprawdzenia momentu, w którym cię obudzono. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
+    <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii, także do porównania z nocami, w których obudził cię Phase Wake. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
     <string name="health_connect">Porównaj z danymi zdrowotnymi</string>
     <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
     <string name="health_connected">Połączono</string>

@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">I morgen</string>
     <string name="home_next_in">Vækker dig, så snart du bliver urolig · om %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Vækker dig præcis på ønsket tid · om %1$s</string>
-    <string name="home_no_alarm_title">Vågn op i det rigtige øjeblik</string>
+    <string name="home_no_alarm_title">Vågn blidt op i dit vækkevindue</string>
     <string name="home_no_alarm_text">Vælg et tidspunkt og et vindue. Dit ur vækker dig i det, så snart du bliver urolig.</string>
     <string name="home_add_alarm">Ny alarm</string>
     <string name="home_last_night">Sidste nat</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ t</string>
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Søvnfaser fra Health Connect</string>
-    <string name="health_rationale">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik og bruges til at tjekke det øjeblik, du blev vækket. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
+    <string name="health_rationale">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik, også til sammenligning med de nætter, hvor Phase Wake vækkede dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
     <string name="health_connect">Sammenlign med sundhedsdata</string>
     <string name="health_connect_hint">Læser søvnfaser fra Health Connect efter opvågning for at tjekke og forbedre registreringen.</string>
     <string name="health_connected">Forbundet</string>

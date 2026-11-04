@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">ነገ</string>
     <string name="home_next_in">እረፍት ማጣት ሲጀምሩ ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">በትክክል በታለመው ሰዓት ይቀሰቅስዎታል · በ%1$s ውስጥ</string>
-    <string name="home_no_alarm_title">በትክክለኛው ቅጽበት መንቃት</string>
+    <string name="home_no_alarm_title">በመቀስቀሻ ክልልዎ ውስጥ በእርጋታ መንቃት</string>
     <string name="home_no_alarm_text">ሰዓትና የጊዜ ክልል ያዘጋጁ። እረፍት ማጣት ሲጀምሩ ሰዓትዎ በክልሉ ውስጥ ይቀሰቅስዎታል።</string>
     <string name="home_add_alarm">አዲስ ማንቂያ</string>
     <string name="home_last_night">ትናንት ማታ</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ ሰ</string>
     <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
     <string name="health_title">ከHealth Connect የተገኙ የእንቅልፍ ደረጃዎች</string>
-    <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ የተቀሰቀሱበትን ቅጽበት ለማረጋገጥም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
+    <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ Phase Wake ከቀሰቀሰዎት ምሽቶች ጋር ለማነጻጸርም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
     <string name="health_connect">ከጤና ውሂብ ጋር አወዳድር</string>
     <string name="health_connect_hint">ማወቂያውን ለማረጋገጥና ለማሻሻል ከነቁ በኋላ የእንቅልፍ ደረጃዎችን ከHealth Connect ያነባል።</string>
     <string name="health_connected">ተገናኝቷል</string>

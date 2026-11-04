@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">നാളെ</string>
     <string name="home_next_in">അസ്വസ്ഥരാകുമ്പോൾത്തന്നെ ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">കൃത്യമായി ലക്ഷ്യസമയത്ത് ഉണർത്തും · %1$s കഴിഞ്ഞ്</string>
-    <string name="home_no_alarm_title">ശരിയായ നിമിഷത്തിൽ ഉണരൂ</string>
+    <string name="home_no_alarm_title">നിങ്ങളുടെ ഉണർത്തൽ സമയപരിധിയിൽ മൃദുവായി ഉണരൂ</string>
     <string name="home_no_alarm_text">ഒരു സമയവും സമയപരിധിയും സജ്ജമാക്കുക. നിങ്ങൾ അസ്വസ്ഥരാകാൻ തുടങ്ങുമ്പോൾത്തന്നെ വാച്ച് ആ സമയപരിധിക്കുള്ളിൽ ഉണർത്തും.</string>
     <string name="home_add_alarm">പുതിയ അലാറം</string>
     <string name="home_last_night">കഴിഞ്ഞ രാത്രി</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ മ.</string>
     <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="health_title">Health Connect-ൽ നിന്നുള്ള ഉറക്ക ഘട്ടങ്ങൾ</string>
-    <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുകയും നിങ്ങളെ ഉണർത്തിയ നിമിഷം പരിശോധിക്കാൻ ഉപയോഗിക്കുകയും ചെയ്യുന്നു. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
+    <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുന്നു, Phase Wake നിങ്ങളെ ഉണർത്തിയ രാത്രികളുമായി താരതമ്യം ചെയ്യാനും. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="health_connect">ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക</string>
     <string name="health_connect_hint">കണ്ടെത്തൽ പരിശോധിച്ച് മെച്ചപ്പെടുത്താൻ, ഉണർന്ന ശേഷം Health Connect-ൽ നിന്ന് ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും.</string>
     <string name="health_connected">കണക്റ്റ് ചെയ്‌തു</string>

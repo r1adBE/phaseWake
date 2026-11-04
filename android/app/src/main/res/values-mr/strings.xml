@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">उद्या</string>
     <string name="home_next_in">अस्वस्थ होऊ लागताच उठवेल · %1$s नंतर</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">अगदी लक्ष्य वेळेवर उठवेल · %1$s नंतर</string>
-    <string name="home_no_alarm_title">योग्य क्षणी जागे व्हा</string>
+    <string name="home_no_alarm_title">तुमच्या उठवण्याच्या कालावधीत हळुवार जागे व्हा</string>
     <string name="home_no_alarm_text">वेळ आणि कालावधी निवडा. तुम्ही अस्वस्थ होऊ लागताच घड्याळ तुम्हाला त्या कालावधीत उठवेल.</string>
     <string name="home_add_alarm">नवीन अलार्म</string>
     <string name="home_last_night">काल रात्री</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ ता.</string>
     <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
     <string name="health_title">Health Connect मधील झोपेचे टप्पे</string>
-    <string name="health_rationale">तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो आणि तुम्हाला उठवण्याचा क्षण तपासण्यासाठी वापरला जातो. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
+    <string name="health_rationale">तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो, Phase Wake ने तुम्हाला उठवलेल्या रात्रींशी तुलना करण्यासाठीही. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
     <string name="health_connect">हेल्थ डेटाशी तुलना करा</string>
     <string name="health_connect_hint">उठल्यानंतर Health Connect मधून झोपेचे टप्पे वाचते, ओळख तपासण्यासाठी आणि सुधारण्यासाठी.</string>
     <string name="health_connected">जोडलेले</string>

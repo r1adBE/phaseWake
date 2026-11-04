@@ -24,7 +24,7 @@
     <string name="home_next_tomorrow">غدًا</string>
     <string name="home_next_in">يوقظك بمجرد أن تبدأ بالتململ · بعد %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">يوقظك في الموعد المحدد تمامًا · بعد %1$s</string>
-    <string name="home_no_alarm_title">الاستيقاظ في اللحظة المناسبة</string>
+    <string name="home_no_alarm_title">استيقظ برفق ضمن نافذة الإيقاظ</string>
     <string name="home_no_alarm_text">اضبطوا وقتًا ونافذة زمنية. تُوقظك ساعتك خلالها بمجرد أن تبدأ بالتململ.</string>
     <string name="home_add_alarm">منبّه جديد</string>
     <string name="home_last_night">الليلة الماضية</string>
@@ -105,7 +105,7 @@
     <string name="duration_hours_half">%1$d½ س</string>
     <string name="duration_hours_minutes">%1$d س %2$d د</string>
     <string name="health_title">مراحل النوم من Health Connect</string>
-    <string name="health_rationale">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك وتُستخدم للتحقق من لحظة إيقاظك. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
+    <string name="health_rationale">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك، وأيضًا للمقارنة مع الليالي التي أيقظك فيها Phase Wake. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
     <string name="health_connect">المقارنة ببيانات الصحة</string>
     <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
     <string name="health_connected">متصل</string>

@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">Huomenna</string>
     <string name="home_next_in">Herättää, kun unesi muuttuu levottomaksi · %1$s päästä</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Herättää täsmälleen tavoiteaikana · %1$s päästä</string>
-    <string name="home_no_alarm_title">Herää oikealla hetkellä</string>
+    <string name="home_no_alarm_title">Herää lempeästi herätysikkunassasi</string>
     <string name="home_no_alarm_text">Aseta aika ja aikaikkuna. Kellosi herättää sinut sen aikana heti, kun unesi muuttuu levottomaksi.</string>
     <string name="home_add_alarm">Uusi herätys</string>
     <string name="home_last_night">Viime yö</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ t</string>
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Univaiheet Health Connectista</string>
-    <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, ja niillä tarkistetaan herätyshetki. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
+    <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, myös vertailuun öihin, joina Phase Wake herätti sinut. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
     <string name="health_connect">Vertaa terveystietoihin</string>
     <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
     <string name="health_connected">Yhdistetty</string>

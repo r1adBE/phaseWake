@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Kusasa</string>
     <string name="home_next_in">Ikuvusa lapho uqala ukungazinzi · ngemva kuka-%1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Ikuvusa ngqo ngesikhathi esihlosiwe · ngemva kuka-%1$s</string>
-    <string name="home_no_alarm_title">Vuka ngesikhathi esifanele</string>
+    <string name="home_no_alarm_title">Vuka kahle ngaphakathi kwesikhala sakho sokuvuka</string>
     <string name="home_no_alarm_text">Setha isikhathi nesikhala sokuvuka. Iwashi lakho likuvusa ngaphakathi kwaso lapho uqala ukungazinzi.</string>
     <string name="home_add_alarm">I-alamu entsha</string>
     <string name="home_last_night">Izolo ebusuku</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Izigaba zokulala ezivela ku-Health Connect</string>
-    <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho futhi isetshenziselwa ukuhlola isikhathi owavuswa ngaso. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
+    <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho, futhi ukuze iqhathaniswe nobusuku i-Phase Wake ekuvuse ngabo. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
     <string name="health_connect">Qhathanisa nedatha yezempilo</string>
     <string name="health_connect_hint">Ifunda izigaba zokulala ku-Health Connect ngemva kokuvuka, ukuze ihlole futhi ithuthukise ukutholwa.</string>
     <string name="health_connected">Ixhunyiwe</string>

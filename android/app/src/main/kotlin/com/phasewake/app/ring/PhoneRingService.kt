@@ -84,13 +84,13 @@ class PhoneRingService : Service() {
             // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
             // Restzahl der Uhr übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
             if (fromWatch && watchSnoozesLeft != null) {
-                // Die Uhr führt nun: Sie hat ihren eigenen Wiederaufnahme-Alarm (der des Handys ist oben schon aufgehoben).
+                // Die Uhr führt nun (mit ihrer Restzahl; der Wiederaufnahme-Alarm ist oben schon aufgehoben).
                 state.value = ringing.copy(fromWatch = true, snoozesLeft = watchSnoozesLeft.coerceIn(0, Snooze.MAX_COUNT))
                 if (lastAlarmId == null) lastAlarmId = alarmId
                 if (lastTarget == null) lastTarget = target
             }
-            // Führt weiter das Handy: Wiederaufnahme-Alarm neu stellen (oben aufgehoben).
-            (state.value as? State.Ringing)?.let { armResume(it.fromWatch, lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft) }
+            // Wiederaufnahme-Alarm neu stellen (oben aufgehoben), ob Handy oder Uhr führt.
+            (state.value as? State.Ringing)?.let { armResume(lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft, lastTarget ?: target) }
             return
         }
         alert.post(newRound = true)
@@ -107,10 +107,10 @@ class PhoneRingService : Service() {
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left)
         alert.show(if (fromWatch) "with watch" else "backup")
         handler.postDelayed(timeout, RingRules.TIMEOUT_MS)
-        armResume(fromWatch, alarmId, snoozesDone)
         // Nach dem Schlummern am Handy kommt keine Zielzeit mit: die der ersten Runde behalten.
         lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
         lastAlarmId = alarmId
+        armResume(alarmId, RingRules.resumeSnoozesDone(fromWatch, left, snoozesDone), lastTarget)
         phoneApp.appScope.launch(Dispatchers.Main) {
             // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
             val unlocked = BackupAlarm.isUnlocked(this@PhoneRingService)
@@ -150,6 +150,8 @@ class PhoneRingService : Service() {
             legacySnoozedAt = clock()
             val alarmId = lastAlarmId
             val safetyAt = Snooze.nextRing(now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+            // Statt der Wiederaufnahme gilt nun die Sicherung nach dem Schlummer-Ende.
+            phoneApp.backup.cancelSnooze()
             phoneApp.appScope.launch {
                 // Zuerst die eigene Sicherung: Erreicht die Bitte die Uhr nicht oder klingelt sie danach
                 // nicht wieder, klingelt das Handy kurz nach dem Schlummer-Ende selbst.
@@ -163,20 +165,21 @@ class PhoneRingService : Service() {
         } else {
             state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise, wakeTask = ringing.wakeTask)
             // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
-            phoneApp.backup.snoozeUntil(Snooze.nextRing(now()), lastAlarmId, done)
+            phoneApp.backup.snoozeUntil(Snooze.nextRing(now()), lastAlarmId, done, lastTarget)
         }
     }
 
     /**
-     * Stirbt der Prozess mitten im Klingeln des Handys (ohne Uhr), startet nichts das Klingeln neu. Darum wie auf der Uhr
-     * ein Alarm kurz nach der Zeitgrenze ([RingRules.resumeAt]; bis dahin schlummert oder endet die Runde im laufenden
-     * Prozess), abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart). Führt die Uhr
-     * ([fromWatch]), keiner: Sie hat ihren eigenen. Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf
+     * Stirbt der Prozess mitten im Klingeln des Handys, startet nichts das Klingeln neu. Darum wie auf der Uhr ein Alarm
+     * kurz nach der Zeitgrenze ([RingRules.resumeAt]; bis dahin schlummert oder endet die Runde im laufenden Prozess),
+     * abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart) mit Zielzeit [target]. Auch
+     * wenn die Uhr führt (docs/ENTSCHEIDE.md, 04.11.2026): Ihr «stop» und ihre Nacht heben ihn dann auch ohne laufenden
+     * Dienst auf ([BackupAlarm.cancelSnoozeOf]). Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf
      * ([BackupAlarm.cancelSnooze]).
      */
-    private fun armResume(fromWatch: Boolean, alarmId: String?, snoozesDone: Int) {
-        val at = RingRules.resumeAt(fromWatch, clock()) ?: return
-        phoneApp.backup.snoozeUntil(java.time.Instant.ofEpochMilli(at), alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT))
+    private fun armResume(alarmId: String?, snoozesDone: Int, target: Long?) {
+        val at = java.time.Instant.ofEpochMilli(RingRules.resumeAt(clock()))
+        phoneApp.backup.snoozeUntil(at, alarmId, snoozesDone.coerceIn(0, Snooze.MAX_COUNT), target)
     }
 
     /**

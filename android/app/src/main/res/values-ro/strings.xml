@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">Mâine</string>
     <string name="home_next_in">Te trezește imediat ce somnul devine agitat · peste %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Te trezește exact la ora țintă · peste %1$s</string>
-    <string name="home_no_alarm_title">Trezește-te la momentul potrivit</string>
+    <string name="home_no_alarm_title">Trezește-te blând în intervalul tău de trezire</string>
     <string name="home_no_alarm_text">Alege o oră și un interval. Ceasul te trezește în el imediat ce somnul tău devine agitat.</string>
     <string name="home_add_alarm">Alarmă nouă</string>
     <string name="home_last_night">Noaptea trecută</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fazele somnului din Health Connect</string>
-    <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău și folosite pentru a verifica momentul trezirii. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
+    <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău, și pentru comparație cu nopțile în care te-a trezit Phase Wake. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
     <string name="health_connect">Compară cu datele de sănătate</string>
     <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
     <string name="health_connected">Conectat</string>

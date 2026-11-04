@@ -152,7 +152,9 @@ enum RestoreJournal {
             try swap(marker)
             let stored = try Data(contentsOf: payloadFile)
             let payload = try BackupPayload.fromJson(String(decoding: stored, as: UTF8.self))
-            BackupIO.applySettings(payload, to: model)
+            // Schon gespeichert (mit einer späteren Änderung): nicht noch einmal, sonst gingen neuere Einstellungen
+            // verloren. Nicht gespeichert: Merker bleibt, der nächste Start versucht es wieder.
+            guard BackupIO.settingsApplied(payload) || BackupIO.applySettings(payload, to: model) else { return }
             finish()
             DiagStore.shared.log(.sync, "restore finished after restart")
         } catch {

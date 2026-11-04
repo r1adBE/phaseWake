@@ -170,6 +170,8 @@ class BackupAlarm(
             // Ohne Schlummer-Ende ist die Nacht beendet; ein verspätetes Schlummer-«stop» ändert nichts.
             message.snoozeUntil == null -> cancelSnoozeSafety(message.alarmId)
         }
+        // Auch beim Schlummern: Die Wiederaufnahme am Handy endet (die Sicherung oben übernimmt), auch nach einem Prozessende.
+        cancelSnoozeOf(message.alarmId, message.target)
         context.phoneApp.diag.log(if (message.snoozeUntil != null) DiagKind.SNOOZE else DiagKind.STOP, "from watch")
         if (message.snoozeUntil == null) {
             context.phoneApp.testRuns.record(message.alarmId, TestStep.STOP_ARRIVED, now())

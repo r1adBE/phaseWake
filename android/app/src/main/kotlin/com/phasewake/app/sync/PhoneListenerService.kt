@@ -6,6 +6,7 @@ import com.phasewake.app.phoneApp
 import com.phasewake.app.transient.Transients
 import com.phasewake.app.diag.WatchReport
 import com.phasewake.app.ring.PhoneRingService
+import com.phasewake.app.ring.cancelSnoozeOf
 import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
@@ -38,9 +39,10 @@ class PhoneListenerService : WearableListenerService() {
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
                 val night = WearSync.readNight(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
                 app.nights.add(night)
-                // Die Uhr hat geweckt und die Nacht beendet: Sicherungen dieser Nacht nicht mehr nötig
+                // Die Uhr hat geweckt und die Nacht beendet: Sicherungen und Wiederaufnahme dieser Nacht nicht mehr nötig
                 // (falls «ring» oder das letzte «stop» verloren ging).
                 app.backup.cancelSnoozeSafety(night.alarmId)
+                app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())
                 app.backup.watchHandled(night.alarmId, night.target)
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)

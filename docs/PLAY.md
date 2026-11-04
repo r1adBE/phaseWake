@@ -8,6 +8,8 @@ Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kont
 Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein
 `INTERNET` und kein `ACCESS_NETWORK_STATE` (in beiden Manifesten entfernt): Die App sendet nichts.
 
+Wie die Bundles für den Upload entstehen: Abschnitt [Store-Build](#store-build-upload-schlüssel-und-upload) am Ende.
+
 ## Übersicht
 
 | Berechtigung / Erklärung | Handy | Uhr | Wofür |
@@ -131,3 +133,48 @@ alarm”, bedtime reminder and weekly review. No advertising.
 associates with the user’s Galaxy Watch as its companion app, so the alarm screen may come to the front even while the
 phone is in use. `BLUETOOTH_CONNECT` reads the paired devices only to offer the watch directly for confirmation; nothing
 is stored or sent.
+
+## Store-Build: Upload-Schlüssel und Upload
+
+Die Testversionen sind Debug-Builds mit dem öffentlichen Testschlüssel. Für Google Play baut der Workflow «Store-Build»
+(`.github/workflows/store.yml`, nur von Hand, Stand `main`) beide Apps als App Bundle (`.aab`), signiert mit deinem
+Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturschlüssel (Play App Signing).
+
+1. **Upload-Schlüssel einmal erstellen** (Java-`keytool`, z. B. aus Android Studio; Gültigkeit 30 Jahre):
+
+   ```sh
+   keytool -genkeypair -v -keystore phasewake-upload.jks -storetype PKCS12 -alias phasewake-upload -keyalg RSA -keysize 4096 -validity 10950
+   ```
+
+   `keytool` fragt nach Passwort und Namen. Bei PKCS12 gilt das Passwort auch für den Schlüssel. Die Datei und das
+   Passwort sicher aufbewahren (Passwortmanager), nie ins Repo. Geht der Schlüssel verloren, kann ihn Google in der Play
+   Console zurücksetzen; die App bleibt dieselbe.
+2. **Als Base64 umwandeln:** macOS `base64 -i phasewake-upload.jks -o upload.b64`, Linux `base64 -w 0 phasewake-upload.jks > upload.b64`,
+   Windows (PowerShell) `[Convert]::ToBase64String([IO.File]::ReadAllBytes("phasewake-upload.jks")) | Set-Content upload.b64`.
+3. **Vier Secrets anlegen** auf GitHub unter Settings → Secrets and variables → Actions → New repository secret:
+
+   | Secret | Inhalt |
+   |---|---|
+   | `PLAY_UPLOAD_KEYSTORE_BASE64` | Inhalt von `upload.b64` (danach `upload.b64` löschen) |
+   | `PLAY_UPLOAD_STORE_PASSWORD` | Passwort des Keystores |
+   | `PLAY_UPLOAD_KEY_ALIAS` | `phasewake-upload` |
+   | `PLAY_UPLOAD_KEY_PASSWORD` | Passwort des Schlüssels (bei PKCS12 dasselbe wie oben) |
+
+4. **Bauen:** Actions → «Store-Build» → Run workflow. Fehlt ein Secret, bricht der Lauf mit einer Meldung ab. Der Lauf
+   prüft den Release-Build (`release_check.py`) und dass beide Bundles mit dem Upload-Schlüssel signiert sind; der
+   Keystore wird am Ende gelöscht.
+5. **Herunterladen:** im Lauf unter Artifacts `phasewake-store-<Nummer>` (7 Tage aufbewahrt), darin
+   `PhaseWake-Handy-<Nummer>.aab` und `PhaseWake-Uhr-<Nummer>.aab`.
+6. **Hochladen in der Play Console:** App anlegen, Play App Signing eingeschaltet lassen (Standard) und beim ersten
+   Upload den Upload-Schlüssel übernehmen lassen. Das Handy-Bundle kommt in den gewünschten Track (zuerst «Interner
+   Test»). Die Uhr-App gehört in **dieselbe** App: Formfaktor Wear OS hinzufügen und `PhaseWake-Uhr-<Nummer>.aab` im
+   Wear-OS-Track hochladen.
+
+**Build-Nummer:** Laufnummer des Workflows «Store-Build» (`PHASEWAKE_BUILD`): Handy = Nummer, Uhr = 1 000 000 + Nummer
+(Play verlangt verschiedene Nummern). Sie steigt mit jedem neuen Lauf; ein «Re-run» behält sie, Play lehnt das Bundle
+dann als schon hochgeladen ab – darum für einen neuen Upload immer «Run workflow». Die Nummern der Testversionen sind
+davon unabhängig (Debug-Builds kommen nie in den Store).
+
+Lokal ohne die vier Umgebungsvariablen `PHASEWAKE_UPLOAD_KEYSTORE` (Pfad), `PHASEWAKE_UPLOAD_STORE_PASSWORD`,
+`PHASEWAKE_UPLOAD_KEY_ALIAS` und `PHASEWAKE_UPLOAD_KEY_PASSWORD` bleibt der Release-Build unsigniert wie in der CI; nur ein
+Teil davon bricht den Build ab.

@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">நாளை</string>
     <string name="home_next_in">அமைதியின்றி அசையத் தொடங்கியதும் எழுப்பும் · %1$s இல்</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">சரியாக இலக்கு நேரத்தில் எழுப்பும் · %1$s இல்</string>
-    <string name="home_no_alarm_title">சரியான தருணத்தில் எழுங்கள்</string>
+    <string name="home_no_alarm_title">உங்கள் எழுப்பும் வரம்பில் மென்மையாக எழுங்கள்</string>
     <string name="home_no_alarm_text">ஒரு நேரத்தையும் வரம்பையும் அமையுங்கள். நீங்கள் அமைதியின்றி அசையத் தொடங்கியதும் வாட்ச் அந்த வரம்புக்குள் உங்களை எழுப்பும்.</string>
     <string name="home_add_alarm">புதிய அலாரம்</string>
     <string name="home_last_night">நேற்றிரவு</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ மணி</string>
     <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="health_title">Health Connect இலிருந்து தூக்க நிலைகள்</string>
-    <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், உங்களை எழுப்பிய தருணத்தைச் சரிபார்க்கப் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
+    <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், Phase Wake உங்களை எழுப்பிய இரவுகளுடன் ஒப்பிடவும் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
     <string name="health_connect">ஆரோக்கியத் தரவுடன் ஒப்பிடு</string>
     <string name="health_connect_hint">எழுந்த பிறகு Health Connect இலிருந்து தூக்க நிலைகளைப் படித்து, கண்டறிதலைச் சரிபார்த்து மேம்படுத்தும்.</string>
     <string name="health_connected">இணைக்கப்பட்டது</string>

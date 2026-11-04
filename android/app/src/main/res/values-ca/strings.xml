@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Demà</string>
     <string name="home_next_in">Et desperta tan bon punt el son es torna inquiet · d’aquí a %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Et desperta just a l’hora objectiu · d’aquí a %1$s</string>
-    <string name="home_no_alarm_title">Desperta’t en el moment just</string>
+    <string name="home_no_alarm_title">Desperta’t suaument dins la teva finestra de despertar</string>
     <string name="home_no_alarm_text">Tria una hora i una finestra. El rellotge et desperta dins seu tan bon punt el son es torna inquiet.</string>
     <string name="home_add_alarm">Alarma nova</string>
     <string name="home_last_night">Ahir a la nit</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del son de Health Connect</string>
-    <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial i serveixen per comprovar el moment en què t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
+    <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial, també per comparar-les amb les nits en què Phase Wake t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
     <string name="health_connect">Compara amb les dades de salut</string>
     <string name="health_connect_hint">Després de despertar-te, llegeix les fases del son de Health Connect per comprovar i millorar la detecció.</string>
     <string name="health_connected">Connectat</string>

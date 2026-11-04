@@ -23,7 +23,7 @@
     <string name="home_next_tomorrow">Rīt</string>
     <string name="home_next_in">Modina, tiklīdz miegs kļūst nemierīgs · pēc %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Modina tieši mērķa laikā · pēc %1$s</string>
-    <string name="home_no_alarm_title">Mosties īstajā brīdī</string>
+    <string name="home_no_alarm_title">Mosties maigi savā modināšanas logā</string>
     <string name="home_no_alarm_text">Iestati laiku un modināšanas logu. Pulkstenis tevi tajā pamodina, tiklīdz tavs miegs kļūst nemierīgs.</string>
     <string name="home_add_alarm">Jauns modinātājs</string>
     <string name="home_last_night">Pagājusī nakts</string>
@@ -104,7 +104,7 @@
     <string name="duration_hours_half">%1$d½ st.</string>
     <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="health_title">Miega fāzes no Health Connect</string>
-    <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē un izmantoti, lai pārbaudītu pamodināšanas brīdi. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
+    <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē, arī salīdzināšanai ar naktīm, kad tevi pamodināja Phase Wake. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
     <string name="health_connect">Salīdzināt ar veselības datiem</string>
     <string name="health_connect_hint">Pēc pamošanās nolasa miega fāzes no Health Connect, lai pārbaudītu un uzlabotu noteikšanu.</string>
     <string name="health_connected">Savienots</string>

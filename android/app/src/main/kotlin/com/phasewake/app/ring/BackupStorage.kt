@@ -153,32 +153,43 @@ internal object SnoozeSafety {
  * zum Schlummer-Ende ([BackupAlarm.snoozeUntil]) fehlt nach einem Neustart, die Nacht gilt aber schon seit dem ersten
  * Klingeln als geweckt. Wie [SnoozeSafety] neu gestellt in [BackupAlarm.planBackup] und bei (LOCKED_)BOOT_COMPLETED,
  * auch vor dem ersten Entsperren. Gelöscht, sobald es wieder klingelt oder am Handy beendet wird ([BackupAlarm.cancelSnooze]).
- * Derselbe Eintrag dient beim Klingeln des Handys als Wiederaufnahme nach einem Prozessende ([PhoneRingService]).
+ * Derselbe Eintrag dient beim Klingeln des Handys als Wiederaufnahme nach einem Prozessende ([PhoneRingService]), auch
+ * wenn die Uhr führt; ein «stop» oder die Nacht der Uhr hebt ihn dann auf ([BackupAlarm.cancelSnoozeOf]).
  */
 internal object PhoneSnooze {
     private const val FILE = "backup_phone_snooze"
     private const val KEY_AT = "at"
     private const val KEY_ID = "alarmId"
     private const val KEY_DONE = "snoozesDone"
+    private const val KEY_TARGET = "target"
 
-    /** Schlummer-Ende [at] des Weckers [alarmId] nach [snoozesDone] Runden. */
-    data class Saved(val at: Instant, val alarmId: String?, val snoozesDone: Int)
+    /**
+     * Schlummer-Ende [at] des Weckers [alarmId] nach [snoozesDone] Runden; [target]: Zielzeit der Nacht (ms), damit
+     * «stop» und Nacht der Uhr nur dieselbe Nacht aufheben (`null` bei älteren Einträgen und ohne Zielzeit).
+     */
+    data class Saved(val at: Instant, val alarmId: String?, val snoozesDone: Int, val target: Long? = null)
 
     private fun prefs(context: Context) =
         context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
     fun save(context: Context, saved: Saved) {
-        prefs(context).edit { putLong(KEY_AT, saved.at.toEpochMilli()); putString(KEY_ID, saved.alarmId); putInt(KEY_DONE, saved.snoozesDone) }
+        prefs(context).edit {
+            putLong(KEY_AT, saved.at.toEpochMilli())
+            putString(KEY_ID, saved.alarmId)
+            putInt(KEY_DONE, saved.snoozesDone)
+            if (saved.target != null) putLong(KEY_TARGET, saved.target) else remove(KEY_TARGET)
+        }
     }
 
     fun load(context: Context): Saved? {
         val prefs = prefs(context)
         if (!prefs.contains(KEY_AT)) return null
-        return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0))
+        val target = if (prefs.contains(KEY_TARGET)) prefs.getLong(KEY_TARGET, 0L) else null
+        return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0), target)
     }
 
     fun clear(context: Context) {
-        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE) }
+        prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE); remove(KEY_TARGET) }
     }
 
     /**

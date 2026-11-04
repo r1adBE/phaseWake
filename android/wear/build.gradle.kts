@@ -33,6 +33,20 @@ android {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
+        // Upload-Schlüssel für Google Play (docs/PLAY.md): nur, wenn alle vier Angaben gesetzt sind (Workflow
+        // «Store-Build»). Ohne sie bleibt der Release-Build unsigniert wie bisher; nur ein Teil davon bricht ab.
+        val upload = listOf("KEYSTORE", "STORE_PASSWORD", "KEY_ALIAS", "KEY_PASSWORD")
+            .associateWith { providers.environmentVariable("PHASEWAKE_UPLOAD_$it").orNull?.takeIf(String::isNotEmpty) }
+        if (upload.values.any { it != null }) {
+            val missing = upload.filterValues { it == null }.keys
+            if (missing.isNotEmpty()) throw GradleException("Upload-Schlüssel unvollständig, es fehlt: ${missing.joinToString { "PHASEWAKE_UPLOAD_$it" }}")
+            create("upload") {
+                storeFile = file(upload.getValue("KEYSTORE")!!)
+                storePassword = upload.getValue("STORE_PASSWORD")
+                keyAlias = upload.getValue("KEY_ALIAS")
+                keyPassword = upload.getValue("KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
@@ -44,6 +58,8 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // Nur mit Upload-Schlüssel signiert (oben); sonst unsigniert.
+            signingConfigs.findByName("upload")?.let { signingConfig = it }
         }
     }
 

@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Nesër</string>
     <string name="home_next_in">Të zgjon sapo gjumi bëhet i shqetësuar · pas %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Të zgjon saktësisht në orën e synuar · pas %1$s</string>
-    <string name="home_no_alarm_title">Zgjohu në momentin e duhur</string>
+    <string name="home_no_alarm_title">Zgjohu butë në intervalin tënd të zgjimit</string>
     <string name="home_no_alarm_text">Cakto kohën dhe intervalin. Ora jote të zgjon brenda tij sapo gjumi yt bëhet i shqetësuar.</string>
     <string name="home_add_alarm">Alarm i ri</string>
     <string name="home_last_night">Nata e kaluar</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ orë</string>
     <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="health_title">Fazat e gjumit nga Health Connect</string>
-    <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd dhe përdoren për të kontrolluar momentin e zgjimit. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
+    <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd, edhe për krahasim me netët kur të zgjoi Phase Wake. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
     <string name="health_connect">Krahaso me të dhënat e shëndetit</string>
     <string name="health_connect_hint">Pas zgjimit lexon fazat e gjumit nga Health Connect, për të kontrolluar dhe përmirësuar dallimin.</string>
     <string name="health_connected">E lidhur</string>

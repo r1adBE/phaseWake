@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">कल</string>
     <string name="home_next_in">बेचैन होते ही जगाएगा · %1$s बाद</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ठीक लक्ष्य समय पर जगाएगा · %1$s बाद</string>
-    <string name="home_no_alarm_title">सही पल पर जागो</string>
+    <string name="home_no_alarm_title">अपनी जगाने की विंडो में आराम से जागो</string>
     <string name="home_no_alarm_text">समय और विंडो चुनो। जैसे ही तुम बेचैन होने लगोगे, घड़ी तुम्हें उसी विंडो में जगा देगी।</string>
     <string name="home_add_alarm">नया अलार्म</string>
     <string name="home_last_night">बीती रात</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ घं.</string>
     <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
     <string name="health_title">Health Connect से नींद के चरण</string>
-    <string name="health_rationale">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है और तुम्हें जगाने का पल जाँचने के लिए इस्तेमाल होता है। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
+    <string name="health_rationale">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है, उन रातों से तुलना के लिए भी जब Phase Wake ने तुम्हें जगाया। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
     <string name="health_connect">हेल्थ डेटा से मिलान करो</string>
     <string name="health_connect_hint">जागने के बाद Health Connect से नींद के चरण पढ़ता है, ताकि पहचान जाँची और बेहतर की जा सके।</string>
     <string name="health_connected">जुड़ा है</string>

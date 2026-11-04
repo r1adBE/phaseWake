@@ -19,7 +19,7 @@
     <string name="home_next_tomorrow">明天</string>
     <string name="home_next_in">一旦你睡得不安稳就叫醒你 · %1$s后</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">准时在目标时间唤醒你 · %1$s后</string>
-    <string name="home_no_alarm_title">在恰到好处的时刻醒来</string>
+    <string name="home_no_alarm_title">在唤醒时间窗内温柔醒来</string>
     <string name="home_no_alarm_text">设定一个时间和一个时间窗。一旦你睡得不安稳，手表就会在窗口内叫醒你。</string>
     <string name="home_add_alarm">新建闹钟</string>
     <string name="home_last_night">昨晚</string>
@@ -100,7 +100,7 @@
     <string name="duration_hours_half">%1$d½ 小时</string>
     <string name="duration_hours_minutes">%1$d 小时 %2$d 分钟</string>
     <string name="health_title">来自 Health Connect 的睡眠阶段</string>
-    <string name="health_rationale">Phase Wake 可以读取你的健康应用（例如 Samsung Health）保存的睡眠数据。这些数据会显示在你的记录中，并用于检查叫醒你的时刻。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
+    <string name="health_rationale">Phase Wake 可以读取你的健康应用（例如 Samsung Health）保存的睡眠数据。这些数据会显示在你的记录中，也可与 Phase Wake 叫醒你的那些夜晚进行对比。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
     <string name="health_connect">与健康数据对比</string>
     <string name="health_connect_hint">醒来后从 Health Connect 读取睡眠阶段，用于检查并改进检测。</string>
     <string name="health_connected">已连接</string>

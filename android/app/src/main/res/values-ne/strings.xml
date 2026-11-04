@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">भोलि</string>
     <string name="home_next_in">छटपटिन थाल्नेबित्तिकै ब्युँझाउँछ · %1$s पछि</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ठ्याक्कै लक्षित समयमा ब्युँझाउँछ · %1$s पछि</string>
-    <string name="home_no_alarm_title">ठीक समयमा ब्युँझ</string>
+    <string name="home_no_alarm_title">आफ्नो ब्युँझाउने अवधिमा बिस्तारै ब्युँझ</string>
     <string name="home_no_alarm_text">समय र अवधि सेट गर। तिमी छटपटिन थाल्नेबित्तिकै तिम्रो घडीले तिमीलाई त्यही अवधिभित्र ब्युँझाउँछ।</string>
     <string name="home_add_alarm">नयाँ अलार्म</string>
     <string name="home_last_night">हिजो राति</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ घ.</string>
     <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="health_title">Health Connect बाट निद्राका चरण</string>
-    <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ र तिमीलाई ब्युँझाएको क्षण जाँच्न प्रयोग गरिन्छ। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
+    <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ, Phase Wake ले तिमीलाई ब्युँझाएका रातहरूसँग तुलना गर्न पनि। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
     <string name="health_connect">स्वास्थ्य डेटासँग तुलना गर</string>
     <string name="health_connect_hint">पहिचान जाँच्न र सुधार्न, ब्युँझेपछि Health Connect बाट निद्राका चरण पढ्छ।</string>
     <string name="health_connected">जोडिएको</string>

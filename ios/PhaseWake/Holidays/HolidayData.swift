@@ -81,7 +81,7 @@ final class HolidayStore {
     private(set) var dates: Set<String>
 
     init() {
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         country = defaults.string(forKey: Self.countryKey) ?? Locale.current.region?.identifier ?? ""
         region = defaults.string(forKey: Self.regionKey) ?? ""
         dates = []
@@ -144,7 +144,7 @@ final class HolidayStore {
     }
 
     private func save() {
-        UserDefaults.standard.set(country, forKey: Self.countryKey)
-        UserDefaults.standard.set(region, forKey: Self.regionKey)
+        SettingsFile.phone.set(country, forKey: Self.countryKey)
+        SettingsFile.phone.set(region, forKey: Self.regionKey)
     }
 }

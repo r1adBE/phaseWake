@@ -8,9 +8,9 @@ import SwiftUI
 final class PhoneModel {
     static let shared = PhoneModel()
 
-    /// Wecker in `UserDefaults`, Nächte im von der Sicherung ausgenommenen Ordner (`PrivateFiles`).
-    let storage = PhaseWakeStorage(directory: PrivateFiles.adopt(["nights.v1"]))
-    /// Notizen und Befinden, ebenfalls ausgenommen (nicht in `UserDefaults`).
+    /// Wecker (`SettingsFile.phone`) und Nächte im von der Sicherung ausgenommenen Ordner (`PrivateFiles`).
+    let storage = PhaseWakeStorage(defaults: SettingsFile.phone, directory: PrivateFiles.adopt(["nights.v1"]))
+    /// Notizen und Befinden, ebenfalls ausgenommen.
     let privateNotes = PrivateNotes()
     let backup = BackupAlarm()
     let health = HealthSleep()
@@ -95,7 +95,7 @@ final class PhoneModel {
         notes = privateNotes.notes()
         customNotes = privateNotes.customNotes()
         healthFeelings = privateNotes.healthFeelings()
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         let goal = defaults.integer(forKey: Self.sleepGoalKey)
         sleepGoal = goal == 0 ? SleepGoal.defaultMinutes : SleepGoal.clamp(goal)
         bedtimeReminder = defaults.bool(forKey: Self.bedtimeKey)
@@ -217,7 +217,7 @@ final class PhoneModel {
         // Nächte aus Apple Health lassen sich nicht löschen, nur ausblenden (`HealthHistory.visible`).
         let now = Date()
         historyClearedAt = now
-        UserDefaults.standard.set(NSNumber(value: Int64(now.timeIntervalSince1970 * 1000)), forKey: Self.historyClearedKey)
+        SettingsFile.phone.set(NSNumber(value: Int64(now.timeIntervalSince1970 * 1000)), forKey: Self.historyClearedKey)
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
@@ -272,14 +272,14 @@ final class PhoneModel {
 
     func setSleepGoal(_ minutes: Int) {
         sleepGoal = SleepGoal.clamp(minutes)
-        UserDefaults.standard.set(sleepGoal, forKey: Self.sleepGoalKey)
+        SettingsFile.phone.set(sleepGoal, forKey: Self.sleepGoalKey)
         publishToWatch()
         Task { await replanBedtime() }
     }
 
     func setBedtimeReminder(_ enabled: Bool) {
         bedtimeReminder = enabled
-        UserDefaults.standard.set(enabled, forKey: Self.bedtimeKey)
+        SettingsFile.phone.set(enabled, forKey: Self.bedtimeKey)
         Task {
             if enabled { await bedtime.requestPermission() }
             await replanBedtime()
@@ -333,12 +333,12 @@ extension PhoneModel {
     func setSoundRecDefault(_ on: Bool) async {
         if on, !(await SoundRecorder.requestPermission()) { return }
         soundRecDefault = on
-        UserDefaults.standard.set(on, forKey: Self.soundRecDefaultKey)
+        SettingsFile.phone.set(on, forKey: Self.soundRecDefaultKey)
     }
 
     private func setSoundRecChoice(night: String, on: Bool) {
         soundRecChoice = (night: night, on: on)
-        UserDefaults.standard.set("\(night)|\(on ? "1" : "0")", forKey: Self.soundRecNightKey)
+        SettingsFile.phone.set("\(night)|\(on ? "1" : "0")", forKey: Self.soundRecNightKey)
     }
 
     /// Zielzeit des nächsten Weckers (früh geweckte Nächte übersprungen).
@@ -383,7 +383,7 @@ extension PhoneModel {
 
     func setWeeklyReview(_ enabled: Bool) {
         weeklyReview = enabled
-        UserDefaults.standard.set(enabled, forKey: Self.weeklyKey)
+        SettingsFile.phone.set(enabled, forKey: Self.weeklyKey)
         Task {
             if enabled { await bedtime.requestPermission() }
             await replanWeekly()

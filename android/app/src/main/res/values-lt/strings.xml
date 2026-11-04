@@ -24,7 +24,7 @@
     <string name="home_next_tomorrow">Rytoj</string>
     <string name="home_next_in">Pažadins, vos miegas taps neramus · po %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Pažadins tiksliai tiksliniu laiku · po %1$s</string>
-    <string name="home_no_alarm_title">Pabusk tinkamu metu</string>
+    <string name="home_no_alarm_title">Pabusk švelniai savo žadinimo lange</string>
     <string name="home_no_alarm_text">Nustatyk laiką ir žadinimo langą. Laikrodis pažadins tave jame, vos tik tavo miegas taps neramus.</string>
     <string name="home_add_alarm">Naujas žadintuvas</string>
     <string name="home_last_night">Praėjusi naktis</string>
@@ -105,7 +105,7 @@
     <string name="duration_hours_half">%1$d½ val.</string>
     <string name="duration_hours_minutes">%1$d val. %2$d min</string>
     <string name="health_title">Miego fazės iš Health Connect</string>
-    <string name="health_rationale">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Samsung Health). Jie rodomi tavo istorijoje ir naudojami patikrinti, kuriuo momentu tave pažadino. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
+    <string name="health_rationale">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Samsung Health). Jie rodomi tavo istorijoje, taip pat palyginimui su naktimis, kai tave pažadino Phase Wake. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
     <string name="health_connect">Palyginti su sveikatos duomenimis</string>
     <string name="health_connect_hint">Po pabudimo nuskaito miego fazes iš Health Connect, kad patikrintų ir patobulintų aptikimą.</string>
     <string name="health_connected">Prijungta</string>

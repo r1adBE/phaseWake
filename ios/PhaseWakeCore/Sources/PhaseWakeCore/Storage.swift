@@ -19,7 +19,7 @@ public struct AlarmSnapshot: Equatable, Sendable {
 
 /// Lokaler Speicher für Wecker und Nächte, auf iPhone und Uhr gleich. Gleiches Textformat wie Android.
 public final class PhaseWakeStorage: @unchecked Sendable {
-    private let defaults: UserDefaults
+    private let defaults: any SettingsStore
     private let nightsURL: URL
     private let lock = NSLock()
 
@@ -32,10 +32,12 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Wecker in der App-Gruppe der Uhr, damit die Komplikation sie lesen kann. Die Uhr-App selbst nutzt dieselbe
     /// Gruppe, legt ihre Nächte aber im von der Sicherung ausgenommenen Ordner ab (`PhaseWakeStorage.watch`).
-    public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? .standard)
+    public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? UserDefaults.standard)
 
-    /// Erzeugt einen Speicher. `directory` = Ordner für die Nächte (Standard: Application Support); Tests geben einen eigenen.
-    public init(defaults: UserDefaults = .standard, directory: URL? = nil) {
+    /// Erzeugt einen Speicher. `defaults` = Ort der Wecker und Einstellungen (Uhr: App-Gruppe; iPhone: eine
+    /// ``SettingsFile`` ausserhalb der iCloud-Sicherung). `directory` = Ordner für die Nächte (Standard: Application
+    /// Support); Tests geben einen eigenen.
+    public init(defaults: any SettingsStore = UserDefaults.standard, directory: URL? = nil) {
         self.defaults = defaults
         let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)

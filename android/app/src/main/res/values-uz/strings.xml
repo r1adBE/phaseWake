@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Ertaga</string>
     <string name="home_next_in">Bezovtalanishing bilan uygʻotadi · %1$s dan keyin</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Aynan belgilangan vaqtda uygʻotadi · %1$s dan keyin</string>
-    <string name="home_no_alarm_title">Ayni vaqtida uygʻon</string>
+    <string name="home_no_alarm_title">Uygʻotish oraligʻingda muloyim uygʻon</string>
     <string name="home_no_alarm_text">Vaqt va oraliqni belgila. Bezovtalana boshlashing bilan soating seni shu oraliq ichida uygʻotadi.</string>
     <string name="home_add_alarm">Yangi budilnik</string>
     <string name="home_last_night">Oʻtgan tun</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ soat</string>
     <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="health_title">Health Connectʼdagi uyqu bosqichlari</string>
-    <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi va seni uygʻotish paytini tekshirish uchun ishlatiladi. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
+    <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi, Phase Wake seni uygʻotgan tunlar bilan solishtirish uchun ham. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
     <string name="health_connect">Sogʻliq maʼlumotlari bilan solishtirish</string>
     <string name="health_connect_hint">Uygʻongandan keyin Health Connectʼdan uyqu bosqichlarini oʻqiydi – aniqlashni tekshirish va yaxshilash uchun.</string>
     <string name="health_connected">Ulangan</string>

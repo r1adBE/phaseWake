@@ -19,7 +19,7 @@
     <string name="home_next_tomorrow">พรุ่งนี้</string>
     <string name="home_next_in">ปลุกทันทีที่คุณนอนกระสับกระส่าย · อีก %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ปลุกตรงเวลาเป้าหมายพอดี · อีก %1$s</string>
-    <string name="home_no_alarm_title">ตื่นในจังหวะที่ใช่</string>
+    <string name="home_no_alarm_title">ตื่นอย่างนุ่มนวลในช่วงเวลาปลุกของคุณ</string>
     <string name="home_no_alarm_text">ตั้งเวลาและช่วงเวลาปลุก นาฬิกาจะปลุกคุณในช่วงนั้นทันทีที่คุณเริ่มนอนกระสับกระส่าย</string>
     <string name="home_add_alarm">เพิ่มนาฬิกาปลุก</string>
     <string name="home_last_night">เมื่อคืน</string>
@@ -100,7 +100,7 @@
     <string name="duration_hours_half">%1$d½ ชม.</string>
     <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
     <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
-    <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณและใช้ตรวจสอบช่วงเวลาที่ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
+    <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณ รวมถึงใช้เปรียบเทียบกับคืนที่ Phase Wake ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
     <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>
     <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
     <string name="health_connected">เชื่อมต่อแล้ว</string>

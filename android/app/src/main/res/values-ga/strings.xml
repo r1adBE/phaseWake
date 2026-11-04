@@ -25,7 +25,7 @@
     <string name="home_next_tomorrow">Amárach</string>
     <string name="home_next_in">Dúiseoidh sé thú chomh luath is a éiríonn tú corrthónach · i %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Dúiseoidh sé thú díreach ag an spriocam · i %1$s</string>
-    <string name="home_no_alarm_title">Dúisigh ag an nóiméad ceart</string>
+    <string name="home_no_alarm_title">Dúisigh go réidh i d’fhuinneog dhúisithe</string>
     <string name="home_no_alarm_text">Socraigh am agus fuinneog. Dúiseoidh an t-uaireadóir thú laistigh di chomh luath is a éiríonn tú corrthónach.</string>
     <string name="home_add_alarm">Aláram nua</string>
     <string name="home_last_night">Aréir</string>
@@ -106,7 +106,7 @@
     <string name="duration_hours_half">%1$d½ u</string>
     <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="health_title">Céimeanna codlata ó Health Connect</string>
-    <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair agus úsáidtear iad chun an nóiméad ar dúisíodh thú a sheiceáil. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
+    <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair, freisin chun comparáid a dhéanamh leis na hoícheanta ar dhúisigh Phase Wake thú. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
     <string name="health_connect">Cuir i gcomparáid le sonraí sláinte</string>
     <string name="health_connect_hint">Léann sé céimeanna codlata ó Health Connect tar éis duit dúiseacht, chun an brath a sheiceáil agus a fheabhsú.</string>
     <string name="health_connected">Ceangailte</string>

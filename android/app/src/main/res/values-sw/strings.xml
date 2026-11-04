@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">Kesho</string>
     <string name="home_next_in">Inakuamsha mara tu unapoanza kutotulia · baada ya %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Inakuamsha hasa kwa muda lengwa · baada ya %1$s</string>
-    <string name="home_no_alarm_title">Amka wakati unaofaa</string>
+    <string name="home_no_alarm_title">Amka taratibu ndani ya kipindi chako cha kuamka</string>
     <string name="home_no_alarm_text">Weka muda na kipindi. Saa yako inakuamsha ndani yake mara tu unapoanza kutotulia.</string>
     <string name="home_add_alarm">Kengele mpya</string>
     <string name="home_last_night">Usiku uliopita</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">saa %1$d½</string>
     <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
     <string name="health_title">Hatua za usingizi kutoka Health Connect</string>
-    <string name="health_rationale">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako na kutumika kuangalia wakati ulipoamshwa. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
+    <string name="health_rationale">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako, pia kwa kulinganisha na usiku ambao Phase Wake ilikuamsha. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
     <string name="health_connect">Linganisha na data ya afya</string>
     <string name="health_connect_hint">Husoma hatua za usingizi kutoka Health Connect baada ya kuamka, ili kukagua na kuboresha utambuzi.</string>
     <string name="health_connected">Imeunganishwa</string>

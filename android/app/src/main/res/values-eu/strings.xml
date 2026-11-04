@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Bihar</string>
     <string name="home_next_in">Ezinegona hasten zaizunean esnatuko zaitu · %1$s barru</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Helburuko orduan bertan esnatuko zaitu · %1$s barru</string>
-    <string name="home_no_alarm_title">Esnatu une egokian</string>
+    <string name="home_no_alarm_title">Esnatu leun zure esnatze-leihoan</string>
     <string name="home_no_alarm_text">Ezarri ordu bat eta leiho bat. Erlojuak leihoaren barruan esnatuko zaitu, ezinegona hasten zaizun unean.</string>
     <string name="home_add_alarm">Alarma berria</string>
     <string name="home_last_night">Bart</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Lo-faseak Health Connect-etik</string>
-    <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, eta esnatu zaituen unea egiaztatzeko erabiltzen dira. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
+    <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, baita Phase Wake-k esnatu zaituen gauekin alderatzeko ere. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
     <string name="health_connect">Alderatu osasun-datuekin</string>
     <string name="health_connect_hint">Esnatu ondoren, lo-faseak irakurtzen ditu Health Connect-etik, hautematea egiaztatu eta hobetzeko.</string>
     <string name="health_connected">Konektatuta</string>

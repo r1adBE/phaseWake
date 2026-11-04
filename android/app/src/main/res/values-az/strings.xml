@@ -18,7 +18,7 @@
     <string name="home_next_tomorrow">Sabah</string>
     <string name="home_next_in">Narahat olmağa başlayan kimi oyadır · %1$s sonra</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Düz hədəf vaxtında oyadır · %1$s sonra</string>
-    <string name="home_no_alarm_title">Doğru anda oyan</string>
+    <string name="home_no_alarm_title">Oyanma pəncərəndə yumşaq oyan</string>
     <string name="home_no_alarm_text">Vaxt və pəncərə seç. Narahat olmağa başlayan kimi saatın səni həmin pəncərədə oyadır.</string>
     <string name="home_add_alarm">Yeni siqnal</string>
     <string name="home_last_night">Ötən gecə</string>
@@ -93,7 +93,7 @@
     <string name="duration_hours_half">%1$d½ st</string>
     <string name="duration_hours_minutes">%1$d st %2$d dəq</string>
     <string name="health_title">Health Connect-dən yuxu fazaları</string>
-    <string name="health_rationale">Phase Wake sağlamlıq tətbiqinin (məsələn, Samsung Health) saxladığı yuxu məlumatlarını oxuya bilər. Onlar tarixçəndə göstərilir və oyadıldığın anı yoxlamaq üçün istifadə olunur. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır.</string>
+    <string name="health_rationale">Phase Wake sağlamlıq tətbiqinin (məsələn, Samsung Health) saxladığı yuxu məlumatlarını oxuya bilər. Onlar tarixçəndə göstərilir, həm də Phase Wake-in səni oyatdığı gecələrlə müqayisə üçün. Phase Wake yalnız oxuyur, heç vaxt yazmır və heç nə telefonundan çıxmır.</string>
     <string name="health_connect">Sağlamlıq məlumatları ilə müqayisə et</string>
     <string name="health_connect_hint">Oyandıqdan sonra Health Connect-dən yuxu fazalarını oxuyur ki, aşkarlamanı yoxlasın və yaxşılaşdırsın.</string>
     <string name="health_connected">Qoşulub</string>

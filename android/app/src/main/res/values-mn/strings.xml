@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Маргааш</string>
     <string name="home_next_in">Тайван бус унтаж эхлэхэд сэрээнэ · %1$s дараа</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Яг зорилтот цагт сэрээнэ · %1$s дараа</string>
-    <string name="home_no_alarm_title">Яг зөв мөчид сэр</string>
+    <string name="home_no_alarm_title">Сэрээх хугацаандаа зөөлөн сэр</string>
     <string name="home_no_alarm_text">Цаг болон хугацаа тохируул. Тайван бус унтаж эхлэхэд цаг чинь чамайг тэр хугацааны дотор сэрээнэ.</string>
     <string name="home_add_alarm">Шинэ сэрүүлэг</string>
     <string name="home_last_night">Өнгөрсөн шөнө</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ ц</string>
     <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="health_title">Health Connect-ийн нойрны үе шат</string>
-    <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд чамайг сэрээсэн мөчийг шалгахад ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
+    <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд Phase Wake чамайг сэрээсэн шөнүүдтэй харьцуулахад ч ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
     <string name="health_connect">Эрүүл мэндийн өгөгдөлтэй харьцуулах</string>
     <string name="health_connect_hint">Сэрсний дараа Health Connect-оос нойрны үе шатыг уншиж, илрүүлэлтийг шалгаж сайжруулна.</string>
     <string name="health_connected">Холбогдсон</string>

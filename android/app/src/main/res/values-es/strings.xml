@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">Mañana</string>
     <string name="home_next_in">Te despierta en cuanto te inquietas · en %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Te despierta justo a la hora objetivo · en %1$s</string>
-    <string name="home_no_alarm_title">Despierta en el momento justo</string>
+    <string name="home_no_alarm_title">Despierta suavemente en tu ventana de despertar</string>
     <string name="home_no_alarm_text">Elige una hora y una ventana. Tu reloj te despierta dentro de ella en cuanto te inquietas.</string>
     <string name="home_add_alarm">Nueva alarma</string>
     <string name="home_last_night">Anoche</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del sueño de Health Connect</string>
-    <string name="health_rationale">Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Samsung Health). Se muestran en tu historial y se usan para comprobar el momento en que te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil.</string>
+    <string name="health_rationale">Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Samsung Health). Se muestran en tu historial, también para compararlos con las noches en que Phase Wake te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil.</string>
     <string name="health_connect">Comparar con datos de salud</string>
     <string name="health_connect_hint">Lee las fases del sueño de Health Connect al despertar, para comprobar y mejorar la detección.</string>
     <string name="health_connected">Conectado</string>

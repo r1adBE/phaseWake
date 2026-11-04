@@ -185,7 +185,7 @@ final class PhoneTransient {
 
     /// Nach einem Neustart der App: laufende Pläne zurückholen, abgelaufene verwerfen.
     func restore() async {
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         let now = Date()
         test = defaults.string(forKey: Self.testKey).flatMap { try? Transient.decode($0) }.flatMap { Transient.isActive($0, now: now) ? $0 : nil }
         run = test == nil ? nil : TestRuns.decode(defaults.string(forKey: Self.runKey))
@@ -206,7 +206,7 @@ final class PhoneTransient {
 
     private func addRingId(_ id: UUID) {
         ringIds.insert(id.uuidString)
-        UserDefaults.standard.set(Array(ringIds), forKey: Self.ringIdsKey)
+        SettingsFile.phone.set(Array(ringIds), forKey: Self.ringIdsKey)
     }
 
     /// Ohne «stop» steht das Ergebnis drei Minuten nach der Zielzeit fest.
@@ -259,7 +259,7 @@ final class PhoneTransient {
     }
 
     private func save() {
-        let defaults = UserDefaults.standard
+        let defaults = SettingsFile.phone
         defaults.set(test.map(Transient.encode), forKey: Self.testKey)
         defaults.set(run.map(TestRuns.encode), forKey: Self.runKey)
         defaults.set(nap.map(Transient.encode), forKey: Self.napKey)

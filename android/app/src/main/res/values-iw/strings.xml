@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">מחר</string>
     <string name="home_next_in">מעיר ברגע שהשינה נעשית חסרת מנוחה · בעוד %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">מעיר בדיוק בשעת היעד · בעוד %1$s</string>
-    <string name="home_no_alarm_title">להתעורר ברגע הנכון</string>
+    <string name="home_no_alarm_title">להתעורר בעדינות בתוך חלון ההשכמה</string>
     <string name="home_no_alarm_text">קבעו שעה וחלון זמן. השעון יעיר אתכם בתוכו ברגע שהשינה נעשית חסרת מנוחה.</string>
     <string name="home_add_alarm">מעורר חדש</string>
     <string name="home_last_night">הלילה האחרון</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ ש׳</string>
     <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
     <string name="health_title">שלבי שינה מ-Health Connect</string>
-    <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם ומשמשים לבדיקת רגע ההשכמה. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
+    <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
     <string name="health_connect">השוואה לנתוני בריאות</string>
     <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
     <string name="health_connected">מחובר</string>

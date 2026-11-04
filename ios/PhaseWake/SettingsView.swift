@@ -4,7 +4,7 @@ import SwiftUI
 /// Einstellungen: Darstellung, Gesundheitsdaten, Daten, Über.
 struct SettingsView: View {
     @Environment(PhoneModel.self) private var model
-    @AppStorage("themeMode") private var themeMode = ThemeMode.system
+    @PrivateSetting("themeMode") private var themeMode = ThemeMode.system
     @State private var confirmClear = false
     @AppStorage("healthRequested") private var healthRequested = false
     @AppStorage(OnboardingView.doneKey) private var onboardingDone = false

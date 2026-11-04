@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">আগামীকাল</string>
     <string name="home_next_in">অস্থির হতে শুরু করলেই জাগাবে · %1$s পরে</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ঠিক লক্ষ্য সময়ে জাগাবে · %1$s পরে</string>
-    <string name="home_no_alarm_title">ঠিক মুহূর্তে জেগে ওঠো</string>
+    <string name="home_no_alarm_title">জাগানোর সময়সীমার মধ্যে আলতো করে জেগে ওঠো</string>
     <string name="home_no_alarm_text">একটা সময় আর সময়সীমা ঠিক করো। তুমি অস্থির হতে শুরু করলেই ঘড়ি সেই সময়সীমায় তোমাকে জাগাবে।</string>
     <string name="home_add_alarm">নতুন অ্যালার্ম</string>
     <string name="home_last_night">গত রাত</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ ঘ.</string>
     <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
     <string name="health_title">Health Connect থেকে ঘুমের পর্যায়</string>
-    <string name="health_rationale">তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয় এবং তোমাকে জাগানোর মুহূর্তটি যাচাই করতে ব্যবহার হয়। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
+    <string name="health_rationale">তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয়, যেসব রাতে Phase Wake তোমাকে জাগিয়েছে সেগুলোর সঙ্গে তুলনার জন্যও। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
     <string name="health_connect">স্বাস্থ্য ডেটার সঙ্গে মেলাও</string>
     <string name="health_connect_hint">জাগার পর Health Connect থেকে ঘুমের পর্যায় পড়ে, শনাক্তকরণ যাচাই ও উন্নত করতে।</string>
     <string name="health_connected">সংযুক্ত</string>

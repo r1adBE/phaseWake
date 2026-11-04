@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Á morgun</string>
     <string name="home_next_in">Vekur þig um leið og svefninn verður órólegur · eftir %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Vekur þig nákvæmlega á markmiðstíma · eftir %1$s</string>
-    <string name="home_no_alarm_title">Vaknaðu á réttu augnabliki</string>
+    <string name="home_no_alarm_title">Vaknaðu mjúklega í vakningarglugganum þínum</string>
     <string name="home_no_alarm_text">Veldu tíma og glugga. Úrið vekur þig innan hans um leið og svefninn verður órólegur.</string>
     <string name="home_add_alarm">Nýr vekjari</string>
     <string name="home_last_night">Síðasta nótt</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ klst</string>
     <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
     <string name="health_title">Svefnstig úr Health Connect</string>
-    <string name="health_rationale">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum og eru notuð til að athuga vakningarstundina. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
+    <string name="health_rationale">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum, líka til samanburðar við næturnar sem Phase Wake vakti þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
     <string name="health_connect">Bera saman við heilsugögn</string>
     <string name="health_connect_hint">Les svefnstig úr Health Connect eftir að þú vaknar, til að athuga og bæta greininguna.</string>
     <string name="health_connected">Tengt</string>

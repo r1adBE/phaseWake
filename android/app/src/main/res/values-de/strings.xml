@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">Morgen</string>
     <string name="home_next_in">Weckt, sobald du unruhig wirst · in %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Weckt genau zur Zielzeit · in %1$s</string>
-    <string name="home_no_alarm_title">Im richtigen Moment aufwachen</string>
+    <string name="home_no_alarm_title">Sanft im Weckfenster aufwachen</string>
     <string name="home_no_alarm_text">Stell eine Zeit und ein Fenster ein. Deine Uhr weckt dich darin, sobald du unruhig wirst.</string>
     <string name="home_add_alarm">Neuer Wecker</string>
     <string name="home_last_night">Letzte Nacht</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ Std.</string>
     <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="health_title">Schlafphasen aus Health Connect</string>
-    <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf und dienen dazu, den Weckmoment zu prüfen. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
+    <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf, auch zum Vergleich mit den Nächten, in denen Phase Wake geweckt hat. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
     <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>
     <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
     <string name="health_connected">Verbunden</string>

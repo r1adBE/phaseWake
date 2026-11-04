@@ -21,7 +21,7 @@
     <string name="home_next_tomorrow">Утре</string>
     <string name="home_next_in">Събужда те, щом сънят ти стане неспокоен · след %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Събужда те точно в целевия час · след %1$s</string>
-    <string name="home_no_alarm_title">Събуди се в точния момент</string>
+    <string name="home_no_alarm_title">Събуди се плавно в своя прозорец за събуждане</string>
     <string name="home_no_alarm_text">Задай час и прозорец. Часовникът ще те събуди в него, щом сънят ти стане неспокоен.</string>
     <string name="home_add_alarm">Нов будилник</string>
     <string name="home_last_night">Миналата нощ</string>
@@ -102,7 +102,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фази на съня от Health Connect</string>
-    <string name="health_rationale">Phase Wake може да чете данните за съня, които здравното ти приложение (например Samsung Health) записва. Те се показват в историята ти и се използват, за да се провери моментът на събуждането ти. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти.</string>
+    <string name="health_rationale">Phase Wake може да чете данните за съня, които здравното ти приложение (например Samsung Health) записва. Те се показват в историята ти, включително за сравнение с нощите, в които Phase Wake те е събудил. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти.</string>
     <string name="health_connect">Сравни със здравните данни</string>
     <string name="health_connect_hint">След събуждане чете фазите на съня от Health Connect, за да провери и подобри разпознаването.</string>
     <string name="health_connected">Свързано</string>

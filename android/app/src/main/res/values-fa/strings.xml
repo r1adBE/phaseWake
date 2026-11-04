@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">فردا</string>
     <string name="home_next_in">به‌محض اینکه بی‌قرار شوی بیدارت می‌کند · تا %1$s دیگر</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">دقیقاً در زمان هدف بیدارت می‌کند · تا %1$s دیگر</string>
-    <string name="home_no_alarm_title">در لحظهٔ مناسب بیدار شو</string>
+    <string name="home_no_alarm_title">در بازهٔ بیداری‌ات آرام بیدار شو</string>
     <string name="home_no_alarm_text">یک زمان و یک بازه تعیین کن. ساعتت در همان بازه، به‌محض اینکه بی‌قرار شوی، بیدارت می‌کند.</string>
     <string name="home_add_alarm">زنگ جدید</string>
     <string name="home_last_night">شب گذشته</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ س</string>
     <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="health_title">مراحل خواب از Health Connect</string>
-    <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند و برای بررسی لحظهٔ بیدار کردنت استفاده می‌شوند. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
+    <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند، از جمله برای مقایسه با شب‌هایی که Phase Wake بیدارت کرده است. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
     <string name="health_connect">مقایسه با داده‌های سلامت</string>
     <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
     <string name="health_connected">وصل شد</string>

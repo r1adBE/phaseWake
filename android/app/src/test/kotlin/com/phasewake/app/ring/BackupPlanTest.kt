@@ -29,7 +29,8 @@ import kotlin.test.assertTrue
 /**
  * Zusammenspiel beim Planen des Zweitweckers ([planBackup], Review M-2): Nachfrist je nach Uhr (Review N-5), frühere
  * Zielzeit des Einschlaf-Modus und ihre Aufhebung (Review H-1), Liste für vor dem ersten Entsperren, Schlummern am
- * Handy daneben ([PhoneSnooze.restore]) und ein veraltetes «klingeln» (Review LATE). Feste Uhrzeit, [QuietApp].
+ * Handy daneben ([PhoneSnooze.restore]), ein veraltetes «klingeln» (Review LATE) und «stop» bzw. Nacht der Uhr, die
+ * die Wiederaufnahme am Handy aufheben. Feste Uhrzeit, [QuietApp].
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)
@@ -134,5 +135,28 @@ class BackupPlanTest {
         assertTrue(RingRules.ringPausesBackup(stale.copy(sentAt = now.toEpochMilli()), now.toEpochMilli()))
         backup.watchRang(stale)
         assertNull(backup.doneUntil()["a"], "veraltet: Zweitwecker dieser Nacht bleibt")
+    }
+
+    @Test
+    fun watchStopOrNightEndsResumeOfItsNightOnly() = runBlocking {
+        repository.upsert(spec)
+        val target = configured.toEpochMilli()
+        val resumeAt = now.plus(Duration.ofMinutes(10))
+        // Prozess des Handys beendet, während die Uhr führte: Nur die abgelegte Wiederaufnahme ist da (04.11.2026).
+        backup.snoozeUntil(resumeAt, "a", 1, target)
+        backup.watchStopped(RingMessage("b", target + 1_800_000, now.toEpochMilli()), null)
+        assertEquals("a", PhoneSnooze.load(context)?.alarmId, "«stop» eines anderen Weckers lässt sie")
+        // Auf der Uhr geschlummert: Wiederaufnahme weg, die Sicherung nach dem Schlummer-Ende übernimmt.
+        val snoozeEnd = now.plus(Duration.ofMinutes(5)).toEpochMilli()
+        backup.watchStopped(RingMessage("a", target, now.toEpochMilli(), snoozesLeft = 1, snoozeUntil = snoozeEnd), null)
+        assertNull(PhoneSnooze.load(context))
+        assertTrue(scheduled(3).isEmpty())
+        assertEquals("a", SnoozeSafety.load(context)?.alarmId)
+        // Die Uhr meldet die Nacht (Listener): nur dieselbe Nacht hebt auf.
+        backup.snoozeUntil(resumeAt, "a", 1, target)
+        backup.cancelSnoozeOf("a", target - 86_400_000)
+        assertEquals("a", PhoneSnooze.load(context)?.alarmId, "Nacht vom Vortag lässt sie")
+        backup.cancelSnoozeOf("a", target)
+        assertNull(PhoneSnooze.load(context))
     }
 }

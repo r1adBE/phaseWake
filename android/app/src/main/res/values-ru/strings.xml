@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Завтра</string>
     <string name="home_next_in">Разбудит, как только сон станет беспокойным · через %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Разбудит точно в целевое время · через %1$s</string>
-    <string name="home_no_alarm_title">Просыпайся в нужный момент</string>
+    <string name="home_no_alarm_title">Просыпайся мягко в своём окне пробуждения</string>
     <string name="home_no_alarm_text">Задай время и окно. Часы разбудят тебя в нём, как только сон станет беспокойным.</string>
     <string name="home_add_alarm">Новый будильник</string>
     <string name="home_last_night">Прошлая ночь</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ ч</string>
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазы сна из Health Connect</string>
-    <string name="health_rationale">Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Samsung Health). Они показываются в твоей истории и нужны, чтобы проверить момент пробуждения. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон.</string>
+    <string name="health_rationale">Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Samsung Health). Они показываются в твоей истории, в том числе для сравнения с ночами, когда тебя будил Phase Wake. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон.</string>
     <string name="health_connect">Сверять с данными о здоровье</string>
     <string name="health_connect_hint">После пробуждения читает фазы сна из Health Connect, чтобы проверять и улучшать распознавание.</string>
     <string name="health_connected">Подключено</string>

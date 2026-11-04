@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">မနက်ဖြန်</string>
     <string name="home_next_in">မငြိမ်မသက် ဖြစ်လာသည်နှင့် နှိုးမည် · နောက် %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">ပစ်မှတ်အချိန်တိတိတွင် နှိုးမည် · နောက် %1$s</string>
-    <string name="home_no_alarm_title">သင့်တော်သည့်အချိန်တွင် နိုးထပါ</string>
+    <string name="home_no_alarm_title">သင့်နှိုးချိန်အပိုင်းအတွင်း ညင်သာစွာ နိုးထပါ</string>
     <string name="home_no_alarm_text">အချိန်နှင့် အချိန်အပိုင်းကို သတ်မှတ်ပါ။ မငြိမ်မသက် ဖြစ်လာသည်နှင့် နာရီက ထိုအပိုင်းအတွင်း နှိုးပေးမည်။</string>
     <string name="home_add_alarm">နှိုးစက်အသစ်</string>
     <string name="home_last_night">မနေ့ညက</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ နာရီ</string>
     <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="health_title">Health Connect မှ အိပ်စက်မှုအဆင့်များ</string>
-    <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး သင့်ကို နှိုးခဲ့သည့်အချိန်ကို စစ်ဆေးရန် အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
+    <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
     <string name="health_connect">ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ရန်</string>
     <string name="health_connect_hint">ရှာဖွေမှုကို စစ်ဆေးပြီး ပိုကောင်းစေရန် နိုးပြီးနောက် Health Connect မှ အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။</string>
     <string name="health_connected">ချိတ်ဆက်ထားသည်</string>

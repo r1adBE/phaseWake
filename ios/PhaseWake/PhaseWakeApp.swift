@@ -6,7 +6,6 @@ import UserNotifications
 @main
 struct PhaseWakeApp: App {
     @State private var model = PhoneModel.shared
-    @AppStorage("themeMode") private var themeMode = ThemeMode.system
 
     init() {
         Fonts.register()
@@ -30,7 +29,6 @@ struct PhaseWakeApp: App {
         WindowGroup {
             RootView()
                 .environment(model)
-                .preferredColorScheme(themeMode.colorScheme)
                 // Start: Protokoll, Feiertage laden, Sicherung, Erinnerungen und laufende Probewecker.
                 .task { await model.startUp() }
         }
@@ -63,6 +61,8 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) private var scheme
     @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
+    /// Darstellung (in `SettingsFile.phone`, nicht in der iCloud-Sicherung); gilt für das ganze Fenster.
+    @PrivateSetting("themeMode") private var themeMode = ThemeMode.system
 
     var body: some View {
         @Bindable var model = model
@@ -82,5 +82,6 @@ struct RootView: View {
             model.becameActive()
             Task { await model.replanWeekly() }
         }
+        .preferredColorScheme(themeMode.colorScheme)
     }
 }

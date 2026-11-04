@@ -44,9 +44,9 @@ struct SoundsButton: View {
 /// Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Start/Stopp, Restzeit.
 struct SoundsSheet: View {
     @Environment(PhoneModel.self) private var model
-    @AppStorage("soundChoice") private var choice = SleepSound.pink.rawValue
+    @PrivateSetting("soundChoice") private var choice = SleepSound.pink.rawValue
     /// Timer in Minuten; 0 = ohne Timer.
-    @AppStorage("soundTimerMinutes") private var timer = SleepSounds.defaultTimerMinutes
+    @PrivateSetting("soundTimerMinutes") private var timer = SleepSounds.defaultTimerMinutes
 
     var body: some View {
         let player = model.sounds

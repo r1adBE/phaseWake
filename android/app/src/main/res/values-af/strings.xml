@@ -22,7 +22,7 @@
     <string name="home_next_tomorrow">Môre</string>
     <string name="home_next_in">Maak jou wakker sodra jy onrustig word · oor %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Maak jou presies op teikentyd wakker · oor %1$s</string>
-    <string name="home_no_alarm_title">Word op die regte oomblik wakker</string>
+    <string name="home_no_alarm_title">Word saggies in jou wekvenster wakker</string>
     <string name="home_no_alarm_text">Stel ’n tyd en ’n venster. Jou horlosie maak jou daarin wakker sodra jy onrustig word.</string>
     <string name="home_add_alarm">Nuwe wekker</string>
     <string name="home_last_night">Gisteraand</string>
@@ -103,7 +103,7 @@
     <string name="duration_hours_half">%1$d½ h</string>
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
-    <string name="health_rationale">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys en gebruik om die oomblik na te gaan waarop jy wakker gemaak is. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
+    <string name="health_rationale">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
     <string name="health_connect">Vergelyk met gesondheidsdata</string>
     <string name="health_connect_hint">Lees ná die wakker word slaapfases uit Health Connect om die bespeuring na te gaan en te verbeter.</string>
     <string name="health_connected">Gekoppel</string>

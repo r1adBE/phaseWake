@@ -19,7 +19,7 @@
     <string name="home_next_tomorrow">Ngày mai</string>
     <string name="home_next_in">Đánh thức ngay khi bạn trằn trọc · sau %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Đánh thức đúng giờ mục tiêu · sau %1$s</string>
-    <string name="home_no_alarm_title">Thức dậy đúng lúc</string>
+    <string name="home_no_alarm_title">Thức dậy nhẹ nhàng trong khoảng đánh thức của bạn</string>
     <string name="home_no_alarm_text">Đặt giờ và khoảng thời gian. Đồng hồ sẽ đánh thức bạn trong khoảng đó ngay khi bạn bắt đầu trằn trọc.</string>
     <string name="home_add_alarm">Báo thức mới</string>
     <string name="home_last_night">Đêm qua</string>
@@ -100,7 +100,7 @@
     <string name="duration_hours_half">%1$d½ giờ</string>
     <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
     <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
-    <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn và dùng để kiểm tra thời điểm bạn được đánh thức. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn, cũng để so sánh với những đêm Phase Wake đã đánh thức bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
     <string name="health_connect">So sánh với dữ liệu sức khỏe</string>
     <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
     <string name="health_connected">Đã kết nối</string>

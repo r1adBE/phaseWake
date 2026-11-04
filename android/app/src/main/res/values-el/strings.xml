@@ -20,7 +20,7 @@
     <string name="home_next_tomorrow">Αύριο</string>
     <string name="home_next_in">Σε ξυπνά μόλις ο ύπνος σου γίνει ανήσυχος · σε %1$s</string>
     <string name="home_next_in_exact" tools:ignore="UnusedResources">Σε ξυπνά ακριβώς στην ώρα στόχου · σε %1$s</string>
-    <string name="home_no_alarm_title">Ξύπνα τη σωστή στιγμή</string>
+    <string name="home_no_alarm_title">Ξύπνα απαλά μέσα στο παράθυρο αφύπνισης</string>
     <string name="home_no_alarm_text">Όρισε ώρα και παράθυρο. Το ρολόι σε ξυπνά μέσα σε αυτό μόλις ο ύπνος σου γίνει ανήσυχος.</string>
     <string name="home_add_alarm">Νέο ξυπνητήρι</string>
     <string name="home_last_night">Χθεσινή νύχτα</string>
@@ -101,7 +101,7 @@
     <string name="duration_hours_half">%1$d½ ώ.</string>
     <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
     <string name="health_title">Φάσεις ύπνου από το Health Connect</string>
-    <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health). Εμφανίζονται στο ιστορικό σου και χρησιμοποιούνται για να ελέγχεται η στιγμή που σε ξύπνησε. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
+    <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health). Εμφανίζονται στο ιστορικό σου, και για σύγκριση με τις νύχτες που σε ξύπνησε το Phase Wake. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
     <string name="health_connect">Σύγκριση με δεδομένα υγείας</string>
     <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
     <string name="health_connected">Συνδέθηκε</string>

@@ -18,11 +18,13 @@ import org.robolectric.android.controller.ServiceController
 import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 /**
  * Ablauf im [PhoneRingService] mit fester Uhrzeit (Review M-2): Beim Klingeln steht der Wiederaufnahme-Alarm
  * ([PhoneSnooze]), ein zweiter Wecker löst ab und stellt ihn für sich neu, die Zeitgrenze schlummert, solange Runden
- * bleiben. Android 13: dort fragt der Weckbildschirm das Vollbild-Recht über die Berechtigung ab.
+ * bleiben; führt die Uhr, steht er ebenso und Schlummern am Handy hebt ihn auf. Android 13: dort fragt der
+ * Weckbildschirm das Vollbild-Recht über die Berechtigung ab.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], application = QuietApp::class)
@@ -56,18 +58,35 @@ class PhoneRingServiceTest {
         val service = Robolectric.buildService(PhoneRingService::class.java, ringIntent("a", now)).create().startCommand(0, 1)
         controller = service
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
-        assertEquals(PhoneSnooze.Saved(resumeAt, "a", 0), PhoneSnooze.load(context))
+        assertEquals(PhoneSnooze.Saved(resumeAt, "a", 0, now.toEpochMilli()), PhoneSnooze.load(context))
         // Zweiter Wecker «b» löst ab: aufgehoben und für «b» neu gestellt, wieder alle Runden.
         // Zweiter Start desselben Dienstes mit neuem Auftrag (ohne das veraltete `withIntent`, Review K-14).
         service.get().onStartCommand(ringIntent("b", now.plus(Duration.ofMinutes(30))), 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
-        assertEquals(PhoneSnooze.Saved(resumeAt, "b", 0), PhoneSnooze.load(context))
+        val targetB = now.plus(Duration.ofMinutes(30)).toEpochMilli()
+        assertEquals(PhoneSnooze.Saved(resumeAt, "b", 0, targetB), PhoneSnooze.load(context))
         // Niemand reagiert: Zeitgrenze → selbst schlummern, Schlummer-Ende ersetzt die Wiederaufnahme.
         shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(RingRules.TIMEOUT_MS + 1_000))
         assertEquals(PhoneRingService.State.Snoozed::class, PhoneRingService.ringState.value::class)
         assertEquals(Snooze.MAX_COUNT - 1, (PhoneRingService.ringState.value as PhoneRingService.State.Snoozed).snoozesLeft)
-        assertEquals(PhoneSnooze.Saved(Snooze.nextRing(now), "b", 1), PhoneSnooze.load(context))
+        assertEquals(PhoneSnooze.Saved(Snooze.nextRing(now), "b", 1, targetB), PhoneSnooze.load(context))
+    }
+
+    @Test
+    fun watchLedRingArmsResumeSnoozeOnPhoneCancelsIt() {
+        val resumeAt = Instant.ofEpochMilli(RingRules.resumeAt(now.toEpochMilli()))
+        // Die Uhr führt (noch 2 Runden): Wiederaufnahme-Alarm steht auch hier, mit den Runden der Uhr (04.11.2026).
+        val intent = ringIntent("a", now).putExtra("fromWatch", true).putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 2)
+        val service = Robolectric.buildService(PhoneRingService::class.java, intent).create().startCommand(0, 1)
+        controller = service
+        assertEquals(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 2), plain())
+        assertEquals(PhoneSnooze.Saved(resumeAt, "a", Snooze.MAX_COUNT - 2, now.toEpochMilli()), PhoneSnooze.load(context))
+        // Am Handy geschlummert: Die Uhr schlummert, statt der Wiederaufnahme gilt die Sicherung nach dem Schlummer-Ende.
+        service.get().onStartCommand(Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_SNOOZE), 0, 2)
+        shadowOf(Looper.getMainLooper()).idle()
+        assertEquals(PhoneRingService.State.Idle, PhoneRingService.ringState.value)
+        assertNull(PhoneSnooze.load(context))
     }
 
     /** Klingelzustand ohne die Angaben, die der Weckbildschirm später ergänzt (Licht, Aufgabe). */

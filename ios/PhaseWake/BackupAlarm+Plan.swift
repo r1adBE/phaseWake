@@ -70,8 +70,8 @@ extension BackupAlarm {
     /// Ob eine Apple Watch gekoppelt ist und Phase Wake darauf installiert ist, wie zuletzt von WatchConnectivity
     /// gemeldet (auch vor der Aktivierung nach einem Kaltstart bekannt). Unbekannt zählt als «keine Uhr».
     nonisolated static var watchPresent: Bool {
-        get { UserDefaults.standard.bool(forKey: watchPresentKey) }
-        set { UserDefaults.standard.set(newValue, forKey: watchPresentKey) }
+        get { SettingsFile.phone.bool(forKey: watchPresentKey) }
+        set { SettingsFile.phone.set(newValue, forKey: watchPresentKey) }
     }
 
     /// Nachfrist des Zweitweckers: 120 s mit Uhr, ohne Uhr 0 s – dann klingelt das iPhone pünktlich zur Zielzeit
@@ -96,10 +96,10 @@ extension BackupAlarm {
     /// Die gestellten Zweitwecker (auch schon geklingelte der letzten Stunde).
     var plannedBackups: [PlannedBackup] {
         get {
-            guard let data = UserDefaults.standard.data(forKey: Self.plannedKey) else { return [] }
+            guard let data = SettingsFile.phone.data(forKey: Self.plannedKey) else { return [] }
             return (try? JSONDecoder().decode([PlannedBackup].self, from: data)) ?? []
         }
-        set { UserDefaults.standard.set(try? JSONEncoder().encode(newValue), forKey: Self.plannedKey) }
+        set { SettingsFile.phone.set(try? JSONEncoder().encode(newValue), forKey: Self.plannedKey) }
     }
 
     /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben (samt ihrer Zone; eine
@@ -135,7 +135,7 @@ extension BackupAlarm {
             plannedBackups = result
             await schedule(id: id, at: slot.fireAt, snoozesLeft: Snooze.maxCount, tone: WakeTone(rawValue: slot.sound))
         }
-        UserDefaults.standard.set(TimeZone.current.identifier, forKey: Self.zoneKey)
+        SettingsFile.phone.set(TimeZone.current.identifier, forKey: Self.zoneKey)
         pruneRingNights()
     }
 
@@ -180,8 +180,8 @@ extension BackupAlarm {
 
     /// Bis Version 16.2 nur Kennungen ohne Nacht gemerkt: einmal alle verwerfen, danach gilt `plannedBackups`.
     private func cancelLegacyBackups() async {
-        guard let ids = UserDefaults.standard.stringArray(forKey: Self.legacyIdsKey) else { return }
-        UserDefaults.standard.removeObject(forKey: Self.legacyIdsKey)
+        guard let ids = SettingsFile.phone.stringArray(forKey: Self.legacyIdsKey) else { return }
+        SettingsFile.phone.removeObject(forKey: Self.legacyIdsKey)
         for id in ids.compactMap(UUID.init(uuidString:)) { cancelAlarm(id) }
     }
 
@@ -190,7 +190,7 @@ extension BackupAlarm {
     /// Beim Start der App (auch im Hintergrund): Seit dem letzten Planen die Zeitzone gewechselt (Reise, App nicht
     /// offen), dann neu planen. AlarmKit-Alarme stehen auf festen Zeitpunkten und folgen der Ortszeit sonst nicht.
     func replanIfZoneChanged(_ alarms: [AlarmSpec]) async {
-        guard let planned = UserDefaults.standard.string(forKey: Self.zoneKey), planned != TimeZone.current.identifier else { return }
+        guard let planned = SettingsFile.phone.string(forKey: Self.zoneKey), planned != TimeZone.current.identifier else { return }
         DiagStore.shared.log(.scheduled, "time zone changed since planning")
         await reschedule(alarms)
     }
@@ -211,10 +211,10 @@ extension BackupAlarm {
 
     private var ringNights: [String: RingNight] {
         get {
-            guard let data = UserDefaults.standard.data(forKey: Self.ringNightsKey) else { return [:] }
+            guard let data = SettingsFile.phone.data(forKey: Self.ringNightsKey) else { return [:] }
             return (try? JSONDecoder().decode([String: RingNight].self, from: data)) ?? [:]
         }
-        set { UserDefaults.standard.set(try? JSONEncoder().encode(newValue), forKey: Self.ringNightsKey) }
+        set { SettingsFile.phone.set(try? JSONEncoder().encode(newValue), forKey: Self.ringNightsKey) }
     }
 
     /// Behält nur die Nächte der Alarme, die noch gemerkt sind.

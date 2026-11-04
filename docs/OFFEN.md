@@ -7,6 +7,7 @@ Stand 04.11.2026, Phase Wake 16.2.2, Build 54. Erledigtes wandert nach [ENTSCHEI
 - Review 04.11.: Verlauf der Apple Watch nicht in der Sicherung, Apple Watch nach einer Reise (einmal wecken, zur Ortszeit), Health Connect im Protokoll ohne App-Namen, CSV-Satz in DATENSCHUTZ.md, Fehler beim Rückfall der Apple Watch im Protokoll.
 - Review 04.11. b: Zeitzonenwechsel im laufenden Weckfenster (Nacht bleibt zur geplanten Zeit, Uhr und Handy, P1), abgebrochene Messung der Galaxy Watch hebt die neue Sicherung nicht auf (P2).
 - Review 04.11. c: Rückfall der Apple Watch ab Messbeginn zum festen Zeitpunkt (kein zweites Wecken nach einer Reise nach Osten im Fenster).
+- Runde 04.11. d: Handy-Klingeln nimmt nach einem Prozessende auch wieder auf, wenn die Uhr führt (früher Punkt 4); Store-Build für Google Play über die CI (Workflow «Store-Build», Upload-Schlüssel, Anleitung in PLAY.md); Grenzfälle der ehrlichen Texte (früher Punkt 6); iPhone: Wecker und Einstellungen nicht mehr in der iCloud-Sicherung (früher Punkt 1).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -17,38 +18,33 @@ Stand 04.11.2026, Phase Wake 16.2.2, Build 54. Erledigtes wandert nach [ENTSCHEI
 
 ## Noch offen aus dem Audit 31.10.
 
-1. **iOS: Einstellungen in der iCloud-Sicherung.** Wecker und Einstellungen (z. B. Schlafziel) liegen in `UserDefaults` und gehen mit; so steht es jetzt auch in DATENSCHUTZ.md. Offen, ob sie ebenfalls ausgenommen werden sollen.
+1. **Apple Watch: Wecker und Einstellungen in der Sicherung.** Auf dem iPhone sind sie seit 04.11. ausgenommen; die Uhr hält Wecker, erledigte Nächte, Feiertage und Schlafziel in der App-Gruppe (liest die Komplikation) und Plan-Merker in `UserDefaults`, sie gehen mit der Sicherung der Uhr in die iCloud-Sicherung des iPhones (steht so in DATENSCHUTZ.md). Offen, ob auch sie ausgenommen werden (die Komplikation bräuchte dann eine Datei in einem ausgenommenen Ordner der App-Gruppe, wie das iPhone-Widget).
 2. **iOS vor 26: kein Schlummern beim Zweitwecker** (Mitteilung statt AlarmKit). Der Nacht-Check warnt vor dem Stummschalter; Schlummern fehlt weiter.
 3. **AlarmKit: feste Uhrzeit nach einer Reise.** Nach einem Zeitzonenwechsel ohne App-Start bleibt der Zweitwecker auf der alten Zeit.
-4. **Android: Handy-Klingeln, während die Uhr führt** (`PhoneRingService`). Führt das Handy allein, nimmt ein Alarm kurz nach der Zeitgrenze das Klingeln nach einem Prozessende wieder auf. Führt die Uhr und endet der Prozess des Handys, verstummt nur das Handy; die Uhr klingelt weiter und hat ihren eigenen Wiederaufnahme-Alarm.
-5. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen.
+4. **`versionCode` / `CURRENT_PROJECT_VERSION` = 1 ohne CI-Build-Nummer** – für Store-Uploads nur über die CI bauen (Android: Workflow «Store-Build»).
 
 Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fensters nicht (watchOS-Grenze, entschieden); `ACTIVITY_RECOGNITION` auf der Uhr wird für den Vordergrunddienst «Gesundheit» gebraucht; ENTSCHEIDE.md ±45 Min. (Trend-Hinweis) und ±30 Min. (Regelmässigkeit) sind zwei verschiedene Regeln.
 
-## Zum Entscheiden (r1AD)
-
-6. Grenzfälle der ehrlichen Texte: `home_no_alarm_title` «Im richtigen Moment aufwachen», `health_rationale` «…den Weckmoment zu prüfen», README «Abgleich mit den Schlafphasen».
-
 ## Vor dem Store-Start
 
-7. **Play-Signierung:** eigener Upload-Schlüssel und Play App Signing; die Testversionen sind Debug-Builds mit dem öffentlichen Testschlüssel. Die CI prüft den Release-Build bereits (`release_check.py`).
-8. **iPhone / Apple Watch:** TestFlight und App Store brauchen ein Apple-Entwicklerkonto.
-9. **Übersetzungen** von Muttersprachlern prüfen lassen (Albanisch: r1AD), auch die neuen Texte vom 02.11. (Zweitwecker vor iOS 26, Einschlaf-Modus nur mit Galaxy Watch, «kein guter Moment», «bei Unruhe früher geweckt»). Schwedisch: «måltid» (Mahlzeit) wurde durch «önskad tid» ersetzt.
+5. **Play-Signierung:** Die CI baut die signierten Bundles (Workflow «Store-Build», docs/PLAY.md). Offen bei r1AD: Upload-Schlüssel mit `keytool` erstellen, die vier Secrets `PLAY_UPLOAD_*` auf GitHub anlegen, App in der Play Console anlegen (Play App Signing an, Formfaktor Wear OS).
+6. **iPhone / Apple Watch:** TestFlight und App Store brauchen ein Apple-Entwicklerkonto.
+7. **Übersetzungen** von Muttersprachlern prüfen lassen (Albanisch: r1AD), auch die neuen Texte vom 02.11. (Zweitwecker vor iOS 26, Einschlaf-Modus nur mit Galaxy Watch, «kein guter Moment», «bei Unruhe früher geweckt»). Schwedisch: «måltid» (Mahlzeit) wurde durch «önskad tid» ersetzt.
 
 ## Gerätetests (r1AD)
 
-10. «Genau» klingelt nie früher; Nacht erscheint mit Messdaten im Verlauf.
-11. Automatische Einschlaf-Messung (Galaxy Watch, 1 Std. vor dem Einschlafpunkt; Diagnose «auto onset …») und Untergrenze kurzer Nächte («Kurze Nacht – erst zur Zielzeit»).
-12. Frühes Wecken nur noch mit gemessenem Pulsanstieg: seltener früh als vorher – beobachten, ob es zu selten wird.
-13. Sperrbildschirm: leise Abend-Meldung sichtbar? Widget auf dem Sperrbildschirm auswählbar (hängt von Android-/One-UI-Version ab)? Widget «Details von heute» (Android und iPhone): nach dem Wecken «Letzte Nacht», Befinden erscheint nach dem Antippen, um 12 Uhr zurück zum nächsten Wecker?
-14. Messwerte aus echten Nächten für die nächste Bewertung: verpasste Wecker (Ziel 0), Frühwecken in den ersten 5 Min., Befinden, Apple-Sitzung ohne abends geöffnete App.
+8. «Genau» klingelt nie früher; Nacht erscheint mit Messdaten im Verlauf.
+9. Automatische Einschlaf-Messung (Galaxy Watch, 1 Std. vor dem Einschlafpunkt; Diagnose «auto onset …») und Untergrenze kurzer Nächte («Kurze Nacht – erst zur Zielzeit»).
+10. Frühes Wecken nur noch mit gemessenem Pulsanstieg: seltener früh als vorher – beobachten, ob es zu selten wird.
+11. Sperrbildschirm: leise Abend-Meldung sichtbar? Widget auf dem Sperrbildschirm auswählbar (hängt von Android-/One-UI-Version ab)? Widget «Details von heute» (Android und iPhone): nach dem Wecken «Letzte Nacht», Befinden erscheint nach dem Antippen, um 12 Uhr zurück zum nächsten Wecker?
+12. Messwerte aus echten Nächten für die nächste Bewertung: verpasste Wecker (Ziel 0), Frühwecken in den ersten 5 Min., Befinden, Apple-Sitzung ohne abends geöffnete App.
 
 ## Bekannte Grenzen
 
-15. Apple Watch misst nur die letzten 25 Min. vor der Zielzeit; Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
-16. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem). Der Nacht-Check am Handy warnt jetzt («Uhr-App veraltet», Review O-04).
-17. Apple Watch: Startet die Sitzung einer Nacht nicht (vom System abgelehnt, App nie offen), läuft auf der Uhr kein Prozess; ihr Rückfall bleibt dann Kalenderzeit ohne Zone und folgt einer Reise im Fenster der Ortszeit (watchOS lässt ihn ohne laufende App nicht umstellen).
+13. Apple Watch misst nur die letzten 25 Min. vor der Zielzeit; Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
+14. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem). Der Nacht-Check am Handy warnt jetzt («Uhr-App veraltet», Review O-04).
+15. Apple Watch: Startet die Sitzung einer Nacht nicht (vom System abgelehnt, App nie offen), läuft auf der Uhr kein Prozess; ihr Rückfall bleibt dann Kalenderzeit ohne Zone und folgt einer Reise im Fenster der Ortszeit (watchOS lässt ihn ohne laufende App nicht umstellen).
 
 ## Aufräumen
 
-18. Branch `runde3-zwischenstand` auf GitHub löschen (aus der Sitzung nicht erlaubt).
+16. Branch `runde3-zwischenstand` auf GitHub löschen (aus der Sitzung nicht erlaubt).
