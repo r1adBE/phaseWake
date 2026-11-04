@@ -6,13 +6,12 @@
 //
 // Die Versionen gehören zu Robolectric (DefaultSdkProvider) und zu den SDKs der Tests (@Config(sdk = [33]), [35]); bei
 // einem Robolectric-Update mitziehen, sonst melden die Tests «jar not present».
-val robolectricSdks = configurations.create("robolectricSdks") {
-    isCanBeConsumed = false
-    isTransitive = false
-}
-dependencies {
-    add("robolectricSdks", "org.robolectric:android-all-instrumented:13-robolectric-9030017-i7")
-    add("robolectricSdks", "org.robolectric:android-all-instrumented:15-robolectric-13954326-i7")
+// Je SDK eine eigene Konfiguration: In einer gemeinsamen nähme Gradle vom selben Artefakt nur die höchste Version.
+val robolectricSdks = listOf("13-robolectric-9030017-i7", "15-robolectric-13954326-i7").map { version ->
+    configurations.create("robolectricSdk-$version") {
+        isCanBeConsumed = false
+        isTransitive = false
+    }.also { dependencies.add(it.name, "org.robolectric:android-all-instrumented:$version") }
 }
 val robolectricSdkDir = layout.buildDirectory.dir("robolectric-sdks")
 val syncRobolectricSdks = tasks.register("syncRobolectricSdks", Sync::class.java) {
