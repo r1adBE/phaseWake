@@ -1,11 +1,12 @@
 # Offene Punkte
 
-Stand 04.11.2026, Phase Wake 16.2.2, Build 51. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 04.11.2026, Phase Wake 16.2.2, Build 54. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 04.11.2026 (Details in ENTSCHEIDE.md)
 
 - Review 04.11.: Verlauf der Apple Watch nicht in der Sicherung, Apple Watch nach einer Reise (einmal wecken, zur Ortszeit), Health Connect im Protokoll ohne App-Namen, CSV-Satz in DATENSCHUTZ.md, Fehler beim Rückfall der Apple Watch im Protokoll.
 - Review 04.11. b: Zeitzonenwechsel im laufenden Weckfenster (Nacht bleibt zur geplanten Zeit, Uhr und Handy, P1), abgebrochene Messung der Galaxy Watch hebt die neue Sicherung nicht auf (P2).
+- Review 04.11. c: Rückfall der Apple Watch ab Messbeginn zum festen Zeitpunkt (kein zweites Wecken nach einer Reise nach Osten im Fenster).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -46,7 +47,8 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 
 15. Apple Watch misst nur die letzten 25 Min. vor der Zielzeit; Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
 16. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem). Der Nacht-Check am Handy warnt jetzt («Uhr-App veraltet», Review O-04).
+17. Apple Watch: Startet die Sitzung einer Nacht nicht (vom System abgelehnt, App nie offen), läuft auf der Uhr kein Prozess; ihr Rückfall bleibt dann Kalenderzeit ohne Zone und folgt einer Reise im Fenster der Ortszeit (watchOS lässt ihn ohne laufende App nicht umstellen).
 
 ## Aufräumen
 
-17. Branch `runde3-zwischenstand` auf GitHub löschen (aus der Sitzung nicht erlaubt).
+18. Branch `runde3-zwischenstand` auf GitHub löschen (aus der Sitzung nicht erlaubt).

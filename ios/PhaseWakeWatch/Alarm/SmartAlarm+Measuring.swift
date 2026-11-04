@@ -43,6 +43,13 @@ extension SmartAlarm {
         snoozes = 0
         phase = .measuring(plan)
         publishArmed()
+        // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
+        // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort zu,
+        // dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
+        let pending = plan == model.pendingNight
+        if let at = WatchRules.fallbackDate(plan, pending: pending, now: Date(), delay: Self.fallbackDelay) {
+            scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
+        }
         DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.time(plan.windowStart))–\(Format.time(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
