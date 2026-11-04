@@ -1,6 +1,6 @@
 # Offene Punkte
 
-Stand 04.11.2026, Phase Wake 16.2.2, Build 54. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 04.11.2026 (Details in ENTSCHEIDE.md)
 
