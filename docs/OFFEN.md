@@ -5,6 +5,7 @@ Stand 04.11.2026, Phase Wake 16.2.2, Build 51. Erledigtes wandert nach [ENTSCHEI
 ## Erledigt am 04.11.2026 (Details in ENTSCHEIDE.md)
 
 - Review 04.11.: Verlauf der Apple Watch nicht in der Sicherung, Apple Watch nach einer Reise (einmal wecken, zur Ortszeit), Health Connect im Protokoll ohne App-Namen, CSV-Satz in DATENSCHUTZ.md, Fehler beim Rückfall der Apple Watch im Protokoll.
+- Review 04.11. b: Zeitzonenwechsel im laufenden Weckfenster (Nacht bleibt zur geplanten Zeit, Uhr und Handy, P1), abgebrochene Messung der Galaxy Watch hebt die neue Sicherung nicht auf (P2).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 

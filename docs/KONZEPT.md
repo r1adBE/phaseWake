@@ -45,6 +45,7 @@ Uhr-App eigenständig (29.10.2026): Auf der Uhr lassen sich Wecker anlegen («+ 
 3. Fensterbeginn: Ein Foreground-Service (Typ `health`) startet, hält einen Partial-Wakelock und liest Sensoren.
 4. Alle 30 s wird eine Epoche bewertet. Erkennt die Bewertung Leichtschlaf oder Aufwachen, löst die Uhr den Weckvorgang aus.
 5. Ist die Zielzeit erreicht, ohne dass die Bewertung angeschlagen hat, weckt die Uhr trotzdem (Rückfall).
+   Zeitzonenwechsel (Reisen): Vor dem Fensterbeginn gilt die neue Ortszeit. Hat das Fenster schon begonnen und verschiebt sich die Ortszeit, bleibt die Nacht zur geplanten absoluten Zielzeit (07:00 Zürich klingelt in Tokio um 15:00), auf Uhr und Handy (`AlarmSchedule.begunNight`, ENTSCHEIDE.md 04.11.2026).
 6. Weckvorgang: Vibrationsmuster in drei Stufen (sanft → deutlich → anhaltend), je 60 s; Abstellen durch Halten (1,2 s), Schlummern 5 Min (maximal 3×). Parallel bekommt das Handy ein Signal und kann Ton abspielen.
 7. Die Uhr schreibt eine Zusammenfassung der Nacht (Weckzeitpunkt, Grund, Bewegungsverlauf im Fenster) und sendet sie ans Handy.
 

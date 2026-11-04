@@ -1,7 +1,9 @@
 package com.phasewake.app.ring
 
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm.Companion.GRACE
 import com.phasewake.app.ring.BackupAlarm.Companion.PLANNED_ID
@@ -9,6 +11,7 @@ import com.phasewake.app.ring.BackupAlarm.Companion.PLANNED_TARGET
 import com.phasewake.app.ring.BackupAlarm.Companion.SUPPRESSED
 import com.phasewake.app.ring.BackupAlarm.Companion.decodeSuppressed
 import java.time.Instant
+import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 
 // Planen des Zweitweckers: nächster Wecker mit Handy-Wecker, dazu Probewecker oder Powernap.
@@ -38,20 +41,31 @@ internal suspend fun BackupAlarm.planBackup() {
     val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan
     // In der Nachfrist eines schon geplanten Zweitweckers (z. B. beim Prozessstart) bleibt er bestehen.
     val plannedTarget = prefs[PLANNED_TARGET]?.let(Instant::ofEpochMilli)
+    // Zone, in der dieser Zweitwecker geplant wurde: Lief sein Fenster schon beim Zonenwechsel, bleibt er (RingRules.keptBackup).
+    val plannedZone = prefs[PLANNED_ZONE]?.let { runCatching { ZoneId.of(it) }.getOrNull() }
     // Einschlaf-Modus der Galaxy Watch (Review K-07): Hat sie für diese Nacht eine frühere Zielzeit festgelegt, klingelt
     // auch der Zweitwecker dann (samt Nachfrist); die eingestellte Zeit dieser Nacht gilt danach als erledigt.
     val shift = onsetShift()
-    val unshifted = RingRules.backupPlan(backups, transient, prefs[PLANNED_ID], plannedTarget, suppressed, current, grace, zone, holidays)
+    val unshifted = RingRules.backupPlan(
+        backups, transient, prefs[PLANNED_ID], plannedTarget, suppressed, current, grace, zone, holidays, plannedZone,
+    )
     if (unshifted == null) {
-        if (prefs[PLANNED_ID] != null) store.edit { it.remove(PLANNED_ID); it.remove(PLANNED_TARGET) }
+        if (prefs[PLANNED_ID] != null) store.edit { it.remove(PLANNED_ID); it.remove(PLANNED_TARGET); it.remove(PLANNED_ZONE) }
         BackupDirectBoot.clear(context)
         return
     }
+    val kept = RingRules.keptBackup(backups, prefs[PLANNED_ID], plannedTarget, plannedZone, suppressed, current, grace, zone, holidays)
+    if (kept != null && kept == unshifted && kept != loggedKept) {
+        loggedKept = kept
+        app.diag.log(DiagKind.SCHEDULED, "phone zone change, keep night ${kept.target}")
+    }
     val plan = shift?.applyTo(unshifted, current, grace) ?: unshifted
+    // Neuer Plan: mit der aktuellen Zone; derselbe Plan behält die Zone seiner Planung (auch nach einem Zonenwechsel).
     if (prefs[PLANNED_ID] != plan.alarmId || prefs[PLANNED_TARGET] != plan.target.toEpochMilli()) {
         store.edit {
             it[PLANNED_ID] = plan.alarmId
             it[PLANNED_TARGET] = plan.target.toEpochMilli()
+            it[PLANNED_ZONE] = zone.id
         }
         app.diag.log(DiagKind.SCHEDULED, "phone backup ${plan.target.plus(grace)}")
     }
@@ -63,6 +77,13 @@ internal suspend fun BackupAlarm.planBackup() {
         .map { shift?.applyTo(it, current, grace) ?: it }
     BackupDirectBoot.save(context, following.map { BackupDirectBoot.Entry(it.target.plus(grace), it.alarmId, it.target) })
 }
+
+/** Zone, in der der geplante Zweitwecker ([PLANNED_TARGET]) berechnet wurde; fehlt bei älteren Daten. */
+private val PLANNED_ZONE = stringPreferencesKey("backup_planned_zone")
+
+/** Zuletzt protokollierte, über einen Zonenwechsel behaltene Nacht; ein Eintrag nur bei einer Änderung. */
+@Volatile
+private var loggedKept: WakePlan? = null
 
 /** So viele Zweitwecker liegen für die Zeit vor dem ersten Entsperren bereit (mehrere Wecker über gut zwei Tage). */
 private const val DIRECT_BOOT_PLANS = 6

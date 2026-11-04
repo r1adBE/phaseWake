@@ -154,7 +154,11 @@ private fun WakeService.abandonMeasuring(n: Night) {
     n.sensors?.stop()
 }
 
-/** Am Wecker wurde etwas geändert (aus, gelöscht, verschoben): Messung ohne Aufzeichnung beenden. */
+/**
+ * Am Wecker wurde etwas geändert (aus, gelöscht, verschoben): Messung ohne Aufzeichnung beenden. Den Zielzeit-Alarm
+ * nicht aufheben: [AlarmScheduler.reschedule] hat ihn schon für den neuen Plan gestellt (oder ohne Plan aufgehoben),
+ * bevor dieser Auftrag ankommt; ein Schlummer-Alarm besteht beim Messen nicht (Review 04.11. b, P2).
+ */
 internal fun WakeService.cancelMeasuring() {
     val n = night ?: return
     if (n.phase != Phase.MEASURING) return
@@ -165,7 +169,6 @@ internal fun WakeService.cancelMeasuring() {
     activePlan = null
     handler.removeCallbacksAndMessages(null)
     n.sensors?.stop()
-    AlarmScheduler.cancelDeadlineAndSnooze(this)
     Notifications.cancelService(this)
     releaseWakeLock()
     app.appScope.launch { app.scheduler.reschedule() }

@@ -71,6 +71,9 @@ class AlarmScheduler(
 
     private val status = WatchStatus(context, store, sync, clock)
 
+    /** Zuletzt geplante Nacht samt Zone der Planung: bleibt über einen Zonenwechsel im laufenden Fenster. */
+    private val planned = PlannedNight(store) { context.wearApp.diag.log(DiagKind.SCHEDULED, "watch $it") }
+
     /** Pro Wecker erledigt bis hier, sofort gültig; [saveDone] schreibt es in den Speicher. */
     @Volatile
     private var doneInMemory: Map<String, Instant> = emptyMap()
@@ -95,9 +98,11 @@ class AlarmScheduler(
         val done = doneUntil(prefs)
         val days = holidays.current()
         val specs = alarms.current().alarms
-        // Verpasst, während eine andere Nacht lief: gleich nachholen; sonst der nächste Termin.
-        return AlarmSchedule.missedPlan(specs, catchUpWindow(prefs), now, zone, days, done)
-            ?: AlarmSchedule.earliestPlan(specs, now, zone, days, done)
+        // Verpasst, während eine andere Nacht lief: gleich nachholen; sonst der nächste Termin. Lief das Fenster schon,
+        // als die Zeitzone wechselte, bleibt diese Nacht zur geplanten Zeit (PlannedNight).
+        AlarmSchedule.missedPlan(specs, catchUpWindow(prefs), now, zone, days, done)?.let { return it }
+        val normal = AlarmSchedule.earliestPlan(specs, now, zone, days, done)
+        return planned.kept(specs, zone, now, days, done, normal) ?: normal
     }
 
     /** Pro Wecker erledigt bis (für «Nächstes Mal überspringen» nach frühem Wecken). */
@@ -166,7 +171,9 @@ class AlarmScheduler(
 
         refreshSurfaces()
         publishStatus()
-        AutoOnset.update(context, nextAlarmPlan(), now)
+        val alarmPlan = nextAlarmPlan()
+        AutoOnset.update(context, alarmPlan, now)
+        planned.remember(alarmPlan, clock().zone)
 
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme (Schlummer-Ende) nicht anfassen und
         // keinen anderen Wecker starten, der sie ablösen würde. Ihr Ende plant neu und holt nach.

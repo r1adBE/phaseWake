@@ -82,7 +82,8 @@ extension BackupAlarm {
 
     /// Vor iOS 26: zeitkritische Mitteilung; der Stummschalter macht sie lautlos (Nacht-Check weist darauf hin).
     /// Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt einer Reise, auch ohne dass die App läuft.
-    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil) async {
+    /// `trigger` ersetzt den Auslöser zu Kalenderzeit (`pinNotification`).
+    private func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, trigger: UNNotificationTrigger? = nil) async {
         let center = UNUserNotificationCenter.current()
         _ = try? await center.requestAuthorization(options: [.alert, .sound]) // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
         let content = UNMutableNotificationContent()
@@ -90,7 +91,18 @@ extension BackupAlarm {
         content.body = L("ring_notification_text")
         content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
         content.interruptionLevel = .timeSensitive
-        try? await center.add(UNNotificationRequest(identifier: id.uuidString, content: content, trigger: LocalTrigger.at(date)))
+        try? await center.add(UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger ?? LocalTrigger.at(date)))
+    }
+
+    /// Eine über einen Zeitzonenwechsel behaltene Sicherung (`AlarmSchedule.begunNight`) klingelt zur geplanten
+    /// absoluten Zeit. AlarmKit steht ohnehin fest (`.fixed`); eine wartende Mitteilung zu Kalenderzeit ohne Zeitzone
+    /// rutschte dagegen auf die neue Ortszeit. Sie wird durch eine zum festen Zeitpunkt ersetzt (`LocalTrigger.fixed`).
+    func pinNotification(_ entry: PlannedBackup) async {
+        let center = UNUserNotificationCenter.current()
+        let pending = await center.pendingNotificationRequests()
+        guard pending.contains(where: { $0.identifier == entry.id.uuidString && $0.trigger is UNCalendarNotificationTrigger }) else { return }
+        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound),
+                                   trigger: LocalTrigger.fixed(entry.slot.fireAt))
     }
 }
 

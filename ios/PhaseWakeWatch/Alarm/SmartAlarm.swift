@@ -61,7 +61,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let openAppId = "phasewake.openApp"
     /// Früherer Ort des Klingel-Zustands in `UserDefaults`; wird beim Lesen in die Datei übernommen (`SmartAlarm+State`).
     static let stateKey = "smartAlarmNight"
-    /// Zeitzone und Zielzeit beim Planen der Sitzung, für die Prüfung nach einer Reise (`replansAfterZoneChange`).
+    /// Zeitzone, Zielzeit und Wecker des Plans, für den die Uhr wartet, plant oder misst – gemerkt in der Zone, in der
+    /// er berechnet wurde (`notePlanZone`), für die Prüfung nach einer Reise (`replansAfterZoneChange`, `keptNight`).
     static let sessionZoneKey = "sessionZone"
 
     /// Zustand der Nacht; gesetzt nur von `SmartAlarm` und seinen Erweiterungen (Dateien `SmartAlarm+…`).
@@ -89,6 +90,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var fallbackHaptic: Timer?
     /// Zielzeit, für die `keepRealFallback` zuletzt protokolliert hat.
     @ObservationIgnored private var keptFallback: Date?
+    /// Zielzeit der Nacht, die zuletzt über einen Zeitzonenwechsel behalten wurde (`holdFallback`, Diagnose einmal).
+    @ObservationIgnored var keptZoneNight: Date?
 
     @ObservationIgnored let motion = CMMotionManager()
     /// Alle Zugriffe auf den `EpochAssembler` laufen über diese eine serielle Warteschlange.
@@ -117,10 +120,12 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     // MARK: Planen
 
     /// Plant die Sitzung für `plan`. Gelingt das nicht (App nicht aktiv, zu weit voraus), wartet der
-    /// Plan, und der Rückfall steht trotzdem.
+    /// Plan, und der Rückfall steht trotzdem. Reise im schon begonnenen Weckfenster der geplanten oder wartenden Nacht
+    /// (`heldNight`): Sie bleibt statt `plan`, zur geplanten absoluten Zeit samt festem Rückfall.
     func schedule(_ plan: WakePlan?) {
         if keepsNight(for: plan) { return }
-        guard let plan else {
+        let held = heldNight(for: plan)
+        guard let plan = held ?? plan else {
             invalidateSession()
             removeFallback([Self.fallbackId, Self.transientFallbackId])
             phase = .idle
@@ -132,8 +137,11 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         // Ein nachgeholter Wecker (Zielzeit vorbei) bekommt die Frist ab jetzt, damit seine Sitzung zuerst weckt; eine
         // ausstehende Nacht (`WatchModel.pendingNight`) behält ihren Rückfall (`WatchRules.fallbackDate`).
         let now = Date()
-        let pending = plan == WatchModel.shared.pendingNight
-        if let at = WatchRules.fallbackDate(plan, pending: pending, now: now, delay: Self.fallbackDelay) {
+        // Eine gehaltene Nacht zählt wie eine ausstehende: Rückfall nur bis zu seiner Zeit, danach keine neue Sitzung.
+        let pending = held != nil || plan == WatchModel.shared.pendingNight
+        if held != nil {
+            holdFallback(plan)
+        } else if let at = WatchRules.fallbackDate(plan, pending: pending, now: now, delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId))
         }
         if Transient.kindOf(plan.alarmId) != nil { keepRealFallback() }
@@ -153,6 +161,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
                 DiagStore.shared.log(.scheduled, "waiting \(Format.time(plan.target)) active \(active)\(pending ? " pending" : "")")
             }
             phase = .waiting(plan)
+            notePlanZone(plan)
             publishArmed()
             return
         }
@@ -167,15 +176,15 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         session = newSession
         self.plan = plan
         phase = .scheduled(plan)
-        UserDefaults.standard.set(["zone": TimeZone.current.identifier, "target": plan.target.timeIntervalSince1970],
-                                  forKey: Self.sessionZoneKey)
+        notePlanZone(plan)
         DiagStore.shared.log(.scheduled, "session \(Format.time(start)) target \(Format.time(plan.target))")
         publishArmed()
     }
 
     /// Klingelt, schlummert oder misst gerade eine Nacht: nur Rückfälle nachführen und die Nacht laufen lassen.
     /// Ausnahme: Eine Messung endet ohne Aufzeichnung, wenn ihr Wecker geändert, aus- oder abgeschaltet wurde (dann
-    /// plant `schedule` weiter). - Returns: ob `schedule` hier endet.
+    /// plant `schedule` weiter). Nach einer Reise misst eine begonnene Nacht weiter (`keptNight`), ihr Rückfall steht
+    /// fest (`holdFallback`). - Returns: ob `schedule` hier endet.
     private func keepsNight(for plan: WakePlan?) -> Bool {
         if phase.isRinging || phase.isSnoozed {
             // Hängengeblieben (z. B. nach einem Neustart der App ohne Sitzung): abschliessen; das plant neu.
@@ -194,6 +203,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
         if let plan, Transient.kindOf(plan.alarmId) != nil, !runningTransient {
             scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+            return true
+        }
+        if keptNight(running) != nil {
+            holdFallback(running)
             return true
         }
         cancelMeasuring()
@@ -284,13 +297,14 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     /// Weck-Mitteilung zu `date` unter der Kennung `id` (ersetzt eine gleichnamige). Zu Kalenderzeit ohne Zeitzone
     /// (`LocalTrigger`): Nach einem Zeitzonenwechsel weckt sie zur selben Ortszeit, auch wenn die App nicht läuft.
-    func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId) {
+    /// `fixed`: zum festen Zeitpunkt (`LocalTrigger.fixed`), für eine über eine Reise behaltene Nacht.
+    func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId, fixed: Bool = false) {
         let content = UNMutableNotificationContent()
         content.title = L("ring_greeting")
         content.body = L("ring_reason_deadline")
         content.sound = .default
         content.interruptionLevel = .timeSensitive
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: LocalTrigger.at(date))
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: fixed ? LocalTrigger.fixed(date) : LocalTrigger.at(date))
         // Scheitert das Stellen (z. B. Mitteilungen aus), fehlt der Rückfall: im Protokoll sichtbar machen.
         UNUserNotificationCenter.current().add(request) { error in
             guard let error else { return }

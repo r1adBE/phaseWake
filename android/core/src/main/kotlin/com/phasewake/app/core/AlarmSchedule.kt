@@ -154,6 +154,42 @@ object AlarmSchedule {
     }
 
     /**
+     * Begonnene Nacht über einen Zeitzonenwechsel: Hat das Weckfenster der geplanten Zielzeit [plannedTarget] schon
+     * begonnen (`windowStart ≤ now < plannedTarget + grace`), bleibt dieser Plan zur geplanten absoluten Zeit (07:00
+     * Zürich klingelt in Tokio um 15:00), sofern [plannedTarget] in der Zone der Planung [plannedZone] noch ein
+     * gültiger Termin von [spec] ist (eingeschaltet, Zeit, Tage und Fenster unverändert, nicht übersprungen, kein
+     * Feiertag: `nextTarget(spec, plannedTarget − 1 ms, plannedZone) == plannedTarget`) und nicht ausgesetzt
+     * ([suppressedUntil] vor der Zielzeit). Sonst `null`, ebenso ohne Zielzeit oder ohne Zone (alte Daten). Vor dem
+     * Fensterbeginn gilt die neue Ortszeit. Wie Swift.
+     */
+    fun begunNight(
+        spec: AlarmSpec,
+        plannedTarget: Instant?,
+        plannedZone: ZoneId?,
+        now: Instant,
+        grace: Duration,
+        holidays: Set<LocalDate> = emptySet(),
+        suppressedUntil: Instant? = null,
+    ): WakePlan? {
+        val target = plannedTarget ?: return null
+        val zone = plannedZone ?: return null
+        val plan = planAt(spec, target)
+        if (plan.windowStart.isAfter(now) || !target.plus(grace).isAfter(now)) return null
+        if (suppressedUntil != null && !suppressedUntil.isBefore(target)) return null
+        if (nextTarget(spec, target.minusMillis(1), zone, holidays) != target) return null
+        return plan
+    }
+
+    /**
+     * Ob sich die Ortszeit seit der Planung verschoben hat: Abstand zu UTC zur Zielzeit [target] in der Zone der Planung
+     * [plannedZone] und in der aktuellen [zone] verschieden (Zürich → Tokio ja, Zürich → Berlin nein). Nur dann gilt
+     * [begunNight]; sonst bleibt alles wie bisher (z. B. unterbricht ein früherer neuer Wecker die Messung). Wie
+     * `WatchRules.zoneShifted` (Swift).
+     */
+    fun zoneShifted(target: Instant, plannedZone: ZoneId, zone: ZoneId): Boolean =
+        plannedZone.rules.getOffset(target) != zone.rules.getOffset(target)
+
+    /**
      * Nachholen nach einer Nacht der Uhr: Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief
      * ([catchUp], solange [CatchUpWindow.isValid]), und der noch nicht erledigt ist ([doneUntil]): Plan mit dieser
      * (vergangenen) Zielzeit, damit er gleich klingelt statt erst am nächsten Tag. Nur Wecker aus

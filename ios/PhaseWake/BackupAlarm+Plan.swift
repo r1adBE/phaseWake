@@ -6,8 +6,8 @@ import WatchConnectivity
 import AlarmKit
 #endif
 
-/// Eine Nacht mit Zweitwecker: Wecker, Zielzeit, Klingelzeit (Zielzeit plus Nachfrist) und Weckton.
-/// Gleich heisst: gleiche Kennung, gleicher Ton und gleiche Zeiten auf die Millisekunde.
+/// Eine Nacht mit Zweitwecker: Wecker, Zielzeit, Klingelzeit (Zielzeit plus Nachfrist), Weckton und Zeitzone der
+/// Planung. Gleich heisst: gleiche Kennung, gleicher Ton und gleiche Zeiten auf die Millisekunde (die Zone zählt nicht).
 struct BackupSlot: Codable, Equatable, Sendable {
     /// Kennung des Weckers.
     let alarmId: String
@@ -17,9 +17,25 @@ struct BackupSlot: Codable, Equatable, Sendable {
     let fireAt: Date
     /// Weckton des Weckers (`AlarmSpec.sound`).
     let sound: String
+    /// Zeitzone, in der die Nacht berechnet wurde (`TimeZone.identifier`), für `AlarmSchedule.begunNight` nach einer
+    /// Reise. Gemerkt ab 04.11.2026; ältere gespeicherte Sicherungen haben keine (`nil`: Verhalten wie bisher).
+    let zone: String?
 
     /// Nacht, zu der die Sicherung gehört (für «stop» der Uhr).
     var night: RingNight { RingNight(alarmId: alarmId, target: target) }
+
+    /// Kalender der Planung (gregorianisch in `zone`, wie `Calendar.gregorianLocal`), oder `nil` ohne bekannte Zone.
+    var plannedCalendar: Calendar? {
+        guard let zone = zone.flatMap(TimeZone.init(identifier:)) else { return nil }
+        var calendar = Calendar.gregorian(in: zone)
+        calendar.locale = .autoupdatingCurrent
+        return calendar
+    }
+
+    /// Dieselbe Nacht mit Zone `zone`.
+    func with(zone: String?) -> BackupSlot {
+        BackupSlot(alarmId: alarmId, target: target, fireAt: fireAt, sound: sound, zone: zone)
+    }
 
     static func == (lhs: BackupSlot, rhs: BackupSlot) -> Bool {
         lhs.alarmId == rhs.alarmId && lhs.sound == rhs.sound
@@ -86,9 +102,10 @@ extension BackupAlarm {
         set { UserDefaults.standard.set(try? JSONEncoder().encode(newValue), forKey: Self.plannedKey) }
     }
 
-    /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben; überholte, die noch nicht
-    /// geklingelt haben, werden verworfen; fehlende werden gestellt und sofort einzeln gemerkt. Eine Sicherung, deren
-    /// Klingelzeit schon da ist, wird nie abgebrochen (sie klingelt womöglich gerade).
+    /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben (samt ihrer Zone; eine
+    /// ältere ohne Zone bekommt die von `wanted`); überholte, die noch nicht geklingelt haben, werden verworfen; fehlende
+    /// werden gestellt und sofort einzeln gemerkt. Eine Sicherung, deren Klingelzeit schon da ist, wird nie abgebrochen
+    /// (sie klingelt womöglich gerade).
     func apply(_ wanted: [BackupSlot], now: Date) async {
         await cancelLegacyBackups()
         let present = await pendingIds()
@@ -97,7 +114,8 @@ extension BackupAlarm {
         var missing: [BackupSlot] = []
         for slot in wanted {
             if let i = unused.firstIndex(where: { $0.slot == slot && present.contains($0.id) }) {
-                result.append(unused.remove(at: i))
+                let kept = unused.remove(at: i)
+                result.append(kept.slot.zone == nil ? PlannedBackup(id: kept.id, slot: kept.slot.with(zone: slot.zone)) : kept)
             } else {
                 missing.append(slot)
             }

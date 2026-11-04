@@ -112,4 +112,32 @@ class RingRulesTest {
         val onlyOnce = RingRules.directBootPlans(plan(listOf(once), at("2026-10-28T01:00"))!!, listOf(once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
         assertEquals(listOf(at("2026-10-28T07:00")), onlyOnce.map { it.target })
     }
+
+    @Test
+    fun zoneChangeInWindowKeepsPlannedBackup() {
+        // 07:00 Zürich, Fenster 30 min; um 06:40 wechselt die Zone nach Tokio (14:40): Der Zweitwecker bleibt 07:00 Zürich.
+        val tokyo = ZoneId.of("Asia/Tokyo")
+        val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
+        val planned = at("2026-11-04T07:00")
+        fun inTokyo(
+            now: Instant,
+            plannedZone: ZoneId?,
+            suppressed: Map<String, Instant> = emptyMap(),
+            backups: List<AlarmSpec> = listOf(spec),
+        ) = RingRules.backupPlan(backups, null, "a", planned, suppressed, now, grace, tokyo, emptySet(), plannedZone)
+        assertEquals(planned, inTokyo(at("2026-11-04T06:40"), zurich)?.target)
+        // In der Nachfrist noch, danach der nächste Termin in Tokio.
+        assertEquals(planned, inTokyo(at("2026-11-04T07:01"), zurich)?.target)
+        assertTrue(inTokyo(at("2026-11-04T07:02"), zurich)!!.target.isAfter(planned.plus(Duration.ofHours(1))))
+        // Vor dem Fenster, ohne Zone (alte Daten), ausgesetzt oder geänderter Wecker: wie bisher (Ortszeit Tokio).
+        val tokyoNext = RingRules.backupPlan(listOf(spec), null, null, null, emptyMap(), at("2026-11-04T06:40"), grace, tokyo, emptySet())
+        assertEquals(tokyoNext, inTokyo(at("2026-11-04T06:40"), null))
+        assertTrue(inTokyo(at("2026-11-04T06:20"), zurich)!!.target != planned)
+        assertTrue(inTokyo(at("2026-11-04T06:40"), zurich, mapOf("a" to planned))!!.target != planned)
+        assertTrue(inTokyo(at("2026-11-04T06:40"), zurich, backups = listOf(spec.copy(minute = 30)))!!.target != planned)
+        assertNull(RingRules.keptBackup(listOf(spec), "a", planned, zurich, emptyMap(), at("2026-11-04T06:40"), grace, zurich, emptySet()))
+        // Zürich → Berlin: Ortszeit gleich, kein Behalten (ein früherer neuer Wecker gilt wie bisher).
+        val berlin = ZoneId.of("Europe/Berlin")
+        assertNull(RingRules.keptBackup(listOf(spec), "a", planned, zurich, emptyMap(), at("2026-11-04T06:40"), grace, berlin, emptySet()))
+    }
 }

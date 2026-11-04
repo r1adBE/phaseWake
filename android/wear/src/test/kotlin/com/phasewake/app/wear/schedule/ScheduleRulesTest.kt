@@ -1,8 +1,12 @@
 package com.phasewake.app.wear.schedule
 
+import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
 import java.time.Duration
 import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -69,5 +73,36 @@ class ScheduleRulesTest {
         // Noch vor der Zielzeit und nicht geschlummert: plant das normale Neuplanen.
         val ahead = DirectBoot.Saved(plan, plan.target, false, "")
         assertFalse(ScheduleRules.pendingRing(ahead, now, true, null, true))
+    }
+
+    @Test
+    fun zoneChangeInWindowKeepsNight() {
+        // 07:00 Zürich, Fenster 30 min; um 06:40 wechselt die Zone nach Tokio (14:40).
+        val zurich = ZoneId.of("Europe/Zurich")
+        val tokyo = ZoneId.of("Asia/Tokyo")
+        val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
+        val target = LocalDateTime.parse("2026-11-04T07:00").atZone(zurich).toInstant()
+        val at = target.minus(Duration.ofMinutes(20))
+        val planned = ScheduleRules.Planned("a", target, zurich)
+        val kept = ScheduleRules.keptNight(planned, listOf(spec), tokyo, at, emptySet(), emptyMap())
+        assertEquals(AlarmSchedule.planAt(spec, target), kept)
+        // Messung läuft weiter, die Sicherung bleibt zur geplanten Zielzeit (15:00 in Tokio).
+        val d = ScheduleRules.decide(kept, measuring = kept, active = kept, pending = null, now = at)
+        assertFalse(d.cancelMeasuring)
+        assertEquals(target, d.deadlineAt)
+        // Ohne die Regel gälte morgen 07:00 Tokio, und die Messung bräche ab.
+        val tomorrow = AlarmSchedule.nextPlan(spec, at, tokyo)
+        assertTrue(ScheduleRules.decide(tomorrow, kept, kept, null, at).cancelMeasuring)
+        // Gleiche Zone, ohne Zone, Fenster noch nicht begonnen, Nacht erledigt, Wecker gelöscht: wie bisher.
+        assertNull(ScheduleRules.keptNight(planned, listOf(spec), zurich, at, emptySet(), emptyMap()))
+        // Zürich → Berlin: Ortszeit gleich, ein früherer neuer Wecker unterbräche die Messung wie bisher.
+        assertNull(ScheduleRules.keptNight(planned, listOf(spec), ZoneId.of("Europe/Berlin"), at, emptySet(), emptyMap()))
+        assertNull(ScheduleRules.keptNight(planned.copy(zone = null), listOf(spec), tokyo, at, emptySet(), emptyMap()))
+        assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.minus(Duration.ofMinutes(40)), emptySet(), emptyMap()))
+        assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, at, emptySet(), mapOf("a" to target)))
+        assertNull(ScheduleRules.keptNight(planned, emptyList(), tokyo, at, emptySet(), emptyMap()))
+        // Nachfrist: kurz nach der Zielzeit noch, danach nicht mehr.
+        assertEquals(kept, ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.plusSeconds(30), emptySet(), emptyMap()))
+        assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.plus(ScheduleRules.KEEP_GRACE), emptySet(), emptyMap()))
     }
 }

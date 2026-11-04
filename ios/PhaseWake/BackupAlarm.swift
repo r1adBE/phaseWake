@@ -48,6 +48,8 @@ final class BackupAlarm {
     /// Von der App selbst gestoppte oder verworfene Alarme (Befehl der Uhr, Neuplanen): Ihr Stopp-Intent schickt nichts
     /// an die Uhr (`backupStopped`). Nur im Speicher, wie der Intent im selben Prozess läuft.
     var stoppedByApp: Set<UUID> = []
+    /// Zielzeit der Nacht, die zuletzt über einen Zeitzonenwechsel behalten wurde (Diagnose einmal je Nacht).
+    private var keptNight: Date?
 
     /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker.
     func reschedule(_ alarms: [AlarmSpec]) async {
@@ -65,14 +67,28 @@ final class BackupAlarm {
 
     /// Bestimmt die gewünschten Sicherungen und gleicht sie mit den gestellten ab (`apply`), statt alles zu löschen:
     /// Eine Sicherung, deren Zielzeit vorbei ist, deren Nachfrist aber noch läuft, bleibt (`AlarmSchedule.inGrace`) –
-    /// startet die App genau dann neu, ist das iPhone womöglich der einzige Wecker.
+    /// startet die App genau dann neu, ist das iPhone womöglich der einzige Wecker. Ebenso eine Sicherung, deren
+    /// Weckfenster vor einem Zeitzonenwechsel schon begonnen hat (`AlarmSchedule.begunNight` in der Zone ihrer Planung):
+    /// Sie klingelt zur geplanten absoluten Zeit (07:00 Zürich = 15:00 Tokio), nicht erst zur neuen Ortszeit.
     private func rescheduleNow(_ alarms: [AlarmSpec]) async {
         let now = Date()
         let grace = Self.grace
         let planned = plannedBackups
         let holidays = PhoneModel.shared.holidays.dates
         let suppressed = suppressedUntil()
-        let firstTargets = oneShotTargets(alarms, now: now)
+        let eligible = alarms.filter(\.phoneBackup)
+        // Begonnene Nächte nach einer Reise zuerst: Ein einmaliger Wecker behält damit sein erstes Vorkommen
+        // (`oneShotTargets`). Ohne verschobene Ortszeit seit der Planung (`WatchRules.zoneShifted`) bleibt alles wie bisher.
+        var begun: [String: PlannedBackup] = [:]
+        for entry in planned where entry.slot.fireAt > now {
+            guard WatchRules.zoneShifted(plannedZone: entry.slot.zone, target: entry.slot.target, zone: .current),
+                  let spec = eligible.first(where: { $0.id == entry.slot.alarmId }),
+                  AlarmSchedule.begunNight(spec, plannedTarget: entry.slot.target, plannedCalendar: entry.slot.plannedCalendar,
+                                           now: now, grace: entry.slot.fireAt.timeIntervalSince(entry.slot.target),
+                                           holidays: holidays, suppressedUntil: suppressed[spec.id]) != nil else { continue }
+            begun[spec.id] = entry
+        }
+        let firstTargets = oneShotTargets(alarms, now: now, kept: begun.mapValues(\.slot.target))
         // Einmaliger Wecker, dessen erstes Vorkommen samt Nachfrist vorbei ist: ausschalten (geht auch an die Uhr) –
         // aber erst, wenn seine Sicherung geklingelt hat.
         let expired = alarms.filter { spec in
@@ -81,33 +97,51 @@ final class BackupAlarm {
         }
         for spec in expired { PhoneModel.shared.setEnabled(spec, false) }
         let skip = Set(expired.map(\.id))
-        let eligible = alarms.filter(\.phoneBackup)
         var wanted: [BackupSlot] = []
+        var kept: [PlannedBackup] = []
         for entry in planned where entry.slot.fireAt > now {
-            guard let spec = eligible.first(where: { $0.id == entry.slot.alarmId }), !skip.contains(spec.id),
-                  AlarmSchedule.inGrace(spec, plannedTarget: entry.slot.target, now: now,
-                                        grace: entry.slot.fireAt.timeIntervalSince(entry.slot.target), calendar: .gregorianLocal,
-                                        holidays: holidays, suppressedUntil: suppressed[spec.id]) != nil else { continue }
-            wanted.append(entry.slot)
+            guard let spec = eligible.first(where: { $0.id == entry.slot.alarmId }), !skip.contains(spec.id) else { continue }
+            if AlarmSchedule.inGrace(spec, plannedTarget: entry.slot.target, now: now,
+                                     grace: entry.slot.fireAt.timeIntervalSince(entry.slot.target), calendar: .gregorianLocal,
+                                     holidays: holidays, suppressedUntil: suppressed[spec.id]) != nil {
+                wanted.append(entry.slot)
+            } else if begun[spec.id]?.id == entry.id {
+                wanted.append(entry.slot)
+                kept.append(entry)
+            }
         }
-        // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung.
+        // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung. Eine
+        // behaltene Nacht nie doppelt, auch falls die Suche dieselbe Zielzeit nochmals liefert.
         let nightPlans = BackupPlan.nights(eligible, now: now, until: now.addingTimeInterval(Self.horizon), maxNights: Self.maxSlots,
                                            suppressed: suppressed, firstTargets: firstTargets, skip: skip,
                                            calendar: .gregorianLocal, holidays: holidays)
-        let nights = nightPlans.count
+        var nights = 0
         for plan in nightPlans {
             let sound = alarms.first { $0.id == plan.alarmId }?.sound ?? ""
-            wanted.append(BackupSlot(alarmId: plan.alarmId, target: plan.target, fireAt: plan.target.addingTimeInterval(grace), sound: sound))
+            let slot = BackupSlot(alarmId: plan.alarmId, target: plan.target, fireAt: plan.target.addingTimeInterval(grace), sound: sound,
+                                  zone: TimeZone.current.identifier)
+            guard !kept.contains(where: { $0.slot.alarmId == slot.alarmId && abs($0.slot.target.timeIntervalSince(slot.target)) < 0.001 })
+            else { continue }
+            wanted.append(slot)
+            nights += 1
         }
         await apply(wanted, now: now)
+        for entry in kept {
+            await pinNotification(entry)
+            // Diagnose einmal je Nacht, nicht bei jedem Neuplanen.
+            guard keptNight != entry.slot.target else { continue }
+            keptNight = entry.slot.target
+            DiagStore.shared.log(.scheduled, "zone change, keep night \(Format.time(entry.slot.target))")
+        }
         DiagStore.shared.log(.scheduled, "phone backup \(nights) nights, \(wanted.count - nights) in grace, grace \(Int(grace)) s")
     }
 
     /// Zielzeit des ersten Vorkommens je eingeschaltetem einmaligem Wecker, gemerkt ab dem ersten Planen.
     /// Neu berechnet, wenn sich die Uhrzeit ändert; ausgeschaltete Wecker fallen heraus. Der Schlüssel enthält keine
     /// Zeitzone: Ist die gemerkte Zielzeit schon da, bleibt sie (fester Zeitpunkt) – nach einer Reise klingelt der
-    /// Wecker sonst am nächsten Tag nochmals. Liegt sie noch vorn, folgt sie der Ortszeit wie auf der Uhr.
-    private func oneShotTargets(_ alarms: [AlarmSpec], now: Date) -> [String: Date] {
+    /// Wecker sonst am nächsten Tag nochmals. Liegt sie noch vorn, folgt sie der Ortszeit wie auf der Uhr, ausser ihr
+    /// Weckfenster hat schon begonnen (`kept`, je Wecker die Zielzeit der behaltenen Nacht): Dann bleibt diese.
+    private func oneShotTargets(_ alarms: [AlarmSpec], now: Date, kept: [String: Date]) -> [String: Date] {
         let stored = UserDefaults.standard.dictionary(forKey: Self.oneShotKey) as? [String: Double] ?? [:]
         var keep: [String: Double] = [:]
         var targets: [String: Date] = [:]
@@ -116,7 +150,7 @@ final class BackupAlarm {
             // Früher mit Zeitzone gemerkt («…|Europe/Zurich»): weiter gelten lassen.
             let raw = stored[key] ?? stored.first { $0.key.hasPrefix(key + "|") }?.value
             let reached = raw.map(Date.init(timeIntervalSince1970:)).flatMap { $0 <= now ? $0 : nil }
-            guard let target = reached ?? AlarmSchedule.nextTarget(spec, now: now, calendar: .gregorianLocal) else { continue }
+            guard let target = reached ?? kept[spec.id] ?? AlarmSchedule.nextTarget(spec, now: now, calendar: .gregorianLocal) else { continue }
             keep[key] = target.timeIntervalSince1970
             targets[spec.id] = target
         }

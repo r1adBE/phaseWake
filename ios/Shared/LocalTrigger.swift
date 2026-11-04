@@ -18,4 +18,11 @@ enum LocalTrigger {
         let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         return UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
     }
+
+    /// Auslöser zum festen Zeitpunkt `date`: Zeitintervall von mindestens 1 s, folgt keinem Zeitzonenwechsel. Für eine
+    /// Nacht, deren Weckfenster schon begonnen hat und die über eine Reise zur geplanten Zeit bleibt
+    /// (`AlarmSchedule.begunNight`): Sie rutscht so nicht auf die neue Ortszeit und weckt nicht zweimal.
+    static func fixed(_ date: Date, now: Date = Date()) -> UNNotificationTrigger {
+        UNTimeIntervalNotificationTrigger(timeInterval: max(1, date.timeIntervalSince(now)), repeats: false)
+    }
 }

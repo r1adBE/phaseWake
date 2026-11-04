@@ -119,6 +119,24 @@ public enum AlarmSchedule {
         return plan(spec, target: target)
     }
 
+    /// Begonnene Nacht über einen Zeitzonenwechsel: Hat das Weckfenster der geplanten Zielzeit `plannedTarget` schon
+    /// begonnen (`windowStart ≤ now < plannedTarget + grace`), bleibt dieser Plan zur geplanten absoluten Zeit (07:00
+    /// Zürich klingelt in Tokio um 15:00), sofern `plannedTarget` im Kalender der Planung `plannedCalendar` noch ein
+    /// gültiger Termin von `spec` ist (eingeschaltet, Zeit, Tage und Fenster unverändert, nicht übersprungen, kein
+    /// Feiertag: `nextTarget(spec, plannedTarget − 1 ms, plannedCalendar) == plannedTarget`) und nicht ausgesetzt
+    /// (`suppressedUntil` vor der Zielzeit). Sonst `nil`, ebenso ohne Zielzeit oder ohne Kalender (alte Daten). Vor dem
+    /// Fensterbeginn gilt die neue Ortszeit. Wie Kotlin.
+    public static func begunNight(_ spec: AlarmSpec, plannedTarget: Date?, plannedCalendar: Calendar?, now: Date,
+                                  grace: TimeInterval, holidays: Set<String> = [], suppressedUntil: Date? = nil) -> WakePlan? {
+        guard let target = plannedTarget, let calendar = plannedCalendar else { return nil }
+        let begun = plan(spec, target: target)
+        guard begun.windowStart <= now, target.addingTimeInterval(grace) > now else { return nil }
+        if let suppressedUntil, suppressedUntil >= target { return nil }
+        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar, holidays: holidays),
+              millis(next) == millis(target) else { return nil }
+        return begun
+    }
+
     /// Nachholen nach einer Nacht der Uhr: Ein Wecker, dessen Zielzeit fällig wurde, während eine andere Nacht lief
     /// (`catchUp`, solange ``CatchUpWindow/isValid(now:)``), und der noch nicht erledigt ist (`doneUntil`): Plan mit
     /// dieser (vergangenen) Zielzeit, damit er gleich klingelt statt erst am nächsten Tag. Nur Wecker aus
