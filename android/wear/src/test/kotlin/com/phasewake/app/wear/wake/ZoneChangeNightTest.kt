@@ -42,6 +42,14 @@ class ZoneChangeNightTest {
     private var controller: ServiceController<WakeService>? = null
     private val originalZone: TimeZone = TimeZone.getDefault()
 
+    private companion object {
+        /**
+         * Eigene Kennung: Andere Tests hinterlassen im DataStore (einer pro Prozess) für «a» einen Nachhol-Zeitraum und
+         * «erledigt bis»; je nach Reihenfolge der Tests nähme das Neuplanen sonst deren Nacht statt dieser.
+         */
+        const val ID = "zone-change"
+    }
+
     @Before
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
@@ -58,7 +66,7 @@ class ZoneChangeNightTest {
         TimeZone.setDefault(originalZone)
         controller?.destroy()
         context.wearApp.appScope.cancel()
-        runBlocking { context.wearApp.alarms.remove("a") }
+        runBlocking { context.wearApp.alarms.remove(ID) }
     }
 
     @Test
@@ -68,7 +76,7 @@ class ZoneChangeNightTest {
         val now = Instant.now()
         // Zielzeit in 10 Minuten (Zürich), Fenster 30 Minuten: Das Fenster läuft schon.
         val at = now.plus(Duration.ofMinutes(10)).atZone(zurich)
-        val spec = AlarmSpec(id = "a", hour = at.hour, minute = at.minute, windowMinutes = 30)
+        val spec = AlarmSpec(id = ID, hour = at.hour, minute = at.minute, windowMinutes = 30)
         runBlocking { app.alarms.upsert(spec) }
         val plan = assertNotNull(AlarmSchedule.nextPlan(spec, now, zurich))
         assertEquals(plan, runBlocking { app.scheduler.reschedule() })
