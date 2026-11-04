@@ -17,7 +17,7 @@ extension SmartAlarm {
 
     /// Der gemerkte Plan, oder `nil`, wenn keiner gemerkt ist.
     static var savedPlanZone: PlanZone? {
-        guard let saved = UserDefaults.standard.dictionary(forKey: sessionZoneKey) else { return nil }
+        guard let saved = SettingsFile.watchSession.dictionary(forKey: sessionZoneKey) else { return nil }
         return PlanZone(zone: saved["zone"] as? String, target: (saved["target"] as? Double).map(Date.init(timeIntervalSince1970:)),
                         alarmId: saved["alarm"] as? String)
     }
@@ -30,7 +30,7 @@ extension SmartAlarm {
            let target = saved.target, Self.sameTime(target, plan.target) { return }
         let entry: [String: Any] = ["zone": TimeZone.current.identifier, "target": plan.target.timeIntervalSince1970,
                                     "alarm": plan.alarmId]
-        UserDefaults.standard.set(entry, forKey: Self.sessionZoneKey)
+        SettingsFile.watchSession.set(entry, forKey: Self.sessionZoneKey)
     }
 
     /// Begonnene Nacht über eine Reise: `night` (ohne Angabe die gemerkte) ist ein echter Wecker, der gemerkte Plan

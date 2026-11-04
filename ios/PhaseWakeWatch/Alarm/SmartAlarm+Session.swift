@@ -42,7 +42,7 @@ extension SmartAlarm {
             return true
         }
         DiagStore.shared.log(.scheduled, "zone changed since session was planned, replan")
-        UserDefaults.standard.removeObject(forKey: Self.sessionZoneKey)
+        SettingsFile.watchSession.removeObject(forKey: Self.sessionZoneKey)
         WatchModel.shared.reschedule()
         if case .scheduled = phase, session === started { return false }
         if session === started { invalidateSession() }

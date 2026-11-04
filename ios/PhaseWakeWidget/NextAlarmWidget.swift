@@ -2,8 +2,8 @@ import PhaseWakeCore
 import SwiftUI
 import WidgetKit
 
-/// Komplikation: nächstes Weckfenster auf dem Zifferblatt; Mond in Lavendel (auf getönten Zifferblättern färbt das System). Liest die Wecker aus der gemeinsamen
-/// App-Gruppe der Uhr-App; die Uhr-App lädt die Komplikation bei jeder Änderung neu.
+/// Komplikation: nächstes Weckfenster auf dem Zifferblatt; Mond in Lavendel (auf getönten Zifferblättern färbt das System). Liest die Wecker aus der Datei
+/// der Uhr-App in der App-Gruppe, bei jedem Laden frisch (`PhaseWakeStorage.watchShared`); die Uhr-App lädt die Komplikation bei jeder Änderung neu.
 @main
 struct PhaseWakeWidgets: WidgetBundle {
     var body: some Widget { NextAlarmWidget() }

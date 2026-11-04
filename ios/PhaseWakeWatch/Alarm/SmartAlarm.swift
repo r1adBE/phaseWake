@@ -63,6 +63,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let stateKey = "smartAlarmNight"
     /// Zeitzone, Zielzeit und Wecker des Plans, für den die Uhr wartet, plant oder misst – gemerkt in der Zone, in der
     /// er berechnet wurde (`notePlanZone`), für die Prüfung nach einer Reise (`replansAfterZoneChange`, `keptNight`).
+    /// Liegt in `SettingsFile.watchSession` (nicht in der Sicherung).
     static let sessionZoneKey = "sessionZone"
 
     /// Zustand der Nacht; gesetzt nur von `SmartAlarm` und seinen Erweiterungen (Dateien `SmartAlarm+…`).

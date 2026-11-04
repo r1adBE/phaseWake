@@ -86,10 +86,11 @@ internal suspend fun BackupAlarm.planBackup() {
             if (newNight) it[PLANNED_ZONE] = zone.id
         }
     }
+    // Nachgeholt (RingRules.catchUp): Zielzeit + Nachfrist schon vorbei, dann gleich.
+    val at = RingRules.backupAt(plan, grace, current)
     if (newNight || changed) {
-        app.diag.log(DiagKind.SCHEDULED, "phone backup ${plan.target.plus(grace)}")
+        app.diag.log(DiagKind.SCHEDULED, "phone backup $at")
     }
-    val at = plan.target.plus(grace)
     setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
     // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen, samt den folgenden Zweitweckern
     // (klingelt einer vor dem Entsperren, stellt BackupDirectBoot.advance den nächsten).

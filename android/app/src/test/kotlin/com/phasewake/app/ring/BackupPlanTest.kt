@@ -113,6 +113,23 @@ class BackupPlanTest {
     }
 
     @Test
+    fun sameMinuteAlarmRingsRightAfterTheFirst() = runBlocking {
+        // Ohne Uhr (Nachfrist 0): «a» und «c» 07:00. Nach dem Klingeln von «a» kommt «c» gleich (Review 04.11. e).
+        seenAt = null
+        var clock = now
+        val phone = BackupAlarm(context, repository, MemoryStore(), WearSync(context), now = { clock }, watchSeenAt = { seenAt })
+        repository.upsert(spec)
+        repository.upsert(spec.copy(id = "c"))
+        phone.planBackup()
+        assertEquals(configured.toEpochMilli(), backupAt())
+        clock = configured.plusMillis(100)
+        phone.backupRang("a", configured)
+        phone.planBackup()
+        assertEquals(clock.plusSeconds(1).toEpochMilli(), backupAt())
+        assertEquals("c", BackupDirectBoot.load(context).first().alarmId)
+    }
+
+    @Test
     fun phoneSnoozeIsRestoredBesideTheBackup() = runBlocking {
         repository.upsert(spec)
         val snoozeEnd = now.plus(Duration.ofMinutes(5))

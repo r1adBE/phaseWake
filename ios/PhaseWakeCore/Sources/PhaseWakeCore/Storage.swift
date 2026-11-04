@@ -30,13 +30,47 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// App-Gruppe der Uhr-App und ihrer Komplikation.
     public static let watchGroup = "group.com.phasewake.app"
 
-    /// Wecker in der App-Gruppe der Uhr, damit die Komplikation sie lesen kann. Die Uhr-App selbst nutzt dieselbe
-    /// Gruppe, legt ihre Nächte aber im von der Sicherung ausgenommenen Ordner ab (`PhaseWakeStorage.watch`).
-    public static let watchShared = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? UserDefaults.standard)
+    /// Name der Einstellungsdatei der Uhr (Wecker, erledigte Nächte, Feiertage, Schlafziel) in ``watchGroupDirectory(create:)``.
+    public static let watchSettingsName = "settings.v1"
 
-    /// Erzeugt einen Speicher. `defaults` = Ort der Wecker und Einstellungen (Uhr: App-Gruppe; iPhone: eine
-    /// ``SettingsFile`` ausserhalb der iCloud-Sicherung). `directory` = Ordner für die Nächte (Standard: Application
-    /// Support); Tests geben einen eigenen.
+    /// Ordner «Private» in der App-Gruppe der Uhr; `nil` ohne App-Gruppe. Mit `create` angelegt und von der Sicherung
+    /// ausgenommen (wie `PrivateFiles`: das Flag sitzt auf dem Ordner, weil atomares Schreiben die Datei ersetzt). Nur
+    /// die Uhr-App legt an; die Komplikation liest bloss.
+    public static func watchGroupDirectory(create: Bool) -> URL? {
+        #if canImport(Darwin)
+        guard let group = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: watchGroup) else { return nil }
+        let dir = group.appendingPathComponent("Private", isDirectory: true)
+        if create {
+            try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+            var flagged = dir
+            var values = URLResourceValues()
+            values.isExcludedFromBackup = true
+            try? flagged.setResourceValues(values)
+        }
+        return dir
+        #else
+        return nil
+        #endif
+    }
+
+    /// Wecker der Uhr für die Komplikation, nur lesend: die Datei der Uhr-App (``watchSettingsName``), bei jedem Zugriff
+    /// frisch gelesen (``SettingsFile`` mit `readOnly`). Gibt es sie noch nicht (die Uhr-App hat die Werte früherer
+    /// Versionen noch nicht übernommen), die `UserDefaults` der App-Gruppe wie bisher; ohne App-Gruppe kein Wecker.
+    public static var watchShared: PhaseWakeStorage {
+        guard let url = watchSharedURL else { return watchSharedNone }
+        return FileManager.default.fileExists(atPath: url.path) ? watchSharedFile : watchSharedLegacy
+    }
+
+    private static let watchSharedURL = watchGroupDirectory(create: false)?.appendingPathComponent(watchSettingsName)
+    /// Pfad, den es nie gibt: ein nur lesender Speicher darauf ist immer leer.
+    private static let noFile = URL(fileURLWithPath: "/dev/null/none")
+    private static let watchSharedFile = PhaseWakeStorage(defaults: SettingsFile(url: watchSharedURL ?? noFile, readOnly: true))
+    private static let watchSharedLegacy = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? UserDefaults.standard)
+    private static let watchSharedNone = PhaseWakeStorage(defaults: SettingsFile(url: noFile, readOnly: true))
+
+    /// Erzeugt einen Speicher. `defaults` = Ort der Wecker und Einstellungen (iPhone und Uhr: eine ``SettingsFile``
+    /// ausserhalb der Sicherung). `directory` = Ordner für die Nächte (Standard: Application Support); Tests geben
+    /// einen eigenen.
     public init(defaults: any SettingsStore = UserDefaults.standard, directory: URL? = nil) {
         self.defaults = defaults
         let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]

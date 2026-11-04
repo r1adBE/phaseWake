@@ -4,7 +4,8 @@ import os
 #endif
 
 /// Schlüssel-Wert-Speicher mit den Zugriffen von `UserDefaults`, die Phase Wake braucht. `UserDefaults` erfüllt ihn
-/// unverändert (Uhr, Tests); auf dem iPhone liegen Wecker und Einstellungen stattdessen in einer ``SettingsFile``.
+/// unverändert (Tests, Übernahme aus früheren Versionen); auf iPhone und Uhr liegen Wecker und Einstellungen in einer
+/// ``SettingsFile``.
 public protocol SettingsStore: AnyObject {
     /// Gespeicherter Wert; `nil`, wenn es keinen gibt.
     func object(forKey defaultName: String) -> Any?
@@ -35,8 +36,12 @@ extension UserDefaults: SettingsStore {}
 /// ganze Datei atomar; scheitert das (Speicher voll), bleibt der Wert im Speicher und der nächste Schreibversuch
 /// nimmt ihn mit. Ist die Datei vorhanden, aber (noch) nicht lesbar, z. B. vor dem ersten Entsperren, wird sie nie
 /// überschrieben: Änderungen bleiben im Speicher und werden beim ersten gelungenen Lesen darübergelegt.
+///
+/// Nur lesend (`readOnly`, z. B. die Komplikation der Uhr neben der schreibenden Uhr-App): Jeder Zugriff liest die
+/// Datei neu, es bleibt kein veralteter Stand im Speicher; die Datei wird nie geschrieben, verschoben oder angelegt.
 public final class SettingsFile: SettingsStore, @unchecked Sendable {
     private let url: URL
+    private let readOnly: Bool
     private let lock = NSLock()
     /// Stand der Datei samt Änderungen dieser Sitzung; vor dem Lesen nur die Änderungen.
     private var values: [String: Any] = [:]
@@ -48,10 +53,14 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Schlüssel mit den Namen, die schon aus `UserDefaults` übernommen sind (``adopt(_:from:)``).
     static let adoptedKey = "settingsFile.adopted"
 
-    /// Erzeugt den Speicher für die Datei `url`; ihr Ordner wird bei Bedarf angelegt.
-    public init(url: URL) {
+    /// Erzeugt den Speicher für die Datei `url`; ihr Ordner wird bei Bedarf angelegt. `readOnly`: nur lesen, bei jedem
+    /// Zugriff frisch aus der Datei (ein anderer Prozess schreibt sie); Schreiben und ``adopt(_:from:)`` tun dann nichts.
+    public init(url: URL, readOnly: Bool = false) {
         self.url = url
-        try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+        self.readOnly = readOnly
+        if !readOnly {
+            try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+        }
         lock.lock(); defer { lock.unlock() }
         loadLocked()
     }
@@ -61,6 +70,8 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Gespeicherter Wert; `nil`, wenn es keinen gibt.
     public func object(forKey defaultName: String) -> Any? {
         lock.lock(); defer { lock.unlock() }
+        // Nur lesend: immer neu lesen, der schreibende Prozess kann die Datei inzwischen ersetzt haben.
+        if readOnly { loaded = false }
         loadLocked()
         return values[defaultName]
     }
@@ -91,6 +102,10 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Setzt den Wert und schreibt die Datei; `nil` entfernt ihn. Kein Typ einer Property List: bleibt unverändert.
     public func set(_ value: Any?, forKey defaultName: String) {
         lock.lock(); defer { lock.unlock() }
+        guard !readOnly else {
+            Self.log("\(defaultName) nicht gespeichert: nur lesend")
+            return
+        }
         if let value {
             guard PropertyListSerialization.propertyList(value, isValidFor: .binary) else {
                 Self.log("\(defaultName) nicht gespeichert: kein Property-List-Typ")
@@ -121,7 +136,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     public func adopt(_ keys: [String], from legacy: UserDefaults) {
         lock.lock(); defer { lock.unlock() }
         loadLocked()
-        guard loaded else { return }
+        guard loaded, !readOnly else { return }
         let adopted = Set(values[Self.adoptedKey] as? [String] ?? [])
         let found = keys.filter { legacy.object(forKey: $0) != nil }
         let fresh = found.filter { !adopted.contains($0) }
@@ -142,6 +157,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Liest die Datei, falls noch nicht geschehen, legt die Änderungen dieser Sitzung darüber und schreibt sie dann.
     /// Fehlt die Datei, gilt ein leerer Stand. Ist sie da, aber nicht lesbar, bleibt `loaded` falsch (der nächste
     /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt, dann gilt ein leerer Stand.
+    /// Nur lesend: Nicht lesbar lässt den zuletzt gelesenen Stand stehen; eine kaputte Datei bleibt liegen (leerer Stand).
     private func loadLocked() {
         guard !loaded else { return }
         var disk: [String: Any] = [:]
@@ -155,6 +171,8 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
             }
             if let plist = (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [String: Any] {
                 disk = plist
+            } else if readOnly {
+                Self.log("Einstellungen unlesbar (nur lesend, bleibt liegen)")
             } else {
                 Self.log("Einstellungen unlesbar, beiseitegelegt")
                 let broken = url.appendingPathExtension("broken")
@@ -172,6 +190,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// gelungenen Lesen selbst). - Returns: ob alles in der Datei steht.
     @discardableResult
     private func persistLocked() -> Bool {
+        guard !readOnly else { return changed.isEmpty }
         guard loaded else {
             loadLocked()
             return changed.isEmpty

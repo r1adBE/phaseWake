@@ -24,8 +24,8 @@ final class WatchModel {
     private init() {
         alarms = storage.snapshot().alarms
         sleepGoal = storage.sleepGoal
-        transient = UserDefaults.standard.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
-        catchUp = UserDefaults.standard.data(forKey: Self.catchUpKey).flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
+        transient = SettingsFile.watchSession.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
+        catchUp = SettingsFile.watchSession.data(forKey: Self.catchUpKey).flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
@@ -81,7 +81,7 @@ final class WatchModel {
         let window = AlarmSchedule.catchUpAfter(catchUp, windowStart: windowStart, until: Date(), specs: storage.snapshot().alarms,
                                                 calendar: .gregorianLocal, holidays: storage.holidays.dates)
         catchUp = window
-        UserDefaults.standard.set(try? JSONEncoder().encode(window), forKey: Self.catchUpKey)
+        SettingsFile.watchSession.set(try? JSONEncoder().encode(window), forKey: Self.catchUpKey)
     }
 
     /// Warum ein neuer Probewecker oder Powernap jetzt nicht geht: Fenster läuft, Nacht misst, klingelt oder
@@ -165,7 +165,7 @@ final class WatchModel {
 
     private func setTransient(_ plan: TransientPlan?) {
         transient = plan
-        UserDefaults.standard.set(plan.map(Transient.encode), forKey: Self.transientKey)
+        SettingsFile.watchSession.set(plan.map(Transient.encode), forKey: Self.transientKey)
     }
 
     /// Feiertage vom iPhone übernehmen und neu planen, falls sie sich geändert haben.
