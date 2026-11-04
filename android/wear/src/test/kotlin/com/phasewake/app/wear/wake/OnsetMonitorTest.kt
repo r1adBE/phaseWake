@@ -19,10 +19,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.shadows.SensorBuilder
+import org.robolectric.shadows.SensorEventBuilder
 import org.robolectric.shadows.ShadowAlarmManager
 import org.robolectric.shadows.ShadowPowerManager
-import org.robolectric.shadows.ShadowSensor
-import org.robolectric.shadows.SensorEventBuilder
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -139,7 +139,7 @@ class OnsetMonitorTest {
 
     @Test
     fun sampleModeWithoutWakeUpSensorHoldsOnlyShortWakeLocks() {
-        val accelerometer = ShadowSensor.newInstance(Sensor.TYPE_ACCELEROMETER)
+        val accelerometer = SensorBuilder.newBuilder().setType(Sensor.TYPE_ACCELEROMETER).build()
         sensors.addSensor(accelerometer)
         val m = monitor()
         m.start()
@@ -169,7 +169,7 @@ class OnsetMonitorTest {
 
     @Test
     fun sampledEpochsGiveTheDiagLine() {
-        val accelerometer = ShadowSensor.newInstance(Sensor.TYPE_ACCELEROMETER)
+        val accelerometer = SensorBuilder.newBuilder().setType(Sensor.TYPE_ACCELEROMETER).build()
         sensors.addSensor(accelerometer)
         val m = monitor()
         m.start()
@@ -179,9 +179,8 @@ class OnsetMonitorTest {
         val until = SystemClock.elapsedRealtime() + OnsetMonitor.SAMPLE_LEAD_MS + 60_000
         var sent = 0
         while (SystemClock.elapsedRealtime() < until) {
-            val event = SensorEventBuilder.newBuilder().setSensor(accelerometer)
+            val event = SensorEventBuilder.newBuilder(accelerometer, floatArrayOf(if (sent % 2 == 0) 0.01f else 0f, 0f, 9.81f))
                 .setTimestamp(SystemClock.elapsedRealtimeNanos())
-                .setValues(floatArrayOf(if (sent % 2 == 0) 0.01f else 0f, 0f, 9.81f))
                 .build()
             sensors.sendSensorEventToListeners(event)
             sent++
