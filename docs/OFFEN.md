@@ -14,6 +14,7 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 - Audit 04.11. (Apple): Weckmitteilung als Kette (H-01), Versprechen «spätestens zur Zielzeit» präzisiert (H-01/N-04), Lizenzseite am iPhone (M-05), Mitteilungsrecht der Apple Watch im Nacht-Check (M-03), Pulsdichte und Fehler im Protokoll (M-02, N-03), Keyword (N-08); Testversion heisst «Phase Wake Test».
 - Nachaudit 04.11. (Android): Robolectric-Abbilder je Robolectric-Version geprüft (NEU-04), Hinweis «Lizenzen: in der Handy-App» auf der Galaxy Watch (NEU-06).
 - Nachaudit 04.11. (Apple): Platz für Mitteilungen des Zweitweckers vor iOS 26 (NEU-01/NEU-03), Erlaubnis der Apple Watch auch beim Planen (NEU-02), AlarmKit-Fehler im Protokoll (N-03); Dependabot-PRs #4 und #6 geschlossen (NEU-05).
+- GitHub aufgeräumt (05.11.): nur noch `main` als Code-Zweig, Workflow «Aufräumen» für erledigte Zweige und alte Läufe, Zweige `runde2` und `runde3-zwischenstand` gelöscht.
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -52,4 +53,4 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 
 ## Aufräumen
 
-15. Branch `runde3-zwischenstand` auf GitHub löschen (aus der Sitzung nicht erlaubt).
+15. **GitHub-Einstellungen (r1AD, im Browser):** Wiki und Projects aus, Topics setzen, Regel für `main` (Löschen und Force-Push verbieten, grüne Prüfungen «Android (Kern, Handy, Uhr)», «Apple-Kern (Swift)», «Apple-Apps (iPhone, Watch)» verlangen). Aus der Sitzung sind Einstellungen nicht erlaubt.

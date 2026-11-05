@@ -112,7 +112,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 ## 8. Ablauf
 
 - **Commits:** klein, eine Sache, deutscher Betreff im Präsens ohne Punkt; Autor r1AD; keine KI-Zuschreibung.
-- **Zweige:** Arbeit auf einem Zweig, `main` nur mit grüner CI. Grössere Runden bekommen vor dem Merge ein
-  unabhängiges Review (Mensch oder frischer Agent ohne Vorwissen).
+- **Zweige:** Der einzige dauerhafte Zweig für Code ist `main`. Jede Änderung kommt auf einen kurzen Arbeitszweig
+  (`aenderung/<thema>`), die CI läuft dort von Hand (`gh workflow run CI --ref …`); erst mit grüner CI geht genau dieser
+  Stand auf `main` (die Regel für `main` verlangt grüne Prüfungen, verbietet Löschen und Force-Push). Grössere Runden
+  bekommen vor dem Merge ein unabhängiges Review (Mensch oder frischer Agent ohne Vorwissen). Die Datenzweige
+  `feiertage`, `klaenge` und `screenshots` füllen Workflows.
+- **Aufräumen:** Der Workflow «Aufräumen» (montags und von Hand) löscht Arbeitszweige, die vollständig in `main`
+  stecken, und abgeschlossene Workflow-Läufe, die älter als 30 Tage sind; von Hand lassen sich weitere Zweige angeben.
 - **Definition of Done:** CI grün (Tests, Abdeckung, Grössen, Build-Nummern, Übersetzungen, 0 Warnungen),
   Bildschirmfotos aktuell, Dokumente nachgeführt, Entscheide eingetragen, Testversion gebaut.

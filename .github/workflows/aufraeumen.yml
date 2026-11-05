@@ -1,0 +1,70 @@
+name: Aufräumen
+
+# Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und Arbeitszweige, die
+# vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
+# Von Hand zusätzlich: weitere Zweige zum Löschen angeben (auch nicht zusammengeführte, z. B. alte Zwischenstände).
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      branches:
+        description: "Weitere Zweige zum Löschen (durch Leerzeichen getrennt)"
+        required: false
+        default: ""
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: aufraeumen
+  cancel-in-progress: false
+
+jobs:
+  clean:
+    name: Läufe und Zweige
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Alte Läufe löschen (älter als 30 Tage)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          cutoff=$(date -u -d '30 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          ids=$(gh api --paginate "repos/$REPO/actions/runs?per_page=100&created=<$cutoff" \
+            -q '.workflow_runs[] | select(.status == "completed") | .id')
+          n=0
+          for id in $ids; do
+            gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))
+          done
+          echo "::notice title=Aufräumen::$n Läufe vor $cutoff gelöscht"
+      - name: Erledigte Arbeitszweige löschen
+        shell: bash
+        env:
+          EXTRA: ${{ inputs.branches }}
+        run: |
+          set -euo pipefail
+          keep=" main feiertage klaenge screenshots "
+          gone=""
+          for ref in $(git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin); do
+            [ "$ref" = "HEAD" ] && continue
+            case "$keep" in *" $ref "*) continue ;; esac
+            # Nur Zweige, deren Stand vollständig in main steckt (zusammengeführt); Dependabot-Zweige gehören zu offenen PRs.
+            case "$ref" in dependabot/*) continue ;; esac
+            if git merge-base --is-ancestor "origin/$ref" origin/main; then gone="$gone $ref"; fi
+          done
+          for ref in $EXTRA; do
+            case "$keep" in *" $ref "*) echo "::warning title=Aufräumen::$ref bleibt (geschützt)"; continue ;; esac
+            git show-ref --verify --quiet "refs/remotes/origin/$ref" || { echo "::warning title=Aufräumen::$ref gibt es nicht"; continue; }
+            gone="$gone $ref"
+          done
+          for ref in $(printf '%s\n' $gone | sort -u); do
+            git push origin --delete "$ref" && echo "::notice title=Aufräumen::Zweig $ref gelöscht"
+          done
+          [ -n "$gone" ] || echo "::notice title=Aufräumen::Keine Zweige zu löschen"
