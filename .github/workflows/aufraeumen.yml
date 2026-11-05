@@ -1,7 +1,7 @@
 name: Aufräumen
 
-# Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und Arbeitszweige, die
-# vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
+# Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, nicht grüne Läufe (rot,
+# abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
 # Von Hand zusätzlich: weitere Zweige zum Löschen angeben (auch nicht zusammengeführte, z. B. alte Zwischenstände).
 on:
   schedule:
@@ -44,6 +44,22 @@ jobs:
             gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))
           done
           echo "::notice title=Aufräumen::$n Läufe vor $cutoff gelöscht"
+      - name: Nicht grüne Läufe löschen (älter als 7 Tage)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          cutoff=$(date -u -d '7 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          # Nach 7 Tagen hilft ein roter oder abgebrochener Lauf nicht mehr bei der Fehlersuche; grüne bleiben 30 Tage.
+          ids=$(gh api --paginate "repos/$REPO/actions/runs?per_page=100&status=completed&created=<$cutoff" \
+            -q '.workflow_runs[] | select(.conclusion != "success" and .conclusion != "neutral") | .id')
+          n=0
+          for id in $ids; do
+            gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))
+          done
+          echo "::notice title=Aufräumen::$n nicht grüne Läufe vor $cutoff gelöscht"
       - name: Erledigte Arbeitszweige löschen
         shell: bash
         env:
