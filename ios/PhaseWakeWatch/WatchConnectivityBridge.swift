@@ -44,6 +44,9 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         context[SyncKeys.alarmFields] = Int64(Codec.alarmFields)
         // Stand der Verbindung: Das iPhone erkennt so eine ältere Uhr-App (Nacht-Check «Uhr-App veraltet»).
         context[SyncKeys.watchProtocol] = Int64(WatchProtocol.current)
+        // Zuletzt geprüfte Erlaubnis für Mitteilungen samt Zeitpunkt, gespeichert: auch nach einem Neustart vor einer
+        // neuen Prüfung dabei (sonst verlöre das iPhone Warnung und Hinweis «veraltet»).
+        WatchNotificationsCheck.apply(Self.notificationsCheck, to: &context)
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
         if device.batteryState == .unplugged, device.batteryLevel >= 0 {
@@ -65,6 +68,14 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     private var checkingNotifications = false
     /// Spätestens nach dieser Zeit geht der Stand beim Planen nochmals ans iPhone, auch unverändert.
     private static let notificationsResend: TimeInterval = 6 * 3600
+    /// Schlüssel der zuletzt geprüften Erlaubnis in `SettingsFile.watchSession` (nicht in der Sicherung).
+    private static let notificationsCheckKey = "watchNotificationsCheck"
+
+    /// Zuletzt geprüfte Erlaubnis für Mitteilungen samt Zeitpunkt der Prüfung; `nil` = noch nicht gefragt.
+    private static var notificationsCheck: WatchNotificationsCheck? {
+        get { WatchNotificationsCheck(stored: SettingsFile.watchSession.object(forKey: notificationsCheckKey)) }
+        set { SettingsFile.watchSession.set(newValue?.stored, forKey: notificationsCheckKey) }
+    }
 
     /// Beim Planen einer Nacht (`SmartAlarm.scheduleFallback`): Stand der Mitteilungen ans iPhone, aber nur, wenn er
     /// sich geändert hat oder zuletzt vor über 6 h ging – sonst bei jedem Neuplanen ein neuer Anwendungskontext.
@@ -74,7 +85,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         checkingNotifications = true
         defer { checkingNotifications = false }
         let state = await notificationState()
-        let sent = (context[SyncKeys.watchNotifications] as? Int64).flatMap(WatchNotifications.init(rawValue:))
+        let sent = Self.notificationsCheck?.state
         if state == sent, let at = notificationsSentAt, Date().timeIntervalSince(at) < Self.notificationsResend { return }
         publish(notifications: state)
     }
@@ -101,8 +112,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         }
     }
 
-    /// Merkt `state` samt Zeitpunkt der Prüfung (jetzt) im Anwendungskontext (mit Zeile im Protokoll bei einer
-    /// Änderung) und sendet ihn.
+    /// Speichert `state` samt Zeitpunkt der Prüfung (jetzt) für jeden Anwendungskontext (mit Zeile im Protokoll bei
+    /// einer Änderung) und sendet ihn.
     @MainActor
     private func publish(notifications state: WatchNotifications?) {
         notificationsSentAt = Date()
@@ -116,13 +127,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             DiagStore.shared.log(state.isProblem ? .error : .sync, "notifications \(text)")
         }
         // Ist der Zeitpunkt der Prüfung älter als 3 Tage, weist der Nacht-Check auf dem iPhone darauf hin.
-        if let state {
-            context[SyncKeys.watchNotifications] = state.rawValue
-            context[SyncKeys.watchNotificationsAt] = Int64(Date().timeIntervalSince1970 * 1000)
-        } else {
-            context[SyncKeys.watchNotifications] = nil
-            context[SyncKeys.watchNotificationsAt] = nil
-        }
+        Self.notificationsCheck = state.map { WatchNotificationsCheck(state: $0, checkedAt: Date()) }
         publishBattery()
     }
 

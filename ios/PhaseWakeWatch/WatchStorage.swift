@@ -37,9 +37,10 @@ extension SettingsFile {
     static let alarmKeys = ["alarms", "alarmsUpdatedAt", "nightDoneUntilByAlarm", "nightDoneUntil", "holidays", "sleepGoalMinutes"]
 
     /// Merker der laufenden Planung als Datei «session.v1» im ausgenommenen Ordner `PrivateFiles`: Zeitzone des Plans
-    /// (`SmartAlarm.sessionZoneKey`), Probewecker oder Powernap und Zeitraum zum Nachholen (`WatchModel`). Nur die
-    /// Uhr-App braucht sie, darum nicht in der App-Gruppe (wie der Klingel-Zustand `ring-state.v1`). Übernimmt sie
-    /// einmalig aus `UserDefaults.standard`; dort bleibt nur der technische Merker `diagUnlocked`.
+    /// (`SmartAlarm.sessionZoneKey`), Probewecker oder Powernap und Zeitraum zum Nachholen (`WatchModel`), zuletzt
+    /// geprüfte Erlaubnis für Mitteilungen (`WatchConnectivityBridge`). Nur die Uhr-App braucht sie, darum nicht in der
+    /// App-Gruppe (wie der Klingel-Zustand `ring-state.v1`). Übernimmt sie einmalig aus `UserDefaults.standard`; dort
+    /// bleibt nur der technische Merker `diagUnlocked`.
     static let watchSession: SettingsFile = {
         let file = SettingsFile(url: PrivateFiles.directory.appendingPathComponent("session.v1"))
         file.adopt(SettingsFile.sessionKeys, from: .standard)

@@ -93,3 +93,46 @@ public enum WatchNotifications: Int64, Sendable {
         return now.timeIntervalSince(checkedAt) > maxAge
     }
 }
+
+/// Zuletzt geprüfter Stand der Mitteilungen auf der Uhr samt Zeitpunkt der Prüfung. Die Uhr speichert ihn (`stored`)
+/// und legt ihn in jeden Anwendungskontext (`apply`), auch nach einem Neustart vor einer neuen Prüfung; eine neue
+/// Prüfung ersetzt ihn. Nur Apple.
+public struct WatchNotificationsCheck: Equatable, Sendable {
+    /// Geprüfter Stand.
+    public let state: WatchNotifications
+    /// Zeitpunkt der Prüfung in ms seit 1970.
+    public let checkedAtMs: Int64
+
+    /// Stand `state`, geprüft zu `checkedAtMs`.
+    public init(state: WatchNotifications, checkedAtMs: Int64) {
+        self.state = state
+        self.checkedAtMs = checkedAtMs
+    }
+
+    /// Stand `state`, geprüft zu `checkedAt`.
+    public init(state: WatchNotifications, checkedAt: Date) {
+        self.init(state: state, checkedAtMs: Int64(checkedAt.timeIntervalSince1970 * 1000))
+    }
+
+    /// Aus der gespeicherten Form (`stored`); `nil`, wenn nichts oder Unlesbares gespeichert ist.
+    public init?(stored: Any?) {
+        guard let values = stored as? [NSNumber], values.count == 2,
+              let state = WatchNotifications(rawValue: values[0].int64Value) else { return nil }
+        self.init(state: state, checkedAtMs: values[1].int64Value)
+    }
+
+    /// Gespeicherte Form (Property List): Stand und Zeitpunkt.
+    public var stored: [Int64] { [state.rawValue, checkedAtMs] }
+
+    /// Legt `check` in den Anwendungskontext (`SyncKeys.watchNotifications` und `watchNotificationsAt`); ohne
+    /// (noch nicht gefragt) fehlen beide Schlüssel, das iPhone warnt dann nicht.
+    public static func apply(_ check: WatchNotificationsCheck?, to context: inout [String: Any]) {
+        if let check {
+            context[SyncKeys.watchNotifications] = check.state.rawValue
+            context[SyncKeys.watchNotificationsAt] = check.checkedAtMs
+        } else {
+            context[SyncKeys.watchNotifications] = nil
+            context[SyncKeys.watchNotificationsAt] = nil
+        }
+    }
+}
