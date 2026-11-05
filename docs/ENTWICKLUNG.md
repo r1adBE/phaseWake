@@ -113,7 +113,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 
 - **Commits:** klein, eine Sache, deutscher Betreff im Präsens ohne Punkt; Autor r1AD; keine KI-Zuschreibung.
 - **Zweige:** Der einzige dauerhafte Zweig für Code ist `main`. Jede Änderung kommt auf einen kurzen Arbeitszweig
-  (`aenderung/<thema>`), die CI läuft dort von Hand (`gh workflow run CI --ref …`); erst mit grüner CI geht genau dieser
+  (`aenderung/<thema>`), die CI läuft dort beim Push von selbst; erst mit grüner CI geht genau dieser
   Stand auf `main` (die Regel für `main` verlangt grüne Prüfungen, verbietet Löschen und Force-Push). Grössere Runden
   bekommen vor dem Merge ein unabhängiges Review (Mensch oder frischer Agent ohne Vorwissen). Die Datenzweige
   `feiertage`, `klaenge` und `screenshots` füllen Workflows.

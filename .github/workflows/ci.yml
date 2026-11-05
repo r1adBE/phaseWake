@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    # Arbeitszweige auch per Push: Die Regel für main zählt nur Prüfungen aus Push- oder PR-Läufen, nicht von Hand gestartete.
+    branches: [main, "aenderung/**"]
   pull_request:
   workflow_dispatch:
 
