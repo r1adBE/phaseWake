@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake는 건강 앱(예: Apple Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되며, Phase Wake가 깨운 밤과 비교하는 데도 쓰여요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
     <string name="check_watch_notifications">워치 알림</string>
     <string name="check_watch_notifications_problem">Apple Watch에서 Phase Wake의 시간 민감 알림을 허용해 주세요. 그렇지 않으면 측정이 진행되지 않을 때 알림으로 깨울 수 없어요.</string>
+    <string name="check_watch_state_old">워치 상태가 오래되었습니다 – 워치에서 Phase Wake를 잠깐 여세요.</string>
 </resources>

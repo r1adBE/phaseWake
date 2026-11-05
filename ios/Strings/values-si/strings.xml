@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Apple Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර Phase Wake ඔබව අවදි කළ රාත්‍රී සමඟ සංසන්දනය කිරීමටද භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
     <string name="check_watch_notifications">ඔරලෝසුවේ දැනුම්දීම්</string>
     <string name="check_watch_notifications_problem">ඔබේ Apple Watch හි Phase Wake සඳහා කාල-සංවේදී දැනුම්දීම්වලට ඉඩ දෙන්න. එසේ නොමැති නම් මැනීමක් සිදු නොවන විට එයට ඔබව දැනුම්දීමකින් අවදි කළ නොහැක.</string>
+    <string name="check_watch_state_old">ඔරලෝසුවේ තත්ත්වය යල් පැන ගොස් ඇත – ඔරලෝසුවේ Phase Wake මොහොතකට විවෘත කරන්න.</string>
 </resources>

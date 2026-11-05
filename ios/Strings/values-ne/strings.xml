@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">तिम्रो स्वास्थ्य एप (जस्तै Apple Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ, Phase Wake ले तिमीलाई ब्युँझाएका रातहरूसँग तुलना गर्न पनि। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
     <string name="check_watch_notifications">घडीमा सूचनाहरू</string>
     <string name="check_watch_notifications_problem">आफ्नो Apple Watch मा Phase Wake का लागि समय-संवेदनशील सूचनाहरूलाई अनुमति देऊ। नत्र मापन नचलिरहेको बेला घडीले तिमीलाई सूचनाबाट उठाउन सक्दैन।</string>
+    <string name="check_watch_state_old">घडीको स्थिति पुरानो भयो – घडीमा Phase Wake केही बेर खोल।</string>
 </resources>

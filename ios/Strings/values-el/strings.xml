@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Apple Health). Εμφανίζονται στο ιστορικό σου, και για σύγκριση με τις νύχτες που σε ξύπνησε το Phase Wake. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
     <string name="check_watch_notifications">Ειδοποιήσεις στο ρολόι</string>
     <string name="check_watch_notifications_problem">Επίτρεψε τις χρονικά ευαίσθητες ειδοποιήσεις του Phase Wake στο Apple Watch σου. Αλλιώς δεν μπορεί να σε ξυπνήσει με ειδοποίηση όταν δεν γίνεται μέτρηση.</string>
+    <string name="check_watch_state_old">Η κατάσταση του ρολογιού δεν είναι ενημερωμένη – άνοιξε για λίγο το Phase Wake στο ρολόι.</string>
 </resources>

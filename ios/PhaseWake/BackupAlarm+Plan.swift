@@ -203,16 +203,25 @@ extension BackupAlarm {
 
     /// Was noch gestellt ist: `present` = Kennungen der AlarmKit-Alarme (ab iOS 26) und wartenden Mitteilungen; `notes`
     /// = je gemerkter Sicherung die wartenden Mitteilungen ihrer Kette; `otherNotes` = wartende Mitteilungen ohne die
-    /// der gemerkten Sicherungen (für `NotificationBudget`).
+    /// der gemerkten Sicherungen (für `NotificationBudget`). Scheitert das Lesen der AlarmKit-Alarme, folgt nach
+    /// `ReadRetry.pause` ein zweiter Versuch; scheitert auch er, fehlen sie hier und `apply` stellt sie neu.
     private func pendingState() async -> (present: Set<UUID>, notes: [UUID: Set<String>], otherNotes: Int) {
         var present = Set<UUID>()
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            do {
-                let alarms = try AlarmManager.shared.alarms
-                present.formUnion(alarms.map(\.id))
-            } catch {
-                DiagStore.shared.log(.error, "alarmkit list failed \((error as NSError).code)")
+            var attempt = 1
+            while true {
+                do {
+                    let alarms = try AlarmManager.shared.alarms
+                    present.formUnion(alarms.map(\.id))
+                    if attempt > 1 { DiagStore.shared.log(.scheduled, ReadRetry.recoveredLine("alarmkit list", attempt: attempt)) }
+                    break
+                } catch {
+                    DiagStore.shared.log(.error, ReadRetry.failureLine("alarmkit list", attempt: attempt, code: (error as NSError).code))
+                    guard ReadRetry.retries(after: attempt) else { break }
+                    try? await Task.sleep(for: .seconds(ReadRetry.pause))
+                    attempt += 1
+                }
             }
         }
         #endif

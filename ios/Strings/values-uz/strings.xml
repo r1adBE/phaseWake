@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake sogʻliq ilovang (masalan, Apple Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi, Phase Wake seni uygʻotgan tunlar bilan solishtirish uchun ham. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
     <string name="check_watch_notifications">Soatdagi bildirishnomalar</string>
     <string name="check_watch_notifications_problem">Apple Watchʼingda Phase Wake uchun vaqtga sezgir bildirishnomalarga ruxsat ber. Aks holda oʻlchov ketmayotganda soat seni bildirishnoma bilan uygʻota olmaydi.</string>
+    <string name="check_watch_state_old">Soat holati eskirgan – soatda Phase Wake’ni qisqa muddatga och.</string>
 </resources>

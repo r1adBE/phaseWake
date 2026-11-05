@@ -26,4 +26,5 @@
     <string name="health_rationale_apple">Phase Wake може да чете данните за съня, които здравното ти приложение (например Apple Health) записва. Те се показват в историята ти, включително за сравнение с нощите, в които Phase Wake те е събудил. Phase Wake само чете, никога не записва, и нищо не напуска телефона ти.</string>
     <string name="check_watch_notifications">Известия на часовника</string>
     <string name="check_watch_notifications_problem">Разреши известията с времева чувствителност за Phase Wake на своя Apple Watch. Иначе той не може да те събуди с известие, когато не тече измерване.</string>
+    <string name="check_watch_state_old">Състоянието на часовника е остаряло – отвори за малко Phase Wake на часовника.</string>
 </resources>

@@ -101,7 +101,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         }
     }
 
-    /// Merkt `state` im Anwendungskontext (samt Zeile im Protokoll bei einer Änderung) und sendet ihn.
+    /// Merkt `state` samt Zeitpunkt der Prüfung (jetzt) im Anwendungskontext (mit Zeile im Protokoll bei einer
+    /// Änderung) und sendet ihn.
     @MainActor
     private func publish(notifications state: WatchNotifications?) {
         notificationsSentAt = Date()
@@ -114,10 +115,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             }
             DiagStore.shared.log(state.isProblem ? .error : .sync, "notifications \(text)")
         }
+        // Ist der Zeitpunkt der Prüfung älter als 3 Tage, weist der Nacht-Check auf dem iPhone darauf hin.
         if let state {
             context[SyncKeys.watchNotifications] = state.rawValue
+            context[SyncKeys.watchNotificationsAt] = Int64(Date().timeIntervalSince1970 * 1000)
         } else {
             context[SyncKeys.watchNotifications] = nil
+            context[SyncKeys.watchNotificationsAt] = nil
         }
         publishBattery()
     }

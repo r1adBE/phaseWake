@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake pode ler os datos de sono que garda a túa app de saúde (por exemplo Apple Health). Móstranse no teu historial, tamén para comparalos coas noites en que Phase Wake te espertou. Phase Wake só le, nunca escribe, e nada sae do teu teléfono.</string>
     <string name="check_watch_notifications">Notificacións no reloxo</string>
     <string name="check_watch_notifications_problem">Permite as notificacións urxentes de Phase Wake no teu Apple Watch. Se non, non pode espertarte cunha notificación cando non hai ningunha medición en curso.</string>
+    <string name="check_watch_state_old">O estado do reloxo está desactualizado – abre Phase Wake un momento no reloxo.</string>
 </resources>

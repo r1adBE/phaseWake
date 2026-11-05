@@ -15,6 +15,7 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 - Nachaudit 04.11. (Android): Robolectric-Abbilder je Robolectric-Version geprüft (NEU-04), Hinweis «Lizenzen: in der Handy-App» auf der Galaxy Watch (NEU-06).
 - Nachaudit 04.11. (Apple): Platz für Mitteilungen des Zweitweckers vor iOS 26 (NEU-01/NEU-03), Erlaubnis der Apple Watch auch beim Planen (NEU-02), AlarmKit-Fehler im Protokoll (N-03); Dependabot-PRs #4 und #6 geschlossen (NEU-05).
 - GitHub aufgeräumt (05.11.): nur noch `main` als Code-Zweig, Workflow «Aufräumen» für erledigte Zweige und alte Läufe, Zweige `runde2` und `runde3-zwischenstand` gelöscht.
+- Nachaudit 04.11. (Apple, 05.11.): AlarmKit-Abfrage mit einem zweiten Versuch nach 1 s (NEU-07); Hinweis im Nacht-Check, wenn der Stand der Apple Watch älter als 3 Tage ist (NEU-02 Rest).
 
 ## Erledigt am 02.11.2026 (Details in ENTSCHEIDE.md)
 

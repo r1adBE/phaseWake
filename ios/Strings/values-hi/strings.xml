@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Apple Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है, उन रातों से तुलना के लिए भी जब Phase Wake ने तुम्हें जगाया। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
     <string name="check_watch_notifications">वॉच पर सूचनाएँ</string>
     <string name="check_watch_notifications_problem">अपनी Apple Watch पर Phase Wake के लिए समय-संवेदी सूचनाओं की अनुमति दें। वरना माप न चलने पर वॉच आपको सूचना से नहीं जगा सकती।</string>
+    <string name="check_watch_state_old">वॉच की स्थिति पुरानी है – वॉच पर कुछ देर के लिए Phase Wake खोलें।</string>
 </resources>

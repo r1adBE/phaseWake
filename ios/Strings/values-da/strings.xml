@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Apple Health) gemmer. De vises i din historik, også til sammenligning med de nætter, hvor Phase Wake vækkede dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
     <string name="check_watch_notifications">Notifikationer på uret</string>
     <string name="check_watch_notifications_problem">Tillad tidsfølsomme notifikationer fra Phase Wake på dit Apple Watch. Ellers kan uret ikke vække dig med en notifikation, når der ikke kører en måling.</string>
+    <string name="check_watch_state_old">Urets status er forældet – åbn Phase Wake kort på uret.</string>
 </resources>

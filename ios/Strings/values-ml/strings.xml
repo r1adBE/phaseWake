@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Apple Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുന്നു, Phase Wake നിങ്ങളെ ഉണർത്തിയ രാത്രികളുമായി താരതമ്യം ചെയ്യാനും. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="check_watch_notifications">വാച്ചിലെ അറിയിപ്പുകൾ</string>
     <string name="check_watch_notifications_problem">Apple Watch-ൽ Phase Wake-ന് സമയബന്ധിത അറിയിപ്പുകൾ അനുവദിക്കുക. അല്ലെങ്കിൽ അളക്കൽ നടക്കാത്തപ്പോൾ അതിന് നിങ്ങളെ അറിയിപ്പിലൂടെ ഉണർത്താനാവില്ല.</string>
+    <string name="check_watch_state_old">വാച്ചിന്റെ നില പഴയതാണ് – വാച്ചിൽ Phase Wake അൽപനേരം തുറക്കുക.</string>
 </resources>

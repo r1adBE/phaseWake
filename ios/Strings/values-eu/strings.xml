@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake-k zure osasun-aplikazioak (adibidez, Apple Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, baita Phase Wake-k esnatu zaituen gauekin alderatzeko ere. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
     <string name="check_watch_notifications">Jakinarazpenak erlojuan</string>
     <string name="check_watch_notifications_problem">Baimendu Phase Wake-ren jakinarazpen premiazkoak zure Apple Watchean. Bestela, ezin zaitu jakinarazpen batekin esnatu neurketarik ez dagoenean.</string>
+    <string name="check_watch_state_old">Erlojuaren egoera zaharkituta dago – ireki Phase Wake une batez erlojuan.</string>
 </resources>

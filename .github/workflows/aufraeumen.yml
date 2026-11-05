@@ -2,7 +2,8 @@ name: Aufräumen
 
 # Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, nicht grüne Läufe (rot,
 # abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
-# Von Hand zusätzlich: weitere Zweige zum Löschen angeben (auch nicht zusammengeführte, z. B. alte Zwischenstände).
+# Von Hand zusätzlich: weitere Zweige zum Löschen angeben – nur, wenn sie in main stecken oder ihr letzter Commit älter als
+# 7 Tage ist (z. B. alte Zwischenstände); andere bleiben und werden gemeldet.
 on:
   schedule:
     - cron: "17 3 * * 1"
@@ -78,6 +79,12 @@ jobs:
           for ref in $EXTRA; do
             case "$keep" in *" $ref "*) echo "::warning title=Aufräumen::$ref bleibt (geschützt)"; continue ;; esac
             git show-ref --verify --quiet "refs/remotes/origin/$ref" || { echo "::warning title=Aufräumen::$ref gibt es nicht"; continue; }
+            # Von Hand nur, was in main steckt oder seit über 7 Tagen ruht: Ein vertippter Name löscht keinen offenen Arbeitszweig.
+            last=$(git log -1 --format=%ct "origin/$ref")
+            if ! git merge-base --is-ancestor "origin/$ref" origin/main && [ "$last" -gt "$(date -u -d '7 days ago' +%s)" ]; then
+              echo "::warning title=Aufräumen::$ref bleibt (nicht in main, letzter Commit jünger als 7 Tage)"
+              continue
+            fi
             gone="$gone $ref"
           done
           for ref in $(printf '%s\n' $gone | sort -u); do

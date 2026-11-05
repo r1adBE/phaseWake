@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Apple Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
     <string name="check_watch_notifications">နာရီပေါ်ရှိ အသိပေးချက်များ</string>
     <string name="check_watch_notifications_problem">Apple Watch ပေါ်တွင် Phase Wake အတွက် အချိန်အရေးကြီး အသိပေးချက်များကို ခွင့်ပြုပါ။ မဟုတ်ပါက တိုင်းတာမှု မလုပ်ဆောင်နေချိန်တွင် အသိပေးချက်ဖြင့် နှိုး၍ မရပါ။</string>
+    <string name="check_watch_state_old">နာရီ၏ အခြေအနေ ခေတ်မမီတော့ပါ – နာရီပေါ်တွင် Phase Wake ကို ခဏဖွင့်ပါ။</string>
 </resources>

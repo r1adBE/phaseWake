@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Apple Health) a léamh. Taispeántar iad i do stair, freisin chun comparáid a dhéanamh leis na hoícheanta ar dhúisigh Phase Wake thú. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
     <string name="check_watch_notifications">Fógraí ar an uaireadóir</string>
     <string name="check_watch_notifications_problem">Ceadaigh fógraí atá íogair ó thaobh ama de do Phase Wake ar do Apple Watch. Murach sin, ní féidir leis tú a dhúiseacht le fógra nuair nach bhfuil tomhas ar siúl.</string>
+    <string name="check_watch_state_old">Tá stádas an uaireadóra as dáta – oscail Phase Wake ar feadh tamaillín ar an uaireadóir.</string>
 </resources>

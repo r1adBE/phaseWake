@@ -18,6 +18,8 @@ enum PhoneCheck: CaseIterable, Hashable {
     case silentSwitch
     /// Mitteilungen auf der Uhr nicht (zeitkritisch) erlaubt: Ohne laufende Messung weckt dann der Rückfall nicht.
     case watchNotifications
+    /// Stand der Mitteilungen auf der Uhr älter als 3 Tage (`WatchNotifications.isOutdated`). Nur ein Hinweis.
+    case watchStateOld
 
     var title: String {
         switch self {
@@ -32,7 +34,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .battery: L("check_battery")
         case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
-        case .watchNotifications: L("check_watch_notifications")
+        case .watchNotifications, .watchStateOld: L("check_watch_notifications")
         }
     }
 
@@ -50,13 +52,14 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .backupHorizon: L("check_backup_horizon_text")
         case .silentSwitch: L("check_silent_switch_text")
         case .watchNotifications: L("check_watch_notifications_problem")
+        case .watchStateOld: L("check_watch_state_old")
         }
     }
 
     var canFix: Bool { self == .alarms || self == .notifications }
 
     /// Nur ein Hinweis (nicht rot, «bereit» bleibt): Er lässt sich nicht beheben, nur beachten.
-    var isAdvisory: Bool { self == .silentSwitch }
+    var isAdvisory: Bool { self == .silentSwitch || self == .watchStateOld }
 }
 
 @MainActor
@@ -86,7 +89,11 @@ enum NightCheck {
                 failed.append(.watchBattery)
             }
             // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
-            if model.watchNotifications?.isProblem == true { failed.append(.watchNotifications) }
+            if model.watchNotifications?.state.isProblem == true { failed.append(.watchNotifications) }
+            // Hat die Uhr ihn seit über 3 Tagen nicht mehr geprüft, kann er überholt sein (ohne Zeitpunkt: kein Hinweis).
+            if WatchNotifications.isOutdated(checkedAt: model.watchNotifications?.checkedAt, now: Date()) {
+                failed.append(.watchStateOld)
+            }
             // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
             // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
             if !model.watchKnowsSkip {
@@ -156,7 +163,7 @@ enum NightCheck {
                 openSettings()
             }
         case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
-             .watchNotifications:
+             .watchNotifications, .watchStateOld:
             break
         }
     }

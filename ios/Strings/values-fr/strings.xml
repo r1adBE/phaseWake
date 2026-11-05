@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake peut lire les données de sommeil que ton application santé (par exemple Apple Health) enregistre. Elles s\'affichent dans ton historique, aussi pour les comparer aux nuits où Phase Wake t\'a réveillé. Phase Wake lit seulement, n\'écrit jamais, et rien ne quitte ton téléphone.</string>
     <string name="check_watch_notifications">Notifications sur la montre</string>
     <string name="check_watch_notifications_problem">Autorise les notifications urgentes de Phase Wake sur ton Apple Watch. Sinon, elle ne peut pas te réveiller par une notification quand aucune mesure n’est en cours.</string>
+    <string name="check_watch_state_old">L’état de la montre n’est plus à jour – ouvre brièvement Phase Wake sur la montre.</string>
 </resources>

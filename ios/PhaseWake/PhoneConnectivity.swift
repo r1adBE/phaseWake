@@ -198,7 +198,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         // Stand der Verbindung; fehlt er (ältere Uhr), gilt er als unbekannt und der Nacht-Check warnt nicht.
         let version = (context[SyncKeys.watchProtocol] as? Int64).map { Int($0) }
         // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check nicht.
-        let notifications = (context[SyncKeys.watchNotifications] as? Int64).flatMap(WatchNotifications.init(rawValue:))
+        // Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
+        let checkedAt = (context[SyncKeys.watchNotificationsAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
+            .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {
             Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications) }
         }

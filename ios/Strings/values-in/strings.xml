@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Apple Health). Data ini ditampilkan di riwayatmu, juga untuk dibandingkan dengan malam-malam saat Phase Wake membangunkanmu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
     <string name="check_watch_notifications">Notifikasi di jam tangan</string>
     <string name="check_watch_notifications_problem">Izinkan notifikasi peka waktu untuk Phase Wake di Apple Watch-mu. Jika tidak, jam tidak bisa membangunkanmu lewat notifikasi saat tidak ada pengukuran yang berjalan.</string>
+    <string name="check_watch_state_old">Status jam tangan sudah usang – buka Phase Wake sebentar di jam tangan.</string>
 </resources>

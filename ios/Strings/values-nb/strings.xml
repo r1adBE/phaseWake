@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake kan lese søvndataene som helse-appen din (for eksempel Apple Health) lagrer. De vises i historikken din, også til sammenligning med nettene Phase Wake vekket deg. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din.</string>
     <string name="check_watch_notifications">Varsler på klokken</string>
     <string name="check_watch_notifications_problem">Tillat tidssensitive varsler fra Phase Wake på Apple Watch. Ellers kan klokken ikke vekke deg med et varsel når ingen måling pågår.</string>
+    <string name="check_watch_state_old">Klokkens status er utdatert – åpne Phase Wake kort på klokken.</string>
 </resources>

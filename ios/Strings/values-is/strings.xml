@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Apple Health) vistar. Þau birtast í ferlinum þínum, líka til samanburðar við næturnar sem Phase Wake vakti þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
     <string name="check_watch_notifications">Tilkynningar á úrinu</string>
     <string name="check_watch_notifications_problem">Leyfðu tímanæmar tilkynningar frá Phase Wake á Apple Watch-úrinu þínu. Annars getur það ekki vakið þig með tilkynningu þegar engin mæling er í gangi.</string>
+    <string name="check_watch_state_old">Staða úrsins er úrelt – opnaðu Phase Wake stuttlega á úrinu.</string>
 </resources>

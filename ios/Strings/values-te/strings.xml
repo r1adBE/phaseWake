@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">మీ హెల్త్ యాప్ (ఉదా. Apple Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, Phase Wake మిమ్మల్ని లేపిన రాత్రులతో పోల్చడానికి కూడా. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
     <string name="check_watch_notifications">వాచ్‌లో నోటిఫికేషన్‌లు</string>
     <string name="check_watch_notifications_problem">మీ Apple Watchలో Phase Wake కోసం సమయ-సున్నితమైన నోటిఫికేషన్‌లను అనుమతించండి. లేకపోతే కొలత జరగనప్పుడు అది మిమ్మల్ని నోటిఫికేషన్‌తో లేపలేదు.</string>
+    <string name="check_watch_state_old">వాచ్ స్థితి పాతది – వాచ్‌లో Phase Wakeను కొద్దిసేపు తెరవండి.</string>
 </resources>

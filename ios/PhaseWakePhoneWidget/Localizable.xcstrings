@@ -47937,6 +47937,454 @@
         }
       }
     },
+    "check_watch_state_old": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status van die horlosie is verouderd – maak Phase Wake kortliks op die horlosie oop."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የሰዓቱ ሁኔታ ጊዜው ያለፈበት ነው – Phase Wakeን በሰዓቱ ላይ ለአጭር ጊዜ ክፈት።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حالة الساعة قديمة – افتح Phase Wake على الساعة لفترة قصيرة."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatın vəziyyəti köhnəlib – Phase Wake-i saatda qısa müddətə aç."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Състоянието на часовника е остаряло – отвори за малко Phase Wake на часовника."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়ির অবস্থা পুরোনো – ঘড়িতে কিছুক্ষণের জন্য Phase Wake খোলো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stanje sata je zastarjelo – nakratko otvori Phase Wake na satu."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’estat del rellotge no està actualitzat – obre un moment Phase Wake al rellotge."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stav hodinek je zastaralý – krátce otevři Phase Wake na hodinkách."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urets status er forældet – åbn Phase Wake kort på uret."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stand der Uhr veraltet – öffne Phase Wake kurz auf der Uhr."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η κατάσταση του ρολογιού δεν είναι ενημερωμένη – άνοιξε για λίγο το Phase Wake στο ρολόι."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch status is out of date – briefly open Phase Wake on the watch."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El estado del reloj está desactualizado – abre Phase Wake un momento en el reloj."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kella olek on aegunud – ava Phase Wake korraks kellas."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlojuaren egoera zaharkituta dago – ireki Phase Wake une batez erlojuan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وضعیت ساعت قدیمی است – Phase Wake را کوتاه روی ساعت باز کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellon tila on vanhentunut – avaa Phase Wake hetkeksi kellossa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luma na ang status ng relo – buksan sandali ang Phase Wake sa relo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’état de la montre n’est plus à jour – ouvre brièvement Phase Wake sur la montre."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tá stádas an uaireadóra as dáta – oscail Phase Wake ar feadh tamaillín ar an uaireadóir."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O estado do reloxo está desactualizado – abre Phase Wake un momento no reloxo."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળની સ્થિતિ જૂની છે – ઘડિયાળ પર થોડા સમય માટે Phase Wake ખોલો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉच की स्थिति पुरानी है – वॉच पर कुछ देर के लिए Phase Wake खोलें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stanje sata je zastarjelo – nakratko otvori Phase Wake na satu."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az óra állapota elavult – nyisd meg röviden a Phase Wake-et az órán."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույցի վիճակը հնացած է – կարճ ժամանակով բացիր Phase Wake-ը ժամացույցում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status jam tangan sudah usang – buka Phase Wake sebentar di jam tangan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Staða úrsins er úrelt – opnaðu Phase Wake stuttlega á úrinu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo stato dell’orologio non è aggiornato – apri brevemente Phase Wake sull’orologio."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチの状態が古くなっています – ウォッチでPhase Wakeを少し開いてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათის მდგომარეობა მოძველებულია – მოკლედ გახსენი Phase Wake საათზე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағаттың күйі ескірген – сағатта Phase Wake-ті қысқа уақытқа аш."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ស្ថានភាពនាឡិកាហួសសម័យ – បើក Phase Wake នៅលើនាឡិកាមួយភ្លែត។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್‌ನ ಸ್ಥಿತಿ ಹಳೆಯದಾಗಿದೆ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯ ತೆರೆಯಿರಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치 상태가 오래되었습니다 – 워치에서 Phase Wake를 잠깐 여세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ສະຖານະຂອງໂມງລ້າສະໄໝແລ້ວ – ເປີດ Phase Wake ໃນໂມງໄລຍະສັ້ນໆ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laikrodžio būsena pasenusi – trumpam atidaryk Phase Wake laikrodyje."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulksteņa stāvoklis ir novecojis – uz brīdi atver Phase Wake pulkstenī."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Состојбата на часовникот е застарена – накратко отвори го Phase Wake на часовникот."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിന്റെ നില പഴയതാണ് – വാച്ചിൽ Phase Wake അൽപനേരം തുറക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цагны төлөв хуучирсан – цаган дээр Phase Wake-ийг түр нээгээрэй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळाची स्थिती जुनी आहे – घड्याळावर Phase Wake थोडा वेळ उघडा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status jam tangan sudah lapuk – buka Phase Wake sebentar pada jam tangan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီ၏ အခြေအနေ ခေတ်မမီတော့ပါ – နာရီပေါ်တွင် Phase Wake ကို ခဏဖွင့်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokkens status er utdatert – åpne Phase Wake kort på klokken."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीको स्थिति पुरानो भयो – घडीमा Phase Wake केही बेर खोल।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status van het horloge is verouderd – open Phase Wake even op het horloge."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ਦੀ ਸਥਿਤੀ ਪੁਰਾਣੀ ਹੈ – ਘੜੀ ’ਤੇ Phase Wake ਥੋੜ੍ਹੀ ਦੇਰ ਲਈ ਖੋਲ੍ਹੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stan zegarka jest nieaktualny – otwórz na chwilę Phase Wake na zegarku."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O status do relógio está desatualizado – abra o Phase Wake rapidamente no relógio."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O estado do relógio está desatualizado – abre o Phase Wake por instantes no relógio."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starea ceasului nu este actualizată – deschide scurt Phase Wake pe ceas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Состояние часов устарело – ненадолго открой Phase Wake на часах."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවේ තත්ත්වය යල් පැන ගොස් ඇත – ඔරලෝසුවේ Phase Wake මොහොතකට විවෘත කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stav hodiniek je zastaraný – krátko otvor Phase Wake na hodinkách."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stanje ure je zastarelo – na kratko odpri Phase Wake na uri."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjendja e orës është e vjetër – hap shkurt Phase Wake në orë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стање сата је застарело – накратко отвори Phase Wake на сату."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockans status är inaktuell – öppna Phase Wake en kort stund på klockan."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hali ya saa imepitwa na wakati – fungua Phase Wake kwa muda mfupi kwenye saa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வாட்ச்சின் நிலை பழையதாக உள்ளது – வாட்ச்சில் Phase Wake-ஐ சிறிது நேரம் திறக்கவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాచ్ స్థితి పాతది – వాచ్‌లో Phase Wakeను కొద్దిసేపు తెరవండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สถานะของนาฬิกาไม่เป็นปัจจุบัน – เปิด Phase Wake บนนาฬิกาสักครู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatin durumu güncel değil – Phase Wake’i saatte kısaca aç."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стан годинника застарів – ненадовго відкрий Phase Wake на годиннику."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی کی حالت پرانی ہے – گھڑی پر Phase Wake تھوڑی دیر کے لیے کھولیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soat holati eskirgan – soatda Phase Wake’ni qisqa muddatga och."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trạng thái của đồng hồ đã cũ – hãy mở nhanh Phase Wake trên đồng hồ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶狀態已過時 – 請在手錶上短暫開啟 Phase Wake。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表状态已过时 – 请在手表上短暂打开 Phase Wake。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶狀態已過時 – 請在手錶上短暫開啟 Phase Wake。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isimo sewashi asisesikhathini – vula i-Phase Wake kafushane ewashini."
+          }
+        }
+      }
+    },
     "check_watch_update": {
       "localizations": {
         "af": {

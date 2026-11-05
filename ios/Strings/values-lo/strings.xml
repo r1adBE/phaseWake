@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Apple Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ລວມທັງເພື່ອປຽບທຽບກັບຄືນທີ່ Phase Wake ປຸກເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
     <string name="check_watch_notifications">ການແຈ້ງເຕືອນໃນໂມງ</string>
     <string name="check_watch_notifications_problem">ອະນຸຍາດການແຈ້ງເຕືອນທີ່ສຳຄັນຕໍ່ເວລາສຳລັບ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າ. ບໍ່ດັ່ງນັ້ນ ມັນຈະປຸກເຈົ້າດ້ວຍການແຈ້ງເຕືອນບໍ່ໄດ້ ເມື່ອບໍ່ມີການວັດແທກ.</string>
+    <string name="check_watch_state_old">ສະຖານະຂອງໂມງລ້າສະໄໝແລ້ວ – ເປີດ Phase Wake ໃນໂມງໄລຍະສັ້ນໆ.</string>
 </resources>

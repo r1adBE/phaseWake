@@ -64,6 +64,9 @@ public enum SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Erlaubnis für Mitteilungen auf der Uhr (`WatchNotifications.rawValue`), für
     /// den Rückfall-Wecker. Fehlt bei älteren Uhr-Versionen und solange die Uhr noch nicht gefragt hat (dann keine Warnung).
     public static let watchNotifications = "watchNotifications"
+    /// Uhr → iPhone im Anwendungskontext, zusammen mit `watchNotifications`: Zeitpunkt (ms seit 1970), zu dem die Uhr die
+    /// Erlaubnis geprüft hat. Fehlt bei älteren Uhr-Versionen (dann kein Hinweis «veraltet»).
+    public static let watchNotificationsAt = "watchNotificationsAt"
 }
 
 /// Erlaubnis für Mitteilungen auf der Apple Watch, wie die Uhr sie dem iPhone meldet (`SyncKeys.watchNotifications`).
@@ -78,4 +81,15 @@ public enum WatchNotifications: Int64, Sendable {
 
     /// Ob das iPhone im Nacht-Check warnt.
     public var isProblem: Bool { self != .allowed }
+
+    /// Älter als das gilt der gemeldete Stand im Nacht-Check als veraltet (3 Tage): Die Uhr hat die Erlaubnis so lange
+    /// nicht mehr geprüft, eine Änderung in den Einstellungen der Uhr kann dem iPhone entgangen sein.
+    public static let maxAge: TimeInterval = 3 * 24 * 3600
+
+    /// Ob der Stand, den die Uhr zu `checkedAt` geprüft hat, veraltet ist (Hinweis im Nacht-Check). Ohne Zeitpunkt
+    /// (ältere Uhr) nie; ein Zeitpunkt in der Zukunft (Uhren nicht gleich gestellt) auch nicht.
+    public static func isOutdated(checkedAt: Date?, now: Date) -> Bool {
+        guard let checkedAt else { return false }
+        return now.timeIntervalSince(checkedAt) > maxAge
+    }
 }

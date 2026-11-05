@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Apple Health) opslaat. Ze worden in je geschiedenis getoond, ook om te vergelijken met de nachten waarin Phase Wake je heeft gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
     <string name="check_watch_notifications">Meldingen op het horloge</string>
     <string name="check_watch_notifications_problem">Sta tijdgevoelige meldingen van Phase Wake toe op je Apple Watch. Anders kan hij je niet met een melding wekken als er geen meting loopt.</string>
+    <string name="check_watch_state_old">Status van het horloge is verouderd – open Phase Wake even op het horloge.</string>
 </resources>

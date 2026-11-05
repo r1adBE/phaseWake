@@ -119,6 +119,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   `feiertage`, `klaenge` und `screenshots` füllen Workflows.
 - **Aufräumen:** Der Workflow «Aufräumen» (montags und von Hand) löscht Arbeitszweige, die vollständig in `main`
   stecken, abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und nicht grüne Läufe (rot, abgebrochen,
-  übersprungen) schon nach 7 Tagen; von Hand lassen sich weitere Zweige angeben.
+  übersprungen) schon nach 7 Tagen; von Hand lassen sich weitere Zweige angeben (gelöscht nur, wenn sie in `main`
+  stecken oder seit über 7 Tagen ruhen).
 - **Definition of Done:** CI grün (Tests, Abdeckung, Grössen, Build-Nummern, Übersetzungen, 0 Warnungen),
   Bildschirmfotos aktuell, Dokumente nachgeführt, Entscheide eingetragen, Testversion gebaut.

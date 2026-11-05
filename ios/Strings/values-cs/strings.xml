@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Apple Health). Zobrazují se v tvé historii, i pro srovnání s nocemi, kdy tě vzbudil Phase Wake. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
     <string name="check_watch_notifications">Oznámení na hodinkách</string>
     <string name="check_watch_notifications_problem">Povol pro Phase Wake na Apple Watch časově citlivá oznámení. Jinak tě hodinky nemohou probudit oznámením, když neběží měření.</string>
+    <string name="check_watch_state_old">Stav hodinek je zastaralý – krátce otevři Phase Wake na hodinkách.</string>
 </resources>

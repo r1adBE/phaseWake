@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Apple Health). Ipinapakita ito sa kasaysayan mo, pati para ikumpara sa mga gabing ginising ka ng Phase Wake. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
     <string name="check_watch_notifications">Mga notification sa relo</string>
     <string name="check_watch_notifications_problem">Payagan ang mga time-sensitive na notification para sa Phase Wake sa iyong Apple Watch. Kung hindi, hindi ka nito magigising gamit ang notification kapag walang tumatakbong pagsukat.</string>
+    <string name="check_watch_state_old">Luma na ang status ng relo – buksan sandali ang Phase Wake sa relo.</string>
 </resources>

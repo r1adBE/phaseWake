@@ -28,4 +28,5 @@
     <string name="health_rationale_apple">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Apple Health). Jie rodomi tavo istorijoje, taip pat palyginimui su naktimis, kai tave pažadino Phase Wake. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
     <string name="check_watch_notifications">Pranešimai laikrodyje</string>
     <string name="check_watch_notifications_problem">Leisk Phase Wake rodyti laikui jautrius pranešimus tavo Apple Watch. Kitaip laikrodis negalės tavęs pažadinti pranešimu, kai nevyksta matavimas.</string>
+    <string name="check_watch_state_old">Laikrodžio būsena pasenusi – trumpam atidaryk Phase Wake laikrodyje.</string>
 </resources>

@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wakeは、ヘルスケアアプリ(Apple Healthなど)が保存した睡眠データを読み取れます。データは履歴に表示され、Phase Wakeが起こした夜との比較にも使えます。Phase Wakeは読み取りのみで書き込みは行わず、データがスマートフォンの外に出ることもありません。</string>
     <string name="check_watch_notifications">ウォッチの通知</string>
     <string name="check_watch_notifications_problem">Apple WatchでPhase Wakeの即時通知を許可してください。許可しないと、計測が行われていないときに通知で起こせません。</string>
+    <string name="check_watch_state_old">ウォッチの状態が古くなっています – ウォッチでPhase Wakeを少し開いてください。</string>
 </resources>

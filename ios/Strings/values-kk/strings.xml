@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">Phase Wake денсаулық қолданбаң (мысалы, Apple Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі, сондай-ақ Phase Wake сені оятқан түндермен салыстыру үшін. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
     <string name="check_watch_notifications">Сағаттағы хабарландырулар</string>
     <string name="check_watch_notifications_problem">Apple Watch-та Phase Wake үшін уақытқа сезімтал хабарландыруларға рұқсат бер. Әйтпесе өлшеу жүрмей тұрғанда сағат сені хабарландырумен оята алмайды.</string>
+    <string name="check_watch_state_old">Сағаттың күйі ескірген – сағатта Phase Wake-ті қысқа уақытқа аш.</string>
 </resources>

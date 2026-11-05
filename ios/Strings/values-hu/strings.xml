@@ -25,4 +25,5 @@
     <string name="health_rationale_apple">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például az Apple Health) eltárol. Ezek megjelennek az előzményeidben, összehasonlításként azokkal az éjszakákkal is, amikor a Phase Wake ébresztett. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
     <string name="check_watch_notifications">Értesítések az órán</string>
     <string name="check_watch_notifications_problem">Engedélyezd a Phase Wake időérzékeny értesítéseit az Apple Watchodon. Különben nem tud értesítéssel ébreszteni, ha nem fut mérés.</string>
+    <string name="check_watch_state_old">Az óra állapota elavult – nyisd meg röviden a Phase Wake-et az órán.</string>
 </resources>
