@@ -78,6 +78,13 @@ object DataLayer {
     const val KEY_PROTOCOL = "protocol"
 
     /**
+     * Pulsrechte der Uhr (`WatchPulse`) im selben Paket wie [KEY_READY]: Puls ([KEY_PULSE]) und Puls im Hintergrund
+     * ([KEY_PULSE_BACKGROUND]). Fehlen bei älteren Uhren; dann warnt der Nacht-Check nicht.
+     */
+    const val KEY_PULSE = "pulse"
+    const val KEY_PULSE_BACKGROUND = "pulseBackground"
+
+    /**
      * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
      * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
      */

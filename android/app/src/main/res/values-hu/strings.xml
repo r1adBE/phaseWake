@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Óra akkumulátora</string>
     <string name="check_watch_battery_problem">%1$d %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni.</string>
+    <string name="check_watch_pulse">Pulzus a háttérben (óra)</string>
+    <string name="check_watch_pulse_problem">Az óra éjjel nem mérheti a pulzusodat – az órán állítsd a Phase Wake érzékelőengedélyét „Mindig engedélyezett” értékre.</string>
     <string name="export_contents_hint">A fájl minden éjszaka mozgás- és pulzussorait tartalmazza – nevek, dátumok és eszközazonosítók nélkül.</string>
     <string name="editor_more">Továbbiak</string>
     <string name="home_max_alarms">Legfeljebb %1$d ébresztő – törölj egyet, hogy újat adhass hozzá.</string>

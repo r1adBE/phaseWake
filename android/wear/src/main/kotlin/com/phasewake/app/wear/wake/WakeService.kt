@@ -111,6 +111,12 @@ class WakeService : LifecycleService() {
     internal val taskExpired = Runnable { taskFallback("Bestätigung des Handys abgelaufen") }
     internal val realert = Runnable { onRealert() }
 
+    /**
+     * Grund, warum der letzte Start als «health» verweigert wurde ([SensorAccess.refusal]), fürs Diagnose-Protokoll;
+     * `null`, wenn er gelang.
+     */
+    internal var healthRefusal: String? = null
+
     /** Laufende Abschlüsse ([finishNight]); bis sie gespeichert und neu geplant haben, bleibt der Dienst. */
     internal var finishing = 0
 
@@ -216,10 +222,13 @@ class WakeService : LifecycleService() {
     @android.annotation.SuppressLint("InlinedApi")
     private fun foregroundForHealth(shown: android.app.Notification, id: Int): Boolean = try {
         ServiceCompat.startForeground(this, id, shown, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH)
+        healthRefusal = null
         true
     } catch (e: RuntimeException) {
-        // SecurityException (Rechte fehlen) oder ForegroundServiceStartNotAllowedException.
+        // SecurityException (Rechte fehlen) oder ForegroundServiceStartNotAllowedException. Grund und Rechte auch ins
+        // Diagnose-Protokoll (schreiben die Aufrufer), nicht nur ins Systemprotokoll.
         Log.w(TAG, "Messen nicht erlaubt, nur Wecken zur Zielzeit", e)
+        healthRefusal = SensorAccess.refusal(e, SensorAccess.of(this))
         false
     }
 

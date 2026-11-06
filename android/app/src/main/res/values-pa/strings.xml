@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ</string>
     <string name="check_watch_battery_problem">%1$d %% ਤੋਂ ਘੱਟ – ਘੜੀ ਚਾਰਜ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਸਾਰੀ ਰਾਤ ਚੱਲੇ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾ ਸਕੇ।</string>
+    <string name="check_watch_pulse">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਨਬਜ਼ (ਘੜੀ)</string>
+    <string name="check_watch_pulse_problem">ਘੜੀ ਨੂੰ ਰਾਤ ਨੂੰ ਤੇਰੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ – ਘੜੀ ’ਤੇ Phase Wake ਦੀ ਸੈਂਸਰ ਇਜਾਜ਼ਤ “ਹਮੇਸ਼ਾਂ ਇਜਾਜ਼ਤ ਦਿਓ” ’ਤੇ ਸੈੱਟ ਕਰ।</string>
     <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ ਦੀਆਂ ਲੜੀਆਂ ਹਨ – ਨਾਮਾਂ, ਤਾਰੀਖਾਂ ਜਾਂ ਡੀਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="editor_more">ਹੋਰ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">ವಾಚ್ ಬ್ಯಾಟರಿ</string>
     <string name="check_watch_battery_problem">%1$d %% ಕ್ಕಿಂತ ಕಡಿಮೆ – ರಾತ್ರಿಯಿಡೀ ಉಳಿದು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
+    <string name="check_watch_pulse">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ನಾಡಿ (ವಾಚ್)</string>
+    <string name="check_watch_pulse_problem">ವಾಚ್ ರಾತ್ರಿ ನಿನ್ನ ನಾಡಿಯನ್ನು ಅಳೆಯಲು ಅನುಮತಿ ಇಲ್ಲ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ನ ಸೆನ್ಸರ್ ಅನುಮತಿಯನ್ನು “ಎಲ್ಲಾ ಸಮಯದಲ್ಲೂ ಅನುಮತಿಸಿ” ಗೆ ಹೊಂದಿಸು.</string>
     <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಯ ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತದ ಸರಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
     <string name="editor_more">ಇನ್ನಷ್ಟು</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

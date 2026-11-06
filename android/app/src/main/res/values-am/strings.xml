@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">የሰዓት ባትሪ</string>
     <string name="check_watch_battery_problem">ከ%1$d %% በታች – ሌሊቱን እንዲቆይና እንዲቀሰቅስዎ ሰዓትዎን ኃይል ይሙሉ።</string>
+    <string name="check_watch_pulse">የዳራ ምት (ሰዓት)</string>
+    <string name="check_watch_pulse_problem">ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።</string>
     <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት የእንቅስቃሴና የልብ ምት ተከታታዮችን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
     <string name="editor_more">ተጨማሪ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

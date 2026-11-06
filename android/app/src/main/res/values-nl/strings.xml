@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Horlogebatterij</string>
     <string name="check_watch_battery_problem">Onder %1$d %% – laad je horloge op zodat het de nacht doorkomt en je kan wekken.</string>
+    <string name="check_watch_pulse">Hartslag op de achtergrond (horloge)</string>
+    <string name="check_watch_pulse_problem">Het horloge mag je hartslag ’s nachts niet meten – zet op het horloge de sensortoestemming van Phase Wake op ‘Altijd toestaan’.</string>
     <string name="export_contents_hint">Het bestand bevat bewegings- en hartslagreeksen van elke nacht – zonder namen, datums of apparaat-ID’s.</string>
     <string name="editor_more">Meer</string>
     <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>

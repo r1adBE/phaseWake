@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">Bateri jam tangan</string>
     <string name="check_watch_battery_problem">Kurang daripada %1$d %% – cas jam tangan awak supaya tahan sepanjang malam dan boleh mengejutkan awak.</string>
+    <string name="check_watch_pulse">Nadi di latar belakang (jam)</string>
+    <string name="check_watch_pulse_problem">Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”.</string>
     <string name="export_contents_hint">Fail ini mengandungi siri pergerakan dan kadar denyutan jantung bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
     <string name="editor_more">Lagi</string>
     <string name="home_max_alarms">Maksimum %1$d penggera – padam satu untuk menambah yang baharu.</string>

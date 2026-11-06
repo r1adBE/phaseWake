@@ -252,6 +252,8 @@
     </plurals>
     <string name="check_watch_battery">Baterija ure</string>
     <string name="check_watch_battery_problem">Pod %1$d %% – napolni uro, da zdrži vso noč in te lahko zbudi.</string>
+    <string name="check_watch_pulse">Utrip v ozadju (ura)</string>
+    <string name="check_watch_pulse_problem">Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«.</string>
     <string name="export_contents_hint">Datoteka vsebuje podatke o gibanju in srčnem utripu za vsako noč – brez imen, datumov ali ID-jev naprav.</string>
     <string name="editor_more">Več</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

@@ -147,6 +147,14 @@ class PlatformTest {
         // Verbindungs-Stand der Uhr (Review O-04): immer mitgeschickt, ohne Angabe 0 (ältere Uhr).
         assertEquals(DataLayer.PROTOCOL, WearSync.readProtocol(noBattery))
         assertEquals(0, WearSync.readProtocol(DataMap().apply { putBoolean(DataLayer.KEY_READY, true) }))
+        // Pulsrechte der Uhr: nur mitgeschickt, wenn bekannt; ohne Angabe (ältere Uhr) keine Warnung.
+        assertNull(WatchPulse.read(noBattery))
+        assertFalse(WatchPulse.warns(WatchPulse.read(noBattery)))
+        val pulse = WatchPulse(heartRate = true, background = false)
+        val withPulse = DataMap.fromByteArray(WearSync.statusRequest(true, 50, 10_000L, pulse).data!!)
+        assertEquals(pulse, WatchPulse.read(withPulse))
+        assertTrue(WatchPulse.warns(WatchPulse.read(withPulse)))
+        assertFalse(WatchPulse.warns(WatchPulse(heartRate = true, background = true)))
 
         val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
         assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))

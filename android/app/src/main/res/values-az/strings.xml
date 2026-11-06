@@ -233,6 +233,8 @@
     </plurals>
     <string name="check_watch_battery">Saat batareyası</string>
     <string name="check_watch_battery_problem">%1$d %%-dən aşağı – gecəyə çatsın və səni oyada bilsin deyə saatını doldur.</string>
+    <string name="check_watch_pulse">Arxa planda nəbz (saat)</string>
+    <string name="check_watch_pulse_problem">Saata gecə nəbzini ölçməyə icazə verilmir – saatda Phase Wake üçün sensor icazəsini “Həmişə icazə verin” et.</string>
     <string name="export_contents_hint">Faylda hər gecə üçün hərəkət və nəbz sıraları var – adsız, tarixsiz və cihaz ID-siz.</string>
     <string name="editor_more">Daha çox</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ən çox %1$d siqnal – yenisini əlavə etmək üçün birini sil.</string>

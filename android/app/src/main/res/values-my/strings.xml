@@ -237,6 +237,8 @@
     </plurals>
     <string name="check_watch_battery">နာရီဘက်ထရီ</string>
     <string name="check_watch_battery_problem">%1$d %% အောက် – ညလုံးပေါက် ခံပြီး နှိုးနိုင်ရန် နာရီကို အားသွင်းပါ။</string>
+    <string name="check_watch_pulse">နောက်ခံ သွေးခုန်နှုန်း (နာရီ)</string>
+    <string name="check_watch_pulse_problem">နာရီသည် ညအချိန် သင့်သွေးခုန်နှုန်းကို တိုင်းခွင့်မရှိပါ – နာရီတွင် Phase Wake ၏ အာရုံခံကိရိယာ ခွင့်ပြုချက်ကို “အချိန်တိုင်း ခွင့်ပြုရန်” သို့ သတ်မှတ်ပါ။</string>
     <string name="export_contents_hint">ဖိုင်တွင် ညတစ်ညစီ၏ လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း အစဉ်များ ပါသည် – အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါ။</string>
     <string name="editor_more">နောက်ထပ်</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

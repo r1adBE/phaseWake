@@ -2,6 +2,11 @@
 
 Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
+## Erledigt am 06.11.2026 (Details in ENTSCHEIDE.md)
+
+- Galaxy Watch: Grund im Diagnose-Protokoll, wenn sie nicht messen darf (Fehler und Sensorrechte), und bei jedem stillen Abbruch der Einschlaf-Messung.
+- Nacht-Check am Handy warnt rot, wenn die Uhr den Puls nachts (im Hintergrund) nicht messen darf; die Diagnose zeigt den Stand.
+
 ## Erledigt am 04.11.2026 (Details in ENTSCHEIDE.md)
 
 - Review 04.11.: Verlauf der Apple Watch nicht in der Sicherung, Apple Watch nach einer Reise (einmal wecken, zur Ortszeit), Health Connect im Protokoll ohne App-Namen, CSV-Satz in DATENSCHUTZ.md, Fehler beim Rückfall der Apple Watch im Protokoll.

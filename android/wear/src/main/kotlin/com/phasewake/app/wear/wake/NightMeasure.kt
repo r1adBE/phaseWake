@@ -83,14 +83,15 @@ private fun WakeService.begin(plan: WakePlan) {
     // Hartes Zeitlimit: Klingeln und Schlummern sind lange vorher zu Ende.
     handler.postDelayed(hardLimit, Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0))
     if (locked) return
-    loadNight(current, canMeasure)
+    loadNight(current, canMeasure, healthRefusal)
 }
 
 /**
  * Lädt Wecker, kalibrierte Schwellen und den Stand vor einem Neustart des Dienstes in [current] und
- * setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen).
+ * setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen). [refusal]: Grund, warum ohne
+ * Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll.
  */
-private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
+private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: String?) {
     val plan = current.plan
     lifecycleScope.launch {
         // Wecker und kalibrierte Schwellen laden. Auch wenn schon geweckt wird (Neustart zur
@@ -114,7 +115,12 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean) {
         when (current.phase) {
             Phase.MEASURING -> {
                 val mode = if (current.exact) ", exact" else asleepAt?.let { ", asleep $it" }.orEmpty()
-                app.diag.log(DiagKind.MEASURE_START, if (canMeasure) "window ${plan.windowStart}$mode" else "no sensors, wake at target")
+                val detail = when {
+                    canMeasure -> "window ${plan.windowStart}$mode"
+                    refusal != null -> "no sensors: $refusal"
+                    else -> "no sensors, wake at target"
+                }
+                app.diag.log(DiagKind.MEASURE_START, detail)
                 current.detector = WakeDetector(config)
                 if (canMeasure) startSensors(current)
                 // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.

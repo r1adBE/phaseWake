@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">ඔරලෝසු බැටරිය</string>
     <string name="check_watch_battery_problem">%1$d %% ට අඩුයි – රාත්‍රිය පුරා පවතින්නට සහ ඔබව අවදි කිරීමට ඔරලෝසුව ආරෝපණය කරන්න.</string>
+    <string name="check_watch_pulse">පසුබිමේ නාඩිය (ඔරලෝසුව)</string>
+    <string name="check_watch_pulse_problem">ඔරලෝසුවට රාත්‍රියේ ඔබේ නාඩිය මැනීමට අවසර නැත – ඔරලෝසුවේ Phase Wake හි සංවේදක අවසරය “සෑම විටම ඉඩ දෙන්න” ලෙස සකසන්න.</string>
     <string name="export_contents_hint">ගොනුවේ එක් එක් රාත්‍රියේ චලන සහ හෘද ස්පන්දන ශ්‍රේණි ඇත – නම්, දින හෝ උපාංග ID නොමැතිව.</string>
     <string name="editor_more">තව</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

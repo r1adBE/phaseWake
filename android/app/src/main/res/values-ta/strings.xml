@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">வாட்ச் பேட்டரி</string>
     <string name="check_watch_battery_problem">%1$d %% க்குக் கீழ் – இரவு முழுவதும் நீடித்து உங்களை எழுப்ப வாட்ச்சைச் சார்ஜ் செய்யுங்கள்.</string>
+    <string name="check_watch_pulse">பின்னணியில் நாடித்துடிப்பு (வாட்ச்)</string>
+    <string name="check_watch_pulse_problem">இரவில் உன் நாடித்துடிப்பை அளக்க வாட்சுக்கு அனுமதி இல்லை – வாட்சில் Phase Wake-இன் சென்சார் அனுமதியை “எப்போதும் அனுமதி” என அமை.</string>
     <string name="export_contents_hint">கோப்பில் ஒவ்வொரு இரவுக்குமான அசைவு, இதயத் துடிப்புத் தொடர்கள் இருக்கும் – பெயர், தேதி, சாதன ID இல்லாமல்.</string>
     <string name="editor_more">மேலும்</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

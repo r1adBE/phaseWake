@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Urets batteri</string>
     <string name="check_watch_battery_problem">Under %1$d %% – oplad dit ur, så det holder natten igennem og kan vække dig.</string>
+    <string name="check_watch_pulse">Puls i baggrunden (ur)</string>
+    <string name="check_watch_pulse_problem">Uret må ikke måle din puls om natten – indstil på uret Phase Wakes sensortilladelse til “Tillad altid”.</string>
     <string name="export_contents_hint">Filen indeholder bevægelses- og pulsserier for hver nat – uden navne, datoer eller enheds-id’er.</string>
     <string name="editor_more">Mere</string>
     <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>

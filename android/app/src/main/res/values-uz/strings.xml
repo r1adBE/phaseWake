@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Soat batareyasi</string>
     <string name="check_watch_battery_problem">%1$d %% dan kam – tun boʻyi yetishi va seni uygʻota olishi uchun soatingni quvvatla.</string>
+    <string name="check_watch_pulse">Fonda puls (soat)</string>
+    <string name="check_watch_pulse_problem">Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy.</string>
     <string name="export_contents_hint">Faylda har bir tun uchun harakat va yurak urishi qatorlari bor – nomlar, sanalar va qurilma IDlarisiz.</string>
     <string name="editor_more">Yana</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

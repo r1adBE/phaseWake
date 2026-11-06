@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">वॉच की बैटरी</string>
     <string name="check_watch_battery_problem">%1$d %% से कम – अपनी वॉच चार्ज करें ताकि वह पूरी रात चले और आपको जगा सके।</string>
+    <string name="check_watch_pulse">बैकग्राउंड में पल्स (घड़ी)</string>
+    <string name="check_watch_pulse_problem">घड़ी रात में तुम्हारी पल्स नहीं माप सकती – घड़ी पर Phase Wake की सेंसर अनुमति “हमेशा अनुमति दें” पर सेट करो।</string>
     <string name="export_contents_hint">फ़ाइल में हर रात की हलचल और हृदय गति की शृंखलाएँ हैं – बिना नाम, तारीख या डिवाइस आईडी के।</string>
     <string name="editor_more">और</string>
     <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>

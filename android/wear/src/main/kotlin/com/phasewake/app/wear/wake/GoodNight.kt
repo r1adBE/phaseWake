@@ -11,7 +11,6 @@ import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.AutoOnset
 import com.phasewake.app.wear.schedule.DirectBoot
-import com.phasewake.app.wear.wake.WakeService.Companion.GOOD_NIGHT_MAX_AHEAD
 import com.phasewake.app.wear.wake.WakeService.Companion.ONSET_GIVE_UP
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
 import com.phasewake.app.wear.wake.WakeService.Companion.goodNightActive
@@ -37,11 +36,22 @@ import kotlinx.coroutines.launch
  * Die Messung endet spätestens [OnsetMonitor.MAX_DURATION] nach ihrem Beginn (auch nach dem Wiederaufnehmen) und
  * 15 Min vor der eingestellten Weckzeit; dann gilt diese, und für die Nacht startet keine automatische Messung mehr.
  * Die automatische Messung beginnt nicht unter [AutoOnset.MIN_BATTERY_PERCENT] Akku (Akku-Befund 03.11.2026).
+ * Beginnt sie nicht, steht der Grund im Diagnose-Protokoll («… not started: …»), ausser vor dem ersten Entsperren und
+ * wenn «Gute Nacht» schon wartet (der Prüf-Alarm nimmt sie alle 15 Minuten wieder auf).
  */
 internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean = false) {
+    val start = when {
+        auto -> "auto onset"
+        requestedAlarmId == null -> "onset resume"
+        else -> "onset"
+    }
+    // Vor dem Entsperren nicht lesbar (auch das Diagnose-Protokoll nicht).
+    val unlocked = DirectBoot.isUnlocked(this)
+    if (night != null && unlocked) app.diag.log(DiagKind.MEASURE_START, "$start not started: night running")
     if (night != null || onset != null || goodNightPending) return
-    // Vor dem Entsperren nicht lesbar. Ohne Sensorrechte kein Einschlaf-Modus: dann gilt die eingestellte Weckzeit.
-    if (!DirectBoot.isUnlocked(this) || !goForeground(Notifications.goodNight(this), measuring = true)) {
+    // Ohne Sensorrechte kein Einschlaf-Modus: dann gilt die eingestellte Weckzeit.
+    if (!unlocked || !goForeground(Notifications.goodNight(this), measuring = true)) {
+        if (unlocked) app.diag.log(DiagKind.MEASURE_START, "$start not started: no sensors: ${healthRefusal.orEmpty()}")
         forgetGoodNight()
         stopIfIdle()
         return
@@ -55,7 +65,10 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val alarmId = requestedAlarmId ?: resumed?.alarmId
         if (alarmId == null) {
             // Nichts wieder aufzunehmen.
-            if (stillWanted()) stopGoodNight()
+            if (stillWanted()) {
+                app.diag.log(DiagKind.MEASURE_START, "$start not started: nothing saved")
+                stopGoodNight()
+            }
             return@launch
         }
         val since = resumed?.since ?: Instant.now()
@@ -79,13 +92,15 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val plan = spec?.let { s -> latest?.let { AlarmSchedule.planAt(s, it) } }
         val windowBegun = plan != null && !Instant.now().isBefore(plan.windowStart)
         val alreadyDone = automatic && latest != null && app.onsets.isDone(alarmId, latest)
-        if (spec == null || (duration == null && !automatic) || latest == null || latestGiveUp == null ||
-            Duration.between(since, latest) > GOOD_NIGHT_MAX_AHEAD || (automatic && (windowBegun || alreadyDone))
-        ) {
-            if (stillWanted()) stopGoodNight()
+        val label = if (automatic) "auto onset" else "onset"
+        val notStarted = OnsetRules.notStartedReason(spec != null, duration != null, automatic, since, latest, windowBegun, alreadyDone)
+        if (notStarted != null || spec == null || latest == null || latestGiveUp == null) {
+            if (stillWanted()) {
+                app.diag.log(DiagKind.MEASURE_START, "$label not started: ${notStarted ?: "no alarm"}")
+                stopGoodNight()
+            }
             return@launch
         }
-        val label = if (automatic) "auto onset" else "onset"
         // Zeitgrenze schon vorbei (z. B. nach dem Wiederaufnehmen): Ende protokollieren, Nacht erledigt, Weckzeit gilt.
         OnsetRules.giveUpReason(Instant.now(), latestGiveUp, maxEnd)?.let { reason ->
             if (stillWanted()) endBeforeMeasuring(alarmId, latest, "$label $reason", DiagKind.MEASURE_END)

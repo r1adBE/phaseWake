@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">ઘડિયાળની બૅટરી</string>
     <string name="check_watch_battery_problem">%1$d %%થી ઓછી – ઘડિયાળ આખી રાત ચાલે અને તમને જગાડી શકે તે માટે તેને ચાર્જ કરો.</string>
+    <string name="check_watch_pulse">બૅકગ્રાઉન્ડમાં પલ્સ (ઘડિયાળ)</string>
+    <string name="check_watch_pulse_problem">ઘડિયાળ રાત્રે તારી પલ્સ માપી શકતી નથી – ઘડિયાળ પર Phase Wake ની સેન્સર પરવાનગી “હંમેશાં મંજૂરી આપો” પર સેટ કર.</string>
     <string name="export_contents_hint">ફાઇલમાં દરેક રાતની હલનચલન અને હૃદયના ધબકારાની શ્રેણીઓ છે – નામ, તારીખ કે ડિવાઇસ ID વગર.</string>
     <string name="editor_more">વધુ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

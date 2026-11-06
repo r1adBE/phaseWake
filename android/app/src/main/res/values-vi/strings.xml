@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">Pin đồng hồ</string>
     <string name="check_watch_battery_problem">Dưới %1$d %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn.</string>
+    <string name="check_watch_pulse">Nhịp tim trong nền (đồng hồ)</string>
+    <string name="check_watch_pulse_problem">Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”.</string>
     <string name="export_contents_hint">Tệp chứa chuỗi dữ liệu chuyển động và nhịp tim của từng đêm – không có tên, ngày hay ID thiết bị.</string>
     <string name="editor_more">Thêm</string>
     <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>

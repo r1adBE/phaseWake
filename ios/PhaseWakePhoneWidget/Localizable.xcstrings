@@ -47041,6 +47041,902 @@
         }
       }
     },
+    "check_watch_pulse": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polsslag in die agtergrond (horlosie)"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የዳራ ምት (ሰዓት)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النبض في الخلفية (الساعة)"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arxa planda nəbz (saat)"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс във фонов режим (часовник)"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ব্যাকগ্রাউন্ডে পালস (ঘড়ি)"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u pozadini (sat)"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pols en segon pla (rellotge)"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tep na pozadí (hodinky)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls i baggrunden (ur)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls im Hintergrund (Uhr)"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παλμός στο παρασκήνιο (ρολόι)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background pulse (watch)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en segundo plano (reloj)"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulss taustal (kell)"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pultsua atzeko planoan (erlojua)"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبض در پس‌زمینه (ساعت)"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syke taustalla (kello)"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso sa background (relo)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouls en arrière-plan (montre)"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuisle sa chúlra (uaireadóir)"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en segundo plano (reloxo)"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "બૅકગ્રાઉન્ડમાં પલ્સ (ઘડિયાળ)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דופק ברקע (שעון)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बैकग्राउंड में पल्स (घड़ी)"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u pozadini (sat)"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulzus a háttérben (óra)"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Զարկերակ ֆոնային ռեժիմում (ժամացույց)"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denyut di latar belakang (jam)"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Púls í bakgrunni (úr)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battito in background (orologio)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バックグラウンドの脈拍（ウォッチ）"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "პულსი ფონურ რეჟიმში (საათი)"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фондағы пульс (сағат)"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ជីពចរនៅផ្ទៃខាងក្រោយ (នាឡិកា)"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಹಿನ್ನೆಲೆಯಲ್ಲಿ ನಾಡಿ (ವಾಚ್)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백그라운드 심박(워치)"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຊີບພະຈອນໃນພື້ນຫຼັງ (ໂມງ)"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsas fone (laikrodis)"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulss fonā (pulkstenis)"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс во заднина (часовник)"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പശ്ചാത്തലത്തിലെ പൾസ് (വാച്ച്)"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Арын горимын судасны цохилт (цаг)"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बॅकग्राउंडमधील पल्स (घड्याळ)"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadi di latar belakang (jam)"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နောက်ခံ သွေးခုန်နှုန်း (နာရီ)"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls i bakgrunnen (klokke)"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पृष्ठभूमिमा पल्स (घडी)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hartslag op de achtergrond (horloge)"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਨਬਜ਼ (ਘੜੀ)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tętno w tle (zegarek)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em segundo plano (relógio)"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em segundo plano (relógio)"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls în fundal (ceas)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс в фоне (часы)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පසුබිමේ නාඩිය (ඔරලෝසුව)"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tep na pozadí (hodinky)"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utrip v ozadju (ura)"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsi në sfond (ora)"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс у позадини (сат)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls i bakgrunden (klocka)"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapigo ya moyo chinichini (saa)"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பின்னணியில் நாடித்துடிப்பு (வாட்ச்)"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "బ్యాక్‌గ్రౌండ్‌లో నాడి (వాచ్)"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ชีพจรในเบื้องหลัง (นาฬิกา)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arka planda nabız (saat)"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс у фоні (годинник)"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پس منظر میں نبض (گھڑی)"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonda puls (soat)"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhịp tim trong nền (đồng hồ)"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "背景心率（手錶）"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后台心率（手表）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "背景心率（手錶）"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukushaya kwenhliziyo ngemuva (iwashi)"
+          }
+        }
+      }
+    },
+    "check_watch_pulse_problem": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يُسمح للساعة بقياس نبضك ليلًا – على الساعة اضبط إذن المستشعرات لـ Phase Wake على «السماح طوال الوقت»."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saata gecə nəbzini ölçməyə icazə verilmir – saatda Phase Wake üçün sensor icazəsini “Həmişə icazə verin” et."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часовникът няма право да измерва пулса ти през нощта – на часовника задай разрешението за сензори на Phase Wake на „Разрешаване през цялото време“."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়িটি রাতে তোমার পালস মাপতে পারবে না – ঘড়িতে Phase Wake-এর সেন্সর অনুমতি “সব সময় অনুমতি দিন”-এ সেট করো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sat ne smije noću mjeriti tvoj puls – na satu postavi dozvolu za senzore za Phase Wake na „Dozvoli uvijek“."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El rellotge no pot mesurar-te el pols a la nit – al rellotge, posa el permís de sensors de Phase Wake a «Permet sempre»."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky nesmějí v noci měřit tvůj tep – na hodinkách nastav oprávnění senzorů pro Phase Wake na „Povolit vždy“."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uret må ikke måle din puls om natten – indstil på uret Phase Wakes sensortilladelse til “Tillad altid”."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το ρολόι δεν επιτρέπεται να μετρά τον παλμό σου τη νύχτα – στο ρολόι όρισε την άδεια αισθητήρων του Phase Wake σε «Να επιτρέπεται πάντα»."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El reloj no puede medir tu pulso por la noche – en el reloj, pon el permiso de sensores de Phase Wake en «Permitir todo el tiempo»."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kell ei tohi öösel su pulssi mõõta – määra kellas Phase Wake’i andurite luba valikule „Luba alati“."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlojuak ezin du gauez zure pultsua neurtu – erlojuan, ezarri Phase Wake-ren sentsore-baimena “Baimendu beti” aukeran."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعت اجازه ندارد شب‌ها نبضت را اندازه بگیرد – در ساعت، اجازهٔ حسگر Phase Wake را روی «همیشه مجاز است» بگذار."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kello ei saa mitata sykettäsi yöllä – aseta kellossa Phase Waken anturilupa tilaan ”Salli aina”."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La montre n’a pas le droit de mesurer ton pouls la nuit – sur la montre, règle l’autorisation des capteurs de Phase Wake sur « Toujours autoriser »."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળ રાત્રે તારી પલ્સ માપી શકતી નથી – ઘડિયાળ પર Phase Wake ની સેન્સર પરવાનગી “હંમેશાં મંજૂરી આપો” પર સેટ કર."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी रात में तुम्हारी पल्स नहीं माप सकती – घड़ी पर Phase Wake की सेंसर अनुमति “हमेशा अनुमति दें” पर सेट करो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sat ne smije noću mjeriti tvoj puls – na satu postavi dopuštenje za senzore za Phase Wake na „Dopusti uvijek”."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az óra éjjel nem mérheti a pulzusodat – az órán állítsd a Phase Wake érzékelőengedélyét „Mindig engedélyezett” értékre."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույցին թույլ չի տրվում գիշերը չափել զարկերակդ – ժամացույցում Phase Wake-ի սենսորների թույլտվությունը դրիր «Միշտ թույլատրել»։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tangan tidak boleh mengukur denyut nadimu di malam hari – di jam tangan, setel izin sensor Phase Wake ke “Izinkan sepanjang waktu”."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Úrið má ekki mæla púlsinn þinn á nóttunni – stilltu skynjaraheimild Phase Wake á úrinu á „Leyfa alltaf“."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’orologio non può misurare il tuo battito di notte – sull’orologio imposta l’autorizzazione sensori di Phase Wake su “Consenti sempre”."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォッチは夜間に脈拍を測定できません – ウォッチで Phase Wake のセンサーの権限を「常に許可」に設定してください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საათს ღამით შენი პულსის გაზომვის უფლება არ აქვს – საათზე Phase Wake-ის სენსორების ნებართვა დააყენე „ყოველთვის დაშვებაზე“."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "នាឡិកាមិនអាចវាស់ជីពចររបស់អ្នកនៅពេលយប់បានទេ – នៅលើនាឡិកា សូមកំណត់ការអនុញ្ញាតសេនស័ររបស់ Phase Wake ទៅ “អនុញ្ញាតគ្រប់ពេល”។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾಚ್ ರಾತ್ರಿ ನಿನ್ನ ನಾಡಿಯನ್ನು ಅಳೆಯಲು ಅನುಮತಿ ಇಲ್ಲ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ನ ಸೆನ್ಸರ್ ಅನುಮತಿಯನ್ನು “ಎಲ್ಲಾ ಸಮಯದಲ್ಲೂ ಅನುಮತಿಸಿ” ಗೆ ಹೊಂದಿಸು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "워치가 밤에 심박을 측정할 수 없어요 – 워치에서 Phase Wake의 센서 권한을 ‘항상 허용’으로 설정하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ວັດແທກຊີບພະຈອນຂອງເຈົ້າໃນຕອນກາງຄືນ – ໃນໂມງ ໃຫ້ຕັ້ງການອະນຸຍາດເຊັນເຊີຂອງ Phase Wake ເປັນ “ອະນຸຍາດຕະຫຼອດເວລາ”."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laikrodžiui neleidžiama naktį matuoti tavo pulso – laikrodyje nustatyk Phase Wake jutiklių leidimą į „Leisti visada“."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часовникот не смее да ти го мери пулсот ноќе – на часовникот постави ја дозволата за сензори на Phase Wake на „Дозволи секогаш“."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാച്ചിന് രാത്രിയിൽ നിന്റെ പൾസ് അളക്കാൻ അനുമതിയില്ല – വാച്ചിൽ Phase Wake-ന്റെ സെൻസർ അനുമതി “എല്ലായ്‌പ്പോഴും അനുവദിക്കുക” ആക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цаг шөнө судасны цохилтыг чинь хэмжих эрхгүй – цаган дээр Phase Wake-ийн мэдрэгчийн зөвшөөрлийг «Үргэлж зөвшөөрөх» болго."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळाला रात्री तुझी पल्स मोजण्याची परवानगी नाही – घड्याळावर Phase Wake ची सेन्सर परवानगी “नेहमी अनुमती द्या” वर सेट कर."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နာရီသည် ညအချိန် သင့်သွေးခုန်နှုန်းကို တိုင်းခွင့်မရှိပါ – နာရီတွင် Phase Wake ၏ အာရုံခံကိရိယာ ခွင့်ပြုချက်ကို “အချိန်တိုင်း ခွင့်ပြုရန်” သို့ သတ်မှတ်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokken får ikke måle pulsen din om natten – still inn sensortillatelsen for Phase Wake på klokken til «Tillat hele tiden»."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het horloge mag je hartslag ’s nachts niet meten – zet op het horloge de sensortoestemming van Phase Wake op ‘Altijd toestaan’."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ਨੂੰ ਰਾਤ ਨੂੰ ਤੇਰੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ – ਘੜੀ ’ਤੇ Phase Wake ਦੀ ਸੈਂਸਰ ਇਜਾਜ਼ਤ “ਹਮੇਸ਼ਾਂ ਇਜਾਜ਼ਤ ਦਿਓ” ’ਤੇ ਸੈੱਟ ਕਰ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zegarek nie może mierzyć twojego tętna w nocy – na zegarku ustaw uprawnienie czujników dla Phase Wake na „Zezwalaj zawsze”."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O relógio não pode medir seu pulso à noite – no relógio, defina a permissão de sensores do Phase Wake como “Permitir o tempo todo”."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O relógio não pode medir o teu pulso à noite – no relógio, define a autorização de sensores do Phase Wake como “Permitir sempre”."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceasul nu are voie să-ți măsoare pulsul noaptea – pe ceas, setează permisiunea pentru senzori a Phase Wake la „Permite oricând”."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часам не разрешено измерять твой пульс ночью – на часах установи для Phase Wake разрешение датчиков «Разрешить всегда»."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔරලෝසුවට රාත්‍රියේ ඔබේ නාඩිය මැනීමට අවසර නැත – ඔරලෝසුවේ Phase Wake හි සංවේදක අවසරය “සෑම විටම ඉඩ දෙන්න” ලෙස සකසන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora nuk lejohet të të matë pulsin natën – në orë, vendose lejen e sensorëve të Phase Wake në “Lejo gjithmonë”."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сат не сме ноћу да мери твој пулс – на сату подеси дозволу за сензоре за Phase Wake на „Дозволи увек“."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockan får inte mäta din puls på natten – ställ in Phase Wakes sensorbehörighet på klockan till ”Tillåt alltid”."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இரவில் உன் நாடித்துடிப்பை அளக்க வாட்சுக்கு அனுமதி இல்லை – வாட்சில் Phase Wake-இன் சென்சார் அனுமதியை “எப்போதும் அனுமதி” என அமை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "రాత్రి నీ నాడిని కొలవడానికి వాచ్‌కు అనుమతి లేదు – వాచ్‌లో Phase Wake సెన్సార్ అనుమతిని “ఎల్లప్పుడూ అనుమతించు”కు సెట్ చెయ్యి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Годиннику не дозволено вимірювати твій пульс уночі – на годиннику встанови для Phase Wake дозвіл датчиків «Дозволяти завжди»."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی کو رات میں تمہاری نبض ناپنے کی اجازت نہیں – گھڑی پر Phase Wake کی سینسر اجازت ”ہمیشہ اجازت دیں“ پر سیٹ کرو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶無法在夜間量度你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手表无法在夜间测量你的心率 – 请在手表上将 Phase Wake 的传感器权限设为“始终允许”。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶無法在夜間測量你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”."
+          }
+        }
+      }
+    },
     "check_watch_setup": {
       "localizations": {
         "af": {

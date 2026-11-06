@@ -332,6 +332,28 @@ internal object OnsetRules {
         return startNanos + boundary * OnsetMonitor.EPOCH_NANOS - lead
     }
 
+    /**
+     * Grund, warum «Gute Nacht» bzw. die automatische Messung ([automatic]) nicht beginnt, fürs Diagnose-Protokoll;
+     * `null`, wenn sie beginnen darf. [since]: Beginn, [latest]: eingestellte Weckzeit dieser Nacht (`null` = keine).
+     */
+    fun notStartedReason(
+        alarmFound: Boolean,
+        hasDuration: Boolean,
+        automatic: Boolean,
+        since: Instant,
+        latest: Instant?,
+        windowBegun: Boolean,
+        alreadyDone: Boolean,
+    ): String? = when {
+        !alarmFound -> "no alarm"
+        !hasDuration && !automatic -> "no sleep duration"
+        latest == null -> "no alarm time"
+        Duration.between(since, latest) > WakeRules.GOOD_NIGHT_MAX_AHEAD -> "too far ahead"
+        automatic && windowBegun -> "window begun"
+        automatic && alreadyDone -> "already done"
+        else -> null
+    }
+
     /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
     fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {
         at.isBefore(minOf(latestGiveUp, maxEnd)) -> null

@@ -258,6 +258,8 @@
     </plurals>
     <string name="check_watch_battery">Ceallra an uaireadóra</string>
     <string name="check_watch_battery_problem">Faoi %1$d %% – luchtaigh d’uaireadóir ionas go maireann sé an oíche agus gur féidir leis thú a dhúiseacht.</string>
+    <string name="check_watch_pulse">Cuisle sa chúlra (uaireadóir)</string>
+    <string name="check_watch_pulse_problem">Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”.</string>
     <string name="export_contents_hint">Tá sraitheanna gluaiseachta agus ráta croí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
     <string name="editor_more">Tuilleadh</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

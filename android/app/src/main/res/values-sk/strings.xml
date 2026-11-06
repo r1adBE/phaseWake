@@ -252,6 +252,8 @@
     </plurals>
     <string name="check_watch_battery">Batéria hodiniek</string>
     <string name="check_watch_battery_problem">Pod %1$d %% – nabi hodinky, aby vydržali celú noc a mohli ťa zobudiť.</string>
+    <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
+    <string name="check_watch_pulse_problem">Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“.</string>
     <string name="export_contents_hint">Súbor obsahuje údaje o pohybe a tepe za každú noc – bez mien, dátumov či ID zariadení.</string>
     <string name="editor_more">Viac</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

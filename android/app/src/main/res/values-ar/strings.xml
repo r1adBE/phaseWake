@@ -261,6 +261,8 @@
     </plurals>
     <string name="check_watch_battery">بطارية الساعة</string>
     <string name="check_watch_battery_problem">أقل من %1$d %% – اشحن ساعتك لتصمد طوال الليل وتوقظك.</string>
+    <string name="check_watch_pulse">النبض في الخلفية (الساعة)</string>
+    <string name="check_watch_pulse_problem">لا يُسمح للساعة بقياس نبضك ليلًا – على الساعة اضبط إذن المستشعرات لـ Phase Wake على «السماح طوال الوقت».</string>
     <string name="export_contents_hint">يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
     <string name="editor_more">المزيد</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>

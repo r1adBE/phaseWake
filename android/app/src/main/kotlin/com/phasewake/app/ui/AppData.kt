@@ -48,6 +48,7 @@ import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.WearSync
+import com.phasewake.app.shared.watchPulse
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.sounds.SoundRecorderService
 import com.phasewake.app.ui.history.HabitLines
@@ -352,6 +353,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     watchAppMissing = missingOn.isNotEmpty(),
                     watchKnowsSkip = knowsSkip,
                     watchOutdated = outdated,
+                    watchPulse = app.sync.watchPulse(),
                 )
                 check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
                 delay(NIGHT_CHECK_INTERVAL_MS)

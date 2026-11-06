@@ -246,6 +246,8 @@
     </plurals>
     <string name="check_watch_battery">Batterie de la montre</string>
     <string name="check_watch_battery_problem">Moins de %1$d %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller.</string>
+    <string name="check_watch_pulse">Pouls en arrière-plan (montre)</string>
+    <string name="check_watch_pulse_problem">La montre n’a pas le droit de mesurer ton pouls la nuit – sur la montre, règle l’autorisation des capteurs de Phase Wake sur « Toujours autoriser ».</string>
     <string name="export_contents_hint">Le fichier contient les séries de mouvement et de fréquence cardiaque de chaque nuit – sans noms, dates ni identifiants d’appareil.</string>
     <string name="editor_more">Plus</string>
     <string name="home_max_alarms">%1$d réveils au maximum – supprime-en un pour en ajouter un nouveau.</string>

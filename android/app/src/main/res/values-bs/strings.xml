@@ -248,6 +248,8 @@
     </plurals>
     <string name="check_watch_battery">Baterija sata</string>
     <string name="check_watch_battery_problem">Ispod %1$d %% – napuni sat kako bi izdržao noć i probudio te.</string>
+    <string name="check_watch_pulse">Puls u pozadini (sat)</string>
+    <string name="check_watch_pulse_problem">Sat ne smije noću mjeriti tvoj puls – na satu postavi dozvolu za senzore za Phase Wake na „Dozvoli uvijek“.</string>
     <string name="export_contents_hint">Datoteka sadrži nizove pokreta i pulsa za svaku noć – bez imena, datuma i ID-ova uređaja.</string>
     <string name="editor_more">Više</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

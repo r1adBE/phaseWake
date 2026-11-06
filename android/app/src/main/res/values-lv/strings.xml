@@ -248,6 +248,8 @@
     </plurals>
     <string name="check_watch_battery">Pulksteņa akumulators</string>
     <string name="check_watch_battery_problem">Zem %1$d %% – uzlādē pulksteni, lai tas izturētu visu nakti un varētu tevi pamodināt.</string>
+    <string name="check_watch_pulse">Pulss fonā (pulkstenis)</string>
+    <string name="check_watch_pulse_problem">Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”.</string>
     <string name="export_contents_hint">Failā ir katras nakts kustību un pulsa sērijas – bez vārdiem, datumiem un ierīču ID.</string>
     <string name="editor_more">Vairāk</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

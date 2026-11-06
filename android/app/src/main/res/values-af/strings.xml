@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Horlosiebattery</string>
     <string name="check_watch_battery_problem">Onder %1$d %% – laai jou horlosie sodat dit die nag hou en jou wakker kan maak.</string>
+    <string name="check_watch_pulse">Polsslag in die agtergrond (horlosie)</string>
+    <string name="check_watch_pulse_problem">Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”.</string>
     <string name="export_contents_hint">Die lêer bevat bewegings- en hartklopreekse vir elke nag – sonder name, datums of toestel-ID’s.</string>
     <string name="editor_more">Meer</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

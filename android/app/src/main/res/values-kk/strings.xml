@@ -233,6 +233,8 @@
     </plurals>
     <string name="check_watch_battery">Сағат батареясы</string>
     <string name="check_watch_battery_problem">%1$d %%-дан төмен – түнге жетіп, сені оятуы үшін сағатты зарядта.</string>
+    <string name="check_watch_pulse">Фондағы пульс (сағат)</string>
+    <string name="check_watch_pulse_problem">Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой.</string>
     <string name="export_contents_hint">Файлда әр түннің қозғалыс және жүрек соғысы қатарлары бар – атаусыз, күнсіз және құрылғы ID-сіз.</string>
     <string name="editor_more">Тағы</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ең көбі %1$d оятқыш – жаңасын қосу үшін біреуін жой.</string>

@@ -60,13 +60,13 @@ class WearSync(context: Context) {
     }
 
     /**
-     * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt).
+     * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt), mit Pulsrechten.
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
-    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null): Boolean {
+    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null): Boolean {
         var stored = false
         guarded("Status senden") {
-            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis())).await()
+            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse)).await()
             stored = true
         }
         return stored
@@ -126,7 +126,7 @@ class WearSync(context: Context) {
     }
 
     /** Liest das Status-Paket der Uhr mit [read]; `null`, wenn keines da ist oder die Wear-Dienste fehlen. */
-    private suspend fun <T> readStatus(read: (DataMap) -> T?): T? = try {
+    internal suspend fun <T> readStatus(read: (DataMap) -> T?): T? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
             items.firstOrNull()?.let { read(DataMapItem.fromDataItem(it).dataMap) }
@@ -312,11 +312,12 @@ class WearSync(context: Context) {
 
         /**
          * Status-Paket der Uhr mit den Feldern je Weckerzeile und dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser
-         * Version; [battery] fehlt, wenn unbekannt.
+         * Version; [battery] und [pulse] fehlen, wenn unbekannt.
          */
-        fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
+        fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
             if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            pulse?.let { WatchPulse.put(dataMap, it) }
             dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
             dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)

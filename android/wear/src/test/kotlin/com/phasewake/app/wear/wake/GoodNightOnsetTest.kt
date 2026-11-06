@@ -111,6 +111,20 @@ class GoodNightOnsetTest {
     }
 
     @Test
+    fun silentStopsLogTheirReason() {
+        battery(80)
+        val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
+        runBlocking { app.onsets.set(id, latest, null) }
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        assertTrue(awaitLog("auto onset not started: already done").kind == DiagKind.MEASURE_START)
+        assertNull(service.onset)
+        service.startGoodNight("unbekannt-$id")
+        awaitLog("onset not started: no alarm")
+        assertNull(service.onset)
+    }
+
+    @Test
     fun resumedAfterMaxDurationEndsWithLog() {
         // «Gute Nacht» seit über 2 Std. (Prozess war beendet): Wiederaufnehmen misst nicht mehr.
         val since = now.minus(OnsetMonitor.MAX_DURATION).minusSeconds(60)

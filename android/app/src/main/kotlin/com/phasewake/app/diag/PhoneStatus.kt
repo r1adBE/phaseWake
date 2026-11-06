@@ -8,6 +8,7 @@ import com.phasewake.app.core.DiagReport
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ring.plannedTarget
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.watchPulse
 import com.phasewake.app.ui.home.NightCheckState
 import java.time.Instant
 import java.time.ZoneId
@@ -45,6 +46,7 @@ internal object PhoneStatus {
             StatusLine(res.getString(R.string.check_notifications), yesNo(NightCheckState.hasNotificationPermission(context))),
             StatusLine(res.getString(R.string.check_watch), yesNo(app.sync.isReachable(DataLayer.CAPABILITY_WATCH))),
             StatusLine(res.getString(R.string.diag_watch_battery), battery?.let { "$it %" } ?: res.getString(R.string.diag_unknown)),
+            StatusLine(res.getString(R.string.check_watch_pulse), yesNo(app.sync.watchPulse()?.background)),
             StatusLine(res.getString(R.string.diag_watch_seen), app.sync.watchSeenAt()?.let { dateTime(Instant.ofEpochMilli(it)) } ?: res.getString(R.string.diag_unknown)),
             StatusLine(
                 res.getString(R.string.diag_versions),

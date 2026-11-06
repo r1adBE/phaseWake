@@ -41,6 +41,7 @@ import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
+import com.phasewake.app.shared.WatchPulse
 
 /**
  * Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Jede Prüfung hat einen Text
@@ -69,6 +70,12 @@ enum class Check(
      * Nicht in der Bereit-Liste: Ältere Uhren melden keinen Akkustand, ein Häkchen wäre dann geraten.
      */
     WATCH_BATTERY(R.string.check_watch_battery, R.string.check_watch_battery_problem, null, inReadyList = false),
+
+    /**
+     * Die Uhr darf den Puls nicht im Hintergrund messen ([WatchPulse.warns]): Nachts misst sie dann nicht und weckt nur
+     * zur Zielzeit. Nur auf der Uhr zu ändern, darum ohne Knopf; nicht in der Bereit-Liste: Ältere Uhren melden es nicht.
+     */
+    WATCH_PULSE(R.string.check_watch_pulse, R.string.check_watch_pulse_problem, null, inReadyList = false),
 
     /**
      * Phase Wake auf der Uhr ist älter und kennt «Überspringen» und «Feiertage» nicht (`Codec.watchKnowsSkip`): Die Uhr
@@ -117,7 +124,9 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt), [watchKnowsSkip] und [watchOutdated] (Version der Uhr).
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt), [watchKnowsSkip] und [watchOutdated] (Version der Uhr)
+         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung). Fehlen der Uhr schon allgemein Rechte
+         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da.
          */
         fun collect(
             context: Context,
@@ -127,6 +136,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchAppMissing: Boolean = false,
             watchKnowsSkip: Boolean = true,
             watchOutdated: Boolean = false,
+            watchPulse: WatchPulse? = null,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -134,6 +144,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     !watchReachable -> add(Check.WATCH)
                     watchReady == false -> add(Check.WATCH_SETUP)
                 }
+                if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (!watchKnowsSkip) add(Check.WATCH_UPDATE) else if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)

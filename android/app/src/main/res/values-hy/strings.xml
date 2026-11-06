@@ -233,6 +233,8 @@
     </plurals>
     <string name="check_watch_battery">Ժամացույցի մարտկոց</string>
     <string name="check_watch_battery_problem">%1$d %%-ից ցածր – լիցքավորիր ժամացույցդ, որ այն բավականացնի ամբողջ գիշերը և կարողանա քեզ արթնացնել։</string>
+    <string name="check_watch_pulse">Զարկերակ ֆոնային ռեժիմում (ժամացույց)</string>
+    <string name="check_watch_pulse_problem">Ժամացույցին թույլ չի տրվում գիշերը չափել զարկերակդ – ժամացույցում Phase Wake-ի սենսորների թույլտվությունը դրիր «Միշտ թույլատրել»։</string>
     <string name="export_contents_hint">Ֆայլը պարունակում է յուրաքանչյուր գիշերվա շարժման և սրտի զարկերի շարքեր – առանց անունների, ամսաթվերի և սարքի ID-ների։</string>
     <string name="editor_more">Ավելին</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Առավելագույնը %1$d զարթուցիչ – ջնջիր մեկը՝ նորն ավելացնելու համար։</string>

@@ -237,6 +237,8 @@
     </plurals>
     <string name="check_watch_battery">ថ្មនាឡិកា</string>
     <string name="check_watch_battery_problem">ក្រោម %1$d %% – សាកនាឡិកា ដើម្បីឲ្យវានៅបានពេញមួយយប់ និងអាចដាស់អ្នក។</string>
+    <string name="check_watch_pulse">ជីពចរនៅផ្ទៃខាងក្រោយ (នាឡិកា)</string>
+    <string name="check_watch_pulse_problem">នាឡិកាមិនអាចវាស់ជីពចររបស់អ្នកនៅពេលយប់បានទេ – នៅលើនាឡិកា សូមកំណត់ការអនុញ្ញាតសេនស័ររបស់ Phase Wake ទៅ “អនុញ្ញាតគ្រប់ពេល”។</string>
     <string name="export_contents_hint">ឯកសារមានស៊េរីចលនា និងចង្វាក់បេះដូងនៃយប់នីមួយៗ – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍។</string>
     <string name="editor_more">ច្រើនទៀត</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

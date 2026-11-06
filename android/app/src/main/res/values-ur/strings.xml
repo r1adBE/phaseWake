@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">گھڑی کی بیٹری</string>
     <string name="check_watch_battery_problem">%1$d %% سے کم – گھڑی چارج کرو تاکہ وہ پوری رات چلے اور تمہیں جگا سکے۔</string>
+    <string name="check_watch_pulse">پس منظر میں نبض (گھڑی)</string>
+    <string name="check_watch_pulse_problem">گھڑی کو رات میں تمہاری نبض ناپنے کی اجازت نہیں – گھڑی پر Phase Wake کی سینسر اجازت ”ہمیشہ اجازت دیں“ پر سیٹ کرو۔</string>
     <string name="export_contents_hint">فائل میں ہر رات کی حرکت اور دل کی دھڑکن کے سلسلے ہوتے ہیں – نام، تاریخ یا ڈیوائس آئی ڈی کے بغیر۔</string>
     <string name="editor_more">مزید</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

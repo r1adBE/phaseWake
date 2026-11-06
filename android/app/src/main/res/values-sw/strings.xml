@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Betri ya saa</string>
     <string name="check_watch_battery_problem">Chini ya %1$d %% – chaji saa yako ili idumu usiku mzima na iweze kukuamsha.</string>
+    <string name="check_watch_pulse">Mapigo ya moyo chinichini (saa)</string>
+    <string name="check_watch_pulse_problem">Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”.</string>
     <string name="export_contents_hint">Faili ina mfululizo wa mwendo na mapigo ya moyo kwa kila usiku – bila majina, tarehe wala vitambulisho vya kifaa.</string>
     <string name="editor_more">Zaidi</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

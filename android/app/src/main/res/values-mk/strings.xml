@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Батерија на часовникот</string>
     <string name="check_watch_battery_problem">Под %1$d %% – полни го часовникот за да издржи цела ноќ и да може да те разбуди.</string>
+    <string name="check_watch_pulse">Пулс во заднина (часовник)</string>
+    <string name="check_watch_pulse_problem">Часовникот не смее да ти го мери пулсот ноќе – на часовникот постави ја дозволата за сензори на Phase Wake на „Дозволи секогаш“.</string>
     <string name="export_contents_hint">Датотеката содржи серии на движење и пулс за секоја ноќ – без имиња, датуми или ID на уреди.</string>
     <string name="editor_more">Повеќе</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

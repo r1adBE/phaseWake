@@ -246,6 +246,8 @@
     </plurals>
     <string name="check_watch_battery">Batería del reloj</string>
     <string name="check_watch_battery_problem">Menos del %1$d %% – carga tu reloj para que aguante toda la noche y pueda despertarte.</string>
+    <string name="check_watch_pulse">Pulso en segundo plano (reloj)</string>
+    <string name="check_watch_pulse_problem">El reloj no puede medir tu pulso por la noche – en el reloj, pon el permiso de sensores de Phase Wake en «Permitir todo el tiempo».</string>
     <string name="export_contents_hint">El archivo contiene series de movimiento y frecuencia cardiaca de cada noche, sin nombres, fechas ni identificadores de dispositivos.</string>
     <string name="editor_more">Más</string>
     <string name="home_max_alarms">Máximo %1$d alarmas: elimina una para añadir otra.</string>

@@ -251,6 +251,8 @@
     </plurals>
     <string name="check_watch_battery">Baterie hodinek</string>
     <string name="check_watch_battery_problem">Pod %1$d %% – nabij hodinky, aby vydržely celou noc a mohly tě vzbudit.</string>
+    <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
+    <string name="check_watch_pulse_problem">Hodinky nesmějí v noci měřit tvůj tep – na hodinkách nastav oprávnění senzorů pro Phase Wake na „Povolit vždy“.</string>
     <string name="export_contents_hint">Soubor obsahuje průběh pohybu a tepu za každou noc – bez jmen, dat a ID zařízení.</string>
     <string name="editor_more">Další</string>
     <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>

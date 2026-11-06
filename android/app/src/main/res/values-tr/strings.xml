@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Saat pili</string>
     <string name="check_watch_battery_problem">Pil %1$d %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et.</string>
+    <string name="check_watch_pulse">Arka planda nabız (saat)</string>
+    <string name="check_watch_pulse_problem">Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla.</string>
     <string name="export_contents_hint">Dosya her gecenin hareket ve nabız serilerini içerir – ad, tarih veya cihaz kimliği olmadan.</string>
     <string name="editor_more">Daha fazla</string>
     <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>

@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Bateria e orës</string>
     <string name="check_watch_battery_problem">Nën %1$d %% – karikoje orën, që të mbajë gjithë natën dhe të të zgjojë.</string>
+    <string name="check_watch_pulse">Pulsi në sfond (ora)</string>
+    <string name="check_watch_pulse_problem">Ora nuk lejohet të të matë pulsin natën – në orë, vendose lejen e sensorëve të Phase Wake në “Lejo gjithmonë”.</string>
     <string name="export_contents_hint">Skedari përmban seritë e lëvizjes dhe të pulsit për çdo natë – pa emra, data ose ID pajisjesh.</string>
     <string name="editor_more">Më shumë</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

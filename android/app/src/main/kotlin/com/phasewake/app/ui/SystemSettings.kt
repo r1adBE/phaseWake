@@ -30,8 +30,8 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
         Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
         Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
         Check.WATCH_APP -> missingOn.firstOrNull()?.let { node -> openStoreOnWatch(context, node) }
-        Check.NOTIFICATIONS, Check.COMPANION, Check.WATCH, Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.WATCH_UPDATE, Check.WATCH_OUTDATED,
-        Check.BATTERY -> Unit
+        Check.NOTIFICATIONS, Check.COMPANION, Check.WATCH, Check.WATCH_SETUP, Check.WATCH_PULSE, Check.WATCH_BATTERY, Check.WATCH_UPDATE,
+        Check.WATCH_OUTDATED, Check.BATTERY -> Unit
     }
 }
 

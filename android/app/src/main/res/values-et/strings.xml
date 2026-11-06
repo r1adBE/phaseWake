@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Kella aku</string>
     <string name="check_watch_battery_problem">Alla %1$d %% – lae kella, et see peaks öö vastu ja saaks sind äratada.</string>
+    <string name="check_watch_pulse">Pulss taustal (kell)</string>
+    <string name="check_watch_pulse_problem">Kell ei tohi öösel su pulssi mõõta – määra kellas Phase Wake’i andurite luba valikule „Luba alati“.</string>
     <string name="export_contents_hint">Fail sisaldab iga öö liikumise ja pulsi andmeridu – ilma nimede, kuupäevade ja seadme ID-deta.</string>
     <string name="editor_more">Rohkem</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

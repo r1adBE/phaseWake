@@ -237,6 +237,8 @@
     </plurals>
     <string name="check_watch_battery">ແບັດເຕີຣີໂມງ</string>
     <string name="check_watch_battery_problem">ຕ່ຳກວ່າ %1$d %% – ສາກໂມງ ເພື່ອໃຫ້ໃຊ້ໄດ້ຕະຫຼອດຄືນ ແລະ ປຸກເຈົ້າໄດ້</string>
+    <string name="check_watch_pulse">ຊີບພະຈອນໃນພື້ນຫຼັງ (ໂມງ)</string>
+    <string name="check_watch_pulse_problem">ໂມງບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ວັດແທກຊີບພະຈອນຂອງເຈົ້າໃນຕອນກາງຄືນ – ໃນໂມງ ໃຫ້ຕັ້ງການອະນຸຍາດເຊັນເຊີຂອງ Phase Wake ເປັນ “ອະນຸຍາດຕະຫຼອດເວລາ”.</string>
     <string name="export_contents_hint">ໄຟລ໌ມີຂໍ້ມູນການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຫົວໃຈຂອງແຕ່ລະຄືນ – ບໍ່ມີຊື່ ວັນທີ ຫຼື ID ອຸປະກອນ</string>
     <string name="editor_more">ເພີ່ມເຕີມ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

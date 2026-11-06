@@ -251,6 +251,8 @@
     </plurals>
     <string name="check_watch_battery">Заряд часов</string>
     <string name="check_watch_battery_problem">Ниже %1$d %% – поставь часы на зарядку, чтобы их хватило на всю ночь и они смогли тебя разбудить.</string>
+    <string name="check_watch_pulse">Пульс в фоне (часы)</string>
+    <string name="check_watch_pulse_problem">Часам не разрешено измерять твой пульс ночью – на часах установи для Phase Wake разрешение датчиков «Разрешить всегда».</string>
     <string name="export_contents_hint">Файл содержит ряды движения и пульса за каждую ночь – без имён, дат и идентификаторов устройств.</string>
     <string name="editor_more">Ещё</string>
     <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>

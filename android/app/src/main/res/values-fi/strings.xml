@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Kellon akku</string>
     <string name="check_watch_battery_problem">Alle %1$d %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut.</string>
+    <string name="check_watch_pulse">Syke taustalla (kello)</string>
+    <string name="check_watch_pulse_problem">Kello ei saa mitata sykettäsi yöllä – aseta kellossa Phase Waken anturilupa tilaan ”Salli aina”.</string>
     <string name="export_contents_hint">Tiedosto sisältää jokaisen yön liike- ja sykesarjat – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
     <string name="editor_more">Lisää</string>
     <string name="home_max_alarms">Enintään %1$d herätystä – poista yksi lisätäksesi uuden.</string>

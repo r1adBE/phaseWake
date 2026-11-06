@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">باتری ساعت</string>
     <string name="check_watch_battery_problem">کمتر از %1$d %% – ساعت را شارژ کن تا تمام شب روشن بماند و بیدارت کند.</string>
+    <string name="check_watch_pulse">نبض در پس‌زمینه (ساعت)</string>
+    <string name="check_watch_pulse_problem">ساعت اجازه ندارد شب‌ها نبضت را اندازه بگیرد – در ساعت، اجازهٔ حسگر Phase Wake را روی «همیشه مجاز است» بگذار.</string>
     <string name="export_contents_hint">فایل شامل سری‌های حرکت و ضربان قلب هر شب است – بدون نام، تاریخ یا شناسه دستگاه.</string>
     <string name="editor_more">بیشتر</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>

@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Μπαταρία ρολογιού</string>
     <string name="check_watch_battery_problem">Κάτω από %1$d %% – φόρτισε το ρολόι σου, ώστε να αντέξει όλη τη νύχτα και να σε ξυπνήσει.</string>
+    <string name="check_watch_pulse">Παλμός στο παρασκήνιο (ρολόι)</string>
+    <string name="check_watch_pulse_problem">Το ρολόι δεν επιτρέπεται να μετρά τον παλμό σου τη νύχτα – στο ρολόι όρισε την άδεια αισθητήρων του Phase Wake σε «Να επιτρέπεται πάντα».</string>
     <string name="export_contents_hint">Το αρχείο περιέχει σειρές κίνησης και καρδιακών παλμών για κάθε νύχτα – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευών.</string>
     <string name="editor_more">Περισσότερα</string>
     <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>

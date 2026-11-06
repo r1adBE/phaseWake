@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Ibhethri lewashi</string>
     <string name="check_watch_battery_problem">Ngaphansi kuka-%1$d %% – shaja iwashi lakho ukuze lihlale ubusuku bonke futhi likuvuse.</string>
+    <string name="check_watch_pulse">Ukushaya kwenhliziyo ngemuva (iwashi)</string>
+    <string name="check_watch_pulse_problem">Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”.</string>
     <string name="export_contents_hint">Ifayela linochungechunge lokunyakaza nokushaya kwenhliziyo lobusuku ngabunye – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
     <string name="editor_more">Okwengeziwe</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

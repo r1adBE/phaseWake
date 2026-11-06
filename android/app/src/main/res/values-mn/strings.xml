@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Цагны батарей</string>
     <string name="check_watch_battery_problem">%1$d %%-иас бага – шөнөжин хүрч, чамайг сэрээж чадахын тулд цагаа цэнэглэ.</string>
+    <string name="check_watch_pulse">Арын горимын судасны цохилт (цаг)</string>
+    <string name="check_watch_pulse_problem">Цаг шөнө судасны цохилтыг чинь хэмжих эрхгүй – цаган дээр Phase Wake-ийн мэдрэгчийн зөвшөөрлийг «Үргэлж зөвшөөрөх» болго.</string>
     <string name="export_contents_hint">Файлд шөнө бүрийн хөдөлгөөн, зүрхний цохилтын цуваа бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
     <string name="editor_more">Бусад</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

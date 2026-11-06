@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">워치 배터리</string>
     <string name="check_watch_battery_problem">%1$d %% 미만 – 밤새 버티고 깨워 줄 수 있도록 워치를 충전해 주세요.</string>
+    <string name="check_watch_pulse">백그라운드 심박(워치)</string>
+    <string name="check_watch_pulse_problem">워치가 밤에 심박을 측정할 수 없어요 – 워치에서 Phase Wake의 센서 권한을 ‘항상 허용’으로 설정하세요.</string>
     <string name="export_contents_hint">파일에는 이름, 날짜, 기기 ID 없이 밤마다의 움직임 및 심박수 데이터가 들어 있습니다.</string>
     <string name="editor_more">더보기</string>
     <string name="home_max_alarms">알람은 최대 %1$d개입니다 – 새로 추가하려면 하나를 삭제하세요.</string>

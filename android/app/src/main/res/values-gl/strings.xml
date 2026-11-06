@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Batería do reloxo</string>
     <string name="check_watch_battery_problem">Menos do %1$d %% – carga o reloxo para que aguante a noite e poida espertarte.</string>
+    <string name="check_watch_pulse">Pulso en segundo plano (reloxo)</string>
+    <string name="check_watch_pulse_problem">O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”.</string>
     <string name="export_contents_hint">O ficheiro contén series de movemento e pulso de cada noite – sen nomes, datas nin ID de dispositivos.</string>
     <string name="editor_more">Máis</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

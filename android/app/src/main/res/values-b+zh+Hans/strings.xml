@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">手表电量</string>
     <string name="check_watch_battery_problem">低于 %1$d %% – 请给手表充电，以便它整夜运行并按时唤醒你。</string>
+    <string name="check_watch_pulse">后台心率（手表）</string>
+    <string name="check_watch_pulse_problem">手表无法在夜间测量你的心率 – 请在手表上将 Phase Wake 的传感器权限设为“始终允许”。</string>
     <string name="export_contents_hint">文件包含每晚的体动和心率序列，不含姓名、日期或设备 ID。</string>
     <string name="editor_more">更多</string>
     <string name="home_max_alarms">最多 %1$d 个闹钟 – 删除一个后才能新建。</string>

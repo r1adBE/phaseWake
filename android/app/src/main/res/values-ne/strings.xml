@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">घडीको ब्याट्री</string>
     <string name="check_watch_battery_problem">%1$d %% भन्दा कम – रातभर चलोस् र तिमीलाई ब्युँझाउन सकोस् भनेर घडी चार्ज गर।</string>
+    <string name="check_watch_pulse">पृष्ठभूमिमा पल्स (घडी)</string>
+    <string name="check_watch_pulse_problem">घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।</string>
     <string name="export_contents_hint">फाइलमा हरेक रातको चाल र मुटुको धड्कनको शृङ्खला हुन्छ – नाम, मिति वा डिभाइस ID बिना।</string>
     <string name="editor_more">थप</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

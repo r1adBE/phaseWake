@@ -238,6 +238,8 @@
     </plurals>
     <string name="check_watch_battery">手錶電量</string>
     <string name="check_watch_battery_problem">低於 %1$d %% – 請為手錶充電，讓它撐過整晚並叫醒你。</string>
+    <string name="check_watch_pulse">背景心率（手錶）</string>
+    <string name="check_watch_pulse_problem">手錶無法在夜間量度你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。</string>
     <string name="export_contents_hint">檔案包含每晚的動作和心率數據，不含姓名、日期或裝置 ID。</string>
     <string name="editor_more">更多</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

@@ -245,6 +245,8 @@
     </plurals>
     <string name="check_watch_battery">Watch battery</string>
     <string name="check_watch_battery_problem">Below %1$d %% – charge your watch so it lasts the night and can wake you.</string>
+    <string name="check_watch_pulse">Background pulse (watch)</string>
+    <string name="check_watch_pulse_problem">The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”.</string>
     <string name="export_contents_hint">The file contains motion and heart rate series for each night – without names, dates or device IDs.</string>
     <string name="editor_more">More</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

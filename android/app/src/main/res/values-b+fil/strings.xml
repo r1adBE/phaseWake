@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Baterya ng relo</string>
     <string name="check_watch_battery_problem">Mababa sa %1$d %% – i-charge ang relo mo para tumagal ito buong gabi at magising ka nito.</string>
+    <string name="check_watch_pulse">Pulso sa background (relo)</string>
+    <string name="check_watch_pulse_problem">Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”.</string>
     <string name="export_contents_hint">Laman ng file ang serye ng galaw at heart rate para sa bawat gabi – walang pangalan, petsa, o ID ng device.</string>
     <string name="editor_more">Higit pa</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

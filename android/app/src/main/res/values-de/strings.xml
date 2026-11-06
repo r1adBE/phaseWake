@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Akku der Uhr</string>
     <string name="check_watch_battery_problem">Unter %1$d %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt.</string>
+    <string name="check_watch_pulse">Puls im Hintergrund (Uhr)</string>
+    <string name="check_watch_pulse_problem">Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen.</string>
     <string name="export_contents_hint">Die Datei enthält Bewegungs- und Pulsreihen jeder Nacht – ohne Namen, Datum oder Geräte-IDs.</string>
     <string name="editor_more">Mehr</string>
     <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>

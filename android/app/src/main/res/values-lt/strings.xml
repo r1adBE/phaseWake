@@ -253,6 +253,8 @@
     </plurals>
     <string name="check_watch_battery">Laikrodžio baterija</string>
     <string name="check_watch_battery_problem">Mažiau nei %1$d %% – įkrauk laikrodį, kad jo užtektų visai nakčiai ir jis galėtų tave pažadinti.</string>
+    <string name="check_watch_pulse">Pulsas fone (laikrodis)</string>
+    <string name="check_watch_pulse_problem">Laikrodžiui neleidžiama naktį matuoti tavo pulso – laikrodyje nustatyk Phase Wake jutiklių leidimą į „Leisti visada“.</string>
     <string name="export_contents_hint">Faile yra kiekvienos nakties judesių ir pulso sekos – be vardų, datų ir įrenginių ID.</string>
     <string name="editor_more">Daugiau</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

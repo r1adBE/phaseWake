@@ -16,6 +16,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.Codec
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.WearSync
+import com.phasewake.app.wear.wake.SensorAccess
 import java.time.Clock
 import java.time.Duration
 import kotlin.math.abs
@@ -24,7 +25,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 /**
- * Uhr-Status fürs Handy (bereit für die Nacht, Akkustand), wie ihn der Nacht-Check am Handy zeigt.
+ * Uhr-Status fürs Handy (bereit für die Nacht, Akkustand, Pulsrechte), wie ihn der Nacht-Check am Handy zeigt.
  * Gesendet nur bei Bedarf, damit nicht jedes Neuplanen ein dringendes Datenpaket auslöst.
  */
 internal class WatchStatus(
@@ -37,7 +38,7 @@ internal class WatchStatus(
     private val lock = Mutex()
 
     /**
-     * Sendet den Status, aber nur bei Bedarf: Bereitschaft geändert, Akkustand um mindestens
+     * Sendet den Status, aber nur bei Bedarf: Bereitschaft oder Pulsrechte geändert, Akkustand um mindestens
      * [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne die Felder je Weckerzeile bzw.
      * den Verbindungs-Stand dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde
      * «aktualisieren»).
@@ -46,19 +47,24 @@ internal class WatchStatus(
     suspend fun publish(): Unit = lock.withLock {
         val ready = isReady()
         val battery = batteryPercent()
+        val pulse = SensorAccess.of(context).pulse()
         val now = clock().instant().toEpochMilli()
         val prefs = store.data.first()
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
-        val due = prefs[SENT_READY] != ready || prefs[SENT_FIELDS] != Codec.ALARM_FIELDS || prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL ||
+        val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate || prefs[SENT_PULSE_BACKGROUND] != pulse.background ||
+            prefs[SENT_FIELDS] != Codec.ALARM_FIELDS || prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
         // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
-        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04).
-        if (!sync.publishWatchReady(ready, battery)) return@withLock
+        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04), und die Pulsrechte: Ohne Puls im
+        // Hintergrund misst die Uhr nachts nicht, der Nacht-Check warnt dann.
+        if (!sync.publishWatchReady(ready, battery, pulse)) return@withLock
         store.edit {
             it[SENT_READY] = ready
+            it[SENT_PULSE] = pulse.heartRate
+            it[SENT_PULSE_BACKGROUND] = pulse.background
             it[SENT_AT] = now
             it[SENT_FIELDS] = Codec.ALARM_FIELDS
             it[SENT_PROTOCOL] = DataLayer.PROTOCOL
@@ -85,6 +91,8 @@ internal class WatchStatus(
         /** Zuletzt gesendeter Uhr-Status, siehe [publish]. */
         private val SENT_READY = booleanPreferencesKey("status_sent_ready")
         private val SENT_BATTERY = intPreferencesKey("status_sent_battery")
+        private val SENT_PULSE = booleanPreferencesKey("status_sent_pulse")
+        private val SENT_PULSE_BACKGROUND = booleanPreferencesKey("status_sent_pulse_background")
         private val SENT_AT = longPreferencesKey("status_sent_at")
         private val SENT_FIELDS = intPreferencesKey("status_sent_alarm_fields")
         private val SENT_PROTOCOL = intPreferencesKey("status_sent_protocol")

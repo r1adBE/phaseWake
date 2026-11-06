@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">แบตเตอรี่นาฬิกา</string>
     <string name="check_watch_battery_problem">ต่ำกว่า %1$d %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้</string>
+    <string name="check_watch_pulse">ชีพจรในเบื้องหลัง (นาฬิกา)</string>
+    <string name="check_watch_pulse_problem">นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”</string>
     <string name="export_contents_hint">ไฟล์มีข้อมูลการเคลื่อนไหวและอัตราการเต้นของหัวใจของแต่ละคืน โดยไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
     <string name="editor_more">เพิ่มเติม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>

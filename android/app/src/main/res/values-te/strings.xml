@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">వాచ్ బ్యాటరీ</string>
     <string name="check_watch_battery_problem">%1$d %% కంటే తక్కువ – రాత్రంతా పని చేసి మిమ్మల్ని లేపగలిగేలా వాచ్ ఛార్జ్ చేయండి.</string>
+    <string name="check_watch_pulse">బ్యాక్‌గ్రౌండ్‌లో నాడి (వాచ్)</string>
+    <string name="check_watch_pulse_problem">రాత్రి నీ నాడిని కొలవడానికి వాచ్‌కు అనుమతి లేదు – వాచ్‌లో Phase Wake సెన్సార్ అనుమతిని “ఎల్లప్పుడూ అనుమతించు”కు సెట్ చెయ్యి.</string>
     <string name="export_contents_hint">ఫైల్‌లో ప్రతి రాత్రి కదలిక, గుండె వేగం శ్రేణులు ఉంటాయి – పేర్లు, తేదీలు లేదా పరికర IDలు లేకుండా.</string>
     <string name="editor_more">మరిన్ని</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

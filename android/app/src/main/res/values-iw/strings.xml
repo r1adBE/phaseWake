@@ -246,6 +246,8 @@
     </plurals>
     <string name="check_watch_battery">סוללת השעון</string>
     <string name="check_watch_battery_problem">מתחת ל-%1$d %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם.</string>
+    <string name="check_watch_pulse">דופק ברקע (שעון)</string>
+    <string name="check_watch_pulse_problem">לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”.</string>
     <string name="export_contents_hint">הקובץ מכיל סדרות של תנועה ודופק לכל לילה – ללא שמות, תאריכים או מזהי מכשירים.</string>
     <string name="editor_more">עוד</string>
     <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>

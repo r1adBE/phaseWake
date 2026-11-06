@@ -243,6 +243,8 @@
     </plurals>
     <string name="check_watch_battery">Rafhlaða úrsins</string>
     <string name="check_watch_battery_problem">Undir %1$d %% – hladdu úrið svo það endist nóttina og geti vakið þig.</string>
+    <string name="check_watch_pulse">Púls í bakgrunni (úr)</string>
+    <string name="check_watch_pulse_problem">Úrið má ekki mæla púlsinn þinn á nóttunni – stilltu skynjaraheimild Phase Wake á úrinu á „Leyfa alltaf“.</string>
     <string name="export_contents_hint">Skráin inniheldur hreyfi- og púlsraðir fyrir hverja nótt – án nafna, dagsetninga eða tækjaauðkenna.</string>
     <string name="editor_more">Meira</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->

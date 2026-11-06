@@ -246,6 +246,8 @@
     </plurals>
     <string name="check_watch_battery">Bateria ceasului</string>
     <string name="check_watch_battery_problem">Sub %1$d %% – încarcă ceasul ca să reziste toată noaptea și să te poată trezi.</string>
+    <string name="check_watch_pulse">Puls în fundal (ceas)</string>
+    <string name="check_watch_pulse_problem">Ceasul nu are voie să-ți măsoare pulsul noaptea – pe ceas, setează permisiunea pentru senzori a Phase Wake la „Permite oricând”.</string>
     <string name="export_contents_hint">Fișierul conține seriile de mișcare și puls din fiecare noapte – fără nume, date sau ID-uri de dispozitiv.</string>
     <string name="editor_more">Mai multe</string>
     <string name="home_max_alarms">Maximum %1$d alarme – șterge una ca să adaugi una nouă.</string>

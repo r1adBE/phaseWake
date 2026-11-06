@@ -34,6 +34,7 @@ import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.wear.wake.SensorAccess
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
@@ -44,23 +45,12 @@ import kotlinx.coroutines.launch
 
 // Startbildschirm der Uhr mit Zustand: Wecker, Rechte, «Gute Nacht», Weckbildschirm nachholen.
 
-/** Laufzeit-Berechtigungen der Uhr; der Puls heisst ab Wear OS 6 anders. */
+/** Laufzeit-Berechtigungen der Uhr; der Puls heisst ab Wear OS 6 anders ([SensorAccess.heartRatePermission]). */
 private fun requiredPermissions(): List<String> = buildList {
-    add(if (Build.VERSION.SDK_INT >= 36) "android.permission.health.READ_HEART_RATE" else Manifest.permission.BODY_SENSORS)
+    add(SensorAccess.heartRatePermission())
     add(Manifest.permission.ACTIVITY_RECOGNITION)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) add(Manifest.permission.POST_NOTIFICATIONS)
 }
-
-/** Puls im Hintergrund (ab Wear OS 4); das System verlangt es getrennt und erst nach dem Pulsrecht. */
-private fun backgroundPermission(): String? = when {
-    Build.VERSION.SDK_INT >= 36 -> "android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND"
-    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> "android.permission.BODY_SENSORS_BACKGROUND"
-    else -> null
-}
-
-/** Das Vordergrundrecht für den Puls, ohne das es kein Hintergrundrecht gibt. */
-private fun heartRatePermission(): String =
-    if (Build.VERSION.SDK_INT >= 36) "android.permission.health.READ_HEART_RATE" else Manifest.permission.BODY_SENSORS
 
 @Composable
 internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: () -> Unit = {}, onDiagnostics: () -> Unit = {}) {
@@ -94,8 +84,8 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
 
     fun granted(permission: String) = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
     fun missing() = requiredPermissions().filterNot(::granted)
-    // Hintergrundrecht erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es ab).
-    fun missingBackground() = backgroundPermission()?.takeIf { granted(heartRatePermission()) && !granted(it) }
+    // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es ab).
+    fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf { granted(SensorAccess.heartRatePermission()) && !granted(it) }
     var missingPermissions by remember { mutableStateOf(missing()) }
     var backgroundMissing by remember { mutableStateOf(missingBackground()) }
     fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()

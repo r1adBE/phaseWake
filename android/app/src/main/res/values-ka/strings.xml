@@ -233,6 +233,8 @@
     </plurals>
     <string name="check_watch_battery">საათის ბატარეა</string>
     <string name="check_watch_battery_problem">%1$d %%-ზე ნაკლები – დატენე საათი, რომ ღამეს გაუძლოს და გაგაღვიძოს.</string>
+    <string name="check_watch_pulse">პულსი ფონურ რეჟიმში (საათი)</string>
+    <string name="check_watch_pulse_problem">საათს ღამით შენი პულსის გაზომვის უფლება არ აქვს – საათზე Phase Wake-ის სენსორების ნებართვა დააყენე „ყოველთვის დაშვებაზე“.</string>
     <string name="export_contents_hint">ფაილი შეიცავს თითოეული ღამის მოძრაობისა და პულსის მწკრივებს – სახელების, თარიღებისა და მოწყობილობის ID-ების გარეშე.</string>
     <string name="editor_more">მეტი</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">მაქსიმუმ %1$d მაღვიძარა – ახლის დასამატებლად ერთი წაშალე.</string>
