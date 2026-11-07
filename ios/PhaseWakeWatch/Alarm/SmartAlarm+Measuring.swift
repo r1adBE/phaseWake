@@ -140,12 +140,15 @@ extension SmartAlarm {
         }
     }
 
-    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M»),
-    /// ohne Messwerte. Nur während der Messung (`measuring`); `note` ergänzt den Grund (z. B. abgebrochen).
+    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M») sowie
+    /// die Kennzahlen der Schwellen (``NoiseFloor/summary(config:motions:)``: Grundrauschen, wirksame Leicht- und
+    /// Wach-Schwelle am Ende), ohne einzelne Messwerte. Nur während der Messung (`measuring`); `note` ergänzt den Grund
+    /// (z. B. abgebrochen).
     func logMeasureEnd(_ note: String = "") {
         guard phase.isMeasuring else { return }
         let withHeartRate = epochs.filter { $0.heartRate != nil }.count
-        DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count)\(note)")
+        let summary = NoiseFloor.summary(config: detector.config, motions: epochs.map(\.motion))
+        DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count), \(summary)\(note)")
     }
 
     /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.

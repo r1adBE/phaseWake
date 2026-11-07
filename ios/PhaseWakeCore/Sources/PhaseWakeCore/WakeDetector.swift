@@ -9,7 +9,11 @@
 public final class WakeDetector {
     private static let currentHeartRateEpochs = 2
 
-    private let config: DetectorConfig
+    /// Startwerte oder kalibrierte Schwellen; das Grundrauschen (``NoiseFloor``) hebt sie je Epoche höchstens an.
+    public let config: DetectorConfig
+
+    /// Alle Bewegungen dieses Fensters inkl. Aufwärmphase, fürs Grundrauschen (``NoiseFloor/floor(_:)``).
+    private var motions: [Double?] = []
 
     /// Die letzten entscheidbaren Epochen, höchstens `config.maxWindow`.
     private var recent: [Epoch] = []
@@ -34,6 +38,7 @@ public final class WakeDetector {
 
         let index = epochIndex
         epochIndex += 1
+        motions.append(epoch.motion)
         if index < config.warmupEpochs {
             if let heartRate = epoch.heartRate {
                 warmupHeartRateSum += heartRate
@@ -48,10 +53,12 @@ public final class WakeDetector {
         if recent.count == config.maxWindow { recent.removeFirst() }
         recent.append(epoch)
 
-        if hits(window: config.awakeWindow, threshold: config.wakeThreshold) >= config.awakeHits {
+        // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
+        let floor = NoiseFloor.floor(motions)
+        if hits(window: config.awakeWindow, threshold: NoiseFloor.wake(config: config, floor: floor)) >= config.awakeHits {
             return wake(.awake)
         }
-        if hits(window: config.lightWindow, threshold: config.lightThreshold) >= config.lightHits,
+        if hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits,
            heartRateRisen() {
             return wake(.lightSleep)
         }

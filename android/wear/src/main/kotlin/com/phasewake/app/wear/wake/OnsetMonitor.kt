@@ -16,10 +16,10 @@ import androidx.core.content.ContextCompat
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.NoiseFloor
 import com.phasewake.app.core.SleepOnset
 import java.time.Duration
 import java.time.Instant
-import java.util.Locale
 
 /**
  * Wartet nach «Gute Nacht» bzw. in der automatischen Einschlaf-Messung stromsparend auf das Einschlafen (Regel,
@@ -33,6 +33,10 @@ import java.util.Locale
  * Derselbe Alarm prüft die Zeitgrenze (ein Zeitgeber steht im Tiefschlaf still) und schreibt alle 15 Minuten eine
  * Zeile ins Diagnose-Protokoll ([OnsetRules.statLine]); das Ende der Messung steht immer im Protokoll ([stop]).
  *
+ * Ruhig heisst unter der wirksamen Leicht-Schwelle: [threshold], angehoben nach dem Grundrauschen der bisher gemessenen
+ * Epochen ([NoiseFloor]); bei jeder neuen Epoche neu berechnet und auf die ganze Strecke angewendet.
+ *
+ * @param threshold Leicht-Schwelle (Startwert oder kalibriert).
  * @param latestGiveUp 15 Min vor der eingestellten Weckzeit.
  * @param maxEnd Beginn der Messung + [MAX_DURATION]. Ab dem früheren der beiden: [onGiveUp] statt [onOnset].
  * @param label «auto onset» oder «onset»: Anfang der Zeilen im Diagnose-Protokoll.
@@ -59,6 +63,9 @@ class OnsetMonitor(
     private var session: SensorSession? = null
     private var reported = false
     private var ended = false
+
+    /** Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]); `null`, solange es zu wenige sind. */
+    private var floor: Double? = null
 
     /** Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich. */
     private var sampleFrom = 0L
@@ -131,7 +138,9 @@ class OnsetMonitor(
             measured += inSample
             if (inSample) period.add(epoch.motion)
         }
-        val index = if (s.continuous) SleepOnset.find(motions, threshold) else OnsetRules.find(motions, measured, threshold)
+        floor = NoiseFloor.floor(motions.filterIndexed { i, _ -> measured[i] })
+        val quiet = NoiseFloor.light(threshold, floor)
+        val index = if (s.continuous) SleepOnset.find(motions, quiet) else OnsetRules.find(motions, measured, quiet)
         if (index == null) return
         reported = true
         onOnset(started.plus(Duration.ofSeconds(index.toLong() * DetectorConfig.EPOCH_SECONDS)))
@@ -196,7 +205,7 @@ class OnsetMonitor(
             DiagKind.BATTERY,
             OnsetRules.statLine(
                 label, s.continuous, s.samples - period.samplesAtStart, period.epochs, period.empty, period.mean(), period.max,
-                threshold, (period.wakeLockMs + ongoing) / 1_000L, battery,
+                NoiseFloor.light(threshold, floor), floor, (period.wakeLockMs + ongoing) / 1_000L, battery,
             ),
         )
         if (sampling) wakeLockSince = SystemClock.elapsedRealtime()
@@ -363,7 +372,8 @@ internal object OnsetRules {
 
     /**
      * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche, Akku-Befund 03.11.2026): aufweckender Sensor (1/0),
-     * erhaltene Werte, gemessene Epochen, davon leer, mittlere/grösste Bewegung, Schwelle, Wakelock in Sekunden, Akku.
+     * erhaltene Werte, gemessene Epochen, davon leer, mittlere/grösste Bewegung, wirksame Schwelle, Grundrauschen
+     * ([NoiseFloor]), Wakelock in Sekunden, Akku.
      */
     fun statLine(
         label: String,
@@ -374,11 +384,12 @@ internal object OnsetRules {
         mean: Double?,
         max: Double?,
         threshold: Double,
+        floor: Double?,
         wakeLockSeconds: Long,
         battery: Int?,
     ): String {
-        fun f(v: Double?) = v?.let { String.format(Locale.ROOT, "%.4f", it) } ?: "-"
+        val f = NoiseFloor::format
         return "$label stat wake=${if (wakeUp) 1 else 0} samples=$samples epochs=$epochs empty=$empty " +
-            "motion=${f(mean)}/${f(max)} thr=${f(threshold)} wl=${wakeLockSeconds}s bat=${battery ?: "-"}"
+            "motion=${f(mean)}/${f(max)} thr=${f(threshold)} floor=${f(floor)} wl=${wakeLockSeconds}s bat=${battery ?: "-"}"
     }
 }

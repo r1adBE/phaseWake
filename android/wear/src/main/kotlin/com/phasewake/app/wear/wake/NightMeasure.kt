@@ -8,6 +8,7 @@ import com.phasewake.app.core.Decision
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.NoiseFloor
 import com.phasewake.app.core.ShortNight
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeDetector
@@ -152,6 +153,7 @@ private fun WakeService.startSensors(n: Night) {
 /** Messung für einen anderen Plan aufgeben, ohne Aufzeichnung und ohne Neuplanen (das folgt mit dem neuen Plan). */
 private fun WakeService.abandonMeasuring(n: Night) {
     Log.i(TAG, "Messung für ${n.plan.alarmId} verworfen, anderer Plan beginnt")
+    logMeasureEnd(n, ", replaced")
     WatchSunrise.stop(this)
     night = null
     measuringPlan = null
@@ -169,6 +171,7 @@ internal fun WakeService.cancelMeasuring() {
     val n = night ?: return
     if (n.phase != Phase.MEASURING) return
     Log.i(TAG, "Messung abgebrochen: Wecker geändert")
+    logMeasureEnd(n, ", cancelled")
     WatchSunrise.stop(this)
     night = null
     measuringPlan = null
@@ -200,6 +203,17 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
             return
         }
     }
+}
+
+/**
+ * Ende der Messung im Diagnose-Protokoll, einmal je Nacht (nur während [Phase.MEASURING], nicht vor dem ersten Entsperren):
+ * Epochen und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen, wirksame Leicht- und Wach-Schwelle am
+ * Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
+ */
+internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
+    if (n.phase != Phase.MEASURING || n.locked) return
+    val summary = NoiseFloor.summary(n.detector.config, n.epochs.map { it.motion })
+    app.diag.log(DiagKind.MEASURE_END, "watch ${n.epochs.size} epochs, $summary$note")
 }
 
 internal fun WakeService.onDeadline() {

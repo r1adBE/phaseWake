@@ -26,7 +26,7 @@ Mittelwert aller Pulswerte der Epoche. Werte ≤ 0, > 250 oder ungültig (NaN, u
 
 ## 3. Entscheidung je Epoche
 
-Startwerte (werden später kalibriert, siehe 4):
+Startwerte (werden später kalibriert, siehe 4, und nach dem Grundrauschen der Uhr angehoben, siehe 3a):
 
 | Name | Wert |
 |---|---|
@@ -40,13 +40,22 @@ Für jede Epoche mit Index *i*, in dieser Reihenfolge:
 
 1. **Bereits geweckt** → dieselbe Weck-Entscheidung wie zuvor.
 2. **Aufwärmphase** (*i* < 2) → warten.
-3. **Wach**: Unter den letzten 3 entscheidbaren Epochen (inkl. *i*) haben mindestens 2 eine Bewegung ≥ Wach-Schwelle → wecken, Grund `AWAKE`.
+3. **Wach**: Unter den letzten 3 entscheidbaren Epochen (inkl. *i*) haben mindestens 2 eine Bewegung ≥ Wach-Schwelle → wecken, Grund `AWAKE`. Leicht- und Wach-Schwelle sind hier und im nächsten Schritt die wirksamen Werte bei Epoche *i* (3a); sie gelten für alle Epochen im Fenster der Regel.
 4. **Leichtschlaf**: Unter den letzten 4 entscheidbaren Epochen (inkl. *i*) haben mindestens 2 eine Bewegung ≥ Leicht-Schwelle **und** die Pulsbedingung ist erfüllt → wecken, Grund `LIGHT_SLEEP`.
    - **Aktueller Puls** = Mittelwert der vorhandenen Pulse der Epochen *i* und *i−1* (nur entscheidbare).
    - **Pulsbedingung**: Basispuls und aktueller Puls müssen vorhanden sein, und es muss gelten: aktueller Puls ≥ Basispuls × 1.05. Fehlt einer der beiden, ist die Bedingung **nicht** erfüllt: Bewegung allein reicht nicht, um leichten Schlaf zu behaupten (dann weckt die Uhr zur Zielzeit, ausser die Wach-Regel greift).
 5. Sonst → warten.
 
 Leere Bewegung zählt nie als Treffer.
+
+### 3a. Schwelle relativ zum Rauschen der Uhr
+
+Befund 07.11.2026 (Galaxy Watch von r1AD, automatische Einschlaf-Messung, Werte nach Abzug von 0.05, je 15 Min Mittel/Maximum): still liegend 0.0194/0.0203, 0.0217/0.0287, 0.0233/0.0280, 0.0199/0.0202 m/s²; unruhig 0.2358/0.8285, 0.1121/0.5423, 0.1414/0.4128, 0.0933/0.3556 m/s². Mit der Leicht-Schwelle 0.002 (Kalibrierung höchstens 0.004) lag jede Epoche darüber: Die Einschlafzeit wurde nie erkannt, und im Weckfenster entschied für `LIGHT_SLEEP` allein der Puls.
+
+- **Grundrauschen** *F* = 20. Perzentil der vorhandenen Bewegungen der laufenden Messung bis und mit der aktuellen Epoche (Rangmethode: aufsteigend sortieren, Wert an Position ⌈0.2 · n⌉ = (n + 4) / 5 ganzzahlig, gezählt ab 1). Im Weckfenster zählen auch die Aufwärm-Epochen. Leere Bewegung zählt nicht. Weniger als 4 Werte → kein Grundrauschen. **Obergrenze** *F* ≤ 0.04 m/s²: Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten. 0.04 ist rund das Doppelte des stillen Mittels im Befund; so bleibt die wirksame Leicht-Schwelle ≤ 0.1 und die Wach-Schwelle ≤ 0.2.
+- **Wirksame Leicht-Schwelle** = max(Leicht-Schwelle, 2.5 · *F*), **wirksame Wach-Schwelle** = max(Wach-Schwelle, 5 · *F*). Ohne Grundrauschen gelten die Schwellen unverändert. Die Regel hebt nur an; die Kalibrierung (4) bleibt, wie sie ist.
+- Am Befund: *F* ≈ 0.02 → Leicht-Schwelle 0.05 (über dem stillen Maximum 0.0287), Wach-Schwelle 0.1. Eine Uhr mit kleinem Rauschen (*F* ≤ 0.0008) behält die Startwerte.
+- **Diagnose-Protokoll**: Am Ende jeder Messung im Weckfenster (`MEASURE_END`, Galaxy Watch und Apple Watch) `floor=… light=… wake=…` (Grundrauschen und wirksame Schwellen am Ende, «-» ohne Grundrauschen).
 
 **Zielzeit erreicht**, ohne dass geweckt wurde → wecken, Grund `DEADLINE`. Das löst der Weck-Dienst über einen eigenen Alarm aus, nicht die Epochen-Regel. Wecker «Genau» und kurze Nächte: siehe 8.
 
@@ -58,6 +67,8 @@ Ab 3 aufgezeichneten Nächten mit Messwerten werden die Schwellen pro Nutzer ang
 2. **Leicht-Schwelle** = 80. Perzentil dieser Werte (Rangmethode: aufsteigend sortieren, Wert an Position ⌈0.8 · n⌉, gezählt ab 1). Gedanke: In einer typischen Fensterzeit liegen rund 20 % der Epochen im Bereich leichter Bewegung.
 3. Begrenzen auf das 0.5- bis 2-Fache des Startwerts (0.001 bis 0.004 m/s²).
 4. **Wach-Schwelle** = Leicht-Schwelle × 50 (Verhältnis der Startwerte).
+
+Die kalibrierten Werte sind die Grundlage; das Grundrauschen der laufenden Messung hebt sie bei Bedarf an (3a).
 
 ## 5. Testnächte
 
@@ -74,7 +85,7 @@ motion,hr
 
 - `@expect <index> <AWAKE|LIGHT_SLEEP>` – erste Epoche, die weckt, mit Grund (nur die Epochen-Regel aus 3; `EXACT` und `SHORT_NIGHT` aus 8 entstehen erst im Weck-Dienst). `@expect none` – keine Epoche weckt (Wecken erst zur Zielzeit).
 - Danach die Kopfzeile `motion,hr` und eine Zeile pro Epoche; leeres Feld = leer.
-- Die Nächte gelten mit den Startwerten.
+- Die Nächte gelten mit den Startwerten (und dem Grundrauschen aus 3a). Die Nächte `noisy_watch_*` bilden eine Uhr mit Grundrauschen 0.02 m/s² nach (Befund 07.11.2026).
 
 Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte, ohne Namen exportierte Nächte kommen dazu, sobald es sie gibt.
 
@@ -82,13 +93,14 @@ Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte,
 
 Für Wecker mit Schlafdauer («nach 7½ Std.»). Ab «Gute Nacht» misst die Uhr Bewegung stromsparend in denselben 30-s-Epochen.
 
-- **Einschlafzeit** = Beginn der ersten Strecke von 30 aufeinanderfolgenden Epochen (15 Min), in denen die Bewegung vorhanden und kleiner als die Leicht-Schwelle ist. Leere Bewegung unterbricht die Strecke.
+- **Einschlafzeit** = Beginn der ersten Strecke von 30 aufeinanderfolgenden Epochen (15 Min), in denen die Bewegung vorhanden und kleiner als die wirksame Leicht-Schwelle ist. Leere Bewegung unterbricht die Strecke.
+- **Wirksame Leicht-Schwelle** wie in 3a, aus den bisher gemessenen Epochen dieser Messung; bei jeder neuen Epoche neu berechnet. Die ruhige Strecke muss mit der Schwelle gelten, die beim Entscheid gilt.
 - **Zielzeit** = Einschlafzeit + Schlafdauer, höchstens die eingestellte Weckzeit.
 - Die Messung dauert höchstens 2 Std. ab ihrem Beginn (auch nach dem Wiederaufnehmen) und endet spätestens 15 Min vor der eingestellten Weckzeit. Wird bis dahin keine Einschlafzeit gefunden, gilt die eingestellte Weckzeit.
 - «Gute Nacht» ist nur möglich, wenn die eingestellte Weckzeit höchstens 16 Std. entfernt ist.
 - **Messart (nur Galaxy Watch)**: Hat die Uhr einen aufweckenden Beschleunigungssensor, dessen Puffer mindestens 1500 Werte (60 s) fasst, misst sie durchgehend, bündelt bis 5 Min und hält keinen Wakelock; es gilt die Regel oben. Sonst misst sie in **Stichproben**: Alle 5 Min weckt ein Alarm die Uhr kurz vor einer Epochengrenze, sie misst 2 volle Epochen (60 s) unter einem kurzen Wakelock und schläft wieder. Nie ein Wakelock über die ganze Messung (Akku-Befund 03.11.2026: früher bis 16 Std., rund 6 % Akku pro Stunde).
 - **Einschlafzeit in Stichproben**: Ungemessene Epochen zwischen den Stichproben unterbrechen die Strecke nicht und zählen nicht. Die ruhigen gemessenen Epochen müssen von der ersten bis zur letzten mindestens 30 Epochen (15 Min) umfassen, also 4 Stichproben. Eine gemessene leere oder bewegte Epoche oder eine Lücke von mehr als 20 Epochen (10 Min, z. B. ein verpasster Alarm) beginnt von vorn. Sind alle Epochen gemessen, ist das genau die Regel oben.
-- **Diagnose-Protokoll**: Beginn mit Messart, alle 15 Min eine Zeile (aufweckender Sensor, erhaltene Werte, gemessene und davon leere Epochen, mittlere und grösste Bewegung, Schwelle, Wakelock-Sekunden, Akku) und immer das Ende mit Grund (eingeschlafen, aufgegeben, «max duration», abgebrochen, Fenster begonnen).
+- **Diagnose-Protokoll**: Beginn mit Messart, alle 15 Min eine Zeile (aufweckender Sensor, erhaltene Werte, gemessene und davon leere Epochen, mittlere und grösste Bewegung, wirksame Schwelle `thr=`, Grundrauschen `floor=`, Wakelock-Sekunden, Akku) und immer das Ende mit Grund (eingeschlafen, aufgegeben, «max duration», abgebrochen, Fenster begonnen).
 
 ## 7. Zuordnung zu Epochen
 

@@ -206,11 +206,11 @@ class OnsetMonitorTest {
 
     @Test
     fun statLineIsCompact() {
-        val line = OnsetRules.statLine("auto onset", false, 1500, 6, 1, 0.00123, 0.031, 0.002, 186, 43)
-        assertEquals("auto onset stat wake=0 samples=1500 epochs=6 empty=1 motion=0.0012/0.0310 thr=0.0020 wl=186s bat=43", line)
+        val line = OnsetRules.statLine("auto onset", false, 1500, 6, 1, 0.0234, 0.031, 0.05, 0.02, 186, 43)
+        assertEquals("auto onset stat wake=0 samples=1500 epochs=6 empty=1 motion=0.0234/0.0310 thr=0.0500 floor=0.0200 wl=186s bat=43", line)
         assertEquals(
-            "onset stat wake=1 samples=0 epochs=0 empty=0 motion=-/- thr=0.0020 wl=0s bat=-",
-            OnsetRules.statLine("onset", true, 0, 0, 0, null, null, 0.002, 0, null),
+            "onset stat wake=1 samples=0 epochs=0 empty=0 motion=-/- thr=0.0020 floor=- wl=0s bat=-",
+            OnsetRules.statLine("onset", true, 0, 0, 0, null, null, 0.002, null, 0, null),
         )
     }
 

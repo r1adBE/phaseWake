@@ -90,6 +90,34 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 60.0)), .wake(.awake))
     }
 
+    func testNoiseFloorRaisesLightThreshold() {
+        let detector = WakeDetector()
+        let quiet = Epoch(motion: 0.02, heartRate: 52.0)
+        _ = feed(detector, quiet, quiet, quiet, quiet)
+        // Rauschen 0.02 → Leicht-Schwelle 0.05: trotz Pulsanstieg kein leichter Schlaf (ohne Rauschen: geweckt).
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.02, heartRate: 60.0)), .wait)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.06, heartRate: 60.0)), .wait)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.06, heartRate: 60.0)), .wake(.lightSleep))
+    }
+
+    func testNoiseFloorRaisesWakeThreshold() {
+        let detector = WakeDetector()
+        let quiet = Epoch(motion: 0.03, heartRate: 52.0)
+        _ = feed(detector, quiet, quiet, quiet, quiet, quiet)
+        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
+        XCTAssertEqual(feed(detector, Epoch(motion: 0.12, heartRate: 52.0), Epoch(motion: 0.12, heartRate: 52.0)), [.wait, .wait])
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wait)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.awake))
+    }
+
+    func testRestlessStartStillWakesWithCappedFloor() {
+        let detector = WakeDetector()
+        let restless = Epoch(motion: 0.2358, heartRate: 52.0)
+        _ = feed(detector, Epoch(motion: 0.4128, heartRate: 52.0), restless, restless)
+        // Ohne Obergrenze: Rauschen 0.2358 → Wach-Schwelle 1.18, nie wach. Mit 0.04 → 0.2: wach.
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.4128, heartRate: 52.0)), .wake(.awake))
+    }
+
     func testInvalidConfigIsRejected() {
         XCTAssertThrowsError(try DetectorConfig(lightThreshold: 0.0))
         XCTAssertThrowsError(try DetectorConfig(wakeThreshold: 0.001))

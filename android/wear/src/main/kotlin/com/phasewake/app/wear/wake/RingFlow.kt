@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 internal fun WakeService.ring() {
     val n = night ?: return
     if (n.phase == Phase.RINGING) return
+    logMeasureEnd(n)
     handler.removeCallbacks(deadline)
     handler.removeCallbacks(snoozeEnd)
     n.sensors?.stop()

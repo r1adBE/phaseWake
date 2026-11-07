@@ -2,6 +2,10 @@
 
 Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
+## Erledigt am 07.11.2026 (Details in ENTSCHEIDE.md)
+
+- Bewegungsschwelle relativ zum Rauschen der Uhr: Auf der Galaxy Watch lag still liegend jede Epoche über der Leicht-Schwelle (Einschlafzeit nie erkannt, frühes Wecken nur nach Puls). Leicht- und Wach-Schwelle steigen jetzt mit dem Grundrauschen der Nacht (PHASENERKENNUNG.md 3a); Diagnose mit `floor=`.
+
 ## Erledigt am 06.11.2026 (Details in ENTSCHEIDE.md)
 
 - Galaxy Watch: Grund im Diagnose-Protokoll, wenn sie nicht messen darf (Fehler und Sensorrechte), und bei jedem stillen Abbruch der Einschlaf-Messung.

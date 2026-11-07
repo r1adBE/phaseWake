@@ -10,7 +10,13 @@ package com.phasewake.app.core
  * Reine Logik ohne Plattformabhängigkeit, damit sie mit aufgezeichneten Nächten testbar ist.
  * Die Swift-Umsetzung (`ios/PhaseWakeCore`) muss sich identisch verhalten.
  */
-class WakeDetector(private val config: DetectorConfig = DetectorConfig()) {
+class WakeDetector(
+    /** Startwerte oder kalibrierte Schwellen; das Grundrauschen ([NoiseFloor]) hebt sie je Epoche höchstens an. */
+    val config: DetectorConfig = DetectorConfig(),
+) {
+
+    /** Alle Bewegungen dieses Fensters inkl. Aufwärmphase, fürs Grundrauschen ([NoiseFloor.floor]). */
+    private val motions = mutableListOf<Double?>()
 
     /** Die letzten entscheidbaren Epochen, höchstens [DetectorConfig.maxWindow]. */
     private val recent = ArrayDeque<Epoch>(config.maxWindow)
@@ -29,6 +35,7 @@ class WakeDetector(private val config: DetectorConfig = DetectorConfig()) {
         result?.let { return it }
 
         val index = epochIndex++
+        motions += epoch.motion
         if (index < config.warmupEpochs) {
             epoch.heartRate?.let {
                 warmupHeartRateSum += it
@@ -43,10 +50,12 @@ class WakeDetector(private val config: DetectorConfig = DetectorConfig()) {
         if (recent.size == config.maxWindow) recent.removeFirst()
         recent.addLast(epoch)
 
-        if (hits(config.awakeWindow, config.wakeThreshold) >= config.awakeHits) {
+        // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
+        val floor = NoiseFloor.floor(motions)
+        if (hits(config.awakeWindow, NoiseFloor.wake(config, floor)) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
-        if (hits(config.lightWindow, config.lightThreshold) >= config.lightHits && heartRateRisen()) {
+        if (hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits && heartRateRisen()) {
             return wake(WakeReason.LIGHT_SLEEP)
         }
         return Decision.Wait

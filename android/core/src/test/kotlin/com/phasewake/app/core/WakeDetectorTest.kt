@@ -104,6 +104,37 @@ class WakeDetectorTest {
     }
 
     @Test
+    fun noiseFloorRaisesLightThreshold() {
+        val detector = WakeDetector()
+        val quiet = Epoch(0.02, 52.0)
+        detector.feed(quiet, quiet, quiet, quiet)
+        // Rauschen 0.02 → Leicht-Schwelle 0.05: trotz Pulsanstieg kein leichter Schlaf (ohne Rauschen: geweckt).
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.02, 60.0)))
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.06, 60.0)))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.06, 60.0)))
+    }
+
+    @Test
+    fun noiseFloorRaisesWakeThreshold() {
+        val detector = WakeDetector()
+        val quiet = Epoch(0.03, 52.0)
+        detector.feed(quiet, quiet, quiet, quiet, quiet)
+        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
+        assertEquals(listOf<Decision>(Decision.Wait, Decision.Wait), detector.feed(Epoch(0.12, 52.0), Epoch(0.12, 52.0)))
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.2, 52.0)))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.2, 52.0)))
+    }
+
+    @Test
+    fun restlessStartStillWakesWithCappedFloor() {
+        val detector = WakeDetector()
+        val restless = Epoch(0.2358, 52.0)
+        detector.feed(Epoch(0.4128, 52.0), restless, restless)
+        // Ohne Obergrenze: Rauschen 0.2358 → Wach-Schwelle 1.18, nie wach. Mit 0.04 → 0.2: wach.
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.4128, 52.0)))
+    }
+
+    @Test
     fun invalidConfigIsRejected() {
         assertFailsWith<IllegalArgumentException> { DetectorConfig(lightThreshold = 0.0) }
         assertFailsWith<IllegalArgumentException> { DetectorConfig(wakeThreshold = 0.001) }
