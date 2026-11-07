@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">你的闹钟正在进行中。</string>
     <string name="transient_alarm_soon">你的唤醒时间窗在那之前就开始了。</string>
     <string name="home_licenses_hint">许可证：见手机应用</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">记录夜间</string>
+    <string name="record_stop">停止记录</string>
+    <string name="record_since">自 %1$s 起</string>
+    <string name="notification_record_title">正在记录夜间数据</string>
+    <string name="record_battery_low">电量过低，无法记录</string>
 </resources>

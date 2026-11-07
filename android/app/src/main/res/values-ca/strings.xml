@@ -547,4 +547,14 @@
     <string name="chart_touch_hint">Toca o arrossega pel gràfic per veure els valors.</string>
     <string name="chart_nights_30">30 nits</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Enregistrament nocturn</string>
+    <string name="record_start">Enregistra la nit</string>
+    <string name="record_stop">Atura l’enregistrament</string>
+    <string name="record_since">S’enregistra des de les %1$s</string>
+    <string name="record_hint">El teu rellotge enregistra el moviment i el pols tota la nit, perquè després Phase Wake pugui aprendre els teus propis llindars.</string>
+    <string name="record_end_manual">Aturat</string>
+    <string name="record_end_cap">Acabat després de 12 h</string>
+    <string name="record_end_battery">Bateria del rellotge baixa</string>
+    <string name="record_end_interrupted">Interromput</string>
 </resources>

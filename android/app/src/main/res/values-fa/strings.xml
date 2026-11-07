@@ -531,4 +531,14 @@
     <string name="chart_touch_hint">برای دیدن مقادیر، نمودار را لمس کن یا روی آن بکش.</string>
     <string name="chart_nights_30">۳۰ شب</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">ضبط شبانه</string>
+    <string name="record_start">ضبط شب</string>
+    <string name="record_stop">توقف ضبط</string>
+    <string name="record_since">در حال ضبط از %1$s</string>
+    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند تا Phase Wake بعداً آستانه‌های خودت را یاد بگیرد.</string>
+    <string name="record_end_manual">متوقف شد</string>
+    <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
+    <string name="record_end_battery">باتری ساعت کم است</string>
+    <string name="record_end_interrupted">قطع شد</string>
 </resources>

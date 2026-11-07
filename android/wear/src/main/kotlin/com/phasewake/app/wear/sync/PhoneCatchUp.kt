@@ -70,7 +70,7 @@ object PhoneCatchUp {
     }
 
     /**
-     * Löscht die Nächte, die vor dem «Verlauf löschen» am Handy ([clearedAt], ms) liegen; spätere bleiben.
+     * Löscht die Nächte und Aufzeichnungen, die vor dem «Verlauf löschen» am Handy ([clearedAt], ms) liegen; spätere bleiben.
      * Ein schon angewendetes Löschen (gleicher oder älterer Zeitpunkt) wird übersprungen.
      */
     suspend fun applyClear(app: PhaseWakeWear, clearedAt: Long) {
@@ -83,6 +83,8 @@ object PhoneCatchUp {
             app.nights.clear()
             keep.forEach { app.nights.add(it) }
         }
+        // Aufzeichnungen ebenso: bis dahin beendete löschen, eine laufende bleibt.
+        app.recordings.clear(before = cut)
         store.edit { it[CLEAR_APPLIED_AT] = clearedAt }
     }
 

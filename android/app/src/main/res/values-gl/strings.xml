@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Toca ou arrastra polo gráfico para ver os valores.</string>
     <string name="chart_nights_30">30 noites</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Gravación nocturna</string>
+    <string name="record_start">Gravar a noite</string>
+    <string name="record_stop">Deter a gravación</string>
+    <string name="record_since">Gravando desde as %1$s</string>
+    <string name="record_hint">O teu reloxo rexistra o movemento e o pulso toda a noite, para que Phase Wake poida aprender máis adiante os teus propios limiares.</string>
+    <string name="record_end_manual">Detida</string>
+    <string name="record_end_cap">Rematou tras 12 h</string>
+    <string name="record_end_battery">Batería do reloxo baixa</string>
+    <string name="record_end_interrupted">Interrompida</string>
 </resources>

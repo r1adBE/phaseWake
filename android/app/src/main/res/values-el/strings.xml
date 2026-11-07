@@ -531,4 +531,14 @@
     <string name="chart_touch_hint">Άγγιξε ή σύρε πάνω στο γράφημα για να δεις τιμές.</string>
     <string name="chart_nights_30">30 νύχτες</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Καταγραφή νύχτας</string>
+    <string name="record_start">Κατέγραψε τη νύχτα</string>
+    <string name="record_stop">Διακοπή καταγραφής</string>
+    <string name="record_since">Καταγραφή από τις %1$s</string>
+    <string name="record_hint">Το ρολόι σου καταγράφει κίνηση και σφυγμό όλη τη νύχτα, ώστε το Phase Wake να μάθει αργότερα τα δικά σου όρια.</string>
+    <string name="record_end_manual">Διακόπηκε</string>
+    <string name="record_end_cap">Έληξε μετά από 12 ώρες</string>
+    <string name="record_end_battery">Χαμηλή μπαταρία ρολογιού</string>
+    <string name="record_end_interrupted">Διεκόπη</string>
 </resources>

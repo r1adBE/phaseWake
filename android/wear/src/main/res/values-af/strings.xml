@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Jou wekker loop nou.</string>
     <string name="transient_alarm_soon">Jou wekvenster begin voor dit.</string>
     <string name="home_licenses_hint">Lisensies: in die foon-app</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Neem nag op</string>
+    <string name="record_stop">Stop opname</string>
+    <string name="record_since">Sedert %1$s</string>
+    <string name="notification_record_title">Nag word opgeneem</string>
+    <string name="record_battery_low">Battery te laag om op te neem</string>
 </resources>

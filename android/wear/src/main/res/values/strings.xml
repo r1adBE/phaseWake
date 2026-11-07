@@ -92,4 +92,10 @@
     <string name="transient_alarm_running">Your alarm is running right now.</string>
     <string name="transient_alarm_soon">Your alarm window starts before that.</string>
     <string name="home_licenses_hint">Licenses: in the phone app</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Record night</string>
+    <string name="record_stop">Stop recording</string>
+    <string name="record_since">Since %1$s</string>
+    <string name="notification_record_title">Recording night</string>
+    <string name="record_battery_low">Battery too low to record</string>
 </resources>

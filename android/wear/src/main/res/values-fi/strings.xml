@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Herätyksesi on juuri käynnissä.</string>
     <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
     <string name="home_licenses_hint">Lisenssit: puhelimen sovelluksessa</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Tallenna yö</string>
+    <string name="record_stop">Lopeta tallennus</string>
+    <string name="record_since">Klo %1$s alkaen</string>
+    <string name="notification_record_title">Yötä tallennetaan</string>
+    <string name="record_battery_low">Akku liian vähissä tallennukseen</string>
 </resources>

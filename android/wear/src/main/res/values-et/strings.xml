@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Sinu äratus käib praegu.</string>
     <string name="transient_alarm_soon">Sinu äratusaken algab enne seda.</string>
     <string name="home_licenses_hint">Litsentsid: telefoni rakenduses</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Salvesta öö</string>
+    <string name="record_stop">Peata salvestus</string>
+    <string name="record_since">Alates %1$s</string>
+    <string name="notification_record_title">Öö salvestamine</string>
+    <string name="record_battery_low">Aku on salvestamiseks liiga tühi</string>
 </resources>

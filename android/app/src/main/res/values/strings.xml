@@ -536,4 +536,14 @@
     <string name="check_watch_outdated_text">Update Phase Wake on your watch so every alarm rings as set.</string>
     <string name="watch_store_opened">Play Store opened on your watch – have a look at it.</string>
     <string name="watch_store_failed">Couldn’t open the Play Store on your watch. Is it connected?</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Night recording</string>
+    <string name="record_start">Record night</string>
+    <string name="record_stop">Stop recording</string>
+    <string name="record_since">Recording since %1$s</string>
+    <string name="record_hint">Your watch records motion and pulse all night, so Phase Wake can later learn your own thresholds.</string>
+    <string name="record_end_manual">Stopped</string>
+    <string name="record_end_cap">Ended after 12 h</string>
+    <string name="record_end_battery">Watch battery low</string>
+    <string name="record_end_interrupted">Interrupted</string>
 </resources>

@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Qiymatlarni koʻrish uchun grafikka teg yoki ustidan surib oʻt.</string>
     <string name="chart_nights_30">30 tun</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Tungi yozuv</string>
+    <string name="record_start">Tunni yozib olish</string>
+    <string name="record_stop">Yozishni to‘xtatish</string>
+    <string name="record_since">%1$s dan beri yozilmoqda</string>
+    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi, shunda Phase Wake keyinroq sening shaxsiy chegaralaringni o‘rgana oladi.</string>
+    <string name="record_end_manual">To‘xtatildi</string>
+    <string name="record_end_cap">12 soatdan keyin tugadi</string>
+    <string name="record_end_battery">Soat batareyasi kam</string>
+    <string name="record_end_interrupted">Uzildi</string>
 </resources>

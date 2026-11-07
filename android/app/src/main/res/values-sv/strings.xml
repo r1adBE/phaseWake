@@ -531,4 +531,14 @@
     <string name="chart_touch_hint">Tryck eller dra över diagrammet för att se värden.</string>
     <string name="chart_nights_30">30 nätter</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Nattinspelning</string>
+    <string name="record_start">Spela in natten</string>
+    <string name="record_stop">Stoppa inspelning</string>
+    <string name="record_since">Spelar in sedan %1$s</string>
+    <string name="record_hint">Din klocka registrerar rörelse och puls hela natten, så att Phase Wake senare kan lära sig dina egna trösklar.</string>
+    <string name="record_end_manual">Stoppad</string>
+    <string name="record_end_cap">Avslutad efter 12 h</string>
+    <string name="record_end_battery">Klockans batteri är lågt</string>
+    <string name="record_end_interrupted">Avbruten</string>
 </resources>

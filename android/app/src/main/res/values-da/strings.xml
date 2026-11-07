@@ -531,4 +531,14 @@
     <string name="chart_touch_hint">Tryk eller træk hen over diagrammet for at se værdier.</string>
     <string name="chart_nights_30">30 nætter</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Natoptagelse</string>
+    <string name="record_start">Optag natten</string>
+    <string name="record_stop">Stop optagelse</string>
+    <string name="record_since">Optager siden %1$s</string>
+    <string name="record_hint">Dit ur optager bevægelse og puls hele natten, så Phase Wake senere kan lære dine egne tærskler.</string>
+    <string name="record_end_manual">Stoppet</string>
+    <string name="record_end_cap">Afsluttet efter 12 t</string>
+    <string name="record_end_battery">Urets batteri er lavt</string>
+    <string name="record_end_interrupted">Afbrudt</string>
 </resources>

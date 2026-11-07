@@ -517,4 +517,14 @@
     <string name="chart_touch_hint">Chạm hoặc kéo trên biểu đồ để xem giá trị.</string>
     <string name="chart_nights_30">30 đêm</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Ghi đêm</string>
+    <string name="record_start">Ghi lại đêm</string>
+    <string name="record_stop">Dừng ghi</string>
+    <string name="record_since">Đang ghi từ %1$s</string>
+    <string name="record_hint">Đồng hồ của bạn ghi chuyển động và nhịp tim suốt đêm, để sau này Phase Wake có thể học ngưỡng riêng của bạn.</string>
+    <string name="record_end_manual">Đã dừng</string>
+    <string name="record_end_cap">Kết thúc sau 12 giờ</string>
+    <string name="record_end_battery">Pin đồng hồ yếu</string>
+    <string name="record_end_interrupted">Bị gián đoạn</string>
 </resources>

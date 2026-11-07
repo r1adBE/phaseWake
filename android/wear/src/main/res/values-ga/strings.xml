@@ -100,4 +100,10 @@
     <string name="transient_alarm_running">Tá d’aláram ar siúl faoi láthair.</string>
     <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
     <string name="home_licenses_hint">Ceadúnais: san aip ar an bhfón</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Taifead an oíche</string>
+    <string name="record_stop">Stop an taifeadadh</string>
+    <string name="record_since">Ó %1$s</string>
+    <string name="notification_record_title">Ag taifeadadh na hoíche</string>
+    <string name="record_battery_low">Ceallra ró-íseal le taifeadadh</string>
 </resources>

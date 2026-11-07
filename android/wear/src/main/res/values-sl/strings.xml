@@ -96,4 +96,10 @@
     <string name="transient_alarm_running">Tvoja budilka je ravno aktivna.</string>
     <string name="transient_alarm_soon">Tvoje okno bujenja se začne že prej.</string>
     <string name="home_licenses_hint">Licence: v aplikaciji na telefonu</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Posnemi noč</string>
+    <string name="record_stop">Ustavi snemanje</string>
+    <string name="record_since">Od %1$s</string>
+    <string name="notification_record_title">Noč se snema</string>
+    <string name="record_battery_low">Baterija je prešibka za snemanje</string>
 </resources>

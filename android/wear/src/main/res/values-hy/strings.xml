@@ -85,4 +85,10 @@
     <string name="transient_alarm_running">Զարթուցիչդ հենց հիմա աշխատում է։</string>
     <string name="transient_alarm_soon">Զարթուցիչիդ պատուհանը սկսվում է դրանից առաջ։</string>
     <string name="home_licenses_hint">Լիցենզիաներ՝ հեռախոսի հավելվածում</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Գրառել գիշերը</string>
+    <string name="record_stop">Դադարեցնել գրառումը</string>
+    <string name="record_since">%1$s-ից</string>
+    <string name="notification_record_title">Գիշերը գրառվում է</string>
+    <string name="record_battery_low">Մարտկոցը շատ թույլ է գրառման համար</string>
 </resources>

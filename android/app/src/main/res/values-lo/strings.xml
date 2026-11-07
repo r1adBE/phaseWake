@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">ແຕະ ຫຼື ລາກຜ່ານແຜນພູມເພື່ອເບິ່ງຄ່າ.</string>
     <string name="chart_nights_30">30 ຄືນ</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">ການບັນທຶກກາງຄືນ</string>
+    <string name="record_start">ບັນທຶກກາງຄືນ</string>
+    <string name="record_stop">ຢຸດການບັນທຶກ</string>
+    <string name="record_since">ກຳລັງບັນທຶກຕັ້ງແຕ່ %1$s</string>
+    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ ເພື່ອໃຫ້ Phase Wake ຮຽນຮູ້ເກນຂອງເຈົ້າເອງໄດ້ໃນພາຍຫຼັງ.</string>
+    <string name="record_end_manual">ຢຸດແລ້ວ</string>
+    <string name="record_end_cap">ສິ້ນສຸດຫຼັງ 12 ຊມ</string>
+    <string name="record_end_battery">ແບັດເຕີຣີໂມງຕ່ຳ</string>
+    <string name="record_end_interrupted">ຖືກຂັດຈັງຫວະ</string>
 </resources>

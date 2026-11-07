@@ -56,6 +56,10 @@ internal class WatchHomeExtras(
     val now: Instant? = null,
     /** Schlafziel vom Handy in Minuten (ohne Handy der Standard); setzt den Einschlafpunkt auf dem Ring. */
     val sleepGoalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    /** Beginn der laufenden Aufzeichnung («Nacht aufzeichnen»); `null` = keine. */
+    val recordSince: Instant? = null,
+    /** Aufzeichnung starten oder stoppen; `null` = kein Chip. */
+    val onRecord: (() -> Unit)? = null,
 )
 
 /** Chip «Powernap»: öffnet die Dauerwahl; läuft einer, «Bis 14:20» und antippen beendet ihn. */

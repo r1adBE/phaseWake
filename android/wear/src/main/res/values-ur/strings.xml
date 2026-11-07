@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">تمہارا الارم ابھی چل رہا ہے۔</string>
     <string name="transient_alarm_soon">تمہاری جاگنے کی ونڈو اس سے پہلے شروع ہوتی ہے۔</string>
     <string name="home_licenses_hint">لائسنس: فون ایپ میں</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">رات ریکارڈ کرو</string>
+    <string name="record_stop">ریکارڈنگ روکو</string>
+    <string name="record_since">%1$s سے</string>
+    <string name="notification_record_title">رات ریکارڈ ہو رہی ہے</string>
+    <string name="record_battery_low">ریکارڈ کرنے کے لیے بیٹری بہت کم ہے</string>
 </resources>

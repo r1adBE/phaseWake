@@ -25,6 +25,8 @@ import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.diag.WatchDiag
+import com.phasewake.app.wear.record.RecordControl
+import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.sync.TransientInbox
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -165,7 +167,7 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
     )
 }
 
-/** Powernap, Überspringen und Diagnose (7× auf das Weckfenster, ab dem 4. Mal «Noch N Mal»). */
+/** Powernap, Aufzeichnen, Überspringen und Diagnose (7× auf das Weckfenster, ab dem 4. Mal «Noch N Mal»). */
 @Composable
 private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnostics: () -> Unit): WatchHomeExtras {
     val context = LocalContext.current
@@ -177,6 +179,7 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
     val sleepGoal by app.sleepGoal.minutes.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
     var taps by remember { mutableIntStateOf(0) }
     val locale = LocalConfiguration.current.locales[0]
+    val recordSince by RecordService.since.collectAsStateWithLifecycle()
     return WatchHomeExtras(
         nap = transient?.takeIf { it.kind == TransientKind.NAP && Transient.isActive(it, now) },
         onNap = onNap,
@@ -197,6 +200,14 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
         onDiagnostics = onDiagnostics,
         now = now,
         sleepGoalMinutes = sleepGoal,
+        recordSince = recordSince,
+        onRecord = {
+            when {
+                recordSince != null -> RecordControl.stopFromWatch(context)
+                // Zu wenig Akku: nichts starten (der Wecker hat Vorrang), nur ein kurzer Hinweis.
+                !RecordControl.startFromWatch(context) -> Toast.makeText(context, R.string.record_battery_low, Toast.LENGTH_SHORT).show()
+            }
+        },
     )
 }
 

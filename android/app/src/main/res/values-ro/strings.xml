@@ -545,4 +545,14 @@
     <string name="chart_touch_hint">Atinge sau trage peste grafic pentru a vedea valorile.</string>
     <string name="chart_nights_30">30 nopți</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Înregistrare de noapte</string>
+    <string name="record_start">Înregistrează noaptea</string>
+    <string name="record_stop">Oprește înregistrarea</string>
+    <string name="record_since">Se înregistrează din %1$s</string>
+    <string name="record_hint">Ceasul tău înregistrează mișcarea și pulsul toată noaptea, ca Phase Wake să poată învăța mai târziu pragurile tale proprii.</string>
+    <string name="record_end_manual">Oprită</string>
+    <string name="record_end_cap">Încheiată după 12 h</string>
+    <string name="record_end_battery">Bateria ceasului e slabă</string>
+    <string name="record_end_interrupted">Întreruptă</string>
 </resources>

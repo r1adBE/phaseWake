@@ -545,4 +545,14 @@
     <string name="chart_touch_hint">אפשר לגעת בתרשים או לגרור עליו כדי לראות ערכים.</string>
     <string name="chart_nights_30">30 לילות</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">הקלטת לילה</string>
+    <string name="record_start">הקלטת הלילה</string>
+    <string name="record_stop">עצירת ההקלטה</string>
+    <string name="record_since">מקליט מאז %1$s</string>
+    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה, כדי ש-Phase Wake יוכל ללמוד בהמשך את הספים האישיים שלך.</string>
+    <string name="record_end_manual">נעצרה</string>
+    <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
+    <string name="record_end_battery">הסוללה של השעון חלשה</string>
+    <string name="record_end_interrupted">נקטעה</string>
 </resources>

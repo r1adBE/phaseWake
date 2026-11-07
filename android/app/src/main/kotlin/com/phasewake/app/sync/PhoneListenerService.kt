@@ -10,6 +10,7 @@ import com.phasewake.app.ring.cancelSnoozeOf
 import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.google.android.gms.wearable.DataEvent
@@ -20,7 +21,7 @@ import com.google.android.gms.wearable.WearableListenerService
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte, Status, Weck- und Stopp-Meldungen. */
+/** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte und Aufzeichnungen, Status, Weck- und Stopp-Meldungen. */
 class PhoneListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -47,6 +48,15 @@ class PhoneListenerService : WearableListenerService() {
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)
             }
+            // «Nacht aufzeichnen»: abgeschlossene Aufzeichnungen speichern (dann das Paket löschen) und den Stand merken.
+            changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_RECORDING_PREFIX) }.forEach { item ->
+                val recording = RecordSync.readRecording(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
+                app.recordings.put(recording)
+                app.diag.log(DiagKind.SYNC, "recording received epochs=${recording.epochs.size} end=${recording.endReason?.code}")
+                app.sync.delete(item.uri)
+            }
+            changed.lastOrNull { it.uri.path == DataLayer.PATH_RECORD_STATUS }
+                ?.let { app.recordStatus.value = RecordSync.readStatus(DataMapItem.fromDataItem(it).dataMap) }
             // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
             changed.filter { it.uri.path == DataLayer.PATH_ONSET_SHIFT }
                 .mapNotNull { OnsetShift.read(DataMapItem.fromDataItem(it).dataMap) }

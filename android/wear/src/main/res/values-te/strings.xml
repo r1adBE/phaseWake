@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">మీ అలారం ప్రస్తుతం నడుస్తోంది.</string>
     <string name="transient_alarm_soon">మీ నిద్రలేపే వ్యవధి దానికంటే ముందే మొదలవుతుంది.</string>
     <string name="home_licenses_hint">లైసెన్స్‌లు: ఫోన్ యాప్‌లో</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">రాత్రిని రికార్డ్ చేయి</string>
+    <string name="record_stop">రికార్డింగ్ ఆపు</string>
+    <string name="record_since">%1$s నుండి</string>
+    <string name="notification_record_title">రాత్రి రికార్డ్ అవుతోంది</string>
+    <string name="record_battery_low">రికార్డ్ చేయడానికి బ్యాటరీ చాలా తక్కువ</string>
 </resources>

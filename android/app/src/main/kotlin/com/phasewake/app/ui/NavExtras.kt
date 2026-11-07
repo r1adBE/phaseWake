@@ -9,11 +9,14 @@ import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.TestRuns
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.holidays.HolidayCountry
+import com.phasewake.app.shared.NightRecording
+import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.transient.Transients
 import com.phasewake.app.ui.home.HomeExtras
 import com.phasewake.app.ui.settings.BackupRows
@@ -62,9 +65,16 @@ private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientCon
 
 /**
  * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [skipAllowed]: Die Uhr kennt «Überspringen»
- * (`Codec.watchKnowsSkip`); sonst kein Menü, denn die Uhr weckte trotzdem.
+ * (`Codec.watchKnowsSkip`); sonst kein Menü, denn die Uhr weckte trotzdem. [record]: Stand von «Nacht aufzeichnen» der
+ * Uhr; `null` (Uhr kennt es nicht): keine Karte.
  */
-internal fun homeExtras(app: PhaseWakeApp, data: AppData, skipAllowed: Boolean = true, now: Instant = Instant.now()): HomeExtras {
+internal fun homeExtras(
+    app: PhaseWakeApp,
+    data: AppData,
+    skipAllowed: Boolean = true,
+    now: Instant = Instant.now(),
+    record: RecordSync.RecordStatus? = null,
+): HomeExtras {
     val transient = data.transient?.takeIf { Transient.isActive(it, now) }
     return HomeExtras(
         holidays = data.holidays,
@@ -85,7 +95,26 @@ internal fun homeExtras(app: PhaseWakeApp, data: AppData, skipAllowed: Boolean =
         testAt = data.testRun?.takeIf { transient?.kind == TransientKind.TEST && !TestRuns.isFinished(it, now) }?.target,
         autoOnset = data.autoOnset,
         sleepGoal = data.sleepGoal,
+        record = record,
+        onRecord = { start -> sendRecord(app, start) },
     )
+}
+
+/**
+ * Start ([start]) oder Stopp von «Nacht aufzeichnen» an die Uhr. Hinweis, wenn sie nicht erreichbar ist oder ihr Akku
+ * unter [NightRecording.MIN_BATTERY] liegt (dann startet sie nicht). Den neuen Stand meldet die Uhr selbst.
+ */
+private fun sendRecord(app: PhaseWakeApp, start: Boolean) {
+    app.appScope.launch {
+        val battery = if (start) app.sync.watchBattery() else null
+        val text = when {
+            battery != null && battery < NightRecording.MIN_BATTERY -> R.string.record_end_battery
+            !app.recordSync.command(start) -> R.string.check_watch_problem
+            else -> null
+        }
+        app.diag.log(DiagKind.SYNC, "record ${if (start) "start" else "stop"} ${if (text == null) "sent" else "not sent"}")
+        if (text != null) withContext(Dispatchers.Main) { Toast.makeText(app, text, Toast.LENGTH_LONG).show() }
+    }
 }
 
 /** Feiertage, Sichern, Probewecker, Einrichtung und Diagnose für die Einstellungen. */

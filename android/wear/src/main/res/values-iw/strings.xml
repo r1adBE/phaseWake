@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">ההשכמה שלכם פועלת עכשיו.</string>
     <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
     <string name="home_licenses_hint">רישיונות: באפליקציה בטלפון</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">הקלטת הלילה</string>
+    <string name="record_stop">עצירת ההקלטה</string>
+    <string name="record_since">מאז %1$s</string>
+    <string name="notification_record_title">הלילה מוקלט</string>
+    <string name="record_battery_low">הסוללה חלשה מדי להקלטה</string>
 </resources>

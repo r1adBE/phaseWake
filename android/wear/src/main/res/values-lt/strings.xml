@@ -97,4 +97,10 @@
     <string name="transient_alarm_running">Tavo žadintuvas šiuo metu veikia.</string>
     <string name="transient_alarm_soon">Tavo žadinimo langas prasideda anksčiau.</string>
     <string name="home_licenses_hint">Licencijos: telefono programėlėje</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Įrašyti naktį</string>
+    <string name="record_stop">Stabdyti įrašymą</string>
+    <string name="record_since">Nuo %1$s</string>
+    <string name="notification_record_title">Naktis įrašoma</string>
+    <string name="record_battery_low">Per mažai baterijos įrašymui</string>
 </resources>

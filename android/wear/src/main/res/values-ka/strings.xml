@@ -85,4 +85,10 @@
     <string name="transient_alarm_running">შენი მაღვიძარა ახლა მუშაობს.</string>
     <string name="transient_alarm_soon">შენი მაღვიძარის ფანჯარა მანამდე იწყება.</string>
     <string name="home_licenses_hint">ლიცენზიები: ტელეფონის აპში</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ღამის ჩაწერა</string>
+    <string name="record_stop">ჩაწერის შეწყვეტა</string>
+    <string name="record_since">%1$s-დან</string>
+    <string name="notification_record_title">ღამე იწერება</string>
+    <string name="record_battery_low">ბატარეა ჩასაწერად ძალიან დაბალია</string>
 </resources>

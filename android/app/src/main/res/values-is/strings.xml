@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Snertu eða dragðu yfir grafið til að sjá gildi.</string>
     <string name="chart_nights_30">30 nætur</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Næturupptaka</string>
+    <string name="record_start">Taka upp nóttina</string>
+    <string name="record_stop">Stöðva upptöku</string>
+    <string name="record_since">Tekur upp síðan %1$s</string>
+    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina, svo Phase Wake geti síðar lært þín eigin þröskuldsgildi.</string>
+    <string name="record_end_manual">Stöðvað</string>
+    <string name="record_end_cap">Lauk eftir 12 klst.</string>
+    <string name="record_end_battery">Rafhlaða úrsins lág</string>
+    <string name="record_end_interrupted">Rofið</string>
 </resources>

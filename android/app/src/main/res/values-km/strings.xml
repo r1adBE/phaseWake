@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">ប៉ះ ឬអូសលើតារាងដើម្បីមើលតម្លៃ។</string>
     <string name="chart_nights_30">30 យប់</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">ការថតពេលយប់</string>
+    <string name="record_start">ថតពេលយប់</string>
+    <string name="record_stop">បញ្ឈប់ការថត</string>
+    <string name="record_since">កំពុងថតតាំងពី %1$s</string>
+    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់ ដើម្បីឱ្យ Phase Wake អាចរៀនកម្រិតផ្ទាល់ខ្លួនរបស់អ្នកនៅពេលក្រោយ។</string>
+    <string name="record_end_manual">បានបញ្ឈប់</string>
+    <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
+    <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>
+    <string name="record_end_interrupted">បានរំខាន</string>
 </resources>

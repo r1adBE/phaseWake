@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">ማንቂያዎ አሁን እየሄደ ነው።</string>
     <string name="transient_alarm_soon">የመቀስቀሻ ክልልዎ ከዚያ በፊት ይጀምራል።</string>
     <string name="home_licenses_hint">ፈቃዶች፦ በስልኩ መተግበሪያ ውስጥ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ሌሊቱን ቅረጽ</string>
+    <string name="record_stop">ቀረጻውን አቁም</string>
+    <string name="record_since">ከ%1$s ጀምሮ</string>
+    <string name="notification_record_title">ሌሊቱ እየተቀረጸ ነው</string>
+    <string name="record_battery_low">ለመቅረጽ ባትሪው በጣም ዝቅተኛ ነው</string>
 </resources>

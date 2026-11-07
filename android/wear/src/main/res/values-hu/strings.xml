@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Az ébresztőd éppen most fut.</string>
     <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
     <string name="home_licenses_hint">Licencek: a telefonos alkalmazásban</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Éjszaka rögzítése</string>
+    <string name="record_stop">Felvétel leállítása</string>
+    <string name="record_since">%1$s óta</string>
+    <string name="notification_record_title">Az éjszaka rögzítése</string>
+    <string name="record_battery_low">Túl gyenge az akkumulátor a felvételhez</string>
 </resources>

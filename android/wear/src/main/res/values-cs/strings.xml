@@ -96,4 +96,10 @@
     <string name="transient_alarm_running">Právě běží tvůj budík.</string>
     <string name="transient_alarm_soon">Okno tvého budíku začíná už dřív.</string>
     <string name="home_licenses_hint">Licence: v aplikaci v telefonu</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Zaznamenat noc</string>
+    <string name="record_stop">Zastavit záznam</string>
+    <string name="record_since">Od %1$s</string>
+    <string name="notification_record_title">Noc se zaznamenává</string>
+    <string name="record_battery_low">Baterie je na záznam příliš slabá</string>
 </resources>

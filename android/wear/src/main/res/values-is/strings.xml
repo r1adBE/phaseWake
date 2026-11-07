@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Vekjarinn þinn er í gangi núna.</string>
     <string name="transient_alarm_soon">Vakningarglugginn byrjar fyrir þann tíma.</string>
     <string name="home_licenses_hint">Leyfi: í símaforritinu</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Taka upp nóttina</string>
+    <string name="record_stop">Stöðva upptöku</string>
+    <string name="record_since">Síðan %1$s</string>
+    <string name="notification_record_title">Nóttin er tekin upp</string>
+    <string name="record_battery_low">Rafhlaðan of lág fyrir upptöku</string>
 </resources>

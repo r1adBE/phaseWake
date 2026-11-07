@@ -545,4 +545,14 @@
     <string name="chart_touch_hint">Touche ou fais glisser sur le graphique pour voir les valeurs.</string>
     <string name="chart_nights_30">30 nuits</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Enregistrement de nuit</string>
+    <string name="record_start">Enregistrer la nuit</string>
+    <string name="record_stop">Arrêter l’enregistrement</string>
+    <string name="record_since">Enregistrement depuis %1$s</string>
+    <string name="record_hint">Ta montre enregistre tes mouvements et ton pouls toute la nuit, pour que Phase Wake puisse plus tard apprendre tes propres seuils.</string>
+    <string name="record_end_manual">Arrêté</string>
+    <string name="record_end_cap">Terminé après 12 h</string>
+    <string name="record_end_battery">Batterie de la montre faible</string>
+    <string name="record_end_interrupted">Interrompu</string>
 </resources>

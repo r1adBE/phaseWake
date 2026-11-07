@@ -7,16 +7,21 @@ import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.diag.WatchDiag
+import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt Wecker, Feiertage und Schlafziel vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, und die Meldungen zur Weckaufgabe. */
+/**
+ * Empfängt Wecker, Feiertage und Schlafziel vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die Meldungen zur
+ * Weckaufgabe und Start und Stopp von «Nacht aufzeichnen».
+ */
 class WatchListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -61,7 +66,10 @@ class WatchListenerService : WearableListenerService() {
             when {
                 clearedAt == null -> Unit
                 clearedAt > 0 -> PhoneCatchUp.applyClear(app, clearedAt)
-                else -> app.nights.clear()
+                else -> {
+                    app.nights.clear()
+                    app.recordings.clear()
+                }
             }
             val newAlarms = remote != null && app.alarms.applyRemote(remote)
             if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
@@ -70,6 +78,11 @@ class WatchListenerService : WearableListenerService() {
     }
 
     override fun onMessageReceived(event: MessageEvent) {
+        // «Nacht aufzeichnen» vom Handy: Start oder Stopp (ohne Inhalt).
+        RecordSync.commandOf(event.path)?.let {
+            RecordControl.fromPhone(this, it)
+            return
+        }
         // Inhalt nachsichtig lesen: «snooze» und ältere Handy-Versionen schicken keine Kennung, dann gilt der Befehl der laufenden Nacht.
         val message = RingMessage.decode(event.data)
         val alarmId = message.alarmId

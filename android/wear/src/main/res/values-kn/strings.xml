@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">ನಿಮ್ಮ ಅಲಾರಾಂ ಈಗ ನಡೆಯುತ್ತಿದೆ.</string>
     <string name="transient_alarm_soon">ಅದಕ್ಕೂ ಮೊದಲೇ ನಿಮ್ಮ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾಗುತ್ತದೆ.</string>
     <string name="home_licenses_hint">ಪರವಾನಗಿಗಳು: ಫೋನ್ ಆ್ಯಪ್‌ನಲ್ಲಿ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
+    <string name="record_stop">ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ</string>
+    <string name="record_since">%1$s ರಿಂದ</string>
+    <string name="notification_record_title">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
+    <string name="record_battery_low">ರೆಕಾರ್ಡ್ ಮಾಡಲು ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ</string>
 </resources>

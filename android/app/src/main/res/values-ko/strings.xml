@@ -517,4 +517,14 @@
     <string name="chart_touch_hint">그래프를 탭하거나 드래그하면 값이 보여요.</string>
     <string name="chart_nights_30">30일 밤</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">밤 기록</string>
+    <string name="record_start">밤 기록하기</string>
+    <string name="record_stop">기록 중지</string>
+    <string name="record_since">%1$s부터 기록 중</string>
+    <string name="record_hint">워치가 밤새 움직임과 맥박을 기록해요. 나중에 Phase Wake가 나만의 기준값을 배울 수 있어요.</string>
+    <string name="record_end_manual">중지됨</string>
+    <string name="record_end_cap">12시간 후 종료됨</string>
+    <string name="record_end_battery">워치 배터리 부족</string>
+    <string name="record_end_interrupted">중단됨</string>
 </resources>

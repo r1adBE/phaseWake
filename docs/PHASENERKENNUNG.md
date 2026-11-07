@@ -122,3 +122,12 @@ Leitsatz: Pünktlich ist das Produkt, früher ist Bonus.
 - **Einschlafzeit** (nur Galaxy Watch): aus «Gute Nacht» oder aus der automatischen Messung. Für den nächsten gespeicherten Wecker (kein Powernap, kein Probewecker), dessen Zielzeit höchstens 16 Std. entfernt ist, beginnt sie 60 Min vor der Bettzeit (`ShortNight.autoOnsetStart`: Zielzeit − Schlafziel, im Einschlaf-Modus Zielzeit − Schlafdauer) mit derselben stromsparenden Messung wie in 6 und endet beim erkannten Einschlafen, spätestens 2 Std. nach ihrem Beginn oder 15 Min vor der Zielzeit; danach startet sie in dieser Nacht nicht noch einmal. Unter 30 % Akku der Uhr beginnt sie nicht. Im Einschlaf-Modus legt sie wie «Gute Nacht» die Zielzeit fest; sonst wird nur die Einschlafzeit gemerkt. Ohne Sensorrechte oder vor dem ersten Entsperren misst die Uhr nichts, und der Wecker weckt wie bisher.
 - **Apple Watch**: Sie misst nur in der 30-Min-Sitzung; die Einschlafzeit ist dort unbekannt, die Untergrenze gilt nicht.
 - **Speicherformat**: `EXACT` und `SHORT_NIGHT` stehen in der Nacht zusätzlich als `DEADLINE` (Feld 5) und im angehängten Feld 8, damit ältere Versionen die Nacht weiter lesen; ein unbekannter Grund gilt als `DEADLINE`.
+
+## 9. «Nacht aufzeichnen» (Datensammlung)
+
+Nur Galaxy Watch, auf Wunsch (07.11.2026). Reine Datensammlung: Die Aufzeichnungen fliessen (noch) nicht in die Erkennung, die Kalibrierung (Abschnitt 4) oder das Grundrauschen (Abschnitt 3a). Erst nach Prüfung an echten Nächten sollen sie die eigenen Schwellen mitbestimmen.
+
+- Epochen wie in 1, 2 und 7: Bewegung aus derselben Messung wie im Fenster (25 Hz, gebündelt 10 s), Puls als Mittel der Werte der Epoche, leer ohne Werte. Epoche `i` deckt Beginn + i · 30 s ab.
+- Höchstens 12 Std. (1440 Epochen); endet von Hand, nach 12 Std. oder unter 15 % Akku der Uhr.
+- Nach einem Prozessende wird bis zur Wiederaufnahme mit leeren Epochen aufgefüllt; danach kann die Epochengrenze um bis zu 30 s versetzt sein.
+- Läuft unabhängig von Fenster- und Einschlaf-Messung; beide dürfen zugleich messen und beeinflussen sich nicht.

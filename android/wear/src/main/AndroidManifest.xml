@@ -88,6 +88,16 @@
             android:exported="false"
             android:foregroundServiceType="health|systemExempted" />
 
+        <!-- «Nacht aufzeichnen»: eigener Messdienst neben dem Weckdienst; nicht vor dem ersten Entsperren. -->
+        <service
+            android:name=".record.RecordService"
+            android:exported="false"
+            android:foregroundServiceType="health|systemExempted" />
+
+        <receiver
+            android:name=".record.RecordReceiver"
+            android:exported="false" />
+
         <service
             android:name=".sync.WatchListenerService"
             android:exported="true">

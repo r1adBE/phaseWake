@@ -32,6 +32,9 @@ object Notifications {
     const val ID_RING = 3
     const val ID_RING_ALT = 4
 
+    /** «Nacht aufzeichnen» ([com.phasewake.app.wear.record.RecordService]), unabhängig vom Weckdienst. */
+    const val ID_RECORD = 5
+
     /** Request-Codes der Absichten für den Weckbildschirm (je Weg eine, damit die Diagnose den Weg kennt). */
     private const val REQUEST_RING_TAP = 1
     private const val REQUEST_RING_FULL_SCREEN = 5

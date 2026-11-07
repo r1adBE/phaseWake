@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">I-alamu yakho iyakhala manje.</string>
     <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
     <string name="home_licenses_hint">Amalayisense: ku-app yefoni</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Qopha ubusuku</string>
+    <string name="record_stop">Misa ukuqopha</string>
+    <string name="record_since">Kusukela ngo-%1$s</string>
+    <string name="notification_record_title">Kuqoshwa ubusuku</string>
+    <string name="record_battery_low">Ibhethri liphansi kakhulu ukuze kuqoshwe</string>
 </resources>

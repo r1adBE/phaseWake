@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">La teva alarma està en marxa ara mateix.</string>
     <string name="transient_alarm_soon">La teva finestra de despertar comença abans.</string>
     <string name="home_licenses_hint">Llicències: a l’app del telèfon</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Enregistra la nit</string>
+    <string name="record_stop">Atura l’enregistrament</string>
+    <string name="record_since">Des de les %1$s</string>
+    <string name="notification_record_title">S’enregistra la nit</string>
+    <string name="record_battery_low">Bateria massa baixa per enregistrar</string>
 </resources>

@@ -85,4 +85,10 @@
     <string name="transient_alarm_running">Оятқышың дәл қазір жұмыс істеп тұр.</string>
     <string name="transient_alarm_soon">Оятқыш терезең одан бұрын басталады.</string>
     <string name="home_licenses_hint">Лицензиялар: телефондағы қолданбада</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Түнді жазу</string>
+    <string name="record_stop">Жазуды тоқтату</string>
+    <string name="record_since">%1$s бастап</string>
+    <string name="notification_record_title">Түн жазылып жатыр</string>
+    <string name="record_battery_low">Жазу үшін батарея тым әлсіз</string>
 </resources>

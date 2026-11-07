@@ -533,4 +533,14 @@
     <string name="chart_touch_hint">قدریں دیکھنے کے لیے چارٹ کو چھوؤ یا اس پر کھینچو۔</string>
     <string name="chart_nights_30">30 راتیں</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">رات کی ریکارڈنگ</string>
+    <string name="record_start">رات ریکارڈ کرو</string>
+    <string name="record_stop">ریکارڈنگ روکو</string>
+    <string name="record_since">%1$s سے ریکارڈنگ جاری ہے</string>
+    <string name="record_hint">تمہاری گھڑی ساری رات حرکت اور نبض ریکارڈ کرتی ہے، تاکہ Phase Wake بعد میں تمہاری اپنی حدیں سیکھ سکے۔</string>
+    <string name="record_end_manual">روک دی گئی</string>
+    <string name="record_end_cap">12 گھنٹے بعد ختم</string>
+    <string name="record_end_battery">گھڑی کی بیٹری کم ہے</string>
+    <string name="record_end_interrupted">رکاوٹ آئی</string>
 </resources>

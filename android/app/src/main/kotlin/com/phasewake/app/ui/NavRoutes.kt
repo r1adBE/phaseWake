@@ -7,6 +7,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -113,6 +114,7 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
 @Composable
 private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions, content: PaddingValues, homeList: LazyListState) {
     val data = state.data
+    val recordStatus by app.recordStatus.collectAsStateWithLifecycle()
     val nights = data.nights
     HomeScreen(
         listState = homeList,
@@ -140,7 +142,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         routineItems = data.routineItems,
         routineTicks = data.routineTicks,
         onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
-        extras = homeExtras(app, data, skipAllowed = state.nightCheck.watchKnowsSkip),
+        extras = homeExtras(app, data, skipAllowed = state.nightCheck.watchKnowsSkip, record = recordStatus),
     )
 }
 
@@ -148,6 +150,8 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
 private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions, content: PaddingValues) {
     val data = state.data
     val insights = state.insights
+    val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.recordings.load() }
     HistoryScreen(
         data.nights.orEmpty(),
         content,
@@ -176,6 +180,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         canConnectHealth = insights.health == HealthState.AVAILABLE,
         healthFeelings = data.healthFeelings,
         onOpenNight = { key -> actions.nav.navigate(ExtraRoutes.night(key)) },
+        recordings = recordings.orEmpty(),
     )
 }
 
@@ -228,6 +233,8 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
                     app.notes.clearNotes()
                     app.routine.clearTicks()
                     app.sounds.clear()
+                    app.recordings.clear()
+                    app.recordSync.deleteRecordings()
                     app.sync.clearHistoryEverywhere()
                 }
             }

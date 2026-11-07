@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Сэрүүлэг чинь яг одоо ажиллаж байна.</string>
     <string name="transient_alarm_soon">Сэрээх хугацаа чинь түүнээс өмнө эхэлнэ.</string>
     <string name="home_licenses_hint">Лиценз: утасны аппд</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Шөнийг бичих</string>
+    <string name="record_stop">Бичлэгийг зогсоох</string>
+    <string name="record_since">%1$s-с хойш</string>
+    <string name="notification_record_title">Шөнийг бичиж байна</string>
+    <string name="record_battery_low">Бичихэд батерей хэт сул байна</string>
 </resources>

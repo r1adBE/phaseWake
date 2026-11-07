@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">いまアラームが作動中です。</string>
     <string name="transient_alarm_soon">アラームの時間幅はそれより前に始まります。</string>
     <string name="home_licenses_hint">ライセンス：スマートフォンのアプリで確認</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">夜を記録</string>
+    <string name="record_stop">記録を停止</string>
+    <string name="record_since">%1$sから</string>
+    <string name="notification_record_title">夜を記録中</string>
+    <string name="record_battery_low">バッテリー残量が少なく記録できません</string>
 </resources>

@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Утгыг харахын тулд графикт хүр эсвэл дээгүүр нь чирээрэй.</string>
     <string name="chart_nights_30">30 шөнө</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Шөнийн бичлэг</string>
+    <string name="record_start">Шөнийг бичих</string>
+    <string name="record_stop">Бичлэгийг зогсоох</string>
+    <string name="record_since">%1$s-с хойш бичиж байна</string>
+    <string name="record_hint">Таны цаг шөнөжингөө хөдөлгөөн, судасны цохилтыг бичдэг тул Phase Wake дараа нь таны өөрийн босгыг сурч чадна.</string>
+    <string name="record_end_manual">Зогсоосон</string>
+    <string name="record_end_cap">12 цагийн дараа дууссан</string>
+    <string name="record_end_battery">Цагийн батерей сул байна</string>
+    <string name="record_end_interrupted">Тасалдсан</string>
 </resources>

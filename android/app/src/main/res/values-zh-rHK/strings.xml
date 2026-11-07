@@ -520,4 +520,14 @@
     <string name="chart_touch_hint">輕觸或在圖表上拖動以查看數值。</string>
     <string name="chart_nights_30">30 晚</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">夜間記錄</string>
+    <string name="record_start">記錄夜間</string>
+    <string name="record_stop">停止記錄</string>
+    <string name="record_since">由 %1$s 起記錄中</string>
+    <string name="record_hint">你隻手錶會成晚記錄動作同脈搏，等 Phase Wake 之後可以學識你自己嘅門檻值。</string>
+    <string name="record_end_manual">已停止</string>
+    <string name="record_end_cap">12 小時後結束</string>
+    <string name="record_end_battery">手錶電量低</string>
+    <string name="record_end_interrupted">已中斷</string>
 </resources>

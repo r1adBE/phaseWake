@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Alarmi yt është aktiv tani.</string>
     <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
     <string name="home_licenses_hint">Licencat: në aplikacionin e telefonit</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Regjistro natën</string>
+    <string name="record_stop">Ndalo regjistrimin</string>
+    <string name="record_since">Që nga %1$s</string>
+    <string name="notification_record_title">Po regjistrohet nata</string>
+    <string name="record_battery_low">Bateria shumë e ulët për regjistrim</string>
 </resources>

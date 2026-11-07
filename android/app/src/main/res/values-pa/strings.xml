@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">ਮੁੱਲ ਦੇਖਣ ਲਈ ਚਾਰਟ ਨੂੰ ਛੂਹੋ ਜਾਂ ਉਸ ’ਤੇ ਖਿੱਚੋ।</string>
     <string name="chart_nights_30">30 ਰਾਤਾਂ</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">ਰਾਤ ਦੀ ਰਿਕਾਰਡਿੰਗ</string>
+    <string name="record_start">ਰਾਤ ਰਿਕਾਰਡ ਕਰੋ</string>
+    <string name="record_stop">ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ</string>
+    <string name="record_since">%1$s ਤੋਂ ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ</string>
+    <string name="record_hint">ਤੁਹਾਡੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ, ਤਾਂ ਜੋ Phase Wake ਬਾਅਦ ਵਿੱਚ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ ਹੱਦਾਂ ਸਿੱਖ ਸਕੇ।</string>
+    <string name="record_end_manual">ਰੋਕਿਆ ਗਿਆ</string>
+    <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
+    <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>
+    <string name="record_end_interrupted">ਰੁਕਾਵਟ ਪਈ</string>
 </resources>

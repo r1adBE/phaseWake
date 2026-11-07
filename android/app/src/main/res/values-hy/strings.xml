@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">Հպիր կամ սահեցրու գծապատկերի վրայով՝ արժեքները տեսնելու համար։</string>
     <string name="chart_nights_30">30 գիշեր</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Գիշերային գրառում</string>
+    <string name="record_start">Գրառել գիշերը</string>
+    <string name="record_stop">Դադարեցնել գրառումը</string>
+    <string name="record_since">Գրառվում է %1$s-ից</string>
+    <string name="record_hint">Ժամացույցդ ամբողջ գիշեր գրառում է շարժումն ու զարկերակը, որպեսզի Phase Wake-ը հետո սովորի քո սեփական շեմերը։</string>
+    <string name="record_end_manual">Դադարեցված է</string>
+    <string name="record_end_cap">Ավարտվեց 12 ժ հետո</string>
+    <string name="record_end_battery">Ժամացույցի մարտկոցը թույլ է</string>
+    <string name="record_end_interrupted">Ընդհատվեց</string>
 </resources>

@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">අගයන් බැලීමට ප්‍රස්ථාරය ස්පර්ශ කරන්න හෝ ඇදගෙන යන්න.</string>
     <string name="chart_nights_30">රාත්‍රි 30</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">රාත්‍රී පටිගත කිරීම</string>
+    <string name="record_start">රාත්‍රිය පටිගත කරන්න</string>
+    <string name="record_stop">පටිගත කිරීම නවත්වන්න</string>
+    <string name="record_since">%1$s සිට පටිගත වෙමින්</string>
+    <string name="record_hint">ඔබේ ඔරලෝසුව රාත්‍රිය පුරා චලනය සහ නාඩිය පටිගත කරයි, එවිට Phase Wake හට පසුව ඔබේම සීමාවන් ඉගෙන ගත හැක.</string>
+    <string name="record_end_manual">නවත්වන ලදී</string>
+    <string name="record_end_cap">පැය 12කට පසු අවසන් විය</string>
+    <string name="record_end_battery">ඔරලෝසුවේ බැටරිය අඩුයි</string>
+    <string name="record_end_interrupted">බාධා විය</string>
 </resources>

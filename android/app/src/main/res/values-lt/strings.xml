@@ -562,4 +562,14 @@
     <string name="chart_touch_hint">Paliesk arba perbrauk per diagramą, kad matytum reikšmes.</string>
     <string name="chart_nights_30">30 naktų</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Nakties įrašas</string>
+    <string name="record_start">Įrašyti naktį</string>
+    <string name="record_stop">Stabdyti įrašymą</string>
+    <string name="record_since">Įrašoma nuo %1$s</string>
+    <string name="record_hint">Tavo laikrodis visą naktį įrašo judesį ir pulsą, kad Phase Wake vėliau galėtų išmokti tavo asmenines ribas.</string>
+    <string name="record_end_manual">Sustabdyta</string>
+    <string name="record_end_cap">Baigta po 12 val.</string>
+    <string name="record_end_battery">Laikrodžio baterija senka</string>
+    <string name="record_end_interrupted">Nutraukta</string>
 </resources>

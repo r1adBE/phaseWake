@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
     <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
     <string name="home_licenses_hint">Lisensi: di aplikasi ponsel</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Rekam malam</string>
+    <string name="record_stop">Hentikan rekaman</string>
+    <string name="record_since">Sejak %1$s</string>
+    <string name="notification_record_title">Merekam malam</string>
+    <string name="record_battery_low">Baterai terlalu lemah untuk merekam</string>
 </resources>

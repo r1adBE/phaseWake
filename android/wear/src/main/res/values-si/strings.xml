@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">ඔබේ එලාමය දැන් ක්‍රියාත්මකයි.</string>
     <string name="transient_alarm_soon">ඔබේ අවදි පරාසය ඊට පෙර ආරම්භ වේ.</string>
     <string name="home_licenses_hint">බලපත්‍ර: දුරකථන යෙදුමේ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">රාත්‍රිය පටිගත කරන්න</string>
+    <string name="record_stop">පටිගත කිරීම නවත්වන්න</string>
+    <string name="record_since">%1$s සිට</string>
+    <string name="notification_record_title">රාත්‍රිය පටිගත වෙමින්</string>
+    <string name="record_battery_low">පටිගත කිරීමට බැටරිය ඉතා අඩුයි</string>
 </resources>

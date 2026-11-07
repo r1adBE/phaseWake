@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Thinta noma uhudule ishadi ukuze ubone amanani.</string>
     <string name="chart_nights_30">Ubusuku obu-30</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Ukuqopha kwasebusuku</string>
+    <string name="record_start">Qopha ubusuku</string>
+    <string name="record_stop">Misa ukuqopha</string>
+    <string name="record_since">Kuqoshwa kusukela ngo-%1$s</string>
+    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke, ukuze kamuva i-Phase Wake ifunde imikhawulo yakho.</string>
+    <string name="record_end_manual">Kumisiwe</string>
+    <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
+    <string name="record_end_battery">Ibhethri lewashi liphansi</string>
+    <string name="record_end_interrupted">Kuphazamisekile</string>
 </resources>

@@ -20,6 +20,8 @@ import com.phasewake.app.shared.HolidayStore
 import com.phasewake.app.shared.TestRunStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
+import com.phasewake.app.shared.RecordSync
+import com.phasewake.app.shared.RecordingRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import java.io.File
@@ -29,6 +31,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
@@ -50,6 +53,13 @@ open class PhaseWakeApp : Application() {
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val settings by lazy { SettingsRepository(phaseWakeStore) }
     val sync by lazy { WearSync(this) }
+
+    /** «Nacht aufzeichnen» der Galaxy Watch: empfangene Aufzeichnungen (privat, nicht gesichert) und der Austausch. */
+    val recordings by lazy { RecordingRepository(File(filesDir, "recordings")) }
+    val recordSync by lazy { RecordSync(this) }
+
+    /** Stand der Aufzeichnung auf der Uhr; `null`, solange unbekannt oder die Uhr sie nicht kennt (dann kein Knopf). */
+    val recordStatus = MutableStateFlow<RecordSync.RecordStatus?>(null)
     val health by lazy { HealthSleep(this) }
     val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
     val notes by lazy { com.phasewake.app.notes.NotesRepository(phaseWakeStore) }
@@ -120,6 +130,12 @@ open class PhaseWakeApp : Application() {
                 nights.add(night)
                 sync.delete(uri)
             }
+            // Aufzeichnungen der Uhr ebenso abholen, und ihren Stand für den Knopf auf der Startseite.
+            for ((recording, uri) in recordSync.fetchRecordings()) {
+                recordings.put(recording)
+                sync.delete(uri)
+            }
+            recordSync.fetchStatus()?.let { recordStatus.value = it }
             // Frühere Zielzeit des Einschlaf-Modus, falls ihre Meldung verpasst wurde (z. B. nach «Beenden erzwingen»).
             sync.fetchOnsetShift()?.let { backup.onsetShiftReceived(it) }
             backup.reschedule()

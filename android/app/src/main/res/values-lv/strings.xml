@@ -548,4 +548,14 @@
     <string name="chart_touch_hint">Pieskaries vai velc pār diagrammu, lai redzētu vērtības.</string>
     <string name="chart_nights_30">30 naktis</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Nakts ieraksts</string>
+    <string name="record_start">Ierakstīt nakti</string>
+    <string name="record_stop">Apturēt ierakstu</string>
+    <string name="record_since">Ieraksta kopš %1$s</string>
+    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu, lai Phase Wake vēlāk varētu iemācīties tavus personīgos sliekšņus.</string>
+    <string name="record_end_manual">Apturēts</string>
+    <string name="record_end_cap">Beidzās pēc 12 h</string>
+    <string name="record_end_battery">Pulksteņa akumulators izlādējas</string>
+    <string name="record_end_interrupted">Pārtraukts</string>
 </resources>

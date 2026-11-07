@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Raak of sleep oor die grafiek om waardes te sien.</string>
     <string name="chart_nights_30">30 nagte</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Nagopname</string>
+    <string name="record_start">Neem nag op</string>
+    <string name="record_stop">Stop opname</string>
+    <string name="record_since">Neem op sedert %1$s</string>
+    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op, sodat Phase Wake later jou eie drempels kan leer.</string>
+    <string name="record_end_manual">Gestop</string>
+    <string name="record_end_cap">Ná 12 h beëindig</string>
+    <string name="record_end_battery">Horlosie se battery laag</string>
+    <string name="record_end_interrupted">Onderbreek</string>
 </resources>

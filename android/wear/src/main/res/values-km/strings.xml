@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">ម៉ោងរោទ៍របស់អ្នកកំពុងដំណើរការឥឡូវនេះ។</string>
     <string name="transient_alarm_soon">ចន្លោះពេលដាស់របស់អ្នកចាប់ផ្ដើមមុននោះ។</string>
     <string name="home_licenses_hint">អាជ្ញាប័ណ្ណ៖ នៅក្នុងកម្មវិធីលើទូរសព្ទ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ថតពេលយប់</string>
+    <string name="record_stop">បញ្ឈប់ការថត</string>
+    <string name="record_since">តាំងពី %1$s</string>
+    <string name="notification_record_title">កំពុងថតពេលយប់</string>
+    <string name="record_battery_low">ថ្មខ្សោយពេកសម្រាប់ថត</string>
 </resources>

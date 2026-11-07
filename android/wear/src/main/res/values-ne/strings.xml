@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">तिम्रो अलार्म अहिले चलिरहेको छ।</string>
     <string name="transient_alarm_soon">तिम्रो ब्युँझाउने अवधि त्योभन्दा अघि सुरु हुन्छ।</string>
     <string name="home_licenses_hint">लाइसेन्स: फोनको एपमा</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">रात रेकर्ड गर</string>
+    <string name="record_stop">रेकर्डिङ रोक</string>
+    <string name="record_since">%1$s देखि</string>
+    <string name="notification_record_title">रात रेकर्ड हुँदैछ</string>
+    <string name="record_battery_low">रेकर्ड गर्न ब्याट्री धेरै कम छ</string>
 </resources>

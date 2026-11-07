@@ -96,4 +96,10 @@
     <string name="transient_alarm_running">Зараз працює твій будильник.</string>
     <string name="transient_alarm_soon">Вікно твого будильника починається раніше.</string>
     <string name="home_licenses_hint">Ліцензії: у застосунку на телефоні</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Записати ніч</string>
+    <string name="record_stop">Зупинити запис</string>
+    <string name="record_since">З %1$s</string>
+    <string name="notification_record_title">Триває запис ночі</string>
+    <string name="record_battery_low">Заряд замалий для запису</string>
 </resources>

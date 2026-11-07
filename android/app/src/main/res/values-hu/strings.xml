@@ -531,4 +531,14 @@
     <string name="chart_touch_hint">Érintsd meg vagy húzd végig az ujjad a diagramon az értékekért.</string>
     <string name="chart_nights_30">30 éjszaka</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Éjszakai felvétel</string>
+    <string name="record_start">Éjszaka rögzítése</string>
+    <string name="record_stop">Felvétel leállítása</string>
+    <string name="record_since">Felvétel %1$s óta</string>
+    <string name="record_hint">Az órád egész éjjel rögzíti a mozgást és a pulzust, hogy a Phase Wake később megtanulhassa a saját küszöbértékeidet.</string>
+    <string name="record_end_manual">Leállítva</string>
+    <string name="record_end_cap">12 óra után véget ért</string>
+    <string name="record_end_battery">Az óra akkumulátora gyenge</string>
+    <string name="record_end_interrupted">Megszakadt</string>
 </resources>

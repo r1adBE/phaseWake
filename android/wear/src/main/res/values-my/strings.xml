@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">သင့်နှိုးစက် ယခု လည်ပတ်နေသည်။</string>
     <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
     <string name="home_licenses_hint">လိုင်စင်များ- ဖုန်းအက်ပ်တွင်</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ညကို မှတ်တမ်းတင်ရန်</string>
+    <string name="record_stop">မှတ်တမ်းတင်ခြင်း ရပ်ရန်</string>
+    <string name="record_since">%1$s မှစ၍</string>
+    <string name="notification_record_title">ညကို မှတ်တမ်းတင်နေသည်</string>
+    <string name="record_battery_low">မှတ်တမ်းတင်ရန် ဘက်ထရီ နည်းလွန်းသည်</string>
 </resources>

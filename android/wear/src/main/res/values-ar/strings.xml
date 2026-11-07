@@ -102,4 +102,10 @@
     <string name="transient_alarm_running">منبّهك يعمل الآن.</string>
     <string name="transient_alarm_soon">نافذة منبّهك تبدأ قبل ذلك.</string>
     <string name="home_licenses_hint">التراخيص: في تطبيق الهاتف</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">سجّل الليلة</string>
+    <string name="record_stop">أوقف التسجيل</string>
+    <string name="record_since">منذ %1$s</string>
+    <string name="notification_record_title">جارٍ تسجيل الليلة</string>
+    <string name="record_battery_low">البطارية منخفضة جدًا للتسجيل</string>
 </resources>

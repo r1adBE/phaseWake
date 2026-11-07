@@ -533,4 +533,14 @@
     <string name="chart_touch_hint">মান দেখতে চার্টে স্পর্শ করো বা টেনে নাও।</string>
     <string name="chart_nights_30">৩০ রাত</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">রাতের রেকর্ডিং</string>
+    <string name="record_start">রাত রেকর্ড করো</string>
+    <string name="record_stop">রেকর্ডিং থামাও</string>
+    <string name="record_since">%1$s থেকে রেকর্ড হচ্ছে</string>
+    <string name="record_hint">তোমার ঘড়ি সারা রাত নড়াচড়া আর পালস রেকর্ড করে, যাতে Phase Wake পরে তোমার নিজের সীমা শিখতে পারে।</string>
+    <string name="record_end_manual">থামানো হয়েছে</string>
+    <string name="record_end_cap">১২ ঘণ্টা পরে শেষ হয়েছে</string>
+    <string name="record_end_battery">ঘড়ির ব্যাটারি কম</string>
+    <string name="record_end_interrupted">বাধাপ্রাপ্ত</string>
 </resources>

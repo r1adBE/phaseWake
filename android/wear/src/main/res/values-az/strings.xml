@@ -85,4 +85,10 @@
     <string name="transient_alarm_running">Siqnalın elə indi işləyir.</string>
     <string name="transient_alarm_soon">Siqnal pəncərən ondan əvvəl başlayır.</string>
     <string name="home_licenses_hint">Lisenziyalar: telefon tətbiqində</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Gecəni qeyd et</string>
+    <string name="record_stop">Qeydi dayandır</string>
+    <string name="record_since">%1$s-dan bəri</string>
+    <string name="notification_record_title">Gecə qeyd olunur</string>
+    <string name="record_battery_low">Qeyd üçün batareya çox azdır</string>
 </resources>

@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Ukitu edo arrastatu grafikoan balioak ikusteko.</string>
     <string name="chart_nights_30">30 gau</string>
     <string name="stages_share">%%%1$d</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Gaueko grabazioa</string>
+    <string name="record_start">Grabatu gaua</string>
+    <string name="record_stop">Gelditu grabazioa</string>
+    <string name="record_since">%1$s(e)tik grabatzen</string>
+    <string name="record_hint">Zure erlojuak gau osoan mugimendua eta pultsua grabatzen ditu, Phase Wake-k geroago zure atalase propioak ikas ditzan.</string>
+    <string name="record_end_manual">Geldituta</string>
+    <string name="record_end_cap">12 h-ren ondoren amaitua</string>
+    <string name="record_end_battery">Erlojuaren bateria baxu</string>
+    <string name="record_end_interrupted">Etenda</string>
 </resources>

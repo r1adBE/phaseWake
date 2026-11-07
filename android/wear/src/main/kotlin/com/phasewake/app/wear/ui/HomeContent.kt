@@ -86,6 +86,7 @@ internal fun HomeContent(
                 }
             }
             extras.onNap?.let { onNap -> item { NapChip(extras.nap, zone, onNap, extras.onStopNap) } }
+            extras.onRecord?.let { onRecord -> item { RecordChip(extras.recordSince, zone, onRecord) } }
             if (permissionsMissing) {
                 item {
                     Button(

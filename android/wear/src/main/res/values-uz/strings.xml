@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Budilniging hozir ishlayapti.</string>
     <string name="transient_alarm_soon">Uygʻotish oraligʻing undan oldin boshlanadi.</string>
     <string name="home_licenses_hint">Litsenziyalar: telefondagi ilovada</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Tunni yozib olish</string>
+    <string name="record_stop">Yozishni to‘xtatish</string>
+    <string name="record_since">%1$s dan beri</string>
+    <string name="notification_record_title">Tun yozilmoqda</string>
+    <string name="record_battery_low">Yozish uchun batareya juda kam</string>
 </resources>

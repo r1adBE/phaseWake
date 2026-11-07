@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Η αφύπνισή σου είναι σε εξέλιξη αυτή τη στιγμή.</string>
     <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
     <string name="home_licenses_hint">Άδειες χρήσης: στην εφαρμογή του τηλεφώνου</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Κατέγραψε τη νύχτα</string>
+    <string name="record_stop">Διακοπή καταγραφής</string>
+    <string name="record_since">Από τις %1$s</string>
+    <string name="notification_record_title">Καταγράφεται η νύχτα</string>
+    <string name="record_battery_low">Πολύ χαμηλή μπαταρία για καταγραφή</string>
 </resources>

@@ -533,4 +533,14 @@
     <string name="chart_touch_hint">Gusa au buruta juu ya chati ili kuona thamani.</string>
     <string name="chart_nights_30">Usiku 30</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Rekodi ya usiku</string>
+    <string name="record_start">Rekodi usiku</string>
+    <string name="record_stop">Simamisha kurekodi</string>
+    <string name="record_since">Inarekodi tangu %1$s</string>
+    <string name="record_hint">Saa yako hurekodi mwendo na mapigo ya moyo usiku kucha, ili Phase Wake iweze baadaye kujifunza viwango vyako mwenyewe.</string>
+    <string name="record_end_manual">Imesimamishwa</string>
+    <string name="record_end_cap">Iliisha baada ya saa 12</string>
+    <string name="record_end_battery">Betri ya saa iko chini</string>
+    <string name="record_end_interrupted">Imekatizwa</string>
 </resources>

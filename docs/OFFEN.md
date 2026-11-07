@@ -4,6 +4,8 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 
 ## Erledigt am 07.11.2026 (Details in ENTSCHEIDE.md)
 
+- «Nacht aufzeichnen» auf der Galaxy Watch (Knopf auf Uhr und Android-Handy): ganze Nacht Bewegung und Puls je 30 s, höchstens 12 Std., endet unter 15 % Akku; im Verlauf und im Export, mit «Verlauf löschen» gelöscht, Diagnose stündlich.
+
 - Bewegungsschwelle relativ zum Rauschen der Uhr: Auf der Galaxy Watch lag still liegend jede Epoche über der Leicht-Schwelle (Einschlafzeit nie erkannt, frühes Wecken nur nach Puls). Leicht- und Wach-Schwelle steigen jetzt mit dem Grundrauschen der Nacht (PHASENERKENNUNG.md 3a); Diagnose mit `floor=`.
 
 ## Erledigt am 06.11.2026 (Details in ENTSCHEIDE.md)
@@ -54,6 +56,9 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 9. Frühes Wecken nur noch mit gemessenem Pulsanstieg: seltener früh als vorher – beobachten, ob es zu selten wird.
 10. Sperrbildschirm: leise Abend-Meldung sichtbar? Widget auf dem Sperrbildschirm auswählbar (hängt von Android-/One-UI-Version ab)? Widget «Details von heute» (Android und iPhone): nach dem Wecken «Letzte Nacht», Befinden erscheint nach dem Antippen, um 12 Uhr zurück zum nächsten Wecker?
 11. Messwerte aus echten Nächten für die nächste Bewertung: verpasste Wecker (Ziel 0), Frühwecken in den ersten 5 Min., Befinden, Apple-Sitzung ohne abends geöffnete App.
+
+11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
+11b. Aufgezeichnete Nächte in die Kalibrierung übernehmen (nach Prüfung an echten Nächten).
 
 ## Bekannte Grenzen
 

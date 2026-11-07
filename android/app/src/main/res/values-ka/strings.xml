@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">შეეხე ან გადაატარე თითი დიაგრამას მნიშვნელობების სანახავად.</string>
     <string name="chart_nights_30">30 ღამე</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">ღამის ჩანაწერი</string>
+    <string name="record_start">ღამის ჩაწერა</string>
+    <string name="record_stop">ჩაწერის შეწყვეტა</string>
+    <string name="record_since">იწერება %1$s-დან</string>
+    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობასა და პულსს, რომ Phase Wake-მა მოგვიანებით შენი საკუთარი ზღვრები ისწავლოს.</string>
+    <string name="record_end_manual">შეწყდა</string>
+    <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
+    <string name="record_end_battery">საათის ბატარეა დაბალია</string>
+    <string name="record_end_interrupted">შეწყვეტილია</string>
 </resources>

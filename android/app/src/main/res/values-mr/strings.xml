@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">मूल्ये पाहण्यासाठी चार्टला स्पर्श करा किंवा त्यावर ओढा.</string>
     <string name="chart_nights_30">३० रात्री</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">रात्रीचे रेकॉर्डिंग</string>
+    <string name="record_start">रात्र रेकॉर्ड करा</string>
+    <string name="record_stop">रेकॉर्डिंग थांबवा</string>
+    <string name="record_since">%1$s पासून रेकॉर्डिंग सुरू आहे</string>
+    <string name="record_hint">तुमचे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते, म्हणजे Phase Wake नंतर तुमच्या स्वतःच्या मर्यादा शिकू शकेल.</string>
+    <string name="record_end_manual">थांबवले</string>
+    <string name="record_end_cap">12 तासांनंतर संपले</string>
+    <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>
+    <string name="record_end_interrupted">खंडित</string>
 </resources>

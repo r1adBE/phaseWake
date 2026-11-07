@@ -141,6 +141,25 @@ object DataLayer {
     /** Nachricht Uhr → Handy: Diagnose-Bericht; Inhalt = `DiagReports.encode`. */
     const val PATH_DIAG_LOG = "/phasewake/diag-log"
 
+    /** Nachricht Handy → Uhr: «Nacht aufzeichnen» starten (ohne Inhalt). Nur Galaxy Watch. */
+    const val PATH_RECORD_START = "/phasewake/record-start"
+
+    /** Nachricht Handy → Uhr: laufende Aufzeichnung stoppen (ohne Inhalt). */
+    const val PATH_RECORD_STOP = "/phasewake/record-stop"
+
+    /**
+     * Datenpaket Uhr → Handy: Stand von «Nacht aufzeichnen»; Schlüssel [KEY_RECORD_SINCE] (Beginn in ms, 0 = keine läuft).
+     * Fehlt es, kennt die Uhr die Aufzeichnung nicht (ältere Version, Apple Watch): Das Handy zeigt dann keinen Knopf.
+     */
+    const val PATH_RECORD_STATUS = "/phasewake/record-status"
+    const val KEY_RECORD_SINCE = "since"
+
+    /**
+     * Präfix der Pakete Uhr → Handy mit einer abgeschlossenen Aufzeichnung, gefolgt vom Beginn (ms); Schlüssel [KEY_TEXT]
+     * (`NightRecording.encode`, höchstens 12 Std., rund 20 KB). Das Handy speichert sie und löscht das Paket.
+     */
+    const val PATH_RECORDING_PREFIX = "/phasewake/recording/"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
 

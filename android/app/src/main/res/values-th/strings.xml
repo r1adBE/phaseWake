@@ -517,4 +517,14 @@
     <string name="chart_touch_hint">แตะหรือลากบนแผนภูมิเพื่อดูค่า</string>
     <string name="chart_nights_30">30 คืน</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">การบันทึกกลางคืน</string>
+    <string name="record_start">บันทึกกลางคืน</string>
+    <string name="record_stop">หยุดบันทึก</string>
+    <string name="record_since">กำลังบันทึกตั้งแต่ %1$s</string>
+    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน เพื่อให้ Phase Wake เรียนรู้เกณฑ์ของคุณเองได้ในภายหลัง</string>
+    <string name="record_end_manual">หยุดแล้ว</string>
+    <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
+    <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>
+    <string name="record_end_interrupted">ถูกขัดจังหวะ</string>
 </resources>

@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Будилникът ти е активен в момента.</string>
     <string name="transient_alarm_soon">Прозорецът ти за събуждане започва още преди това.</string>
     <string name="home_licenses_hint">Лицензи: в приложението на телефона</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Запиши нощта</string>
+    <string name="record_stop">Спри записа</string>
+    <string name="record_since">От %1$s</string>
+    <string name="notification_record_title">Нощта се записва</string>
+    <string name="record_battery_low">Батерията е твърде слаба за запис</string>
 </resources>

@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Ditt alarm pågår just nu.</string>
     <string name="transient_alarm_soon">Ditt väckningsfönster börjar redan innan.</string>
     <string name="home_licenses_hint">Licenser: i appen på telefonen</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Spela in natten</string>
+    <string name="record_stop">Stoppa inspelning</string>
+    <string name="record_since">Sedan %1$s</string>
+    <string name="notification_record_title">Spelar in natten</string>
+    <string name="record_battery_low">För lite batteri för inspelning</string>
 </resources>

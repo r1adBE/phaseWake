@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">زنگ تو همین حالا در جریان است.</string>
     <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
     <string name="home_licenses_hint">مجوزها: در برنامهٔ گوشی</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ضبط شب</string>
+    <string name="record_stop">توقف ضبط</string>
+    <string name="record_since">از %1$s</string>
+    <string name="notification_record_title">در حال ضبط شب</string>
+    <string name="record_battery_low">باتری برای ضبط خیلی کم است</string>
 </resources>

@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Prek ose tërhiq mbi grafik për të parë vlerat.</string>
     <string name="chart_nights_30">30 net</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Regjistrim i natës</string>
+    <string name="record_start">Regjistro natën</string>
+    <string name="record_stop">Ndalo regjistrimin</string>
+    <string name="record_since">Po regjistron që nga %1$s</string>
+    <string name="record_hint">Ora jote regjistron lëvizjen dhe pulsin gjatë gjithë natës, që Phase Wake të mësojë më vonë pragjet e tua.</string>
+    <string name="record_end_manual">U ndal</string>
+    <string name="record_end_cap">Përfundoi pas 12 orësh</string>
+    <string name="record_end_battery">Bateria e orës e ulët</string>
+    <string name="record_end_interrupted">U ndërpre</string>
 </resources>

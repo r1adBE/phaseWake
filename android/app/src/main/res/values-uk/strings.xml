@@ -559,4 +559,14 @@
     <string name="chart_touch_hint">Торкнись графіка або проведи по ньому, щоб побачити значення.</string>
     <string name="chart_nights_30">30 ночей</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Нічний запис</string>
+    <string name="record_start">Записати ніч</string>
+    <string name="record_stop">Зупинити запис</string>
+    <string name="record_since">Запис триває з %1$s</string>
+    <string name="record_hint">Твій годинник усю ніч записує рух і пульс, щоб Phase Wake згодом міг вивчити твої власні пороги.</string>
+    <string name="record_end_manual">Зупинено</string>
+    <string name="record_end_cap">Завершено через 12 год</string>
+    <string name="record_end_battery">Низький заряд годинника</string>
+    <string name="record_end_interrupted">Перервано</string>
 </resources>

@@ -576,4 +576,14 @@
     <string name="chart_touch_hint">Tadhaill nó tarraing trasna na cairte chun luachanna a fheiceáil.</string>
     <string name="chart_nights_30">30 oíche</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Taifeadadh oíche</string>
+    <string name="record_start">Taifead an oíche</string>
+    <string name="record_stop">Stop an taifeadadh</string>
+    <string name="record_since">Ag taifeadadh ó %1$s</string>
+    <string name="record_hint">Taifeadann d’uaireadóir gluaiseacht agus cuisle ar feadh na hoíche, ionas gur féidir le Phase Wake do thairseacha féin a fhoghlaim níos déanaí.</string>
+    <string name="record_end_manual">Stoptha</string>
+    <string name="record_end_cap">Críochnaithe tar éis 12 u</string>
+    <string name="record_end_battery">Ceallra an uaireadóra íseal</string>
+    <string name="record_end_interrupted">Idirbhriste</string>
 </resources>

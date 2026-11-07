@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Zure alarma martxan dago orain.</string>
     <string name="transient_alarm_soon">Zure esnatze-leihoa hori baino lehen hasten da.</string>
     <string name="home_licenses_hint">Lizentziak: telefonoko aplikazioan</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Grabatu gaua</string>
+    <string name="record_stop">Gelditu grabazioa</string>
+    <string name="record_since">%1$s(e)tik</string>
+    <string name="notification_record_title">Gaua grabatzen</string>
+    <string name="record_battery_low">Bateria baxuegia grabatzeko</string>
 </resources>

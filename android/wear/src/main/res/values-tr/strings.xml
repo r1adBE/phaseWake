@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
     <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
     <string name="home_licenses_hint">Lisanslar: telefondaki uygulamada</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Geceyi kaydet</string>
+    <string name="record_stop">Kaydı durdur</string>
+    <string name="record_since">%1$s itibarıyla</string>
+    <string name="notification_record_title">Gece kaydediliyor</string>
+    <string name="record_battery_low">Kayıt için pil çok zayıf</string>
 </resources>

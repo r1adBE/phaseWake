@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">La tua sveglia è in corso proprio ora.</string>
     <string name="transient_alarm_soon">La finestra della tua sveglia inizia prima.</string>
     <string name="home_licenses_hint">Licenze: nell’app del telefono</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Registra la notte</string>
+    <string name="record_stop">Interrompi registrazione</string>
+    <string name="record_since">Dalle %1$s</string>
+    <string name="notification_record_title">Registrazione della notte</string>
+    <string name="record_battery_low">Batteria troppo scarica per registrare</string>
 </resources>

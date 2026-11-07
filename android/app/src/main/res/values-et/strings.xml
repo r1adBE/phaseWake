@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Väärtuste nägemiseks puuduta graafikut või libista üle selle.</string>
     <string name="chart_nights_30">30 ööd</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Öine salvestus</string>
+    <string name="record_start">Salvesta öö</string>
+    <string name="record_stop">Peata salvestus</string>
+    <string name="record_since">Salvestab alates %1$s</string>
+    <string name="record_hint">Su kell salvestab terve öö liikumist ja pulssi, et Phase Wake saaks hiljem õppida su enda lävesid.</string>
+    <string name="record_end_manual">Peatatud</string>
+    <string name="record_end_cap">Lõppes 12 h pärast</string>
+    <string name="record_end_battery">Kella aku on tühjenemas</string>
+    <string name="record_end_interrupted">Katkestatud</string>
 </resources>

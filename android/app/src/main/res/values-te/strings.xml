@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">విలువలు చూడటానికి చార్ట్‌ను తాకండి లేదా లాగండి.</string>
     <string name="chart_nights_30">30 రాత్రులు</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">రాత్రి రికార్డింగ్</string>
+    <string name="record_start">రాత్రిని రికార్డ్ చేయి</string>
+    <string name="record_stop">రికార్డింగ్ ఆపు</string>
+    <string name="record_since">%1$s నుండి రికార్డ్ అవుతోంది</string>
+    <string name="record_hint">నీ వాచ్ రాత్రంతా కదలిక, నాడిని రికార్డ్ చేస్తుంది, కాబట్టి Phase Wake తర్వాత నీ సొంత పరిమితులను నేర్చుకోగలదు.</string>
+    <string name="record_end_manual">ఆపబడింది</string>
+    <string name="record_end_cap">12 గంటల తర్వాత ముగిసింది</string>
+    <string name="record_end_battery">వాచ్ బ్యాటరీ తక్కువగా ఉంది</string>
+    <string name="record_end_interrupted">అంతరాయం కలిగింది</string>
 </resources>

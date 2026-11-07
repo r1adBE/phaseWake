@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">Мәндерді көру үшін диаграмманы түрт немесе үстінен сырғыт.</string>
     <string name="chart_nights_30">30 түн</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Түнгі жазба</string>
+    <string name="record_start">Түнді жазу</string>
+    <string name="record_stop">Жазуды тоқтату</string>
+    <string name="record_since">%1$s бастап жазылып жатыр</string>
+    <string name="record_hint">Сағатың түні бойы қозғалыс пен импульсті жазады, сонда Phase Wake кейін сенің жеке шектеріңді үйрене алады.</string>
+    <string name="record_end_manual">Тоқтатылды</string>
+    <string name="record_end_cap">12 сағаттан кейін аяқталды</string>
+    <string name="record_end_battery">Сағат батареясы әлсіз</string>
+    <string name="record_end_interrupted">Үзілді</string>
 </resources>

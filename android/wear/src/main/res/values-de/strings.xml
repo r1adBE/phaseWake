@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Gerade läuft dein Wecker.</string>
     <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
     <string name="home_licenses_hint">Lizenzen: in der Handy-App</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Nacht aufzeichnen</string>
+    <string name="record_stop">Aufzeichnung stoppen</string>
+    <string name="record_since">Seit %1$s</string>
+    <string name="notification_record_title">Nacht wird aufgezeichnet</string>
+    <string name="record_battery_low">Akku zu schwach zum Aufzeichnen</string>
 </resources>

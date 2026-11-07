@@ -16,9 +16,12 @@ import com.phasewake.app.shared.AutoOnsetStore
 import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.NightRepository
+import com.phasewake.app.shared.RecordSync
+import com.phasewake.app.shared.RecordingRepository
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
+import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.schedule.OnsetOverride
@@ -58,6 +61,10 @@ open class PhaseWakeWear : Application() {
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val sync by lazy { WearSync(this) }
+
+    /** «Nacht aufzeichnen»: Aufzeichnungen (privat, nicht gesichert) und ihr Austausch mit dem Handy. */
+    val recordings by lazy { RecordingRepository(File(filesDir, "recordings")) }
+    val recordSync by lazy { RecordSync(this) }
     val onsetOverride by lazy { OnsetOverride(phaseWakeStore) }
     val nightProgress by lazy { NightProgress(phaseWakeStore) }
     val scheduler by lazy { AlarmScheduler(this, alarms, onsetOverride, phaseWakeStore, sync, holidays, transient) }
@@ -128,6 +135,8 @@ open class PhaseWakeWear : Application() {
                 PhoneCatchUp.run(this@PhaseWakeWear)
             } finally {
                 scheduler.reschedule()
+                // Aufzeichnung: Stand ans Handy, eine liegengebliebene wieder aufnehmen.
+                RecordControl.onAppStart(this@PhaseWakeWear)
             }
         }
     }

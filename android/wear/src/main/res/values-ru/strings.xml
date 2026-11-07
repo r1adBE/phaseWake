@@ -96,4 +96,10 @@
     <string name="transient_alarm_running">Сейчас работает твой будильник.</string>
     <string name="transient_alarm_soon">Окно твоего будильника начинается раньше.</string>
     <string name="home_licenses_hint">Лицензии: в приложении на телефоне</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Записать ночь</string>
+    <string name="record_stop">Остановить запись</string>
+    <string name="record_since">С %1$s</string>
+    <string name="notification_record_title">Идёт запись ночи</string>
+    <string name="record_battery_low">Слишком низкий заряд для записи</string>
 </resources>

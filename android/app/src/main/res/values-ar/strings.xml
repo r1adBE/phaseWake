@@ -587,4 +587,14 @@
     <string name="chart_touch_hint">المس الرسم أو اسحب عليه لرؤية القيم.</string>
     <string name="chart_nights_30">30 ليلة</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">تسجيل الليلة</string>
+    <string name="record_start">سجّل الليلة</string>
+    <string name="record_stop">أوقف التسجيل</string>
+    <string name="record_since">التسجيل جارٍ منذ %1$s</string>
+    <string name="record_hint">تسجّل ساعتك الحركة والنبض طوال الليل، حتى يتمكن Phase Wake لاحقًا من تعلّم عتباتك الخاصة.</string>
+    <string name="record_end_manual">أُوقف</string>
+    <string name="record_end_cap">انتهى بعد 12 ساعة</string>
+    <string name="record_end_battery">بطارية الساعة منخفضة</string>
+    <string name="record_end_interrupted">انقطع</string>
 </resources>

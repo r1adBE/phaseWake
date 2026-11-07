@@ -561,4 +561,14 @@
     <string name="chart_touch_hint">Ťukni alebo ťahaj po grafe a uvidíš hodnoty.</string>
     <string name="chart_nights_30">30 nocí</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Nočný záznam</string>
+    <string name="record_start">Zaznamenať noc</string>
+    <string name="record_stop">Zastaviť záznam</string>
+    <string name="record_since">Záznam beží od %1$s</string>
+    <string name="record_hint">Tvoje hodinky celú noc zaznamenávajú pohyb a pulz, aby sa Phase Wake neskôr mohol naučiť tvoje vlastné prahy.</string>
+    <string name="record_end_manual">Zastavené</string>
+    <string name="record_end_cap">Ukončené po 12 h</string>
+    <string name="record_end_battery">Slabá batéria hodiniek</string>
+    <string name="record_end_interrupted">Prerušené</string>
 </resources>

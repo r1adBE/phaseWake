@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Alarmen din er i gang akkurat nå.</string>
     <string name="transient_alarm_soon">Vekkevinduet ditt starter allerede før.</string>
     <string name="home_licenses_hint">Lisenser: i appen på telefonen</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Ta opp natten</string>
+    <string name="record_stop">Stopp opptak</string>
+    <string name="record_since">Siden %1$s</string>
+    <string name="notification_record_title">Tar opp natten</string>
+    <string name="record_battery_low">For lite batteri til opptak</string>
 </resources>

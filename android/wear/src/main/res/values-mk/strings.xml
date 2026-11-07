@@ -91,4 +91,10 @@
     <string name="transient_alarm_running">Алармот токму сега е активен.</string>
     <string name="transient_alarm_soon">Прозорецот за будење почнува пред тоа.</string>
     <string name="home_licenses_hint">Лиценци: во апликацијата на телефонот</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Сними ја ноќта</string>
+    <string name="record_stop">Запри снимање</string>
+    <string name="record_since">Од %1$s</string>
+    <string name="notification_record_title">Ноќта се снима</string>
+    <string name="record_battery_low">Батеријата е преслаба за снимање</string>
 </resources>

@@ -548,4 +548,14 @@
     <string name="chart_touch_hint">Dodirni ili prevuci preko grafikona za vrijednosti.</string>
     <string name="chart_nights_30">30 noći</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Noćni zapis</string>
+    <string name="record_start">Snimi noć</string>
+    <string name="record_stop">Zaustavi snimanje</string>
+    <string name="record_since">Snima se od %1$s</string>
+    <string name="record_hint">Tvoj sat cijelu noć bilježi pokrete i puls, kako bi Phase Wake kasnije mogao naučiti tvoje vlastite pragove.</string>
+    <string name="record_end_manual">Zaustavljeno</string>
+    <string name="record_end_cap">Završeno nakon 12 h</string>
+    <string name="record_end_battery">Baterija sata je slaba</string>
+    <string name="record_end_interrupted">Prekinuto</string>
 </resources>

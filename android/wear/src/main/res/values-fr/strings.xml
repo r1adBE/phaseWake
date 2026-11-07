@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">Ton réveil est en cours en ce moment.</string>
     <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
     <string name="home_licenses_hint">Licences : dans l’app du téléphone</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Enregistrer la nuit</string>
+    <string name="record_stop">Arrêter l’enregistrement</string>
+    <string name="record_since">Depuis %1$s</string>
+    <string name="notification_record_title">Enregistrement de la nuit</string>
+    <string name="record_battery_low">Batterie trop faible pour enregistrer</string>
 </resources>

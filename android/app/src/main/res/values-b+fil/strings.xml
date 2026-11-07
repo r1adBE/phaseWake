@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">Pindutin o i-drag sa chart para makita ang mga value.</string>
     <string name="chart_nights_30">30 gabi</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Recording ng gabi</string>
+    <string name="record_start">I-record ang gabi</string>
+    <string name="record_stop">Ihinto ang pag-record</string>
+    <string name="record_since">Nagre-record mula %1$s</string>
+    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi, para matutunan ng Phase Wake ang sarili mong mga threshold sa susunod.</string>
+    <string name="record_end_manual">Itinigil</string>
+    <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
+    <string name="record_end_battery">Mahina ang baterya ng relo</string>
+    <string name="record_end_interrupted">Naantala</string>
 </resources>

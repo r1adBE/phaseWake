@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.home
 
 import com.phasewake.app.core.MissHint
+import com.phasewake.app.shared.RecordSync
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -180,6 +181,7 @@ fun HomeScreen(
         extras.onNap?.let { onNap ->
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
+        extras.record?.let { record -> item(key = "record") { RecordCard(record.since, extras.onRecord) } }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->
@@ -229,6 +231,10 @@ class HomeExtras(
     val autoOnset: Boolean = false,
     /** Schlafziel in Minuten, für den Beginn der automatischen Messung. */
     val sleepGoal: Int = SleepGoal.DEFAULT_MINUTES,
+    /** «Nacht aufzeichnen» auf der Galaxy Watch; `null` = Uhr kennt es nicht, keine Karte. */
+    val record: RecordSync.RecordStatus? = null,
+    /** Aufzeichnung starten (`true`) oder stoppen. */
+    val onRecord: (Boolean) -> Unit = {},
 )
 
 /** Nacht-Check-Punkte, bei denen die Uhr nicht messen kann (dann keine Zeile zur automatischen Messung). */

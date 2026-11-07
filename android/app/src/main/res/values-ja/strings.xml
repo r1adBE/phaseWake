@@ -517,4 +517,14 @@
     <string name="chart_touch_hint">グラフをタップまたはなぞると値が表示されます。</string>
     <string name="chart_nights_30">30泊</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">夜間の記録</string>
+    <string name="record_start">夜を記録</string>
+    <string name="record_stop">記録を停止</string>
+    <string name="record_since">%1$sから記録中</string>
+    <string name="record_hint">ウォッチが一晩中、動きと脈拍を記録します。Phase Wakeはあとからあなた自身のしきい値を学習できます。</string>
+    <string name="record_end_manual">停止しました</string>
+    <string name="record_end_cap">12時間で終了</string>
+    <string name="record_end_battery">ウォッチのバッテリー残量が少ない</string>
+    <string name="record_end_interrupted">中断しました</string>
 </resources>

@@ -533,4 +533,14 @@
     <string name="chart_touch_hint">മൂല്യങ്ങൾ കാണാൻ ചാർട്ടിൽ സ്പർശിക്കുക അല്ലെങ്കിൽ വലിക്കുക.</string>
     <string name="chart_nights_30">30 രാത്രി</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">രാത്രി റെക്കോർഡിംഗ്</string>
+    <string name="record_start">രാത്രി റെക്കോർഡ് ചെയ്യുക</string>
+    <string name="record_stop">റെക്കോർഡിംഗ് നിർത്തുക</string>
+    <string name="record_since">%1$s മുതൽ റെക്കോർഡ് ചെയ്യുന്നു</string>
+    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും റെക്കോർഡ് ചെയ്യുന്നു, അതിനാൽ Phase Wake-ന് പിന്നീട് നിന്റെ സ്വന്തം പരിധികൾ പഠിക്കാം.</string>
+    <string name="record_end_manual">നിർത്തി</string>
+    <string name="record_end_cap">12 മണിക്കൂറിന് ശേഷം അവസാനിച്ചു</string>
+    <string name="record_end_battery">വാച്ചിന്റെ ബാറ്ററി കുറവാണ്</string>
+    <string name="record_end_interrupted">തടസ്സപ്പെട്ടു</string>
 </resources>

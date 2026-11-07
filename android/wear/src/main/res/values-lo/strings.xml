@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">ໂມງປຸກຂອງເຈົ້າກຳລັງດຳເນີນຢູ່ຕອນນີ້</string>
     <string name="transient_alarm_soon">ຊ່ວງເວລາປຸກຂອງເຈົ້າເລີ່ມກ່ອນນັ້ນ</string>
     <string name="home_licenses_hint">ໃບອະນຸຍາດ: ໃນແອັບໂທລະສັບ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">ບັນທຶກກາງຄືນ</string>
+    <string name="record_stop">ຢຸດການບັນທຶກ</string>
+    <string name="record_since">ຕັ້ງແຕ່ %1$s</string>
+    <string name="notification_record_title">ກຳລັງບັນທຶກກາງຄືນ</string>
+    <string name="record_battery_low">ແບັດເຕີຣີຕ່ຳເກີນໄປທີ່ຈະບັນທຶກ</string>
 </resources>

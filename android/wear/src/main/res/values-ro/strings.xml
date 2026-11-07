@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">Alarma ta rulează chiar acum.</string>
     <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
     <string name="home_licenses_hint">Licențe: în aplicația de pe telefon</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Înregistrează noaptea</string>
+    <string name="record_stop">Oprește înregistrarea</string>
+    <string name="record_since">Din %1$s</string>
+    <string name="notification_record_title">Se înregistrează noaptea</string>
+    <string name="record_battery_low">Baterie prea slabă pentru înregistrare</string>
 </resources>

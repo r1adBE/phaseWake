@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">Tu alarma está en curso ahora mismo.</string>
     <string name="transient_alarm_soon">La ventana de tu alarma empieza antes.</string>
     <string name="home_licenses_hint">Licencias: en la app del móvil</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Grabar la noche</string>
+    <string name="record_stop">Detener grabación</string>
+    <string name="record_since">Desde las %1$s</string>
+    <string name="notification_record_title">Grabando la noche</string>
+    <string name="record_battery_low">Batería demasiado baja para grabar</string>
 </resources>

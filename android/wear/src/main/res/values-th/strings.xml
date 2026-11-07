@@ -87,4 +87,10 @@
     <string name="transient_alarm_running">การปลุกของคุณกำลังทำงานอยู่ตอนนี้</string>
     <string name="transient_alarm_soon">ช่วงเวลาปลุกของคุณเริ่มก่อนหน้านั้น</string>
     <string name="home_licenses_hint">สัญญาอนุญาต: ในแอปบนโทรศัพท์</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">บันทึกกลางคืน</string>
+    <string name="record_stop">หยุดบันทึก</string>
+    <string name="record_since">ตั้งแต่ %1$s</string>
+    <string name="notification_record_title">กำลังบันทึกกลางคืน</string>
+    <string name="record_battery_low">แบตเตอรี่น้อยเกินกว่าจะบันทึก</string>
 </resources>

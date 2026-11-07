@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">നിങ്ങളുടെ അലാറം ഇപ്പോൾ നടക്കുന്നു.</string>
     <string name="transient_alarm_soon">അതിനു മുമ്പേ ഉണർത്തൽ സമയപരിധി തുടങ്ങും.</string>
     <string name="home_licenses_hint">ലൈസൻസുകൾ: ഫോൺ ആപ്പിൽ</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">രാത്രി റെക്കോർഡ് ചെയ്യുക</string>
+    <string name="record_stop">റെക്കോർഡിംഗ് നിർത്തുക</string>
+    <string name="record_since">%1$s മുതൽ</string>
+    <string name="notification_record_title">രാത്രി റെക്കോർഡ് ചെയ്യുന്നു</string>
+    <string name="record_battery_low">റെക്കോർഡ് ചെയ്യാൻ ബാറ്ററി വളരെ കുറവാണ്</string>
 </resources>

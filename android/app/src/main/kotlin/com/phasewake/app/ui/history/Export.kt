@@ -12,6 +12,7 @@ import com.phasewake.app.R
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.phoneApp
+import com.phasewake.app.shared.NightRecording
 import java.io.File
 import java.time.Duration
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +23,7 @@ import kotlinx.coroutines.withContext
 /**
  * Teilt den Verlauf als CSV-Datei (Format siehe [NightHistory.exportCsv]): ohne Namen, Kennungen und Datumsangaben,
  * aber mit Bewegungs- und Pulsreihen je Nacht, also nicht anonym im engeren Sinn ([ExportDialog] sagt das vorher).
+ * Gibt es Aufzeichnungen («Nacht aufzeichnen»), kommt eine zweite Datei im selben Format dazu ([NightRecording.exportCsv]).
  * Die Datei liegt nur kurz im Cache: Die empfangende App liest sie oft erst später (z. B. beim Senden einer Mail), darum
  * wird sie nicht sofort gelöscht, sondern nach [KEEP] ([cleanup]: nach dem Teilen, im täglichen Aufräumen und beim
  * nächsten Start der App).
@@ -41,15 +43,24 @@ object Export {
         val subject = context.getString(R.string.history_export_subject)
         val zone = java.time.ZoneId.systemDefault()
         app.appScope.launch(Dispatchers.Main) {
-            val uri = withContext(Dispatchers.IO) {
+            val recordings = app.recordings.load()
+            val uris = withContext(Dispatchers.IO) {
                 val dir = File(app.cacheDir, DIR).apply { mkdirs() }
-                val file = File(dir, "phasewake-nights.csv")
-                file.writeText(NightHistory.exportCsv(nights, notes, zone))
-                FileProvider.getUriForFile(app, "${app.packageName}.export", file)
+                buildList {
+                    if (nights.isNotEmpty() || recordings.isEmpty()) {
+                        add(write(app, File(dir, "phasewake-nights.csv"), NightHistory.exportCsv(nights, notes, zone)))
+                    }
+                    if (recordings.isNotEmpty()) add(write(app, File(dir, "phasewake-recordings.csv"), NightRecording.exportCsv(recordings)))
+                }
             }
-            val send = Intent(Intent.ACTION_SEND)
+            // Eine Datei wie bisher; mit Aufzeichnungen beide Dateien im selben Teilen.
+            val base = if (uris.size == 1) {
+                Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM, uris.first())
+            } else {
+                Intent(Intent.ACTION_SEND_MULTIPLE).putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(uris))
+            }
+            val send = base
                 .setType("text/csv")
-                .putExtra(Intent.EXTRA_STREAM, uri)
                 .putExtra(Intent.EXTRA_SUBJECT, subject)
                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             app.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
@@ -57,6 +68,11 @@ object Export {
             delay(KEEP.toMillis())
             cleanup(app)
         }
+    }
+
+    private fun write(context: Context, file: File, text: String): android.net.Uri {
+        file.writeText(text)
+        return FileProvider.getUriForFile(context, "${context.packageName}.export", file)
     }
 
     /** Löscht geteilte Dateien, die älter als [olderThan] sind (`Duration.ZERO`: alle). */

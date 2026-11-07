@@ -534,4 +534,14 @@
     <string name="chart_touch_hint">እሴቶችን ለማየት ገበታውን ይንኩ ወይም ይጎትቱ።</string>
     <string name="chart_nights_30">30 ሌሊቶች</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">የሌሊት ቀረጻ</string>
+    <string name="record_start">ሌሊቱን ቅረጽ</string>
+    <string name="record_stop">ቀረጻውን አቁም</string>
+    <string name="record_since">ከ%1$s ጀምሮ እየተቀረጸ ነው</string>
+    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴንና የልብ ምትን ይቀርጻል፤ ስለዚህ Phase Wake በኋላ የራስህን ገደቦች መማር ይችላል።</string>
+    <string name="record_end_manual">ቆሟል</string>
+    <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
+    <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>
+    <string name="record_end_interrupted">ተቋርጧል</string>
 </resources>

@@ -90,4 +90,10 @@
     <string name="transient_alarm_running">Kengele yako inalia sasa hivi.</string>
     <string name="transient_alarm_soon">Kipindi chako cha kuamka kinaanza kabla ya hapo.</string>
     <string name="home_licenses_hint">Leseni: kwenye programu ya simu</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Rekodi usiku</string>
+    <string name="record_stop">Simamisha kurekodi</string>
+    <string name="record_since">Tangu %1$s</string>
+    <string name="notification_record_title">Inarekodi usiku</string>
+    <string name="record_battery_low">Betri iko chini mno kurekodi</string>
 </resources>

@@ -93,4 +93,10 @@
     <string name="transient_alarm_running">Seu alarme está em andamento agora.</string>
     <string name="transient_alarm_soon">A janela do seu alarme começa antes disso.</string>
     <string name="home_licenses_hint">Licenças: no app do celular</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_start">Gravar a noite</string>
+    <string name="record_stop">Parar gravação</string>
+    <string name="record_since">Desde %1$s</string>
+    <string name="notification_record_title">Gravando a noite</string>
+    <string name="record_battery_low">Bateria fraca demais para gravar</string>
 </resources>

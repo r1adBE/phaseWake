@@ -519,4 +519,14 @@
     <string name="chart_touch_hint">Dəyərləri görmək üçün qrafikə toxun və ya üzərində sürüşdür.</string>
     <string name="chart_nights_30">30 gecə</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Gecə qeydi</string>
+    <string name="record_start">Gecəni qeyd et</string>
+    <string name="record_stop">Qeydi dayandır</string>
+    <string name="record_since">Qeyd %1$s-dan bəri gedir</string>
+    <string name="record_hint">Saatın bütün gecə hərəkəti və nəbzi qeyd edir ki, Phase Wake sonra sənin öz həddlərini öyrənə bilsin.</string>
+    <string name="record_end_manual">Dayandırıldı</string>
+    <string name="record_end_cap">12 saatdan sonra bitdi</string>
+    <string name="record_end_battery">Saatın batareyası azdır</string>
+    <string name="record_end_interrupted">Kəsildi</string>
 </resources>

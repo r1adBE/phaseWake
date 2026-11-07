@@ -517,4 +517,14 @@
     <string name="chart_touch_hint">Sentuh atau seret pada carta untuk melihat nilai.</string>
     <string name="chart_nights_30">30 malam</string>
     <string name="stages_share">%1$d %%</string>
+    <!-- Nacht aufzeichnen (Galaxy Watch) -->
+    <string name="record_title">Rakaman malam</string>
+    <string name="record_start">Rakam malam</string>
+    <string name="record_stop">Hentikan rakaman</string>
+    <string name="record_since">Merakam sejak %1$s</string>
+    <string name="record_hint">Jam tanganmu merakam pergerakan dan nadi sepanjang malam, supaya Phase Wake boleh mempelajari ambangmu sendiri kemudian.</string>
+    <string name="record_end_manual">Dihentikan</string>
+    <string name="record_end_cap">Tamat selepas 12 jam</string>
+    <string name="record_end_battery">Bateri jam lemah</string>
+    <string name="record_end_interrupted">Terganggu</string>
 </resources>
