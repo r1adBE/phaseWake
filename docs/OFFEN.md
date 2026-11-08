@@ -61,6 +61,8 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11b. Aufgezeichnete Nächte in die Kalibrierung übernehmen (nach Prüfung an echten Nächten).
 11c. Export nur an einem Ort: in den Einstellungen («Nächte ohne Namen exportieren»), aktiv sobald es Nächte oder Aufzeichnungen gibt; der Knopf «Ohne Namen exportieren» am Ende des Verlaufs fällt weg. Gewünscht von r1AD am 08.11.
 11d. Handy-Startseite, Karte «Nacht-Aufzeichnung» schöner machen: Titel bricht mitten im Wort um («Nacht-Aufz / eichnung»), der Text ist eine schmale Spalte neben dem Knopf. Text über die ganze Breite, Knopf darunter. Gewünscht von r1AD am 08.11.
+11f. Puls auf der Galaxy Watch: In der Aufzeichnung vom 08.11. kamen nur 63 von 940 Epochen mit Puls (fast nur im 10-Minuten-Raster und bei Bewegung). Klären, warum die Uhr nicht laufend liefert (Sensor-Modus oder Drosselung durch Samsung). Gewünscht von r1AD am 08.11.
+11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
 
 ## Bekannte Grenzen
 
