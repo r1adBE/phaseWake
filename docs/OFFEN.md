@@ -60,6 +60,7 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
 11b. Aufgezeichnete Nächte in die Kalibrierung übernehmen (nach Prüfung an echten Nächten).
 11c. Einstellungen, «Nächte ohne Namen exportieren»: auch aktiv, wenn es nur Aufzeichnungen gibt (heute grau ohne Weck-Nächte; im Verlauf geht der Export schon). Gewünscht von r1AD am 08.11.
+11d. Handy-Startseite, Karte «Nacht-Aufzeichnung» schöner machen: Titel bricht mitten im Wort um («Nacht-Aufz / eichnung»), der Text ist eine schmale Spalte neben dem Knopf. Text über die ganze Breite, Knopf darunter. Gewünscht von r1AD am 08.11.
 
 ## Bekannte Grenzen
 
