@@ -63,6 +63,9 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11d. Handy-Startseite, Karte «Nacht-Aufzeichnung» schöner machen: Titel bricht mitten im Wort um («Nacht-Aufz / eichnung»), der Text ist eine schmale Spalte neben dem Knopf. Text über die ganze Breite, Knopf darunter. Gewünscht von r1AD am 08.11.
 11f. Puls auf der Galaxy Watch: In der Aufzeichnung vom 08.11. kamen nur 63 von 940 Epochen mit Puls (fast nur im 10-Minuten-Raster und bei Bewegung). Klären, warum die Uhr nicht laufend liefert (Sensor-Modus oder Drosselung durch Samsung). Gewünscht von r1AD am 08.11.
 11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
+11h. Daten automatisch sammeln und auswerten (z. B. über 3 oder 7 Nächte) statt Export durch den Nutzer: nur so lässt sich die beste Einstellung je Person liefern (Grundlage für 11b). Gewünscht von r1AD am 08.11.
+11i. Fenster «Genau»: Hinweis von r1AD am 08.11. – damit gibt es kein Fenster für die Phasen. Was daraus folgt, ist noch zu klären.
+11j. Einschlaf-Messung gibt nach 2 Std. auf (09.11.: Ende 03:25, unruhig bis ca. 03:20, Einschlafen nicht erfasst). Prüfen, ob sie bei spätem Einschlafen länger laufen soll.
 
 ## Bekannte Grenzen
 
