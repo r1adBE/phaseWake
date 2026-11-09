@@ -539,7 +539,7 @@
     <string name="record_start">રાત રેકોર્ડ કરો</string>
     <string name="record_stop">રેકોર્ડિંગ બંધ કરો</string>
     <string name="record_since">%1$s થી રેકોર્ડિંગ ચાલુ છે</string>
-    <string name="record_hint">તમારી ઘડિયાળ આખી રાત હલનચલન અને પલ્સ રેકોર્ડ કરે છે, જેથી Phase Wake પછીથી તમારી પોતાની મર્યાદાઓ શીખી શકે.</string>
+    <string name="record_hint">તારી ઘડિયાળ આખી રાત હલનચલન અને નાડી રેકોર્ડ કરે છે. આ રાતોમાંથી Phase Wake શીખવાના તબક્કામાં તારાં પોતાનાં મૂલ્યો શીખે છે અને એલાર્મ તારા માટે અનુકૂળ કરે છે.</string>
     <string name="record_end_manual">બંધ કર્યું</string>
     <string name="record_end_cap">12 કલાક પછી સમાપ્ત</string>
     <string name="record_end_battery">ઘડિયાળની બેટરી ઓછી છે</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">આજે %1$s અને %2$s વચ્ચે સૂઈ જજે</string>
     <string name="bedtime_advice_hint">તારા અલાર્મ, ઊંઘના લક્ષ્ય અને ઊંઘ આવતાં લાગતા સમય પરથી.</string>
     <string name="learn_restart">ફરી શીખો</string>
-    <string name="learn_restart_text">Phase Wake ફરી %1$d રાત માપશે અને અનુકૂળ કરેલાં મૂલ્યો ભૂલી જશે.</string>
+    <string name="learn_restart_text">Phase Wake ફરીથી %1$d રાત માપે છે. ત્યાં સુધી અત્યાર સુધી અનુકૂળ કરેલાં મૂલ્યો જ વપરાય છે.</string>
     <string name="record_end_wake">જગાડતી વખતે પૂરું</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ઊંઘનો સ્કોર</string>
+    <string name="score_excellent">ઉત્તમ</string>
+    <string name="score_good">સારું</string>
+    <string name="score_fair">મધ્યમ</string>
+    <string name="score_poor">નબળું</string>
+    <string name="score_value">ઊંઘનો સ્કોર 100 માંથી %1$d: %2$s</string>
+    <string name="score_duration">ઊંઘનો સમયગાળો</string>
+    <string name="score_weights">ભારાંક: ઊંઘનો સમયગાળો 35, ગાઢ 20, REM 20, જાગતા 15, ઊંઘ આવવાનો સમય 10. ખૂટતાં મૂલ્યો ગણાતાં નથી.</string>
+    <string name="score_source">%1$s માંથી.</string>
+    <string name="score_source_health">તારા આરોગ્ય ડેટામાંથી.</string>
+    <string name="score_source_recording">તારી ઘડિયાળના રાત્રિ રેકોર્ડિંગમાંથી.</string>
+    <string name="pulse_title">નાડી</string>
+    <string name="pulse_average">Ø પ્રતિ મિનિટ %1$d</string>
+    <string name="motion_title">હલનચલન</string>
+    <string name="overview_title">તારી ઊંઘ</string>
+    <string name="overview_days">દિવસો</string>
+    <string name="overview_weeks">અઠવાડિયાં</string>
+    <string name="overview_months">મહિના</string>
+    <string name="overview_asleep">Ø ઊંઘ</string>
+    <string name="overview_bedtime">Ø સૂવાનો સમય</string>
+    <string name="overview_wake">Ø ઊઠવાનો સમય</string>
+    <string name="settings_clear_history_learn">શીખવાનો તબક્કો ફરીથી શરૂ થાય છે.</string>
+    <string name="learn_auto_hint">રાતો ગણાય તે માટે સાંજે ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કર અથવા “ઊંઘ આવવાનું આપમેળે ઓળખો” ચાલુ કર.</string>
 </resources>

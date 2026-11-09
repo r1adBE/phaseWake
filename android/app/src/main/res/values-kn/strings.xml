@@ -538,7 +538,7 @@
     <string name="record_start">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
     <string name="record_stop">ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ</string>
     <string name="record_since">%1$s ರಿಂದ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
-    <string name="record_hint">ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತದೆ, ಇದರಿಂದ Phase Wake ನಂತರ ನಿಮ್ಮದೇ ಮಿತಿಗಳನ್ನು ಕಲಿಯಬಹುದು.</string>
+    <string name="record_hint">ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ.</string>
     <string name="record_end_manual">ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
     <string name="record_end_cap">12 ಗಂಟೆಗಳ ನಂತರ ಮುಗಿಯಿತು</string>
     <string name="record_end_battery">ವಾಚ್ ಬ್ಯಾಟರಿ ಕಡಿಮೆ</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">ಇಂದು %1$s ಮತ್ತು %2$s ನಡುವೆ ಮಲಗು</string>
     <string name="bedtime_advice_hint">ನಿನ್ನ ಅಲಾರಂ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ.</string>
     <string name="learn_restart">ಮತ್ತೆ ಕಲಿ</string>
-    <string name="learn_restart_text">Phase Wake ಮತ್ತೆ %1$d ರಾತ್ರಿ ಅಳೆಯುತ್ತದೆ ಮತ್ತು ಹೊಂದಿಸಿದ ಮೌಲ್ಯಗಳನ್ನು ಮರೆಯುತ್ತದೆ.</string>
+    <string name="learn_restart_text">Phase Wake ಮತ್ತೆ %1$d ರಾತ್ರಿಗಳನ್ನು ಅಳೆಯುತ್ತದೆ. ಅಲ್ಲಿಯವರೆಗೆ ಇದುವರೆಗೆ ಹೊಂದಿಸಿದ ಮೌಲ್ಯಗಳೇ ಬಳಕೆಯಲ್ಲಿರುತ್ತವೆ.</string>
     <string name="record_end_wake">ಎಬ್ಬಿಸುವಾಗ ಮುಗಿದಿದೆ</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ನಿದ್ರೆ ಸ್ಕೋರ್</string>
+    <string name="score_excellent">ಅತ್ಯುತ್ತಮ</string>
+    <string name="score_good">ಒಳ್ಳೆಯದು</string>
+    <string name="score_fair">ಮಧ್ಯಮ</string>
+    <string name="score_poor">ದುರ್ಬಲ</string>
+    <string name="score_value">ನಿದ್ರೆ ಸ್ಕೋರ್ 100 ರಲ್ಲಿ %1$d: %2$s</string>
+    <string name="score_duration">ನಿದ್ರೆಯ ಅವಧಿ</string>
+    <string name="score_weights">ತೂಕ: ನಿದ್ರೆಯ ಅವಧಿ 35, ಗಾಢ 20, REM 20, ಎಚ್ಚರ 15, ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯ 10. ಕಾಣೆಯಾದ ಮೌಲ್ಯಗಳನ್ನು ಎಣಿಸುವುದಿಲ್ಲ.</string>
+    <string name="score_source">%1$s ನಿಂದ.</string>
+    <string name="score_source_health">ನಿನ್ನ ಆರೋಗ್ಯ ಡೇಟಾದಿಂದ.</string>
+    <string name="score_source_recording">ನಿನ್ನ ವಾಚ್‌ನ ರಾತ್ರಿ ರೆಕಾರ್ಡಿಂಗ್‌ನಿಂದ.</string>
+    <string name="pulse_title">ನಾಡಿ</string>
+    <string name="pulse_average">Ø ನಿಮಿಷಕ್ಕೆ %1$d</string>
+    <string name="motion_title">ಚಲನೆ</string>
+    <string name="overview_title">ನಿನ್ನ ನಿದ್ರೆ</string>
+    <string name="overview_days">ದಿನಗಳು</string>
+    <string name="overview_weeks">ವಾರಗಳು</string>
+    <string name="overview_months">ತಿಂಗಳುಗಳು</string>
+    <string name="overview_asleep">Ø ನಿದ್ರೆ</string>
+    <string name="overview_bedtime">Ø ಮಲಗುವ ಸಮಯ</string>
+    <string name="overview_wake">Ø ಎಚ್ಚರವಾಗುವ ಸಮಯ</string>
+    <string name="settings_clear_history_learn">ಕಲಿಕೆಯ ಹಂತ ಮತ್ತೆ ಮೊದಲಿನಿಂದ ಆರಂಭವಾಗುತ್ತದೆ.</string>
+    <string name="learn_auto_hint">ರಾತ್ರಿಗಳು ಎಣಿಕೆಯಾಗಲು ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡು ಅಥವಾ “ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚು” ಆನ್ ಮಾಡು.</string>
 </resources>

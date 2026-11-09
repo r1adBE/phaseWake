@@ -539,7 +539,7 @@
     <string name="record_start">Neem nag op</string>
     <string name="record_stop">Stop opname</string>
     <string name="record_since">Neem op sedert %1$s</string>
-    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op, sodat Phase Wake later jou eie drempels kan leer.</string>
+    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan.</string>
     <string name="record_end_manual">Gestop</string>
     <string name="record_end_cap">Ná 12 h beëindig</string>
     <string name="record_end_battery">Horlosie se battery laag</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Gaan vanaand tussen %1$s en %2$s bed toe</string>
     <string name="bedtime_advice_hint">Uit jou wekkertyd, slaapdoel en hoe lank jy neem om aan die slaap te raak.</string>
     <string name="learn_restart">Leer weer</string>
-    <string name="learn_restart_text">Phase Wake meet weer %1$d nagte en vergeet die aangepaste waardes.</string>
+    <string name="learn_restart_text">Phase Wake meet weer %1$d nagte. Tot dan bly die waardes wat tot nou toe aangepas is, geld.</string>
     <string name="record_end_wake">Beëindig met wakker word</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Slaaptelling</string>
+    <string name="score_excellent">Uitstekend</string>
+    <string name="score_good">Goed</string>
+    <string name="score_fair">Middelmatig</string>
+    <string name="score_poor">Swak</string>
+    <string name="score_value">Slaaptelling %1$d uit 100: %2$s</string>
+    <string name="score_duration">Slaapduur</string>
+    <string name="score_weights">Gewig: Slaapduur 35, Diep 20, REM 20, Wakker 15, Insluimer 10. Ontbrekende waardes tel nie.</string>
+    <string name="score_source">Uit %1$s.</string>
+    <string name="score_source_health">Uit jou gesondheidsdata.</string>
+    <string name="score_source_recording">Uit jou horlosie se nagopname.</string>
+    <string name="pulse_title">Polsslag</string>
+    <string name="pulse_average">Ø %1$d per minuut</string>
+    <string name="motion_title">Beweging</string>
+    <string name="overview_title">Jou slaap</string>
+    <string name="overview_days">Dae</string>
+    <string name="overview_weeks">Weke</string>
+    <string name="overview_months">Maande</string>
+    <string name="overview_asleep">Ø slaap</string>
+    <string name="overview_bedtime">Ø slaaptyd</string>
+    <string name="overview_wake">Ø wakkerwordtyd</string>
+    <string name="settings_clear_history_learn">Die leerfase begin weer van voor af.</string>
+    <string name="learn_auto_hint">Tik saans op jou horlosie op “Goeienag” of skakel “Bespeur outomaties wanneer jy aan die slaap raak” aan sodat die nagte tel.</string>
 </resources>

@@ -550,7 +550,7 @@
     <string name="record_start">הקלטת הלילה</string>
     <string name="record_stop">עצירת ההקלטה</string>
     <string name="record_since">מקליט מאז %1$s</string>
-    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה, כדי ש-Phase Wake יוכל ללמוד בהמשך את הספים האישיים שלך.</string>
+    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה.</string>
     <string name="record_end_manual">נעצרה</string>
     <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
     <string name="record_end_battery">הסוללה של השעון חלשה</string>
@@ -568,6 +568,30 @@
     <string name="bedtime_advice">לך לישון הלילה בין %1$s ל-%2$s</string>
     <string name="bedtime_advice_hint">לפי ההשכמה, יעד השינה והזמן שלוקח לך להירדם.</string>
     <string name="learn_restart">ללמוד מחדש</string>
-    <string name="learn_restart_text">Phase Wake ימדוד שוב %1$d לילות וישכח את הערכים המותאמים.</string>
+    <string name="learn_restart_text">Phase Wake מודד שוב %1$d לילות. עד אז נשארים בשימוש הערכים שהותאמו עד עכשיו.</string>
     <string name="record_end_wake">הסתיימה בהשכמה</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ציון שינה</string>
+    <string name="score_excellent">מצוין</string>
+    <string name="score_good">טוב</string>
+    <string name="score_fair">בינוני</string>
+    <string name="score_poor">חלש</string>
+    <string name="score_value">ציון שינה %1$d מתוך 100: %2$s</string>
+    <string name="score_duration">משך שינה</string>
+    <string name="score_weights">שקלול: משך שינה 35, עמוקה 20, REM 20, ער 15, זמן הירדמות 10. ערכים חסרים לא נספרים.</string>
+    <string name="score_source">מתוך %1$s.</string>
+    <string name="score_source_health">מנתוני הבריאות שלך.</string>
+    <string name="score_source_recording">מהקלטת הלילה של השעון שלך.</string>
+    <string name="pulse_title">דופק</string>
+    <string name="pulse_average">Ø %1$d לדקה</string>
+    <string name="motion_title">תנועה</string>
+    <string name="overview_title">השינה שלך</string>
+    <string name="overview_days">ימים</string>
+    <string name="overview_weeks">שבועות</string>
+    <string name="overview_months">חודשים</string>
+    <string name="overview_asleep">Ø שינה</string>
+    <string name="overview_bedtime">Ø שעת שינה</string>
+    <string name="overview_wake">Ø שעת התעוררות</string>
+    <string name="settings_clear_history_learn">שלב הלמידה מתחיל מחדש.</string>
+    <string name="learn_auto_hint">בערב הקש על “לילה טוב” בשעון או הפעל את “זיהוי הירדמות אוטומטי” כדי שהלילות ייספרו.</string>
 </resources>

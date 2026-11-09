@@ -538,7 +538,7 @@
     <string name="record_start">Rekodi usiku</string>
     <string name="record_stop">Simamisha kurekodi</string>
     <string name="record_since">Inarekodi tangu %1$s</string>
-    <string name="record_hint">Saa yako hurekodi mwendo na mapigo ya moyo usiku kucha, ili Phase Wake iweze baadaye kujifunza viwango vyako mwenyewe.</string>
+    <string name="record_hint">Saa yako hurekodi mwendo na mapigo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae.</string>
     <string name="record_end_manual">Imesimamishwa</string>
     <string name="record_end_cap">Iliisha baada ya saa 12</string>
     <string name="record_end_battery">Betri ya saa iko chini</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">Leo nenda kitandani kati ya %1$s na %2$s</string>
     <string name="bedtime_advice_hint">Kulingana na kengele yako, lengo la usingizi na muda unaochukua kupata usingizi.</string>
     <string name="learn_restart">Jifunze upya</string>
-    <string name="learn_restart_text">Phase Wake itapima tena usiku %1$d na kusahau thamani zilizorekebishwa.</string>
+    <string name="learn_restart_text">Phase Wake inapima tena usiku %1$d. Hadi hapo, thamani zilizorekebishwa hadi sasa zinaendelea kutumika.</string>
     <string name="record_end_wake">Imeisha wakati wa kuamshwa</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Alama ya usingizi</string>
+    <string name="score_excellent">Bora sana</string>
+    <string name="score_good">Nzuri</string>
+    <string name="score_fair">Wastani</string>
+    <string name="score_poor">Dhaifu</string>
+    <string name="score_value">Alama ya usingizi %1$d kati ya 100: %2$s</string>
+    <string name="score_duration">Muda wa usingizi</string>
+    <string name="score_weights">Uzito: Muda wa usingizi 35, Mzito 20, REM 20, Macho 15, Muda wa kupata usingizi 10. Thamani zinazokosekana hazihesabiwi.</string>
+    <string name="score_source">Kutoka %1$s.</string>
+    <string name="score_source_health">Kutoka data yako ya afya.</string>
+    <string name="score_source_recording">Kutoka rekodi ya usiku ya saa yako.</string>
+    <string name="pulse_title">Mapigo</string>
+    <string name="pulse_average">Ø %1$d kwa dakika</string>
+    <string name="motion_title">Mwendo</string>
+    <string name="overview_title">Usingizi wako</string>
+    <string name="overview_days">Siku</string>
+    <string name="overview_weeks">Wiki</string>
+    <string name="overview_months">Miezi</string>
+    <string name="overview_asleep">Ø usingizi</string>
+    <string name="overview_bedtime">Ø wakati wa kulala</string>
+    <string name="overview_wake">Ø wakati wa kuamka</string>
+    <string name="settings_clear_history_learn">Awamu ya kujifunza inaanza upya.</string>
+    <string name="learn_auto_hint">Jioni gusa “Usiku mwema” kwenye saa au washa “Tambua kiotomatiki unaposinzia” ili usiku uhesabiwe.</string>
 </resources>

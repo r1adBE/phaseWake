@@ -536,7 +536,7 @@
     <string name="record_start">रात रिकॉर्ड करें</string>
     <string name="record_stop">रिकॉर्डिंग रोकें</string>
     <string name="record_since">%1$s से रिकॉर्डिंग चल रही है</string>
-    <string name="record_hint">आपकी वॉच पूरी रात हलचल और नब्ज़ रिकॉर्ड करती है, ताकि Phase Wake बाद में आपकी अपनी सीमाएँ सीख सके।</string>
+    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और नब्ज़ रिकॉर्ड करती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है।</string>
     <string name="record_end_manual">रोकी गई</string>
     <string name="record_end_cap">12 घंटे बाद समाप्त</string>
     <string name="record_end_battery">वॉच की बैटरी कम है</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">आज %1$s से %2$s के बीच सोने जाओ</string>
     <string name="bedtime_advice_hint">तुम्हारे अलार्म, नींद के लक्ष्य और नींद आने में लगने वाले समय से।</string>
     <string name="learn_restart">फिर से सीखो</string>
-    <string name="learn_restart_text">Phase Wake फिर से %1$d रातें मापेगा और ढाले गए मान भूल जाएगा।</string>
+    <string name="learn_restart_text">Phase Wake फिर से %1$d रातें मापता है। तब तक अब तक ढाले गए मान ही चलते रहेंगे।</string>
     <string name="record_end_wake">जगाने पर खत्म</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">नींद स्कोर</string>
+    <string name="score_excellent">बेहतरीन</string>
+    <string name="score_good">अच्छा</string>
+    <string name="score_fair">औसत</string>
+    <string name="score_poor">कमज़ोर</string>
+    <string name="score_value">नींद स्कोर 100 में से %1$d: %2$s</string>
+    <string name="score_duration">नींद की अवधि</string>
+    <string name="score_weights">भार: नींद की अवधि 35, गहरी 20, REM 20, जागे 15, नींद आने में समय 10. न मिले मान नहीं गिने जाते।</string>
+    <string name="score_source">%1$s से।</string>
+    <string name="score_source_health">तुम्हारे स्वास्थ्य डेटा से।</string>
+    <string name="score_source_recording">तुम्हारी घड़ी की रात की रिकॉर्डिंग से।</string>
+    <string name="pulse_title">नब्ज़</string>
+    <string name="pulse_average">Ø %1$d प्रति मिनट</string>
+    <string name="motion_title">हलचल</string>
+    <string name="overview_title">तुम्हारी नींद</string>
+    <string name="overview_days">दिन</string>
+    <string name="overview_weeks">हफ़्ते</string>
+    <string name="overview_months">महीने</string>
+    <string name="overview_asleep">Ø नींद</string>
+    <string name="overview_bedtime">Ø सोने का समय</string>
+    <string name="overview_wake">Ø जागने का समय</string>
+    <string name="settings_clear_history_learn">सीखने का चरण फिर से शुरू होता है।</string>
+    <string name="learn_auto_hint">रातें गिनी जाएँ, इसके लिए शाम को घड़ी पर “शुभ रात्रि” टैप करो या “सो जाने का अपने आप पता लगाओ” चालू करो।</string>
 </resources>

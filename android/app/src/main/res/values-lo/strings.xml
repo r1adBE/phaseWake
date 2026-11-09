@@ -524,7 +524,7 @@
     <string name="record_start">ບັນທຶກກາງຄືນ</string>
     <string name="record_stop">ຢຸດການບັນທຶກ</string>
     <string name="record_since">ກຳລັງບັນທຶກຕັ້ງແຕ່ %1$s</string>
-    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ ເພື່ອໃຫ້ Phase Wake ຮຽນຮູ້ເກນຂອງເຈົ້າເອງໄດ້ໃນພາຍຫຼັງ.</string>
+    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ.</string>
     <string name="record_end_manual">ຢຸດແລ້ວ</string>
     <string name="record_end_cap">ສິ້ນສຸດຫຼັງ 12 ຊມ</string>
     <string name="record_end_battery">ແບັດເຕີຣີໂມງຕ່ຳ</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">ຄືນນີ້ເຂົ້ານອນລະຫວ່າງ %1$s ຫາ %2$s</string>
     <string name="bedtime_advice_hint">ອີງຕາມໂມງປຸກ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ.</string>
     <string name="learn_restart">ຮຽນຮູ້ໃໝ່</string>
-    <string name="learn_restart_text">Phase Wake ຈະວັດແທກ %1$d ຄືນອີກ ແລະ ລືມຄ່າທີ່ປັບແລ້ວ.</string>
+    <string name="learn_restart_text">Phase Wake ວັດແທກອີກ %1$d ຄືນ. ຈົນກວ່າຈະຮອດຕອນນັ້ນ ຄ່າທີ່ປັບມາແລ້ວຍັງໃຊ້ຢູ່.</string>
     <string name="record_end_wake">ສິ້ນສຸດຕອນປຸກ</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ຄະແນນການນອນ</string>
+    <string name="score_excellent">ດີເລີດ</string>
+    <string name="score_good">ດີ</string>
+    <string name="score_fair">ປານກາງ</string>
+    <string name="score_poor">ອ່ອນ</string>
+    <string name="score_value">ຄະແນນການນອນ %1$d ຈາກ 100: %2$s</string>
+    <string name="score_duration">ໄລຍະເວລານອນ</string>
+    <string name="score_weights">ນ້ຳໜັກ: ໄລຍະເວລານອນ 35, ເລິກ 20, REM 20, ຕື່ນ 15, ເວລາກວ່າຈະຫຼັບ 10. ຄ່າທີ່ຂາດຫາຍບໍ່ນັບ.</string>
+    <string name="score_source">ຈາກ %1$s.</string>
+    <string name="score_source_health">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ.</string>
+    <string name="score_source_recording">ຈາກການບັນທຶກຕອນກາງຄືນຂອງໂມງເຈົ້າ.</string>
+    <string name="pulse_title">ຊີບພະຈອນ</string>
+    <string name="pulse_average">Ø %1$d ຕໍ່ນາທີ</string>
+    <string name="motion_title">ການເຄື່ອນໄຫວ</string>
+    <string name="overview_title">ການນອນຂອງເຈົ້າ</string>
+    <string name="overview_days">ມື້</string>
+    <string name="overview_weeks">ອາທິດ</string>
+    <string name="overview_months">ເດືອນ</string>
+    <string name="overview_asleep">Ø ການນອນ</string>
+    <string name="overview_bedtime">Ø ເວລາເຂົ້ານອນ</string>
+    <string name="overview_wake">Ø ເວລາຕື່ນ</string>
+    <string name="settings_clear_history_learn">ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນໃໝ່.</string>
+    <string name="learn_auto_hint">ຕອນແລງ ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງ ຫຼື ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” ເພື່ອໃຫ້ນັບຄືນ.</string>
 </resources>

@@ -524,7 +524,7 @@
     <string name="record_start">Գրառել գիշերը</string>
     <string name="record_stop">Դադարեցնել գրառումը</string>
     <string name="record_since">Գրառվում է %1$s-ից</string>
-    <string name="record_hint">Ժամացույցդ ամբողջ գիշեր գրառում է շարժումն ու զարկերակը, որպեսզի Phase Wake-ը հետո սովորի քո սեփական շեմերը։</string>
+    <string name="record_hint">Ժամացույցդ ամբողջ գիշեր գրանցում է շարժումն ու զարկերակը։ Այդ գիշերներից Phase Wake-ը ուսուցման փուլում սովորում է քո սեփական արժեքները և զարթուցիչը հարմարեցնում քեզ։</string>
     <string name="record_end_manual">Դադարեցված է</string>
     <string name="record_end_cap">Ավարտվեց 12 ժ հետո</string>
     <string name="record_end_battery">Ժամացույցի մարտկոցը թույլ է</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">Այսօր պառկիր %1$s-ից %2$s-ի միջև</string>
     <string name="bedtime_advice_hint">Ըստ զարթուցիչիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։</string>
     <string name="learn_restart">Սովորել նորից</string>
-    <string name="learn_restart_text">Phase Wake-ը նորից կչափի %1$d գիշեր և կմոռանա հարմարեցված արժեքները։</string>
+    <string name="learn_restart_text">Phase Wake-ը նորից չափում է %1$d գիշեր։ Մինչ այդ գործում են մինչ այժմ հարմարեցված արժեքները։</string>
     <string name="record_end_wake">Ավարտվել է արթնացնելիս</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Քնի միավոր</string>
+    <string name="score_excellent">Գերազանց</string>
+    <string name="score_good">Լավ</string>
+    <string name="score_fair">Միջին</string>
+    <string name="score_poor">Թույլ</string>
+    <string name="score_value">Քնի միավոր՝ %1$d 100-ից. %2$s</string>
+    <string name="score_duration">Քնի տևողություն</string>
+    <string name="score_weights">Կշիռ: Քնի տևողություն 35, Խոր 20, REM 20, Արթուն 15, Քնելու ժամանակ 10. Բացակայող արժեքները չեն հաշվվում։</string>
+    <string name="score_source">%1$s-ից։</string>
+    <string name="score_source_health">Քո առողջության տվյալներից։</string>
+    <string name="score_source_recording">Քո ժամացույցի գիշերային գրառումից։</string>
+    <string name="pulse_title">Զարկերակ</string>
+    <string name="pulse_average">Ø րոպեում %1$d</string>
+    <string name="motion_title">Շարժում</string>
+    <string name="overview_title">Քո քունը</string>
+    <string name="overview_days">Օրեր</string>
+    <string name="overview_weeks">Շաբաթներ</string>
+    <string name="overview_months">Ամիսներ</string>
+    <string name="overview_asleep">Ø քուն</string>
+    <string name="overview_bedtime">Ø քնելու ժամ</string>
+    <string name="overview_wake">Ø արթնանալու ժամ</string>
+    <string name="settings_clear_history_learn">Ուսուցման փուլը սկսվում է նորից։</string>
+    <string name="learn_auto_hint">Երեկոյան ժամացույցի վրա հպիր «Բարի գիշեր»-ին կամ միացրու «Ինքնաշխատ հայտնաբերել քնելը»-ը, որպեսզի գիշերները հաշվվեն։</string>
 </resources>

@@ -539,7 +539,7 @@
     <string name="record_start">Tunni yozib olish</string>
     <string name="record_stop">Yozishni to‘xtatish</string>
     <string name="record_since">%1$s dan beri yozilmoqda</string>
-    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi, shunda Phase Wake keyinroq sening shaxsiy chegaralaringni o‘rgana oladi.</string>
+    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi.</string>
     <string name="record_end_manual">To‘xtatildi</string>
     <string name="record_end_cap">12 soatdan keyin tugadi</string>
     <string name="record_end_battery">Soat batareyasi kam</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Bugun %1$s va %2$s oralig‘ida yot</string>
     <string name="bedtime_advice_hint">Budilnik, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra.</string>
     <string name="learn_restart">Qayta o‘rganish</string>
-    <string name="learn_restart_text">Phase Wake yana %1$d tun o‘lchaydi va moslangan qiymatlarni unutadi.</string>
+    <string name="learn_restart_text">Phase Wake yana %1$d tun o‘lchaydi. Shu vaqtgacha hozirgacha moslangan qiymatlar amal qiladi.</string>
     <string name="record_end_wake">Uyg‘otishda tugadi</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Uyqu bali</string>
+    <string name="score_excellent">Aʼlo</string>
+    <string name="score_good">Yaxshi</string>
+    <string name="score_fair">Oʻrtacha</string>
+    <string name="score_poor">Zaif</string>
+    <string name="score_value">Uyqu bali 100 dan %1$d: %2$s</string>
+    <string name="score_duration">Uyqu davomiyligi</string>
+    <string name="score_weights">Vazn: Uyqu davomiyligi 35, Chuqur 20, REM 20, Uygʻoq 15, Uxlab qolish vaqti 10. Yetishmayotgan qiymatlar hisoblanmaydi.</string>
+    <string name="score_source">Manba: %1$s.</string>
+    <string name="score_source_health">Salomatlik maʼlumotlaringdan.</string>
+    <string name="score_source_recording">Soatingning tungi yozuvidan.</string>
+    <string name="pulse_title">Puls</string>
+    <string name="pulse_average">Ø daqiqada %1$d</string>
+    <string name="motion_title">Harakat</string>
+    <string name="overview_title">Uyqung</string>
+    <string name="overview_days">Kunlar</string>
+    <string name="overview_weeks">Haftalar</string>
+    <string name="overview_months">Oylar</string>
+    <string name="overview_asleep">Ø uyqu</string>
+    <string name="overview_bedtime">Ø uxlash vaqti</string>
+    <string name="overview_wake">Ø uygʻonish vaqti</string>
+    <string name="settings_clear_history_learn">O‘rganish bosqichi boshidan boshlanadi.</string>
+    <string name="learn_auto_hint">Tunlar hisoblanishi uchun kechqurun soatda «Xayrli tun» tugmasini bos yoki «Uxlab qolishni avtomatik aniqlash» funksiyasini yoq.</string>
 </resources>

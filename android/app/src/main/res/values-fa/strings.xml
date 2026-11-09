@@ -536,7 +536,7 @@
     <string name="record_start">ضبط شب</string>
     <string name="record_stop">توقف ضبط</string>
     <string name="record_since">در حال ضبط از %1$s</string>
-    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند تا Phase Wake بعداً آستانه‌های خودت را یاد بگیرد.</string>
+    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند.</string>
     <string name="record_end_manual">متوقف شد</string>
     <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
     <string name="record_end_battery">باتری ساعت کم است</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">امشب بین %1$s و %2$s به رختخواب برو</string>
     <string name="bedtime_advice_hint">بر اساس زنگت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد.</string>
     <string name="learn_restart">یادگیری دوباره</string>
-    <string name="learn_restart_text">Phase Wake دوباره %1$d شب اندازه می‌گیرد و مقادیر هماهنگ‌شده را فراموش می‌کند.</string>
+    <string name="learn_restart_text">Phase Wake دوباره %1$d شب اندازه می‌گیرد. تا آن موقع مقادیری که تا حالا تنظیم شده‌اند به کار می‌روند.</string>
     <string name="record_end_wake">هنگام بیدار شدن تمام شد</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">امتیاز خواب</string>
+    <string name="score_excellent">عالی</string>
+    <string name="score_good">خوب</string>
+    <string name="score_fair">متوسط</string>
+    <string name="score_poor">ضعیف</string>
+    <string name="score_value">امتیاز خواب %1$d از 100: %2$s</string>
+    <string name="score_duration">مدت خواب</string>
+    <string name="score_weights">وزن‌دهی: مدت خواب 35, عمیق 20, REM 20, بیدار 15, زمان به خواب رفتن 10. مقادیر ناموجود حساب نمی‌شوند.</string>
+    <string name="score_source">از %1$s.</string>
+    <string name="score_source_health">از داده‌های سلامتت.</string>
+    <string name="score_source_recording">از ضبط شبانهٔ ساعتت.</string>
+    <string name="pulse_title">نبض</string>
+    <string name="pulse_average">Ø %1$d در دقیقه</string>
+    <string name="motion_title">حرکت</string>
+    <string name="overview_title">خواب تو</string>
+    <string name="overview_days">روزها</string>
+    <string name="overview_weeks">هفته‌ها</string>
+    <string name="overview_months">ماه‌ها</string>
+    <string name="overview_asleep">Ø خواب</string>
+    <string name="overview_bedtime">Ø زمان خوابیدن</string>
+    <string name="overview_wake">Ø زمان بیداری</string>
+    <string name="settings_clear_history_learn">مرحلهٔ یادگیری از نو شروع می‌شود.</string>
+    <string name="learn_auto_hint">شب‌ها روی ساعت «شب بخیر» را بزن یا «تشخیص خودکار به خواب رفتن» را روشن کن تا شب‌ها شمرده شوند.</string>
 </resources>

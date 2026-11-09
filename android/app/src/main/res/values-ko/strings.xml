@@ -522,7 +522,7 @@
     <string name="record_start">밤 기록하기</string>
     <string name="record_stop">기록 중지</string>
     <string name="record_since">%1$s부터 기록 중</string>
-    <string name="record_hint">워치가 밤새 움직임과 맥박을 기록해요. 나중에 Phase Wake가 나만의 기준값을 배울 수 있어요.</string>
+    <string name="record_hint">시계가 밤새 움직임과 맥박을 기록해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요.</string>
     <string name="record_end_manual">중지됨</string>
     <string name="record_end_cap">12시간 후 종료됨</string>
     <string name="record_end_battery">워치 배터리 부족</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">오늘은 %1$s~%2$s 사이에 잠자리에 들어</string>
     <string name="bedtime_advice_hint">알람, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해.</string>
     <string name="learn_restart">다시 학습</string>
-    <string name="learn_restart_text">Phase Wake가 다시 %1$d일 밤을 측정하고 맞춘 값은 잊어.</string>
+    <string name="learn_restart_text">Phase Wake가 다시 %1$d일 밤을 측정해요. 그때까지는 지금까지 맞춘 값을 계속 사용해요.</string>
     <string name="record_end_wake">기상 시 종료</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">수면 점수</string>
+    <string name="score_excellent">아주 좋음</string>
+    <string name="score_good">좋음</string>
+    <string name="score_fair">보통</string>
+    <string name="score_poor">낮음</string>
+    <string name="score_value">수면 점수 100점 중 %1$d점: %2$s</string>
+    <string name="score_duration">수면 시간</string>
+    <string name="score_weights">가중치: 수면 시간 35, 깊은 잠 20, 렘 20, 깸 15, 잠드는 데 걸린 시간 10. 없는 값은 계산하지 않아요.</string>
+    <string name="score_source">%1$s 기준.</string>
+    <string name="score_source_health">건강 데이터 기준.</string>
+    <string name="score_source_recording">시계의 밤 기록 기준.</string>
+    <string name="pulse_title">맥박</string>
+    <string name="pulse_average">Ø 분당 %1$d회</string>
+    <string name="motion_title">움직임</string>
+    <string name="overview_title">내 수면</string>
+    <string name="overview_days">일</string>
+    <string name="overview_weeks">주</string>
+    <string name="overview_months">월</string>
+    <string name="overview_asleep">Ø 수면</string>
+    <string name="overview_bedtime">Ø 잠든 시각</string>
+    <string name="overview_wake">Ø 깬 시각</string>
+    <string name="settings_clear_history_learn">학습 기간이 처음부터 다시 시작돼요.</string>
+    <string name="learn_auto_hint">밤이 계산되도록 저녁에 시계에서 “잘 자요”을 탭하거나 “잠드는 시점 자동 감지”을 켜 주세요.</string>
 </resources>

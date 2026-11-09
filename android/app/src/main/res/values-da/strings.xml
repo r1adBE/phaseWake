@@ -536,7 +536,7 @@
     <string name="record_start">Optag natten</string>
     <string name="record_stop">Stop optagelse</string>
     <string name="record_since">Optager siden %1$s</string>
-    <string name="record_hint">Dit ur optager bevægelse og puls hele natten, så Phase Wake senere kan lære dine egne tærskler.</string>
+    <string name="record_hint">Dit ur optager bevægelse og puls hele natten. Ud fra disse nætter lærer Phase Wake dine egne værdier i læringsfasen og tilpasser alarmen til dig.</string>
     <string name="record_end_manual">Stoppet</string>
     <string name="record_end_cap">Afsluttet efter 12 t</string>
     <string name="record_end_battery">Urets batteri er lavt</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Gå i seng i aften mellem %1$s og %2$s</string>
     <string name="bedtime_advice_hint">Ud fra dit vækkeur, dit søvnmål og hvor lang tid du er om at falde i søvn.</string>
     <string name="learn_restart">Lær igen</string>
-    <string name="learn_restart_text">Phase Wake måler igen %1$d nætter og glemmer de tilpassede værdier.</string>
+    <string name="learn_restart_text">Phase Wake måler igen %1$d nætter. Indtil da gælder de hidtil tilpassede værdier.</string>
     <string name="record_end_wake">Afsluttet ved vækning</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Søvnscore</string>
+    <string name="score_excellent">Fremragende</string>
+    <string name="score_good">God</string>
+    <string name="score_fair">Middel</string>
+    <string name="score_poor">Svag</string>
+    <string name="score_value">Søvnscore %1$d af 100: %2$s</string>
+    <string name="score_duration">Søvnlængde</string>
+    <string name="score_weights">Vægtning: Søvnlængde 35, Dyb 20, REM 20, Vågen 15, Indsovning 10. Manglende værdier tæller ikke.</string>
+    <string name="score_source">Fra %1$s.</string>
+    <string name="score_source_health">Fra dine sundhedsdata.</string>
+    <string name="score_source_recording">Fra dit urs natoptagelse.</string>
+    <string name="pulse_title">Puls</string>
+    <string name="pulse_average">Ø %1$d pr. minut</string>
+    <string name="motion_title">Bevægelse</string>
+    <string name="overview_title">Din søvn</string>
+    <string name="overview_days">Dage</string>
+    <string name="overview_weeks">Uger</string>
+    <string name="overview_months">Måneder</string>
+    <string name="overview_asleep">Ø søvn</string>
+    <string name="overview_bedtime">Ø sengetid</string>
+    <string name="overview_wake">Ø opvågning</string>
+    <string name="settings_clear_history_learn">Læringsfasen starter forfra.</string>
+    <string name="learn_auto_hint">Tryk om aftenen på »Godnat« på uret, eller slå »Registrér automatisk, når du falder i søvn« til, så nætterne tæller.</string>
 </resources>

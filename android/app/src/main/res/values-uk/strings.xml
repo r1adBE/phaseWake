@@ -564,7 +564,7 @@
     <string name="record_start">Записати ніч</string>
     <string name="record_stop">Зупинити запис</string>
     <string name="record_since">Запис триває з %1$s</string>
-    <string name="record_hint">Твій годинник усю ніч записує рух і пульс, щоб Phase Wake згодом міг вивчити твої власні пороги.</string>
+    <string name="record_hint">Твій годинник усю ніч записує рух і пульс. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе.</string>
     <string name="record_end_manual">Зупинено</string>
     <string name="record_end_cap">Завершено через 12 год</string>
     <string name="record_end_battery">Низький заряд годинника</string>
@@ -582,6 +582,30 @@
     <string name="bedtime_advice">Лягай сьогодні між %1$s і %2$s</string>
     <string name="bedtime_advice_hint">За будильником, метою сну і тим, скільки ти засинаєш.</string>
     <string name="learn_restart">Навчити знову</string>
-    <string name="learn_restart_text">Phase Wake знову виміряє %1$d ночей і забуде підлаштовані значення.</string>
+    <string name="learn_restart_text">Phase Wake знову вимірює %1$d ночей. До того часу діють значення, підлаштовані раніше.</string>
     <string name="record_end_wake">Завершено під час пробудження</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Оцінка сну</string>
+    <string name="score_excellent">Відмінно</string>
+    <string name="score_good">Добре</string>
+    <string name="score_fair">Середньо</string>
+    <string name="score_poor">Слабко</string>
+    <string name="score_value">Оцінка сну %1$d зі 100: %2$s</string>
+    <string name="score_duration">Тривалість сну</string>
+    <string name="score_weights">Ваги: Тривалість сну 35, Глибокий 20, REM 20, Неспання 15, Засинання 10. Відсутні значення не враховуються.</string>
+    <string name="score_source">З %1$s.</string>
+    <string name="score_source_health">З твоїх даних про здоров’я.</string>
+    <string name="score_source_recording">З нічного запису твого годинника.</string>
+    <string name="pulse_title">Пульс</string>
+    <string name="pulse_average">Ø %1$d за хвилину</string>
+    <string name="motion_title">Рух</string>
+    <string name="overview_title">Твій сон</string>
+    <string name="overview_days">Дні</string>
+    <string name="overview_weeks">Тижні</string>
+    <string name="overview_months">Місяці</string>
+    <string name="overview_asleep">Ø сон</string>
+    <string name="overview_bedtime">Ø час засинання</string>
+    <string name="overview_wake">Ø час пробудження</string>
+    <string name="settings_clear_history_learn">Етап навчання починається спочатку.</string>
+    <string name="learn_auto_hint">Увечері натисни «На добраніч» на годиннику або увімкни «Автоматично визначати засинання», щоб ночі зараховувалися.</string>
 </resources>

@@ -65,14 +65,14 @@ private fun typicalText(context: Context, total: StageTotal): String =
     else context.getString(R.string.stages_typical_range, total.range.low, total.range.high)
 
 /**
- * Phasen-Summen: je Phase Name, Anteil, Dauer und Balken über einem hellen, gestrichelt umrandeten «üblichen
+ * Phasen-Summen unter dem Hypnogramm (in derselben Karte, ein Titel): je Phase Name, Anteil, Dauer und Balken über einem hellen, gestrichelt umrandeten «üblichen
  * Bereich»; darunter die Legende und einmal Quelle samt «Keine medizinische Bewertung.». Bewusst ohne wertenden Satz
  * zur Nacht: Uhren schätzen Phasen nur ungefähr.
  */
 @Composable
-internal fun StageTotalsCard(stats: NightStages) {
+internal fun StageTotals(stats: NightStages) {
     val scheme = MaterialTheme.colorScheme
-    ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth()) {
+    Column {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { stats.totals.forEach { StageTotalRow(it) } }
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 10.dp).clearAndSetSemantics { }) {
             Canvas(Modifier.size(width = 22.dp, height = 10.dp)) { typicalBand(scheme.onSurfaceVariant, Offset.Zero, size) }
@@ -136,12 +136,15 @@ private fun StageTotalRow(total: StageTotal) {
 
 private const val PERCENT = 100f
 
-/** Kennzahlen als Kacheln: Einschlafdauer (falls bekannt), Schlafeffizienz, Wachphasen, längster Tiefschlaf. */
+/**
+ * Kennzahlen als Kacheln: Einschlafdauer (falls bekannt und nicht schon beim Schlafwert, [withLatency]), Schlafeffizienz,
+ * Wachphasen, längster Tiefschlaf.
+ */
 @Composable
-internal fun NightTiles(stats: NightStages) {
+internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {
     val context = LocalContext.current
     val tiles = listOfNotNull(
-        stats.latencyMinutes?.let { stringResource(R.string.night_latency) to Format.duration(context, Duration.ofMinutes(it)) },
+        stats.latencyMinutes?.takeIf { withLatency }?.let { stringResource(R.string.night_latency) to Format.duration(context, Duration.ofMinutes(it)) },
         stringResource(R.string.night_efficiency) to stringResource(R.string.stages_share, stats.efficiencyPercent),
         stringResource(R.string.night_awakenings) to NumberFormat.getIntegerInstance().format(stats.awakenings),
         stringResource(R.string.night_longest_deep) to Format.duration(context, Duration.ofMinutes(stats.longestDeepMinutes)),

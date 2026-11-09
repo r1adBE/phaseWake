@@ -539,7 +539,7 @@
     <string name="record_start">Шөнийг бичих</string>
     <string name="record_stop">Бичлэгийг зогсоох</string>
     <string name="record_since">%1$s-с хойш бичиж байна</string>
-    <string name="record_hint">Таны цаг шөнөжингөө хөдөлгөөн, судасны цохилтыг бичдэг тул Phase Wake дараа нь таны өөрийн босгыг сурч чадна.</string>
+    <string name="record_hint">Таны цаг шөнөжин хөдөлгөөн болон судасны цохилтыг бичдэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна.</string>
     <string name="record_end_manual">Зогсоосон</string>
     <string name="record_end_cap">12 цагийн дараа дууссан</string>
     <string name="record_end_battery">Цагийн батерей сул байна</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Өнөөдөр %1$s-%2$s хооронд хэвт</string>
     <string name="bedtime_advice_hint">Сэрүүлэг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан.</string>
     <string name="learn_restart">Дахин суралцах</string>
-    <string name="learn_restart_text">Phase Wake дахин %1$d шөнө хэмжиж, тааруулсан утгуудыг мартана.</string>
+    <string name="learn_restart_text">Phase Wake дахин %1$d шөнө хэмжинэ. Тэр болтол одоог хүртэл тохируулсан утгууд хэрэглэгдэнэ.</string>
     <string name="record_end_wake">Сэрээхэд дууссан</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Нойрны оноо</string>
+    <string name="score_excellent">Маш сайн</string>
+    <string name="score_good">Сайн</string>
+    <string name="score_fair">Дунд</string>
+    <string name="score_poor">Сул</string>
+    <string name="score_value">Нойрны оноо 100-аас %1$d: %2$s</string>
+    <string name="score_duration">Нойрны үргэлжлэх хугацаа</string>
+    <string name="score_weights">Жин: Нойрны үргэлжлэх хугацаа 35, Гүн 20, REM 20, Сэрүүн 15, Унтах хүртэлх хугацаа 10. Дутуу утгыг тооцохгүй.</string>
+    <string name="score_source">%1$s-с.</string>
+    <string name="score_source_health">Таны эрүүл мэндийн өгөгдлөөс.</string>
+    <string name="score_source_recording">Таны цагны шөнийн бичлэгээс.</string>
+    <string name="pulse_title">Судасны цохилт</string>
+    <string name="pulse_average">Ø минутад %1$d</string>
+    <string name="motion_title">Хөдөлгөөн</string>
+    <string name="overview_title">Таны нойр</string>
+    <string name="overview_days">Өдөр</string>
+    <string name="overview_weeks">Долоо хоног</string>
+    <string name="overview_months">Сар</string>
+    <string name="overview_asleep">Ø нойр</string>
+    <string name="overview_bedtime">Ø унтах цаг</string>
+    <string name="overview_wake">Ø сэрэх цаг</string>
+    <string name="settings_clear_history_learn">Суралцах үе шат дахин эхэлнэ.</string>
+    <string name="learn_auto_hint">Шөнүүд тоологдохын тулд орой цаг дээрээ «Сайхан амраарай» дээр дар эсвэл «Унтаж эхлэхийг автоматаар илрүүлэх»-г асаа.</string>
 </resources>

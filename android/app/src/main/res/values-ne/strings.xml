@@ -539,7 +539,7 @@
     <string name="record_start">रात रेकर्ड गर</string>
     <string name="record_stop">रेकर्डिङ रोक</string>
     <string name="record_since">%1$s देखि रेकर्ड हुँदैछ</string>
-    <string name="record_hint">तिम्रो घडीले रातभरि चाल र नाडी रेकर्ड गर्छ, ताकि Phase Wake ले पछि तिम्रै सीमाहरू सिक्न सकोस्।</string>
+    <string name="record_hint">तिम्रो घडीले रातभर चाल र नाडी रेकर्ड गर्छ। यी रातहरूबाट Phase Wake सिक्ने चरणमा तिम्रा आफ्नै मानहरू सिक्छ र अलार्मलाई तिमीअनुसार मिलाउँछ।</string>
     <string name="record_end_manual">रोकियो</string>
     <string name="record_end_cap">१२ घण्टापछि सकियो</string>
     <string name="record_end_battery">घडीको ब्याट्री कम छ</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">आज %1$s र %2$s बीच सुत्न जाऊ</string>
     <string name="bedtime_advice_hint">तिम्रो अलार्म, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।</string>
     <string name="learn_restart">फेरि सिक</string>
-    <string name="learn_restart_text">Phase Wake ले फेरि %1$d रात नाप्छ र मिलाइएका मानहरू बिर्सन्छ।</string>
+    <string name="learn_restart_text">Phase Wake ले फेरि %1$d रात नाप्छ। त्यतिन्जेल अहिलेसम्म मिलाइएका मानहरू नै चल्छन्।</string>
     <string name="record_end_wake">उठाउँदा सकियो</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">निद्रा स्कोर</string>
+    <string name="score_excellent">उत्कृष्ट</string>
+    <string name="score_good">राम्रो</string>
+    <string name="score_fair">मध्यम</string>
+    <string name="score_poor">कमजोर</string>
+    <string name="score_value">निद्रा स्कोर 100 मध्ये %1$d: %2$s</string>
+    <string name="score_duration">निद्राको अवधि</string>
+    <string name="score_weights">भार: निद्राको अवधि 35, गहिरो 20, REM 20, ब्युँझेको 15, निदाउन लागेको समय 10. नभएका मानहरू गनिँदैनन्।</string>
+    <string name="score_source">%1$s बाट।</string>
+    <string name="score_source_health">तिम्रो स्वास्थ्य डेटाबाट।</string>
+    <string name="score_source_recording">तिम्रो घडीको रातको रेकर्डिङबाट।</string>
+    <string name="pulse_title">नाडी</string>
+    <string name="pulse_average">Ø प्रति मिनेट %1$d</string>
+    <string name="motion_title">चाल</string>
+    <string name="overview_title">तिम्रो निद्रा</string>
+    <string name="overview_days">दिन</string>
+    <string name="overview_weeks">हप्ता</string>
+    <string name="overview_months">महिना</string>
+    <string name="overview_asleep">Ø निद्रा</string>
+    <string name="overview_bedtime">Ø सुत्ने समय</string>
+    <string name="overview_wake">Ø उठ्ने समय</string>
+    <string name="settings_clear_history_learn">सिक्ने चरण फेरि सुरुदेखि सुरु हुन्छ।</string>
+    <string name="learn_auto_hint">रातहरू गनिऊन् भन्नाका लागि साँझ घडीमा “शुभ रात्रि” ट्याप गर वा “निदाएको आफैँ पत्ता लगाऊ” सक्रिय गर।</string>
 </resources>

@@ -115,8 +115,9 @@ private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean
     val values = state.values
     val since = state.since
     return when {
-        values != null -> HomeLearning(null, values) { app.appScope.launch { app.learning.setSeen() } }.takeIf { !state.seen }
-        since != null && watchRecords -> HomeLearning(Learning.progress(countedNights(data, since)), null)
+        state.active && since != null && watchRecords ->
+            HomeLearning(Learning.progress(countedNights(data, since)), null, autoHint = !data.autoOnset)
+        values != null && !state.active -> HomeLearning(null, values, onSeen = { app.appScope.launch { app.learning.setSeen() } }).takeIf { !state.seen }
         else -> null
     }
 }
@@ -170,9 +171,9 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
     val learning = when {
         learningState == null || since == null -> null
         learningState.values != null || record != null -> LearningSettings(
-            night = Learning.progress(countedNights(data, since)).takeIf { learningState.values == null },
+            night = Learning.progress(countedNights(data, since)).takeIf { learningState.active },
             values = learningState.values,
-            onRestart = { app.appScope.launch { app.restartLearning() } },
+            onRestart = { app.appScope.launch { app.relearn() } },
         )
         else -> null
     }

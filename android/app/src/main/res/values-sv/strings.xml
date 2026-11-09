@@ -536,7 +536,7 @@
     <string name="record_start">Spela in natten</string>
     <string name="record_stop">Stoppa inspelning</string>
     <string name="record_since">Spelar in sedan %1$s</string>
-    <string name="record_hint">Din klocka registrerar rörelse och puls hela natten, så att Phase Wake senare kan lära sig dina egna trösklar.</string>
+    <string name="record_hint">Klockan registrerar rörelse och puls hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig.</string>
     <string name="record_end_manual">Stoppad</string>
     <string name="record_end_cap">Avslutad efter 12 h</string>
     <string name="record_end_battery">Klockans batteri är lågt</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Gå och lägg dig i kväll mellan %1$s och %2$s</string>
     <string name="bedtime_advice_hint">Utifrån din väckning, ditt sömnmål och hur lång tid du tar på dig att somna.</string>
     <string name="learn_restart">Lär om</string>
-    <string name="learn_restart_text">Phase Wake mäter igen %1$d nätter och glömmer de anpassade värdena.</string>
+    <string name="learn_restart_text">Phase Wake mäter %1$d nätter igen. Tills dess används de värden som anpassats hittills.</string>
     <string name="record_end_wake">Avslutad vid väckning</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Sömnpoäng</string>
+    <string name="score_excellent">Utmärkt</string>
+    <string name="score_good">Bra</string>
+    <string name="score_fair">Medel</string>
+    <string name="score_poor">Svag</string>
+    <string name="score_value">Sömnpoäng %1$d av 100: %2$s</string>
+    <string name="score_duration">Sömnlängd</string>
+    <string name="score_weights">Viktning: Sömnlängd 35, Djup 20, REM 20, Vaken 15, Insomning 10. Saknade värden räknas inte.</string>
+    <string name="score_source">Från %1$s.</string>
+    <string name="score_source_health">Från dina hälsodata.</string>
+    <string name="score_source_recording">Från klockans nattinspelning.</string>
+    <string name="pulse_title">Puls</string>
+    <string name="pulse_average">Ø %1$d per minut</string>
+    <string name="motion_title">Rörelse</string>
+    <string name="overview_title">Din sömn</string>
+    <string name="overview_days">Dagar</string>
+    <string name="overview_weeks">Veckor</string>
+    <string name="overview_months">Månader</string>
+    <string name="overview_asleep">Ø sömn</string>
+    <string name="overview_bedtime">Ø läggdags</string>
+    <string name="overview_wake">Ø uppvaknande</string>
+    <string name="settings_clear_history_learn">Inlärningsfasen börjar om.</string>
+    <string name="learn_auto_hint">Tryck på ”Godnatt” på klockan på kvällen eller slå på ”Känn av automatiskt när du somnar” så att nätterna räknas.</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -36,11 +37,16 @@ import com.phasewake.app.R
 import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HistoryItem
+import com.phasewake.app.core.HealthSession
 import com.phasewake.app.core.NightStages
+import com.phasewake.app.core.ScoreFactor
+import com.phasewake.app.core.SleepGoal
+import com.phasewake.app.core.SleepOverviews
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.StageStats
 import com.phasewake.app.core.WakeReason
+import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
 import java.io.File
@@ -89,6 +95,12 @@ internal data class NightDetailData(
     /** Befinden zu Nächten aus anderen Apps je Nachtdatum. */
     val healthFeelings: Map<LocalDate, Int> = emptyMap(),
     val soundClips: List<SoundClip> = emptyList(),
+    /** Schlafziel in Minuten für den Schlafwert. */
+    val goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    /** Abgeschlossene Aufzeichnungen der Uhr: Schlafwert ohne Phasen, Puls und Bewegung über die ganze Nacht. */
+    val recordings: List<NightRecording> = emptyList(),
+    /** Sitzungen aus Health Connect: Quelle der Phasen einer eigenen Nacht («Aus Samsung Health»). */
+    val sessions: List<HealthSession> = emptyList(),
 )
 
 /** Aktionen der Detailseite. */
@@ -141,19 +153,30 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
     }
 }
 
-/** Eine Nacht: Kopf, Hypnogramm, Phasen-Summen, Kennzahlen, dann Befinden, Notizen und Geräusche. */
+/**
+ * Eine Nacht: Kopf, Schlafwert mit Faktoren, Hypnogramm, Puls und Bewegung, Phasen-Summen, Kennzahlen, dann Befinden,
+ * Notizen und Geräusche.
+ */
 @Composable
 internal fun NightDetailPage(item: HistoryItem, data: NightDetailData, actions: NightDetailActions, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     val view = remember(item, data.stages) { nightView(item, data.stages) }
+    val score = remember(view, data.recordings, data.goalMinutes) { nightScore(view, data.recordings, data.goalMinutes) }
+    val series = remember(item, data.recordings) { nightSeries(item, data.recordings) }
+    val pulse = remember(series) { series?.let { SleepOverviews.pulse(it.epochs, it.start) } }
     Column(
         modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         NightHeader(view)
+        score?.let { ScoreCard(it, scoreSourceText(context, item, it, data.sessions), data.goalMinutes, Modifier.fillMaxWidth()) }
         HypnogramSection(view)
+        if (pulse != null && series != null) PulseCard(pulse, series.fullNight, Modifier.fillMaxWidth())
+        // Bewegung über die ganze Nacht nur mit Aufzeichnung; das Weckfenster zeigt ohne Phasen schon das Hypnogramm-Feld.
+        series?.takeIf { it.fullNight && it.epochs.isNotEmpty() }?.let { MotionCard(it, Modifier.fillMaxWidth()) }
         view.stats?.let {
-            StageTotalsCard(it)
-            NightTiles(it)
+            // Die Einschlafdauer steht schon als Faktor beim Schlafwert.
+            NightTiles(it, withLatency = score?.result?.factor(ScoreFactor.LATENCY) == null)
         }
         NightExtras(item, data, actions)
     }
@@ -195,7 +218,7 @@ private fun NightHeader(view: NightView) {
     }
 }
 
-/** Grosses Hypnogramm mit Legende; eigene Nacht ohne Phasen: Bewegung im Weckfenster und der Hinweis dazu. */
+/** Grosses Hypnogramm mit Legende und Phasen-Summen; eigene Nacht ohne Phasen: Bewegung im Weckfenster und der Hinweis dazu. */
 @Composable
 private fun HypnogramSection(view: NightView) {
     val model = view.hypno
@@ -209,7 +232,7 @@ private fun HypnogramSection(view: NightView) {
         }
         return
     }
-    // Der Satz zur Einordnung steht einmal, bei den Phasen-Summen.
+    // Eine Karte «Schlafphasen der Nacht»: Hypnogramm, darunter die Phasen-Summen (der Satz zur Einordnung steht einmal, dort).
     ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth()) {
         StageHypnogram(model, height = HYPNO_HEIGHT)
         HypnoLegend(model)
@@ -219,6 +242,10 @@ private fun HypnogramSection(view: NightView) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 6.dp),
         )
+        view.stats?.let {
+            HorizontalDivider(Modifier.padding(vertical = 14.dp), color = MaterialTheme.colorScheme.outlineVariant)
+            StageTotals(it)
+        }
     }
 }
 

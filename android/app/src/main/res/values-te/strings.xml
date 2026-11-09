@@ -539,7 +539,7 @@
     <string name="record_start">రాత్రిని రికార్డ్ చేయి</string>
     <string name="record_stop">రికార్డింగ్ ఆపు</string>
     <string name="record_since">%1$s నుండి రికార్డ్ అవుతోంది</string>
-    <string name="record_hint">నీ వాచ్ రాత్రంతా కదలిక, నాడిని రికార్డ్ చేస్తుంది, కాబట్టి Phase Wake తర్వాత నీ సొంత పరిమితులను నేర్చుకోగలదు.</string>
+    <string name="record_hint">నీ వాచ్ రాత్రంతా కదలిక, నాడిని రికార్డ్ చేస్తుంది. ఈ రాత్రుల నుండి Phase Wake నేర్చుకునే దశలో నీ సొంత విలువలను నేర్చుకుని అలారంను నీకు తగినట్లు మారుస్తుంది.</string>
     <string name="record_end_manual">ఆపబడింది</string>
     <string name="record_end_cap">12 గంటల తర్వాత ముగిసింది</string>
     <string name="record_end_battery">వాచ్ బ్యాటరీ తక్కువగా ఉంది</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">ఈరోజు %1$s మరియు %2$s మధ్య పడుకో</string>
     <string name="bedtime_advice_hint">నీ అలారం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా.</string>
     <string name="learn_restart">మళ్లీ నేర్చుకో</string>
-    <string name="learn_restart_text">Phase Wake మళ్లీ %1$d రాత్రులు కొలిచి, సర్దిన విలువలను మర్చిపోతుంది.</string>
+    <string name="learn_restart_text">Phase Wake మళ్లీ %1$d రాత్రులు కొలుస్తుంది. అప్పటి వరకు ఇప్పటివరకు సర్దిన విలువలే వాడబడతాయి.</string>
     <string name="record_end_wake">లేపేటప్పుడు ముగిసింది</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">నిద్ర స్కోర్</string>
+    <string name="score_excellent">అద్భుతం</string>
+    <string name="score_good">బాగుంది</string>
+    <string name="score_fair">మధ్యస్థం</string>
+    <string name="score_poor">బలహీనం</string>
+    <string name="score_value">నిద్ర స్కోర్ 100 లో %1$d: %2$s</string>
+    <string name="score_duration">నిద్ర వ్యవధి</string>
+    <string name="score_weights">బరువు: నిద్ర వ్యవధి 35, గాఢ 20, REM 20, మేల్కొని 15, నిద్రపట్టడానికి పట్టిన సమయం 10. లేని విలువలు లెక్కలోకి రావు.</string>
+    <string name="score_source">%1$s నుండి.</string>
+    <string name="score_source_health">నీ ఆరోగ్య డేటా నుండి.</string>
+    <string name="score_source_recording">నీ వాచ్ రాత్రి రికార్డింగ్ నుండి.</string>
+    <string name="pulse_title">నాడి</string>
+    <string name="pulse_average">Ø నిమిషానికి %1$d</string>
+    <string name="motion_title">కదలిక</string>
+    <string name="overview_title">నీ నిద్ర</string>
+    <string name="overview_days">రోజులు</string>
+    <string name="overview_weeks">వారాలు</string>
+    <string name="overview_months">నెలలు</string>
+    <string name="overview_asleep">Ø నిద్ర</string>
+    <string name="overview_bedtime">Ø నిద్రపోయే సమయం</string>
+    <string name="overview_wake">Ø మేల్కొనే సమయం</string>
+    <string name="settings_clear_history_learn">నేర్చుకునే దశ మళ్లీ మొదటి నుండి మొదలవుతుంది.</string>
+    <string name="learn_auto_hint">రాత్రులు లెక్కలోకి రావడానికి సాయంత్రం వాచ్‌లో “శుభ రాత్రి” నొక్కు లేదా “నిద్రపోవడాన్ని ఆటోమేటిక్‌గా గుర్తించు” ఆన్ చెయ్యి.</string>
 </resources>

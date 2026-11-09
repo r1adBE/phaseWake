@@ -10,6 +10,7 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 - Export nur in den Einstellungen (früher 11c), aktiv mit Nächten oder Aufzeichnungen; Knopf am Ende des Verlaufs entfernt.
 - Karte «Nacht-Aufzeichnung» auf der Handy-Startseite neu angeordnet (früher 11d).
 - Sonnenaufgang im Diagnose-Protokoll, Handy und Galaxy Watch (früher 11e).
+- Auswertung (früher 11k; Android-Handy, Apple folgt, siehe 11l): Schlafwert 0–100 mit Bewertung und Faktoren (Schlafdauer, Tief, REM, Wach, Einschlafdauer; Regel PHASENERKENNUNG.md 11) auf der Detailseite und als Kurzzeile in der Liste, Puls- und Bewegungsverlauf aus der Aufzeichnung der Uhr (sonst Puls im Weckfenster), Übersicht «Tage / Wochen / Monate» oben im Verlauf mit Ø Schlafdauer, Ø Schlafenszeit und Ø Aufwachzeit. Die Empfehlung der Schlafenszeit gibt es schon (Lernphase). Gerätetest (r1AD): Werte und Quelle bei einer Nacht mit Samsung Health, bei einer nur aufgezeichneten Nacht und bei einer Nacht ohne beides (dann kein Schlafwert).
 
 ## Erledigt am 07.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -68,8 +69,7 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 
 11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
 11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
-11k. Auswertung «cooler» gestalten, Vorbild Samsung Health (Bilder von r1AD 08.11.): Schlafwert mit Bewertung, Phasen-Diagramm, Faktoren (Schlafdauer, Tief, REM, Wach, Einschlafdauer), Pulsverlauf, Empfehlung für die Schlafenszeit, Tage/Wochen/Monate. Nur als Beispiel – eigener Entwurf zur Freigabe.
-11l. Lernphase auf iPhone und Apple Watch: Apple folgt (Swift-Kern kennt die gelernten Werte schon, PHASENERKENNUNG.md 10; Aufzeichnung, Zählen und Anzeige fehlen dort).
+11l. Lernphase auf iPhone und Apple Watch: Apple folgt (Swift-Kern kennt die gelernten Werte schon, PHASENERKENNUNG.md 10; Aufzeichnung, Zählen und Anzeige fehlen dort). Ebenso die Auswertung (früher 11k): Schlafwert (`SleepScore`) und Übersicht (`SleepOverviews`) fehlen im Swift-Kern, Anzeige am iPhone fehlt.
 11i. Fenster «Genau»: Hinweis von r1AD am 08.11. – damit gibt es kein Fenster für die Phasen. Geprüft und so belassen: «Genau» bleibt (r1AD 09.11.).
 
 ## Bekannte Grenzen

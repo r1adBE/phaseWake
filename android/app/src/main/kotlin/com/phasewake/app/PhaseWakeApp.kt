@@ -224,7 +224,7 @@ open class PhaseWakeApp : Application() {
     private suspend fun countLearning(received: NightRecording?) {
         val state = learning.current()
         val since = state.since ?: return
-        if (state.values != null) return
+        if (!state.active) return
         val counted = Learning.counted(recordings.load().map { it.toLearnNight() }, since, ZoneId.systemDefault())
         if (received != null && !received.start.isBefore(since)) {
             val night = received.toLearnNight()
@@ -247,10 +247,20 @@ open class PhaseWakeApp : Application() {
         learningSync.publish(learning.current().snapshot())
     }
 
-    /** «Neu lernen» bzw. «Verlauf löschen»: Lernphase ab jetzt von vorn, Uhr ohne gelernte Werte. */
+    /** «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr). */
     suspend fun restartLearning() {
         learning.restart(Instant.now())
         diag.log(DiagKind.SYNC, "learn restarted")
+        publishLearning()
+    }
+
+    /**
+     * «Neu lernen»: Lernphase ab jetzt von vorn; die bisherigen Werte gelten am Handy und auf der Uhr weiter, bis die neuen
+     * Nächte gezählt sind ([updateLearning] ersetzt sie dann).
+     */
+    suspend fun relearn() {
+        learning.relearn(Instant.now())
+        diag.log(DiagKind.SYNC, "learn relearn ${learning.current().snapshot().diagLine()}")
         publishLearning()
     }
 

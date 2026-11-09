@@ -27,11 +27,13 @@ import kotlin.math.roundToInt
 
 /**
  * Lernphase auf der Startseite: solange sie läuft «Lernphase: Nacht N von 7» ([night]) mit kurzer Erklärung, danach
- * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]).
+ * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen automatisch
+ * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen.
  */
 class HomeLearning(
     val night: Int?,
     val values: Learning.Values?,
+    val autoHint: Boolean = false,
     val onSeen: () -> Unit = {},
 )
 
@@ -65,6 +67,14 @@ internal fun LearningCard(learning: HomeLearning) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 6.dp),
                 )
+                if (learning.autoHint) {
+                    Text(
+                        stringResource(R.string.learn_auto_hint),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
+                }
             }
         }
     }

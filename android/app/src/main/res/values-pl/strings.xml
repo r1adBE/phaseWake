@@ -564,7 +564,7 @@
     <string name="record_start">Nagraj noc</string>
     <string name="record_stop">Zatrzymaj nagrywanie</string>
     <string name="record_since">Nagrywanie od %1$s</string>
-    <string name="record_hint">Twój zegarek przez całą noc zapisuje ruch i tętno, aby Phase Wake mógł później nauczyć się twoich własnych progów.</string>
+    <string name="record_hint">Twój zegarek przez całą noc rejestruje ruch i tętno. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie.</string>
     <string name="record_end_manual">Zatrzymano</string>
     <string name="record_end_cap">Zakończono po 12 h</string>
     <string name="record_end_battery">Słaba bateria zegarka</string>
@@ -582,6 +582,30 @@
     <string name="bedtime_advice">Idź dziś spać między %1$s a %2$s</string>
     <string name="bedtime_advice_hint">Na podstawie budzika, celu snu i tego, ile czasu zajmuje ci zaśnięcie.</string>
     <string name="learn_restart">Ucz od nowa</string>
-    <string name="learn_restart_text">Phase Wake znów mierzy %1$d nocy i zapomina dopasowane wartości.</string>
+    <string name="learn_restart_text">Phase Wake ponownie mierzy %1$d nocy. Do tego czasu obowiązują dotychczas dopasowane wartości.</string>
     <string name="record_end_wake">Zakończono przy budzeniu</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Wynik snu</string>
+    <string name="score_excellent">Doskonały</string>
+    <string name="score_good">Dobry</string>
+    <string name="score_fair">Średni</string>
+    <string name="score_poor">Słaby</string>
+    <string name="score_value">Wynik snu %1$d na 100: %2$s</string>
+    <string name="score_duration">Czas snu</string>
+    <string name="score_weights">Wagi: Czas snu 35, Głęboki 20, REM 20, Czuwanie 15, Zasypianie 10. Brakujące wartości nie są liczone.</string>
+    <string name="score_source">Z %1$s.</string>
+    <string name="score_source_health">Z twoich danych o zdrowiu.</string>
+    <string name="score_source_recording">Z nocnego zapisu twojego zegarka.</string>
+    <string name="pulse_title">Tętno</string>
+    <string name="pulse_average">Ø %1$d na minutę</string>
+    <string name="motion_title">Ruch</string>
+    <string name="overview_title">Twój sen</string>
+    <string name="overview_days">Dni</string>
+    <string name="overview_weeks">Tygodnie</string>
+    <string name="overview_months">Miesiące</string>
+    <string name="overview_asleep">Ø sen</string>
+    <string name="overview_bedtime">Ø pora zaśnięcia</string>
+    <string name="overview_wake">Ø pora pobudki</string>
+    <string name="settings_clear_history_learn">Faza nauki zaczyna się od nowa.</string>
+    <string name="learn_auto_hint">Wieczorem stuknij na zegarku „Dobranoc” lub włącz „Automatycznie wykrywaj zasypianie”, aby noce się liczyły.</string>
 </resources>

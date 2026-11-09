@@ -539,7 +539,7 @@
     <string name="record_start">ሌሊቱን ቅረጽ</string>
     <string name="record_stop">ቀረጻውን አቁም</string>
     <string name="record_since">ከ%1$s ጀምሮ እየተቀረጸ ነው</string>
-    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴንና የልብ ምትን ይቀርጻል፤ ስለዚህ Phase Wake በኋላ የራስህን ገደቦች መማር ይችላል።</string>
+    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይቀዳል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል።</string>
     <string name="record_end_manual">ቆሟል</string>
     <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
     <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">ዛሬ ከ%1$s እስከ %2$s ባለው ጊዜ ተኛ</string>
     <string name="bedtime_advice_hint">ከማንቂያህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።</string>
     <string name="learn_restart">እንደገና ተማር</string>
-    <string name="learn_restart_text">Phase Wake እንደገና %1$d ሌሊቶችን ይለካል፤ የተስተካከሉትን እሴቶች ይረሳል።</string>
+    <string name="learn_restart_text">Phase Wake እንደገና %1$d ሌሊቶችን ይለካል። እስከዚያ ድረስ እስካሁን የተስተካከሉት እሴቶች ያገለግላሉ።</string>
     <string name="record_end_wake">በመንቃት ጊዜ አልቋል</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">የእንቅልፍ ውጤት</string>
+    <string name="score_excellent">እጅግ በጣም ጥሩ</string>
+    <string name="score_good">ጥሩ</string>
+    <string name="score_fair">መካከለኛ</string>
+    <string name="score_poor">ደካማ</string>
+    <string name="score_value">የእንቅልፍ ውጤት %1$d ከ100፦ %2$s</string>
+    <string name="score_duration">የእንቅልፍ ቆይታ</string>
+    <string name="score_weights">ክብደት: የእንቅልፍ ቆይታ 35, ጥልቅ 20, REM 20, ነቅቷል 15, ለመተኛት የወሰደ ጊዜ 10. የጎደሉ እሴቶች አይቆጠሩም።</string>
+    <string name="score_source">ከ%1$s።</string>
+    <string name="score_source_health">ከጤና ውሂብህ።</string>
+    <string name="score_source_recording">ከሰዓትህ የሌሊት ቀረጻ።</string>
+    <string name="pulse_title">የልብ ምት</string>
+    <string name="pulse_average">Ø በደቂቃ %1$d</string>
+    <string name="motion_title">እንቅስቃሴ</string>
+    <string name="overview_title">እንቅልፍህ</string>
+    <string name="overview_days">ቀናት</string>
+    <string name="overview_weeks">ሳምንታት</string>
+    <string name="overview_months">ወራት</string>
+    <string name="overview_asleep">Ø እንቅልፍ</string>
+    <string name="overview_bedtime">Ø የመተኛ ሰዓት</string>
+    <string name="overview_wake">Ø የመነሻ ሰዓት</string>
+    <string name="settings_clear_history_learn">የመማሪያ ጊዜው ከመጀመሪያው ይጀምራል።</string>
+    <string name="learn_auto_hint">ሌሊቶቹ እንዲቆጠሩ ማታ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ ወይም «እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ።</string>
 </resources>

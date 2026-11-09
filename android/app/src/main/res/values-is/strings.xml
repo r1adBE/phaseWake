@@ -539,7 +539,7 @@
     <string name="record_start">Taka upp nóttina</string>
     <string name="record_stop">Stöðva upptöku</string>
     <string name="record_since">Tekur upp síðan %1$s</string>
-    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina, svo Phase Wake geti síðar lært þín eigin þröskuldsgildi.</string>
+    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér.</string>
     <string name="record_end_manual">Stöðvað</string>
     <string name="record_end_cap">Lauk eftir 12 klst.</string>
     <string name="record_end_battery">Rafhlaða úrsins lág</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Farðu í rúmið í kvöld milli %1$s og %2$s</string>
     <string name="bedtime_advice_hint">Út frá vekjaranum, svefnmarkmiðinu og hve lengi þú ert að sofna.</string>
     <string name="learn_restart">Læra aftur</string>
-    <string name="learn_restart_text">Phase Wake mælir aftur %1$d nætur og gleymir aðlöguðu gildunum.</string>
+    <string name="learn_restart_text">Phase Wake mælir aftur %1$d nætur. Þangað til gilda gildin sem hafa verið aðlöguð hingað til.</string>
     <string name="record_end_wake">Lokið við vakningu</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Svefnskor</string>
+    <string name="score_excellent">Frábært</string>
+    <string name="score_good">Gott</string>
+    <string name="score_fair">Miðlungs</string>
+    <string name="score_poor">Slakt</string>
+    <string name="score_value">Svefnskor %1$d af 100: %2$s</string>
+    <string name="score_duration">Svefnlengd</string>
+    <string name="score_weights">Vægi: Svefnlengd 35, Djúpur 20, REM 20, Vakandi 15, Að sofna 10. Gildi sem vantar teljast ekki.</string>
+    <string name="score_source">Frá %1$s.</string>
+    <string name="score_source_health">Úr heilsugögnunum þínum.</string>
+    <string name="score_source_recording">Úr næturupptöku úrsins þíns.</string>
+    <string name="pulse_title">Púls</string>
+    <string name="pulse_average">Ø %1$d á mínútu</string>
+    <string name="motion_title">Hreyfing</string>
+    <string name="overview_title">Svefninn þinn</string>
+    <string name="overview_days">Dagar</string>
+    <string name="overview_weeks">Vikur</string>
+    <string name="overview_months">Mánuðir</string>
+    <string name="overview_asleep">Ø svefn</string>
+    <string name="overview_bedtime">Ø háttatími</string>
+    <string name="overview_wake">Ø fótaferðartími</string>
+    <string name="settings_clear_history_learn">Lærdómsfasinn byrjar upp á nýtt.</string>
+    <string name="learn_auto_hint">Ýttu á kvöldin á „Góða nótt“ á úrinu eða kveiktu á „Greina sjálfkrafa þegar þú sofnar“ svo næturnar teljist.</string>
 </resources>

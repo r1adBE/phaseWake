@@ -539,7 +539,7 @@
     <string name="record_start">Regjistro natën</string>
     <string name="record_stop">Ndalo regjistrimin</string>
     <string name="record_since">Po regjistron që nga %1$s</string>
-    <string name="record_hint">Ora jote regjistron lëvizjen dhe pulsin gjatë gjithë natës, që Phase Wake të mësojë më vonë pragjet e tua.</string>
+    <string name="record_hint">Ora jote regjistron lëvizjen dhe pulsin gjatë gjithë natës. Nga këto net, Phase Wake mëson në fazën e mësimit vlerat e tua dhe e përshtat alarmin për ty.</string>
     <string name="record_end_manual">U ndal</string>
     <string name="record_end_cap">Përfundoi pas 12 orësh</string>
     <string name="record_end_battery">Bateria e orës e ulët</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Shko sot në shtrat midis %1$s dhe %2$s</string>
     <string name="bedtime_advice_hint">Sipas zgjuesit, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë.</string>
     <string name="learn_restart">Mëso përsëri</string>
-    <string name="learn_restart_text">Phase Wake mat përsëri %1$d net dhe harron vlerat e përshtatura.</string>
+    <string name="learn_restart_text">Phase Wake mat përsëri %1$d net. Deri atëherë mbeten në fuqi vlerat e përshtatura deri tani.</string>
     <string name="record_end_wake">Përfundoi në zgjim</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Pikët e gjumit</string>
+    <string name="score_excellent">Shkëlqyeshëm</string>
+    <string name="score_good">Mirë</string>
+    <string name="score_fair">Mesatarisht</string>
+    <string name="score_poor">Dobët</string>
+    <string name="score_value">Pikët e gjumit %1$d nga 100: %2$s</string>
+    <string name="score_duration">Kohëzgjatja e gjumit</string>
+    <string name="score_weights">Pesha: Kohëzgjatja e gjumit 35, I thellë 20, REM 20, Zgjuar 15, Koha për të fjetur 10. Vlerat që mungojnë nuk numërohen.</string>
+    <string name="score_source">Nga %1$s.</string>
+    <string name="score_source_health">Nga të dhënat e tua shëndetësore.</string>
+    <string name="score_source_recording">Nga regjistrimi i natës i orës sate.</string>
+    <string name="pulse_title">Pulsi</string>
+    <string name="pulse_average">Ø %1$d në minutë</string>
+    <string name="motion_title">Lëvizja</string>
+    <string name="overview_title">Gjumi yt</string>
+    <string name="overview_days">Ditë</string>
+    <string name="overview_weeks">Javë</string>
+    <string name="overview_months">Muaj</string>
+    <string name="overview_asleep">Ø gjumi</string>
+    <string name="overview_bedtime">Ø ora e gjumit</string>
+    <string name="overview_wake">Ø ora e zgjimit</string>
+    <string name="settings_clear_history_learn">Faza e mësimit fillon nga e para.</string>
+    <string name="learn_auto_hint">Në mbrëmje prek „Natën e mirë“ në orë ose aktivizo „Dallo automatikisht kur fle“, që netët të numërohen.</string>
 </resources>

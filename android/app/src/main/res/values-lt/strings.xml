@@ -567,7 +567,7 @@
     <string name="record_start">Įrašyti naktį</string>
     <string name="record_stop">Stabdyti įrašymą</string>
     <string name="record_since">Įrašoma nuo %1$s</string>
-    <string name="record_hint">Tavo laikrodis visą naktį įrašo judesį ir pulsą, kad Phase Wake vėliau galėtų išmokti tavo asmenines ribas.</string>
+    <string name="record_hint">Tavo laikrodis visą naktį įrašo judesius ir pulsą. Iš šių naktų Phase Wake mokymosi etape išmoksta tavo vertes ir pritaiko žadintuvą tau.</string>
     <string name="record_end_manual">Sustabdyta</string>
     <string name="record_end_cap">Baigta po 12 val.</string>
     <string name="record_end_battery">Laikrodžio baterija senka</string>
@@ -585,6 +585,30 @@
     <string name="bedtime_advice">Šiandien eik miegoti tarp %1$s ir %2$s</string>
     <string name="bedtime_advice_hint">Pagal žadintuvą, miego tikslą ir tai, kiek laiko užtrunki užmigti.</string>
     <string name="learn_restart">Mokytis iš naujo</string>
-    <string name="learn_restart_text">Phase Wake vėl matuos %1$d naktis ir pamirš pritaikytas reikšmes.</string>
+    <string name="learn_restart_text">Phase Wake vėl matuoja %1$d naktis. Iki tol galioja iki šiol pritaikytos vertės.</string>
     <string name="record_end_wake">Baigta pažadinus</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Miego balas</string>
+    <string name="score_excellent">Puikiai</string>
+    <string name="score_good">Gerai</string>
+    <string name="score_fair">Vidutiniškai</string>
+    <string name="score_poor">Silpnai</string>
+    <string name="score_value">Miego balas %1$d iš 100: %2$s</string>
+    <string name="score_duration">Miego trukmė</string>
+    <string name="score_weights">Svoriai: Miego trukmė 35, Gilus 20, REM 20, Budrumas 15, Užmigimas 10. Trūkstamos reikšmės neskaičiuojamos.</string>
+    <string name="score_source">Iš %1$s.</string>
+    <string name="score_source_health">Iš tavo sveikatos duomenų.</string>
+    <string name="score_source_recording">Iš tavo laikrodžio nakties įrašo.</string>
+    <string name="pulse_title">Pulsas</string>
+    <string name="pulse_average">Ø %1$d per minutę</string>
+    <string name="motion_title">Judesiai</string>
+    <string name="overview_title">Tavo miegas</string>
+    <string name="overview_days">Dienos</string>
+    <string name="overview_weeks">Savaitės</string>
+    <string name="overview_months">Mėnesiai</string>
+    <string name="overview_asleep">Ø miegas</string>
+    <string name="overview_bedtime">Ø užmigimo laikas</string>
+    <string name="overview_wake">Ø pabudimo laikas</string>
+    <string name="settings_clear_history_learn">Mokymosi etapas prasideda iš naujo.</string>
+    <string name="learn_auto_hint">Vakare bakstelėk laikrodyje „Labanakt“ arba įjunk „Automatiškai atpažinti užmigimą“, kad naktys būtų skaičiuojamos.</string>
 </resources>

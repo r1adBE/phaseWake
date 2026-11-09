@@ -536,7 +536,7 @@
     <string name="record_start">Geceyi kaydet</string>
     <string name="record_stop">Kaydı durdur</string>
     <string name="record_since">%1$s itibarıyla kaydediliyor</string>
-    <string name="record_hint">Saatin tüm gece hareketi ve nabzı kaydeder; böylece Phase Wake daha sonra kendi eşiklerini öğrenebilir.</string>
+    <string name="record_hint">Saatin bütün gece hareketi ve nabzı kaydeder. Phase Wake bu gecelerden öğrenme aşamasında kendi değerlerini öğrenir ve alarmı sana göre ayarlar.</string>
     <string name="record_end_manual">Durduruldu</string>
     <string name="record_end_cap">12 saat sonra sona erdi</string>
     <string name="record_end_battery">Saatin pili zayıf</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Bugün %1$s ile %2$s arasında yat</string>
     <string name="bedtime_advice_hint">Alarmına, uyku hedefine ve uykuya dalma süresine göre.</string>
     <string name="learn_restart">Yeniden öğren</string>
-    <string name="learn_restart_text">Phase Wake yeniden %1$d gece ölçer ve ayarlanan değerleri unutur.</string>
+    <string name="learn_restart_text">Phase Wake yeniden %1$d gece ölçer. O zamana kadar şimdiye kadar ayarlanan değerler kullanılmaya devam eder.</string>
     <string name="record_end_wake">Uyandırmada sona erdi</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Uyku puanı</string>
+    <string name="score_excellent">Mükemmel</string>
+    <string name="score_good">İyi</string>
+    <string name="score_fair">Orta</string>
+    <string name="score_poor">Zayıf</string>
+    <string name="score_value">Uyku puanı 100 üzerinden %1$d: %2$s</string>
+    <string name="score_duration">Uyku süresi</string>
+    <string name="score_weights">Ağırlık: Uyku süresi 35, Derin 20, REM 20, Uyanık 15, Uykuya dalma süresi 10. Eksik değerler sayılmaz.</string>
+    <string name="score_source">Kaynak: %1$s.</string>
+    <string name="score_source_health">Sağlık verilerinden.</string>
+    <string name="score_source_recording">Saatinin gece kaydından.</string>
+    <string name="pulse_title">Nabız</string>
+    <string name="pulse_average">Ø dakikada %1$d</string>
+    <string name="motion_title">Hareket</string>
+    <string name="overview_title">Uykun</string>
+    <string name="overview_days">Günler</string>
+    <string name="overview_weeks">Haftalar</string>
+    <string name="overview_months">Aylar</string>
+    <string name="overview_asleep">Ø uyku</string>
+    <string name="overview_bedtime">Ø yatma saati</string>
+    <string name="overview_wake">Ø uyanma saati</string>
+    <string name="settings_clear_history_learn">Öğrenme aşaması baştan başlar.</string>
+    <string name="learn_auto_hint">Gecelerin sayılması için akşam saatinde “İyi geceler” öğesine dokun veya “Uykuya dalmayı otomatik algıla” seçeneğini aç.</string>
 </resources>

@@ -536,7 +536,7 @@
     <string name="record_start">Κατέγραψε τη νύχτα</string>
     <string name="record_stop">Διακοπή καταγραφής</string>
     <string name="record_since">Καταγραφή από τις %1$s</string>
-    <string name="record_hint">Το ρολόι σου καταγράφει κίνηση και σφυγμό όλη τη νύχτα, ώστε το Phase Wake να μάθει αργότερα τα δικά σου όρια.</string>
+    <string name="record_hint">Το ρολόι σου καταγράφει κίνηση και σφυγμό όλη τη νύχτα. Από αυτές τις νύχτες το Phase Wake μαθαίνει τις δικές σου τιμές στη φάση εκμάθησης και προσαρμόζει το ξυπνητήρι σε σένα.</string>
     <string name="record_end_manual">Διακόπηκε</string>
     <string name="record_end_cap">Έληξε μετά από 12 ώρες</string>
     <string name="record_end_battery">Χαμηλή μπαταρία ρολογιού</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Πήγαινε για ύπνο απόψε μεταξύ %1$s και %2$s</string>
     <string name="bedtime_advice_hint">Με βάση το ξυπνητήρι, τον στόχο ύπνου και πόσο χρειάζεσαι για να αποκοιμηθείς.</string>
     <string name="learn_restart">Μάθε ξανά</string>
-    <string name="learn_restart_text">Το Phase Wake μετρά ξανά %1$d νύχτες και ξεχνά τις προσαρμοσμένες τιμές.</string>
+    <string name="learn_restart_text">Το Phase Wake μετρά ξανά %1$d νύχτες. Μέχρι τότε ισχύουν οι τιμές που έχουν προσαρμοστεί ως τώρα.</string>
     <string name="record_end_wake">Έληξε με το ξύπνημα</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Βαθμολογία ύπνου</string>
+    <string name="score_excellent">Εξαιρετικός</string>
+    <string name="score_good">Καλός</string>
+    <string name="score_fair">Μέτριος</string>
+    <string name="score_poor">Αδύναμος</string>
+    <string name="score_value">Βαθμολογία ύπνου %1$d στα 100: %2$s</string>
+    <string name="score_duration">Διάρκεια ύπνου</string>
+    <string name="score_weights">Στάθμιση: Διάρκεια ύπνου 35, Βαθύς 20, REM 20, Ξύπνιος 15, Χρόνος αποκοίμισης 10. Οι τιμές που λείπουν δεν μετράνε.</string>
+    <string name="score_source">Από %1$s.</string>
+    <string name="score_source_health">Από τα δεδομένα υγείας σου.</string>
+    <string name="score_source_recording">Από τη νυχτερινή καταγραφή του ρολογιού σου.</string>
+    <string name="pulse_title">Σφυγμός</string>
+    <string name="pulse_average">Ø %1$d ανά λεπτό</string>
+    <string name="motion_title">Κίνηση</string>
+    <string name="overview_title">Ο ύπνος σου</string>
+    <string name="overview_days">Ημέρες</string>
+    <string name="overview_weeks">Εβδομάδες</string>
+    <string name="overview_months">Μήνες</string>
+    <string name="overview_asleep">Ø ύπνος</string>
+    <string name="overview_bedtime">Ø ώρα ύπνου</string>
+    <string name="overview_wake">Ø ώρα αφύπνισης</string>
+    <string name="settings_clear_history_learn">Η φάση εκμάθησης ξεκινά από την αρχή.</string>
+    <string name="learn_auto_hint">Πάτησε το βράδυ «Καληνύχτα» στο ρολόι ή ενεργοποίησε το «Αυτόματος εντοπισμός αποκοίμισης», για να μετρούν οι νύχτες.</string>
 </resources>

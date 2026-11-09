@@ -385,19 +385,19 @@
     <string name="hypno_block">%1$s from %2$s to %3$s</string>
     <string name="chart_week_average">Weekly average</string>
     <string name="chart_touch_hint">Touch or drag across the chart to see values.</string>
-    <string name="chart_nights_30">30 nights</string>
+    <string name="chart_nights_30" tools:ignore="UnusedResources">30 nights</string>
     <string name="stages_share" tools:ignore="PluralsCandidate">%1$d %%</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
     <string name="m3c_time_picker_am" tools:override="true" tools:ignore="UnusedResources">AM</string>
     <string name="m3c_time_picker_pm" tools:override="true" tools:ignore="UnusedResources">PM</string>
     <string name="charts_title">Charts</string>
     <string name="chart_bars_title">Sleep times</string>
-    <string name="chart_durations_title">Sleep per night</string>
+    <string name="chart_durations_title" tools:ignore="UnusedResources">Sleep per night</string>
     <string name="chart_wake_title">Wake moment in the window</string>
     <string name="chart_stages_title">Sleep stages of the night</string>
     <string name="chart_feeling_title">Feeling</string>
-    <string name="chart_nights_7">7 nights</string>
-    <string name="chart_nights_14">14 nights</string>
+    <string name="chart_nights_7" tools:ignore="UnusedResources">7 nights</string>
+    <string name="chart_nights_14" tools:ignore="UnusedResources">14 nights</string>
     <string name="chart_bedtime">Bedtime %1$s</string>
     <string name="chart_goal">Goal %1$s</string>
     <string name="chart_wake_target">At target time</string>
@@ -541,7 +541,7 @@
     <string name="record_start">Record night</string>
     <string name="record_stop">Stop recording</string>
     <string name="record_since">Recording since %1$s</string>
-    <string name="record_hint">Your watch records motion and pulse all night, so Phase Wake can later learn your own thresholds.</string>
+    <string name="record_hint">Your watch records motion and pulse all night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you.</string>
     <string name="record_end_manual">Stopped</string>
     <string name="record_end_cap">Ended after 12 h</string>
     <string name="record_end_battery">Watch battery low</string>
@@ -559,6 +559,30 @@
     <string name="bedtime_advice">Go to bed between %1$s and %2$s tonight</string>
     <string name="bedtime_advice_hint">Based on your alarm, your sleep goal and how long you take to fall asleep.</string>
     <string name="learn_restart">Learn again</string>
-    <string name="learn_restart_text" tools:ignore="PluralsCandidate">Phase Wake measures %1$d nights again and forgets the adapted values.</string>
+    <string name="learn_restart_text" tools:ignore="PluralsCandidate">Phase Wake measures %1$d nights again. Until then, the values adapted so far stay in use.</string>
     <string name="record_end_wake">Ended at wake-up</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Sleep score</string>
+    <string name="score_excellent">Excellent</string>
+    <string name="score_good">Good</string>
+    <string name="score_fair">Fair</string>
+    <string name="score_poor">Poor</string>
+    <string name="score_value" tools:ignore="PluralsCandidate">Sleep score %1$d of 100: %2$s</string>
+    <string name="score_duration">Sleep duration</string>
+    <string name="score_weights">Weighting: Sleep duration 35, Deep 20, REM 20, Awake 15, Falling asleep 10. Missing values are left out.</string>
+    <string name="score_source">From %1$s.</string>
+    <string name="score_source_health">From your health data.</string>
+    <string name="score_source_recording">From your watch’s night recording.</string>
+    <string name="pulse_title">Pulse</string>
+    <string name="pulse_average" tools:ignore="PluralsCandidate">Ø %1$d per minute</string>
+    <string name="motion_title">Movement</string>
+    <string name="overview_title">Your sleep</string>
+    <string name="overview_days">Days</string>
+    <string name="overview_weeks">Weeks</string>
+    <string name="overview_months">Months</string>
+    <string name="overview_asleep">Ø sleep</string>
+    <string name="overview_bedtime">Ø bedtime</string>
+    <string name="overview_wake">Ø wake-up</string>
+    <string name="settings_clear_history_learn">The learning phase starts over.</string>
+    <string name="learn_auto_hint">Tap “Good night” on your watch in the evening or turn on “Detect falling asleep automatically” so the nights count.</string>
 </resources>

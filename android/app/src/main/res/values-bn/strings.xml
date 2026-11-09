@@ -538,7 +538,7 @@
     <string name="record_start">রাত রেকর্ড করো</string>
     <string name="record_stop">রেকর্ডিং থামাও</string>
     <string name="record_since">%1$s থেকে রেকর্ড হচ্ছে</string>
-    <string name="record_hint">তোমার ঘড়ি সারা রাত নড়াচড়া আর পালস রেকর্ড করে, যাতে Phase Wake পরে তোমার নিজের সীমা শিখতে পারে।</string>
+    <string name="record_hint">তোমার ঘড়ি সারা রাত নড়াচড়া আর নাড়ি রেকর্ড করে। এই রাতগুলো থেকে Phase Wake শেখার পর্যায়ে তোমার নিজের মান শেখে এবং অ্যালার্ম তোমার মতো করে নেয়।</string>
     <string name="record_end_manual">থামানো হয়েছে</string>
     <string name="record_end_cap">১২ ঘণ্টা পরে শেষ হয়েছে</string>
     <string name="record_end_battery">ঘড়ির ব্যাটারি কম</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">আজ %1$s থেকে %2$s-এর মধ্যে শুতে যাও</string>
     <string name="bedtime_advice_hint">তোমার অ্যালার্ম, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।</string>
     <string name="learn_restart">আবার শেখো</string>
-    <string name="learn_restart_text">Phase Wake আবার %1$d রাত মাপবে এবং মানানো মানগুলো ভুলে যাবে।</string>
+    <string name="learn_restart_text">Phase Wake আবার %1$d রাত মাপবে। ততক্ষণ এখন পর্যন্ত মানিয়ে নেওয়া মানগুলোই চলবে।</string>
     <string name="record_end_wake">জাগানোর সময় শেষ</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ঘুমের স্কোর</string>
+    <string name="score_excellent">চমৎকার</string>
+    <string name="score_good">ভালো</string>
+    <string name="score_fair">মাঝারি</string>
+    <string name="score_poor">দুর্বল</string>
+    <string name="score_value">ঘুমের স্কোর 100-এর মধ্যে %1$d: %2$s</string>
+    <string name="score_duration">ঘুমের সময়কাল</string>
+    <string name="score_weights">ভার: ঘুমের সময়কাল 35, গভীর 20, REM 20, জাগ্রত 15, ঘুমিয়ে পড়তে সময় 10. অনুপস্থিত মান গোনা হয় না।</string>
+    <string name="score_source">%1$s থেকে।</string>
+    <string name="score_source_health">তোমার স্বাস্থ্য ডেটা থেকে।</string>
+    <string name="score_source_recording">তোমার ঘড়ির রাতের রেকর্ডিং থেকে।</string>
+    <string name="pulse_title">নাড়ি</string>
+    <string name="pulse_average">Ø প্রতি মিনিটে %1$d</string>
+    <string name="motion_title">নড়াচড়া</string>
+    <string name="overview_title">তোমার ঘুম</string>
+    <string name="overview_days">দিন</string>
+    <string name="overview_weeks">সপ্তাহ</string>
+    <string name="overview_months">মাস</string>
+    <string name="overview_asleep">Ø ঘুম</string>
+    <string name="overview_bedtime">Ø ঘুমানোর সময়</string>
+    <string name="overview_wake">Ø জাগার সময়</string>
+    <string name="settings_clear_history_learn">শেখার পর্যায় আবার শুরু থেকে শুরু হয়।</string>
+    <string name="learn_auto_hint">রাতগুলো গোনার জন্য সন্ধ্যায় ঘড়িতে “শুভরাত্রি” ট্যাপ করো বা “ঘুমিয়ে পড়া স্বয়ংক্রিয়ভাবে শনাক্ত করো” চালু করো।</string>
 </resources>

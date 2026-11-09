@@ -539,7 +539,7 @@
     <string name="record_start">रात्र रेकॉर्ड करा</string>
     <string name="record_stop">रेकॉर्डिंग थांबवा</string>
     <string name="record_since">%1$s पासून रेकॉर्डिंग सुरू आहे</string>
-    <string name="record_hint">तुमचे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते, म्हणजे Phase Wake नंतर तुमच्या स्वतःच्या मर्यादा शिकू शकेल.</string>
+    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो.</string>
     <string name="record_end_manual">थांबवले</string>
     <string name="record_end_cap">12 तासांनंतर संपले</string>
     <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">आज %1$s ते %2$s दरम्यान झोपायला जा</string>
     <string name="bedtime_advice_hint">तुझा अलार्म, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून.</string>
     <string name="learn_restart">पुन्हा शिका</string>
-    <string name="learn_restart_text">Phase Wake पुन्हा %1$d रात्री मोजेल आणि जुळवलेली मूल्ये विसरेल.</string>
+    <string name="learn_restart_text">Phase Wake पुन्हा %1$d रात्री मोजतो. तोपर्यंत आतापर्यंत जुळवलेली मूल्येच वापरली जातात.</string>
     <string name="record_end_wake">उठवताना संपले</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">झोपेचा स्कोअर</string>
+    <string name="score_excellent">उत्कृष्ट</string>
+    <string name="score_good">चांगला</string>
+    <string name="score_fair">मध्यम</string>
+    <string name="score_poor">कमकुवत</string>
+    <string name="score_value">झोपेचा स्कोअर 100 पैकी %1$d: %2$s</string>
+    <string name="score_duration">झोपेचा कालावधी</string>
+    <string name="score_weights">भार: झोपेचा कालावधी 35, गाढ 20, REM 20, जागे 15, झोप लागण्यास वेळ 10. नसलेली मूल्ये मोजली जात नाहीत.</string>
+    <string name="score_source">%1$s मधून.</string>
+    <string name="score_source_health">तुझ्या आरोग्य डेटामधून.</string>
+    <string name="score_source_recording">तुझ्या घड्याळाच्या रात्रीच्या रेकॉर्डिंगमधून.</string>
+    <string name="pulse_title">नाडी</string>
+    <string name="pulse_average">Ø दर मिनिटाला %1$d</string>
+    <string name="motion_title">हालचाल</string>
+    <string name="overview_title">तुझी झोप</string>
+    <string name="overview_days">दिवस</string>
+    <string name="overview_weeks">आठवडे</string>
+    <string name="overview_months">महिने</string>
+    <string name="overview_asleep">Ø झोप</string>
+    <string name="overview_bedtime">Ø झोपण्याची वेळ</string>
+    <string name="overview_wake">Ø उठण्याची वेळ</string>
+    <string name="settings_clear_history_learn">शिकण्याचा टप्पा पुन्हा सुरुवातीपासून सुरू होतो.</string>
+    <string name="learn_auto_hint">रात्री मोजल्या जाव्यात म्हणून संध्याकाळी घड्याळावर “शुभ रात्री” टॅप कर किंवा “झोप लागणे आपोआप ओळखा” चालू कर.</string>
 </resources>

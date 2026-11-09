@@ -538,7 +538,7 @@
     <string name="record_start">Запиши нощта</string>
     <string name="record_stop">Спри записа</string>
     <string name="record_since">Записва се от %1$s</string>
-    <string name="record_hint">Часовникът ти записва движението и пулса цяла нощ, за да може Phase Wake по-късно да научи твоите собствени прагове.</string>
+    <string name="record_hint">Часовникът ти записва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб.</string>
     <string name="record_end_manual">Спрян</string>
     <string name="record_end_cap">Приключи след 12 ч</string>
     <string name="record_end_battery">Батерията на часовника е слаба</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">Легни си днес между %1$s и %2$s</string>
     <string name="bedtime_advice_hint">От будилника, целта ти за сън и колко време ти трябва, за да заспиш.</string>
     <string name="learn_restart">Научи отново</string>
-    <string name="learn_restart_text">Phase Wake отново мери %1$d нощи и забравя нагласените стойности.</string>
+    <string name="learn_restart_text">Phase Wake отново измерва %1$d нощи. Дотогава остават в сила досега нагласените стойности.</string>
     <string name="record_end_wake">Приключено при събуждане</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Оценка на съня</string>
+    <string name="score_excellent">Отлично</string>
+    <string name="score_good">Добре</string>
+    <string name="score_fair">Средно</string>
+    <string name="score_poor">Слабо</string>
+    <string name="score_value">Оценка на съня %1$d от 100: %2$s</string>
+    <string name="score_duration">Продължителност на съня</string>
+    <string name="score_weights">Тежест: Продължителност на съня 35, Дълбок 20, REM 20, Будност 15, Заспиване 10. Липсващите стойности не се броят.</string>
+    <string name="score_source">От %1$s.</string>
+    <string name="score_source_health">От твоите здравни данни.</string>
+    <string name="score_source_recording">От нощния запис на часовника ти.</string>
+    <string name="pulse_title">Пулс</string>
+    <string name="pulse_average">Ø %1$d в минута</string>
+    <string name="motion_title">Движение</string>
+    <string name="overview_title">Твоят сън</string>
+    <string name="overview_days">Дни</string>
+    <string name="overview_weeks">Седмици</string>
+    <string name="overview_months">Месеци</string>
+    <string name="overview_asleep">Ø сън</string>
+    <string name="overview_bedtime">Ø час на заспиване</string>
+    <string name="overview_wake">Ø час на събуждане</string>
+    <string name="settings_clear_history_learn">Фазата на учене започва отначало.</string>
+    <string name="learn_auto_hint">Вечер докосни „Лека нощ“ на часовника или включи „Автоматично разпознаване на заспиването“, за да се броят нощите.</string>
 </resources>

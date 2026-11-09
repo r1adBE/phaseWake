@@ -539,7 +539,7 @@
     <string name="record_start">Сними ја ноќта</string>
     <string name="record_stop">Запри снимање</string>
     <string name="record_since">Се снима од %1$s</string>
-    <string name="record_hint">Твојот часовник цела ноќ ги снима движењето и пулсот, за Phase Wake подоцна да ги научи твоите сопствени прагови.</string>
+    <string name="record_hint">Твојот часовник цела ноќ снима движење и пулс. Од тие ноќи Phase Wake во фазата на учење ги учи твоите сопствени вредности и го прилагодува алармот на тебе.</string>
     <string name="record_end_manual">Запрено</string>
     <string name="record_end_cap">Завршено по 12 ч</string>
     <string name="record_end_battery">Батеријата на часовникот е слаба</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Легни си денес меѓу %1$s и %2$s</string>
     <string name="bedtime_advice_hint">Според будилникот, целта за сон и колку време ти треба да заспиеш.</string>
     <string name="learn_restart">Научи повторно</string>
-    <string name="learn_restart_text">Phase Wake повторно мери %1$d ноќи и ги заборава прилагодените вредности.</string>
+    <string name="learn_restart_text">Phase Wake повторно мери %1$d ноќи. Дотогаш важат досега прилагодените вредности.</string>
     <string name="record_end_wake">Завршено при будење</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Оценка на сонот</string>
+    <string name="score_excellent">Одлично</string>
+    <string name="score_good">Добро</string>
+    <string name="score_fair">Средно</string>
+    <string name="score_poor">Слабо</string>
+    <string name="score_value">Оценка на сонот %1$d од 100: %2$s</string>
+    <string name="score_duration">Траење на сонот</string>
+    <string name="score_weights">Тежина: Траење на сонот 35, Длабок 20, REM 20, Буден 15, Заспивање 10. Вредностите што недостасуваат не се бројат.</string>
+    <string name="score_source">Од %1$s.</string>
+    <string name="score_source_health">Од твоите здравствени податоци.</string>
+    <string name="score_source_recording">Од ноќното снимање на твојот часовник.</string>
+    <string name="pulse_title">Пулс</string>
+    <string name="pulse_average">Ø %1$d во минута</string>
+    <string name="motion_title">Движење</string>
+    <string name="overview_title">Твојот сон</string>
+    <string name="overview_days">Денови</string>
+    <string name="overview_weeks">Недели</string>
+    <string name="overview_months">Месеци</string>
+    <string name="overview_asleep">Ø сон</string>
+    <string name="overview_bedtime">Ø време на заспивање</string>
+    <string name="overview_wake">Ø време на будење</string>
+    <string name="settings_clear_history_learn">Фазата на учење почнува одново.</string>
+    <string name="learn_auto_hint">Навечер допри „Добра ноќ“ на часовникот или вклучи „Автоматски препознај заспивање“ за ноќите да се бројат.</string>
 </resources>

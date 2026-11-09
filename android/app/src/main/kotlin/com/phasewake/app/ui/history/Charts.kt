@@ -3,7 +3,6 @@ package com.phasewake.app.ui.history
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,17 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,21 +24,26 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
-import com.phasewake.app.core.Durations
 import com.phasewake.app.core.FeelingSeries
 import com.phasewake.app.core.HealthFeeling
 import com.phasewake.app.core.Hypnogram
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
+import com.phasewake.app.core.OverviewUnit
+import com.phasewake.app.core.SleepOverview
+import com.phasewake.app.core.SleepOverviews
 import com.phasewake.app.core.SleepBars
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.core.SleepSummary
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.core.StageStats
 import com.phasewake.app.core.WakeMoments
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.temporal.WeekFields
+import java.util.Locale
 
 /** Trends-Zeilen, die ein Diagramm schon zeigt (dort weggelassen). */
 enum class TrendLine { ASLEEP, GOAL, REGULAR, FEELING }
@@ -61,23 +57,25 @@ enum class TrendLine { ASLEEP, GOAL, REGULAR, FEELING }
  */
 data class HistoryCharts(
     val bars: Map<Int, SleepBars> = emptyMap(),
-    val durations: Map<Int, Durations> = emptyMap(),
     val wake: Map<Int, WakeMoments> = emptyMap(),
     val hypnogram: Hypnogram? = null,
     val hypnogramNight: NightRecord? = null,
     val hypnogramStages: NightStages? = null,
     val feeling: Map<Int, FeelingSeries> = emptyMap(),
+    /** Übersicht «Tage / Wochen / Monate» oben im Verlauf; Einteilungen ohne Daten fehlen. */
+    val overview: Map<OverviewUnit, SleepOverview> = emptyMap(),
 ) {
-    /** Ob ein Diagramm vom Zeitraum abhängt (dann die Auswahl 7 / 14 / 30 zeigen). */
-    val hasPeriods: Boolean get() = bars.isNotEmpty() || durations.isNotEmpty() || wake.isNotEmpty() || feeling.isNotEmpty()
+    /** Ob etwas vom Zeitraum abhängt (dann die Auswahl «Tage / Wochen / Monate» oben im Verlauf zeigen). */
+    val hasPeriods: Boolean get() = overview.isNotEmpty() || bars.isNotEmpty() || wake.isNotEmpty() || feeling.isNotEmpty()
 
-    val isEmpty: Boolean get() = bars.isEmpty() && durations.isEmpty() && wake.isEmpty() && hypnogram == null && feeling.isEmpty()
+    /** Ob die Diagramme zum Blättern nichts zeigen (die Übersicht steht für sich). */
+    val isEmpty: Boolean get() = bars.isEmpty() && wake.isEmpty() && hypnogram == null && feeling.isEmpty()
 
     /** Was die Trends-Karte nicht mehr wiederholen muss. */
     val covered: Set<TrendLine>
         get() = buildSet {
-            // Wie bisher: Schlaf und Ziel der Woche zeigt das Diagramm nur mit Daten in den letzten 7 Nächten.
-            if (durations.containsKey(ChartData.SHORT_NIGHTS)) {
+            // Ø Schlaf und erreichtes Ziel zeigt die Übersicht («Tage»: die letzten 7 Nächte), sobald sie dort Daten hat.
+            if (overview.containsKey(OverviewUnit.DAYS)) {
                 add(TrendLine.ASLEEP)
                 add(TrendLine.GOAL)
             }
@@ -100,18 +98,20 @@ data class HistoryCharts(
             now: Instant,
             zone: ZoneId,
             health: List<HealthFeeling> = emptyList(),
+            /** Erster Tag der Woche für die Übersicht (Sprache des Geräts). */
+            firstDay: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
         ): HistoryCharts {
             val today = SleepNotes.nightDate(now, zone)
             val nextTarget = AlarmSchedule.earliestPlan(alarms, now, zone)?.target
             val hypnoNight = if (stages.isEmpty()) null else nights.sortedByDescending { it.wokeAt }.take(ChartData.NIGHTS).firstOrNull { ChartData.hypnogram(stages, it) != null }
             return HistoryCharts(
                 bars = periods { ChartData.sleepBars(sleeps, zone, today, nextTarget, goalMinutes, it) },
-                durations = periods { ChartData.durations(sleeps, zone, today, goalMinutes, it) },
                 wake = periods { ChartData.wakeMoments(nights, zone, it) },
                 hypnogram = hypnoNight?.let { ChartData.hypnogram(stages, it) },
                 hypnogramNight = hypnoNight,
                 hypnogramStages = hypnoNight?.let { StageStats.forNight(stages, it) },
                 feeling = periods { ChartData.feelingSeries(nights, notes, zone, today, it, health) },
+                overview = OverviewUnit.entries.mapNotNull { unit -> SleepOverviews.of(sleeps, zone, today, goalMinutes, unit, firstDay, stages)?.let { unit to it } }.toMap(),
             )
         }
 
@@ -134,14 +134,13 @@ fun HistoryChartsSection(
     customNotes: List<CustomNote>,
     modifier: Modifier = Modifier,
     opener: (LocalDate) -> (() -> Unit)? = { null },
+    /** Zeitraum in Nächten aus der Auswahl «Tage / Wochen / Monate» oben im Verlauf ([periodNights]). */
+    nights: Int = ChartData.NIGHTS,
 ) {
-    // Ein Zeitraum für alle Diagramme (wie auf Apple), Vorgabe 14 Nächte; gemerkt über Drehen und Zurückkehren.
-    var nights by rememberSaveable { mutableIntStateOf(ChartData.NIGHTS) }
     val pages = chartPages(charts, customNotes, opener, nights)
     if (pages.isEmpty()) return
     Column(modifier.fillMaxWidth()) {
         Text(stringResource(R.string.charts_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(start = 4.dp, bottom = 8.dp))
-        if (charts.hasPeriods) PeriodSwitch(nights) { nights = it }
         val state = rememberPagerState { pages.size }
         HorizontalPager(
             state = state,
@@ -175,7 +174,6 @@ private fun chartPages(
 ): List<@Composable (Modifier) -> Unit> =
     buildList<@Composable (Modifier) -> Unit> {
         if (charts.bars.isNotEmpty()) add { m -> SleepBarsCard(charts.bars[nights], opener, m) }
-        if (charts.durations.isNotEmpty()) add { m -> DurationsCard(charts.durations[nights], nights, opener, m) }
         if (charts.wake.isNotEmpty()) add { m -> WakeCard(charts.wake[nights], nights, opener, m) }
         val h = charts.hypnogram
         val night = charts.hypnogramNight
@@ -194,28 +192,14 @@ internal fun HistoryChartsStacked(charts: HistoryCharts, customNotes: List<Custo
     }
 }
 
-/** Textschlüssel eines Zeitraums. */
-private fun periodLabel(nights: Int): Int = when (nights) {
-    ChartData.SHORT_NIGHTS -> R.string.chart_nights_7
-    ChartData.NIGHTS -> R.string.chart_nights_14
-    else -> R.string.chart_nights_30
-}
-
-/** Auswahl des Zeitraums über allen Diagrammen: 7 / 14 / 30 Nächte. */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun PeriodSwitch(selected: Int, onSelect: (Int) -> Unit) {
-    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
-        ChartData.PERIODS.forEachIndexed { i, value ->
-            SegmentedButton(
-                selected = selected == value,
-                onClick = { onSelect(value) },
-                shape = SegmentedButtonDefaults.itemShape(i, ChartData.PERIODS.size),
-                modifier = Modifier.heightIn(min = 48.dp),
-                icon = {},
-            ) { Text(stringResource(periodLabel(value)), style = MaterialTheme.typography.labelMedium) }
-        }
-    }
+/**
+ * Zeitraum der Diagramme zum Blättern je Einteilung oben im Verlauf: «Tage» 7, «Wochen» 14, «Monate» 30 Nächte
+ * ([ChartData.PERIODS]); Diagramme je Nacht (Schlafzeiten, Weckmomente, Befinden) bleiben so lesbar.
+ */
+fun periodNights(unit: OverviewUnit): Int = when (unit) {
+    OverviewUnit.DAYS -> ChartData.SHORT_NIGHTS
+    OverviewUnit.WEEKS -> ChartData.NIGHTS
+    OverviewUnit.MONTHS -> ChartData.MONTH_NIGHTS
 }
 
 /** Karte ohne Daten im gewählten Zeitraum: «Keine Daten» (vorhandener Text, gross begonnen). */

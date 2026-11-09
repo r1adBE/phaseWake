@@ -522,7 +522,7 @@
     <string name="record_start">Rakam malam</string>
     <string name="record_stop">Hentikan rakaman</string>
     <string name="record_since">Merakam sejak %1$s</string>
-    <string name="record_hint">Jam tanganmu merakam pergerakan dan nadi sepanjang malam, supaya Phase Wake boleh mempelajari ambangmu sendiri kemudian.</string>
+    <string name="record_hint">Jam tangan anda merakam pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Tamat selepas 12 jam</string>
     <string name="record_end_battery">Bateri jam lemah</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">Tidur malam ini antara %1$s dan %2$s</string>
     <string name="bedtime_advice_hint">Berdasarkan penggera, sasaran tidur dan berapa lama kamu ambil untuk tertidur.</string>
     <string name="learn_restart">Belajar semula</string>
-    <string name="learn_restart_text">Phase Wake mengukur %1$d malam lagi dan melupakan nilai yang disesuaikan.</string>
+    <string name="learn_restart_text">Phase Wake mengukur semula %1$d malam. Sehingga itu, nilai yang telah disesuaikan setakat ini terus digunakan.</string>
     <string name="record_end_wake">Tamat semasa bangun</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Skor tidur</string>
+    <string name="score_excellent">Cemerlang</string>
+    <string name="score_good">Baik</string>
+    <string name="score_fair">Sederhana</string>
+    <string name="score_poor">Lemah</string>
+    <string name="score_value">Skor tidur %1$d daripada 100: %2$s</string>
+    <string name="score_duration">Tempoh tidur</string>
+    <string name="score_weights">Pemberat: Tempoh tidur 35, Lena 20, REM 20, Berjaga 15, Masa untuk tertidur 10. Nilai yang tiada tidak dikira.</string>
+    <string name="score_source">Daripada %1$s.</string>
+    <string name="score_source_health">Daripada data kesihatan anda.</string>
+    <string name="score_source_recording">Daripada rakaman malam jam tangan anda.</string>
+    <string name="pulse_title">Nadi</string>
+    <string name="pulse_average">Ø %1$d seminit</string>
+    <string name="motion_title">Pergerakan</string>
+    <string name="overview_title">Tidur anda</string>
+    <string name="overview_days">Hari</string>
+    <string name="overview_weeks">Minggu</string>
+    <string name="overview_months">Bulan</string>
+    <string name="overview_asleep">Ø tidur</string>
+    <string name="overview_bedtime">Ø waktu tidur</string>
+    <string name="overview_wake">Ø waktu bangun</string>
+    <string name="settings_clear_history_learn">Fasa pembelajaran bermula semula.</string>
+    <string name="learn_auto_hint">Pada waktu petang, ketik “Selamat malam” pada jam tangan atau hidupkan “Kesan bila awak tertidur secara automatik” supaya malam dikira.</string>
 </resources>

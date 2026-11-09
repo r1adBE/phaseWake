@@ -550,7 +550,7 @@
     <string name="record_start">Enregistrer la nuit</string>
     <string name="record_stop">Arrêter l’enregistrement</string>
     <string name="record_since">Enregistrement depuis %1$s</string>
-    <string name="record_hint">Ta montre enregistre tes mouvements et ton pouls toute la nuit, pour que Phase Wake puisse plus tard apprendre tes propres seuils.</string>
+    <string name="record_hint">Ta montre enregistre mouvement et pouls toute la nuit. À partir de ces nuits, Phase Wake apprend tes propres valeurs pendant la phase d’apprentissage et adapte le réveil à toi.</string>
     <string name="record_end_manual">Arrêté</string>
     <string name="record_end_cap">Terminé après 12 h</string>
     <string name="record_end_battery">Batterie de la montre faible</string>
@@ -568,6 +568,30 @@
     <string name="bedtime_advice">Couche-toi ce soir entre %1$s et %2$s</string>
     <string name="bedtime_advice_hint">D’après ton réveil, ton objectif de sommeil et le temps qu’il te faut pour t’endormir.</string>
     <string name="learn_restart">Réapprendre</string>
-    <string name="learn_restart_text">Phase Wake mesure de nouveau %1$d nuits et oublie les valeurs adaptées.</string>
+    <string name="learn_restart_text">Phase Wake mesure à nouveau %1$d nuits. D’ici là, les valeurs adaptées jusqu’à présent restent utilisées.</string>
     <string name="record_end_wake">Terminé au réveil</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Score de sommeil</string>
+    <string name="score_excellent">Excellent</string>
+    <string name="score_good">Bon</string>
+    <string name="score_fair">Moyen</string>
+    <string name="score_poor">Faible</string>
+    <string name="score_value">Score de sommeil %1$d sur 100 : %2$s</string>
+    <string name="score_duration">Durée de sommeil</string>
+    <string name="score_weights">Pondération: Durée de sommeil 35, Profond 20, Paradoxal 20, Éveil 15, Endormissement 10. Les valeurs manquantes ne comptent pas.</string>
+    <string name="score_source">De %1$s.</string>
+    <string name="score_source_health">De tes données de santé.</string>
+    <string name="score_source_recording">De l’enregistrement nocturne de ta montre.</string>
+    <string name="pulse_title">Pouls</string>
+    <string name="pulse_average">Ø %1$d par minute</string>
+    <string name="motion_title">Mouvement</string>
+    <string name="overview_title">Ton sommeil</string>
+    <string name="overview_days">Jours</string>
+    <string name="overview_weeks">Semaines</string>
+    <string name="overview_months">Mois</string>
+    <string name="overview_asleep">Ø sommeil</string>
+    <string name="overview_bedtime">Ø coucher</string>
+    <string name="overview_wake">Ø réveil</string>
+    <string name="settings_clear_history_learn">La phase d’apprentissage recommence depuis le début.</string>
+    <string name="learn_auto_hint">Le soir, appuie sur « Bonne nuit » sur ta montre ou active « Détecter l\'endormissement automatiquement » pour que les nuits comptent.</string>
 </resources>

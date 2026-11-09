@@ -201,7 +201,8 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
             AlertDialog(
                 onDismissRequest = { confirm = false },
                 title = { Text(stringResource(R.string.settings_clear_history)) },
-                text = { Text(stringResource(R.string.settings_clear_history_text)) },
+                // Nur Android: Die Lernphase gibt es am iPhone noch nicht, darum ein eigener Satz statt eines geänderten Texts.
+                text = { Text(stringResource(R.string.settings_clear_history_text) + " " + stringResource(R.string.settings_clear_history_learn)) },
                 confirmButton = {
                     TextButton(onClick = { confirm = false; onClearHistory() }) {
                         Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)

@@ -31,6 +31,7 @@ import com.phasewake.app.R
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HealthSession
 import com.phasewake.app.core.NightStages
+import com.phasewake.app.core.SleepScoreResult
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.StageStats
 import com.phasewake.app.health.HealthSource
@@ -109,6 +110,8 @@ internal fun HealthNightCard(
     clips: List<SoundClip>,
     onOpen: () -> Unit,
     modifier: Modifier = Modifier,
+    /** Schlafwert der Nacht ([nightScore]); `null`: keine Zeile. */
+    score: SleepScoreResult? = null,
 ) {
     val context = LocalContext.current
     val zone = ZoneId.systemDefault()
@@ -128,6 +131,7 @@ internal fun HealthNightCard(
                 Icon(painterResource(R.drawable.ic_health), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
                 Text(healthMark(context), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp))
             }
+            score?.let { ScoreLine(it) }
             Text(times, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
             Text(amounts, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             stats?.let { MiniStages(HypnoModel(session.start, session.end, it.blocks), it) }

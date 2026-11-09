@@ -28,7 +28,7 @@ import kotlin.test.assertTrue
 
 /**
  * Lernphase am Handy: Beginn nach der Installation, Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
- * Werte an die Uhr, «Neu lernen» bzw. «Verlauf löschen» von vorn ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
+ * Werte an die Uhr, «Verlauf löschen» von vorn, «Neu lernen» mit den bisherigen Werten bis zum Ende ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)
@@ -121,6 +121,52 @@ class LearningFlowTest {
         // Die alten Aufzeichnungen liegen vor dem Neubeginn: zählen nicht.
         runBlocking { app.updateLearning() }
         assertNull(runBlocking { app.learning.current() }.values)
+    }
+
+    @Test
+    fun relearnKeepsTheOldValuesUntilSevenNewNights() {
+        // Gelernt aus sieben Nächten vor heute (Boden 0.02, Puls 54).
+        runBlocking { app.learning.restart(since.minus(Duration.ofDays(11))) }
+        for (day in -10L..-4L) receive(recording(day, 400))
+        val old = assertNotNull(runBlocking { app.learning.current() }.values)
+        runBlocking { app.learning.setSeen() }
+        app.learningSent.clear()
+        runBlocking { app.relearn() }
+        val running = runBlocking { app.learning.current() }
+        assertTrue(running.active)
+        assertTrue(running.relearning)
+        assertEquals(old, running.values, "bisherige Werte gelten weiter")
+        // An die Uhr: aufzeichnen (aktiv) und weiter mit den bisherigen Werten messen.
+        val sent = app.learningSent.last()
+        assertTrue(sent.active)
+        assertEquals(0.02, sent.floor)
+        assertEquals(54.0, sent.restingHeartRate)
+        // Alte Aufzeichnungen zählen nicht; nach sieben neuen Nächten ersetzen die neuen Werte die alten.
+        for (day in 1L..6L) receive(recording(day, 400, floor = 0.03, pulse = 50.0))
+        assertEquals(old, runBlocking { app.learning.current() }.values)
+        receive(recording(7, 400, floor = 0.03, pulse = 50.0))
+        val done = runBlocking { app.learning.current() }
+        assertEquals(0.03, assertNotNull(done.values).floor)
+        assertEquals(50.0, done.values.restingHeartRate)
+        assertFalse(done.active)
+        assertFalse(done.relearning)
+        assertFalse(done.seen, "«Angepasst an dich» zeigt die neuen Werte")
+        assertFalse(app.learningSent.last().active)
+        assertEquals(0.03, app.learningSent.last().floor)
+    }
+
+    @Test
+    fun repositoryRelearnWithoutValuesStartsOver() = runBlocking {
+        val repo = LearningRepository(MemoryStore())
+        repo.ensureStarted(since)
+        repo.relearn(since.plusSeconds(60))
+        assertEquals(LearningState(since.plusSeconds(60), null, false, since.plusSeconds(60).toEpochMilli()), repo.current())
+        // «Verlauf löschen» nach «Neu lernen»: Werte und Neu-lernen-Stand weg.
+        repo.finish(Learning.Values(0.02, null, 12, 7), since.plusSeconds(120))
+        repo.relearn(since.plusSeconds(180))
+        assertTrue(repo.current().relearning)
+        repo.restart(since.plusSeconds(240))
+        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli()), repo.current())
     }
 
     @Test

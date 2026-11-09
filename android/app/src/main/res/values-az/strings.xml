@@ -524,7 +524,7 @@
     <string name="record_start">Gecəni qeyd et</string>
     <string name="record_stop">Qeydi dayandır</string>
     <string name="record_since">Qeyd %1$s-dan bəri gedir</string>
-    <string name="record_hint">Saatın bütün gecə hərəkəti və nəbzi qeyd edir ki, Phase Wake sonra sənin öz həddlərini öyrənə bilsin.</string>
+    <string name="record_hint">Saatın bütün gecə hərəkəti və nəbzi qeyd edir. Phase Wake bu gecələrdən öyrənmə mərhələsində öz dəyərlərini öyrənir və zəngli saatı sənə uyğunlaşdırır.</string>
     <string name="record_end_manual">Dayandırıldı</string>
     <string name="record_end_cap">12 saatdan sonra bitdi</string>
     <string name="record_end_battery">Saatın batareyası azdır</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">Bu gün %1$s ilə %2$s arasında yat</string>
     <string name="bedtime_advice_hint">Zəngin, yuxu hədəfin və yuxuya getmə müddətinə əsasən.</string>
     <string name="learn_restart">Yenidən öyrən</string>
-    <string name="learn_restart_text">Phase Wake yenidən %1$d gecə ölçəcək və uyğunlaşdırılmış dəyərləri unudacaq.</string>
+    <string name="learn_restart_text">Phase Wake yenidən %1$d gecə ölçür. O vaxta qədər indiyədək uyğunlaşdırılmış dəyərlər qüvvədə qalır.</string>
     <string name="record_end_wake">Oyananda bitdi</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Yuxu balı</string>
+    <string name="score_excellent">Əla</string>
+    <string name="score_good">Yaxşı</string>
+    <string name="score_fair">Orta</string>
+    <string name="score_poor">Zəif</string>
+    <string name="score_value">Yuxu balı 100-dən %1$d: %2$s</string>
+    <string name="score_duration">Yuxu müddəti</string>
+    <string name="score_weights">Çəki: Yuxu müddəti 35, Dərin 20, REM 20, Oyaq 15, Yuxuya getmə müddəti 10. Çatışmayan dəyərlər sayılmır.</string>
+    <string name="score_source">%1$s-dan.</string>
+    <string name="score_source_health">Sağlamlıq məlumatlarından.</string>
+    <string name="score_source_recording">Saatının gecə qeydindən.</string>
+    <string name="pulse_title">Nəbz</string>
+    <string name="pulse_average">Ø dəqiqədə %1$d</string>
+    <string name="motion_title">Hərəkət</string>
+    <string name="overview_title">Yuxun</string>
+    <string name="overview_days">Günlər</string>
+    <string name="overview_weeks">Həftələr</string>
+    <string name="overview_months">Aylar</string>
+    <string name="overview_asleep">Ø yuxu</string>
+    <string name="overview_bedtime">Ø yatma vaxtı</string>
+    <string name="overview_wake">Ø oyanma vaxtı</string>
+    <string name="settings_clear_history_learn">Öyrənmə mərhələsi yenidən başlayır.</string>
+    <string name="learn_auto_hint">Gecələrin sayılması üçün axşam saatında “Gecən xeyrə” düyməsinə toxun və ya “Yuxuya getməyi avtomatik aşkar et” funksiyasını aç.</string>
 </resources>

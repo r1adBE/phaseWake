@@ -180,6 +180,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         healthFeelings = data.healthFeelings,
         onOpenNight = { key -> actions.nav.navigate(ExtraRoutes.night(key)) },
         recordings = recordings.orEmpty(),
+        goalMinutes = data.sleepGoal,
     )
 }
 
@@ -187,6 +188,8 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
 @Composable
 private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, actions: NavActions) {
     val data = state.data
+    val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.recordings.load() }
     NightDetailScreen(
         NightDetailData(
             items = state.insights.history,
@@ -195,6 +198,9 @@ private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, actions
             customNotes = data.customNotes,
             healthFeelings = data.healthFeelings,
             soundClips = data.soundClips.orEmpty(),
+            goalMinutes = data.sleepGoal,
+            recordings = recordings.orEmpty(),
+            sessions = state.insights.sessions,
         ),
         startKey = key,
         actions = NightDetailActions(

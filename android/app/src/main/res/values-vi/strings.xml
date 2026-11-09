@@ -522,7 +522,7 @@
     <string name="record_start">Ghi lại đêm</string>
     <string name="record_stop">Dừng ghi</string>
     <string name="record_since">Đang ghi từ %1$s</string>
-    <string name="record_hint">Đồng hồ của bạn ghi chuyển động và nhịp tim suốt đêm, để sau này Phase Wake có thể học ngưỡng riêng của bạn.</string>
+    <string name="record_hint">Đồng hồ của bạn ghi lại chuyển động và nhịp tim suốt đêm. Từ những đêm này, Phase Wake học các giá trị của riêng bạn trong giai đoạn học và điều chỉnh báo thức cho phù hợp với bạn.</string>
     <string name="record_end_manual">Đã dừng</string>
     <string name="record_end_cap">Kết thúc sau 12 giờ</string>
     <string name="record_end_battery">Pin đồng hồ yếu</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">Hôm nay hãy đi ngủ trong khoảng %1$s đến %2$s</string>
     <string name="bedtime_advice_hint">Dựa trên báo thức, mục tiêu ngủ và thời gian bạn cần để ngủ.</string>
     <string name="learn_restart">Học lại</string>
-    <string name="learn_restart_text">Phase Wake sẽ đo lại %1$d đêm và quên các giá trị đã chỉnh.</string>
+    <string name="learn_restart_text">Phase Wake đo lại %1$d đêm. Cho đến lúc đó, các giá trị đã điều chỉnh từ trước vẫn được dùng.</string>
     <string name="record_end_wake">Kết thúc khi đánh thức</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Điểm giấc ngủ</string>
+    <string name="score_excellent">Xuất sắc</string>
+    <string name="score_good">Tốt</string>
+    <string name="score_fair">Trung bình</string>
+    <string name="score_poor">Yếu</string>
+    <string name="score_value">Điểm giấc ngủ %1$d/100: %2$s</string>
+    <string name="score_duration">Thời lượng ngủ</string>
+    <string name="score_weights">Trọng số: Thời lượng ngủ 35, Sâu 20, REM 20, Thức 15, Thời gian vào giấc 10. Giá trị thiếu không được tính.</string>
+    <string name="score_source">Từ %1$s.</string>
+    <string name="score_source_health">Từ dữ liệu sức khỏe của bạn.</string>
+    <string name="score_source_recording">Từ bản ghi ban đêm của đồng hồ bạn.</string>
+    <string name="pulse_title">Nhịp tim</string>
+    <string name="pulse_average">Ø %1$d mỗi phút</string>
+    <string name="motion_title">Chuyển động</string>
+    <string name="overview_title">Giấc ngủ của bạn</string>
+    <string name="overview_days">Ngày</string>
+    <string name="overview_weeks">Tuần</string>
+    <string name="overview_months">Tháng</string>
+    <string name="overview_asleep">Ø ngủ</string>
+    <string name="overview_bedtime">Ø giờ đi ngủ</string>
+    <string name="overview_wake">Ø giờ thức dậy</string>
+    <string name="settings_clear_history_learn">Giai đoạn học bắt đầu lại từ đầu.</string>
+    <string name="learn_auto_hint">Buổi tối, hãy nhấn “Ngủ ngon” trên đồng hồ hoặc bật “Tự động nhận biết khi bạn ngủ thiếp đi” để các đêm được tính.</string>
 </resources>

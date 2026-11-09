@@ -553,7 +553,7 @@
     <string name="record_start">Сними ноћ</string>
     <string name="record_stop">Заустави снимање</string>
     <string name="record_since">Снима се од %1$s</string>
-    <string name="record_hint">Твој сат целу ноћ бележи покрете и пулс, како би Phase Wake касније могао да научи твоје сопствене прагове.</string>
+    <string name="record_hint">Твој сат целу ноћ снима покрет и пулс. Из тих ноћи Phase Wake у фази учења учи твоје сопствене вредности и прилагођава аларм теби.</string>
     <string name="record_end_manual">Заустављено</string>
     <string name="record_end_cap">Завршено после 12 ч</string>
     <string name="record_end_battery">Батерија сата је слаба</string>
@@ -571,6 +571,30 @@
     <string name="bedtime_advice">Иди данас у кревет између %1$s и %2$s</string>
     <string name="bedtime_advice_hint">Према будилнику, циљу сна и томе колико ти треба да заспиш.</string>
     <string name="learn_restart">Учи поново</string>
-    <string name="learn_restart_text">Phase Wake поново мери %1$d ноћи и заборавља прилагођене вредности.</string>
+    <string name="learn_restart_text">Phase Wake поново мери %1$d ноћи. До тада важе досад прилагођене вредности.</string>
     <string name="record_end_wake">Завршено при буђењу</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Оцена сна</string>
+    <string name="score_excellent">Одлично</string>
+    <string name="score_good">Добро</string>
+    <string name="score_fair">Средње</string>
+    <string name="score_poor">Слабо</string>
+    <string name="score_value">Оцена сна %1$d од 100: %2$s</string>
+    <string name="score_duration">Трајање сна</string>
+    <string name="score_weights">Тежина: Трајање сна 35, Дубоки 20, REM 20, Будно 15, Успављивање 10. Вредности које недостају се не рачунају.</string>
+    <string name="score_source">Из %1$s.</string>
+    <string name="score_source_health">Из твојих здравствених података.</string>
+    <string name="score_source_recording">Из ноћног снимка твог сата.</string>
+    <string name="pulse_title">Пулс</string>
+    <string name="pulse_average">Ø %1$d у минуту</string>
+    <string name="motion_title">Покрет</string>
+    <string name="overview_title">Твој сан</string>
+    <string name="overview_days">Дани</string>
+    <string name="overview_weeks">Недеље</string>
+    <string name="overview_months">Месеци</string>
+    <string name="overview_asleep">Ø сан</string>
+    <string name="overview_bedtime">Ø време одласка на спавање</string>
+    <string name="overview_wake">Ø време буђења</string>
+    <string name="settings_clear_history_learn">Фаза учења почиње испочетка.</string>
+    <string name="learn_auto_hint">Увече додирни „Лаку ноћ“ на сату или укључи „Аутоматски препознај заспивање“ да би се ноћи бројале.</string>
 </resources>

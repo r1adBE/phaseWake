@@ -538,7 +538,7 @@
     <string name="record_start">രാത്രി റെക്കോർഡ് ചെയ്യുക</string>
     <string name="record_stop">റെക്കോർഡിംഗ് നിർത്തുക</string>
     <string name="record_since">%1$s മുതൽ റെക്കോർഡ് ചെയ്യുന്നു</string>
-    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും റെക്കോർഡ് ചെയ്യുന്നു, അതിനാൽ Phase Wake-ന് പിന്നീട് നിന്റെ സ്വന്തം പരിധികൾ പഠിക്കാം.</string>
+    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും നാഡിയും രേഖപ്പെടുത്തുന്നു. ഈ രാത്രികളിൽ നിന്ന് Phase Wake പഠന ഘട്ടത്തിൽ നിന്റെ സ്വന്തം മൂല്യങ്ങൾ പഠിച്ച് അലാറം നിനക്ക് അനുയോജ്യമാക്കുന്നു.</string>
     <string name="record_end_manual">നിർത്തി</string>
     <string name="record_end_cap">12 മണിക്കൂറിന് ശേഷം അവസാനിച്ചു</string>
     <string name="record_end_battery">വാച്ചിന്റെ ബാറ്ററി കുറവാണ്</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">ഇന്ന് %1$s നും %2$s നും ഇടയിൽ ഉറങ്ങാൻ കിടക്കൂ</string>
     <string name="bedtime_advice_hint">നിന്റെ അലാറം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്.</string>
     <string name="learn_restart">വീണ്ടും പഠിക്കുക</string>
-    <string name="learn_restart_text">Phase Wake വീണ്ടും %1$d രാത്രി അളക്കും, ക്രമീകരിച്ച മൂല്യങ്ങൾ മറക്കും.</string>
+    <string name="learn_restart_text">Phase Wake വീണ്ടും %1$d രാത്രി അളക്കുന്നു. അതുവരെ ഇതുവരെ ക്രമീകരിച്ച മൂല്യങ്ങൾ തന്നെ ഉപയോഗിക്കും.</string>
     <string name="record_end_wake">ഉണർത്തുമ്പോൾ അവസാനിച്ചു</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ഉറക്ക സ്കോർ</string>
+    <string name="score_excellent">മികച്ചത്</string>
+    <string name="score_good">നല്ലത്</string>
+    <string name="score_fair">ശരാശരി</string>
+    <string name="score_poor">ദുർബലം</string>
+    <string name="score_value">ഉറക്ക സ്കോർ 100-ൽ %1$d: %2$s</string>
+    <string name="score_duration">ഉറക്കത്തിന്റെ ദൈർഘ്യം</string>
+    <string name="score_weights">ഭാരം: ഉറക്കത്തിന്റെ ദൈർഘ്യം 35, ഗാഢം 20, REM 20, ഉണർന്ന് 15, ഉറങ്ങാനെടുത്ത സമയം 10. ഇല്ലാത്ത മൂല്യങ്ങൾ കണക്കാക്കില്ല.</string>
+    <string name="score_source">%1$s-ൽ നിന്ന്.</string>
+    <string name="score_source_health">നിന്റെ ആരോഗ്യ ഡാറ്റയിൽ നിന്ന്.</string>
+    <string name="score_source_recording">നിന്റെ വാച്ചിന്റെ രാത്രി റെക്കോർഡിംഗിൽ നിന്ന്.</string>
+    <string name="pulse_title">നാഡി</string>
+    <string name="pulse_average">Ø മിനിറ്റിൽ %1$d</string>
+    <string name="motion_title">ചലനം</string>
+    <string name="overview_title">നിന്റെ ഉറക്കം</string>
+    <string name="overview_days">ദിവസങ്ങൾ</string>
+    <string name="overview_weeks">ആഴ്ചകൾ</string>
+    <string name="overview_months">മാസങ്ങൾ</string>
+    <string name="overview_asleep">Ø ഉറക്കം</string>
+    <string name="overview_bedtime">Ø ഉറങ്ങുന്ന സമയം</string>
+    <string name="overview_wake">Ø ഉണരുന്ന സമയം</string>
+    <string name="settings_clear_history_learn">പഠന ഘട്ടം വീണ്ടും ആദ്യം മുതൽ തുടങ്ങുന്നു.</string>
+    <string name="learn_auto_hint">രാത്രികൾ എണ്ണപ്പെടാൻ വൈകുന്നേരം വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക അല്ലെങ്കിൽ “ഉറങ്ങിപ്പോകുന്നത് സ്വയമേവ കണ്ടെത്തുക” ഓണാക്കുക.</string>
 </resources>

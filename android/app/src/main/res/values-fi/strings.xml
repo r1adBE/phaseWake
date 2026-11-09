@@ -536,7 +536,7 @@
     <string name="record_start">Tallenna yö</string>
     <string name="record_stop">Lopeta tallennus</string>
     <string name="record_since">Tallennus käynnissä klo %1$s alkaen</string>
-    <string name="record_hint">Kellosi tallentaa liikettä ja sykettä koko yön, jotta Phase Wake voi myöhemmin oppia omat kynnysarvosi.</string>
+    <string name="record_hint">Kellosi tallentaa liikettä ja sykettä koko yön. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle.</string>
     <string name="record_end_manual">Pysäytetty</string>
     <string name="record_end_cap">Päättyi 12 tunnin jälkeen</string>
     <string name="record_end_battery">Kellon akku vähissä</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Mene tänään nukkumaan klo %1$s–%2$s</string>
     <string name="bedtime_advice_hint">Herätyksen, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella.</string>
     <string name="learn_restart">Opi uudelleen</string>
-    <string name="learn_restart_text">Phase Wake mittaa taas %1$d yötä ja unohtaa sovitetut arvot.</string>
+    <string name="learn_restart_text">Phase Wake mittaa taas %1$d yötä. Siihen asti käytetään tähän asti sovitettuja arvoja.</string>
     <string name="record_end_wake">Päättyi herätykseen</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Unipisteet</string>
+    <string name="score_excellent">Erinomainen</string>
+    <string name="score_good">Hyvä</string>
+    <string name="score_fair">Kohtalainen</string>
+    <string name="score_poor">Heikko</string>
+    <string name="score_value">Unipisteet %1$d/100: %2$s</string>
+    <string name="score_duration">Unen kesto</string>
+    <string name="score_weights">Painotus: Unen kesto 35, Syvä 20, REM 20, Hereillä 15, Nukahtamisaika 10. Puuttuvia arvoja ei lasketa.</string>
+    <string name="score_source">Lähde: %1$s.</string>
+    <string name="score_source_health">Terveystiedoistasi.</string>
+    <string name="score_source_recording">Kellosi yötallenteesta.</string>
+    <string name="pulse_title">Syke</string>
+    <string name="pulse_average">Ø %1$d minuutissa</string>
+    <string name="motion_title">Liike</string>
+    <string name="overview_title">Unesi</string>
+    <string name="overview_days">Päivät</string>
+    <string name="overview_weeks">Viikot</string>
+    <string name="overview_months">Kuukaudet</string>
+    <string name="overview_asleep">Ø uni</string>
+    <string name="overview_bedtime">Ø nukahtamisaika</string>
+    <string name="overview_wake">Ø heräämisaika</string>
+    <string name="settings_clear_history_learn">Oppimisvaihe alkaa alusta.</string>
+    <string name="learn_auto_hint">Napauta illalla kellossa ”Hyvää yötä” tai ota ”Tunnista nukahtaminen automaattisesti” käyttöön, jotta yöt lasketaan.</string>
 </resources>

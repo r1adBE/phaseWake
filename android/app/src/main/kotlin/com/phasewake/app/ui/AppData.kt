@@ -168,6 +168,8 @@ internal class Insights(
     val weekly: WeeklySummary?,
     /** Verlauf: eigene Nächte und Nächte aus Health Connect, neueste zuerst ([HealthHistory.merge]). */
     val history: List<HistoryItem>,
+    /** Gelesene Sitzungen aus Health Connect (nur im Speicher): Quelle der Phasen beim Schlafwert. */
+    val sessions: List<HealthSession> = emptyList(),
 )
 
 /**
@@ -228,7 +230,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
         val night = SleepNotes.nightDate(last, zone)
         com.phasewake.app.widget.NextAlarmWidget.saveAsleep(app, night, NoteEffect.asleepByNight(sleeps, zone)[night])
     }
-    return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly, history)
+    return Insights(health, stages, trends, goalWeek, noteEffects, habits, charts, weekly, history, sessions)
 }
 
 /** Wochenrückblick als Karte am Sonntag und Montag; an anderen Tagen oder ohne Daten `null`. */

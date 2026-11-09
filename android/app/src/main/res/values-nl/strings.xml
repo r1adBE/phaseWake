@@ -536,7 +536,7 @@
     <string name="record_start">Nacht opnemen</string>
     <string name="record_stop">Opname stoppen</string>
     <string name="record_since">Neemt op sinds %1$s</string>
-    <string name="record_hint">Je horloge registreert de hele nacht beweging en hartslag, zodat Phase Wake later je eigen drempels kan leren.</string>
+    <string name="record_hint">Je horloge registreert de hele nacht beweging en hartslag. Uit deze nachten leert Phase Wake in de leerfase je eigen waarden en past de wekker aan jou aan.</string>
     <string name="record_end_manual">Gestopt</string>
     <string name="record_end_cap">Na 12 u beëindigd</string>
     <string name="record_end_battery">Batterij horloge bijna leeg</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Ga vanavond tussen %1$s en %2$s naar bed</string>
     <string name="bedtime_advice_hint">Op basis van je wekker, je slaapdoel en hoe lang je over inslapen doet.</string>
     <string name="learn_restart">Opnieuw leren</string>
-    <string name="learn_restart_text">Phase Wake meet opnieuw %1$d nachten en vergeet de afgestemde waarden.</string>
+    <string name="learn_restart_text">Phase Wake meet opnieuw %1$d nachten. Tot die tijd blijven de tot nu toe aangepaste waarden in gebruik.</string>
     <string name="record_end_wake">Beëindigd bij het wekken</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Slaapscore</string>
+    <string name="score_excellent">Uitstekend</string>
+    <string name="score_good">Goed</string>
+    <string name="score_fair">Matig</string>
+    <string name="score_poor">Zwak</string>
+    <string name="score_value">Slaapscore %1$d van 100: %2$s</string>
+    <string name="score_duration">Slaapduur</string>
+    <string name="score_weights">Weging: Slaapduur 35, Diep 20, REM 20, Wakker 15, Inslapen 10. Ontbrekende waarden tellen niet mee.</string>
+    <string name="score_source">Uit %1$s.</string>
+    <string name="score_source_health">Uit je gezondheidsgegevens.</string>
+    <string name="score_source_recording">Uit de nachtopname van je horloge.</string>
+    <string name="pulse_title">Hartslag</string>
+    <string name="pulse_average">Ø %1$d per minuut</string>
+    <string name="motion_title">Beweging</string>
+    <string name="overview_title">Je slaap</string>
+    <string name="overview_days">Dagen</string>
+    <string name="overview_weeks">Weken</string>
+    <string name="overview_months">Maanden</string>
+    <string name="overview_asleep">Ø slaap</string>
+    <string name="overview_bedtime">Ø bedtijd</string>
+    <string name="overview_wake">Ø wektijd</string>
+    <string name="settings_clear_history_learn">De leerfase begint opnieuw.</string>
+    <string name="learn_auto_hint">Tik ’s avonds op je horloge op “Welterusten” of zet “Inslapen automatisch herkennen” aan, zodat de nachten meetellen.</string>
 </resources>

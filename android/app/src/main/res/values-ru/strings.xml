@@ -564,7 +564,7 @@
     <string name="record_start">Записать ночь</string>
     <string name="record_stop">Остановить запись</string>
     <string name="record_since">Запись идёт с %1$s</string>
-    <string name="record_hint">Твои часы всю ночь записывают движение и пульс, чтобы Phase Wake позже смог узнать твои собственные пороги.</string>
+    <string name="record_hint">Твои часы всю ночь записывают движение и пульс. По этим ночам Phase Wake на этапе обучения узнаёт твои собственные значения и подстраивает будильник под тебя.</string>
     <string name="record_end_manual">Остановлена</string>
     <string name="record_end_cap">Завершена через 12 ч</string>
     <string name="record_end_battery">Низкий заряд часов</string>
@@ -582,6 +582,30 @@
     <string name="bedtime_advice">Ложись сегодня между %1$s и %2$s</string>
     <string name="bedtime_advice_hint">По будильнику, цели сна и тому, сколько ты засыпаешь.</string>
     <string name="learn_restart">Обучить заново</string>
-    <string name="learn_restart_text">Phase Wake снова измерит %1$d ночей и забудет подстроенные значения.</string>
+    <string name="learn_restart_text">Phase Wake снова измеряет %1$d ночей. До тех пор действуют значения, подстроенные ранее.</string>
     <string name="record_end_wake">Завершено при пробуждении</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Оценка сна</string>
+    <string name="score_excellent">Отлично</string>
+    <string name="score_good">Хорошо</string>
+    <string name="score_fair">Средне</string>
+    <string name="score_poor">Слабо</string>
+    <string name="score_value">Оценка сна %1$d из 100: %2$s</string>
+    <string name="score_duration">Длительность сна</string>
+    <string name="score_weights">Веса: Длительность сна 35, Глубокий 20, REM 20, Бодрствование 15, Засыпание 10. Отсутствующие значения не учитываются.</string>
+    <string name="score_source">Из %1$s.</string>
+    <string name="score_source_health">Из твоих данных о здоровье.</string>
+    <string name="score_source_recording">Из ночной записи твоих часов.</string>
+    <string name="pulse_title">Пульс</string>
+    <string name="pulse_average">Ø %1$d в минуту</string>
+    <string name="motion_title">Движение</string>
+    <string name="overview_title">Твой сон</string>
+    <string name="overview_days">Дни</string>
+    <string name="overview_weeks">Недели</string>
+    <string name="overview_months">Месяцы</string>
+    <string name="overview_asleep">Ø сон</string>
+    <string name="overview_bedtime">Ø время засыпания</string>
+    <string name="overview_wake">Ø время пробуждения</string>
+    <string name="settings_clear_history_learn">Этап обучения начинается заново.</string>
+    <string name="learn_auto_hint">Вечером нажми «Спокойной ночи» на часах или включи «Автоматически определять засыпание», чтобы ночи засчитывались.</string>
 </resources>

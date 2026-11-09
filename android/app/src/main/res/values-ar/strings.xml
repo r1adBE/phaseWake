@@ -592,7 +592,7 @@
     <string name="record_start">سجّل الليلة</string>
     <string name="record_stop">أوقف التسجيل</string>
     <string name="record_since">التسجيل جارٍ منذ %1$s</string>
-    <string name="record_hint">تسجّل ساعتك الحركة والنبض طوال الليل، حتى يتمكن Phase Wake لاحقًا من تعلّم عتباتك الخاصة.</string>
+    <string name="record_hint">تسجّل ساعتك الحركة والنبض طوال الليل. ومن هذه الليالي يتعلّم Phase Wake قيمك الخاصة في مرحلة التعلّم ويكيّف المنبّه لك.</string>
     <string name="record_end_manual">أُوقف</string>
     <string name="record_end_cap">انتهى بعد 12 ساعة</string>
     <string name="record_end_battery">بطارية الساعة منخفضة</string>
@@ -610,6 +610,30 @@
     <string name="bedtime_advice">اذهب إلى السرير الليلة بين %1$s و%2$s</string>
     <string name="bedtime_advice_hint">بناءً على منبّهك وهدف نومك والمدة التي تحتاجها لتغفو.</string>
     <string name="learn_restart">تعلّم من جديد</string>
-    <string name="learn_restart_text">يقيس Phase Wake مجددًا %1$d ليالٍ وينسى القيم المضبوطة.</string>
+    <string name="learn_restart_text">يقيس Phase Wake من جديد %1$d ليالٍ. وحتى ذلك الحين تبقى القيم المكيّفة حتى الآن مستخدمة.</string>
     <string name="record_end_wake">انتهى عند الاستيقاظ</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">درجة النوم</string>
+    <string name="score_excellent">ممتاز</string>
+    <string name="score_good">جيد</string>
+    <string name="score_fair">متوسط</string>
+    <string name="score_poor">ضعيف</string>
+    <string name="score_value">درجة النوم %1$d من 100: %2$s</string>
+    <string name="score_duration">مدة النوم</string>
+    <string name="score_weights">الترجيح: مدة النوم 35, عميق 20, حركة العين السريعة 20, يقظة 15, مدة الخلود إلى النوم 10. القيم الناقصة لا تُحتسب.</string>
+    <string name="score_source">من %1$s.</string>
+    <string name="score_source_health">من بياناتك الصحية.</string>
+    <string name="score_source_recording">من تسجيل الليلة في ساعتك.</string>
+    <string name="pulse_title">النبض</string>
+    <string name="pulse_average">Ø %1$d في الدقيقة</string>
+    <string name="motion_title">الحركة</string>
+    <string name="overview_title">نومك</string>
+    <string name="overview_days">أيام</string>
+    <string name="overview_weeks">أسابيع</string>
+    <string name="overview_months">أشهر</string>
+    <string name="overview_asleep">Ø النوم</string>
+    <string name="overview_bedtime">Ø وقت النوم</string>
+    <string name="overview_wake">Ø وقت الاستيقاظ</string>
+    <string name="settings_clear_history_learn">تبدأ مرحلة التعلّم من جديد.</string>
+    <string name="learn_auto_hint">اضغط مساءً على “ليلة سعيدة” في ساعتك أو شغّل “اكتشاف النوم تلقائيًا” لكي تُحتسب الليالي.</string>
 </resources>

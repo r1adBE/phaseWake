@@ -522,7 +522,7 @@
     <string name="record_start">Rekam malam</string>
     <string name="record_stop">Hentikan rekaman</string>
     <string name="record_since">Merekam sejak %1$s</string>
-    <string name="record_hint">Jam tanganmu merekam gerakan dan denyut nadi sepanjang malam, agar Phase Wake nanti bisa mempelajari ambang batasmu sendiri.</string>
+    <string name="record_hint">Jam tanganmu merekam gerakan dan denyut sepanjang malam. Dari malam-malam ini, Phase Wake mempelajari nilai-nilaimu sendiri dalam fase belajar dan menyesuaikan alarm untukmu.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Berakhir setelah 12 jam</string>
     <string name="record_end_battery">Baterai jam lemah</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">Tidurlah malam ini antara %1$s dan %2$s</string>
     <string name="bedtime_advice_hint">Berdasarkan alarm, target tidur, dan berapa lama kamu biasanya tertidur.</string>
     <string name="learn_restart">Belajar lagi</string>
-    <string name="learn_restart_text">Phase Wake mengukur lagi %1$d malam dan melupakan nilai yang disesuaikan.</string>
+    <string name="learn_restart_text">Phase Wake mengukur lagi %1$d malam. Sampai saat itu, nilai yang sudah disesuaikan tetap dipakai.</string>
     <string name="record_end_wake">Berakhir saat bangun</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Skor tidur</string>
+    <string name="score_excellent">Sangat baik</string>
+    <string name="score_good">Baik</string>
+    <string name="score_fair">Sedang</string>
+    <string name="score_poor">Lemah</string>
+    <string name="score_value">Skor tidur %1$d dari 100: %2$s</string>
+    <string name="score_duration">Durasi tidur</string>
+    <string name="score_weights">Bobot: Durasi tidur 35, Nyenyak 20, REM 20, Terjaga 15, Waktu untuk tertidur 10. Nilai yang tidak ada tidak dihitung.</string>
+    <string name="score_source">Dari %1$s.</string>
+    <string name="score_source_health">Dari data kesehatanmu.</string>
+    <string name="score_source_recording">Dari rekaman malam jam tanganmu.</string>
+    <string name="pulse_title">Denyut</string>
+    <string name="pulse_average">Ø %1$d per menit</string>
+    <string name="motion_title">Gerakan</string>
+    <string name="overview_title">Tidurmu</string>
+    <string name="overview_days">Hari</string>
+    <string name="overview_weeks">Minggu</string>
+    <string name="overview_months">Bulan</string>
+    <string name="overview_asleep">Ø tidur</string>
+    <string name="overview_bedtime">Ø waktu tidur</string>
+    <string name="overview_wake">Ø waktu bangun</string>
+    <string name="settings_clear_history_learn">Fase belajar dimulai dari awal.</string>
+    <string name="learn_auto_hint">Pada malam hari, ketuk “Selamat tidur” di jam tangan atau aktifkan “Deteksi saat tertidur secara otomatis” agar malamnya dihitung.</string>
 </resources>

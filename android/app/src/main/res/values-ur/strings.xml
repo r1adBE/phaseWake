@@ -538,7 +538,7 @@
     <string name="record_start">رات ریکارڈ کرو</string>
     <string name="record_stop">ریکارڈنگ روکو</string>
     <string name="record_since">%1$s سے ریکارڈنگ جاری ہے</string>
-    <string name="record_hint">تمہاری گھڑی ساری رات حرکت اور نبض ریکارڈ کرتی ہے، تاکہ Phase Wake بعد میں تمہاری اپنی حدیں سیکھ سکے۔</string>
+    <string name="record_hint">تمہاری گھڑی پوری رات حرکت اور نبض ریکارڈ کرتی ہے۔ ان راتوں سے Phase Wake سیکھنے کے مرحلے میں تمہاری اپنی قدریں سیکھتا ہے اور الارم کو تمہارے مطابق ڈھالتا ہے۔</string>
     <string name="record_end_manual">روک دی گئی</string>
     <string name="record_end_cap">12 گھنٹے بعد ختم</string>
     <string name="record_end_battery">گھڑی کی بیٹری کم ہے</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">آج %1$s اور %2$s کے درمیان سونے جاؤ</string>
     <string name="bedtime_advice_hint">تمہارے الارم، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔</string>
     <string name="learn_restart">دوبارہ سیکھو</string>
-    <string name="learn_restart_text">Phase Wake دوبارہ %1$d راتیں ناپے گا اور ڈھالی گئی قدریں بھول جائے گا۔</string>
+    <string name="learn_restart_text">Phase Wake دوبارہ %1$d راتیں ناپتا ہے۔ تب تک اب تک ڈھالی گئی قدریں ہی استعمال ہوتی ہیں۔</string>
     <string name="record_end_wake">جگاتے وقت ختم</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">نیند کا اسکور</string>
+    <string name="score_excellent">بہترین</string>
+    <string name="score_good">اچھا</string>
+    <string name="score_fair">درمیانہ</string>
+    <string name="score_poor">کمزور</string>
+    <string name="score_value">نیند کا اسکور 100 میں سے %1$d: %2$s</string>
+    <string name="score_duration">نیند کا دورانیہ</string>
+    <string name="score_weights">وزن: نیند کا دورانیہ 35, گہری 20, REM 20, جاگتے 15, نیند آنے کا وقت 10. غائب قدریں شمار نہیں ہوتیں۔</string>
+    <string name="score_source">%1$s سے۔</string>
+    <string name="score_source_health">تمہارے صحت کے ڈیٹا سے۔</string>
+    <string name="score_source_recording">تمہاری گھڑی کی رات کی ریکارڈنگ سے۔</string>
+    <string name="pulse_title">نبض</string>
+    <string name="pulse_average">Ø %1$d فی منٹ</string>
+    <string name="motion_title">حرکت</string>
+    <string name="overview_title">تمہاری نیند</string>
+    <string name="overview_days">دن</string>
+    <string name="overview_weeks">ہفتے</string>
+    <string name="overview_months">مہینے</string>
+    <string name="overview_asleep">Ø نیند</string>
+    <string name="overview_bedtime">Ø سونے کا وقت</string>
+    <string name="overview_wake">Ø جاگنے کا وقت</string>
+    <string name="settings_clear_history_learn">سیکھنے کا مرحلہ دوبارہ شروع سے شروع ہوتا ہے۔</string>
+    <string name="learn_auto_hint">راتیں گنی جائیں، اس لیے شام کو گھڑی پر “شب بخیر” ٹیپ کرو یا “سو جانے کا خودکار طور پر پتا لگائیں” آن کرو۔</string>
 </resources>

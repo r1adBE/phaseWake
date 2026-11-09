@@ -539,7 +539,7 @@
     <string name="record_start">Grabatu gaua</string>
     <string name="record_stop">Gelditu grabazioa</string>
     <string name="record_since">%1$s(e)tik grabatzen</string>
-    <string name="record_hint">Zure erlojuak gau osoan mugimendua eta pultsua grabatzen ditu, Phase Wake-k geroago zure atalase propioak ikas ditzan.</string>
+    <string name="record_hint">Erlojuak mugimendua eta pultsua grabatzen ditu gau osoan. Gau horietatik, Phase Wakek zure balio propioak ikasten ditu ikaste-fasean eta alarma zuregana egokitzen du.</string>
     <string name="record_end_manual">Geldituta</string>
     <string name="record_end_cap">12 h-ren ondoren amaitua</string>
     <string name="record_end_battery">Erlojuaren bateria baxu</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Joan gaur ohera %1$s eta %2$s artean</string>
     <string name="bedtime_advice_hint">Zure alarma, lo-helburua eta loak hartzeko behar duzun denboraren arabera.</string>
     <string name="learn_restart">Ikasi berriro</string>
-    <string name="learn_restart_text">Phase Wake-k berriro %1$d gau neurtuko ditu eta egokitutako balioak ahaztuko ditu.</string>
+    <string name="learn_restart_text">Phase Wakek berriro %1$d gau neurtzen ditu. Ordura arte, orain arte egokitutako balioak erabiltzen dira.</string>
     <string name="record_end_wake">Esnatzean amaitua</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Lo-puntuazioa</string>
+    <string name="score_excellent">Bikaina</string>
+    <string name="score_good">Ona</string>
+    <string name="score_fair">Erdipurdikoa</string>
+    <string name="score_poor">Ahula</string>
+    <string name="score_value">Lo-puntuazioa: %1$d/100, %2$s</string>
+    <string name="score_duration">Loaren iraupena</string>
+    <string name="score_weights">Haztapena: Loaren iraupena 35, Sakona 20, REM 20, Esna 15, Lokartzeko denbora 10. Falta diren balioak ez dira kontatzen.</string>
+    <string name="score_source">Iturria: %1$s.</string>
+    <string name="score_source_health">Zure osasun-datuetatik.</string>
+    <string name="score_source_recording">Zure erlojuaren gaueko grabaziotik.</string>
+    <string name="pulse_title">Pultsua</string>
+    <string name="pulse_average">Ø %1$d minutuko</string>
+    <string name="motion_title">Mugimendua</string>
+    <string name="overview_title">Zure loa</string>
+    <string name="overview_days">Egunak</string>
+    <string name="overview_weeks">Asteak</string>
+    <string name="overview_months">Hilabeteak</string>
+    <string name="overview_asleep">Ø loa</string>
+    <string name="overview_bedtime">Ø lotara joateko ordua</string>
+    <string name="overview_wake">Ø esnatzeko ordua</string>
+    <string name="settings_clear_history_learn">Ikaste-fasea hasieratik hasten da.</string>
+    <string name="learn_auto_hint">Arratsean, sakatu «Gabon» erlojuan edo aktibatu «Loak hartzea automatikoki hauteman», gauak kontatu daitezen.</string>
 </resources>

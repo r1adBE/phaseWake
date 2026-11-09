@@ -553,7 +553,7 @@
     <string name="record_start">Snimi noć</string>
     <string name="record_stop">Zaustavi snimanje</string>
     <string name="record_since">Snima se od %1$s</string>
-    <string name="record_hint">Tvoj sat cijelu noć bilježi pokrete i puls, kako bi Phase Wake kasnije mogao naučiti tvoje vlastite pragove.</string>
+    <string name="record_hint">Tvoj sat cijelu noć snima pokret i puls. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi.</string>
     <string name="record_end_manual">Zaustavljeno</string>
     <string name="record_end_cap">Završeno nakon 12 h</string>
     <string name="record_end_battery">Baterija sata je slaba</string>
@@ -571,6 +571,30 @@
     <string name="bedtime_advice">Idi danas u krevet između %1$s i %2$s</string>
     <string name="bedtime_advice_hint">Na osnovu budilice, cilja sna i koliko ti treba da zaspiš.</string>
     <string name="learn_restart">Uči ponovo</string>
-    <string name="learn_restart_text">Phase Wake ponovo mjeri %1$d noći i zaboravlja prilagođene vrijednosti.</string>
+    <string name="learn_restart_text">Phase Wake ponovo mjeri %1$d noći. Do tada vrijede dosad prilagođene vrijednosti.</string>
     <string name="record_end_wake">Završeno pri buđenju</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Ocjena sna</string>
+    <string name="score_excellent">Odlično</string>
+    <string name="score_good">Dobro</string>
+    <string name="score_fair">Srednje</string>
+    <string name="score_poor">Slabo</string>
+    <string name="score_value">Ocjena sna %1$d od 100: %2$s</string>
+    <string name="score_duration">Trajanje sna</string>
+    <string name="score_weights">Težina: Trajanje sna 35, Duboki 20, REM 20, Budno 15, Uspavljivanje 10. Vrijednosti koje nedostaju se ne broje.</string>
+    <string name="score_source">Iz %1$s.</string>
+    <string name="score_source_health">Iz tvojih zdravstvenih podataka.</string>
+    <string name="score_source_recording">Iz noćnog snimka tvog sata.</string>
+    <string name="pulse_title">Puls</string>
+    <string name="pulse_average">Ø %1$d u minuti</string>
+    <string name="motion_title">Pokret</string>
+    <string name="overview_title">Tvoj san</string>
+    <string name="overview_days">Dani</string>
+    <string name="overview_weeks">Sedmice</string>
+    <string name="overview_months">Mjeseci</string>
+    <string name="overview_asleep">Ø san</string>
+    <string name="overview_bedtime">Ø vrijeme odlaska na spavanje</string>
+    <string name="overview_wake">Ø vrijeme buđenja</string>
+    <string name="settings_clear_history_learn">Faza učenja počinje ispočetka.</string>
+    <string name="learn_auto_hint">Navečer dodirni „Laku noć“ na satu ili uključi „Automatski prepoznaj uspavljivanje“ da bi se noći brojale.</string>
 </resources>

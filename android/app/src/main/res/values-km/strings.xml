@@ -524,7 +524,7 @@
     <string name="record_start">ថតពេលយប់</string>
     <string name="record_stop">បញ្ឈប់ការថត</string>
     <string name="record_since">កំពុងថតតាំងពី %1$s</string>
-    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់ ដើម្បីឱ្យ Phase Wake អាចរៀនកម្រិតផ្ទាល់ខ្លួនរបស់អ្នកនៅពេលក្រោយ។</string>
+    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។</string>
     <string name="record_end_manual">បានបញ្ឈប់</string>
     <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
     <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">យប់នេះចូលគេងនៅចន្លោះ %1$s និង %2$s</string>
     <string name="bedtime_advice_hint">ផ្អែកលើម៉ោងរោទ៍ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។</string>
     <string name="learn_restart">រៀនម្តងទៀត</string>
-    <string name="learn_restart_text">Phase Wake នឹងវាស់ %1$d យប់ម្តងទៀត ហើយបំភ្លេចតម្លៃដែលបានកែសម្រួល។</string>
+    <string name="learn_restart_text">Phase Wake វាស់ %1$d យប់ម្តងទៀត។ រហូតដល់ពេលនោះ តម្លៃដែលបានកែសម្រួលរហូតមកដល់ពេលនេះនៅតែប្រើ។</string>
     <string name="record_end_wake">បានបញ្ចប់ពេលដាស់</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ពិន្ទុដំណេក</string>
+    <string name="score_excellent">ល្អប្រសើរ</string>
+    <string name="score_good">ល្អ</string>
+    <string name="score_fair">មធ្យម</string>
+    <string name="score_poor">ខ្សោយ</string>
+    <string name="score_value">ពិន្ទុដំណេក %1$d ក្នុង 100៖ %2$s</string>
+    <string name="score_duration">រយៈពេលដំណេក</string>
+    <string name="score_weights">ទម្ងន់: រយៈពេលដំណេក 35, ជ្រៅ 20, REM 20, ភ្ញាក់ 15, រយៈពេលលង់លក់ 10. តម្លៃដែលខ្វះមិនរាប់ទេ។</string>
+    <string name="score_source">ពី %1$s។</string>
+    <string name="score_source_health">ពីទិន្នន័យសុខភាពរបស់អ្នក។</string>
+    <string name="score_source_recording">ពីការថតពេលយប់របស់នាឡិកាអ្នក។</string>
+    <string name="pulse_title">ជីពចរ</string>
+    <string name="pulse_average">Ø %1$d ក្នុងមួយនាទី</string>
+    <string name="motion_title">ចលនា</string>
+    <string name="overview_title">ដំណេករបស់អ្នក</string>
+    <string name="overview_days">ថ្ងៃ</string>
+    <string name="overview_weeks">សប្ដាហ៍</string>
+    <string name="overview_months">ខែ</string>
+    <string name="overview_asleep">Ø ដំណេក</string>
+    <string name="overview_bedtime">Ø ម៉ោងចូលគេង</string>
+    <string name="overview_wake">Ø ម៉ោងភ្ញាក់</string>
+    <string name="settings_clear_history_learn">ដំណាក់កាលរៀនចាប់ផ្ដើមឡើងវិញ។</string>
+    <string name="learn_auto_hint">នៅពេលល្ងាច សូមប៉ះ «រាត្រីសួស្តី» នៅលើនាឡិកា ឬបើក «រកឃើញការដេកលក់ដោយស្វ័យប្រវត្តិ» ដើម្បីឱ្យយប់ត្រូវបានរាប់។</string>
 </resources>

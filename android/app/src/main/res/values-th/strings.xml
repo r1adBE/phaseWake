@@ -522,7 +522,7 @@
     <string name="record_start">บันทึกกลางคืน</string>
     <string name="record_stop">หยุดบันทึก</string>
     <string name="record_since">กำลังบันทึกตั้งแต่ %1$s</string>
-    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน เพื่อให้ Phase Wake เรียนรู้เกณฑ์ของคุณเองได้ในภายหลัง</string>
+    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ</string>
     <string name="record_end_manual">หยุดแล้ว</string>
     <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
     <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">คืนนี้เข้านอนระหว่าง %1$s ถึง %2$s</string>
     <string name="bedtime_advice_hint">คำนวณจากนาฬิกาปลุก เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ</string>
     <string name="learn_restart">เรียนรู้ใหม่</string>
-    <string name="learn_restart_text">Phase Wake จะวัดอีก %1$d คืน และลืมค่าที่ปรับไว้</string>
+    <string name="learn_restart_text">Phase Wake จะวัดอีก %1$d คืน ระหว่างนั้นยังใช้ค่าที่ปรับไว้จนถึงตอนนี้</string>
     <string name="record_end_wake">สิ้นสุดเมื่อปลุก</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">คะแนนการนอน</string>
+    <string name="score_excellent">ยอดเยี่ยม</string>
+    <string name="score_good">ดี</string>
+    <string name="score_fair">ปานกลาง</string>
+    <string name="score_poor">อ่อน</string>
+    <string name="score_value">คะแนนการนอน %1$d จาก 100: %2$s</string>
+    <string name="score_duration">ระยะเวลานอน</string>
+    <string name="score_weights">น้ำหนัก: ระยะเวลานอน 35, ลึก 20, REM 20, ตื่น 15, เวลาจนหลับ 10. ค่าที่ขาดหายไม่นับ</string>
+    <string name="score_source">จาก %1$s</string>
+    <string name="score_source_health">จากข้อมูลสุขภาพของคุณ</string>
+    <string name="score_source_recording">จากการบันทึกตอนกลางคืนของนาฬิกาคุณ</string>
+    <string name="pulse_title">ชีพจร</string>
+    <string name="pulse_average">Ø %1$d ต่อนาที</string>
+    <string name="motion_title">การเคลื่อนไหว</string>
+    <string name="overview_title">การนอนของคุณ</string>
+    <string name="overview_days">วัน</string>
+    <string name="overview_weeks">สัปดาห์</string>
+    <string name="overview_months">เดือน</string>
+    <string name="overview_asleep">Ø การนอน</string>
+    <string name="overview_bedtime">Ø เวลาเข้านอน</string>
+    <string name="overview_wake">Ø เวลาตื่น</string>
+    <string name="settings_clear_history_learn">ช่วงเรียนรู้จะเริ่มใหม่ตั้งแต่ต้น</string>
+    <string name="learn_auto_hint">ตอนเย็นให้แตะ “ราตรีสวัสดิ์” บนนาฬิกา หรือเปิด “ตรวจจับการหลับโดยอัตโนมัติ” เพื่อให้นับคืน</string>
 </resources>

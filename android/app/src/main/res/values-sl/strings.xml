@@ -566,7 +566,7 @@
     <string name="record_start">Posnemi noč</string>
     <string name="record_stop">Ustavi snemanje</string>
     <string name="record_since">Snemanje od %1$s</string>
-    <string name="record_hint">Tvoja ura vso noč beleži gibanje in utrip, da se lahko Phase Wake pozneje nauči tvojih lastnih pragov.</string>
+    <string name="record_hint">Tvoja ura vso noč snema gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi.</string>
     <string name="record_end_manual">Ustavljeno</string>
     <string name="record_end_cap">Končano po 12 h</string>
     <string name="record_end_battery">Baterija ure je šibka</string>
@@ -584,6 +584,30 @@
     <string name="bedtime_advice">Pojdi danes spat med %1$s in %2$s</string>
     <string name="bedtime_advice_hint">Glede na budilko, cilj spanja in koliko časa potrebuješ, da zaspiš.</string>
     <string name="learn_restart">Uči se znova</string>
-    <string name="learn_restart_text">Phase Wake znova izmeri %1$d noči in pozabi prilagojene vrednosti.</string>
+    <string name="learn_restart_text">Phase Wake znova meri %1$d noči. Do takrat veljajo doslej prilagojene vrednosti.</string>
     <string name="record_end_wake">Končano ob bujenju</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Ocena spanja</string>
+    <string name="score_excellent">Odlično</string>
+    <string name="score_good">Dobro</string>
+    <string name="score_fair">Srednje</string>
+    <string name="score_poor">Šibko</string>
+    <string name="score_value">Ocena spanja %1$d od 100: %2$s</string>
+    <string name="score_duration">Trajanje spanja</string>
+    <string name="score_weights">Uteži: Trajanje spanja 35, Globok 20, REM 20, Budnost 15, Uspavanje 10. Manjkajoče vrednosti se ne štejejo.</string>
+    <string name="score_source">Iz %1$s.</string>
+    <string name="score_source_health">Iz tvojih zdravstvenih podatkov.</string>
+    <string name="score_source_recording">Iz nočnega posnetka tvoje ure.</string>
+    <string name="pulse_title">Utrip</string>
+    <string name="pulse_average">Ø %1$d na minuto</string>
+    <string name="motion_title">Gibanje</string>
+    <string name="overview_title">Tvoje spanje</string>
+    <string name="overview_days">Dnevi</string>
+    <string name="overview_weeks">Tedni</string>
+    <string name="overview_months">Meseci</string>
+    <string name="overview_asleep">Ø spanje</string>
+    <string name="overview_bedtime">Ø čas zaspanja</string>
+    <string name="overview_wake">Ø čas prebujanja</string>
+    <string name="settings_clear_history_learn">Faza učenja se začne znova.</string>
+    <string name="learn_auto_hint">Zvečer na uri tapni »Lahko noč« ali vklopi »Samodejno zaznaj uspavanje«, da se noči štejejo.</string>
 </resources>

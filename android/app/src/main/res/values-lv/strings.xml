@@ -553,7 +553,7 @@
     <string name="record_start">Ierakstīt nakti</string>
     <string name="record_stop">Apturēt ierakstu</string>
     <string name="record_since">Ieraksta kopš %1$s</string>
-    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu, lai Phase Wake vēlāk varētu iemācīties tavus personīgos sliekšņus.</string>
+    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev.</string>
     <string name="record_end_manual">Apturēts</string>
     <string name="record_end_cap">Beidzās pēc 12 h</string>
     <string name="record_end_battery">Pulksteņa akumulators izlādējas</string>
@@ -571,6 +571,30 @@
     <string name="bedtime_advice">Šovakar ej gulēt no %1$s līdz %2$s</string>
     <string name="bedtime_advice_hint">Pēc modinātāja, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu.</string>
     <string name="learn_restart">Mācīties no jauna</string>
-    <string name="learn_restart_text">Phase Wake atkal mērīs %1$d naktis un aizmirsīs pielāgotās vērtības.</string>
+    <string name="learn_restart_text">Phase Wake atkal mēra %1$d naktis. Līdz tam paliek spēkā līdz šim pielāgotās vērtības.</string>
     <string name="record_end_wake">Beigts pamošanās brīdī</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Miega rādītājs</string>
+    <string name="score_excellent">Izcili</string>
+    <string name="score_good">Labi</string>
+    <string name="score_fair">Vidēji</string>
+    <string name="score_poor">Vāji</string>
+    <string name="score_value">Miega rādītājs %1$d no 100: %2$s</string>
+    <string name="score_duration">Miega ilgums</string>
+    <string name="score_weights">Svari: Miega ilgums 35, Dziļš 20, REM 20, Nomodā 15, Iemigšana 10. Trūkstošās vērtības netiek skaitītas.</string>
+    <string name="score_source">No %1$s.</string>
+    <string name="score_source_health">No taviem veselības datiem.</string>
+    <string name="score_source_recording">No tava pulksteņa nakts ieraksta.</string>
+    <string name="pulse_title">Pulss</string>
+    <string name="pulse_average">Ø %1$d minūtē</string>
+    <string name="motion_title">Kustības</string>
+    <string name="overview_title">Tavs miegs</string>
+    <string name="overview_days">Dienas</string>
+    <string name="overview_weeks">Nedēļas</string>
+    <string name="overview_months">Mēneši</string>
+    <string name="overview_asleep">Ø miegs</string>
+    <string name="overview_bedtime">Ø iemigšanas laiks</string>
+    <string name="overview_wake">Ø pamošanās laiks</string>
+    <string name="settings_clear_history_learn">Mācīšanās posms sākas no jauna.</string>
+    <string name="learn_auto_hint">Vakarā pulkstenī pieskaries „Ar labu nakti“ vai ieslēdz „Automātiski noteikt aizmigšanu“, lai naktis tiktu skaitītas.</string>
 </resources>

@@ -539,7 +539,7 @@
     <string name="record_start">Qopha ubusuku</string>
     <string name="record_stop">Misa ukuqopha</string>
     <string name="record_since">Kuqoshwa kusukela ngo-%1$s</string>
-    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke, ukuze kamuva i-Phase Wake ifunde imikhawulo yakho.</string>
+    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele.</string>
     <string name="record_end_manual">Kumisiwe</string>
     <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
     <string name="record_end_battery">Ibhethri lewashi liphansi</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Namuhla yiya embhedeni phakathi kuka-%1$s no-%2$s</string>
     <string name="bedtime_advice_hint">Ngokusekelwe ku-alamu yakho, umgomo wokulala nesikhathi okuthatha sona ukulala.</string>
     <string name="learn_restart">Funda kabusha</string>
-    <string name="learn_restart_text">I-Phase Wake izophinda ikale ubusuku obungu-%1$d bese ikhohlwa amanani alungisiwe.</string>
+    <string name="learn_restart_text">I-Phase Wake iphinda ikale ubusuku obungu-%1$d. Kuze kube yileso sikhathi, amanani alungisiwe kuze kube manje ayaqhubeka esetshenziswa.</string>
     <string name="record_end_wake">Kuphele lapho kuvuswa</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Amaphuzu okulala</string>
+    <string name="score_excellent">Kuhle kakhulu</string>
+    <string name="score_good">Kuhle</string>
+    <string name="score_fair">Maphakathi</string>
+    <string name="score_poor">Buthaka</string>
+    <string name="score_value">Amaphuzu okulala angu-%1$d kwangu-100: %2$s</string>
+    <string name="score_duration">Isikhathi sokulala</string>
+    <string name="score_weights">Isisindo: Isikhathi sokulala 35, Obujulile 20, REM 20, Uvukile 15, Isikhathi sokuzumeka 10. Amanani angekho awabalwa.</string>
+    <string name="score_source">Kusuka ku-%1$s.</string>
+    <string name="score_source_health">Kusuka kudatha yakho yezempilo.</string>
+    <string name="score_source_recording">Kusuka ekuqopheni kwasebusuku kwewashi lakho.</string>
+    <string name="pulse_title">Ukushaya kwenhliziyo</string>
+    <string name="pulse_average">Ø %1$d ngomzuzu</string>
+    <string name="motion_title">Ukunyakaza</string>
+    <string name="overview_title">Ukulala kwakho</string>
+    <string name="overview_days">Izinsuku</string>
+    <string name="overview_weeks">Amaviki</string>
+    <string name="overview_months">Izinyanga</string>
+    <string name="overview_asleep">Ø ukulala</string>
+    <string name="overview_bedtime">Ø isikhathi sokulala</string>
+    <string name="overview_wake">Ø isikhathi sokuvuka</string>
+    <string name="settings_clear_history_learn">Isigaba sokufunda siqala kabusha.</string>
+    <string name="learn_auto_hint">Kusihlwa thepha “Ulale kahle” ewashini noma uvule “Bona ngokuzenzakalela lapho ulala” ukuze ubusuku bubalwe.</string>
 </resources>

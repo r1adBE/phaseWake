@@ -138,10 +138,27 @@ Nur Galaxy Watch, auf Wunsch (07.11.2026) und in der Lernphase automatisch (Absc
 
 Nur Galaxy Watch mit Android-Handy (Entscheid r1AD 09.11.2026; Apple folgt). Rechnet das Handy (`Learning` im Kotlin-Kern); die Uhr bekommt den Stand und die Werte (`/phasewake/learning`). Die Erkennung (3, 3a, 6) nutzt die Werte in beiden Kernen gleich.
 
-- **Ablauf**: Beginnt nach der Installation bzw. beim ersten Start dieser Version, von vorn mit «Neu lernen» und «Verlauf löschen». Solange sie läuft, beginnt mit jeder Einschlaf-Messung (automatisch oder «Gute Nacht», nicht beim Wiederaufnehmen) eine Aufzeichnung (9), wenn die Uhr mindestens 50 % Akku hat und keine läuft. Sie endet beim Wecken (Klingeln beendet) oder ohne Klingeln zur eingestellten Weckzeit, sobald keine Nacht mehr läuft; die übrigen Grenzen aus 9 bleiben. Eine von Hand begonnene Aufzeichnung zählt ebenso und endet wie bisher.
+- **Ablauf**: Beginnt nach der Installation bzw. beim ersten Start dieser Version, von vorn mit «Neu lernen» und «Verlauf löschen». «Verlauf löschen» verwirft die gelernten Werte sofort; bei «Neu lernen» gelten die bisherigen Werte (Handy und Uhr) weiter, bis die neuen 7 Nächte gezählt sind, dann ersetzen die neuen sie (r1AD 09.11.2026). Ist «Einschlafen automatisch erkennen» aus, zählen nur Nächte mit «Gute Nacht» auf der Uhr; die Karte der Lernphase sagt das. Solange sie läuft, beginnt mit jeder Einschlaf-Messung (automatisch oder «Gute Nacht», nicht beim Wiederaufnehmen) eine Aufzeichnung (9), wenn die Uhr mindestens 50 % Akku hat und keine läuft. Sie endet beim Wecken (Klingeln beendet) oder ohne Klingeln zur eingestellten Weckzeit, sobald keine Nacht mehr läuft; die übrigen Grenzen aus 9 bleiben. Eine von Hand begonnene Aufzeichnung zählt ebenso und endet wie bisher.
 - **Gezählte Nacht**: Aufzeichnung ab dem Beginn der Lernphase mit mindestens 360 Epochen (3 Std.) mit Bewegung; je Nachtdatum (Beginn − 12 Std.) nur eine, die mit den meisten solchen Epochen. Fertig nach 7 gezählten Nächten (nicht Kalendertagen); gelernt wird aus den letzten 7.
 - **Grundrauschen** *P* = Median der Grundrauschen *F* der Nächte (3a über alle Epochen der Nacht, höchstens 0.04; bei gerader Anzahl Mittel der beiden mittleren). Es gilt, solange die laufende Messung (Fenster oder Einschlaf-Messung) weniger als 4 Werte hat, mit denselben Faktoren 2.5 und 5 (3a); danach gilt *F* der Messung. Die Schwellen sinken dadurch nie unter die Startwerte bzw. die Kalibrierung. Im Fenster wirkt es nur, wenn zu Beginn Bewegungswerte fehlen (mit Aufwärmphase hat Epoche 3 schon 4 Werte).
 - **Ruhepuls** *R* = Median über die Nächte des 10. Perzentils ihrer Pulse (Rangmethode, Position ⌈0.1 · n⌉ = (n + 9) / 10); nur Nächte mit mindestens 120 Epochen (1 Std.) mit Puls, mindestens 3 solche Nächte, sonst kein Ruhepuls. *R* ist der Basispuls, wenn die Aufwärmphase des Fensters keinen Puls hat (3); die Pulsbedingung bleibt aktueller Puls ≥ Basispuls × 1.05.
 - **Einschlafdauer** je Nacht = Einschlafzeit − Beginn, in ganzen Minuten, höchstens 60; Beginn nach «Gute Nacht» der Tastendruck, bei der automatischen Messung die Bettzeit (eingestellte Weckzeit − Schlafdauer bzw. Schlafziel), frühestens der Beginn der Messung. Liegt die Einschlafzeit davor, zählt die Nacht nicht. Gelernt: Median (gerundet) ab 3 Nächten mit Wert, sonst keiner.
 - **Schlafenszeit**: spätestens Zielzeit − Schlafdauer bzw. Schlafziel − Einschlafdauer (ohne gelernte 0), abgerundet auf 5 Min; frühestens 30 Min davor. Am Handy am Abend für den Wecker dieser Nacht, bis zum Ende der Spanne.
 - **Anzeige in Worten**: «Schwellen angepasst», wenn 2.5 · *P* über der Leicht-Schwelle liegt, sonst «Standard-Schwellen bleiben».
+
+## 11. Schlafwert
+
+Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScore`, Android; Apple folgt). Jeder Faktor gibt 0–100 Punkte (ganze Zahl, kaufmännisch gerundet); Prozente sind die Anteile der Phasen wie auf der Detailseite (wach, REM, leicht, tief zusammen 100).
+
+| Faktor | Gewicht | 100 Punkte | 0 Punkte | dazwischen |
+|---|---|---|---|---|
+| Schlafdauer (ohne Wachphasen) | 35 | ab Schlafziel | höchstens halbes Ziel | gerade |
+| Tief | 20 | ab 13 % | 0 % | anteilig (Prozent / 13) |
+| REM | 20 | ab 20 % | 0 % | anteilig (Prozent / 20) |
+| Wach | 15 | bis 9 % | ab 30 % | gerade |
+| Einschlafdauer | 10 | bis 20 Min | ab 60 Min | gerade |
+
+- **Wert** = Σ (Punkte · Gewicht) / Σ Gewichte der vorhandenen Faktoren, gerundet. Fehlt ein Faktor (keine Phasen, keine Einschlafdauer), fällt er weg; ohne Schlafdauer kein Wert. Kein Abzug für Schlaf über dem Ziel. Die Grenzen von Tief, REM und Wach sind die üblichen Bereiche der Detailseite (`StageStats.TYPICAL`).
+- **Bewertung** (Wert und jeder Faktor): ab 85 «Ausgezeichnet», ab 70 «Gut», ab 50 «Mittel», sonst «Schwach».
+- **Quellen**: Phasen aus Health Connect (eigene Nacht über das Schlafprofil, Nacht aus einer anderen App über die ganze Sitzung; Sitzung ohne Phasen nur ihre Dauer). Ohne Phasen bei einer eigenen Nacht die überschneidende Aufzeichnung der Uhr (9), wenn sie das Einschlafen kennt: Schlafdauer = Einschlafzeit bis Ende (höchstens bis zum Wecken), Einschlafdauer = Beginn bis Einschlafzeit. Unruhige Epochen zählen nicht als «Wach».
+- **Beispiel**: 6 Std. 45 Min bei Ziel 7 Std. 30 Min (80), Tief 10 % (77), REM 20 % (100), Wach 15 % (71), Einschlafdauer 40 Min (50) → (80·35 + 77·20 + 100·20 + 71·15 + 50·10) / 100 = 79 → «Gut».

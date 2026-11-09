@@ -539,7 +539,7 @@
     <string name="record_start">I-record ang gabi</string>
     <string name="record_stop">Ihinto ang pag-record</string>
     <string name="record_since">Nagre-record mula %1$s</string>
-    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi, para matutunan ng Phase Wake ang sarili mong mga threshold sa susunod.</string>
+    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo.</string>
     <string name="record_end_manual">Itinigil</string>
     <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
     <string name="record_end_battery">Mahina ang baterya ng relo</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Matulog ngayong gabi sa pagitan ng %1$s at %2$s</string>
     <string name="bedtime_advice_hint">Mula sa alarm mo, layunin sa tulog at kung gaano ka katagal makatulog.</string>
     <string name="learn_restart">Matuto ulit</string>
-    <string name="learn_restart_text">Susukat ulit ang Phase Wake nang %1$d gabi at kakalimutan ang mga iniakmang value.</string>
+    <string name="learn_restart_text">Susukat muli ang Phase Wake ng %1$d gabi. Hanggang doon, ginagamit pa rin ang mga value na naiangkop na.</string>
     <string name="record_end_wake">Natapos sa paggising</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Sleep score</string>
+    <string name="score_excellent">Napakahusay</string>
+    <string name="score_good">Mabuti</string>
+    <string name="score_fair">Katamtaman</string>
+    <string name="score_poor">Mahina</string>
+    <string name="score_value">Sleep score %1$d sa 100: %2$s</string>
+    <string name="score_duration">Tagal ng tulog</string>
+    <string name="score_weights">Timbang: Tagal ng tulog 35, Malalim 20, REM 20, Gising 15, Pagkakatulog 10. Hindi binibilang ang kulang na value.</string>
+    <string name="score_source">Mula sa %1$s.</string>
+    <string name="score_source_health">Mula sa iyong health data.</string>
+    <string name="score_source_recording">Mula sa night recording ng iyong relo.</string>
+    <string name="pulse_title">Pulso</string>
+    <string name="pulse_average">Ø %1$d bawat minuto</string>
+    <string name="motion_title">Galaw</string>
+    <string name="overview_title">Ang tulog mo</string>
+    <string name="overview_days">Araw</string>
+    <string name="overview_weeks">Linggo</string>
+    <string name="overview_months">Buwan</string>
+    <string name="overview_asleep">Ø tulog</string>
+    <string name="overview_bedtime">Ø oras ng pagtulog</string>
+    <string name="overview_wake">Ø oras ng paggising</string>
+    <string name="settings_clear_history_learn">Magsisimula ulit ang learning phase.</string>
+    <string name="learn_auto_hint">Sa gabi, i-tap ang “Matutulog na” sa relo mo o i-on ang “Awtomatikong tukuyin ang pagkakatulog” para mabilang ang mga gabi.</string>
 </resources>

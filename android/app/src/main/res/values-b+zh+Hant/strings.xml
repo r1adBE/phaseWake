@@ -522,7 +522,7 @@
     <string name="record_start">記錄夜間</string>
     <string name="record_stop">停止記錄</string>
     <string name="record_since">自 %1$s 起記錄中</string>
-    <string name="record_hint">你的手錶整夜記錄動作和脈搏，讓 Phase Wake 之後能學習你自己的門檻值。</string>
+    <string name="record_hint">你的手錶整晚記錄活動和脈搏。Phase Wake 會在學習階段從這些夜晚學習你自己的數值，並讓鬧鐘適合你。</string>
     <string name="record_end_manual">已停止</string>
     <string name="record_end_cap">12 小時後結束</string>
     <string name="record_end_battery">手錶電量低</string>
@@ -540,6 +540,30 @@
     <string name="bedtime_advice">今晚請在 %1$s 到 %2$s 之間上床</string>
     <string name="bedtime_advice_hint">依據你的鬧鐘、睡眠目標和入睡所需時間。</string>
     <string name="learn_restart">重新學習</string>
-    <string name="learn_restart_text">Phase Wake 會再測量 %1$d 晚，並忘記已調整的數值。</string>
+    <string name="learn_restart_text">Phase Wake 會重新測量 %1$d 晚。在此之前，繼續使用目前已調整的數值。</string>
     <string name="record_end_wake">喚醒時結束</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">睡眠分數</string>
+    <string name="score_excellent">優秀</string>
+    <string name="score_good">良好</string>
+    <string name="score_fair">普通</string>
+    <string name="score_poor">較差</string>
+    <string name="score_value">睡眠分數 %1$d/100：%2$s</string>
+    <string name="score_duration">睡眠時長</string>
+    <string name="score_weights">權重: 睡眠時長 35, 深眠 20, 快速動眼 20, 清醒 15, 入睡時間 10. 缺少的數值不計入。</string>
+    <string name="score_source">來自 %1$s。</string>
+    <string name="score_source_health">來自你的健康資料。</string>
+    <string name="score_source_recording">來自你手錶的夜間記錄。</string>
+    <string name="pulse_title">脈搏</string>
+    <string name="pulse_average">Ø 每分鐘 %1$d 下</string>
+    <string name="motion_title">活動</string>
+    <string name="overview_title">你的睡眠</string>
+    <string name="overview_days">天</string>
+    <string name="overview_weeks">週</string>
+    <string name="overview_months">月</string>
+    <string name="overview_asleep">Ø 睡眠</string>
+    <string name="overview_bedtime">Ø 入睡時間</string>
+    <string name="overview_wake">Ø 起床時間</string>
+    <string name="settings_clear_history_learn">學習階段重新開始。</string>
+    <string name="learn_auto_hint">晚上請在手錶上輕觸「晚安」，或開啟「自動偵測入睡」，這樣夜晚才會被計入。</string>
 </resources>

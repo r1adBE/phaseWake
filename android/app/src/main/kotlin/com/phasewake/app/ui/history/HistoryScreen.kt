@@ -17,6 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import com.phasewake.app.core.OverviewUnit
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +35,7 @@ import com.phasewake.app.core.HistoryKind
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NoteEffect
+import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.ui.notes.NightNotes
 import com.phasewake.app.ui.notes.NoteEffectsCard
@@ -123,6 +128,8 @@ fun HistoryScreen(
     onOpenNight: (String) -> Unit = {},
     /** Abgeschlossene Aufzeichnungen («Nacht aufzeichnen»), älteste zuerst; nach ihrem Ende zwischen die Nächte. */
     recordings: List<NightRecording> = emptyList(),
+    /** Schlafziel in Minuten für den Schlafwert der Nächte. */
+    goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
 ) {
     val history = remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
     val latestByDate = remember(nights) {
@@ -142,6 +149,8 @@ fun HistoryScreen(
         }
         withRecordings(nightly, recordings)
     }
+    // Eine Auswahl «Tage / Wochen / Monate» für Übersicht und Diagramme; gemerkt über Drehen und Zurückkehren.
+    var unit by rememberSaveable { mutableStateOf(OverviewUnit.DAYS) }
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -153,7 +162,10 @@ fun HistoryScreen(
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
         val opener: (LocalDate) -> (() -> Unit)? = { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
-        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener) } }
+        // Oben die eine Auswahl des Zeitraums, darunter die Übersicht und die Diagramme zum Blättern.
+        charts?.takeIf { it.hasPeriods }?.let { item(key = "period") { OverviewSwitch(unit, { unit = it }) } }
+        charts?.overview?.takeIf { it.isNotEmpty() }?.let { item(key = "overview") { OverviewCard(it, unit, opener) } }
+        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener, nights = periodNights(unit)) } }
         if (history.isEmpty() && recordings.isEmpty()) {
             item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
             soundsOnly.forEach { (night, last) ->
@@ -173,6 +185,7 @@ fun HistoryScreen(
                     val date = entry.item.date
                     HealthNightCard(
                         entry.item.session ?: return@items,
+                        score = remember(entry.item, recordings, goalMinutes) { nightScore(nightView(entry.item, emptyList()), recordings, goalMinutes)?.result },
                         feeling = healthFeelings[date],
                         notes = notes[date].orEmpty(),
                         customNotes = customNotes,
@@ -191,6 +204,8 @@ fun HistoryScreen(
                         // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
                         clips = if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
                         onOpen = { onOpenNight(entry.item.key) },
+                        recordings = recordings,
+                        goalMinutes = goalMinutes,
                     )
                 }
             }
@@ -234,12 +249,15 @@ private fun NightCard(
     onToggleNote: (String) -> Unit,
     clips: List<SoundClip>,
     onOpen: () -> Unit,
+    recordings: List<NightRecording>,
+    goalMinutes: Int,
 ) {
     val context = LocalContext.current
     val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
     val zone = ZoneId.systemDefault()
     val date = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(night.wokeAt.atZone(zone))
     val view = remember(night, stages) { nightView(HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(night, zone), night = night), stages) }
+    val score = remember(view, recordings, goalMinutes) { nightScore(view, recordings, goalMinutes)?.result }
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
@@ -250,6 +268,7 @@ private fun NightCard(
                 Text(date, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                 Text(Format.time(night.wokeAt, zone), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
             }
+            score?.let { ScoreLine(it) }
             val model = view.hypno
             val stats = view.stats
             if (model != null && stats != null) {

@@ -524,7 +524,7 @@
     <string name="record_start">Түнді жазу</string>
     <string name="record_stop">Жазуды тоқтату</string>
     <string name="record_since">%1$s бастап жазылып жатыр</string>
-    <string name="record_hint">Сағатың түні бойы қозғалыс пен импульсті жазады, сонда Phase Wake кейін сенің жеке шектеріңді үйрене алады.</string>
+    <string name="record_hint">Сағатың түні бойы қозғалыс пен пульсті жазады. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді.</string>
     <string name="record_end_manual">Тоқтатылды</string>
     <string name="record_end_cap">12 сағаттан кейін аяқталды</string>
     <string name="record_end_battery">Сағат батареясы әлсіз</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">Бүгін %1$s мен %2$s аралығында жат</string>
     <string name="bedtime_advice_hint">Оятқышыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай.</string>
     <string name="learn_restart">Қайта үйрену</string>
-    <string name="learn_restart_text">Phase Wake қайтадан %1$d түн өлшеп, бейімделген мәндерді ұмытады.</string>
+    <string name="learn_restart_text">Phase Wake қайтадан %1$d түн өлшейді. Оған дейін осы уақытқа дейін бейімделген мәндер қолданылады.</string>
     <string name="record_end_wake">Оятқанда аяқталды</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Ұйқы ұпайы</string>
+    <string name="score_excellent">Өте жақсы</string>
+    <string name="score_good">Жақсы</string>
+    <string name="score_fair">Орташа</string>
+    <string name="score_poor">Әлсіз</string>
+    <string name="score_value">Ұйқы ұпайы 100-ден %1$d: %2$s</string>
+    <string name="score_duration">Ұйқы ұзақтығы</string>
+    <string name="score_weights">Салмақ: Ұйқы ұзақтығы 35, Терең 20, REM 20, Ояу 15, Ұйықтап кету уақыты 10. Жоқ мәндер есептелмейді.</string>
+    <string name="score_source">%1$s дерегі.</string>
+    <string name="score_source_health">Денсаулық деректеріңнен.</string>
+    <string name="score_source_recording">Сағатыңның түнгі жазбасынан.</string>
+    <string name="pulse_title">Пульс</string>
+    <string name="pulse_average">Ø минутына %1$d</string>
+    <string name="motion_title">Қозғалыс</string>
+    <string name="overview_title">Сенің ұйқың</string>
+    <string name="overview_days">Күндер</string>
+    <string name="overview_weeks">Апталар</string>
+    <string name="overview_months">Айлар</string>
+    <string name="overview_asleep">Ø ұйқы</string>
+    <string name="overview_bedtime">Ø ұйықтау уақыты</string>
+    <string name="overview_wake">Ø ояну уақыты</string>
+    <string name="settings_clear_history_learn">Үйрену кезеңі басынан басталады.</string>
+    <string name="learn_auto_hint">Түндер есептелуі үшін кешке сағатта «Қайырлы түн» түймесін түрт немесе «Ұйықтап кетуді автоматты түрде анықтау» функциясын қос.</string>
 </resources>

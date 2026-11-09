@@ -536,7 +536,7 @@
     <string name="record_start">Nacht aufzeichnen</string>
     <string name="record_stop">Aufzeichnung stoppen</string>
     <string name="record_since">Aufzeichnung läuft seit %1$s</string>
-    <string name="record_hint">Deine Uhr zeichnet die ganze Nacht Bewegung und Puls auf, damit Phase Wake später deine eigenen Schwellen lernen kann.</string>
+    <string name="record_hint">Deine Uhr zeichnet die ganze Nacht Bewegung und Puls auf. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an.</string>
     <string name="record_end_manual">Gestoppt</string>
     <string name="record_end_cap">Nach 12 Std. beendet</string>
     <string name="record_end_battery">Akku der Uhr schwach</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Geh heute zwischen %1$s und %2$s ins Bett</string>
     <string name="bedtime_advice_hint">Aus Weckzeit, Schlafziel und deiner Einschlafdauer.</string>
     <string name="learn_restart">Neu lernen</string>
-    <string name="learn_restart_text">Phase Wake misst wieder %1$d Nächte und vergisst die angepassten Werte.</string>
+    <string name="learn_restart_text">Phase Wake misst wieder %1$d Nächte. Bis dahin gelten die bisher angepassten Werte.</string>
     <string name="record_end_wake">Beim Wecken beendet</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Schlafwert</string>
+    <string name="score_excellent">Ausgezeichnet</string>
+    <string name="score_good">Gut</string>
+    <string name="score_fair">Mittel</string>
+    <string name="score_poor">Schwach</string>
+    <string name="score_value">Schlafwert %1$d von 100: %2$s</string>
+    <string name="score_duration">Schlafdauer</string>
+    <string name="score_weights">Gewichtung: Schlafdauer 35, Tief 20, REM 20, Wach 15, Einschlafdauer 10. Fehlende Werte zählen nicht.</string>
+    <string name="score_source">Aus %1$s.</string>
+    <string name="score_source_health">Aus deinen Gesundheitsdaten.</string>
+    <string name="score_source_recording">Aus der Nacht-Aufzeichnung deiner Uhr.</string>
+    <string name="pulse_title">Puls</string>
+    <string name="pulse_average">Ø %1$d pro Minute</string>
+    <string name="motion_title">Bewegung</string>
+    <string name="overview_title">Dein Schlaf</string>
+    <string name="overview_days">Tage</string>
+    <string name="overview_weeks">Wochen</string>
+    <string name="overview_months">Monate</string>
+    <string name="overview_asleep">Ø Schlafdauer</string>
+    <string name="overview_bedtime">Ø Schlafenszeit</string>
+    <string name="overview_wake">Ø Aufwachzeit</string>
+    <string name="settings_clear_history_learn">Die Lernphase beginnt von vorn.</string>
+    <string name="learn_auto_hint">Tippe abends auf der Uhr auf «Gute Nacht» oder schalte «Einschlafen automatisch erkennen» ein, damit die Nächte zählen.</string>
 </resources>

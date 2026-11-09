@@ -539,7 +539,7 @@
     <string name="record_start">Salvesta öö</string>
     <string name="record_stop">Peata salvestus</string>
     <string name="record_since">Salvestab alates %1$s</string>
-    <string name="record_hint">Su kell salvestab terve öö liikumist ja pulssi, et Phase Wake saaks hiljem õppida su enda lävesid.</string>
+    <string name="record_hint">Sinu kell salvestab kogu öö liikumist ja pulssi. Nendest öödest õpib Phase Wake õppimisfaasis sinu enda väärtused ja kohandab äratuse sulle.</string>
     <string name="record_end_manual">Peatatud</string>
     <string name="record_end_cap">Lõppes 12 h pärast</string>
     <string name="record_end_battery">Kella aku on tühjenemas</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Mine täna magama vahemikus %1$s kuni %2$s</string>
     <string name="bedtime_advice_hint">Äratuse, unesihi ja uinumiseks kuluva aja põhjal.</string>
     <string name="learn_restart">Õpi uuesti</string>
-    <string name="learn_restart_text">Phase Wake mõõdab uuesti %1$d ööd ja unustab kohandatud väärtused.</string>
+    <string name="learn_restart_text">Phase Wake mõõdab uuesti %1$d ööd. Seni kehtivad seni kohandatud väärtused.</string>
     <string name="record_end_wake">Lõpetatud äratusel</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Uneskoor</string>
+    <string name="score_excellent">Suurepärane</string>
+    <string name="score_good">Hea</string>
+    <string name="score_fair">Keskmine</string>
+    <string name="score_poor">Nõrk</string>
+    <string name="score_value">Uneskoor %1$d / 100: %2$s</string>
+    <string name="score_duration">Une kestus</string>
+    <string name="score_weights">Kaal: Une kestus 35, Sügav 20, REM 20, Ärkvel 15, Uinumisaeg 10. Puuduvaid väärtusi ei arvestata.</string>
+    <string name="score_source">Allikas: %1$s.</string>
+    <string name="score_source_health">Sinu terviseandmetest.</string>
+    <string name="score_source_recording">Sinu kella öisest salvestusest.</string>
+    <string name="pulse_title">Pulss</string>
+    <string name="pulse_average">Ø %1$d minutis</string>
+    <string name="motion_title">Liikumine</string>
+    <string name="overview_title">Sinu uni</string>
+    <string name="overview_days">Päevad</string>
+    <string name="overview_weeks">Nädalad</string>
+    <string name="overview_months">Kuud</string>
+    <string name="overview_asleep">Ø uni</string>
+    <string name="overview_bedtime">Ø uinumisaeg</string>
+    <string name="overview_wake">Ø ärkamisaeg</string>
+    <string name="settings_clear_history_learn">Õppimisfaas algab otsast peale.</string>
+    <string name="learn_auto_hint">Puuduta õhtul kellal „Head ööd“ või lülita sisse „Tuvasta uinumine automaatselt“, et ööd loeksid.</string>
 </resources>

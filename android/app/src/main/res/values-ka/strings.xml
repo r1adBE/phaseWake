@@ -524,7 +524,7 @@
     <string name="record_start">ღამის ჩაწერა</string>
     <string name="record_stop">ჩაწერის შეწყვეტა</string>
     <string name="record_since">იწერება %1$s-დან</string>
-    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობასა და პულსს, რომ Phase Wake-მა მოგვიანებით შენი საკუთარი ზღვრები ისწავლოს.</string>
+    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს.</string>
     <string name="record_end_manual">შეწყდა</string>
     <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
     <string name="record_end_battery">საათის ბატარეა დაბალია</string>
@@ -542,6 +542,30 @@
     <string name="bedtime_advice">დღეს დაწექი %1$s-დან %2$s-მდე</string>
     <string name="bedtime_advice_hint">შენი მაღვიძარას, ძილის მიზნისა და ჩაძინების დროის მიხედვით.</string>
     <string name="learn_restart">თავიდან სწავლა</string>
-    <string name="learn_restart_text">Phase Wake ისევ %1$d ღამეს გაზომავს და მორგებულ მნიშვნელობებს დაივიწყებს.</string>
+    <string name="learn_restart_text">Phase Wake ხელახლა ზომავს %1$d ღამეს. მანამდე მოქმედებს აქამდე მორგებული მნიშვნელობები.</string>
     <string name="record_end_wake">დასრულდა გაღვიძებისას</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ძილის ქულა</string>
+    <string name="score_excellent">შესანიშნავი</string>
+    <string name="score_good">კარგი</string>
+    <string name="score_fair">საშუალო</string>
+    <string name="score_poor">სუსტი</string>
+    <string name="score_value">ძილის ქულა %1$d 100-დან: %2$s</string>
+    <string name="score_duration">ძილის ხანგრძლივობა</string>
+    <string name="score_weights">წონა: ძილის ხანგრძლივობა 35, ღრმა 20, REM 20, ფხიზლად 15, ჩაძინების დრო 10. გამოტოვებული მნიშვნელობები არ ითვლება.</string>
+    <string name="score_source">წყარო: %1$s.</string>
+    <string name="score_source_health">შენი ჯანმრთელობის მონაცემებიდან.</string>
+    <string name="score_source_recording">შენი საათის ღამის ჩანაწერიდან.</string>
+    <string name="pulse_title">პულსი</string>
+    <string name="pulse_average">Ø %1$d წუთში</string>
+    <string name="motion_title">მოძრაობა</string>
+    <string name="overview_title">შენი ძილი</string>
+    <string name="overview_days">დღეები</string>
+    <string name="overview_weeks">კვირები</string>
+    <string name="overview_months">თვეები</string>
+    <string name="overview_asleep">Ø ძილი</string>
+    <string name="overview_bedtime">Ø დაძინების დრო</string>
+    <string name="overview_wake">Ø გაღვიძების დრო</string>
+    <string name="settings_clear_history_learn">სწავლის ფაზა თავიდან იწყება.</string>
+    <string name="learn_auto_hint">საღამოს შეეხე საათზე „ძილი ნებისა“-ს ან ჩართე „ჩაძინების ავტომატური ამოცნობა“, რომ ღამეები ჩაითვალოს.</string>
 </resources>

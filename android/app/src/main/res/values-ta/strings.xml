@@ -538,7 +538,7 @@
     <string name="record_start">இரவைப் பதிவுசெய்</string>
     <string name="record_stop">பதிவை நிறுத்து</string>
     <string name="record_since">%1$s முதல் பதிவாகிறது</string>
-    <string name="record_hint">உன் கடிகாரம் இரவு முழுவதும் அசைவையும் நாடித்துடிப்பையும் பதிவுசெய்கிறது; இதனால் Phase Wake பின்னர் உன் சொந்த வரம்புகளைக் கற்றுக்கொள்ளும்.</string>
+    <string name="record_hint">உன் கடிகாரம் இரவு முழுவதும் அசைவையும் நாடியையும் பதிவு செய்கிறது. இந்த இரவுகளிலிருந்து Phase Wake கற்றல் கட்டத்தில் உன் சொந்த மதிப்புகளைக் கற்று அலாரத்தை உனக்கு ஏற்றபடி மாற்றுகிறது.</string>
     <string name="record_end_manual">நிறுத்தப்பட்டது</string>
     <string name="record_end_cap">12 மணிநேரத்துக்குப் பிறகு முடிந்தது</string>
     <string name="record_end_battery">கடிகார பேட்டரி குறைவு</string>
@@ -556,6 +556,30 @@
     <string name="bedtime_advice">இன்று %1$s முதல் %2$s வரை படுக்கச் செல்</string>
     <string name="bedtime_advice_hint">உன் அலாரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து.</string>
     <string name="learn_restart">மீண்டும் கற்றுக்கொள்</string>
-    <string name="learn_restart_text">Phase Wake மீண்டும் %1$d இரவுகள் அளந்து, அமைத்த மதிப்புகளை மறக்கும்.</string>
+    <string name="learn_restart_text">Phase Wake மீண்டும் %1$d இரவுகளை அளக்கிறது. அதுவரை இதுவரை மாற்றிய மதிப்புகளே பயன்படும்.</string>
     <string name="record_end_wake">எழுப்பும்போது முடிந்தது</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">தூக்க மதிப்பெண்</string>
+    <string name="score_excellent">மிகச் சிறப்பு</string>
+    <string name="score_good">நல்லது</string>
+    <string name="score_fair">நடுத்தரம்</string>
+    <string name="score_poor">பலவீனம்</string>
+    <string name="score_value">தூக்க மதிப்பெண் 100-இல் %1$d: %2$s</string>
+    <string name="score_duration">தூக்க நேரம்</string>
+    <string name="score_weights">எடை: தூக்க நேரம் 35, ஆழ்ந்த 20, REM 20, விழிப்பு 15, தூங்க ஆன நேரம் 10. இல்லாத மதிப்புகள் கணக்கில் வராது.</string>
+    <string name="score_source">%1$s-இலிருந்து.</string>
+    <string name="score_source_health">உன் உடல்நலத் தரவிலிருந்து.</string>
+    <string name="score_source_recording">உன் கடிகாரத்தின் இரவுப் பதிவிலிருந்து.</string>
+    <string name="pulse_title">நாடி</string>
+    <string name="pulse_average">Ø நிமிடத்துக்கு %1$d</string>
+    <string name="motion_title">அசைவு</string>
+    <string name="overview_title">உன் தூக்கம்</string>
+    <string name="overview_days">நாட்கள்</string>
+    <string name="overview_weeks">வாரங்கள்</string>
+    <string name="overview_months">மாதங்கள்</string>
+    <string name="overview_asleep">Ø தூக்கம்</string>
+    <string name="overview_bedtime">Ø தூங்கும் நேரம்</string>
+    <string name="overview_wake">Ø எழும் நேரம்</string>
+    <string name="settings_clear_history_learn">கற்றல் கட்டம் மீண்டும் தொடக்கத்திலிருந்து தொடங்குகிறது.</string>
+    <string name="learn_auto_hint">இரவுகள் கணக்கில் வர, மாலையில் கடிகாரத்தில் “இனிய இரவு” தட்டு அல்லது “தூங்குவதைத் தானாகக் கண்டறி” இயக்கு.</string>
 </resources>

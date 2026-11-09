@@ -536,7 +536,7 @@
     <string name="record_start">Éjszaka rögzítése</string>
     <string name="record_stop">Felvétel leállítása</string>
     <string name="record_since">Felvétel %1$s óta</string>
-    <string name="record_hint">Az órád egész éjjel rögzíti a mozgást és a pulzust, hogy a Phase Wake később megtanulhassa a saját küszöbértékeidet.</string>
+    <string name="record_hint">Az órád egész éjjel rögzíti a mozgást és a pulzust. Ezekből az éjszakákból a Phase Wake a tanulási szakaszban megtanulja a saját értékeidet, és hozzád igazítja az ébresztőt.</string>
     <string name="record_end_manual">Leállítva</string>
     <string name="record_end_cap">12 óra után véget ért</string>
     <string name="record_end_battery">Az óra akkumulátora gyenge</string>
@@ -554,6 +554,30 @@
     <string name="bedtime_advice">Feküdj le ma %1$s és %2$s között</string>
     <string name="bedtime_advice_hint">Az ébresztőd, az alváscélod és az elalvási időd alapján.</string>
     <string name="learn_restart">Tanulás újra</string>
-    <string name="learn_restart_text">A Phase Wake újra %1$d éjszakát mér, és elfelejti az igazított értékeket.</string>
+    <string name="learn_restart_text">A Phase Wake újra %1$d éjszakát mér. Addig az eddig igazított értékek maradnak érvényben.</string>
     <string name="record_end_wake">Ébresztéskor befejezve</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Alvási pontszám</string>
+    <string name="score_excellent">Kiváló</string>
+    <string name="score_good">Jó</string>
+    <string name="score_fair">Közepes</string>
+    <string name="score_poor">Gyenge</string>
+    <string name="score_value">Alvási pontszám: %1$d/100, %2$s</string>
+    <string name="score_duration">Alvásidő</string>
+    <string name="score_weights">Súlyozás: Alvásidő 35, Mély 20, REM 20, Ébren 15, Elalvás 10. A hiányzó értékek nem számítanak.</string>
+    <string name="score_source">Forrás: %1$s.</string>
+    <string name="score_source_health">Az egészségügyi adataidból.</string>
+    <string name="score_source_recording">Az órád éjszakai felvételéből.</string>
+    <string name="pulse_title">Pulzus</string>
+    <string name="pulse_average">Ø %1$d percenként</string>
+    <string name="motion_title">Mozgás</string>
+    <string name="overview_title">Az alvásod</string>
+    <string name="overview_days">Napok</string>
+    <string name="overview_weeks">Hetek</string>
+    <string name="overview_months">Hónapok</string>
+    <string name="overview_asleep">Ø alvás</string>
+    <string name="overview_bedtime">Ø lefekvés</string>
+    <string name="overview_wake">Ø ébredés</string>
+    <string name="settings_clear_history_learn">A tanulási szakasz elölről kezdődik.</string>
+    <string name="learn_auto_hint">Este koppints az órán a(z) „Jó éjszakát” gombra, vagy kapcsold be: „Elalvás automatikus felismerése”, hogy az éjszakák számítsanak.</string>
 </resources>

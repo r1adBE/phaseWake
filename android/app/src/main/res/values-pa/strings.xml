@@ -539,7 +539,7 @@
     <string name="record_start">ਰਾਤ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="record_stop">ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ</string>
     <string name="record_since">%1$s ਤੋਂ ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ</string>
-    <string name="record_hint">ਤੁਹਾਡੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ, ਤਾਂ ਜੋ Phase Wake ਬਾਅਦ ਵਿੱਚ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ ਹੱਦਾਂ ਸਿੱਖ ਸਕੇ।</string>
+    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ।</string>
     <string name="record_end_manual">ਰੋਕਿਆ ਗਿਆ</string>
     <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
     <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">ਅੱਜ %1$s ਤੋਂ %2$s ਦੇ ਵਿਚਕਾਰ ਸੌਣ ਜਾ</string>
     <string name="bedtime_advice_hint">ਤੇਰੇ ਅਲਾਰਮ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।</string>
     <string name="learn_restart">ਮੁੜ ਸਿੱਖੋ</string>
-    <string name="learn_restart_text">Phase Wake ਮੁੜ %1$d ਰਾਤਾਂ ਮਾਪੇਗਾ ਅਤੇ ਢਾਲੇ ਮੁੱਲ ਭੁੱਲ ਜਾਵੇਗਾ।</string>
+    <string name="learn_restart_text">Phase Wake ਦੁਬਾਰਾ %1$d ਰਾਤਾਂ ਮਾਪਦਾ ਹੈ। ਉਦੋਂ ਤੱਕ ਹੁਣ ਤੱਕ ਢਾਲੇ ਗਏ ਮੁੱਲ ਹੀ ਵਰਤੇ ਜਾਂਦੇ ਹਨ।</string>
     <string name="record_end_wake">ਜਗਾਉਣ ਵੇਲੇ ਖ਼ਤਮ</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">ਨੀਂਦ ਸਕੋਰ</string>
+    <string name="score_excellent">ਸ਼ਾਨਦਾਰ</string>
+    <string name="score_good">ਵਧੀਆ</string>
+    <string name="score_fair">ਦਰਮਿਆਨਾ</string>
+    <string name="score_poor">ਕਮਜ਼ੋਰ</string>
+    <string name="score_value">ਨੀਂਦ ਸਕੋਰ 100 ਵਿੱਚੋਂ %1$d: %2$s</string>
+    <string name="score_duration">ਨੀਂਦ ਦੀ ਮਿਆਦ</string>
+    <string name="score_weights">ਭਾਰ: ਨੀਂਦ ਦੀ ਮਿਆਦ 35, ਗੂੜ੍ਹੀ 20, REM 20, ਜਾਗਦੇ 15, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ 10. ਗੁੰਮ ਮੁੱਲ ਨਹੀਂ ਗਿਣੇ ਜਾਂਦੇ।</string>
+    <string name="score_source">%1$s ਤੋਂ।</string>
+    <string name="score_source_health">ਤੇਰੇ ਸਿਹਤ ਡਾਟਾ ਤੋਂ।</string>
+    <string name="score_source_recording">ਤੇਰੀ ਘੜੀ ਦੀ ਰਾਤ ਦੀ ਰਿਕਾਰਡਿੰਗ ਤੋਂ।</string>
+    <string name="pulse_title">ਨਬਜ਼</string>
+    <string name="pulse_average">Ø ਪ੍ਰਤੀ ਮਿੰਟ %1$d</string>
+    <string name="motion_title">ਹਿਲਜੁਲ</string>
+    <string name="overview_title">ਤੇਰੀ ਨੀਂਦ</string>
+    <string name="overview_days">ਦਿਨ</string>
+    <string name="overview_weeks">ਹਫ਼ਤੇ</string>
+    <string name="overview_months">ਮਹੀਨੇ</string>
+    <string name="overview_asleep">Ø ਨੀਂਦ</string>
+    <string name="overview_bedtime">Ø ਸੌਣ ਦਾ ਸਮਾਂ</string>
+    <string name="overview_wake">Ø ਜਾਗਣ ਦਾ ਸਮਾਂ</string>
+    <string name="settings_clear_history_learn">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ।</string>
+    <string name="learn_auto_hint">ਰਾਤਾਂ ਗਿਣੀਆਂ ਜਾਣ, ਇਸ ਲਈ ਸ਼ਾਮ ਨੂੰ ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ਟੈਪ ਕਰ ਜਾਂ “ਸੌਂ ਜਾਣ ਦਾ ਆਪਣੇ-ਆਪ ਪਤਾ ਲਗਾਓ” ਚਾਲੂ ਕਰ।</string>
 </resources>

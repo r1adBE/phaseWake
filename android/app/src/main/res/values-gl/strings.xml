@@ -539,7 +539,7 @@
     <string name="record_start">Gravar a noite</string>
     <string name="record_stop">Deter a gravación</string>
     <string name="record_since">Gravando desde as %1$s</string>
-    <string name="record_hint">O teu reloxo rexistra o movemento e o pulso toda a noite, para que Phase Wake poida aprender máis adiante os teus propios limiares.</string>
+    <string name="record_hint">O teu reloxo grava movemento e pulso toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti.</string>
     <string name="record_end_manual">Detida</string>
     <string name="record_end_cap">Rematou tras 12 h</string>
     <string name="record_end_battery">Batería do reloxo baixa</string>
@@ -557,6 +557,30 @@
     <string name="bedtime_advice">Déitate hoxe entre as %1$s e as %2$s</string>
     <string name="bedtime_advice_hint">Segundo a túa alarma, o teu obxectivo de sono e o que tardas en durmir.</string>
     <string name="learn_restart">Aprender de novo</string>
-    <string name="learn_restart_text">Phase Wake volve medir %1$d noites e esquece os valores adaptados.</string>
+    <string name="learn_restart_text">Phase Wake volve medir %1$d noites. Ata entón seguen a usarse os valores adaptados ata agora.</string>
     <string name="record_end_wake">Rematada ao espertar</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Puntuación do sono</string>
+    <string name="score_excellent">Excelente</string>
+    <string name="score_good">Ben</string>
+    <string name="score_fair">Regular</string>
+    <string name="score_poor">Feble</string>
+    <string name="score_value">Puntuación do sono %1$d de 100: %2$s</string>
+    <string name="score_duration">Duración do sono</string>
+    <string name="score_weights">Ponderación: Duración do sono 35, Profundo 20, REM 20, Esperto 15, Tempo para durmir 10. Os valores que faltan non contan.</string>
+    <string name="score_source">De %1$s.</string>
+    <string name="score_source_health">Dos teus datos de saúde.</string>
+    <string name="score_source_recording">Da gravación nocturna do teu reloxo.</string>
+    <string name="pulse_title">Pulso</string>
+    <string name="pulse_average">Ø %1$d por minuto</string>
+    <string name="motion_title">Movemento</string>
+    <string name="overview_title">O teu sono</string>
+    <string name="overview_days">Días</string>
+    <string name="overview_weeks">Semanas</string>
+    <string name="overview_months">Meses</string>
+    <string name="overview_asleep">Ø sono</string>
+    <string name="overview_bedtime">Ø hora de durmir</string>
+    <string name="overview_wake">Ø hora de espertar</string>
+    <string name="settings_clear_history_learn">A fase de aprendizaxe comeza de novo.</string>
+    <string name="learn_auto_hint">Pola noite, toca «Boas noites» no reloxo ou activa «Detectar automaticamente cando adormeces» para que as noites conten.</string>
 </resources>

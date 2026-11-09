@@ -564,7 +564,7 @@
     <string name="record_start">Zaznamenat noc</string>
     <string name="record_stop">Zastavit záznam</string>
     <string name="record_since">Záznam běží od %1$s</string>
-    <string name="record_hint">Tvoje hodinky celou noc zaznamenávají pohyb a tep, aby se Phase Wake později mohl naučit tvoje vlastní prahy.</string>
+    <string name="record_hint">Tvoje hodinky celou noc zaznamenávají pohyb a tep. Z těchto nocí se Phase Wake ve fázi učení naučí tvoje vlastní hodnoty a přizpůsobí ti budík.</string>
     <string name="record_end_manual">Zastaveno</string>
     <string name="record_end_cap">Ukončeno po 12 h</string>
     <string name="record_end_battery">Slabá baterie hodinek</string>
@@ -582,6 +582,30 @@
     <string name="bedtime_advice">Jdi dnes spát mezi %1$s a %2$s</string>
     <string name="bedtime_advice_hint">Podle budíku, cíle spánku a toho, jak dlouho ti trvá usnout.</string>
     <string name="learn_restart">Naučit znovu</string>
-    <string name="learn_restart_text">Phase Wake znovu změří %1$d nocí a zapomene přizpůsobené hodnoty.</string>
+    <string name="learn_restart_text">Phase Wake znovu měří %1$d nocí. Do té doby platí dosud přizpůsobené hodnoty.</string>
     <string name="record_end_wake">Ukončeno při buzení</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Skóre spánku</string>
+    <string name="score_excellent">Výborné</string>
+    <string name="score_good">Dobré</string>
+    <string name="score_fair">Průměrné</string>
+    <string name="score_poor">Slabé</string>
+    <string name="score_value">Skóre spánku %1$d ze 100: %2$s</string>
+    <string name="score_duration">Délka spánku</string>
+    <string name="score_weights">Váhy: Délka spánku 35, Hluboký 20, REM 20, Bdění 15, Usínání 10. Chybějící hodnoty se nepočítají.</string>
+    <string name="score_source">Z %1$s.</string>
+    <string name="score_source_health">Z tvých zdravotních dat.</string>
+    <string name="score_source_recording">Z nočního záznamu tvých hodinek.</string>
+    <string name="pulse_title">Tep</string>
+    <string name="pulse_average">Ø %1$d za minutu</string>
+    <string name="motion_title">Pohyb</string>
+    <string name="overview_title">Tvůj spánek</string>
+    <string name="overview_days">Dny</string>
+    <string name="overview_weeks">Týdny</string>
+    <string name="overview_months">Měsíce</string>
+    <string name="overview_asleep">Ø spánek</string>
+    <string name="overview_bedtime">Ø čas usnutí</string>
+    <string name="overview_wake">Ø čas probuzení</string>
+    <string name="settings_clear_history_learn">Fáze učení začíná znovu.</string>
+    <string name="learn_auto_hint">Večer klepni na hodinkách na „Dobrou noc“ nebo zapni „Automaticky rozpoznat usnutí“, aby se noci počítaly.</string>
 </resources>

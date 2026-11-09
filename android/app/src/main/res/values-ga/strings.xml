@@ -581,7 +581,7 @@
     <string name="record_start">Taifead an oíche</string>
     <string name="record_stop">Stop an taifeadadh</string>
     <string name="record_since">Ag taifeadadh ó %1$s</string>
-    <string name="record_hint">Taifeadann d’uaireadóir gluaiseacht agus cuisle ar feadh na hoíche, ionas gur féidir le Phase Wake do thairseacha féin a fhoghlaim níos déanaí.</string>
+    <string name="record_hint">Taifeadann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche. As na hoícheanta sin, foghlaimíonn Phase Wake do luachanna féin sa chéim foghlama agus cuireann sé an t-aláram in oiriúint duit.</string>
     <string name="record_end_manual">Stoptha</string>
     <string name="record_end_cap">Críochnaithe tar éis 12 u</string>
     <string name="record_end_battery">Ceallra an uaireadóra íseal</string>
@@ -599,6 +599,30 @@
     <string name="bedtime_advice">Téigh a chodladh anocht idir %1$s agus %2$s</string>
     <string name="bedtime_advice_hint">Bunaithe ar d’aláram, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh.</string>
     <string name="learn_restart">Foghlaim arís</string>
-    <string name="learn_restart_text">Tomhaiseann Phase Wake %1$d oíche arís agus déanann sé dearmad ar na luachanna oiriúnaithe.</string>
+    <string name="learn_restart_text">Tomhaiseann Phase Wake %1$d oíche arís. Go dtí sin, úsáidtear na luachanna atá curtha in oiriúint go dtí seo.</string>
     <string name="record_end_wake">Críochnaithe ag dúiseacht</string>
+    <!-- Auswertung: Schlafwert, Puls, Bewegung, Übersicht -->
+    <string name="score_title">Scór codlata</string>
+    <string name="score_excellent">Ar fheabhas</string>
+    <string name="score_good">Maith</string>
+    <string name="score_fair">Measartha</string>
+    <string name="score_poor">Lag</string>
+    <string name="score_value">Scór codlata %1$d as 100: %2$s</string>
+    <string name="score_duration">Fad codlata</string>
+    <string name="score_weights">Ualú: Fad codlata 35, Trom 20, REM 20, Dúisithe 15, Ag titim i do chodladh 10. Ní áirítear luachanna atá ar iarraidh.</string>
+    <string name="score_source">Ó %1$s.</string>
+    <string name="score_source_health">Ó do shonraí sláinte.</string>
+    <string name="score_source_recording">Ó thaifeadadh oíche d’uaireadóra.</string>
+    <string name="pulse_title">Cuisle</string>
+    <string name="pulse_average">Ø %1$d sa nóiméad</string>
+    <string name="motion_title">Gluaiseacht</string>
+    <string name="overview_title">Do chodladh</string>
+    <string name="overview_days">Laethanta</string>
+    <string name="overview_weeks">Seachtainí</string>
+    <string name="overview_months">Míonna</string>
+    <string name="overview_asleep">Ø codladh</string>
+    <string name="overview_bedtime">Ø am codlata</string>
+    <string name="overview_wake">Ø am dúiseachta</string>
+    <string name="settings_clear_history_learn">Tosaíonn an chéim foghlama as an nua.</string>
+    <string name="learn_auto_hint">Tapáil “Oíche mhaith” ar d’uaireadóir tráthnóna nó cas air “Braith titim i do chodladh go huathoibríoch” ionas go gcomhairtear na hoícheanta.</string>
 </resources>
