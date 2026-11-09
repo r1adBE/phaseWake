@@ -142,5 +142,36 @@ class WakeDetectorTest {
         assertFailsWith<IllegalArgumentException> { DetectorConfig(warmupEpochs = -1) }
         assertFailsWith<IllegalArgumentException> { DetectorConfig(awakeHits = 4) }
         assertFailsWith<IllegalArgumentException> { DetectorConfig(lightHits = 0) }
+        assertFailsWith<IllegalArgumentException> { DetectorConfig(personalFloor = -0.01) }
+        assertFailsWith<IllegalArgumentException> { DetectorConfig(restingHeartRate = 0.0) }
+    }
+
+    @Test
+    fun restingHeartRateIsBaselineOnlyWithoutWarmupPulse() {
+        // Aufwärmphase ohne Puls: gelernter Ruhepuls 50 ist Basispuls, 53 >= 52.5 → leichter Schlaf.
+        val learned = WakeDetector(DetectorConfig(restingHeartRate = 50.0))
+        learned.feed(Epoch(0.0, null), Epoch(0.0, null), Epoch(0.003, 53.0))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), learned.onEpoch(Epoch(0.003, 53.0)))
+        // Ohne gelernten Ruhepuls wie bisher: kein Basispuls, kein leichter Schlaf.
+        val plain = WakeDetector()
+        plain.feed(Epoch(0.0, null), Epoch(0.0, null), Epoch(0.003, 53.0))
+        assertEquals(Decision.Wait, plain.onEpoch(Epoch(0.003, 53.0)))
+        // Mit Puls in der Aufwärmphase gilt dessen Basispuls (52 → 54.6), der Ruhepuls 40 ändert nichts.
+        val own = WakeDetector(DetectorConfig(restingHeartRate = 40.0))
+        own.feed(still, still, Epoch(0.003, 53.0))
+        assertEquals(Decision.Wait, own.onEpoch(Epoch(0.003, 53.0)))
+    }
+
+    @Test
+    fun personalFloorAppliesBeforeTheWindowHasItsOwn() {
+        // Sensor liefert anfangs keine Bewegung: Ohne eigenes Grundrauschen gälte 0.002, 0.03 wäre leichte Bewegung.
+        val gap = Epoch(null, 52.0)
+        val plain = WakeDetector()
+        plain.feed(gap, gap, gap, Epoch(0.03, 57.0))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), plain.onEpoch(Epoch(0.03, 57.0)))
+        // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 ist Rauschen.
+        val learned = WakeDetector(DetectorConfig(personalFloor = 0.02))
+        learned.feed(gap, gap, gap, Epoch(0.03, 57.0))
+        assertEquals(Decision.Wait, learned.onEpoch(Epoch(0.03, 57.0)))
     }
 }

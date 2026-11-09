@@ -3,7 +3,9 @@ package com.phasewake.app.shared
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.HolidayList
+import com.phasewake.app.core.Learning
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.TestRun
@@ -119,6 +121,39 @@ class StoresTest {
         assertFalse(store.setIfNewer(false, 11L))
         assertTrue(store.setIfNewer(true, 12L))
         assertTrue(store.enabled.first())
+    }
+
+    @Test
+    fun learningStoreTakesOnlyNewer() = runTest {
+        val store = LearningStore(MemoryStore())
+        // Uhr ohne Handy: keine Lernphase, keine Werte.
+        assertEquals(LearningSnapshot(false, null, null, 0L), store.current())
+        assertTrue(store.setIfNewer(LearningSnapshot(true, null, null, 10L)))
+        assertTrue(store.current().active)
+        // Älter oder gleich alt: bleibt.
+        assertFalse(store.setIfNewer(LearningSnapshot(false, 0.02, 52.0, 10L)))
+        assertTrue(store.current().active)
+        // Fertig: Werte da, Lernphase vorbei; neu begonnen: Werte wieder weg.
+        assertTrue(store.setIfNewer(LearningSnapshot(false, 0.02, 52.0, 11L)))
+        assertEquals(LearningSnapshot(false, 0.02, 52.0, 11L), store.current())
+        assertTrue(store.setIfNewer(LearningSnapshot(true, null, null, 12L)))
+        assertEquals(LearningSnapshot(true, null, null, 12L), store.current())
+        // Neuer, aber gleich: gespeichert, keine Änderung.
+        assertFalse(store.setIfNewer(LearningSnapshot(true, null, null, 13L)))
+        assertEquals(13L, store.current().updatedAt)
+    }
+
+    @Test
+    fun learningSnapshotForTheDetector() {
+        val values = Learning.Values(0.02, 52.0, 12, 7)
+        val snapshot = LearningSnapshot.of(active = false, values = values, updatedAt = 5L)
+        assertEquals(LearningSnapshot(false, 0.02, 52.0, 5L), snapshot)
+        val config = snapshot.applyTo(DetectorConfig())
+        assertEquals(0.02, config.personalFloor)
+        assertEquals(52.0, config.restingHeartRate)
+        assertEquals(DetectorConfig(), LearningSnapshot.of(true, null, 6L).applyTo(DetectorConfig()))
+        assertEquals("active=0 floor=0.0200 hr=set", snapshot.diagLine())
+        assertEquals("active=1 floor=- hr=-", LearningSnapshot.of(true, null, 6L).diagLine())
     }
 
     @Test

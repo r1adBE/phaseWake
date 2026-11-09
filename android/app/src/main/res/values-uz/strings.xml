@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 soatdan keyin tugadi</string>
     <string name="record_end_battery">Soat batareyasi kam</string>
     <string name="record_end_interrupted">Uzildi</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">O‘rganish bosqichi: %2$d tundan %1$d-tun</string>
+    <string name="learn_text">Phase Wake budilnikni senga moslash uchun soating bilan %1$d tun o‘lchaydi. Kechasi kamida %2$d %% batareya bilan taqib yur.</string>
+    <string name="learned_title">Senga moslandi</string>
+    <string name="learned_motion_default">Harakat: dam olishda soating jim – standart chegaralar qoladi.</string>
+    <string name="learned_motion_raised">Harakat: chegaralar soatingning dam olishdagi shovqiniga ko‘ra oshirildi.</string>
+    <string name="learned_pulse">Tinch holatdagi puls: daqiqasiga %1$d</string>
+    <string name="learned_pulse_none">Tinch holatdagi puls: o‘lchovlar juda kam</string>
+    <string name="learned_latency">Uxlab qolish: taxminan %1$s</string>
+    <string name="learned_latency_none">Uxlab qolish: o‘lchovlar juda kam</string>
+    <string name="bedtime_advice">Bugun %1$s va %2$s oralig‘ida yot</string>
+    <string name="bedtime_advice_hint">Budilnik, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra.</string>
+    <string name="learn_restart">Qayta o‘rganish</string>
+    <string name="learn_restart_text">Phase Wake yana %1$d tun o‘lchaydi va moslangan qiymatlarni unutadi.</string>
+    <string name="record_end_wake">Uyg‘otishda tugadi</string>
 </resources>

@@ -558,4 +558,19 @@
     <string name="record_end_cap">Završeno nakon 12 h</string>
     <string name="record_end_battery">Baterija sata je slaba</string>
     <string name="record_end_interrupted">Prekinuto</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Faza učenja: noć %1$d od %2$d</string>
+    <string name="learn_text">Phase Wake %1$d noći mjeri s tvojim satom kako bi budilicu prilagodio tebi. Nosi ga noću s najmanje %2$d %% baterije.</string>
+    <string name="learned_title">Prilagođeno tebi</string>
+    <string name="learned_motion_default">Pokret: tvoj sat je u mirovanju tih – standardni pragovi ostaju.</string>
+    <string name="learned_motion_raised">Pokret: pragovi podignuti prema šumu tvog sata u mirovanju.</string>
+    <string name="learned_pulse">Puls u mirovanju: %1$d u minuti</string>
+    <string name="learned_pulse_none">Puls u mirovanju: premalo mjerenja</string>
+    <string name="learned_latency">Uspavljivanje: oko %1$s</string>
+    <string name="learned_latency_none">Uspavljivanje: premalo mjerenja</string>
+    <string name="bedtime_advice">Idi danas u krevet između %1$s i %2$s</string>
+    <string name="bedtime_advice_hint">Na osnovu budilice, cilja sna i koliko ti treba da zaspiš.</string>
+    <string name="learn_restart">Uči ponovo</string>
+    <string name="learn_restart_text">Phase Wake ponovo mjeri %1$d noći i zaboravlja prilagođene vrijednosti.</string>
+    <string name="record_end_wake">Završeno pri buđenju</string>
 </resources>

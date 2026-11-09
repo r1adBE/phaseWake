@@ -544,4 +544,19 @@
     <string name="record_end_cap">१२ घण्टापछि सकियो</string>
     <string name="record_end_battery">घडीको ब्याट्री कम छ</string>
     <string name="record_end_interrupted">अवरुद्ध भयो</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">सिक्ने चरण: रात %1$d / %2$d</string>
+    <string name="learn_text">तिम्रो लागि अलार्म मिलाउन Phase Wake ले तिम्रो घडीले %1$d रात नाप्छ। राति कम्तीमा %2$d %% ब्याट्रीसहित लगाऊ।</string>
+    <string name="learned_title">तिम्रो लागि मिलाइयो</string>
+    <string name="learned_motion_default">चालचलन: आराममा तिम्रो घडी शान्त छ – मानक सीमाहरू रहन्छन्।</string>
+    <string name="learned_motion_raised">चालचलन: आराममा तिम्रो घडीको आवाजअनुसार सीमाहरू बढाइयो।</string>
+    <string name="learned_pulse">आरामको नाडी: मिनेटमा %1$d</string>
+    <string name="learned_pulse_none">आरामको नाडी: नाप धेरै कम</string>
+    <string name="learned_latency">निदाउनु: करिब %1$s</string>
+    <string name="learned_latency_none">निदाउनु: नाप धेरै कम</string>
+    <string name="bedtime_advice">आज %1$s र %2$s बीच सुत्न जाऊ</string>
+    <string name="bedtime_advice_hint">तिम्रो अलार्म, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।</string>
+    <string name="learn_restart">फेरि सिक</string>
+    <string name="learn_restart_text">Phase Wake ले फेरि %1$d रात नाप्छ र मिलाइएका मानहरू बिर्सन्छ।</string>
+    <string name="record_end_wake">उठाउँदा सकियो</string>
 </resources>

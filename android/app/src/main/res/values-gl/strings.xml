@@ -544,4 +544,19 @@
     <string name="record_end_cap">Rematou tras 12 h</string>
     <string name="record_end_battery">Batería do reloxo baixa</string>
     <string name="record_end_interrupted">Interrompida</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fase de aprendizaxe: noite %1$d de %2$d</string>
+    <string name="learn_text">Durante %1$d noites, Phase Wake mide co teu reloxo para adaptarche a alarma. Lévao pola noite con polo menos un %2$d %% de batería.</string>
+    <string name="learned_title">Adaptado a ti</string>
+    <string name="learned_motion_default">Movemento: o teu reloxo está tranquilo en repouso; mantéñense os limiares estándar.</string>
+    <string name="learned_motion_raised">Movemento: limiares subidos segundo o ruído do teu reloxo en repouso.</string>
+    <string name="learned_pulse">Pulso en repouso: %1$d por minuto</string>
+    <string name="learned_pulse_none">Pulso en repouso: moi poucas medicións</string>
+    <string name="learned_latency">Durmir: uns %1$s</string>
+    <string name="learned_latency_none">Durmir: moi poucas medicións</string>
+    <string name="bedtime_advice">Déitate hoxe entre as %1$s e as %2$s</string>
+    <string name="bedtime_advice_hint">Segundo a túa alarma, o teu obxectivo de sono e o que tardas en durmir.</string>
+    <string name="learn_restart">Aprender de novo</string>
+    <string name="learn_restart_text">Phase Wake volve medir %1$d noites e esquece os valores adaptados.</string>
+    <string name="record_end_wake">Rematada ao espertar</string>
 </resources>

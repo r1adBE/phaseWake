@@ -14,6 +14,7 @@ import androidx.wear.ongoing.OngoingActivity
 import androidx.wear.ongoing.Status
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.Learning
 import com.phasewake.app.core.NoiseFloor
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
@@ -32,16 +33,18 @@ import java.time.format.FormatStyle
 import kotlinx.coroutines.launch
 
 /**
- * Steuerung von «Nacht aufzeichnen» ausserhalb des [RecordService]: Start und Stopp (Uhr, Handy), Prüf-Alarm für das
- * Wiederaufnehmen nach einem Prozessende, Mitteilung, Akkustand und die Zeile fürs Diagnose-Protokoll.
+ * Steuerung von «Nacht aufzeichnen» ausserhalb des [RecordService]: Start und Stopp (Uhr, Handy, Lernphase), Prüf-Alarm
+ * für das Wiederaufnehmen nach einem Prozessende, Mitteilung, Akkustand und die Zeile fürs Diagnose-Protokoll.
  */
 object RecordControl {
     private const val REQUEST_CHECK = 11
     private const val REQUEST_PHONE_START = 12
     private const val REQUEST_STOP = 13
     private const val REQUEST_OPEN = 14
+    private const val REQUEST_LEARN_START = 15
     internal const val ACTION_CHECK = "com.phasewake.app.action.RECORD_CHECK"
     internal const val ACTION_PHONE_START = "com.phasewake.app.action.RECORD_PHONE_START"
+    internal const val ACTION_LEARN_START = "com.phasewake.app.action.RECORD_LEARN_START"
 
     /** So oft prüft ein Alarm, ob die Aufzeichnung noch läuft, und nimmt sie sonst wieder auf. */
     val CHECK_INTERVAL: Duration = Duration.ofMinutes(15)
@@ -74,6 +77,61 @@ object RecordControl {
     }
 
     /**
+     * Lernphase ([com.phasewake.app.core.Learning]): Die Einschlaf-Messung hat begonnen, die Aufzeichnung startet mit ihr
+     * (über einen exakten Alarm gleich jetzt, wie vom Handy) und endet beim Wecken, ohne Klingeln spätestens zur
+     * eingestellten Weckzeit [until]. Nicht unter [Learning.MIN_BATTERY] Akku (der Wecker hat Vorrang) und nicht, wenn schon
+     * eine Aufzeichnung läuft (eine von Hand begonnene zählt ebenso). Grund jeweils im Diagnose-Protokoll.
+     * @return ob der Start ausgelöst wurde.
+     */
+    fun startForLearning(context: Context, until: Instant): Boolean {
+        val app = context.wearApp
+        val battery = battery(context)
+        val skip = learnSkipReason(RecordService.running, battery)
+        if (skip != null) {
+            app.diag.log(if (battery != null && battery < Learning.MIN_BATTERY) DiagKind.BATTERY else DiagKind.MEASURE_START, "learn record skipped: $skip")
+            return false
+        }
+        val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
+        arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_LEARN_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+        app.diag.log(DiagKind.MEASURE_START, "learn record start bat=${battery ?: "-"}")
+        return true
+    }
+
+    /** Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert nicht. */
+    internal fun learnSkipReason(recording: Boolean, battery: Int?): String? = when {
+        recording -> "recording runs"
+        battery != null && battery < Learning.MIN_BATTERY -> "battery $battery%"
+        else -> null
+    }
+
+    /**
+     * Lernphase ohne Klingeln: Die Aufzeichnung endet zur eingestellten Weckzeit [until], sobald keine Nacht mehr läuft
+     * ([nightRunning]: messen, klingeln, schlummern; deren Ende beendet sie selbst, siehe [endLearning]).
+     */
+    internal fun endsAtTarget(now: Instant, until: Instant, nightRunning: Boolean): Boolean = !now.isBefore(until) && !nightRunning
+
+    /**
+     * Geweckt (Klingeln beendet, aus dem Weckdienst): Eine Aufzeichnung der Lernphase endet jetzt ([RecordEnd.WAKE]); eine
+     * von Hand begonnene läuft weiter. Läuft der Dienst nicht (Prozessende), wird die gespeicherte abgeschlossen.
+     */
+    fun endLearning(context: Context) {
+        if (RecordService.running) {
+            context.startService(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_END_LEARN))
+            return
+        }
+        val app = context.wearApp
+        app.appScope.launch {
+            val mark = app.learnMark.get() ?: return@launch
+            if (app.recordings.active()?.start == mark.start && finishOrphan(app, RecordEnd.WAKE)) {
+                cancelCheck(app)
+                app.diag.log(DiagKind.MEASURE_END, "record end ${RecordService.reasonText(RecordEnd.WAKE, null)} (not running)")
+                app.recordSync.publishStatus(null)
+            }
+            app.learnMark.clear()
+        }
+    }
+
+    /**
      * Stopp mit [reason]: an den laufenden Dienst; läuft keiner (Prozessende), die gespeicherte Aufzeichnung direkt
      * abschliessen, damit sie nicht später wieder aufgenommen wird.
      */
@@ -93,9 +151,12 @@ object RecordControl {
     /** Nach einem Prozessende (Prüf-Alarm): Dienst neu starten, er liest die gespeicherte Aufzeichnung. */
     fun resume(context: Context) = startService(context, RecordService.ACTION_RESUME)
 
-    /** Startet den Dienst im Vordergrund; `false`, wenn das System es verweigert (dann steht es im Protokoll). */
-    internal fun startService(context: Context, action: String): Boolean = try {
-        ContextCompat.startForegroundService(context, Intent(context, RecordService::class.java).setAction(action))
+    /**
+     * Startet den Dienst im Vordergrund ([extras] ergänzt den Auftrag); `false`, wenn das System es verweigert (dann steht
+     * es im Protokoll).
+     */
+    internal fun startService(context: Context, action: String, extras: (Intent) -> Unit = {}): Boolean = try {
+        ContextCompat.startForegroundService(context, Intent(context, RecordService::class.java).setAction(action).also(extras))
         true
     } catch (e: IllegalStateException) {
         // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
@@ -114,6 +175,7 @@ object RecordControl {
         val end = minOf(orphan.start.plus(orphan.duration), latest)
         app.recordings.finish(orphan.start, end, reason)
         app.recordings.get(orphan.start)?.let { app.recordSync.publishRecording(it) }
+        app.learnMark.clear(orphan.start)
         return true
     }
 
@@ -196,7 +258,10 @@ object RecordControl {
     }
 }
 
-/** Prüf-Alarm der Aufzeichnung und Start vom Handy (über einen exakten Alarm, siehe [RecordControl.fromPhone]). */
+/**
+ * Prüf-Alarm der Aufzeichnung, Start vom Handy (über einen exakten Alarm, siehe [RecordControl.fromPhone]) und Start der
+ * Lernphase ([RecordControl.startForLearning]).
+ */
 class RecordReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         // Vor dem Entsperren ist die Aufzeichnung nicht lesbar.
@@ -204,6 +269,9 @@ class RecordReceiver : BroadcastReceiver() {
         when (intent.action) {
             RecordControl.ACTION_CHECK -> if (RecordService.running) RecordControl.armCheck(context) else RecordControl.resume(context)
             RecordControl.ACTION_PHONE_START -> startFromPhone(context)
+            RecordControl.ACTION_LEARN_START -> RecordControl.startService(context, RecordService.ACTION_START_LEARN) {
+                it.putExtra(RecordService.EXTRA_UNTIL, intent.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
+            }
         }
     }
 

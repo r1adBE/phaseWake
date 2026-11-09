@@ -11,6 +11,7 @@ import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
@@ -56,6 +57,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
     // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
     if (record != null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
+    // Lernphase: geweckt, die automatische Aufzeichnung dieser Nacht endet (eine von Hand begonnene läuft weiter).
+    if (record != null) RecordControl.endLearning(this)
     if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
 
     // Prozessweiter Bereich. Der Dienst bleibt (Vordergrund), bis gespeichert und neu geplant ist:

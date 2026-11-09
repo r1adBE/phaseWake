@@ -541,4 +541,19 @@
     <string name="record_end_cap">Nach 12 Std. beendet</string>
     <string name="record_end_battery">Akku der Uhr schwach</string>
     <string name="record_end_interrupted">Unterbrochen</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Lernphase: Nacht %1$d von %2$d</string>
+    <string name="learn_text">Phase Wake misst %1$d Nächte mit deiner Uhr, um den Wecker an dich anzupassen. Trag sie nachts mit mindestens %2$d %% Akku.</string>
+    <string name="learned_title">Angepasst an dich</string>
+    <string name="learned_motion_default">Bewegung: Deine Uhr ist in Ruhe still – die Standard-Schwellen bleiben.</string>
+    <string name="learned_motion_raised">Bewegung: Schwellen an das Grundrauschen deiner Uhr angepasst.</string>
+    <string name="learned_pulse">Ruhepuls: %1$d pro Minute</string>
+    <string name="learned_pulse_none">Ruhepuls: zu wenige Messwerte</string>
+    <string name="learned_latency">Einschlafen: etwa %1$s</string>
+    <string name="learned_latency_none">Einschlafen: zu wenige Messwerte</string>
+    <string name="bedtime_advice">Geh heute zwischen %1$s und %2$s ins Bett</string>
+    <string name="bedtime_advice_hint">Aus Weckzeit, Schlafziel und deiner Einschlafdauer.</string>
+    <string name="learn_restart">Neu lernen</string>
+    <string name="learn_restart_text">Phase Wake misst wieder %1$d Nächte und vergisst die angepassten Werte.</string>
+    <string name="record_end_wake">Beim Wecken beendet</string>
 </resources>

@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 цагийн дараа дууссан</string>
     <string name="record_end_battery">Цагийн батерей сул байна</string>
     <string name="record_end_interrupted">Тасалдсан</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Суралцах үе: %2$d шөнийн %1$d дэх</string>
+    <string name="learn_text">Phase Wake сэрүүлгийг чамд тааруулахын тулд цагаар чинь %1$d шөнө хэмжинэ. Шөнө наад зах нь %2$d %% цэнэгтэй зүү.</string>
+    <string name="learned_title">Чамд тааруулсан</string>
+    <string name="learned_motion_default">Хөдөлгөөн: амрах үед цаг чинь чимээгүй – стандарт босго хэвээр.</string>
+    <string name="learned_motion_raised">Хөдөлгөөн: амрах үеийн цагны чинь шуугианаар босгыг өсгөсөн.</string>
+    <string name="learned_pulse">Тайван үеийн судасны цохилт: минутад %1$d</string>
+    <string name="learned_pulse_none">Тайван үеийн судасны цохилт: хэмжилт хэт цөөн</string>
+    <string name="learned_latency">Унтах: ойролцоогоор %1$s</string>
+    <string name="learned_latency_none">Унтах: хэмжилт хэт цөөн</string>
+    <string name="bedtime_advice">Өнөөдөр %1$s-%2$s хооронд хэвт</string>
+    <string name="bedtime_advice_hint">Сэрүүлэг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан.</string>
+    <string name="learn_restart">Дахин суралцах</string>
+    <string name="learn_restart_text">Phase Wake дахин %1$d шөнө хэмжиж, тааруулсан утгуудыг мартана.</string>
+    <string name="record_end_wake">Сэрээхэд дууссан</string>
 </resources>

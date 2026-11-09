@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.Wearable
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.PhaseWakeWear
@@ -16,8 +17,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Holt nach, was das Handy schon abgelegt hat, falls die Uhr eine Änderung verpasst hat (Prozess neu,
- * Neustart, Update): den neuesten Weckerstand, die Feiertage, das Schlafziel, den Schalter der Einschlaf-Messung und ein
- * «Verlauf löschen». Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt,
+ * Neustart, Update): den neuesten Weckerstand, die Feiertage, das Schlafziel, den Schalter der Einschlaf-Messung, die
+ * Lernphase und ein «Verlauf löschen». Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt,
  * die Uhr arbeitet dann allein weiter.
  */
 object PhoneCatchUp {
@@ -59,6 +60,15 @@ object PhoneCatchUp {
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Einschlaf-Messung nachholen fehlgeschlagen", e)
+        }
+        try {
+            // Lernphase: ändert keinen Plan, gilt ab der nächsten Messung.
+            app.learningSync.fetch()?.let { learning ->
+                if (app.learning.setIfNewer(learning)) app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
+            }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Lernphase nachholen fehlgeschlagen", e)
         }
         try {
             latestClear(app)?.let { applyClear(app, it) }

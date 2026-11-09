@@ -82,6 +82,20 @@ class RecordServiceTest {
         }
     }
 
+    /** Startet den Dienst mit [intent] und gibt ihn zurück (ohne zu warten). */
+    private fun launchWith(intent: Intent): RecordService {
+        val built = Robolectric.buildService(RecordService::class.java, intent)
+        controllers += built
+        return built.create().startCommand(0, 1).get()
+    }
+
+    /** Aufzeichnung der Lernphase bis [until] (eingestellte Weckzeit). */
+    private fun learning(until: Instant): RecordService {
+        val service = launchWith(intent(RecordService.ACTION_START_LEARN).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()))
+        awaitUntil("Aufzeichnung der Lernphase läuft") { service.active != null }
+        return service
+    }
+
     private fun recording(): RecordService {
         val service = launch(RecordService.ACTION_START)
         awaitUntil("Aufzeichnung läuft") { service.active != null }
@@ -233,5 +247,88 @@ class RecordServiceTest {
             "record stat epochs=3 empty=1 motion=0.0200/0.0300 floor=0.0200 hr=2 bat=40",
             RecordControl.statLine(listOf(Epoch(0.01, 60.0), Epoch(null, null), Epoch(0.03, 61.0)), all, 40),
         )
+    }
+
+    @Test
+    fun learningStartSkipsBelowHalfBatteryAndWhileRecording() {
+        battery(42)
+        assertFalse(RecordControl.startForLearning(context, Instant.now().plus(Duration.ofHours(8))))
+        assertTrue(alarms.scheduledAlarms.isEmpty())
+        assertEquals("battery 42%", RecordControl.learnSkipReason(recording = false, battery = 42))
+        assertEquals("recording runs", RecordControl.learnSkipReason(recording = true, battery = 80))
+        assertNull(RecordControl.learnSkipReason(recording = false, battery = null), "unbekannter Akku hindert nicht")
+        assertNull(RecordControl.learnSkipReason(recording = false, battery = 50))
+        battery(80)
+        val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
+        assertTrue(RecordControl.startForLearning(context, until))
+        // Wie vom Handy: ein exakter Alarm gleich jetzt startet den Messdienst mit der Weckzeit.
+        val alarm = alarms.scheduledAlarms.single()
+        assertTrue(alarm.triggerAtMs <= System.currentTimeMillis() + 2_000)
+        val shadowApp = shadowOf(RuntimeEnvironment.getApplication())
+        shadowApp.clearStartedServices()
+        RecordReceiver().onReceive(
+            context,
+            Intent(context, RecordReceiver::class.java).setAction(RecordControl.ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
+        )
+        val started = assertNotNull(shadowApp.nextStartedService)
+        assertEquals(RecordService.ACTION_START_LEARN, started.action)
+        assertEquals(until.toEpochMilli(), started.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
+    }
+
+    @Test
+    fun learningRecordingEndsAtWakeAManualOneDoesNot() {
+        val manual = recording()
+        manual.onStartCommand(intent(RecordService.ACTION_END_LEARN), 0, 2)
+        shadowOf(Looper.getMainLooper()).idle()
+        assertNotNull(manual.active, "von Hand begonnen: läuft weiter")
+        manual.onStartCommand(intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code), 0, 3)
+        awaitFinished(RecordEnd.WATCH)
+        File(context.filesDir, "recordings").deleteRecursively()
+
+        val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
+        val service = learning(until)
+        val start = assertNotNull(service.active).start
+        assertEquals(until, service.active?.learnUntil)
+        awaitUntil("Marke gespeichert") { runBlocking { app.learnMark.get() } == LearnMark(start, until) }
+        service.onEpochs(listOf(Epoch(0.02, 55.0)))
+        service.onStartCommand(intent(RecordService.ACTION_END_LEARN), 0, 2)
+        val done = awaitFinished(RecordEnd.WAKE)
+        assertEquals(listOf(Epoch(0.02, 55.0)), done.epochs)
+        awaitUntil("Marke gelöscht") { runBlocking { app.learnMark.get() } == null }
+    }
+
+    @Test
+    fun learningRecordingEndsAtTheAlarmTimeWithoutRing() {
+        val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
+        val service = learning(until)
+        RecordService.clock = { until.minusSeconds(60) }
+        service.onTick()
+        assertNotNull(service.active, "vor der Weckzeit")
+        RecordService.clock = { until.plusSeconds(1) }
+        service.onTick()
+        awaitFinished(RecordEnd.WAKE)
+        assertTrue(RecordControl.endsAtTarget(until, until, nightRunning = false))
+        assertFalse(RecordControl.endsAtTarget(until, until, nightRunning = true), "klingelt noch: endet mit dem Wecken")
+        assertFalse(RecordControl.endsAtTarget(until.minusMillis(1), until, nightRunning = false))
+        assertEquals("wake", RecordService.reasonText(RecordEnd.WAKE, null))
+    }
+
+    @Test
+    fun wokenWithoutRunningServiceFinishesOnlyTheLearningRecording() {
+        val start = Instant.ofEpochMilli(System.currentTimeMillis()).minus(Duration.ofMinutes(3))
+        runBlocking {
+            app.recordings.begin(start)
+            app.recordings.append(start, List(4) { Epoch(0.02, 58.0) })
+            app.learnMark.set(LearnMark(start.minusSeconds(600), start.plus(Duration.ofHours(8))))
+        }
+        assertFalse(RecordService.running)
+        // Marke einer anderen Aufzeichnung: diese bleibt.
+        RecordControl.endLearning(context)
+        awaitUntil("Marke gelöscht") { runBlocking { app.learnMark.get() } == null }
+        assertNotNull(active())
+        runBlocking { app.learnMark.set(LearnMark(start, start.plus(Duration.ofHours(8)))) }
+        RecordControl.endLearning(context)
+        val done = awaitFinished(RecordEnd.WAKE)
+        assertEquals(start.plusSeconds(4 * 30L), done.end)
     }
 }

@@ -160,6 +160,16 @@ object DataLayer {
      */
     const val PATH_RECORDING_PREFIX = "/phasewake/recording/"
 
+    /**
+     * Datenpaket Handy → Uhr: Lernphase ([LearningSnapshot]): läuft sie ([KEY_LEARN_ACTIVE], dann zeichnet die Uhr nachts
+     * automatisch auf) und die gelernten Werte für den Detektor ([KEY_LEARN_FLOOR], [KEY_LEARN_RESTING_HR], fehlen ohne
+     * Wert), mit [KEY_UPDATED_AT]. Ohne Paket gilt auf der Uhr: keine Lernphase, keine gelernten Werte.
+     */
+    const val PATH_LEARNING = "/phasewake/learning"
+    const val KEY_LEARN_ACTIVE = "learnActive"
+    const val KEY_LEARN_FLOOR = "learnFloor"
+    const val KEY_LEARN_RESTING_HR = "learnRestingHr"
+
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"
 

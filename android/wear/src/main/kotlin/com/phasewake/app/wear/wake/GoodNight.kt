@@ -8,6 +8,8 @@ import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.wear.record.RecordControl
+import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.AutoOnset
 import com.phasewake.app.wear.schedule.DirectBoot
@@ -17,6 +19,7 @@ import com.phasewake.app.wear.wake.WakeService.Companion.goodNightActive
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 // «Gute Nacht» (Einschlaf-Modus) des Weckdienstes: auf das Einschlafen warten, dann die Zielzeit festlegen.
@@ -115,7 +118,11 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
             if (stillWanted()) endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
             return@launch
         }
-        val threshold = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())).lightThreshold
+        // Gelernte Werte der Lernphase: eigenes Grundrauschen, solange die Messung noch keines hat.
+        val learning = app.learning.current()
+        val config = learning.applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
+        // Beginn der Einschlafdauer für die Lernphase (Schlafenszeit-Empfehlung am Handy).
+        val bedAt = OnsetRules.bedAt(since, automatic, latest, spec.sleepDurationMinutes ?: app.sleepGoal.minutes.first())
         if (!stillWanted()) return@launch
         app.diag.log(DiagKind.MEASURE_START, "$label start, alarm at $latest${if (resumed != null) ", resumed" else ""}")
         onsetNight = alarmId to latest
@@ -125,15 +132,18 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         // Verlängerung bei spätem Einschlafen: höchstens 4 Std. ab dem Beginn, nie über den Beginn des Weckfensters.
         val extendCap = plan?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it.windowStart) }
         val monitor = OnsetMonitor(
-            this@startGoodNight, threshold, latestGiveUp, maxEnd, label, app.diag::log, onGiveUp = { stopGoodNight() },
-            extendCap = extendCap,
+            this@startGoodNight, config.lightThreshold, latestGiveUp, maxEnd, label, app.diag::log, onGiveUp = { stopGoodNight() },
+            extendCap = extendCap, personalFloor = config.personalFloor,
         ) { asleep ->
             app.diag.log(DiagKind.PHASE, "$label asleep $asleep")
-            onAsleep(spec, latest, asleep)
+            onAsleep(spec, latest, asleep, bedAt)
         }
         onset = monitor
         monitor.start()
         goodNightPending = false
+        // Lernphase: Die Uhr zeichnet ab jetzt die Nacht auf (nicht beim Wiederaufnehmen: dort läuft sie schon oder wurde
+        // von Hand gestoppt).
+        if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
         // Zusätzlich, solange die Uhr wach ist: Dann gilt die eingestellte Weckzeit.
         handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), monitor.giveUpAt).toMillis().coerceAtLeast(0))
     }
@@ -155,12 +165,13 @@ internal fun WakeService.onOnsetTimeout() {
 }
 
 /**
- * Eingeschlafen um [asleep] (Wecker [spec], eingestellte Weckzeit [latest]): Einschlafzeit merken. Mit Schlafdauer gilt
+ * Eingeschlafen um [asleep] (Wecker [spec], eingestellte Weckzeit [latest]): Einschlafzeit merken, mit dem Beginn der
+ * Einschlafdauer [bedAt] auch in einer laufenden Aufzeichnung (Lernphase). Mit Schlafdauer gilt
  * Einschlafzeit + Schlafdauer als Ausnahme für diese Nacht, auch für den Zweitwecker am Handy ([OnsetShift]; ohne
  * frühere Zielzeit hebt die Meldung dort eine frühere auf).
  * «Gute Nacht» endet, neu planen. Intern statt privat, damit WakeServiceTest das Einschlafen ohne Sensoren auslöst.
  */
-internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Instant) {
+internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Instant, bedAt: Instant? = null) {
     val duration = spec.sleepDurationMinutes
     val plan = duration?.let { AlarmSchedule.planAt(spec, AlarmSchedule.sleepTarget(asleep, it, latest)) }
     // Ohne Uhrzeiten: Schlafdaten gehören nicht ins Systemprotokoll (logcat), nur ins eigene Diagnose-Protokoll.
@@ -170,6 +181,11 @@ internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Inst
     onsetNight = null
     goodNightActive = false
     forgetGoodNight()
+    // Lernphase: Einschlafdauer in der laufenden Aufzeichnung (auch einer von Hand begonnenen) festhalten. Eigene Arbeit:
+    // Ein Fehler dabei hält das Festlegen der Zielzeit unten nicht auf.
+    if (bedAt != null) {
+        app.appScope.launch { (RecordService.since.value ?: app.recordings.active()?.start)?.let { app.recordings.appendOnset(it, bedAt, asleep) } }
+    }
     app.appScope.launch {
         app.onsets.set(spec.id, latest, asleep)
         if (plan != null) app.onsetOverride.set(plan)

@@ -527,4 +527,19 @@
     <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
     <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>
     <string name="record_end_interrupted">ถูกขัดจังหวะ</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ช่วงเรียนรู้: คืนที่ %1$d จาก %2$d</string>
+    <string name="learn_text">Phase Wake วัดด้วยนาฬิกาของคุณ %1$d คืน เพื่อปรับนาฬิกาปลุกให้เข้ากับคุณ สวมตอนกลางคืนโดยมีแบตเตอรี่อย่างน้อย %2$d %%</string>
+    <string name="learned_title">ปรับให้เข้ากับคุณแล้ว</string>
+    <string name="learned_motion_default">การเคลื่อนไหว: นาฬิกาของคุณเงียบขณะพัก – ใช้เกณฑ์มาตรฐานเหมือนเดิม</string>
+    <string name="learned_motion_raised">การเคลื่อนไหว: ปรับเกณฑ์สูงขึ้นตามสัญญาณรบกวนของนาฬิกาขณะพัก</string>
+    <string name="learned_pulse">ชีพจรขณะพัก: %1$d ครั้งต่อนาที</string>
+    <string name="learned_pulse_none">ชีพจรขณะพัก: ค่าที่วัดได้น้อยเกินไป</string>
+    <string name="learned_latency">การหลับ: ประมาณ %1$s</string>
+    <string name="learned_latency_none">การหลับ: ค่าที่วัดได้น้อยเกินไป</string>
+    <string name="bedtime_advice">คืนนี้เข้านอนระหว่าง %1$s ถึง %2$s</string>
+    <string name="bedtime_advice_hint">คำนวณจากนาฬิกาปลุก เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ</string>
+    <string name="learn_restart">เรียนรู้ใหม่</string>
+    <string name="learn_restart_text">Phase Wake จะวัดอีก %1$d คืน และลืมค่าที่ปรับไว้</string>
+    <string name="record_end_wake">สิ้นสุดเมื่อปลุก</string>
 </resources>

@@ -544,4 +544,19 @@
     <string name="record_end_cap">Lõppes 12 h pärast</string>
     <string name="record_end_battery">Kella aku on tühjenemas</string>
     <string name="record_end_interrupted">Katkestatud</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Õppefaas: öö %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake mõõdab %1$d ööd sinu kellaga, et äratus sulle sobiks. Kanna seda öösel vähemalt %2$d %% akuga.</string>
+    <string name="learned_title">Sinu järgi kohandatud</string>
+    <string name="learned_motion_default">Liikumine: su kell on puhkeolekus vaikne – tavalised lävendid jäävad.</string>
+    <string name="learned_motion_raised">Liikumine: lävendeid tõsteti su kella puhkeoleku müra järgi.</string>
+    <string name="learned_pulse">Puhkepulss: %1$d minutis</string>
+    <string name="learned_pulse_none">Puhkepulss: liiga vähe mõõtmisi</string>
+    <string name="learned_latency">Uinumine: umbes %1$s</string>
+    <string name="learned_latency_none">Uinumine: liiga vähe mõõtmisi</string>
+    <string name="bedtime_advice">Mine täna magama vahemikus %1$s kuni %2$s</string>
+    <string name="bedtime_advice_hint">Äratuse, unesihi ja uinumiseks kuluva aja põhjal.</string>
+    <string name="learn_restart">Õpi uuesti</string>
+    <string name="learn_restart_text">Phase Wake mõõdab uuesti %1$d ööd ja unustab kohandatud väärtused.</string>
+    <string name="record_end_wake">Lõpetatud äratusel</string>
 </resources>

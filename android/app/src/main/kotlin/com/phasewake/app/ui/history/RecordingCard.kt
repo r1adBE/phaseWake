@@ -30,6 +30,7 @@ fun recordEndRes(reason: RecordEnd?): Int = when (reason) {
     RecordEnd.CAP -> R.string.record_end_cap
     RecordEnd.BATTERY -> R.string.record_end_battery
     RecordEnd.SERVICE, null -> R.string.record_end_interrupted
+    RecordEnd.WAKE -> R.string.record_end_wake
 }
 
 /** «7 h 12 min · Gestoppt» */

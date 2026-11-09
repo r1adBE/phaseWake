@@ -7,6 +7,8 @@ struct NightFixture {
     let expectedIndex: Int?
     let expectedReason: WakeReason?
     let epochs: [Epoch]
+    /// Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase), falls angegeben.
+    let config: DetectorConfig
 }
 
 /// Liest die gemeinsamen Testnächte (Format siehe `docs/PHASENERKENNUNG.md`, Abschnitt 5).
@@ -36,6 +38,8 @@ enum NightFixtures {
         var expectedReason: WakeReason?
         var expectSeen = false
         var headerSeen = false
+        var personalFloor: Double?
+        var restingHeartRate: Double?
         var epochs: [Epoch] = []
 
         let lines = try String(contentsOf: file, encoding: .utf8).components(separatedBy: .newlines)
@@ -55,6 +59,14 @@ enum NightFixtures {
                 expectSeen = true
                 continue
             }
+            if line.hasPrefix("@floor") || line.hasPrefix("@resting") {
+                let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
+                guard parts.count == 2, let value = Double(parts[1]) else {
+                    throw FormatError(description: "\(position): ungültige Angabe \(parts.first ?? "")")
+                }
+                if parts[0] == "@floor" { personalFloor = value } else { restingHeartRate = value }
+                continue
+            }
             if !headerSeen {
                 guard line == "motion,hr" else { throw FormatError(description: "\(position): Kopfzeile 'motion,hr' erwartet") }
                 headerSeen = true
@@ -65,7 +77,10 @@ enum NightFixtures {
             epochs.append(Epoch(motion: try number(fields[0], position), heartRate: try number(fields[1], position)))
         }
         guard expectSeen else { throw FormatError(description: "\(file.lastPathComponent): @expect fehlt") }
-        return NightFixture(name: name, expectedIndex: expectedIndex, expectedReason: expectedReason, epochs: epochs)
+        let config = try DetectorConfig(personalFloor: personalFloor, restingHeartRate: restingHeartRate)
+        return NightFixture(
+            name: name, expectedIndex: expectedIndex, expectedReason: expectedReason, epochs: epochs, config: config
+        )
     }
 
     private static func number(_ field: String, _ position: String) throws -> Double? {

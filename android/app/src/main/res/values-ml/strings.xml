@@ -543,4 +543,19 @@
     <string name="record_end_cap">12 മണിക്കൂറിന് ശേഷം അവസാനിച്ചു</string>
     <string name="record_end_battery">വാച്ചിന്റെ ബാറ്ററി കുറവാണ്</string>
     <string name="record_end_interrupted">തടസ്സപ്പെട്ടു</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">പഠന ഘട്ടം: രാത്രി %1$d / %2$d</string>
+    <string name="learn_text">നിനക്ക് ചേരും വിധം അലാറം ക്രമീകരിക്കാൻ Phase Wake നിന്റെ വാച്ച് ഉപയോഗിച്ച് %1$d രാത്രി അളക്കുന്നു. രാത്രി കുറഞ്ഞത് %2$d %% ബാറ്ററിയോടെ ധരിക്കൂ.</string>
+    <string name="learned_title">നിനക്കായി ക്രമീകരിച്ചു</string>
+    <string name="learned_motion_default">ചലനം: വിശ്രമത്തിൽ നിന്റെ വാച്ച് ശാന്തമാണ് – സാധാരണ പരിധികൾ തുടരും.</string>
+    <string name="learned_motion_raised">ചലനം: വിശ്രമത്തിലെ വാച്ചിന്റെ ശബ്ദമനുസരിച്ച് പരിധികൾ ഉയർത്തി.</string>
+    <string name="learned_pulse">വിശ്രമ നാഡി: മിനിറ്റിൽ %1$d</string>
+    <string name="learned_pulse_none">വിശ്രമ നാഡി: അളവുകൾ വളരെ കുറവ്</string>
+    <string name="learned_latency">ഉറങ്ങിപ്പോകൽ: ഏകദേശം %1$s</string>
+    <string name="learned_latency_none">ഉറങ്ങിപ്പോകൽ: അളവുകൾ വളരെ കുറവ്</string>
+    <string name="bedtime_advice">ഇന്ന് %1$s നും %2$s നും ഇടയിൽ ഉറങ്ങാൻ കിടക്കൂ</string>
+    <string name="bedtime_advice_hint">നിന്റെ അലാറം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്.</string>
+    <string name="learn_restart">വീണ്ടും പഠിക്കുക</string>
+    <string name="learn_restart_text">Phase Wake വീണ്ടും %1$d രാത്രി അളക്കും, ക്രമീകരിച്ച മൂല്യങ്ങൾ മറക്കും.</string>
+    <string name="record_end_wake">ഉണർത്തുമ്പോൾ അവസാനിച്ചു</string>
 </resources>

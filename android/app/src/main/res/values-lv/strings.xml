@@ -558,4 +558,19 @@
     <string name="record_end_cap">Beidzās pēc 12 h</string>
     <string name="record_end_battery">Pulksteņa akumulators izlādējas</string>
     <string name="record_end_interrupted">Pārtraukts</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Mācīšanās posms: %1$d. nakts no %2$d</string>
+    <string name="learn_text">%1$d naktis Phase Wake mēra ar tavu pulksteni, lai pielāgotu modinātāju tev. Valkā to naktī ar vismaz %2$d %% akumulatora.</string>
+    <string name="learned_title">Pielāgots tev</string>
+    <string name="learned_motion_default">Kustība: miera stāvoklī tavs pulkstenis ir kluss – paliek standarta sliekšņi.</string>
+    <string name="learned_motion_raised">Kustība: sliekšņi paaugstināti atbilstoši tava pulksteņa troksnim miera stāvoklī.</string>
+    <string name="learned_pulse">Miera pulss: %1$d minūtē</string>
+    <string name="learned_pulse_none">Miera pulss: pārāk maz mērījumu</string>
+    <string name="learned_latency">Iemigšana: aptuveni %1$s</string>
+    <string name="learned_latency_none">Iemigšana: pārāk maz mērījumu</string>
+    <string name="bedtime_advice">Šovakar ej gulēt no %1$s līdz %2$s</string>
+    <string name="bedtime_advice_hint">Pēc modinātāja, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu.</string>
+    <string name="learn_restart">Mācīties no jauna</string>
+    <string name="learn_restart_text">Phase Wake atkal mērīs %1$d naktis un aizmirsīs pielāgotās vērtības.</string>
+    <string name="record_end_wake">Beigts pamošanās brīdī</string>
 </resources>

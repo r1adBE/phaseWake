@@ -555,4 +555,19 @@
     <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
     <string name="record_end_battery">הסוללה של השעון חלשה</string>
     <string name="record_end_interrupted">נקטעה</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">שלב למידה: לילה %1$d מתוך %2$d</string>
+    <string name="learn_text">במשך %1$d לילות Phase Wake מודד עם השעון שלך כדי להתאים לך את ההשכמה. ענוד אותו בלילה עם לפחות %2$d %% סוללה.</string>
+    <string name="learned_title">מותאם לך</string>
+    <string name="learned_motion_default">תנועה: השעון שלך שקט במנוחה – הספים הרגילים נשארים.</string>
+    <string name="learned_motion_raised">תנועה: הספים הועלו לפי הרעש של השעון שלך במנוחה.</string>
+    <string name="learned_pulse">דופק במנוחה: %1$d לדקה</string>
+    <string name="learned_pulse_none">דופק במנוחה: מעט מדי מדידות</string>
+    <string name="learned_latency">הירדמות: בערך %1$s</string>
+    <string name="learned_latency_none">הירדמות: מעט מדי מדידות</string>
+    <string name="bedtime_advice">לך לישון הלילה בין %1$s ל-%2$s</string>
+    <string name="bedtime_advice_hint">לפי ההשכמה, יעד השינה והזמן שלוקח לך להירדם.</string>
+    <string name="learn_restart">ללמוד מחדש</string>
+    <string name="learn_restart_text">Phase Wake ימדוד שוב %1$d לילות וישכח את הערכים המותאמים.</string>
+    <string name="record_end_wake">הסתיימה בהשכמה</string>
 </resources>

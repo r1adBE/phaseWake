@@ -13,7 +13,7 @@ class SharedNightsTest {
         assertTrue(nights.size >= 9, "Testnächte nicht gefunden in ${NightFixtures.directory().absolutePath}")
 
         for (night in nights) {
-            val detector = WakeDetector()
+            val detector = WakeDetector(night.config)
             var wakeIndex: Int? = null
             var wakeReason: WakeReason? = null
             for ((index, epoch) in night.epochs.withIndex()) {
@@ -27,5 +27,17 @@ class SharedNightsTest {
             assertEquals(night.expectedIndex, wakeIndex, "${night.name}: Weck-Epoche")
             assertEquals(night.expectedReason, wakeReason, "${night.name}: Grund")
         }
+    }
+
+    @Test
+    fun learnedNightsDependOnTheLearnedValues() {
+        // Ohne gelernte Werte entscheiden die Lernphasen-Nächte anders: Das zeigt, dass die Angaben wirken.
+        val byName = NightFixtures.all().associateBy { it.name }
+        fun firstWake(night: NightFixture): Int? {
+            val detector = WakeDetector()
+            return night.epochs.indexOfFirst { detector.onEpoch(it) is Decision.Wake }.takeIf { it >= 0 }
+        }
+        assertEquals(5, firstWake(byName.getValue("learned_floor_sensor_start")))
+        assertEquals(null, firstWake(byName.getValue("learned_resting_hr")))
     }
 }

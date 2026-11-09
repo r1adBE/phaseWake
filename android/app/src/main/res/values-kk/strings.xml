@@ -529,4 +529,19 @@
     <string name="record_end_cap">12 сағаттан кейін аяқталды</string>
     <string name="record_end_battery">Сағат батареясы әлсіз</string>
     <string name="record_end_interrupted">Үзілді</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Үйрену кезеңі: %2$d түннің %1$d-сі</string>
+    <string name="learn_text">Phase Wake оятқышты саған бейімдеу үшін сағатыңмен %1$d түн өлшейді. Түнде кемінде %2$d %% батареямен тағып жүр.</string>
+    <string name="learned_title">Саған бейімделді</string>
+    <string name="learned_motion_default">Қозғалыс: тыныштықта сағатың тыныш – стандартты шектер қалады.</string>
+    <string name="learned_motion_raised">Қозғалыс: шектер сағатыңның тыныштықтағы шуына қарай көтерілді.</string>
+    <string name="learned_pulse">Тыныштық пульсі: минутына %1$d</string>
+    <string name="learned_pulse_none">Тыныштық пульсі: өлшем тым аз</string>
+    <string name="learned_latency">Ұйықтап кету: шамамен %1$s</string>
+    <string name="learned_latency_none">Ұйықтап кету: өлшем тым аз</string>
+    <string name="bedtime_advice">Бүгін %1$s мен %2$s аралығында жат</string>
+    <string name="bedtime_advice_hint">Оятқышыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай.</string>
+    <string name="learn_restart">Қайта үйрену</string>
+    <string name="learn_restart_text">Phase Wake қайтадан %1$d түн өлшеп, бейімделген мәндерді ұмытады.</string>
+    <string name="record_end_wake">Оятқанда аяқталды</string>
 </resources>

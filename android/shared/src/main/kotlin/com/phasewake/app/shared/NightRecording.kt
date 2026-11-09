@@ -2,6 +2,7 @@ package com.phasewake.app.shared
 
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.Learning
 import java.time.Duration
 import java.time.Instant
 import java.util.Locale
@@ -25,6 +26,9 @@ enum class RecordEnd(val code: String) {
 
     /** Messdienst beendet (vom System, oder nach einem Prozessende nicht wieder aufgenommen). */
     SERVICE("service"),
+
+    /** Lernphase: beim Wecken beendet (Klingeln beendet, ohne Klingeln zur eingestellten Weckzeit). */
+    WAKE("wake"),
     ;
 
     companion object {
@@ -35,14 +39,20 @@ enum class RecordEnd(val code: String) {
 /**
  * Eine aufgezeichnete Nacht («Nacht aufzeichnen» auf der Galaxy Watch): ab [start] je 30-s-Epoche Bewegung und Puls.
  * Epoche `i` deckt `start + i · 30 s` ab; Lücken (z. B. nach einem Prozessende) sind leere Epochen. [end] und
- * [endReason] fehlen, solange sie läuft. Datensammlung für spätere eigene Schwellen; der Detektor nutzt sie (noch) nicht.
+ * [endReason] fehlen, solange sie läuft. Grundlage der Lernphase ([toLearnNight]); hat die Einschlaf-Messung während der
+ * Aufzeichnung das Einschlafen erkannt, stehen Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt] dabei.
  */
 data class NightRecording(
     val start: Instant,
     val epochs: List<Epoch>,
     val end: Instant? = null,
     val endReason: RecordEnd? = null,
+    val bedAt: Instant? = null,
+    val asleepAt: Instant? = null,
 ) {
+    /** Für die Lernphase ([com.phasewake.app.core.Learning]). */
+    fun toLearnNight(): Learning.Night = Learning.Night(start, epochs, bedAt, asleepAt)
+
     /** Abgeschlossen (Ende gespeichert)? */
     val finished: Boolean get() = end != null
 
@@ -68,6 +78,7 @@ data class NightRecording(
         const val HEADER = "phasewake-recording 1"
         private const val START = "start="
         private const val END = "end="
+        private const val ONSET = "onset="
 
         /**
          * Grund für ein Ende jetzt ([now], Akku [battery] in Prozent, `null` = unbekannt), sonst `null`: [RecordEnd.CAP] ab
@@ -97,10 +108,19 @@ data class NightRecording(
         /** Schlusszeile «end=ms,grund». */
         fun endLine(end: Instant, reason: RecordEnd): String = "$END${end.toEpochMilli()},${reason.code}\n"
 
+        /**
+         * Zeile «onset=bettMs,eingeschlafenMs» (Lernphase); darf zwischen den Epochen stehen und zählt nicht als Epoche.
+         * Ältere Versionen überspringen sie als unlesbare Epochen-Zeile.
+         */
+        fun onsetLine(bedAt: Instant, asleepAt: Instant): String = "$ONSET${bedAt.toEpochMilli()},${asleepAt.toEpochMilli()}\n"
+
         /** Ganze Aufzeichnung als Text (Datei am Handy, Paket an das Handy). */
         fun encode(recording: NightRecording): String = buildString {
             append(header(recording.start))
             append(epochLines(recording.epochs))
+            val bed = recording.bedAt
+            val asleep = recording.asleepAt
+            if (bed != null && asleep != null) append(onsetLine(bed, asleep))
             val end = recording.end
             if (end != null) append(endLine(end, recording.endReason ?: RecordEnd.SERVICE))
         }
@@ -117,7 +137,20 @@ data class NightRecording(
             val epochs = ArrayList<Epoch>()
             var end: Instant? = null
             var reason: RecordEnd? = null
+            var bed: Instant? = null
+            var asleep: Instant? = null
             for (line in lines.drop(2)) {
+                if (line.startsWith(ONSET)) {
+                    // Die jüngste Zeile gilt (ein zweites Einschlafen in derselben Aufzeichnung ersetzt das erste).
+                    val f = line.removePrefix(ONSET).split(',')
+                    val b = f[0].toLongOrNull()
+                    val a = f.getOrNull(1)?.toLongOrNull()
+                    if (b != null && a != null) {
+                        bed = Instant.ofEpochMilli(b)
+                        asleep = Instant.ofEpochMilli(a)
+                    }
+                    continue
+                }
                 if (line.startsWith(END)) {
                     val f = line.removePrefix(END).split(',')
                     end = f[0].toLongOrNull()?.let(Instant::ofEpochMilli) ?: continue
@@ -126,7 +159,7 @@ data class NightRecording(
                 }
                 epochOf(line)?.let(epochs::add)
             }
-            return NightRecording(Instant.ofEpochMilli(start), epochs, end, reason)
+            return NightRecording(Instant.ofEpochMilli(start), epochs, end, reason, bed, asleep)
         }
 
         private fun epochOf(line: String): Epoch? {

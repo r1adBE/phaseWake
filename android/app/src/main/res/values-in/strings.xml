@@ -527,4 +527,19 @@
     <string name="record_end_cap">Berakhir setelah 12 jam</string>
     <string name="record_end_battery">Baterai jam lemah</string>
     <string name="record_end_interrupted">Terputus</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fase belajar: malam %1$d dari %2$d</string>
+    <string name="learn_text">Selama %1$d malam, Phase Wake mengukur dengan jam tanganmu untuk menyesuaikan alarm denganmu. Pakai di malam hari dengan baterai minimal %2$d %%.</string>
+    <string name="learned_title">Disesuaikan untukmu</string>
+    <string name="learned_motion_default">Gerakan: jam tanganmu tenang saat istirahat – ambang standar tetap.</string>
+    <string name="learned_motion_raised">Gerakan: ambang dinaikkan sesuai derau jam tanganmu saat istirahat.</string>
+    <string name="learned_pulse">Denyut istirahat: %1$d per menit</string>
+    <string name="learned_pulse_none">Denyut istirahat: pengukuran terlalu sedikit</string>
+    <string name="learned_latency">Tertidur: sekitar %1$s</string>
+    <string name="learned_latency_none">Tertidur: pengukuran terlalu sedikit</string>
+    <string name="bedtime_advice">Tidurlah malam ini antara %1$s dan %2$s</string>
+    <string name="bedtime_advice_hint">Berdasarkan alarm, target tidur, dan berapa lama kamu biasanya tertidur.</string>
+    <string name="learn_restart">Belajar lagi</string>
+    <string name="learn_restart_text">Phase Wake mengukur lagi %1$d malam dan melupakan nilai yang disesuaikan.</string>
+    <string name="record_end_wake">Berakhir saat bangun</string>
 </resources>

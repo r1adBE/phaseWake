@@ -12,6 +12,8 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.LearningStore
+import com.phasewake.app.shared.LearningSync
 import com.phasewake.app.shared.AutoOnsetStore
 import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
@@ -21,6 +23,7 @@ import com.phasewake.app.shared.RecordingRepository
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
+import com.phasewake.app.wear.record.LearnMarkStore
 import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
@@ -84,6 +87,15 @@ open class PhaseWakeWear : Application() {
 
     /** Probewecker oder Powernap, der gerade gilt. */
     val transient by lazy { TransientStore(phaseWakeStore) }
+
+    /** Lernphase vom Handy: automatische Aufzeichnung und gelernte Werte; ohne Handy keine. */
+    val learning by lazy { LearningStore(phaseWakeStore) }
+
+    /** Lernphase vom Handy nachholen ([com.phasewake.app.wear.sync.PhoneCatchUp]). */
+    val learningSync by lazy { LearningSync(this) }
+
+    /** Welche Aufzeichnung die Lernphase begann und bis wann sie läuft. */
+    val learnMark by lazy { LearnMarkStore(phaseWakeStore) }
 
     /** Weckart zu einer Kennung: gespeicherter Wecker oder vorübergehender Plan. */
     suspend fun specFor(alarmId: String?): AlarmSpec? =

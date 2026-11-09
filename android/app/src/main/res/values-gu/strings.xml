@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 કલાક પછી સમાપ્ત</string>
     <string name="record_end_battery">ઘડિયાળની બેટરી ઓછી છે</string>
     <string name="record_end_interrupted">અટક્યું</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">શીખવાનો તબક્કો: રાત %1$d માંથી %2$d</string>
+    <string name="learn_text">Phase Wake તારા માટે અલાર્મ અનુકૂળ કરવા તારી ઘડિયાળથી %1$d રાત માપે છે. રાત્રે ઓછામાં ઓછી %2$d %% બેટરી સાથે પહેરજે.</string>
+    <string name="learned_title">તારા માટે અનુકૂળ કર્યું</string>
+    <string name="learned_motion_default">હલનચલન: આરામમાં તારી ઘડિયાળ શાંત છે – માનક મર્યાદાઓ રહે છે.</string>
+    <string name="learned_motion_raised">હલનચલન: આરામમાં તારી ઘડિયાળના અવાજ પ્રમાણે મર્યાદાઓ વધારી.</string>
+    <string name="learned_pulse">આરામની નાડી: મિનિટે %1$d</string>
+    <string name="learned_pulse_none">આરામની નાડી: માપ બહુ ઓછા</string>
+    <string name="learned_latency">ઊંઘ આવવી: લગભગ %1$s</string>
+    <string name="learned_latency_none">ઊંઘ આવવી: માપ બહુ ઓછા</string>
+    <string name="bedtime_advice">આજે %1$s અને %2$s વચ્ચે સૂઈ જજે</string>
+    <string name="bedtime_advice_hint">તારા અલાર્મ, ઊંઘના લક્ષ્ય અને ઊંઘ આવતાં લાગતા સમય પરથી.</string>
+    <string name="learn_restart">ફરી શીખો</string>
+    <string name="learn_restart_text">Phase Wake ફરી %1$d રાત માપશે અને અનુકૂળ કરેલાં મૂલ્યો ભૂલી જશે.</string>
+    <string name="record_end_wake">જગાડતી વખતે પૂરું</string>
 </resources>

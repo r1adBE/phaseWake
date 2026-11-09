@@ -34,7 +34,8 @@ import java.time.Instant
  * Zeile ins Diagnose-Protokoll ([OnsetRules.statLine]); das Ende der Messung steht immer im Protokoll ([stop]).
  *
  * Ruhig heisst unter der wirksamen Leicht-Schwelle: [threshold], angehoben nach dem Grundrauschen der bisher gemessenen
- * Epochen ([NoiseFloor]); bei jeder neuen Epoche neu berechnet und auf die ganze Strecke angewendet.
+ * Epochen ([NoiseFloor]; solange es zu wenige sind, das gelernte [personalFloor]); bei jeder neuen Epoche neu berechnet
+ * und auf die ganze Strecke angewendet.
  *
  * Spätes Einschlafen (Befund 09.11.2026): Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
  * unruhig ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP] statt aufzugeben, bis höchstens
@@ -56,6 +57,8 @@ class OnsetMonitor(
     private val log: (DiagKind, String) -> Unit,
     private val onGiveUp: () -> Unit,
     private val extendCap: Instant? = null,
+    /** Gelerntes Grundrauschen der Lernphase ([com.phasewake.app.core.DetectorConfig.personalFloor]); `null` = keines. */
+    private val personalFloor: Double? = null,
     private val now: () -> Instant = Instant::now,
     private val onOnset: (Instant) -> Unit,
 ) {
@@ -145,7 +148,7 @@ class OnsetMonitor(
             measured += inSample
             if (inSample) period.add(epoch.motion)
         }
-        floor = NoiseFloor.floor(motions.filterIndexed { i, _ -> measured[i] })
+        floor = NoiseFloor.floor(motions.filterIndexed { i, _ -> measured[i] }, personalFloor)
         val quiet = NoiseFloor.light(threshold, floor)
         val index = if (s.continuous) SleepOnset.find(motions, quiet) else OnsetRules.find(motions, measured, quiet)
         if (index == null) return

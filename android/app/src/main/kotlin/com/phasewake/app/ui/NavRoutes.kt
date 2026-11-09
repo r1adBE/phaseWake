@@ -238,6 +238,8 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
                     app.recordings.clear()
                     app.recordSync.deleteRecordings()
                     app.sync.clearHistoryEverywhere()
+                    // Die Lernphase beruht auf den Aufzeichnungen: von vorn.
+                    app.restartLearning()
                 }
             }
         },

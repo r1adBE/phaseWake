@@ -541,4 +541,19 @@
     <string name="record_end_cap">12 óra után véget ért</string>
     <string name="record_end_battery">Az óra akkumulátora gyenge</string>
     <string name="record_end_interrupted">Megszakadt</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Tanulási szakasz: %1$d. éjszaka / %2$d</string>
+    <string name="learn_text">A Phase Wake %1$d éjszakán át mér az órádon, hogy az ébresztőt hozzád igazítsa. Viseld éjjel legalább %2$d %% töltöttséggel.</string>
+    <string name="learned_title">Hozzád igazítva</string>
+    <string name="learned_motion_default">Mozgás: az órád nyugalomban csendes – a szokásos küszöbök maradnak.</string>
+    <string name="learned_motion_raised">Mozgás: a küszöböket az órád nyugalmi zajához emeltük.</string>
+    <string name="learned_pulse">Nyugalmi pulzus: %1$d percenként</string>
+    <string name="learned_pulse_none">Nyugalmi pulzus: túl kevés mérés</string>
+    <string name="learned_latency">Elalvás: kb. %1$s</string>
+    <string name="learned_latency_none">Elalvás: túl kevés mérés</string>
+    <string name="bedtime_advice">Feküdj le ma %1$s és %2$s között</string>
+    <string name="bedtime_advice_hint">Az ébresztőd, az alváscélod és az elalvási időd alapján.</string>
+    <string name="learn_restart">Tanulás újra</string>
+    <string name="learn_restart_text">A Phase Wake újra %1$d éjszakát mér, és elfelejti az igazított értékeket.</string>
+    <string name="record_end_wake">Ébresztéskor befejezve</string>
 </resources>

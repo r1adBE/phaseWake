@@ -529,4 +529,19 @@
     <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
     <string name="record_end_battery">საათის ბატარეა დაბალია</string>
     <string name="record_end_interrupted">შეწყვეტილია</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">სწავლის ფაზა: ღამე %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake შენი საათით %1$d ღამეს ზომავს, რომ მაღვიძარა შენზე მოარგოს. ღამით ატარე მინიმუმ %2$d %% ბატარეით.</string>
+    <string name="learned_title">შენზე მორგებულია</string>
+    <string name="learned_motion_default">მოძრაობა: მოსვენებისას შენი საათი წყნარია – სტანდარტული ზღვრები რჩება.</string>
+    <string name="learned_motion_raised">მოძრაობა: ზღვრები გაიზარდა შენი საათის მოსვენებისას ხმაურის მიხედვით.</string>
+    <string name="learned_pulse">მოსვენების პულსი: წუთში %1$d</string>
+    <string name="learned_pulse_none">მოსვენების პულსი: გაზომვები ძალიან ცოტაა</string>
+    <string name="learned_latency">ჩაძინება: დაახლოებით %1$s</string>
+    <string name="learned_latency_none">ჩაძინება: გაზომვები ძალიან ცოტაა</string>
+    <string name="bedtime_advice">დღეს დაწექი %1$s-დან %2$s-მდე</string>
+    <string name="bedtime_advice_hint">შენი მაღვიძარას, ძილის მიზნისა და ჩაძინების დროის მიხედვით.</string>
+    <string name="learn_restart">თავიდან სწავლა</string>
+    <string name="learn_restart_text">Phase Wake ისევ %1$d ღამეს გაზომავს და მორგებულ მნიშვნელობებს დაივიწყებს.</string>
+    <string name="record_end_wake">დასრულდა გაღვიძებისას</string>
 </resources>

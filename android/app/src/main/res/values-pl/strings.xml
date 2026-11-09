@@ -569,4 +569,19 @@
     <string name="record_end_cap">Zakończono po 12 h</string>
     <string name="record_end_battery">Słaba bateria zegarka</string>
     <string name="record_end_interrupted">Przerwano</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Faza nauki: noc %1$d z %2$d</string>
+    <string name="learn_text">Przez %1$d nocy Phase Wake mierzy twoim zegarkiem, by dopasować budzik do ciebie. Noś go w nocy z co najmniej %2$d %% baterii.</string>
+    <string name="learned_title">Dopasowano do ciebie</string>
+    <string name="learned_motion_default">Ruch: twój zegarek w spoczynku jest cichy – zostają standardowe progi.</string>
+    <string name="learned_motion_raised">Ruch: progi podniesione do szumu twojego zegarka w spoczynku.</string>
+    <string name="learned_pulse">Tętno spoczynkowe: %1$d na minutę</string>
+    <string name="learned_pulse_none">Tętno spoczynkowe: za mało pomiarów</string>
+    <string name="learned_latency">Zasypianie: około %1$s</string>
+    <string name="learned_latency_none">Zasypianie: za mało pomiarów</string>
+    <string name="bedtime_advice">Idź dziś spać między %1$s a %2$s</string>
+    <string name="bedtime_advice_hint">Na podstawie budzika, celu snu i tego, ile czasu zajmuje ci zaśnięcie.</string>
+    <string name="learn_restart">Ucz od nowa</string>
+    <string name="learn_restart_text">Phase Wake znów mierzy %1$d nocy i zapomina dopasowane wartości.</string>
+    <string name="record_end_wake">Zakończono przy budzeniu</string>
 </resources>

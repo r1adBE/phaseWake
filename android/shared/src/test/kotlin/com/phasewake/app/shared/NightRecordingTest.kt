@@ -1,11 +1,13 @@
 package com.phasewake.app.shared
 
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.Learning
 import java.time.Duration
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -76,5 +78,24 @@ class NightRecordingTest {
             csv,
         )
         assertFalse(csv.contains("2026"), "keine Datumsangaben")
+    }
+
+    @Test
+    fun onsetLineForTheLearningPhase() {
+        // Zeile «onset=…» zwischen den Epochen (die Uhr hängt sie beim Einschlafen an): keine Epoche, Werte gelesen.
+        val bed = start.plusSeconds(600)
+        val asleep = start.plusSeconds(1_500)
+        val text = NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) + NightRecording.onsetLine(bed, asleep) +
+            NightRecording.epochLines(epochs.drop(2)) + NightRecording.endLine(start.plusSeconds(90), RecordEnd.WAKE)
+        val read = assertNotNull(NightRecording.decode(text))
+        assertEquals(epochs, read.epochs)
+        assertEquals(bed, read.bedAt)
+        assertEquals(asleep, read.asleepAt)
+        assertEquals(RecordEnd.WAKE, read.endReason)
+        assertEquals(read, NightRecording.decode(NightRecording.encode(read)))
+        assertEquals(Learning.Night(start, epochs, bed, asleep), read.toLearnNight())
+        // Ältere Versionen ohne «wake» lesen den Grund als «service»; eine kaputte Zeile «onset=» fällt weg.
+        assertEquals(RecordEnd.SERVICE, RecordEnd.of("künftig"))
+        assertNull(NightRecording.decode(NightRecording.header(start) + "onset=x,1\n")?.bedAt)
     }
 }

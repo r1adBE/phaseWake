@@ -541,4 +541,19 @@
     <string name="record_end_cap">Avslutad efter 12 h</string>
     <string name="record_end_battery">Klockans batteri är lågt</string>
     <string name="record_end_interrupted">Avbruten</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Inlärningsfas: natt %1$d av %2$d</string>
+    <string name="learn_text">Under %1$d nätter mäter Phase Wake med din klocka för att anpassa väckningen till dig. Bär den på natten med minst %2$d %% batteri.</string>
+    <string name="learned_title">Anpassat efter dig</string>
+    <string name="learned_motion_default">Rörelse: din klocka är tyst i vila – standardtrösklarna står kvar.</string>
+    <string name="learned_motion_raised">Rörelse: trösklar höjda efter klockans brus i vila.</string>
+    <string name="learned_pulse">Vilopuls: %1$d per minut</string>
+    <string name="learned_pulse_none">Vilopuls: för få mätningar</string>
+    <string name="learned_latency">Insomning: ungefär %1$s</string>
+    <string name="learned_latency_none">Insomning: för få mätningar</string>
+    <string name="bedtime_advice">Gå och lägg dig i kväll mellan %1$s och %2$s</string>
+    <string name="bedtime_advice_hint">Utifrån din väckning, ditt sömnmål och hur lång tid du tar på dig att somna.</string>
+    <string name="learn_restart">Lär om</string>
+    <string name="learn_restart_text">Phase Wake mäter igen %1$d nätter och glömmer de anpassade värdena.</string>
+    <string name="record_end_wake">Avslutad vid väckning</string>
 </resources>

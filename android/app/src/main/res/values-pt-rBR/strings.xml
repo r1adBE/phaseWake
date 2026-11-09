@@ -555,4 +555,19 @@
     <string name="record_end_cap">Encerrada após 12 h</string>
     <string name="record_end_battery">Bateria do relógio fraca</string>
     <string name="record_end_interrupted">Interrompida</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fase de aprendizado: noite %1$d de %2$d</string>
+    <string name="learn_text">Por %1$d noites, o Phase Wake mede com o seu relógio para ajustar o alarme a você. Use-o à noite com pelo menos %2$d %% de bateria.</string>
+    <string name="learned_title">Ajustado a você</string>
+    <string name="learned_motion_default">Movimento: seu relógio fica quieto em repouso – os limites padrão continuam.</string>
+    <string name="learned_motion_raised">Movimento: limites aumentados conforme o ruído do seu relógio em repouso.</string>
+    <string name="learned_pulse">Pulso em repouso: %1$d por minuto</string>
+    <string name="learned_pulse_none">Pulso em repouso: poucas medições</string>
+    <string name="learned_latency">Pegar no sono: cerca de %1$s</string>
+    <string name="learned_latency_none">Pegar no sono: poucas medições</string>
+    <string name="bedtime_advice">Vá para a cama hoje entre %1$s e %2$s</string>
+    <string name="bedtime_advice_hint">Com base no seu alarme, na sua meta de sono e no tempo que você leva para dormir.</string>
+    <string name="learn_restart">Aprender de novo</string>
+    <string name="learn_restart_text">O Phase Wake mede de novo %1$d noites e esquece os valores ajustados.</string>
+    <string name="record_end_wake">Encerrada ao despertar</string>
 </resources>

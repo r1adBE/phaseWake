@@ -30,11 +30,13 @@ object NoiseFloor {
     /**
      * Grundrauschen: 20. Perzentil der vorhandenen Bewegungen (Rangmethode, aufsteigend sortiert, Position ⌈0.2 · n⌉,
      * gezählt ab 1), höchstens [MAX_FLOOR]. Leere Bewegungen zählen nicht.
-     * @return `null` bei weniger als [MIN_FLOOR_EPOCHS] Werten.
+     * @param personal eigenes Grundrauschen aus der Lernphase ([DetectorConfig.personalFloor]): gilt (höchstens
+     *   [MAX_FLOOR]), solange die Messung noch weniger als [MIN_FLOOR_EPOCHS] Werte hat.
+     * @return bei weniger als [MIN_FLOOR_EPOCHS] Werten [personal] bzw. `null`.
      */
-    fun floor(motions: List<Double?>): Double? {
+    fun floor(motions: List<Double?>, personal: Double? = null): Double? {
         val values = motions.filterNotNull().sorted()
-        if (values.size < MIN_FLOOR_EPOCHS) return null
+        if (values.size < MIN_FLOOR_EPOCHS) return personal?.let { minOf(it, MAX_FLOOR) }
         // ⌈0.2 · n⌉ ganzzahlig gerechnet, damit Kotlin und Swift exakt dieselbe Position wählen.
         val rank = (values.size + 4) / 5
         return minOf(values[rank - 1], MAX_FLOOR)
@@ -52,10 +54,11 @@ object NoiseFloor {
 
     /**
      * Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
-     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung.
+     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung (mit dem eigenen aus [config], solange sie
+     * zu wenige hat).
      */
     fun summary(config: DetectorConfig, motions: List<Double?>): String {
-        val noise = floor(motions)
+        val noise = floor(motions, config.personalFloor)
         return "floor=${format(noise)} light=${format(light(config, noise))} wake=${format(wake(config, noise))}"
     }
 

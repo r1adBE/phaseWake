@@ -569,4 +569,19 @@
     <string name="record_end_cap">Завершена через 12 ч</string>
     <string name="record_end_battery">Низкий заряд часов</string>
     <string name="record_end_interrupted">Прервана</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Этап обучения: ночь %1$d из %2$d</string>
+    <string name="learn_text">%1$d ночей Phase Wake измеряет с помощью твоих часов, чтобы подстроить будильник под тебя. Носи их ночью с зарядом не меньше %2$d %%.</string>
+    <string name="learned_title">Подстроено под тебя</string>
+    <string name="learned_motion_default">Движение: в покое твои часы спокойны – стандартные пороги остаются.</string>
+    <string name="learned_motion_raised">Движение: пороги подняты под шум твоих часов в покое.</string>
+    <string name="learned_pulse">Пульс в покое: %1$d в минуту</string>
+    <string name="learned_pulse_none">Пульс в покое: слишком мало измерений</string>
+    <string name="learned_latency">Засыпание: около %1$s</string>
+    <string name="learned_latency_none">Засыпание: слишком мало измерений</string>
+    <string name="bedtime_advice">Ложись сегодня между %1$s и %2$s</string>
+    <string name="bedtime_advice_hint">По будильнику, цели сна и тому, сколько ты засыпаешь.</string>
+    <string name="learn_restart">Обучить заново</string>
+    <string name="learn_restart_text">Phase Wake снова измерит %1$d ночей и забудет подстроенные значения.</string>
+    <string name="record_end_wake">Завершено при пробуждении</string>
 </resources>

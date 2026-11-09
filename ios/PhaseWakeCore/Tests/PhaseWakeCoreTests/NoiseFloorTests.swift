@@ -54,4 +54,18 @@ final class NoiseFloorTests: XCTestCase {
         XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil, 0.02, 0.02, 0.4]), "floor=0.0200 light=0.0500 wake=0.1000")
         XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil]), "floor=- light=0.0020 wake=0.1000")
     }
+
+    func testPersonalFloorOnlyUntilTheMeasurementHasItsOwn() throws {
+        // Lernphase: Das eigene Grundrauschen gilt, solange die Messung weniger als 4 Werte hat, höchstens 0.04.
+        XCTAssertEqual(NoiseFloor.floor([0.03, nil, 0.05], personal: 0.02), 0.02)
+        XCTAssertEqual(NoiseFloor.floor([], personal: 0.09), NoiseFloor.maxFloor)
+        XCTAssertNil(NoiseFloor.floor([0.03], personal: nil))
+        // Ab 4 Werten gilt nur das eigene der Messung, auch wenn es tiefer liegt.
+        XCTAssertEqual(NoiseFloor.floor([0.001, 0.002, 0.003, 0.004], personal: 0.02), 0.001)
+        // Zusammenfassung mit dem gelernten Wert, solange die Messung zu wenige hat.
+        XCTAssertEqual(
+            NoiseFloor.summary(config: try DetectorConfig(personalFloor: 0.02), motions: [0.3]),
+            "floor=0.0200 light=0.0500 wake=0.1000"
+        )
+    }
 }

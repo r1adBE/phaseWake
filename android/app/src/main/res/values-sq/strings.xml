@@ -544,4 +544,19 @@
     <string name="record_end_cap">Përfundoi pas 12 orësh</string>
     <string name="record_end_battery">Bateria e orës e ulët</string>
     <string name="record_end_interrupted">U ndërpre</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Faza e të mësuarit: nata %1$d nga %2$d</string>
+    <string name="learn_text">Për %1$d net, Phase Wake mat me orën tënde për ta përshtatur zgjuesin me ty. Mbaje natën me të paktën %2$d %% bateri.</string>
+    <string name="learned_title">Përshtatur për ty</string>
+    <string name="learned_motion_default">Lëvizja: ora jote është e qetë në pushim – pragjet standarde mbeten.</string>
+    <string name="learned_motion_raised">Lëvizja: pragjet u ngritën sipas zhurmës së orës sate në pushim.</string>
+    <string name="learned_pulse">Pulsi në qetësi: %1$d në minutë</string>
+    <string name="learned_pulse_none">Pulsi në qetësi: shumë pak matje</string>
+    <string name="learned_latency">Rënia në gjumë: rreth %1$s</string>
+    <string name="learned_latency_none">Rënia në gjumë: shumë pak matje</string>
+    <string name="bedtime_advice">Shko sot në shtrat midis %1$s dhe %2$s</string>
+    <string name="bedtime_advice_hint">Sipas zgjuesit, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë.</string>
+    <string name="learn_restart">Mëso përsëri</string>
+    <string name="learn_restart_text">Phase Wake mat përsëri %1$d net dhe harron vlerat e përshtatura.</string>
+    <string name="record_end_wake">Përfundoi në zgjim</string>
 </resources>

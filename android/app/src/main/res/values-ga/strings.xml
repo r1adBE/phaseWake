@@ -586,4 +586,19 @@
     <string name="record_end_cap">Críochnaithe tar éis 12 u</string>
     <string name="record_end_battery">Ceallra an uaireadóra íseal</string>
     <string name="record_end_interrupted">Idirbhriste</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Céim foghlama: oíche %1$d as %2$d</string>
+    <string name="learn_text">Ar feadh %1$d oíche, tomhaiseann Phase Wake le d’uaireadóir chun an t-aláram a oiriúnú duit. Caith san oíche é le %2$d %% ceallraí ar a laghad.</string>
+    <string name="learned_title">Oiriúnaithe duit</string>
+    <string name="learned_motion_default">Gluaiseacht: tá d’uaireadóir ciúin ag scíth – fanann na tairseacha caighdeánacha.</string>
+    <string name="learned_motion_raised">Gluaiseacht: tairseacha ardaithe de réir torann d’uaireadóra ag scíth.</string>
+    <string name="learned_pulse">Cuisle scíthe: %1$d sa nóiméad</string>
+    <string name="learned_pulse_none">Cuisle scíthe: ró-bheagán tomhas</string>
+    <string name="learned_latency">Titim i do chodladh: thart ar %1$s</string>
+    <string name="learned_latency_none">Titim i do chodladh: ró-bheagán tomhas</string>
+    <string name="bedtime_advice">Téigh a chodladh anocht idir %1$s agus %2$s</string>
+    <string name="bedtime_advice_hint">Bunaithe ar d’aláram, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh.</string>
+    <string name="learn_restart">Foghlaim arís</string>
+    <string name="learn_restart_text">Tomhaiseann Phase Wake %1$d oíche arís agus déanann sé dearmad ar na luachanna oiriúnaithe.</string>
+    <string name="record_end_wake">Críochnaithe ag dúiseacht</string>
 </resources>

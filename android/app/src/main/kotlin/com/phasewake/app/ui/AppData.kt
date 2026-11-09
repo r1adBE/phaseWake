@@ -46,7 +46,9 @@ import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.core.Streak
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
+import com.phasewake.app.learn.LearningState
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.watchPulse
 import com.phasewake.app.sounds.SleepSoundService
@@ -104,6 +106,10 @@ internal class AppData(
     val healthFeelings: Map<LocalDate, Int> = emptyMap(),
     /** Einschlaf-Messung am Abend auf der Galaxy Watch an (Schalter in den Einstellungen). */
     val autoOnset: Boolean = true,
+    /** Lernphase; `null`, bis gelesen. */
+    val learning: LearningState? = null,
+    /** Abgeschlossene Aufzeichnungen der Uhr (zählen für die Lernphase); `null`, bis gelesen. */
+    val recordings: List<NightRecording>? = null,
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -135,10 +141,15 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val doneUntil by app.backup.doneUntilFlow.collectAsStateWithLifecycle(initialValue = emptyMap())
     val healthFeelings by app.notes.healthFeelings.collectAsStateWithLifecycle(initialValue = emptyMap())
     val autoOnset by app.settings.autoOnset.collectAsStateWithLifecycle(initialValue = true)
+    val learningFlow = remember { app.learning.state.map<LearningState, LearningState?> { it } }
+    val learning by learningFlow.collectAsStateWithLifecycle(initialValue = null)
+    val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.recordings.load() }
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
         holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings, autoOnset = autoOnset,
+        learning = learning, recordings = recordings,
     )
 }
 

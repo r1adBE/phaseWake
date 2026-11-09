@@ -543,4 +543,19 @@
     <string name="record_end_cap">12 ಗಂಟೆಗಳ ನಂತರ ಮುಗಿಯಿತು</string>
     <string name="record_end_battery">ವಾಚ್ ಬ್ಯಾಟರಿ ಕಡಿಮೆ</string>
     <string name="record_end_interrupted">ಅಡಚಣೆಯಾಯಿತು</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ಕಲಿಕೆಯ ಹಂತ: ರಾತ್ರಿ %1$d / %2$d</string>
+    <string name="learn_text">ನಿನಗೆ ತಕ್ಕಂತೆ ಅಲಾರಂ ಹೊಂದಿಸಲು Phase Wake ನಿನ್ನ ವಾಚ್‌ನಿಂದ %1$d ರಾತ್ರಿ ಅಳೆಯುತ್ತದೆ. ರಾತ್ರಿ ಕನಿಷ್ಠ %2$d %% ಬ್ಯಾಟರಿಯೊಂದಿಗೆ ಧರಿಸು.</string>
+    <string name="learned_title">ನಿನಗೆ ತಕ್ಕಂತೆ ಹೊಂದಿಸಲಾಗಿದೆ</string>
+    <string name="learned_motion_default">ಚಲನೆ: ವಿಶ್ರಾಂತಿಯಲ್ಲಿ ನಿನ್ನ ವಾಚ್ ಶಾಂತ – ಸಾಮಾನ್ಯ ಮಿತಿಗಳು ಉಳಿಯುತ್ತವೆ.</string>
+    <string name="learned_motion_raised">ಚಲನೆ: ವಿಶ್ರಾಂತಿಯಲ್ಲಿ ನಿನ್ನ ವಾಚ್‌ನ ಶಬ್ದಕ್ಕೆ ತಕ್ಕಂತೆ ಮಿತಿಗಳನ್ನು ಹೆಚ್ಚಿಸಲಾಗಿದೆ.</string>
+    <string name="learned_pulse">ವಿಶ್ರಾಂತಿ ನಾಡಿ: ನಿಮಿಷಕ್ಕೆ %1$d</string>
+    <string name="learned_pulse_none">ವಿಶ್ರಾಂತಿ ನಾಡಿ: ಅಳತೆಗಳು ತುಂಬಾ ಕಡಿಮೆ</string>
+    <string name="learned_latency">ನಿದ್ರೆ ಬರುವುದು: ಸುಮಾರು %1$s</string>
+    <string name="learned_latency_none">ನಿದ್ರೆ ಬರುವುದು: ಅಳತೆಗಳು ತುಂಬಾ ಕಡಿಮೆ</string>
+    <string name="bedtime_advice">ಇಂದು %1$s ಮತ್ತು %2$s ನಡುವೆ ಮಲಗು</string>
+    <string name="bedtime_advice_hint">ನಿನ್ನ ಅಲಾರಂ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ.</string>
+    <string name="learn_restart">ಮತ್ತೆ ಕಲಿ</string>
+    <string name="learn_restart_text">Phase Wake ಮತ್ತೆ %1$d ರಾತ್ರಿ ಅಳೆಯುತ್ತದೆ ಮತ್ತು ಹೊಂದಿಸಿದ ಮೌಲ್ಯಗಳನ್ನು ಮರೆಯುತ್ತದೆ.</string>
+    <string name="record_end_wake">ಎಬ್ಬಿಸುವಾಗ ಮುಗಿದಿದೆ</string>
 </resources>

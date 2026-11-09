@@ -4,7 +4,8 @@ package com.phasewake.app.core
  * Parameter der Phasenerkennung.
  *
  * Die Standardwerte sind die Startwerte aus `docs/PHASENERKENNUNG.md`.
- * Nach drei aufgezeichneten Nächten liefert [Calibration] angepasste Schwellen.
+ * Nach drei aufgezeichneten Nächten liefert [Calibration] angepasste Schwellen; nach der Lernphase ([Learning]) kommen
+ * eigenes Grundrauschen ([personalFloor]) und eigener Ruhepuls ([restingHeartRate]) dazu.
  */
 data class DetectorConfig(
     /** Bewegung (m/s²), ab der eine Epoche als leichte Bewegung zählt. */
@@ -23,6 +24,13 @@ data class DetectorConfig(
     val lightWindow: Int = 4,
     /** Nötige Treffer im [lightWindow]. */
     val lightHits: Int = 2,
+    /**
+     * Eigenes Grundrauschen aus der Lernphase (m/s², [Learning]); gilt, solange die Messung selbst noch keines hat
+     * ([NoiseFloor.floor]). `null` = keines gelernt.
+     */
+    val personalFloor: Double? = null,
+    /** Eigener Ruhepuls aus der Lernphase ([Learning]); Basispuls, wenn die Aufwärmphase keinen Puls hat. `null` = keiner. */
+    val restingHeartRate: Double? = null,
 ) {
     init {
         require(lightThreshold > 0.0) { "lightThreshold muss positiv sein" }
@@ -31,6 +39,8 @@ data class DetectorConfig(
         require(warmupEpochs >= 0) { "warmupEpochs darf nicht negativ sein" }
         require(awakeHits in 1..awakeWindow) { "awakeHits muss zwischen 1 und awakeWindow liegen" }
         require(lightHits in 1..lightWindow) { "lightHits muss zwischen 1 und lightWindow liegen" }
+        require(personalFloor == null || personalFloor >= 0.0) { "personalFloor darf nicht negativ sein" }
+        require(restingHeartRate == null || restingHeartRate > 0.0) { "restingHeartRate muss positiv sein" }
     }
 
     /** Grösstes Fenster beider Regeln; so viele Epochen merkt sich der [WakeDetector]. */

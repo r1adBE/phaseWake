@@ -569,4 +569,19 @@
     <string name="record_end_cap">Ukončeno po 12 h</string>
     <string name="record_end_battery">Slabá baterie hodinek</string>
     <string name="record_end_interrupted">Přerušeno</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fáze učení: noc %1$d z %2$d</string>
+    <string name="learn_text">Phase Wake měří %1$d nocí s tvými hodinkami, aby budík přizpůsobil tobě. Nos je v noci s alespoň %2$d %% baterie.</string>
+    <string name="learned_title">Přizpůsobeno tobě</string>
+    <string name="learned_motion_default">Pohyb: tvé hodinky jsou v klidu tiché – standardní prahy zůstávají.</string>
+    <string name="learned_motion_raised">Pohyb: prahy zvýšeny podle šumu tvých hodinek v klidu.</string>
+    <string name="learned_pulse">Klidový tep: %1$d za minutu</string>
+    <string name="learned_pulse_none">Klidový tep: příliš málo měření</string>
+    <string name="learned_latency">Usínání: asi %1$s</string>
+    <string name="learned_latency_none">Usínání: příliš málo měření</string>
+    <string name="bedtime_advice">Jdi dnes spát mezi %1$s a %2$s</string>
+    <string name="bedtime_advice_hint">Podle budíku, cíle spánku a toho, jak dlouho ti trvá usnout.</string>
+    <string name="learn_restart">Naučit znovu</string>
+    <string name="learn_restart_text">Phase Wake znovu změří %1$d nocí a zapomene přizpůsobené hodnoty.</string>
+    <string name="record_end_wake">Ukončeno při buzení</string>
 </resources>

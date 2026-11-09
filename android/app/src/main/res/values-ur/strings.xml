@@ -543,4 +543,19 @@
     <string name="record_end_cap">12 گھنٹے بعد ختم</string>
     <string name="record_end_battery">گھڑی کی بیٹری کم ہے</string>
     <string name="record_end_interrupted">رکاوٹ آئی</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">سیکھنے کا مرحلہ: رات %1$d از %2$d</string>
+    <string name="learn_text">تمہارے لیے الارم ڈھالنے کو Phase Wake تمہاری گھڑی سے %1$d راتیں ناپتا ہے۔ رات کو کم از کم %2$d %% بیٹری کے ساتھ پہنو۔</string>
+    <string name="learned_title">تمہارے مطابق ڈھالا گیا</string>
+    <string name="learned_motion_default">حرکت: آرام میں تمہاری گھڑی پرسکون ہے – معیاری حدیں برقرار ہیں۔</string>
+    <string name="learned_motion_raised">حرکت: آرام میں تمہاری گھڑی کے شور کے مطابق حدیں بڑھائی گئیں۔</string>
+    <string name="learned_pulse">آرام کی نبض: %1$d فی منٹ</string>
+    <string name="learned_pulse_none">آرام کی نبض: پیمائشیں بہت کم</string>
+    <string name="learned_latency">نیند آنا: تقریباً %1$s</string>
+    <string name="learned_latency_none">نیند آنا: پیمائشیں بہت کم</string>
+    <string name="bedtime_advice">آج %1$s اور %2$s کے درمیان سونے جاؤ</string>
+    <string name="bedtime_advice_hint">تمہارے الارم، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔</string>
+    <string name="learn_restart">دوبارہ سیکھو</string>
+    <string name="learn_restart_text">Phase Wake دوبارہ %1$d راتیں ناپے گا اور ڈھالی گئی قدریں بھول جائے گا۔</string>
+    <string name="record_end_wake">جگاتے وقت ختم</string>
 </resources>

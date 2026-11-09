@@ -527,4 +527,19 @@
     <string name="record_end_cap">12時間で終了</string>
     <string name="record_end_battery">ウォッチのバッテリー残量が少ない</string>
     <string name="record_end_interrupted">中断しました</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">学習期間：%2$d夜中%1$d夜目</string>
+    <string name="learn_text">Phase Wake はアラームをあなたに合わせるため、ウォッチで%1$d夜測定します。夜はバッテリー%2$d %%以上で着けてください。</string>
+    <string name="learned_title">あなたに合わせました</string>
+    <string name="learned_motion_default">動き：安静時のウォッチは静か – 標準のしきい値のままです。</string>
+    <string name="learned_motion_raised">動き：安静時のウォッチのノイズに合わせてしきい値を上げました。</string>
+    <string name="learned_pulse">安静時の脈拍：毎分%1$d回</string>
+    <string name="learned_pulse_none">安静時の脈拍：測定値が少なすぎます</string>
+    <string name="learned_latency">寝つき：約%1$s</string>
+    <string name="learned_latency_none">寝つき：測定値が少なすぎます</string>
+    <string name="bedtime_advice">今夜は%1$s〜%2$sの間に寝ましょう</string>
+    <string name="bedtime_advice_hint">アラーム、睡眠目標、寝つくまでの時間から算出。</string>
+    <string name="learn_restart">もう一度学習</string>
+    <string name="learn_restart_text">Phase Wake はもう一度%1$d夜測定し、調整した値を忘れます。</string>
+    <string name="record_end_wake">起床時に終了</string>
 </resources>

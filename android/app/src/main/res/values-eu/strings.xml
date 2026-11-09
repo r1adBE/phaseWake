@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 h-ren ondoren amaitua</string>
     <string name="record_end_battery">Erlojuaren bateria baxu</string>
     <string name="record_end_interrupted">Etenda</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Ikasketa-fasea: %1$d. gaua, %2$d-tik</string>
+    <string name="learn_text">Phase Wake-k %1$d gauez neurtzen du zure erlojuarekin, alarma zuri egokitzeko. Eraman ezazu gauez, gutxienez %%%2$d bateriarekin.</string>
+    <string name="learned_title">Zuri egokitua</string>
+    <string name="learned_motion_default">Mugimendua: zure erlojua lasai dago atsedenean – ohiko atalaseak mantentzen dira.</string>
+    <string name="learned_motion_raised">Mugimendua: atalaseak igo dira zure erlojuaren atseden-zarataren arabera.</string>
+    <string name="learned_pulse">Atseden-pultsua: %1$d minutuko</string>
+    <string name="learned_pulse_none">Atseden-pultsua: neurketa gutxiegi</string>
+    <string name="learned_latency">Loak hartzea: %1$s inguru</string>
+    <string name="learned_latency_none">Loak hartzea: neurketa gutxiegi</string>
+    <string name="bedtime_advice">Joan gaur ohera %1$s eta %2$s artean</string>
+    <string name="bedtime_advice_hint">Zure alarma, lo-helburua eta loak hartzeko behar duzun denboraren arabera.</string>
+    <string name="learn_restart">Ikasi berriro</string>
+    <string name="learn_restart_text">Phase Wake-k berriro %1$d gau neurtuko ditu eta egokitutako balioak ahaztuko ditu.</string>
+    <string name="record_end_wake">Esnatzean amaitua</string>
 </resources>

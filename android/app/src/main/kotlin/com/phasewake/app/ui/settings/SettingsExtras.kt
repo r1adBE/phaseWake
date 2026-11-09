@@ -34,6 +34,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.DiagUnlock
+import com.phasewake.app.core.Learning
+import com.phasewake.app.ui.home.LearnedLines
 import com.phasewake.app.ui.Format
 import java.time.LocalDate
 import java.util.Locale
@@ -55,7 +57,47 @@ class SettingsExtras(
     val onDiagnostics: () -> Unit = {},
     /** 7× auf die Versionszeile getippt. */
     val onUnlockDiagnostics: () -> Unit = {},
+    /** Lernphase: Stand und «Neu lernen»; `null` = keine Gruppe. */
+    val learning: LearningSettings? = null,
 )
+
+/** Lernphase in den Einstellungen: «Nacht N von 7» ([night]) bzw. die gelernten Werte ([values]) und «Neu lernen». */
+class LearningSettings(
+    val night: Int?,
+    val values: Learning.Values?,
+    val onRestart: () -> Unit,
+)
+
+/** Gruppe der Lernphase: Stand, gelernte Werte und «Neu lernen» mit Rückfrage. */
+@Composable
+internal fun LearningGroup(ui: LearningSettings) {
+    val values = ui.values
+    Group(if (values != null) stringResource(R.string.learned_title) else stringResource(R.string.learn_progress, ui.night ?: 1, Learning.NIGHTS)) {
+        if (values != null) {
+            LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant)
+        } else {
+            Text(stringResource(R.string.learn_text, Learning.NIGHTS, Learning.MIN_BATTERY), style = MaterialTheme.typography.bodyMedium)
+        }
+        var confirm by remember { mutableStateOf(false) }
+        Text(
+            stringResource(R.string.learn_restart),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
+        )
+        if (confirm) {
+            AlertDialog(
+                onDismissRequest = { confirm = false },
+                title = { Text(stringResource(R.string.learn_restart)) },
+                text = { Text(stringResource(R.string.learn_restart_text, Learning.NIGHTS)) },
+                confirmButton = {
+                    TextButton(onClick = { confirm = false; ui.onRestart() }) { Text(stringResource(R.string.learn_restart)) }
+                },
+                dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+            )
+        }
+    }
+}
 
 /** Feiertage in den Einstellungen: [countries] als (Code, Name), [regions] des gewählten Landes als (Code, Name). */
 class HolidaysUi(

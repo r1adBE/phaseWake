@@ -544,4 +544,19 @@
     <string name="record_end_cap">Завршено по 12 ч</string>
     <string name="record_end_battery">Батеријата на часовникот е слаба</string>
     <string name="record_end_interrupted">Прекинато</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Фаза на учење: ноќ %1$d од %2$d</string>
+    <string name="learn_text">Phase Wake мери %1$d ноќи со твојот часовник за да го прилагоди будилникот кон тебе. Носи го ноќе со најмалку %2$d %% батерија.</string>
+    <string name="learned_title">Прилагодено за тебе</string>
+    <string name="learned_motion_default">Движење: часовникот ти е тивок во мирување – стандардните прагови остануваат.</string>
+    <string name="learned_motion_raised">Движење: праговите се кренати според шумот на часовникот во мирување.</string>
+    <string name="learned_pulse">Пулс во мирување: %1$d во минута</string>
+    <string name="learned_pulse_none">Пулс во мирување: премалку мерења</string>
+    <string name="learned_latency">Заспивање: околу %1$s</string>
+    <string name="learned_latency_none">Заспивање: премалку мерења</string>
+    <string name="bedtime_advice">Легни си денес меѓу %1$s и %2$s</string>
+    <string name="bedtime_advice_hint">Според будилникот, целта за сон и колку време ти треба да заспиеш.</string>
+    <string name="learn_restart">Научи повторно</string>
+    <string name="learn_restart_text">Phase Wake повторно мери %1$d ноќи и ги заборава прилагодените вредности.</string>
+    <string name="record_end_wake">Завршено при будење</string>
 </resources>

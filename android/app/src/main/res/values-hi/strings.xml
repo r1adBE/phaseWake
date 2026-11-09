@@ -541,4 +541,19 @@
     <string name="record_end_cap">12 घंटे बाद समाप्त</string>
     <string name="record_end_battery">वॉच की बैटरी कम है</string>
     <string name="record_end_interrupted">बाधित</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">सीखने का चरण: रात %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake तुम्हारे लिए अलार्म ढालने को तुम्हारी घड़ी से %1$d रातें मापता है। रात में कम से कम %2$d %% बैटरी के साथ पहनो।</string>
+    <string name="learned_title">तुम्हारे हिसाब से ढाला गया</string>
+    <string name="learned_motion_default">हलचल: आराम में तुम्हारी घड़ी शांत है – मानक सीमाएँ बनी रहती हैं।</string>
+    <string name="learned_motion_raised">हलचल: आराम में तुम्हारी घड़ी के शोर के हिसाब से सीमाएँ बढ़ाई गईं।</string>
+    <string name="learned_pulse">आराम की नब्ज़: %1$d प्रति मिनट</string>
+    <string name="learned_pulse_none">आराम की नब्ज़: माप बहुत कम</string>
+    <string name="learned_latency">नींद आना: लगभग %1$s</string>
+    <string name="learned_latency_none">नींद आना: माप बहुत कम</string>
+    <string name="bedtime_advice">आज %1$s से %2$s के बीच सोने जाओ</string>
+    <string name="bedtime_advice_hint">तुम्हारे अलार्म, नींद के लक्ष्य और नींद आने में लगने वाले समय से।</string>
+    <string name="learn_restart">फिर से सीखो</string>
+    <string name="learn_restart_text">Phase Wake फिर से %1$d रातें मापेगा और ढाले गए मान भूल जाएगा।</string>
+    <string name="record_end_wake">जगाने पर खत्म</string>
 </resources>

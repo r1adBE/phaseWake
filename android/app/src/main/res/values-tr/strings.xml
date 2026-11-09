@@ -541,4 +541,19 @@
     <string name="record_end_cap">12 saat sonra sona erdi</string>
     <string name="record_end_battery">Saatin pili zayıf</string>
     <string name="record_end_interrupted">Kesintiye uğradı</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Öğrenme aşaması: gece %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake, alarmı sana uydurmak için saatinle %1$d gece ölçüm yapar. Geceleri en az %%%2$d pille tak.</string>
+    <string name="learned_title">Sana göre ayarlandı</string>
+    <string name="learned_motion_default">Hareket: saatin dinlenirken sessiz – standart eşikler kalıyor.</string>
+    <string name="learned_motion_raised">Hareket: eşikler saatinin dinlenme gürültüsüne göre yükseltildi.</string>
+    <string name="learned_pulse">Dinlenme nabzı: dakikada %1$d</string>
+    <string name="learned_pulse_none">Dinlenme nabzı: ölçüm çok az</string>
+    <string name="learned_latency">Uykuya dalma: yaklaşık %1$s</string>
+    <string name="learned_latency_none">Uykuya dalma: ölçüm çok az</string>
+    <string name="bedtime_advice">Bugün %1$s ile %2$s arasında yat</string>
+    <string name="bedtime_advice_hint">Alarmına, uyku hedefine ve uykuya dalma süresine göre.</string>
+    <string name="learn_restart">Yeniden öğren</string>
+    <string name="learn_restart_text">Phase Wake yeniden %1$d gece ölçer ve ayarlanan değerleri unutur.</string>
+    <string name="record_end_wake">Uyandırmada sona erdi</string>
 </resources>

@@ -13,18 +13,24 @@ import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagDevice
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.Learning
+import com.phasewake.app.learn.LearningRepository
 import com.phasewake.app.holidays.HolidayRepository
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
+import com.phasewake.app.shared.LearningSync
 import com.phasewake.app.shared.TestRunStore
 import com.phasewake.app.shared.TransientStore
+import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.NightRepository
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RecordingRepository
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.shared.phaseWakeStore
 import java.io.File
+import java.time.Instant
+import java.time.ZoneId
 import java.util.concurrent.atomic.AtomicBoolean
 import android.util.Log
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -60,6 +66,12 @@ open class PhaseWakeApp : Application() {
 
     /** Stand der Aufzeichnung auf der Uhr; `null`, solange unbekannt oder die Uhr sie nicht kennt (dann kein Knopf). */
     val recordStatus = MutableStateFlow<RecordSync.RecordStatus?>(null)
+
+    /** Lernphase: 7 Nächte aufzeichnen, danach Wecker anpassen ([updateLearning]). */
+    val learning by lazy { LearningRepository(phaseWakeStore) }
+
+    /** Stand der Lernphase an die Uhr ([publishLearning]). */
+    val learningSync by lazy { LearningSync(this) }
     val health by lazy { HealthSleep(this) }
     val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
     val notes by lazy { com.phasewake.app.notes.NotesRepository(phaseWakeStore) }
@@ -134,6 +146,7 @@ open class PhaseWakeApp : Application() {
             for ((recording, uri) in recordSync.fetchRecordings()) {
                 recordings.put(recording)
                 sync.delete(uri)
+                updateLearning(recording)
             }
             recordSync.fetchStatus()?.let { recordStatus.value = it }
             // Frühere Zielzeit des Einschlaf-Modus, falls ihre Meldung verpasst wurde (z. B. nach «Beenden erzwingen»).
@@ -145,6 +158,11 @@ open class PhaseWakeApp : Application() {
             publishSleepGoal()
             // Schalter der Einschlaf-Messung am Abend (ebenso unverändert, wenn nichts geändert wurde).
             publishAutoOnset()
+            // Lernphase: beginnt nach der Installation bzw. beim ersten Start dieser Version; zählen, Stand an die Uhr
+            // (unverändert: gleiches Paket, die Uhr merkt nichts). Zuletzt: Ein Fehler hier hält das Planen nicht auf.
+            if (learning.ensureStarted(Instant.now())) diag.log(DiagKind.SYNC, "learn started")
+            updateLearning()
+            publishLearning()
         }
         // Widget «Details von heute»: neu zeichnen, sobald eine Nacht gespeichert oder das Befinden gesetzt wird.
         appScope.launch {
@@ -186,6 +204,54 @@ open class PhaseWakeApp : Application() {
     suspend fun publishAutoOnset() {
         val (enabled, stamp) = settings.autoOnsetStamped()
         sync.publishAutoOnset(enabled, stamp)
+    }
+
+    /**
+     * Lernphase: zählt die Aufzeichnungen seit ihrem Beginn ([Learning.counted]); nach [Learning.NIGHTS] gezählten
+     * Nächten werden die Werte gelernt, gespeichert und an die Uhr geschickt. [received]: eben angekommene Aufzeichnung,
+     * fürs Diagnose-Protokoll («learn night counted 3/7» bzw. «… not counted epochs=210»).
+     */
+    suspend fun updateLearning(received: NightRecording? = null) {
+        // Die Lernphase ist eine Zugabe: Ein Fehler (Speicher) hält das Speichern und Abholen der Aufzeichnungen nicht auf.
+        try {
+            countLearning(received)
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w("PhaseWakeApp", "Lernphase nicht nachgeführt", e)
+        }
+    }
+
+    private suspend fun countLearning(received: NightRecording?) {
+        val state = learning.current()
+        val since = state.since ?: return
+        if (state.values != null) return
+        val counted = Learning.counted(recordings.load().map { it.toLearnNight() }, since, ZoneId.systemDefault())
+        if (received != null && !received.start.isBefore(since)) {
+            val night = received.toLearnNight()
+            val result = if (Learning.counts(night)) "counted" else "not counted epochs=${Learning.measuredEpochs(night)}"
+            diag.log(DiagKind.SYNC, "learn night $result ${counted.size}/${Learning.NIGHTS}")
+        }
+        if (!Learning.finished(counted.size)) return
+        val values = Learning.learn(counted.takeLast(Learning.NIGHTS))
+        if (learning.finish(values, Instant.now())) {
+            diag.log(DiagKind.SYNC, "learn done ${learning.current().snapshot().diagLine()} lat=${values.latencyMinutes ?: "-"}")
+            publishLearning()
+        }
+    }
+
+    /**
+     * Schickt den Stand der Lernphase an die Uhr (beim Start, fertig, neu begonnen). Offen nur für Robolectric-Tests, die
+     * die Meldung prüfen (dort gibt es keinen Data Layer).
+     */
+    internal open suspend fun publishLearning() {
+        learningSync.publish(learning.current().snapshot())
+    }
+
+    /** «Neu lernen» bzw. «Verlauf löschen»: Lernphase ab jetzt von vorn, Uhr ohne gelernte Werte. */
+    suspend fun restartLearning() {
+        learning.restart(Instant.now())
+        diag.log(DiagKind.SYNC, "learn restarted")
+        publishLearning()
     }
 
     /** Speichert eine Änderung an den Weckern, schickt sie an die Uhr und plant den Zweitwecker neu. */

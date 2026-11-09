@@ -17,6 +17,7 @@ import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wake.SensorAccess
 import com.phasewake.app.wear.wake.SensorSession
+import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
@@ -35,14 +36,15 @@ import kotlinx.coroutines.launch
  * solange er aufzeichnet (der gewöhnliche Sensor bündelt nur 10 s; ohne Wakelock liefe sein Puffer im Tiefschlaf über).
  *
  * Endet nur von Hand (Uhr, Mitteilung, Handy), nach [NightRecording.MAX_DURATION] oder unter
- * [NightRecording.MIN_BATTERY] Akku; der Grund steht im Diagnose-Protokoll und in der Aufzeichnung. Alle
+ * [NightRecording.MIN_BATTERY] Akku; der Grund steht im Diagnose-Protokoll und in der Aufzeichnung. Eine Aufzeichnung der
+ * Lernphase ([RecordControl.startForLearning], [LearnMark]) endet zusätzlich beim Wecken ([RecordEnd.WAKE]). Alle
  * [FLUSH_INTERVAL] werden die neuen Epochen angehängt. Endet der Prozess, nimmt der Prüf-Alarm ([RecordControl.armCheck])
  * die Aufzeichnung wieder auf und füllt die Lücke mit leeren Epochen; dabei kann eine Epoche um bis zu 30 s versetzt sein.
  */
 class RecordService : LifecycleService() {
 
     /** Laufende Aufzeichnung ab [start]: alle Epochen, davon [flushed] schon in der Datei. */
-    internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int) {
+    internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int, val learnUntil: Instant? = null) {
         var lastFlushMs = SystemClock.elapsedRealtime()
         var lastStatMs = SystemClock.elapsedRealtime()
 
@@ -74,10 +76,13 @@ class RecordService : LifecycleService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
-            ACTION_START -> begin(byPhone = false)
-            ACTION_START_PHONE -> begin(byPhone = true)
+            ACTION_START -> begin("watch")
+            ACTION_START_PHONE -> begin("phone")
+            ACTION_START_LEARN -> begin("learn", intent.getLongExtra(EXTRA_UNTIL, 0L).takeIf { it > 0 }?.let(Instant::ofEpochMilli))
             ACTION_RESUME -> resume()
             ACTION_STOP -> finish(RecordEnd.of(intent.getStringExtra(EXTRA_REASON)))
+            // Geweckt: nur eine Aufzeichnung der Lernphase endet, eine von Hand begonnene läuft weiter.
+            ACTION_END_LEARN -> if (active?.learnUntil != null) finish(RecordEnd.WAKE)
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: Aus dem Hintergrund darf der Dienst nicht in den
             // Vordergrund; der Prüf-Alarm darf es und nimmt die Aufzeichnung gleich wieder auf.
             null -> {
@@ -98,14 +103,16 @@ class RecordService : LifecycleService() {
         super.onDestroy()
     }
 
-    /** Neue Aufzeichnung ab jetzt (vom Knopf der Uhr oder vom Handy über [RecordControl]). */
-    private fun begin(byPhone: Boolean) {
+    /**
+     * Neue Aufzeichnung ab jetzt (vom Knopf der Uhr, vom Handy oder von der Lernphase über [RecordControl]; [by] fürs
+     * Diagnose-Protokoll). Lernphase: [learnUntil] = eingestellte Weckzeit, siehe [LearnMark].
+     */
+    private fun begin(by: String, learnUntil: Instant? = null) {
         val battery = RecordControl.battery(this)
         if (active != null || starting) {
             goForeground(active?.start ?: clock())
             return
         }
-        val by = if (byPhone) "phone" else "watch"
         val low = battery != null && battery < NightRecording.MIN_BATTERY
         if (!goForeground(clock()) || low) {
             val why = if (low) "battery $battery%" else "no sensors: ${refusal.orEmpty()}"
@@ -120,8 +127,16 @@ class RecordService : LifecycleService() {
             RecordControl.finishOrphan(app, RecordEnd.SERVICE)
             val start = Instant.ofEpochMilli(clock().toEpochMilli())
             app.recordings.begin(start)
+            // Ohne gespeicherte Marke endet sie trotzdem beim Wecken, solange der Dienst läuft (nur nach einem Prozessende nicht).
+            if (learnUntil != null) {
+                try {
+                    app.learnMark.set(LearnMark(start, learnUntil))
+                } catch (e: java.io.IOException) {
+                    Log.w(TAG, "Marke der Lernphase nicht gespeichert", e)
+                }
+            }
             starting = false
-            measure(Active(start, mutableListOf(), 0), "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
+            measure(Active(start, mutableListOf(), 0, learnUntil), "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
         }
     }
 
@@ -157,7 +172,9 @@ class RecordService : LifecycleService() {
             val epochs = saved.epochs.toMutableList()
             val gap = NightRecording.epochsUntil(saved.start, now) - epochs.size
             repeat(gap.coerceAtLeast(0)) { epochs += Epoch(null, null) }
-            measure(Active(saved.start, epochs, saved.epochs.size), "record resume gap=${gap.coerceAtLeast(0)} bat=${battery ?: "-"}")
+            // Aufzeichnung der Lernphase: endet weiter beim Wecken.
+            val learnUntil = app.learnMark.get()?.takeIf { it.start == saved.start }?.until
+            measure(Active(saved.start, epochs, saved.epochs.size, learnUntil), "record resume gap=${gap.coerceAtLeast(0)} bat=${battery ?: "-"}")
         }
     }
 
@@ -198,6 +215,11 @@ class RecordService : LifecycleService() {
         val battery = RecordControl.battery(this)
         NightRecording.endNow(a.start, clock(), battery)?.let {
             finish(it, battery)
+            return
+        }
+        // Lernphase ohne Klingeln (z. B. Wecker übersprungen): zur eingestellten Weckzeit beenden.
+        if (a.learnUntil != null && RecordControl.endsAtTarget(clock(), a.learnUntil, WakeService.activePlan != null)) {
+            finish(RecordEnd.WAKE, battery)
             return
         }
         val nowMs = SystemClock.elapsedRealtime()
@@ -252,6 +274,7 @@ class RecordService : LifecycleService() {
             app.recordings.finish(a.start, end, reason)
             app.recordings.get(a.start)?.let { app.recordSync.publishRecording(it) }
             app.recordSync.publishStatus(null)
+            app.learnMark.clear(a.start)
         }
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         stopSelf()
@@ -298,9 +321,16 @@ class RecordService : LifecycleService() {
         internal const val TAG = "RecordService"
         internal const val ACTION_START = "com.phasewake.app.record.START"
         internal const val ACTION_START_PHONE = "com.phasewake.app.record.START_PHONE"
+        internal const val ACTION_START_LEARN = "com.phasewake.app.record.START_LEARN"
         internal const val ACTION_RESUME = "com.phasewake.app.record.RESUME"
         internal const val ACTION_STOP = "com.phasewake.app.record.STOP"
+
+        /** Geweckt: Aufzeichnung der Lernphase beenden ([RecordControl.endLearning]). */
+        internal const val ACTION_END_LEARN = "com.phasewake.app.record.END_LEARN"
         internal const val EXTRA_REASON = "reason"
+
+        /** Lernphase: eingestellte Weckzeit (ms), zu der die Aufzeichnung ohne Klingeln endet. */
+        internal const val EXTRA_UNTIL = "until"
 
         /** Abstand des Zeitgebers (Grenzen, Anhängen, Protokoll). */
         internal const val TICK_MS = 60_000L
@@ -326,13 +356,17 @@ class RecordService : LifecycleService() {
         @Volatile
         internal var clock: () -> Instant = Instant::now
 
-        /** Grund fürs Diagnose-Protokoll: «manual watch», «manual phone», «cap 12h», «battery 14%», «service ended». */
+        /**
+         * Grund fürs Diagnose-Protokoll: «manual watch», «manual phone», «cap 12h», «battery 14%», «service ended»,
+         * «wake» (Lernphase).
+         */
         fun reasonText(reason: RecordEnd, battery: Int?): String = when (reason) {
             RecordEnd.WATCH -> "manual watch"
             RecordEnd.PHONE -> "manual phone"
             RecordEnd.CAP -> "cap ${NightRecording.MAX_DURATION.toHours()}h"
             RecordEnd.BATTERY -> "battery ${battery ?: "-"}%"
             RecordEnd.SERVICE -> "service ended"
+            RecordEnd.WAKE -> "wake"
         }
     }
 }

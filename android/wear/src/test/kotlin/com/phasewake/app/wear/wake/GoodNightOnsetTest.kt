@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.wake
 
+import android.app.AlarmManager
 import android.content.Context
 import android.os.BatteryManager
 import android.os.Looper
@@ -7,6 +8,9 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.shared.LearningSnapshot
+import com.phasewake.app.wear.record.RecordControl
+import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.QuietWear
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
@@ -23,6 +27,7 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.android.controller.ServiceController
 import org.robolectric.annotation.Config
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -136,4 +141,58 @@ class GoodNightOnsetTest {
         assertNull(service.onset)
         assertTrue(runBlocking { app.onsetOverride.get() }?.alarmId != id, "die eingestellte Weckzeit gilt")
     }
+
+    @Test
+    fun learningStartsTheRecordingWithTheMeasurement() {
+        battery(80)
+        runBlocking { app.learning.setIfNewer(LearningSnapshot(true, null, null, System.currentTimeMillis())) }
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset start, alarm at")
+        assertTrue(awaitLog("learn record start bat=80").kind == DiagKind.MEASURE_START)
+        // Ein exakter Alarm gleich jetzt startet die Aufzeichnung, mit der eingestellten Weckzeit als spätestem Ende.
+        val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
+        val start = alarmIntents().single { it.action == RecordControl.ACTION_LEARN_START }
+        assertEquals(latest.toEpochMilli(), start.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
+        service.stopGoodNight()
+    }
+
+    @Test
+    fun learningSkipsTheRecordingBelowHalfBattery() {
+        battery(45)
+        runBlocking { app.learning.setIfNewer(LearningSnapshot(true, null, null, System.currentTimeMillis())) }
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        assertTrue(awaitLog("learn record skipped: battery 45%").kind == DiagKind.BATTERY)
+        assertNotNull(service.onset, "die Einschlaf-Messung selbst läuft (ab 30 %)")
+        assertTrue(alarmIntents().none { it.action == RecordControl.ACTION_LEARN_START })
+        service.stopGoodNight()
+    }
+
+    @Test
+    fun withoutLearningNoRecording() {
+        battery(80)
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset start, alarm at")
+        awaitLog("auto onset sensor wake=")
+        assertTrue(entries().none { it.detail.startsWith("learn record") })
+        service.stopGoodNight()
+    }
+
+    @Test
+    fun bedtimeForTheLatency() {
+        val latest = now.plus(Duration.ofHours(9))
+        // «Gute Nacht»: ab dem Drücken (im Bett).
+        assertEquals(now, OnsetRules.bedAt(now, automatic = false, latest = latest, sleepMinutes = 480))
+        // Automatisch: Beginn 60 Min vor der Bettzeit, die Einschlafdauer zählt ab der Bettzeit (Weckzeit − Schlaf).
+        assertEquals(now.plus(Duration.ofHours(1)), OnsetRules.bedAt(now, automatic = true, latest = latest, sleepMinutes = 480))
+        // Begann sie erst nach der Bettzeit: ab ihrem Beginn.
+        assertEquals(now, OnsetRules.bedAt(now, automatic = true, latest = now.plus(Duration.ofHours(7)), sleepMinutes = 480))
+    }
+
+    /** Aufträge der gestellten Alarme. */
+    @Suppress("DEPRECATION") // ScheduledAlarm.operation: in Robolectric 4.14 ohne Getter.
+    private fun alarmIntents() = shadowOf(context.getSystemService(AlarmManager::class.java)).scheduledAlarms
+        .mapNotNull { alarm -> alarm.operation?.let { shadowOf(it).savedIntent } }
 }

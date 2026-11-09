@@ -54,6 +54,8 @@ class PhoneListenerService : WearableListenerService() {
                 app.recordings.put(recording)
                 app.diag.log(DiagKind.SYNC, "recording received epochs=${recording.epochs.size} end=${recording.endReason?.code}")
                 app.sync.delete(item.uri)
+                // Lernphase: zählen, nach 7 Nächten anpassen.
+                app.updateLearning(recording)
             }
             changed.lastOrNull { it.uri.path == DataLayer.PATH_RECORD_STATUS }
                 ?.let { app.recordStatus.value = RecordSync.readStatus(DataMapItem.fromDataItem(it).dataMap) }

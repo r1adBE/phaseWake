@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 तासांनंतर संपले</string>
     <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>
     <string name="record_end_interrupted">खंडित</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">शिकण्याचा टप्पा: रात्र %1$d / %2$d</string>
+    <string name="learn_text">तुझ्यासाठी अलार्म जुळवण्यासाठी Phase Wake तुझ्या घड्याळाने %1$d रात्री मोजते. रात्री किमान %2$d %% बॅटरीसह घाल.</string>
+    <string name="learned_title">तुझ्यासाठी जुळवले</string>
+    <string name="learned_motion_default">हालचाल: विश्रांतीत तुझे घड्याळ शांत आहे – मानक मर्यादा तशाच राहतात.</string>
+    <string name="learned_motion_raised">हालचाल: विश्रांतीतील तुझ्या घड्याळाच्या आवाजानुसार मर्यादा वाढवल्या.</string>
+    <string name="learned_pulse">विश्रांतीची नाडी: मिनिटाला %1$d</string>
+    <string name="learned_pulse_none">विश्रांतीची नाडी: मोजमापे खूप कमी</string>
+    <string name="learned_latency">झोप लागणे: सुमारे %1$s</string>
+    <string name="learned_latency_none">झोप लागणे: मोजमापे खूप कमी</string>
+    <string name="bedtime_advice">आज %1$s ते %2$s दरम्यान झोपायला जा</string>
+    <string name="bedtime_advice_hint">तुझा अलार्म, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून.</string>
+    <string name="learn_restart">पुन्हा शिका</string>
+    <string name="learn_restart_text">Phase Wake पुन्हा %1$d रात्री मोजेल आणि जुळवलेली मूल्ये विसरेल.</string>
+    <string name="record_end_wake">उठवताना संपले</string>
 </resources>

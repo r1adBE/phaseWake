@@ -529,4 +529,19 @@
     <string name="record_end_cap">12 saatdan sonra bitdi</string>
     <string name="record_end_battery">Saatın batareyası azdır</string>
     <string name="record_end_interrupted">Kəsildi</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Öyrənmə mərhələsi: gecə %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake zəngli saatı sənə uyğunlaşdırmaq üçün saatınla %1$d gecə ölçür. Gecələr ən azı %2$d %% batareya ilə tax.</string>
+    <string name="learned_title">Sənə uyğunlaşdırıldı</string>
+    <string name="learned_motion_default">Hərəkət: saatın istirahətdə sakitdir – standart həddlər qalır.</string>
+    <string name="learned_motion_raised">Hərəkət: həddlər saatının istirahətdəki səs-küyünə görə qaldırıldı.</string>
+    <string name="learned_pulse">İstirahət nəbzi: dəqiqədə %1$d</string>
+    <string name="learned_pulse_none">İstirahət nəbzi: ölçmə çox azdır</string>
+    <string name="learned_latency">Yuxuya getmə: təxminən %1$s</string>
+    <string name="learned_latency_none">Yuxuya getmə: ölçmə çox azdır</string>
+    <string name="bedtime_advice">Bu gün %1$s ilə %2$s arasında yat</string>
+    <string name="bedtime_advice_hint">Zəngin, yuxu hədəfin və yuxuya getmə müddətinə əsasən.</string>
+    <string name="learn_restart">Yenidən öyrən</string>
+    <string name="learn_restart_text">Phase Wake yenidən %1$d gecə ölçəcək və uyğunlaşdırılmış dəyərləri unudacaq.</string>
+    <string name="record_end_wake">Oyananda bitdi</string>
 </resources>

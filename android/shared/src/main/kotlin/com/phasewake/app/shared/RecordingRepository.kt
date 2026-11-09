@@ -59,6 +59,17 @@ class RecordingRepository(
         mutex.withLock { withContext(io) { appendText(fileOf(start), NightRecording.epochLines(epochs)) } }
     }
 
+    /**
+     * Lernphase: Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt] an die laufende Aufzeichnung [start]
+     * hängen ([NightRecording.onsetLine]); ohne Datei oder schon abgeschlossen nichts.
+     */
+    suspend fun appendOnset(start: Instant, bedAt: Instant, asleepAt: Instant) = mutex.withLock {
+        withContext(io) {
+            val file = fileOf(start)
+            if (read(file)?.finished == false) appendText(file, NightRecording.onsetLine(bedAt, asleepAt))
+        }
+    }
+
     /** Schliesst die Aufzeichnung [start] mit [end] und [reason] ab und löscht die ältesten über [NightRecording.MAX_KEPT]. */
     suspend fun finish(start: Instant, end: Instant, reason: RecordEnd) = mutex.withLock {
         withContext(io) {

@@ -555,4 +555,19 @@
     <string name="record_end_cap">Terminata dopo 12 h</string>
     <string name="record_end_battery">Batteria dell’orologio scarica</string>
     <string name="record_end_interrupted">Interrotta</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fase di apprendimento: notte %1$d di %2$d</string>
+    <string name="learn_text">Per %1$d notti Phase Wake misura con il tuo orologio per adattare la sveglia a te. Indossalo di notte con almeno il %2$d %% di batteria.</string>
+    <string name="learned_title">Adattato a te</string>
+    <string name="learned_motion_default">Movimento: il tuo orologio è silenzioso a riposo – restano le soglie standard.</string>
+    <string name="learned_motion_raised">Movimento: soglie alzate in base al rumore del tuo orologio a riposo.</string>
+    <string name="learned_pulse">Battito a riposo: %1$d al minuto</string>
+    <string name="learned_pulse_none">Battito a riposo: troppo poche misurazioni</string>
+    <string name="learned_latency">Addormentarti: circa %1$s</string>
+    <string name="learned_latency_none">Addormentarti: troppo poche misurazioni</string>
+    <string name="bedtime_advice">Vai a letto stasera tra le %1$s e le %2$s</string>
+    <string name="bedtime_advice_hint">In base a sveglia, obiettivo di sonno e quanto ci metti ad addormentarti.</string>
+    <string name="learn_restart">Impara di nuovo</string>
+    <string name="learn_restart_text">Phase Wake misura di nuovo %1$d notti e dimentica i valori adattati.</string>
+    <string name="record_end_wake">Terminata al risveglio</string>
 </resources>

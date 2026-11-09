@@ -546,4 +546,19 @@
     <string name="record_end_cap">Ended after 12 h</string>
     <string name="record_end_battery">Watch battery low</string>
     <string name="record_end_interrupted">Interrupted</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress" tools:ignore="PluralsCandidate">Learning phase: night %1$d of %2$d</string>
+    <string name="learn_text" tools:ignore="PluralsCandidate">For %1$d nights, Phase Wake measures with your watch to adapt the alarm to you. Wear it at night with at least %2$d %% battery.</string>
+    <string name="learned_title">Adapted to you</string>
+    <string name="learned_motion_default">Movement: your watch is quiet at rest – the standard thresholds stay.</string>
+    <string name="learned_motion_raised">Movement: thresholds raised to match your watch’s noise at rest.</string>
+    <string name="learned_pulse" tools:ignore="PluralsCandidate">Resting pulse: %1$d per minute</string>
+    <string name="learned_pulse_none">Resting pulse: too few measurements</string>
+    <string name="learned_latency">Falling asleep: about %1$s</string>
+    <string name="learned_latency_none">Falling asleep: too few measurements</string>
+    <string name="bedtime_advice">Go to bed between %1$s and %2$s tonight</string>
+    <string name="bedtime_advice_hint">Based on your alarm, your sleep goal and how long you take to fall asleep.</string>
+    <string name="learn_restart">Learn again</string>
+    <string name="learn_restart_text" tools:ignore="PluralsCandidate">Phase Wake measures %1$d nights again and forgets the adapted values.</string>
+    <string name="record_end_wake">Ended at wake-up</string>
 </resources>

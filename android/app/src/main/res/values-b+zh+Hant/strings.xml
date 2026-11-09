@@ -527,4 +527,19 @@
     <string name="record_end_cap">12 小時後結束</string>
     <string name="record_end_battery">手錶電量低</string>
     <string name="record_end_interrupted">已中斷</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">學習階段：第 %1$d 晚，共 %2$d 晚</string>
+    <string name="learn_text">Phase Wake 會用你的手錶測量 %1$d 晚，讓鬧鐘適合你。夜裡請配戴手錶，電量至少 %2$d %%。</string>
+    <string name="learned_title">已為你調整</string>
+    <string name="learned_motion_default">動作：你的手錶靜止時很安靜，維持標準門檻值。</string>
+    <string name="learned_motion_raised">動作：已依你手錶靜止時的雜訊提高門檻值。</string>
+    <string name="learned_pulse">靜止脈搏：每分鐘 %1$d 次</string>
+    <string name="learned_pulse_none">靜止脈搏：測量值太少</string>
+    <string name="learned_latency">入睡：約 %1$s</string>
+    <string name="learned_latency_none">入睡：測量值太少</string>
+    <string name="bedtime_advice">今晚請在 %1$s 到 %2$s 之間上床</string>
+    <string name="bedtime_advice_hint">依據你的鬧鐘、睡眠目標和入睡所需時間。</string>
+    <string name="learn_restart">重新學習</string>
+    <string name="learn_restart_text">Phase Wake 會再測量 %1$d 晚，並忘記已調整的數值。</string>
+    <string name="record_end_wake">喚醒時結束</string>
 </resources>

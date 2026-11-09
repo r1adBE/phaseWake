@@ -541,4 +541,19 @@
     <string name="record_end_cap">Avsluttet etter 12 t</string>
     <string name="record_end_battery">Lavt batteri på klokken</string>
     <string name="record_end_interrupted">Avbrutt</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Læringsfase: natt %1$d av %2$d</string>
+    <string name="learn_text">I %1$d netter måler Phase Wake med klokken din for å tilpasse vekkerklokken til deg. Bruk den om natten med minst %2$d %% batteri.</string>
+    <string name="learned_title">Tilpasset deg</string>
+    <string name="learned_motion_default">Bevegelse: klokken din er stille i hvile – standardterskelene blir.</string>
+    <string name="learned_motion_raised">Bevegelse: terskler hevet etter klokkens støy i hvile.</string>
+    <string name="learned_pulse">Hvilepuls: %1$d i minuttet</string>
+    <string name="learned_pulse_none">Hvilepuls: for få målinger</string>
+    <string name="learned_latency">Sovne: ca. %1$s</string>
+    <string name="learned_latency_none">Sovne: for få målinger</string>
+    <string name="bedtime_advice">Legg deg i kveld mellom %1$s og %2$s</string>
+    <string name="bedtime_advice_hint">Ut fra vekkerklokken, søvnmålet og hvor lang tid du bruker på å sovne.</string>
+    <string name="learn_restart">Lær på nytt</string>
+    <string name="learn_restart_text">Phase Wake måler igjen %1$d netter og glemmer de tilpassede verdiene.</string>
+    <string name="record_end_wake">Avsluttet ved vekking</string>
 </resources>

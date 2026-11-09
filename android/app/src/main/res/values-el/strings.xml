@@ -541,4 +541,19 @@
     <string name="record_end_cap">Έληξε μετά από 12 ώρες</string>
     <string name="record_end_battery">Χαμηλή μπαταρία ρολογιού</string>
     <string name="record_end_interrupted">Διεκόπη</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Φάση εκμάθησης: νύχτα %1$d από %2$d</string>
+    <string name="learn_text">Για %1$d νύχτες το Phase Wake μετρά με το ρολόι σου για να προσαρμόσει το ξυπνητήρι σε σένα. Φόρα το τη νύχτα με τουλάχιστον %2$d %% μπαταρία.</string>
+    <string name="learned_title">Προσαρμοσμένο σε σένα</string>
+    <string name="learned_motion_default">Κίνηση: το ρολόι σου είναι ήσυχο σε ηρεμία – τα τυπικά όρια μένουν.</string>
+    <string name="learned_motion_raised">Κίνηση: τα όρια αυξήθηκαν σύμφωνα με τον θόρυβο του ρολογιού σου σε ηρεμία.</string>
+    <string name="learned_pulse">Παλμοί ηρεμίας: %1$d το λεπτό</string>
+    <string name="learned_pulse_none">Παλμοί ηρεμίας: πολύ λίγες μετρήσεις</string>
+    <string name="learned_latency">Αποκοίμιση: περίπου %1$s</string>
+    <string name="learned_latency_none">Αποκοίμιση: πολύ λίγες μετρήσεις</string>
+    <string name="bedtime_advice">Πήγαινε για ύπνο απόψε μεταξύ %1$s και %2$s</string>
+    <string name="bedtime_advice_hint">Με βάση το ξυπνητήρι, τον στόχο ύπνου και πόσο χρειάζεσαι για να αποκοιμηθείς.</string>
+    <string name="learn_restart">Μάθε ξανά</string>
+    <string name="learn_restart_text">Το Phase Wake μετρά ξανά %1$d νύχτες και ξεχνά τις προσαρμοσμένες τιμές.</string>
+    <string name="record_end_wake">Έληξε με το ξύπνημα</string>
 </resources>

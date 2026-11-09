@@ -59,4 +59,16 @@ class NoiseFloorTest {
         assertEquals("floor=0.0200 light=0.0500 wake=0.1000", NoiseFloor.summary(config, listOf(0.02, null, 0.02, 0.02, 0.4)))
         assertEquals("floor=- light=0.0020 wake=0.1000", NoiseFloor.summary(config, listOf(0.02, null)))
     }
+
+    @Test
+    fun personalFloorOnlyUntilTheMeasurementHasItsOwn() {
+        // Lernphase: Das eigene Grundrauschen gilt, solange die Messung weniger als 4 Werte hat, höchstens 0.04.
+        assertEquals(0.02, NoiseFloor.floor(listOf(0.03, null, 0.05), personal = 0.02))
+        assertEquals(NoiseFloor.MAX_FLOOR, NoiseFloor.floor(emptyList(), personal = 0.09))
+        assertNull(NoiseFloor.floor(listOf(0.03), personal = null))
+        // Ab 4 Werten gilt nur das eigene der Messung, auch wenn es tiefer liegt.
+        assertEquals(0.001, NoiseFloor.floor(listOf(0.001, 0.002, 0.003, 0.004), personal = 0.02))
+        // Zusammenfassung mit dem gelernten Wert, solange die Messung zu wenige hat.
+        assertEquals("floor=0.0200 light=0.0500 wake=0.1000", NoiseFloor.summary(DetectorConfig(personalFloor = 0.02), listOf(0.3)))
+    }
 }

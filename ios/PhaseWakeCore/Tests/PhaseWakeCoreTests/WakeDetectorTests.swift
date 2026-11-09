@@ -125,6 +125,35 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertThrowsError(try DetectorConfig(warmupEpochs: -1))
         XCTAssertThrowsError(try DetectorConfig(awakeHits: 4))
         XCTAssertThrowsError(try DetectorConfig(lightHits: 0))
+        XCTAssertThrowsError(try DetectorConfig(personalFloor: -0.01))
+        XCTAssertThrowsError(try DetectorConfig(restingHeartRate: 0.0))
+    }
+
+    func testRestingHeartRateIsBaselineOnlyWithoutWarmupPulse() throws {
+        // Aufwärmphase ohne Puls: gelernter Ruhepuls 50 ist Basispuls, 53 >= 52.5 → leichter Schlaf.
+        let learned = WakeDetector(config: try DetectorConfig(restingHeartRate: 50.0))
+        _ = feed(learned, Epoch(motion: 0.0, heartRate: nil), Epoch(motion: 0.0, heartRate: nil), Epoch(motion: 0.003, heartRate: 53.0))
+        XCTAssertEqual(learned.onEpoch(Epoch(motion: 0.003, heartRate: 53.0)), .wake(.lightSleep))
+        // Ohne gelernten Ruhepuls wie bisher: kein Basispuls, kein leichter Schlaf.
+        let plain = WakeDetector()
+        _ = feed(plain, Epoch(motion: 0.0, heartRate: nil), Epoch(motion: 0.0, heartRate: nil), Epoch(motion: 0.003, heartRate: 53.0))
+        XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.003, heartRate: 53.0)), .wait)
+        // Mit Puls in der Aufwärmphase gilt dessen Basispuls (52 → 54.6), der Ruhepuls 40 ändert nichts.
+        let own = WakeDetector(config: try DetectorConfig(restingHeartRate: 40.0))
+        _ = feed(own, still, still, Epoch(motion: 0.003, heartRate: 53.0))
+        XCTAssertEqual(own.onEpoch(Epoch(motion: 0.003, heartRate: 53.0)), .wait)
+    }
+
+    func testPersonalFloorAppliesBeforeTheWindowHasItsOwn() throws {
+        // Sensor liefert anfangs keine Bewegung: Ohne eigenes Grundrauschen gälte 0.002, 0.03 wäre leichte Bewegung.
+        let gap = Epoch(motion: nil, heartRate: 52.0)
+        let plain = WakeDetector()
+        _ = feed(plain, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))
+        XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wake(.lightSleep))
+        // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 ist Rauschen.
+        let learned = WakeDetector(config: try DetectorConfig(personalFloor: 0.02))
+        _ = feed(learned, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))
+        XCTAssertEqual(learned.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wait)
     }
 
     func testStandardEqualsCheckedDefaults() throws {

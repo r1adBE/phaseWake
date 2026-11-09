@@ -7,6 +7,7 @@ import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
@@ -19,7 +20,7 @@ import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
 /**
- * Empfängt Wecker, Feiertage und Schlafziel vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die Meldungen zur
+ * Empfängt Wecker, Feiertage, Schlafziel und Lernphase vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die Meldungen zur
  * Weckaufgabe und Start und Stopp von «Nacht aufzeichnen».
  */
 class WatchListenerService : WearableListenerService() {
@@ -45,6 +46,10 @@ class WatchListenerService : WearableListenerService() {
             .filter { it.uri.path == DataLayer.PATH_AUTO_ONSET }
             .map { WearSync.readAutoOnset(DataMapItem.fromDataItem(it).dataMap) }
             .maxByOrNull { it.second }
+        val learning = changed
+            .filter { it.uri.path == DataLayer.PATH_LEARNING }
+            .map { LearningSnapshot.read(DataMapItem.fromDataItem(it).dataMap) }
+            .maxByOrNull { it.updatedAt }
         // Abbruch am Handy, während die Uhr nicht erreichbar war: nachgeliefert als Paket.
         val cancelled = changed
             .filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
@@ -61,6 +66,8 @@ class WatchListenerService : WearableListenerService() {
             // Schalter der Einschlaf-Messung: Alarm der Messung stellen oder aufheben.
             val newOnset = autoOnset != null && app.autoOnset.setIfNewer(autoOnset.first, autoOnset.second)
             if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset.first}")
+            // Lernphase: gilt ab der nächsten Einschlaf-Messung bzw. dem nächsten Weckfenster, kein Neuplanen nötig.
+            if (learning != null && app.learning.setIfNewer(learning)) app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {

@@ -557,4 +557,19 @@
     <string name="record_end_cap">Acabat després de 12 h</string>
     <string name="record_end_battery">Bateria del rellotge baixa</string>
     <string name="record_end_interrupted">Interromput</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fase d’aprenentatge: nit %1$d de %2$d</string>
+    <string name="learn_text">Durant %1$d nits, Phase Wake mesura amb el teu rellotge per adaptar-te l’alarma. Porta’l a la nit amb almenys un %2$d %% de bateria.</string>
+    <string name="learned_title">Adaptat a tu</string>
+    <string name="learned_motion_default">Moviment: el teu rellotge és silenciós en repòs; es mantenen els llindars estàndard.</string>
+    <string name="learned_motion_raised">Moviment: llindars apujats segons el soroll del teu rellotge en repòs.</string>
+    <string name="learned_pulse">Pols en repòs: %1$d per minut</string>
+    <string name="learned_pulse_none">Pols en repòs: massa poques mesures</string>
+    <string name="learned_latency">Adormir-te: uns %1$s</string>
+    <string name="learned_latency_none">Adormir-te: massa poques mesures</string>
+    <string name="bedtime_advice">Ves a dormir avui entre les %1$s i les %2$s</string>
+    <string name="bedtime_advice_hint">A partir de l’alarma, l’objectiu de son i el temps que trigues a adormir-te.</string>
+    <string name="learn_restart">Torna a aprendre</string>
+    <string name="learn_restart_text">Phase Wake torna a mesurar %1$d nits i oblida els valors adaptats.</string>
+    <string name="record_end_wake">Acabat en despertar-te</string>
 </resources>

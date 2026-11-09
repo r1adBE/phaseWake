@@ -529,4 +529,19 @@
     <string name="record_end_cap">12 နာရီအကြာ ပြီးဆုံးသည်</string>
     <string name="record_end_battery">နာရီဘက်ထရီ နည်းနေသည်</string>
     <string name="record_end_interrupted">ကြားဖြတ်ခံရသည်</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">သင်ယူမှုအဆင့်- ညပေါင်း %2$d ထဲက %1$d ည</string>
+    <string name="learn_text">နှိုးစက်ကို သင်နဲ့ကိုက်အောင် Phase Wake က သင့်နာရီနဲ့ %1$d ည တိုင်းတာပါတယ်။ ညဘက် ဘက်ထရီ အနည်းဆုံး %2$d %% ရှိအောင် ဝတ်ထားပါ။</string>
+    <string name="learned_title">သင်နဲ့ကိုက်အောင် ချိန်ပြီး</string>
+    <string name="learned_motion_default">လှုပ်ရှားမှု- အနားယူချိန် သင့်နာရီ တိတ်ဆိတ်ပါတယ် – စံကန့်သတ်ချက်များ မပြောင်းပါ။</string>
+    <string name="learned_motion_raised">လှုပ်ရှားမှု- အနားယူချိန် နာရီရဲ့ ဆူညံသံအတိုင်း ကန့်သတ်ချက်များ မြှင့်ထားပါတယ်။</string>
+    <string name="learned_pulse">အနားယူချိန် သွေးခုန်နှုန်း- တစ်မိနစ် %1$d</string>
+    <string name="learned_pulse_none">အနားယူချိန် သွေးခုန်နှုန်း- တိုင်းတာမှု နည်းလွန်း</string>
+    <string name="learned_latency">အိပ်ပျော်ချိန်- ခန့်မှန်း %1$s</string>
+    <string name="learned_latency_none">အိပ်ပျော်ချိန်- တိုင်းတာမှု နည်းလွန်း</string>
+    <string name="bedtime_advice">ဒီည %1$s နဲ့ %2$s ကြား အိပ်ရာဝင်ပါ</string>
+    <string name="bedtime_advice_hint">သင့်နှိုးစက်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။</string>
+    <string name="learn_restart">ပြန်သင်ယူရန်</string>
+    <string name="learn_restart_text">Phase Wake က %1$d ည ထပ်တိုင်းပြီး ချိန်ထားတဲ့ တန်ဖိုးများကို မေ့ပါမယ်။</string>
+    <string name="record_end_wake">နိုးချိန်တွင် ပြီးဆုံး</string>
 </resources>

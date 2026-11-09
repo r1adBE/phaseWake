@@ -543,4 +543,19 @@
     <string name="record_end_cap">১২ ঘণ্টা পরে শেষ হয়েছে</string>
     <string name="record_end_battery">ঘড়ির ব্যাটারি কম</string>
     <string name="record_end_interrupted">বাধাপ্রাপ্ত</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">শেখার পর্ব: রাত %1$d / %2$d</string>
+    <string name="learn_text">তোমার জন্য অ্যালার্ম মানিয়ে নিতে Phase Wake তোমার ঘড়ি দিয়ে %1$d রাত মাপে। রাতে অন্তত %2$d %% চার্জ রেখে ঘড়িটি পরো।</string>
+    <string name="learned_title">তোমার মতো করে মানানো হয়েছে</string>
+    <string name="learned_motion_default">নড়াচড়া: বিশ্রামে তোমার ঘড়ি শান্ত – সাধারণ সীমা থাকছে।</string>
+    <string name="learned_motion_raised">নড়াচড়া: বিশ্রামে তোমার ঘড়ির নয়েজ অনুযায়ী সীমা বাড়ানো হয়েছে।</string>
+    <string name="learned_pulse">বিশ্রামের নাড়ি: মিনিটে %1$d</string>
+    <string name="learned_pulse_none">বিশ্রামের নাড়ি: মাপ খুব কম</string>
+    <string name="learned_latency">ঘুমিয়ে পড়া: প্রায় %1$s</string>
+    <string name="learned_latency_none">ঘুমিয়ে পড়া: মাপ খুব কম</string>
+    <string name="bedtime_advice">আজ %1$s থেকে %2$s-এর মধ্যে শুতে যাও</string>
+    <string name="bedtime_advice_hint">তোমার অ্যালার্ম, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।</string>
+    <string name="learn_restart">আবার শেখো</string>
+    <string name="learn_restart_text">Phase Wake আবার %1$d রাত মাপবে এবং মানানো মানগুলো ভুলে যাবে।</string>
+    <string name="record_end_wake">জাগানোর সময় শেষ</string>
 </resources>

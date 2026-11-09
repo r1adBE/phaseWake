@@ -529,4 +529,19 @@
     <string name="record_end_cap">ສິ້ນສຸດຫຼັງ 12 ຊມ</string>
     <string name="record_end_battery">ແບັດເຕີຣີໂມງຕ່ຳ</string>
     <string name="record_end_interrupted">ຖືກຂັດຈັງຫວະ</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ໄລຍະຮຽນຮູ້: ຄືນທີ %1$d ຈາກ %2$d</string>
+    <string name="learn_text">Phase Wake ວັດແທກ %1$d ຄືນດ້ວຍໂມງຂອງເຈົ້າ ເພື່ອປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ໃສ່ມັນຕອນກາງຄືນໂດຍມີແບັດຢ່າງໜ້ອຍ %2$d %%.</string>
+    <string name="learned_title">ປັບໃຫ້ເໝາະກັບເຈົ້າແລ້ວ</string>
+    <string name="learned_motion_default">ການເຄື່ອນໄຫວ: ໂມງຂອງເຈົ້າງຽບຕອນພັກ – ເກນມາດຕະຖານຍັງຄືເກົ່າ.</string>
+    <string name="learned_motion_raised">ການເຄື່ອນໄຫວ: ເພີ່ມເກນຕາມສຽງລົບກວນຂອງໂມງເຈົ້າຕອນພັກ.</string>
+    <string name="learned_pulse">ຊີບພະຈອນຕອນພັກ: %1$d ຕໍ່ນາທີ</string>
+    <string name="learned_pulse_none">ຊີບພະຈອນຕອນພັກ: ການວັດໜ້ອຍເກີນໄປ</string>
+    <string name="learned_latency">ການນອນຫຼັບ: ປະມານ %1$s</string>
+    <string name="learned_latency_none">ການນອນຫຼັບ: ການວັດໜ້ອຍເກີນໄປ</string>
+    <string name="bedtime_advice">ຄືນນີ້ເຂົ້ານອນລະຫວ່າງ %1$s ຫາ %2$s</string>
+    <string name="bedtime_advice_hint">ອີງຕາມໂມງປຸກ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ.</string>
+    <string name="learn_restart">ຮຽນຮູ້ໃໝ່</string>
+    <string name="learn_restart_text">Phase Wake ຈະວັດແທກ %1$d ຄືນອີກ ແລະ ລືມຄ່າທີ່ປັບແລ້ວ.</string>
+    <string name="record_end_wake">ສິ້ນສຸດຕອນປຸກ</string>
 </resources>

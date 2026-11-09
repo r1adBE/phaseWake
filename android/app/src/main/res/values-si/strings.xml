@@ -544,4 +544,19 @@
     <string name="record_end_cap">පැය 12කට පසු අවසන් විය</string>
     <string name="record_end_battery">ඔරලෝසුවේ බැටරිය අඩුයි</string>
     <string name="record_end_interrupted">බාධා විය</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ඉගෙනීමේ අදියර: රාත්‍රී %2$d න් %1$d</string>
+    <string name="learn_text">ඔබට ගැළපෙන ලෙස එලාමය සකසන්න Phase Wake ඔබේ ඔරලෝසුවෙන් රාත්‍රී %1$d ක් මනිනවා. රාත්‍රියේ අවම වශයෙන් %2$d %% බැටරියක් සමඟ පළඳින්න.</string>
+    <string name="learned_title">ඔබට ගැළපෙන ලෙස සැකසුණා</string>
+    <string name="learned_motion_default">චලනය: විවේකයේදී ඔබේ ඔරලෝසුව නිහඬයි – සම්මත සීමා එලෙසම.</string>
+    <string name="learned_motion_raised">චලනය: විවේකයේදී ඔරලෝසුවේ ඝෝෂාවට අනුව සීමා ඉහළ දැමුණා.</string>
+    <string name="learned_pulse">විවේක නාඩිය: මිනිත්තුවට %1$d</string>
+    <string name="learned_pulse_none">විවේක නාඩිය: මිනුම් ඉතා අඩුයි</string>
+    <string name="learned_latency">නින්දට යාම: ආසන්න වශයෙන් %1$s</string>
+    <string name="learned_latency_none">නින්දට යාම: මිනුම් ඉතා අඩුයි</string>
+    <string name="bedtime_advice">අද %1$s සහ %2$s අතර නින්දට යන්න</string>
+    <string name="bedtime_advice_hint">ඔබේ එලාමය, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව.</string>
+    <string name="learn_restart">නැවත ඉගෙන ගන්න</string>
+    <string name="learn_restart_text">Phase Wake නැවත රාත්‍රී %1$d ක් මැන සැකසූ අගයන් අමතක කරනවා.</string>
+    <string name="record_end_wake">අවදි කිරීමේදී අවසන්</string>
 </resources>

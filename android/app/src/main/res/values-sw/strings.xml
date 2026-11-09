@@ -543,4 +543,19 @@
     <string name="record_end_cap">Iliisha baada ya saa 12</string>
     <string name="record_end_battery">Betri ya saa iko chini</string>
     <string name="record_end_interrupted">Imekatizwa</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Hatua ya kujifunza: usiku %1$d kati ya %2$d</string>
+    <string name="learn_text">Kwa usiku %1$d, Phase Wake hupima kwa saa yako ili kurekebisha kengele ikufae. Ivae usiku ikiwa na angalau %2$d %% ya betri.</string>
+    <string name="learned_title">Imerekebishwa kwa ajili yako</string>
+    <string name="learned_motion_default">Mwendo: saa yako iko kimya ukipumzika – viwango vya kawaida vinabaki.</string>
+    <string name="learned_motion_raised">Mwendo: viwango vimeinuliwa kulingana na kelele ya saa yako ukipumzika.</string>
+    <string name="learned_pulse">Mapigo ya moyo ukipumzika: %1$d kwa dakika</string>
+    <string name="learned_pulse_none">Mapigo ya moyo ukipumzika: vipimo ni vichache mno</string>
+    <string name="learned_latency">Kupata usingizi: takriban %1$s</string>
+    <string name="learned_latency_none">Kupata usingizi: vipimo ni vichache mno</string>
+    <string name="bedtime_advice">Leo nenda kitandani kati ya %1$s na %2$s</string>
+    <string name="bedtime_advice_hint">Kulingana na kengele yako, lengo la usingizi na muda unaochukua kupata usingizi.</string>
+    <string name="learn_restart">Jifunze upya</string>
+    <string name="learn_restart_text">Phase Wake itapima tena usiku %1$d na kusahau thamani zilizorekebishwa.</string>
+    <string name="record_end_wake">Imeisha wakati wa kuamshwa</string>
 </resources>

@@ -527,4 +527,19 @@
     <string name="record_end_cap">Kết thúc sau 12 giờ</string>
     <string name="record_end_battery">Pin đồng hồ yếu</string>
     <string name="record_end_interrupted">Bị gián đoạn</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Giai đoạn học: đêm %1$d trên %2$d</string>
+    <string name="learn_text">Trong %1$d đêm, Phase Wake đo bằng đồng hồ của bạn để chỉnh báo thức cho hợp với bạn. Đeo đồng hồ ban đêm với pin ít nhất %2$d %%.</string>
+    <string name="learned_title">Đã chỉnh cho bạn</string>
+    <string name="learned_motion_default">Chuyển động: đồng hồ của bạn yên tĩnh khi nghỉ – giữ ngưỡng tiêu chuẩn.</string>
+    <string name="learned_motion_raised">Chuyển động: đã nâng ngưỡng theo nhiễu của đồng hồ khi nghỉ.</string>
+    <string name="learned_pulse">Nhịp tim lúc nghỉ: %1$d mỗi phút</string>
+    <string name="learned_pulse_none">Nhịp tim lúc nghỉ: quá ít số đo</string>
+    <string name="learned_latency">Đi vào giấc ngủ: khoảng %1$s</string>
+    <string name="learned_latency_none">Đi vào giấc ngủ: quá ít số đo</string>
+    <string name="bedtime_advice">Hôm nay hãy đi ngủ trong khoảng %1$s đến %2$s</string>
+    <string name="bedtime_advice_hint">Dựa trên báo thức, mục tiêu ngủ và thời gian bạn cần để ngủ.</string>
+    <string name="learn_restart">Học lại</string>
+    <string name="learn_restart_text">Phase Wake sẽ đo lại %1$d đêm và quên các giá trị đã chỉnh.</string>
+    <string name="record_end_wake">Kết thúc khi đánh thức</string>
 </resources>

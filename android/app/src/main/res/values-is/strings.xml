@@ -544,4 +544,19 @@
     <string name="record_end_cap">Lauk eftir 12 klst.</string>
     <string name="record_end_battery">Rafhlaða úrsins lág</string>
     <string name="record_end_interrupted">Rofið</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Námsfasi: nótt %1$d af %2$d</string>
+    <string name="learn_text">Í %1$d nætur mælir Phase Wake með úrinu þínu til að laga vekjarann að þér. Notaðu það á nóttunni með a.m.k. %2$d %% rafhlöðu.</string>
+    <string name="learned_title">Lagað að þér</string>
+    <string name="learned_motion_default">Hreyfing: úrið þitt er hljóðlátt í hvíld – staðlaðir þröskuldar haldast.</string>
+    <string name="learned_motion_raised">Hreyfing: þröskuldar hækkaðir eftir suði úrsins í hvíld.</string>
+    <string name="learned_pulse">Hvíldarpúls: %1$d á mínútu</string>
+    <string name="learned_pulse_none">Hvíldarpúls: of fáar mælingar</string>
+    <string name="learned_latency">Að sofna: um %1$s</string>
+    <string name="learned_latency_none">Að sofna: of fáar mælingar</string>
+    <string name="bedtime_advice">Farðu í rúmið í kvöld milli %1$s og %2$s</string>
+    <string name="bedtime_advice_hint">Út frá vekjaranum, svefnmarkmiðinu og hve lengi þú ert að sofna.</string>
+    <string name="learn_restart">Læra aftur</string>
+    <string name="learn_restart_text">Phase Wake mælir aftur %1$d nætur og gleymir aðlöguðu gildunum.</string>
+    <string name="record_end_wake">Lokið við vakningu</string>
 </resources>

@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.CustomNote
+import com.phasewake.app.core.Learning
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.ShortNight
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepNotes
@@ -162,6 +164,10 @@ fun HomeScreen(
         val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
         if (evening) {
             val tonight = SleepNotes.nightDate(now, zone)
+            // Nach der Lernphase: empfohlene Schlafenszeit für den Wecker dieser Nacht.
+            bedtimeAdvice(plan, alarms, extras, now, zone)?.let { (from, until) ->
+                item(key = "bedtimeAdvice") { BedtimeAdviceCard(from, until) }
+            }
             item(key = "notes") {
                 TonightNotesCard(notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) })
             }
@@ -181,6 +187,7 @@ fun HomeScreen(
         extras.onNap?.let { onNap ->
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
+        extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning) } }
         extras.record?.let { record -> item(key = "record") { RecordCard(record.since, extras.onRecord) } }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
@@ -235,7 +242,23 @@ class HomeExtras(
     val record: RecordSync.RecordStatus? = null,
     /** Aufzeichnung starten (`true`) oder stoppen. */
     val onRecord: (Boolean) -> Unit = {},
+    /** Lernphase: Fortschritt oder gelernte Werte; `null` = keine Karte. */
+    val learning: HomeLearning? = null,
+    /** Gelernte Werte nach der Lernphase für die Schlafenszeit am Abend; `null` = keine Empfehlung. */
+    val learned: Learning.Values? = null,
 )
+
+/**
+ * Empfohlene Schlafenszeit ([Learning.bedtimeRange]) für den Wecker [plan] dieser Nacht, nur nach der Lernphase
+ * ([HomeExtras.learned]) und bis zu ihrem Ende; Schlaf = Schlafdauer des Weckers, sonst das Schlafziel. Sonst `null`.
+ */
+private fun bedtimeAdvice(plan: WakePlan?, alarms: List<AlarmSpec>, extras: HomeExtras, now: Instant, zone: ZoneId): Pair<Instant, Instant>? {
+    val values = extras.learned ?: return null
+    if (plan == null || SleepNotes.nightDate(plan.windowStart, zone) != SleepNotes.nightDate(now, zone)) return null
+    val alarm = alarms.firstOrNull { it.id == plan.alarmId } ?: return null
+    val range = Learning.bedtimeRange(plan.target, alarm.sleepDurationMinutes ?: extras.sleepGoal, values.latencyMinutes)
+    return range.takeIf { now.isBefore(it.second) }
+}
 
 /** Nacht-Check-Punkte, bei denen die Uhr nicht messen kann (dann keine Zeile zur automatischen Messung). */
 private val WATCH_PROBLEMS = setOf(Check.WATCH, Check.WATCH_APP, Check.WATCH_SETUP)

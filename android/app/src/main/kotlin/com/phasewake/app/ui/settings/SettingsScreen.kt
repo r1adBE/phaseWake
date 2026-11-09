@@ -153,6 +153,8 @@ fun SettingsScreen(
             SwitchRow(stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset, onAutoOnset)
         }
 
+        extras.learning?.let { LearningGroup(it) }
+
         extras.onTest?.let { TestGroup(it) }
 
         extras.holidays?.let { HolidaysGroup(it) }

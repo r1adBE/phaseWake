@@ -14785,6 +14785,902 @@
         }
       }
     },
+    "bedtime_advice": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gaan vanaand tussen %1$@ en %2$@ bed toe"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ዛሬ ከ%1$@ እስከ %2$@ ባለው ጊዜ ተኛ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اذهب إلى السرير الليلة بين %1$@ و%2$@"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu gün %1$@ ilə %2$@ arasında yat"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Легни си днес между %1$@ и %2$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আজ %1$@ থেকে %2$@-এর মধ্যে শুতে যাও"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idi danas u krevet između %1$@ i %2$@"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ves a dormir avui entre les %1$@ i les %2$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jdi dnes spát mezi %1$@ a %2$@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå i seng i aften mellem %1$@ og %2$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh heute zwischen %1$@ und %2$@ ins Bett"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πήγαινε για ύπνο απόψε μεταξύ %1$@ και %2$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to bed between %1$@ and %2$@ tonight"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acuéstate hoy entre las %1$@ y las %2$@"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mine täna magama vahemikus %1$@ kuni %2$@"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joan gaur ohera %1$@ eta %2$@ artean"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امشب بین %1$@ و %2$@ به رختخواب برو"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mene tänään nukkumaan klo %1$@–%2$@"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matulog ngayong gabi sa pagitan ng %1$@ at %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couche-toi ce soir entre %1$@ et %2$@"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téigh a chodladh anocht idir %1$@ agus %2$@"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déitate hoxe entre as %1$@ e as %2$@"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આજે %1$@ અને %2$@ વચ્ચે સૂઈ જજે"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לך לישון הלילה בין %1$@ ל-%2$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज %1$@ से %2$@ के बीच सोने जाओ"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idi danas u krevet između %1$@ i %2$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feküdj le ma %1$@ és %2$@ között"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Այսօր պառկիր %1$@-ից %2$@-ի միջև"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidurlah malam ini antara %1$@ dan %2$@"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farðu í rúmið í kvöld milli %1$@ og %2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai a letto stasera tra le %1$@ e le %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今夜は%1$@〜%2$@の間に寝ましょう"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დღეს დაწექი %1$@-დან %2$@-მდე"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүгін %1$@ мен %2$@ аралығында жат"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "យប់នេះចូលគេងនៅចន្លោះ %1$@ និង %2$@"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಇಂದು %1$@ ಮತ್ತು %2$@ ನಡುವೆ ಮಲಗು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘은 %1$@~%2$@ 사이에 잠자리에 들어"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຄືນນີ້ເຂົ້ານອນລະຫວ່າງ %1$@ ຫາ %2$@"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šiandien eik miegoti tarp %1$@ ir %2$@"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šovakar ej gulēt no %1$@ līdz %2$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Легни си денес меѓу %1$@ и %2$@"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇന്ന് %1$@ നും %2$@ നും ഇടയിൽ ഉറങ്ങാൻ കിടക്കൂ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өнөөдөр %1$@-%2$@ хооронд хэвт"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज %1$@ ते %2$@ दरम्यान झोपायला जा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidur malam ini antara %1$@ dan %2$@"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဒီည %1$@ နဲ့ %2$@ ကြား အိပ်ရာဝင်ပါ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legg deg i kveld mellom %1$@ og %2$@"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज %1$@ र %2$@ बीच सुत्न जाऊ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ga vanavond tussen %1$@ en %2$@ naar bed"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅੱਜ %1$@ ਤੋਂ %2$@ ਦੇ ਵਿਚਕਾਰ ਸੌਣ ਜਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idź dziś spać między %1$@ a %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vá para a cama hoje entre %1$@ e %2$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deita-te hoje entre as %1$@ e as %2$@"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Culcă-te azi între %1$@ și %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ложись сегодня между %1$@ и %2$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අද %1$@ සහ %2$@ අතර නින්දට යන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choď dnes spať medzi %1$@ a %2$@"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pojdi danes spat med %1$@ in %2$@"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shko sot në shtrat midis %1$@ dhe %2$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Иди данас у кревет између %1$@ и %2$@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå och lägg dig i kväll mellan %1$@ och %2$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leo nenda kitandani kati ya %1$@ na %2$@"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இன்று %1$@ முதல் %2$@ வரை படுக்கச் செல்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈరోజు %1$@ మరియు %2$@ మధ్య పడుకో"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "คืนนี้เข้านอนระหว่าง %1$@ ถึง %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün %1$@ ile %2$@ arasında yat"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лягай сьогодні між %1$@ і %2$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آج %1$@ اور %2$@ کے درمیان سونے جاؤ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugun %1$@ va %2$@ oralig‘ida yot"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hôm nay hãy đi ngủ trong khoảng %1$@ đến %2$@"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今晚喺 %1$@ 至 %2$@ 之間上床"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今晚请在 %1$@ 到 %2$@ 之间上床"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今晚請在 %1$@ 到 %2$@ 之間上床"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namuhla yiya embhedeni phakathi kuka-%1$@ no-%2$@"
+          }
+        }
+      }
+    },
+    "bedtime_advice_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uit jou wekkertyd, slaapdoel en hoe lank jy neem om aan die slaap te raak."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከማንቂያህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بناءً على منبّهك وهدف نومك والمدة التي تحتاجها لتغفو."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zəngin, yuxu hədəfin və yuxuya getmə müddətinə əsasən."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От будилника, целта ти за сън и колко време ти трябва, за да заспиш."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার অ্যালার্ম, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na osnovu budilice, cilja sna i koliko ti treba da zaspiš."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir de l’alarma, l’objectiu de son i el temps que trigues a adormir-te."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podle budíku, cíle spánku a toho, jak dlouho ti trvá usnout."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ud fra dit vækkeur, dit søvnmål og hvor lang tid du er om at falde i søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus Weckzeit, Schlafziel und deiner Einschlafdauer."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Με βάση το ξυπνητήρι, τον στόχο ύπνου και πόσο χρειάζεσαι για να αποκοιμηθείς."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your alarm, your sleep goal and how long you take to fall asleep."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tu alarma, tu objetivo de sueño y lo que tardas en dormirte."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Äratuse, unesihi ja uinumiseks kuluva aja põhjal."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zure alarma, lo-helburua eta loak hartzeko behar duzun denboraren arabera."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بر اساس زنگت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herätyksen, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula sa alarm mo, layunin sa tulog at kung gaano ka katagal makatulog."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D’après ton réveil, ton objectif de sommeil et le temps qu’il te faut pour t’endormir."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bunaithe ar d’aláram, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segundo a túa alarma, o teu obxectivo de sono e o que tardas en durmir."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તારા અલાર્મ, ઊંઘના લક્ષ્ય અને ઊંઘ આવતાં લાગતા સમય પરથી."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לפי ההשכמה, יעד השינה והזמן שלוקח לך להירדם."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हारे अलार्म, नींद के लक्ष्य और नींद आने में लगने वाले समय से।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prema budilici, cilju sna i tome koliko ti treba da zaspiš."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az ébresztőd, az alváscélod és az elalvási időd alapján."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ըստ զարթուցիչիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berdasarkan alarm, target tidur, dan berapa lama kamu biasanya tertidur."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Út frá vekjaranum, svefnmarkmiðinu og hve lengi þú ert að sofna."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base a sveglia, obiettivo di sonno e quanto ci metti ad addormentarti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アラーム、睡眠目標、寝つくまでの時間から算出。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შენი მაღვიძარას, ძილის მიზნისა და ჩაძინების დროის მიხედვით."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оятқышыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ផ្អែកលើម៉ោងរោទ៍ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿನ್ನ ಅಲಾರಂ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알람, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ອີງຕາມໂມງປຸກ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagal žadintuvą, miego tikslą ir tai, kiek laiko užtrunki užmigti."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pēc modinātāja, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Според будилникот, целта за сон и колку време ти треба да заспиеш."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിന്റെ അലാറം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэрүүлэг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुझा अलार्म, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berdasarkan penggera, sasaran tidur dan berapa lama kamu ambil untuk tertidur."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင့်နှိုးစက်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ut fra vekkerklokken, søvnmålet og hvor lang tid du bruker på å sovne."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो अलार्म, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op basis van je wekker, je slaapdoel en hoe lang je over inslapen doet."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਰੇ ਅਲਾਰਮ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na podstawie budzika, celu snu i tego, ile czasu zajmuje ci zaśnięcie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base no seu alarme, na sua meta de sono e no tempo que você leva para dormir."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base no teu alarme, no teu objetivo de sono e no tempo que demoras a adormecer."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pe baza alarmei, a obiectivului de somn și a timpului în care adormi."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По будильнику, цели сна и тому, сколько ты засыпаешь."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ එලාමය, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podľa budíka, cieľa spánku a toho, ako dlho ti trvá zaspať."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glede na budilko, cilj spanja in koliko časa potrebuješ, da zaspiš."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sipas zgjuesit, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Према будилнику, циљу сна и томе колико ти треба да заспиш."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utifrån din väckning, ditt sömnmål och hur lång tid du tar på dig att somna."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulingana na kengele yako, lengo la usingizi na muda unaochukua kupata usingizi."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உன் அலாரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీ అలారం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "คำนวณจากนาฬิกาปลุก เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmına, uyku hedefine ve uykuya dalma süresine göre."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За будильником, метою сну і тим, скільки ти засинаєш."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہارے الارم، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budilnik, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dựa trên báo thức, mục tiêu ngủ và thời gian bạn cần để ngủ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據你嘅鬧鐘、睡眠目標同入睡所需時間。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你的闹钟、睡眠目标和入睡所需时间。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依據你的鬧鐘、睡眠目標和入睡所需時間。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngokusekelwe ku-alamu yakho, umgomo wokulala nesikhathi okuthatha sona ukulala."
+          }
+        }
+      }
+    },
     "bedtime_notification": {
       "localizations": {
         "af": {
@@ -122097,6 +122993,4934 @@
         }
       }
     },
+    "learn_progress": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leerfase: nag %1$lld van %2$lld"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የመማሪያ ጊዜ፦ ሌሊት %1$lld ከ%2$lld"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحلة التعلّم: الليلة %1$lld من %2$lld"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öyrənmə mərhələsi: gecə %1$lld / %2$lld"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза на учене: нощ %1$lld от %2$lld"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শেখার পর্ব: রাত %1$lld / %2$lld"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja: noć %1$lld od %2$lld"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase d’aprenentatge: nit %1$lld de %2$lld"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fáze učení: noc %1$lld z %2$lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læringsfase: nat %1$lld af %2$lld"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lernphase: Nacht %1$lld von %2$lld"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Φάση εκμάθησης: νύχτα %1$lld από %2$lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning phase: night %1$lld of %2$lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizaje: noche %1$lld de %2$lld"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Õppefaas: öö %1$lld / %2$lld"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikasketa-fasea: %1$lld. gaua, %2$lld-tik"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحلهٔ یادگیری: شب %1$lld از %2$lld"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppimisvaihe: yö %1$lld/%2$lld"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yugto ng pagkatuto: gabi %1$lld ng %2$lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase d’apprentissage : nuit %1$lld sur %2$lld"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céim foghlama: oíche %1$lld as %2$lld"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizaxe: noite %1$lld de %2$lld"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "શીખવાનો તબક્કો: રાત %1$lld માંથી %2$lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שלב למידה: לילה %1$lld מתוך %2$lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीखने का चरण: रात %1$lld / %2$lld"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja: noć %1$lld od %2$lld"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanulási szakasz: %1$lld. éjszaka / %2$lld"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ուսուցման փուլ՝ գիշեր %1$lld / %2$lld"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase belajar: malam %1$lld dari %2$lld"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Námsfasi: nótt %1$lld af %2$lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase di apprendimento: notte %1$lld di %2$lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学習期間：%2$lld夜中%1$lld夜目"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სწავლის ფაზა: ღამე %1$lld / %2$lld"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйрену кезеңі: %2$lld түннің %1$lld-сі"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដំណាក់កាលរៀន៖ យប់ទី %1$lld នៃ %2$lld"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಲಿಕೆಯ ಹಂತ: ರಾತ್ರಿ %1$lld / %2$lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "학습 단계: %2$lld일 중 %1$lld번째 밤"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໄລຍະຮຽນຮູ້: ຄືນທີ %1$lld ຈາກ %2$lld"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mokymosi etapas: %1$lld naktis iš %2$lld"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mācīšanās posms: %1$lld. nakts no %2$lld"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза на учење: ноќ %1$lld од %2$lld"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പഠന ഘട്ടം: രാത്രി %1$lld / %2$lld"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суралцах үе: %2$lld шөнийн %1$lld дэх"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शिकण्याचा टप्पा: रात्र %1$lld / %2$lld"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasa pembelajaran: malam %1$lld daripada %2$lld"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင်ယူမှုအဆင့်- ညပေါင်း %2$lld ထဲက %1$lld ည"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læringsfase: natt %1$lld av %2$lld"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिक्ने चरण: रात %1$lld / %2$lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leerfase: nacht %1$lld van %2$lld"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਿੱਖਣ ਦਾ ਪੜਾਅ: ਰਾਤ %1$lld / %2$lld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza nauki: noc %1$lld z %2$lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizado: noite %1$lld de %2$lld"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizagem: noite %1$lld de %2$lld"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza de învățare: noaptea %1$lld din %2$lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этап обучения: ночь %1$lld из %2$lld"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉගෙනීමේ අදියර: රාත්‍රී %2$lld න් %1$lld"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fáza učenia: noc %1$lld z %2$lld"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja: noč %1$lld od %2$lld"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza e të mësuarit: nata %1$lld nga %2$lld"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза учења: ноћ %1$lld од %2$lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inlärningsfas: natt %1$lld av %2$lld"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hatua ya kujifunza: usiku %1$lld kati ya %2$lld"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "கற்றல் நிலை: இரவு %1$lld / %2$lld"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నేర్చుకునే దశ: రాత్రి %1$lld / %2$lld"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ช่วงเรียนรู้: คืนที่ %1$lld จาก %2$lld"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öğrenme aşaması: gece %1$lld / %2$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Етап навчання: ніч %1$lld з %2$lld"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سیکھنے کا مرحلہ: رات %1$lld از %2$lld"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O‘rganish bosqichi: %2$lld tundan %1$lld-tun"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giai đoạn học: đêm %1$lld trên %2$lld"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "學習階段：第 %1$lld 晚，共 %2$lld 晚"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学习阶段：第 %1$lld 晚，共 %2$lld 晚"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "學習階段：第 %1$lld 晚，共 %2$lld 晚"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isigaba sokufunda: ubusuku %1$lld kokungu-%2$lld"
+          }
+        }
+      }
+    },
+    "learn_restart": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer weer"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንደገና ተማር"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعلّم من جديد"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yenidən öyrən"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Научи отново"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আবার শেখো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uči ponovo"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Torna a aprendre"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naučit znovu"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lær igen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neu lernen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Μάθε ξανά"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn again"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver a aprender"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Õpi uuesti"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikasi berriro"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "یادگیری دوباره"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opi uudelleen"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matuto ulit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réapprendre"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foghlaim arís"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprender de novo"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ફરી શીખો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ללמוד מחדש"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर से सीखो"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uči ponovno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanulás újra"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Սովորել նորից"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belajar lagi"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læra aftur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impara di nuovo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "もう一度学習"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თავიდან სწავლა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қайта үйрену"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "រៀនម្តងទៀត"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮತ್ತೆ ಕಲಿ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다시 학습"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຮຽນຮູ້ໃໝ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mokytis iš naujo"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mācīties no jauna"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Научи повторно"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വീണ്ടും പഠിക്കുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дахин суралцах"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पुन्हा शिका"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belajar semula"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ပြန်သင်ယူရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lær på nytt"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फेरि सिक"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opnieuw leren"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੁੜ ਸਿੱਖੋ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ucz od nowa"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprender de novo"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprender de novo"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Învață din nou"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обучить заново"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නැවත ඉගෙන ගන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naučiť znova"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uči se znova"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mëso përsëri"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Учи поново"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lär om"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jifunze upya"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மீண்டும் கற்றுக்கொள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మళ్లీ నేర్చుకో"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เรียนรู้ใหม่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeniden öğren"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Навчити знову"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دوبارہ سیکھو"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qayta o‘rganish"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Học lại"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新學習"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新学习"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新學習"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Funda kabusha"
+          }
+        }
+      }
+    },
+    "learn_restart_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meet weer %1$lld nagte en vergeet die aangepaste waardes."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake እንደገና %1$lld ሌሊቶችን ይለካል፤ የተስተካከሉትን እሴቶች ይረሳል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقيس Phase Wake مجددًا %1$lld ليالٍ وينسى القيم المضبوطة."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake yenidən %1$lld gecə ölçəcək və uyğunlaşdırılmış dəyərləri unudacaq."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake отново мери %1$lld нощи и забравя нагласените стойности."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake আবার %1$lld রাত মাপবে এবং মানানো মানগুলো ভুলে যাবে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ponovo mjeri %1$lld noći i zaboravlja prilagođene vrijednosti."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake torna a mesurar %1$lld nits i oblida els valors adaptats."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake znovu změří %1$lld nocí a zapomene přizpůsobené hodnoty."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler igen %1$lld nætter og glemmer de tilpassede værdier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misst wieder %1$lld Nächte und vergisst die angepassten Werte."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Phase Wake μετρά ξανά %1$lld νύχτες και ξεχνά τις προσαρμοσμένες τιμές."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake measures %1$lld nights again and forgets the adapted values."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vuelve a medir %1$lld noches y olvida los valores adaptados."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mõõdab uuesti %1$lld ööd ja unustab kohandatud väärtused."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k berriro %1$lld gau neurtuko ditu eta egokitutako balioak ahaztuko ditu."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake دوباره %1$lld شب اندازه می‌گیرد و مقادیر هماهنگ‌شده را فراموش می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mittaa taas %1$lld yötä ja unohtaa sovitetut arvot."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Susukat ulit ang Phase Wake nang %1$lld gabi at kakalimutan ang mga iniakmang value."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mesure de nouveau %1$lld nuits et oublie les valeurs adaptées."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomhaiseann Phase Wake %1$lld oíche arís agus déanann sé dearmad ar na luachanna oiriúnaithe."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake volve medir %1$lld noites e esquece os valores adaptados."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ફરી %1$lld રાત માપશે અને અનુકૂળ કરેલાં મૂલ્યો ભૂલી જશે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ימדוד שוב %1$lld לילות וישכח את הערכים המותאמים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake फिर से %1$lld रातें मापेगा और ढाले गए मान भूल जाएगा।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ponovno mjeri %1$lld noći i zaboravlja prilagođene vrijednosti."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake újra %1$lld éjszakát mér, és elfelejti az igazított értékeket."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ը նորից կչափի %1$lld գիշեր և կմոռանա հարմարեցված արժեքները։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur lagi %1$lld malam dan melupakan nilai yang disesuaikan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mælir aftur %1$lld nætur og gleymir aðlöguðu gildunum."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misura di nuovo %1$lld notti e dimentica i valori adattati."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake はもう一度%1$lld夜測定し、調整した値を忘れます。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ისევ %1$lld ღამეს გაზომავს და მორგებულ მნიშვნელობებს დაივიწყებს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake қайтадан %1$lld түн өлшеп, бейімделген мәндерді ұмытады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake នឹងវាស់ %1$lld យប់ម្តងទៀត ហើយបំភ្លេចតម្លៃដែលបានកែសម្រួល។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ಮತ್ತೆ %1$lld ರಾತ್ರಿ ಅಳೆಯುತ್ತದೆ ಮತ್ತು ಹೊಂದಿಸಿದ ಮೌಲ್ಯಗಳನ್ನು ಮರೆಯುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake가 다시 %1$lld일 밤을 측정하고 맞춘 값은 잊어."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ຈະວັດແທກ %1$lld ຄືນອີກ ແລະ ລືມຄ່າທີ່ປັບແລ້ວ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake vėl matuos %1$lld naktis ir pamirš pritaikytas reikšmes."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake atkal mērīs %1$lld naktis un aizmirsīs pielāgotās vērtības."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake повторно мери %1$lld ноќи и ги заборава прилагодените вредности."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake വീണ്ടും %1$lld രാത്രി അളക്കും, ക്രമീകരിച്ച മൂല്യങ്ങൾ മറക്കും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake дахин %1$lld шөнө хэмжиж, тааруулсан утгуудыг мартана."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake पुन्हा %1$lld रात्री मोजेल आणि जुळवलेली मूल्ये विसरेल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mengukur %1$lld malam lagi dan melupakan nilai yang disesuaikan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake က %1$lld ည ထပ်တိုင်းပြီး ချိန်ထားတဲ့ တန်ဖိုးများကို မေ့ပါမယ်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake måler igjen %1$lld netter og glemmer de tilpassede verdiene."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ले फेरि %1$lld रात नाप्छ र मिलाइएका मानहरू बिर्सन्छ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meet opnieuw %1$lld nachten en vergeet de afgestemde waarden."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ਮੁੜ %1$lld ਰਾਤਾਂ ਮਾਪੇਗਾ ਅਤੇ ਢਾਲੇ ਮੁੱਲ ਭੁੱਲ ਜਾਵੇਗਾ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake znów mierzy %1$lld nocy i zapomina dopasowane wartości."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake mede de novo %1$lld noites e esquece os valores ajustados."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Phase Wake volta a medir %1$lld noites e esquece os valores adaptados."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake măsoară din nou %1$lld nopți și uită valorile potrivite."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake снова измерит %1$lld ночей и забудет подстроенные значения."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake නැවත රාත්‍රී %1$lld ක් මැන සැකසූ අගයන් අමතක කරනවා."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake znova zmeria %1$lld nocí a zabudne prispôsobené hodnoty."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake znova izmeri %1$lld noči in pozabi prilagojene vrednosti."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mat përsëri %1$lld net dhe harron vlerat e përshtatura."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake поново мери %1$lld ноћи и заборавља прилагођене вредности."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mäter igen %1$lld nätter och glömmer de anpassade värdena."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake itapima tena usiku %1$lld na kusahau thamani zilizorekebishwa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake மீண்டும் %1$lld இரவுகள் அளந்து, அமைத்த மதிப்புகளை மறக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake మళ్లీ %1$lld రాత్రులు కొలిచి, సర్దిన విలువలను మర్చిపోతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake จะวัดอีก %1$lld คืน และลืมค่าที่ปรับไว้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake yeniden %1$lld gece ölçer ve ayarlanan değerleri unutur."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake знову виміряє %1$lld ночей і забуде підлаштовані значення."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake دوبارہ %1$lld راتیں ناپے گا اور ڈھالی گئی قدریں بھول جائے گا۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake yana %1$lld tun o‘lchaydi va moslangan qiymatlarni unutadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake sẽ đo lại %1$lld đêm và quên các giá trị đã chỉnh."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會再量 %1$lld 晚，並且忘記已調整嘅數值。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 会再测量 %1$lld 晚，并忘记已调整的数值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會再測量 %1$lld 晚，並忘記已調整的數值。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-Phase Wake izophinda ikale ubusuku obungu-%1$lld bese ikhohlwa amanani alungisiwe."
+          }
+        }
+      }
+    },
+    "learn_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meet %1$lld nagte lank met jou horlosie om die wekker by jou aan te pas. Dra dit snags met minstens %2$lld %% battery."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ማንቂያውን ለአንተ ለማስማማት በሰዓትህ %1$lld ሌሊቶችን ይለካል። ሌሊት ቢያንስ %2$lld %% ባትሪ ይዘህ አድርገው።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقيس Phase Wake لمدة %1$lld ليالٍ بساعتك ليضبط المنبّه على مقاسك. ارتدِها ليلًا وبطاريتها %2$lld %% على الأقل."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake zəngli saatı sənə uyğunlaşdırmaq üçün saatınla %1$lld gecə ölçür. Gecələr ən azı %2$lld %% batareya ilə tax."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake мери %1$lld нощи с часовника ти, за да нагласи будилника според теб. Носи го нощем с поне %2$lld %% батерия."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার জন্য অ্যালার্ম মানিয়ে নিতে Phase Wake তোমার ঘড়ি দিয়ে %1$lld রাত মাপে। রাতে অন্তত %2$lld %% চার্জ রেখে ঘড়িটি পরো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake %1$lld noći mjeri s tvojim satom kako bi budilicu prilagodio tebi. Nosi ga noću s najmanje %2$lld %% baterije."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durant %1$lld nits, Phase Wake mesura amb el teu rellotge per adaptar-te l’alarma. Porta’l a la nit amb almenys un %2$lld %% de bateria."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake měří %1$lld nocí s tvými hodinkami, aby budík přizpůsobil tobě. Nos je v noci s alespoň %2$lld %% baterie."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %1$lld nætter måler Phase Wake med dit ur for at tilpasse vækkeuret til dig. Bær det om natten med mindst %2$lld %% batteri."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake misst %1$lld Nächte mit deiner Uhr, um den Wecker an dich anzupassen. Trag sie nachts mit mindestens %2$lld %% Akku."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Για %1$lld νύχτες το Phase Wake μετρά με το ρολόι σου για να προσαρμόσει το ξυπνητήρι σε σένα. Φόρα το τη νύχτα με τουλάχιστον %2$lld %% μπαταρία."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For %1$lld nights, Phase Wake measures with your watch to adapt the alarm to you. Wear it at night with at least %2$lld %% battery."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante %1$lld noches, Phase Wake mide con tu reloj para adaptar la alarma a ti. Llévalo por la noche con al menos un %2$lld %% de batería."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mõõdab %1$lld ööd sinu kellaga, et äratus sulle sobiks. Kanna seda öösel vähemalt %2$lld %% akuga."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k %1$lld gauez neurtzen du zure erlojuarekin, alarma zuri egokitzeko. Eraman ezazu gauez, gutxienez %%%2$lld bateriarekin."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake به‌مدت %1$lld شب با ساعتت اندازه می‌گیرد تا زنگ را با تو هماهنگ کند. شب‌ها آن را با دست‌کم %2$lld %% باتری ببند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake mittaa kellollasi %1$lld yötä sovittaakseen herätyksen sinulle. Pidä sitä yöllä vähintään %2$lld %%:n akulla."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa loob ng %1$lld gabi, sumusukat ang Phase Wake gamit ang relo mo para iakma sa iyo ang alarm. Isuot ito sa gabi nang may hindi bababa sa %2$lld %% na baterya."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendant %1$lld nuits, Phase Wake mesure avec ta montre pour adapter le réveil à toi. Porte-la la nuit avec au moins %2$lld %% de batterie."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ar feadh %1$lld oíche, tomhaiseann Phase Wake le d’uaireadóir chun an t-aláram a oiriúnú duit. Caith san oíche é le %2$lld %% ceallraí ar a laghad."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante %1$lld noites, Phase Wake mide co teu reloxo para adaptarche a alarma. Lévao pola noite con polo menos un %2$lld %% de batería."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake તારા માટે અલાર્મ અનુકૂળ કરવા તારી ઘડિયાળથી %1$lld રાત માપે છે. રાત્રે ઓછામાં ઓછી %2$lld %% બેટરી સાથે પહેરજે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "במשך %1$lld לילות Phase Wake מודד עם השעון שלך כדי להתאים לך את ההשכמה. ענוד אותו בלילה עם לפחות %2$lld %% סוללה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake तुम्हारे लिए अलार्म ढालने को तुम्हारी घड़ी से %1$lld रातें मापता है। रात में कम से कम %2$lld %% बैटरी के साथ पहनो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake %1$lld noći mjeri tvojim satom kako bi budilicu prilagodio tebi. Nosi ga noću s barem %2$lld %% baterije."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Phase Wake %1$lld éjszakán át mér az órádon, hogy az ébresztőt hozzád igazítsa. Viseld éjjel legalább %2$lld %% töltöttséggel."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-ը %1$lld գիշեր չափում է քո ժամացույցով, որ զարթուցիչը հարմարեցնի քեզ։ Գիշերը կրիր այն առնվազն %2$lld %% մարտկոցով։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selama %1$lld malam, Phase Wake mengukur dengan jam tanganmu untuk menyesuaikan alarm denganmu. Pakai di malam hari dengan baterai minimal %2$lld %%."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Í %1$lld nætur mælir Phase Wake með úrinu þínu til að laga vekjarann að þér. Notaðu það á nóttunni með a.m.k. %2$lld %% rafhlöðu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per %1$lld notti Phase Wake misura con il tuo orologio per adattare la sveglia a te. Indossalo di notte con almeno il %2$lld %% di batteria."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake はアラームをあなたに合わせるため、ウォッチで%1$lld夜測定します。夜はバッテリー%2$lld %%以上で着けてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake შენი საათით %1$lld ღამეს ზომავს, რომ მაღვიძარა შენზე მოარგოს. ღამით ატარე მინიმუმ %2$lld %% ბატარეით."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake оятқышты саған бейімдеу үшін сағатыңмен %1$lld түн өлшейді. Түнде кемінде %2$lld %% батареямен тағып жүр."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake វាស់ %1$lld យប់ជាមួយនាឡិការបស់អ្នក ដើម្បីកែសម្រួលម៉ោងរោទ៍ឲ្យសមនឹងអ្នក។ ពាក់វានៅពេលយប់ដោយមានថ្មយ៉ាងហោចណាស់ %2$lld %%។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿನಗೆ ತಕ್ಕಂತೆ ಅಲಾರಂ ಹೊಂದಿಸಲು Phase Wake ನಿನ್ನ ವಾಚ್‌ನಿಂದ %1$lld ರಾತ್ರಿ ಅಳೆಯುತ್ತದೆ. ರಾತ್ರಿ ಕನಿಷ್ಠ %2$lld %% ಬ್ಯಾಟರಿಯೊಂದಿಗೆ ಧರಿಸು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake가 알람을 너에게 맞추려고 워치로 %1$lld일 밤 동안 측정해. 밤에는 배터리 %2$lld %% 이상으로 착용해 줘."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ວັດແທກ %1$lld ຄືນດ້ວຍໂມງຂອງເຈົ້າ ເພື່ອປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ໃສ່ມັນຕອນກາງຄືນໂດຍມີແບັດຢ່າງໜ້ອຍ %2$lld %%."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld naktis Phase Wake matuoja tavo laikrodžiu, kad pritaikytų žadintuvą tau. Nešiok jį naktį su bent %2$lld %% baterijos."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld naktis Phase Wake mēra ar tavu pulksteni, lai pielāgotu modinātāju tev. Valkā to naktī ar vismaz %2$lld %% akumulatora."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake мери %1$lld ноќи со твојот часовник за да го прилагоди будилникот кон тебе. Носи го ноќе со најмалку %2$lld %% батерија."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിനക്ക് ചേരും വിധം അലാറം ക്രമീകരിക്കാൻ Phase Wake നിന്റെ വാച്ച് ഉപയോഗിച്ച് %1$lld രാത്രി അളക്കുന്നു. രാത്രി കുറഞ്ഞത് %2$lld %% ബാറ്ററിയോടെ ധരിക്കൂ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake сэрүүлгийг чамд тааруулахын тулд цагаар чинь %1$lld шөнө хэмжинэ. Шөнө наад зах нь %2$lld %% цэнэгтэй зүү."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुझ्यासाठी अलार्म जुळवण्यासाठी Phase Wake तुझ्या घड्याळाने %1$lld रात्री मोजते. रात्री किमान %2$lld %% बॅटरीसह घाल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selama %1$lld malam, Phase Wake mengukur dengan jam tanganmu untuk menyesuaikan penggera dengan kamu. Pakai pada waktu malam dengan bateri sekurang-kurangnya %2$lld %%."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နှိုးစက်ကို သင်နဲ့ကိုက်အောင် Phase Wake က သင့်နာရီနဲ့ %1$lld ည တိုင်းတာပါတယ်။ ညဘက် ဘက်ထရီ အနည်းဆုံး %2$lld %% ရှိအောင် ဝတ်ထားပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %1$lld netter måler Phase Wake med klokken din for å tilpasse vekkerklokken til deg. Bruk den om natten med minst %2$lld %% batteri."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो लागि अलार्म मिलाउन Phase Wake ले तिम्रो घडीले %1$lld रात नाप्छ। राति कम्तीमा %2$lld %% ब्याट्रीसहित लगाऊ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld nachten lang meet Phase Wake met je horloge om de wekker op jou af te stemmen. Draag het ’s nachts met minstens %2$lld %% batterij."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਰੇ ਲਈ ਅਲਾਰਮ ਢਾਲਣ ਲਈ Phase Wake ਤੇਰੀ ਘੜੀ ਨਾਲ %1$lld ਰਾਤਾਂ ਮਾਪਦਾ ਹੈ। ਰਾਤ ਨੂੰ ਘੱਟੋ-ਘੱਟ %2$lld %% ਬੈਟਰੀ ਨਾਲ ਪਹਿਨ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przez %1$lld nocy Phase Wake mierzy twoim zegarkiem, by dopasować budzik do ciebie. Noś go w nocy z co najmniej %2$lld %% baterii."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por %1$lld noites, o Phase Wake mede com o seu relógio para ajustar o alarme a você. Use-o à noite com pelo menos %2$lld %% de bateria."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante %1$lld noites, o Phase Wake mede com o teu relógio para adaptar o alarme a ti. Usa-o à noite com pelo menos %2$lld %% de bateria."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timp de %1$lld nopți, Phase Wake măsoară cu ceasul tău ca să-ți potrivească alarma. Poartă-l noaptea cu cel puțin %2$lld %% baterie."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночей Phase Wake измеряет с помощью твоих часов, чтобы подстроить будильник под тебя. Носи их ночью с зарядом не меньше %2$lld %%."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබට ගැළපෙන ලෙස එලාමය සකසන්න Phase Wake ඔබේ ඔරලෝසුවෙන් රාත්‍රී %1$lld ක් මනිනවා. රාත්‍රියේ අවම වශයෙන් %2$lld %% බැටරියක් සමඟ පළඳින්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake meria %1$lld nocí s tvojimi hodinkami, aby budík prispôsobil tebe. Nos ich v noci s aspoň %2$lld %% batérie."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake %1$lld noči meri s tvojo uro, da budilko prilagodi tebi. Nosi jo ponoči z vsaj %2$lld %% baterije."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Për %1$lld net, Phase Wake mat me orën tënde për ta përshtatur zgjuesin me ty. Mbaje natën me të paktën %2$lld %% bateri."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake %1$lld ноћи мери твојим сатом како би будилник прилагодио теби. Носи га ноћу са најмање %2$lld %% батерије."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld nätter mäter Phase Wake med din klocka för att anpassa väckningen till dig. Bär den på natten med minst %2$lld %% batteri."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwa usiku %1$lld, Phase Wake hupima kwa saa yako ili kurekebisha kengele ikufae. Ivae usiku ikiwa na angalau %2$lld %% ya betri."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உனக்கேற்ப அலாரத்தை அமைக்க Phase Wake உன் கடிகாரத்தால் %1$lld இரவுகள் அளக்கிறது. இரவில் குறைந்தது %2$lld %% பேட்டரியுடன் அணி."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీకు తగ్గట్టు అలారం సర్దడానికి Phase Wake నీ వాచ్‌తో %1$lld రాత్రులు కొలుస్తుంది. రాత్రి కనీసం %2$lld %% బ్యాటరీతో ధరించు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake วัดด้วยนาฬิกาของคุณ %1$lld คืน เพื่อปรับนาฬิกาปลุกให้เข้ากับคุณ สวมตอนกลางคืนโดยมีแบตเตอรี่อย่างน้อย %2$lld %%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake, alarmı sana uydurmak için saatinle %1$lld gece ölçüm yapar. Geceleri en az %%%2$lld pille tak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld ночей Phase Wake вимірює твоїм годинником, щоб підлаштувати будильник під тебе. Носи його вночі із зарядом щонайменше %2$lld %%."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہارے لیے الارم ڈھالنے کو Phase Wake تمہاری گھڑی سے %1$lld راتیں ناپتا ہے۔ رات کو کم از کم %2$lld %% بیٹری کے ساتھ پہنو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake budilnikni senga moslash uchun soating bilan %1$lld tun o‘lchaydi. Kechasi kamida %2$lld %% batareya bilan taqib yur."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trong %1$lld đêm, Phase Wake đo bằng đồng hồ của bạn để chỉnh báo thức cho hợp với bạn. Đeo đồng hồ ban đêm với pin ít nhất %2$lld %%."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會用你隻手錶量 %1$lld 晚，等鬧鐘啱晒你。夜晚記得戴住，電量最少 %2$lld %%。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 会用你的手表测量 %1$lld 晚，让闹钟适合你。夜里请佩戴手表，电量至少 %2$lld %%。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake 會用你的手錶測量 %1$lld 晚，讓鬧鐘適合你。夜裡請配戴手錶，電量至少 %2$lld %%。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubusuku obungu-%1$lld, i-Phase Wake ikala ngewashi lakho ukuze ilungise i-alamu ikufanele. Ligqoke ebusuku nebhethri okungenani elingu-%2$lld %%."
+          }
+        }
+      }
+    },
+    "learned_latency": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aan die slaap raak: sowat %1$@"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ለመተኛት፦ ወደ %1$@ ገደማ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النوم: نحو %1$@"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxuya getmə: təxminən %1$@"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заспиване: около %1$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমিয়ে পড়া: প্রায় %1$@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavljivanje: oko %1$@"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormir-te: uns %1$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usínání: asi %1$@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falde i søvn: ca. %1$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einschlafen: etwa %1$@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποκοίμιση: περίπου %1$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falling asleep: about %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormirte: unos %1$@"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uinumine: umbes %1$@"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loak hartzea: %1$@ inguru"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به خواب رفتن: حدود %1$@"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nukahtaminen: noin %1$@"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagtulog: mga %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endormissement : environ %1$@"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Titim i do chodladh: thart ar %1$@"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durmir: uns %1$@"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘ આવવી: લગભગ %1$@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הירדמות: בערך %1$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद आना: लगभग %1$@"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavljivanje: oko %1$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elalvás: kb. %1$@"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնելը՝ մոտ %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tertidur: sekitar %1$@"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Að sofna: um %1$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Addormentarti: circa %1$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "寝つき：約%1$@"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩაძინება: დაახლოებით %1$@"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтап кету: шамамен %1$@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការលង់លក់៖ ប្រហែល %1$@"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆ ಬರುವುದು: ಸುಮಾರು %1$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠들기: 약 %1$@"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການນອນຫຼັບ: ປະມານ %1$@"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Užmigimas: apie %1$@"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iemigšana: aptuveni %1$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заспивање: околу %1$@"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങിപ്പോകൽ: ഏകദേശം %1$@"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтах: ойролцоогоор %1$@"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोप लागणे: सुमारे %1$@"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tertidur: kira-kira %1$@"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ပျော်ချိန်- ခန့်မှန်း %1$@"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sovne: ca. %1$@"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निदाउनु: करिब %1$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inslapen: ongeveer %1$@"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੀਂਦ ਆਉਣਾ: ਲਗਭਗ %1$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zasypianie: około %1$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar no sono: cerca de %1$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormecer: cerca de %1$@"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormire: cam %1$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Засыпание: около %1$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යාම: ආසන්න වශයෙන් %1$@"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaspávanie: asi %1$@"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavanje: približno %1$@"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rënia në gjumë: rreth %1$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Успављивање: око %1$@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insomning: ungefär %1$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kupata usingizi: takriban %1$@"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்கிவிடுதல்: சுமார் %1$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రపోవడం: సుమారు %1$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การหลับ: ประมาณ %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuya dalma: yaklaşık %1$@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Засинання: близько %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیند آنا: تقریباً %1$@"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlab qolish: taxminan %1$@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đi vào giấc ngủ: khoảng %1$@"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：大約 %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：约 %1$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：約 %1$@"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukulala: cishe %1$@"
+          }
+        }
+      }
+    },
+    "learned_latency_none": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aan die slaap raak: te min metings"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ለመተኛት፦ መለኪያዎቹ በጣም ጥቂት ናቸው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النوم: القياسات قليلة جدًا"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxuya getmə: ölçmə çox azdır"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заспиване: твърде малко измервания"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমিয়ে পড়া: মাপ খুব কম"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavljivanje: premalo mjerenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormir-te: massa poques mesures"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usínání: příliš málo měření"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falde i søvn: for få målinger"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einschlafen: zu wenige Messwerte"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποκοίμιση: πολύ λίγες μετρήσεις"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falling asleep: too few measurements"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormirte: muy pocas mediciones"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uinumine: liiga vähe mõõtmisi"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loak hartzea: neurketa gutxiegi"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به خواب رفتن: اندازه‌گیری خیلی کم است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nukahtaminen: liian vähän mittauksia"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagtulog: kulang ang sukat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endormissement : trop peu de mesures"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Titim i do chodladh: ró-bheagán tomhas"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durmir: moi poucas medicións"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘ આવવી: માપ બહુ ઓછા"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הירדמות: מעט מדי מדידות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद आना: माप बहुत कम"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavljivanje: premalo mjerenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elalvás: túl kevés mérés"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնելը՝ չափումները շատ քիչ են"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tertidur: pengukuran terlalu sedikit"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Að sofna: of fáar mælingar"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Addormentarti: troppo poche misurazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "寝つき：測定値が少なすぎます"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩაძინება: გაზომვები ძალიან ცოტაა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтап кету: өлшем тым аз"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការលង់លក់៖ ការវាស់តិចពេក"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆ ಬರುವುದು: ಅಳತೆಗಳು ತುಂಬಾ ಕಡಿಮೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠들기: 측정값이 너무 적어"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການນອນຫຼັບ: ການວັດໜ້ອຍເກີນໄປ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Užmigimas: per mažai matavimų"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iemigšana: pārāk maz mērījumu"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заспивање: премалку мерења"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങിപ്പോകൽ: അളവുകൾ വളരെ കുറവ്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтах: хэмжилт хэт цөөн"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोप लागणे: मोजमापे खूप कमी"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tertidur: terlalu sedikit ukuran"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ပျော်ချိန်- တိုင်းတာမှု နည်းလွန်း"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sovne: for få målinger"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निदाउनु: नाप धेरै कम"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inslapen: te weinig metingen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੀਂਦ ਆਉਣਾ: ਮਾਪ ਬਹੁਤ ਘੱਟ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zasypianie: za mało pomiarów"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar no sono: poucas medições"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormecer: medições insuficientes"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormire: prea puține măsurători"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Засыпание: слишком мало измерений"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යාම: මිනුම් ඉතා අඩුයි"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaspávanie: príliš málo meraní"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uspavanje: premalo meritev"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rënia në gjumë: shumë pak matje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Успављивање: премало мерења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insomning: för få mätningar"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kupata usingizi: vipimo ni vichache mno"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்கிவிடுதல்: அளவீடுகள் மிகக் குறைவு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రపోవడం: కొలతలు చాలా తక్కువ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การหลับ: ค่าที่วัดได้น้อยเกินไป"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuya dalma: ölçüm çok az"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Засинання: замало вимірювань"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نیند آنا: پیمائشیں بہت کم"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlab qolish: o‘lchovlar juda kam"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đi vào giấc ngủ: quá ít số đo"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：量度數據太少"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：测量值太少"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡：測量值太少"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukulala: izilinganiso zimbalwa kakhulu"
+          }
+        }
+      }
+    },
+    "learned_motion_default": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beweging: jou horlosie is stil in rus – die standaard drempels bly."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንቅስቃሴ፦ ሰዓትህ በእረፍት ጸጥ ይላል – መደበኛ ገደቦቹ ይቀራሉ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحركة: ساعتك هادئة أثناء الراحة – تبقى العتبات القياسية."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hərəkət: saatın istirahətdə sakitdir – standart həddlər qalır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движение: часовникът ти е тих в покой – стандартните прагове остават."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নড়াচড়া: বিশ্রামে তোমার ঘড়ি শান্ত – সাধারণ সীমা থাকছে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokret: tvoj sat je u mirovanju tih – standardni pragovi ostaju."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moviment: el teu rellotge és silenciós en repòs; es mantenen els llindars estàndard."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pohyb: tvé hodinky jsou v klidu tiché – standardní prahy zůstávají."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevægelse: dit ur er stille i hvile – standardtærsklerne bliver."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewegung: Deine Uhr ist in Ruhe still – die Standard-Schwellen bleiben."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κίνηση: το ρολόι σου είναι ήσυχο σε ηρεμία – τα τυπικά όρια μένουν."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movement: your watch is quiet at rest – the standard thresholds stay."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimiento: tu reloj está tranquilo en reposo; se mantienen los umbrales estándar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liikumine: su kell on puhkeolekus vaikne – tavalised lävendid jäävad."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mugimendua: zure erlojua lasai dago atsedenean – ohiko atalaseak mantentzen dira."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حرکت: ساعتت در حالت استراحت آرام است – آستانه‌های استاندارد می‌مانند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liike: kellosi on levossa hiljainen – vakiokynnykset pysyvät."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galaw: tahimik ang relo mo kapag nagpapahinga – mananatili ang karaniwang mga threshold."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvement : ta montre est calme au repos – les seuils standard restent."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gluaiseacht: tá d’uaireadóir ciúin ag scíth – fanann na tairseacha caighdeánacha."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movemento: o teu reloxo está tranquilo en repouso; mantéñense os limiares estándar."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "હલનચલન: આરામમાં તારી ઘડિયાળ શાંત છે – માનક મર્યાદાઓ રહે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תנועה: השעון שלך שקט במנוחה – הספים הרגילים נשארים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हलचल: आराम में तुम्हारी घड़ी शांत है – मानक सीमाएँ बनी रहती हैं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokret: tvoj je sat u mirovanju tih – standardni pragovi ostaju."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mozgás: az órád nyugalomban csendes – a szokásos küszöbök maradnak."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Շարժում՝ հանգստի ժամանակ ժամացույցդ հանգիստ է – ստանդարտ շեմերը մնում են։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerakan: jam tanganmu tenang saat istirahat – ambang standar tetap."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hreyfing: úrið þitt er hljóðlátt í hvíld – staðlaðir þröskuldar haldast."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: il tuo orologio è silenzioso a riposo – restano le soglie standard."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動き：安静時のウォッチは静か – 標準のしきい値のままです。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოძრაობა: მოსვენებისას შენი საათი წყნარია – სტანდარტული ზღვრები რჩება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қозғалыс: тыныштықта сағатың тыныш – стандартты шектер қалады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចលនា៖ នាឡិការបស់អ្នកស្ងាត់ពេលសម្រាក – កម្រិតស្តង់ដារនៅដដែល។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಚಲನೆ: ವಿಶ್ರಾಂತಿಯಲ್ಲಿ ನಿನ್ನ ವಾಚ್ ಶಾಂತ – ಸಾಮಾನ್ಯ ಮಿತಿಗಳು ಉಳಿಯುತ್ತವೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "움직임: 쉬는 동안 워치가 조용해 – 기본 기준값을 유지해."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການເຄື່ອນໄຫວ: ໂມງຂອງເຈົ້າງຽບຕອນພັກ – ເກນມາດຕະຖານຍັງຄືເກົ່າ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Judesys: ramybėje tavo laikrodis tylus – lieka standartinės ribos."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kustība: miera stāvoklī tavs pulkstenis ir kluss – paliek standarta sliekšņi."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движење: часовникот ти е тивок во мирување – стандардните прагови остануваат."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചലനം: വിശ്രമത്തിൽ നിന്റെ വാച്ച് ശാന്തമാണ് – സാധാരണ പരിധികൾ തുടരും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хөдөлгөөн: амрах үед цаг чинь чимээгүй – стандарт босго хэвээр."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हालचाल: विश्रांतीत तुझे घड्याळ शांत आहे – मानक मर्यादा तशाच राहतात."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergerakan: jam tanganmu senyap ketika rehat – ambang standard kekal."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "လှုပ်ရှားမှု- အနားယူချိန် သင့်နာရီ တိတ်ဆိတ်ပါတယ် – စံကန့်သတ်ချက်များ မပြောင်းပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevegelse: klokken din er stille i hvile – standardterskelene blir."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चालचलन: आराममा तिम्रो घडी शान्त छ – मानक सीमाहरू रहन्छन्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beweging: je horloge is stil in rust – de standaarddrempels blijven."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਿਲਜੁਲ: ਆਰਾਮ ਵਿੱਚ ਤੇਰੀ ਘੜੀ ਸ਼ਾਂਤ ਹੈ – ਮਿਆਰੀ ਹੱਦਾਂ ਰਹਿੰਦੀਆਂ ਹਨ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruch: twój zegarek w spoczynku jest cichy – zostają standardowe progi."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: seu relógio fica quieto em repouso – os limites padrão continuam."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: o teu relógio está sossegado em repouso – mantêm-se os limiares padrão."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mișcare: ceasul tău e liniștit în repaus – pragurile standard rămân."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движение: в покое твои часы спокойны – стандартные пороги остаются."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "චලනය: විවේකයේදී ඔබේ ඔරලෝසුව නිහඬයි – සම්මත සීමා එලෙසම."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pohyb: tvoje hodinky sú v pokoji tiché – štandardné prahy zostávajú."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gibanje: tvoja ura je v mirovanju tiha – standardni pragovi ostanejo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lëvizja: ora jote është e qetë në pushim – pragjet standarde mbeten."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Покрет: твој сат је у мировању тих – стандардни прагови остају."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rörelse: din klocka är tyst i vila – standardtrösklarna står kvar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mwendo: saa yako iko kimya ukipumzika – viwango vya kawaida vinabaki."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அசைவு: ஓய்வில் உன் கடிகாரம் அமைதியாக உள்ளது – நிலையான வரம்புகள் தொடரும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కదలిక: విశ్రాంతిలో నీ వాచ్ నిశ్శబ్దంగా ఉంది – ప్రామాణిక పరిమితులు అలాగే ఉంటాయి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเคลื่อนไหว: นาฬิกาของคุณเงียบขณะพัก – ใช้เกณฑ์มาตรฐานเหมือนเดิม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hareket: saatin dinlenirken sessiz – standart eşikler kalıyor."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рух: у спокої твій годинник тихий – стандартні пороги лишаються."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حرکت: آرام میں تمہاری گھڑی پرسکون ہے – معیاری حدیں برقرار ہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harakat: dam olishda soating jim – standart chegaralar qoladi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuyển động: đồng hồ của bạn yên tĩnh khi nghỉ – giữ ngưỡng tiêu chuẩn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動作：你隻手錶靜止嗰陣好安靜，保持標準門檻值。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "动作：你的手表静止时很安静，保持标准阈值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動作：你的手錶靜止時很安靜，維持標準門檻值。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukunyakaza: iwashi lakho lithule uma uphumule – imikhawulo ejwayelekile iyahlala."
+          }
+        }
+      }
+    },
+    "learned_motion_raised": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beweging: drempels aangepas by jou horlosie se agtergrondgeraas."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "እንቅስቃሴ፦ ገደቦቹ ከሰዓትህ የእረፍት ጫጫታ ጋር ተስተካክለዋል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحركة: رُفعت العتبات لتناسب ضجيج ساعتك أثناء الراحة."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hərəkət: həddlər saatının istirahətdəki səs-küyünə görə qaldırıldı."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движение: праговете са вдигнати според шума на часовника ти в покой."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "নড়াচড়া: বিশ্রামে তোমার ঘড়ির নয়েজ অনুযায়ী সীমা বাড়ানো হয়েছে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokret: pragovi podignuti prema šumu tvog sata u mirovanju."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moviment: llindars apujats segons el soroll del teu rellotge en repòs."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pohyb: prahy zvýšeny podle šumu tvých hodinek v klidu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevægelse: tærskler hævet efter dit urs støj i hvile."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewegung: Schwellen an das Grundrauschen deiner Uhr angepasst."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κίνηση: τα όρια αυξήθηκαν σύμφωνα με τον θόρυβο του ρολογιού σου σε ηρεμία."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movement: thresholds raised to match your watch’s noise at rest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimiento: umbrales subidos según el ruido de tu reloj en reposo."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liikumine: lävendeid tõsteti su kella puhkeoleku müra järgi."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mugimendua: atalaseak igo dira zure erlojuaren atseden-zarataren arabera."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حرکت: آستانه‌ها متناسب با نویز ساعتت در حالت استراحت بالا رفتند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liike: kynnyksiä nostettiin kellosi lepokohinan mukaan."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galaw: itinaas ang mga threshold ayon sa ingay ng relo mo kapag nagpapahinga."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvement : seuils relevés selon le bruit de ta montre au repos."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gluaiseacht: tairseacha ardaithe de réir torann d’uaireadóra ag scíth."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movemento: limiares subidos segundo o ruído do teu reloxo en repouso."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "હલનચલન: આરામમાં તારી ઘડિયાળના અવાજ પ્રમાણે મર્યાદાઓ વધારી."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תנועה: הספים הועלו לפי הרעש של השעון שלך במנוחה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हलचल: आराम में तुम्हारी घड़ी के शोर के हिसाब से सीमाएँ बढ़ाई गईं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokret: pragovi podignuti prema šumu tvog sata u mirovanju."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mozgás: a küszöböket az órád nyugalmi zajához emeltük."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Շարժում՝ շեմերը բարձրացվել են ըստ ժամացույցիդ հանգստի աղմուկի։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerakan: ambang dinaikkan sesuai derau jam tanganmu saat istirahat."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hreyfing: þröskuldar hækkaðir eftir suði úrsins í hvíld."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: soglie alzate in base al rumore del tuo orologio a riposo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動き：安静時のウォッチのノイズに合わせてしきい値を上げました。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოძრაობა: ზღვრები გაიზარდა შენი საათის მოსვენებისას ხმაურის მიხედვით."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қозғалыс: шектер сағатыңның тыныштықтағы шуына қарай көтерілді."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចលនា៖ បានដំឡើងកម្រិតតាមសំឡេងរំខាននៃនាឡិការបស់អ្នកពេលសម្រាក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಚಲನೆ: ವಿಶ್ರಾಂತಿಯಲ್ಲಿ ನಿನ್ನ ವಾಚ್‌ನ ಶಬ್ದಕ್ಕೆ ತಕ್ಕಂತೆ ಮಿತಿಗಳನ್ನು ಹೆಚ್ಚಿಸಲಾಗಿದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "움직임: 쉬는 동안의 워치 잡음에 맞춰 기준값을 높였어."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການເຄື່ອນໄຫວ: ເພີ່ມເກນຕາມສຽງລົບກວນຂອງໂມງເຈົ້າຕອນພັກ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Judesys: ribos padidintos pagal tavo laikrodžio triukšmą ramybėje."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kustība: sliekšņi paaugstināti atbilstoši tava pulksteņa troksnim miera stāvoklī."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движење: праговите се кренати според шумот на часовникот во мирување."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചലനം: വിശ്രമത്തിലെ വാച്ചിന്റെ ശബ്ദമനുസരിച്ച് പരിധികൾ ഉയർത്തി."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хөдөлгөөн: амрах үеийн цагны чинь шуугианаар босгыг өсгөсөн."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हालचाल: विश्रांतीतील तुझ्या घड्याळाच्या आवाजानुसार मर्यादा वाढवल्या."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergerakan: ambang dinaikkan mengikut hingar jam tanganmu ketika rehat."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "လှုပ်ရှားမှု- အနားယူချိန် နာရီရဲ့ ဆူညံသံအတိုင်း ကန့်သတ်ချက်များ မြှင့်ထားပါတယ်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevegelse: terskler hevet etter klokkens støy i hvile."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चालचलन: आराममा तिम्रो घडीको आवाजअनुसार सीमाहरू बढाइयो।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beweging: drempels verhoogd naar de ruis van je horloge in rust."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਿਲਜੁਲ: ਆਰਾਮ ਵਿੱਚ ਤੇਰੀ ਘੜੀ ਦੇ ਸ਼ੋਰ ਮੁਤਾਬਕ ਹੱਦਾਂ ਵਧਾਈਆਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruch: progi podniesione do szumu twojego zegarka w spoczynku."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: limites aumentados conforme o ruído do seu relógio em repouso."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento: limiares subidos de acordo com o ruído do teu relógio em repouso."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mișcare: praguri ridicate după zgomotul ceasului tău în repaus."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движение: пороги подняты под шум твоих часов в покое."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "චලනය: විවේකයේදී ඔරලෝසුවේ ඝෝෂාවට අනුව සීමා ඉහළ දැමුණා."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pohyb: prahy zvýšené podľa šumu tvojich hodiniek v pokoji."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gibanje: pragovi dvignjeni glede na šum tvoje ure v mirovanju."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lëvizja: pragjet u ngritën sipas zhurmës së orës sate në pushim."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Покрет: прагови подигнути према шуму твог сата у мировању."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rörelse: trösklar höjda efter klockans brus i vila."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mwendo: viwango vimeinuliwa kulingana na kelele ya saa yako ukipumzika."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அசைவு: ஓய்வில் உன் கடிகாரத்தின் இரைச்சலுக்கேற்ப வரம்புகள் உயர்த்தப்பட்டன."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కదలిక: విశ్రాంతిలో నీ వాచ్ శబ్దానికి తగ్గట్టు పరిమితులు పెంచబడ్డాయి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การเคลื่อนไหว: ปรับเกณฑ์สูงขึ้นตามสัญญาณรบกวนของนาฬิกาขณะพัก"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hareket: eşikler saatinin dinlenme gürültüsüne göre yükseltildi."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рух: пороги піднято під шум твого годинника в спокої."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حرکت: آرام میں تمہاری گھڑی کے شور کے مطابق حدیں بڑھائی گئیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harakat: chegaralar soatingning dam olishdagi shovqiniga ko‘ra oshirildi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuyển động: đã nâng ngưỡng theo nhiễu của đồng hồ khi nghỉ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動作：已經按你隻手錶靜止時嘅雜訊提高門檻值。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "动作：已按你手表静止时的噪声提高阈值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動作：已依你手錶靜止時的雜訊提高門檻值。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukunyakaza: imikhawulo inyuswe ngokomsindo wewashi lakho uma uphumule."
+          }
+        }
+      }
+    },
+    "learned_pulse": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rustende polsslag: %1$lld per minuut"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የእረፍት የልብ ምት፦ በደቂቃ %1$lld"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبض الراحة: %1$lld في الدقيقة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İstirahət nəbzi: dəqiqədə %1$lld"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс в покой: %1$lld в минута"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বিশ্রামের নাড়ি: মিনিটে %1$lld"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u mirovanju: %1$lld u minuti"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pols en repòs: %1$lld per minut"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klidový tep: %1$lld za minutu"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepuls: %1$lld i minuttet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhepuls: %1$lld pro Minute"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παλμοί ηρεμίας: %1$lld το λεπτό"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resting pulse: %1$lld per minute"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en reposo: %1$lld por minuto"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puhkepulss: %1$lld minutis"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atseden-pultsua: %1$lld minutuko"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبض استراحت: %1$lld در دقیقه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leposyke: %1$lld minuutissa"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso habang nagpapahinga: %1$lld kada minuto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouls au repos : %1$lld par minute"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuisle scíthe: %1$lld sa nóiméad"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en repouso: %1$lld por minuto"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આરામની નાડી: મિનિટે %1$lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דופק במנוחה: %1$lld לדקה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम की नब्ज़: %1$lld प्रति मिनट"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u mirovanju: %1$lld u minuti"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyugalmi pulzus: %1$lld percenként"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Հանգստի զարկերակ՝ րոպեում %1$lld"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denyut istirahat: %1$lld per menit"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvíldarpúls: %1$lld á mínútu"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battito a riposo: %1$lld al minuto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安静時の脈拍：毎分%1$lld回"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოსვენების პულსი: წუთში %1$lld"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тыныштық пульсі: минутына %1$lld"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ជីពចរពេលសម្រាក៖ %1$lld ក្នុងមួយនាទី"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಿಶ್ರಾಂತಿ ನಾಡಿ: ನಿಮಿಷಕ್ಕೆ %1$lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안정 시 맥박: 분당 %1$lld회"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຊີບພະຈອນຕອນພັກ: %1$lld ຕໍ່ນາທີ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ramybės pulsas: %1$lld per minutę"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miera pulss: %1$lld minūtē"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс во мирување: %1$lld во минута"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വിശ്രമ നാഡി: മിനിറ്റിൽ %1$lld"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тайван үеийн судасны цохилт: минутад %1$lld"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विश्रांतीची नाडी: मिनिटाला %1$lld"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadi rehat: %1$lld seminit"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အနားယူချိန် သွေးခုန်နှုန်း- တစ်မိနစ် %1$lld"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepuls: %1$lld i minuttet"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आरामको नाडी: मिनेटमा %1$lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rusthartslag: %1$lld per minuut"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਰਾਮ ਦੀ ਨਬਜ਼: %1$lld ਪ੍ਰਤੀ ਮਿੰਟ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tętno spoczynkowe: %1$lld na minutę"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em repouso: %1$lld por minuto"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em repouso: %1$lld por minuto"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls în repaus: %1$lld pe minut"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс в покое: %1$lld в минуту"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "විවේක නාඩිය: මිනිත්තුවට %1$lld"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokojový pulz: %1$lld za minútu"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Srčni utrip v mirovanju: %1$lld na minuto"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsi në qetësi: %1$lld në minutë"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс у мировању: %1$lld у минуту"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilopuls: %1$lld per minut"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapigo ya moyo ukipumzika: %1$lld kwa dakika"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஓய்வு நாடி: நிமிடத்துக்கு %1$lld"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "విశ్రాంతి నాడి: నిమిషానికి %1$lld"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ชีพจรขณะพัก: %1$lld ครั้งต่อนาที"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinlenme nabzı: dakikada %1$lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс у спокої: %1$lld за хвилину"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آرام کی نبض: %1$lld فی منٹ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tinch holatdagi puls: daqiqasiga %1$lld"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhịp tim lúc nghỉ: %1$lld mỗi phút"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "靜止脈搏：每分鐘 %1$lld 下"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "静息脉搏：每分钟 %1$lld 次"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "靜止脈搏：每分鐘 %1$lld 次"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukushaya kwenhliziyo uphumule: %1$lld ngomzuzu"
+          }
+        }
+      }
+    },
+    "learned_pulse_none": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rustende polsslag: te min metings"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የእረፍት የልብ ምት፦ መለኪያዎቹ በጣም ጥቂት ናቸው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبض الراحة: القياسات قليلة جدًا"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İstirahət nəbzi: ölçmə çox azdır"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс в покой: твърде малко измервания"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "বিশ্রামের নাড়ি: মাপ খুব কম"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u mirovanju: premalo mjerenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pols en repòs: massa poques mesures"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klidový tep: příliš málo měření"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepuls: for få målinger"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruhepuls: zu wenige Messwerte"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παλμοί ηρεμίας: πολύ λίγες μετρήσεις"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resting pulse: too few measurements"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en reposo: muy pocas mediciones"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puhkepulss: liiga vähe mõõtmisi"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atseden-pultsua: neurketa gutxiegi"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نبض استراحت: اندازه‌گیری خیلی کم است"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leposyke: liian vähän mittauksia"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso habang nagpapahinga: kulang ang sukat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouls au repos : trop peu de mesures"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuisle scíthe: ró-bheagán tomhas"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso en repouso: moi poucas medicións"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આરામની નાડી: માપ બહુ ઓછા"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דופק במנוחה: מעט מדי מדידות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम की नब्ज़: माप बहुत कम"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls u mirovanju: premalo mjerenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyugalmi pulzus: túl kevés mérés"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Հանգստի զարկերակ՝ չափումները շատ քիչ են"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denyut istirahat: pengukuran terlalu sedikit"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvíldarpúls: of fáar mælingar"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battito a riposo: troppo poche misurazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安静時の脈拍：測定値が少なすぎます"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოსვენების პულსი: გაზომვები ძალიან ცოტაა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тыныштық пульсі: өлшем тым аз"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ជីពចរពេលសម្រាក៖ ការវាស់តិចពេក"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಿಶ್ರಾಂತಿ ನಾಡಿ: ಅಳತೆಗಳು ತುಂಬಾ ಕಡಿಮೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안정 시 맥박: 측정값이 너무 적어"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຊີບພະຈອນຕອນພັກ: ການວັດໜ້ອຍເກີນໄປ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ramybės pulsas: per mažai matavimų"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miera pulss: pārāk maz mērījumu"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс во мирување: премалку мерења"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വിശ്രമ നാഡി: അളവുകൾ വളരെ കുറവ്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тайван үеийн судасны цохилт: хэмжилт хэт цөөн"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विश्रांतीची नाडी: मोजमापे खूप कमी"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadi rehat: terlalu sedikit ukuran"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အနားယူချိန် သွေးခုန်နှုန်း- တိုင်းတာမှု နည်းလွန်း"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepuls: for få målinger"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आरामको नाडी: नाप धेरै कम"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rusthartslag: te weinig metingen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਰਾਮ ਦੀ ਨਬਜ਼: ਮਾਪ ਬਹੁਤ ਘੱਟ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tętno spoczynkowe: za mało pomiarów"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em repouso: poucas medições"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso em repouso: medições insuficientes"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls în repaus: prea puține măsurători"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс в покое: слишком мало измерений"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "විවේක නාඩිය: මිනුම් ඉතා අඩුයි"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokojový pulz: príliš málo meraní"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Srčni utrip v mirovanju: premalo meritev"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsi në qetësi: shumë pak matje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пулс у мировању: премало мерења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilopuls: för få mätningar"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapigo ya moyo ukipumzika: vipimo ni vichache mno"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஓய்வு நாடி: அளவீடுகள் மிகக் குறைவு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "విశ్రాంతి నాడి: కొలతలు చాలా తక్కువ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ชีพจรขณะพัก: ค่าที่วัดได้น้อยเกินไป"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinlenme nabzı: ölçüm çok az"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пульс у спокої: замало вимірювань"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آرام کی نبض: پیمائشیں بہت کم"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tinch holatdagi puls: o‘lchovlar juda kam"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhịp tim lúc nghỉ: quá ít số đo"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "靜止脈搏：量度數據太少"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "静息脉搏：测量值太少"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "靜止脈搏：測量值太少"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukushaya kwenhliziyo uphumule: izilinganiso zimbalwa kakhulu"
+          }
+        }
+      }
+    },
+    "learned_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By jou aangepas"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ለአንተ ተስተካክሏል"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مضبوط على مقاسك"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sənə uyğunlaşdırıldı"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нагласено за теб"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার মতো করে মানানো হয়েছে"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prilagođeno tebi"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaptat a tu"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přizpůsobeno tobě"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilpasset dig"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angepasst an dich"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προσαρμοσμένο σε σένα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adapted to you"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaptado a ti"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinu järgi kohandatud"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuri egokitua"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هماهنگ با تو"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sovitettu sinulle"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniakma sa iyo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adapté à toi"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oiriúnaithe duit"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaptado a ti"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તારા માટે અનુકૂળ કર્યું"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מותאם לך"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हारे हिसाब से ढाला गया"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prilagođeno tebi"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hozzád igazítva"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Հարմարեցված է քեզ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disesuaikan untukmu"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagað að þér"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adattato a te"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたに合わせました"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შენზე მორგებულია"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Саған бейімделді"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានកែសម្រួលសម្រាប់អ្នក"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿನಗೆ ತಕ್ಕಂತೆ ಹೊಂದಿಸಲಾಗಿದೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "너에게 맞춤"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ປັບໃຫ້ເໝາະກັບເຈົ້າແລ້ວ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pritaikyta tau"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pielāgots tev"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прилагодено за тебе"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിനക്കായി ക്രമീകരിച്ചു"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чамд тааруулсан"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुझ्यासाठी जुळवले"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disesuaikan untukmu"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင်နဲ့ကိုက်အောင် ချိန်ပြီး"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilpasset deg"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो लागि मिलाइयो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op jou afgestemd"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਿਆ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopasowano do ciebie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustado a você"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaptado a ti"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Potrivit pentru tine"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подстроено под тебя"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබට ගැළපෙන ලෙස සැකසුණා"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prispôsobené tebe"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prilagojeno tebi"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Përshtatur për ty"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прилагођено теби"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anpassat efter dig"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imerekebishwa kwa ajili yako"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உனக்கேற்ப அமைக்கப்பட்டது"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీకు తగ్గట్టు సర్దబడింది"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ปรับให้เข้ากับคุณแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sana göre ayarlandı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Підлаштовано під тебе"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمہارے مطابق ڈھالا گیا"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senga moslandi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã chỉnh cho bạn"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已經為你調整"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已为你调整"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已為你調整"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulungiselelwe wena"
+          }
+        }
+      }
+    },
     "nap_hint": {
       "localizations": {
         "af": {
@@ -160457,6 +166281,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kumisiwe"
+          }
+        }
+      }
+    },
+    "record_end_wake": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beëindig met wakker word"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "በመንቃት ጊዜ አልቋል"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتهى عند الاستيقاظ"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oyananda bitdi"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приключено при събуждане"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জাগানোর সময় শেষ"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Završeno pri buđenju"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acabat en despertar-te"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukončeno při buzení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afsluttet ved vækning"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beim Wecken beendet"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Έληξε με το ξύπνημα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ended at wake-up"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminada al despertar"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lõpetatud äratusel"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esnatzean amaitua"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هنگام بیدار شدن تمام شد"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Päättyi herätykseen"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natapos sa paggising"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé au réveil"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Críochnaithe ag dúiseacht"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rematada ao espertar"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જગાડતી વખતે પૂરું"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסתיימה בהשכמה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जगाने पर खत्म"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Završeno pri buđenju"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ébresztéskor befejezve"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ավարտվել է արթնացնելիս"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berakhir saat bangun"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokið við vakningu"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminata al risveglio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "起床時に終了"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დასრულდა გაღვიძებისას"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оятқанда аяқталды"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បានបញ្ចប់ពេលដាស់"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಬ್ಬಿಸುವಾಗ ಮುಗಿದಿದೆ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기상 시 종료"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ສິ້ນສຸດຕອນປຸກ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baigta pažadinus"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beigts pamošanās brīdī"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завршено при будење"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉണർത്തുമ്പോൾ അവസാനിച്ചു"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэрээхэд дууссан"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उठवताना संपले"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamat semasa bangun"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နိုးချိန်တွင် ပြီးဆုံး"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsluttet ved vekking"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उठाउँदा सकियो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beëindigd bij het wekken"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਗਾਉਣ ਵੇਲੇ ਖ਼ਤਮ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zakończono przy budzeniu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerrada ao despertar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminada ao acordar"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Încheiată la trezire"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершено при пробуждении"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අවදි කිරීමේදී අවසන්"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukončené pri budení"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Končano ob bujenju"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Përfundoi në zgjim"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завршено при буђењу"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avslutad vid väckning"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imeisha wakati wa kuamshwa"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "எழுப்பும்போது முடிந்தது"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లేపేటప్పుడు ముగిసింది"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สิ้นสุดเมื่อปลุก"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyandırmada sona erdi"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершено під час пробудження"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جگاتے وقت ختم"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyg‘otishda tugadi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kết thúc khi đánh thức"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "喚醒時結束"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "唤醒时结束"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "喚醒時結束"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuphele lapho kuvuswa"
           }
         }
       }

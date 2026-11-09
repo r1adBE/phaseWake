@@ -541,4 +541,19 @@
     <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
     <string name="record_end_battery">باتری ساعت کم است</string>
     <string name="record_end_interrupted">قطع شد</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">مرحلهٔ یادگیری: شب %1$d از %2$d</string>
+    <string name="learn_text">Phase Wake به‌مدت %1$d شب با ساعتت اندازه می‌گیرد تا زنگ را با تو هماهنگ کند. شب‌ها آن را با دست‌کم %2$d %% باتری ببند.</string>
+    <string name="learned_title">هماهنگ با تو</string>
+    <string name="learned_motion_default">حرکت: ساعتت در حالت استراحت آرام است – آستانه‌های استاندارد می‌مانند.</string>
+    <string name="learned_motion_raised">حرکت: آستانه‌ها متناسب با نویز ساعتت در حالت استراحت بالا رفتند.</string>
+    <string name="learned_pulse">نبض استراحت: %1$d در دقیقه</string>
+    <string name="learned_pulse_none">نبض استراحت: اندازه‌گیری خیلی کم است</string>
+    <string name="learned_latency">به خواب رفتن: حدود %1$s</string>
+    <string name="learned_latency_none">به خواب رفتن: اندازه‌گیری خیلی کم است</string>
+    <string name="bedtime_advice">امشب بین %1$s و %2$s به رختخواب برو</string>
+    <string name="bedtime_advice_hint">بر اساس زنگت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد.</string>
+    <string name="learn_restart">یادگیری دوباره</string>
+    <string name="learn_restart_text">Phase Wake دوباره %1$d شب اندازه می‌گیرد و مقادیر هماهنگ‌شده را فراموش می‌کند.</string>
+    <string name="record_end_wake">هنگام بیدار شدن تمام شد</string>
 </resources>

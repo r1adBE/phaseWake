@@ -106,6 +106,14 @@ internal object OnsetRules {
         return until.takeIf { it.isAfter(at) }
     }
 
+    /**
+     * Lernphase: Beginn der Einschlafdauer. Nach «Gute Nacht» ([automatic] `false`) der Beginn [since] (die Person liegt
+     * im Bett). Die automatische Messung beginnt 60 Min vor der Bettzeit: dann die Bettzeit (Weckzeit [latest] minus
+     * Schlaf [sleepMinutes], wie [com.phasewake.app.core.Bedtime.bedtime]), frühestens [since].
+     */
+    fun bedAt(since: Instant, automatic: Boolean, latest: Instant, sleepMinutes: Int): Instant =
+        if (automatic) maxOf(since, latest.minus(Duration.ofMinutes(sleepMinutes.toLong()))) else since
+
     /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
     fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {
         at.isBefore(minOf(latestGiveUp, maxEnd)) -> null

@@ -544,4 +544,19 @@
     <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
     <string name="record_end_battery">Ibhethri lewashi liphansi</string>
     <string name="record_end_interrupted">Kuphazamisekile</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Isigaba sokufunda: ubusuku %1$d kokungu-%2$d</string>
+    <string name="learn_text">Ubusuku obungu-%1$d, i-Phase Wake ikala ngewashi lakho ukuze ilungise i-alamu ikufanele. Ligqoke ebusuku nebhethri okungenani elingu-%2$d %%.</string>
+    <string name="learned_title">Kulungiselelwe wena</string>
+    <string name="learned_motion_default">Ukunyakaza: iwashi lakho lithule uma uphumule – imikhawulo ejwayelekile iyahlala.</string>
+    <string name="learned_motion_raised">Ukunyakaza: imikhawulo inyuswe ngokomsindo wewashi lakho uma uphumule.</string>
+    <string name="learned_pulse">Ukushaya kwenhliziyo uphumule: %1$d ngomzuzu</string>
+    <string name="learned_pulse_none">Ukushaya kwenhliziyo uphumule: izilinganiso zimbalwa kakhulu</string>
+    <string name="learned_latency">Ukulala: cishe %1$s</string>
+    <string name="learned_latency_none">Ukulala: izilinganiso zimbalwa kakhulu</string>
+    <string name="bedtime_advice">Namuhla yiya embhedeni phakathi kuka-%1$s no-%2$s</string>
+    <string name="bedtime_advice_hint">Ngokusekelwe ku-alamu yakho, umgomo wokulala nesikhathi okuthatha sona ukulala.</string>
+    <string name="learn_restart">Funda kabusha</string>
+    <string name="learn_restart_text">I-Phase Wake izophinda ikale ubusuku obungu-%1$d bese ikhohlwa amanani alungisiwe.</string>
+    <string name="record_end_wake">Kuphele lapho kuvuswa</string>
 </resources>

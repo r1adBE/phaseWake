@@ -88,7 +88,7 @@ private fun WakeService.begin(plan: WakePlan) {
 }
 
 /**
- * Lädt Wecker, kalibrierte Schwellen und den Stand vor einem Neustart des Dienstes in [current] und
+ * Lädt Wecker, kalibrierte Schwellen (mit den gelernten Werten) und den Stand vor einem Neustart des Dienstes in [current] und
  * setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen). [refusal]: Grund, warum ohne
  * Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll.
  */
@@ -98,7 +98,8 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         // Wecker und kalibrierte Schwellen laden. Auch wenn schon geweckt wird (Neustart zur
         // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
         val spec = app.specFor(plan.alarmId)
-        val config = Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load()))
+        // Dazu die gelernten Werte der Lernphase (eigenes Grundrauschen, Ruhepuls), falls es sie gibt.
+        val config = app.learning.current().applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
         // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel.

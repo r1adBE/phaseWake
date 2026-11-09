@@ -572,4 +572,19 @@
     <string name="record_end_cap">Baigta po 12 val.</string>
     <string name="record_end_battery">Laikrodžio baterija senka</string>
     <string name="record_end_interrupted">Nutraukta</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Mokymosi etapas: %1$d naktis iš %2$d</string>
+    <string name="learn_text">%1$d naktis Phase Wake matuoja tavo laikrodžiu, kad pritaikytų žadintuvą tau. Nešiok jį naktį su bent %2$d %% baterijos.</string>
+    <string name="learned_title">Pritaikyta tau</string>
+    <string name="learned_motion_default">Judesys: ramybėje tavo laikrodis tylus – lieka standartinės ribos.</string>
+    <string name="learned_motion_raised">Judesys: ribos padidintos pagal tavo laikrodžio triukšmą ramybėje.</string>
+    <string name="learned_pulse">Ramybės pulsas: %1$d per minutę</string>
+    <string name="learned_pulse_none">Ramybės pulsas: per mažai matavimų</string>
+    <string name="learned_latency">Užmigimas: apie %1$s</string>
+    <string name="learned_latency_none">Užmigimas: per mažai matavimų</string>
+    <string name="bedtime_advice">Šiandien eik miegoti tarp %1$s ir %2$s</string>
+    <string name="bedtime_advice_hint">Pagal žadintuvą, miego tikslą ir tai, kiek laiko užtrunki užmigti.</string>
+    <string name="learn_restart">Mokytis iš naujo</string>
+    <string name="learn_restart_text">Phase Wake vėl matuos %1$d naktis ir pamirš pritaikytas reikšmes.</string>
+    <string name="record_end_wake">Baigta pažadinus</string>
 </resources>

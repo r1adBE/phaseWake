@@ -527,4 +527,19 @@
     <string name="record_end_cap">12시간 후 종료됨</string>
     <string name="record_end_battery">워치 배터리 부족</string>
     <string name="record_end_interrupted">중단됨</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">학습 단계: %2$d일 중 %1$d번째 밤</string>
+    <string name="learn_text">Phase Wake가 알람을 너에게 맞추려고 워치로 %1$d일 밤 동안 측정해. 밤에는 배터리 %2$d %% 이상으로 착용해 줘.</string>
+    <string name="learned_title">너에게 맞춤</string>
+    <string name="learned_motion_default">움직임: 쉬는 동안 워치가 조용해 – 기본 기준값을 유지해.</string>
+    <string name="learned_motion_raised">움직임: 쉬는 동안의 워치 잡음에 맞춰 기준값을 높였어.</string>
+    <string name="learned_pulse">안정 시 맥박: 분당 %1$d회</string>
+    <string name="learned_pulse_none">안정 시 맥박: 측정값이 너무 적어</string>
+    <string name="learned_latency">잠들기: 약 %1$s</string>
+    <string name="learned_latency_none">잠들기: 측정값이 너무 적어</string>
+    <string name="bedtime_advice">오늘은 %1$s~%2$s 사이에 잠자리에 들어</string>
+    <string name="bedtime_advice_hint">알람, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해.</string>
+    <string name="learn_restart">다시 학습</string>
+    <string name="learn_restart_text">Phase Wake가 다시 %1$d일 밤을 측정하고 맞춘 값은 잊어.</string>
+    <string name="record_end_wake">기상 시 종료</string>
 </resources>

@@ -544,4 +544,19 @@
     <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
     <string name="record_end_battery">Mahina ang baterya ng relo</string>
     <string name="record_end_interrupted">Naantala</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Yugto ng pagkatuto: gabi %1$d ng %2$d</string>
+    <string name="learn_text">Sa loob ng %1$d gabi, sumusukat ang Phase Wake gamit ang relo mo para iakma sa iyo ang alarm. Isuot ito sa gabi nang may hindi bababa sa %2$d %% na baterya.</string>
+    <string name="learned_title">Iniakma sa iyo</string>
+    <string name="learned_motion_default">Galaw: tahimik ang relo mo kapag nagpapahinga – mananatili ang karaniwang mga threshold.</string>
+    <string name="learned_motion_raised">Galaw: itinaas ang mga threshold ayon sa ingay ng relo mo kapag nagpapahinga.</string>
+    <string name="learned_pulse">Pulso habang nagpapahinga: %1$d kada minuto</string>
+    <string name="learned_pulse_none">Pulso habang nagpapahinga: kulang ang sukat</string>
+    <string name="learned_latency">Pagtulog: mga %1$s</string>
+    <string name="learned_latency_none">Pagtulog: kulang ang sukat</string>
+    <string name="bedtime_advice">Matulog ngayong gabi sa pagitan ng %1$s at %2$s</string>
+    <string name="bedtime_advice_hint">Mula sa alarm mo, layunin sa tulog at kung gaano ka katagal makatulog.</string>
+    <string name="learn_restart">Matuto ulit</string>
+    <string name="learn_restart_text">Susukat ulit ang Phase Wake nang %1$d gabi at kakalimutan ang mga iniakmang value.</string>
+    <string name="record_end_wake">Natapos sa paggising</string>
 </resources>

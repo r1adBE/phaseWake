@@ -51,7 +51,8 @@ class WakeDetector(
         recent.addLast(epoch)
 
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
-        val floor = NoiseFloor.floor(motions)
+        // Solange die Messung zu wenige Werte hat, gilt das eigene aus der Lernphase (falls gelernt).
+        val floor = NoiseFloor.floor(motions, config.personalFloor)
         if (hits(config.awakeWindow, NoiseFloor.wake(config, floor)) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
@@ -78,9 +79,11 @@ class WakeDetector(
      * Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
      * [DetectorConfig.heartRateRise] über dem Basispuls. Fehlt einer der beiden Werte, ist sie nicht erfüllt:
      * Bewegung allein reicht für [WakeReason.LIGHT_SLEEP] nicht («Phase nicht behaupten»).
+     * Basispuls ist der des Fensters; hat die Aufwärmphase keinen Puls, der eigene Ruhepuls aus der Lernphase
+     * ([DetectorConfig.restingHeartRate]), falls gelernt.
      */
     private fun heartRateRisen(): Boolean {
-        val baseline = baselineHeartRate ?: return false
+        val baseline = baselineHeartRate ?: config.restingHeartRate ?: return false
         var sum = 0.0
         var count = 0
         for (i in maxOf(0, recent.size - CURRENT_HEART_RATE_EPOCHS) until recent.size) {

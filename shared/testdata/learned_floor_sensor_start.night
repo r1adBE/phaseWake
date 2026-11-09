@@ -1,0 +1,67 @@
+# Lernphase (Abschnitt 10): gelerntes Grundrauschen 0.02 (Galaxy Watch, Befund 07.11.2026), Leicht-Schwelle 0.05.
+# Der Sensor liefert in Epoche 0-3 keine Bewegung; in Epoche 4 und 5 Rauschen 0.03 mit Puls 57.
+# Ohne gelernten Wert hätte die Messung noch kein Grundrauschen (Schwelle 0.002): Epoche 5 weckte LIGHT_SLEEP.
+# Mit 0.02 ist das Rauschen; geweckt wird erst bei echter Bewegung in Epoche 30 und 32 (Epoche 32).
+@floor 0.02
+@expect 32 LIGHT_SLEEP
+motion,hr
+,52
+,52
+,52
+,52
+0.0300,57
+0.0300,57
+0.0202,52
+0.0211,52
+0.0280,52
+0.0196,52
+0.0224,52
+0.0205,52
+0.0219,52
+0.0201,52
+0.0238,52
+0.0208,52
+0.0194,52
+0.0217,52
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.0202,52
+0.0211,52
+0.0280,52
+0.0196,52
+0.0224,52
+0.0205,52
+0.0219,52
+0.0201,52
+0.0712,57
+0.0208,57
+0.0623,56
+0.0217,56
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.0202,52
+0.0211,52
+0.0280,52
+0.0196,52
+0.0224,52
+0.0205,52
+0.0219,52
+0.0201,52
+0.0238,52
+0.0208,52
+0.0194,52
+0.0217,52
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.0202,52
+0.0211,52
+0.0280,52
+0.0196,52
+0.0224,52
+0.0205,52

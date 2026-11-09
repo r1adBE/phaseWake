@@ -555,4 +555,19 @@
     <string name="record_end_cap">Încheiată după 12 h</string>
     <string name="record_end_battery">Bateria ceasului e slabă</string>
     <string name="record_end_interrupted">Întreruptă</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Faza de învățare: noaptea %1$d din %2$d</string>
+    <string name="learn_text">Timp de %1$d nopți, Phase Wake măsoară cu ceasul tău ca să-ți potrivească alarma. Poartă-l noaptea cu cel puțin %2$d %% baterie.</string>
+    <string name="learned_title">Potrivit pentru tine</string>
+    <string name="learned_motion_default">Mișcare: ceasul tău e liniștit în repaus – pragurile standard rămân.</string>
+    <string name="learned_motion_raised">Mișcare: praguri ridicate după zgomotul ceasului tău în repaus.</string>
+    <string name="learned_pulse">Puls în repaus: %1$d pe minut</string>
+    <string name="learned_pulse_none">Puls în repaus: prea puține măsurători</string>
+    <string name="learned_latency">Adormire: cam %1$s</string>
+    <string name="learned_latency_none">Adormire: prea puține măsurători</string>
+    <string name="bedtime_advice">Culcă-te azi între %1$s și %2$s</string>
+    <string name="bedtime_advice_hint">Pe baza alarmei, a obiectivului de somn și a timpului în care adormi.</string>
+    <string name="learn_restart">Învață din nou</string>
+    <string name="learn_restart_text">Phase Wake măsoară din nou %1$d nopți și uită valorile potrivite.</string>
+    <string name="record_end_wake">Încheiată la trezire</string>
 </resources>

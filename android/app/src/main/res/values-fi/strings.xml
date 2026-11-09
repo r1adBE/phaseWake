@@ -541,4 +541,19 @@
     <string name="record_end_cap">Päättyi 12 tunnin jälkeen</string>
     <string name="record_end_battery">Kellon akku vähissä</string>
     <string name="record_end_interrupted">Keskeytyi</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Oppimisvaihe: yö %1$d/%2$d</string>
+    <string name="learn_text">Phase Wake mittaa kellollasi %1$d yötä sovittaakseen herätyksen sinulle. Pidä sitä yöllä vähintään %2$d %%:n akulla.</string>
+    <string name="learned_title">Sovitettu sinulle</string>
+    <string name="learned_motion_default">Liike: kellosi on levossa hiljainen – vakiokynnykset pysyvät.</string>
+    <string name="learned_motion_raised">Liike: kynnyksiä nostettiin kellosi lepokohinan mukaan.</string>
+    <string name="learned_pulse">Leposyke: %1$d minuutissa</string>
+    <string name="learned_pulse_none">Leposyke: liian vähän mittauksia</string>
+    <string name="learned_latency">Nukahtaminen: noin %1$s</string>
+    <string name="learned_latency_none">Nukahtaminen: liian vähän mittauksia</string>
+    <string name="bedtime_advice">Mene tänään nukkumaan klo %1$s–%2$s</string>
+    <string name="bedtime_advice_hint">Herätyksen, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella.</string>
+    <string name="learn_restart">Opi uudelleen</string>
+    <string name="learn_restart_text">Phase Wake mittaa taas %1$d yötä ja unohtaa sovitetut arvot.</string>
+    <string name="record_end_wake">Päättyi herätykseen</string>
 </resources>

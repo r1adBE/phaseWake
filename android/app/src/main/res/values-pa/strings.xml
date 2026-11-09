@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
     <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>
     <string name="record_end_interrupted">ਰੁਕਾਵਟ ਪਈ</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ਸਿੱਖਣ ਦਾ ਪੜਾਅ: ਰਾਤ %1$d / %2$d</string>
+    <string name="learn_text">ਤੇਰੇ ਲਈ ਅਲਾਰਮ ਢਾਲਣ ਲਈ Phase Wake ਤੇਰੀ ਘੜੀ ਨਾਲ %1$d ਰਾਤਾਂ ਮਾਪਦਾ ਹੈ। ਰਾਤ ਨੂੰ ਘੱਟੋ-ਘੱਟ %2$d %% ਬੈਟਰੀ ਨਾਲ ਪਹਿਨ।</string>
+    <string name="learned_title">ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਿਆ</string>
+    <string name="learned_motion_default">ਹਿਲਜੁਲ: ਆਰਾਮ ਵਿੱਚ ਤੇਰੀ ਘੜੀ ਸ਼ਾਂਤ ਹੈ – ਮਿਆਰੀ ਹੱਦਾਂ ਰਹਿੰਦੀਆਂ ਹਨ।</string>
+    <string name="learned_motion_raised">ਹਿਲਜੁਲ: ਆਰਾਮ ਵਿੱਚ ਤੇਰੀ ਘੜੀ ਦੇ ਸ਼ੋਰ ਮੁਤਾਬਕ ਹੱਦਾਂ ਵਧਾਈਆਂ।</string>
+    <string name="learned_pulse">ਆਰਾਮ ਦੀ ਨਬਜ਼: %1$d ਪ੍ਰਤੀ ਮਿੰਟ</string>
+    <string name="learned_pulse_none">ਆਰਾਮ ਦੀ ਨਬਜ਼: ਮਾਪ ਬਹੁਤ ਘੱਟ</string>
+    <string name="learned_latency">ਨੀਂਦ ਆਉਣਾ: ਲਗਭਗ %1$s</string>
+    <string name="learned_latency_none">ਨੀਂਦ ਆਉਣਾ: ਮਾਪ ਬਹੁਤ ਘੱਟ</string>
+    <string name="bedtime_advice">ਅੱਜ %1$s ਤੋਂ %2$s ਦੇ ਵਿਚਕਾਰ ਸੌਣ ਜਾ</string>
+    <string name="bedtime_advice_hint">ਤੇਰੇ ਅਲਾਰਮ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।</string>
+    <string name="learn_restart">ਮੁੜ ਸਿੱਖੋ</string>
+    <string name="learn_restart_text">Phase Wake ਮੁੜ %1$d ਰਾਤਾਂ ਮਾਪੇਗਾ ਅਤੇ ਢਾਲੇ ਮੁੱਲ ਭੁੱਲ ਜਾਵੇਗਾ।</string>
+    <string name="record_end_wake">ਜਗਾਉਣ ਵੇਲੇ ਖ਼ਤਮ</string>
 </resources>

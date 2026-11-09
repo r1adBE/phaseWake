@@ -544,4 +544,19 @@
     <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
     <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>
     <string name="record_end_interrupted">ተቋርጧል</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">የመማሪያ ጊዜ፦ ሌሊት %1$d ከ%2$d</string>
+    <string name="learn_text">Phase Wake ማንቂያውን ለአንተ ለማስማማት በሰዓትህ %1$d ሌሊቶችን ይለካል። ሌሊት ቢያንስ %2$d %% ባትሪ ይዘህ አድርገው።</string>
+    <string name="learned_title">ለአንተ ተስተካክሏል</string>
+    <string name="learned_motion_default">እንቅስቃሴ፦ ሰዓትህ በእረፍት ጸጥ ይላል – መደበኛ ገደቦቹ ይቀራሉ።</string>
+    <string name="learned_motion_raised">እንቅስቃሴ፦ ገደቦቹ ከሰዓትህ የእረፍት ጫጫታ ጋር ተስተካክለዋል።</string>
+    <string name="learned_pulse">የእረፍት የልብ ምት፦ በደቂቃ %1$d</string>
+    <string name="learned_pulse_none">የእረፍት የልብ ምት፦ መለኪያዎቹ በጣም ጥቂት ናቸው</string>
+    <string name="learned_latency">ለመተኛት፦ ወደ %1$s ገደማ</string>
+    <string name="learned_latency_none">ለመተኛት፦ መለኪያዎቹ በጣም ጥቂት ናቸው</string>
+    <string name="bedtime_advice">ዛሬ ከ%1$s እስከ %2$s ባለው ጊዜ ተኛ</string>
+    <string name="bedtime_advice_hint">ከማንቂያህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።</string>
+    <string name="learn_restart">እንደገና ተማር</string>
+    <string name="learn_restart_text">Phase Wake እንደገና %1$d ሌሊቶችን ይለካል፤ የተስተካከሉትን እሴቶች ይረሳል።</string>
+    <string name="record_end_wake">በመንቃት ጊዜ አልቋል</string>
 </resources>

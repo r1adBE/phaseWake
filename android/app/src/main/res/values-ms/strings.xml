@@ -527,4 +527,19 @@
     <string name="record_end_cap">Tamat selepas 12 jam</string>
     <string name="record_end_battery">Bateri jam lemah</string>
     <string name="record_end_interrupted">Terganggu</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Fasa pembelajaran: malam %1$d daripada %2$d</string>
+    <string name="learn_text">Selama %1$d malam, Phase Wake mengukur dengan jam tanganmu untuk menyesuaikan penggera dengan kamu. Pakai pada waktu malam dengan bateri sekurang-kurangnya %2$d %%.</string>
+    <string name="learned_title">Disesuaikan untukmu</string>
+    <string name="learned_motion_default">Pergerakan: jam tanganmu senyap ketika rehat – ambang standard kekal.</string>
+    <string name="learned_motion_raised">Pergerakan: ambang dinaikkan mengikut hingar jam tanganmu ketika rehat.</string>
+    <string name="learned_pulse">Nadi rehat: %1$d seminit</string>
+    <string name="learned_pulse_none">Nadi rehat: terlalu sedikit ukuran</string>
+    <string name="learned_latency">Tertidur: kira-kira %1$s</string>
+    <string name="learned_latency_none">Tertidur: terlalu sedikit ukuran</string>
+    <string name="bedtime_advice">Tidur malam ini antara %1$s dan %2$s</string>
+    <string name="bedtime_advice_hint">Berdasarkan penggera, sasaran tidur dan berapa lama kamu ambil untuk tertidur.</string>
+    <string name="learn_restart">Belajar semula</string>
+    <string name="learn_restart_text">Phase Wake mengukur %1$d malam lagi dan melupakan nilai yang disesuaikan.</string>
+    <string name="record_end_wake">Tamat semasa bangun</string>
 </resources>

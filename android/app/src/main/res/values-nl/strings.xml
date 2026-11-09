@@ -541,4 +541,19 @@
     <string name="record_end_cap">Na 12 u beëindigd</string>
     <string name="record_end_battery">Batterij horloge bijna leeg</string>
     <string name="record_end_interrupted">Onderbroken</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Leerfase: nacht %1$d van %2$d</string>
+    <string name="learn_text">%1$d nachten lang meet Phase Wake met je horloge om de wekker op jou af te stemmen. Draag het ’s nachts met minstens %2$d %% batterij.</string>
+    <string name="learned_title">Op jou afgestemd</string>
+    <string name="learned_motion_default">Beweging: je horloge is stil in rust – de standaarddrempels blijven.</string>
+    <string name="learned_motion_raised">Beweging: drempels verhoogd naar de ruis van je horloge in rust.</string>
+    <string name="learned_pulse">Rusthartslag: %1$d per minuut</string>
+    <string name="learned_pulse_none">Rusthartslag: te weinig metingen</string>
+    <string name="learned_latency">Inslapen: ongeveer %1$s</string>
+    <string name="learned_latency_none">Inslapen: te weinig metingen</string>
+    <string name="bedtime_advice">Ga vanavond tussen %1$s en %2$s naar bed</string>
+    <string name="bedtime_advice_hint">Op basis van je wekker, je slaapdoel en hoe lang je over inslapen doet.</string>
+    <string name="learn_restart">Opnieuw leren</string>
+    <string name="learn_restart_text">Phase Wake meet opnieuw %1$d nachten en vergeet de afgestemde waarden.</string>
+    <string name="record_end_wake">Beëindigd bij het wekken</string>
 </resources>

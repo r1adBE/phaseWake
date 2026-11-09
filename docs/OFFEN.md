@@ -4,6 +4,7 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 
 ## Erledigt am 09.11.2026 (Details in ENTSCHEIDE.md)
 
+- Lernphase von 7 Nächten (früher 11h, ersetzt 11b; Android, Apple folgt): Die Galaxy Watch zeichnet ab der Einschlaf-Messung bis zum Wecken automatisch auf (ab 50 % Akku), das Handy zählt die Nächte («Lernphase: Nacht N von 7») und lernt danach eigenes Grundrauschen, Ruhepuls und Einschlafdauer; Empfehlung der Schlafenszeit am Abend, Karte «Angepasst an dich», «Neu lernen» in den Einstellungen. Gerätetest (r1AD): automatischer Start mit der Einschlaf-Messung und Ende beim Wecken (Diagnose `learn record start`, `record end wake`), Zählen am Handy (`learn night counted N/7`), Akku über eine Lernnacht, nach 7 Nächten die Werte am Handy und `learning active=0 floor=…` auf der Uhr.
 - Puls auf der Galaxy Watch laufend (früher 11f): Weckfenster und «Nacht aufzeichnen» lesen den Pulssensor direkt (Rückfall Health Services), Diagnose `hrsrc=` und `hr=`. Gerätetest (r1AD): Anteil der Epochen mit Puls in Fenster und Aufzeichnung, Akku über eine aufgezeichnete Nacht.
 - Einschlaf-Messung bei spätem Einschlafen (früher 11j): bei Unruhe verlängert um je 15 Min bis höchstens 4 Std., nie ins Weckfenster, nicht unter 30 % Akku. Gerätetest (r1AD): Zeile «extended until» und erkannte Einschlafzeit in einer unruhigen Nacht.
 - Export nur in den Einstellungen (früher 11c), aktiv mit Nächten oder Aufzeichnungen; Knopf am Ende des Verlaufs entfernt.
@@ -66,10 +67,9 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11. Messwerte aus echten Nächten für die nächste Bewertung: verpasste Wecker (Ziel 0), Frühwecken in den ersten 5 Min., Befinden, Apple-Sitzung ohne abends geöffnete App.
 
 11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
-11b. Aufgezeichnete Nächte in die Kalibrierung übernehmen (nach Prüfung an echten Nächten).
 11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
-11h. Lernphase von 7 Nächten: Nach der Installation meldet die App, dass sie 7 Nächte misst, um den Wecker richtig anzupassen. Die Uhr zeichnet dabei jede Nacht automatisch auf (ab der Einschlaf-Messung bis zum Wecken), das Handy wertet die letzten 7 Nächte aus (Schwellen, Ruhepuls) – ohne Export durch den Nutzer; Daten bleiben auf den Geräten. Grundlage für 11b. Gewünscht von r1AD am 08./09.11.; Umsetzung nach den Messnächten.
 11k. Auswertung «cooler» gestalten, Vorbild Samsung Health (Bilder von r1AD 08.11.): Schlafwert mit Bewertung, Phasen-Diagramm, Faktoren (Schlafdauer, Tief, REM, Wach, Einschlafdauer), Pulsverlauf, Empfehlung für die Schlafenszeit, Tage/Wochen/Monate. Nur als Beispiel – eigener Entwurf zur Freigabe.
+11l. Lernphase auf iPhone und Apple Watch: Apple folgt (Swift-Kern kennt die gelernten Werte schon, PHASENERKENNUNG.md 10; Aufzeichnung, Zählen und Anzeige fehlen dort).
 11i. Fenster «Genau»: Hinweis von r1AD am 08.11. – damit gibt es kein Fenster für die Phasen. Geprüft und so belassen: «Genau» bleibt (r1AD 09.11.).
 
 ## Bekannte Grenzen

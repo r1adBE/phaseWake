@@ -597,4 +597,19 @@
     <string name="record_end_cap">انتهى بعد 12 ساعة</string>
     <string name="record_end_battery">بطارية الساعة منخفضة</string>
     <string name="record_end_interrupted">انقطع</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">مرحلة التعلّم: الليلة %1$d من %2$d</string>
+    <string name="learn_text">يقيس Phase Wake لمدة %1$d ليالٍ بساعتك ليضبط المنبّه على مقاسك. ارتدِها ليلًا وبطاريتها %2$d %% على الأقل.</string>
+    <string name="learned_title">مضبوط على مقاسك</string>
+    <string name="learned_motion_default">الحركة: ساعتك هادئة أثناء الراحة – تبقى العتبات القياسية.</string>
+    <string name="learned_motion_raised">الحركة: رُفعت العتبات لتناسب ضجيج ساعتك أثناء الراحة.</string>
+    <string name="learned_pulse">نبض الراحة: %1$d في الدقيقة</string>
+    <string name="learned_pulse_none">نبض الراحة: القياسات قليلة جدًا</string>
+    <string name="learned_latency">النوم: نحو %1$s</string>
+    <string name="learned_latency_none">النوم: القياسات قليلة جدًا</string>
+    <string name="bedtime_advice">اذهب إلى السرير الليلة بين %1$s و%2$s</string>
+    <string name="bedtime_advice_hint">بناءً على منبّهك وهدف نومك والمدة التي تحتاجها لتغفو.</string>
+    <string name="learn_restart">تعلّم من جديد</string>
+    <string name="learn_restart_text">يقيس Phase Wake مجددًا %1$d ليالٍ وينسى القيم المضبوطة.</string>
+    <string name="record_end_wake">انتهى عند الاستيقاظ</string>
 </resources>

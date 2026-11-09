@@ -544,4 +544,19 @@
     <string name="record_end_cap">12 గంటల తర్వాత ముగిసింది</string>
     <string name="record_end_battery">వాచ్ బ్యాటరీ తక్కువగా ఉంది</string>
     <string name="record_end_interrupted">అంతరాయం కలిగింది</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">నేర్చుకునే దశ: రాత్రి %1$d / %2$d</string>
+    <string name="learn_text">నీకు తగ్గట్టు అలారం సర్దడానికి Phase Wake నీ వాచ్‌తో %1$d రాత్రులు కొలుస్తుంది. రాత్రి కనీసం %2$d %% బ్యాటరీతో ధరించు.</string>
+    <string name="learned_title">నీకు తగ్గట్టు సర్దబడింది</string>
+    <string name="learned_motion_default">కదలిక: విశ్రాంతిలో నీ వాచ్ నిశ్శబ్దంగా ఉంది – ప్రామాణిక పరిమితులు అలాగే ఉంటాయి.</string>
+    <string name="learned_motion_raised">కదలిక: విశ్రాంతిలో నీ వాచ్ శబ్దానికి తగ్గట్టు పరిమితులు పెంచబడ్డాయి.</string>
+    <string name="learned_pulse">విశ్రాంతి నాడి: నిమిషానికి %1$d</string>
+    <string name="learned_pulse_none">విశ్రాంతి నాడి: కొలతలు చాలా తక్కువ</string>
+    <string name="learned_latency">నిద్రపోవడం: సుమారు %1$s</string>
+    <string name="learned_latency_none">నిద్రపోవడం: కొలతలు చాలా తక్కువ</string>
+    <string name="bedtime_advice">ఈరోజు %1$s మరియు %2$s మధ్య పడుకో</string>
+    <string name="bedtime_advice_hint">నీ అలారం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా.</string>
+    <string name="learn_restart">మళ్లీ నేర్చుకో</string>
+    <string name="learn_restart_text">Phase Wake మళ్లీ %1$d రాత్రులు కొలిచి, సర్దిన విలువలను మర్చిపోతుంది.</string>
+    <string name="record_end_wake">లేపేటప్పుడు ముగిసింది</string>
 </resources>

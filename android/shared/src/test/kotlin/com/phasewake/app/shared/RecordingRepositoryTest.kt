@@ -105,4 +105,28 @@ class RecordingRepositoryTest {
         tolerant { sync.deleteRecordings() }
         tolerant { assertEquals(false, sync.command(start = true)) }
     }
+
+    @Test
+    fun onsetGoesIntoTheRunningRecordingOnly() = runTest {
+        val repo = RecordingRepository(dir, Dispatchers.Unconfined)
+        val bed = start.plusSeconds(600)
+        val asleep = start.plusSeconds(1_800)
+        // Ohne Datei: nichts.
+        repo.appendOnset(start, bed, asleep)
+        assertNull(repo.active())
+        repo.begin(start)
+        repo.append(start, listOf(Epoch(0.01, 55.0)))
+        repo.appendOnset(start, bed, asleep)
+        repo.append(start, listOf(Epoch(0.02, 54.0)))
+        val running = repo.active()
+        assertEquals(listOf(Epoch(0.01, 55.0), Epoch(0.02, 54.0)), running?.epochs)
+        assertEquals(bed, running?.bedAt)
+        assertEquals(asleep, running?.asleepAt)
+        repo.finish(start, start.plusSeconds(60), RecordEnd.WAKE)
+        // Abgeschlossen: keine Zeile mehr.
+        repo.appendOnset(start, bed.plusSeconds(60), asleep.plusSeconds(60))
+        val done = repo.load().single()
+        assertEquals(asleep, done.asleepAt)
+        assertEquals(RecordEnd.WAKE, done.endReason)
+    }
 }

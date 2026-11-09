@@ -529,4 +529,19 @@
     <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
     <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>
     <string name="record_end_interrupted">បានរំខាន</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">ដំណាក់កាលរៀន៖ យប់ទី %1$d នៃ %2$d</string>
+    <string name="learn_text">Phase Wake វាស់ %1$d យប់ជាមួយនាឡិការបស់អ្នក ដើម្បីកែសម្រួលម៉ោងរោទ៍ឲ្យសមនឹងអ្នក។ ពាក់វានៅពេលយប់ដោយមានថ្មយ៉ាងហោចណាស់ %2$d %%។</string>
+    <string name="learned_title">បានកែសម្រួលសម្រាប់អ្នក</string>
+    <string name="learned_motion_default">ចលនា៖ នាឡិការបស់អ្នកស្ងាត់ពេលសម្រាក – កម្រិតស្តង់ដារនៅដដែល។</string>
+    <string name="learned_motion_raised">ចលនា៖ បានដំឡើងកម្រិតតាមសំឡេងរំខាននៃនាឡិការបស់អ្នកពេលសម្រាក។</string>
+    <string name="learned_pulse">ជីពចរពេលសម្រាក៖ %1$d ក្នុងមួយនាទី</string>
+    <string name="learned_pulse_none">ជីពចរពេលសម្រាក៖ ការវាស់តិចពេក</string>
+    <string name="learned_latency">ការលង់លក់៖ ប្រហែល %1$s</string>
+    <string name="learned_latency_none">ការលង់លក់៖ ការវាស់តិចពេក</string>
+    <string name="bedtime_advice">យប់នេះចូលគេងនៅចន្លោះ %1$s និង %2$s</string>
+    <string name="bedtime_advice_hint">ផ្អែកលើម៉ោងរោទ៍ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។</string>
+    <string name="learn_restart">រៀនម្តងទៀត</string>
+    <string name="learn_restart_text">Phase Wake នឹងវាស់ %1$d យប់ម្តងទៀត ហើយបំភ្លេចតម្លៃដែលបានកែសម្រួល។</string>
+    <string name="record_end_wake">បានបញ្ចប់ពេលដាស់</string>
 </resources>

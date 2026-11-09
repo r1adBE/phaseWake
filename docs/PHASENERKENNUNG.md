@@ -34,7 +34,7 @@ Startwerte (werden später kalibriert, siehe 4, und nach dem Grundrauschen der U
 | Wach-Schwelle | 0.100 m/s² |
 | Pulsanstieg | 5 % |
 
-**Basispuls** = Mittelwert der vorhandenen Pulse der Aufwärmphase. Hat die Aufwärmphase keinen Puls, bleibt der Basispuls für das ganze Fenster leer.
+**Basispuls** = Mittelwert der vorhandenen Pulse der Aufwärmphase. Hat die Aufwärmphase keinen Puls, gilt der gelernte Ruhepuls (Abschnitt 10), sonst bleibt der Basispuls für das ganze Fenster leer.
 
 Für jede Epoche mit Index *i*, in dieser Reihenfolge:
 
@@ -52,7 +52,7 @@ Leere Bewegung zählt nie als Treffer.
 
 Befund 07.11.2026 (Galaxy Watch von r1AD, automatische Einschlaf-Messung, Werte nach Abzug von 0.05, je 15 Min Mittel/Maximum): still liegend 0.0194/0.0203, 0.0217/0.0287, 0.0233/0.0280, 0.0199/0.0202 m/s²; unruhig 0.2358/0.8285, 0.1121/0.5423, 0.1414/0.4128, 0.0933/0.3556 m/s². Mit der Leicht-Schwelle 0.002 (Kalibrierung höchstens 0.004) lag jede Epoche darüber: Die Einschlafzeit wurde nie erkannt, und im Weckfenster entschied für `LIGHT_SLEEP` allein der Puls.
 
-- **Grundrauschen** *F* = 20. Perzentil der vorhandenen Bewegungen der laufenden Messung bis und mit der aktuellen Epoche (Rangmethode: aufsteigend sortieren, Wert an Position ⌈0.2 · n⌉ = (n + 4) / 5 ganzzahlig, gezählt ab 1). Im Weckfenster zählen auch die Aufwärm-Epochen. Leere Bewegung zählt nicht. Weniger als 4 Werte → kein Grundrauschen. **Obergrenze** *F* ≤ 0.04 m/s²: Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten. 0.04 ist rund das Doppelte des stillen Mittels im Befund; so bleibt die wirksame Leicht-Schwelle ≤ 0.1 und die Wach-Schwelle ≤ 0.2.
+- **Grundrauschen** *F* = 20. Perzentil der vorhandenen Bewegungen der laufenden Messung bis und mit der aktuellen Epoche (Rangmethode: aufsteigend sortieren, Wert an Position ⌈0.2 · n⌉ = (n + 4) / 5 ganzzahlig, gezählt ab 1). Im Weckfenster zählen auch die Aufwärm-Epochen. Leere Bewegung zählt nicht. Weniger als 4 Werte → das gelernte Grundrauschen (Abschnitt 10, ebenfalls höchstens 0.04), ohne Lernphase kein Grundrauschen. **Obergrenze** *F* ≤ 0.04 m/s²: Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten. 0.04 ist rund das Doppelte des stillen Mittels im Befund; so bleibt die wirksame Leicht-Schwelle ≤ 0.1 und die Wach-Schwelle ≤ 0.2.
 - **Wirksame Leicht-Schwelle** = max(Leicht-Schwelle, 2.5 · *F*), **wirksame Wach-Schwelle** = max(Wach-Schwelle, 5 · *F*). Ohne Grundrauschen gelten die Schwellen unverändert. Die Regel hebt nur an; die Kalibrierung (4) bleibt, wie sie ist.
 - Am Befund: *F* ≈ 0.02 → Leicht-Schwelle 0.05 (über dem stillen Maximum 0.0287), Wach-Schwelle 0.1. Eine Uhr mit kleinem Rauschen (*F* ≤ 0.0008) behält die Startwerte.
 - **Diagnose-Protokoll**: Am Ende jeder Messung im Weckfenster (`MEASURE_END`, Galaxy Watch und Apple Watch) `floor=… light=… wake=…` (Grundrauschen und wirksame Schwellen am Ende, «-» ohne Grundrauschen).
@@ -83,9 +83,10 @@ motion,hr
 ,56
 ```
 
+- `@floor <m/s²>` und `@resting <bpm>` (optional, vor der Kopfzeile): gelerntes Grundrauschen bzw. gelernter Ruhepuls (Abschnitt 10) für diese Nacht. Ohne Angabe gelten keine gelernten Werte.
 - `@expect <index> <AWAKE|LIGHT_SLEEP>` – erste Epoche, die weckt, mit Grund (nur die Epochen-Regel aus 3; `EXACT` und `SHORT_NIGHT` aus 8 entstehen erst im Weck-Dienst). `@expect none` – keine Epoche weckt (Wecken erst zur Zielzeit).
 - Danach die Kopfzeile `motion,hr` und eine Zeile pro Epoche; leeres Feld = leer.
-- Die Nächte gelten mit den Startwerten (und dem Grundrauschen aus 3a). Die Nächte `noisy_watch_*` bilden eine Uhr mit Grundrauschen 0.02 m/s² nach (Befund 07.11.2026).
+- Die Nächte gelten mit den Startwerten (und dem Grundrauschen aus 3a). Die Nächte `noisy_watch_*` bilden eine Uhr mit Grundrauschen 0.02 m/s² nach (Befund 07.11.2026). Die Nächte `learned_*` prüfen die gelernten Werte (Abschnitt 10); ohne sie entscheiden sie anders (Test in beiden Kernen).
 
 Die aktuellen Testnächte sind synthetisch und decken die Regelfälle ab. Echte, ohne Namen exportierte Nächte kommen dazu, sobald es sie gibt.
 
@@ -125,9 +126,22 @@ Leitsatz: Pünktlich ist das Produkt, früher ist Bonus.
 
 ## 9. «Nacht aufzeichnen» (Datensammlung)
 
-Nur Galaxy Watch, auf Wunsch (07.11.2026). Reine Datensammlung: Die Aufzeichnungen fliessen (noch) nicht in die Erkennung, die Kalibrierung (Abschnitt 4) oder das Grundrauschen (Abschnitt 3a). Erst nach Prüfung an echten Nächten sollen sie die eigenen Schwellen mitbestimmen.
+Nur Galaxy Watch, auf Wunsch (07.11.2026) und in der Lernphase automatisch (Abschnitt 10). Die Aufzeichnungen fliessen nicht in die Kalibrierung (Abschnitt 4); aus den Aufzeichnungen der Lernphase stammen die gelernten Werte (Abschnitt 10).
 
 - Epochen wie in 1, 2 und 7: Bewegung aus derselben Messung wie im Fenster (25 Hz, gebündelt 10 s), Puls als Mittel der Werte der Epoche, leer ohne Werte. Epoche `i` deckt Beginn + i · 30 s ab.
-- Höchstens 12 Std. (1440 Epochen); endet von Hand, nach 12 Std. oder unter 15 % Akku der Uhr.
+- Höchstens 12 Std. (1440 Epochen); endet von Hand, nach 12 Std. oder unter 15 % Akku der Uhr; in der Lernphase begonnen zusätzlich beim Wecken (Grund `wake`).
+- Erkennt die Einschlaf-Messung während einer Aufzeichnung das Einschlafen, steht in ihr die Zeile `onset=<Beginn der Einschlafdauer>,<Einschlafzeit>` (ms; ältere Versionen überspringen sie).
 - Nach einem Prozessende wird bis zur Wiederaufnahme mit leeren Epochen aufgefüllt; danach kann die Epochengrenze um bis zu 30 s versetzt sein.
 - Läuft unabhängig von Fenster- und Einschlaf-Messung; beide dürfen zugleich messen und beeinflussen sich nicht.
+
+## 10. Lernphase
+
+Nur Galaxy Watch mit Android-Handy (Entscheid r1AD 09.11.2026; Apple folgt). Rechnet das Handy (`Learning` im Kotlin-Kern); die Uhr bekommt den Stand und die Werte (`/phasewake/learning`). Die Erkennung (3, 3a, 6) nutzt die Werte in beiden Kernen gleich.
+
+- **Ablauf**: Beginnt nach der Installation bzw. beim ersten Start dieser Version, von vorn mit «Neu lernen» und «Verlauf löschen». Solange sie läuft, beginnt mit jeder Einschlaf-Messung (automatisch oder «Gute Nacht», nicht beim Wiederaufnehmen) eine Aufzeichnung (9), wenn die Uhr mindestens 50 % Akku hat und keine läuft. Sie endet beim Wecken (Klingeln beendet) oder ohne Klingeln zur eingestellten Weckzeit, sobald keine Nacht mehr läuft; die übrigen Grenzen aus 9 bleiben. Eine von Hand begonnene Aufzeichnung zählt ebenso und endet wie bisher.
+- **Gezählte Nacht**: Aufzeichnung ab dem Beginn der Lernphase mit mindestens 360 Epochen (3 Std.) mit Bewegung; je Nachtdatum (Beginn − 12 Std.) nur eine, die mit den meisten solchen Epochen. Fertig nach 7 gezählten Nächten (nicht Kalendertagen); gelernt wird aus den letzten 7.
+- **Grundrauschen** *P* = Median der Grundrauschen *F* der Nächte (3a über alle Epochen der Nacht, höchstens 0.04; bei gerader Anzahl Mittel der beiden mittleren). Es gilt, solange die laufende Messung (Fenster oder Einschlaf-Messung) weniger als 4 Werte hat, mit denselben Faktoren 2.5 und 5 (3a); danach gilt *F* der Messung. Die Schwellen sinken dadurch nie unter die Startwerte bzw. die Kalibrierung. Im Fenster wirkt es nur, wenn zu Beginn Bewegungswerte fehlen (mit Aufwärmphase hat Epoche 3 schon 4 Werte).
+- **Ruhepuls** *R* = Median über die Nächte des 10. Perzentils ihrer Pulse (Rangmethode, Position ⌈0.1 · n⌉ = (n + 9) / 10); nur Nächte mit mindestens 120 Epochen (1 Std.) mit Puls, mindestens 3 solche Nächte, sonst kein Ruhepuls. *R* ist der Basispuls, wenn die Aufwärmphase des Fensters keinen Puls hat (3); die Pulsbedingung bleibt aktueller Puls ≥ Basispuls × 1.05.
+- **Einschlafdauer** je Nacht = Einschlafzeit − Beginn, in ganzen Minuten, höchstens 60; Beginn nach «Gute Nacht» der Tastendruck, bei der automatischen Messung die Bettzeit (eingestellte Weckzeit − Schlafdauer bzw. Schlafziel), frühestens der Beginn der Messung. Liegt die Einschlafzeit davor, zählt die Nacht nicht. Gelernt: Median (gerundet) ab 3 Nächten mit Wert, sonst keiner.
+- **Schlafenszeit**: spätestens Zielzeit − Schlafdauer bzw. Schlafziel − Einschlafdauer (ohne gelernte 0), abgerundet auf 5 Min; frühestens 30 Min davor. Am Handy am Abend für den Wecker dieser Nacht, bis zum Ende der Spanne.
+- **Anzeige in Worten**: «Schwellen angepasst», wenn 2.5 · *P* über der Leicht-Schwelle liegt, sonst «Standard-Schwellen bleiben».

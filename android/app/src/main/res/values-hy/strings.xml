@@ -529,4 +529,19 @@
     <string name="record_end_cap">Ավարտվեց 12 ժ հետո</string>
     <string name="record_end_battery">Ժամացույցի մարտկոցը թույլ է</string>
     <string name="record_end_interrupted">Ընդհատվեց</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Ուսուցման փուլ՝ գիշեր %1$d / %2$d</string>
+    <string name="learn_text">Phase Wake-ը %1$d գիշեր չափում է քո ժամացույցով, որ զարթուցիչը հարմարեցնի քեզ։ Գիշերը կրիր այն առնվազն %2$d %% մարտկոցով։</string>
+    <string name="learned_title">Հարմարեցված է քեզ</string>
+    <string name="learned_motion_default">Շարժում՝ հանգստի ժամանակ ժամացույցդ հանգիստ է – ստանդարտ շեմերը մնում են։</string>
+    <string name="learned_motion_raised">Շարժում՝ շեմերը բարձրացվել են ըստ ժամացույցիդ հանգստի աղմուկի։</string>
+    <string name="learned_pulse">Հանգստի զարկերակ՝ րոպեում %1$d</string>
+    <string name="learned_pulse_none">Հանգստի զարկերակ՝ չափումները շատ քիչ են</string>
+    <string name="learned_latency">Քնելը՝ մոտ %1$s</string>
+    <string name="learned_latency_none">Քնելը՝ չափումները շատ քիչ են</string>
+    <string name="bedtime_advice">Այսօր պառկիր %1$s-ից %2$s-ի միջև</string>
+    <string name="bedtime_advice_hint">Ըստ զարթուցիչիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։</string>
+    <string name="learn_restart">Սովորել նորից</string>
+    <string name="learn_restart_text">Phase Wake-ը նորից կչափի %1$d գիշեր և կմոռանա հարմարեցված արժեքները։</string>
+    <string name="record_end_wake">Ավարտվել է արթնացնելիս</string>
 </resources>

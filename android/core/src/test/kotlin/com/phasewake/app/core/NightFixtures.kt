@@ -8,6 +8,8 @@ internal data class NightFixture(
     val expectedIndex: Int?,
     val expectedReason: WakeReason?,
     val epochs: List<Epoch>,
+    /** Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase), falls angegeben. */
+    val config: DetectorConfig = DetectorConfig(),
 )
 
 /** Liest die gemeinsamen Testnächte (Format siehe `docs/PHASENERKENNUNG.md`, Abschnitt 5). */
@@ -28,6 +30,8 @@ internal object NightFixtures {
         var expectedReason: WakeReason? = null
         var expectSeen = false
         var headerSeen = false
+        var personalFloor: Double? = null
+        var restingHeartRate: Double? = null
         val epochs = mutableListOf<Epoch>()
 
         file.readLines().forEachIndexed { lineNumber, raw ->
@@ -42,6 +46,8 @@ internal object NightFixtures {
                     }
                     expectSeen = true
                 }
+                line.startsWith("@floor") -> personalFloor = line.split(Regex("\\s+"))[1].toDouble()
+                line.startsWith("@resting") -> restingHeartRate = line.split(Regex("\\s+"))[1].toDouble()
                 !headerSeen -> {
                     check(line == "motion,hr") { "${file.name}:${lineNumber + 1}: Kopfzeile 'motion,hr' erwartet" }
                     headerSeen = true
@@ -57,6 +63,7 @@ internal object NightFixtures {
             }
         }
         check(expectSeen) { "${file.name}: @expect fehlt" }
-        return NightFixture(file.nameWithoutExtension, expectedIndex, expectedReason, epochs)
+        val config = DetectorConfig(personalFloor = personalFloor, restingHeartRate = restingHeartRate)
+        return NightFixture(file.nameWithoutExtension, expectedIndex, expectedReason, epochs, config)
     }
 }

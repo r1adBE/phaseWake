@@ -544,4 +544,19 @@
     <string name="record_end_cap">Ná 12 h beëindig</string>
     <string name="record_end_battery">Horlosie se battery laag</string>
     <string name="record_end_interrupted">Onderbreek</string>
+    <!-- Lernphase (7 Nächte) -->
+    <string name="learn_progress">Leerfase: nag %1$d van %2$d</string>
+    <string name="learn_text">Phase Wake meet %1$d nagte lank met jou horlosie om die wekker by jou aan te pas. Dra dit snags met minstens %2$d %% battery.</string>
+    <string name="learned_title">By jou aangepas</string>
+    <string name="learned_motion_default">Beweging: jou horlosie is stil in rus – die standaard drempels bly.</string>
+    <string name="learned_motion_raised">Beweging: drempels aangepas by jou horlosie se agtergrondgeraas.</string>
+    <string name="learned_pulse">Rustende polsslag: %1$d per minuut</string>
+    <string name="learned_pulse_none">Rustende polsslag: te min metings</string>
+    <string name="learned_latency">Aan die slaap raak: sowat %1$s</string>
+    <string name="learned_latency_none">Aan die slaap raak: te min metings</string>
+    <string name="bedtime_advice">Gaan vanaand tussen %1$s en %2$s bed toe</string>
+    <string name="bedtime_advice_hint">Uit jou wekkertyd, slaapdoel en hoe lank jy neem om aan die slaap te raak.</string>
+    <string name="learn_restart">Leer weer</string>
+    <string name="learn_restart_text">Phase Wake meet weer %1$d nagte en vergeet die aangepaste waardes.</string>
+    <string name="record_end_wake">Beëindig met wakker word</string>
 </resources>

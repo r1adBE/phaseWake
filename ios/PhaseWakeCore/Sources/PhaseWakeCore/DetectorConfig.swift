@@ -7,7 +7,8 @@ public struct DetectorConfigError: Error, Equatable, Sendable {
 /// Parameter der Phasenerkennung.
 ///
 /// Die Standardwerte sind die Startwerte aus `docs/PHASENERKENNUNG.md`.
-/// Nach drei aufgezeichneten Nächten liefert ``Calibration`` angepasste Schwellen.
+/// Nach drei aufgezeichneten Nächten liefert ``Calibration`` angepasste Schwellen; nach der Lernphase (Abschnitt 10,
+/// bisher nur Android) kommen eigenes Grundrauschen (``personalFloor``) und eigener Ruhepuls (``restingHeartRate``) dazu.
 public struct DetectorConfig: Equatable, Sendable {
     /// Länge einer Epoche in Sekunden.
     public static let epochSeconds = 30
@@ -23,7 +24,7 @@ public struct DetectorConfig: Equatable, Sendable {
 
     /// Startwerte.
     public static let standard = DetectorConfig(
-        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2
+        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2, nil, nil
     )
 
     /// Bewegung (m/s²), ab der eine Epoche als leichte Bewegung zählt.
@@ -42,6 +43,11 @@ public struct DetectorConfig: Equatable, Sendable {
     public let lightWindow: Int
     /// Nötige Treffer im ``lightWindow``.
     public let lightHits: Int
+    /// Eigenes Grundrauschen aus der Lernphase (m/s²); gilt, solange die Messung selbst noch keines hat
+    /// (``NoiseFloor/floor(_:personal:)``). `nil` = keines gelernt.
+    public let personalFloor: Double?
+    /// Eigener Ruhepuls aus der Lernphase; Basispuls, wenn die Aufwärmphase keinen Puls hat. `nil` = keiner.
+    public let restingHeartRate: Double?
 
     /// Erzeugt eine geprüfte Konfiguration.
     /// - Throws: ``DetectorConfigError`` bei ungültigen Werten.
@@ -53,7 +59,9 @@ public struct DetectorConfig: Equatable, Sendable {
         awakeWindow: Int = 3,
         awakeHits: Int = 2,
         lightWindow: Int = 4,
-        lightHits: Int = 2
+        lightHits: Int = 2,
+        personalFloor: Double? = nil,
+        restingHeartRate: Double? = nil
     ) throws {
         guard lightThreshold > 0 else { throw DetectorConfigError(message: "lightThreshold muss positiv sein") }
         guard wakeThreshold > lightThreshold else {
@@ -67,15 +75,22 @@ public struct DetectorConfig: Equatable, Sendable {
         guard (1...max(1, lightWindow)).contains(lightHits), lightWindow >= 1 else {
             throw DetectorConfigError(message: "lightHits muss zwischen 1 und lightWindow liegen")
         }
+        if let personalFloor, personalFloor < 0 {
+            throw DetectorConfigError(message: "personalFloor darf nicht negativ sein")
+        }
+        if let restingHeartRate, restingHeartRate <= 0 {
+            throw DetectorConfigError(message: "restingHeartRate muss positiv sein")
+        }
         self.init(
             unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs,
-            awakeWindow, awakeHits, lightWindow, lightHits
+            awakeWindow, awakeHits, lightWindow, lightHits, personalFloor, restingHeartRate
         )
     }
 
     private init(
         unchecked lightThreshold: Double, _ wakeThreshold: Double, _ heartRateRise: Double, _ warmupEpochs: Int,
-        _ awakeWindow: Int, _ awakeHits: Int, _ lightWindow: Int, _ lightHits: Int
+        _ awakeWindow: Int, _ awakeHits: Int, _ lightWindow: Int, _ lightHits: Int,
+        _ personalFloor: Double?, _ restingHeartRate: Double?
     ) {
         self.lightThreshold = lightThreshold
         self.wakeThreshold = wakeThreshold
@@ -85,6 +100,8 @@ public struct DetectorConfig: Equatable, Sendable {
         self.awakeHits = awakeHits
         self.lightWindow = lightWindow
         self.lightHits = lightHits
+        self.personalFloor = personalFloor
+        self.restingHeartRate = restingHeartRate
     }
 
     /// Grösstes Fenster beider Regeln; so viele Epochen merkt sich der ``WakeDetector``.
