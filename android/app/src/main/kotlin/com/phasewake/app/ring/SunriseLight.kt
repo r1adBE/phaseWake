@@ -8,7 +8,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.phasewake.app.R
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Sunrise
+import com.phasewake.app.phoneApp
 import java.time.Instant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -58,8 +60,9 @@ object SunriseLight {
         if (state.value == null) state.value = active
     }
 
-    /** Beendet das Licht (ausgeschaltet oder vom Weckbildschirm übernommen und beendet). */
+    /** Beendet das Licht (ausgeschaltet oder vom Weckbildschirm übernommen und beendet); ein laufendes ins Protokoll. */
     fun stop(context: Context) {
+        if (state.value != null) context.phoneApp.diag.log(DiagKind.STOP, "phone sunrise end")
         state.value = null
         context.getSystemService(NotificationManager::class.java).cancel(NOTIFICATION_ID)
     }

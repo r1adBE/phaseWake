@@ -14,7 +14,7 @@ Nicht Ziel: ein vollständiges Schlaf-Staging (Tief/REM/Leicht) wie Samsung Heal
 |---|---|---|
 | Handy | Android-App (`android/app/`), Kotlin, Compose | iPhone-App (`ios/`), Swift, SwiftUI |
 | Uhr | Wear-OS-App (`android/wear/`), Galaxy Watch | watchOS-App (`ios/`), Apple Watch |
-| Messung im Fenster | Foreground-Service (Typ `health`), Beschleunigung + Health Services | `WKExtendedRuntimeSession` Typ «Smart Alarm», CoreMotion + HealthKit |
+| Messung im Fenster | Foreground-Service (Typ `health`), Beschleunigung + Pulssensor (Rückfall Health Services) | `WKExtendedRuntimeSession` Typ «Smart Alarm», CoreMotion + HealthKit |
 | Wecken | Vibrator-API | `notifyUser(hapticType:)` |
 | Sync | Wearable Data Layer | WatchConnectivity |
 
@@ -55,7 +55,7 @@ Im Fenster wird nur das gemessen, was für die Entscheidung nötig ist. Zwei Sig
 
 **Bewegung (Aktigraphie)** – Beschleunigungssensor mit Batching, 25 Hz. Pro Epoche (30 s) wird die Bewegungsenergie berechnet (Summe der Betragsänderungen oberhalb eines Rauschschwellwerts). Das ist die Standardmethode der Aktigraphie und erkennt Leichtschlaf zuverlässig: Im Tiefschlaf liegt der Wert nahe null, im Leichtschlaf und beim Drehen deutlich darüber.
 
-**Puls** – Health Services `MeasureClient`, Herzfrequenz. Dient als zweite Stimme: steigender Puls gegenüber dem Mittel der ersten Fensterminuten spricht für leichten Schlaf oder beginnendes Aufwachen.
+**Puls** – Pulssensor der Uhr (`SensorManager`, `Sensor.TYPE_HEART_RATE`, etwa jede Sekunde, gebündelt wie die Bewegung); ohne Sensor oder wenn er sich nicht anmelden lässt Health Services `MeasureClient` (liefert bei dunklem Display nur etwa alle 10 Min, Befund 09.11.2026). Dient als zweite Stimme: steigender Puls gegenüber dem Mittel der ersten Fensterminuten spricht für leichten Schlaf oder beginnendes Aufwachen.
 
 **Entscheidung** (einfach und erklärbar, keine Blackbox):
 
@@ -73,9 +73,9 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 
 - Ausserhalb des Fensters läuft nichts, ausser nach «Gute Nacht»: dann nur Bewegung, stromsparend gebündelt, bis zum Einschlafen. Kein Hintergrund-Tracking.
 - Beschleunigung mit Batching (`maxReportLatency` 10 s), Display bleibt aus.
-- Puls nur im Fenster, über Health Services statt rohem Sensor.
+- Puls nur im Fenster (Pulssensor der Uhr, Rückfall Health Services); der Wakelock des Fensters hält ihn bei dunklem Display am Laufen.
 - Ausnahme auf Wunsch: «Nacht aufzeichnen» (07.11.2026) misst die ganze Nacht wie im Fenster (Bewegung 25 Hz, Puls, Wakelock), höchstens 12 Std., und endet unter 15 % Akku der Uhr; der Wecker hat Vorrang.
-- Wakelock nur, solange der Dienst im Fenster misst oder weckt (oder «Nacht aufzeichnen» läuft); in der Einschlaf-Messung (höchstens 2 Std.) nie durchgehend, sondern nur für Stichproben von 60 s alle 5 Min auf Uhren ohne passenden aufweckenden Beschleunigungssensor.
+- Wakelock nur, solange der Dienst im Fenster misst oder weckt (oder «Nacht aufzeichnen» läuft); in der Einschlaf-Messung (höchstens 2 Std., bei spätem Einschlafen bis 4 Std.) nie durchgehend, sondern nur für Stichproben von 60 s alle 5 Min auf Uhren ohne passenden aufweckenden Beschleunigungssensor.
 
 ## Daten und Datenschutz
 

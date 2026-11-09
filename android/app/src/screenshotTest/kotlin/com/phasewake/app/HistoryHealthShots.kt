@@ -58,7 +58,7 @@ private val mixed = HealthHistory.merge(ownNights, listOf(samsung, unknown, nap)
 private fun Mixed(mode: ThemeMode) = Themed(mode) {
     // Samsung-Nacht mit Befinden, die unbekannte App noch ohne (Auswahl sichtbar).
     HistoryScreen(
-        ownNights, padding, loadStages = { emptyList() }, onExport = {}, healthConnected = true, items = mixed,
+        ownNights, padding, loadStages = { emptyList() }, healthConnected = true, items = mixed,
         healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4),
     )
 }
@@ -71,10 +71,10 @@ fun HistoryMixedDark() = Mixed(ThemeMode.DARK)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf leer ohne Freigabe hell", device = PHONE) @Composable
 fun HistoryEmptyConnectLight() = Themed(ThemeMode.LIGHT) {
-    HistoryScreen(emptyList(), padding, loadStages = null, onExport = {}, healthConnected = false, canConnectHealth = true)
+    HistoryScreen(emptyList(), padding, loadStages = null, healthConnected = false, canConnectHealth = true)
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf leer ohne Daten dunkel", device = PHONE) @Composable
 fun HistoryEmptyNoDataDark() = Themed(ThemeMode.DARK) {
-    HistoryScreen(emptyList(), padding, loadStages = null, onExport = {}, healthConnected = true)
+    HistoryScreen(emptyList(), padding, loadStages = null, healthConnected = true)
 }

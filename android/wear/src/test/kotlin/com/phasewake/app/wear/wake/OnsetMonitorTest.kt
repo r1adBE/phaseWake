@@ -4,11 +4,13 @@ import android.app.AlarmManager
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
+import android.os.BatteryManager
 import android.os.Looper
 import android.os.SystemClock
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.SleepOnset
 import com.phasewake.app.wear.QuietWear
+import com.phasewake.app.wear.schedule.AutoOnset
 import java.time.Duration
 import java.time.Instant
 import kotlin.random.Random
@@ -32,7 +34,8 @@ import kotlin.test.assertTrue
 
 /**
  * Einschlaf-Messung (Akku-Befund 03.11.2026): Regel in Stichproben, Takt der Alarme, Stichprobe mit kurzem Wakelock,
- * Zeitgrenze (höchstens 2 Std.) und Zeilen im Diagnose-Protokoll.
+ * Zeitgrenze (höchstens 2 Std., bei Unruhe verlängert bis höchstens 4 Std., Befund 09.11.2026) und Zeilen im
+ * Diagnose-Protokoll.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietWear::class)
@@ -61,9 +64,11 @@ class OnsetMonitorTest {
         latestGiveUp: Instant = clock.plus(Duration.ofHours(8)),
         maxEnd: Instant = clock.plus(OnsetMonitor.MAX_DURATION),
         onGiveUp: () -> Unit = {},
+        extendCap: Instant? = null,
         onOnset: (Instant) -> Unit = {},
     ): OnsetMonitor = OnsetMonitor(
-        context, 0.002, latestGiveUp, maxEnd, "auto onset", { kind, text -> logged += kind to text }, onGiveUp, { clock }, onOnset,
+        context, 0.002, latestGiveUp, maxEnd, "auto onset", { kind, text -> logged += kind to text }, onGiveUp,
+        extendCap = extendCap, now = { clock }, onOnset = onOnset,
     ).also { monitor = it }
 
     /** Gestellte Alarme der Messung (nach elapsedRealtime). */
@@ -247,4 +252,111 @@ class OnsetMonitorTest {
         m.tick()
         assertEquals(1, gaveUp, "nach dem Ende nichts mehr")
     }
+
+    // --- Verlängerung bei spätem Einschlafen (Befund 09.11.2026) ---
+
+    @Test
+    fun restlessLooksAtTheLastFifteenMinutesOnly() {
+        val quiet = List(40) { 0.001 }
+        assertFalse(OnsetRules.restless(quiet, List(40) { true }, 0.1))
+        // Bewegung vor 31 Epochen zählt nicht mehr, vor 30 schon.
+        assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 9) 0.2 else m }, List(40) { true }, 0.1))
+        assertTrue(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 10) 0.2 else m }, List(40) { true }, 0.1))
+        // Ungemessen oder leer: nicht unruhig.
+        assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 39) 0.2 else m }, List(40) { it != 39 }, 0.1))
+        assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 39) null else m }, List(40) { true }, 0.1))
+    }
+
+    @Test
+    fun extendUntilFollowsUnrestCapAlarmAndBattery() {
+        val start = clock
+        val max = start.plus(OnsetMonitor.MAX_DURATION)
+        val alarmLimit = start.plus(Duration.ofHours(6))
+        val cap = start.plus(OnsetMonitor.MAX_EXTENDED)
+        val at = max.plusSeconds(10)
+        assertEquals(at.plus(OnsetMonitor.EXTEND_STEP), OnsetRules.extendUntil(at, max, alarmLimit, cap, true, 80))
+        // Vor der Höchstdauer, ruhig oder wenig Akku: keine Verlängerung; unbekannter Akku hindert nicht.
+        assertNull(OnsetRules.extendUntil(max.minusSeconds(1), max, alarmLimit, cap, true, 80))
+        assertNull(OnsetRules.extendUntil(at, max, alarmLimit, cap, false, 80))
+        assertNull(OnsetRules.extendUntil(at, max, alarmLimit, cap, true, AutoOnset.MIN_BATTERY_PERCENT - 1))
+        assertEquals(at.plus(OnsetMonitor.EXTEND_STEP), OnsetRules.extendUntil(at, max, alarmLimit, cap, true, null))
+        // Höchstens bis zur Grenze (4 Std. bzw. Beginn des Weckfensters), danach aufgeben.
+        assertEquals(cap, OnsetRules.extendUntil(cap.minusSeconds(60), cap.minusSeconds(60), alarmLimit, cap, true, 80))
+        assertNull(OnsetRules.extendUntil(cap, cap, alarmLimit, cap, true, 80))
+        // Grenze vor der Weckzeit erreicht (nicht die Höchstdauer): wie bisher aufgeben.
+        assertNull(OnsetRules.extendUntil(at, max, max.minusSeconds(60), cap, true, 80))
+    }
+
+    /** Durchgehende Messung (aufweckender Sensor mit grossem Puffer) mit [epochs] unruhigen Epochen ab dem Beginn. */
+    private fun restlessMonitor(epochs: Int, extendCap: Instant, onGiveUp: () -> Unit): OnsetMonitor {
+        val wakeUp = SensorBuilder.newBuilder().setType(Sensor.TYPE_ACCELEROMETER).setWakeUpFlag(true)
+            .setFifoMaxEventCount(SensorSession.MIN_WAKE_UP_FIFO).build()
+        sensors.addSensor(wakeUp)
+        val m = monitor(onGiveUp = onGiveUp, extendCap = extendCap)
+        m.start()
+        assertTrue(m.continuous)
+        val t0 = SystemClock.elapsedRealtimeNanos()
+        // 25 Hz, abwechselnd still und 1 m/s² daneben; ein Wert in der Epoche danach schliesst die letzte ab.
+        val count = epochs * 750 + 1
+        for (k in 0 until count) {
+            val event = SensorEventBuilder.newBuilder(wakeUp, floatArrayOf(if (k % 2 == 0) 1f else 0f, 0f, 9.81f))
+                .setTimestamp(t0 + k * 40_000_000L)
+                .build()
+            sensors.sendSensorEventToListeners(event)
+        }
+        return m
+    }
+
+    @Test
+    fun restlessAtTheMaxDurationExtendsUpToTheCap() {
+        battery(80)
+        var gaveUp = 0
+        val start = clock
+        val cap = start.plus(OnsetMonitor.MAX_DURATION).plus(Duration.ofMinutes(20))
+        val m = restlessMonitor(epochs = 3, extendCap = cap, onGiveUp = { gaveUp++ })
+        clock = start.plus(OnsetMonitor.MAX_DURATION)
+        m.tick()
+        assertEquals(0, gaveUp)
+        val first = clock.plus(OnsetMonitor.EXTEND_STEP)
+        assertEquals(first, m.giveUpAt)
+        assertEquals(DiagKind.MEASURE_START to "auto onset extended until $first", logged.last { it.first == DiagKind.MEASURE_START })
+        // Zweite Verlängerung nur noch bis zur Grenze, dann aufgeben; das Ende behält seinen Grund.
+        clock = first
+        m.checkLimit()
+        assertEquals(cap, m.giveUpAt)
+        clock = cap
+        m.tick()
+        assertEquals(1, gaveUp)
+        m.stop(m.giveUpReason(clock))
+        assertEquals(DiagKind.MEASURE_END to "auto onset give up (max duration)", logged.last())
+    }
+
+    @Test
+    fun lowBatteryOrQuietDoesNotExtend() {
+        battery(AutoOnset.MIN_BATTERY_PERCENT - 1)
+        var gaveUp = 0
+        val start = clock
+        val m = restlessMonitor(epochs = 3, extendCap = start.plus(OnsetMonitor.MAX_EXTENDED), onGiveUp = { gaveUp++ })
+        clock = start.plus(OnsetMonitor.MAX_DURATION)
+        m.tick()
+        assertEquals(1, gaveUp)
+        assertEquals(DiagKind.BATTERY to "auto onset not extended: battery ${AutoOnset.MIN_BATTERY_PERCENT - 1}", logged.last())
+        assertTrue(logged.none { it.second.contains("extended until") })
+
+        // Ruhig (keine Werte): aufgeben wie bisher, ohne Zeile zur Verlängerung.
+        m.stop("test end")
+        logged.clear()
+        battery(80)
+        var quietGaveUp = 0
+        clock = start
+        val quiet = monitor(onGiveUp = { quietGaveUp++ }, extendCap = start.plus(OnsetMonitor.MAX_EXTENDED))
+        quiet.start()
+        clock = start.plus(OnsetMonitor.MAX_DURATION)
+        quiet.tick()
+        assertEquals(1, quietGaveUp)
+        assertTrue(logged.none { it.second.contains("extended") })
+    }
+
+    private fun battery(percent: Int) =
+        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 }

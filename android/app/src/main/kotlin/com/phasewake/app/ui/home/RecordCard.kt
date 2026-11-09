@@ -22,7 +22,9 @@ import java.time.Instant
 
 /**
  * «Nacht aufzeichnen» auf der Startseite (nur mit einer Galaxy Watch, die es kennt): gemessen wird auf der Uhr, das
- * Handy schickt nur Start und Stopp. Läuft eine Aufzeichnung, steht «Aufzeichnung läuft seit …» da und ein Stopp-Knopf.
+ * Handy schickt nur Start und Stopp. Aufbau (Wunsch r1AD 08.11.2026): Symbol und Titel in einer Zeile, darunter der
+ * Hinweis über die ganze Breite, dann der Knopf rechts wie bei den anderen Karten. Läuft eine Aufzeichnung, steht
+ * «Aufzeichnung läuft seit …» über dem Stopp-Knopf.
  */
 @Composable
 internal fun RecordCard(since: Instant?, onRecord: (Boolean) -> Unit) {
@@ -31,17 +33,26 @@ internal fun RecordCard(since: Instant?, onRecord: (Boolean) -> Unit) {
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(painterResource(R.drawable.ic_watch), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-            Column(Modifier.weight(1f).padding(start = 14.dp, end = 8.dp)) {
-                Text(stringResource(R.string.record_title), style = MaterialTheme.typography.titleMedium)
+        Column(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(painterResource(R.drawable.ic_watch), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                Text(stringResource(R.string.record_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(start = 14.dp))
+            }
+            Text(
+                stringResource(R.string.record_hint),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 6.dp),
+            )
+            if (since != null) {
                 Text(
-                    if (since != null) stringResource(R.string.record_since, Format.time(since)) else stringResource(R.string.record_hint),
+                    stringResource(R.string.record_since, Format.time(since)),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 8.dp),
                 )
             }
-            FilledTonalButton(onClick = { onRecord(since == null) }) {
+            FilledTonalButton(onClick = { onRecord(since == null) }, modifier = Modifier.align(Alignment.End).padding(top = 8.dp)) {
                 Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start))
             }
         }

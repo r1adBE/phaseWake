@@ -170,10 +170,10 @@ private val chartNotes = mapOf(
 private val charts = HistoryCharts.of(chartNights, chartSleeps, chartStages, chartNotes, alarms, 450, FIXED_NOW, chartZone)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE_TALL) @Composable
-fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = true, charts = charts) }
+fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = true, charts = charts) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE_TALL) @Composable
-fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, onExport = {}, trends = trends, healthConnected = false, charts = charts) }
+fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = false, charts = charts) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme hell", device = PHONE_TALL) @Composable
 fun HistoryChartsLight() = Themed(ThemeMode.LIGHT) { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) }

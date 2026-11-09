@@ -116,14 +116,15 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         when (current.phase) {
             Phase.MEASURING -> {
                 val mode = if (current.exact) ", exact" else asleepAt?.let { ", asleep $it" }.orEmpty()
+                current.detector = WakeDetector(config)
+                // Sensoren vor der Zeile starten: Sie nennt die Quelle des Pulses («hrsrc=sensor|measure|none»).
+                if (canMeasure) startSensors(current)
                 val detail = when {
-                    canMeasure -> "window ${plan.windowStart}$mode"
+                    canMeasure -> "window ${plan.windowStart}$mode hrsrc=${current.sensors?.heartRateSource ?: SensorSession.SOURCE_NONE}"
                     refusal != null -> "no sensors: $refusal"
                     else -> "no sensors, wake at target"
                 }
                 app.diag.log(DiagKind.MEASURE_START, detail)
-                current.detector = WakeDetector(config)
-                if (canMeasure) startSensors(current)
                 // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
                 if (spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) {
                     WatchSunrise.start(this@loadNight, WatchSunrise.Active(plan.alarmId, plan.windowStart, plan.target), formatTime(plan.target))
@@ -207,13 +208,13 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 
 /**
  * Ende der Messung im Diagnose-Protokoll, einmal je Nacht (nur während [Phase.MEASURING], nicht vor dem ersten Entsperren):
- * Epochen und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen, wirksame Leicht- und Wach-Schwelle am
- * Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
+ * Epochen, davon mit Puls (`hr=`), und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen, wirksame Leicht-
+ * und Wach-Schwelle am Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
  */
 internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
     if (n.phase != Phase.MEASURING || n.locked) return
     val summary = NoiseFloor.summary(n.detector.config, n.epochs.map { it.motion })
-    app.diag.log(DiagKind.MEASURE_END, "watch ${n.epochs.size} epochs, $summary$note")
+    app.diag.log(DiagKind.MEASURE_END, "watch ${n.epochs.size} epochs hr=${n.epochs.count { it.heartRate != null }}, $summary$note")
 }
 
 internal fun WakeService.onDeadline() {

@@ -36,24 +36,31 @@ import java.time.Instant
  * Ruhig heisst unter der wirksamen Leicht-Schwelle: [threshold], angehoben nach dem Grundrauschen der bisher gemessenen
  * Epochen ([NoiseFloor]); bei jeder neuen Epoche neu berechnet und auf die ganze Strecke angewendet.
  *
+ * Spätes Einschlafen (Befund 09.11.2026): Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
+ * unruhig ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP] statt aufzugeben, bis höchstens
+ * [extendCap], nicht unter [com.phasewake.app.wear.schedule.AutoOnset.MIN_BATTERY_PERCENT] Akku
+ * ([OnsetRules.extendUntil]); Zeile «… extended until …» im Diagnose-Protokoll.
+ *
  * @param threshold Leicht-Schwelle (Startwert oder kalibriert).
  * @param latestGiveUp 15 Min vor der eingestellten Weckzeit.
  * @param maxEnd Beginn der Messung + [MAX_DURATION]. Ab dem früheren der beiden: [onGiveUp] statt [onOnset].
  * @param label «auto onset» oder «onset»: Anfang der Zeilen im Diagnose-Protokoll.
+ * @param extendCap Späteste Verlängerung: Beginn + [MAX_EXTENDED], höchstens Beginn des Weckfensters; `null` = keine.
  */
 class OnsetMonitor(
     private val context: Context,
     private val threshold: Double,
     private val latestGiveUp: Instant,
-    private val maxEnd: Instant,
+    private var maxEnd: Instant,
     private val label: String,
     private val log: (DiagKind, String) -> Unit,
     private val onGiveUp: () -> Unit,
+    private val extendCap: Instant? = null,
     private val now: () -> Instant = Instant::now,
     private val onOnset: (Instant) -> Unit,
 ) {
-    /** Ab dann wird nicht mehr gewartet. */
-    val giveUpAt: Instant = minOf(latestGiveUp, maxEnd)
+    /** Ab dann wird nicht mehr gewartet (ausser die Messung verlängert sich, siehe [extendCap]). */
+    val giveUpAt: Instant get() = minOf(latestGiveUp, maxEnd)
 
     private val handler = Handler(Looper.getMainLooper())
     private var started: Instant = now()
@@ -127,8 +134,8 @@ class OnsetMonitor(
         val s = session ?: return
         if (reported) return
         if (!now().isBefore(giveUpAt)) {
-            giveUp()
-            return
+            extendOrGiveUp()
+            if (reported) return
         }
         val first = s.closedEpochs - epochs.size
         epochs.forEachIndexed { i, epoch ->
@@ -152,13 +159,39 @@ class OnsetMonitor(
         onGiveUp()
     }
 
+    /** Zeitgrenze erreicht, falls sie es ist: verlängern ([OnsetRules.extendUntil]) oder aufgeben. */
+    fun checkLimit() {
+        if (session == null || ended || reported) return
+        if (!now().isBefore(giveUpAt)) extendOrGiveUp()
+    }
+
+    /** An der Zeitgrenze: bei Unruhe in den letzten 15 Min verlängern, sonst ([onGiveUp]) aufgeben. */
+    private fun extendOrGiveUp() {
+        if (reported) return
+        val cap = extendCap
+        val at = now()
+        val restless = OnsetRules.restless(motions, measured, NoiseFloor.light(threshold, floor))
+        val battery = battery()
+        val until = cap?.let { OnsetRules.extendUntil(at, maxEnd, latestGiveUp, it, restless, battery) }
+        if (until == null) {
+            // Nur die Akku-Wache verhindert die Verlängerung: eigene Zeile, die Zeile zum Ende behält ihren Grund.
+            if (cap != null && OnsetRules.extendUntil(at, maxEnd, latestGiveUp, cap, restless, null) != null) {
+                log(DiagKind.BATTERY, "$label not extended: battery $battery")
+            }
+            giveUp()
+            return
+        }
+        maxEnd = until
+        log(DiagKind.MEASURE_START, "$label extended until $until")
+    }
+
     /** Alle 5 Minuten (Alarm, weckt die Uhr): Zeitgrenze, Protokollzeile, Stichprobe, nächster Alarm. */
     internal fun tick() {
         val s = session ?: return
         if (ended || reported) return
         if (!now().isBefore(giveUpAt)) {
-            giveUp()
-            return
+            extendOrGiveUp()
+            if (reported) return
         }
         if (SystemClock.elapsedRealtime() - period.sinceMs >= STAT_INTERVAL.toMillis()) logStat()
         if (!s.continuous && !sampling) beginSample(s)
@@ -198,8 +231,7 @@ class OnsetMonitor(
 
     private fun logStat() {
         val s = session ?: return
-        val battery = context.getSystemService(BatteryManager::class.java)
-            ?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
+        val battery = battery()
         val ongoing = if (sampling) SystemClock.elapsedRealtime() - wakeLockSince else 0L
         log(
             DiagKind.BATTERY,
@@ -211,6 +243,10 @@ class OnsetMonitor(
         if (sampling) wakeLockSince = SystemClock.elapsedRealtime()
         period.reset(SystemClock.elapsedRealtime(), s.samples)
     }
+
+    /** Akkustand in Prozent, oder `null`, wenn unbekannt. */
+    private fun battery(): Int? = context.getSystemService(BatteryManager::class.java)
+        ?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
 
     private fun scheduleTick() {
         val at = OnsetRules.nextTick(startNanos, SystemClock.elapsedRealtimeNanos()) / 1_000_000L
@@ -271,6 +307,12 @@ class OnsetMonitor(
         /** Längste Einschlaf-Messung (automatisch und «Gute Nacht»), danach gilt die eingestellte Weckzeit. */
         val MAX_DURATION: Duration = Duration.ofHours(2)
 
+        /** Längste Einschlaf-Messung mit Verlängerungen bei spätem Einschlafen, ab ihrem Beginn. */
+        val MAX_EXTENDED: Duration = Duration.ofHours(4)
+
+        /** Eine Verlängerung: so lange wie eine Zeile im Diagnose-Protokoll ([STAT_INTERVAL]). */
+        val EXTEND_STEP: Duration = Duration.ofMinutes(15)
+
         /** Abstand der Alarme: Zeitgrenze prüfen und (ohne durchgehende Messung) eine Stichprobe nehmen. */
         val TICK_INTERVAL: Duration = Duration.ofMinutes(5)
 
@@ -289,107 +331,5 @@ class OnsetMonitor(
         private const val REQUEST_TICK = 7
         internal const val ACTION_TICK = "com.phasewake.app.action.ONSET_TICK"
         internal const val EPOCH_NANOS = DetectorConfig.EPOCH_SECONDS * 1_000_000_000L
-    }
-}
-
-/** Reine Regeln der Einschlaf-Messung in Stichproben, ohne Android (Tests: `OnsetRulesTest`). */
-internal object OnsetRules {
-    /**
-     * Längste Lücke ungemessener Epochen (10 Min), die eine ruhige Strecke nicht unterbricht. Regulär liegen 8 dazwischen;
-     * so übersteht eine Strecke einen verspäteten Alarm, nicht aber eine längere Pause.
-     */
-    const val MAX_GAP_EPOCHS = 20
-
-    /**
-     * Einschlafen in Stichproben: wie [SleepOnset.find], aber ungemessene Epochen ([measured] `false`) unterbrechen die
-     * Strecke nicht und zählen nicht als ruhig. Die Strecke ruhiger gemessener Epochen (Bewegung vorhanden und unter
-     * [threshold]) muss mindestens [SleepOnset.STILL_EPOCHS] Epochen (15 Min) umfassen, von der ersten bis zur letzten.
-     * Eine gemessene leere oder bewegte Epoche oder eine Lücke über [MAX_GAP_EPOCHS] beginnt von vorn. Sind alle Epochen
-     * gemessen, gilt genau [SleepOnset.find].
-     * @return Index der ersten Epoche der Strecke, oder `null`.
-     */
-    fun find(motions: List<Double?>, measured: List<Boolean>, threshold: Double): Int? {
-        var runStart = -1
-        var lastMeasured = -1
-        for ((index, motion) in motions.withIndex()) {
-            if (!measured.getOrElse(index) { false }) continue
-            if (runStart >= 0 && index - lastMeasured - 1 > MAX_GAP_EPOCHS) runStart = -1
-            lastMeasured = index
-            if (motion != null && motion < threshold) {
-                if (runStart < 0) runStart = index
-                if (index - runStart + 1 >= SleepOnset.STILL_EPOCHS) return runStart
-            } else {
-                runStart = -1
-            }
-        }
-        return null
-    }
-
-    /** Erste Epoche, die bei [nowNanos] noch ganz vor uns liegt (Beginn ≥ jetzt). */
-    fun firstFullEpoch(startNanos: Long, nowNanos: Long): Long {
-        val elapsed = (nowNanos - startNanos).coerceAtLeast(0L)
-        return (elapsed + OnsetMonitor.EPOCH_NANOS - 1) / OnsetMonitor.EPOCH_NANOS
-    }
-
-    /**
-     * Nächster Alarm (elapsedRealtime in ns): frühestens [OnsetMonitor.TICK_INTERVAL] nach [nowNanos], und zwar
-     * [OnsetMonitor.SAMPLE_LEAD_MS] vor einer Epochengrenze, damit die Stichprobe eine volle Epoche früh beginnt.
-     */
-    fun nextTick(startNanos: Long, nowNanos: Long): Long {
-        val lead = OnsetMonitor.SAMPLE_LEAD_MS * 1_000_000L
-        val boundary = firstFullEpoch(startNanos, nowNanos + OnsetMonitor.TICK_INTERVAL.toNanos() + lead)
-        return startNanos + boundary * OnsetMonitor.EPOCH_NANOS - lead
-    }
-
-    /**
-     * Grund, warum «Gute Nacht» bzw. die automatische Messung ([automatic]) nicht beginnt, fürs Diagnose-Protokoll;
-     * `null`, wenn sie beginnen darf. [since]: Beginn, [latest]: eingestellte Weckzeit dieser Nacht (`null` = keine).
-     */
-    fun notStartedReason(
-        alarmFound: Boolean,
-        hasDuration: Boolean,
-        automatic: Boolean,
-        since: Instant,
-        latest: Instant?,
-        windowBegun: Boolean,
-        alreadyDone: Boolean,
-    ): String? = when {
-        !alarmFound -> "no alarm"
-        !hasDuration && !automatic -> "no sleep duration"
-        latest == null -> "no alarm time"
-        Duration.between(since, latest) > WakeRules.GOOD_NIGHT_MAX_AHEAD -> "too far ahead"
-        automatic && windowBegun -> "window begun"
-        automatic && alreadyDone -> "already done"
-        else -> null
-    }
-
-    /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
-    fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {
-        at.isBefore(minOf(latestGiveUp, maxEnd)) -> null
-        !maxEnd.isAfter(latestGiveUp) -> "give up (max duration)"
-        else -> "give up"
-    }
-
-    /**
-     * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche, Akku-Befund 03.11.2026): aufweckender Sensor (1/0),
-     * erhaltene Werte, gemessene Epochen, davon leer, mittlere/grösste Bewegung, wirksame Schwelle, Grundrauschen
-     * ([NoiseFloor]), Wakelock in Sekunden, Akku.
-     */
-    fun statLine(
-        label: String,
-        wakeUp: Boolean,
-        samples: Long,
-        epochs: Int,
-        empty: Int,
-        mean: Double?,
-        max: Double?,
-        threshold: Double,
-        floor: Double?,
-        wakeLockSeconds: Long,
-        battery: Int?,
-    ): String {
-        val f = NoiseFloor::format
-        return "$label stat wake=${if (wakeUp) 1 else 0} samples=$samples epochs=$epochs empty=$empty " +
-            "motion=${f(mean)}/${f(max)} thr=${f(threshold)} floor=${f(floor)} wl=${wakeLockSeconds}s bat=${battery ?: "-"}"
     }
 }

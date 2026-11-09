@@ -104,7 +104,7 @@ fun HypnogramBubbleDark() = Selected(ThemeMode.DARK)
 
 @Composable
 private fun ListWithStages(mode: ThemeMode) = Themed(mode) {
-    HistoryScreen(listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages }, onExport = {}, healthConnected = true, items = items)
+    HistoryScreen(listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages }, healthConnected = true, items = items)
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Liste Phasen hell", device = PHONE_TALL) @Composable

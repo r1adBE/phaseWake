@@ -102,7 +102,7 @@ class WakeService : LifecycleService() {
 
     /** Ob [onsetNight] von der automatischen Einschlaf-Messung stammt (für das Protokoll). */
     internal var onsetAuto = false
-    internal val onsetTimeout = Runnable { stopGoodNight() }
+    internal val onsetTimeout = Runnable { onOnsetTimeout() }
 
     internal val deadline = Runnable { onDeadline() }
     internal val snoozeEnd = Runnable { ring() }

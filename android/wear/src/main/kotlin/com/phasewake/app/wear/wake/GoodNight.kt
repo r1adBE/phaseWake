@@ -35,6 +35,8 @@ import kotlinx.coroutines.launch
  *
  * Die Messung endet spätestens [OnsetMonitor.MAX_DURATION] nach ihrem Beginn (auch nach dem Wiederaufnehmen) und
  * 15 Min vor der eingestellten Weckzeit; dann gilt diese, und für die Nacht startet keine automatische Messung mehr.
+ * Bei Unruhe verlängert sie sich ([OnsetMonitor]), bis höchstens [OnsetMonitor.MAX_EXTENDED] nach dem Beginn und nie
+ * über den Beginn des Weckfensters hinaus. Wird sie nach der Höchstdauer wieder aufgenommen, endet sie wie bisher.
  * Die automatische Messung beginnt nicht unter [AutoOnset.MIN_BATTERY_PERCENT] Akku (Akku-Befund 03.11.2026).
  * Beginnt sie nicht, steht der Grund im Diagnose-Protokoll («… not started: …»), ausser vor dem ersten Entsperren und
  * wenn «Gute Nacht» schon wartet (der Prüf-Alarm nimmt sie alle 15 Minuten wieder auf).
@@ -120,8 +122,11 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         onsetAuto = automatic
         // Hartes Zeitlimit nach Uhrzeit (auch im Tiefschlaf, über den Alarm der Messung): 15 Min vor der eingestellten
         // Weckzeit, spätestens MAX_DURATION nach dem Beginn.
+        // Verlängerung bei spätem Einschlafen: höchstens 4 Std. ab dem Beginn, nie über den Beginn des Weckfensters.
+        val extendCap = plan?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it.windowStart) }
         val monitor = OnsetMonitor(
             this@startGoodNight, threshold, latestGiveUp, maxEnd, label, app.diag::log, onGiveUp = { stopGoodNight() },
+            extendCap = extendCap,
         ) { asleep ->
             app.diag.log(DiagKind.PHASE, "$label asleep $asleep")
             onAsleep(spec, latest, asleep)
@@ -132,6 +137,21 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         // Zusätzlich, solange die Uhr wach ist: Dann gilt die eingestellte Weckzeit.
         handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), monitor.giveUpAt).toMillis().coerceAtLeast(0))
     }
+}
+
+/**
+ * Zeitgeber der Zeitgrenze ([WakeService.onsetTimeout], solange die Uhr wach ist): Die Messung verlängert sich oder gibt
+ * auf ([OnsetMonitor.checkLimit]); läuft sie weiter, gilt ihre neue Grenze.
+ */
+internal fun WakeService.onOnsetTimeout() {
+    val monitor = onset ?: return stopGoodNight()
+    monitor.checkLimit()
+    if (onset !== monitor) return
+    val remaining = Duration.between(Instant.now(), monitor.giveUpAt).toMillis()
+    // Grenze vorbei und nicht verlängert (sollte nicht vorkommen): wie bisher aufgeben, nie ein Zeitgeber ohne Pause.
+    if (remaining <= 0) return stopGoodNight()
+    handler.removeCallbacks(onsetTimeout)
+    handler.postDelayed(onsetTimeout, remaining)
 }
 
 /**

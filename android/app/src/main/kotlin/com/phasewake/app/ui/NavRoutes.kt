@@ -160,7 +160,6 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         } else {
             null
         },
-        onExport = actions.onExport,
         trends = insights.trends,
         healthConnected = insights.health == HealthState.CONNECTED,
         onConnectHealth = actions.connectHealth,
@@ -216,13 +215,16 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     val data = state.data
     val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
     val nextAlarmNotice by app.settings.nextAlarmNotice.collectAsStateWithLifecycle(initialValue = true)
+    // Export nur hier (Verlauf ohne Knopf): aktiv mit Nächten oder abgeschlossenen Aufzeichnungen.
+    val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { app.recordings.load() }
     SettingsScreen(
         themeMode = state.themeMode,
         version = version,
         contentPadding = content,
         onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
         onExport = actions.onExport,
-        canExport = !data.nights.isNullOrEmpty(),
+        canExport = !data.nights.isNullOrEmpty() || !recordings.isNullOrEmpty(),
         onClearHistory = {
             // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
             DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {

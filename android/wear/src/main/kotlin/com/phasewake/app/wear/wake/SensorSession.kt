@@ -24,6 +24,11 @@ import com.phasewake.app.core.EpochAssembler
  * Alles läuft auf dem Hauptthread: Sensor-Rückrufe, Puls-Rückrufe und der Zeitgeber. Damit gibt es
  * keine Nebenläufigkeit im [EpochAssembler]. Die Last ist gering (gebündelte Werte alle 10 s).
  *
+ * Puls ([heartRateSource]): zuerst der Pulssensor der Uhr über den [SensorManager] (etwa jede Sekunde, gebündelt wie
+ * die Bewegung), sonst die Health Services ([MeasureClient][androidx.health.services.client.MeasureClient]). Diese
+ * liefern bei dunklem Bildschirm nur etwa alle 10 Minuten (Galaxy Watch, Befund 08./09.11.2026): Sie sind für die
+ * Messung in der sichtbaren App gedacht. Den Sensor hält der Vordergrunddienst («health») mit seinem Wakelock wach.
+ *
  * @param startNanos Fensterbeginn auf der Uhr `SystemClock.elapsedRealtimeNanos()`.
  * @param lowPower Für die Einschlaf-Messung ([OnsetMonitor]): nur Bewegung. Mit aufweckendem Sensor, dessen Puffer
  *   mindestens [MIN_WAKE_UP_FIFO] Werte fasst ([continuous]), bündelt er bis 5 Minuten und weckt die Uhr nur bei
@@ -43,6 +48,21 @@ class SensorSession(
     private val sensorManager = context.getSystemService(SensorManager::class.java)
     private val measureClient by lazy { HealthServices.getClient(context).measureClient }
     private var heartRateRegistered = false
+    private var heartRateSensorRegistered = false
+
+    /** Pulssensor der Uhr (bevorzugt der aufweckende); `null` in [lowPower] oder ohne Sensor. */
+    private val heartRateSensor: Sensor? = if (lowPower) {
+        null
+    } else {
+        sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE, true) ?: sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
+    }
+
+    /**
+     * Woher der Puls kommt, fürs Diagnose-Protokoll: «sensor» ([SensorManager]), «measure» (Health Services, Rückfall)
+     * oder «none» (keine Pulsmessung: [lowPower], kein Recht, kein Sensor). Gilt ab [start].
+     */
+    var heartRateSource: String = SOURCE_NONE
+        private set
     private var running = false
     private var listening = false
 
@@ -103,6 +123,14 @@ class SensorSession(
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
     }
 
+    private val heartRateListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            heartRateValue(event.accuracy, event.values.firstOrNull())?.let { queueHeartRate(event.timestamp, it) }
+        }
+
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
+    }
+
     private val heartRateCallback = object : MeasureCallback {
         override fun onAvailabilityChanged(dataType: DeltaDataType<*, *>, availability: Availability) {
             Log.d(TAG, "Puls verfügbar: $availability")
@@ -118,6 +146,7 @@ class SensorSession(
             // Meldet Fehler (z. B. fehlendes Hintergrundrecht) asynchron; dann entscheidet die Bewegung allein.
             Log.w(TAG, "Puls nicht verfügbar, nur Bewegung", throwable)
             heartRateRegistered = false
+            heartRateSource = SOURCE_NONE
         }
     }
 
@@ -170,10 +199,25 @@ class SensorSession(
         else -> MAX_LATENCY_US
     }
 
+    /** Puls über den Sensor der Uhr; fehlt er oder lässt er sich nicht anmelden, über die Health Services. */
     private fun registerHeartRate() {
+        heartRateSensor?.let { sensor ->
+            heartRateSensorRegistered = try {
+                sensorManager.registerListener(heartRateListener, sensor, HEART_RATE_SAMPLING_US, MAX_LATENCY_US, handler)
+            } catch (e: SecurityException) {
+                Log.i(TAG, "Pulssensor nicht erlaubt, versuche Health Services", e)
+                false
+            }
+            if (heartRateSensorRegistered) {
+                heartRateSource = SOURCE_SENSOR
+                return
+            }
+            Log.w(TAG, "Pulssensor nicht angemeldet, versuche Health Services")
+        }
         try {
             measureClient.registerMeasureCallback(DataType.HEART_RATE_BPM, ContextCompat.getMainExecutor(context), heartRateCallback)
             heartRateRegistered = true
+            heartRateSource = SOURCE_MEASURE
         } catch (e: SecurityException) {
             // Ohne Pulsberechtigung entscheidet die Bewegung allein (Regel, Abschnitt 3).
             Log.i(TAG, "Puls nicht erlaubt, nur Bewegung", e)
@@ -186,6 +230,10 @@ class SensorSession(
         handler.removeCallbacks(ticker)
         listening = false
         sensorManager.unregisterListener(motionListener)
+        if (heartRateSensorRegistered) {
+            sensorManager.unregisterListener(heartRateListener)
+            heartRateSensorRegistered = false
+        }
         if (heartRateRegistered) {
             measureClient.unregisterMeasureCallbackAsync(DataType.HEART_RATE_BPM, heartRateCallback)
             heartRateRegistered = false
@@ -215,6 +263,23 @@ class SensorSession(
 
     companion object {
         private const val TAG = "SensorSession"
+
+        const val SOURCE_SENSOR = "sensor"
+        const val SOURCE_MEASURE = "measure"
+        const val SOURCE_NONE = "none"
+
+        /**
+         * Pulswert eines Sensor-Ereignisses, oder `null`, wenn er nichts taugt: Genauigkeit «unzuverlässig» oder «kein
+         * Hautkontakt» (Uhr nicht am Handgelenk) oder kein positiver Wert (ohne Kontakt meldet die Uhr 0).
+         */
+        internal fun heartRateValue(accuracy: Int, bpm: Float?): Double? = when {
+            accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE || accuracy == SensorManager.SENSOR_STATUS_NO_CONTACT -> null
+            bpm == null || bpm.isNaN() || bpm <= 0f -> null
+            else -> bpm.toDouble()
+        }
+
+        /** Puls etwa jede Sekunde (ein Wunsch an den Sensor; er meldet bei Änderung). */
+        private const val HEART_RATE_SAMPLING_US = 1_000_000
 
         /**
          * Kleinster Puffer des aufweckenden Sensors für die durchgehende Messung: 60 s bei 25 Hz. Ein kleinerer weckte

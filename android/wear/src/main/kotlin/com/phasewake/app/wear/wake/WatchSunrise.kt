@@ -4,8 +4,10 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.wear.ui.SunriseActivity
+import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +30,7 @@ object WatchSunrise {
 
     /** Startet das Licht: Vollbild-Mitteilung (auch bei dunklem Display) und, wenn erlaubt, gleich die Activity. */
     fun start(context: Context, active: Active, targetText: String) {
+        if (state.value == null) context.wearApp.diag.log(DiagKind.RING, "watch sunrise start")
         state.value = active
         context.getSystemService(NotificationManager::class.java)
             .notify(Notifications.ID_SUNRISE, Notifications.sunrise(context, targetText))
@@ -41,8 +44,9 @@ object WatchSunrise {
         }
     }
 
-    /** Beendet das Licht (getippt, geklingelt oder Nacht vorbei). */
+    /** Beendet das Licht (getippt, geklingelt oder Nacht vorbei); ein laufendes ins Diagnose-Protokoll. */
     fun stop(context: Context) {
+        if (state.value != null) context.wearApp.diag.log(DiagKind.STOP, "watch sunrise end")
         state.value = null
         context.getSystemService(NotificationManager::class.java).cancel(Notifications.ID_SUNRISE)
     }

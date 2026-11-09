@@ -7,6 +7,7 @@ import com.phasewake.app.MemoryStore
 import com.phasewake.app.QuietApp
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.phoneApp
@@ -148,9 +149,17 @@ class BackupWatchTest {
         val windowStart = AlarmSchedule.planAt(light, configured).windowStart
         assertEquals(maxOf(windowStart, now).toEpochMilli(), sunrise.triggerAtMs)
         assertEquals(configured.toEpochMilli(), intentOf(sunrise).getLongExtra(SunriseLight.EXTRA_END, 0L))
+        // Plan im Diagnose-Protokoll, einmal (erneutes Neuplanen schreibt denselben Plan nicht noch einmal).
+        val diag = context.phoneApp.diag
+        val planned = "phone sunrise $windowStart – $configured"
+        backup.rescheduleSunrise()
+        assertEquals(1, diag.entries().count { it.kind == DiagKind.SCHEDULED && it.detail == planned })
         // Das Licht beginnt: gemerkt bis zur Zielzeit, danach nicht noch einmal für dieselbe Nacht.
         backup.startSunrise(intentOf(sunrise))
         assertEquals("a", SunriseLight.active.value?.alarmId)
+        assertTrue(diag.entries().any { it.kind == DiagKind.RING && it.detail == "phone sunrise start" })
+        SunriseLight.stop(context)
+        assertTrue(diag.entries().any { it.kind == DiagKind.STOP && it.detail == "phone sunrise end" })
         backup.rescheduleSunrise()
         assertTrue(scheduled(BackupAlarm.ACTION_SUNRISE).none { intentOf(it).getLongExtra(SunriseLight.EXTRA_END, 0L) == configured.toEpochMilli() })
     }

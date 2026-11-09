@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 /**
  * «Nacht aufzeichnen»: misst die ganze Nacht je 30-s-Epoche Bewegung und Puls ([SensorSession] wie im Weckfenster,
- * 25 Hz, Puls über die Health Services) und speichert sie fortlaufend ([com.phasewake.app.shared.RecordingRepository]).
+ * 25 Hz, Puls über den Pulssensor der Uhr, Rückfall Health Services) und speichert sie fortlaufend ([com.phasewake.app.shared.RecordingRepository]).
  *
  * Eigener Vordergrunddienst («health»), unabhängig vom [com.phasewake.app.wear.wake.WakeService]: Wecker, Einschlaf- und
  * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Hält einen eigenen Wakelock,
@@ -121,8 +121,7 @@ class RecordService : LifecycleService() {
             val start = Instant.ofEpochMilli(clock().toEpochMilli())
             app.recordings.begin(start)
             starting = false
-            app.diag.log(DiagKind.MEASURE_START, "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
-            measure(Active(start, mutableListOf(), 0))
+            measure(Active(start, mutableListOf(), 0), "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
         }
     }
 
@@ -158,13 +157,15 @@ class RecordService : LifecycleService() {
             val epochs = saved.epochs.toMutableList()
             val gap = NightRecording.epochsUntil(saved.start, now) - epochs.size
             repeat(gap.coerceAtLeast(0)) { epochs += Epoch(null, null) }
-            app.diag.log(DiagKind.MEASURE_START, "record resume gap=${gap.coerceAtLeast(0)} bat=${battery ?: "-"}")
-            measure(Active(saved.start, epochs, saved.epochs.size))
+            measure(Active(saved.start, epochs, saved.epochs.size), "record resume gap=${gap.coerceAtLeast(0)} bat=${battery ?: "-"}")
         }
     }
 
-    /** Sensoren an, Wakelock, Prüf-Alarm, Zeitgeber; Stand ans Handy. */
-    private fun measure(recording: Active) {
+    /**
+     * Sensoren an, Wakelock, Prüf-Alarm, Zeitgeber; Stand ans Handy. [startLine] kommt ins Diagnose-Protokoll, ergänzt
+     * um die Quelle des Pulses («hrsrc=sensor|measure|none», [SensorSession.heartRateSource]).
+     */
+    private fun measure(recording: Active, startLine: String) {
         active = recording
         sinceState.value = recording.start
         goForeground(recording.start)
@@ -175,6 +176,7 @@ class RecordService : LifecycleService() {
             .apply { acquire(remaining + WAKE_LOCK_MARGIN_MS) }
         sensors = SensorSession(this, SystemClock.elapsedRealtimeNanos(), SystemClock::elapsedRealtimeNanos) { onEpochs(it) }
             .also { it.start() }
+        app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${sensors?.heartRateSource ?: SensorSession.SOURCE_NONE}")
         RecordControl.armCheck(this)
         handler.postDelayed(tick, TICK_MS)
         write { app.recordSync.publishStatus(recording.start) }
