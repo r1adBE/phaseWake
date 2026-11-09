@@ -118,7 +118,9 @@ private val stackOrder = listOf(SleepStage.DEEP, SleepStage.LIGHT, SleepStage.RE
 /**
  * Übersicht oben im Verlauf für die gewählte Einteilung [unit]: Ø Schlafdauer gross, Ø Schlafenszeit und Ø Aufwachzeit,
  * erreichtes Schlafziel, darunter Säulen (je Nacht, Woche bzw. Monat der Durchschnitt). Mit Phasen ist jede Säule nach
- * tief, leicht und REM aufgeteilt (Farben wie im Hypnogramm), sonst ein Verlauf in der Markenfarbe; erreichtes Ziel mit ✓.
+ * tief, leicht und REM aufgeteilt (Farben wie im Hypnogramm), Säulen ohne Phasen daneben neutral gestreift (Woche/Monat:
+ * nur wenn alle Nächte Phasen haben, [com.phasewake.app.core.OverviewBar.stageMinutes]); ganz ohne Phasen ein Verlauf in
+ * der Markenfarbe. Erreichtes Ziel mit ✓.
  * Die Säulen wachsen beim Wechsel kurz hoch. Antippen zeigt den Wert in der Blase; bei «Tage» öffnet sie die Nacht ([opener]).
  */
 @Composable
@@ -171,6 +173,8 @@ internal fun OverviewCard(
         val grow = remember(o) { Animatable(if (animate) 0f else 1f) }
         LaunchedEffect(o) { if (animate) grow.animateTo(1f, tween(650, easing = FastOutSlowInEasing)) }
         val stacked = o.bars.any { stackTotal(it) > 0 }
+        // Säulen mit Daten, aber ohne Phasen, neben solchen mit Phasen: neutral, Legende «Ohne Phasen».
+        val neutral = stacked && o.bars.any { it.asleepMinutes != null && stackTotal(it) <= 0f }
         TouchChart(o, description, pick) { selected ->
             val labels = o.bars.map { measurer.measure(barLabel(o.unit, it), label) }
             val axisHeight = labels.maxOf { it.size.height } + 6.dp.toPx()
@@ -199,7 +203,10 @@ internal fun OverviewCard(
                     }
                     clipPath(shape) {
                         val total = stackTotal(bar)
-                        if (total > 0) {
+                        if (stacked && total <= 0f) {
+                            // Neben Säulen mit Phasen: Nacht (bzw. Woche/Monat) ohne Phasen neutral gestreift, gleiche Höhe.
+                            stripes(scheme.onSurfaceVariant, Offset(x, bottom - h), Size(w, h), 6.dp.toPx())
+                        } else if (total > 0) {
                             var y0 = bottom
                             val gap = 1.5.dp.toPx()
                             stackOrder.forEach { stage ->
@@ -225,7 +232,8 @@ internal fun OverviewCard(
             listOfNotNull(
                 LegendItem(stringResource(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(o.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary),
                 LegendItem(stringResource(R.string.chart_goal_met), LegendMark.NONE, scheme.primary),
-            ) + if (stacked) stackOrder.map { LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it)) } else emptyList(),
+            ) + (if (stacked) stackOrder.map { LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it)) } else emptyList()) +
+                (if (neutral) listOf(LegendItem(stringResource(R.string.overview_no_stages), LegendMark.STRIPES, scheme.onSurfaceVariant)) else emptyList()),
         )
     }
 }

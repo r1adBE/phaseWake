@@ -585,6 +585,7 @@
     <string name="score_source">Iz %1$s.</string>
     <string name="score_source_health">Iz tvojih zdravstvenih podataka.</string>
     <string name="score_source_recording">Iz noćnog snimka tvog sata.</string>
+    <string name="score_provisional">Bez faza sna – privremena ocjena</string>
     <string name="pulse_title">Puls</string>
     <string name="pulse_average">Ø %1$d u minuti</string>
     <string name="motion_title">Pokret</string>
@@ -595,6 +596,7 @@
     <string name="overview_asleep">Ø san</string>
     <string name="overview_bedtime">Ø vrijeme odlaska na spavanje</string>
     <string name="overview_wake">Ø vrijeme buđenja</string>
+    <string name="overview_no_stages">Bez faza</string>
     <string name="settings_clear_history_learn">Faza učenja počinje ispočetka.</string>
     <string name="learn_auto_hint">Navečer dodirni „Laku noć“ na satu ili uključi „Automatski prepoznaj uspavljivanje“ da bi se noći brojale.</string>
 </resources>

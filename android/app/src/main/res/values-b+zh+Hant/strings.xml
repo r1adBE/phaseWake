@@ -554,6 +554,7 @@
     <string name="score_source">來自 %1$s。</string>
     <string name="score_source_health">來自你的健康資料。</string>
     <string name="score_source_recording">來自你手錶的夜間記錄。</string>
+    <string name="score_provisional">無睡眠階段 – 暫定分數</string>
     <string name="pulse_title">脈搏</string>
     <string name="pulse_average">Ø 每分鐘 %1$d 下</string>
     <string name="motion_title">活動</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø 睡眠</string>
     <string name="overview_bedtime">Ø 入睡時間</string>
     <string name="overview_wake">Ø 起床時間</string>
+    <string name="overview_no_stages">無階段</string>
     <string name="settings_clear_history_learn">學習階段重新開始。</string>
     <string name="learn_auto_hint">晚上請在手錶上輕觸「晚安」，或開啟「自動偵測入睡」，這樣夜晚才會被計入。</string>
 </resources>

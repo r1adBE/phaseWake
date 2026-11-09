@@ -571,6 +571,7 @@
     <string name="score_source">Од %1$s.</string>
     <string name="score_source_health">Од твоите здравствени податоци.</string>
     <string name="score_source_recording">Од ноќното снимање на твојот часовник.</string>
+    <string name="score_provisional">Без фази на сон – привремена оценка</string>
     <string name="pulse_title">Пулс</string>
     <string name="pulse_average">Ø %1$d во минута</string>
     <string name="motion_title">Движење</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø сон</string>
     <string name="overview_bedtime">Ø време на заспивање</string>
     <string name="overview_wake">Ø време на будење</string>
+    <string name="overview_no_stages">Без фази</string>
     <string name="settings_clear_history_learn">Фазата на учење почнува одново.</string>
     <string name="learn_auto_hint">Навечер допри „Добра ноќ“ на часовникот или вклучи „Автоматски препознај заспивање“ за ноќите да се бројат.</string>
 </resources>

@@ -2,19 +2,27 @@ import PhaseWakeCore
 import SwiftUI
 
 /// Inhalt der Detailseite einer Nacht: Kopf (Datum, Schlafdauer gross, «Im Bett», Weckmoment und Grund bzw. Vermerk
-/// «Ohne Phase-Wake-Wecker» mit Quelle), grosses Schlafprofil, Phasen-Summen mit üblichem Bereich und Einordnung,
-/// Kennzahlen, dann Befinden, Notizen und Geräusche wie bisher. Wie `NightDetailPage` (Android).
+/// «Ohne Phase-Wake-Wecker» mit Quelle), Schlafwert mit Faktoren, grosses Schlafprofil, Puls im Weckfenster,
+/// Phasen-Summen mit üblichem Bereich und Einordnung, Kennzahlen, dann Befinden, Notizen und Geräusche wie bisher.
+/// Wie `NightDetailPage` (Android).
 struct NightDetailPage: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
     let data: NightDetailData
     /// Anzeigename der Quelle bei Nächten aus anderen Apps; `nil` = unbekannt.
     let sourceName: String?
+    /// Quelle unter dem Schlafwert einer eigenen Nacht («Aus Apple Health.»); bei Nächten aus anderen Apps `nil`.
+    var scoreSource: String?
 
     var body: some View {
+        let score = nightScore(stages: data.stages, session: data.item.session, goalMinutes: model.sleepGoal)
+        let pulse = data.item.night.flatMap { SleepOverviews.pulse($0.epochs, start: $0.windowStart) }
         ScrollView {
             VStack(spacing: 12) {
                 header.card()
+                if let score {
+                    ScoreCard(score: score, source: data.item.night != nil ? scoreSource : nil, goalMinutes: model.sleepGoal)
+                }
                 VStack(alignment: .leading, spacing: 8) {
                     Text(L("chart_stages_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                     if let timeline = data.timeline {
@@ -31,9 +39,11 @@ struct NightDetailPage: View {
                     }
                 }
                 .card()
+                if let pulse { PulseCard(curve: pulse) }
                 if let stages = data.stages {
                     StageTotalsView(stages: stages).card()
-                    NightMetricTiles(stages: stages).card()
+                    // Die Einschlafdauer steht schon als Faktor beim Schlafwert.
+                    NightMetricTiles(stages: stages, withLatency: score?.result.factor(.latency) == nil).card()
                 }
                 extras.card()
             }

@@ -599,6 +599,7 @@
     <string name="score_source">Iš %1$s.</string>
     <string name="score_source_health">Iš tavo sveikatos duomenų.</string>
     <string name="score_source_recording">Iš tavo laikrodžio nakties įrašo.</string>
+    <string name="score_provisional">Be miego fazių – preliminarus balas</string>
     <string name="pulse_title">Pulsas</string>
     <string name="pulse_average">Ø %1$d per minutę</string>
     <string name="motion_title">Judesiai</string>
@@ -609,6 +610,7 @@
     <string name="overview_asleep">Ø miegas</string>
     <string name="overview_bedtime">Ø užmigimo laikas</string>
     <string name="overview_wake">Ø pabudimo laikas</string>
+    <string name="overview_no_stages">Be fazių</string>
     <string name="settings_clear_history_learn">Mokymosi etapas prasideda iš naujo.</string>
     <string name="learn_auto_hint">Vakare bakstelėk laikrodyje „Labanakt“ arba įjunk „Automatiškai atpažinti užmigimą“, kad naktys būtų skaičiuojamos.</string>
 </resources>

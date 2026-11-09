@@ -571,6 +571,7 @@
     <string name="score_source">Uit %1$s.</string>
     <string name="score_source_health">Uit jou gesondheidsdata.</string>
     <string name="score_source_recording">Uit jou horlosie se nagopname.</string>
+    <string name="score_provisional">Sonder slaapfases – voorlopige telling</string>
     <string name="pulse_title">Polsslag</string>
     <string name="pulse_average">Ø %1$d per minuut</string>
     <string name="motion_title">Beweging</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø slaap</string>
     <string name="overview_bedtime">Ø slaaptyd</string>
     <string name="overview_wake">Ø wakkerwordtyd</string>
+    <string name="overview_no_stages">Sonder fases</string>
     <string name="settings_clear_history_learn">Die leerfase begin weer van voor af.</string>
     <string name="learn_auto_hint">Tik saans op jou horlosie op “Goeienag” of skakel “Bespeur outomaties wanneer jy aan die slaap raak” aan sodat die nagte tel.</string>
 </resources>

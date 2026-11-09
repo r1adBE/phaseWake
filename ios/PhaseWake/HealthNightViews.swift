@@ -39,6 +39,8 @@ struct HealthNightCard: View {
     let feeling: Int?
     /// Öffnet die Detailseite dieser Nacht.
     let onOpen: () -> Void
+    /// Schlafwert der Nacht (``nightScore(stages:session:goalMinutes:)``); `nil`: keine Zeile.
+    var score: SleepScoreResult?
 
     private var title: String { session.end.formatted(date: .abbreviated, time: .omitted) }
 
@@ -80,6 +82,7 @@ struct HealthNightCard: View {
             Label(L("history_health_mark"), systemImage: "heart.text.square")
                 .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
                 .foregroundStyle(.secondary)
+            if let score { ScoreLine(result: score) }
             VStack(alignment: .leading, spacing: 2) {
                 Text(lines.times)
                 Text(lines.amounts)

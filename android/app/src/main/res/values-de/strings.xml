@@ -568,6 +568,7 @@
     <string name="score_source">Aus %1$s.</string>
     <string name="score_source_health">Aus deinen Gesundheitsdaten.</string>
     <string name="score_source_recording">Aus der Nacht-Aufzeichnung deiner Uhr.</string>
+    <string name="score_provisional">Ohne Schlafphasen – vorläufiger Wert</string>
     <string name="pulse_title">Puls</string>
     <string name="pulse_average">Ø %1$d pro Minute</string>
     <string name="motion_title">Bewegung</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø Schlafdauer</string>
     <string name="overview_bedtime">Ø Schlafenszeit</string>
     <string name="overview_wake">Ø Aufwachzeit</string>
+    <string name="overview_no_stages">Ohne Phasen</string>
     <string name="settings_clear_history_learn">Die Lernphase beginnt von vorn.</string>
     <string name="learn_auto_hint">Tippe abends auf der Uhr auf «Gute Nacht» oder schalte «Einschlafen automatisch erkennen» ein, damit die Nächte zählen.</string>
 </resources>

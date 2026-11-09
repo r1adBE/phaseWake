@@ -571,6 +571,7 @@
     <string name="score_source">Manba: %1$s.</string>
     <string name="score_source_health">Salomatlik maʼlumotlaringdan.</string>
     <string name="score_source_recording">Soatingning tungi yozuvidan.</string>
+    <string name="score_provisional">Uyqu bosqichlarisiz – dastlabki ball</string>
     <string name="pulse_title">Puls</string>
     <string name="pulse_average">Ø daqiqada %1$d</string>
     <string name="motion_title">Harakat</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø uyqu</string>
     <string name="overview_bedtime">Ø uxlash vaqti</string>
     <string name="overview_wake">Ø uygʻonish vaqti</string>
+    <string name="overview_no_stages">Bosqichlarsiz</string>
     <string name="settings_clear_history_learn">O‘rganish bosqichi boshidan boshlanadi.</string>
     <string name="learn_auto_hint">Tunlar hisoblanishi uchun kechqurun soatda «Xayrli tun» tugmasini bos yoki «Uxlab qolishni avtomatik aniqlash» funksiyasini yoq.</string>
 </resources>

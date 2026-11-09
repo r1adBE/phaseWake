@@ -568,6 +568,7 @@
     <string name="score_source">Kaynak: %1$s.</string>
     <string name="score_source_health">Sağlık verilerinden.</string>
     <string name="score_source_recording">Saatinin gece kaydından.</string>
+    <string name="score_provisional">Uyku evreleri olmadan – geçici puan</string>
     <string name="pulse_title">Nabız</string>
     <string name="pulse_average">Ø dakikada %1$d</string>
     <string name="motion_title">Hareket</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø uyku</string>
     <string name="overview_bedtime">Ø yatma saati</string>
     <string name="overview_wake">Ø uyanma saati</string>
+    <string name="overview_no_stages">Evresiz</string>
     <string name="settings_clear_history_learn">Öğrenme aşaması baştan başlar.</string>
     <string name="learn_auto_hint">Gecelerin sayılması için akşam saatinde “İyi geceler” öğesine dokun veya “Uykuya dalmayı otomatik algıla” seçeneğini aç.</string>
 </resources>

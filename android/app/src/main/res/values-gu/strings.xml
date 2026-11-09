@@ -571,6 +571,7 @@
     <string name="score_source">%1$s માંથી.</string>
     <string name="score_source_health">તારા આરોગ્ય ડેટામાંથી.</string>
     <string name="score_source_recording">તારી ઘડિયાળના રાત્રિ રેકોર્ડિંગમાંથી.</string>
+    <string name="score_provisional">ઊંઘના તબક્કા વિના – કામચલાઉ સ્કોર</string>
     <string name="pulse_title">નાડી</string>
     <string name="pulse_average">Ø પ્રતિ મિનિટ %1$d</string>
     <string name="motion_title">હલનચલન</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø ઊંઘ</string>
     <string name="overview_bedtime">Ø સૂવાનો સમય</string>
     <string name="overview_wake">Ø ઊઠવાનો સમય</string>
+    <string name="overview_no_stages">તબક્કા વિના</string>
     <string name="settings_clear_history_learn">શીખવાનો તબક્કો ફરીથી શરૂ થાય છે.</string>
     <string name="learn_auto_hint">રાતો ગણાય તે માટે સાંજે ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કર અથવા “ઊંઘ આવવાનું આપમેળે ઓળખો” ચાલુ કર.</string>
 </resources>

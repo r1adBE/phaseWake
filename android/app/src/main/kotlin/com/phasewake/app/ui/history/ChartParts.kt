@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
@@ -120,7 +121,7 @@ internal fun DrawScope.dashed(color: Color, from: Offset, to: Offset) =
 @Composable
 internal fun labelStyle(): TextStyle = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, LINE, SHADE, NONE }
+internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, LINE, SHADE, STRIPES, NONE }
 
 internal data class LegendItem(val text: String, val mark: LegendMark, val color: Color)
 
@@ -155,8 +156,27 @@ internal fun DrawScope.mark(mark: LegendMark, color: Color, center: Offset, r: F
         LegendMark.DASH -> dashed(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y))
         LegendMark.LINE -> drawLine(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y), strokeWidth = r * 0.55f, cap = StrokeCap.Round)
         LegendMark.SHADE -> drawRoundRect(color, Offset(center.x - r * 2, center.y - r), Size(r * 4, r * 2), CornerRadius(r / 2))
+        LegendMark.STRIPES -> {
+            val topLeft = Offset(center.x - r * 0.85f, center.y - r * 0.85f)
+            val square = Size(r * 1.7f, r * 1.7f)
+            clipRect(topLeft.x, topLeft.y, topLeft.x + square.width, topLeft.y + square.height) { stripes(color, topLeft, square, r * 0.9f) }
+        }
         // Ohne Marke: Das Zeichen steht schon im Text (z. B. «✓ Ziel erreicht»).
         LegendMark.NONE -> Unit
+    }
+}
+
+/**
+ * Neutrale, gestreifte Fläche (Säule ohne Phasen): [color] schwach als Grund, darüber Schrägstreifen im Abstand [gap].
+ * Zeichnet über den Rand hinaus; der Aufrufer schneidet zu (clipPath/clipRect).
+ */
+internal fun DrawScope.stripes(color: Color, topLeft: Offset, size: Size, gap: Float) {
+    drawRect(color.copy(alpha = 0.22f), topLeft, size)
+    val line = gap * 0.45f
+    var x = topLeft.x - size.height
+    while (x < topLeft.x + size.width) {
+        drawLine(color.copy(alpha = 0.55f), Offset(x, topLeft.y + size.height), Offset(x + size.height, topLeft.y), strokeWidth = line)
+        x += gap
     }
 }
 

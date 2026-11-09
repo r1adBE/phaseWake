@@ -556,6 +556,7 @@
     <string name="score_source">%1$s-ից։</string>
     <string name="score_source_health">Քո առողջության տվյալներից։</string>
     <string name="score_source_recording">Քո ժամացույցի գիշերային գրառումից։</string>
+    <string name="score_provisional">Առանց քնի փուլերի – նախնական միավոր</string>
     <string name="pulse_title">Զարկերակ</string>
     <string name="pulse_average">Ø րոպեում %1$d</string>
     <string name="motion_title">Շարժում</string>
@@ -566,6 +567,7 @@
     <string name="overview_asleep">Ø քուն</string>
     <string name="overview_bedtime">Ø քնելու ժամ</string>
     <string name="overview_wake">Ø արթնանալու ժամ</string>
+    <string name="overview_no_stages">Առանց փուլերի</string>
     <string name="settings_clear_history_learn">Ուսուցման փուլը սկսվում է նորից։</string>
     <string name="learn_auto_hint">Երեկոյան ժամացույցի վրա հպիր «Բարի գիշեր»-ին կամ միացրու «Ինքնաշխատ հայտնաբերել քնելը»-ը, որպեսզի գիշերները հաշվվեն։</string>
 </resources>

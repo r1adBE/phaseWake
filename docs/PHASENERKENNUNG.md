@@ -148,7 +148,7 @@ Nur Galaxy Watch mit Android-Handy (Entscheid r1AD 09.11.2026; Apple folgt). Rec
 
 ## 11. Schlafwert
 
-Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScore`, Android; Apple folgt). Jeder Faktor gibt 0–100 Punkte (ganze Zahl, kaufmännisch gerundet); Prozente sind die Anteile der Phasen wie auf der Detailseite (wach, REM, leicht, tief zusammen 100).
+Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScore`, Android und Swift gleich). Jeder Faktor gibt 0–100 Punkte (ganze Zahl, kaufmännisch gerundet); Prozente sind die Anteile der Phasen wie auf der Detailseite (wach, REM, leicht, tief zusammen 100).
 
 | Faktor | Gewicht | 100 Punkte | 0 Punkte | dazwischen |
 |---|---|---|---|---|
@@ -159,6 +159,9 @@ Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScor
 | Einschlafdauer | 10 | bis 20 Min | ab 60 Min | gerade |
 
 - **Wert** = Σ (Punkte · Gewicht) / Σ Gewichte der vorhandenen Faktoren, gerundet. Fehlt ein Faktor (keine Phasen, keine Einschlafdauer), fällt er weg; ohne Schlafdauer kein Wert. Kein Abzug für Schlaf über dem Ziel. Die Grenzen von Tief, REM und Wach sind die üblichen Bereiche der Detailseite (`StageStats.TYPICAL`).
+- **Vorläufig**: Fehlen alle Schlafphasen (weder Tief noch REM noch Wach, z. B. nur Schlafdauer und Einschlafdauer aus einer Aufzeichnung oder einer Sitzung ohne Phasen), ist der Wert vorläufig und höchstens 84 (also höchstens «Gut»): Dauer und Einschlafdauer allein sagen zu wenig über die Qualität des Schlafs. Die Detailseite zeigt unter dem Bogen «Ohne Schlafphasen – vorläufiger Wert», die Liste den Ring gestrichelt. Die Punkte der Faktoren bleiben unverändert.
 - **Bewertung** (Wert und jeder Faktor): ab 85 «Ausgezeichnet», ab 70 «Gut», ab 50 «Mittel», sonst «Schwach».
 - **Quellen**: Phasen aus Health Connect (eigene Nacht über das Schlafprofil, Nacht aus einer anderen App über die ganze Sitzung; Sitzung ohne Phasen nur ihre Dauer). Ohne Phasen bei einer eigenen Nacht die überschneidende Aufzeichnung der Uhr (9), wenn sie das Einschlafen kennt: Schlafdauer = Einschlafzeit bis Ende (höchstens bis zum Wecken), Einschlafdauer = Beginn bis Einschlafzeit. Unruhige Epochen zählen nicht als «Wach».
 - **Beispiel**: 6 Std. 45 Min bei Ziel 7 Std. 30 Min (80), Tief 10 % (77), REM 20 % (100), Wach 15 % (71), Einschlafdauer 40 Min (50) → (80·35 + 77·20 + 100·20 + 71·15 + 50·10) / 100 = 79 → «Gut».
+- **Beispiel vorläufig**: 8 Std. bei Ziel 7 Std. 30 Min (100), Einschlafdauer 12 Min (100), keine Phasen → gerechnet 100, vorläufig 84 → «Gut».
+- **Säulen «Dein Schlaf»** (`SleepOverviews`): Eine Säule wird nur nach Tief, Leicht und REM aufgeteilt, wenn alle ihre Nächte Phasen haben (Woche/Monat); sonst zeigt sie nur die Dauer, neben aufgeteilten Säulen neutral mit der Legende «Ohne Phasen».

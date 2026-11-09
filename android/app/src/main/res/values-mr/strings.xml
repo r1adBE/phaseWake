@@ -571,6 +571,7 @@
     <string name="score_source">%1$s मधून.</string>
     <string name="score_source_health">तुझ्या आरोग्य डेटामधून.</string>
     <string name="score_source_recording">तुझ्या घड्याळाच्या रात्रीच्या रेकॉर्डिंगमधून.</string>
+    <string name="score_provisional">झोपेच्या टप्प्यांशिवाय – तात्पुरता स्कोअर</string>
     <string name="pulse_title">नाडी</string>
     <string name="pulse_average">Ø दर मिनिटाला %1$d</string>
     <string name="motion_title">हालचाल</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø झोप</string>
     <string name="overview_bedtime">Ø झोपण्याची वेळ</string>
     <string name="overview_wake">Ø उठण्याची वेळ</string>
+    <string name="overview_no_stages">टप्प्यांशिवाय</string>
     <string name="settings_clear_history_learn">शिकण्याचा टप्पा पुन्हा सुरुवातीपासून सुरू होतो.</string>
     <string name="learn_auto_hint">रात्री मोजल्या जाव्यात म्हणून संध्याकाळी घड्याळावर “शुभ रात्री” टॅप कर किंवा “झोप लागणे आपोआप ओळखा” चालू कर.</string>
 </resources>

@@ -570,6 +570,7 @@
     <string name="score_source">%1$s থেকে।</string>
     <string name="score_source_health">তোমার স্বাস্থ্য ডেটা থেকে।</string>
     <string name="score_source_recording">তোমার ঘড়ির রাতের রেকর্ডিং থেকে।</string>
+    <string name="score_provisional">ঘুমের পর্যায় ছাড়া – অস্থায়ী স্কোর</string>
     <string name="pulse_title">নাড়ি</string>
     <string name="pulse_average">Ø প্রতি মিনিটে %1$d</string>
     <string name="motion_title">নড়াচড়া</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø ঘুম</string>
     <string name="overview_bedtime">Ø ঘুমানোর সময়</string>
     <string name="overview_wake">Ø জাগার সময়</string>
+    <string name="overview_no_stages">পর্যায় ছাড়া</string>
     <string name="settings_clear_history_learn">শেখার পর্যায় আবার শুরু থেকে শুরু হয়।</string>
     <string name="learn_auto_hint">রাতগুলো গোনার জন্য সন্ধ্যায় ঘড়িতে “শুভরাত্রি” ট্যাপ করো বা “ঘুমিয়ে পড়া স্বয়ংক্রিয়ভাবে শনাক্ত করো” চালু করো।</string>
 </resources>

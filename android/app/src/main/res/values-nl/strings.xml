@@ -568,6 +568,7 @@
     <string name="score_source">Uit %1$s.</string>
     <string name="score_source_health">Uit je gezondheidsgegevens.</string>
     <string name="score_source_recording">Uit de nachtopname van je horloge.</string>
+    <string name="score_provisional">Zonder slaapfases – voorlopige score</string>
     <string name="pulse_title">Hartslag</string>
     <string name="pulse_average">Ø %1$d per minuut</string>
     <string name="motion_title">Beweging</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø slaap</string>
     <string name="overview_bedtime">Ø bedtijd</string>
     <string name="overview_wake">Ø wektijd</string>
+    <string name="overview_no_stages">Zonder fases</string>
     <string name="settings_clear_history_learn">De leerfase begint opnieuw.</string>
     <string name="learn_auto_hint">Tik ’s avonds op je horloge op “Welterusten” of zet “Inslapen automatisch herkennen” aan, zodat de nachten meetellen.</string>
 </resources>

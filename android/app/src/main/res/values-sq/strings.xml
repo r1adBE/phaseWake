@@ -571,6 +571,7 @@
     <string name="score_source">Nga %1$s.</string>
     <string name="score_source_health">Nga të dhënat e tua shëndetësore.</string>
     <string name="score_source_recording">Nga regjistrimi i natës i orës sate.</string>
+    <string name="score_provisional">Pa fazat e gjumit – pikë paraprake</string>
     <string name="pulse_title">Pulsi</string>
     <string name="pulse_average">Ø %1$d në minutë</string>
     <string name="motion_title">Lëvizja</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø gjumi</string>
     <string name="overview_bedtime">Ø ora e gjumit</string>
     <string name="overview_wake">Ø ora e zgjimit</string>
+    <string name="overview_no_stages">Pa faza</string>
     <string name="settings_clear_history_learn">Faza e mësimit fillon nga e para.</string>
     <string name="learn_auto_hint">Në mbrëmje prek „Natën e mirë“ në orë ose aktivizo „Dallo automatikisht kur fle“, që netët të numërohen.</string>
 </resources>

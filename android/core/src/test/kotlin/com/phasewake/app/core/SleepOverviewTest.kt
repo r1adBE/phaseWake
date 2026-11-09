@@ -136,5 +136,18 @@ class SleepOverviewTest {
         assertEquals(mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 150L, SleepStage.LIGHT to 240L, SleepStage.DEEP to 60L), bar.stageMinutes)
         assertEquals(emptyMap(), o.bars[6].stageMinutes)
         assertEquals(emptyMap(), SleepOverviews.stageAverage(emptyList(), stages))
+        // Monat: beide Nächte in einer Säule, nur eine mit Phasen → die Säule zeigt nur die Dauer (neutral).
+        val month = SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, stages)!!
+        assertEquals(2, month.bars.last().nights)
+        assertEquals(emptyMap(), month.bars.last().stageMinutes)
+        // Beide Nächte mit Phasen: Durchschnitt über beide.
+        val o2 = other.start
+        val both = stages + listOf(
+            StageSpan(o2, o2.plusSeconds(90 * 60), SleepStage.DEEP),
+            StageSpan(o2.plusSeconds(90 * 60), o2.plusSeconds(450 * 60), SleepStage.LIGHT),
+        )
+        val all = SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, both)!!
+        // Tief (60 + 90) / 2 = 75, leicht (240 + 360) / 2 = 300, REM 150 / 2 = 75.
+        assertEquals(mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 75L, SleepStage.LIGHT to 300L, SleepStage.DEEP to 75L), all.bars.last().stageMinutes)
     }
 }

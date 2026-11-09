@@ -571,6 +571,7 @@
     <string name="score_source">%1$s-с.</string>
     <string name="score_source_health">Таны эрүүл мэндийн өгөгдлөөс.</string>
     <string name="score_source_recording">Таны цагны шөнийн бичлэгээс.</string>
+    <string name="score_provisional">Нойрны үе шатгүй – урьдчилсан оноо</string>
     <string name="pulse_title">Судасны цохилт</string>
     <string name="pulse_average">Ø минутад %1$d</string>
     <string name="motion_title">Хөдөлгөөн</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø нойр</string>
     <string name="overview_bedtime">Ø унтах цаг</string>
     <string name="overview_wake">Ø сэрэх цаг</string>
+    <string name="overview_no_stages">Үе шатгүй</string>
     <string name="settings_clear_history_learn">Суралцах үе шат дахин эхэлнэ.</string>
     <string name="learn_auto_hint">Шөнүүд тоологдохын тулд орой цаг дээрээ «Сайхан амраарай» дээр дар эсвэл «Унтаж эхлэхийг автоматаар илрүүлэх»-г асаа.</string>
 </resources>

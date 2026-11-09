@@ -556,6 +556,7 @@
     <string name="score_source">%1$s дерегі.</string>
     <string name="score_source_health">Денсаулық деректеріңнен.</string>
     <string name="score_source_recording">Сағатыңның түнгі жазбасынан.</string>
+    <string name="score_provisional">Ұйқы фазаларынсыз – алдын ала ұпай</string>
     <string name="pulse_title">Пульс</string>
     <string name="pulse_average">Ø минутына %1$d</string>
     <string name="motion_title">Қозғалыс</string>
@@ -566,6 +567,7 @@
     <string name="overview_asleep">Ø ұйқы</string>
     <string name="overview_bedtime">Ø ұйықтау уақыты</string>
     <string name="overview_wake">Ø ояну уақыты</string>
+    <string name="overview_no_stages">Фазаларсыз</string>
     <string name="settings_clear_history_learn">Үйрену кезеңі басынан басталады.</string>
     <string name="learn_auto_hint">Түндер есептелуі үшін кешке сағатта «Қайырлы түн» түймесін түрт немесе «Ұйықтап кетуді автоматты түрде анықтау» функциясын қос.</string>
 </resources>

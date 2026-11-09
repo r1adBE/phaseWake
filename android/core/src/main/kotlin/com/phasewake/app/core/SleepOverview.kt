@@ -33,8 +33,8 @@ data class OverviewBar(
     /** Ob [asleepMinutes] das Schlafziel erreicht ([SleepGoal.reached]). */
     val reached: Boolean,
     /**
-     * Durchschnittliche Minuten je bekannter Phase (wach, REM, leicht, tief) über die Nächte dieser Säule mit Phasen;
-     * leer, wenn keine Nacht Phasen hat. Für die Aufteilung der Säule.
+     * Durchschnittliche Minuten je bekannter Phase (wach, REM, leicht, tief) über die Nächte dieser Säule; leer, wenn
+     * eine Nacht der Säule keine Phasen hat (dann zeigt die Säule nur die Dauer, neutral). Für die Aufteilung der Säule.
      */
     val stageMinutes: Map<SleepStage, Long> = emptyMap(),
 )
@@ -137,14 +137,15 @@ object SleepOverviews {
     }
 
     /**
-     * Durchschnittliche Minuten je bekannter Phase über die Nächte in [sleeps], die Phasen haben (Phasen auf die Nacht
-     * zugeschnitten, Millisekunden summiert, dann abgerundet). Keine solche Nacht: leer.
+     * Durchschnittliche Minuten je bekannter Phase über die Nächte in [sleeps] (Phasen auf die Nacht zugeschnitten,
+     * Millisekunden summiert, dann abgerundet). Leer, wenn [sleeps] leer ist oder eine Nacht keine Phasen hat: Ein
+     * Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
      */
     fun stageAverage(sleeps: Collection<SleepSummary>, stages: List<StageSpan>): Map<SleepStage, Long> {
         val perNight = sleeps.map { sleep ->
             StageCheck.clip(stages, sleep.start, sleep.end).filter { ChartData.level(it.stage) != null }
-        }.filter { it.isNotEmpty() }
-        if (perNight.isEmpty()) return emptyMap()
+        }
+        if (perNight.isEmpty() || perNight.any { it.isEmpty() }) return emptyMap()
         return StageStats.ORDER.associateWith { stage ->
             perNight.sumOf { spans -> spans.filter { it.stage == stage }.sumOf { Duration.between(it.start, it.end).toMillis() } } /
                 perNight.size / StageStats.MS_PER_MINUTE

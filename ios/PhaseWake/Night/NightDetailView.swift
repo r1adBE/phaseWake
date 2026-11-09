@@ -11,13 +11,17 @@ struct NightDetailView: View {
     let stages: [StageSpan]
     /// Anzeigename der Quelle einer Sitzung; `nil` = unbekannt.
     let sourceName: (HealthSession) -> String?
+    /// Sitzungen aus Apple Health: Quelle des Schlafwerts einer eigenen Nacht.
+    let sessions: [HealthSession]
     /// Schlüssel (``HistoryItem/key``) der gezeigten Nacht.
     @State private var key: String
 
-    init(items: [HistoryItem], stages: [StageSpan], startKey: String, sourceName: @escaping (HealthSession) -> String?) {
+    init(items: [HistoryItem], stages: [StageSpan], startKey: String, sourceName: @escaping (HealthSession) -> String?,
+         sessions: [HealthSession] = []) {
         self.items = items
         self.stages = stages
         self.sourceName = sourceName
+        self.sessions = sessions
         _key = State(initialValue: startKey)
     }
 
@@ -27,7 +31,8 @@ struct NightDetailView: View {
         TabView(selection: $key) {
             // Älteste links, neueste rechts: nach rechts wischen = vorherige Nacht.
             ForEach(items.reversed(), id: \.key) { item in
-                NightDetailPage(data: NightDetailData(item: item, stages: stages), sourceName: item.session.flatMap(sourceName))
+                NightDetailPage(data: NightDetailData(item: item, stages: stages), sourceName: item.session.flatMap(sourceName),
+                                scoreSource: scoreSource(item))
                     .tag(item.key)
             }
         }
@@ -45,6 +50,15 @@ struct NightDetailView: View {
                     .accessibilityLabel(L("night_next"))
             }
         }
+    }
+
+    /// «Aus Apple Health.» bzw. der App, deren Sitzung die eigene Nacht am längsten überdeckt (mit Phasen); unbekannt:
+    /// «Aus deinen Gesundheitsdaten.». Bei Nächten aus anderen Apps `nil`: Der Kopf nennt die Quelle schon.
+    private func scoreSource(_ item: HistoryItem) -> String? {
+        guard let night = item.night else { return nil }
+        let session = sessions.filter { $0.hasStages && $0.start < night.wokeAt && $0.end > night.windowStart }
+            .max { $0.durationMinutes < $1.durationMinutes }
+        return session.flatMap(sourceName).map { L("score_source", $0) } ?? L("score_source_health")
     }
 
     private func canStep(_ offset: Int) -> Bool {

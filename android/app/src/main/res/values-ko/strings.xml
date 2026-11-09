@@ -554,6 +554,7 @@
     <string name="score_source">%1$s 기준.</string>
     <string name="score_source_health">건강 데이터 기준.</string>
     <string name="score_source_recording">시계의 밤 기록 기준.</string>
+    <string name="score_provisional">수면 단계 없음 – 잠정 점수</string>
     <string name="pulse_title">맥박</string>
     <string name="pulse_average">Ø 분당 %1$d회</string>
     <string name="motion_title">움직임</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø 수면</string>
     <string name="overview_bedtime">Ø 잠든 시각</string>
     <string name="overview_wake">Ø 깬 시각</string>
+    <string name="overview_no_stages">단계 없음</string>
     <string name="settings_clear_history_learn">학습 기간이 처음부터 다시 시작돼요.</string>
     <string name="learn_auto_hint">밤이 계산되도록 저녁에 시계에서 “잘 자요”을 탭하거나 “잠드는 시점 자동 감지”을 켜 주세요.</string>
 </resources>

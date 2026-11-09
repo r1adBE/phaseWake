@@ -585,6 +585,7 @@
     <string name="score_source">No %1$s.</string>
     <string name="score_source_health">No taviem veselības datiem.</string>
     <string name="score_source_recording">No tava pulksteņa nakts ieraksta.</string>
+    <string name="score_provisional">Bez miega fāzēm – provizorisks rādītājs</string>
     <string name="pulse_title">Pulss</string>
     <string name="pulse_average">Ø %1$d minūtē</string>
     <string name="motion_title">Kustības</string>
@@ -595,6 +596,7 @@
     <string name="overview_asleep">Ø miegs</string>
     <string name="overview_bedtime">Ø iemigšanas laiks</string>
     <string name="overview_wake">Ø pamošanās laiks</string>
+    <string name="overview_no_stages">Bez fāzēm</string>
     <string name="settings_clear_history_learn">Mācīšanās posms sākas no jauna.</string>
     <string name="learn_auto_hint">Vakarā pulkstenī pieskaries „Ar labu nakti“ vai ieslēdz „Automātiski noteikt aizmigšanu“, lai naktis tiktu skaitītas.</string>
 </resources>

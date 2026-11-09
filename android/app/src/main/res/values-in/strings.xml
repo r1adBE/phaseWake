@@ -554,6 +554,7 @@
     <string name="score_source">Dari %1$s.</string>
     <string name="score_source_health">Dari data kesehatanmu.</string>
     <string name="score_source_recording">Dari rekaman malam jam tanganmu.</string>
+    <string name="score_provisional">Tanpa fase tidur – skor sementara</string>
     <string name="pulse_title">Denyut</string>
     <string name="pulse_average">Ø %1$d per menit</string>
     <string name="motion_title">Gerakan</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø tidur</string>
     <string name="overview_bedtime">Ø waktu tidur</string>
     <string name="overview_wake">Ø waktu bangun</string>
+    <string name="overview_no_stages">Tanpa fase</string>
     <string name="settings_clear_history_learn">Fase belajar dimulai dari awal.</string>
     <string name="learn_auto_hint">Pada malam hari, ketuk “Selamat tidur” di jam tangan atau aktifkan “Deteksi saat tertidur secara otomatis” agar malamnya dihitung.</string>
 </resources>

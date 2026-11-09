@@ -571,6 +571,7 @@
     <string name="score_source">Kusuka ku-%1$s.</string>
     <string name="score_source_health">Kusuka kudatha yakho yezempilo.</string>
     <string name="score_source_recording">Kusuka ekuqopheni kwasebusuku kwewashi lakho.</string>
+    <string name="score_provisional">Ngaphandle kwezigaba zokulala – amaphuzu esikhashana</string>
     <string name="pulse_title">Ukushaya kwenhliziyo</string>
     <string name="pulse_average">Ø %1$d ngomzuzu</string>
     <string name="motion_title">Ukunyakaza</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø ukulala</string>
     <string name="overview_bedtime">Ø isikhathi sokulala</string>
     <string name="overview_wake">Ø isikhathi sokuvuka</string>
+    <string name="overview_no_stages">Ngaphandle kwezigaba</string>
     <string name="settings_clear_history_learn">Isigaba sokufunda siqala kabusha.</string>
     <string name="learn_auto_hint">Kusihlwa thepha “Ulale kahle” ewashini noma uvule “Bona ngokuzenzakalela lapho ulala” ukuze ubusuku bubalwe.</string>
 </resources>

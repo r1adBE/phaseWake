@@ -596,6 +596,7 @@
     <string name="score_source">З %1$s.</string>
     <string name="score_source_health">З твоїх даних про здоров’я.</string>
     <string name="score_source_recording">З нічного запису твого годинника.</string>
+    <string name="score_provisional">Без фаз сну – попередня оцінка</string>
     <string name="pulse_title">Пульс</string>
     <string name="pulse_average">Ø %1$d за хвилину</string>
     <string name="motion_title">Рух</string>
@@ -606,6 +607,7 @@
     <string name="overview_asleep">Ø сон</string>
     <string name="overview_bedtime">Ø час засинання</string>
     <string name="overview_wake">Ø час пробудження</string>
+    <string name="overview_no_stages">Без фаз</string>
     <string name="settings_clear_history_learn">Етап навчання починається спочатку.</string>
     <string name="learn_auto_hint">Увечері натисни «На добраніч» на годиннику або увімкни «Автоматично визначати засинання», щоб ночі зараховувалися.</string>
 </resources>

@@ -571,6 +571,7 @@
     <string name="score_source">Frá %1$s.</string>
     <string name="score_source_health">Úr heilsugögnunum þínum.</string>
     <string name="score_source_recording">Úr næturupptöku úrsins þíns.</string>
+    <string name="score_provisional">Án svefnstiga – bráðabirgðaskor</string>
     <string name="pulse_title">Púls</string>
     <string name="pulse_average">Ø %1$d á mínútu</string>
     <string name="motion_title">Hreyfing</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø svefn</string>
     <string name="overview_bedtime">Ø háttatími</string>
     <string name="overview_wake">Ø fótaferðartími</string>
+    <string name="overview_no_stages">Án stiga</string>
     <string name="settings_clear_history_learn">Lærdómsfasinn byrjar upp á nýtt.</string>
     <string name="learn_auto_hint">Ýttu á kvöldin á „Góða nótt“ á úrinu eða kveiktu á „Greina sjálfkrafa þegar þú sofnar“ svo næturnar teljist.</string>
 </resources>

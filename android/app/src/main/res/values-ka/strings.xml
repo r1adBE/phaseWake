@@ -556,6 +556,7 @@
     <string name="score_source">წყარო: %1$s.</string>
     <string name="score_source_health">შენი ჯანმრთელობის მონაცემებიდან.</string>
     <string name="score_source_recording">შენი საათის ღამის ჩანაწერიდან.</string>
+    <string name="score_provisional">ძილის ფაზების გარეშე – წინასწარი ქულა</string>
     <string name="pulse_title">პულსი</string>
     <string name="pulse_average">Ø %1$d წუთში</string>
     <string name="motion_title">მოძრაობა</string>
@@ -566,6 +567,7 @@
     <string name="overview_asleep">Ø ძილი</string>
     <string name="overview_bedtime">Ø დაძინების დრო</string>
     <string name="overview_wake">Ø გაღვიძების დრო</string>
+    <string name="overview_no_stages">ფაზების გარეშე</string>
     <string name="settings_clear_history_learn">სწავლის ფაზა თავიდან იწყება.</string>
     <string name="learn_auto_hint">საღამოს შეეხე საათზე „ძილი ნებისა“-ს ან ჩართე „ჩაძინების ავტომატური ამოცნობა“, რომ ღამეები ჩაითვალოს.</string>
 </resources>

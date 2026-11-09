@@ -571,6 +571,7 @@
     <string name="score_source">%1$s నుండి.</string>
     <string name="score_source_health">నీ ఆరోగ్య డేటా నుండి.</string>
     <string name="score_source_recording">నీ వాచ్ రాత్రి రికార్డింగ్ నుండి.</string>
+    <string name="score_provisional">నిద్ర దశలు లేకుండా – తాత్కాలిక స్కోర్</string>
     <string name="pulse_title">నాడి</string>
     <string name="pulse_average">Ø నిమిషానికి %1$d</string>
     <string name="motion_title">కదలిక</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø నిద్ర</string>
     <string name="overview_bedtime">Ø నిద్రపోయే సమయం</string>
     <string name="overview_wake">Ø మేల్కొనే సమయం</string>
+    <string name="overview_no_stages">దశలు లేకుండా</string>
     <string name="settings_clear_history_learn">నేర్చుకునే దశ మళ్లీ మొదటి నుండి మొదలవుతుంది.</string>
     <string name="learn_auto_hint">రాత్రులు లెక్కలోకి రావడానికి సాయంత్రం వాచ్‌లో “శుభ రాత్రి” నొక్కు లేదా “నిద్రపోవడాన్ని ఆటోమేటిక్‌గా గుర్తించు” ఆన్ చెయ్యి.</string>
 </resources>

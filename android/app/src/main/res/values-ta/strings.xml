@@ -570,6 +570,7 @@
     <string name="score_source">%1$s-இலிருந்து.</string>
     <string name="score_source_health">உன் உடல்நலத் தரவிலிருந்து.</string>
     <string name="score_source_recording">உன் கடிகாரத்தின் இரவுப் பதிவிலிருந்து.</string>
+    <string name="score_provisional">தூக்க நிலைகள் இல்லாமல் – தற்காலிக மதிப்பெண்</string>
     <string name="pulse_title">நாடி</string>
     <string name="pulse_average">Ø நிமிடத்துக்கு %1$d</string>
     <string name="motion_title">அசைவு</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø தூக்கம்</string>
     <string name="overview_bedtime">Ø தூங்கும் நேரம்</string>
     <string name="overview_wake">Ø எழும் நேரம்</string>
+    <string name="overview_no_stages">நிலைகள் இல்லாமல்</string>
     <string name="settings_clear_history_learn">கற்றல் கட்டம் மீண்டும் தொடக்கத்திலிருந்து தொடங்குகிறது.</string>
     <string name="learn_auto_hint">இரவுகள் கணக்கில் வர, மாலையில் கடிகாரத்தில் “இனிய இரவு” தட்டு அல்லது “தூங்குவதைத் தானாகக் கண்டறி” இயக்கு.</string>
 </resources>

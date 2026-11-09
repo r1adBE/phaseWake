@@ -568,6 +568,7 @@
     <string name="score_source">%1$s से।</string>
     <string name="score_source_health">तुम्हारे स्वास्थ्य डेटा से।</string>
     <string name="score_source_recording">तुम्हारी घड़ी की रात की रिकॉर्डिंग से।</string>
+    <string name="score_provisional">नींद के चरणों के बिना – अस्थायी स्कोर</string>
     <string name="pulse_title">नब्ज़</string>
     <string name="pulse_average">Ø %1$d प्रति मिनट</string>
     <string name="motion_title">हलचल</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø नींद</string>
     <string name="overview_bedtime">Ø सोने का समय</string>
     <string name="overview_wake">Ø जागने का समय</string>
+    <string name="overview_no_stages">चरणों के बिना</string>
     <string name="settings_clear_history_learn">सीखने का चरण फिर से शुरू होता है।</string>
     <string name="learn_auto_hint">रातें गिनी जाएँ, इसके लिए शाम को घड़ी पर “शुभ रात्रि” टैप करो या “सो जाने का अपने आप पता लगाओ” चालू करो।</string>
 </resources>

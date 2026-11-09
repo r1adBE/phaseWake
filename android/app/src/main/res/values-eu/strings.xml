@@ -571,6 +571,7 @@
     <string name="score_source">Iturria: %1$s.</string>
     <string name="score_source_health">Zure osasun-datuetatik.</string>
     <string name="score_source_recording">Zure erlojuaren gaueko grabaziotik.</string>
+    <string name="score_provisional">Lo-faserik gabe – behin-behineko puntuazioa</string>
     <string name="pulse_title">Pultsua</string>
     <string name="pulse_average">Ø %1$d minutuko</string>
     <string name="motion_title">Mugimendua</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø loa</string>
     <string name="overview_bedtime">Ø lotara joateko ordua</string>
     <string name="overview_wake">Ø esnatzeko ordua</string>
+    <string name="overview_no_stages">Faserik gabe</string>
     <string name="settings_clear_history_learn">Ikaste-fasea hasieratik hasten da.</string>
     <string name="learn_auto_hint">Arratsean, sakatu «Gabon» erlojuan edo aktibatu «Loak hartzea automatikoki hauteman», gauak kontatu daitezen.</string>
 </resources>

@@ -54,10 +54,12 @@ struct NightDetailData {
 /// Kennzahlen als Kacheln: Einschlafdauer (falls bekannt), Schlafeffizienz, Wachphasen, längster Tiefschlaf.
 struct NightMetricTiles: View {
     let stages: NightStages
+    /// `false`, wenn die Einschlafdauer schon als Faktor beim Schlafwert steht.
+    var withLatency = true
 
     private var tiles: [(title: String, value: String, symbol: String)] {
         var out: [(String, String, String)] = []
-        if let latency = stages.latencyMinutes {
+        if withLatency, let latency = stages.latencyMinutes {
             out.append((L("night_latency"), Format.duration(minutes: latency), "moon.zzz"))
         }
         out.append((L("night_efficiency"), L("stages_share", Int64(stages.efficiencyPercent)), "gauge.medium"))

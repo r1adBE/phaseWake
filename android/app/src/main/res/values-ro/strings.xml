@@ -582,6 +582,7 @@
     <string name="score_source">Din %1$s.</string>
     <string name="score_source_health">Din datele tale de sănătate.</string>
     <string name="score_source_recording">Din înregistrarea de noapte a ceasului tău.</string>
+    <string name="score_provisional">Fără fazele somnului – scor provizoriu</string>
     <string name="pulse_title">Puls</string>
     <string name="pulse_average">Ø %1$d pe minut</string>
     <string name="motion_title">Mișcare</string>
@@ -592,6 +593,7 @@
     <string name="overview_asleep">Ø somn</string>
     <string name="overview_bedtime">Ø ora de culcare</string>
     <string name="overview_wake">Ø ora de trezire</string>
+    <string name="overview_no_stages">Fără faze</string>
     <string name="settings_clear_history_learn">Faza de învățare începe de la capăt.</string>
     <string name="learn_auto_hint">Seara, atinge „Noapte bună” pe ceas sau activează „Detectează automat adormirea”, ca nopțile să fie numărate.</string>
 </resources>

@@ -554,6 +554,7 @@
     <string name="score_source">Từ %1$s.</string>
     <string name="score_source_health">Từ dữ liệu sức khỏe của bạn.</string>
     <string name="score_source_recording">Từ bản ghi ban đêm của đồng hồ bạn.</string>
+    <string name="score_provisional">Không có giai đoạn ngủ – điểm tạm tính</string>
     <string name="pulse_title">Nhịp tim</string>
     <string name="pulse_average">Ø %1$d mỗi phút</string>
     <string name="motion_title">Chuyển động</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø ngủ</string>
     <string name="overview_bedtime">Ø giờ đi ngủ</string>
     <string name="overview_wake">Ø giờ thức dậy</string>
+    <string name="overview_no_stages">Không có giai đoạn</string>
     <string name="settings_clear_history_learn">Giai đoạn học bắt đầu lại từ đầu.</string>
     <string name="learn_auto_hint">Buổi tối, hãy nhấn “Ngủ ngon” trên đồng hồ hoặc bật “Tự động nhận biết khi bạn ngủ thiếp đi” để các đêm được tính.</string>
 </resources>

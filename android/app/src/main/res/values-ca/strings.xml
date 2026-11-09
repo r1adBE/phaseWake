@@ -584,6 +584,7 @@
     <string name="score_source">De %1$s.</string>
     <string name="score_source_health">De les teves dades de salut.</string>
     <string name="score_source_recording">Del registre nocturn del teu rellotge.</string>
+    <string name="score_provisional">Sense fases del son – puntuació provisional</string>
     <string name="pulse_title">Pols</string>
     <string name="pulse_average">Ø %1$d per minut</string>
     <string name="motion_title">Moviment</string>
@@ -594,6 +595,7 @@
     <string name="overview_asleep">Ø son</string>
     <string name="overview_bedtime">Ø hora d’adormir-se</string>
     <string name="overview_wake">Ø hora de despertar</string>
+    <string name="overview_no_stages">Sense fases</string>
     <string name="settings_clear_history_learn">La fase d’aprenentatge torna a començar.</string>
     <string name="learn_auto_hint">Al vespre, toca «Bona nit» al rellotge o activa «Detecta automàticament quan t\'adorms» perquè les nits comptin.</string>
 </resources>

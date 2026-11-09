@@ -568,6 +568,7 @@
     <string name="score_source">Fra %1$s.</string>
     <string name="score_source_health">Fra dine sundhedsdata.</string>
     <string name="score_source_recording">Fra dit urs natoptagelse.</string>
+    <string name="score_provisional">Uden søvnfaser – foreløbig score</string>
     <string name="pulse_title">Puls</string>
     <string name="pulse_average">Ø %1$d pr. minut</string>
     <string name="motion_title">Bevægelse</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø søvn</string>
     <string name="overview_bedtime">Ø sengetid</string>
     <string name="overview_wake">Ø opvågning</string>
+    <string name="overview_no_stages">Uden faser</string>
     <string name="settings_clear_history_learn">Læringsfasen starter forfra.</string>
     <string name="learn_auto_hint">Tryk om aftenen på »Godnat« på uret, eller slå »Registrér automatisk, når du falder i søvn« til, så nætterne tæller.</string>
 </resources>

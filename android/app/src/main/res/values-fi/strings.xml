@@ -568,6 +568,7 @@
     <string name="score_source">Lähde: %1$s.</string>
     <string name="score_source_health">Terveystiedoistasi.</string>
     <string name="score_source_recording">Kellosi yötallenteesta.</string>
+    <string name="score_provisional">Ilman univaiheita – alustavat pisteet</string>
     <string name="pulse_title">Syke</string>
     <string name="pulse_average">Ø %1$d minuutissa</string>
     <string name="motion_title">Liike</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø uni</string>
     <string name="overview_bedtime">Ø nukahtamisaika</string>
     <string name="overview_wake">Ø heräämisaika</string>
+    <string name="overview_no_stages">Ilman vaiheita</string>
     <string name="settings_clear_history_learn">Oppimisvaihe alkaa alusta.</string>
     <string name="learn_auto_hint">Napauta illalla kellossa ”Hyvää yötä” tai ota ”Tunnista nukahtaminen automaattisesti” käyttöön, jotta yöt lasketaan.</string>
 </resources>

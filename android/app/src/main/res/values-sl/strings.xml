@@ -598,6 +598,7 @@
     <string name="score_source">Iz %1$s.</string>
     <string name="score_source_health">Iz tvojih zdravstvenih podatkov.</string>
     <string name="score_source_recording">Iz nočnega posnetka tvoje ure.</string>
+    <string name="score_provisional">Brez faz spanca – začasna ocena</string>
     <string name="pulse_title">Utrip</string>
     <string name="pulse_average">Ø %1$d na minuto</string>
     <string name="motion_title">Gibanje</string>
@@ -608,6 +609,7 @@
     <string name="overview_asleep">Ø spanje</string>
     <string name="overview_bedtime">Ø čas zaspanja</string>
     <string name="overview_wake">Ø čas prebujanja</string>
+    <string name="overview_no_stages">Brez faz</string>
     <string name="settings_clear_history_learn">Faza učenja se začne znova.</string>
     <string name="learn_auto_hint">Zvečer na uri tapni »Lahko noč« ali vklopi »Samodejno zaznaj uspavanje«, da se noči štejejo.</string>
 </resources>

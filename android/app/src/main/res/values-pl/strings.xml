@@ -596,6 +596,7 @@
     <string name="score_source">Z %1$s.</string>
     <string name="score_source_health">Z twoich danych o zdrowiu.</string>
     <string name="score_source_recording">Z nocnego zapisu twojego zegarka.</string>
+    <string name="score_provisional">Bez faz snu – wynik wstępny</string>
     <string name="pulse_title">Tętno</string>
     <string name="pulse_average">Ø %1$d na minutę</string>
     <string name="motion_title">Ruch</string>
@@ -606,6 +607,7 @@
     <string name="overview_asleep">Ø sen</string>
     <string name="overview_bedtime">Ø pora zaśnięcia</string>
     <string name="overview_wake">Ø pora pobudki</string>
+    <string name="overview_no_stages">Bez faz</string>
     <string name="settings_clear_history_learn">Faza nauki zaczyna się od nowa.</string>
     <string name="learn_auto_hint">Wieczorem stuknij na zegarku „Dobranoc” lub włącz „Automatycznie wykrywaj zasypianie”, aby noce się liczyły.</string>
 </resources>

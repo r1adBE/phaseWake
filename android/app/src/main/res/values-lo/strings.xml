@@ -556,6 +556,7 @@
     <string name="score_source">ຈາກ %1$s.</string>
     <string name="score_source_health">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ.</string>
     <string name="score_source_recording">ຈາກການບັນທຶກຕອນກາງຄືນຂອງໂມງເຈົ້າ.</string>
+    <string name="score_provisional">ບໍ່ມີໄລຍະການນອນ – ຄະແນນຊົ່ວຄາວ</string>
     <string name="pulse_title">ຊີບພະຈອນ</string>
     <string name="pulse_average">Ø %1$d ຕໍ່ນາທີ</string>
     <string name="motion_title">ການເຄື່ອນໄຫວ</string>
@@ -566,6 +567,7 @@
     <string name="overview_asleep">Ø ການນອນ</string>
     <string name="overview_bedtime">Ø ເວລາເຂົ້ານອນ</string>
     <string name="overview_wake">Ø ເວລາຕື່ນ</string>
+    <string name="overview_no_stages">ບໍ່ມີໄລຍະ</string>
     <string name="settings_clear_history_learn">ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນໃໝ່.</string>
     <string name="learn_auto_hint">ຕອນແລງ ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງ ຫຼື ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” ເພື່ອໃຫ້ນັບຄືນ.</string>
 </resources>

@@ -571,6 +571,7 @@
     <string name="score_source">Mula sa %1$s.</string>
     <string name="score_source_health">Mula sa iyong health data.</string>
     <string name="score_source_recording">Mula sa night recording ng iyong relo.</string>
+    <string name="score_provisional">Walang yugto ng tulog – pansamantalang score</string>
     <string name="pulse_title">Pulso</string>
     <string name="pulse_average">Ø %1$d bawat minuto</string>
     <string name="motion_title">Galaw</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø tulog</string>
     <string name="overview_bedtime">Ø oras ng pagtulog</string>
     <string name="overview_wake">Ø oras ng paggising</string>
+    <string name="overview_no_stages">Walang yugto</string>
     <string name="settings_clear_history_learn">Magsisimula ulit ang learning phase.</string>
     <string name="learn_auto_hint">Sa gabi, i-tap ang “Matutulog na” sa relo mo o i-on ang “Awtomatikong tukuyin ang pagkakatulog” para mabilang ang mga gabi.</string>
 </resources>

@@ -3,7 +3,9 @@ package com.phasewake.app.core
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /** Schlafwert: Punkte je Faktor, Gewichtung, fehlende Faktoren, Bewertung in Worten (PHASENERKENNUNG.md 11). */
 class SleepScoreTest {
@@ -92,6 +94,24 @@ class SleepScoreTest {
     }
 
     @Test
+    fun withoutStagesTheScoreIsProvisionalAndAtMostGood() {
+        // Ziel erreicht, schnell eingeschlafen: gerechnet 100, ohne Phasen höchstens 84 («Gut»).
+        val r = SleepScore.of(ScoreInput(480, 450, latencyMinutes = 12))!!
+        assertEquals(84, r.score)
+        assertEquals(ScoreBand.GOOD, r.band)
+        assertTrue(r.provisional)
+        assertEquals(listOf(100, 100), r.factors.map { it.points })
+        // Unter der Grenze bleibt der Wert, ist aber vorläufig.
+        val low = SleepScore.of(ScoreInput(405, 450, latencyMinutes = 40))!!
+        assertEquals(73, low.score)
+        assertTrue(low.provisional)
+        // Eine Phase genügt: nicht vorläufig, keine Grenze.
+        val awake = SleepScore.of(ScoreInput(480, 450, awakePercent = 4))!!
+        assertEquals(100, awake.score)
+        assertFalse(awake.provisional)
+    }
+
+    @Test
     fun noScoreWithoutDuration() {
         assertNull(SleepScore.of(ScoreInput(null, 450, deepPercent = 20, remPercent = 22, awakePercent = 3)))
         assertNull(SleepScore.of(ScoreInput(400, 0)))
@@ -102,6 +122,7 @@ class SleepScoreTest {
         val r = SleepScore.of(ScoreInput(480, 450, deepPercent = 18, remPercent = 22, awakePercent = 4, latencyMinutes = 12))!!
         assertEquals(100, r.score)
         assertEquals(ScoreBand.EXCELLENT, r.band)
+        assertFalse(r.provisional)
     }
 
     @Test

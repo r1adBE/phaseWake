@@ -568,6 +568,7 @@
     <string name="score_source">Forrás: %1$s.</string>
     <string name="score_source_health">Az egészségügyi adataidból.</string>
     <string name="score_source_recording">Az órád éjszakai felvételéből.</string>
+    <string name="score_provisional">Alvási fázisok nélkül – előzetes pontszám</string>
     <string name="pulse_title">Pulzus</string>
     <string name="pulse_average">Ø %1$d percenként</string>
     <string name="motion_title">Mozgás</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø alvás</string>
     <string name="overview_bedtime">Ø lefekvés</string>
     <string name="overview_wake">Ø ébredés</string>
+    <string name="overview_no_stages">Fázisok nélkül</string>
     <string name="settings_clear_history_learn">A tanulási szakasz elölről kezdődik.</string>
     <string name="learn_auto_hint">Este koppints az órán a(z) „Jó éjszakát” gombra, vagy kapcsold be: „Elalvás automatikus felismerése”, hogy az éjszakák számítsanak.</string>
 </resources>

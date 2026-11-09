@@ -624,6 +624,7 @@
     <string name="score_source">من %1$s.</string>
     <string name="score_source_health">من بياناتك الصحية.</string>
     <string name="score_source_recording">من تسجيل الليلة في ساعتك.</string>
+    <string name="score_provisional">بدون مراحل النوم – درجة مبدئية</string>
     <string name="pulse_title">النبض</string>
     <string name="pulse_average">Ø %1$d في الدقيقة</string>
     <string name="motion_title">الحركة</string>
@@ -634,6 +635,7 @@
     <string name="overview_asleep">Ø النوم</string>
     <string name="overview_bedtime">Ø وقت النوم</string>
     <string name="overview_wake">Ø وقت الاستيقاظ</string>
+    <string name="overview_no_stages">بدون مراحل</string>
     <string name="settings_clear_history_learn">تبدأ مرحلة التعلّم من جديد.</string>
     <string name="learn_auto_hint">اضغط مساءً على “ليلة سعيدة” في ساعتك أو شغّل “اكتشاف النوم تلقائيًا” لكي تُحتسب الليالي.</string>
 </resources>

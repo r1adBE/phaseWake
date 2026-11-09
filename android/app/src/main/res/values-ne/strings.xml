@@ -571,6 +571,7 @@
     <string name="score_source">%1$s बाट।</string>
     <string name="score_source_health">तिम्रो स्वास्थ्य डेटाबाट।</string>
     <string name="score_source_recording">तिम्रो घडीको रातको रेकर्डिङबाट।</string>
+    <string name="score_provisional">निद्राका चरणबिना – अस्थायी स्कोर</string>
     <string name="pulse_title">नाडी</string>
     <string name="pulse_average">Ø प्रति मिनेट %1$d</string>
     <string name="motion_title">चाल</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø निद्रा</string>
     <string name="overview_bedtime">Ø सुत्ने समय</string>
     <string name="overview_wake">Ø उठ्ने समय</string>
+    <string name="overview_no_stages">चरणबिना</string>
     <string name="settings_clear_history_learn">सिक्ने चरण फेरि सुरुदेखि सुरु हुन्छ।</string>
     <string name="learn_auto_hint">रातहरू गनिऊन् भन्नाका लागि साँझ घडीमा “शुभ रात्रि” ट्याप गर वा “निदाएको आफैँ पत्ता लगाऊ” सक्रिय गर।</string>
 </resources>

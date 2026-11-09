@@ -61,7 +61,10 @@ class NightScoreTest {
         assertEquals(570L, score.input.asleepMinutes)
         assertEquals(20L, score.input.latencyMinutes)
         assertEquals(listOf(ScoreFactor.DURATION, ScoreFactor.LATENCY), score.result.factors.map { it.factor })
-        assertEquals(100, score.result.score)
+        // Ohne Schlafphasen vorläufig: gerechnet 100, höchstens 84 («Gut»), Hinweis auch für Bildschirmleser.
+        assertEquals(84, score.result.score)
+        assertTrue(score.result.provisional)
+        assertTrue(scoreDescription(context, score.result).endsWith(context.getString(R.string.score_provisional)))
         assertEquals(context.getString(R.string.score_source_recording), scoreSourceText(context, item, score, emptyList()))
     }
 

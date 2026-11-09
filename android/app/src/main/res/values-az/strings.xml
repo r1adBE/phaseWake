@@ -556,6 +556,7 @@
     <string name="score_source">%1$s-dan.</string>
     <string name="score_source_health">Sağlamlıq məlumatlarından.</string>
     <string name="score_source_recording">Saatının gecə qeydindən.</string>
+    <string name="score_provisional">Yuxu fazaları olmadan – ilkin bal</string>
     <string name="pulse_title">Nəbz</string>
     <string name="pulse_average">Ø dəqiqədə %1$d</string>
     <string name="motion_title">Hərəkət</string>
@@ -566,6 +567,7 @@
     <string name="overview_asleep">Ø yuxu</string>
     <string name="overview_bedtime">Ø yatma vaxtı</string>
     <string name="overview_wake">Ø oyanma vaxtı</string>
+    <string name="overview_no_stages">Fazasız</string>
     <string name="settings_clear_history_learn">Öyrənmə mərhələsi yenidən başlayır.</string>
     <string name="learn_auto_hint">Gecələrin sayılması üçün axşam saatında “Gecən xeyrə” düyməsinə toxun və ya “Yuxuya getməyi avtomatik aşkar et” funksiyasını aç.</string>
 </resources>

@@ -571,6 +571,7 @@
     <string name="score_source">%1$s ਤੋਂ।</string>
     <string name="score_source_health">ਤੇਰੇ ਸਿਹਤ ਡਾਟਾ ਤੋਂ।</string>
     <string name="score_source_recording">ਤੇਰੀ ਘੜੀ ਦੀ ਰਾਤ ਦੀ ਰਿਕਾਰਡਿੰਗ ਤੋਂ।</string>
+    <string name="score_provisional">ਨੀਂਦ ਦੇ ਪੜਾਵਾਂ ਤੋਂ ਬਿਨਾਂ – ਆਰਜ਼ੀ ਸਕੋਰ</string>
     <string name="pulse_title">ਨਬਜ਼</string>
     <string name="pulse_average">Ø ਪ੍ਰਤੀ ਮਿੰਟ %1$d</string>
     <string name="motion_title">ਹਿਲਜੁਲ</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø ਨੀਂਦ</string>
     <string name="overview_bedtime">Ø ਸੌਣ ਦਾ ਸਮਾਂ</string>
     <string name="overview_wake">Ø ਜਾਗਣ ਦਾ ਸਮਾਂ</string>
+    <string name="overview_no_stages">ਪੜਾਵਾਂ ਤੋਂ ਬਿਨਾਂ</string>
     <string name="settings_clear_history_learn">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ।</string>
     <string name="learn_auto_hint">ਰਾਤਾਂ ਗਿਣੀਆਂ ਜਾਣ, ਇਸ ਲਈ ਸ਼ਾਮ ਨੂੰ ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ਟੈਪ ਕਰ ਜਾਂ “ਸੌਂ ਜਾਣ ਦਾ ਆਪਣੇ-ਆਪ ਪਤਾ ਲਗਾਓ” ਚਾਲੂ ਕਰ।</string>
 </resources>

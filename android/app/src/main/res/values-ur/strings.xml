@@ -570,6 +570,7 @@
     <string name="score_source">%1$s سے۔</string>
     <string name="score_source_health">تمہارے صحت کے ڈیٹا سے۔</string>
     <string name="score_source_recording">تمہاری گھڑی کی رات کی ریکارڈنگ سے۔</string>
+    <string name="score_provisional">نیند کے مراحل کے بغیر – عارضی اسکور</string>
     <string name="pulse_title">نبض</string>
     <string name="pulse_average">Ø %1$d فی منٹ</string>
     <string name="motion_title">حرکت</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø نیند</string>
     <string name="overview_bedtime">Ø سونے کا وقت</string>
     <string name="overview_wake">Ø جاگنے کا وقت</string>
+    <string name="overview_no_stages">مراحل کے بغیر</string>
     <string name="settings_clear_history_learn">سیکھنے کا مرحلہ دوبارہ شروع سے شروع ہوتا ہے۔</string>
     <string name="learn_auto_hint">راتیں گنی جائیں، اس لیے شام کو گھڑی پر “شب بخیر” ٹیپ کرو یا “سو جانے کا خودکار طور پر پتا لگائیں” آن کرو۔</string>
 </resources>

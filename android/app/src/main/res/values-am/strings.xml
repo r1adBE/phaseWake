@@ -571,6 +571,7 @@
     <string name="score_source">ከ%1$s።</string>
     <string name="score_source_health">ከጤና ውሂብህ።</string>
     <string name="score_source_recording">ከሰዓትህ የሌሊት ቀረጻ።</string>
+    <string name="score_provisional">ያለ የእንቅልፍ ደረጃዎች – ጊዜያዊ ውጤት</string>
     <string name="pulse_title">የልብ ምት</string>
     <string name="pulse_average">Ø በደቂቃ %1$d</string>
     <string name="motion_title">እንቅስቃሴ</string>
@@ -581,6 +582,7 @@
     <string name="overview_asleep">Ø እንቅልፍ</string>
     <string name="overview_bedtime">Ø የመተኛ ሰዓት</string>
     <string name="overview_wake">Ø የመነሻ ሰዓት</string>
+    <string name="overview_no_stages">ያለ ደረጃዎች</string>
     <string name="settings_clear_history_learn">የመማሪያ ጊዜው ከመጀመሪያው ይጀምራል።</string>
     <string name="learn_auto_hint">ሌሊቶቹ እንዲቆጠሩ ማታ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ ወይም «እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ።</string>
 </resources>

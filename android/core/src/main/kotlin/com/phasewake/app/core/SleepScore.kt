@@ -58,8 +58,11 @@ data class ScoreInput(
 /** Ein Faktor mit seinem Wert: [points] 0–100, [weight] laut [SleepScore.WEIGHTS], [band] aus [points]. */
 data class FactorScore(val factor: ScoreFactor, val points: Int, val weight: Int, val band: ScoreBand)
 
-/** Schlafwert einer Nacht: [score] 0–100, [band] in Worten, die vorhandenen Faktoren in der Reihenfolge von [ScoreFactor]. */
-data class SleepScoreResult(val score: Int, val band: ScoreBand, val factors: List<FactorScore>) {
+/**
+ * Schlafwert einer Nacht: [score] 0–100, [band] in Worten, die vorhandenen Faktoren in der Reihenfolge von [ScoreFactor].
+ * [provisional]: ohne Schlafphasen (weder Tief noch REM noch Wach) nur vorläufig, höchstens [SleepScore.PROVISIONAL_MAX].
+ */
+data class SleepScoreResult(val score: Int, val band: ScoreBand, val factors: List<FactorScore>, val provisional: Boolean = false) {
     /** Faktor [factor]; `null`, wenn er fehlt. */
     fun factor(factor: ScoreFactor): FactorScore? = factors.firstOrNull { it.factor == factor }
 }
@@ -67,7 +70,8 @@ data class SleepScoreResult(val score: Int, val band: ScoreBand, val factors: Li
 /**
  * Schlafwert 0–100 mit Bewertung in Worten: reine Rechnung, Regel in `docs/PHASENERKENNUNG.md`, Abschnitt 11.
  * Jeder Faktor gibt 0–100 Punkte (ganze Zahl, gerundet); der Wert ist das gewichtete Mittel der vorhandenen Faktoren
- * (fehlt einer, zählen die übrigen mit ihren Gewichten), gerundet. Ohne Schlafdauer kein Wert.
+ * (fehlt einer, zählen die übrigen mit ihren Gewichten), gerundet. Ohne Schlafdauer kein Wert. Ohne Schlafphasen
+ * (weder Tief noch REM noch Wach) ist der Wert vorläufig und höchstens [PROVISIONAL_MAX] («Gut»).
  * Nur zur Orientierung, keine medizinische Bewertung.
  */
 object SleepScore {
@@ -89,6 +93,9 @@ object SleepScore {
     /** Ab dieser Einschlafdauer (Minuten) 0 Punkte. */
     const val LATENCY_ZERO_MINUTES: Long = 60
 
+    /** Höchster Wert ohne Schlafphasen: Dauer und Einschlafdauer allein reichen nicht für «Ausgezeichnet». */
+    const val PROVISIONAL_MAX: Int = 84
+
     private const val FULL = 100.0
 
     /** Schlafwert aus [input]; `null` ohne Schlafdauer (oder mit Schlafziel ≤ 0). */
@@ -103,8 +110,10 @@ object SleepScore {
             input.latencyMinutes?.let { ScoreFactor.LATENCY to latencyPoints(it) },
         )
         val factors = raw.map { (factor, points) -> FactorScore(factor, points, WEIGHTS.getValue(factor), band(points)) }
-        val score = round(factors.sumOf { it.points * it.weight }.toDouble() / factors.sumOf { it.weight })
-        return SleepScoreResult(score, band(score), factors)
+        val weighted = round(factors.sumOf { it.points * it.weight }.toDouble() / factors.sumOf { it.weight })
+        val provisional = input.deepPercent == null && input.remPercent == null && input.awakePercent == null
+        val score = if (provisional) minOf(weighted, PROVISIONAL_MAX) else weighted
+        return SleepScoreResult(score, band(score), factors, provisional)
     }
 
     /** Bewertung zu [points]: ab 85 ausgezeichnet, ab 70 gut, ab 50 mittel, darunter schwach. */

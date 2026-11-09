@@ -554,6 +554,7 @@
     <string name="score_source">%1$s から。</string>
     <string name="score_source_health">ヘルスデータから。</string>
     <string name="score_source_recording">ウォッチの夜間記録から。</string>
+    <string name="score_provisional">睡眠ステージなし – 暫定スコア</string>
     <string name="pulse_title">脈拍</string>
     <string name="pulse_average">Ø 毎分%1$d回</string>
     <string name="motion_title">動き</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø 睡眠時間</string>
     <string name="overview_bedtime">Ø 就寝時刻</string>
     <string name="overview_wake">Ø 起床時刻</string>
+    <string name="overview_no_stages">ステージなし</string>
     <string name="settings_clear_history_learn">学習期間を最初からやり直します。</string>
     <string name="learn_auto_hint">夜をカウントするには、夜にウォッチで「おやすみ」をタップするか、「入眠を自動で検出」をオンにしてください。</string>
 </resources>

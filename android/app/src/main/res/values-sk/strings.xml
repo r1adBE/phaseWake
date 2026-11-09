@@ -598,6 +598,7 @@
     <string name="score_source">Z %1$s.</string>
     <string name="score_source_health">Z tvojich zdravotných údajov.</string>
     <string name="score_source_recording">Z nočného záznamu tvojich hodiniek.</string>
+    <string name="score_provisional">Bez fáz spánku – predbežné skóre</string>
     <string name="pulse_title">Pulz</string>
     <string name="pulse_average">Ø %1$d za minútu</string>
     <string name="motion_title">Pohyb</string>
@@ -608,6 +609,7 @@
     <string name="overview_asleep">Ø spánok</string>
     <string name="overview_bedtime">Ø čas zaspatia</string>
     <string name="overview_wake">Ø čas prebudenia</string>
+    <string name="overview_no_stages">Bez fáz</string>
     <string name="settings_clear_history_learn">Fáza učenia sa začína odznova.</string>
     <string name="learn_auto_hint">Večer ťukni na hodinkách na „Dobrú noc“ alebo zapni „Automaticky rozpoznať zaspávanie“, aby sa noci rátali.</string>
 </resources>

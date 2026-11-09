@@ -573,6 +573,7 @@
     <string name="score_source">From %1$s.</string>
     <string name="score_source_health">From your health data.</string>
     <string name="score_source_recording">From your watch’s night recording.</string>
+    <string name="score_provisional">Without sleep stages – provisional score</string>
     <string name="pulse_title">Pulse</string>
     <string name="pulse_average" tools:ignore="PluralsCandidate">Ø %1$d per minute</string>
     <string name="motion_title">Movement</string>
@@ -583,6 +584,7 @@
     <string name="overview_asleep">Ø sleep</string>
     <string name="overview_bedtime">Ø bedtime</string>
     <string name="overview_wake">Ø wake-up</string>
+    <string name="overview_no_stages">No stages</string>
     <string name="settings_clear_history_learn">The learning phase starts over.</string>
     <string name="learn_auto_hint">Tap “Good night” on your watch in the evening or turn on “Detect falling asleep automatically” so the nights count.</string>
 </resources>

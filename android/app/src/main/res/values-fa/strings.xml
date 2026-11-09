@@ -568,6 +568,7 @@
     <string name="score_source">از %1$s.</string>
     <string name="score_source_health">از داده‌های سلامتت.</string>
     <string name="score_source_recording">از ضبط شبانهٔ ساعتت.</string>
+    <string name="score_provisional">بدون مراحل خواب – امتیاز موقت</string>
     <string name="pulse_title">نبض</string>
     <string name="pulse_average">Ø %1$d در دقیقه</string>
     <string name="motion_title">حرکت</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø خواب</string>
     <string name="overview_bedtime">Ø زمان خوابیدن</string>
     <string name="overview_wake">Ø زمان بیداری</string>
+    <string name="overview_no_stages">بدون مرحله</string>
     <string name="settings_clear_history_learn">مرحلهٔ یادگیری از نو شروع می‌شود.</string>
     <string name="learn_auto_hint">شب‌ها روی ساعت «شب بخیر» را بزن یا «تشخیص خودکار به خواب رفتن» را روشن کن تا شب‌ها شمرده شوند.</string>
 </resources>

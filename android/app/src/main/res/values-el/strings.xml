@@ -568,6 +568,7 @@
     <string name="score_source">Από %1$s.</string>
     <string name="score_source_health">Από τα δεδομένα υγείας σου.</string>
     <string name="score_source_recording">Από τη νυχτερινή καταγραφή του ρολογιού σου.</string>
+    <string name="score_provisional">Χωρίς φάσεις ύπνου – προσωρινή βαθμολογία</string>
     <string name="pulse_title">Σφυγμός</string>
     <string name="pulse_average">Ø %1$d ανά λεπτό</string>
     <string name="motion_title">Κίνηση</string>
@@ -578,6 +579,7 @@
     <string name="overview_asleep">Ø ύπνος</string>
     <string name="overview_bedtime">Ø ώρα ύπνου</string>
     <string name="overview_wake">Ø ώρα αφύπνισης</string>
+    <string name="overview_no_stages">Χωρίς φάσεις</string>
     <string name="settings_clear_history_learn">Η φάση εκμάθησης ξεκινά από την αρχή.</string>
     <string name="learn_auto_hint">Πάτησε το βράδυ «Καληνύχτα» στο ρολόι ή ενεργοποίησε το «Αυτόματος εντοπισμός αποκοίμισης», για να μετρούν οι νύχτες.</string>
 </resources>

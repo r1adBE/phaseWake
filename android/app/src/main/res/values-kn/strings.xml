@@ -570,6 +570,7 @@
     <string name="score_source">%1$s ನಿಂದ.</string>
     <string name="score_source_health">ನಿನ್ನ ಆರೋಗ್ಯ ಡೇಟಾದಿಂದ.</string>
     <string name="score_source_recording">ನಿನ್ನ ವಾಚ್‌ನ ರಾತ್ರಿ ರೆಕಾರ್ಡಿಂಗ್‌ನಿಂದ.</string>
+    <string name="score_provisional">ನಿದ್ರೆಯ ಹಂತಗಳಿಲ್ಲದೆ – ತಾತ್ಕಾಲಿಕ ಸ್ಕೋರ್</string>
     <string name="pulse_title">ನಾಡಿ</string>
     <string name="pulse_average">Ø ನಿಮಿಷಕ್ಕೆ %1$d</string>
     <string name="motion_title">ಚಲನೆ</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø ನಿದ್ರೆ</string>
     <string name="overview_bedtime">Ø ಮಲಗುವ ಸಮಯ</string>
     <string name="overview_wake">Ø ಎಚ್ಚರವಾಗುವ ಸಮಯ</string>
+    <string name="overview_no_stages">ಹಂತಗಳಿಲ್ಲದೆ</string>
     <string name="settings_clear_history_learn">ಕಲಿಕೆಯ ಹಂತ ಮತ್ತೆ ಮೊದಲಿನಿಂದ ಆರಂಭವಾಗುತ್ತದೆ.</string>
     <string name="learn_auto_hint">ರಾತ್ರಿಗಳು ಎಣಿಕೆಯಾಗಲು ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡು ಅಥವಾ “ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚು” ಆನ್ ಮಾಡು.</string>
 </resources>

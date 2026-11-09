@@ -554,6 +554,7 @@
     <string name="score_source">จาก %1$s</string>
     <string name="score_source_health">จากข้อมูลสุขภาพของคุณ</string>
     <string name="score_source_recording">จากการบันทึกตอนกลางคืนของนาฬิกาคุณ</string>
+    <string name="score_provisional">ไม่มีระยะการนอน – คะแนนชั่วคราว</string>
     <string name="pulse_title">ชีพจร</string>
     <string name="pulse_average">Ø %1$d ต่อนาที</string>
     <string name="motion_title">การเคลื่อนไหว</string>
@@ -564,6 +565,7 @@
     <string name="overview_asleep">Ø การนอน</string>
     <string name="overview_bedtime">Ø เวลาเข้านอน</string>
     <string name="overview_wake">Ø เวลาตื่น</string>
+    <string name="overview_no_stages">ไม่มีระยะ</string>
     <string name="settings_clear_history_learn">ช่วงเรียนรู้จะเริ่มใหม่ตั้งแต่ต้น</string>
     <string name="learn_auto_hint">ตอนเย็นให้แตะ “ราตรีสวัสดิ์” บนนาฬิกา หรือเปิด “ตรวจจับการหลับโดยอัตโนมัติ” เพื่อให้นับคืน</string>
 </resources>

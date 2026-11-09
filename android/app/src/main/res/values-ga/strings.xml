@@ -613,6 +613,7 @@
     <string name="score_source">Ó %1$s.</string>
     <string name="score_source_health">Ó do shonraí sláinte.</string>
     <string name="score_source_recording">Ó thaifeadadh oíche d’uaireadóra.</string>
+    <string name="score_provisional">Gan céimeanna codlata – scór sealadach</string>
     <string name="pulse_title">Cuisle</string>
     <string name="pulse_average">Ø %1$d sa nóiméad</string>
     <string name="motion_title">Gluaiseacht</string>
@@ -623,6 +624,7 @@
     <string name="overview_asleep">Ø codladh</string>
     <string name="overview_bedtime">Ø am codlata</string>
     <string name="overview_wake">Ø am dúiseachta</string>
+    <string name="overview_no_stages">Gan céimeanna</string>
     <string name="settings_clear_history_learn">Tosaíonn an chéim foghlama as an nua.</string>
     <string name="learn_auto_hint">Tapáil “Oíche mhaith” ar d’uaireadóir tráthnóna nó cas air “Braith titim i do chodladh go huathoibríoch” ionas go gcomhairtear na hoícheanta.</string>
 </resources>

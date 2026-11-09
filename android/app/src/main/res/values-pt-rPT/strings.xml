@@ -582,6 +582,7 @@
     <string name="score_source">De %1$s.</string>
     <string name="score_source_health">Dos teus dados de saúde.</string>
     <string name="score_source_recording">Da gravação noturna do teu relógio.</string>
+    <string name="score_provisional">Sem fases do sono – pontuação provisória</string>
     <string name="pulse_title">Pulso</string>
     <string name="pulse_average">Ø %1$d por minuto</string>
     <string name="motion_title">Movimento</string>
@@ -592,6 +593,7 @@
     <string name="overview_asleep">Ø sono</string>
     <string name="overview_bedtime">Ø hora de deitar</string>
     <string name="overview_wake">Ø hora de acordar</string>
+    <string name="overview_no_stages">Sem fases</string>
     <string name="settings_clear_history_learn">A fase de aprendizagem recomeça.</string>
     <string name="learn_auto_hint">À noite, toca em “Boa noite” no relógio ou ativa “Detetar automaticamente quando adormeces” para que as noites contem.</string>
 </resources>

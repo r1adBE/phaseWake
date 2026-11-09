@@ -57,12 +57,14 @@ struct HistoryView: View {
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
-                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) }) {
+                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) },
+                                          goalMinutes: model.sleepGoal) {
                                     path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .gregorianLocal), night: night).key)
                                 }
                             case .health(let session, let date):
                                 HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date],
-                                                onOpen: { path.append(HistoryItem(kind: .health, date: date, session: session).key) })
+                                                onOpen: { path.append(HistoryItem(kind: .health, date: date, session: session).key) },
+                                                score: nightScore(stages: StageStats.forSession(session), session: session, goalMinutes: model.sleepGoal)?.result)
                             case .sounds(let night, let last):
                                 SoundsOnlyCard(night: night, last: last)
                             }
@@ -74,7 +76,7 @@ struct HistoryView: View {
             }
             .navigationTitle(L("history_title"))
             .navigationDestination(for: String.self) { key in
-                NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName)
+                NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName, sessions: health.sessions)
             }
             // Neu lesen beim Öffnen, nach dem Freigeben und nach «Verlauf löschen».
             .task(id: "\(healthRequested)|\(model.historyClearedAt?.timeIntervalSince1970 ?? 0)") { await reload() }
@@ -133,7 +135,9 @@ struct HistoryView: View {
         return HistoryChartsData.of(
             nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
             nextTarget: model.nextPlan(now: now)?.target,
-            goalMinutes: model.sleepGoal, now: now, calendar: .gregorianLocal, health: feelings
+            goalMinutes: model.sleepGoal, now: now, calendar: .gregorianLocal, health: feelings,
+            // Erster Tag der Woche nach der Sprache des Geräts (Calendar: 1 = Sonntag; Weekday: 1 = Montag).
+            firstDay: Weekday(rawValue: (Calendar.autoupdatingCurrent.firstWeekday + 5) % 7 + 1) ?? .monday
         )
     }
 
@@ -246,6 +250,8 @@ private extension NightRecord {
 private struct NightCard: View {
     let night: NightRecord
     let stages: [StageSpan]
+    /// Schlafziel in Minuten für den Schlafwert.
+    let goalMinutes: Int
     /// Öffnet die Detailseite dieser Nacht.
     let onOpen: () -> Void
 
@@ -265,13 +271,17 @@ private struct NightCard: View {
     /// Alles ausser den Knöpfen: der Teil, der die Detailseite öffnet.
     private var summary: some View {
         let hypnogram = ChartData.hypnogram(stages, night: night)
-        let totals = StageStats.forNight(stages, night: night).map(stageTotalsLine)
+        let nightStages = StageStats.forNight(stages, night: night)
+        let totals = nightStages.map(stageTotalsLine)
+        // Ohne Phasen hat eine eigene Nacht am iPhone keinen Schlafwert (keine Aufzeichnung der ganzen Nacht).
+        let score = nightScore(stages: nightStages, session: nil, goalMinutes: goalMinutes)?.result
         return VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
                 Text(Format.time(night.wokeAt)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
+            if let score { ScoreLine(result: score) }
             if let hypnogram {
                 MiniHypnogram(steps: hypnogram.steps, totalMinutes: hypnogram.totalMinutes, wokeAt: hypnogram.wokeAt)
                     .frame(height: miniHypnogramHeight)

@@ -570,6 +570,7 @@
     <string name="score_source">Kutoka %1$s.</string>
     <string name="score_source_health">Kutoka data yako ya afya.</string>
     <string name="score_source_recording">Kutoka rekodi ya usiku ya saa yako.</string>
+    <string name="score_provisional">Bila hatua za usingizi – alama ya muda</string>
     <string name="pulse_title">Mapigo</string>
     <string name="pulse_average">Ø %1$d kwa dakika</string>
     <string name="motion_title">Mwendo</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø usingizi</string>
     <string name="overview_bedtime">Ø wakati wa kulala</string>
     <string name="overview_wake">Ø wakati wa kuamka</string>
+    <string name="overview_no_stages">Bila hatua</string>
     <string name="settings_clear_history_learn">Awamu ya kujifunza inaanza upya.</string>
     <string name="learn_auto_hint">Jioni gusa “Usiku mwema” kwenye saa au washa “Tambua kiotomatiki unaposinzia” ili usiku uhesabiwe.</string>
 </resources>

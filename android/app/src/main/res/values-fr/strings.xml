@@ -582,6 +582,7 @@
     <string name="score_source">De %1$s.</string>
     <string name="score_source_health">De tes données de santé.</string>
     <string name="score_source_recording">De l’enregistrement nocturne de ta montre.</string>
+    <string name="score_provisional">Sans phases de sommeil – score provisoire</string>
     <string name="pulse_title">Pouls</string>
     <string name="pulse_average">Ø %1$d par minute</string>
     <string name="motion_title">Mouvement</string>
@@ -592,6 +593,7 @@
     <string name="overview_asleep">Ø sommeil</string>
     <string name="overview_bedtime">Ø coucher</string>
     <string name="overview_wake">Ø réveil</string>
+    <string name="overview_no_stages">Sans phases</string>
     <string name="settings_clear_history_learn">La phase d’apprentissage recommence depuis le début.</string>
     <string name="learn_auto_hint">Le soir, appuie sur « Bonne nuit » sur ta montre ou active « Détecter l\'endormissement automatiquement » pour que les nuits comptent.</string>
 </resources>

@@ -570,6 +570,7 @@
     <string name="score_source">%1$s-ൽ നിന്ന്.</string>
     <string name="score_source_health">നിന്റെ ആരോഗ്യ ഡാറ്റയിൽ നിന്ന്.</string>
     <string name="score_source_recording">നിന്റെ വാച്ചിന്റെ രാത്രി റെക്കോർഡിംഗിൽ നിന്ന്.</string>
+    <string name="score_provisional">ഉറക്ക ഘട്ടങ്ങളില്ലാതെ – താൽക്കാലിക സ്കോർ</string>
     <string name="pulse_title">നാഡി</string>
     <string name="pulse_average">Ø മിനിറ്റിൽ %1$d</string>
     <string name="motion_title">ചലനം</string>
@@ -580,6 +581,7 @@
     <string name="overview_asleep">Ø ഉറക്കം</string>
     <string name="overview_bedtime">Ø ഉറങ്ങുന്ന സമയം</string>
     <string name="overview_wake">Ø ഉണരുന്ന സമയം</string>
+    <string name="overview_no_stages">ഘട്ടങ്ങളില്ലാതെ</string>
     <string name="settings_clear_history_learn">പഠന ഘട്ടം വീണ്ടും ആദ്യം മുതൽ തുടങ്ങുന്നു.</string>
     <string name="learn_auto_hint">രാത്രികൾ എണ്ണപ്പെടാൻ വൈകുന്നേരം വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക അല്ലെങ്കിൽ “ഉറങ്ങിപ്പോകുന്നത് സ്വയമേവ കണ്ടെത്തുക” ഓണാക്കുക.</string>
 </resources>

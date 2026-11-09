@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
@@ -45,6 +46,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.Epoch
@@ -142,9 +144,12 @@ private val bandNames = mapOf(
 /** «Ausgezeichnet», «Gut», «Mittel», «Schwach». */
 internal fun bandName(context: Context, band: ScoreBand): String = context.getString(bandNames.getValue(band))
 
-/** «Schlafwert 82 von 100: Gut» (Bildschirmleser). */
+/** «Schlafwert 82 von 100: Gut» (Bildschirmleser), vorläufig mit «Ohne Schlafphasen – vorläufiger Wert». */
 internal fun scoreDescription(context: Context, result: SleepScoreResult): String =
-    context.getString(R.string.score_value, result.score, bandName(context, result.band))
+    listOfNotNull(
+        context.getString(R.string.score_value, result.score, bandName(context, result.band)),
+        if (result.provisional) context.getString(R.string.score_provisional) else null,
+    ).joinToString(". ")
 
 /** Bogen von 240°, unten offen (wie der Weg des Mondes über den Nachthimmel). */
 private const val ARC_START = 150f
@@ -161,8 +166,8 @@ private fun animationsOn(): Boolean {
 }
 
 /**
- * Schlafwert der Detailseite: Bogen mit dem Wert, der in einem Weckpunkt endet (Logo-Motiv), darunter die Bewertung;
- * je Faktor eine Kachel mit Wert, Bewertung und Balken der Punkte. Fehlende Faktoren fehlen. Unten Quelle und Gewichtung.
+ * Schlafwert der Detailseite: Bogen mit dem Wert, der in einem Weckpunkt endet (Logo-Motiv), darunter die Bewertung
+ * (ohne Schlafphasen mit dem Hinweis «vorläufig»); je Faktor eine Kachel mit Wert, Bewertung und Balken der Punkte. Fehlende Faktoren fehlen. Unten Quelle und Gewichtung.
  */
 @Composable
 internal fun ScoreCard(score: NightScore, source: String?, goalMinutes: Int, modifier: Modifier = Modifier) {
@@ -170,6 +175,16 @@ internal fun ScoreCard(score: NightScore, source: String?, goalMinutes: Int, mod
     val scheme = MaterialTheme.colorScheme
     ChartCard(stringResource(R.string.score_title), null, modifier) {
         ScoreArc(result, Modifier.align(Alignment.CenterHorizontally).padding(top = 4.dp))
+        if (result.provisional) {
+            // Im Bogen schon vorgelesen (scoreDescription).
+            Text(
+                stringResource(R.string.score_provisional),
+                style = MaterialTheme.typography.labelMedium,
+                color = scheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally).clearAndSetSemantics {},
+            )
+        }
         Column(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(top = 12.dp)) {
             result.factors.chunked(2).forEach { row ->
                 // Gleich hohe Kacheln je Zeile (die Schlafdauer hat eine Zeile mehr).
@@ -309,7 +324,10 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
     }
 }
 
-/** Kurzzeile in der Karte des Verlaufs: kleiner Ring mit dem Wert, daneben «Schlafwert» und die Bewertung. */
+/**
+ * Kurzzeile in der Karte des Verlaufs: kleiner Ring mit dem Wert, daneben «Schlafwert» und die Bewertung. Vorläufiger
+ * Wert (ohne Schlafphasen): Ring gestrichelt und hohl statt voll.
+ */
 @Composable
 internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) {
     val context = LocalContext.current
@@ -323,7 +341,15 @@ internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) 
                 val inset = stroke / 2
                 val arc = Size(size.width - stroke, size.height - stroke)
                 drawArc(brand.chartTrack, 0f, 360f, false, Offset(inset, inset), arc, style = Stroke(stroke))
-                drawArc(brand.chartActive, -90f, 360f * result.score / 100f, false, Offset(inset, inset), arc, style = Stroke(stroke, cap = StrokeCap.Round))
+                val sweep = 360f * result.score / 100f
+                if (result.provisional) {
+                    // Gestrichelt in halber Stärke: «noch nicht ganz gemessen», ohne neue Farbe.
+                    val dash = 3.dp.toPx()
+                    val thin = Stroke(stroke / 2, cap = StrokeCap.Butt, pathEffect = PathEffect.dashPathEffect(floatArrayOf(dash, dash * 0.8f)))
+                    drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = thin)
+                } else {
+                    drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = Stroke(stroke, cap = StrokeCap.Round))
+                }
             }
             Text(result.score.toString(), style = MaterialTheme.typography.labelLarge)
         }

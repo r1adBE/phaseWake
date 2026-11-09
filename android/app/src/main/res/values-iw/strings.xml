@@ -582,6 +582,7 @@
     <string name="score_source">מתוך %1$s.</string>
     <string name="score_source_health">מנתוני הבריאות שלך.</string>
     <string name="score_source_recording">מהקלטת הלילה של השעון שלך.</string>
+    <string name="score_provisional">ללא שלבי שינה – ציון זמני</string>
     <string name="pulse_title">דופק</string>
     <string name="pulse_average">Ø %1$d לדקה</string>
     <string name="motion_title">תנועה</string>
@@ -592,6 +593,7 @@
     <string name="overview_asleep">Ø שינה</string>
     <string name="overview_bedtime">Ø שעת שינה</string>
     <string name="overview_wake">Ø שעת התעוררות</string>
+    <string name="overview_no_stages">ללא שלבים</string>
     <string name="settings_clear_history_learn">שלב הלמידה מתחיל מחדש.</string>
     <string name="learn_auto_hint">בערב הקש על “לילה טוב” בשעון או הפעל את “זיהוי הירדמות אוטומטי” כדי שהלילות ייספרו.</string>
 </resources>
