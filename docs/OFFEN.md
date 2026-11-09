@@ -68,7 +68,8 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
 11b. Aufgezeichnete Nächte in die Kalibrierung übernehmen (nach Prüfung an echten Nächten).
 11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
-11h. Daten automatisch sammeln und auswerten (z. B. über 3 oder 7 Nächte) statt Export durch den Nutzer: nur so lässt sich die beste Einstellung je Person liefern (Grundlage für 11b). Gewünscht von r1AD am 08.11.
+11h. Lernphase von 7 Nächten: Nach der Installation meldet die App, dass sie 7 Nächte misst, um den Wecker richtig anzupassen. Die Uhr zeichnet dabei jede Nacht automatisch auf (ab der Einschlaf-Messung bis zum Wecken), das Handy wertet die letzten 7 Nächte aus (Schwellen, Ruhepuls) – ohne Export durch den Nutzer; Daten bleiben auf den Geräten. Grundlage für 11b. Gewünscht von r1AD am 08./09.11.; Umsetzung nach den Messnächten.
+11k. Auswertung «cooler» gestalten, Vorbild Samsung Health (Bilder von r1AD 08.11.): Schlafwert mit Bewertung, Phasen-Diagramm, Faktoren (Schlafdauer, Tief, REM, Wach, Einschlafdauer), Pulsverlauf, Empfehlung für die Schlafenszeit, Tage/Wochen/Monate. Nur als Beispiel – eigener Entwurf zur Freigabe.
 11i. Fenster «Genau»: Hinweis von r1AD am 08.11. – damit gibt es kein Fenster für die Phasen. Geprüft und so belassen: «Genau» bleibt (r1AD 09.11.).
 
 ## Bekannte Grenzen
