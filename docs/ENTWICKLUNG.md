@@ -65,6 +65,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | `android/shared` (Formate, Nachrichten) | **70 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Zweitwecker am Handy (`android/app`, Paket `ring`), Wecken und Planen der Uhr (`android/wear`, Pakete `wake` und `schedule`) | **70 %** je Paket | JaCoCo + `.github/scripts/coverage_check.py --package`, CI |
 | übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
+| iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
 | Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund) | Workflow «Bildschirmfotos» |
 
 - **Gleiche Fälle in beiden Kernen:** Ein Kern-Test in Kotlin hat sein Gegenstück in Swift mit denselben Eingaben
@@ -72,6 +73,9 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Fehler zuerst als Test:** Wer einen Fehler behebt, schreibt zuerst den Test, der ihn zeigt.
 - **Tests sind schnell und deterministisch:** keine echte Uhrzeit, kein Zufall ohne festen Startwert, kein Netz.
 - Abdeckung darf nicht sinken; die Grenzen werden nur angehoben.
+- **Wear-Dienste unter Robolectric:** Ihre Aufgaben (Data Layer, Nachrichten) enden dort nie. Tests ersetzen darum
+  die Wege dorthin (`OfflineApp`, `BackupManager.restore(…, resync)`, `PhoneListenerService.handleQueued`), statt auf
+  eine Antwort zu warten.
 - **Robolectric-Abbilder:** `android/gradle/robolectric.gradle.kts` hält je Robolectric-Version die passenden
   `android-all-instrumented`-Abbilder fest (`robolectricImagesByVersion`). Nach einem Update von `robolectric` in
   `libs.versions.toml` bricht Gradle beim Konfigurieren ab, bis die neue Version mit ihren Abbildern (aus

@@ -133,9 +133,14 @@ object BackupManager {
      * Einstellungen in einem einzigen `edit` des DataStore (atomar). Scheitert dieses, kommen die alten Nächte zurück:
      * Es bleibt der alte oder der neue Stand, nie eine Mischung. Endet der Prozess mittendrin, entscheidet [recover]
      * beim nächsten Start ([RestoreJournal]).
+     * [resync]: Abgleich mit der Uhr und Neuplanen ([afterRestore]); nur in Tests ersetzt (ohne Wear-Dienste).
      * @return ob ersetzt wurde; `false` = nichts geändert (Meldung `restore_failed`).
      */
-    suspend fun restore(app: PhaseWakeApp, payload: BackupPayload): Boolean {
+    suspend fun restore(
+        app: PhaseWakeApp,
+        payload: BackupPayload,
+        resync: suspend (AlarmSnapshot) -> Unit = { afterRestore(app, it) },
+    ): Boolean {
         val snapshot = try {
             swap(app, payload)
         } catch (e: Exception) {
@@ -145,7 +150,7 @@ object BackupManager {
             return false
         }
         app.diag.log(DiagKind.SYNC, "restored ${snapshot.alarms.size} alarms")
-        afterRestore(app, snapshot)
+        resync(snapshot)
         finishJournal(app)
         return true
     }
@@ -153,14 +158,15 @@ object BackupManager {
     /**
      * Beim Start der App (Review K-03): Endete der Prozess während eines Wiederherstellens, gilt danach der neue Stand
      * (DataStore schon geschrieben: Abgleich mit der Uhr nachholen) oder wieder der alte (alte Nächte zurück).
+     * [resync] wie bei [restore].
      */
-    suspend fun recover(app: PhaseWakeApp) {
+    suspend fun recover(app: PhaseWakeApp, resync: suspend (AlarmSnapshot) -> Unit = { afterRestore(app, it) }) {
         val committed = app.phaseWakeStore.data.first()[RESTORE_TOKEN]
         when (RestoreJournal(app.filesDir).recover(committed, app.nights)) {
             RestoreJournal.Outcome.NONE -> Unit
             RestoreJournal.Outcome.FINISHED -> {
                 app.diag.log(DiagKind.SYNC, "restore finished after restart")
-                afterRestore(app, app.alarms.current())
+                resync(app.alarms.current())
                 finishJournal(app)
             }
             RestoreJournal.Outcome.ROLLED_BACK -> app.diag.log(DiagKind.ERROR, "restore rolled back after restart")

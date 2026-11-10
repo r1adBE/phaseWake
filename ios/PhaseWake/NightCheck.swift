@@ -81,54 +81,97 @@ enum NightCheck {
     static var watchRecorderSkip: RecorderSkip?
 
     static func collect() async -> [PhoneCheck] {
-        var failed: [PhoneCheck] = []
         let session = WCSession.isSupported() ? WCSession.default : nil
         let model = PhoneModel.shared
         // Wie auf der Uhr: Eine heute schon abgeschlossene Nacht zählt nicht mehr.
         let plan = model.nextPlan()
-        if session?.activationState != .activated || session?.isPaired != true {
-            failed.append(.watch)
-        } else if session?.isWatchAppInstalled != true {
-            failed.append(.watchApp)
-        } else {
-            // watchOS plant den Smart Alarm nur bei offener Uhr-App und höchstens 36 h im Voraus.
-            // Hat die Uhr noch nie gemeldet (App dort nie geöffnet), ist sie auch nicht scharf.
-            // Weiter voraus lässt es sich noch nicht scharf schalten, also auch nicht warnen.
-            // Ab der Erinnerung am Abend (60 Min vor der Bettzeit, wie auf der Uhr) deutlicher: heute Nacht ohne Phasen.
-            if let plan, plan.windowStart.timeIntervalSinceNow < armLeadTime, model.watchArmedTarget != plan.target {
-                failed.append(Date() >= reminderTime(plan, model: model) ? .watchArmTonight : .watchArm)
-            }
-            if let percent = model.watchBattery(), percent < lowBatteryPercent {
-                failed.append(.watchBattery)
-            }
-            // Rekorder heute Nacht nicht gestartet: bis zur Zielzeit dieser Nacht.
-            if let skip = watchRecorderSkip, skip.applies(at: Date()) {
-                failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
-            }
-            // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
-            if model.watchNotifications?.state.isProblem == true { failed.append(.watchNotifications) }
-            // Hat die Uhr ihn seit über 3 Tagen nicht mehr geprüft, kann er überholt sein (ohne Zeitpunkt: kein Hinweis).
-            if WatchNotifications.isOutdated(checkedAt: model.watchNotifications?.checkedAt, now: Date()) {
-                failed.append(.watchStateOld)
-            }
-            // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
-            // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
-            if !model.watchKnowsSkip {
-                failed.append(.watchUpdate)
-            } else if WatchProtocol.isOutdated(watch: model.watchProtocol) {
-                failed.append(.watchOutdated)
-            }
-        }
+        let watch = WatchState(
+            paired: session?.activationState == .activated && session?.isPaired == true,
+            appInstalled: session?.isWatchAppInstalled == true,
+            plan: plan,
+            armedTarget: model.watchArmedTarget,
+            reminder: plan.map { reminderTime($0, model: model) },
+            battery: model.watchBattery(),
+            recorderSkip: watchRecorderSkip,
+            notifications: model.watchNotifications,
+            knowsSkip: model.watchKnowsSkip,
+            watchProtocol: model.watchProtocol
+        )
+        var failed = watchChecks(watch, now: Date())
         if await !alarmsAllowed() { failed.append(.alarms) }
         if await !notificationsAllowed() { failed.append(.notifications) }
         if await model.backup.horizonShort(model.alarms) { failed.append(.backupHorizon) }
         UIDevice.current.isBatteryMonitoringEnabled = true
-        let level = UIDevice.current.batteryLevel
-        if UIDevice.current.batteryState == .unplugged, level >= 0, level * 100 < Float(lowBatteryPercent) {
+        if phoneBatteryLow(unplugged: UIDevice.current.batteryState == .unplugged, level: UIDevice.current.batteryLevel) {
             failed.append(.battery)
         }
         if !hasAlarmKit { failed.append(.silentSwitch) }
         return failed
+    }
+
+    /// Was über die Uhr bekannt ist (``watchChecks(_:now:)``).
+    struct WatchState {
+        /// Apple Watch gekoppelt, Verbindung aktiv.
+        var paired: Bool
+        /// Phase Wake auf der Uhr installiert.
+        var appInstalled: Bool
+        /// Nächste Nacht; `nil` ohne Wecker.
+        var plan: WakePlan?
+        /// Zielzeit, für die die Uhr scharf ist (`PhoneModel.watchArmedTarget`).
+        var armedTarget: Date?
+        /// Erinnerung am Abend der Uhr für `plan` (``reminderTime(_:model:)``).
+        var reminder: Date?
+        /// Akkustand der Uhr in Prozent; `nil`, wenn unbekannt oder veraltet.
+        var battery: Int?
+        /// Rekorder für eine Nacht nicht gestartet (``watchRecorderSkip``).
+        var recorderSkip: RecorderSkip?
+        /// Erlaubnis für Mitteilungen auf der Uhr und Zeitpunkt ihrer Prüfung; `nil`, wenn unbekannt.
+        var notifications: (state: WatchNotifications, checkedAt: Date?)?
+        /// Uhr kennt Überspringen und Feiertage (`PhoneModel.watchKnowsSkip`).
+        var knowsSkip: Bool
+        /// Stand der Verbindung der Uhr-App (``WatchProtocol``); `nil`, wenn unbekannt.
+        var watchProtocol: Int?
+    }
+
+    /// Prüfungen der Uhr zum Zeitpunkt `now` (ohne Systemabfragen, damit sie sich testen lassen).
+    static func watchChecks(_ watch: WatchState, now: Date) -> [PhoneCheck] {
+        guard watch.paired else { return [.watch] }
+        guard watch.appInstalled else { return [.watchApp] }
+        var failed: [PhoneCheck] = []
+        // watchOS plant den Smart Alarm nur bei offener Uhr-App und höchstens 36 h im Voraus.
+        // Hat die Uhr noch nie gemeldet (App dort nie geöffnet), ist sie auch nicht scharf.
+        // Weiter voraus lässt es sich noch nicht scharf schalten, also auch nicht warnen.
+        // Ab der Erinnerung am Abend (60 Min vor der Bettzeit, wie auf der Uhr) deutlicher: heute Nacht ohne Phasen.
+        if let plan = watch.plan, plan.windowStart.timeIntervalSince(now) < armLeadTime, watch.armedTarget != plan.target {
+            failed.append(watch.reminder.map { now >= $0 } == true ? .watchArmTonight : .watchArm)
+        }
+        if let percent = watch.battery, percent < lowBatteryPercent {
+            failed.append(.watchBattery)
+        }
+        // Rekorder heute Nacht nicht gestartet: bis zur Zielzeit dieser Nacht.
+        if let skip = watch.recorderSkip, skip.applies(at: now) {
+            failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
+        }
+        // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
+        if watch.notifications?.state.isProblem == true { failed.append(.watchNotifications) }
+        // Hat die Uhr ihn seit über 3 Tagen nicht mehr geprüft, kann er überholt sein (ohne Zeitpunkt: kein Hinweis).
+        if WatchNotifications.isOutdated(checkedAt: watch.notifications?.checkedAt, now: now) {
+            failed.append(.watchStateOld)
+        }
+        // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
+        // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
+        if !watch.knowsSkip {
+            failed.append(.watchUpdate)
+        } else if WatchProtocol.isOutdated(watch: watch.watchProtocol) {
+            failed.append(.watchOutdated)
+        }
+        return failed
+    }
+
+    /// iPhone-Akku zu schwach für die Nacht: nicht am Strom und unter ``lowBatteryPercent`` (`level` von `UIDevice`,
+    /// 0 bis 1, negativ = unbekannt).
+    static func phoneBatteryLow(unplugged: Bool, level: Float) -> Bool {
+        unplugged && level >= 0 && level * 100 < Float(lowBatteryPercent)
     }
 
     /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel).

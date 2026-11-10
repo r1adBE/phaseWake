@@ -171,6 +171,50 @@ jobs:
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch \
             -destination 'generic/platform=watchOS Simulator' \
             CODE_SIGNING_ALLOWED=NO build >> build.log 2>&1
+      - name: Simulatoren für die Tests wählen
+        shell: bash
+        run: |
+          set -o pipefail
+          # Neuester verfügbarer Simulator je Plattform (Namen und Versionen wechseln mit Xcode).
+          cat > "$RUNNER_TEMP/sim.py" <<'PY'
+          import json, re, sys
+          platform, prefix = sys.argv[1], sys.argv[2]
+          best = None
+          for runtime, devices in json.load(sys.stdin)["devices"].items():
+              match = re.search(r"SimRuntime\.%s-(\d+)-(\d+)" % platform, runtime)
+              if not match:
+                  continue
+              version = (int(match.group(1)), int(match.group(2)))
+              for device in devices:
+                  if device.get("isAvailable", True) and device["name"].startswith(prefix) and (best is None or version > best[0]):
+                      best = (version, device["udid"])
+          print(best[1] if best else "")
+          PY
+          phone=$(xcrun simctl list devices available -j | python3 "$RUNNER_TEMP/sim.py" iOS iPhone)
+          watch=$(xcrun simctl list devices available -j | python3 "$RUNNER_TEMP/sim.py" watchOS "Apple Watch")
+          if [ -z "$phone" ] || [ -z "$watch" ]; then
+            echo "::error title=Simulator::Kein iPhone- oder Apple-Watch-Simulator gefunden"
+            xcrun simctl list devices available
+            exit 1
+          fi
+          echo "PHONE_SIM=$phone" >> "$GITHUB_ENV"
+          echo "WATCH_SIM=$watch" >> "$GITHUB_ENV"
+      # Unit-Tests der Apps (Audit F-03), in der App als Testwirt: Lernphase, Export, Nacht-Check, Widget-Stand (iPhone);
+      # Aufzeichnung, Erinnerung am Abend, Smart Alarm, Einschlafzeit (Uhr).
+      - name: Tests iPhone-App
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
+            CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
+          grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests iPhone-App::/'
+      - name: Tests Watch-App
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
+            CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
+          grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash

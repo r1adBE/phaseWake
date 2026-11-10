@@ -32,7 +32,7 @@ enum EveningReminder {
         var armed = false
         if case .scheduled(let current) = SmartAlarm.shared.phase, current == plan { armed = true }
         let recorder = LearnRecorder.shared.autoOnset || LearnRecorder.shared.snapshot.active
-        guard !armed || recorder else {
+        guard needed(at: at, now: now, goodNight: false, armed: armed, recorder: recorder) else {
             center.removePendingNotificationRequests(withIdentifiers: [id])
             return
         }
@@ -45,6 +45,14 @@ enum EveningReminder {
             guard let error else { return }
             DiagStore.shared.log(.error, "evening reminder not set \((error as NSError).code)")
         }
+    }
+
+    /// Ob die Erinnerung um `at` (für einen echten Wecker) zum Zeitpunkt `now` gestellt wird: noch nicht vorbei, nicht nach
+    /// «Gute Nacht» (`goodNight`), und es gibt etwas zu tun: Sitzung noch nicht geplant (`armed`) oder Rekorder nötig
+    /// (`recorder`: Einschlaf-Messung oder Lernphase). Ohne Zeitpunkt (kein Wecker) nie.
+    static func needed(at: Date?, now: Date, goodNight: Bool, armed: Bool, recorder: Bool) -> Bool {
+        guard let at, at > now, !goodNight else { return false }
+        return !armed || recorder
     }
 
     /// Ob die Erinnerungszeit der kommenden Nacht erreicht ist (Startseite: dann deutlicher Hinweis, wenn nicht scharf).

@@ -7,6 +7,7 @@
 | `PhaseWakeWatch/` | Apple-Watch-App: Messung im Weckfenster über die Smart-Alarm-Sitzung; Lernphase und «Nacht aufzeichnen» über den Bewegungs-Rekorder (`LearnRecorder`), Einschlafzeit daraus zu Beginn der Sitzung (`WatchOnset`), «Gute Nacht» (`GoodNight`) |
 | `Shared/` | Farben, Schrift, Logo, Texte – für beide Apps |
 | `Resources/` | Schrift Manrope |
+| `PhaseWakeTests/`, `PhaseWakeWatchTests/` | Unit-Tests der iPhone- und der Watch-App (die App ist Testwirt) |
 
 `Localizable.xcstrings` wird aus den Android-Texten erzeugt, nicht von Hand bearbeiten:
 
@@ -22,3 +23,10 @@ swift test
 ```
 
 Die Tests lesen dieselben Testnächte wie Android aus `shared/testdata/`.
+
+Tests der Apps (`PhaseWakeTests`, `PhaseWakeWatchTests`) laufen in Xcode mit «Test» im jeweiligen Schema oder im
+Simulator, z. B.:
+
+```sh
+xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination 'platform=iOS Simulator,name=iPhone 17' test
+```

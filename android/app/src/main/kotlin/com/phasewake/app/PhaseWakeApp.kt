@@ -73,7 +73,8 @@ open class PhaseWakeApp : Application() {
     /** Stand der Lernphase an die Uhr ([publishLearning]). */
     val learningSync by lazy { LearningSync(this) }
     val health by lazy { HealthSleep(this) }
-    val backup by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
+    /** Zweitwecker; offen nur für Robolectric-Tests ohne Wear-Dienste («zuletzt gesehen» der Uhr fest). */
+    open val backup: BackupAlarm by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
     val notes by lazy { com.phasewake.app.notes.NotesRepository(phaseWakeStore) }
     val bedtime by lazy { com.phasewake.app.reminder.BedtimeReminder(this, alarms, settings) }
     val weekly by lazy { com.phasewake.app.reminder.WeeklyReminder(this) }

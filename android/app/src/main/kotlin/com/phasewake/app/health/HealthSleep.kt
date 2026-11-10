@@ -20,20 +20,27 @@ import java.time.ZoneId
 /**
  * Liest Schlafphasen, die eine Gesundheits-App (z. B. Samsung Health) nach dem Aufwachen in
  * Health Connect ablegt. Nur Lesen, nur auf Wunsch, nichts verlässt das Handy.
+ *
+ * [sdkStatus] und [clientFactory] sind nur für Tests ersetzbar (Health Connect im Speicher, Audit F-02).
  */
-class HealthSleep(private val context: Context) {
+class HealthSleep internal constructor(
+    private val context: Context,
+    private val sdkStatus: () -> Int,
+    clientFactory: () -> HealthConnectClient,
+) {
+    constructor(context: Context) : this(context, { HealthConnectClient.getSdkStatus(context) }, { HealthConnectClient.getOrCreate(context) })
 
     val permissions: Set<String> = setOf(HealthPermission.getReadPermission(SleepSessionRecord::class))
 
     /** Ob Health Connect auf dem Gerät nutzbar ist. */
     val isAvailable: Boolean
-        get() = HealthConnectClient.getSdkStatus(context) == HealthConnectClient.SDK_AVAILABLE
+        get() = sdkStatus() == HealthConnectClient.SDK_AVAILABLE
 
     /** Health Connect ist installiert, muss aber erst aktualisiert werden. */
     val needsUpdate: Boolean
-        get() = HealthConnectClient.getSdkStatus(context) == HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED
+        get() = sdkStatus() == HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED
 
-    private val client by lazy { HealthConnectClient.getOrCreate(context) }
+    private val client by lazy(clientFactory)
 
     private fun diag(text: String) =
         com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE)

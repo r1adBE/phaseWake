@@ -97,9 +97,9 @@ class PhoneListenerService : WearableListenerService() {
 
     /**
      * Eintrag der Warteschlange der Uhr ([path], Text [body]); unlesbare Inhalte werden übergangen (und bestätigt, sonst
-     * käme derselbe Fehler immer wieder).
+     * käme derselbe Fehler immer wieder). Intern für Tests (ohne die Bestätigung über die Wear-Dienste).
      */
-    private suspend fun handleQueued(path: String, body: String) {
+    internal suspend fun handleQueued(path: String, body: String) {
         val app = phoneApp
         when (path) {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { snapshot ->
