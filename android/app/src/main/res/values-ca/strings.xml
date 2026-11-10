@@ -599,8 +599,8 @@
     <string name="settings_clear_history_learn">La fase d’aprenentatge torna a començar.</string>
     <string name="learn_auto_hint">Al vespre, toca «Bona nit» al rellotge o activa «Detecta automàticament quan t\'adorms» perquè les nits comptin.</string>
     <string name="learn_consent_title">Fase d’aprenentatge</string>
-    <string name="learn_consent_text">Perquè Phase Wake adapti l’alarma a tu, el rellotge enregistra moviment i pols tota la nit durant %1$d nits. Això gasta uns 3 %% de bateria del rellotge per hora – carrega el rellotge abans de dormir. Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
+    <string name="learn_consent_text">Perquè Phase Wake adapti l’alarma a tu, el rellotge mesura moviment i pols en mostres breus al llarg de tota la nit durant %1$d nits. Això gasta uns 3 %% de bateria del rellotge per hora – carrega el rellotge abans de dormir. Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
     <string name="learn_consent_start">Inicia la fase d’aprenentatge</string>
     <string name="learn_consent_later">Més tard</string>
-    <string name="learn_switch_hint">El rellotge enregistra nits senceres per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
+    <string name="learn_switch_hint">El rellotge mesura en mostres breus al llarg de la nit per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
 </resources>

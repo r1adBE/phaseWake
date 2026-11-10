@@ -586,8 +586,8 @@
     <string name="settings_clear_history_learn">Lærdómsfasinn byrjar upp á nýtt.</string>
     <string name="learn_auto_hint">Ýttu á kvöldin á „Góða nótt“ á úrinu eða kveiktu á „Greina sjálfkrafa þegar þú sofnar“ svo næturnar teljist.</string>
     <string name="learn_consent_title">Námsfasi</string>
-    <string name="learn_consent_text">Til að Phase Wake geti lagað vekjarann að þér skráir úrið hreyfingu og púls alla nóttina í %1$d nætur. Það notar um 3 %% af rafhlöðu úrsins á klukkustund – hladdu úrið áður en þú ferð að sofa. Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er.</string>
+    <string name="learn_consent_text">Til að Phase Wake geti lagað vekjarann að þér mælir úrið hreyfingu og púls í stuttum sýnum alla nóttina í %1$d nætur. Það notar um 3 %% af rafhlöðu úrsins á klukkustund – hladdu úrið áður en þú ferð að sofa. Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er.</string>
     <string name="learn_consent_start">Hefja námsfasa</string>
     <string name="learn_consent_later">Seinna</string>
-    <string name="learn_switch_hint">Úrið skráir heilar nætur til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
+    <string name="learn_switch_hint">Úrið mælir í stuttum sýnum yfir nóttina til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
 </resources>

@@ -1,9 +1,9 @@
-Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Sitä varten älykellosi mittaa liikettä ja sykettä viimeisinä minuutteina ennen herätystä.
+Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu levottomaksi – silloin nukut luultavasti kevyesti. Viimeistään täsmälleen tavoiteaikana. Sitä varten älykellosi mittaa liikettä ja sykettä viimeisinä minuutteina ennen herätystä; vapaaehtoisessa oppimisvaiheessa myös lyhyinä näytteinä yön mittaan.
 
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
 • Kello mittaa aikaikkunan aikana ja illalla hetken, kunnes nukahdat – se säästää akkua.
-• Valinnainen: oppimisvaihe – kellosi tallentaa liikettä ja sykettä koko yön 7 yön ajan (noin 3 % akkua tunnissa) ja mukauttaa herätyksen sinulle.
+• Valinnainen: oppimisvaihe – kellosi mittaa 7 yön ajan liikettä ja sykettä lyhyinä näytteinä yön mittaan (noin 3 % akkua tunnissa) ja mukauttaa herätyksen sinulle.
 • Värinä ranteessa, halutessasi äänen kanssa – puhelin soi varaherätyksenä, jos jokin menee pieleen.
 • Pysäytä pitämällä painettuna, torkuta enintään 3 kertaa.
 

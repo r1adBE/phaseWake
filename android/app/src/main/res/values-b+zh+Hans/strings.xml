@@ -569,8 +569,8 @@
     <string name="settings_clear_history_learn">学习阶段重新开始。</string>
     <string name="learn_auto_hint">晚上请在手表上点按“晚安”，或打开“自动检测入睡”，这样夜晚才会被计入。</string>
     <string name="learn_consent_title">学习阶段</string>
-    <string name="learn_consent_text">为了让 Phase Wake 根据你调整闹钟，你的手表会连续 %1$d 晚整夜记录动作和脉搏。这每小时大约消耗手表 3 %% 的电量——睡前请给手表充电。数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
+    <string name="learn_consent_text">为了让 Phase Wake 根据你调整闹钟，你的手表会连续 %1$d 晚在整夜中以短时抽样测量动作和脉搏。这每小时大约消耗手表 3 %% 的电量——睡前请给手表充电。数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
     <string name="learn_consent_start">开始学习阶段</string>
     <string name="learn_consent_later">以后再说</string>
-    <string name="learn_switch_hint">你的手表会记录整晚数据来调整闹钟。关闭：不再自动记录，已学到的数值保留。</string>
+    <string name="learn_switch_hint">你的手表会在夜间以短时抽样测量来调整闹钟。关闭：不再自动记录，已学到的数值保留。</string>
 </resources>

@@ -597,8 +597,8 @@
     <string name="settings_clear_history_learn">La fase di apprendimento ricomincia da capo.</string>
     <string name="learn_auto_hint">La sera tocca «Buonanotte» sull’orologio o attiva «Rileva automaticamente l\'addormentamento», così le notti contano.</string>
     <string name="learn_consent_title">Fase di apprendimento</string>
-    <string name="learn_consent_text">Perché Phase Wake possa adattare la sveglia a te, il tuo orologio registra movimento e battito tutta la notte per %1$d notti. Consuma circa il 3 %% di batteria dell’orologio all’ora – ricarica l’orologio prima di dormire. I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
+    <string name="learn_consent_text">Perché Phase Wake possa adattare la sveglia a te, il tuo orologio misura movimento e battito a brevi campioni durante tutta la notte per %1$d notti. Consuma circa il 3 %% di batteria dell’orologio all’ora – ricarica l’orologio prima di dormire. I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
     <string name="learn_consent_start">Avvia fase di apprendimento</string>
     <string name="learn_consent_later">Più tardi</string>
-    <string name="learn_switch_hint">Il tuo orologio registra notti intere per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
+    <string name="learn_switch_hint">Il tuo orologio misura a brevi campioni durante la notte per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
 </resources>

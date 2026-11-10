@@ -1,9 +1,9 @@
-Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk precies op je doeltijd. Daarvoor meet je smartwatch in de laatste minuten voor je wekker beweging en hartslag.
+Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk precies op je doeltijd. Daarvoor meet je smartwatch in de laatste minuten voor je wekker beweging en hartslag; in de optionele leerfase ook in korte steekproeven verspreid over de nacht.
 
 Zo werkt het
 • Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.
 • Het horloge meet tijdens het wekvenster en ’s avonds kort tot je in slaap valt – dat spaart de batterij.
-• Optioneel: leerfase – je horloge registreert 7 nachten lang de hele nacht beweging en hartslag (ongeveer 3 % batterij per uur) en stemt de wekker op jou af.
+• Optioneel: leerfase – je horloge meet 7 nachten lang in korte steekproeven verspreid over de nacht beweging en hartslag (ongeveer 3 % batterij per uur) en stemt de wekker op jou af.
 • Trilling op je pols, desgewenst met geluid – je telefoon gaat als reservewekker mee af, voor het geval er iets misgaat.
 • Vasthouden om te stoppen, tot 3× snoozen.
 

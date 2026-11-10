@@ -586,8 +586,8 @@
     <string name="settings_clear_history_learn">A fase de aprendizaxe comeza de novo.</string>
     <string name="learn_auto_hint">Pola noite, toca «Boas noites» no reloxo ou activa «Detectar automaticamente cando adormeces» para que as noites conten.</string>
     <string name="learn_consent_title">Fase de aprendizaxe</string>
-    <string name="learn_consent_text">Para que Phase Wake adapte a alarma a ti, o teu reloxo rexistra movemento e pulso toda a noite durante %1$d noites. Isto gasta arredor do 3 %% da batería do reloxo por hora: carga o reloxo antes de durmir. Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
+    <string name="learn_consent_text">Para que Phase Wake adapte a alarma a ti, o teu reloxo mide movemento e pulso en mostras breves ao longo de toda a noite durante %1$d noites. Isto gasta arredor do 3 %% da batería do reloxo por hora: carga o reloxo antes de durmir. Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
     <string name="learn_consent_start">Iniciar fase de aprendizaxe</string>
     <string name="learn_consent_later">Máis tarde</string>
-    <string name="learn_switch_hint">O teu reloxo rexistra noites enteiras para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
+    <string name="learn_switch_hint">O teu reloxo mide en mostras breves ao longo da noite para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
 </resources>

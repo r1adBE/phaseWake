@@ -600,8 +600,8 @@
     <string name="settings_clear_history_learn">Faza učenja počinje ispočetka.</string>
     <string name="learn_auto_hint">Navečer dodirni „Laku noć“ na satu ili uključi „Automatski prepoznaj uspavljivanje“ kako bi se noći brojale.</string>
     <string name="learn_consent_title">Faza učenja</string>
-    <string name="learn_consent_text">Kako bi Phase Wake prilagodio alarm tebi, tvoj sat %1$d noći bilježi pokrete i puls cijelu noć. To troši oko 3 %% baterije sata na sat – napuni sat prije spavanja. Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama.</string>
+    <string name="learn_consent_text">Kako bi Phase Wake prilagodio alarm tebi, tvoj sat %1$d noći mjeri pokrete i puls u kratkim uzorcima tijekom cijele noći. To troši oko 3 %% baterije sata na sat – napuni sat prije spavanja. Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama.</string>
     <string name="learn_consent_start">Pokreni fazu učenja</string>
     <string name="learn_consent_later">Kasnije</string>
-    <string name="learn_switch_hint">Tvoj sat bilježi cijele noći kako bi prilagodio alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
+    <string name="learn_switch_hint">Tvoj sat mjeri u kratkim uzorcima tijekom noći kako bi prilagodio alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
 </resources>

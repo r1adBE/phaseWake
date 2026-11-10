@@ -1,9 +1,9 @@
-Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində oyadır – o zaman çox güman ki, yüngül yatırsan. Ən gec düz hədəf vaxtında. Bunun üçün smart saatın siqnaldan əvvəlki son dəqiqələrdə hərəkəti və ürək döyüntüsünü ölçür.
+Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində oyadır – o zaman çox güman ki, yüngül yatırsan. Ən gec düz hədəf vaxtında. Bunun üçün smart saatın siqnaldan əvvəlki son dəqiqələrdə hərəkəti və ürək döyüntüsünü ölçür; istəyə bağlı öyrənmə mərhələsində isə gecə boyu qısa nümunələrlə də.
 
 Necə işləyir
 • Oyanma vaxtını və pəncərəni (30 dəq-yə qədər) seç, saatını tax, yat.
 • Saat oyanma pəncərəsində və axşam yuxuya gedənə qədər qısa müddət ölçür – bu, batareyaya qənaət edir.
-• İstəyə görə: öyrənmə mərhələsi – saatın 7 gecə boyunca bütün gecəni hərəkət və nəbzi qeyd edir (saatda təxminən 3 % batareya) və zəngli saatı sənə uyğunlaşdırır.
+• İstəyə görə: öyrənmə mərhələsi – saatın 7 gecə boyunca gecə ərzində qısa nümunələrlə hərəkəti və nəbzi ölçür (saatda təxminən 3 % batareya) və zəngli saatı sənə uyğunlaşdırır.
 • Biləyində vibrasiya, istəsən səslə – nəsə səhv getsə, telefonun ehtiyat siqnal kimi çalır.
 • Dayandırmaq üçün saxla, 3 dəfəyə qədər təxirə sal.
 

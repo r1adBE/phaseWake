@@ -597,8 +597,8 @@
     <string name="settings_clear_history_learn">Faza de învățare începe de la capăt.</string>
     <string name="learn_auto_hint">Seara, atinge „Noapte bună” pe ceas sau activează „Detectează automat adormirea”, ca nopțile să fie numărate.</string>
     <string name="learn_consent_title">Faza de învățare</string>
-    <string name="learn_consent_text">Ca Phase Wake să poată adapta alarma la tine, ceasul tău înregistrează mișcarea și pulsul toată noaptea timp de %1$d nopți. Asta consumă cam 3 %% din bateria ceasului pe oră – încarcă ceasul înainte de culcare. Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
+    <string name="learn_consent_text">Ca Phase Wake să poată adapta alarma la tine, ceasul tău măsoară mișcarea și pulsul în eșantioane scurte de-a lungul întregii nopți timp de %1$d nopți. Asta consumă cam 3 %% din bateria ceasului pe oră – încarcă ceasul înainte de culcare. Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_consent_start">Pornește faza de învățare</string>
     <string name="learn_consent_later">Mai târziu</string>
-    <string name="learn_switch_hint">Ceasul tău înregistrează nopți întregi pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
+    <string name="learn_switch_hint">Ceasul tău măsoară în eșantioane scurte de-a lungul nopții pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
 </resources>

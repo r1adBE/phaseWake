@@ -583,8 +583,8 @@
     <string name="settings_clear_history_learn">Oppimisvaihe alkaa alusta.</string>
     <string name="learn_auto_hint">Napauta illalla kellossa ”Hyvää yötä” tai ota ”Tunnista nukahtaminen automaattisesti” käyttöön, jotta yöt lasketaan.</string>
     <string name="learn_consent_title">Oppimisvaihe</string>
-    <string name="learn_consent_text">Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi tallentaa liikettä ja sykettä koko yön %1$d yön ajan. Se kuluttaa noin 3 %% kellon akusta tunnissa – lataa kello ennen nukkumaanmenoa. Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
+    <string name="learn_consent_text">Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi mittaa liikettä ja sykettä lyhyinä näytteinä koko yön ajan %1$d yön ajan. Se kuluttaa noin 3 %% kellon akusta tunnissa – lataa kello ennen nukkumaanmenoa. Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_consent_start">Aloita oppimisvaihe</string>
     <string name="learn_consent_later">Myöhemmin</string>
-    <string name="learn_switch_hint">Kellosi tallentaa kokonaisia öitä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
+    <string name="learn_switch_hint">Kellosi mittaa lyhyinä näytteinä yön mittaan herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
 </resources>

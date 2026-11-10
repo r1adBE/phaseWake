@@ -628,8 +628,8 @@
     <string name="settings_clear_history_learn">Tosaíonn an chéim foghlama as an nua.</string>
     <string name="learn_auto_hint">Tapáil “Oíche mhaith” ar d’uaireadóir tráthnóna nó cas air “Braith titim i do chodladh go huathoibríoch” ionas go gcomhairtear na hoícheanta.</string>
     <string name="learn_consent_title">Céim foghlama</string>
-    <string name="learn_consent_text">Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, taifeadann d’uaireadóir gluaiseacht agus cuisle ar feadh na hoíche ar feadh %1$d oíche. Úsáideann sé seo thart ar 3 %% de cheallra an uaireadóra in aghaidh na huaire – luchtaigh an t-uaireadóir sula dtéann tú a chodladh. Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
+    <string name="learn_consent_text">Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, tomhaiseann d’uaireadóir gluaiseacht agus cuisle i samplaí gearra i rith na hoíche ar feadh %1$d oíche. Úsáideann sé seo thart ar 3 %% de cheallra an uaireadóra in aghaidh na huaire – luchtaigh an t-uaireadóir sula dtéann tú a chodladh. Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_consent_start">Tosaigh an chéim foghlama</string>
     <string name="learn_consent_later">Ar ball</string>
-    <string name="learn_switch_hint">Taifeadann d’uaireadóir oícheanta iomlána chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
+    <string name="learn_switch_hint">Tomhaiseann d’uaireadóir i samplaí gearra i rith na hoíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
 </resources>

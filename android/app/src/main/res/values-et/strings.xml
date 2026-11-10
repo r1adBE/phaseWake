@@ -586,8 +586,8 @@
     <string name="settings_clear_history_learn">Õppimisfaas algab otsast peale.</string>
     <string name="learn_auto_hint">Puuduta õhtul kellal „Head ööd“ või lülita sisse „Tuvasta uinumine automaatselt“, et ööd loeksid.</string>
     <string name="learn_consent_title">Õppefaas</string>
-    <string name="learn_consent_text">Et Phase Wake saaks äratuse sinu järgi kohandada, salvestab su kell %1$d ööd järjest kogu öö liikumist ja pulssi. See kulutab umbes 3 %% kella akut tunnis – lae kell enne magamaminekut. Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
+    <string name="learn_consent_text">Et Phase Wake saaks äratuse sinu järgi kohandada, mõõdab su kell %1$d ööd järjest lühikeste valimitena kogu öö liikumist ja pulssi. See kulutab umbes 3 %% kella akut tunnis – lae kell enne magamaminekut. Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
     <string name="learn_consent_start">Alusta õppefaasi</string>
     <string name="learn_consent_later">Hiljem</string>
-    <string name="learn_switch_hint">Su kell salvestab terveid öid, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
+    <string name="learn_switch_hint">Su kell mõõdab lühikeste valimitena öö jooksul, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
 </resources>

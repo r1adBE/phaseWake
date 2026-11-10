@@ -585,8 +585,8 @@
     <string name="settings_clear_history_learn">Awamu ya kujifunza inaanza upya.</string>
     <string name="learn_auto_hint">Jioni gusa “Usiku mwema” kwenye saa au washa “Tambua kiotomatiki unaposinzia” ili usiku uhesabiwe.</string>
     <string name="learn_consent_title">Hatua ya kujifunza</string>
-    <string name="learn_consent_text">Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako inarekodi mwendo na mapigo ya moyo usiku mzima kwa usiku %1$d. Hii hutumia takriban 3 %% ya betri ya saa kwa saa – chaji saa kabla ya kulala. Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
+    <string name="learn_consent_text">Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako hupima mwendo na mapigo ya moyo kwa sampuli fupi usiku mzima kwa usiku %1$d. Hii hutumia takriban 3 %% ya betri ya saa kwa saa – chaji saa kabla ya kulala. Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_consent_start">Anza hatua ya kujifunza</string>
     <string name="learn_consent_later">Baadaye</string>
-    <string name="learn_switch_hint">Saa yako inarekodi usiku mzima ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
+    <string name="learn_switch_hint">Saa yako hupima kwa sampuli fupi usiku kucha ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
 </resources>

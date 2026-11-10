@@ -43,7 +43,8 @@ gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne
 Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
 
 **Vordergrund-Dienst «health» (Uhr).** Läuft nur im Weckfenster (10–30 Minuten vor der Zielzeit) und kurz am Abend
-bis zum Einschlafen (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar). Er liest Bewegung (Beschleunigungssensor) und Puls, um einen leichten Schlafmoment zum
+bis zum Einschlafen (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar); in der freiwilligen Lernphase
+(7 Nächte, nur nach Zustimmung) auch in kurzen Stichproben über die Nacht (60 Sekunden alle 5 Minuten). Er liest Bewegung (Beschleunigungssensor) und Puls, um einen leichten Schlafmoment zum
 Wecken zu finden. Die Messung zeigt eine laufende Benachrichtigung und endet mit dem Wecken.
 
 **Vordergrund-Dienst «mediaPlayback» (Handy).** Einschlafklänge (Rauschen, Regen, Meer …), die du startest; mit
@@ -98,7 +99,8 @@ holding `USE_EXACT_ALARM`.
 
 **Foreground service type “health” (watch).** Runs only during the wake window (10–30 minutes before the target time)
 and briefly in the evening until the user falls asleep (falling-asleep measurement, on by default, can be switched off in
-the settings). It reads movement (accelerometer) and heart rate to
+the settings); during the optional learning phase (7 nights, only after the user agrees) also in short samples through
+the night (60 seconds every 5 minutes). It reads movement (accelerometer) and heart rate to
 find a light-sleep moment to wake the user. A notification is shown while measuring; it ends when the user wakes.
 
 **Foreground service type “mediaPlayback” (phone).** Sleep sounds (noise, rain, sea …) started by the user, with a media

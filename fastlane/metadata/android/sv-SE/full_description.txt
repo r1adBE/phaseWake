@@ -1,9 +1,9 @@
-Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir orolig – då sover du troligen lätt. Senast precis på den inställda tiden. För det mäter din smartklocka rörelse och puls under de sista minuterna före larmet.
+Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir orolig – då sover du troligen lätt. Senast precis på den inställda tiden. För det mäter din smartklocka rörelse och puls under de sista minuterna före larmet; i den frivilliga inlärningsfasen även i korta stickprov under natten.
 
 Så fungerar det
 • Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
 • Klockan mäter under väckningsfönstret och kort på kvällen tills du somnar – skonsamt för batteriet.
-• Valfritt: inlärningsfas – din klocka registrerar rörelse och puls hela natten i 7 nätter (ungefär 3 % batteri per timme) och anpassar larmet efter dig.
+• Valfritt: inlärningsfas – i 7 nätter mäter din klocka rörelse och puls i korta stickprov under natten (ungefär 3 % batteri per timme) och anpassar larmet efter dig.
 • Vibration på handleden, med ljud om du vill – mobilen ringer som reservlarm om något går fel.
 • Håll in för att stänga av, snooze upp till 3 gånger.
 

@@ -586,8 +586,8 @@
     <string name="settings_clear_history_learn">Ikaste-fasea hasieratik hasten da.</string>
     <string name="learn_auto_hint">Arratsean, sakatu «Gabon» erlojuan edo aktibatu «Loak hartzea automatikoki hauteman», gauak kontatu daitezen.</string>
     <string name="learn_consent_title">Ikasketa-fasea</string>
-    <string name="learn_consent_text">Phase Wake-k alarma zuri egokitzeko, erlojuak gau osoan mugimendua eta pultsua grabatzen ditu %1$d gauez. Horrek erlojuaren bateriaren %% 3 inguru gastatzen du orduko – kargatu erlojua lo egin aurretik. Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
+    <string name="learn_consent_text">Phase Wake-k alarma zuri egokitzeko, erlojuak mugimendua eta pultsua neurtzen ditu lagin laburretan gau osoan zehar, %1$d gauez. Horrek erlojuaren bateriaren %% 3 inguru gastatzen du orduko – kargatu erlojua lo egin aurretik. Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
     <string name="learn_consent_start">Hasi ikasketa-fasea</string>
     <string name="learn_consent_later">Geroago</string>
-    <string name="learn_switch_hint">Erlojuak gau osoak grabatzen ditu alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
+    <string name="learn_switch_hint">Erlojuak lagin laburretan neurtzen du gauean zehar alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
 </resources>

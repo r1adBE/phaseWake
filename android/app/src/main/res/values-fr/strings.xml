@@ -597,8 +597,8 @@
     <string name="settings_clear_history_learn">La phase d’apprentissage recommence depuis le début.</string>
     <string name="learn_auto_hint">Le soir, appuie sur « Bonne nuit » sur ta montre ou active « Détecter l\'endormissement automatiquement » pour que les nuits comptent.</string>
     <string name="learn_consent_title">Phase d’apprentissage</string>
-    <string name="learn_consent_text">Pour que Phase Wake adapte le réveil à toi, ta montre enregistre mouvements et pouls toute la nuit pendant %1$d nuits. Cela consomme environ 3 %% de batterie de la montre par heure – recharge la montre avant de dormir. Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
+    <string name="learn_consent_text">Pour que Phase Wake adapte le réveil à toi, ta montre mesure mouvements et pouls par courts échantillons tout au long de la nuit pendant %1$d nuits. Cela consomme environ 3 %% de batterie de la montre par heure – recharge la montre avant de dormir. Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
     <string name="learn_consent_start">Lancer la phase d’apprentissage</string>
     <string name="learn_consent_later">Plus tard</string>
-    <string name="learn_switch_hint">Ta montre enregistre des nuits entières pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
+    <string name="learn_switch_hint">Ta montre mesure par courts échantillons au fil de la nuit pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
 </resources>
