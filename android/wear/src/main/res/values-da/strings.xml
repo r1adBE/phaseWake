@@ -19,6 +19,7 @@
         <item quantity="one">%1$d min · %2$d tilbage</item>
         <item quantity="other">%1$d min · %2$d tilbage</item>
     </plurals>
+    <string name="ring_snooze_button">Slumre %1$d min</string>
     <string name="ring_snoozed_until">Slumrer til %1$s</string>
 
     <string name="home_no_alarm">Ingen alarm sat</string>

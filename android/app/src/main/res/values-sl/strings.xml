@@ -251,6 +251,8 @@
     </plurals>
     <string name="check_watch_battery">Baterija ure</string>
     <string name="check_watch_battery_problem">Pod %1$d %% – napolni uro, da zdrži vso noč in te lahko zbudi.</string>
+    <string name="check_watch_recorder">Meritev nocoj</string>
+    <string name="check_watch_recorder_battery">Ura ni začela meritve pred spanjem – baterija je bila preveč prazna. Budilka te bo vseeno zbudila.</string>
     <string name="check_watch_pulse">Utrip v ozadju (ura)</string>
     <string name="check_watch_pulse_problem">Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«.</string>
     <string name="export_contents_hint">Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske – brez imen, datumov in ID-jev naprav.</string>
@@ -565,7 +567,7 @@
     <string name="record_start">Posnemi noč</string>
     <string name="record_stop">Ustavi snemanje</string>
     <string name="record_since">Snemanje od %1$s</string>
-    <string name="record_hint">Tvoja ura vso noč snema gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi.</string>
+    <string name="record_hint">Tvoja ura vso noč snema gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi. To porabi nekaj baterije – napolni uro pred spanjem.</string>
     <string name="record_end_manual">Ustavljeno</string>
     <string name="record_end_cap">Končano po 12 h</string>
     <string name="record_end_battery">Baterija ure je šibka</string>

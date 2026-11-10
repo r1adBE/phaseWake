@@ -245,6 +245,8 @@
     </plurals>
     <string name="check_watch_battery">Batteria dell’orologio</string>
     <string name="check_watch_battery_problem">Sotto il %1$d %% – ricarica l’orologio perché duri tutta la notte e possa svegliarti.</string>
+    <string name="check_watch_recorder">Misurazione di stanotte</string>
+    <string name="check_watch_recorder_battery">L’orologio non ha avviato la misurazione prima di dormire – la batteria era troppo scarica. La sveglia ti sveglierà comunque.</string>
     <string name="check_watch_pulse">Battito in background (orologio)</string>
     <string name="check_watch_pulse_problem">L’orologio non può misurare il tuo battito di notte – sull’orologio imposta l’autorizzazione sensori di Phase Wake su “Consenti sempre”.</string>
     <string name="export_contents_hint">Il file contiene per ogni notte movimento e battito ogni 30 s, come ti sentivi e le tue note – senza nomi, date o ID dei dispositivi.</string>
@@ -549,7 +551,7 @@
     <string name="record_start">Registra la notte</string>
     <string name="record_stop">Interrompi registrazione</string>
     <string name="record_since">Registrazione dalle %1$s</string>
-    <string name="record_hint">Il tuo orologio registra movimento e polso per tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te.</string>
+    <string name="record_hint">Il tuo orologio registra movimento e polso per tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te. Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
     <string name="record_end_manual">Fermata</string>
     <string name="record_end_cap">Terminata dopo 12 h</string>
     <string name="record_end_battery">Batteria dell’orologio scarica</string>

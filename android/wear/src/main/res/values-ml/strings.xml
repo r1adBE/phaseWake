@@ -19,6 +19,7 @@
         <item quantity="one">%1$d മി. · %2$d ബാക്കി</item>
         <item quantity="other">%1$d മി. · %2$d ബാക്കി</item>
     </plurals>
+    <string name="ring_snooze_button">സ്‌നൂസ് %1$d മി.</string>
     <string name="ring_snoozed_until">%1$s വരെ സ്‌നൂസ്</string>
 
     <string name="home_no_alarm">അലാറം സജ്ജമാക്കിയിട്ടില്ല</string>

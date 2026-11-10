@@ -56,6 +56,8 @@ android {
             // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
             // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
             applicationIdSuffix = ".test"
+            // Testversion nur für ARM-Uhren (Audit F-13, alle Wear-OS-Uhren); der Store-Build (AAB) bleibt unverändert.
+            ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
         release {
             isMinifyEnabled = true

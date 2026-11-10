@@ -20,6 +20,7 @@
         <item quantity="many">%1$d min · en queden %2$d</item>
         <item quantity="other">%1$d min · en queden %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Posposa %1$d min</string>
     <string name="ring_snoozed_until">Posposada fins a les %1$s</string>
 
     <string name="home_no_alarm">Cap alarma definida</string>

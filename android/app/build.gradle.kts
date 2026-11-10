@@ -56,6 +56,9 @@ android {
             // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
             // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
             applicationIdSuffix = ".test"
+            // Testversion nur für ARM-Handys (Audit F-13): Die nativen Bibliotheken von MediaPipe für x86/x86_64
+            // (Emulatoren) machen sonst gut die Hälfte des APK aus. Der Store-Build (AAB) bleibt unverändert, Play teilt ihn ohnehin.
+            ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
         release {
             isMinifyEnabled = true

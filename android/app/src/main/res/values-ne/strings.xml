@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">घडीको ब्याट्री</string>
     <string name="check_watch_battery_problem">%1$d %% भन्दा कम – रातभर चलोस् र तिमीलाई ब्युँझाउन सकोस् भनेर घडी चार्ज गर।</string>
+    <string name="check_watch_recorder">आज रातको मापन</string>
+    <string name="check_watch_recorder_battery">तिम्रो घडीले सुत्नुअघिको मापन सुरु गरेन – यसको ब्याट्री धेरै कम थियो। अलार्मले तिमीलाई तैपनि उठाउनेछ।</string>
     <string name="check_watch_pulse">पृष्ठभूमिमा पल्स (घडी)</string>
     <string name="check_watch_pulse_problem">घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।</string>
     <string name="export_contents_hint">फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन् – नाम, मिति वा उपकरण ID बिना।</string>
@@ -538,7 +540,7 @@
     <string name="record_start">रात रेकर्ड गर</string>
     <string name="record_stop">रेकर्डिङ रोक</string>
     <string name="record_since">%1$s देखि रेकर्ड हुँदैछ</string>
-    <string name="record_hint">तिम्रो घडीले रातभर चाल र नाडी रेकर्ड गर्छ। यी रातहरूबाट Phase Wake सिक्ने चरणमा तिम्रा आफ्नै मानहरू सिक्छ र अलार्मलाई तिमीअनुसार मिलाउँछ।</string>
+    <string name="record_hint">तिम्रो घडीले रातभर चाल र नाडी रेकर्ड गर्छ। यी रातहरूबाट Phase Wake सिक्ने चरणमा तिम्रा आफ्नै मानहरू सिक्छ र अलार्मलाई तिमीअनुसार मिलाउँछ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
     <string name="record_end_manual">रोकियो</string>
     <string name="record_end_cap">१२ घण्टापछि सकियो</string>
     <string name="record_end_battery">घडीको ब्याट्री कम छ</string>

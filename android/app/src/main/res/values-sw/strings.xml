@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Betri ya saa</string>
     <string name="check_watch_battery_problem">Chini ya %1$d %% – chaji saa yako ili idumu usiku mzima na iweze kukuamsha.</string>
+    <string name="check_watch_recorder">Kipimo cha usiku huu</string>
+    <string name="check_watch_recorder_battery">Saa yako haikuanza kipimo cha kabla ya kulala – betri yake ilikuwa chini mno. Kengele bado itakuamsha.</string>
     <string name="check_watch_pulse">Mapigo ya moyo chinichini (saa)</string>
     <string name="check_watch_pulse_problem">Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”.</string>
     <string name="export_contents_hint">Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako – bila majina, tarehe wala vitambulisho vya kifaa.</string>
@@ -537,7 +539,7 @@
     <string name="record_start">Rekodi usiku</string>
     <string name="record_stop">Simamisha kurekodi</string>
     <string name="record_since">Inarekodi tangu %1$s</string>
-    <string name="record_hint">Saa yako hurekodi mwendo na mapigo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae.</string>
+    <string name="record_hint">Saa yako hurekodi mwendo na mapigo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae. Hii hutumia betri kidogo – chaji saa kabla ya kulala.</string>
     <string name="record_end_manual">Imesimamishwa</string>
     <string name="record_end_cap">Iliisha baada ya saa 12</string>
     <string name="record_end_battery">Betri ya saa iko chini</string>

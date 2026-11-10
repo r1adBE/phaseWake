@@ -32,6 +32,7 @@
     <string name="health_rationale_apple">तुमचे हेल्थ ॲप (उदा. Apple Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो, Phase Wake ने तुम्हाला उठवलेल्या रात्रींशी तुलना करण्यासाठीही. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
     <string name="check_watch_notifications">घड्याळावर सूचना</string>
     <string name="check_watch_notifications_problem">तुमच्या Apple Watch वर Phase Wake साठी वेळ-संवेदनशील सूचनांना परवानगी द्या. नाहीतर मोजमाप चालू नसताना ते तुम्हाला सूचनेद्वारे उठवू शकणार नाही.</string>
+    <string name="check_watch_recorder_motion">तुझ्या घड्याळाने झोपण्यापूर्वीचे मोजमाप सुरू केले नाही – Phase Wake ला त्यावर हालचालीचा डेटा वाचण्याची परवानगी नाही. घड्याळाच्या सेटिंग्जमध्ये गोपनीयता अंतर्गत परवानगी दे. अलार्म तरीही तुला उठवेल.</string>
     <string name="check_watch_state_old">घड्याळाची स्थिती जुनी आहे – घड्याळावर Phase Wake थोडा वेळ उघडा.</string>
     <string name="editor_sleep_hint_apple">झोप लागल्यापासून मोजले जाते – झोपायला जाताना घड्याळावर «शुभ रात्री» टॅप करा. Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते. टॅप न केल्यास सेट केलेली वेळ लागू होते.</string>
     <string name="auto_onset_hint_apple">झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमच्या Apple Watch वर Phase Wake उघडा (घड्याळ आठवण करून देते), तेव्हापासून ते तुमची हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला तुम्ही कधी झोपलात हे Phase Wake मोजते.</string>

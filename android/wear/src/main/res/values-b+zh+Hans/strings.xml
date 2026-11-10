@@ -18,6 +18,7 @@
     <plurals name="ring_snooze">
         <item quantity="other">%1$d 分钟 · 剩余 %2$d 次</item>
     </plurals>
+    <string name="ring_snooze_button">贪睡 %1$d 分钟</string>
     <string name="ring_snoozed_until">贪睡至 %1$s</string>
 
     <string name="home_no_alarm">未设置闹钟</string>

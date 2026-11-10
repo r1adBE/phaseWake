@@ -206,6 +206,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let date = since > 0 ? Date(timeIntervalSince1970: Double(since) / 1000) : nil
             Task { @MainActor in WatchNight.shared.noteRecording(since: date) }
         }
+        // Rekorder für eine Nacht nicht gestartet (Audit F-06); fehlt bei älteren Uhren (dann keine Warnung).
+        if let text = context[SyncKeys.recorderSkip] as? String {
+            let skip = RecorderSkip.decode(text)
+            Task { @MainActor in NightCheck.watchRecorderSkip = skip }
+        }
         // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
         var battery: (percent: Int, at: Date)?
         if let percent = context[SyncKeys.battery] as? Int64, let at = context[SyncKeys.batteryAt] as? Int64 {

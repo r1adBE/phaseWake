@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Saat pili</string>
     <string name="check_watch_battery_problem">Pil %1$d %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et.</string>
+    <string name="check_watch_recorder">Bu geceki ölçüm</string>
+    <string name="check_watch_recorder_battery">Saatin uyku öncesi ölçümü başlatmadı – pili çok zayıftı. Alarm seni yine de uyandıracak.</string>
     <string name="check_watch_pulse">Arka planda nabız (saat)</string>
     <string name="check_watch_pulse_problem">Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla.</string>
     <string name="export_contents_hint">Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir – adsız, tarihsiz ve cihaz kimliği olmadan.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Geceyi kaydet</string>
     <string name="record_stop">Kaydı durdur</string>
     <string name="record_since">%1$s itibarıyla kaydediliyor</string>
-    <string name="record_hint">Saatin bütün gece hareketi ve nabzı kaydeder. Phase Wake bu gecelerden öğrenme aşamasında kendi değerlerini öğrenir ve alarmı sana göre ayarlar.</string>
+    <string name="record_hint">Saatin bütün gece hareketi ve nabzı kaydeder. Phase Wake bu gecelerden öğrenme aşamasında kendi değerlerini öğrenir ve alarmı sana göre ayarlar. Bu biraz pil harcar – uyumadan önce saati şarj et.</string>
     <string name="record_end_manual">Durduruldu</string>
     <string name="record_end_cap">12 saat sonra sona erdi</string>
     <string name="record_end_battery">Saatin pili zayıf</string>

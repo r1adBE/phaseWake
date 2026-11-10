@@ -79,6 +79,9 @@ public enum SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei älteren
     /// Uhr-Versionen.
     public static let recordSince = "recordSince"
+    /// Uhr → iPhone im Anwendungskontext: Rekorder für eine Nacht nicht gestartet (``RecorderSkip/encode()``, Audit F-06),
+    /// leer = keine Meldung. Fehlt bei älteren Uhr-Versionen; der Nacht-Check ist dann rot bis zur Zielzeit.
+    public static let recorderSkip = "recorderSkip"
     /// Anwendungskontext iPhone → Uhr: Schalter «Einschlafen automatisch erkennen» (Bool). Fehlt er (älteres iPhone),
     /// gilt er als ein (Standard wie Android).
     public static let autoOnset = "autoOnset"

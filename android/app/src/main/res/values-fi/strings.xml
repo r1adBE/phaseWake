@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Kellon akku</string>
     <string name="check_watch_battery_problem">Alle %1$d %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut.</string>
+    <string name="check_watch_recorder">Tämän yön mittaus</string>
+    <string name="check_watch_recorder_battery">Kello ei aloittanut mittausta ennen nukkumista – sen akku oli liian vähissä. Herätys herättää sinut silti.</string>
     <string name="check_watch_pulse">Syke taustalla (kello)</string>
     <string name="check_watch_pulse_problem">Kello ei saa mitata sykettäsi yöllä – aseta kellossa Phase Waken anturilupa tilaan ”Salli aina”.</string>
     <string name="export_contents_hint">Tiedosto sisältää joka yöltä liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Tallenna yö</string>
     <string name="record_stop">Lopeta tallennus</string>
     <string name="record_since">Tallennus käynnissä klo %1$s alkaen</string>
-    <string name="record_hint">Kellosi tallentaa liikettä ja sykettä koko yön. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle.</string>
+    <string name="record_hint">Kellosi tallentaa liikettä ja sykettä koko yön. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
     <string name="record_end_manual">Pysäytetty</string>
     <string name="record_end_cap">Päättyi 12 tunnin jälkeen</string>
     <string name="record_end_battery">Kellon akku vähissä</string>

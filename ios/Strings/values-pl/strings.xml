@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Apple Health). Są wyświetlane w twojej historii, także do porównania z nocami, w których obudził cię Phase Wake. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
     <string name="check_watch_notifications">Powiadomienia na zegarku</string>
     <string name="check_watch_notifications_problem">Zezwól na powiadomienia wrażliwe na czas od Phase Wake na swoim Apple Watch. W przeciwnym razie zegarek nie obudzi cię powiadomieniem, gdy nie trwa pomiar.</string>
+    <string name="check_watch_recorder_motion">Zegarek nie rozpoczął pomiaru przed snem – Phase Wake nie może odczytywać na nim danych o ruchu. Zezwól na to w ustawieniach zegarka w sekcji Prywatność. Budzik i tak cię obudzi.</string>
     <string name="check_watch_state_old">Stan zegarka jest nieaktualny – otwórz na chwilę Phase Wake na zegarku.</string>
     <string name="editor_sleep_hint_apple">Liczy się od zaśnięcia – kładąc się spać, stuknij na zegarku „Dobranoc”. Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania. Bez stuknięcia obowiązuje ustawiona godzina.</string>
     <string name="auto_onset_hint_apple">Otwórz Phase Wake na Apple Watch od 1 godziny przed snem (zegarek ci przypomni), a od tej chwili nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś.</string>

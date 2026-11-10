@@ -76,7 +76,7 @@ Die Testversion ist ein Debug-Build, signiert mit dem öffentlichen Test-Schlüs
 
 ## Bauen
 
-Android (JDK 21):
+Android (JDK 21 wie in der CI, dazu ein installiertes JDK 17 – der Kotlin-Kern verlangt es als Toolchain, `jvmToolchain(17)`; Gradle findet es selbst, lädt aber keines herunter):
 
 ```sh
 cd android

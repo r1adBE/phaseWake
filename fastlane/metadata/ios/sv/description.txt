@@ -2,7 +2,7 @@ Phase Wake väcker dig inom ditt väckningsfönster så snart sömnen blir oroli
 
 Så fungerar det
 • Välj väckningstid och fönster (upp till 30 min), ta på klockan, sov.
-• Klockan mäter under väckningsfönstret – skonsamt för batteriet; i den frivilliga inlärningsfasen även under natten.
+• Klockan mäter under väckningsfönstret och från ungefär 1 timme före sänggåendet för att se när du somnar (öppna appen på klockan på kvällen) – skonsamt för batteriet; i den frivilliga inlärningsfasen även under natten.
 • Valfritt: inlärningsfas – i 7 nätter mäter din klocka rörelse och puls under natten (drar lite batteri) och anpassar larmet efter dig.
 • Vibration på handleden – iPhone ringer med om du vill, och som reservlarm om något går fel.
 • Håll in för att stänga av, snooze upp till 3 gånger.

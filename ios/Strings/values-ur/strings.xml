@@ -30,6 +30,7 @@
     <string name="health_rationale_apple">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Apple Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے، ان راتوں سے موازنے کے لیے بھی جب Phase Wake نے تمہیں جگایا۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
     <string name="check_watch_notifications">گھڑی پر اطلاعات</string>
     <string name="check_watch_notifications_problem">اپنی Apple Watch پر Phase Wake کے لیے وقت کی حساس اطلاعات کی اجازت دو۔ ورنہ پیمائش نہ چل رہی ہو تو گھڑی تمہیں اطلاع سے نہیں جگا سکتی۔</string>
+    <string name="check_watch_recorder_motion">تمہاری گھڑی نے سونے سے پہلے کی پیمائش شروع نہیں کی – Phase Wake کو اس پر حرکت کا ڈیٹا پڑھنے کی اجازت نہیں ہے۔ گھڑی کی ترتیبات میں رازداری کے تحت اجازت دو۔ الارم پھر بھی تمہیں جگائے گا۔</string>
     <string name="check_watch_state_old">گھڑی کی حالت پرانی ہے – گھڑی پر Phase Wake تھوڑی دیر کے لیے کھولیں۔</string>
     <string name="editor_sleep_hint_apple">سونے کے وقت سے گنا جاتا ہے – سونے جاتے وقت گھڑی پر «شب بخیر» ٹیپ کرو۔ Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔ ٹیپ نہ کرو تو سیٹ کیا گیا وقت لاگو ہوتا ہے۔</string>
     <string name="auto_onset_hint_apple">سونے کے وقت سے 1 گھنٹہ پہلے سے اپنی Apple Watch پر Phase Wake کھولو (گھڑی یاد دلاتی ہے)، تو تب سے وہ تمہاری حرکت ریکارڈ کرتی ہے؛ جاگنے کی ونڈو کے شروع میں Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔</string>

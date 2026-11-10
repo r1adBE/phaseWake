@@ -2,7 +2,7 @@ Phase Wake et desperta dins de la finestra de despertar tan bon punt el son es t
 
 Com funciona
 • Tria l’hora i la finestra de despertar (fins a 30 min), posa’t el rellotge i dorm.
-• El rellotge mesura durant la finestra de despertar i, al vespre, una estona fins que t’adorms – així estalvia bateria.
+• El rellotge mesura durant la finestra de despertar i, al vespre, des d’1 hora abans d’anar a dormir fins que t’adorms (com a màxim 4 hores) – així estalvia bateria.
 • Opcional: fase d’aprenentatge – durant 7 nits el rellotge mesura moviment i pols al llarg de la nit (gasta una mica de bateria) i adapta l’alarma a tu.
 • Vibració al canell, amb so si vols – el telèfon sona com a alarma de reserva per si alguna cosa falla.
 • Mantén premut per aturar, posposa fins a 3 vegades.

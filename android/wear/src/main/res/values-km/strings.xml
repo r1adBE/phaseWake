@@ -18,6 +18,7 @@
     <plurals name="ring_snooze">
         <item quantity="other">%1$d នាទី · នៅសល់ %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">ផ្អាក %1$d នាទី</string>
     <string name="ring_snoozed_until">ផ្អាករហូតដល់ %1$s</string>
 
     <string name="home_no_alarm">គ្មានម៉ោងរោទ៍</string>

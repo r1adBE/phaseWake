@@ -19,6 +19,7 @@
         <item quantity="one">%1$d دق · مانده: %2$d</item>
         <item quantity="other">%1$d دق · مانده: %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">چرت %1$d دق</string>
     <string name="ring_snoozed_until">چرت تا %1$s</string>
 
     <string name="home_no_alarm">زنگی تنظیم نشده</string>

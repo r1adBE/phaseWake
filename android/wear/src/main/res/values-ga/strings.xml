@@ -23,6 +23,7 @@
         <item quantity="many">%1$d nóim · %2$d fágtha</item>
         <item quantity="other">%1$d nóim · %2$d fágtha</item>
     </plurals>
+    <string name="ring_snooze_button">Cuir siar %1$d nóim</string>
     <string name="ring_snoozed_until">Curtha siar go dtí %1$s</string>
 
     <string name="home_no_alarm">Níl aon aláram socraithe</string>

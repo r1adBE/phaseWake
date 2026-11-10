@@ -20,6 +20,7 @@
         <item quantity="one">%1$d ደቂቃ · %2$d ቀርቷል</item>
         <item quantity="other">%1$d ደቂቃ · %2$d ቀርተዋል</item>
     </plurals>
+    <string name="ring_snooze_button">አሸልብ %1$d ደቂቃ</string>
     <string name="ring_snoozed_until">እስከ %1$s አሸልቧል</string>
 
     <string name="home_no_alarm">ምንም ማንቂያ አልተዘጋጀም</string>

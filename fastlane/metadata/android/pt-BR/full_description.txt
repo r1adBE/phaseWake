@@ -2,7 +2,7 @@ O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono f
 
 Como funciona
 • Escolha o horário e a janela de despertar (até 30 min), coloque o relógio e durma.
-• O relógio mede durante a janela de despertar e, à noite, por pouco tempo até você adormecer – isso poupa a bateria.
+• O relógio mede durante a janela de despertar e, à noite, desde cerca de 1 hora antes da hora de dormir até você adormecer (no máximo 4 horas) – isso poupa a bateria.
 • Opcional: fase de aprendizado – durante 7 noites seu relógio mede movimento e pulso ao longo da noite (gasta um pouco de bateria) e adapta o alarme a você.
 • Vibração no pulso, com som se quiser – o celular toca como alarme reserva caso algo dê errado.
 • Segure para parar; soneca até 3 vezes.

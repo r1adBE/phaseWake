@@ -4,8 +4,8 @@ import PhaseWakeCore
 import WatchKit
 
 /// «Nacht aufzeichnen» auf der Apple Watch – Gegenstück zu `RecordControl`/`RecordService` der Galaxy Watch, gleiche Texte
-/// und Regeln: Start auf der Uhr oder vom iPhone, Ende von Hand (Uhr oder iPhone), nach 12 Std. oder unter 15 % Akku
-/// (``NightRecording/endNow(start:now:battery:)``). Gemessen wird mit dem Bewegungs-Rekorder von watchOS über die ganze
+/// und Regeln: Start auf der Uhr oder vom iPhone, Ende spätestens beim Wecken (``noteWake(alarmId:target:)``, Audit F-01),
+/// von Hand (Uhr oder iPhone), nach 12 Std. oder unter 15 % Akku (``NightRecording/endNow(start:now:battery:)``). Gemessen wird mit dem Bewegungs-Rekorder von watchOS über die ganze
 /// Zeit (50 Hz, auch bei geschlossener App); den Puls je Epoche liefert danach Apple Health. Die fertige Aufzeichnung geht
 /// wie eine der Lernphase ans iPhone (``NightRecording``, dort die letzten 14, im Verlauf und im Export, zählt für die
 /// Lernphase).
@@ -67,7 +67,10 @@ extension LearnRecorder {
     /// einer Aufzeichnung tut; er könnte sie verkürzen). Reicht er nicht bis `need`, bleibt es dabei (einmal ins Protokoll).
     func ensureRecorder(until need: Date) {
         let now = Date()
-        switch AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until) {
+        let decision = AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until)
+        // Er läuft (oder startet gleich): Eine Meldung «nicht gestartet» gilt nicht mehr (Audit F-06).
+        if decision != .nothing { WatchConnectivityBridge.shared.publish(recorderSkip: nil) }
+        switch decision {
         case .running, .nothing:
             return
         case .short(let until, let needed):
@@ -121,7 +124,7 @@ extension LearnRecorder {
     }
 
     /// Stoppt die laufende Aufzeichnung (auch die der Lernphase): von Hand mit ``RecordEnd/watch`` bzw.
-    /// ``RecordEnd/phone``, bei tiefem Akku ``RecordEnd/battery``. Ausgewertet wird danach bis jetzt.
+    /// ``RecordEnd/phone``, bei tiefem Akku ``RecordEnd/battery``, beim Wecken ``RecordEnd/wake``. Ausgewertet wird danach bis jetzt.
     func stop(_ reason: RecordEnd, battery: Int? = nil) {
         guard var current = mark, since != nil else { return }
         current.stoppedAt = Date()

@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">Phase Wake 可以讀取你的健康應用程式（例如 Apple Health）儲存的睡眠資料。這些資料會顯示在你的紀錄中，也可與 Phase Wake 叫醒你的那些夜晚進行比較。Phase Wake 只讀取、從不寫入，資料也不會離開你的手機。</string>
     <string name="check_watch_notifications">手錶上的通知</string>
     <string name="check_watch_notifications_problem">請在 Apple Watch 上允許 Phase Wake 傳送時效性通知。否則，在沒有進行測量時，手錶無法透過通知叫醒你。</string>
+    <string name="check_watch_recorder_motion">手錶沒有在睡前開始測量——Phase Wake 無權讀取手錶上的動作資料。請在手錶設定的「隱私權」中允許。鬧鐘仍會叫醒你。</string>
     <string name="check_watch_state_old">手錶狀態已過時 – 請在手錶上短暫開啟 Phase Wake。</string>
     <string name="editor_sleep_hint_apple">從入睡時開始計算——上床時在手錶上點一下「晚安」。在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。如果不點，則按設定的時間。</string>
     <string name="auto_onset_hint_apple">在就寢時間前 1 小時起於 Apple Watch 上開啟 Phase Wake（手錶會提醒你），它就會從那時起記錄你的動作；在喚醒時段開始時，Phase Wake 會算出你何時入睡。</string>

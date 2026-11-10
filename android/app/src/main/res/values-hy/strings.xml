@@ -232,6 +232,8 @@
     </plurals>
     <string name="check_watch_battery">Ժամացույցի մարտկոց</string>
     <string name="check_watch_battery_problem">%1$d %%-ից ցածր – լիցքավորիր ժամացույցդ, որ այն բավականացնի ամբողջ գիշերը և կարողանա քեզ արթնացնել։</string>
+    <string name="check_watch_recorder">Այս գիշերվա չափումը</string>
+    <string name="check_watch_recorder_battery">Ժամացույցդ չսկսեց քնից առաջ չափումը – մարտկոցը շատ թույլ էր։ Զարթուցիչը միևնույն է կարթնացնի քեզ։</string>
     <string name="check_watch_pulse">Զարկերակ ֆոնային ռեժիմում (ժամացույց)</string>
     <string name="check_watch_pulse_problem">Ժամացույցին թույլ չի տրվում գիշերը չափել զարկերակդ – ժամացույցում Phase Wake-ի սենսորների թույլտվությունը դրիր «Միշտ թույլատրել»։</string>
     <string name="export_contents_hint">Ֆայլը յուրաքանչյուր գիշերվա համար պարունակում է շարժումն ու զարկերը յուրաքանչյուր 30 վրկ-ում, ինքնազգացողությունդ և նշումներդ – առանց անունների, ամսաթվերի կամ սարքի ID-ների։</string>
@@ -523,7 +525,7 @@
     <string name="record_start">Գրառել գիշերը</string>
     <string name="record_stop">Դադարեցնել գրառումը</string>
     <string name="record_since">Գրառվում է %1$s-ից</string>
-    <string name="record_hint">Ժամացույցդ ամբողջ գիշեր գրանցում է շարժումն ու զարկերակը։ Այդ գիշերներից Phase Wake-ը ուսուցման փուլում սովորում է քո սեփական արժեքները և զարթուցիչը հարմարեցնում քեզ։</string>
+    <string name="record_hint">Ժամացույցդ ամբողջ գիշեր գրանցում է շարժումն ու զարկերակը։ Այդ գիշերներից Phase Wake-ը ուսուցման փուլում սովորում է քո սեփական արժեքները և զարթուցիչը հարմարեցնում քեզ։ Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։</string>
     <string name="record_end_manual">Դադարեցված է</string>
     <string name="record_end_cap">Ավարտվեց 12 ժ հետո</string>
     <string name="record_end_battery">Ժամացույցի մարտկոցը թույլ է</string>

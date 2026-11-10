@@ -232,6 +232,8 @@
     </plurals>
     <string name="check_watch_battery">Сағат батареясы</string>
     <string name="check_watch_battery_problem">%1$d %%-дан төмен – түнге жетіп, сені оятуы үшін сағатты зарядта.</string>
+    <string name="check_watch_recorder">Бүгінгі түнгі өлшеу</string>
+    <string name="check_watch_recorder_battery">Сағатың ұйқы алдындағы өлшеуді бастамады – батареясы тым аз болды. Оятқыш бәрібір сені оятады.</string>
     <string name="check_watch_pulse">Фондағы пульс (сағат)</string>
     <string name="check_watch_pulse_problem">Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой.</string>
     <string name="export_contents_hint">Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар – аты, күні немесе құрылғы ID-і жоқ.</string>
@@ -523,7 +525,7 @@
     <string name="record_start">Түнді жазу</string>
     <string name="record_stop">Жазуды тоқтату</string>
     <string name="record_since">%1$s бастап жазылып жатыр</string>
-    <string name="record_hint">Сағатың түні бойы қозғалыс пен пульсті жазады. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді.</string>
+    <string name="record_hint">Сағатың түні бойы қозғалыс пен пульсті жазады. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта.</string>
     <string name="record_end_manual">Тоқтатылды</string>
     <string name="record_end_cap">12 сағаттан кейін аяқталды</string>
     <string name="record_end_battery">Сағат батареясы әлсіз</string>

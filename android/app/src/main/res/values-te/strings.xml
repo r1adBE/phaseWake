@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">వాచ్ బ్యాటరీ</string>
     <string name="check_watch_battery_problem">%1$d %% కంటే తక్కువ – రాత్రంతా పని చేసి మిమ్మల్ని లేపగలిగేలా వాచ్ ఛార్జ్ చేయండి.</string>
+    <string name="check_watch_recorder">ఈ రాత్రి కొలత</string>
+    <string name="check_watch_recorder_battery">నీ వాచ్ నిద్రకు ముందు కొలతను ప్రారంభించలేదు – దాని బ్యాటరీ చాలా తక్కువగా ఉంది. అయినా అలారం నిన్ను లేపుతుంది.</string>
     <string name="check_watch_pulse">బ్యాక్‌గ్రౌండ్‌లో నాడి (వాచ్)</string>
     <string name="check_watch_pulse_problem">రాత్రి నీ నాడిని కొలవడానికి వాచ్‌కు అనుమతి లేదు – వాచ్‌లో Phase Wake సెన్సార్ అనుమతిని “ఎల్లప్పుడూ అనుమతించు”కు సెట్ చెయ్యి.</string>
     <string name="export_contents_hint">ఫైల్‌లో ప్రతి రాత్రికి ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్ ఉంటాయి – పేరు, తేదీ లేదా పరికర ID లేకుండా.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">రాత్రిని రికార్డ్ చేయి</string>
     <string name="record_stop">రికార్డింగ్ ఆపు</string>
     <string name="record_since">%1$s నుండి రికార్డ్ అవుతోంది</string>
-    <string name="record_hint">నీ వాచ్ రాత్రంతా కదలిక, నాడిని రికార్డ్ చేస్తుంది. ఈ రాత్రుల నుండి Phase Wake నేర్చుకునే దశలో నీ సొంత విలువలను నేర్చుకుని అలారంను నీకు తగినట్లు మారుస్తుంది.</string>
+    <string name="record_hint">నీ వాచ్ రాత్రంతా కదలిక, నాడిని రికార్డ్ చేస్తుంది. ఈ రాత్రుల నుండి Phase Wake నేర్చుకునే దశలో నీ సొంత విలువలను నేర్చుకుని అలారంను నీకు తగినట్లు మారుస్తుంది. దీనికి కొంత బ్యాటరీ ఖర్చవుతుంది – నిద్రపోయే ముందు వాచ్‌ను ఛార్జ్ చేయి.</string>
     <string name="record_end_manual">ఆపబడింది</string>
     <string name="record_end_cap">12 గంటల తర్వాత ముగిసింది</string>
     <string name="record_end_battery">వాచ్ బ్యాటరీ తక్కువగా ఉంది</string>

@@ -19,6 +19,7 @@
         <item quantity="one">%1$d Min · %2$d übrig</item>
         <item quantity="other">%1$d Min · %2$d übrig</item>
     </plurals>
+    <string name="ring_snooze_button">Schlummern %1$d Min</string>
     <string name="ring_snoozed_until">Schlummern bis %1$s</string>
 
     <string name="home_no_alarm">Kein Wecker gestellt</string>

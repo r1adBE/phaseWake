@@ -19,6 +19,7 @@
         <item quantity="one">%1$d ನಿಮಿ. · %2$d ಬಾಕಿ</item>
         <item quantity="other">%1$d ನಿಮಿ. · %2$d ಬಾಕಿ</item>
     </plurals>
+    <string name="ring_snooze_button">ಸ್ನೂಜ್ %1$d ನಿಮಿ.</string>
     <string name="ring_snoozed_until">%1$s ವರೆಗೆ ಸ್ನೂಜ್</string>
 
     <string name="home_no_alarm">ಯಾವುದೇ ಅಲಾರಾಂ ಇಲ್ಲ</string>

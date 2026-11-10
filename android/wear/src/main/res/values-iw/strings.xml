@@ -20,6 +20,7 @@
         <item quantity="two">%1$d דק׳ · נותרו %2$d</item>
         <item quantity="other">%1$d דק׳ · נותרו %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">נודניק %1$d דק׳</string>
     <string name="ring_snoozed_until">נודניק עד %1$s</string>
 
     <string name="home_no_alarm">אין מעורר מוגדר</string>

@@ -75,14 +75,15 @@ class RecordSync(context: Context) {
     }
 
     /**
-     * Handy: Start ([start] `true`) oder Stopp an die erreichbaren Uhren.
+     * Handy: Start ([start] `true`) oder Stopp an die erreichbaren Uhren. [continuous]: Diagnose am Handy freigeschaltet,
+     * der Start misst dann durchgehend statt in Stichproben (Audit F-01; ältere Uhren lesen den Inhalt nicht).
      * @return ob mindestens eine Uhr erreichbar war (sonst Hinweis am Handy).
      */
-    suspend fun command(start: Boolean): Boolean = try {
+    suspend fun command(start: Boolean, continuous: Boolean = false): Boolean = try {
         val nodes = Wearable.getCapabilityClient(app)
             .getCapability(DataLayer.CAPABILITY_WATCH, CapabilityClient.FILTER_REACHABLE).await().nodes
         val messages = Wearable.getMessageClient(app)
-        for (node in nodes) messages.sendMessage(node.id, commandPath(start), ByteArray(0)).await()
+        for (node in nodes) messages.sendMessage(node.id, commandPath(start), commandBody(start, continuous)).await()
         nodes.isNotEmpty()
     } catch (e: Exception) {
         if (e is kotlinx.coroutines.CancellationException) throw e
@@ -110,6 +111,16 @@ class RecordSync(context: Context) {
 
         /** Nachrichtenpfad zum Befehl. */
         fun commandPath(start: Boolean): String = if (start) DataLayer.PATH_RECORD_START else DataLayer.PATH_RECORD_STOP
+
+        /** Inhalt des Start-Befehls, wenn durchgehend gemessen werden soll. */
+        private const val CONTINUOUS = "continuous"
+
+        /** Inhalt des Befehls: leer, beim Start mit [continuous] «continuous». */
+        fun commandBody(start: Boolean, continuous: Boolean): ByteArray =
+            if (start && continuous) CONTINUOUS.encodeToByteArray() else ByteArray(0)
+
+        /** Uhr: ob der Start-Befehl [body] durchgehend messen lässt; leer (auch ältere Handys) heisst Stichproben. */
+        fun continuousOf(body: ByteArray?): Boolean = body?.decodeToString()?.trim() == CONTINUOUS
 
         /** Befehl zu einem empfangenen Nachrichtenpfad; `null` für andere Pfade. */
         fun commandOf(path: String?): Command? = when (path) {

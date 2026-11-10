@@ -21,6 +21,7 @@
         <item quantity="one">%1$d min · %2$d left</item>
         <item quantity="other">%1$d min · %2$d left</item>
     </plurals>
+    <string name="ring_snooze_button">Snooze %1$d min</string>
     <string name="ring_snoozed_until">Snoozing until %1$s</string>
 
     <string name="home_no_alarm">No alarm set</string>

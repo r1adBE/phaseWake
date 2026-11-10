@@ -159,9 +159,9 @@ class WatchListenerService : WearableListenerService() {
                 return
             }
         }
-        // «Nacht aufzeichnen» vom Handy: Start oder Stopp (ohne Inhalt).
+        // «Nacht aufzeichnen» vom Handy: Start oder Stopp (Inhalt nur beim Start mit Diagnose am Handy).
         RecordSync.commandOf(event.path)?.let {
-            RecordControl.fromPhone(this, it)
+            RecordControl.fromPhone(this, it, RecordSync.continuousOf(event.data))
             return
         }
         // Inhalt nachsichtig lesen: «snooze» und ältere Handy-Versionen schicken keine Kennung, dann gilt der Befehl der laufenden Nacht.

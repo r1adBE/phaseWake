@@ -30,6 +30,7 @@
     <string name="health_rationale_apple">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Apple Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
     <string name="check_watch_notifications">Kennisgewings op die horlosie</string>
     <string name="check_watch_notifications_problem">Laat tydsensitiewe kennisgewings vir Phase Wake op jou Apple Watch toe. Anders kan dit jou nie per kennisgewing wek as geen meting loop nie.</string>
+    <string name="check_watch_recorder_motion">Jou horlosie het nie die meting voor die slaap begin nie – Phase Wake mag nie bewegingsdata daarop lees nie. Laat dit toe in die horlosie se instellings onder Privaatheid. Jy sal steeds gewek word.</string>
     <string name="check_watch_state_old">Status van die horlosie is verouderd – maak Phase Wake kortliks op die horlosie oop.</string>
     <string name="editor_sleep_hint_apple">Tel vanaf wanneer jy aan die slaap raak – tik “Goeienag” op jou horlosie wanneer jy gaan slaap. Op die Apple Watch skat Phase Wake wanneer jy aan die slaap raak uit jou aangeleerde insluimertyd. Sonder die tik geld die ingestelde tyd.</string>
     <string name="auto_onset_hint_apple">Maak Phase Wake van 1 uur voor slaaptyd op jou Apple Watch oop (dit herinner jou), dan teken dit van daar af jou beweging aan; aan die begin van jou wekvenster bepaal Phase Wake wanneer jy aan die slaap geraak het.</string>

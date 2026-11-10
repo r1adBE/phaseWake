@@ -31,6 +31,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -131,7 +132,7 @@ internal fun countedNights(data: AppData, since: Instant): Int =
     Learning.counted(data.recordings.orEmpty().map { it.toLearnNight() }, since, ZoneId.systemDefault()).size
 
 /**
- * Start ([start]) oder Stopp von «Nacht aufzeichnen» an die Uhr. Hinweis, wenn sie nicht erreichbar ist oder ihr Akku
+ * Start ([start]) oder Stopp von «Nacht aufzeichnen» an die Uhr (mit freigeschalteter Diagnose durchgehend gemessen). Hinweis, wenn sie nicht erreichbar ist oder ihr Akku
  * unter [NightRecording.MIN_BATTERY] liegt (dann startet sie nicht). Den neuen Stand meldet die Uhr selbst.
  */
 private fun sendRecord(app: PhaseWakeApp, start: Boolean) {
@@ -139,7 +140,8 @@ private fun sendRecord(app: PhaseWakeApp, start: Boolean) {
         val battery = if (start) app.sync.watchBattery() else null
         val text = when {
             battery != null && battery < NightRecording.MIN_BATTERY -> R.string.record_end_battery
-            !app.recordSync.command(start) -> R.string.check_watch_problem
+            // Diagnose am Handy freigeschaltet: Die Uhr misst durchgehend statt in Stichproben (Audit F-01).
+            !app.recordSync.command(start, continuous = start && app.settings.diagnostics.first()) -> R.string.check_watch_problem
             else -> null
         }
         app.diag.log(DiagKind.SYNC, "record ${if (start) "start" else "stop"} ${if (text == null) "sent" else "not sent"}")

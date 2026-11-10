@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">Bateri jam tangan</string>
     <string name="check_watch_battery_problem">Kurang daripada %1$d %% – cas jam tangan awak supaya tahan sepanjang malam dan boleh mengejutkan awak.</string>
+    <string name="check_watch_recorder">Pengukuran malam ini</string>
+    <string name="check_watch_recorder_battery">Jam awak tidak memulakan pengukuran sebelum tidur – baterinya terlalu lemah. Penggera tetap akan mengejutkan awak.</string>
     <string name="check_watch_pulse">Nadi di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”.</string>
     <string name="export_contents_hint">Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
@@ -521,7 +523,7 @@
     <string name="record_start">Rakam malam</string>
     <string name="record_stop">Hentikan rakaman</string>
     <string name="record_since">Merakam sejak %1$s</string>
-    <string name="record_hint">Jam tangan anda merakam pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda.</string>
+    <string name="record_hint">Jam tangan anda merakam pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda. Ini menggunakan sedikit bateri – cas jam sebelum tidur.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Tamat selepas 12 jam</string>
     <string name="record_end_battery">Bateri jam lemah</string>

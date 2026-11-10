@@ -23,7 +23,7 @@ import WatchKit
 /// hat Vorrang).
 ///
 /// «Nacht aufzeichnen» (von Hand, auf der Uhr oder vom iPhone) nutzt denselben Weg (`LearnRecorder+Manual`): Rekorder
-/// bis 12 Std., Ende von Hand, nach 12 Std. oder bei tiefem Akku; ausgewertet und ans iPhone geschickt wie eine Nacht der
+/// bis 12 Std., Ende beim Wecken, von Hand, nach 12 Std. oder bei tiefem Akku; ausgewertet und ans iPhone geschickt wie eine Nacht der
 /// Lernphase. Läuft sie, startet die Lernphase keine eigene Aufzeichnung (sie zählt dann wie auf Android).
 ///
 /// Stand der Lernphase vom iPhone (``LearningSnapshot``) und die laufende Aufzeichnung liegen im von der Sicherung
@@ -134,9 +134,14 @@ final class LearnRecorder {
 
     /// Die Nacht `alarmId` mit Zielzeit `target` hat geweckt (Klingeln beendet): Die Auswertung endet jetzt, höchstens
     /// beim Ende des Rekorders. Hat «Gute Nacht» die Zielzeit vorverlegt, nachdem die Aufzeichnung begann, gilt dieselbe
-    /// Nacht (Zielzeiten höchstens 16 Std. auseinander).
+    /// Nacht (Zielzeiten höchstens 16 Std. auseinander). «Nacht aufzeichnen» endet spätestens jetzt (Grund ``RecordEnd/wake``,
+    /// wie die Galaxy Watch, Audit F-01).
     func noteWake(alarmId: String, target: Date) {
-        guard var current = mark, current.manual != true, current.alarmId == alarmId,
+        if mark?.manual == true {
+            stop(.wake)
+            return
+        }
+        guard var current = mark, current.alarmId == alarmId,
               abs(current.target.timeIntervalSince(target)) <= GoodNightEstimate.maxAhead, current.wokeAt == nil else { return }
         current.wokeAt = Date()
         save(current)
@@ -200,6 +205,7 @@ final class LearnRecorder {
             nextTry = until
         case .skip(let reason):
             logSkip(reason, target: plan.target, battery: reason.hasPrefix("battery"))
+            if reason.hasPrefix("battery") { noteRecorderSkip(.battery, target: plan.target) }
         case .start(let from, let until, let duration):
             guard CMSensorRecorder.isAccelerometerRecordingAvailable() else {
                 logSkip("recorder unavailable", target: plan.target)
@@ -210,6 +216,7 @@ final class LearnRecorder {
             if status == .denied || status == .restricted
                 || (status == .notDetermined && WKApplication.shared().applicationState != .active) {
                 logSkip("motion not allowed", target: plan.target)
+                noteRecorderSkip(.motion, target: plan.target)
                 return
             }
             // Eine frühere Nacht ist noch nicht fertig ausgewertet: mit dem bisher Ausgewerteten ans iPhone.

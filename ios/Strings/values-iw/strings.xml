@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Apple Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
     <string name="check_watch_notifications">התראות בשעון</string>
     <string name="check_watch_notifications_problem">אפשרו התראות רגישות לזמן עבור Phase Wake ב-Apple Watch שלכם. אחרת הוא לא יוכל להעיר אתכם בהתראה כשאין מדידה פעילה.</string>
+    <string name="check_watch_recorder_motion">השעון לא התחיל את המדידה לפני השינה – ל-Phase Wake אין הרשאה לקרוא בו נתוני תנועה. אפשר זאת בהגדרות השעון, תחת פרטיות. ההשכמה תעיר אותך בכל זאת.</string>
     <string name="check_watch_state_old">מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון.</string>
     <string name="editor_sleep_hint_apple">נספר מרגע ההירדמות – הקישו על ״לילה טוב״ בשעון כשאתם הולכים לישון. ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד. בלי הקשה חלה השעה שהוגדרה.</string>
     <string name="auto_onset_hint_apple">פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז הוא מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם.</string>

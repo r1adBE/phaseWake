@@ -67,12 +67,18 @@ object RecordControl {
     /** Stopp auf der Uhr (Knopf). */
     fun stopFromWatch(context: Context) = stop(context, RecordEnd.WATCH)
 
-    /** Befehl vom Handy ([RecordSync.Command]), aus dem [com.phasewake.app.wear.sync.WatchListenerService]. */
-    fun fromPhone(context: Context, command: RecordSync.Command) {
+    /**
+     * Befehl vom Handy ([RecordSync.Command]), aus dem [com.phasewake.app.wear.sync.WatchListenerService]; [continuous]:
+     * Diagnose am Handy freigeschaltet ([RecordSync.continuousOf]), dann misst ein Start durchgehend.
+     */
+    fun fromPhone(context: Context, command: RecordSync.Command, continuous: Boolean = false) {
         if (!DirectBoot.isUnlocked(context)) return
         when (command) {
             // Aus dem Hintergrund darf der Messdienst nicht in den Vordergrund; ein exakter Alarm darf es (gleich jetzt).
-            RecordSync.Command.START -> arm(context, Instant.now().plusSeconds(1), pending(context, ACTION_PHONE_START, REQUEST_PHONE_START))
+            RecordSync.Command.START -> {
+                val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_PHONE_START).putExtra(RecordService.EXTRA_CONTINUOUS, continuous)
+                arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_PHONE_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+            }
             RecordSync.Command.STOP -> stop(context, RecordEnd.PHONE)
         }
     }
@@ -112,9 +118,10 @@ object RecordControl {
     internal fun endsAtTarget(now: Instant, until: Instant, nightRunning: Boolean): Boolean = !now.isBefore(until) && !nightRunning
 
     /**
-     * Geweckt (Klingeln beendet, aus dem Weckdienst): Eine Aufzeichnung der Lernphase endet jetzt ([RecordEnd.WAKE]); eine
-     * von Hand begonnene läuft weiter. Läuft der Dienst nicht (Prozessende), wird die gespeicherte abgeschlossen. Ebenso,
-     * wenn die Lernphase am Handy ausgeschaltet wurde ([onLearningChanged], dann [reason] = [RecordEnd.PHONE]).
+     * Geweckt (Klingeln beendet, aus dem Weckdienst): Die laufende Aufzeichnung endet jetzt ([RecordEnd.WAKE]), auch eine
+     * von Hand begonnene (spätestens beim Wecken, Audit F-01). Wurde die Lernphase am Handy ausgeschaltet
+     * ([onLearningChanged], [reason] = [RecordEnd.PHONE]), endet nur die der Lernphase. Läuft der Dienst nicht
+     * (Prozessende), wird die gespeicherte abgeschlossen.
      */
     fun endLearning(context: Context, reason: RecordEnd = RecordEnd.WAKE) {
         if (RecordService.running) {
@@ -125,19 +132,21 @@ object RecordControl {
         }
         val app = context.wearApp
         app.appScope.launch {
-            val mark = app.learnMark.get() ?: return@launch
-            if (app.recordings.active()?.start == mark.start && finishOrphan(app, reason)) {
+            val mark = app.learnMark.get()
+            val saved = app.recordings.active()
+            val ends = saved != null && (reason == RecordEnd.WAKE || saved.start == mark?.start)
+            if (ends && finishOrphan(app, reason)) {
                 cancelCheck(app)
                 app.diag.log(DiagKind.MEASURE_END, "record end ${RecordService.reasonText(reason, null)} (not running)")
                 app.recordSync.publishStatus(null)
             }
-            app.learnMark.clear()
+            if (mark != null) app.learnMark.clear()
         }
     }
 
     /**
      * Neuer Stand der Lernphase vom Handy ([learning]): Läuft sie nicht mehr (ausgeschaltet, Audit F-02, oder fertig),
-     * endet eine laufende Aufzeichnung der Lernphase jetzt; eine von Hand begonnene läuft weiter.
+     * endet eine laufende Aufzeichnung der Lernphase jetzt; eine von Hand begonnene läuft weiter (bis zum Wecken).
      */
     fun onLearningChanged(context: Context, learning: LearningSnapshot) {
         if (!learning.active) endLearning(context, RecordEnd.PHONE)
@@ -280,14 +289,16 @@ class RecordReceiver : BroadcastReceiver() {
         if (!DirectBoot.isUnlocked(context)) return
         when (intent.action) {
             RecordControl.ACTION_CHECK -> if (RecordService.running) RecordControl.armCheck(context) else RecordControl.resume(context)
-            RecordControl.ACTION_PHONE_START -> startFromPhone(context)
+            RecordControl.ACTION_PHONE_START -> startFromPhone(context, intent)
             RecordControl.ACTION_LEARN_START -> RecordControl.startService(context, RecordService.ACTION_START_LEARN) {
                 it.putExtra(RecordService.EXTRA_UNTIL, intent.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
             }
         }
     }
 
-    private fun startFromPhone(context: Context) {
-        RecordControl.startService(context, RecordService.ACTION_START_PHONE)
+    private fun startFromPhone(context: Context, intent: Intent) {
+        RecordControl.startService(context, RecordService.ACTION_START_PHONE) {
+            it.putExtra(RecordService.EXTRA_CONTINUOUS, intent.getBooleanExtra(RecordService.EXTRA_CONTINUOUS, false))
+        }
     }
 }

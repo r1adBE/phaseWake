@@ -32,6 +32,7 @@
     <string name="health_rationale_apple">Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Apple Health) salvestab. Neid näidatakse sinu ajaloos, ka võrdluseks öödega, mil Phase Wake sind äratas. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
     <string name="check_watch_notifications">Märguanded kellas</string>
     <string name="check_watch_notifications_problem">Luba Phase Wake’ile oma Apple Watchis ajatundlikud märguanded. Muidu ei saa kell sind märguandega äratada, kui mõõtmine ei käi.</string>
+    <string name="check_watch_recorder_motion">Kell ei alustanud enne magamaminekut mõõtmist – Phase Wake ei tohi kellas liikumisandmeid lugeda. Luba see kella seadetes jaotises Privaatsus. Äratus äratab sind ikkagi.</string>
     <string name="check_watch_state_old">Kella olek on aegunud – ava Phase Wake korraks kellas.</string>
     <string name="editor_sleep_hint_apple">Loetakse uinumisest – puuduta magama minnes kellal „Head ööd“. Apple Watchil hindab Phase Wake sinu uinumise aega õpitud uinumisaja põhjal. Puudutuseta kehtib määratud aeg.</string>
     <string name="auto_onset_hint_apple">Ava Phase Wake Apple Watchil alates 1 tund enne magamaminekut (kell tuletab meelde) ja sellest hetkest salvestab see su liikumise; äratusakna alguses arvutab Phase Wake, millal sa magama jäid.</string>

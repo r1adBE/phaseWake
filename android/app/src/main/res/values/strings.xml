@@ -244,6 +244,8 @@
     </plurals>
     <string name="check_watch_battery">Watch battery</string>
     <string name="check_watch_battery_problem">Below %1$d %% – charge your watch so it lasts the night and can wake you.</string>
+    <string name="check_watch_recorder">Tonight’s measurement</string>
+    <string name="check_watch_recorder_battery">Your watch didn’t start the measurement before sleep – its battery was too low. You’ll still be woken.</string>
     <string name="check_watch_pulse">Background pulse (watch)</string>
     <string name="check_watch_pulse_problem">The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”.</string>
     <string name="export_contents_hint">The file contains motion and heart rate per 30 s, how you felt and your notes for each night – without names, dates or device IDs.</string>
@@ -540,7 +542,7 @@
     <string name="record_start">Record night</string>
     <string name="record_stop">Stop recording</string>
     <string name="record_since">Recording since %1$s</string>
-    <string name="record_hint">Your watch records motion and pulse all night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you.</string>
+    <string name="record_hint">Your watch records motion and pulse all night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you. This uses some battery – charge the watch before you go to sleep.</string>
     <string name="record_end_manual">Stopped</string>
     <string name="record_end_cap">Ended after 12 h</string>
     <string name="record_end_battery">Watch battery low</string>

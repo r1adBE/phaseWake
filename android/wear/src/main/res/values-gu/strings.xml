@@ -20,6 +20,7 @@
         <item quantity="one">%1$d મિ. · બાકી %2$d</item>
         <item quantity="other">%1$d મિ. · બાકી %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">સ્નૂઝ %1$d મિ.</string>
     <string name="ring_snoozed_until">%1$s સુધી સ્નૂઝ</string>
 
     <string name="home_no_alarm">કોઈ એલાર્મ સેટ નથી</string>

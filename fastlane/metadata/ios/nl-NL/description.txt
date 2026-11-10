@@ -2,7 +2,7 @@ Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je
 
 Zo werkt het
 • Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.
-• Het horloge meet tijdens het wekvenster – spaart de batterij; in de optionele leerfase ook gedurende de nacht.
+• Het horloge meet tijdens het wekvenster en vanaf ongeveer 1 uur voor bedtijd om te herkennen wanneer je in slaap valt (open daarvoor ’s avonds de app op het horloge) – spaart de batterij; in de optionele leerfase ook gedurende de nacht.
 • Optioneel: leerfase – je horloge meet 7 nachten lang gedurende de nacht beweging en hartslag (kost wat batterij) en stemt de wekker op jou af.
 • Trilling op je pols – desgewenst gaat je iPhone mee af, en als reservewekker voor het geval er iets misgaat.
 • Vasthouden om te stoppen, tot 3× snoozen.

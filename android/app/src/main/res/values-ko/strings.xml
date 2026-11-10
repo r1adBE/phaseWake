@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">워치 배터리</string>
     <string name="check_watch_battery_problem">%1$d %% 미만 – 밤새 버티고 깨워 줄 수 있도록 워치를 충전해 주세요.</string>
+    <string name="check_watch_recorder">오늘 밤 측정</string>
+    <string name="check_watch_recorder_battery">시계가 잠들기 전 측정을 시작하지 않았어요 – 배터리가 너무 부족했어요. 알람은 그래도 울려요.</string>
     <string name="check_watch_pulse">백그라운드 심박(워치)</string>
     <string name="check_watch_pulse_problem">워치가 밤에 심박을 측정할 수 없어요 – 워치에서 Phase Wake의 센서 권한을 ‘항상 허용’으로 설정하세요.</string>
     <string name="export_contents_hint">파일에는 밤마다 30초 단위의 움직임과 심박수, 컨디션, 메모가 들어 있습니다. 이름, 날짜, 기기 ID는 없습니다.</string>
@@ -521,7 +523,7 @@
     <string name="record_start">밤 기록하기</string>
     <string name="record_stop">기록 중지</string>
     <string name="record_since">%1$s부터 기록 중</string>
-    <string name="record_hint">시계가 밤새 움직임과 맥박을 기록해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요.</string>
+    <string name="record_hint">시계가 밤새 움직임과 맥박을 기록해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요. 배터리를 조금 써요 – 자기 전에 시계를 충전하세요.</string>
     <string name="record_end_manual">중지됨</string>
     <string name="record_end_cap">12시간 후 종료됨</string>
     <string name="record_end_battery">워치 배터리 부족</string>

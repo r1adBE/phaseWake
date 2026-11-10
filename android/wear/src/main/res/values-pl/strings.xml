@@ -21,6 +21,7 @@
         <item quantity="many">%1$d min · zostało: %2$d</item>
         <item quantity="other">%1$d min · zostało: %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Drzemka %1$d min</string>
     <string name="ring_snoozed_until">Drzemka do %1$s</string>
 
     <string name="home_no_alarm">Brak budzika</string>

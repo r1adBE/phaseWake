@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">የሰዓት ባትሪ</string>
     <string name="check_watch_battery_problem">ከ%1$d %% በታች – ሌሊቱን እንዲቆይና እንዲቀሰቅስዎ ሰዓትዎን ኃይል ይሙሉ።</string>
+    <string name="check_watch_recorder">የዛሬ ሌሊት ልኬት</string>
+    <string name="check_watch_recorder_battery">ሰዓትህ ከእንቅልፍ በፊት ያለውን ልኬት አልጀመረም – ባትሪው በጣም ዝቅተኛ ነበር። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
     <string name="check_watch_pulse">የዳራ ምት (ሰዓት)</string>
     <string name="check_watch_pulse_problem">ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።</string>
     <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
@@ -538,7 +540,7 @@
     <string name="record_start">ሌሊቱን ቅረጽ</string>
     <string name="record_stop">ቀረጻውን አቁም</string>
     <string name="record_since">ከ%1$s ጀምሮ እየተቀረጸ ነው</string>
-    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይቀዳል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል።</string>
+    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይቀዳል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
     <string name="record_end_manual">ቆሟል</string>
     <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
     <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>

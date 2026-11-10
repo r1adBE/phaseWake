@@ -9,6 +9,7 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.SleepGoal
 
 /**
@@ -39,16 +40,18 @@ abstract class WearPackets {
 
     /**
      * Status-Paket der Uhr mit den Feldern je Weckerzeile und dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser
-     * Version; [battery] und [pulse] fehlen, wenn unbekannt.
+     * Version; [battery] und [pulse] fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung.
      */
-    fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
-        dataMap.putBoolean(DataLayer.KEY_READY, ready)
-        if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
-        pulse?.let { WatchPulse.put(dataMap, it) }
-        dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
-        dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
-        dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
-    }.asPutDataRequest().setUrgent()
+    fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null): PutDataRequest =
+        PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
+            dataMap.putBoolean(DataLayer.KEY_READY, ready)
+            if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putString(DataLayer.KEY_RECORDER_SKIP, recorderSkip?.code.orEmpty())
+            pulse?.let { WatchPulse.put(dataMap, it) }
+            dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
+            dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
+            dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
+        }.asPutDataRequest().setUrgent()
 
     /** Paket «Probewecker oder Powernap abgebrochen», siehe [DataLayer.PATH_TRANSIENT_CANCELLED]. */
     fun transientCancelRequest(alarmId: String, nowMs: Long): PutDataRequest =
@@ -98,6 +101,14 @@ abstract class WearPackets {
     fun readBattery(map: DataMap, nowMs: Long, maxAgeMs: Long): Int? =
         map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
             ?.getInt(DataLayer.KEY_BATTERY)
+
+    /**
+     * Grund, warum die Messung vor dem Schlafen nicht startete ([RecorderSkip.Reason]), aus dem Status-Paket; `null` ohne
+     * Meldung (auch ältere Uhr), bei unbekanntem Grund oder wenn das Paket älter als [maxAgeMs] ist.
+     */
+    fun readRecorderSkip(map: DataMap, nowMs: Long, maxAgeMs: Long): RecorderSkip.Reason? =
+        map.getString(DataLayer.KEY_RECORDER_SKIP)?.takeIf { nowMs - map.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
+            ?.let { code -> RecorderSkip.Reason.entries.firstOrNull { it.code == code } }
 
     /** Felder je Weckerzeile aus dem Status-Paket; ohne Angabe (ältere Uhr) 0. */
     fun readAlarmFields(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_ALARM_FIELDS)) map.getInt(DataLayer.KEY_ALARM_FIELDS) else 0

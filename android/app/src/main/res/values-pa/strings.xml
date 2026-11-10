@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ</string>
     <string name="check_watch_battery_problem">%1$d %% ਤੋਂ ਘੱਟ – ਘੜੀ ਚਾਰਜ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਸਾਰੀ ਰਾਤ ਚੱਲੇ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾ ਸਕੇ।</string>
+    <string name="check_watch_recorder">ਅੱਜ ਰਾਤ ਦਾ ਮਾਪ</string>
+    <string name="check_watch_recorder_battery">ਤੇਰੀ ਘੜੀ ਨੇ ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਦਾ ਮਾਪ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ – ਇਸਦੀ ਬੈਟਰੀ ਬਹੁਤ ਘੱਟ ਸੀ। ਅਲਾਰਮ ਫਿਰ ਵੀ ਤੈਨੂੰ ਜਗਾਏਗਾ।</string>
     <string name="check_watch_pulse">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਨਬਜ਼ (ਘੜੀ)</string>
     <string name="check_watch_pulse_problem">ਘੜੀ ਨੂੰ ਰਾਤ ਨੂੰ ਤੇਰੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ – ਘੜੀ ’ਤੇ Phase Wake ਦੀ ਸੈਂਸਰ ਇਜਾਜ਼ਤ “ਹਮੇਸ਼ਾਂ ਇਜਾਜ਼ਤ ਦਿਓ” ’ਤੇ ਸੈੱਟ ਕਰ।</string>
     <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
@@ -538,7 +540,7 @@
     <string name="record_start">ਰਾਤ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="record_stop">ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ</string>
     <string name="record_since">%1$s ਤੋਂ ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ</string>
-    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ।</string>
+    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।</string>
     <string name="record_end_manual">ਰੋਕਿਆ ਗਿਆ</string>
     <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
     <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>

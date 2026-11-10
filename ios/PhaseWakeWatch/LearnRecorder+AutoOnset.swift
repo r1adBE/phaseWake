@@ -32,6 +32,14 @@ extension LearnRecorder {
         plan()
     }
 
+    /// Nacht-Check am iPhone (Audit F-06, wie die Galaxy Watch): Einschlaf-Messung oder Lernphase wollten den Rekorder
+    /// für die Nacht mit Zielzeit `target`, er startet aber nicht (`reason`). Nur, wenn er nicht schon läuft; startet er
+    /// später doch, hebt `ensureRecorder` die Meldung auf.
+    func noteRecorderSkip(_ reason: RecorderSkip.Reason, target: Date) {
+        guard !recorderRunning else { return }
+        WatchConnectivityBridge.shared.publish(recorderSkip: RecorderSkip(target: target, reason: reason))
+    }
+
     /// Startet den Rekorder für die nächste Nacht, falls fällig; sonst merkt es den frühesten Start
     /// (`autoNextTry`, Hintergrund-Aktualisierung). Diagnose einmal je Nacht.
     func startAutoOnsetIfDue() {
@@ -61,10 +69,12 @@ extension LearnRecorder {
             autoDecided = plan.target
             autoSkipped = true
             DiagStore.shared.log(reason.hasPrefix("battery") ? .battery : .measureStart, "auto onset not started: \(reason)")
+            if reason.hasPrefix("battery") { noteRecorderSkip(.battery, target: plan.target) }
         case .start(let until):
             guard Self.recorderAllowed else {
                 if autoDecided == nil { DiagStore.shared.log(.measureStart, "auto onset not started: motion not allowed") }
                 autoDecided = plan.target
+                noteRecorderSkip(.motion, target: plan.target)
                 return
             }
             let running = recorderSpan.map { $0.until >= until && $0.until > Date() } ?? false

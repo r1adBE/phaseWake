@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">O Phase Wake pode ler os dados de sono que a tua app de saúde (por exemplo, o Apple Health) guarda. Aparecem no teu histórico, também para comparar com as noites em que o Phase Wake te acordou. O Phase Wake só lê, nunca escreve, e nada sai do teu telemóvel.</string>
     <string name="check_watch_notifications">Notificações no relógio</string>
     <string name="check_watch_notifications_problem">Permite as notificações urgentes do Phase Wake no teu Apple Watch. Caso contrário, não te consegue acordar com uma notificação quando não está nenhuma medição em curso.</string>
+    <string name="check_watch_recorder_motion">O teu relógio não iniciou a medição antes de dormir – o Phase Wake não tem permissão para ler dados de movimento nele. Permite-o nas definições do relógio, em Privacidade. O alarme vai acordar-te na mesma.</string>
     <string name="check_watch_state_old">O estado do relógio está desatualizado – abre o Phase Wake por instantes no relógio.</string>
     <string name="editor_sleep_hint_apple">Conta a partir de quando adormeces – toca em «Boa noite» no relógio ao deitares-te. No Apple Watch, o Phase Wake estima quando adormeces a partir do tempo até adormecer que aprendeu. Sem o toque, vale a hora definida.</string>
     <string name="auto_onset_hint_apple">Abre o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele lembra-te) e, a partir daí, grava o teu movimento; no início da janela de despertar, o Phase Wake calcula quando adormeceste.</string>

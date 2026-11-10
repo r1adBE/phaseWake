@@ -254,6 +254,11 @@ class AlarmScheduler(
     /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */
     suspend fun publishStatus() = status.publish()
 
+    /** Messung vor dem Schlafen nicht gestartet ([skip]) bzw. doch gestartet ([target]), siehe [WatchStatus.noteSkip]. */
+    suspend fun noteRecorderSkip(skip: com.phasewake.app.core.RecorderSkip) = status.noteSkip(skip)
+    suspend fun clearRecorderSkip(target: Instant) = status.clearSkip(target)
+    internal suspend fun recorderSkip() = status.skip()
+
     /**
      * Merkt sofort, dass die Nacht bis [target] erledigt ist; [reschedule] beginnt sie nicht noch
      * einmal. Gilt ab dem Aufruf (auch für ein gleichzeitiges Neuplanen), [saveDone] macht es dauerhaft.

@@ -2,7 +2,7 @@ Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sove
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
-• Klokka måler i vekkevinduet – skåner batteriet; i den valgfrie læringsfasen også gjennom natten.
+• Klokka måler i vekkevinduet og fra omtrent 1 time før leggetid for å se når du sovner (åpne appen på klokka om kvelden) – skåner batteriet; i den valgfrie læringsfasen også gjennom natten.
 • Valgfritt: læringsfase – i 7 netter måler klokken din bevegelse og puls gjennom natten (bruker litt batteri) og tilpasser alarmen til deg.
 • Vibrasjon på håndleddet – iPhone ringer med om du vil, og som reservealarm hvis noe går galt.
 • Hold for å stoppe, slumre opptil 3 ganger.

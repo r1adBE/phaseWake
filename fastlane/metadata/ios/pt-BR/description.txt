@@ -2,7 +2,7 @@ O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono f
 
 Como funciona
 • Escolha o horário e a janela de despertar (até 30 min), coloque o relógio e durma.
-• O relógio mede durante a janela de despertar – poupa a bateria; na fase de aprendizado opcional, também ao longo da noite.
+• O relógio mede durante a janela de despertar e desde cerca de 1 hora antes da hora de dormir para saber quando você adormece (abra o app do relógio à noite) – poupa a bateria; na fase de aprendizado opcional, também ao longo da noite.
 • Opcional: fase de aprendizado – durante 7 noites seu relógio mede movimento e pulso ao longo da noite (gasta um pouco de bateria) e adapta o alarme a você.
 • Vibração no pulso – se quiser, o iPhone toca junto, e como alarme reserva caso algo dê errado.
 • Segure para parar; soneca até 3 vezes.

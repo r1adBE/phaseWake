@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -32,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -184,6 +184,9 @@ private const val EMERGENCY_HOLD_MILLIS = 5000
 /** Darunter gilt das Display als klein (kleine runde Uhren haben etwa 192 dp). */
 private const val COMPACT_HEIGHT_DP = 210
 
+/** Mindesthöhe des Schlummer-Knopfs (Wear-Richtlinie: Tippziel 48 dp). */
+private val SNOOZE_MIN_HEIGHT = 48.dp
+
 /** [light]: Fortschritt des Sonnenaufgangs (0–1) als Hintergrund, `null` = Nachthimmel. */
 @Composable
 internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
@@ -290,14 +293,15 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
     )
     if (ui.snoozesLeft > 0) {
         Spacer(Modifier.height(if (compact) 4.dp else 8.dp))
+        // «Schlummern 5 Min» (Audit F-10); auch auf kleinen Uhren mindestens 48 dp hoch (Ziel für den Finger).
         Button(
             onClick = onSnooze,
-            modifier = if (compact) Modifier.height(36.dp) else Modifier,
+            modifier = if (compact) Modifier.height(SNOOZE_MIN_HEIGHT) else Modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
             colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon),
             contentPadding = if (compact) PaddingValues(horizontal = 12.dp, vertical = 2.dp) else ButtonDefaults.ContentPadding,
             label = {
                 Text(
-                    LocalResources.current.getQuantityString(R.plurals.ring_snooze, ui.snoozesLeft, Snooze.MINUTES, ui.snoozesLeft),
+                    stringResource(R.string.ring_snooze_button, Snooze.MINUTES),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )

@@ -247,6 +247,8 @@
     </plurals>
     <string name="check_watch_battery">Pulksteņa akumulators</string>
     <string name="check_watch_battery_problem">Zem %1$d %% – uzlādē pulksteni, lai tas izturētu visu nakti un varētu tevi pamodināt.</string>
+    <string name="check_watch_recorder">Šīs nakts mērījums</string>
+    <string name="check_watch_recorder_battery">Pulkstenis nesāka mērījumu pirms miega – akumulators bija pārāk tukšs. Modinātājs tevi tik un tā pamodinās.</string>
     <string name="check_watch_pulse">Pulss fonā (pulkstenis)</string>
     <string name="check_watch_pulse_problem">Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”.</string>
     <string name="export_contents_hint">Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes – bez vārdiem, datumiem un ierīču ID.</string>
@@ -552,7 +554,7 @@
     <string name="record_start">Ierakstīt nakti</string>
     <string name="record_stop">Apturēt ierakstu</string>
     <string name="record_since">Ieraksta kopš %1$s</string>
-    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev.</string>
+    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas.</string>
     <string name="record_end_manual">Apturēts</string>
     <string name="record_end_cap">Beidzās pēc 12 h</string>
     <string name="record_end_battery">Pulksteņa akumulators izlādējas</string>

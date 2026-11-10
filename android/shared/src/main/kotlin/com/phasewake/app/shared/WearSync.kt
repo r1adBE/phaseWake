@@ -6,6 +6,7 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.RecorderSkip
 import com.google.android.gms.common.api.ApiException
 import android.net.Uri
 import com.google.android.gms.wearable.CapabilityClient
@@ -129,13 +130,14 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     }
 
     /**
-     * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt), mit Pulsrechten.
+     * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt), mit Pulsrechten
+     * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip], Audit F-06).
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
-    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null): Boolean {
+    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null): Boolean {
         var stored = false
         guarded("Status senden") {
-            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse)).await()
+            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip)).await()
             stored = true
         }
         return stored
@@ -168,6 +170,13 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     /** Handy: zuletzt gemeldeter Akkustand der Uhr in Prozent; `null`, wenn unbekannt oder älter als [maxAgeMs]. */
     suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? =
         readStatus { readBattery(it, System.currentTimeMillis(), maxAgeMs) }
+
+    /**
+     * Handy: Grund, warum die Messung vor dem Schlafen dieser Nacht nicht startete ([readRecorderSkip]); `null` ohne
+     * Meldung oder wenn die Uhr seit über 16 Std. nichts gemeldet hat (die Nacht ist dann sicher vorbei).
+     */
+    suspend fun watchRecorderSkip(maxAgeMs: Long = 16 * 3_600_000L): RecorderSkip.Reason? =
+        readStatus { readRecorderSkip(it, System.currentTimeMillis(), maxAgeMs) }
 
     /** Handy: zuletzt gemeldeter Zeitpunkt des Uhr-Status (ms), also «zuletzt gesehen»; `null`, wenn unbekannt. */
     suspend fun watchSeenAt(): Long? = readStatus { readSeenAt(it) }

@@ -245,6 +245,8 @@
     </plurals>
     <string name="check_watch_battery">סוללת השעון</string>
     <string name="check_watch_battery_problem">מתחת ל-%1$d %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם.</string>
+    <string name="check_watch_recorder">המדידה הלילה</string>
+    <string name="check_watch_recorder_battery">השעון לא התחיל את המדידה לפני השינה – הסוללה שלו הייתה חלשה מדי. ההשכמה תעיר אותך בכל זאת.</string>
     <string name="check_watch_pulse">דופק ברקע (שעון)</string>
     <string name="check_watch_pulse_problem">לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”.</string>
     <string name="export_contents_hint">הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם – ללא שמות, תאריכים או מזהי מכשירים.</string>
@@ -549,7 +551,7 @@
     <string name="record_start">הקלטת הלילה</string>
     <string name="record_stop">עצירת ההקלטה</string>
     <string name="record_since">מקליט מאז %1$s</string>
-    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה.</string>
+    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
     <string name="record_end_manual">נעצרה</string>
     <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
     <string name="record_end_battery">הסוללה של השעון חלשה</string>

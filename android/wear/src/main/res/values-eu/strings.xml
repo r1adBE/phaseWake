@@ -20,6 +20,7 @@
         <item quantity="one">%1$d min · %2$d falta</item>
         <item quantity="other">%1$d min · %2$d falta</item>
     </plurals>
+    <string name="ring_snooze_button">Atzeratu %1$d min</string>
     <string name="ring_snoozed_until">Atzeratuta %1$s arte</string>
 
     <string name="home_no_alarm">Ez dago alarmarik</string>

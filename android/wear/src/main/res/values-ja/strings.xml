@@ -18,6 +18,7 @@
     <plurals name="ring_snooze">
         <item quantity="other">%1$d分 · 残り%2$d回</item>
     </plurals>
+    <string name="ring_snooze_button">スヌーズ %1$d分</string>
     <string name="ring_snoozed_until">%1$sまでスヌーズ</string>
 
     <string name="home_no_alarm">アラーム未設定</string>

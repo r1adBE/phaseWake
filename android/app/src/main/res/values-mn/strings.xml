@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Цагны батарей</string>
     <string name="check_watch_battery_problem">%1$d %%-иас бага – шөнөжин хүрч, чамайг сэрээж чадахын тулд цагаа цэнэглэ.</string>
+    <string name="check_watch_recorder">Өнөө шөнийн хэмжилт</string>
+    <string name="check_watch_recorder_battery">Цаг чинь унтахын өмнөх хэмжилтийг эхлүүлээгүй – батерей нь хэт бага байсан. Сэрүүлэг чамайг ямар ч байсан сэрээнэ.</string>
     <string name="check_watch_pulse">Арын горимын судасны цохилт (цаг)</string>
     <string name="check_watch_pulse_problem">Цаг шөнө судасны цохилтыг чинь хэмжих эрхгүй – цаган дээр Phase Wake-ийн мэдрэгчийн зөвшөөрлийг «Үргэлж зөвшөөрөх» болго.</string>
     <string name="export_contents_hint">Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Шөнийг бичих</string>
     <string name="record_stop">Бичлэгийг зогсоох</string>
     <string name="record_since">%1$s-с хойш бичиж байна</string>
-    <string name="record_hint">Таны цаг шөнөжин хөдөлгөөн болон судасны цохилтыг бичдэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна.</string>
+    <string name="record_hint">Таны цаг шөнөжин хөдөлгөөн болон судасны цохилтыг бичдэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
     <string name="record_end_manual">Зогсоосон</string>
     <string name="record_end_cap">12 цагийн дараа дууссан</string>
     <string name="record_end_battery">Цагийн батерей сул байна</string>

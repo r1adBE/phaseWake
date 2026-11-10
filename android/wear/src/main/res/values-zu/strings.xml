@@ -20,6 +20,7 @@
         <item quantity="one">%1$d min · kusele %2$d</item>
         <item quantity="other">%1$d min · kusele %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Snuza %1$d min</string>
     <string name="ring_snoozed_until">Kusnuziwe kuze kube ngu-%1$s</string>
 
     <string name="home_no_alarm">Ayikho i-alamu esethiwe</string>

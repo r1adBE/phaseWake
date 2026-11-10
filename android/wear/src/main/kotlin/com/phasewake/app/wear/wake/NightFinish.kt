@@ -57,7 +57,7 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
     // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
     if (record != null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
-    // Lernphase: geweckt, die automatische Aufzeichnung dieser Nacht endet (eine von Hand begonnene läuft weiter).
+    // Geweckt: Die Aufzeichnung dieser Nacht endet (Lernphase wie von Hand begonnen, Audit F-01).
     if (record != null) RecordControl.endLearning(this)
     if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
 

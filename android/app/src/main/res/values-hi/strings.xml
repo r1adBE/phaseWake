@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">वॉच की बैटरी</string>
     <string name="check_watch_battery_problem">%1$d %% से कम – अपनी वॉच चार्ज करें ताकि वह पूरी रात चले और आपको जगा सके।</string>
+    <string name="check_watch_recorder">आज रात का माप</string>
+    <string name="check_watch_recorder_battery">तुम्हारी घड़ी ने सोने से पहले का माप शुरू नहीं किया – उसकी बैटरी बहुत कम थी। अलार्म फिर भी तुम्हें जगाएगा।</string>
     <string name="check_watch_pulse">बैकग्राउंड में पल्स (घड़ी)</string>
     <string name="check_watch_pulse_problem">घड़ी रात में तुम्हारी पल्स नहीं माप सकती – घड़ी पर Phase Wake की सेंसर अनुमति “हमेशा अनुमति दें” पर सेट करो।</string>
     <string name="export_contents_hint">फ़ाइल में हर रात के लिए हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा और तुम्हारे नोट्स हैं – नाम, तारीख या डिवाइस ID के बिना।</string>
@@ -535,7 +537,7 @@
     <string name="record_start">रात रिकॉर्ड करें</string>
     <string name="record_stop">रिकॉर्डिंग रोकें</string>
     <string name="record_since">%1$s से रिकॉर्डिंग चल रही है</string>
-    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और नब्ज़ रिकॉर्ड करती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है।</string>
+    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और नब्ज़ रिकॉर्ड करती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
     <string name="record_end_manual">रोकी गई</string>
     <string name="record_end_cap">12 घंटे बाद समाप्त</string>
     <string name="record_end_battery">वॉच की बैटरी कम है</string>

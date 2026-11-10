@@ -232,6 +232,8 @@
     </plurals>
     <string name="check_watch_battery">Saat batareyası</string>
     <string name="check_watch_battery_problem">%1$d %%-dən aşağı – gecəyə çatsın və səni oyada bilsin deyə saatını doldur.</string>
+    <string name="check_watch_recorder">Bu gecənin ölçməsi</string>
+    <string name="check_watch_recorder_battery">Saatın yuxudan əvvəlki ölçməni başlatmadı – batareyası çox zəif idi. Zəngli saat səni yenə də oyadacaq.</string>
     <string name="check_watch_pulse">Arxa planda nəbz (saat)</string>
     <string name="check_watch_pulse_problem">Saata gecə nəbzini ölçməyə icazə verilmir – saatda Phase Wake üçün sensor icazəsini “Həmişə icazə verin” et.</string>
     <string name="export_contents_hint">Faylda hər gecə üçün hər 30 s-lik hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin var – adsız, tarixsiz və cihaz ID-siz.</string>
@@ -523,7 +525,7 @@
     <string name="record_start">Gecəni qeyd et</string>
     <string name="record_stop">Qeydi dayandır</string>
     <string name="record_since">Qeyd %1$s-dan bəri gedir</string>
-    <string name="record_hint">Saatın bütün gecə hərəkəti və nəbzi qeyd edir. Phase Wake bu gecələrdən öyrənmə mərhələsində öz dəyərlərini öyrənir və zəngli saatı sənə uyğunlaşdırır.</string>
+    <string name="record_hint">Saatın bütün gecə hərəkəti və nəbzi qeyd edir. Phase Wake bu gecələrdən öyrənmə mərhələsində öz dəyərlərini öyrənir və zəngli saatı sənə uyğunlaşdırır. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
     <string name="record_end_manual">Dayandırıldı</string>
     <string name="record_end_cap">12 saatdan sonra bitdi</string>
     <string name="record_end_battery">Saatın batareyası azdır</string>

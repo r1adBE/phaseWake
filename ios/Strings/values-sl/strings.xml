@@ -30,6 +30,7 @@
     <string name="health_rationale_apple">Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Apple Health) shrani. Prikazani so v tvoji zgodovini, tudi za primerjavo z nočmi, ko te je zbudil Phase Wake. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona.</string>
     <string name="check_watch_notifications">Obvestila na uri</string>
     <string name="check_watch_notifications_problem">Dovoli časovno občutljiva obvestila za Phase Wake na svoji uri Apple Watch. Sicer te ne more zbuditi z obvestilom, ko meritev ne teče.</string>
+    <string name="check_watch_recorder_motion">Ura ni začela meritve pred spanjem – Phase Wake na njej ne sme brati podatkov o gibanju. Dovoli to v nastavitvah ure pod Zasebnost. Budilka te bo vseeno zbudila.</string>
     <string name="check_watch_state_old">Stanje ure je zastarelo – na kratko odpri Phase Wake na uri.</string>
     <string name="editor_sleep_hint_apple">Šteje od uspavanja – ko greš spat, na uri tapni »Lahko noč«. Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja. Brez tapa velja nastavljeni čas.</string>
     <string name="auto_onset_hint_apple">Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat snema tvoje gibanje; na začetku okna bujenja Phase Wake izračuna, kdaj si zaspal.</string>

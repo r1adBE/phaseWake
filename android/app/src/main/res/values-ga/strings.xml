@@ -257,6 +257,8 @@
     </plurals>
     <string name="check_watch_battery">Ceallra an uaireadóra</string>
     <string name="check_watch_battery_problem">Faoi %1$d %% – luchtaigh d’uaireadóir ionas go maireann sé an oíche agus gur féidir leis thú a dhúiseacht.</string>
+    <string name="check_watch_recorder">Tomhas anocht</string>
+    <string name="check_watch_recorder_battery">Níor thosaigh d’uaireadóir an tomhas roimh chodladh – bhí an ceallra ró-íseal. Dúiseoidh an t-aláram thú mar sin féin.</string>
     <string name="check_watch_pulse">Cuisle sa chúlra (uaireadóir)</string>
     <string name="check_watch_pulse_problem">Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”.</string>
     <string name="export_contents_hint">Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
@@ -580,7 +582,7 @@
     <string name="record_start">Taifead an oíche</string>
     <string name="record_stop">Stop an taifeadadh</string>
     <string name="record_since">Ag taifeadadh ó %1$s</string>
-    <string name="record_hint">Taifeadann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche. As na hoícheanta sin, foghlaimíonn Phase Wake do luachanna féin sa chéim foghlama agus cuireann sé an t-aláram in oiriúint duit.</string>
+    <string name="record_hint">Taifeadann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche. As na hoícheanta sin, foghlaimíonn Phase Wake do luachanna féin sa chéim foghlama agus cuireann sé an t-aláram in oiriúint duit. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
     <string name="record_end_manual">Stoptha</string>
     <string name="record_end_cap">Críochnaithe tar éis 12 u</string>
     <string name="record_end_battery">Ceallra an uaireadóra íseal</string>

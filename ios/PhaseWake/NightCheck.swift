@@ -23,6 +23,9 @@ enum PhoneCheck: CaseIterable, Hashable {
     case watchNotifications
     /// Stand der Mitteilungen auf der Uhr älter als 3 Tage (`WatchNotifications.isOutdated`). Nur ein Hinweis.
     case watchStateOld
+    /// Die Uhr-App lief, der Rekorder startete für diese Nacht aber nicht, obwohl Einschlaf-Messung oder Lernphase ihn
+    /// wollten (``RecorderSkip``, Audit F-06, wie Android): Akku zu schwach bzw. keine Erlaubnis für Bewegungsdaten.
+    case watchRecorderBattery, watchRecorderMotion
 
     var title: String {
         switch self {
@@ -38,6 +41,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
         case .watchNotifications, .watchStateOld: L("check_watch_notifications")
+        case .watchRecorderBattery, .watchRecorderMotion: L("check_watch_recorder")
         }
     }
 
@@ -57,6 +61,8 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .silentSwitch: L("check_silent_switch_text")
         case .watchNotifications: L("check_watch_notifications_problem")
         case .watchStateOld: L("check_watch_state_old")
+        case .watchRecorderBattery: L("check_watch_recorder_battery")
+        case .watchRecorderMotion: L("check_watch_recorder_motion")
         }
     }
 
@@ -71,6 +77,8 @@ enum NightCheck {
     nonisolated static let lowBatteryPercent = 20
     /// So weit im Voraus nimmt watchOS eine Smart-Alarm-Sitzung an (`SmartAlarm.maxLeadTime` auf der Uhr).
     private static let armLeadTime: TimeInterval = 36 * 3600
+    /// Zuletzt gemeldet: Rekorder für eine Nacht nicht gestartet (`PhoneConnectivity`); `nil` = keine Meldung.
+    static var watchRecorderSkip: RecorderSkip?
 
     static func collect() async -> [PhoneCheck] {
         var failed: [PhoneCheck] = []
@@ -92,6 +100,10 @@ enum NightCheck {
             }
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
+            }
+            // Rekorder heute Nacht nicht gestartet: bis zur Zielzeit dieser Nacht.
+            if let skip = watchRecorderSkip, skip.applies(at: Date()) {
+                failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
             }
             // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
             if model.watchNotifications?.state.isProblem == true { failed.append(.watchNotifications) }
@@ -176,7 +188,7 @@ enum NightCheck {
                 openSettings()
             }
         case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
-             .watchNotifications, .watchStateOld:
+             .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion:
             break
         }
     }

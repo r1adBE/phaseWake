@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Rafhlaða úrsins</string>
     <string name="check_watch_battery_problem">Undir %1$d %% – hladdu úrið svo það endist nóttina og geti vakið þig.</string>
+    <string name="check_watch_recorder">Mæling í nótt</string>
+    <string name="check_watch_recorder_battery">Úrið hóf ekki mælinguna fyrir svefn – rafhlaðan var of lág. Vekjarinn vekur þig samt.</string>
     <string name="check_watch_pulse">Púls í bakgrunni (úr)</string>
     <string name="check_watch_pulse_problem">Úrið má ekki mæla púlsinn þinn á nóttunni – stilltu skynjaraheimild Phase Wake á úrinu á „Leyfa alltaf“.</string>
     <string name="export_contents_hint">Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar – án nafna, dagsetninga eða auðkenna tækja.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Taka upp nóttina</string>
     <string name="record_stop">Stöðva upptöku</string>
     <string name="record_since">Tekur upp síðan %1$s</string>
-    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér.</string>
+    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
     <string name="record_end_manual">Stöðvað</string>
     <string name="record_end_cap">Lauk eftir 12 klst.</string>
     <string name="record_end_battery">Rafhlaða úrsins lág</string>

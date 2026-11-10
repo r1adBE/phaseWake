@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Horlosiebattery</string>
     <string name="check_watch_battery_problem">Onder %1$d %% – laai jou horlosie sodat dit die nag hou en jou wakker kan maak.</string>
+    <string name="check_watch_recorder">Meting vannag</string>
+    <string name="check_watch_recorder_battery">Jou horlosie het nie die meting voor die slaap begin nie – sy battery was te laag. Jy sal steeds gewek word.</string>
     <string name="check_watch_pulse">Polsslag in die agtergrond (horlosie)</string>
     <string name="check_watch_pulse_problem">Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”.</string>
     <string name="export_contents_hint">Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas – sonder name, datums of toestel-ID’s.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Neem nag op</string>
     <string name="record_stop">Stop opname</string>
     <string name="record_since">Neem op sedert %1$s</string>
-    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan.</string>
+    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
     <string name="record_end_manual">Gestop</string>
     <string name="record_end_cap">Ná 12 h beëindig</string>
     <string name="record_end_battery">Horlosie se battery laag</string>

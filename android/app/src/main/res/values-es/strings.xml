@@ -245,6 +245,8 @@
     </plurals>
     <string name="check_watch_battery">Batería del reloj</string>
     <string name="check_watch_battery_problem">Menos del %1$d %% – carga tu reloj para que aguante toda la noche y pueda despertarte.</string>
+    <string name="check_watch_recorder">Medición de esta noche</string>
+    <string name="check_watch_recorder_battery">Tu reloj no inició la medición antes de dormir: tenía la batería demasiado baja. La alarma te despertará igualmente.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloj)</string>
     <string name="check_watch_pulse_problem">El reloj no puede medir tu pulso por la noche – en el reloj, pon el permiso de sensores de Phase Wake en «Permitir todo el tiempo».</string>
     <string name="export_contents_hint">El archivo contiene, de cada noche, movimiento y frecuencia cardíaca cada 30 s, cómo te sentiste y tus notas – sin nombres, fechas ni identificadores de dispositivo.</string>
@@ -549,7 +551,7 @@
     <string name="record_start">Grabar la noche</string>
     <string name="record_stop">Detener grabación</string>
     <string name="record_since">Grabando desde las %1$s</string>
-    <string name="record_hint">Tu reloj registra movimiento y pulso toda la noche. Con esas noches, Phase Wake aprende tus propios valores en la fase de aprendizaje y adapta la alarma a ti.</string>
+    <string name="record_hint">Tu reloj registra movimiento y pulso toda la noche. Con esas noches, Phase Wake aprende tus propios valores en la fase de aprendizaje y adapta la alarma a ti. Esto gasta algo de batería: carga el reloj antes de dormir.</string>
     <string name="record_end_manual">Detenida</string>
     <string name="record_end_cap">Terminó tras 12 h</string>
     <string name="record_end_battery">Batería del reloj baja</string>

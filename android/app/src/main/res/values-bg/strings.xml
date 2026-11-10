@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">Батерия на часовника</string>
     <string name="check_watch_battery_problem">Под %1$d %% – зареди часовника, за да издържи през нощта и да те събуди.</string>
+    <string name="check_watch_recorder">Измерване тази нощ</string>
+    <string name="check_watch_recorder_battery">Часовникът ти не започна измерването преди сън – батерията му беше твърде слаба. Алармата пак ще те събуди.</string>
     <string name="check_watch_pulse">Пулс във фонов режим (часовник)</string>
     <string name="check_watch_pulse_problem">Часовникът няма право да измерва пулса ти през нощта – на часовника задай разрешението за сензори на Phase Wake на „Разрешаване през цялото време“.</string>
     <string name="export_contents_hint">Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти – без имена, дати и ID на устройства.</string>
@@ -537,7 +539,7 @@
     <string name="record_start">Запиши нощта</string>
     <string name="record_stop">Спри записа</string>
     <string name="record_since">Записва се от %1$s</string>
-    <string name="record_hint">Часовникът ти записва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб.</string>
+    <string name="record_hint">Часовникът ти записва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб. Това изразходва малко батерия – зареди часовника преди сън.</string>
     <string name="record_end_manual">Спрян</string>
     <string name="record_end_cap">Приключи след 12 ч</string>
     <string name="record_end_battery">Батерията на часовника е слаба</string>

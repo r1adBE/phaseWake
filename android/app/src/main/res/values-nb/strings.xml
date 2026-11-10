@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Klokkebatteri</string>
     <string name="check_watch_battery_problem">Under %1$d %% – lad klokken slik at den varer natten og kan vekke deg.</string>
+    <string name="check_watch_recorder">Måling i natt</string>
+    <string name="check_watch_recorder_battery">Klokken startet ikke målingen før søvn – batteriet var for lavt. Du blir vekket likevel.</string>
     <string name="check_watch_pulse">Puls i bakgrunnen (klokke)</string>
     <string name="check_watch_pulse_problem">Klokken får ikke måle pulsen din om natten – still inn sensortillatelsen for Phase Wake på klokken til «Tillat hele tiden».</string>
     <string name="export_contents_hint">Filen inneholder for hver natt bevegelse og puls per 30 s, hvordan du hadde det og notatene dine – uten navn, datoer eller enhets-ID-er.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Ta opp natten</string>
     <string name="record_stop">Stopp opptak</string>
     <string name="record_since">Tar opp siden %1$s</string>
-    <string name="record_hint">Klokken din tar opp bevegelse og puls hele natten. Ut fra disse nettene lærer Phase Wake dine egne verdier i læringsfasen og tilpasser alarmen til deg.</string>
+    <string name="record_hint">Klokken din tar opp bevegelse og puls hele natten. Ut fra disse nettene lærer Phase Wake dine egne verdier i læringsfasen og tilpasser alarmen til deg. Det bruker litt batteri – lad klokken før du legger deg.</string>
     <string name="record_end_manual">Stoppet</string>
     <string name="record_end_cap">Avsluttet etter 12 t</string>
     <string name="record_end_battery">Lavt batteri på klokken</string>

@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
 import com.phasewake.app.companion.CompanionLink
+import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
@@ -89,6 +90,13 @@ enum class Check(
      * nicht in der Bereit-Liste: ohne bekannte Uhr gibt es nichts zu prüfen.
      */
     WATCH_OUTDATED(R.string.check_watch_outdated_title, R.string.check_watch_outdated_text, null, inReadyList = false),
+
+    /**
+     * Die Uhr hat die Messung vor dem Schlafen für diese Nacht nicht gestartet, weil ihr Akku zu schwach war
+     * ([RecorderSkip], Audit F-06, wie auf dem iPhone): Einschlafzeit und Lernphase fehlen dann. Die Uhr meldet es bis
+     * zur Zielzeit; nicht in der Bereit-Liste (meist gibt es nichts zu melden).
+     */
+    WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
 
@@ -125,7 +133,8 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
          * [watchBattery] (Prozent, `null` = unbekannt oder zu alt), [watchKnowsSkip] und [watchOutdated] (Version der Uhr)
-         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung). Fehlen der Uhr schon allgemein Rechte
+         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die Messung
+         * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
          * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da.
          */
         fun collect(
@@ -137,6 +146,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchKnowsSkip: Boolean = true,
             watchOutdated: Boolean = false,
             watchPulse: WatchPulse? = null,
+            recorderSkip: RecorderSkip.Reason? = null,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -146,6 +156,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 }
                 if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
+                if (recorderSkip == RecorderSkip.Reason.BATTERY) add(Check.WATCH_RECORDER)
                 if (!watchKnowsSkip) add(Check.WATCH_UPDATE) else if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)

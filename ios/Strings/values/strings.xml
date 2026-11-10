@@ -32,6 +32,7 @@
     <string name="health_rationale_apple">Phase Wake can read the sleep data that your health app (for example Apple Health) stores. It is shown in your history, also for comparison with the nights Phase Wake woke you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
     <string name="check_watch_notifications">Notifications on the watch</string>
     <string name="check_watch_notifications_problem">Allow time-sensitive notifications for Phase Wake on your Apple Watch. Otherwise it can’t wake you by notification when no measurement is running.</string>
+    <string name="check_watch_recorder_motion">Your watch didn’t start the measurement before sleep – Phase Wake isn’t allowed to read motion data on it. Allow it in the watch’s settings under Privacy. You’ll still be woken.</string>
     <string name="check_watch_state_old">Watch status is out of date – briefly open Phase Wake on the watch.</string>
     <string name="editor_sleep_hint_apple">Counts from when you fall asleep – tap “Good night” on your watch when you go to bed. On Apple Watch, Phase Wake estimates when you fall asleep from your learned time to fall asleep. Without the tap, the set time applies.</string>
     <string name="auto_onset_hint_apple">Open Phase Wake on your Apple Watch from 1 hour before bedtime (it reminds you) and it records your movement from then on; at the start of your wake window, Phase Wake works out when you fell asleep.</string>

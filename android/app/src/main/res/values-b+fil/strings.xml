@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Baterya ng relo</string>
     <string name="check_watch_battery_problem">Mababa sa %1$d %% – i-charge ang relo mo para tumagal ito buong gabi at magising ka nito.</string>
+    <string name="check_watch_recorder">Pagsukat ngayong gabi</string>
+    <string name="check_watch_recorder_battery">Hindi sinimulan ng relo mo ang pagsukat bago matulog – masyadong mahina ang baterya nito. Gigisingin ka pa rin ng alarm.</string>
     <string name="check_watch_pulse">Pulso sa background (relo)</string>
     <string name="check_watch_pulse_problem">Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”.</string>
     <string name="export_contents_hint">Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo – walang pangalan, petsa o ID ng device.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">I-record ang gabi</string>
     <string name="record_stop">Ihinto ang pag-record</string>
     <string name="record_since">Nagre-record mula %1$s</string>
-    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo.</string>
+    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
     <string name="record_end_manual">Itinigil</string>
     <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
     <string name="record_end_battery">Mahina ang baterya ng relo</string>

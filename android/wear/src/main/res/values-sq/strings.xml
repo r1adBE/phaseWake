@@ -20,6 +20,7 @@
         <item quantity="one">%1$d min · mbetet %2$d</item>
         <item quantity="other">%1$d min · mbeten %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Shtyje %1$d min</string>
     <string name="ring_snoozed_until">U shty deri në %1$s</string>
 
     <string name="home_no_alarm">Asnjë alarm i caktuar</string>

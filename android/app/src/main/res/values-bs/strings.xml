@@ -247,6 +247,8 @@
     </plurals>
     <string name="check_watch_battery">Baterija sata</string>
     <string name="check_watch_battery_problem">Ispod %1$d %% – napuni sat kako bi izdržao noć i probudio te.</string>
+    <string name="check_watch_recorder">Mjerenje noćas</string>
+    <string name="check_watch_recorder_battery">Sat nije pokrenuo mjerenje prije spavanja – baterija mu je bila preslaba. Alarm će te ipak probuditi.</string>
     <string name="check_watch_pulse">Puls u pozadini (sat)</string>
     <string name="check_watch_pulse_problem">Sat ne smije noću mjeriti tvoj puls – na satu postavi dozvolu za senzore za Phase Wake na „Dozvoli uvijek“.</string>
     <string name="export_contents_hint">Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke – bez imena, datuma i ID-ova uređaja.</string>
@@ -552,7 +554,7 @@
     <string name="record_start">Snimi noć</string>
     <string name="record_stop">Zaustavi snimanje</string>
     <string name="record_since">Snima se od %1$s</string>
-    <string name="record_hint">Tvoj sat cijelu noć snima pokret i puls. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi.</string>
+    <string name="record_hint">Tvoj sat cijelu noć snima pokret i puls. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja.</string>
     <string name="record_end_manual">Zaustavljeno</string>
     <string name="record_end_cap">Završeno nakon 12 h</string>
     <string name="record_end_battery">Baterija sata je slaba</string>

@@ -245,6 +245,8 @@
     </plurals>
     <string name="check_watch_battery">Batterie de la montre</string>
     <string name="check_watch_battery_problem">Moins de %1$d %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller.</string>
+    <string name="check_watch_recorder">Mesure de cette nuit</string>
+    <string name="check_watch_recorder_battery">Ta montre n’a pas lancé la mesure avant le sommeil – sa batterie était trop faible. L’alarme te réveillera quand même.</string>
     <string name="check_watch_pulse">Pouls en arrière-plan (montre)</string>
     <string name="check_watch_pulse_problem">La montre n’a pas le droit de mesurer ton pouls la nuit – sur la montre, règle l’autorisation des capteurs de Phase Wake sur « Toujours autoriser ».</string>
     <string name="export_contents_hint">Le fichier contient pour chaque nuit les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes – sans nom, date ni identifiant d’appareil.</string>
@@ -549,7 +551,7 @@
     <string name="record_start">Enregistrer la nuit</string>
     <string name="record_stop">Arrêter l’enregistrement</string>
     <string name="record_since">Enregistrement depuis %1$s</string>
-    <string name="record_hint">Ta montre enregistre mouvement et pouls toute la nuit. À partir de ces nuits, Phase Wake apprend tes propres valeurs pendant la phase d’apprentissage et adapte le réveil à toi.</string>
+    <string name="record_hint">Ta montre enregistre mouvement et pouls toute la nuit. À partir de ces nuits, Phase Wake apprend tes propres valeurs pendant la phase d’apprentissage et adapte le réveil à toi. Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
     <string name="record_end_manual">Arrêté</string>
     <string name="record_end_cap">Terminé après 12 h</string>
     <string name="record_end_battery">Batterie de la montre faible</string>

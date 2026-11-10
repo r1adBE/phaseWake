@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">घड्याळाची बॅटरी</string>
     <string name="check_watch_battery_problem">%1$d %% पेक्षा कमी – रात्रभर टिकेल आणि तुम्हाला उठवू शकेल म्हणून घड्याळ चार्ज करा.</string>
+    <string name="check_watch_recorder">आजच्या रात्रीचे मोजमाप</string>
+    <string name="check_watch_recorder_battery">तुझ्या घड्याळाने झोपण्यापूर्वीचे मोजमाप सुरू केले नाही – त्याची बॅटरी खूप कमी होती. अलार्म तरीही तुला उठवेल.</string>
     <string name="check_watch_pulse">बॅकग्राउंडमधील पल्स (घड्याळ)</string>
     <string name="check_watch_pulse_problem">घड्याळाला रात्री तुझी पल्स मोजण्याची परवानगी नाही – घड्याळावर Phase Wake ची सेन्सर परवानगी “नेहमी अनुमती द्या” वर सेट कर.</string>
     <string name="export_contents_hint">फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले आणि तुमच्या नोंदी आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">रात्र रेकॉर्ड करा</string>
     <string name="record_stop">रेकॉर्डिंग थांबवा</string>
     <string name="record_since">%1$s पासून रेकॉर्डिंग सुरू आहे</string>
-    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो.</string>
+    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर.</string>
     <string name="record_end_manual">थांबवले</string>
     <string name="record_end_cap">12 तासांनंतर संपले</string>
     <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>

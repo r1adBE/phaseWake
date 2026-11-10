@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">ウォッチのバッテリー</string>
     <string name="check_watch_battery_problem">%1$d %%未満です – 一晩もって確実に起こせるよう、ウォッチを充電してください。</string>
+    <string name="check_watch_recorder">今夜の計測</string>
+    <string name="check_watch_recorder_battery">ウォッチは就寝前の計測を開始しませんでした – バッテリーが少なすぎました。アラームはそれでも鳴ります。</string>
     <string name="check_watch_pulse">バックグラウンドの脈拍（ウォッチ）</string>
     <string name="check_watch_pulse_problem">ウォッチは夜間に脈拍を測定できません – ウォッチで Phase Wake のセンサーの権限を「常に許可」に設定してください。</string>
     <string name="export_contents_hint">ファイルには各夜の 30 秒ごとの体動と心拍、気分、メモが含まれます。名前・日付・デバイス ID は含みません。</string>
@@ -521,7 +523,7 @@
     <string name="record_start">夜を記録</string>
     <string name="record_stop">記録を停止</string>
     <string name="record_since">%1$sから記録中</string>
-    <string name="record_hint">ウォッチが一晩中、動きと脈拍を記録します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。</string>
+    <string name="record_hint">ウォッチが一晩中、動きと脈拍を記録します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。バッテリーを少し使います – 寝る前に時計を充電してください。</string>
     <string name="record_end_manual">停止しました</string>
     <string name="record_end_cap">12時間で終了</string>
     <string name="record_end_battery">ウォッチのバッテリー残量が少ない</string>

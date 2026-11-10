@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">แบตเตอรี่นาฬิกา</string>
     <string name="check_watch_battery_problem">ต่ำกว่า %1$d %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้</string>
+    <string name="check_watch_recorder">การวัดคืนนี้</string>
+    <string name="check_watch_recorder_battery">นาฬิกาของคุณไม่ได้เริ่มการวัดก่อนนอน – แบตเตอรี่ต่ำเกินไป แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ</string>
     <string name="check_watch_pulse">ชีพจรในเบื้องหลัง (นาฬิกา)</string>
     <string name="check_watch_pulse_problem">นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”</string>
     <string name="export_contents_hint">ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์</string>
@@ -521,7 +523,7 @@
     <string name="record_start">บันทึกกลางคืน</string>
     <string name="record_stop">หยุดบันทึก</string>
     <string name="record_since">กำลังบันทึกตั้งแต่ %1$s</string>
-    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ</string>
+    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
     <string name="record_end_manual">หยุดแล้ว</string>
     <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
     <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>

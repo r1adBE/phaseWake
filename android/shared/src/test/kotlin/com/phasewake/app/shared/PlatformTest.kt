@@ -12,6 +12,7 @@ import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.WakeReason
 import java.io.File
 import java.nio.file.Files
@@ -155,6 +156,14 @@ class PlatformTest {
         assertEquals(pulse, WatchPulse.read(withPulse))
         assertTrue(WatchPulse.warns(WatchPulse.read(withPulse)))
         assertFalse(WatchPulse.warns(WatchPulse(heartRate = true, background = true)))
+        // Messung vor dem Schlafen nicht gestartet (Audit F-06): leer ohne Meldung, ohne Angabe (ältere Uhr) keine.
+        // Nur der Grund geht ins Paket, keine Uhrzeit (Datenpakete tragen nur technische Angaben).
+        assertNull(WearSync.readRecorderSkip(noBattery, 10_000L, 1_000L))
+        assertNull(WearSync.readRecorderSkip(DataMap(), 10_000L, 1_000L))
+        val skipped = DataMap.fromByteArray(WearSync.statusRequest(true, 25, 10_000L, pulse, RecorderSkip.Reason.BATTERY).data!!)
+        assertEquals("battery", skipped.getString(DataLayer.KEY_RECORDER_SKIP))
+        assertEquals(RecorderSkip.Reason.BATTERY, WearSync.readRecorderSkip(skipped, 10_500L, 1_000L))
+        assertNull(WearSync.readRecorderSkip(skipped, 20_000L, 1_000L), "zu alt")
 
         val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
         assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))

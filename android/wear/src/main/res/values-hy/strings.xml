@@ -18,6 +18,7 @@
         <item quantity="one">%1$d ր · մնաց՝ %2$d</item>
         <item quantity="other">%1$d ր · մնաց՝ %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Հետաձգել %1$d ր</string>
     <string name="ring_snoozed_until">Հետաձգված է մինչև %1$s</string>
     <string name="home_no_alarm">Զարթուցիչ չկա</string>
     <string name="home_no_alarm_hint">Ավելացրու զարթուցիչ – այստեղ կամ հեռախոսիդ Phase Wake-ում։</string>

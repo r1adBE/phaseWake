@@ -30,6 +30,7 @@
     <string name="health_rationale_apple">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Apple Health) huhifadhi. Inaonyeshwa kwenye historia yako, pia kwa kulinganisha na usiku ambao Phase Wake ilikuamsha. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
     <string name="check_watch_notifications">Arifa kwenye saa</string>
     <string name="check_watch_notifications_problem">Ruhusu arifa zinazozingatia muda kwa Phase Wake kwenye Apple Watch yako. La sivyo, haiwezi kukuamsha kwa arifa wakati hakuna kipimo kinachoendelea.</string>
+    <string name="check_watch_recorder_motion">Saa yako haikuanza kipimo cha kabla ya kulala – Phase Wake hairuhusiwi kusoma data ya mwendo kwenye saa hiyo. Ruhusu katika mipangilio ya saa chini ya Faragha. Kengele bado itakuamsha.</string>
     <string name="check_watch_state_old">Hali ya saa imepitwa na wakati – fungua Phase Wake kwa muda mfupi kwenye saa.</string>
     <string name="editor_sleep_hint_apple">Huhesabiwa kuanzia unaposinzia – gusa “Usiku mwema” kwenye saa unapoenda kulala. Kwenye Apple Watch, Phase Wake inakadiria wakati unapolala kutokana na muda wa kupata usingizi ilioujifunza. Usipogusa, muda uliowekwa ndio hutumika.</string>
     <string name="auto_onset_hint_apple">Fungua Phase Wake kwenye Apple Watch yako kuanzia saa 1 kabla ya kulala (saa itakukumbusha), nayo itarekodi mwendo wako tangu hapo; mwanzoni mwa dirisha la kuamka, Phase Wake hukokotoa ulisinzia lini.</string>

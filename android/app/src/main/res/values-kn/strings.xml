@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">ವಾಚ್ ಬ್ಯಾಟರಿ</string>
     <string name="check_watch_battery_problem">%1$d %% ಕ್ಕಿಂತ ಕಡಿಮೆ – ರಾತ್ರಿಯಿಡೀ ಉಳಿದು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
+    <string name="check_watch_recorder">ಇಂದು ರಾತ್ರಿಯ ಅಳತೆ</string>
+    <string name="check_watch_recorder_battery">ನಿನ್ನ ವಾಚ್ ನಿದ್ರೆಗೆ ಮೊದಲಿನ ಅಳತೆಯನ್ನು ಆರಂಭಿಸಲಿಲ್ಲ – ಅದರ ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ ಇತ್ತು. ಅಲಾರಾಂ ಆದರೂ ನಿನ್ನನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="check_watch_pulse">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ನಾಡಿ (ವಾಚ್)</string>
     <string name="check_watch_pulse_problem">ವಾಚ್ ರಾತ್ರಿ ನಿನ್ನ ನಾಡಿಯನ್ನು ಅಳೆಯಲು ಅನುಮತಿ ಇಲ್ಲ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ನ ಸೆನ್ಸರ್ ಅನುಮತಿಯನ್ನು “ಎಲ್ಲಾ ಸಮಯದಲ್ಲೂ ಅನುಮತಿಸಿ” ಗೆ ಹೊಂದಿಸು.</string>
     <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು ಮತ್ತು ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
@@ -537,7 +539,7 @@
     <string name="record_start">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
     <string name="record_stop">ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ</string>
     <string name="record_since">%1$s ರಿಂದ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
-    <string name="record_hint">ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ.</string>
+    <string name="record_hint">ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡು.</string>
     <string name="record_end_manual">ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
     <string name="record_end_cap">12 ಗಂಟೆಗಳ ನಂತರ ಮುಗಿಯಿತು</string>
     <string name="record_end_battery">ವಾಚ್ ಬ್ಯಾಟರಿ ಕಡಿಮೆ</string>

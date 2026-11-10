@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Batería do reloxo</string>
     <string name="check_watch_battery_problem">Menos do %1$d %% – carga o reloxo para que aguante a noite e poida espertarte.</string>
+    <string name="check_watch_recorder">Medición desta noite</string>
+    <string name="check_watch_recorder_battery">O teu reloxo non iniciou a medición antes de durmir: tiña a batería demasiado baixa. A alarma espertarate igualmente.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloxo)</string>
     <string name="check_watch_pulse_problem">O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”.</string>
     <string name="export_contents_hint">O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas – sen nomes, datas nin identificadores do dispositivo.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Gravar a noite</string>
     <string name="record_stop">Deter a gravación</string>
     <string name="record_since">Gravando desde as %1$s</string>
-    <string name="record_hint">O teu reloxo grava movemento e pulso toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti.</string>
+    <string name="record_hint">O teu reloxo grava movemento e pulso toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti. Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
     <string name="record_end_manual">Detida</string>
     <string name="record_end_cap">Rematou tras 12 h</string>
     <string name="record_end_battery">Batería do reloxo baixa</string>

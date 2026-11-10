@@ -20,6 +20,7 @@
         <item quantity="one">%1$d ని. · %2$d మిగిలాయి</item>
         <item quantity="other">%1$d ని. · %2$d మిగిలాయి</item>
     </plurals>
+    <string name="ring_snooze_button">స్నూజ్ %1$d ని.</string>
     <string name="ring_snoozed_until">%1$s వరకు స్నూజ్</string>
 
     <string name="home_no_alarm">అలారం సెట్ చేయలేదు</string>

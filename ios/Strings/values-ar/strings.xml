@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Apple Health). تُعرض في سجلك، وأيضًا للمقارنة مع الليالي التي أيقظك فيها Phase Wake. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
     <string name="check_watch_notifications">الإشعارات على الساعة</string>
     <string name="check_watch_notifications_problem">اسمح بالإشعارات الحساسة للوقت لتطبيق Phase Wake على Apple Watch. وإلا فلن تتمكن من إيقاظك بإشعار عندما لا يكون هناك قياس جارٍ.</string>
+    <string name="check_watch_recorder_motion">لم تبدأ ساعتك القياس قبل النوم – لا يُسمح لـ Phase Wake بقراءة بيانات الحركة عليها. اسمح بذلك في إعدادات الساعة ضمن الخصوصية. سيوقظك المنبّه مع ذلك.</string>
     <string name="check_watch_state_old">حالة الساعة قديمة – افتح Phase Wake على الساعة لفترة قصيرة.</string>
     <string name="editor_sleep_hint_apple">يُحسب من وقت نومك – اضغط «ليلة سعيدة» على الساعة عندما تذهب إلى السرير. على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها. دون الضغط يسري الوقت المضبوط.</string>
     <string name="auto_onset_hint_apple">افتح Phase Wake على Apple Watch بدءًا من ساعة قبل موعد النوم (تذكّرك الساعة)، فتسجّل حركتك من ذلك الحين؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت.</string>

@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">ថ្មនាឡិកា</string>
     <string name="check_watch_battery_problem">ក្រោម %1$d %% – សាកនាឡិកា ដើម្បីឲ្យវានៅបានពេញមួយយប់ និងអាចដាស់អ្នក។</string>
+    <string name="check_watch_recorder">ការវាស់យប់នេះ</string>
+    <string name="check_watch_recorder_battery">នាឡិការបស់អ្នកមិនបានចាប់ផ្តើមការវាស់មុនពេលគេងទេ – ថ្មរបស់វាទាបពេក។ ម៉ោងរោទ៍នឹងនៅតែដាស់អ្នក។</string>
     <string name="check_watch_pulse">ជីពចរនៅផ្ទៃខាងក្រោយ (នាឡិកា)</string>
     <string name="check_watch_pulse_problem">នាឡិកាមិនអាចវាស់ជីពចររបស់អ្នកនៅពេលយប់បានទេ – នៅលើនាឡិកា សូមកំណត់ការអនុញ្ញាតសេនស័ររបស់ Phase Wake ទៅ “អនុញ្ញាតគ្រប់ពេល”។</string>
     <string name="export_contents_hint">ឯកសារមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នកសម្រាប់យប់នីមួយៗ – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។</string>
@@ -523,7 +525,7 @@
     <string name="record_start">ថតពេលយប់</string>
     <string name="record_stop">បញ្ឈប់ការថត</string>
     <string name="record_since">កំពុងថតតាំងពី %1$s</string>
-    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។</string>
+    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
     <string name="record_end_manual">បានបញ្ឈប់</string>
     <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
     <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>

@@ -8,6 +8,7 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.record.RecordService
@@ -17,6 +18,7 @@ import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.runner.RunWith
@@ -97,14 +99,31 @@ class GoodNightOnsetTest {
         awaitDone(latest)
         assertNull(service.onset)
         assertTrue(entries().none { it.kind == DiagKind.MEASURE_START })
+        // Nacht-Check am Handy (Audit F-06): Die Meldung geht mit dem Uhr-Status.
+        awaitSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY))
+    }
+
+    /** Wartet, bis die gemerkte Meldung «nicht gestartet» [skip] ist (Senden ans Handy läuft im Hintergrund). */
+    private fun awaitSkip(skip: RecorderSkip?) {
+        val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
+        while (runBlocking { app.scheduler.recorderSkip() } != skip) {
+            check(System.nanoTime() < until) { "Meldung nicht $skip" }
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(5)
+        }
     }
 
     @Test
     fun enoughBatteryMeasuresAndCancelIsLogged() {
         battery(30)
         val service = service()
+        val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
+        // Eine Meldung «nicht gestartet» dieser Nacht gilt nicht mehr, sobald sie misst.
+        app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
+        awaitSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY))
         service.startGoodNight(id, auto = true)
         awaitLog("auto onset start, alarm at")
+        awaitSkip(null)
         val monitor = assertNotNull(service.onset)
         // Höchstens 2 Std. ab dem Beginn, nicht erst 15 Min vor der Weckzeit.
         assertTrue(monitor.giveUpAt <= Instant.now().plus(OnsetMonitor.MAX_DURATION))

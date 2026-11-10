@@ -2,7 +2,7 @@ Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı için
 
 Nasıl çalışır
 • Uyanma saatini ve aralığı seç (30 dk'ya kadar), saatini tak, uyu.
-• Saat uyandırma aralığında ölçer – pili korur; isteğe bağlı öğrenme aşamasında gece boyunca da.
+• Saat uyandırma aralığında ve ne zaman uykuya daldığını anlamak için yatma saatinden yaklaşık 1 saat önce başlayarak ölçer (bunun için akşam saatteki uygulamayı aç) – pili korur; isteğe bağlı öğrenme aşamasında gece boyunca da.
 • İsteğe bağlı: öğrenme aşaması – saatin 7 gece boyunca gece içinde hareketi ve nabzı ölçer (biraz pil harcar) ve alarmı sana göre ayarlar.
 • Bileğinde titreşim – istersen iPhone'un da çalar, bir şeyler ters giderse yedek alarm olarak da.
 • Durdurmak için basılı tut, en fazla 3 kez ertele.

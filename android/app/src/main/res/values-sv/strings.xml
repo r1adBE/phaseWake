@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Klockans batteri</string>
     <string name="check_watch_battery_problem">Under %1$d %% – ladda klockan så att den räcker hela natten och kan väcka dig.</string>
+    <string name="check_watch_recorder">Mätning i natt</string>
+    <string name="check_watch_recorder_battery">Klockan startade inte mätningen före sömnen – batteriet var för lågt. Du blir väckt ändå.</string>
     <string name="check_watch_pulse">Puls i bakgrunden (klocka)</string>
     <string name="check_watch_pulse_problem">Klockan får inte mäta din puls på natten – ställ in Phase Wakes sensorbehörighet på klockan till ”Tillåt alltid”.</string>
     <string name="export_contents_hint">Filen innehåller för varje natt rörelse och puls per 30 s, hur du mådde och dina anteckningar – utan namn, datum eller enhets-id.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Spela in natten</string>
     <string name="record_stop">Stoppa inspelning</string>
     <string name="record_since">Spelar in sedan %1$s</string>
-    <string name="record_hint">Klockan registrerar rörelse och puls hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig.</string>
+    <string name="record_hint">Klockan registrerar rörelse och puls hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig. Det drar lite batteri – ladda klockan innan du sover.</string>
     <string name="record_end_manual">Stoppad</string>
     <string name="record_end_cap">Avslutad efter 12 h</string>
     <string name="record_end_battery">Klockans batteri är lågt</string>

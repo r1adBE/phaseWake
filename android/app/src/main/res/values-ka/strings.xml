@@ -232,6 +232,8 @@
     </plurals>
     <string name="check_watch_battery">საათის ბატარეა</string>
     <string name="check_watch_battery_problem">%1$d %%-ზე ნაკლები – დატენე საათი, რომ ღამეს გაუძლოს და გაგაღვიძოს.</string>
+    <string name="check_watch_recorder">ამაღამინდელი გაზომვა</string>
+    <string name="check_watch_recorder_battery">საათმა ძილის წინა გაზომვა არ დაიწყო – ბატარეა ძალიან დაბალი იყო. მაღვიძარა მაინც გაგაღვიძებს.</string>
     <string name="check_watch_pulse">პულსი ფონურ რეჟიმში (საათი)</string>
     <string name="check_watch_pulse_problem">საათს ღამით შენი პულსის გაზომვის უფლება არ აქვს – საათზე Phase Wake-ის სენსორების ნებართვა დააყენე „ყოველთვის დაშვებაზე“.</string>
     <string name="export_contents_hint">ფაილი ყოველი ღამისთვის შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს – სახელების, თარიღების და მოწყობილობის ID-ების გარეშე.</string>
@@ -523,7 +525,7 @@
     <string name="record_start">ღამის ჩაწერა</string>
     <string name="record_stop">ჩაწერის შეწყვეტა</string>
     <string name="record_since">იწერება %1$s-დან</string>
-    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს.</string>
+    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
     <string name="record_end_manual">შეწყდა</string>
     <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
     <string name="record_end_battery">საათის ბატარეა დაბალია</string>

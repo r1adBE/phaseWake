@@ -32,6 +32,7 @@
     <string name="health_rationale_apple">Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Apple Health) чува. Приказују се у твојој историји, и за поређење са ноћима у којима те је пробудио Phase Wake. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
     <string name="check_watch_notifications">Обавештења на сату</string>
     <string name="check_watch_notifications_problem">Дозволи временски осетљива обавештења за Phase Wake на свом Apple Watch-у. Иначе те не може пробудити обавештењем када мерење не тече.</string>
+    <string name="check_watch_recorder_motion">Сат није покренуо мерење пре спавања – Phase Wake на њему не сме да чита податке о кретању. Дозволи то у подешавањима сата под Приватност. Аларм ће те ипак пробудити.</string>
     <string name="check_watch_state_old">Стање сата је застарело – накратко отвори Phase Wake на сату.</string>
     <string name="editor_sleep_hint_apple">Рачуна се од успављивања – додирни „Лаку ноћ“ на сату када идеш у кревет. На Apple Watch-у Phase Wake процењује када заспиш на основу наученог времена успављивања. Без додира важи подешено време.</string>
     <string name="auto_onset_hint_apple">Отвори Phase Wake на Apple Watch-у од 1 сат пре спавања (сат те подсети) и од тада бележи твоје покрете; на почетку интервала буђења Phase Wake израчуна када си заспао.</string>

@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Óra akkumulátora</string>
     <string name="check_watch_battery_problem">%1$d %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni.</string>
+    <string name="check_watch_recorder">Ma éjjeli mérés</string>
+    <string name="check_watch_recorder_battery">Az órád nem indította el az alvás előtti mérést – túl alacsony volt az akkumulátora. Az ébresztő így is felébreszt.</string>
     <string name="check_watch_pulse">Pulzus a háttérben (óra)</string>
     <string name="check_watch_pulse_problem">Az óra éjjel nem mérheti a pulzusodat – az órán állítsd a Phase Wake érzékelőengedélyét „Mindig engedélyezett” értékre.</string>
     <string name="export_contents_hint">A fájl minden éjszakára tartalmazza a 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet – nevek, dátumok és eszközazonosítók nélkül.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Éjszaka rögzítése</string>
     <string name="record_stop">Felvétel leállítása</string>
     <string name="record_since">Felvétel %1$s óta</string>
-    <string name="record_hint">Az órád egész éjjel rögzíti a mozgást és a pulzust. Ezekből az éjszakákból a Phase Wake a tanulási szakaszban megtanulja a saját értékeidet, és hozzád igazítja az ébresztőt.</string>
+    <string name="record_hint">Az órád egész éjjel rögzíti a mozgást és a pulzust. Ezekből az éjszakákból a Phase Wake a tanulási szakaszban megtanulja a saját értékeidet, és hozzád igazítja az ébresztőt. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát.</string>
     <string name="record_end_manual">Leállítva</string>
     <string name="record_end_cap">12 óra után véget ért</string>
     <string name="record_end_battery">Az óra akkumulátora gyenge</string>

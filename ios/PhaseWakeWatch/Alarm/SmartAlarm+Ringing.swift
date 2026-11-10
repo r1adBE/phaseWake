@@ -198,7 +198,7 @@ extension SmartAlarm {
             // Wecker, die während dieser Nacht fällig wurden, gleich nachholen (wie Wear OS).
             model.noteNightEnded(windowStart: nightPlan.windowStart)
             WatchConnectivityBridge.shared.send(night: night)
-            // Lernphase: Die Aufzeichnung dieser Nacht endet mit dem Klingeln.
+            // Die Aufzeichnung dieser Nacht (Lernphase oder von Hand, Audit F-01) endet mit dem Klingeln.
             LearnRecorder.shared.noteWake(alarmId: nightPlan.alarmId, target: nightPlan.target)
         }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }

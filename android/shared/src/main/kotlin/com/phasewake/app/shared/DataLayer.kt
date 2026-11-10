@@ -134,6 +134,13 @@ object DataLayer {
     const val KEY_PULSE_BACKGROUND = "pulseBackground"
 
     /**
+     * Messung vor dem Schlafen dieser Nacht nicht gestartet: nur der Grund (`RecorderSkip.Reason.code`, Audit F-06, ohne
+     * Uhrzeit – technische Angabe wie der Akku) im selben Paket wie [KEY_READY]; leer ohne Meldung oder wenn die Nacht
+     * vorbei ist, fehlt bei älteren Uhren. Der Nacht-Check am Handy ist dann rot.
+     */
+    const val KEY_RECORDER_SKIP = "recorderSkip"
+
+    /**
      * Nachricht Handy → Uhr: Probewecker «In 2 Minuten testen»; Inhalt = `Transient.encode` (Art TEST).
      * Die Uhr bestätigt mit [PATH_TEST_ACK] und führt ihn wie eine Nacht, ohne Eintrag im Verlauf.
      */

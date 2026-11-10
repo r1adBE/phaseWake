@@ -250,6 +250,8 @@
     </plurals>
     <string name="check_watch_battery">Заряд часов</string>
     <string name="check_watch_battery_problem">Ниже %1$d %% – поставь часы на зарядку, чтобы их хватило на всю ночь и они смогли тебя разбудить.</string>
+    <string name="check_watch_recorder">Измерение этой ночью</string>
+    <string name="check_watch_recorder_battery">Часы не начали измерение перед сном – заряд был слишком низким. Будильник всё равно тебя разбудит.</string>
     <string name="check_watch_pulse">Пульс в фоне (часы)</string>
     <string name="check_watch_pulse_problem">Часам не разрешено измерять твой пульс ночью – на часах установи для Phase Wake разрешение датчиков «Разрешить всегда».</string>
     <string name="export_contents_hint">Файл содержит для каждой ночи движение и пульс каждые 30 с, твоё самочувствие и заметки – без имён, дат и ID устройств.</string>
@@ -563,7 +565,7 @@
     <string name="record_start">Записать ночь</string>
     <string name="record_stop">Остановить запись</string>
     <string name="record_since">Запись идёт с %1$s</string>
-    <string name="record_hint">Твои часы всю ночь записывают движение и пульс. По этим ночам Phase Wake на этапе обучения узнаёт твои собственные значения и подстраивает будильник под тебя.</string>
+    <string name="record_hint">Твои часы всю ночь записывают движение и пульс. По этим ночам Phase Wake на этапе обучения узнаёт твои собственные значения и подстраивает будильник под тебя. Это расходует немного заряда – заряди часы перед сном.</string>
     <string name="record_end_manual">Остановлена</string>
     <string name="record_end_cap">Завершена через 12 ч</string>
     <string name="record_end_battery">Низкий заряд часов</string>

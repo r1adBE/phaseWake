@@ -47,6 +47,25 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
+    /// Rekorder für eine Nacht nicht gestartet (``RecorderSkip``, Audit F-06) bzw. `nil`, wenn er doch läuft: gespeichert
+    /// (geht mit jedem Anwendungskontext ans iPhone, auch nach einem Neustart der App) und nur bei einer Änderung gesendet.
+    func publish(recorderSkip skip: RecorderSkip?) {
+        let text = skip?.encode() ?? ""
+        guard text != Self.recorderSkip else { return }
+        SettingsFile.watchSession.set(text, forKey: Self.recorderSkipKey)
+        if context[SyncKeys.alarms] == nil {
+            let snapshot = PhaseWakeStorage.watch.snapshot()
+            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
+            context[SyncKeys.updatedAt] = snapshot.updatedAt
+        }
+        sendContext()
+    }
+
+    /// Schlüssel der Meldung ``publish(recorderSkip:)`` in `SettingsFile.watchSession`.
+    private static let recorderSkipKey = "recorderSkip"
+    /// Gespeicherte Meldung (``RecorderSkip/encode()``); leer = keine.
+    private static var recorderSkip: String { SettingsFile.watchSession.string(forKey: recorderSkipKey) ?? "" }
+
     /// Frühere Zielzeit aus «Gute Nacht» (bzw. ihr Aufheben) ans iPhone, das den Zweitwecker dieser Nacht verschiebt;
     /// sofort oder nachgereicht.
     @MainActor
@@ -67,6 +86,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         // Zuletzt geprüfte Erlaubnis für Mitteilungen samt Zeitpunkt, gespeichert: auch nach einem Neustart vor einer
         // neuen Prüfung dabei (sonst verlöre das iPhone Warnung und Hinweis «veraltet»).
         WatchNotificationsCheck.apply(Self.notificationsCheck, to: &context)
+        // Rekorder nicht gestartet (Nacht-Check auf dem iPhone rot), gespeichert wie die Mitteilungen.
+        context[SyncKeys.recorderSkip] = Self.recorderSkip
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
         if device.batteryState == .unplugged, device.batteryLevel >= 0 {

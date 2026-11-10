@@ -241,6 +241,8 @@
     </plurals>
     <string name="check_watch_battery">വാച്ച് ബാറ്ററി</string>
     <string name="check_watch_battery_problem">%1$d %%-ൽ താഴെ – രാത്രി മുഴുവൻ നിലനിന്ന് ഉണർത്താൻ വാച്ച് ചാർജ് ചെയ്യുക.</string>
+    <string name="check_watch_recorder">ഇന്ന് രാത്രിയിലെ അളവ്</string>
+    <string name="check_watch_recorder_battery">നിന്റെ വാച്ച് ഉറക്കത്തിന് മുമ്പുള്ള അളവ് തുടങ്ങിയില്ല – അതിന്റെ ബാറ്ററി വളരെ കുറവായിരുന്നു. എന്നാലും അലാറം നിന്നെ ഉണർത്തും.</string>
     <string name="check_watch_pulse">പശ്ചാത്തലത്തിലെ പൾസ് (വാച്ച്)</string>
     <string name="check_watch_pulse_problem">വാച്ചിന് രാത്രിയിൽ നിന്റെ പൾസ് അളക്കാൻ അനുമതിയില്ല – വാച്ചിൽ Phase Wake-ന്റെ സെൻസർ അനുമതി “എല്ലായ്‌പ്പോഴും അനുവദിക്കുക” ആക്കുക.</string>
     <string name="export_contents_hint">ഫയലിൽ ഓരോ രാത്രിക്കും ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും ഉണ്ട് – പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാതെ.</string>
@@ -537,7 +539,7 @@
     <string name="record_start">രാത്രി റെക്കോർഡ് ചെയ്യുക</string>
     <string name="record_stop">റെക്കോർഡിംഗ് നിർത്തുക</string>
     <string name="record_since">%1$s മുതൽ റെക്കോർഡ് ചെയ്യുന്നു</string>
-    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും നാഡിയും രേഖപ്പെടുത്തുന്നു. ഈ രാത്രികളിൽ നിന്ന് Phase Wake പഠന ഘട്ടത്തിൽ നിന്റെ സ്വന്തം മൂല്യങ്ങൾ പഠിച്ച് അലാറം നിനക്ക് അനുയോജ്യമാക്കുന്നു.</string>
+    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും നാഡിയും രേഖപ്പെടുത്തുന്നു. ഈ രാത്രികളിൽ നിന്ന് Phase Wake പഠന ഘട്ടത്തിൽ നിന്റെ സ്വന്തം മൂല്യങ്ങൾ പഠിച്ച് അലാറം നിനക്ക് അനുയോജ്യമാക്കുന്നു. ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യൂ.</string>
     <string name="record_end_manual">നിർത്തി</string>
     <string name="record_end_cap">12 മണിക്കൂറിന് ശേഷം അവസാനിച്ചു</string>
     <string name="record_end_battery">വാച്ചിന്റെ ബാറ്ററി കുറവാണ്</string>

@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">Baterai jam tangan</string>
     <string name="check_watch_battery_problem">Di bawah %1$d %% – isi daya jam tanganmu agar bertahan semalaman dan bisa membangunkanmu.</string>
+    <string name="check_watch_recorder">Pengukuran malam ini</string>
+    <string name="check_watch_recorder_battery">Jam tanganmu tidak memulai pengukuran sebelum tidur – baterainya terlalu lemah. Alarm tetap akan membangunkanmu.</string>
     <string name="check_watch_pulse">Denyut di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak boleh mengukur denyut nadimu di malam hari – di jam tangan, setel izin sensor Phase Wake ke “Izinkan sepanjang waktu”.</string>
     <string name="export_contents_hint">File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam – tanpa nama, tanggal, atau ID perangkat.</string>
@@ -521,7 +523,7 @@
     <string name="record_start">Rekam malam</string>
     <string name="record_stop">Hentikan rekaman</string>
     <string name="record_since">Merekam sejak %1$s</string>
-    <string name="record_hint">Jam tanganmu merekam gerakan dan denyut sepanjang malam. Dari malam-malam ini, Phase Wake mempelajari nilai-nilaimu sendiri dalam fase belajar dan menyesuaikan alarm untukmu.</string>
+    <string name="record_hint">Jam tanganmu merekam gerakan dan denyut sepanjang malam. Dari malam-malam ini, Phase Wake mempelajari nilai-nilaimu sendiri dalam fase belajar dan menyesuaikan alarm untukmu. Ini memakai sedikit baterai – isi daya jam sebelum tidur.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Berakhir setelah 12 jam</string>
     <string name="record_end_battery">Baterai jam lemah</string>

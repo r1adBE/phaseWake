@@ -236,6 +236,8 @@
     </plurals>
     <string name="check_watch_battery">ແບັດເຕີຣີໂມງ</string>
     <string name="check_watch_battery_problem">ຕ່ຳກວ່າ %1$d %% – ສາກໂມງ ເພື່ອໃຫ້ໃຊ້ໄດ້ຕະຫຼອດຄືນ ແລະ ປຸກເຈົ້າໄດ້</string>
+    <string name="check_watch_recorder">ການວັດແທກຄືນນີ້</string>
+    <string name="check_watch_recorder_battery">ໂມງຂອງເຈົ້າບໍ່ໄດ້ເລີ່ມການວັດແທກກ່ອນນອນ – ແບັດເຕີຣີຕ່ຳເກີນໄປ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່.</string>
     <string name="check_watch_pulse">ຊີບພະຈອນໃນພື້ນຫຼັງ (ໂມງ)</string>
     <string name="check_watch_pulse_problem">ໂມງບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ວັດແທກຊີບພະຈອນຂອງເຈົ້າໃນຕອນກາງຄືນ – ໃນໂມງ ໃຫ້ຕັ້ງການອະນຸຍາດເຊັນເຊີຂອງ Phase Wake ເປັນ “ອະນຸຍາດຕະຫຼອດເວລາ”.</string>
     <string name="export_contents_hint">ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ.</string>
@@ -523,7 +525,7 @@
     <string name="record_start">ບັນທຶກກາງຄືນ</string>
     <string name="record_stop">ຢຸດການບັນທຶກ</string>
     <string name="record_since">ກຳລັງບັນທຶກຕັ້ງແຕ່ %1$s</string>
-    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ.</string>
+    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ.</string>
     <string name="record_end_manual">ຢຸດແລ້ວ</string>
     <string name="record_end_cap">ສິ້ນສຸດຫຼັງ 12 ຊມ</string>
     <string name="record_end_battery">ແບັດເຕີຣີໂມງຕ່ຳ</string>

@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Soat batareyasi</string>
     <string name="check_watch_battery_problem">%1$d %% dan kam – tun boʻyi yetishi va seni uygʻota olishi uchun soatingni quvvatla.</string>
+    <string name="check_watch_recorder">Bugungi tungi o‘lchov</string>
+    <string name="check_watch_recorder_battery">Soating uyqudan oldingi o‘lchovni boshlamadi – batareyasi juda kam edi. Budilnik baribir seni uyg‘otadi.</string>
     <string name="check_watch_pulse">Fonda puls (soat)</string>
     <string name="check_watch_pulse_problem">Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy.</string>
     <string name="export_contents_hint">Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor – nomlar, sanalar va qurilma IDlarisiz.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Tunni yozib olish</string>
     <string name="record_stop">Yozishni to‘xtatish</string>
     <string name="record_since">%1$s dan beri yozilmoqda</string>
-    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi.</string>
+    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
     <string name="record_end_manual">To‘xtatildi</string>
     <string name="record_end_cap">12 soatdan keyin tugadi</string>
     <string name="record_end_battery">Soat batareyasi kam</string>

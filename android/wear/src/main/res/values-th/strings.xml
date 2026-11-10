@@ -18,6 +18,7 @@
     <plurals name="ring_snooze">
         <item quantity="other">%1$d นาที · เหลือ %2$d ครั้ง</item>
     </plurals>
+    <string name="ring_snooze_button">ปลุกซ้ำ %1$d นาที</string>
     <string name="ring_snoozed_until">ปลุกซ้ำเวลา %1$s</string>
 
     <string name="home_no_alarm">ยังไม่ได้ตั้งปลุก</string>

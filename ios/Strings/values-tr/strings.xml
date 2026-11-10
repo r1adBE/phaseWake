@@ -29,6 +29,7 @@
     <string name="health_rationale_apple">Phase Wake, sağlık uygulamanın (örneğin Apple Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir, Phase Wake\'in seni uyandırdığı gecelerle karşılaştırma için de. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
     <string name="check_watch_notifications">Saatteki bildirimler</string>
     <string name="check_watch_notifications_problem">Apple Watch’unda Phase Wake için zamana duyarlı bildirimlere izin ver. Aksi halde ölçüm yapılmıyorken saat seni bildirimle uyandıramaz.</string>
+    <string name="check_watch_recorder_motion">Saatin uyku öncesi ölçümü başlatmadı – Phase Wake’in saatte hareket verilerini okuma izni yok. Saatin ayarlarında Gizlilik altında izin ver. Alarm seni yine de uyandıracak.</string>
     <string name="check_watch_state_old">Saatin durumu güncel değil – Phase Wake’i saatte kısaca aç.</string>
     <string name="editor_sleep_hint_apple">Uykuya daldığın andan itibaren sayılır – yatarken saatte «İyi geceler»e dokun. Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder. Dokunmazsan ayarlanan saat geçerli olur.</string>
     <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan itibaren hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar.</string>

@@ -15,6 +15,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -91,6 +92,12 @@ class RecordingRepositoryTest {
         assertEquals(RecordSync.Command.STOP, RecordSync.commandOf(RecordSync.commandPath(start = false)))
         assertNull(RecordSync.commandOf(DataLayer.PATH_STOP), "Weckstopp ist kein Aufzeichnungsbefehl")
         assertNull(RecordSync.commandOf(null))
+        // Durchgehend messen nur mit freigeschalteter Diagnose am Handy (Audit F-01); ohne Inhalt (ältere Handys) Stichproben.
+        assertTrue(RecordSync.continuousOf(RecordSync.commandBody(start = true, continuous = true)))
+        assertFalse(RecordSync.continuousOf(RecordSync.commandBody(start = true, continuous = false)))
+        assertEquals(0, RecordSync.commandBody(start = false, continuous = true).size, "Stopp ohne Inhalt")
+        assertFalse(RecordSync.continuousOf(ByteArray(0)))
+        assertFalse(RecordSync.continuousOf(null))
     }
 
     @Test

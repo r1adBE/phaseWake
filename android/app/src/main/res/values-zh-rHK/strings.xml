@@ -237,6 +237,8 @@
     </plurals>
     <string name="check_watch_battery">手錶電量</string>
     <string name="check_watch_battery_problem">低於 %1$d %% – 請為手錶充電，讓它撐過整晚並叫醒你。</string>
+    <string name="check_watch_recorder">今晚嘅量度</string>
+    <string name="check_watch_recorder_battery">手錶冇喺瞓覺前開始量度——電量太低。鬧鐘照樣會叫醒你。</string>
     <string name="check_watch_pulse">背景心率（手錶）</string>
     <string name="check_watch_pulse_problem">手錶無法在夜間量度你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。</string>
     <string name="export_contents_hint">檔案包括每晚每 30 秒的動作和心率、你的感覺同你的備註，不含姓名、日期或裝置 ID。</string>
@@ -524,7 +526,7 @@
     <string name="record_start">記錄夜間</string>
     <string name="record_stop">停止記錄</string>
     <string name="record_since">由 %1$s 起記錄中</string>
-    <string name="record_hint">你部手錶成晚記錄活動同脈搏。Phase Wake 會喺學習階段由呢啲晚學你自己嘅數值，令鬧鐘更適合你。</string>
+    <string name="record_hint">你部手錶成晚記錄活動同脈搏。Phase Wake 會喺學習階段由呢啲晚學你自己嘅數值，令鬧鐘更適合你。咁樣會用一啲電量——瞓覺前記得幫手錶充電。</string>
     <string name="record_end_manual">已停止</string>
     <string name="record_end_cap">12 小時後結束</string>
     <string name="record_end_battery">手錶電量低</string>

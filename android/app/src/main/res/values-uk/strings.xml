@@ -250,6 +250,8 @@
     </plurals>
     <string name="check_watch_battery">Заряд годинника</string>
     <string name="check_watch_battery_problem">Нижче %1$d %% – постав годинник на зарядку, щоб його вистачило на всю ніч і він зміг тебе розбудити.</string>
+    <string name="check_watch_recorder">Вимірювання цієї ночі</string>
+    <string name="check_watch_recorder_battery">Годинник не почав вимірювання перед сном – заряд був надто низький. Будильник усе одно тебе розбудить.</string>
     <string name="check_watch_pulse">Пульс у фоні (годинник)</string>
     <string name="check_watch_pulse_problem">Годиннику не дозволено вимірювати твій пульс уночі – на годиннику встанови для Phase Wake дозвіл датчиків «Дозволяти завжди».</string>
     <string name="export_contents_hint">Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки – без імен, дат та ID пристроїв.</string>
@@ -563,7 +565,7 @@
     <string name="record_start">Записати ніч</string>
     <string name="record_stop">Зупинити запис</string>
     <string name="record_since">Запис триває з %1$s</string>
-    <string name="record_hint">Твій годинник усю ніч записує рух і пульс. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе.</string>
+    <string name="record_hint">Твій годинник усю ніч записує рух і пульс. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе. Це витрачає трохи заряду – заряди годинник перед сном.</string>
     <string name="record_end_manual">Зупинено</string>
     <string name="record_end_cap">Завершено через 12 год</string>
     <string name="record_end_battery">Низький заряд годинника</string>

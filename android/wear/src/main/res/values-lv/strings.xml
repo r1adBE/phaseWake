@@ -21,6 +21,7 @@
         <item quantity="one">%1$d min · atlicis %2$d</item>
         <item quantity="other">%1$d min · atlicis %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Atlikt %1$d min</string>
     <string name="ring_snoozed_until">Atlikts līdz %1$s</string>
 
     <string name="home_no_alarm">Nav iestatīts modinātājs</string>

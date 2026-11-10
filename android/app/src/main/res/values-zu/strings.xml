@@ -242,6 +242,8 @@
     </plurals>
     <string name="check_watch_battery">Ibhethri lewashi</string>
     <string name="check_watch_battery_problem">Ngaphansi kuka-%1$d %% – shaja iwashi lakho ukuze lihlale ubusuku bonke futhi likuvuse.</string>
+    <string name="check_watch_recorder">Ukulinganisa kwanamuhla ebusuku</string>
+    <string name="check_watch_recorder_battery">Iwashi lakho alizange liqale ukulinganisa ngaphambi kokulala – ibhethri lalo beliphansi kakhulu. I-alamu isazokuvusa.</string>
     <string name="check_watch_pulse">Ukushaya kwenhliziyo ngemuva (iwashi)</string>
     <string name="check_watch_pulse_problem">Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”.</string>
     <string name="export_contents_hint">Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
@@ -538,7 +540,7 @@
     <string name="record_start">Qopha ubusuku</string>
     <string name="record_stop">Misa ukuqopha</string>
     <string name="record_since">Kuqoshwa kusukela ngo-%1$s</string>
-    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele.</string>
+    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
     <string name="record_end_manual">Kumisiwe</string>
     <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
     <string name="record_end_battery">Ibhethri lewashi liphansi</string>

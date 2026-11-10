@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">باتری ساعت</string>
     <string name="check_watch_battery_problem">کمتر از %1$d %% – ساعت را شارژ کن تا تمام شب روشن بماند و بیدارت کند.</string>
+    <string name="check_watch_recorder">اندازه‌گیری امشب</string>
+    <string name="check_watch_recorder_battery">ساعتت اندازه‌گیری پیش از خواب را شروع نکرد – باتری‌اش خیلی کم بود. زنگ هشدار باز هم بیدارت می‌کند.</string>
     <string name="check_watch_pulse">نبض در پس‌زمینه (ساعت)</string>
     <string name="check_watch_pulse_problem">ساعت اجازه ندارد شب‌ها نبضت را اندازه بگیرد – در ساعت، اجازهٔ حسگر Phase Wake را روی «همیشه مجاز است» بگذار.</string>
     <string name="export_contents_hint">فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو و یادداشت‌هایت را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">ضبط شب</string>
     <string name="record_stop">توقف ضبط</string>
     <string name="record_since">در حال ضبط از %1$s</string>
-    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند.</string>
+    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
     <string name="record_end_manual">متوقف شد</string>
     <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
     <string name="record_end_battery">باتری ساعت کم است</string>

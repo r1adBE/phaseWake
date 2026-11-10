@@ -20,6 +20,7 @@
         <item quantity="one">%1$d мин · %2$d үлдсэн</item>
         <item quantity="other">%1$d мин · %2$d үлдсэн</item>
     </plurals>
+    <string name="ring_snooze_button">%1$d мин хойшлуулах</string>
     <string name="ring_snoozed_until">%1$s хүртэл хойшлуулав</string>
 
     <string name="home_no_alarm">Сэрүүлэг тохируулаагүй</string>

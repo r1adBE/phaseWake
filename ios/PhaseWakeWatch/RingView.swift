@@ -41,7 +41,8 @@ struct RingView: View {
             Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
             Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
             if snoozesLeft > 0 {
-                Button(LP("ring_snooze", snoozesLeft, Int64(Snooze.minutes), Int64(snoozesLeft))) { alarm.snooze() }
+                // «Schlummern 5 Min» wie auf Wear OS (Audit F-10); die Höhe des Knopfs (watchOS-Standard) reicht als Tippziel.
+                Button(L("ring_snooze_button", Int64(Snooze.minutes))) { alarm.snooze() }
                     .tint(Brand.deep)
             }
         case .snoozed(let until, _):

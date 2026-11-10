@@ -17,8 +17,8 @@ import com.phasewake.app.wear.wake.OnsetRules
 import com.phasewake.app.wear.wake.SensorSession
 
 /**
- * Aufzeichnung der Lernphase in Stichproben (Entscheid r1AD 10.11.2026), wie die Stichproben der Einschlaf-Messung
- * ([OnsetMonitor]): Alle 5 Minuten weckt ein exakter Alarm die Uhr; sie misst [OnsetMonitor.SAMPLE_EPOCHS] volle Epochen
+ * Aufzeichnung in Stichproben (Lernphase, Entscheid r1AD 10.11.2026; von Hand ohne Diagnose, Audit F-01), wie die
+ * Stichproben der Einschlaf-Messung ([OnsetMonitor]): Alle 5 Minuten weckt ein exakter Alarm die Uhr; sie misst [OnsetMonitor.SAMPLE_EPOCHS] volle Epochen
  * (60 s) Bewegung und Puls unter einem kurzen Wakelock ([RecordWakeLocks.short]) und schläft wieder. Dazwischen sind die
  * Sensoren ab; die Epochen dort werden leer gespeichert ([filter]), das Format bleibt gleich. Derselbe Alarm ruft
  * [onTick] (Grenzen, Anhängen, Protokoll), denn ein Zeitgeber steht im Tiefschlaf still.

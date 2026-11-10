@@ -11,6 +11,7 @@ import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.wear.QuietWear
+import com.phasewake.app.wear.diag.WatchDiag
 import com.phasewake.app.wear.wearApp
 import java.io.File
 import java.time.Duration
@@ -57,6 +58,7 @@ class RecordServiceTest {
     fun cleanUp() {
         // Alle Dienste beenden: [RecordService.running] liegt im Begleitobjekt und gälte sonst im nächsten Test.
         controllers.forEach { it.destroy() }
+        runBlocking { WatchDiag.setShown(context, false) }
         RecordService.clock = Instant::now
         context.wearApp.appScope.cancel()
         File(context.filesDir, "recordings").deleteRecursively()
@@ -224,16 +226,22 @@ class RecordServiceTest {
         assertEquals(start.plusSeconds(4 * 30L), done.end, "Ende nach der letzten gespeicherten Epoche")
     }
 
+    @Suppress("DEPRECATION") // ScheduledAlarm.operation: in Robolectric ohne Getter (wie BackupWatchTest).
     @Test
     fun phoneStartGoesThroughAnExactAlarm() {
         // Aus dem Hintergrund darf der Messdienst nicht in den Vordergrund: ein exakter Alarm gleich jetzt startet ihn.
-        RecordControl.fromPhone(context, RecordSync.Command.START)
+        RecordControl.fromPhone(context, RecordSync.Command.START, continuous = true)
         val alarm = alarms.scheduledAlarms.single()
         assertTrue(alarm.triggerAtMs <= System.currentTimeMillis() + 2_000)
+        // Diagnose am Handy freigeschaltet: Der Alarm trägt es zum Dienst weiter.
+        val fired = shadowOf(alarm.operation).savedIntent
+        assertTrue(fired.getBooleanExtra(RecordService.EXTRA_CONTINUOUS, false))
         val app = shadowOf(RuntimeEnvironment.getApplication())
         app.clearStartedServices()
-        RecordReceiver().onReceive(context, Intent(context, RecordReceiver::class.java).setAction(RecordControl.ACTION_PHONE_START))
-        assertEquals(RecordService.ACTION_START_PHONE, app.nextStartedService?.action)
+        RecordReceiver().onReceive(context, fired)
+        val started = assertNotNull(app.nextStartedService)
+        assertEquals(RecordService.ACTION_START_PHONE, started.action)
+        assertTrue(started.getBooleanExtra(RecordService.EXTRA_CONTINUOUS, false))
     }
 
     @Test
@@ -277,13 +285,15 @@ class RecordServiceTest {
     }
 
     @Test
-    fun learningRecordingEndsAtWakeAManualOneDoesNot() {
+    fun wakeEndsEveryRecordingLearningOffOnlyTheLearningOne() {
         val manual = recording()
-        manual.onStartCommand(intent(RecordService.ACTION_END_LEARN), 0, 2)
+        // Lernphase am Handy aus: Eine von Hand begonnene läuft weiter.
+        manual.onStartCommand(intent(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code), 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         assertNotNull(manual.active, "von Hand begonnen: läuft weiter")
-        manual.onStartCommand(intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code), 0, 3)
-        awaitFinished(RecordEnd.WATCH)
+        // Geweckt: Sie endet spätestens jetzt (Audit F-01).
+        manual.onStartCommand(intent(RecordService.ACTION_END_LEARN), 0, 3)
+        awaitFinished(RecordEnd.WAKE)
         File(context.filesDir, "recordings").deleteRecursively()
 
         val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
@@ -333,7 +343,7 @@ class RecordServiceTest {
     }
 
     @Test
-    fun wokenWithoutRunningServiceFinishesOnlyTheLearningRecording() {
+    fun withoutRunningServiceWakeFinishesEveryRecordingLearningOffOnlyItsOwn() {
         val start = Instant.ofEpochMilli(System.currentTimeMillis()).minus(Duration.ofMinutes(3))
         runBlocking {
             app.recordings.begin(start)
@@ -341,11 +351,11 @@ class RecordServiceTest {
             app.learnMark.set(LearnMark(start.minusSeconds(600), start.plus(Duration.ofHours(8))))
         }
         assertFalse(RecordService.running)
-        // Marke einer anderen Aufzeichnung: diese bleibt.
-        RecordControl.endLearning(context)
+        // Lernphase aus, Marke einer anderen Aufzeichnung: diese bleibt.
+        RecordControl.endLearning(context, RecordEnd.PHONE)
         awaitUntil("Marke gelöscht") { runBlocking { app.learnMark.get() } == null }
         assertNotNull(active())
-        runBlocking { app.learnMark.set(LearnMark(start, start.plus(Duration.ofHours(8)))) }
+        // Geweckt: auch ohne Marke abgeschlossen (von Hand begonnen, Audit F-01).
         RecordControl.endLearning(context)
         val done = awaitFinished(RecordEnd.WAKE)
         assertEquals(start.plusSeconds(4 * 30L), done.end)

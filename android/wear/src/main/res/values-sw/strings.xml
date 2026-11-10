@@ -19,6 +19,7 @@
         <item quantity="one">Dak %1$d · zimebaki %2$d</item>
         <item quantity="other">Dak %1$d · zimebaki %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Ahirisha dak %1$d</string>
     <string name="ring_snoozed_until">Imeahirishwa hadi %1$s</string>
 
     <string name="home_no_alarm">Hakuna kengele</string>

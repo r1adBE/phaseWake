@@ -19,6 +19,7 @@
         <item quantity="one">%1$d min · %2$d jäljellä</item>
         <item quantity="other">%1$d min · %2$d jäljellä</item>
     </plurals>
+    <string name="ring_snooze_button">Torkku %1$d min</string>
     <string name="ring_snoozed_until">Torkku %1$s asti</string>
 
     <string name="home_no_alarm">Ei herätystä</string>

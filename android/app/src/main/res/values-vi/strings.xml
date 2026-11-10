@@ -235,6 +235,8 @@
     </plurals>
     <string name="check_watch_battery">Pin đồng hồ</string>
     <string name="check_watch_battery_problem">Dưới %1$d %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn.</string>
+    <string name="check_watch_recorder">Đo đêm nay</string>
+    <string name="check_watch_recorder_battery">Đồng hồ không bắt đầu đo trước khi ngủ – pin quá yếu. Báo thức vẫn sẽ đánh thức bạn.</string>
     <string name="check_watch_pulse">Nhịp tim trong nền (đồng hồ)</string>
     <string name="check_watch_pulse_problem">Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”.</string>
     <string name="export_contents_hint">Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm – không có tên, ngày hay ID thiết bị.</string>
@@ -521,7 +523,7 @@
     <string name="record_start">Ghi lại đêm</string>
     <string name="record_stop">Dừng ghi</string>
     <string name="record_since">Đang ghi từ %1$s</string>
-    <string name="record_hint">Đồng hồ của bạn ghi lại chuyển động và nhịp tim suốt đêm. Từ những đêm này, Phase Wake học các giá trị của riêng bạn trong giai đoạn học và điều chỉnh báo thức cho phù hợp với bạn.</string>
+    <string name="record_hint">Đồng hồ của bạn ghi lại chuyển động và nhịp tim suốt đêm. Từ những đêm này, Phase Wake học các giá trị của riêng bạn trong giai đoạn học và điều chỉnh báo thức cho phù hợp với bạn. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ.</string>
     <string name="record_end_manual">Đã dừng</string>
     <string name="record_end_cap">Kết thúc sau 12 giờ</string>
     <string name="record_end_battery">Pin đồng hồ yếu</string>

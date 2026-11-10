@@ -240,6 +240,8 @@
     </plurals>
     <string name="check_watch_battery">Akku der Uhr</string>
     <string name="check_watch_battery_problem">Unter %1$d %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt.</string>
+    <string name="check_watch_recorder">Messung heute Nacht</string>
+    <string name="check_watch_recorder_battery">Die Uhr hat die Messung vor dem Schlafen nicht gestartet – ihr Akku war zu schwach. Geweckt wirst du trotzdem.</string>
     <string name="check_watch_pulse">Puls im Hintergrund (Uhr)</string>
     <string name="check_watch_pulse_problem">Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen.</string>
     <string name="export_contents_hint">Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen – ohne Namen, Datum oder Gerätekennung.</string>
@@ -535,7 +537,7 @@
     <string name="record_start">Nacht aufzeichnen</string>
     <string name="record_stop">Aufzeichnung stoppen</string>
     <string name="record_since">Aufzeichnung läuft seit %1$s</string>
-    <string name="record_hint">Deine Uhr zeichnet die ganze Nacht Bewegung und Puls auf. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an.</string>
+    <string name="record_hint">Deine Uhr zeichnet die ganze Nacht Bewegung und Puls auf. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an. Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
     <string name="record_end_manual">Gestoppt</string>
     <string name="record_end_cap">Nach 12 Std. beendet</string>
     <string name="record_end_battery">Akku der Uhr schwach</string>

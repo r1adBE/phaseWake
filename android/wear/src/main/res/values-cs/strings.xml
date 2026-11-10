@@ -21,6 +21,7 @@
         <item quantity="many">%1$d min · zbývá: %2$d</item>
         <item quantity="other">%1$d min · zbývá: %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">Odložit %1$d min</string>
     <string name="ring_snoozed_until">Odloženo do %1$s</string>
 
     <string name="home_no_alarm">Žádný budík</string>

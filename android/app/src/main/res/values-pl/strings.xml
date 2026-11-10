@@ -250,6 +250,8 @@
     </plurals>
     <string name="check_watch_battery">Bateria zegarka</string>
     <string name="check_watch_battery_problem">Poniżej %1$d %% – naładuj zegarek, aby wytrzymał całą noc i mógł cię obudzić.</string>
+    <string name="check_watch_recorder">Pomiar tej nocy</string>
+    <string name="check_watch_recorder_battery">Zegarek nie rozpoczął pomiaru przed snem – bateria była zbyt słaba. Budzik i tak cię obudzi.</string>
     <string name="check_watch_pulse">Tętno w tle (zegarek)</string>
     <string name="check_watch_pulse_problem">Zegarek nie może mierzyć twojego tętna w nocy – na zegarku ustaw uprawnienie czujników dla Phase Wake na „Zezwalaj zawsze”.</string>
     <string name="export_contents_hint">Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki – bez imion, dat i identyfikatorów urządzeń.</string>
@@ -563,7 +565,7 @@
     <string name="record_start">Nagraj noc</string>
     <string name="record_stop">Zatrzymaj nagrywanie</string>
     <string name="record_since">Nagrywanie od %1$s</string>
-    <string name="record_hint">Twój zegarek przez całą noc rejestruje ruch i tętno. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie.</string>
+    <string name="record_hint">Twój zegarek przez całą noc rejestruje ruch i tętno. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie. Zużywa to trochę baterii – naładuj zegarek przed snem.</string>
     <string name="record_end_manual">Zatrzymano</string>
     <string name="record_end_cap">Zakończono po 12 h</string>
     <string name="record_end_battery">Słaba bateria zegarka</string>

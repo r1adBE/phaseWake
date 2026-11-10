@@ -246,6 +246,8 @@
     </plurals>
     <string name="check_watch_battery">Bateria del rellotge</string>
     <string name="check_watch_battery_problem">Menys del %1$d %% – carrega el rellotge perquè aguanti tota la nit i et pugui despertar.</string>
+    <string name="check_watch_recorder">Mesura d’aquesta nit</string>
+    <string name="check_watch_recorder_battery">El rellotge no ha començat la mesura abans de dormir – tenia la bateria massa baixa. L’alarma et despertarà igualment.</string>
     <string name="check_watch_pulse">Pols en segon pla (rellotge)</string>
     <string name="check_watch_pulse_problem">El rellotge no pot mesurar-te el pols a la nit – al rellotge, posa el permís de sensors de Phase Wake a «Permet sempre».</string>
     <string name="export_contents_hint">El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes – sense noms, dates ni identificadors de dispositiu.</string>
@@ -551,7 +553,7 @@
     <string name="record_start">Enregistra la nit</string>
     <string name="record_stop">Atura l’enregistrament</string>
     <string name="record_since">S’enregistra des de les %1$s</string>
-    <string name="record_hint">El rellotge enregistra moviment i pols tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu.</string>
+    <string name="record_hint">El rellotge enregistra moviment i pols tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu. Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
     <string name="record_end_manual">Aturat</string>
     <string name="record_end_cap">Acabat després de 12 h</string>
     <string name="record_end_battery">Bateria del rellotge baixa</string>

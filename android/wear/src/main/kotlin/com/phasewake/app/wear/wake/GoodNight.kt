@@ -7,6 +7,7 @@ import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.record.RecordControl
@@ -117,7 +118,11 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val battery = getSystemService(android.os.BatteryManager::class.java)
             ?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
         if (automatic && AutoOnset.skipForBattery(battery)) {
-            if (stillWanted()) endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
+            if (stillWanted()) {
+                endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
+                // Nacht-Check am Handy rot bis zur Weckzeit (Audit F-06, wie die Apple Watch).
+                app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
+            }
             return@launch
         }
         // Gelernte Werte der Lernphase: eigenes Grundrauschen, solange die Messung noch keines hat.
@@ -142,6 +147,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         }
         onset = monitor
         monitor.start()
+        // Misst doch (z. B. «Gute Nacht» von Hand nach dem Laden): Meldung dieser Nacht aufheben.
+        app.appScope.launch { app.scheduler.clearRecorderSkip(latest) }
         goodNightPending = false
         // Lernphase: Die Uhr zeichnet ab jetzt die Nacht auf (nicht beim Wiederaufnehmen: dort läuft sie schon oder wurde
         // von Hand gestoppt).

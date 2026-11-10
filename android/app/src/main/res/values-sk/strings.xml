@@ -251,6 +251,8 @@
     </plurals>
     <string name="check_watch_battery">Batéria hodiniek</string>
     <string name="check_watch_battery_problem">Pod %1$d %% – nabi hodinky, aby vydržali celú noc a mohli ťa zobudiť.</string>
+    <string name="check_watch_recorder">Meranie dnes v noci</string>
+    <string name="check_watch_recorder_battery">Hodinky nezačali merať pred spaním – batéria bola príliš slabá. Budík ťa aj tak zobudí.</string>
     <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
     <string name="check_watch_pulse_problem">Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“.</string>
     <string name="export_contents_hint">Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky – bez mien, dátumov a ID zariadení.</string>
@@ -565,7 +567,7 @@
     <string name="record_start">Zaznamenať noc</string>
     <string name="record_stop">Zastaviť záznam</string>
     <string name="record_since">Záznam beží od %1$s</string>
-    <string name="record_hint">Tvoje hodinky celú noc zaznamenávajú pohyb a pulz. Z týchto nocí sa Phase Wake vo fáze učenia naučí tvoje vlastné hodnoty a prispôsobí ti budík.</string>
+    <string name="record_hint">Tvoje hodinky celú noc zaznamenávajú pohyb a pulz. Z týchto nocí sa Phase Wake vo fáze učenia naučí tvoje vlastné hodnoty a prispôsobí ti budík. Spotrebuje to trochu batérie – nabi hodinky pred spaním.</string>
     <string name="record_end_manual">Zastavené</string>
     <string name="record_end_cap">Ukončené po 12 h</string>
     <string name="record_end_battery">Slabá batéria hodiniek</string>

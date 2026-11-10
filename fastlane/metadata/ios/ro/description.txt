@@ -2,7 +2,7 @@ Phase Wake te trezește în intervalul de trezire imediat ce somnul tău devine 
 
 Cum funcționează
 • Alege ora de trezire și intervalul (până la 30 min), pune-ți ceasul, dormi.
-• Ceasul măsoară în intervalul de trezire – cruță bateria; în faza de învățare opțională, și de-a lungul nopții.
+• Ceasul măsoară în intervalul de trezire și de la aproximativ 1 oră înainte de ora de culcare, ca să recunoască momentul în care adormi (deschide seara aplicația de pe ceas) – cruță bateria; în faza de învățare opțională, și de-a lungul nopții.
 • Opțional: faza de învățare – 7 nopți, ceasul tău măsoară mișcarea și pulsul de-a lungul nopții (consumă puțină baterie) și adaptează alarma la tine.
 • Vibrație la încheietură – dacă vrei, sună și iPhone-ul, iar ca alarmă de rezervă în caz că ceva nu merge.
 • Ține apăsat pentru oprire, amânare de până la 3 ori.

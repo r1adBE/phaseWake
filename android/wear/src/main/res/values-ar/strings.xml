@@ -23,6 +23,7 @@
         <item quantity="many">%1$d د · المتبقي %2$d</item>
         <item quantity="other">%1$d د · المتبقي %2$d</item>
     </plurals>
+    <string name="ring_snooze_button">غفوة %1$d د</string>
     <string name="ring_snoozed_until">غفوة حتى %1$s</string>
 
     <string name="home_no_alarm">لا منبّه مضبوط</string>

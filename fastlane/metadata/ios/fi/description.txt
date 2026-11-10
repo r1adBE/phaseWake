@@ -2,7 +2,7 @@ Phase Wake herättää sinut herätysikkunan sisällä heti, kun unesi muuttuu l
 
 Näin se toimii
 • Valitse herätysaika ja aikaikkuna (enintään 30 min), pue kello ja nuku.
-• Kello mittaa aikaikkunan aikana – säästää akkua; vapaaehtoisessa oppimisvaiheessa myös yön mittaan.
+• Kello mittaa aikaikkunan aikana ja noin tuntia ennen nukkumaanmenoaikaa alkaen tunnistaakseen, milloin nukahdat (avaa kellon appi illalla) – säästää akkua; vapaaehtoisessa oppimisvaiheessa myös yön mittaan.
 • Valinnainen: oppimisvaihe – kellosi mittaa 7 yön ajan liikettä ja sykettä yön mittaan (kuluttaa hieman akkua) ja mukauttaa herätyksen sinulle.
 • Värinä ranteessa – halutessasi myös iPhone soi, ja varaherätyksenä, jos jokin menee pieleen.
 • Pysäytä pitämällä painettuna, torkuta enintään 3 kertaa.
