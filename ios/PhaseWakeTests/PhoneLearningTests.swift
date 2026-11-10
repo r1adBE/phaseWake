@@ -41,7 +41,8 @@ final class PhoneLearningTests: XCTestCase {
     func testRecordingIsStoredOnceAndCounted() async {
         let learning = PhoneLearning.shared
         learning.setConsent(true)
-        let start = Date().addingTimeInterval(60)
+        // Ganze Sekunden: das Format speichert Millisekunden, ein Bruchteil davon ginge beim Lesen verloren.
+        let start = Date(timeIntervalSince1970: (Date().timeIntervalSince1970 + 60).rounded(.down))
         let night = recording(start: start, epochs: 400)
         await learning.receive(NightRecording.encode(night))
         // Dieselbe Aufzeichnung nochmals (die Uhr sendet erneut): ersetzt, nicht doppelt.
