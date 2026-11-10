@@ -2,7 +2,7 @@
 
 Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
-## Erledigt am 10.11.2026 (Details in ENTSCHEIDE.md, Freigabe ausstehend)
+## Erledigt am 10.11.2026 (Details in ENTSCHEIDE.md)
 
 - Schlafwert ohne Schlafphasen vorläufig (höchstens 84, Hinweis und gestrichelter Ring), neutrale Säulen «Ohne Phasen» in «Dein Schlaf» (Android und iPhone).
 - Auswertung auf dem iPhone (Teil von 11l): Schlafwert und Übersicht im Swift-Kern (`SleepScore`, `SleepOverviews`, gleiche Tests wie Kotlin), Detailseite mit Schlafwert und Puls im Weckfenster, Ring in der Liste, «Dein Schlaf» mit «Tage / Wochen / Monate». Gerätetest (r1AD): iPhone mit einer Nacht aus Apple Health mit Phasen, einer Sitzung ohne Phasen (vorläufiger Wert) und einer eigenen Nacht ohne Phasen (kein Schlafwert); Android eine nur aufgezeichnete Nacht (vorläufig, höchstens 84).
